@@ -18,10 +18,9 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.activity.expressions.UMLOCLFactory;
-import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.uml2.uml.ActionInputPin;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -172,65 +171,65 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case CallOperationActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3021(containerView, (ActionInputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3021((ActionInputPin)domainElement)) {
 				return ActionInputPinInCallOpActEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3022(containerView, (ValuePin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3022((ValuePin)domainElement)) {
 				return ValuePinInCallOpActEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3023(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3023((InputPin)domainElement)) {
 				return InputPinInCallOpActEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 				return OutputPinInCallOpActEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3025(containerView, (ValuePin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3025((ValuePin)domainElement)) {
 				return ValuePinInCallOpActAsTargetEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3026(containerView, (ActionInputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3026((ActionInputPin)domainElement)) {
 				return ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3027(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3027((InputPin)domainElement)) {
 				return InputPinInCallOpActAsTargetEditPart.VISUAL_ID;
 			}
 			break;
 		case SendObjectActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3046(containerView, (ValuePin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3046((ValuePin)domainElement)) {
 				return ValuePinInSendObjActAsReqEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3047(containerView, (ActionInputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3047((ActionInputPin)domainElement)) {
 				return ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3048(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3048((InputPin)domainElement)) {
 				return InputPinInSendObjActAsReqEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3049(containerView, (ValuePin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3049((ValuePin)domainElement)) {
 				return ValuePinInSendObjActAsTargetEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3050(containerView, (ActionInputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3050((ActionInputPin)domainElement)) {
 				return ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3051(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3051((InputPin)domainElement)) {
 				return InputPinInSendObjActAsTargetEditPart.VISUAL_ID;
 			}
 			break;
 		case SendSignalActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3053(containerView, (ActionInputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3053((ActionInputPin)domainElement)) {
 				return ActionInputPinInSendSigActEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3054(containerView, (ValuePin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3054((ValuePin)domainElement)) {
 				return ValuePinInSendSigActEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3055(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3055((InputPin)domainElement)) {
 				return InputPinInSendSigActEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3060(containerView, (ValuePin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3060((ValuePin)domainElement)) {
 				return ValuePinInSendSigActAsTargetEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3061(containerView, (ActionInputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3061((ActionInputPin)domainElement)) {
 				return ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3062(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3062((InputPin)domainElement)) {
 				return InputPinInSendSigActAsTargetEditPart.VISUAL_ID;
 			}
 			break;
@@ -245,10 +244,10 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ExpansionRegionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass()) && isExpansionNode_3074(containerView, (ExpansionNode)domainElement)) {
+			if(UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass()) && isExpansionNode_3074((ExpansionNode)domainElement)) {
 				return ExpansionNodeAsInEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass()) && isExpansionNode_3075(containerView, (ExpansionNode)domainElement)) {
+			if(UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass()) && isExpansionNode_3075((ExpansionNode)domainElement)) {
 				return ExpansionNodeAsOutEditPart.VISUAL_ID;
 			}
 			break;
@@ -290,10 +289,10 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3092(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3092((InputPin)domainElement)) {
 				return InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3093(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3093((InputPin)domainElement)) {
 				return InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
@@ -301,25 +300,25 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DestroyObjectActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3096(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3096((InputPin)domainElement)) {
 				return InputPinInDestroyObjectActionEditPart.VISUAL_ID;
 			}
 			break;
 		case ReadVariableActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass()) && isOutputPin_3098(containerView, (OutputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass()) && isOutputPin_3098((OutputPin)domainElement)) {
 				return OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID;
 			}
 			break;
 		case AddVariableValueActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3100(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3100((InputPin)domainElement)) {
 				return InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3101(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3101((InputPin)domainElement)) {
 				return InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID;
 			}
 			break;
 		case BroadcastSignalActionEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3103(containerView, (InputPin)domainElement)) {
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3103((InputPin)domainElement)) {
 				return InputPinInBroadcastSignalActionEditPart.VISUAL_ID;
 			}
 			break;
@@ -357,28 +356,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getCallOperationAction().isSuperTypeOf(domainElement.eClass())) {
 				return CallOperationActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
@@ -485,28 +484,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getCallOperationAction().isSuperTypeOf(domainElement.eClass())) {
 				return CallOperationActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
@@ -646,28 +645,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 				return ReadSelfActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -765,28 +764,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 				return ReadSelfActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -884,28 +883,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 				return ReadSelfActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1003,28 +1002,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 				return ReadSelfActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1125,28 +1124,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getActivityPartition().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityPartitionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1244,28 +1243,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 				return ReadSelfActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1333,28 +1332,28 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getCallOperationAction().isSuperTypeOf(domainElement.eClass())) {
 				return CallOperationActionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint)domainElement)) {
 				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint)domainElement)) {
 				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
@@ -4087,579 +4086,174 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if(diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		if(candidate == -1) {
+			//unrecognized id is always bad
+			return false;
 		}
-		return diagramViewInfo;
+		int basic = getNodeVisualID(containerView, domainElement);
+		return basic == candidate;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getPackage_1000ViewInfo() {
-		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "Activity");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
-		root.addNode(7001, viewInfo);
-		root.addNode(7014, viewInfo);
-		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Constraint");
-		root.addNode(7002, viewInfo);
-		root.addNode(7015, viewInfo);
-		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "Constraint");
-		root.addNode(7003, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "InitialNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "ActivityFinalNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "FlowFinalNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "OpaqueAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "ValuePin");
-		root.addNode(3007, viewInfo);
-		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3007, viewInfo);
-		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "InputPin");
-		root.addNode(3007, viewInfo);
-		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "OutputPin");
-		root.addNode(3007, viewInfo);
-		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "CallBehaviorAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "ValuePin");
-		root.addNode(3008, viewInfo);
-		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3008, viewInfo);
-		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "InputPin");
-		root.addNode(3008, viewInfo);
-		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "OutputPin");
-		root.addNode(3008, viewInfo);
-		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "CallOperationAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3010, viewInfo);
-		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "ValuePin");
-		root.addNode(3010, viewInfo);
-		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "InputPin");
-		root.addNode(3010, viewInfo);
-		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "OutputPin");
-		root.addNode(3010, viewInfo);
-		viewInfo = new BaseViewInfo(3025, ViewInfo.Node, "ValuePin");
-		root.addNode(3010, viewInfo);
-		viewInfo = new BaseViewInfo(3026, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3010, viewInfo);
-		viewInfo = new BaseViewInfo(3027, ViewInfo.Node, "InputPin");
-		root.addNode(3010, viewInfo);
-		viewInfo = new BaseViewInfo(3034, ViewInfo.Node, "DurationConstraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "DurationConstraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3036, ViewInfo.Node, "TimeConstraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "TimeConstraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "IntervalConstraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "IntervalConstraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Constraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "Constraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "DecisionNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3039, ViewInfo.Node, "MergeNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3040, ViewInfo.Node, "ForkNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3041, ViewInfo.Node, "JoinNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3078, ViewInfo.Node, "DataStoreNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3042, ViewInfo.Node, "SendObjectAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3046, ViewInfo.Node, "ValuePin");
-		root.addNode(3042, viewInfo);
-		viewInfo = new BaseViewInfo(3047, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3042, viewInfo);
-		viewInfo = new BaseViewInfo(3048, ViewInfo.Node, "InputPin");
-		root.addNode(3042, viewInfo);
-		viewInfo = new BaseViewInfo(3049, ViewInfo.Node, "ValuePin");
-		root.addNode(3042, viewInfo);
-		viewInfo = new BaseViewInfo(3050, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3042, viewInfo);
-		viewInfo = new BaseViewInfo(3051, ViewInfo.Node, "InputPin");
-		root.addNode(3042, viewInfo);
-		viewInfo = new BaseViewInfo(3052, ViewInfo.Node, "SendSignalAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3053, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3052, viewInfo);
-		viewInfo = new BaseViewInfo(3054, ViewInfo.Node, "ValuePin");
-		root.addNode(3052, viewInfo);
-		viewInfo = new BaseViewInfo(3055, ViewInfo.Node, "InputPin");
-		root.addNode(3052, viewInfo);
-		viewInfo = new BaseViewInfo(3060, ViewInfo.Node, "ValuePin");
-		root.addNode(3052, viewInfo);
-		viewInfo = new BaseViewInfo(3061, ViewInfo.Node, "ActionInputPin");
-		root.addNode(3052, viewInfo);
-		viewInfo = new BaseViewInfo(3062, ViewInfo.Node, "InputPin");
-		root.addNode(3052, viewInfo);
-		viewInfo = new BaseViewInfo(3059, ViewInfo.Node, "ActivityParameterNode");
-		root.addNode(2001, viewInfo);
-		root.addNode(3083, viewInfo);
-		root.addNode(7013, viewInfo);
-		viewInfo = new BaseViewInfo(3063, ViewInfo.Node, "AcceptEventAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3064, ViewInfo.Node, "OutputPin");
-		root.addNode(3063, viewInfo);
-		viewInfo = new BaseViewInfo(3076, ViewInfo.Node, "ValueSpecificationAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3077, ViewInfo.Node, "OutputPin");
-		root.addNode(3076, viewInfo);
-		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "ConditionalNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "ExpansionRegion");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "ExpansionNode");
-		root.addNode(3070, viewInfo);
-		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "ExpansionNode");
-		root.addNode(3070, viewInfo);
-		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "LoopNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3109, ViewInfo.Node, "OutputPin");
-		root.addNode(3071, viewInfo);
-		viewInfo = new BaseViewInfo(3110, ViewInfo.Node, "OutputPin");
-		root.addNode(3071, viewInfo);
-		viewInfo = new BaseViewInfo(3111, ViewInfo.Node, "OutputPin");
-		root.addNode(3071, viewInfo);
-		viewInfo = new BaseViewInfo(3073, ViewInfo.Node, "SequenceNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3065, ViewInfo.Node, "StructuredActivityNode");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3105, ViewInfo.Node, "InputPin");
-		root.addNode(3071, viewInfo);
-		viewInfo = new BaseViewInfo(3067, ViewInfo.Node, "ActivityPartition");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7006, viewInfo);
-		viewInfo = new BaseViewInfo(3068, ViewInfo.Node, "InterruptibleActivityRegion");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "Comment");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "ReadSelfAction");
-		root.addNode(7004, viewInfo);
-		root.addNode(7013, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3084, ViewInfo.Node, "OutputPin");
-		root.addNode(3081, viewInfo);
-		viewInfo = new BaseViewInfo(3083, ViewInfo.Node, "Activity");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		viewInfo = new BaseViewInfo(3086, ViewInfo.Node, "CreateObjectAction");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3087, ViewInfo.Node, "OutputPin");
-		root.addNode(3086, viewInfo);
-		viewInfo = new BaseViewInfo(3085, ViewInfo.Node, "NamedElement");
-		viewInfo = new BaseViewInfo(3088, ViewInfo.Node, "ReadStructuralFeatureAction");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3089, ViewInfo.Node, "InputPin");
-		root.addNode(3088, viewInfo);
-		viewInfo = new BaseViewInfo(3090, ViewInfo.Node, "OutputPin");
-		root.addNode(3088, viewInfo);
-		viewInfo = new BaseViewInfo(3091, ViewInfo.Node, "AddStructuralFeatureValueAction");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3092, ViewInfo.Node, "InputPin");
-		root.addNode(3091, viewInfo);
-		viewInfo = new BaseViewInfo(3093, ViewInfo.Node, "InputPin");
-		root.addNode(3091, viewInfo);
-		viewInfo = new BaseViewInfo(3094, ViewInfo.Node, "OutputPin");
-		root.addNode(3091, viewInfo);
-		viewInfo = new BaseViewInfo(3095, ViewInfo.Node, "DestroyObjectAction");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3096, ViewInfo.Node, "InputPin");
-		root.addNode(3095, viewInfo);
-		viewInfo = new BaseViewInfo(3097, ViewInfo.Node, "ReadVariableAction");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3098, ViewInfo.Node, "OutputPin");
-		root.addNode(3097, viewInfo);
-		viewInfo = new BaseViewInfo(3099, ViewInfo.Node, "AddVariableValueAction");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3100, ViewInfo.Node, "InputPin");
-		root.addNode(3099, viewInfo);
-		viewInfo = new BaseViewInfo(3101, ViewInfo.Node, "InputPin");
-		root.addNode(3099, viewInfo);
-		viewInfo = new BaseViewInfo(3102, ViewInfo.Node, "BroadcastSignalAction");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3103, ViewInfo.Node, "InputPin");
-		root.addNode(3102, viewInfo);
-		viewInfo = new BaseViewInfo(3104, ViewInfo.Node, "CentralBufferNode");
-		root.addNode(7013, viewInfo);
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		viewInfo = new BaseViewInfo(3112, ViewInfo.Node, "Constraint");
-		root.addNode(7004, viewInfo);
-		root.addNode(7008, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7010, viewInfo);
-		root.addNode(7012, viewInfo);
-		root.addNode(7005, viewInfo);
-		root.addNode(7006, viewInfo);
-		root.addNode(7007, viewInfo);
-		return root;
+	public static boolean isCompartmentVisualID(int visualID) {
+		switch(visualID) {
+		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
+		case ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID:
+		case ActivityActivityPostConditionsCompartmentEditPart.VISUAL_ID:
+		case ActivityActivityContentCompartmentEditPart.VISUAL_ID:
+		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+		case ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+		case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+		case SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+		case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+		case ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID:
+		case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
+		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
+		case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
+		case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
+		case ActivityCNContentCompartmentEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static boolean isSemanticLeafVisualID(int visualID) {
+		switch(visualID) {
+		case ActivityDiagramEditPart.VISUAL_ID:
+			return false;
+		case ParameterEditPart.VISUAL_ID:
+		case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
+		case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
+		case InitialNodeEditPart.VISUAL_ID:
+		case ActivityFinalNodeEditPart.VISUAL_ID:
+		case FlowFinalNodeEditPart.VISUAL_ID:
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case InputPinInOpaqueActEditPart.VISUAL_ID:
+		case OutputPinInOpaqueActEditPart.VISUAL_ID:
+		case ValuePinInOpaqueActEditPart.VISUAL_ID:
+		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
+		case ValuePinInCallBeActEditPart.VISUAL_ID:
+		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
+		case InputPinInCallBeActEditPart.VISUAL_ID:
+		case OutputPinInCallBeActEditPart.VISUAL_ID:
+		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
+		case ValuePinInCallOpActEditPart.VISUAL_ID:
+		case InputPinInCallOpActEditPart.VISUAL_ID:
+		case OutputPinInCallOpActEditPart.VISUAL_ID:
+		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
+		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case DecisionNodeEditPart.VISUAL_ID:
+		case MergeNodeEditPart.VISUAL_ID:
+		case ForkNodeEditPart.VISUAL_ID:
+		case JoinNodeEditPart.VISUAL_ID:
+		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
+		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
+		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
+		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
+		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
+		case ValuePinInSendSigActEditPart.VISUAL_ID:
+		case InputPinInSendSigActEditPart.VISUAL_ID:
+		case ActivityParameterNodeEditPart.VISUAL_ID:
+		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
+		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+		case DataStoreNodeEditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+		case ShapeNamedElementEditPart.VISUAL_ID:
+		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
+		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+		case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
+		case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
+		case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
+		case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
+		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+		case CentralBufferNodeEditPart.VISUAL_ID:
+		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+		case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
+		case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
+		case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
+		/**
+		 * @generated
+		 */
+		public int getVisualID(View view) {
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public String getModelID(View view) {
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getModelID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public int getNodeVisualID(View containerView, EObject domainElement) {
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isCompartmentVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isSemanticLeafVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
+		}
+	};
 
 	/**
 	 * @generated

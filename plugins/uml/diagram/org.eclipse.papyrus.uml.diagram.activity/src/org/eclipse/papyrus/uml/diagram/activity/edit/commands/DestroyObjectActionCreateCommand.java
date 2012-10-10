@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2010 Atos Origin and CEA LIST
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) - modiciation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -18,9 +32,9 @@ import org.eclipse.uml2.uml.DestroyObjectAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class DestroyObjectActionCreateCommand extends ActivityNodeCreateCommand {
+public class DestroyObjectActionCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -79,7 +93,7 @@ public class DestroyObjectActionCreateCommand extends ActivityNodeCreateCommand 
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		DestroyObjectAction newElement = UMLFactory.eINSTANCE.createDestroyObjectAction();

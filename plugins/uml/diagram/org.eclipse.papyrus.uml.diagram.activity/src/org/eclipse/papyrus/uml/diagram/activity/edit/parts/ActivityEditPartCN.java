@@ -214,25 +214,21 @@ public class ActivityEditPartCN extends NamedElementEditPart {
 		}
 		if(childEditPart instanceof ActivityCNParametersCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getParameterFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ActivityCNParametersCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPreconditionFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ActivityCNPreConditionsCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPostconditionFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ActivityCNPostConditionsCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof ActivityCNContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getContentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ActivityCNContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) - modiciation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -91,7 +91,7 @@ public class InterruptibleActivityRegionCreateCommand extends ActivityNodeCreate
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InterruptibleActivityRegion newElement = UMLFactory.eINSTANCE.createInterruptibleActivityRegion();

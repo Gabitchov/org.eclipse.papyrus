@@ -175,7 +175,6 @@ public class ConditionalNodeEditPart extends UMLNodeEditPart {
 		}
 		if(childEditPart instanceof ConditionalNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ConditionalNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST ) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class CallBehaviorActionCreateCommand extends ActivityNodeCreateCommand {
 
@@ -111,7 +111,7 @@ public class CallBehaviorActionCreateCommand extends ActivityNodeCreateCommand {
 			parent = parent.eContainer();
 		}
 		CallBehaviorAction newElement = UMLFactory.eINSTANCE.createCallBehaviorAction();
-		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity,newElement);
+		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity, newElement);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since action is being created)
 			EObject behavior = dialog.getSelectedInvoked();

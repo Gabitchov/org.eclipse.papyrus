@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2012 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Patrick Tessier (CEA LIST)           - Modification
+ * 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -21,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -35,9 +36,9 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated Not
  */
-public class ActivityParameterNodeCreateCommand  extends ActivityNodeCreateCommand {
+public class ActivityParameterNodeCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated

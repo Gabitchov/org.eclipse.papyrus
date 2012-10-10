@@ -43,7 +43,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.DataStoreNode;
 
 /**
  * @generated

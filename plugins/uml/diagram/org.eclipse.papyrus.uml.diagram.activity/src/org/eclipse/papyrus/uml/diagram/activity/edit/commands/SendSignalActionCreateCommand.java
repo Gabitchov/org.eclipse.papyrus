@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2012 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -111,7 +111,7 @@ public class SendSignalActionCreateCommand extends ActivityNodeCreateCommand {
 			parent = parent.eContainer();
 		}
 		SendSignalAction newElement = UMLFactory.eINSTANCE.createSendSignalAction();
-		CreateSendSignalActionDialog dialog = new CreateSendSignalActionDialog(Display.getDefault().getActiveShell(), parentActivity,newElement);
+		CreateSendSignalActionDialog dialog = new CreateSendSignalActionDialog(Display.getDefault().getActiveShell(), parentActivity, newElement);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since action is being created)
 			EObject signal = dialog.getSelectedInvoked();
@@ -123,9 +123,7 @@ public class SendSignalActionCreateCommand extends ActivityNodeCreateCommand {
 		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
-		
 		initAndExecuteEmfCommand(newElement);
-		
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet 
 			ElementInitializers.getInstance().init_SendSignalAction_3052(newElement);

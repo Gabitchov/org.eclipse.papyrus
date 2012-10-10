@@ -84,6 +84,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
@@ -527,6 +528,13 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 

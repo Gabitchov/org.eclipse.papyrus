@@ -175,7 +175,6 @@ public class ActivityPartitionEditPart extends UMLNodeEditPart {
 		}
 		if(childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ActivityPartitionActivityPartitionContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

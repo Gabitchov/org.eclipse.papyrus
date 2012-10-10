@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) - modiciation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -21,14 +22,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.FlowFinalNode;
-import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -97,7 +96,7 @@ public class FlowFinalNodeCreateCommand extends ActivityNodeCreateCommand {
 	 * @generated NOT set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		FlowFinalNode newElement = UMLFactory.eINSTANCE.createFlowFinalNode(); 
+		FlowFinalNode newElement = UMLFactory.eINSTANCE.createFlowFinalNode();
 		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_FlowFinalNode_3006(newElement);
 		doConfigure(newElement, monitor, info);
