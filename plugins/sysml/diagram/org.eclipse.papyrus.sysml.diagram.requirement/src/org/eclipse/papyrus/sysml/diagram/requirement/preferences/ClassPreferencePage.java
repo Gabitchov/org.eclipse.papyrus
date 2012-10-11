@@ -3,6 +3,7 @@ package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementInformationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
 
 /**
@@ -15,7 +16,8 @@ public class ClassPreferencePage extends RequirementDiagramNodePreferencePage {
 	 * the list of the compartments for this node
 	 */
 	public static final String compartments[] = { Messages.ClassAttributeCompartmentEditPartCN_title, Messages.ClassOperationCompartmentEditPartCN_title,
-		Messages.ClassNestedClassifierCompartmentEditPartCN_title };
+		Messages.ClassNestedClassifierCompartmentEditPartCN_title, 
+		RequirementInformationCompartmentEditPart.COMPARTMENT_NAME};
 
 	/**
 	 * Constructor.
