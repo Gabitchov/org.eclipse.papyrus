@@ -649,7 +649,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        List of EditPart to check
 	 * @return The parent
 	 */
-	protected final static ShapeNodeEditPart getParent(LifelineEditPart lifelinePart, Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
+	public final static ShapeNodeEditPart getParent(LifelineEditPart lifelinePart, Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
 		ShapeNodeEditPart parent = null;
 		// Loop through the ExecutionSpecification list and try to find the most to the right
 		// ExecutionSpecification within the executionSpecificationEP Y-axis bounds
@@ -658,7 +658,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			Rectangle externalExecutionSpecificationBounds = externalExecutionSpecificationEP.getFigure().getBounds();
 			externalBounds.x = externalExecutionSpecificationBounds.x;
 			externalBounds.width = externalExecutionSpecificationBounds.width;
-			if(externalExecutionSpecificationBounds.touches(externalBounds) && externalExecutionSpecificationBounds.x < childBounds.x) {
+			if(externalExecutionSpecificationBounds.touches(externalBounds) && externalExecutionSpecificationBounds.x <= childBounds.x) {
 				if(parent == null || externalExecutionSpecificationBounds.x > parent.getFigure().getBounds().x) {
 					parent = externalExecutionSpecificationEP;
 				}
@@ -707,7 +707,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * @return the list of affixed ExecutionSpecification. If there is no affixed
 	 *         ExecutionSpecification, then an empty list will be returned
 	 */
-	protected final static List<ShapeNodeEditPart> getAffixedExecutionSpecificationEditParts(ShapeNodeEditPart executionSpecificationEP) {
+	public final static List<ShapeNodeEditPart> getAffixedExecutionSpecificationEditParts(ShapeNodeEditPart executionSpecificationEP) {
 		List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new ArrayList<ShapeNodeEditPart>();
 		return getAffixedExecutionSpecificationEditParts(executionSpecificationEP, notToCheckExecutionSpecificationList);
 

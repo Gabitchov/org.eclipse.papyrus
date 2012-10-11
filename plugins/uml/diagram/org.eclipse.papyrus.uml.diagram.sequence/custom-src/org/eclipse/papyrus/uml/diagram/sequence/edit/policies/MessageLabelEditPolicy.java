@@ -601,19 +601,25 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					buffer.append("/");
 				}
 			}
+			
+			boolean showEqualMark = false;
 			// name
 			if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
 				buffer.append(" ");
-				buffer.append(property.getName());
+				String name = trimToEmpty(property.getName());
+				if(name.trim().length() > 0)
+					showEqualMark = true;
+				buffer.append(name);
 			}
 
 			if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
 				// type
 				if(property.getType() != null) {
-					buffer.append(": " + property.getType().getName());
+					buffer.append(": " + trimToEmpty(property.getType().getName()));
 				} else {
 					buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 				}
+				showEqualMark = true;
 			}
 
 			if((style & ICustomAppearence.DISP_MULTIPLICITY) != 0) {
@@ -625,14 +631,14 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 				String value = getValue(e, property);
 				if(value != null){
-					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+					if(showEqualMark)
 						buffer.append(" = ");
 					buffer.append(value);
 				} 
 			}else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
 				 // default value
 				if(property.getDefault() != null) {
-					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+					if(showEqualMark)
 						buffer.append(" = ");
 					buffer.append(property.getDefault());
 				}
@@ -658,11 +664,15 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 
 		private static String getValue(Message e, Property property) {
-			EList<ValueSpecification> arguments = e.getArguments();
-			for(ValueSpecification v : arguments)
-				if(v.getName().equals(property.getName())){
-					return ValueSpecificationUtil.getSpecificationValue(v);
+			try {
+				Signal signal = (Signal)property.getOwner();
+				int index = signal.getOwnedAttributes().indexOf(property);
+				EList<ValueSpecification> arguments = e.getArguments();
+				if(arguments.size() > index){
+					return ValueSpecificationUtil.getSpecificationValue( arguments.get(index) );
 				}
+			} catch (Exception e1) {
+			}
 			return null;
 		}
 
@@ -687,7 +697,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// name
 			if((style & ICustomAppearence.DISP_NAME) != 0) {
 				buffer.append(" ");
-				buffer.append(signal.getName());
+				buffer.append(trimToEmpty(signal.getName()));
 			}
 
 			// 
@@ -723,7 +733,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 	
 	static class OperationUtil {
-		public static String getCustomLabel(Message e, Parameter parameter, int style) {
+		public static String getCustomLabel(Message e, int paramIndex, Parameter parameter, int style) {
 			StringBuffer buffer = new StringBuffer();
 			// visibility
 			buffer.append(" ");
@@ -737,19 +747,24 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				buffer.append(parameter.getDirection().getLiteral());
 			}
 
+			boolean showEqualMark = false;
 			// name
 			if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
 				buffer.append(" ");
-				buffer.append(parameter.getName());
+				String name = trimToEmpty(parameter.getName());
+				if(name.trim().length() > 0)
+					showEqualMark = true;
+				buffer.append(name);
 			}
 
 			if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
 				// type
 				if(parameter.getType() != null) {
-					buffer.append(": " + parameter.getType().getName());
+					buffer.append(": " + trimToEmpty(parameter.getType().getName()));
 				} else {
 					buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 				}
+				showEqualMark = true;
 			}
 
 			if((style & ICustomAppearence.DISP_PARAMETER_MULTIPLICITY) != 0) {
@@ -759,16 +774,16 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 			
 			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
-				String value = getValue(e, parameter);
+				String value = getValue(e, paramIndex, parameter);
 				if(value != null){
-					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+					if(showEqualMark)
 						buffer.append(" = ");
 					buffer.append(value);
 				} 
 			}else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
 				 // default value
 				 if(parameter.getDefault() != null) {
-					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+					if(showEqualMark)
 						buffer.append(" = ");
 					buffer.append(parameter.getDefault());
 				}
@@ -788,12 +803,14 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return buffer.toString();
 		}
 		
-		private static String getValue(Message e, Parameter parameter) {
-			EList<ValueSpecification> arguments = e.getArguments();
-			for(ValueSpecification v : arguments)
-				if(v.getName().equals(parameter.getName())){
-					return ValueSpecificationUtil.getSpecificationValue(v);
+		private static String getValue(Message e, int paramIndex, Parameter parameter) {
+			try {
+				EList<ValueSpecification> arguments = e.getArguments();
+				if(arguments.size() > paramIndex){
+					return ValueSpecificationUtil.getSpecificationValue( arguments.get(paramIndex) );
 				}
+			} catch (Exception e1) {
+			}
 			return null;
 		}
 
@@ -809,7 +826,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// name
 			if((style & ICustomAppearence.DISP_NAME) != 0) {
 				buffer.append(" ");
-				buffer.append(operation.getName());
+				buffer.append(trimToEmpty(operation.getName()));
 			}
 
 			// 
@@ -963,12 +980,14 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			StringBuffer paramString = new StringBuffer();
 			Iterator<Parameter> paramIterator = operation.getOwnedParameters().iterator();
 			boolean firstParameter = true;
+			int paramIndex = 0;
 			while(paramIterator.hasNext()) {
 				Parameter parameter = paramIterator.next();
 				// Do not include return parameters
 				if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 					// get the label for this parameter
-					String parameterString = getCustomLabel(e, parameter, style);
+					String parameterString = getCustomLabel(e, paramIndex, parameter, style);
+					paramIndex ++;
 					if (!parameterString.trim().equals("")) {
 						if (!firstParameter) {
 							paramString.append(", ");
@@ -980,5 +999,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 			return paramString.toString();
 		}
+	}
+	
+	static String trimToEmpty(String str){
+		return str == null? "" : str;
 	}
 }
