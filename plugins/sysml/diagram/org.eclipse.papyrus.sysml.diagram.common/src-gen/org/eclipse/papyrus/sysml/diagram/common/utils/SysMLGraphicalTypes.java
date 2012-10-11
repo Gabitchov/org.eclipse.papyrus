@@ -37,6 +37,8 @@ public class SysMLGraphicalTypes {
 
 	public static final String SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID = "shape_sysml_flowport_as_affixed"; //$NON-NLS-1$
 
+	public static final String SHAPE_SYSML_REQUIREMENT_AS_CLASSIFER_ID = "shape_sysml_requirement_as_classifier"; //$NON-NLS-1$
+	
 	@Deprecated
 	public static final String SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_nestedblockproperty_as_composite"; //$NON-NLS-1$
 
@@ -66,6 +68,10 @@ public class SysMLGraphicalTypes {
 
 	public static final String LABEL_SYSML_VALUETYPE_NAME_ID = "label_sysml_valuetype_name"; //$NON-NLS-1$
 
+	public static final String LABEL_SYSML_REQUIREMENT_ID_ID = "label_sysml_requirement_id"; //$NON-NLS-1$
+	
+	public static final String LABEL_SYSML_REQUIREMENT_TEXT_ID = "label_sysml_requirement_text"; //$NON-NLS-1$
+	
 	/** Custom affixed labels */
 	public static final String AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID = "affixedlabel_sysml_flowport_label"; //$NON-NLS-1$
 
@@ -89,6 +95,8 @@ public class SysMLGraphicalTypes {
 	public static final String COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID = "compartment_sysml_blockproperty_structure"; //$NON-NLS-1$
 
 	public static final String COMPARTMENT_SYSML_VALUE_AS_LIST_ID = "compartment_sysml_value_as_list"; //$NON-NLS-1$
+	
+	public static final String COMPARTMENT_SYSML_REQUIREMENT_IDINFO_AS_LIST_ID = "compartment_sysml_requirement_idinfo_as_list"; //$NON-NLS-1$
 
 	/** Custom links */
 	public static final String LINK_SYSML_ASSOCIATION_ID = "link_sysml_association"; //$NON-NLS-1$

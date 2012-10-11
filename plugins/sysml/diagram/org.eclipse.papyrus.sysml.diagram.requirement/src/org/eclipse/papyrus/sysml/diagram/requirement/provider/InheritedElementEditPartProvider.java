@@ -11,10 +11,16 @@ package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementEditPart;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementIdLabelEditPart;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementInformationCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementTextLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CUMLEditPartProvider;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -104,5 +110,23 @@ public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
 
 		}
 		return false;
+	}
+	
+	@Override
+	protected IGraphicalEditPart createEditPart(View view) {
+		if(view.getType().equals(SysMLGraphicalTypes.COMPARTMENT_SYSML_REQUIREMENT_IDINFO_AS_LIST_ID)){
+			return new RequirementInformationCompartmentEditPart(view);
+		}
+		if(view.getType().equals(SysMLGraphicalTypes.SHAPE_SYSML_REQUIREMENT_AS_CLASSIFER_ID)){
+			return new RequirementEditPart(view);
+		}
+		if(view.getType().equals(SysMLGraphicalTypes.LABEL_SYSML_REQUIREMENT_ID_ID)){
+			return new RequirementIdLabelEditPart(view);
+		}
+		if(view.getType().equals(SysMLGraphicalTypes.LABEL_SYSML_REQUIREMENT_TEXT_ID)){
+			return new RequirementTextLabelEditPart(view);
+		}
+		
+		return super.createEditPart(view);
 	}
 }
