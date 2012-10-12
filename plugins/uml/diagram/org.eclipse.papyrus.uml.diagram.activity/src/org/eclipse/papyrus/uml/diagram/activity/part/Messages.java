@@ -691,16 +691,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createAcceptEventActions7Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createAcceptEventActions7Group_desc;
-
-	/**
-	 * @generated
-	 */
 	public static String createExpansionRegionsGroup_title;
 
 	/**
@@ -767,6 +757,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String createOtherActionsGroup_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createAcceptEventActions14Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createAcceptEventActions14Group_desc;
 
 	/**
 	 * @generated
