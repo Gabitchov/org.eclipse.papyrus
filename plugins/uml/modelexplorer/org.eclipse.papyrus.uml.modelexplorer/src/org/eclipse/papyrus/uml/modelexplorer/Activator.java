@@ -35,14 +35,14 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
 	 * )
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
 		// register EValidatorAdapter for selected elements
 		// TODO: discouraged access
-		EValidator.Registry.INSTANCE.put(
-			UMLPackage.eINSTANCE, new EValidatorAdapter());
+		EValidator.Registry.INSTANCE.put(UMLPackage.eINSTANCE, new EValidatorAdapter());
 	}
 
 	/*
@@ -52,6 +52,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
 	 * )
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);

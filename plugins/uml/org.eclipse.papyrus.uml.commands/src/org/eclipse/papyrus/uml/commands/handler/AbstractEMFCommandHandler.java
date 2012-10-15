@@ -27,8 +27,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.uml.commands.Activator;
 import org.eclipse.ui.PlatformUI;
 

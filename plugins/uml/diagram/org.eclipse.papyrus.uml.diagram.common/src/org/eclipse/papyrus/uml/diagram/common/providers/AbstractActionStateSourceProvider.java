@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.AbstractSourceProvider;
 import org.eclipse.ui.IPartListener;
@@ -185,7 +185,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 	 * @return <code>true</code> if the current activePart is the Model Explorer <code>false</code> if not
 	 */
 	protected boolean isSelectionInDiagram() {
-		return (workbenchPart instanceof PapyrusMultiDiagramEditor);
+		return (workbenchPart instanceof IMultiDiagramEditor);
 	}
 
 	/**

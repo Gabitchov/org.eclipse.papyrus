@@ -31,7 +31,7 @@ import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.outline.internal.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

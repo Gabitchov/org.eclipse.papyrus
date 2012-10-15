@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.papyrus.infra.core.resource.notation;
+package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;

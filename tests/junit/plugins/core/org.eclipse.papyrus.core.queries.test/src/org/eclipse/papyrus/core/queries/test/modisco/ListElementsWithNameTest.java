@@ -56,6 +56,7 @@ public class ListElementsWithNameTest extends AbstractQueryUtilTest implements I
 	/**
 	 * @throws java.lang.Exception
 	 */
+	@Override
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -63,12 +64,15 @@ public class ListElementsWithNameTest extends AbstractQueryUtilTest implements I
 	/**
 	 * @throws java.lang.Exception
 	 */
+	@Override
 	@After
 	public void tearDown() throws Exception {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.core.queries.modisco.QueryUtil#evaluateBooleanQuery(org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.core.queries.configuration.ModiscoQueryConfiguration)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.core.queries.modisco.QueryUtil#evaluateBooleanQuery(org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.core.queries.configuration.ModiscoQueryConfiguration)}
+	 * .
 	 */
 	@SuppressWarnings("unchecked")
 	@Test

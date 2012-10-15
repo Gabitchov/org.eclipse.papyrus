@@ -13,14 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.ui;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -39,7 +40,17 @@ public class GMFEmbeddedEditorActionDelegate extends OpenEmbeddedTextEditorObjec
 	 */
 	@Override
 	protected Control getControl() {
-		return ((CoreMultiDiagramEditor)part).getDiagramGraphicalViewer().getControl();
+		IDiagramGraphicalViewer viewer = null;
+		if(part instanceof IDiagramGraphicalViewer) {
+			viewer = (IDiagramGraphicalViewer)part;
+		} else if(part instanceof IAdaptable) {
+			viewer = (IDiagramGraphicalViewer)((IAdaptable)part).getAdapter(IDiagramGraphicalViewer.class);
+		}
+
+		if(viewer != null) {
+			return viewer.getControl();
+		}
+		return null;
 	}
 
 	/**
@@ -126,5 +137,5 @@ public class GMFEmbeddedEditorActionDelegate extends OpenEmbeddedTextEditorObjec
 	protected org.eclipse.gef.GraphicalEditPart getSelectedElement() {
 		return selectedElement;
 	}
-	
+
 }

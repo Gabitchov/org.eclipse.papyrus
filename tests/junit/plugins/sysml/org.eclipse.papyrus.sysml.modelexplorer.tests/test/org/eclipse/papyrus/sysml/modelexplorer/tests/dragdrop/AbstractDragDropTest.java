@@ -19,6 +19,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
@@ -33,6 +34,7 @@ import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.navigator.dnd.NavigatorDnDService;
 import org.eclipse.ui.navigator.CommonDropAdapter;
 import org.eclipse.ui.navigator.CommonDropAdapterAssistant;
@@ -53,6 +55,8 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 	@Before
 	public void testPrepare() throws Exception {
 		// check editor state (should be non dirty)
+		//FIXME: In Papyrus, the editor may be dirty at initialization. This should not be tested here. We simply save the editor as soon as it is opened.
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
 		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty());
 	}
 
@@ -76,9 +80,9 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 			selectAndReveal(sourceElement);
 		}
 		ModelExplorerView modelExplorerView = null;
-		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); //$NON-NLS-0$
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID);
 		if(bookViewPart != null) {
-			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
+			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
 			Assert.assertNotNull("Impossible to find model explorer view", modelExplorerView);
 		}
 		NavigatorDnDService dndService = (NavigatorDnDService)modelExplorerView.getNavigatorContentService().getDnDService();
@@ -134,7 +138,7 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 		// undo to go to previous state
 		getEditingDomain().getCommandStack().undo();
 		Assert.assertEquals("Context of the diagram should be the initial value: " + printElement(initialDiagramContainer), initialDiagramContainer, sourceElement.getElement());
-		
+
 		Assert.assertFalse("Editor should not be dirty at the end of the test", EditorUtils.getEditor().isDirty());
 	}
 

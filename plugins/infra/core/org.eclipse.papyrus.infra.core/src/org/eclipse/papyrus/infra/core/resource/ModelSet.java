@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
-import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 
 /**
@@ -215,7 +214,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the transactional editing domain
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
-		transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(this);
+		transactionalEditingDomain = TransactionalEditingDomainManager.getTransactionalEditingDomain(this);
 
 		if(transactionalEditingDomain == null) {
 			transactionalEditingDomain = TransactionalEditingDomainManager.createTransactionalEditingDomain(this);

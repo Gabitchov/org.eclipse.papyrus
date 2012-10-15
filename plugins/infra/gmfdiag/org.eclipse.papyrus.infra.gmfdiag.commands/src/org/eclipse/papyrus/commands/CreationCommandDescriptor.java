@@ -9,10 +9,11 @@
  *     Jerome Benois (Obeo) jerome.benois@obeo.fr - initial API and implementation
  *     Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - add condition to the create command (task #296902)
  *******************************************************************************/
-package org.eclipse.papyrus.infra.core.extension.commands;
+package org.eclipse.papyrus.commands;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCondition;
 
 /**
  * Creation Command Descriptor used to create a new diagram

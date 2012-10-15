@@ -13,7 +13,7 @@ package org.eclipse.papyrus.infra.widgets.strategy;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreePath;
-import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 
 
 /**

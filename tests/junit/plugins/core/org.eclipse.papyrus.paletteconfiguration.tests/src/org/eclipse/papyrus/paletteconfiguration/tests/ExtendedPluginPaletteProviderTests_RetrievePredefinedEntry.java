@@ -131,7 +131,9 @@ public class ExtendedPluginPaletteProviderTests_RetrievePredefinedEntry extends 
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.common.providers.ExtendedPluginPaletteProvider#retrieveExistingEntry(java.util.Map, java.lang.String, java.lang.Class)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.common.providers.ExtendedPluginPaletteProvider#retrieveExistingEntry(java.util.Map, java.lang.String, java.lang.Class)}
+	 * .
 	 */
 	@Test
 	public final void testRetrieveExistingEntry_retrieveExistingDrawer() {

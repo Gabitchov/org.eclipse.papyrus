@@ -11,8 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
-
 package org.eclipse.papyrus.uml.diagram.profile.custom.commands;
 
 import java.util.Collections;
@@ -24,12 +22,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.uml.profile.definition.ProfileRedefinition;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
@@ -42,14 +36,7 @@ import org.eclipse.uml2.uml.Profile;
  * @author VL222926
  * 
  */
-
 public class DefineProfileCommand extends AbstractTransactionalCommand {
-
-
-	/**
-	 * the {@link EditPartViewer}
-	 */
-	private EditPartViewer viewer;
 
 	/**
 	 * the {@link PapyrusDefinitionAnnotation}
@@ -70,15 +57,11 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 * @param rootProfile
 	 * @param viewer
 	 */
-	public DefineProfileCommand(TransactionalEditingDomain domain, PapyrusDefinitionAnnotation papyrusAnnotation, Profile rootProfile, EditPartViewer viewer) {
+	public DefineProfileCommand(TransactionalEditingDomain domain, PapyrusDefinitionAnnotation papyrusAnnotation, Profile rootProfile) {
 		super(domain, "DefineProfileCommand", null); //$NON-NLS-1$
-		this.viewer = viewer;
 		this.rootProfile = rootProfile;
 		this.papyrusAnnotation = papyrusAnnotation;
-
 	}
-
-
 
 	/**
 	 * 
@@ -101,7 +84,6 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 			e.printStackTrace();
 		}
 
-
 		setResult(CommandResult.newOKCommandResult());
 		return CommandResult.newOKCommandResult();
 	}
@@ -113,18 +95,8 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 * @return
 	 */
 	@Override
-	public List getAffectedFiles() {
-		if(viewer != null) {
-			EditPart editpart = viewer.getRootEditPart().getContents();
-			if(editpart instanceof IGraphicalEditPart) {
-				View view = (View)((IGraphicalEditPart)editpart).getModel();
-				if(view != null) {
-					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
-				}
-			}
-		}
-		return super.getAffectedFiles();
-
+	public List<IFile> getAffectedFiles() {
+		IFile f = WorkspaceSynchronizer.getFile(rootProfile.eResource());
+		return f != null ? Collections.<IFile> singletonList(f) : Collections.<IFile> emptyList();
 	}
 }

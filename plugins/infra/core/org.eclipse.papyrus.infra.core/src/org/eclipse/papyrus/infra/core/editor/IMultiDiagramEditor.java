@@ -13,12 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.editor;
 
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 /**
  * Interface implemented by the main multipage editor. This interface list the
@@ -65,6 +63,7 @@ public interface IMultiDiagramEditor extends IEditorPart {
 	 *        The new input.
 	 * @deprecated No replacement. Input can't be changed on multi editors.
 	 */
+	@Deprecated
 	public void setEditorInput(IEditorInput newInput);
 
 	/**
@@ -74,7 +73,7 @@ public interface IMultiDiagramEditor extends IEditorPart {
 	 * @deprecated Use {@link #getServicesRegistry()} or {@link #getAdapter(Class)}
 	 */
 	// FIXME Remove it (GMF dependency)
-	public DiagramEditDomain getDiagramEditDomain();
+	//	public DiagramEditDomain getDiagramEditDomain();
 
 	/**
 	 * Get the currently active nested Editor.
@@ -87,5 +86,6 @@ public interface IMultiDiagramEditor extends IEditorPart {
 	 * @return the property sheet page associated to the Editor.
 	 * @deprecated Use {@link #getServicesRegistry()} or {@link #getAdapter(Class)}
 	 */
-	public IPropertySheetPage getPropertySheetPage();
+	//	@Deprecated
+	//	public IPropertySheetPage getPropertySheetPage();
 }

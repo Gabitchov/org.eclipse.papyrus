@@ -8,9 +8,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.100",
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.ui.ide;bundle-version="3.7.0",
- com.ibm.icu;bundle-version="4.4.2",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.tools;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.0",
+ com.ibm.icu;bundle-version="4.4.2"
 Export-Package: org.eclipse.papyrus.infra.widgets,
  org.eclipse.papyrus.infra.widgets.creation,
  org.eclipse.papyrus.infra.widgets.databinding,

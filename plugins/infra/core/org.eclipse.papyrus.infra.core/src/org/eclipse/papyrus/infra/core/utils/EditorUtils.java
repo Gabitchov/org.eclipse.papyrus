@@ -23,8 +23,6 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -212,6 +210,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	static public ServicesRegistry getServiceRegistry() {
 		// Lookup ServiceRegistry
 		IMultiDiagramEditor editor = getMultiDiagramEditor();
@@ -237,6 +236,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	static public ServicesRegistry getServiceRegistryChecked() throws ServiceException {
 		// Lookup ServiceRegistry
 		IMultiDiagramEditor editor = getMultiDiagramEditor();
@@ -271,6 +271,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	static public ISashWindowsContentProvider getISashWindowsContentProvider() {
 
 		try {
@@ -305,6 +306,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static IPageMngr getIPageMngr() {
 
 		try {
@@ -370,10 +372,10 @@ public class EditorUtils {
 	 *             Editors, GMF stuff should be moved in GMF projects. In many
 	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
 	 */
-	public static Diagram lookupEditorActiveDiagram() {
-		DiagramEditor diagEditor = lookupActiveDiagramEditor();
-		return diagEditor == null ? null : diagEditor.getDiagram();
-	}
+	//	public static Diagram lookupEditorActiveDiagram() {
+	//		DiagramEditor diagEditor = lookupActiveDiagramEditor();
+	//		return diagEditor == null ? null : diagEditor.getDiagram();
+	//	}
 
 	/**
 	 * Lookup the currently active Diagram from the Papyrus editor. Return the
@@ -390,18 +392,18 @@ public class EditorUtils {
 	 *             Editors, GMF stuff should be moved in GMF projects. In many
 	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
 	 */
-	public static DiagramEditor lookupActiveDiagramEditor() {
-		// Get the active page within the sashcontainer
-		IEditorPart activeEditor = lookupActiveNestedIEditor();
-		// Check if it is a GMF DiagramEditor
-		if(activeEditor instanceof DiagramEditor) {
-			return ((DiagramEditor)activeEditor);
-		} else {
-			// Not found
-			return null;
-		}
-
-	}
+	//	public static DiagramEditor lookupActiveDiagramEditor() {
+	//		// Get the active page within the sashcontainer
+	//		IEditorPart activeEditor = lookupActiveNestedIEditor();
+	//		// Check if it is a GMF DiagramEditor
+	//		if(activeEditor instanceof DiagramEditor) {
+	//			return ((DiagramEditor)activeEditor);
+	//		} else {
+	//			// Not found
+	//			return null;
+	//		}
+	//
+	//	}
 
 	/**
 	 * Lookup the currently active {@link IEditorPart} from the Papyrus editor.
@@ -432,6 +434,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static IEditorPart lookupActiveNestedIEditor() {
 		// Get the sashwindow container
 		ISashWindowsContainer container = getSashWindowContainer();
@@ -469,6 +472,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static IPage lookupActiveNestedPage() {
 
 		// Get the sashwindow container
@@ -506,6 +510,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static DiResourceSet getDiResourceSet() {
 		try {
 			ServicesRegistry registry = getServiceRegistry();
@@ -550,6 +555,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static TransactionalEditingDomain getTransactionalEditingDomain() {
 		try {
 			ServicesRegistry registry = getServiceRegistry();
@@ -596,6 +602,7 @@ public class EditorUtils {
 	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static TransactionalEditingDomain getTransactionalEditingDomainChecked() throws ServiceException {
 		try {
 			ServicesRegistry registry = getServiceRegistryChecked();
@@ -619,6 +626,7 @@ public class EditorUtils {
 	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static TransactionalEditingDomain getTransactionalEditingDomain(ServicesRegistry registry) {
 		try {
 			return registry.getService(TransactionalEditingDomain.class);
@@ -644,6 +652,7 @@ public class EditorUtils {
 	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
 	 *             </ul>
 	 */
+	@Deprecated
 	public static TransactionalEditingDomain getTransactionalEditingDomainChecked(ServicesRegistry registry) throws ServiceException {
 		return registry.getService(TransactionalEditingDomain.class);
 	}

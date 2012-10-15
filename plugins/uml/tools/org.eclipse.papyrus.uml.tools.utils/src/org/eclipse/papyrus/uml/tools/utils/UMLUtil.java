@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -273,7 +272,7 @@ public class UMLUtil {
 	 * @return the Class associated to the given MessageEvent
 	 */
 	public static Class getContextClassForMessageEvent(MessageEvent event) {
-		Collection<EStructuralFeature.Setting> settings = PapyrusEcoreUtils.getUsages(event);
+		Collection<EStructuralFeature.Setting> settings = EMFHelper.getUsages(event);
 		if(settings.isEmpty()) {
 			return null;
 		}

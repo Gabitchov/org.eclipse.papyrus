@@ -27,9 +27,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 
 /**
@@ -60,19 +63,25 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 	/**
 	 * Instantiates a new inits the from template command.
-	 *
-	 * @param editingDomain the editing domain
-	 * @param diResouceSet the di resouce set
-	 * @param pluginId the plugin id
-	 * @param umlTemplatePath the uml template path
-	 * @param notationTemplatePath the notation template path
-	 * @param diTemplatePath the di template path
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param diResouceSet
+	 *        the di resouce set
+	 * @param pluginId
+	 *        the plugin id
+	 * @param umlTemplatePath
+	 *        the uml template path
+	 * @param notationTemplatePath
+	 *        the notation template path
+	 * @param diTemplatePath
+	 *        the di template path
 	 */
-	public InitFromTemplateCommand(TransactionalEditingDomain editingDomain, DiResourceSet diResouceSet, String pluginId, String umlTemplatePath,  String notationTemplatePath, String diTemplatePath) {
+	public InitFromTemplateCommand(TransactionalEditingDomain editingDomain, ModelSet modelSet, String pluginId, String umlTemplatePath, String notationTemplatePath, String diTemplatePath) {
 		super(editingDomain);
-		myModelUMLResource = diResouceSet.getModelResource();
-		myModelDiResource = diResouceSet.getDiResource();
-		myModelNotationResource = diResouceSet.getNotationResource();
+		myModelUMLResource = UmlUtils.getUmlResource(modelSet);
+		myModelDiResource = DiModelUtils.getDiResource(modelSet);
+		myModelNotationResource = NotationUtils.getNotationResource(modelSet);
 		myPluginId = pluginId;
 		myUmlTemplatePath = umlTemplatePath;
 		myDiTemplatePath = diTemplatePath;
@@ -81,7 +90,9 @@ public class InitFromTemplateCommand extends RecordingCommand {
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
 	 */
 	@Override
@@ -101,19 +112,20 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 	/**
 	 * Initialize from template.
-	 *
-
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * 
+	 * 
+	 * @throws IOException
+	 *         Signals that an I/O exception has occurred.
 	 */
 	private void initializeFromTemplate() throws IOException {
-		Resource templateDiResource=null;
-		Resource templateNotationResource=null;
-		Resource templateUmlResource=null;
+		Resource templateDiResource = null;
+		Resource templateNotationResource = null;
+		Resource templateUmlResource = null;
 
 
 		//0. initalization of the UML object
 		ResourceSet resourceSet = new ResourceSetImpl();
-		templateUmlResource = loadTemplateResource(myUmlTemplatePath,resourceSet);
+		templateUmlResource = loadTemplateResource(myUmlTemplatePath, resourceSet);
 
 
 		//1. prepare the copy of UML element
@@ -123,52 +135,51 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 		//2. test if di and notation exist
 		//verify if .di file and .notation file were filled in the org.eclipse.papyrus.uml.diagram.wizards.templates extension
-		if ((myDiTemplatePath!=null) && (myNotationTemplatePath!=null)){
+		if((myDiTemplatePath != null) && (myNotationTemplatePath != null)) {
 			//2.1 verify if the .di , .notation and .uml files have the same name
-			String diFileName= WizardsHelper.getFileNameWithoutExtension(myDiTemplatePath);
-			String umlFileName= WizardsHelper.getFileNameWithoutExtension(myUmlTemplatePath);
-			String notationFileName= WizardsHelper.getFileNameWithoutExtension(myNotationTemplatePath);
+			String diFileName = WizardsHelper.getFileNameWithoutExtension(myDiTemplatePath);
+			String umlFileName = WizardsHelper.getFileNameWithoutExtension(myUmlTemplatePath);
+			String notationFileName = WizardsHelper.getFileNameWithoutExtension(myNotationTemplatePath);
 
-			if (diFileName.contentEquals(umlFileName) && diFileName.contentEquals(notationFileName)){
+			if(diFileName.contentEquals(umlFileName) && diFileName.contentEquals(notationFileName)) {
 
 				//2.2 load  di resource
-				if( myDiTemplatePath!=null){
-					templateDiResource = loadTemplateResource(myDiTemplatePath,resourceSet);
+				if(myDiTemplatePath != null) {
+					templateDiResource = loadTemplateResource(myDiTemplatePath, resourceSet);
 				}
 
 				//2.3 load notation resource
-				if( myNotationTemplatePath!=null){
-					templateNotationResource = loadTemplateResource(myNotationTemplatePath,resourceSet);
+				if(myNotationTemplatePath != null) {
+					templateNotationResource = loadTemplateResource(myNotationTemplatePath, resourceSet);
 				}
 
 				//Visits all proxies in the resource set and tries to resolve them.
 				EcoreUtil.resolveAll(resourceSet);
 
 				//2.4 prepare the copy of di and notation elements
-				if(templateNotationResource!=null){
-					eObjectsToAdd.addAll(templateNotationResource.getContents());}
-				if(templateDiResource!=null){
+				if(templateNotationResource != null) {
+					eObjectsToAdd.addAll(templateNotationResource.getContents());
+				}
+				if(templateDiResource != null) {
 					eObjectsToAdd.addAll(templateDiResource.getContents());
 				}
 			}
 		}
 		//3. copy all element into eObjectResult
 		List<EObject> eObjectsResult = new ArrayList<EObject>();
-		eObjectsResult.addAll((List<EObject>)EcoreUtil.copyAll(eObjectsToAdd));
+		eObjectsResult.addAll(EcoreUtil.copyAll(eObjectsToAdd));
 
 
 		//4. set copied elements in goods resources
 		for(EObject eObject : eObjectsResult) {
-			if( eObject.eContainer()==null){
-				if (eObject instanceof Diagram)
-				{	
+			if(eObject.eContainer() == null) {
+				if(eObject instanceof Diagram) {
 					myModelNotationResource.getContents().add(eObject);
+				} else if(eObject instanceof SashWindowsMngr) {
+					myModelDiResource.getContents().add(eObject);
+				} else {
+					myModelUMLResource.getContents().add(eObject);
 				}
-				else 
-					if	(eObject instanceof SashWindowsMngr)
-					{myModelDiResource.getContents().add(eObject);}
-					else
-					{myModelUMLResource.getContents().add(eObject);}
 			}
 		}
 	}
@@ -177,8 +188,9 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 	/**
 	 * Load template resource.
-	 *
-	 * @param path the path
+	 * 
+	 * @param path
+	 *        the path
 	 * @return the resource
 	 */
 	private Resource loadTemplateResource(String path, ResourceSet resourceSet) {

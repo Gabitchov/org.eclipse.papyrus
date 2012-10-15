@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
@@ -69,26 +70,6 @@ public class NavigatorUtils {
 	}
 
 	/**
-	 * Resolve semantic element
-	 * 
-	 * @param object
-	 *        the object to resolve
-	 * @return <code>null</code> or the semantic element associated to the
-	 *         specified object
-	 */
-	public static EObject resolveSemanticObject(Object object) {
-		if(object instanceof EObject) {
-			return (EObject)object;
-		} else if(object instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable)object;
-			if(adaptable.getAdapter(EObject.class) != null) {
-				return (EObject)adaptable.getAdapter(EObject.class);
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Unwraps selection. Gets <EObject>s from <EditPart>s, from <View>s or from
 	 * <EObject>s
 	 * 
@@ -120,7 +101,7 @@ public class NavigatorUtils {
 						selectionList.add(element);
 					}
 				}
-				EObject eObject = NavigatorUtils.resolveSemanticObject(next);
+				EObject eObject = EMFHelper.getEObject(next);
 				if(eObject != null) {
 					selectionList.add(eObject);
 				}
@@ -294,54 +275,49 @@ public class NavigatorUtils {
 		if(result == null) {
 			result = (T)Platform.getAdapterManager().getAdapter(o, theClass);
 		}
-		if (result == null && theClass.isInstance(o))
-		{
-			result = (T)o ;
+		if(result == null && theClass.isInstance(o)) {
+			result = (T)o;
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Search all the elements referencing the context,
-	 * filter the results by the predicate 
+	 * filter the results by the predicate
+	 * 
 	 * @return
 	 */
-	public static boolean find (EObject toFind, Predicate<Setting> predicate)
-	{
-		if (toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null)
-		{
+	public static boolean find(EObject toFind, Predicate<Setting> predicate) {
+		if(toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null) {
 			return false;
 		}
 		ResourceSet resourceSet = toFind.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-		if (adapter == null)
-		{
+		if(adapter == null) {
 			adapter = new ECrossReferenceAdapter();
 			resourceSet.eAdapters().add(adapter);
 		}
 		Collection<Setting> settings = adapter.getInverseReferences(toFind, false);
 		return Iterables.filter(settings, predicate).iterator().hasNext();
 	}
-	
+
 	/**
 	 * Search all the elements referencing the context,
 	 * filter the results by the predicate and apply the function to return the desired types
+	 * 
 	 * @return
 	 */
-	public static <T> Collection<T> findFilterAndApply (EObject toFind, Predicate<Setting> predicate, Function<Setting,T> function)
-	{
-		if (toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null)
-		{
+	public static <T> Collection<T> findFilterAndApply(EObject toFind, Predicate<Setting> predicate, Function<Setting, T> function) {
+		if(toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null) {
 			return Collections.emptyList();
 		}
 		ResourceSet resourceSet = toFind.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-		if (adapter == null)
-		{
+		if(adapter == null) {
 			adapter = new ECrossReferenceAdapter();
 			resourceSet.eAdapters().add(adapter);
 		}
 		Collection<Setting> settings = adapter.getInverseReferences(toFind, false);
-		return Lists.newLinkedList(Iterables.transform(Iterables.filter(settings, predicate),function));
+		return Lists.newLinkedList(Iterables.transform(Iterables.filter(settings, predicate), function));
 	}
 }

@@ -18,12 +18,12 @@ import java.util.Set;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
+import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.swt.widgets.Composite;
 
 /**

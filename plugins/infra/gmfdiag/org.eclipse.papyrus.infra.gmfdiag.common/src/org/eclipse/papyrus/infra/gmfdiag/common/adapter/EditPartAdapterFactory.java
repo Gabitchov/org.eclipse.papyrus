@@ -49,6 +49,7 @@ public class EditPartAdapterFactory implements IAdapterFactory {
 		if(adaptableObject instanceof IGraphicalEditPart) {
 			return ((IGraphicalEditPart)adaptableObject).resolveSemanticElement();
 		}
+
 		return null;
 	}
 

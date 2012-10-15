@@ -25,8 +25,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
@@ -38,6 +38,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Element;
+import org.junit.After;
+import org.junit.Before;
 
 
 /**
@@ -87,7 +89,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected static final String CHANGE_CONTAINER = "CHANGE CONTAINER";
 
 	/** The papyrus editor. */
-	protected PapyrusMultiDiagramEditor papyrusEditor;
+	protected IMultiDiagramEditor papyrusEditor;
 
 	/** The di resource set. */
 	protected ModelSet diResourceSet;
@@ -116,7 +118,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 * 
 	 * @throws Exception
 	 */
-
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 
@@ -151,7 +153,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 * 
 	 * @throws Exception
 	 */
-
+	@After
 	@Override
 	protected void tearDown() throws Exception {
 		papyrusEditor.doSave(new NullProgressMonitor());
@@ -202,16 +204,16 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			if(!file.exists()) {
 				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
-				new CreateUMLModelCommand().createModel((DiResourceSet)this.diResourceSet);
+				new CreateUMLModelCommand().createModel(this.diResourceSet);
 				// diResourceSet.createsModels(file);
 				ICreationCommand command = new CreateClassDiagramCommand();
-				command.createDiagram((DiResourceSet)diResourceSet, null, "ClazzDiagram");
+				command.createDiagram(diResourceSet, null, "ClazzDiagram");
 				diResourceSet.save(new NullProgressMonitor());
 
 			}
 			page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-			papyrusEditor = (PapyrusMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
+			papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
 		} catch (Exception e) {
 			System.err.println("error " + e);
 		}

@@ -25,8 +25,8 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -85,9 +85,9 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 				selection = ((IAdaptable)selection).getAdapter(EObject.class);
 			}
 
-			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
-			if(businessObject instanceof EObject) {
-				eObject = (EObject)businessObject;
+			EObject businessObject = EMFHelper.getEObject(selection);
+			if(businessObject != null) {
+				eObject = businessObject;
 			}
 		}
 

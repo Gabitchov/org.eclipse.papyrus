@@ -21,10 +21,10 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard.DiResourceSetExt;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 
 /**
  * The command to initialize Papyrus diagram for a given domain model.
@@ -47,12 +47,12 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 	 * @param newFile the new file
 	 * @param root the root
 	 */
-	public PapyrusModelFromExistingDomainModelCommand(ModelSet diResourceSet, IFile newFile, EObject root) {
-		super(diResourceSet.getTransactionalEditingDomain());
-		myDiResourceSet = diResourceSet;
+	public PapyrusModelFromExistingDomainModelCommand(ModelSet modelSet, IFile newFile, EObject root) {
+		super(modelSet.getTransactionalEditingDomain());
+		myDiResourceSet = modelSet;
 		myFileNameWithoutExtension = newFile.getFullPath().removeFileExtension();
 		// Bug 339504 - [Wizard] NPE when init diagram from an existing model
-		((DiResourceSetExt)diResourceSet).setFilenameWithoutExtension(myFileNameWithoutExtension);
+		((DiResourceSetExt)modelSet).setFilenameWithoutExtension(myFileNameWithoutExtension);
 		myRoot = root;
 	}
 

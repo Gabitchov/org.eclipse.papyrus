@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.core.resourceloading.tests.testModel2;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -37,6 +39,7 @@ import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSe
 import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.junit.Before;
 
 
 /**
@@ -64,6 +67,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -213,7 +217,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			// Load all the needed resources
 			assertTrue(message, !eObject.eIsProxy());
 			break;
-		case 1:			
+		case 1:
 			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
 			if(resourceLoaded != null && resourceLoaded.getName().contains("model1")) {
 				//assertTrue(message, eObject.eIsProxy());
@@ -263,7 +267,8 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		// Unload models
-		for(Resource r : modelSet.getResources()) {
+		List<Resource> resources = new ArrayList<Resource>(modelSet.getResources());
+		for(Resource r : resources) {
 			try {
 				r.unload();
 			} catch (Exception e) {

@@ -32,9 +32,11 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
@@ -53,13 +55,8 @@ import org.eclipse.ui.ide.IDE;
 
 /**
  * Create new model file and initialize a selected diagram. This wizard create
- * several files : 
- * <li>*.di : the DI file to store Di diagrams and references all
- * external diagrams like GMF diagrams.</li> 
- * <li>*.notation : the file to store pure GMF
- * diagrams</li>
- * <li>*.uml : the standard UML file to store UML semantics elements.
- * (Model, Package, Class,...)</li>
+ * several files : <li>*.di : the DI file to store Di diagrams and references all external diagrams like GMF diagrams.</li> <li>*.notation : the file
+ * to store pure GMF diagrams</li> <li>*.uml : the standard UML file to store UML semantics elements. (Model, Package, Class,...)</li>
  * 
  * Those files can be used with the PapyrusEditor (see plugin.xml).
  */
@@ -94,7 +91,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Adds the pages.
-	 *
+	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -106,8 +103,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Adds the page if not null.
-	 *
-	 * @param page the page
+	 * 
+	 * @param page
+	 *        the page
 	 */
 	protected final void addPageIfNotNull(IWizardPage page) {
 		if(page != null) {
@@ -117,10 +115,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Inits the.
-	 *
-	 * @param workbench the workbench
-	 * @param selection the selection
-	 * {@inheritDoc}
+	 * 
+	 * @param workbench
+	 *        the workbench
+	 * @param selection
+	 *        the selection {@inheritDoc}
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
@@ -139,13 +138,12 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Perform finish.
-	 *
-	 * @return true, if successful
-	 * {@inheritDoc}
+	 * 
+	 * @return true, if successful {@inheritDoc}
 	 */
 	@Override
 	public boolean performFinish() {
-		DiResourceSet diResourceSet = new DiResourceSetExt();
+		ModelSet modelSet = new DiResourceSetExt();
 		String[] diagramCategoryIds = getDiagramCategoryIds();
 		if(diagramCategoryIds.length == 0) {
 			return false;
@@ -153,7 +151,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		String diagramCategoryId = diagramCategoryIds[0];
 
 		final IFile newFile = createNewModelFile(diagramCategoryId);
-		createAndOpenPapyrusModel(diResourceSet, newFile, diagramCategoryId);
+		createAndOpenPapyrusModel(modelSet, newFile, diagramCategoryId);
 
 		saveDiagramCategorySettings();
 		saveDiagramKindSettings();
@@ -162,21 +160,24 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Creates the and open papyrus model.
-	 *
-	 * @param diResourceSet the di resource set
-	 * @param newFile the new file
-	 * @param diagramCategoryId the diagram category id
+	 * 
+	 * @param modelSet
+	 *        the di resource set
+	 * @param newFile
+	 *        the new file
+	 * @param diagramCategoryId
+	 *        the diagram category id
 	 * @return true, if successful
 	 */
-	protected boolean createAndOpenPapyrusModel(DiResourceSet diResourceSet, IFile newFile, String diagramCategoryId) {
+	protected boolean createAndOpenPapyrusModel(ModelSet modelSet, IFile newFile, String diagramCategoryId) {
 		if(newFile == null) {
 			return false;
 		}
-		createPapyrusModels(diResourceSet, newFile);
+		createPapyrusModels(modelSet, newFile);
 
-		initDomainModel(diResourceSet, newFile, diagramCategoryId);
+		initDomainModel(modelSet, newFile, diagramCategoryId);
 
-		initDiagramModel(diResourceSet, diagramCategoryId);
+		initDiagramModel(modelSet, diagramCategoryId);
 
 		openDiagram(newFile);
 
@@ -185,7 +186,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Gets the diagram category ids.
-	 *
+	 * 
 	 * @return the diagram category ids
 	 */
 	protected String[] getDiagramCategoryIds() {
@@ -197,8 +198,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Gets the diagram file extension.
-	 *
-	 * @param diagramCategoryId the diagram category id
+	 * 
+	 * @param diagramCategoryId
+	 *        the diagram category id
 	 * @return the diagram file extension
 	 */
 	protected String getDiagramFileExtension(String diagramCategoryId) {
@@ -207,9 +209,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Gets the diagram file extension.
-	 *
-	 * @param categoryId the category id
-	 * @param defaultExtension the default extension
+	 * 
+	 * @param categoryId
+	 *        the category id
+	 * @param defaultExtension
+	 *        the default extension
 	 * @return the diagram file extension
 	 */
 	protected String getDiagramFileExtension(String categoryId, String defaultExtension) {
@@ -220,8 +224,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Creates the new model file page.
-	 *
-	 * @param selection the selection
+	 * 
+	 * @param selection
+	 *        the selection
 	 * @return the new model file page
 	 */
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
@@ -230,7 +235,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Creates the select diagram category page.
-	 *
+	 * 
 	 * @return the select diagram category page
 	 */
 	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
@@ -239,7 +244,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Creates the select diagram kind page.
-	 *
+	 * 
 	 * @return the select diagram kind page
 	 */
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
@@ -254,8 +259,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Creates the new model file.
-	 *
-	 * @param categoryId the category id
+	 * 
+	 * @param categoryId
+	 *        the category id
 	 * @return the i file
 	 */
 	protected IFile createNewModelFile(String categoryId) {
@@ -264,40 +270,46 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Inits the domain model.
-	 *
-	 * @param diResourceSet the di resource set
-	 * @param newFile the new file
-	 * @param diagramCategoryId the diagram category id
+	 * 
+	 * @param modelSet
+	 *        the di resource set
+	 * @param newFile
+	 *        the new file
+	 * @param diagramCategoryId
+	 *        the diagram category id
 	 */
-	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile, String diagramCategoryId) {
+	protected void initDomainModel(ModelSet modelSet, final IFile newFile, String diagramCategoryId) {
 		boolean isToInitFromTemplate = selectDiagramKindPage.getTemplatePath() != null;
 		if(isToInitFromTemplate) {
-			initDomainModelFromTemplate(diResourceSet);
+			initDomainModelFromTemplate(modelSet);
 		} else {
-			createEmptyDomainModel(diResourceSet, diagramCategoryId);
+			createEmptyDomainModel(modelSet, diagramCategoryId);
 		}
 	}
 
 	/**
 	 * Inits the domain model from template.
-	 *
-	 * @param diResourceSet the di resource set
+	 * 
+	 * @param modelSet
+	 *        the di resource set
 	 */
-	protected void initDomainModelFromTemplate(DiResourceSet diResourceSet) {
-		//getCommandStack(diResourceSet).execute(new InitFromTemplateCommand(diResourceSet.getTransactionalEditingDomain(), diResourceSet.getModelResource(), diResourceSet.getDiResource(), diResourceSet.getNotationResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath(),selectDiagramKindPage.getNotationTemplatePath(),selectDiagramKindPage.getDiTemplatePath()));
-		getCommandStack(diResourceSet).execute(new InitFromTemplateCommand(diResourceSet.getTransactionalEditingDomain(), diResourceSet, selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath(),selectDiagramKindPage.getNotationTemplatePath(),selectDiagramKindPage.getDiTemplatePath()));
+	protected void initDomainModelFromTemplate(ModelSet modelSet) {
+		//getCommandStack(modelSet).execute(new InitFromTemplateCommand(modelSet.getTransactionalEditingDomain(), modelSet.getModelResource(), modelSet.getDiResource(), modelSet.getNotationResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath(),selectDiagramKindPage.getNotationTemplatePath(),selectDiagramKindPage.getDiTemplatePath()));
+		getCommandStack(modelSet).execute(new InitFromTemplateCommand(modelSet.getTransactionalEditingDomain(), modelSet, selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath(), selectDiagramKindPage.getNotationTemplatePath(), selectDiagramKindPage.getDiTemplatePath()));
 	}
 
 	/**
 	 * Creates the empty domain model.
-	 *
-	 * @param diResourceSet the di resource set
-	 * @param diagramCategoryId the diagram category id
+	 * 
+	 * @param modelSet
+	 *        the di resource set
+	 * @param diagramCategoryId
+	 *        the diagram category id
 	 */
-	protected void createEmptyDomainModel(DiResourceSet diResourceSet, String diagramCategoryId) {
+	protected void createEmptyDomainModel(ModelSet modelSet, String diagramCategoryId) {
 		try {
 			IModelCreationCommand creationCommand = getDiagramCategoryMap().get(diagramCategoryId).getCommand();
-			creationCommand.createModel(diResourceSet);
+			creationCommand.createModel(modelSet);
 		} catch (BackboneException e) {
 			log.error(e);
 		}
@@ -305,13 +317,15 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Creates the papyrus models.
-	 *
-	 * @param diResourceSet the di resource set
-	 * @param newFile the new file
+	 * 
+	 * @param modelSet
+	 *        the di resource set
+	 * @param newFile
+	 *        the new file
 	 */
-	protected void createPapyrusModels(DiResourceSet diResourceSet, IFile newFile) {
-		RecordingCommand command = new NewPapyrusModelCommand(diResourceSet, newFile);
-		getCommandStack(diResourceSet).execute(command);
+	protected void createPapyrusModels(ModelSet modelSet, IFile newFile) {
+		RecordingCommand command = new NewPapyrusModelCommand(modelSet, newFile);
+		getCommandStack(modelSet).execute(command);
 	}
 
 	/**
@@ -334,7 +348,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			return;
 		}
 		SettingsHelper settingsHelper = new SettingsHelper(settings);
-		for (String category: getDiagramCategoryIds()) {
+		for(String category : getDiagramCategoryIds()) {
 			if(selectDiagramKindPage.isRememberCurrentSelection()) {
 				saveDefaultDiagramKinds(settingsHelper, category);
 				saveDefaultTemplates(settingsHelper, category);
@@ -348,9 +362,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Save default diagram kinds.
-	 *
-	 * @param settingsHelper the settings helper
-	 * @param category the category
+	 * 
+	 * @param settingsHelper
+	 *        the settings helper
+	 * @param category
+	 *        the category
 	 */
 	private void saveDefaultDiagramKinds(SettingsHelper settingsHelper, String category) {
 		String[] selected = selectDiagramKindPage.getSelectedDiagramKinds(category);
@@ -359,9 +375,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Save default templates.
-	 *
-	 * @param settingsHelper the settings helper
-	 * @param category the category
+	 * 
+	 * @param settingsHelper
+	 *        the settings helper
+	 * @param category
+	 *        the category
 	 */
 	private void saveDefaultTemplates(SettingsHelper settingsHelper, String category) {
 		if(!selectDiagramKindPage.templatesEnabled()) {
@@ -373,8 +391,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Open diagram.
-	 *
-	 * @param newFile the new file
+	 * 
+	 * @param newFile
+	 *        the new file
 	 */
 	protected void openDiagram(final IFile newFile) {
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
@@ -390,23 +409,26 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Inits the diagram model.
-	 *
-	 * @param diResourceSet the di resource set
-	 * @param categoryId the category id
+	 * 
+	 * @param modelSet
+	 *        the di resource set
+	 * @param categoryId
+	 *        the category id
 	 */
-	protected void initDiagramModel(DiResourceSet diResourceSet, String categoryId) {
-		initDiagrams(diResourceSet, categoryId);
-		saveDiagram(diResourceSet);
+	protected void initDiagramModel(ModelSet modelSet, String categoryId) {
+		initDiagrams(modelSet, categoryId);
+		saveDiagram(modelSet);
 	}
 
 	/**
 	 * Save diagram.
-	 *
-	 * @param diResourceSet the di resource set
+	 * 
+	 * @param modelSet
+	 *        the di resource set
 	 */
-	private void saveDiagram(DiResourceSet diResourceSet) {
+	private void saveDiagram(ModelSet modelSet) {
 		try {
-			diResourceSet.save(new NullProgressMonitor());
+			modelSet.save(new NullProgressMonitor());
 		} catch (IOException e) {
 			log.error(e);
 			//			return false;
@@ -415,22 +437,27 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Inits the diagrams.
-	 *
-	 * @param diResourceSet the di resource set
-	 * @param categoryId the category id
+	 * 
+	 * @param modelSet
+	 *        the di resource set
+	 * @param categoryId
+	 *        the category id
 	 */
-	protected void initDiagrams(DiResourceSet diResourceSet, String categoryId) {
-		initDiagrams(diResourceSet, null, categoryId);
+	protected void initDiagrams(ModelSet modelSet, String categoryId) {
+		initDiagrams(modelSet, null, categoryId);
 	}
 
 	/**
 	 * Inits the diagrams.
-	 *
-	 * @param resourceSet the resource set
-	 * @param root the root
-	 * @param categoryId the category id
+	 * 
+	 * @param resourceSet
+	 *        the resource set
+	 * @param root
+	 *        the root
+	 * @param categoryId
+	 *        the category id
 	 */
-	protected void initDiagrams(DiResourceSet resourceSet, EObject root, String categoryId) {
+	protected void initDiagrams(ModelSet resourceSet, EObject root, String categoryId) {
 		List<ICreationCommand> creationCommands = getDiagramKindsFor(categoryId);
 		String diagramName = selectDiagramKindPage.getDiagramName();
 		if(creationCommands.isEmpty()) {
@@ -444,8 +471,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Gets the diagram kinds for.
-	 *
-	 * @param categoryId the category id
+	 * 
+	 * @param categoryId
+	 *        the category id
 	 * @return the diagram kinds for
 	 */
 	protected List<ICreationCommand> getDiagramKindsFor(String categoryId) {
@@ -455,29 +483,31 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Creates the empty diagram editor.
-	 *
-	 * @param diResourceSet the di resource set
+	 * 
+	 * @param modelSet
+	 *        the model set
 	 */
-	private void createEmptyDiagramEditor(DiResourceSet diResourceSet) {
+	private void createEmptyDiagramEditor(ModelSet modelSet) {
 		// Create an empty editor (no diagrams opened)
 		// Geting an IPageMngr is enough to initialize the
 		// SashSystem.
-		EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
+		EditorUtils.getTransactionalIPageMngr(DiModelUtils.getDiResource(modelSet), modelSet.getTransactionalEditingDomain());
 	}
 
 	/**
 	 * Gets the command stack.
-	 *
-	 * @param diResourceSet the di resource set
+	 * 
+	 * @param modelSet
+	 *        the model set
 	 * @return the command stack
 	 */
-	protected final CommandStack getCommandStack(DiResourceSet diResourceSet) {
-		return diResourceSet.getTransactionalEditingDomain().getCommandStack();
+	protected final CommandStack getCommandStack(ModelSet modelSet) {
+		return modelSet.getTransactionalEditingDomain().getCommandStack();
 	}
 
 	/**
 	 * Gets the diagram category map.
-	 *
+	 * 
 	 * @return the diagram category map
 	 */
 	protected Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
@@ -486,8 +516,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Diagram category changed.
-	 *
-	 * @param newCategories the new categories
+	 * 
+	 * @param newCategories
+	 *        the new categories
 	 * @return the i status
 	 */
 	public IStatus diagramCategoryChanged(String... newCategories) {
@@ -500,15 +531,17 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 		return Status.OK_STATUS;
 	}
-	
+
 	// Bug 339504 - [Wizard] NPE when init diagram from an existing model
 	/**
 	 * The Class DiResourceSetExt.
 	 */
 	public static class DiResourceSetExt extends DiResourceSet {
-		
+
 		// open access to protected method to be set in PapyrusModelFromExistingDomainModelCommand
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.papyrus.resource.ModelSet#setFilenameWithoutExtension(org.eclipse.core.runtime.IPath)
 		 */
 		@Override

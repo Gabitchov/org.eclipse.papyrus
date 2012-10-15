@@ -162,18 +162,6 @@
    <extension
          point="org.eclipse.papyrus.infra.core.model">
       <model
-            classname="org.eclipse.papyrus.infra.core.resource.uml.ExtendedUmlModel"
-            description="Model for UML">
-         <modelSnippet
-               classname="org.eclipse.papyrus.infra.core.resource.uml.UmlSnippet"
-               description="Complete the UML model.">
-         </modelSnippet>
-      </model>
-      <model
-            classname="org.eclipse.papyrus.infra.core.resource.notation.NotationModel"
-            description="Model for notation">
-      </model>
-      <model
             classname="org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"
             description="Model for sash system">
       </model>
@@ -271,16 +259,6 @@
             startKind="startup">
          <dependsOn
                serviceKeyRef=" org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService">
-         </dependsOn>
-      </serviceFactory>
-      <serviceFactory
-            classname="org.eclipse.papyrus.infra.core.undocontext.UndoContextServiceFactory"
-            description="The shared IUndoContext used to tag command in the CommandStack"
-            id="org.eclipse.core.commands.operations.IUndoContext"
-            priority="1"
-            startKind="lazy">
-         <dependsOn
-               serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
          </dependsOn>
       </serviceFactory>
    </extension>

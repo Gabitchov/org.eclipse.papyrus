@@ -79,41 +79,37 @@ public abstract class AbstractModelExplorerTest {
 	protected static IViewPart modelExplorerPart;
 
 	/** generated selectable objects */
-		protected static org.eclipse.uml2.uml.Model 	model_EObject;
-		protected static org.eclipse.uml2.uml.Class 	b1_EObject;
-		protected static org.eclipse.uml2.uml.Property 	pB1P1_B1_EObject;
-		protected static org.eclipse.uml2.uml.Property 	rB2_B1_EObject;
-		protected static org.eclipse.uml2.uml.Property 	pB2_B1_EObject;
-		
-		protected static org.eclipse.uml2.uml.Class 	b2_EObject;
-		
-		protected static org.eclipse.uml2.uml.Package 	p1_EObject;
-		protected static org.eclipse.uml2.uml.Class 	b2P1_P1_EObject;
-		
-		protected static org.eclipse.uml2.uml.Class 	b1P1_P1_EObject;
-		protected static org.eclipse.uml2.uml.Property 	pB1_B1P1_P1_EObject;
-		protected static org.eclipse.uml2.uml.Property 	pB2P1_B1P1_P1_EObject;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-			protected static Diagram 	iBD_B1_Diagram;
-			protected static Diagram 	bDD_Main_Diagram;
-	
-	
+	protected static org.eclipse.uml2.uml.Model model_EObject;
+
+	protected static org.eclipse.uml2.uml.Class b1_EObject;
+
+	protected static org.eclipse.uml2.uml.Property pB1P1_B1_EObject;
+
+	protected static org.eclipse.uml2.uml.Property rB2_B1_EObject;
+
+	protected static org.eclipse.uml2.uml.Property pB2_B1_EObject;
+
+	protected static org.eclipse.uml2.uml.Class b2_EObject;
+
+	protected static org.eclipse.uml2.uml.Package p1_EObject;
+
+	protected static org.eclipse.uml2.uml.Class b2P1_P1_EObject;
+
+	protected static org.eclipse.uml2.uml.Class b1P1_P1_EObject;
+
+	protected static org.eclipse.uml2.uml.Property pB1_B1P1_P1_EObject;
+
+	protected static org.eclipse.uml2.uml.Property pB2P1_B1P1_P1_EObject;
+
+
+
+
+
+	protected static Diagram iBD_B1_Diagram;
+
+	protected static Diagram bDD_Main_Diagram;
+
+
 	/** end of generated selectable objects */
 
 	/**
@@ -128,55 +124,43 @@ public abstract class AbstractModelExplorerTest {
 		EObject root = diagramEditPart.getDiagramView().getElement();
 
 		Assert.assertTrue("Impossible to find main model", root instanceof Model);
-		
+
 		/** generated selectable objects */
-		 		model_EObject = (org.eclipse.uml2.uml.Model)root;
-				b1_EObject = (org.eclipse.uml2.uml.Class)	model_EObject.getPackagedElement("B1");
-			Assert.assertNotNull("Impossible to find Class B1", 	b1_EObject ); 
-				pB1P1_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("pB1P1", null);
-			Assert.assertNotNull("Impossible to find Property pB1P1", 	pB1P1_B1_EObject );  
-				rB2_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("rB2", null);
-			Assert.assertNotNull("Impossible to find Property rB2", 	rB2_B1_EObject );  
-				pB2_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("pB2", null);
-			Assert.assertNotNull("Impossible to find Property pB2", 	pB2_B1_EObject );  
-			
-				b2_EObject = (org.eclipse.uml2.uml.Class)	model_EObject.getPackagedElement("B2");
-			Assert.assertNotNull("Impossible to find Class B2", 	b2_EObject ); 
-			
-				p1_EObject = (org.eclipse.uml2.uml.Package)	model_EObject.getPackagedElement("P1"); 
-			Assert.assertNotNull("Impossible to find Package P1", 	p1_EObject );
-				b2P1_P1_EObject = (org.eclipse.uml2.uml.Class)	p1_EObject.getPackagedElement("B2P1");
-			Assert.assertNotNull("Impossible to find Class B2P1", 	b2P1_P1_EObject ); 
-			
-				b1P1_P1_EObject = (org.eclipse.uml2.uml.Class)	p1_EObject.getPackagedElement("B1P1");
-			Assert.assertNotNull("Impossible to find Class B1P1", 	b1P1_P1_EObject ); 
-				pB1_B1P1_P1_EObject = (org.eclipse.uml2.uml.Property)	b1P1_P1_EObject.getAttribute("pB1", null);
-			Assert.assertNotNull("Impossible to find Property pB1", 	pB1_B1P1_P1_EObject );  
-				pB2P1_B1P1_P1_EObject = (org.eclipse.uml2.uml.Property)	b1P1_P1_EObject.getAttribute("pB2P1", null);
-			Assert.assertNotNull("Impossible to find Property pB2P1", 	pB2P1_B1P1_P1_EObject );  
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-					iBD_B1_Diagram = getDiagram("IBD_B1");
-				Assert.assertNotNull("Impossible to find IBD_B1", 	iBD_B1_Diagram );
-					bDD_Main_Diagram = getDiagram("BDD_Main");
-				Assert.assertNotNull("Impossible to find BDD_Main", 	bDD_Main_Diagram );
-		
-		
+		model_EObject = (org.eclipse.uml2.uml.Model)root;
+		b1_EObject = (org.eclipse.uml2.uml.Class)model_EObject.getPackagedElement("B1");
+		Assert.assertNotNull("Impossible to find Class B1", b1_EObject);
+		pB1P1_B1_EObject = b1_EObject.getAttribute("pB1P1", null);
+		Assert.assertNotNull("Impossible to find Property pB1P1", pB1P1_B1_EObject);
+		rB2_B1_EObject = b1_EObject.getAttribute("rB2", null);
+		Assert.assertNotNull("Impossible to find Property rB2", rB2_B1_EObject);
+		pB2_B1_EObject = b1_EObject.getAttribute("pB2", null);
+		Assert.assertNotNull("Impossible to find Property pB2", pB2_B1_EObject);
+
+		b2_EObject = (org.eclipse.uml2.uml.Class)model_EObject.getPackagedElement("B2");
+		Assert.assertNotNull("Impossible to find Class B2", b2_EObject);
+
+		p1_EObject = (org.eclipse.uml2.uml.Package)model_EObject.getPackagedElement("P1");
+		Assert.assertNotNull("Impossible to find Package P1", p1_EObject);
+		b2P1_P1_EObject = (org.eclipse.uml2.uml.Class)p1_EObject.getPackagedElement("B2P1");
+		Assert.assertNotNull("Impossible to find Class B2P1", b2P1_P1_EObject);
+
+		b1P1_P1_EObject = (org.eclipse.uml2.uml.Class)p1_EObject.getPackagedElement("B1P1");
+		Assert.assertNotNull("Impossible to find Class B1P1", b1P1_P1_EObject);
+		pB1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB1", null);
+		Assert.assertNotNull("Impossible to find Property pB1", pB1_B1P1_P1_EObject);
+		pB2P1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB2P1", null);
+		Assert.assertNotNull("Impossible to find Property pB2P1", pB2P1_B1P1_P1_EObject);
+
+
+
+
+
+		iBD_B1_Diagram = getDiagram("IBD_B1");
+		Assert.assertNotNull("Impossible to find IBD_B1", iBD_B1_Diagram);
+		bDD_Main_Diagram = getDiagram("BDD_Main");
+		Assert.assertNotNull("Impossible to find BDD_Main", bDD_Main_Diagram);
+
+
 		/** end of generated selectable objects */
 	}
 
@@ -261,9 +245,9 @@ public abstract class AbstractModelExplorerTest {
 		// Retrieve model explorer
 		ModelExplorerView modelExplorerView = null;
 
-		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); //$NON-NLS-0$
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID);
 		if(bookViewPart != null) {
-			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
+			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
 		}
 
 		// Set selection on new element in the model explorer
@@ -297,7 +281,7 @@ public abstract class AbstractModelExplorerTest {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().isDirty();
 	}
 
-/**
+	/**
 	 * Selects and reveal the specified element
 	 * 
 	 * @param object
@@ -320,9 +304,9 @@ public abstract class AbstractModelExplorerTest {
 	public static void selectAndRevealDiagram(List<Diagram> newDiagrams) throws Exception {
 		// Retrieve model explorer
 		ModelExplorerView modelExplorerView = null;
-		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); //$NON-NLS-0$
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID);
 		if(bookViewPart != null) {
-			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
+			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
 		}
 		// Set selection on new element in the model explorer
 		if((modelExplorerView != null) && (newDiagrams != null)) {
@@ -436,7 +420,7 @@ public abstract class AbstractModelExplorerTest {
 		selectAndReveal(objectToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
 		Assert.assertEquals("one and only one object should be selected", 1, selection.size());
-		Object selectedElement = (ModelElementItem)selection.getFirstElement();
+		Object selectedElement = selection.getFirstElement();
 		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
 		Assert.assertTrue("selection should be linked to a EObject", ((ModelElementItem)selectedElement).getEObject() instanceof EObject);
 		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((ModelElementItem)selectedElement).getEObject().equals(objectToFind));
@@ -456,7 +440,7 @@ public abstract class AbstractModelExplorerTest {
 		selectAndRevealDiagram(diagramToFind);
 		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
 		Assert.assertEquals("one and only one diagram should be selected", 1, selection.size());
-		Object selectedElement = (ModelElementItem)selection.getFirstElement();
+		Object selectedElement = selection.getFirstElement();
 		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
 		Assert.assertTrue("selection should be linked to a Diagram", ((ModelElementItem)selectedElement).getEObject() instanceof Diagram);
 		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((ModelElementItem)selectedElement).getEObject().equals(diagramToFind));
@@ -471,7 +455,7 @@ public abstract class AbstractModelExplorerTest {
 		}
 		return EcoreUtil.getID(object);
 	}
-	
+
 	protected String printElement(NamedElement element) {
 		return element.getName() + " <" + element.eClass().getName() + ">";
 	}
@@ -481,4 +465,3 @@ public abstract class AbstractModelExplorerTest {
 	}
 
 }
-

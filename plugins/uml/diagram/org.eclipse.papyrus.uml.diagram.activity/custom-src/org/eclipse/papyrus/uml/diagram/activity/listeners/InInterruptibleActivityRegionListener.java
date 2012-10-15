@@ -24,7 +24,7 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.diagram.activity.helper.UMLValidationHelper;
@@ -144,9 +144,9 @@ public class InInterruptibleActivityRegionListener extends AbstractPapyrusModifc
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = page.getActiveEditor();
-		if(editor instanceof PapyrusMultiDiagramEditor) {
-			PapyrusMultiDiagramEditor papyrusEditor = (PapyrusMultiDiagramEditor)editor;
-			return papyrusEditor.getDiagramEditPart();
+		if(editor instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor)editor;
+			return (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
 		}
 		return null;
 	}

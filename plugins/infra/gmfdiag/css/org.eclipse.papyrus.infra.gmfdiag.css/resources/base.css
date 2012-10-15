@@ -32,3 +32,10 @@ unwished behaviors, related to the base implementation (GMF, Papyrus...)
 ActivityDiagram Activity * {
 	elementIcon:false; 
 }
+
+/*
+ * The Actor element icon is not useful either
+ */
+UseCaseDiagram Actor {
+	elementIcon:false;
+}

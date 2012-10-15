@@ -19,15 +19,16 @@ import java.util.List;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
-import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 
 /**
- * /**
  * 
  * This GMF editor contains a methods in order to reveal visual element from a list of semantic element.
  * 
@@ -72,6 +73,17 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 				graphicalViewer.select(researchedEditPart);
 			}
 		}
+	}
+
+	@Override
+	public Object getAdapter(Class type) {
+		if(type == DiagramEditPart.class) {
+			return getDiagramEditPart();
+		}
+		if(type == Diagram.class) {
+			return getDiagram();
+		}
+		return super.getAdapter(type);
 	}
 
 	/**

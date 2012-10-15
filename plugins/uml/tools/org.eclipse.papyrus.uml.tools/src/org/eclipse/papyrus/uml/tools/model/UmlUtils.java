@@ -1,13 +1,16 @@
 /**
  * 
  */
-package org.eclipse.papyrus.infra.core.resource.uml;
+package org.eclipse.papyrus.uml.tools.model;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.uml.tools.Activator;
 
 /**
  * Set of utility methods linked to Trace for ControlMode
@@ -91,6 +94,36 @@ public class UmlUtils {
 	 */
 	public static UmlModel getUmlModelChecked(ServicesRegistry servicesRegistry) throws ServiceException {
 		return (UmlModel)ModelUtils.getModelSetChecked(servicesRegistry).getModel(UmlModel.MODEL_ID);
+	}
+
+	/**
+	 * Return the UML Resource associated to the Services Registry. May be null.
+	 * 
+	 * @param modelSet
+	 * @return
+	 */
+	public static Resource getUmlResource(ServicesRegistry registry) {
+		try {
+			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(registry);
+			return getUmlResource(modelSet);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
+	}
+
+	/**
+	 * Return the UML Resource associated to the ModelSet. May be null.
+	 * 
+	 * @param modelSet
+	 * @return
+	 */
+	public static Resource getUmlResource(ModelSet modelSet) {
+		UmlModel umlModel = getUmlModel(modelSet);
+		if(umlModel != null) {
+			return umlModel.getResource();
+		}
+		return null;
 	}
 
 }

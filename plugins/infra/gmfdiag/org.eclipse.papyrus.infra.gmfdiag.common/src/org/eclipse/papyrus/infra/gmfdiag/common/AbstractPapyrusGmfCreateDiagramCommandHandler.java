@@ -42,17 +42,20 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
+import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.core.utils.OpenDiagramCommand;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -97,14 +100,14 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	protected void runAsTransaction(EObject container) throws ExecutionException {
 
-		DiResourceSet diResourceSet;
+		ModelSet modelSet;
 		try {
-			diResourceSet = EditorUtils.getServiceRegistry().getService(DiResourceSet.class);
+			modelSet = EditorUtils.getServiceRegistry().getService(ModelSet.class);
 		} catch (ServiceException e) {
 			throw new ExecutionException("Can't get diResourceSet", e);
 		}
 
-		runAsTransaction(diResourceSet, container, null);
+		runAsTransaction(modelSet, container, null);
 	}
 
 	/**
@@ -114,10 +117,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @param container
 	 *        The eObject to which the diagram should be attached, if possible.
 	 */
-	protected void runAsTransaction(final DiResourceSet diResourceSet, final EObject container, String name) {
-		TransactionalEditingDomain dom = diResourceSet.getTransactionalEditingDomain();
+	protected void runAsTransaction(final ModelSet modelSet, final EObject container, String name) {
+		TransactionalEditingDomain dom = modelSet.getTransactionalEditingDomain();
 		CompositeCommand cmd = new CompositeCommand("Create diagram");
-		ICommand createCmd = getCreateDiagramCommand(diResourceSet, container, name);
+		ICommand createCmd = getCreateDiagramCommand(modelSet, container, name);
 		cmd.add(createCmd);
 		cmd.add(new OpenDiagramCommand(dom, createCmd));
 
@@ -181,10 +184,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		EObject eObject = null;
 		Object selection = getCurrentSelection();
 		if(selection != null) {
-			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
-			if(businessObject instanceof EObject) {
-				eObject = (EObject)businessObject;
-			}
+			eObject = EMFHelper.getEObject(selection);
 		}
 		return eObject;
 	}
@@ -269,13 +269,13 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createDiagram(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
-		TransactionalEditingDomain transactionalEditingDomain = diResourceSet.getTransactionalEditingDomain();
+	public void createDiagram(final ModelSet modelSet, final EObject container, final String diagramName) {
+		TransactionalEditingDomain transactionalEditingDomain = modelSet.getTransactionalEditingDomain();
 		RecordingCommand command = new RecordingCommand(transactionalEditingDomain) {
 
 			@Override
 			protected void doExecute() {
-				runAsTransaction(diResourceSet, container, diagramName);
+				runAsTransaction(modelSet, container, diagramName);
 			}
 		};
 		transactionalEditingDomain.getCommandStack().execute(command);
@@ -284,17 +284,18 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	/**
 	 * {@inheritDoc}
 	 */
-	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
-		final Resource modelResource = diResourceSet.getAssociatedModelResource(container);
-		final Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
-		final Resource diResource = diResourceSet.getAssociatedDiResource(container);
-		
+	public ICommand getCreateDiagramCommand(final ModelSet modelSet, final EObject container, final String diagramName) {
+		//Diagram creation should not change the semantic resource
+		final Resource modelResource = UmlUtils.getUmlResource(modelSet);
+		final Resource notationResource = NotationUtils.getNotationResource(modelSet);
+		final Resource diResource = DiModelUtils.getDiResource(modelSet);
+
 		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
-		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelResource.getURI().toPlatformString(true))));
+		//		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelResource.getURI().toPlatformString(true))));
 		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(notationResource.getURI().toPlatformString(true))));
 		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResource.getURI().toPlatformString(true))));
 
-		return new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {
+		return new AbstractTransactionalCommand(modelSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {
 
 			protected Diagram diagram = null;
 
@@ -333,7 +334,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				// to remove the cross reference using the element reference it is better to use the destroy element command
 				DestroyElementPapyrusCommand depc = (diagram != null) ? new DestroyElementPapyrusCommand(new DestroyElementRequest(diagram, false)) : null;
 				IStatus status = super.doUndo(monitor, info);
-				if (depc != null) {
+				if(depc != null) {
 					depc.execute(null, null);
 				}
 				return status;

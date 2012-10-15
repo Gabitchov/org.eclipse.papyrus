@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 
 

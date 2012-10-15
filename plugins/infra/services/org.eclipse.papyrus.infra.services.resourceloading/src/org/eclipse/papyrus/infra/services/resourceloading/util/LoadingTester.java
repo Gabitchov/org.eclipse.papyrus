@@ -25,8 +25,8 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 
 /**
  * This class provides test to perform on resources to know their loading status.

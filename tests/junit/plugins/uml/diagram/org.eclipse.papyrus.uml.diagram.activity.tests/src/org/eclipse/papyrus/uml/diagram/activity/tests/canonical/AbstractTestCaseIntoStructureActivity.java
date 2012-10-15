@@ -19,13 +19,10 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
+import org.junit.Before;
 
 
 /**
@@ -35,42 +32,40 @@ public abstract class AbstractTestCaseIntoStructureActivity extends TestChildNod
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateActivityDiagramCommand();
+		return new CreateActivityDiagramCommand();
 	}
+
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 		projectCreation();
 
-		while( !(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()instanceof IMultiDiagramEditor)){}
-		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		papyrusEditor=((PapyrusMultiDiagramEditor)editorPart);
-		
-		assertTrue(CREATION +INITIALIZATION_TEST,getDiagramEditPart().getChildren().size()==1);
-		GraphicalEditPart containerEditPart= (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
+		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
+		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 		rootCompartment = null;
-		int index=0;
-		while (rootCompartment==null && index <containerEditPart.getChildren().size()){
-			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart){
-				rootCompartment= (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
+		int index = 0;
+		while(rootCompartment == null && index < containerEditPart.getChildren().size()) {
+			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
+				rootCompartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
 			}
 			index++;
 		}
-		
+
 		//create the structured Node
-		CreateViewRequest requestcreation= createViewRequestShapeContainer();
-		requestcreation.setSize(new Dimension(500,500));
-		Command command=rootCompartment.getCommand(requestcreation);
-		assertNotNull(CONTAINER_CREATION+COMMAND_NULL,command);
-		assertTrue(CONTAINER_CREATION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
-		assertTrue(CONTAINER_CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
+		CreateViewRequest requestcreation = createViewRequestShapeContainer();
+		requestcreation.setSize(new Dimension(500, 500));
+		Command command = rootCompartment.getCommand(requestcreation);
+		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION +INITIALIZATION_TEST,rootCompartment.getChildren().size()==1);
-		containerEditPart= (GraphicalEditPart)rootCompartment.getChildren().get(0);
+		assertTrue(CREATION + INITIALIZATION_TEST, rootCompartment.getChildren().size() == 1);
+		containerEditPart = (GraphicalEditPart)rootCompartment.getChildren().get(0);
 		rootCompartment = null;
-		 index=0;
-		while (rootCompartment==null && index <containerEditPart.getChildren().size()){
-			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart){
-				rootCompartment= (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
+		index = 0;
+		while(rootCompartment == null && index < containerEditPart.getChildren().size()) {
+			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
+				rootCompartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
 			}
 			index++;
 		}

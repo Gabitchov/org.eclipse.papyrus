@@ -5,7 +5,7 @@ Export-Package: org.eclipse.papyrus.diagram.common.tests.parser
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Fragment-Host: org.eclipse.papyrus.uml.diagram.common;bundle-version="
- 0.9.0"
+ 0.10.0"
 Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin

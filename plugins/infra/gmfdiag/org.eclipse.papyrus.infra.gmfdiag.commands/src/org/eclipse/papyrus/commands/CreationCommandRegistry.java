@@ -8,7 +8,7 @@
  * Contributors:
  *     Jerome Benois (Obeo) jerome.benois@obeo.fr - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.infra.core.extension.commands;
+package org.eclipse.papyrus.commands;
 
 import java.util.Collection;
 import java.util.HashMap;

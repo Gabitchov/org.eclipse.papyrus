@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.papyrus.infra.core.resource.uml;
+package org.eclipse.papyrus.uml.tools.model;
 
 import org.eclipse.papyrus.infra.core.listenerservice.ModelListenerManager;
 import org.eclipse.papyrus.infra.core.resource.IModel;

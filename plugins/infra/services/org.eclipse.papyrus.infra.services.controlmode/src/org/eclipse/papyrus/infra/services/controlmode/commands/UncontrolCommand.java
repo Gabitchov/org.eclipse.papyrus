@@ -54,16 +54,16 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
 import org.eclipse.papyrus.infra.services.controlmode.history.utils.HistoryUtils;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyPackage;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.ui.PlatformUI;
 
 /**

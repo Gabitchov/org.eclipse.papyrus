@@ -23,22 +23,22 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IEditorDescriptor;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Element;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 
 
 /**
@@ -86,46 +86,43 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 
 	/** The Constant CHANGE_CONTAINER. */
 	protected static final String CHANGE_CONTAINER = "CHANGE CONTAINER";
-	
+
 	/** The papyrus editor. */
-	protected PapyrusMultiDiagramEditor papyrusEditor;
-	
+	protected IMultiDiagramEditor papyrusEditor;
+
 	/** The di resource set. */
 	protected ModelSet diResourceSet;
-	
+
 	/** The project. */
 	protected IProject project;
-	
+
 	/** The file. */
 	protected IFile file;
-	
+
 	/** The root. */
 	protected IWorkspaceRoot root;
-	
+
 	/** The page. */
 	protected IWorkbenchPage page;
-	
+
 	/** The diagram editor. */
-	protected UmlGmfDiagramEditor diagramEditor=null;
-	
+	protected UmlGmfDiagramEditor diagramEditor = null;
+
 	/** The clazzdiagramedit part. */
 	protected DiagramEditPart clazzdiagrameditPart;
 
-	
+
 	/**
 	 * @see junit.framework.TestCase#setUp()
-	 *
+	 * 
 	 * @throws Exception
 	 */
-	
+	@Before
+	@Override
 	protected void setUp() throws Exception {
-		
+
 		super.setUp();
 		projectCreation();
-
-		while( !(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()instanceof IMultiDiagramEditor)){}
-		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		papyrusEditor=((PapyrusMultiDiagramEditor)editorPart);
 	}
 
 	/**
@@ -133,33 +130,34 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 * 
 	 * @return the root view
 	 */
-	protected View getRootView(){
+	protected View getRootView() {
 		return getDiagramEditPart().getDiagramView();
 	}
-	
+
 	/**
 	 * Gets the root semantic model.
 	 * 
 	 * @return the root semantic model
 	 */
-	protected Element getRootSemanticModel(){
-		return (Element) getRootView().getElement();
+	protected Element getRootSemanticModel() {
+		return (Element)getRootView().getElement();
 	}
-	
+
 	/**
 	 * @see junit.framework.TestCase#tearDown()
-	 *
+	 * 
 	 * @throws Exception
 	 */
-	
+	@After
+	@Override
 	protected void tearDown() throws Exception {
 		papyrusEditor.doSave(new NullProgressMonitor());
 		//diResourceSet.save( new NullProgressMonitor());
 		//diagramEditor.close(true);
-		papyrusEditor=null;
+		papyrusEditor = null;
 		page.closeAllEditors(true);
 		project.delete(true, new NullProgressMonitor());
-		
+
 		super.tearDown();
 	}
 
@@ -168,54 +166,57 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 * 
 	 * @return the diagram edit part
 	 */
-	protected DiagramEditPart getDiagramEditPart(){
-		if(clazzdiagrameditPart== null){
-			diagramEditor= (UmlGmfDiagramEditor)papyrusEditor.getActiveEditor();
-			GraphicalViewer graphicalViewer=((GraphicalViewer)diagramEditor.getAdapter(GraphicalViewer.class));
-			clazzdiagrameditPart = (DiagramEditPart)graphicalViewer.getContents().getRoot().getChildren().get(0);
+	protected DiagramEditPart getDiagramEditPart() {
+		if(clazzdiagrameditPart == null) {
+			diagramEditor = (UmlGmfDiagramEditor)papyrusEditor.getActiveEditor();
+			clazzdiagrameditPart = (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
 		}
 		return clazzdiagrameditPart;
 	}
-	
+
 	protected abstract ICreationCommand getDiagramCommandCreation();
+
 	/**
 	 * Project creation.
 	 */
-	protected void projectCreation(){
+	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
 		project = root.getProject("ClazzDiagramTestProject");
 		file = project.getFile("ClazzDiagramTest.di");
 		this.diResourceSet = new DiResourceSet();
-		try{
+		try {
 			//at this point, no resources have been created
-			if (!project.exists()) project.create(null);
-			if (!project.isOpen()) project.open(null);
+			if(!project.exists()) {
+				project.create(null);
+			}
+			if(!project.isOpen()) {
+				project.open(null);
+			}
 
 			if(file.exists()) {
 				file.delete(true, new NullProgressMonitor());
 			}
-			
-			if (!file.exists()) {
+
+			if(!file.exists()) {
 				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
-				new CreateUMLModelCommand().createModel((DiResourceSet)this.diResourceSet);
+				new CreateUMLModelCommand().createModel(this.diResourceSet);
 				// diResourceSet.createsModels(file);
-				ICreationCommand command= getDiagramCommandCreation();
-				command.createDiagram((DiResourceSet)diResourceSet, null, "DiagramToTest");
-				diResourceSet.save( new NullProgressMonitor());
-				
+				ICreationCommand command = getDiagramCommandCreation();
+				command.createDiagram(diResourceSet, null, "DiagramToTest");
+				diResourceSet.save(new NullProgressMonitor());
+
 			}
-			 page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				IEditorDescriptor desc = PlatformUI.getWorkbench().
-		        getEditorRegistry().getDefaultEditor(file.getName());
-				page.openEditor(new FileEditorInput(file), desc.getId());
+			page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
+			papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+			Assert.fail("Project creation failed");
 		}
-		catch (Exception e) {
-			System.err.println("error "+e);
-		}
-		
-		
+
+
 	}
 
 }

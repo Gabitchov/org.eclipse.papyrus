@@ -18,10 +18,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -142,7 +142,13 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	 * @return
 	 */
 	protected EObject[] getRootElements(ModelSet modelSet) {
-		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
+		//FIXME: Refactoring. Workaround to remove the explicit dependency to UMLModel in uml.tools. We should not depend on UML at all.
+		IModel umlIModel = modelSet.getModel("org.eclipse.papyrus.infra.core.resource.uml.UmlModel");
+
+		AbstractBaseModel umlModel = null;
+		if(umlIModel instanceof AbstractBaseModel) {
+			umlModel = (AbstractBaseModel)umlIModel;
+		}
 
 		if(umlModel == null) {
 			return null;

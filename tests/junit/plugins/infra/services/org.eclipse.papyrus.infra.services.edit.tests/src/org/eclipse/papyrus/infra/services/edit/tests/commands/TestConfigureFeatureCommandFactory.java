@@ -35,6 +35,7 @@ public class TestConfigureFeatureCommandFactory extends AbstractTestElementEditS
 
 	EPackage ePckg;
 
+	@Override
 	@Before
 	public void setUp() {
 		super.setUp();
@@ -47,7 +48,7 @@ public class TestConfigureFeatureCommandFactory extends AbstractTestElementEditS
 	@Test
 	public void testGetEditCommand() {
 		try {
-			
+
 			ICommand correctCommand = ePckgService.getEditCommand(prepareCorrectRequest());
 
 			// Try to execute command and make quick result verification.
@@ -55,7 +56,7 @@ public class TestConfigureFeatureCommandFactory extends AbstractTestElementEditS
 			correctCommand.execute(new NullProgressMonitor(), null);
 			assertTrue("The service command result is incorrect.", !ePckg.getESubpackages().isEmpty());
 			assertTrue("The service configure command result is incorrect.", "ASpecificName".equals(ePckg.getESubpackages().get(0).getName()));
-			
+
 		} catch (ServiceException e) {
 			fail("Test aborted - Papyrus editing domain not found.");
 		} catch (ExecutionException e) {
@@ -68,11 +69,11 @@ public class TestConfigureFeatureCommandFactory extends AbstractTestElementEditS
 	private IEditCommandRequest prepareCorrectRequest() throws ServiceException {
 		TransactionalEditingDomain editingDomain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 		IEditCommandRequest request = new CreateElementRequest(editingDomain, ePckg, ePackgType);
-		
+
 		// Create a configure command factory and add it to the request
 		IConfigureCommandFactory factory = new ConfigureFeatureCommandFactory(EcorePackage.eINSTANCE.getENamedElement_Name(), "ASpecificName");
 		request.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, factory);
-		
+
 		return request;
 	}
 }

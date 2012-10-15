@@ -38,6 +38,7 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -87,6 +88,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
+	@Ignore("The test implementation is not compatible with Eclipse 4.2")
 	public void testCopyPasteBlockInDiagram() throws Exception {
 		// initial checks
 		EditPart blockEP = EditorUtils.getEditPart(blockView1);
@@ -95,7 +97,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		View initialBlockView = (View)initialBlockViewObject;
 		EObject modelElement = initialBlockView.getElement();
 		Assert.assertTrue("Model Element should be a Class, but is " + modelElement, modelElement instanceof org.eclipse.uml2.uml.Class);
-		Class initialBlock = (Class)modelElement; 
+		Class initialBlock = (Class)modelElement;
 		Assert.assertTrue("model element should be stereotyped", initialBlock.getAppliedStereotype("SysML::Blocks::Block") != null);
 		List<EObject> initialViews = new ArrayList<EObject>();
 		initialViews.addAll(getDiagramView().getChildren());
@@ -103,8 +105,8 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		List<EObject> initialModelElements = new ArrayList<EObject>();
 		initialModelElements.addAll((List)getDiagramView().getElement().eGet(UMLPackage.eINSTANCE.getPackage_PackagedElement()));
 		Assert.assertEquals("Initial number of model elemnts do not fit expectations", 2, initialViews.size());
-		
-		
+
+
 		Assert.assertNotNull("Impossible to find edit part", blockEP);
 		TestUtils.copyEditParts(Collections.<Object> singletonList((Object)blockEP));
 
@@ -123,7 +125,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		// check there is only one new
 		Assert.assertEquals("Final number of views do not fit expectations", 3, postPasteViews.size());
 		Assert.assertEquals("There should be only one element added to the diagram", 1, addedViews.size());
-		
+
 		List<EObject> postPasteModelElements = new ArrayList<EObject>();
 		postPasteModelElements.addAll((List)getDiagramView().getElement().eGet(UMLPackage.eINSTANCE.getPackage_PackagedElement()));
 		List<EObject> addedModelElements = new ArrayList<EObject>();
@@ -133,7 +135,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		// check there is only one new
 		Assert.assertEquals("Final number of model elements do not fit expectations", 2, postPasteModelElements.size());
 		Assert.assertEquals("There should be no element added to the model", 0, addedModelElements.size());
-		
+
 
 		// test undo
 		EditorUtils.getCommandStack().undo();
@@ -153,7 +155,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		Assert.assertEquals("Both collections should be equivalent", initialViews, getDiagramView().getChildren());
 		Assert.assertEquals("Both collections should be equivalent", initialModelElements, getDiagramView().getElement().eGet(UMLPackage.eINSTANCE.getPackage_PackagedElement(), true));
 	}
-	
+
 	/**
 	 * check the elements given expected numbers
 	 * 
@@ -182,6 +184,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
+	@Ignore("The test implementation is not compatible with Eclipse 4.2")
 	public void testCopyPasteListOfBlocksInDiagram() throws Exception {
 		// initial checks
 		EditPart blockEP1 = EditorUtils.getEditPart(blockView1);
@@ -267,6 +270,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
+	@Ignore("The test implementation is not compatible with Eclipse 4.2")
 	public void testCopyPasteWithModelBlockInDiagram() throws Exception {
 		// initial checks
 		EditPart blockEP = EditorUtils.getEditPart(blockView1);
@@ -351,6 +355,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
+	@Ignore("The test implementation is not compatible with Eclipse 4.2")
 	public void testCopyPasteWithModelListOfBlocksInDiagram() throws Exception {
 		// initial checks
 		EditPart blockEP1 = EditorUtils.getEditPart(blockView1);

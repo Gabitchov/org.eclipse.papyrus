@@ -7,6 +7,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.handler,
  org.eclipse.papyrus.infra.gmfdiag.common.helper,
  org.eclipse.papyrus.infra.gmfdiag.common.listener,
+ org.eclipse.papyrus.infra.gmfdiag.common.model,
  org.eclipse.papyrus.infra.gmfdiag.common.preferences,
  org.eclipse.papyrus.infra.gmfdiag.common.providers,
  org.eclipse.papyrus.infra.gmfdiag.common.utils
@@ -27,7 +28,10 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.0"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2

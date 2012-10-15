@@ -22,15 +22,15 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  * This adapterFactory is not a real factory: no adapter is created.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class ServiceRegistryAdapterFactory extends AdapterFactoryImpl {
-	
+
 	/**
 	 * ID used to register the factory in the ResourceSet.
 	 */
-	static final public  String TYPE_ID = ServiceRegistryAdapterFactory.class.getName() + "TypeId";
-	
+	static final public String TYPE_ID = ServiceRegistryAdapterFactory.class.getName() + "TypeId";
+
 	/**
 	 * The reference to the ServiceRegistry.
 	 */
@@ -50,10 +50,8 @@ public class ServiceRegistryAdapterFactory extends AdapterFactoryImpl {
 	public ServicesRegistry getServicesRegistry() {
 		return servicesRegistry;
 	}
-	
-	/**
-	 * 
-	 */
+
+	@Override
 	public boolean isFactoryForType(Object type) {
 		return type.equals(TYPE_ID);
 	}

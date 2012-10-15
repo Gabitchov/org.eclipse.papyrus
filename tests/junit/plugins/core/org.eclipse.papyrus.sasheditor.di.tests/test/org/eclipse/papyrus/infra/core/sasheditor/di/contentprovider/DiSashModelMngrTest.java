@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
+import org.junit.After;
+import org.junit.Before;
 
 
 /**
@@ -49,6 +51,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 * 
 	 * @throws java.lang.Exception
 	 */
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -60,6 +63,7 @@ public class DiSashModelMngrTest extends TestCase {
 	 * 
 	 * @throws java.lang.Exception
 	 */
+	@After
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
@@ -70,8 +74,7 @@ public class DiSashModelMngrTest extends TestCase {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// Register the default resource factory -- only needed for stand-alone!
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 
 		// Get the URI of the model file.
 		URI fileURI = URI.createFileURI(new File("tempfile.di").getAbsolutePath());

@@ -23,6 +23,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.junit.After;
+import org.junit.Before;
 
 
 /**
@@ -50,6 +52,8 @@ public class SashWindowsContainerTest extends TestCase {
 	 * @throws java.lang.Exception
 	 * 
 	 */
+	@Override
+	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 		display = Display.getCurrent();
@@ -64,6 +68,8 @@ public class SashWindowsContainerTest extends TestCase {
 	 * @throws java.lang.Exception
 	 * 
 	 */
+	@Override
+	@After
 	protected void tearDown() throws Exception {
 		super.tearDown();
 		//display.dispose();
@@ -164,17 +170,17 @@ public class SashWindowsContainerTest extends TestCase {
 
 		// Build a list of expected visible models
 		List<IPageModel> expectedVisibleModel = new ArrayList<IPageModel>();
-		expectedVisibleModel.add( models.get(models.size()-1) );
-		expectedVisibleModel.add( modelsInFolder2.get(models.size()-1) );
+		expectedVisibleModel.add(models.get(models.size() - 1));
+		expectedVisibleModel.add(modelsInFolder2.get(models.size() - 1));
 
 		// Get the active editor
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 		List<IPage> pages = container.getVisiblePages();
-		
+
 		assertEquals("2 pages visible", 2, pages.size());
-		assertTrue("contains active from folder 1", expectedVisibleModel.contains(pages.get(0).getRawModel()) );
-		assertTrue("contains active from folder 1", expectedVisibleModel.contains(pages.get(1).getRawModel()) );
-//		assertNotNull("Page exist", page);
+		assertTrue("contains active from folder 1", expectedVisibleModel.contains(pages.get(0).getRawModel()));
+		assertTrue("contains active from folder 1", expectedVisibleModel.contains(pages.get(1).getRawModel()));
+		//		assertNotNull("Page exist", page);
 	}
 
 	/**
@@ -307,7 +313,7 @@ public class SashWindowsContainerTest extends TestCase {
 		IPage foundPage = container.lookupModelPage(model);
 		assertEquals("Corresponding page is found", foundPage.getRawModel(), model);
 	}
-	
+
 	/**
 	 * Test method for {@link SashWindowsContainer#setFolderTabMenuManager(MenuManager)}
 	 */
@@ -334,29 +340,29 @@ public class SashWindowsContainerTest extends TestCase {
 		// Set a MenuManager
 		MenuManager menuManager = new MenuManager();
 		container.setFolderTabMenuManager(menuManager);
-		
+
 		// Test if the menu has been set in already created folders.
 		TabFolderPart folderPart = lookupTabFolderPart(container, referenceFolder);
-		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
-		
+		assertNotNull("menu exist", folderPart.getControl().getMenu());
+
 		folderPart = lookupTabFolderPart(container, folder1);
-		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
-		
+		assertNotNull("menu exist", folderPart.getControl().getMenu());
+
 		folderPart = lookupTabFolderPart(container, folder2);
-		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
-		
+		assertNotNull("menu exist", folderPart.getControl().getMenu());
+
 		folderPart = lookupTabFolderPart(container, folder3);
-		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
-		
+		assertNotNull("menu exist", folderPart.getControl().getMenu());
+
 
 		// Now create another tab, refresh the container in order that the part is created,
 		// ant test it
 		ITabFolderModel folder4 = contentProvider.createFolder(referenceFolder, SWT.RIGHT);
 		container.refreshTabs();
-		
+
 		folderPart = lookupTabFolderPart(container, folder4);
-		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
-		
+		assertNotNull("menu exist", folderPart.getControl().getMenu());
+
 	}
 
 	protected TabFolderPart lookupTabFolderPart(SashWindowsContainer container, Object rawModel) {

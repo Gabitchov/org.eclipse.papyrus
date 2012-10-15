@@ -24,6 +24,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -31,8 +32,14 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
@@ -40,6 +47,7 @@ import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ExtensionCustomNameEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ExtensionEditPart;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -86,9 +94,29 @@ public class ExtensionHelper extends ElementHelper {
 
 
 		/* get all the profile and sub-profile for the diagram */
-		CoreMultiDiagramEditor editor = (CoreMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		DiagramEditPart rootProfileEP = editor.getDiagramEditPart();
-		Profile rootProfile = (Profile)((View)rootProfileEP.getModel()).getElement();
+		IMultiDiagramEditor editor = (IMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		ServicesRegistry registry = editor.getServicesRegistry();
+
+		Profile rootProfile = null;
+		try {
+			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(registry);
+
+
+
+			if(modelSet != null) {
+				IModel umlModel = modelSet.getModel(UmlModel.MODEL_ID);
+				if(umlModel != null) {
+					rootProfile = (Profile)((UmlModel)umlModel).lookupRoot();
+				}
+			}
+		} catch (NotFoundException ex) {
+			Activator.log.error(ex);
+			return UnexecutableCommand.INSTANCE;
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		List<?> profileList = Util.getInstancesFilteredByType(rootProfile, rootProfile.getClass(), null);
 
 		/*
@@ -154,7 +182,7 @@ public class ExtensionHelper extends ElementHelper {
 		List<?> view = DiagramEditPartsUtil.getEObjectViews(link);
 		if(!view.isEmpty()) {
 			IEditorPart editor = MDTUtil.getActiveEditor();
-			DiagramEditPart diagram = ((PapyrusMultiDiagramEditor)editor).getDiagramEditPart();
+			DiagramEditPart diagram = (DiagramEditPart)((IMultiDiagramEditor)editor).getAdapter(DiagramEditPart.class);
 			EditPart extensionEP = DiagramEditPartsUtil.getEditPartFromView((View)view.get(0), diagram);
 			if(extensionEP instanceof ExtensionEditPart) {
 				policy = extensionEP.getEditPolicy(ExtensionCustomNameEditPolicy.SPECIFIC_EXTENSION_NAME_POLICY);

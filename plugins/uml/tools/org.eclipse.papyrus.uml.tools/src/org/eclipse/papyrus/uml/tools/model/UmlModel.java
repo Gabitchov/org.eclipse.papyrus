@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.papyrus.infra.core.resource.uml;
+package org.eclipse.papyrus.uml.tools.model;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;

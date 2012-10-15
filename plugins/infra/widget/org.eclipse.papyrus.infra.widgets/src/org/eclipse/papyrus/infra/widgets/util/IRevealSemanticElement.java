@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.core.ui;
+package org.eclipse.papyrus.infra.widgets.util;
 
 import java.util.List;
 

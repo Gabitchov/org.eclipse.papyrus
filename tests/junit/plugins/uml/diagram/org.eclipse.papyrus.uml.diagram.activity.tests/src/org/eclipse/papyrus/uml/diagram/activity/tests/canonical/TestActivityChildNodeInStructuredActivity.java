@@ -16,8 +16,7 @@ package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
-import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.junit.Test;

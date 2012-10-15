@@ -37,9 +37,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -55,6 +56,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -73,10 +75,12 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 
 	private static final String CHANGE_REPRESENTS = "Change Represents: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
 
+	@Override
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
@@ -85,10 +89,12 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 		this.diResourceSet = new DiResourceSet();
 		try {
 			//at this point, no resources have been created
-			if(!project.exists())
+			if(!project.exists()) {
 				project.create(null);
-			if(!project.isOpen())
+			}
+			if(!project.isOpen()) {
 				project.open(null);
+			}
 
 			if(file.exists()) {
 				file.delete(true, new NullProgressMonitor());
@@ -97,9 +103,9 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 			if(!file.exists()) {
 				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
-				new CreateUMLModelCommand().createModel((DiResourceSet)this.diResourceSet);
+				new CreateUMLModelCommand().createModel(this.diResourceSet);
 				ICreationCommand command = getDiagramCommandCreation();
-				command.createDiagram((DiResourceSet)diResourceSet, null, "DiagramToTest");
+				command.createDiagram(diResourceSet, null, "DiagramToTest");
 				diResourceSet.save(new NullProgressMonitor());
 
 			}
@@ -109,9 +115,10 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 			page.closeAllEditors(true);
 
 			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-			page.openEditor(new FileEditorInput(file), desc.getId());
+			papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
 		} catch (Exception e) {
 			System.err.println("error " + e);
+			Assert.fail("Project initialization failed");
 		}
 	}
 

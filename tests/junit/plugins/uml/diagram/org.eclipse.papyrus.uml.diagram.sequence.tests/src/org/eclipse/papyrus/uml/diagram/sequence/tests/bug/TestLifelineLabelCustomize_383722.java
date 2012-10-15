@@ -36,8 +36,9 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -89,6 +90,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 
 	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">" + "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">" + "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>" + "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>" + "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -178,6 +180,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 	protected void setLabelAppearence(final LifelineEditPart lifeline1, final int value) {
 		DummyCommand c = new DummyCommand() {
 
+			@Override
 			public void execute() {
 				View view = lifeline1.getNotationView();
 				EAnnotation oldAnnotation = view.getEAnnotation(CUSTOM_APPEARENCE_ANNOTATION); //VisualInformationPapyrusConstants
@@ -192,6 +195,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 		getEMFCommandStack().execute(c);
 	}
 
+	@Override
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
@@ -200,10 +204,12 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 		this.diResourceSet = new DiResourceSet();
 		try {
 			//at this point, no resources have been created
-			if(!project.exists())
+			if(!project.exists()) {
 				project.create(null);
-			if(!project.isOpen())
+			}
+			if(!project.isOpen()) {
 				project.open(null);
+			}
 
 			if(file.exists()) {
 				file.delete(true, new NullProgressMonitor());
@@ -212,9 +218,9 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 			if(!file.exists()) {
 				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
-				new CreateUMLModelCommand().createModel((DiResourceSet)this.diResourceSet);
+				new CreateUMLModelCommand().createModel(this.diResourceSet);
 				ICreationCommand command = getDiagramCommandCreation();
-				command.createDiagram((DiResourceSet)diResourceSet, null, "DiagramToTest");
+				command.createDiagram(diResourceSet, null, "DiagramToTest");
 				diResourceSet.save(new NullProgressMonitor());
 
 			}
@@ -224,9 +230,10 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 			page.closeAllEditors(true);
 
 			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-			page.openEditor(new FileEditorInput(file), desc.getId());
+			papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
 		} catch (Exception e) {
 			System.err.println("error " + e);
+			fail("Project creation failed");
 		}
 	}
 
@@ -261,8 +268,9 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 		assertTrue(CHANGE_REPRESENTS + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
 		getEMFCommandStack().execute(emfCommand);
 		waitForComplete();
-		if(value != null)
+		if(value != null) {
 			assertTrue(CHANGE_REPRESENTS + TEST_THE_EXECUTION, lifeline.getRepresents().equals(value));
+		}
 	}
 
 	static class DummyCommand extends org.eclipse.emf.common.command.AbstractCommand {
@@ -273,11 +281,13 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 		public void redo() {
 		}
 
+		@Override
 		public void undo() {
 		}
 
+		@Override
 		protected boolean prepare() {
 			return true;
 		}
-	};
+	}
 }

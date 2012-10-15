@@ -9,11 +9,12 @@
  *     Jerome Benois (Obeo) jerome.benois@obeo.fr - initial API and implementation
  *     Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - add condition to the create command (task #296902)
  *******************************************************************************/
-package org.eclipse.papyrus.infra.core.extension.commands;
+package org.eclipse.papyrus.commands;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.infra.core.extension.ExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCondition;
 import org.eclipse.papyrus.infra.core.utils.IDebugChannel;
 import org.eclipse.papyrus.infra.core.utils.PapyrusTrace;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

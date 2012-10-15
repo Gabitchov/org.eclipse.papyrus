@@ -29,6 +29,8 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
+import org.junit.After;
+import org.junit.Before;
 
 
 /**
@@ -59,6 +61,8 @@ public class PageMngrImplTest extends TestCase {
 	 * 
 	 * @throws java.lang.Exception
 	 */
+	@Override
+	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 
@@ -76,6 +80,8 @@ public class PageMngrImplTest extends TestCase {
 	 * 
 	 * @throws java.lang.Exception
 	 */
+	@After
+	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
@@ -127,7 +133,8 @@ public class PageMngrImplTest extends TestCase {
 
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testAddPage() {
 		// A listener on change event.
@@ -135,7 +142,7 @@ public class PageMngrImplTest extends TestCase {
 
 		// Set change listener
 		contentProvider.getContentChangedEventProvider().addListener(changeListener);
-		
+
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
@@ -187,7 +194,8 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testClosePage() {
 		// A listener on change event.
@@ -317,7 +325,7 @@ public class PageMngrImplTest extends TestCase {
 		// Check if pages are in SashStructure
 		for(int i = 0; i < 10; i++) {
 			PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(i));
-			if(i!=3) {
+			if(i != 3) {
 				assertNull("Page " + i + " removed from sashStructure ", pageRef);
 			} else {
 				assertNotNull("Page " + i + " not removed from sashStructure ", pageRef);
@@ -327,7 +335,8 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testOpenPage() {
 		// A listener on change event.
@@ -363,7 +372,8 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testRemovePage() {
 		// A listener on change event.
@@ -401,7 +411,7 @@ public class PageMngrImplTest extends TestCase {
 
 		// Check page still in pages
 		assertEquals("page remove from list", 9, pageMngr.allPages().size());
-		
+
 		// Check removed from page list
 		assertFalse("check removed from page list", pageMngr.allPages().contains(identifiers.get(3)));
 
@@ -419,13 +429,13 @@ public class PageMngrImplTest extends TestCase {
 	public void testCloseLastPageOfTabFolder() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
-	
+
 		// Set change listener
 		contentProvider.getContentChangedEventProvider().addListener(changeListener);
-	
+
 		// Create 3 editors, move one in another table
 		// Then remove the moved one.		
-		
+
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
@@ -439,33 +449,33 @@ public class PageMngrImplTest extends TestCase {
 		}
 		// Check if pages are in PageList
 		assertEquals("all pages added", pageCount, pageMngr.allPages().size());
-		
-		
-	    // Move the  last page
+
+
+		// Move the  last page
 		int movedPageIndex = 0;
 		ITabFolderModel tabFolder = lookupFolderModel();
 		assertTrue("Moved page index  is valid", movedPageIndex < pageCount);
-		
+
 		contentProvider.createFolder(tabFolder, movedPageIndex, tabFolder, SWT.TOP);
 		// check if the folder is created
-//		List<?> folders = getAllFolders(contentProvider.getDiSashModel());
-//		assertEquals("additional folder is removed", 2, folders.size());
+		//		List<?> folders = getAllFolders(contentProvider.getDiSashModel());
+		//		assertEquals("additional folder is removed", 2, folders.size());
 
 		// Close page
 		pageMngr.closePage(identifiers.get(movedPageIndex));
-	
+
 		// Check the resulting model: we should have one folder with two page.
-//		folders = getAllFolders(contentProvider.getDiSashModel());
-//		assertEquals("additional folder is removed", 1, folders.size());
-		
+		//		folders = getAllFolders(contentProvider.getDiSashModel());
+		//		assertEquals("additional folder is removed", 1, folders.size());
+
 		List<AbstractPanel> children = contentProvider.getDiSashModel().getWindows().get(0).getChildren();
 		assertEquals("Windows has one child", 1, children.size());
-		assertEquals("Windows child is the tabfolder", TabFolderImpl.class, children.get(0).getClass() );
-		
+		assertEquals("Windows child is the tabfolder", TabFolderImpl.class, children.get(0).getClass());
+
 		// Check if pages are in SashStructure
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(movedPageIndex));
 		assertNull("Page removed from sashStructure ", pageRef);
-	
+
 	}
 
 

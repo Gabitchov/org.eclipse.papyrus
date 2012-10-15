@@ -14,11 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.PopupUtil;
 import org.eclipse.uml2.uml.Element;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -55,7 +54,6 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 		testToManageTopNode(UMLElementTypes.InteractionUse_3002, provider);
 	}
 
-	@Ignore("Blocks the Hudson job; prevents all tests from running")
 	@Test
 	public void testToManageConsiderIgnoreFragment() { // popup menu when delete
 		PopupUtil.addMenuListener(0);
@@ -65,7 +63,6 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 		PopupUtil.removeMenuListener();
 	}
 
-	@Ignore("Blocks the Hudson job; prevents all tests from running")
 	@Test
 	public void testToManageCombinedFragment() { // popup menu when delete
 		PopupUtil.addMenuListener(0);

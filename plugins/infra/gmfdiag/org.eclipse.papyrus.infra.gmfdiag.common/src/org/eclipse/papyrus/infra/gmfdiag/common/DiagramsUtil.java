@@ -21,7 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 
 
 public class DiagramsUtil {
@@ -41,12 +42,12 @@ public class DiagramsUtil {
 			}
 		}
 
-		if(resourceSet instanceof DiResourceSet) {
-			Resource notationResource = ((DiResourceSet)resourceSet).getAssociatedNotationResource(element);
+		if(resourceSet instanceof ModelSet) {
+			Resource notationResource = NotationUtils.getNotationResource((ModelSet)resourceSet);
 			return getAssociatedDiagramsFromNotationResource(element, notationResource);
 		}
 
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -70,6 +71,6 @@ public class DiagramsUtil {
 			}
 			return diagrams;
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 }

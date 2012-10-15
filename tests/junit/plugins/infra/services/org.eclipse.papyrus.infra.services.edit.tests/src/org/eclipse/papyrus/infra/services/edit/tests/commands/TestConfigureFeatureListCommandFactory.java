@@ -39,6 +39,7 @@ public class TestConfigureFeatureListCommandFactory extends AbstractTestElementE
 
 	EPackage ePckg;
 
+	@Override
 	@Before
 	public void setUp() {
 		super.setUp();
@@ -51,7 +52,7 @@ public class TestConfigureFeatureListCommandFactory extends AbstractTestElementE
 	@Test
 	public void testGetEditCommand() {
 		try {
-			
+
 			ICommand correctCommand = ePckgService.getEditCommand(prepareCorrectRequest());
 
 			// Try to execute command and make quick result verification.
@@ -73,15 +74,15 @@ public class TestConfigureFeatureListCommandFactory extends AbstractTestElementE
 	private IEditCommandRequest prepareCorrectRequest() throws ServiceException {
 		TransactionalEditingDomain editingDomain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 		IEditCommandRequest request = new CreateElementRequest(editingDomain, ePckg, ePackgType);
-		
+
 		// Create a configure command factory and add it to the request
 		Map<EStructuralFeature, Object> featureValueMap = new HashMap<EStructuralFeature, Object>();
 		featureValueMap.put(EcorePackage.eINSTANCE.getENamedElement_Name(), "ASpecificName");
 		featureValueMap.put(EcorePackage.eINSTANCE.getEPackage_NsURI(), "ASpecificNsURI");
-		
+
 		IConfigureCommandFactory factory = new ConfigureFeatureListCommandFactory(featureValueMap);
 		request.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, factory);
-		
+
 		return request;
 	}
 }

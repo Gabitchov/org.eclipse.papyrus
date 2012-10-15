@@ -27,8 +27,8 @@ import org.eclipse.papyrus.infra.core.modelsetquery.IFillableModelSetQueryAdapte
 import org.eclipse.papyrus.infra.core.modelsetquery.IModelSetQueryAdapter;
 import org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryInitializer;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.ILoadingStrategyExtension;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;

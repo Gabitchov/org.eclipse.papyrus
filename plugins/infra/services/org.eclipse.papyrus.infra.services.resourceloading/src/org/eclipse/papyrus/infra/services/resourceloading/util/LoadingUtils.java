@@ -31,20 +31,22 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.util.EditPartUtilities;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.resourceloading.Activator;
 import org.eclipse.papyrus.infra.services.resourceloading.Messages;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
@@ -169,8 +171,8 @@ public class LoadingUtils {
 		IProgressMonitor monitor = dialog.getProgressMonitor();
 
 		IEditorPart editor = getEditor();
-		if(editor instanceof CoreMultiDiagramEditor) {
-			CoreMultiDiagramEditor core = (CoreMultiDiagramEditor)editor;
+		if(editor instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor core = (IMultiDiagramEditor)editor;
 			try {
 				DiSashModelMngr sashModelMngr = core.getServicesRegistry().getService(DiSashModelMngr.class);
 				IPageMngr pageMngr = sashModelMngr.getIPageMngr();
@@ -248,7 +250,7 @@ public class LoadingUtils {
 								// refresh page's diagram if needed
 								Diagram diag = ((Diagram)eobject);
 								if(pageMngr.isOpen(diag)) {
-									Object part = core.getDiagramGraphicalViewer().getEditPartRegistry().get(diag);
+									Object part = ((IDiagramGraphicalViewer)core.getAdapter(IDiagramGraphicalViewer.class)).getEditPartRegistry().get(diag);
 									if(part instanceof GraphicalEditPart) {
 										// refresh nodes
 										for(Object child : EditPartUtilities.getAllChildren((GraphicalEditPart)part)) {

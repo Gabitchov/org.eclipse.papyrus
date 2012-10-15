@@ -12,6 +12,7 @@ import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.junit.Before;
 
 
 public abstract class TestNewModelWizardBase extends TestCase {
@@ -21,6 +22,7 @@ public abstract class TestNewModelWizardBase extends TestCase {
 	protected abstract IWorkbenchWizard createWizard();
 
 	@Override
+	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
@@ -37,8 +39,8 @@ public abstract class TestNewModelWizardBase extends TestCase {
 
 	protected IWorkbenchWizard initWizardDialog(IWorkbenchWizard wizard) {
 		wizard.init(getWorkbench(), getSelection());
-		WizardDialog dialog= new WizardDialog(getShell(), wizard);
-		PixelConverter converter= new PixelConverter(JFaceResources.getDialogFont());
+		WizardDialog dialog = new WizardDialog(getShell(), wizard);
+		PixelConverter converter = new PixelConverter(JFaceResources.getDialogFont());
 		dialog.setMinimumPageSize(converter.convertWidthInCharsToPixels(70), converter.convertHeightInCharsToPixels(20));
 		dialog.create();
 		return wizard;
@@ -54,7 +56,7 @@ public abstract class TestNewModelWizardBase extends TestCase {
 
 	protected void testOrderOfPages(IWorkbenchWizard wizard, Class[] expectedPages) {
 		IWizardPage next = wizard.getPages()[0];
-		for (int i = 0; i < expectedPages.length; i++) {
+		for(int i = 0; i < expectedPages.length; i++) {
 			String isNullMessageFormat = "page %s expected, but actual is: null";
 			assertNotNull(String.format(isNullMessageFormat, i), next);
 

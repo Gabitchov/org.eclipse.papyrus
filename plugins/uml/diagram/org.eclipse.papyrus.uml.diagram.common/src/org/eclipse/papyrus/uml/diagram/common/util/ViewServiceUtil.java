@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -38,11 +38,11 @@ public class ViewServiceUtil {
 	public static void forceLoad() {
 		IEditorPart activeEditor = MDTUtil.getActiveEditor();
 		if(activeEditor != null) {
-			if(activeEditor instanceof PapyrusMultiDiagramEditor) {
-				Diagram diagram = ((PapyrusMultiDiagramEditor)activeEditor).getDiagram();
+			if(activeEditor instanceof IMultiDiagramEditor) {
+				Diagram diagram = (Diagram)((IMultiDiagramEditor)activeEditor).getAdapter(Diagram.class);
 				if(diagram != null) {
 					String diagramSemanticHint = diagram.getType();
-					DiagramEditPart host = ((PapyrusMultiDiagramEditor)activeEditor).getDiagramEditPart();
+					DiagramEditPart host = (DiagramEditPart)((IMultiDiagramEditor)activeEditor).getAdapter(DiagramEditPart.class);
 
 					// When we don't have the semanticHint, the command can't be
 					// executed, if the ViewService is not started

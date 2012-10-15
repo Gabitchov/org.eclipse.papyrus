@@ -92,10 +92,28 @@
       </adapter>
    </factory>
 </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.model">
+      <model
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel"
+            description="Model for notation">
+      </model>
+  </extension>
 
 
-
-
+<extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.undocontext.UndoContextServiceFactory"
+            description="The shared IUndoContext used to tag command in the CommandStack"
+            id="org.eclipse.core.commands.operations.IUndoContext"
+            priority="1"
+            startKind="lazy">
+         <dependsOn
+               serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
+         </dependsOn>
+      </serviceFactory>
+   </extension>
 
 
 </plugin>

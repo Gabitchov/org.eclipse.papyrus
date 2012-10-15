@@ -45,6 +45,8 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * The Class TestTopNode.
@@ -61,10 +63,12 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		return rootPart;
 	}
 
+	@Override
 	protected View getRootView() {
 		return getRootEditPart().getNotationView();
 	}
 
+	@Override
 	protected Element getRootSemanticModel() {
 		return (Element)getRootView().getElement();
 	}
@@ -85,11 +89,14 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		return (Package)container;
 	}
 
+	@Before
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
 
-
+	@After
+	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
@@ -240,8 +247,9 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 	 * @param provider
 	 */
 	public void testDrop(IElementType type, ITestProvider provider) {
-		if(provider.getDropElement() == null)
+		if(provider.getDropElement() == null) {
 			return;
+		}
 		//DROP
 		assertTrue(DROP + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 0);
 		assertTrue(DROP + INITIALIZATION_TEST, provider.getSemanticChildrenSize() == 1);

@@ -19,9 +19,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.osgi.framework.Bundle;
 
 public class PapyrusProjectUtils {

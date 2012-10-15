@@ -10,7 +10,7 @@ Export-Package: org.eclipse.papyrus.infra.core.lifecycleevents,
  org.eclipse.papyrus.infra.core.services,
  org.eclipse.papyrus.infra.core.tests
 Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
+Fragment-Host: org.eclipse.papyrus.infra.core;bundle-version="0.10.0"
 Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: fragment

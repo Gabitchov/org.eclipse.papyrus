@@ -16,6 +16,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
+import org.junit.Before;
 
 
 /**
@@ -44,6 +45,7 @@ public class DiContentProviderTest extends TestCase {
 	/*
 	 * 
 	 */
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();

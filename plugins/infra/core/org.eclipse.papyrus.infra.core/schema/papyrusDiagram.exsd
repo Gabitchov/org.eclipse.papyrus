@@ -152,10 +152,10 @@ The &lt;code&gt;org.eclipse.papyrus.infra.core.papyrusDiagram&lt;/code&gt; exten
          <attribute name="creationCommandClass" type="string" use="required">
             <annotation>
                <documentation>
-                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand&lt;/samp&gt;.
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.commands.ICreationCommand&lt;/samp&gt;.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.commands.ICreationCommand"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -302,7 +302,7 @@ As Requirement diagram belongs to SysML category it will be created with a SysML
       <documentation>
          &lt;p&gt;The value of the &lt;code&gt;class&lt;/code&gt; attribute of &lt;code&gt;diagramCategory&lt;/code&gt; must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand&lt;/code&gt; interface. There are a few default implementations of &lt;code&gt;IModelCreationCommand&lt;/code&gt; that may be useful to users of this extension point: 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;IModelCreationCommand&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.commands.ModelCreationCommandBase&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;IModelCreationCommand&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand&lt;/code&gt;&lt;/li&gt; - implementation of IModelCreationCommand that creates a UML model.
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which creates Profile as a root element&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which applies SysML profile to the root element&lt;/li&gt;
@@ -310,7 +310,7 @@ As Requirement diagram belongs to SysML category it will be created with a SysML
 &lt;/p&gt;
 
 &lt;p&gt;The value of the &lt;code&gt;creationCommandClass&lt;/code&gt; attribute of &lt;code&gt;creationCommand&lt;/code&gt;
- must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand&lt;/code&gt; interface.
+ must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.commands.ICreationCommand&lt;/code&gt; interface.
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;ICreationCommand&lt;/code&gt; for GMF diagrams. All CreationCommands for Papyrus diagrams extend this class.&lt;/li&gt;
 &lt;/ul&gt;

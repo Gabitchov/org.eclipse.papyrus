@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.resource.notation;
+package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,9 +20,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more
@@ -37,6 +41,7 @@ public class NotationUtils {
 	 * 
 	 * @deprecated Usage of the internal Resource is discouraged.
 	 */
+	@Deprecated
 	public static Resource getNotationResource() {
 		return getNotationModel().getResource();
 	}
@@ -171,6 +176,36 @@ public class NotationUtils {
 			EcoreUtil.resolveAll(notationResource);
 		}
 		return getDiagrams(notationResource, eObject);
+	}
+
+	/**
+	 * Helper to retrieve the Notation resource associated to a ModelSet. May be null.
+	 * 
+	 * @param from
+	 * @return
+	 */
+	public static Resource getNotationResource(ModelSet from) {
+		IModel notationModel = from.getModel(NotationModel.MODEL_ID);
+		if(notationModel instanceof NotationModel) {
+			return ((NotationModel)notationModel).getResource();
+		}
+		return null;
+	}
+
+	/**
+	 * Helper to retrieve the Notation resource associated to a ServicesRegistry. May be null.
+	 * 
+	 * @param from
+	 * @return
+	 */
+	public static Resource getNotationResource(ServicesRegistry registry) {
+		try {
+			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(registry);
+			return getNotationResource(modelSet);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
 	}
 
 }

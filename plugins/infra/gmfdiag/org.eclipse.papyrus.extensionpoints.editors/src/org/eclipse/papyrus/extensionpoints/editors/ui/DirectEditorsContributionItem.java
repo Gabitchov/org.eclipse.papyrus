@@ -11,7 +11,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -87,7 +87,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		}
 
 		// get the uml object type of this element, using the business resolver
-		final Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selectedElement);
+		final Object businessObject = EMFHelper.getEObject(selectedElement);
 
 		// no object found: exit
 		if(businessObject == null) {

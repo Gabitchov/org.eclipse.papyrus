@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**

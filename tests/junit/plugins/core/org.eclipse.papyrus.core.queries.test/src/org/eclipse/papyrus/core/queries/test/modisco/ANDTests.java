@@ -53,6 +53,7 @@ public class ANDTests extends AbstractQueryUtilTest implements IQueryNames {
 	/**
 	 * @throws java.lang.Exception
 	 */
+	@Override
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -60,12 +61,15 @@ public class ANDTests extends AbstractQueryUtilTest implements IQueryNames {
 	/**
 	 * @throws java.lang.Exception
 	 */
+	@Override
 	@After
 	public void tearDown() throws Exception {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.core.queries.modisco.QueryUtil#evaluateBooleanQuery(org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.core.queries.configuration.QueryConfiguration)}.
+	 * Test method for
+	 * {@link org.eclipse.papyrus.core.queries.modisco.QueryUtil#evaluateBooleanQuery(org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.core.queries.configuration.QueryConfiguration)}
+	 * .
 	 */
 	@Test
 	public final void testEvaluateBooleanQueryEObjectQueryConfiguration() {

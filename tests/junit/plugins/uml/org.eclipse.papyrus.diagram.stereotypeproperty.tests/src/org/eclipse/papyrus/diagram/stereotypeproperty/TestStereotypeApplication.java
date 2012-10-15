@@ -38,6 +38,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -109,6 +110,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		//		assertTrue(CREATION+TEST_THE_EXECUTION,appliedStereotypeMultilinePropertyEditPart!=null);
 	}
 
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();

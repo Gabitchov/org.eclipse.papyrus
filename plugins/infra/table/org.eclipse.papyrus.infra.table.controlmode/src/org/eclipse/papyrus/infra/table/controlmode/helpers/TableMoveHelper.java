@@ -29,7 +29,7 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Tableinstan
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 import org.eclipse.papyrus.views.modelexplorer.commands.MoveOpenableCommand;
@@ -143,7 +143,7 @@ public class TableMoveHelper {
 					result &= settingEObject instanceof TableInstance;
 					result &= setting.getEStructuralFeature() == TableinstancePackage.Literals.TABLE_INSTANCE__CONTEXT;
 
-					Collection<Setting> references = PapyrusEcoreUtils.getUsages(settingEObject);
+					Collection<Setting> references = EMFHelper.getUsages(settingEObject);
 					Iterable<Setting> papyrusTableInstances = Iterables.filter(references, keepPapyrusTableInstances);
 					//Veryfing that there is at least one papyrusTableInstance
 					result = result && !Iterables.isEmpty(papyrusTableInstances);
@@ -162,7 +162,7 @@ public class TableMoveHelper {
 
 			public EObject apply(Setting input) {
 				EObject settingEObject = input.getEObject();
-				Collection<Setting> references = PapyrusEcoreUtils.getUsages(settingEObject);
+				Collection<Setting> references = EMFHelper.getUsages(settingEObject);
 				Iterable<Setting> papyrusTableInstances = Iterables.filter(references, keepPapyrusTableInstances);
 				//Getting the eobject of thie first element of this iterable.
 				return Iterables.get(papyrusTableInstances, 0).getEObject();
@@ -176,7 +176,7 @@ public class TableMoveHelper {
 		while(contextAndDescendants.hasNext()) {
 			EObject current = contextAndDescendants.next();
 			//Usages
-			Iterable<Setting> usages = PapyrusEcoreUtils.getUsages(current);
+			Iterable<Setting> usages = EMFHelper.getUsages(current);
 			//Filtering to keep only papyrus table instances.
 			Iterable<Setting> tableInstanceSettings = Iterables.filter(usages, keepTableInstances);
 			//Getting the eObjects 

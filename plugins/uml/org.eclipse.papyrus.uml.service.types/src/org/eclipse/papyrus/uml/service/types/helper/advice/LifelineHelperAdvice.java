@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
@@ -62,7 +62,7 @@ public class LifelineHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Destroy decomposed lifelines
 		PartDecomposition decomposition = lifeline.getDecomposedAs();
-		if(decomposition != null && PapyrusEcoreUtils.isOnlyUsage(decomposition, lifeline)) {
+		if(decomposition != null && EMFHelper.isOnlyUsage(decomposition, lifeline)) {
 			dependentsToDestroy.add(decomposition);
 		}
 

@@ -36,6 +36,7 @@ import org.eclipse.papyrus.uml.pastemanager.command.CommentDropCreation;
 import org.eclipse.papyrus.uml.pastemanager.command.PapyrusDuplicateWrapperCommand;
 import org.eclipse.papyrus.uml.pastemanager.request.PasteRequest;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.gef.commands.Command;
 
 /**
  * this provider has the following behavior
@@ -89,7 +90,7 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 
 		/* Send the request to the target edit part of the paste command for the currently selected part */
 		PasteRequest pasteRequest = new PasteRequest(targetEditPart.getEditingDomain().getClipboard());
-		org.eclipse.gef.commands.Command pasteCommand = targetEditPart.getCommand(pasteRequest);
+		Command pasteCommand = targetEditPart.getCommand(pasteRequest);
 		if(pasteCommand != null) {
 			return new CommandProxy(pasteCommand);
 		}

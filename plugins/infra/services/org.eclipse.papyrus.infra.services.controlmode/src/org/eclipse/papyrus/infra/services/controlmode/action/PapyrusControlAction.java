@@ -37,15 +37,15 @@ import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.infra.services.controlmode.util.ControlModeUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -80,6 +80,7 @@ public class PapyrusControlAction extends ControlAction {
 	 * @param eObject
 	 * @return true if a diagram exists
 	 */
+	//FIXME: Refactoring: Why is there this test? It introduces a dependency to GMF Diagram, and doesn't seem useful.
 	private boolean getDiagram(EObject eObject) {
 		Resource modelResource = eObject.eResource();
 		if(modelResource != null) {
@@ -131,6 +132,7 @@ public class PapyrusControlAction extends ControlAction {
 		// check if object selection is in the current model set. If not, warn the user and disable action
 		ModelSet modelSet = ModelUtils.getModelSet();
 		if(modelSet != null) {
+			//FIXME: Refactoring: The modelSet should provide a method to get the "semantic model" or the "root element". We should remove the dependency to the UML Model
 			IModel umlModel = modelSet.getModel(UmlModel.MODEL_ID);
 			boolean enableControl = false;
 			if(eObject != null && umlModel instanceof AbstractBaseModel) {
@@ -141,6 +143,7 @@ public class PapyrusControlAction extends ControlAction {
 				return;
 			}
 
+			//FIXME: Refactoring: Why is there this test? It introduces a dependency to GMF Diagram, and doesn't seem useful.
 			if(!getDiagram(eObject)) {
 				NotificationBuilder.createAsyncPopup("The selected package must contain a diagram to perform control action").setType(Type.INFO).run();
 				return;

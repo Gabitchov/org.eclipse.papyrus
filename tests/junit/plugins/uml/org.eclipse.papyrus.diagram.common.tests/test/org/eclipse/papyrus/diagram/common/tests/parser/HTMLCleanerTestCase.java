@@ -28,6 +28,7 @@ public class HTMLCleanerTestCase extends TestCase {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@Before
 	public void setUp() throws Exception {
 	}

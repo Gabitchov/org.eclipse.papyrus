@@ -405,7 +405,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 
 
 		if(modelSet != null) {
-			IModel model = modelSet.getModel(org.eclipse.papyrus.infra.core.resource.uml.UmlModel.MODEL_ID);
+			IModel model = modelSet.getModel(org.eclipse.papyrus.uml.tools.model.UmlModel.MODEL_ID);
 
 			if(model instanceof AbstractBaseModel) {
 				return getRootElement(((AbstractBaseModel)model).getResource());

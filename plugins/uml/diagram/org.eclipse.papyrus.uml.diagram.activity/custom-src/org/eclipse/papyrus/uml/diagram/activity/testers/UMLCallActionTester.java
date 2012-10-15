@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.InvocationAction;
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.InvocationAction;
 public class UMLCallActionTester extends PropertyTester {
 
 	/** Tester ID for UML Call Action nature */
-	public final static String IS_CALL_ACTION = "isCallAction"; //$NON-NLS-N$
+	public final static String IS_CALL_ACTION = "isCallAction";
 
 	/** Default constructor */
 	public UMLCallActionTester() {
@@ -40,7 +40,7 @@ public class UMLCallActionTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		// Ensure Papyrus is the active editor
 		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if((editor == null) || (!(editor instanceof PapyrusMultiDiagramEditor))) {
+		if((editor == null) || (!(editor instanceof IMultiDiagramEditor))) {
 			return false;
 		}
 		Object currentValue = null;

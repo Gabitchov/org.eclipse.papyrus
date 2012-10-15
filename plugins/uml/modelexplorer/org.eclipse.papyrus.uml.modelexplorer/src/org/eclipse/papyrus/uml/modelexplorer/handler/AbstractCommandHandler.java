@@ -27,8 +27,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.uml.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.CommandContext;
 import org.eclipse.papyrus.views.modelexplorer.ICommandContext;
@@ -241,6 +241,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * 
 	 * @return true (enabled) when the command can be executed.
 	 */
+	@Override
 	public boolean isEnabled() {
 		return getCommand().canExecute();
 	}

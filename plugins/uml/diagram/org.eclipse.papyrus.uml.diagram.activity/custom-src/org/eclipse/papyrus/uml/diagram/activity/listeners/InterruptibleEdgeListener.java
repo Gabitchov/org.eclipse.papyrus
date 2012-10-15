@@ -45,7 +45,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.interfaces.InterruptibleEdge;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowInterruptibleIconEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart;
@@ -97,9 +97,9 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = page.getActiveEditor();
-		if(editor instanceof PapyrusMultiDiagramEditor) {
-			PapyrusMultiDiagramEditor papyrusEditor = (PapyrusMultiDiagramEditor)editor;
-			return papyrusEditor.getDiagramEditPart();
+		if(editor instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor)editor;
+			return (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
 		}
 		return null;
 	}
@@ -112,7 +112,7 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 	@Override
 	protected ICommand getModificationCommand(Notification notif) {
 		if(Notification.SET == notif.getEventType()) {
-			CompositeCommand cc = new CompositeCommand("Interruptible Edge Command");////$NON-NLS-0$
+			CompositeCommand cc = new CompositeCommand("Interruptible Edge Command");//
 			//Handling views
 			final Iterable<IGraphicalEditPart> edgesEditPart = DiagramEditPartsUtil.getChildrenByEObject((EObject)notif.getNotifier(), getDiagramEditPart(), true);
 			InterruptibleEdgeRequest request = new InterruptibleEdgeRequest();
@@ -137,7 +137,7 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 				for(View view : views) {
 					try {
 						String visualID = INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION.get(view.getElement().eClass());
-						ICommand destroyCommand = destroyInterruptibleIcon((View)view, visualID);
+						ICommand destroyCommand = destroyInterruptibleIcon(view, visualID);
 						if(destroyCommand != null && destroyCommand.canExecute()) {
 							cc.compose(destroyCommand);
 						}
@@ -235,7 +235,7 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					if(model != null) {
-						Node node = ViewService.createNode((View)model, visualID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+						Node node = ViewService.createNode(model, visualID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 						if(node != null) {
 							return CommandResult.newOKCommandResult(node);
 						} else {

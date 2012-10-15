@@ -32,9 +32,10 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.policy.DropStrategyManager;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
@@ -67,7 +68,7 @@ public class InstanceSpecificationTest {
 
 	private static Diagram diagram;
 
-	private static PapyrusMultiDiagramEditor papyrusEditor;
+	private static IMultiDiagramEditor papyrusEditor;
 
 	private static final Set<IFile> model = new HashSet<IFile>();
 
@@ -116,8 +117,8 @@ public class InstanceSpecificationTest {
 
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(modelFile.getName());
-		papyrusEditor = (PapyrusMultiDiagramEditor)page.openEditor(new FileEditorInput(modelFile), desc.getId());
-		diagram = papyrusEditor.getDiagram();
+		papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(modelFile), desc.getId());
+		diagram = (Diagram)papyrusEditor.getAdapter(Diagram.class);
 		Assert.assertTrue("Cannot load the test diagram", diagram != null);
 	}
 
@@ -194,7 +195,7 @@ public class InstanceSpecificationTest {
 	}
 
 	protected EditPart findEditPart(String name) {
-		return findEditPart(name, papyrusEditor.getDiagramEditPart());
+		return findEditPart(name, (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class));
 	}
 
 	protected EditPart findEditPart(String name, EditPart context) {

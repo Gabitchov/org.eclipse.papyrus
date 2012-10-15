@@ -25,12 +25,12 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.core.extension.commands.ICreationCondition;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.widgets.toolbox.dialog.InformationDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -99,12 +99,12 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 	}
 
 	private void createDiagram(NavigableElement navElement) {
-		DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
+		ModelSet modelSet = EditorUtils.getDiResourceSet();
 
-		if(navElement != null && diResourceSet != null) {
+		if(navElement != null && modelSet != null) {
 			try {
-				CompositeCommand command = NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, creationCommand, null, diResourceSet);
-				diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+				CompositeCommand command = NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, creationCommand, null, modelSet);
+				modelSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 			} catch (Exception e) {
 			}
 		}

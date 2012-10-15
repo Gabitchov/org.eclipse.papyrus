@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.ui.IEditorPart;
@@ -53,7 +53,7 @@ public class UnloadResourceHandler extends AbstractCommandHandler {
 			CompoundCommand command = new CompoundCommand();
 			List<URI> handledURI = new ArrayList<URI>();
 			// ensure main URI is never unloaded
-			URI mainURI = NotationUtils.getNotationModel(set).getResourceURI().trimFileExtension();
+			URI mainURI = SashModelUtils.getSashModel(set).getResourceURI().trimFileExtension();
 			handledURI.add(mainURI);
 			for(EObject sel : selection) {
 				if(!sel.eIsProxy()) {

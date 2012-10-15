@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -41,7 +41,7 @@ public class DurationConstraintHelper {
 	 * @return list of DurationConstraint
 	 */
 	public static List<DurationConstraint> getDurationConstraintsOn(NamedElement element) {
-		Collection<Setting> inverseReferences = PapyrusEcoreUtils.getUsages(element);
+		Collection<Setting> inverseReferences = EMFHelper.getUsages(element);
 		// DurationConstraint referencing element
 		List<DurationConstraint> referencing = new LinkedList<DurationConstraint>();
 		for(Setting ref : inverseReferences) {

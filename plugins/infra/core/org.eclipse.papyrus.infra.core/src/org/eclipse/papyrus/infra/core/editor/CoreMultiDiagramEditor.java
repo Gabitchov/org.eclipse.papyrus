@@ -33,11 +33,6 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ui.actions.ActionRegistry;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
-import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -64,7 +59,6 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -98,7 +92,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  *         TODO : remove GMF dependency !
  */
-public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart, IGotoMarker {
+public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IGotoMarker {
 
 	/** Gef adapter */
 	private MultiDiagramEditorGefDelegate gefAdaptorDelegate;
@@ -400,16 +394,25 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// return gefAdaptorDelegate.getSelectionSynchronizer();
 		// }
 
-		// TODO : following code is GMF dependent. It should be moved to adapter
+		// DONE : following code is GMF dependent. It should be moved to adapter (moved to infra.gmfdiag.common)
 		// Do we really need it? Who use it ?
 		// -> It seems to be needed, see bug 354050
-		if(adapter == IDiagramGraphicalViewer.class) {
-			IEditorPart activeEditor = getActiveEditor();
-			if(activeEditor instanceof DiagramEditor) {
-				return ((DiagramEditor)activeEditor).getDiagramGraphicalViewer();
-			}
-			return null;
-		}
+		//
+		//		if(adapter == IDiagramGraphicalViewer.class) {
+		//			return getDiagramGraphicalViewer();
+		//		}
+		//
+		//		if(adapter == Diagram.class) {
+		//			return getDiagram();
+		//		}
+		//
+		//		if(adapter == DiagramEditPart.class) {
+		//			return getDiagramEditPart();
+		//		}
+		//
+		//		if(adapter == IDiagramWorkbenchPart.class) {
+		//			return getDiagramWorkbenchPart();
+		//		}
 
 		return super.getAdapter(adapter);
 	}
@@ -424,7 +427,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		super.init(site, input);
 
 		// Used to get the appropriate domain object from a graphical object (EditPart, ...)
-		BusinessModelResolver.getInstance();
+		// BusinessModelResolver.getInstance();
 
 		// Load resources
 		//		resourceSet = new DiResourceSet();
@@ -554,9 +557,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	protected void warnUser(ModelMultiException e) {
-		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n"
-			+ "%s"
-			+ "It is recommended to fix it before editing it", e.getMessage()));
+		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n" + "%s" + "It is recommended to fix it before editing it", e.getMessage()));
 	}
 
 	/**
@@ -710,37 +711,37 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart#getDiagram()
 	 */
-	public org.eclipse.gmf.runtime.notation.Diagram getDiagram() {
-		IEditorPart activeEditor = getActiveEditor();
-		if(activeEditor instanceof DiagramEditor) {
-			return ((DiagramEditor)activeEditor).getDiagram();
-		} else {
-			return null;
-		}
-	}
+	//	public org.eclipse.gmf.runtime.notation.Diagram getDiagram() {
+	//		IEditorPart activeEditor = getActiveEditor();
+	//		if(activeEditor instanceof DiagramEditor) {
+	//			return ((DiagramEditor)activeEditor).getDiagram();
+	//		} else {
+	//			return null;
+	//		}
+	//	}
 
 	/**
 	 * This method is called from a GMF diagram. It should only be called from GMF diagram code. Normally, the Diagram under the Mouse is a GMF
 	 * Diagram. The active Diagram can be another Diagram, not
 	 * under the mouse. This is a GMF issue.
 	 */
-	public DiagramEditPart getDiagramEditPart() {
-
-		// Get the editor under the mouse
-		// IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
-		IEditorPart activeEditor = getActiveEditor();
-		if(activeEditor == null) {
-			return null;
-		}
-		// IEditorPart activeEditor = getActiveEditor();
-		if(activeEditor instanceof DiagramEditor) {
-			return ((DiagramEditor)activeEditor).getDiagramEditPart();
-		} else {
-			// This case should never happen.
-			// Return null, as the GMF runtime now support it (since 093009)
-			return null;
-		}
-	}
+	//	public DiagramEditPart getDiagramEditPart() {
+	//
+	//		// Get the editor under the mouse
+	//		// IEditorPart activeEditor = rootContainer.getEditorUnderMouse();
+	//		IEditorPart activeEditor = getActiveEditor();
+	//		if(activeEditor == null) {
+	//			return null;
+	//		}
+	//		// IEditorPart activeEditor = getActiveEditor();
+	//		if(activeEditor instanceof DiagramEditor) {
+	//			return ((DiagramEditor)activeEditor).getDiagramEditPart();
+	//		} else {
+	//			// This case should never happen.
+	//			// Return null, as the GMF runtime now support it (since 093009)
+	//			return null;
+	//		}
+	//	}
 
 	/**
 	 * Overrides getDiagramGraphicalViewer.
@@ -749,14 +750,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart#getDiagramGraphicalViewer()
 	 */
-	public IDiagramGraphicalViewer getDiagramGraphicalViewer() {
-		IEditorPart activeEditor = getActiveEditor();
-		if(activeEditor instanceof DiagramEditor) {
-			return ((DiagramEditor)activeEditor).getDiagramGraphicalViewer();
-		} else {
-			return null;
-		}
-	}
+	//	public IDiagramGraphicalViewer getDiagramGraphicalViewer() {
+	//		IEditorPart activeEditor = getActiveEditor();
+	//		if(activeEditor instanceof DiagramEditor) {
+	//			return ((DiagramEditor)activeEditor).getDiagramGraphicalViewer();
+	//		} else {
+	//			return null;
+	//		}
+	//	}
 
 	/**
 	 * Overrides getEditingDomain.
@@ -774,9 +775,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor#getDiagramEditDomain()
 	 */
-	public DiagramEditDomain getDiagramEditDomain() {
-		throw new UnsupportedOperationException("Not implemented. Should not be called.");
-	}
+	//	public DiagramEditDomain getDiagramEditDomain() {
+	//		throw new UnsupportedOperationException("Not implemented. Should not be called.");
+	//	}
 
 
 	/**
@@ -796,6 +797,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		setPartName(newInput.getName());
 	}
 
+	@Deprecated
 	public void gotoMarker(IMarker marker) {
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
@@ -812,5 +814,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				((IGotoMarker)part).gotoMarker(marker);
 			}
 		}
+	}
+
+	@Override
+	public IEditorPart getActiveEditor() {
+		return super.getActiveEditor();
 	}
 }

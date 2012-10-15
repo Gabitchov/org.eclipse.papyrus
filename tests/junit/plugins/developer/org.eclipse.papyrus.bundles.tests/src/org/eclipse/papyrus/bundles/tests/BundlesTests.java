@@ -265,6 +265,7 @@ public class BundlesTests {
 							message += NLS.bind("The field PLUGIN_ID of the plugin {0} is not equals to the plugin name.\n", current.getSymbolicName()); //$NON-NLS-1$
 						}
 					} else {
+						//Never happens. An exception is thrown.
 						nb++;
 						message += NLS.bind("The activator of {0} has no field named PLUGIN_ID.\n", current.getSymbolicName()); //$NON-NLS-1$
 					}
@@ -274,7 +275,7 @@ public class BundlesTests {
 			}
 
 		}
-		Assert.assertTrue(nb + " problems! " + message, message.equals("")); //$NON-NLS-1$ //$NON-NLS-2$
+		Assert.assertTrue(nb + " problems! " + message, nb == 0); //$NON-NLS-1$ 
 	}
 
 }

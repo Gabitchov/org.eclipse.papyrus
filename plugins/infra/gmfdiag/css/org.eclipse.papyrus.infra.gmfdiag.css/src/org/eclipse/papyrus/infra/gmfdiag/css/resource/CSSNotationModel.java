@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.resource;
 
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 
 
 public class CSSNotationModel extends NotationModel {

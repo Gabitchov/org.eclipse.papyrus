@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -62,12 +62,12 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 		// Add start - finish referenced OccurrenceSpecification to the dependents list
 		// if they are not used by another element.
 		OccurrenceSpecification osStart = es.getStart();
-		if((osStart != null) && (PapyrusEcoreUtils.isOnlyUsage(osStart, es))) {
+		if((osStart != null) && (EMFHelper.isOnlyUsage(osStart, es))) {
 			dependentsToDestroy.add(osStart);
 		}
 
 		OccurrenceSpecification osFinish = es.getFinish();
-		if((osFinish != null) && (PapyrusEcoreUtils.isOnlyUsage(osFinish, es))) {
+		if((osFinish != null) && (EMFHelper.isOnlyUsage(osFinish, es))) {
 			dependentsToDestroy.add(osFinish);
 		}
 

@@ -8,11 +8,11 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.impl.ProxyManager;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 
 /**

@@ -22,21 +22,23 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 
 /**
  * Base class for create diagram Handlers.
- *  
+ * 
  * @author cedric dumoulin
  * 
  */
+//FIXME: Refactoring. This should not depend on GMF (NotationUtils depends on GMF).
+//This class is not in the Papyrus Build in 0.10
 public abstract class CreateDiagramHandler extends AbstractHandler implements IHandler {
 
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 *
+	 * 
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
@@ -79,11 +81,12 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 		Diagram di2Diagram = NotationFactory.eINSTANCE.createDiagram();
 		di2Diagram.setVisible(true);
 		di2Diagram.setType(type);
-		if(name != null)
+		if(name != null) {
 			di2Diagram.setName(name);
+		}
 
 		// Add it to resource, so that it will be saved.
-//		NotationUtils.getNotationResource().getContents().add(di2Diagram);
+		//		NotationUtils.getNotationResource().getContents().add(di2Diagram);
 		NotationUtils.getNotationModel().addDiagram(di2Diagram);
 
 		// Attach to sash in order to show it

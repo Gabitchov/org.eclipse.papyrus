@@ -95,6 +95,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	 * 
 	 * @return current command (only built here when the stored command is null)
 	 */
+	@Override
 	protected Command getCommand() {
 
 		// Build the command in case it is not initialized.
@@ -131,9 +132,9 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 		// Retrieve model explorer
 		ModelExplorerView modelExplorerView = null;
 
-		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart("org.eclipse.papyrus.views.modelexplorer.modelexplorer"); //$NON-NLS-0$
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart("org.eclipse.papyrus.views.modelexplorer.modelexplorer");
 		if(bookViewPart != null) {
-			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
+			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
 		}
 
 		// Set selection on new element in the model explorer

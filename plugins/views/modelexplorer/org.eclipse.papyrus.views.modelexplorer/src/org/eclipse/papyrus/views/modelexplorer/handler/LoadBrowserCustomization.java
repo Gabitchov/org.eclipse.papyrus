@@ -37,13 +37,14 @@ import org.eclipse.emf.facet.infra.facet.FacetSet;
 import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Shell;
@@ -65,7 +66,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	protected CommonNavigator getCommonNavigator() {
 		IViewPart part = org.eclipse.papyrus.views.modelexplorer.NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID);
 		// the part is only a book, retrieving correct page
-		if (part instanceof ModelExplorerPageBookView) {
+		if(part instanceof ModelExplorerPageBookView) {
 			IViewPart page = ((ModelExplorerPageBookView)part).getActiveView();
 			if(page instanceof CommonNavigator) {
 				return ((CommonNavigator)page);
@@ -79,33 +80,28 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		if (Activator.getDefault().getCustomizationManager() != null) {
-			CustomizationManager customizationManager = Activator.getDefault()
-				.getCustomizationManager();
-			final List<MetamodelView> registeredCustomizations = customizationManager
-				.getRegisteredCustomizations();
+		if(Activator.getDefault().getCustomizationManager() != null) {
+			CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+			final List<MetamodelView> registeredCustomizations = customizationManager.getRegisteredCustomizations();
 
 			final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, getMetamodels());
-			if (Window.OK == loadCustomizationsDialog.open() ) {
+			if(Window.OK == loadCustomizationsDialog.open()) {
 				try {
 
 					customizationManager.clearCustomizations();
-					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog
-						.getSelectedCustomizations();
+					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog.getSelectedCustomizations();
 					//before loading, clean all facet to prevent to let not interesting facets.
 					customizationManager.clearFacets();
-					if (loadCustomizationsDialog.isLoadRequiredFacetsSelected()) {
+					if(loadCustomizationsDialog.isLoadRequiredFacetsSelected()) {
 						// load facets corresponding to customizations
 
-						loadFacetsForCustomizations(selectedCustomizations,
-							customizationManager);
+						loadFacetsForCustomizations(selectedCustomizations, customizationManager);
 					}
-					for (MetamodelView metamodelView : selectedCustomizations) {
-						customizationManager
-						.registerCustomization(metamodelView);
+					for(MetamodelView metamodelView : selectedCustomizations) {
+						customizationManager.registerCustomization(metamodelView);
 					}
 					customizationManager.loadCustomizations();
-					if (getCommonNavigator() != null) {
+					if(getCommonNavigator() != null) {
 						Tree tree = getCommonNavigator().getCommonViewer().getTree();
 						customizationManager.installCustomPainter(tree);
 						tree.redraw();
@@ -118,7 +114,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			}
 			// load customizations defined as default through the customization
 			// extension
-			if (getCommonNavigator() != null) {
+			if(getCommonNavigator() != null) {
 				getCommonNavigator().getCommonViewer().refresh();
 			}
 		}
@@ -130,62 +126,51 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 * 
 	 * @return the RessourceSet
 	 */
-	private DiResourceSet getDiResourceSet() {
-		return EditorUtils.getDiResourceSet();
+	private ModelSet getModelSet() {
+		return ModelUtils.getModelSet();
 	}
 
 	/**
 	 * load the facets
 	 * 
 	 * @param customizations
-	 *            list of customization
+	 *        list of customization
 	 * @param customizationManager
-	 *            the Customization Manager
+	 *        the Customization Manager
 	 */
-	protected void loadFacetsForCustomizations(
-		final List<MetamodelView> customizations,
-		final CustomizationManager customizationManager) {
+	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
 		final Set<Facet> referencedFacets = new HashSet<Facet>();
-		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton()
-			.getAllFacetSets();
+		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
 
-		for (MetamodelView customization : customizations) {
+		for(MetamodelView customization : customizations) {
 			String metamodelURI = customization.getMetamodelURI();
 			// find customized FacetSet
 			FacetSet customizedFacetSet = null;
-			if (metamodelURI != null) {
-				for (FacetSet facetSet : facetSets) {
-					if (metamodelURI.equals(facetSet.getNsURI())) {
+			if(metamodelURI != null) {
+				for(FacetSet facetSet : facetSets) {
+					if(metamodelURI.equals(facetSet.getNsURI())) {
 						customizedFacetSet = facetSet;
 						break;
 					}
 				}
 			}
-			if (customizedFacetSet == null) {
+			if(customizedFacetSet == null) {
 				continue;
 			}
 
 			// find customized Facets
 			EList<TypeView> types = customization.getTypes();
-			for (TypeView typeView : types) {
+			for(TypeView typeView : types) {
 				String metaclassName = typeView.getMetaclassName();
-				Facet facet = findFacetWithFullyQualifiedName(metaclassName,
-					customizedFacetSet);
-				if (facet != null) {
+				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
+				if(facet != null) {
 					referencedFacets.add(facet);
 				} else {
-					Activator.log.warn(NLS
-						.bind(
-							Messages.BrowserActionBarContributor_missingRequiredFacet,
-							new Object[] {
-								metaclassName,
-								customizedFacetSet
-								.getName(),
-								customization.getName() }));
+					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
 				}
 			}
 
-			for (Facet referencedFacet : referencedFacets) {
+			for(Facet referencedFacet : referencedFacets) {
 				customizationManager.loadFacet(referencedFacet);
 			}
 		}
@@ -204,12 +189,11 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 * @param customizedFacetSet
 	 * @return
 	 */
-	private Facet findFacetWithFullyQualifiedName(final String metaclassName,
-		final FacetSet customizedFacetSet) {
+	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
 		EList<Facet> facets = customizedFacetSet.getFacets();
-		for (Facet facet : facets) {
+		for(Facet facet : facets) {
 			String facetName = getMetaclassQualifiedName(facet);
-			if (metaclassName.equals(facetName)) {
+			if(metaclassName.equals(facetName)) {
 				return facet;
 			}
 		}
@@ -222,12 +206,12 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		final StringBuilder builder = new StringBuilder();
 
 		EPackage ePackage = eClass.getEPackage();
-		while (ePackage != null) {
+		while(ePackage != null) {
 			qualifiedNameParts.add(ePackage.getName());
 			ePackage = ePackage.getESuperPackage();
 		}
 
-		for (int i = qualifiedNameParts.size() - 1; i >= 0; i--) {
+		for(int i = qualifiedNameParts.size() - 1; i >= 0; i--) {
 			builder.append(qualifiedNameParts.get(i) + "."); //$NON-NLS-1$
 		}
 
@@ -242,12 +226,11 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	public String getMetamodelURI() {
 
 		try {
-			EList<EObject> contents = getDiResourceSet().getModelResource()
-				.getContents();
-			if (contents.size() > 0) {
+			EList<EObject> contents = UmlUtils.getUmlResource(getModelSet()).getContents();
+			if(contents.size() > 0) {
 				EObject eObject = contents.get(0);
 				EClass eClass = eObject.eClass();
-				if (eClass != null) {
+				if(eClass != null) {
 					return eClass.getEPackage().getNsURI();
 				}
 			}
@@ -264,14 +247,15 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		List<EPackage> ePackages = new ArrayList<EPackage>();
 		ServicesRegistry serviceRegistry = null;
 		try {
-			serviceRegistry = ServiceUtilsForActionHandlers.getInstance()
-				.getServiceRegistry();
+			serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
 
-		/*we look for the current editors, because their are represented in the model explorer
-		using specific facet and uiCustom. (see bug 359692) */
+		/*
+		 * we look for the current editors, because their are represented in the model explorer
+		 * using specific facet and uiCustom. (see bug 359692)
+		 */
 		IPageMngr pageMngr = null;
 		try {
 			pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
@@ -279,23 +263,21 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			Activator.log.error(e);
 		}
 		List<Object> pages = pageMngr.allPages();
-		for (int i = 0; i < pages.size(); i++) {
-			if (pages.get(i) instanceof EObject) {
-				EPackage ePackage = ((EObject) pages.get(i)).eClass()
-					.getEPackage();
-				if (!ePackages.contains(ePackage)) {
+		for(int i = 0; i < pages.size(); i++) {
+			if(pages.get(i) instanceof EObject) {
+				EPackage ePackage = ((EObject)pages.get(i)).eClass().getEPackage();
+				if(!ePackages.contains(ePackage)) {
 					ePackages.add(ePackage);
 				}
 			}
 		}
 
 		try {
-			EList<EObject> contents = getDiResourceSet().getModelResource()
-				.getContents();
-			if (contents.size() > 0) {
+			EList<EObject> contents = UmlUtils.getUmlResource(getModelSet()).getContents();
+			if(contents.size() > 0) {
 				EObject eObject = contents.get(0);
 				EClass eClass = eObject.eClass();
-				if (eClass != null) {
+				if(eClass != null) {
 					ePackages.add(eClass.getEPackage());
 				}
 			}

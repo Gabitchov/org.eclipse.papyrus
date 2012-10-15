@@ -12,12 +12,8 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.utils;
+package org.eclipse.papyrus.infra.emf.utils;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * This class allows to retrieve the business object from an object representing
@@ -26,6 +22,8 @@ import org.eclipse.gmf.runtime.notation.View;
  * already registered : gef.EditPart TODO Use extensions to register additional
  * resolvers.
  */
+//Refactoring 0.10: This class has been moved from infra.core to infra.emf.
+//It should be re-implemented as a Service.
 public class BusinessModelResolver {
 
 	/**
@@ -46,51 +44,7 @@ public class BusinessModelResolver {
 	 * @return Object
 	 */
 	public Object getBusinessModel(Object object) {
-		if(object instanceof EditPart) {
-			// Check model. It can be a GraphNode.
-			Object model = ((EditPart)object).getModel();
-			if(model instanceof View) { // Notation / GMF
-				return getBusinessElement((View)((EditPart)object).getModel());
-			} else {
-				return model;
-			}
-
-		} else if(object instanceof View) {
-			return ((View)object).getElement();
-
-		} else if(object instanceof IAdaptable) {
-			// Among others this is useful to retrieve the selected object from
-			// an explorer item.
-			return ((IAdaptable)object).getAdapter(EObject.class);
-
-		} else {
-			return object;
-		}
-	}
-
-	/**
-	 * Get the business object from a GraphElement.
-	 * 
-	 * @param object
-	 * @return
-	 */
-	protected Object getBusinessElement(View object) {
-		try {
-			return object.getElement();
-		} catch (NullPointerException e) {
-			// no business element
-			return null;
-		}
-	}
-
-	/**
-	 * Get the graphical object accessible from to this diagram object, if any.
-	 * 
-	 * @param object
-	 * @return Object
-	 */
-	public Object getGraphicalModel(Object object) {
-		throw new UnsupportedOperationException("Not yet implemented.");
+		return EMFHelper.getEObject(object);
 	}
 
 	/**

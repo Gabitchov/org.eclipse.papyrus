@@ -21,6 +21,7 @@ import junit.framework.TestCase;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.swt.SWT;
+import org.junit.Before;
 
 
 /**
@@ -33,6 +34,7 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 	/**
 	 * Initialize the tree {@inheritDoc}
 	 */
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -156,12 +158,12 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 		ITabFolderModel referenceFolder = contentProvider.getCurrentTabFolder();
 
 		assertNotNull("referenceFolder exist", referenceFolder);
-		
+
 		// Create a new folder.
 		ITabFolderModel createdFolder = contentProvider.createFolder(referenceFolder, SWT.TOP);
-		
+
 		assertNotNull("folder created", createdFolder);
-		
+
 	}
 
 	/**

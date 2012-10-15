@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSe
 import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.junit.Before;
 
 
 /**
@@ -60,6 +61,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Before
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();

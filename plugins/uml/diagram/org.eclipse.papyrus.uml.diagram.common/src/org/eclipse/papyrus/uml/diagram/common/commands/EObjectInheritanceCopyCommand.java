@@ -36,7 +36,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * The Class EObjectInheritanceCopyCommand. it takes an eobject in parameter and
@@ -217,7 +217,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	 *        the target eobject
 	 */
 	private void crossReference(EObject source, EObject target) {
-		Collection<EStructuralFeature.Setting> collection = PapyrusEcoreUtils.getUsages(source);
+		Collection<EStructuralFeature.Setting> collection = EMFHelper.getUsages(source);
 		if(collection != null) {
 			for(EStructuralFeature.Setting nonNavigableInverseReference : collection) {
 				EStructuralFeature structuralFeature = nonNavigableInverseReference.getEStructuralFeature();

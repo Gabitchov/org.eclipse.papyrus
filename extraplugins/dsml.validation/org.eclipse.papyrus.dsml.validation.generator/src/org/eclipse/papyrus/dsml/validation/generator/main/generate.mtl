@@ -1,5 +1,5 @@
  [comment encoding = UTF-8 /]
- [module generate('http://www.eclipse.org/uml2/3.0.0/UML', 'http://www.eclipse.org/emf/2009/Validation', 'http://www.eclipse.org/emf/2002/Ecore')/] 
+ [module generate('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/emf/2009/Validation', 'http://www.eclipse.org/emf/2002/Ecore')/] 
 
 [query public getPackageForConstraint(cstr : Constraint) : String = invoke('org.eclipse.papyrus.dsml.validation.model.profilenames.Utils', 'getPackageForConstraint(org.eclipse.uml2.uml.Constraint)', Sequence{cstr}) /]
 [query public getJavaConstraintBody(valueSpecificatoin : ValueSpecification) : String = invoke('org.eclipse.papyrus.dsml.validation.model.profilenames.Utils', 'getJavaConstraintBody(org.eclipse.uml2.uml.ValueSpecification)', Sequence{valueSpecificatoin}) /]

@@ -29,12 +29,12 @@ import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.services.controlmode.commands.UncontrolCommand;
 import org.eclipse.papyrus.infra.services.controlmode.util.ControlModeUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 

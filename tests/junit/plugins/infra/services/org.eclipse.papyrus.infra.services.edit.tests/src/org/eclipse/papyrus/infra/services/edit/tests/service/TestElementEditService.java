@@ -43,6 +43,7 @@ public class TestElementEditService extends AbstractTestElementEditService {
 
 	EClass eClass;
 
+	@Override
 	@Before
 	public void setUp() {
 		super.setUp();
@@ -69,7 +70,7 @@ public class TestElementEditService extends AbstractTestElementEditService {
 	@Test
 	public void testGetEditCommand() {
 		try {
-			
+
 			ICommand correctCommand = ePckgService.getEditCommand(prepareCorrectRequest());
 			ICommand incorrectCommand = ePckgService.getEditCommand(prepareIncorrectRequest());
 
@@ -80,7 +81,7 @@ public class TestElementEditService extends AbstractTestElementEditService {
 
 			// With incorrect request the command should not be executable. 
 			assertFalse("The service command should not be executable.", incorrectCommand.canExecute());
-			
+
 		} catch (ServiceException e) {
 			fail("Test aborted - Papyrus editing domain not found.");
 		} catch (ExecutionException e) {

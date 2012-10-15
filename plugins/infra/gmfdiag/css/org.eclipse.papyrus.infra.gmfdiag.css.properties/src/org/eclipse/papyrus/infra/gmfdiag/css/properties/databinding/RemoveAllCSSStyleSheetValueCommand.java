@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom.RemoveAllCustomStyleListValueCommand;
 
 
@@ -37,7 +37,7 @@ public class RemoveAllCSSStyleSheetValueCommand extends RemoveAllCustomStyleList
 		for(Object value : values) {
 			if(value instanceof EObject) {
 				EObject styleSheet = (EObject)value;
-				Collection<EStructuralFeature.Setting> references = PapyrusEcoreUtils.getUsages(styleSheet);
+				Collection<EStructuralFeature.Setting> references = EMFHelper.getUsages(styleSheet);
 				//We're removing the last reference to this styleSheet (Only if the stylesheet is contained
 				//in the same resource as the view referencing it... We don't modify external models)
 				if(references.size() == 1 && styleSheet.eResource() == view.eResource()) {

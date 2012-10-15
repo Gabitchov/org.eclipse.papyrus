@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.wizards.kind;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.swt.graphics.Image;
 

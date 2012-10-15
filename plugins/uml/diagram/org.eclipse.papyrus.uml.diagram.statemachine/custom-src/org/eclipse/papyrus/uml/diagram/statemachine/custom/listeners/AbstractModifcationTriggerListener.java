@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
@@ -71,7 +71,6 @@ public abstract class AbstractModifcationTriggerListener extends TriggerListener
 	 *        {@link IGraphicalEditPart} root from which the search will start
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	protected IGraphicalEditPart getChildByEObject(final EObject eObject, IGraphicalEditPart rootEditPart, boolean isEdge) {
 		return DiagramEditPartsUtil.getChildByEObject(eObject, rootEditPart, isEdge);
 	}
@@ -85,9 +84,9 @@ public abstract class AbstractModifcationTriggerListener extends TriggerListener
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = page.getActiveEditor();
-		if(editor instanceof PapyrusMultiDiagramEditor) {
-			PapyrusMultiDiagramEditor papyrusEditor = (PapyrusMultiDiagramEditor)editor;
-			return papyrusEditor.getDiagramEditPart();
+		if(editor instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor)editor;
+			return (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
 		}
 		return null;
 	}

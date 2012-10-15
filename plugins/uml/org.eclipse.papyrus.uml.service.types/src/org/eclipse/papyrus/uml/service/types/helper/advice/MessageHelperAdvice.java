@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 
@@ -54,12 +54,12 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 		// Add send - receive referenced MessageEnd to the dependents list
 		// if they are not used by another element.
 		MessageEnd sendEvent = message.getSendEvent();
-		if((sendEvent != null) && (PapyrusEcoreUtils.isOnlyUsage(sendEvent, message))) {
+		if((sendEvent != null) && (EMFHelper.isOnlyUsage(sendEvent, message))) {
 			dependentsToDestroy.add(sendEvent);
 		}
 
 		MessageEnd recvEvent = message.getReceiveEvent();
-		if((recvEvent != null) && (PapyrusEcoreUtils.isOnlyUsage(recvEvent, message))) {
+		if((recvEvent != null) && (EMFHelper.isOnlyUsage(recvEvent, message))) {
 			dependentsToDestroy.add(recvEvent);
 		}
 

@@ -48,16 +48,15 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.exception.SashEditorException;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.infra.services.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.infra.services.controlmode.history.utils.HistoryUtils;
@@ -68,6 +67,7 @@ import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnab
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 

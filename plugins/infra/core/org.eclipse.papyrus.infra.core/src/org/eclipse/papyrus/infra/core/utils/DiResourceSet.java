@@ -13,24 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.core.resource.ModelException;
-import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 
 /**
  * ResourceSet Manager for UML and DI files, and also other loaded models.
@@ -41,6 +25,7 @@ import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
  * 
  * @deprecated Use ModelSet instead.
  */
+@Deprecated
 public class DiResourceSet extends ModelSet {
 
 	/**
@@ -54,7 +39,7 @@ public class DiResourceSet extends ModelSet {
 		ModelsReader reader = new ModelsReader();
 		reader.readModel(this);
 	}
-	
+
 	/**
 	 * Just loads the model into the current resource set.
 	 * 
@@ -62,29 +47,31 @@ public class DiResourceSet extends ModelSet {
 	 * @deprecated load requested model and get its resource. See implementation
 	 *             for example.
 	 */
-	public Resource loadModelResource(IFile file) {
-
-		UmlModel model = null;
-		try {
-			model = (UmlModel)loadModel(UmlModel.MODEL_ID, file);
-		} catch (ModelException e) {
-			return null;
-		}
-		return model.getResource();
-	}
+	//	@Deprecated
+	//	public Resource loadModelResource(IFile file) {
+	//
+	//		UmlModel model = null;
+	//		try {
+	//			model = (UmlModel)loadModel(UmlModel.MODEL_ID, file);
+	//		} catch (ModelException e) {
+	//			return null;
+	//		}
+	//		return model.getResource();
+	//	}
 
 	/**
 	 * Returns the extension of the model. Seem to be unused.
 	 * 
 	 * @deprecated Use {@link UmlModel#UML_FILE_EXTENSION}
 	 */
-	public String getModelFileExtension() {
-		throw new UnsupportedOperationException("deprecated method.");
-		// if(modelFileExtension == null) {
-		// modelFileExtension = modelResource.getURI().fileExtension();
-		// }
-		// return modelFileExtension;
-	}
+	//	@Deprecated
+	//	public String getModelFileExtension() {
+	//		throw new UnsupportedOperationException("deprecated method.");
+	//		// if(modelFileExtension == null) {
+	//		// modelFileExtension = modelResource.getURI().fileExtension();
+	//		// }
+	//		// return modelFileExtension;
+	//	}
 
 	/**
 	 * Load both files (DI and UML) from an handle on one of the two files.
@@ -93,70 +80,71 @@ public class DiResourceSet extends ModelSet {
 	 *        The file to load (no matter the extension)Model
 	 * @deprecated use {@link ModelSet#loadModels(IFile)} instead.
 	 */
-	public void loadResources(IFile file) {
-		try {
-			loadModels(file);
-		} catch (ModelMultiException e) {
-			e.printStackTrace();
-		}
-
-		// // Extract file name, without extension
-		// IPath fullPath = file.getFullPath().removeFileExtension();
-		//
-		// // load DI2
-		// URI diUri =
-		// getPlatformURI(fullPath.addFileExtension(DI_FILE_EXTENSION));
-		// diResource = getResource(diUri, true);
-		//
-		// // load notation
-		// URI notationURI =
-		// getPlatformURI(fullPath.addFileExtension(NOTATION_FILE_EXTENSION));
-		// notationResource = getResource(notationURI, true);
-		//
-		// if(notationResource != null) {
-		// // look for a model associated with a diagram in notation
-		// for(EObject eObject : notationResource.getContents()) {
-		// if(eObject instanceof Diagram) {
-		// Diagram diagram = (Diagram)eObject;
-		// if(diagram.getElement() != null) {
-		// modelResource = diagram.getElement().eResource();
-		// break;
-		// }
-		// }
-		// }
-		// }
-		//
-		//
-		// // if modelResource is still null, we look for a file with the same
-		// name and a supported extension
-		// if(modelResource == null) {
-		// IContainer folder = file.getParent();
-		// try {
-		// IResource[] files = folder.members();
-		// for(IResource r : files) {
-		// String extension = r.getFullPath().getFileExtension();
-		// if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment())
-		// && !DI_FILE_EXTENSION.equalsIgnoreCase(extension) &&
-		// !NOTATION_FILE_EXTENSION.equalsIgnoreCase(extension)) {
-		// if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension)
-		// != null) {
-		// modelResource = getResource(getPlatformURI(r.getFullPath()), true);
-		// break;
-		// }
-		// }
-		// }
-		// } catch (CoreException e) {
-		// // never happens.
-		// }
-		// }
-		//
-		// modelFileExtension = modelResource.getURI().fileExtension();
-		//
-		// // TODO move next line away from DiResourceSet ? Define a place
-		// // where Resource initialization can take place.
-		// // move this line to centralize all the adapters
-		// modelResource.eAdapters().add(new ModelListenerManager());
-	}
+	//	@Deprecated
+	//	public void loadResources(IFile file) {
+	//		try {
+	//			loadModels(file);
+	//		} catch (ModelMultiException e) {
+	//			e.printStackTrace();
+	//		}
+	//
+	//		// // Extract file name, without extension
+	//		// IPath fullPath = file.getFullPath().removeFileExtension();
+	//		//
+	//		// // load DI2
+	//		// URI diUri =
+	//		// getPlatformURI(fullPath.addFileExtension(DI_FILE_EXTENSION));
+	//		// diResource = getResource(diUri, true);
+	//		//
+	//		// // load notation
+	//		// URI notationURI =
+	//		// getPlatformURI(fullPath.addFileExtension(NOTATION_FILE_EXTENSION));
+	//		// notationResource = getResource(notationURI, true);
+	//		//
+	//		// if(notationResource != null) {
+	//		// // look for a model associated with a diagram in notation
+	//		// for(EObject eObject : notationResource.getContents()) {
+	//		// if(eObject instanceof Diagram) {
+	//		// Diagram diagram = (Diagram)eObject;
+	//		// if(diagram.getElement() != null) {
+	//		// modelResource = diagram.getElement().eResource();
+	//		// break;
+	//		// }
+	//		// }
+	//		// }
+	//		// }
+	//		//
+	//		//
+	//		// // if modelResource is still null, we look for a file with the same
+	//		// name and a supported extension
+	//		// if(modelResource == null) {
+	//		// IContainer folder = file.getParent();
+	//		// try {
+	//		// IResource[] files = folder.members();
+	//		// for(IResource r : files) {
+	//		// String extension = r.getFullPath().getFileExtension();
+	//		// if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment())
+	//		// && !DI_FILE_EXTENSION.equalsIgnoreCase(extension) &&
+	//		// !NOTATION_FILE_EXTENSION.equalsIgnoreCase(extension)) {
+	//		// if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension)
+	//		// != null) {
+	//		// modelResource = getResource(getPlatformURI(r.getFullPath()), true);
+	//		// break;
+	//		// }
+	//		// }
+	//		// }
+	//		// } catch (CoreException e) {
+	//		// // never happens.
+	//		// }
+	//		// }
+	//		//
+	//		// modelFileExtension = modelResource.getURI().fileExtension();
+	//		//
+	//		// // TODO move next line away from DiResourceSet ? Define a place
+	//		// // where Resource initialization can take place.
+	//		// // move this line to centralize all the adapters
+	//		// modelResource.eAdapters().add(new ModelListenerManager());
+	//	}
 
 	/**
 	 * Create both files (DI and UML) from a filename.
@@ -166,43 +154,44 @@ public class DiResourceSet extends ModelSet {
 	 * 
 	 * @deprecated Use {@link ModelSet#createsModels(IFile)} instead.
 	 */
-	public void createModelResources(IFile newFile, String eContentType, String modelExtension) {
-
-		// Check if parameters are those expected.
-		// If not, throws an exception to inform the programmer.
-		if(!("org.eclipse.uml2.uml".equals(eContentType) && "uml".equals(modelExtension))) {
-			throw new UnsupportedOperationException("");
-		}
-		// Create models
-		createsModels(newFile);
-
-		// // create the di resource URI
-		// URI diUri = getPlatformURI(newFile.getFullPath());
-		// // Create the di Resource for the sashcontainer
-		// // The model will be automatically initialized by the SashContainer
-		// if needed (if it is empty).
-		// // Normally the resource should contains models set by previous use
-		// from the SashContainer
-		// diResource = createResource(diUri);
-		//
-		// IPath filenameWithoutExtension =
-		// newFile.getFullPath().removeFileExtension();
-		// // if the model is not loaded, create resource
-		// if(modelResource == null) {
-		// // create the model URI
-		// URI modelUri =
-		// getPlatformURI(filenameWithoutExtension.addFileExtension(modelExtension));
-		// // create the model resource
-		// modelResource = createResource(modelUri, eContentType);
-		// this.modelFileExtension = modelExtension;
-		// }
-		// // create the notation URI
-		// URI notationURI =
-		// getPlatformURI(filenameWithoutExtension.addFileExtension(NOTATION_FILE_EXTENSION));
-		// // create the notation resource
-		// notationResource = createResource(notationURI);
-
-	}
+	//	@Deprecated
+	//	public void createModelResources(IFile newFile, String eContentType, String modelExtension) {
+	//
+	//		// Check if parameters are those expected.
+	//		// If not, throws an exception to inform the programmer.
+	//		if(!("org.eclipse.uml2.uml".equals(eContentType) && "uml".equals(modelExtension))) {
+	//			throw new UnsupportedOperationException("");
+	//		}
+	//		// Create models
+	//		createsModels(newFile);
+	//
+	//		// // create the di resource URI
+	//		// URI diUri = getPlatformURI(newFile.getFullPath());
+	//		// // Create the di Resource for the sashcontainer
+	//		// // The model will be automatically initialized by the SashContainer
+	//		// if needed (if it is empty).
+	//		// // Normally the resource should contains models set by previous use
+	//		// from the SashContainer
+	//		// diResource = createResource(diUri);
+	//		//
+	//		// IPath filenameWithoutExtension =
+	//		// newFile.getFullPath().removeFileExtension();
+	//		// // if the model is not loaded, create resource
+	//		// if(modelResource == null) {
+	//		// // create the model URI
+	//		// URI modelUri =
+	//		// getPlatformURI(filenameWithoutExtension.addFileExtension(modelExtension));
+	//		// // create the model resource
+	//		// modelResource = createResource(modelUri, eContentType);
+	//		// this.modelFileExtension = modelExtension;
+	//		// }
+	//		// // create the notation URI
+	//		// URI notationURI =
+	//		// getPlatformURI(filenameWithoutExtension.addFileExtension(NOTATION_FILE_EXTENSION));
+	//		// // create the notation resource
+	//		// notationResource = createResource(notationURI);
+	//
+	//	}
 
 	/**
 	 * Get a platform resource URI of the given path
@@ -211,9 +200,9 @@ public class DiResourceSet extends ModelSet {
 	 *        the path
 	 * @return the uri
 	 */
-	private URI getPlatformURI(IPath path) {
-		return URI.createPlatformResourceURI(path.toString(), true);
-	}
+	//	private URI getPlatformURI(IPath path) {
+	//		return URI.createPlatformResourceURI(path.toString(), true);
+	//	}
 
 	/**
 	 * Returns the notation resource.
@@ -222,9 +211,9 @@ public class DiResourceSet extends ModelSet {
 	 * @deprecated Use NotationUtils.getNotationModel(this).getResource();
 	 *             instead.
 	 */
-	public Resource getNotationResource() {
-		return NotationUtils.getNotationModel(this).getResource();
-	}
+	//	public Resource getNotationResource() {
+	//		return NotationUtils.getNotationModel(this).getResource();
+	//	}
 
 	/**
 	 * 
@@ -232,9 +221,10 @@ public class DiResourceSet extends ModelSet {
 	 * @return the diResource
 	 * @deprecated Use NotationUtils.getSashModel(this).getResource(); instead.
 	 */
-	public Resource getDiResource() {
-		return SashModelUtils.getSashModel(this).getResource();
-	}
+	//	@Deprecated
+	//	public Resource getDiResource() {
+	//		return SashModelUtils.getSashModel(this).getResource();
+	//	}
 
 	/**
 	 * Retrieve the di resource associated with a given model element.
@@ -244,10 +234,11 @@ public class DiResourceSet extends ModelSet {
 	 * @deprecated a model should be modified/created to correctly handle
 	 *             controlled resources
 	 */
-	public Resource getAssociatedDiResource(EObject modelElement) {
-		// return the "base" di since we want the opened tabs in a unique di
-		return getDiResource();
-	}
+	//	@Deprecated
+	//	public Resource getAssociatedDiResource(EObject modelElement) {
+	//		// return the "base" di since we want the opened tabs in a unique di
+	//		return getDiResource();
+	//	}
 
 	/**
 	 * Retrieve the notation resource associated with a given model element.
@@ -257,16 +248,17 @@ public class DiResourceSet extends ModelSet {
 	 * @deprecated a model should be modified/created to correctly handle
 	 *             controlled resources
 	 */
-	public Resource getAssociatedNotationResource(EObject modelElement) {
-		if(modelElement != null) {
-			Resource modelResource = modelElement.eResource();
-			if(modelResource != null && !modelResource.equals(getModelResource())) {
-				// handle controlled resource
-				return getAssociatedResource(modelResource, NotationModel.NOTATION_FILE_EXTENSION);
-			}
-		}
-		return getNotationResource();
-	}
+	//	@Deprecated
+	//	public Resource getAssociatedNotationResource(EObject modelElement) {
+	//		if(modelElement != null) {
+	//			Resource modelResource = modelElement.eResource();
+	//			if(modelResource != null && !modelResource.equals(getModelResource())) {
+	//				// handle controlled resource
+	//				return getAssociatedResource(modelResource, NotationModel.NOTATION_FILE_EXTENSION);
+	//			}
+	//		}
+	//		return getNotationResource();
+	//	}
 
 	/**
 	 * Retrieve the model resource associated with a given model element. Please
@@ -278,12 +270,13 @@ public class DiResourceSet extends ModelSet {
 	 * @deprecated a model should be modified/created to correctly handle
 	 *             controlled resources
 	 */
-	public Resource getAssociatedModelResource(EObject modelElement) {
-		if(modelElement != null && modelElement.eResource() != null) {
-			return modelElement.eResource();
-		}
-		return getModelResource();
-	}
+	//	@Deprecated
+	//	public Resource getAssociatedModelResource(EObject modelElement) {
+	//		if(modelElement != null && modelElement.eResource() != null) {
+	//			return modelElement.eResource();
+	//		}
+	//		return getModelResource();
+	//	}
 
 	/**
 	 * Returns the model resource.
@@ -291,27 +284,28 @@ public class DiResourceSet extends ModelSet {
 	 * @return the modelResource
 	 * @deprecated Use NotationUtils.getUmlModel(this).getResource(); instead.
 	 */
-	public Resource getModelResource() {
-		return UmlUtils.getUmlModel(this).getResource();
-	}
+	//	@Deprecated
+	//	public Resource getModelResource() {
+	//		return UmlUtils.getUmlModel(this).getResource();
+	//	}
 
 	/**
 	 * Returns the additional resources.
 	 * 
 	 * @return The additional resources.
 	 */
-	public List<Resource> getAdditionalResources() {
-		List<Resource> additionnalResources = new ArrayList<Resource>();
-		for(Resource resource : getResources()) {
-			// ignore di, notation and domain resources
-
-			if(resource != getDiResource() && resource != getNotationResource() && resource != getModelResource()) {
-				additionnalResources.add(resource);
-			}
-		}
-
-		return additionnalResources;
-	}
+	//	public List<Resource> getAdditionalResources() {
+	//		List<Resource> additionnalResources = new ArrayList<Resource>();
+	//		for(Resource resource : getResources()) {
+	//			// ignore di, notation and domain resources
+	//
+	//			if(resource != getDiResource() && resource != getNotationResource() && resource != getModelResource()) {
+	//				additionnalResources.add(resource);
+	//			}
+	//		}
+	//
+	//		return additionnalResources;
+	//	}
 
 	/**
 	 * Returns the related di file.
@@ -321,8 +315,9 @@ public class DiResourceSet extends ModelSet {
 	 * @return The associated DI file.
 	 * @deprecated use {@link DiModelUtils#getRelatedDiFile(IFile)}
 	 */
-	public static IFile getRelatedDiFile(IFile file) {
-		return DiModelUtils.getRelatedDiFile(file);
-	}
+	//	@Deprecated
+	//	public static IFile getRelatedDiFile(IFile file) {
+	//		return DiModelUtils.getRelatedDiFile(file);
+	//	}
 
 }

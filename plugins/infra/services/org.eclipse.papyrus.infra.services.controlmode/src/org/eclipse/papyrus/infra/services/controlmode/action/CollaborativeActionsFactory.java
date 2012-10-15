@@ -18,12 +18,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.factory.IActionHandlerFactory;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.navigator.CommonNavigator;
@@ -107,8 +108,9 @@ public class CollaborativeActionsFactory implements IActionHandlerFactory {
 		Iterator iterator = structuredSelection.iterator();
 		while(iterator.hasNext()) {
 			Object object = iterator.next();
-			if(NavigatorUtils.resolveSemanticObject(object) != null) {
-				array.add(NavigatorUtils.resolveSemanticObject(object));
+			EObject eObject = EMFHelper.getEObject(object);
+			if(eObject != null) {
+				array.add(eObject);
 			}
 		}
 		StructuredSelection st = new StructuredSelection(array);

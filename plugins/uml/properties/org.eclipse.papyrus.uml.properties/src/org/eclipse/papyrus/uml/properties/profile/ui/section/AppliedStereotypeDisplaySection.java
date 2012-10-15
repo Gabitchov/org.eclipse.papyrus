@@ -10,22 +10,20 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Camille Letavernier (CEA LIST) Camille.letavernier@cea.fr - refactoring. Use standard Papyrus helpers. Remove a few GMF dependencies
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.section;
 
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppearanceForAppliedStereotypeComposite;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.part.IContributedContentsView;
-import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.uml2.uml.Element;
@@ -70,30 +68,20 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 		if(selection instanceof IStructuredSelection) {
 			Object input = ((IStructuredSelection)selection).getFirstElement();
 
-			if(input instanceof IGraphicalEditPart && ((IGraphicalEditPart)input).getModel() instanceof View) {
+			diagramElement = NotationHelper.findView(input);
+			Element semanticElement = UMLUtil.resolveUMLElement(input);
+			if(diagramElement != null && semanticElement != null) {
 				appearanceForAppliedStereotype.setSelection(selection);
-				diagramElement = (EModelElement)((AbstractGraphicalEditPart)input).getModel();
 
-				if((diagramElement instanceof View) && ((View)diagramElement).getElement() != null) {
-					appearanceForAppliedStereotype.setElement((Element)((View)diagramElement).getElement());
-					appearanceForAppliedStereotype.setInput(new StereotypedElementTreeObject((Element)((View)diagramElement).getElement()));
+				appearanceForAppliedStereotype.setElement(semanticElement);
+				appearanceForAppliedStereotype.setInput(new StereotypedElementTreeObject(semanticElement));
 
-					diagramElement = (EModelElement)((AbstractGraphicalEditPart)input).getModel();
-					appearanceForAppliedStereotype.setDiagramElement(diagramElement);
-
-				} else {
-					// re-init the diagram element. Else, could cause a bug,
-					// when the user selects a diagram element, then a non diagram element.
-					// If display button is pressed, the "Toggle Display" button does not work correctly
-					diagramElement = null;
-				}
-				// When the selection is computed from the outline, get the associated editor
-				if(part instanceof ContentOutline) {
-					IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part).getAdapter(IContributedContentsView.class));
-					if(contributedView != null) {
-						part = contributedView.getContributingPart();
-					}
-				}
+				appearanceForAppliedStereotype.setDiagramElement(diagramElement);
+			} else {
+				// re-init the diagram element. Else, could cause a bug,
+				// when the user selects a diagram element, then a non diagram element.
+				// If display button is pressed, the "Toggle Display" button does not work correctly
+				diagramElement = null;
 			}
 		}
 	}

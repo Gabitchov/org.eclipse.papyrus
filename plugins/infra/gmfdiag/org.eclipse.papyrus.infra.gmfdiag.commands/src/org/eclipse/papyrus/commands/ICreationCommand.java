@@ -8,11 +8,11 @@
  * Contributors:
  *     Jerome Benois (Obeo) jerome.benois@obeo.fr - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.infra.core.extension.commands;
+package org.eclipse.papyrus.commands;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 /**
  * Define a command use to create new diagram. It use to provide Eclipse
@@ -26,7 +26,7 @@ public interface ICreationCommand {
 	/**
 	 * Create a new diagram in diResourceSet with the given name and open it.
 	 * 
-	 * @param diResourceSet
+	 * @param modelSet
 	 *        the resourceSet containing all diagrams
 	 * @param container
 	 *        of the diagram, if container is null, the diagram is contained
@@ -35,13 +35,13 @@ public interface ICreationCommand {
 	 *        the name of the new diagram or null to use a dialog to choose
 	 *        the name
 	 */
-	public void createDiagram(DiResourceSet diResourceSet, EObject container, String diagramName);
+	public void createDiagram(ModelSet modelSet, EObject container, String diagramName);
 
 	/**
 	 * Get a command to create a new diagram in diResourceSet with the given
 	 * name.
 	 * 
-	 * @param diResourceSet
+	 * @param modelSet
 	 *        the resourceSet containing all diagrams
 	 * @param container
 	 *        of the diagram, if container is null, the diagram is contained
@@ -50,7 +50,7 @@ public interface ICreationCommand {
 	 *        the name of the new diagram or null to use a dialog to choose
 	 *        the name
 	 */
-	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName);
+	public ICommand getCreateDiagramCommand(final ModelSet modelSet, final EObject container, final String diagramName);
 
 	/**
 	 * Get the type of the diagram to create.

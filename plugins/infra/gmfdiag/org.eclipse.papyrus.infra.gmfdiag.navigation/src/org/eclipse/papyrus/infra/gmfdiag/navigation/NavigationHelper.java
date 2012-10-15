@@ -28,9 +28,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.core.utils.OpenDiagramCommand;
+import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.OpenDiagramCommand;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 public class NavigationHelper {
 
@@ -130,11 +130,11 @@ public class NavigationHelper {
 		}
 	}
 
-	public static CompositeCommand getLinkCreateAndOpenNavigableDiagramCommand(final NavigableElement navElement, ICreationCommand creationCommandInterface, final String diagramName, DiResourceSet diResourceSet) {
+	public static CompositeCommand getLinkCreateAndOpenNavigableDiagramCommand(final NavigableElement navElement, ICreationCommand creationCommandInterface, final String diagramName, ModelSet modelSet) {
 		CompositeCommand compositeCommand = new CompositeCommand("Create diagram");
 
 		if(navElement instanceof CreatedNavigableElement) {
-			compositeCommand.add(new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), "Create hierarchy", null) {
+			compositeCommand.add(new AbstractTransactionalCommand(modelSet.getTransactionalEditingDomain(), "Create hierarchy", null) {
 
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -145,9 +145,9 @@ public class NavigationHelper {
 			});
 		}
 
-		ICommand createDiagCommand = creationCommandInterface.getCreateDiagramCommand(diResourceSet, navElement.getElement(), diagramName);
+		ICommand createDiagCommand = creationCommandInterface.getCreateDiagramCommand(modelSet, navElement.getElement(), diagramName);
 		compositeCommand.add(createDiagCommand);
-		compositeCommand.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), createDiagCommand));
+		compositeCommand.add(new OpenDiagramCommand(modelSet.getTransactionalEditingDomain(), createDiagCommand));
 
 		return compositeCommand;
 	}

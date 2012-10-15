@@ -6,7 +6,6 @@ package org.eclipse.papyrus.infra.core.resource.sasheditor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
@@ -109,10 +108,10 @@ public class SashModelUtils {
 	 * Retrieve the uri of the initial di opened
 	 * 
 	 * @param modelSet
-	 * @return FIXME improve how to get the initial model opened
+	 * @return
 	 */
 	public static URI getInitialURI(ModelSet modelSet) {
-		return UmlUtils.getUmlModel(modelSet).getResourceURI().trimFileExtension().appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
+		return SashModelUtils.getSashModel(modelSet).getResourceURI();
 	}
 
 }

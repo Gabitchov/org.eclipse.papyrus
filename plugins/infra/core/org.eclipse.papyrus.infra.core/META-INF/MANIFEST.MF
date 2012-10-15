@@ -1,13 +1,17 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="0.10.0",
+Require-Bundle: org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.core.runtime,
- org.eclipse.gmf.runtime.common.core,
- org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.emf.edit.ui;bundle-version="2.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.core.resources;bundle-version="3.8.0",
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.300",
+ org.eclipse.gef;bundle-version="3.8.1",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.8.0",
+ org.eclipse.emf.workspace;bundle-version="1.5.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.infra.core.contentoutline,
  org.eclipse.papyrus.infra.core.editor,
@@ -23,11 +27,8 @@ Export-Package: org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor,
  org.eclipse.papyrus.infra.core.resource,
  org.eclipse.papyrus.infra.core.resource.additional,
- org.eclipse.papyrus.infra.core.resource.notation,
  org.eclipse.papyrus.infra.core.resource.sasheditor,
- org.eclipse.papyrus.infra.core.resource.uml,
  org.eclipse.papyrus.infra.core.services,
- org.eclipse.papyrus.infra.core.ui,
  org.eclipse.papyrus.infra.core.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

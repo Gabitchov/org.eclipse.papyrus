@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.extension.commands;
+package org.eclipse.papyrus.uml.diagram.common.commands;
 
 import java.util.Collections;
 
@@ -25,7 +25,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 /**
  * The Class ModelCreationCommandBase.
@@ -37,13 +39,13 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 	 * 
 	 * @param diResourceSet
 	 */
-	public void createModel(final DiResourceSet diResourceSet) {
-		TransactionalEditingDomain transactionalEditingDomain = diResourceSet.getTransactionalEditingDomain();
+	public void createModel(final ModelSet modelSet) {
+		TransactionalEditingDomain transactionalEditingDomain = modelSet.getTransactionalEditingDomain();
 		RecordingCommand command = new RecordingCommand(transactionalEditingDomain) {
 
 			@Override
 			protected void doExecute() {
-				runAsTransaction(diResourceSet);
+				runAsTransaction(modelSet);
 			}
 		};
 		transactionalEditingDomain.getCommandStack().execute(command);
@@ -55,12 +57,12 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 	 * @param diResourceSet
 	 *        the di resource set
 	 */
-	protected void runAsTransaction(final DiResourceSet diResourceSet) {
+	protected void runAsTransaction(final ModelSet modelSet) {
 		// Get the uml element to which the newly created diagram will be
 		// attached.
 		// Create the diagram
-		final Resource modelResource = diResourceSet.getModelResource();
-		TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
+		final Resource modelResource = UmlUtils.getUmlResource(modelSet);
+		TransactionalEditingDomain editingDomain = modelSet.getTransactionalEditingDomain();
 
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, "Initialize model", Collections.EMPTY_LIST) {
 
