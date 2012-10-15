@@ -24,19 +24,19 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.NotFoundException;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -61,6 +61,7 @@ import org.eclipse.swt.widgets.MenuItem;
 
 
 //TODO : remove the table dependencies
+//TODO: Refactor. Remove the diagram creation listener, and use a Dialog (Which is blocker) instead of a Shell
 public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/** The adapter factory. */
@@ -134,10 +135,10 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 				setContainer(elt);
 				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-				DiResourceSet diResourceSet = servicesRegistry.getService(DiResourceSet.class);
+				ModelSet modelSet = servicesRegistry.getService(ModelSet.class);
 
 				ICreationCommand creationCommand = iCreationCommandRegistry.getCommand(commandDescriptor.getCommandId());
-				creationCommand.createDiagram(diResourceSet, container, null);
+				creationCommand.createDiagram(modelSet, container, null);
 
 				// refresh several filtered tree
 				getDiagramfilteredTree().getViewer().setInput(null);
@@ -367,7 +368,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		return false;
 	}
 
-	//TODO delete this class to remove the PapyrusTable dependencies!
+	//TODO Refactoring delete this class to remove the PapyrusTable dependencies!
 	private class LocalLabelProvider extends DecoratingLabelProviderWTooltips {
 
 		public LocalLabelProvider() {

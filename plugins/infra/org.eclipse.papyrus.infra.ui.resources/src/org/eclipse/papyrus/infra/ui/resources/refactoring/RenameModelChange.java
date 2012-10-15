@@ -55,7 +55,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyPackage;
@@ -284,7 +283,7 @@ public class RenameModelChange extends Change {
 						IFile newDiFile = DiModelUtils.getRelatedDiFile(newFile);
 						for(IMultiDiagramEditor editor : openedEditors) {
 							try {
-								DiResourceSet diRes = editor.getServicesRegistry().getService(DiResourceSet.class);
+								ModelSet diRes = editor.getServicesRegistry().getService(ModelSet.class);
 								if(diRes != null) {
 									diRes.saveAs(newFile.getFullPath());
 								}

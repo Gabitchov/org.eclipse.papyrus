@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.emf.transaction,
- org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.10.0",
  org.eclipse.gef,
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.table.instance;bundle-version="0.10.0",
- org.eclipse.ui.navigator;bundle-version="3.5.100",
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
  org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.0",
+ org.eclipse.ui.navigator;bundle-version="3.5.200",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.hyperlink,
  org.eclipse.papyrus.infra.hyperlink.commands,
  org.eclipse.papyrus.infra.hyperlink.helper,
