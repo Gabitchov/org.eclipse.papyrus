@@ -28,14 +28,14 @@ public class RequirementIdLabelEditPart extends AbstractRequirementInformationLa
 
 	@Override
 	public void refreshLabelText() {
-		if (this.figure != null && this.getRequirement()!=null){
-			WrappingLabel wrappingLabel =(WrappingLabel) figure ;
+		if(this.figure != null && this.getRequirement() != null) {
+			WrappingLabel wrappingLabel = (WrappingLabel)figure;
 			Requirement req = this.getRequirement();
 			String id = req.getId();
-			if (id == null){
+			if(id == null) {
 				id = ""; //$NON-NLS-1$
 			}
-			wrappingLabel.setText("id = \""+id+"\""); //$NON-NLS-1$ //$NON-NLS-2$
+			wrappingLabel.setText("id = \"" + id + "\""); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

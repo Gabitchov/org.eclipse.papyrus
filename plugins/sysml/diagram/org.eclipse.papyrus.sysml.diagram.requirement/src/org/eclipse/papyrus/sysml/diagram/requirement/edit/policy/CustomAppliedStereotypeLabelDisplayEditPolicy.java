@@ -26,22 +26,22 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Edit policy responsible of the display of stereotypes. It does not rely 
- * on commands to get the stereotypes (the computation of the text was 
- * formerly processed by commands executed when the object was dragged 
+ * Edit policy responsible of the display of stereotypes. It does not rely
+ * on commands to get the stereotypes (the computation of the text was
+ * formerly processed by commands executed when the object was dragged
  * from a palette, from instance).
+ * 
  * @author omelois
  */
-public class CustomAppliedStereotypeLabelDisplayEditPolicy extends
-		AppliedStereotypeNodeLabelDisplayEditPolicy {
+public class CustomAppliedStereotypeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
 	@Override
 	public String stereotypesOnlyToDisplay() {
 		Object hostModel = getHost().getModel();
 		String result = ""; //$NON-NLS-1$
-		View view = (View) hostModel;
+		View view = (View)hostModel;
 		EObject viewElement = view.getElement();
-		Element element = (Element) viewElement;
+		Element element = (Element)viewElement;
 		Iterator<Stereotype> listStereotype = element.getAppliedStereotypes().iterator();
 		StringBuffer buffer = new StringBuffer();
 		while(listStereotype.hasNext()) {
@@ -54,9 +54,9 @@ public class CustomAppliedStereotypeLabelDisplayEditPolicy extends
 		}
 		result = buffer.toString();
 
-		if (! result.isEmpty()){
+		if(result.length() != 0) {
 			String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
-			
+
 			// vertical representation
 			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
 				return Activator.ST_LEFT + stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, result, "") + Activator.ST_RIGHT;
@@ -64,10 +64,10 @@ public class CustomAppliedStereotypeLabelDisplayEditPolicy extends
 				return Activator.ST_LEFT + stereotypesToDisplay(", ", result, "") + Activator.ST_RIGHT;
 			}
 		}
-		
-		return result ;
+
+		return result;
 	}
-	
+
 	@Override
 	public void activate() {
 		super.activate();

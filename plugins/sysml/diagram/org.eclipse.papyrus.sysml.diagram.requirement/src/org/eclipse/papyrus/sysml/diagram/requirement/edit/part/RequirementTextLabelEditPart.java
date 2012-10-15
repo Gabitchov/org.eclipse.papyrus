@@ -28,15 +28,15 @@ public class RequirementTextLabelEditPart extends AbstractRequirementInformation
 
 	@Override
 	public void refreshLabelText() {
-		if (this.figure != null && this.getRequirement()!=null){
-			WrappingLabel wrappingLabel =(WrappingLabel) figure ;
+		if(this.figure != null && this.getRequirement() != null) {
+			WrappingLabel wrappingLabel = (WrappingLabel)figure;
 			Requirement req = this.getRequirement();
 			String text = req.getText();
-			if (text == null){
+			if(text == null) {
 				text = ""; //$NON-NLS-1$
 			}
-			wrappingLabel.setText("text = \""+text+"\""); //$NON-NLS-1$ //$NON-NLS-2$
+			wrappingLabel.setText("text = \"" + text + "\""); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
-	
+
 }

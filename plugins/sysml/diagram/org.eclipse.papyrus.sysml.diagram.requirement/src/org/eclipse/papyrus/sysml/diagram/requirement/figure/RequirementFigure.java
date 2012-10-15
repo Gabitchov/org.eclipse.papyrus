@@ -29,10 +29,10 @@ public class RequirementFigure extends ClassifierFigure {
 
 	/** The NestedClassifier Compartment */
 	private final static String NESTEDCLASSIFIER_COMPARTMENT = "nestedClassifierCompartment";
-	
+
 	/** The RequirementIdInformation Compartment */
 	private final static String REQUIREMENT_ID_INFO_COMPARTMENT = "requirementIdInformationCompartment";
-	
+
 	/** The List of Compartment */
 	private final static List<String> COMPARTMENT = new ArrayList<String>() {
 
@@ -44,13 +44,13 @@ public class RequirementFigure extends ClassifierFigure {
 			add(REQUIREMENT_ID_INFO_COMPARTMENT);
 		}
 	};
-	
+
 	public RequirementFigure() {
 		super();
 		createContentPane(COMPARTMENT);
 	}
-	
-	
+
+
 	public IFigure getRequirementIdInformationCompartmentFigure() {
 		return getCompartment(REQUIREMENT_ID_INFO_COMPARTMENT);
 	}

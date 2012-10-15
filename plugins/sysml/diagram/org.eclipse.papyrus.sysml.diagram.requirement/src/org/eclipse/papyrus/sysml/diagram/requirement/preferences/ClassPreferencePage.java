@@ -15,9 +15,7 @@ public class ClassPreferencePage extends RequirementDiagramNodePreferencePage {
 	/**
 	 * the list of the compartments for this node
 	 */
-	public static final String compartments[] = { Messages.ClassAttributeCompartmentEditPartCN_title, Messages.ClassOperationCompartmentEditPartCN_title,
-		Messages.ClassNestedClassifierCompartmentEditPartCN_title, 
-		RequirementInformationCompartmentEditPart.COMPARTMENT_NAME};
+	public static final String compartments[] = { Messages.ClassAttributeCompartmentEditPartCN_title, Messages.ClassOperationCompartmentEditPartCN_title, Messages.ClassNestedClassifierCompartmentEditPartCN_title, RequirementInformationCompartmentEditPart.COMPARTMENT_NAME };
 
 	/**
 	 * Constructor.

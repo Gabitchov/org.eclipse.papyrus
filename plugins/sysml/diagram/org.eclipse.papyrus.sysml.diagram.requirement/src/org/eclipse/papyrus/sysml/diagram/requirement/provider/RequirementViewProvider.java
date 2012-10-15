@@ -52,13 +52,13 @@ public class RequirementViewProvider extends UMLViewProvider {
 		if((elementType == RequirementDiagramElementTypes.CLASS) || (elementType == RequirementDiagramElementTypes.CLASS_CN)) {
 			return true;
 		}
-		
+
 		/*
-		 * Case when the element is dragged from the model explorer. The semantic adapter will be an EObject adapter, from 
+		 * Case when the element is dragged from the model explorer. The semantic adapter will be an EObject adapter, from
 		 * which it can be determined whether the stereotype "requirement" is applied.
 		 */
-		if (semanticAdapter instanceof EObjectAdapter){
-			Object domainElement = ((EObjectAdapter) semanticAdapter).getRealObject();
+		if(semanticAdapter instanceof EObjectAdapter) {
+			Object domainElement = ((EObjectAdapter)semanticAdapter).getRealObject();
 			if((domainElement instanceof org.eclipse.uml2.uml.Class)) {
 				org.eclipse.uml2.uml.Class domainElementClass = (org.eclipse.uml2.uml.Class)domainElement;
 				return domainElementClass.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null;
@@ -87,12 +87,12 @@ public class RequirementViewProvider extends UMLViewProvider {
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Class");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Class");
-		
+
 		/*
 		 * Name of the requirement
 		 */
-//		createLabel(node, UMLVisualIDRegistry.getType(ClassNameEditPart.VISUAL_ID));
-		
+		//		createLabel(node, UMLVisualIDRegistry.getType(ClassNameEditPart.VISUAL_ID));
+
 		/*
 		 * Addition of the compartment, and the labels it contains.
 		 */
@@ -107,7 +107,7 @@ public class RequirementViewProvider extends UMLViewProvider {
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID), true, true, true, true);
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Class");
-		
+
 		return node;
 	}
 
