@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012 CEA LIST.&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.uml.umlefacet.metamodel/src-gen" editDirectory="/org.eclipse.papyrus.uml.umlefacet.metamodel.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.uml.umlefacet.metamodel.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.uml.umlefacet.metamodel" modelName="Umlefacet"
+    nonNLSMarkers="true" testsDirectory="/org.eclipse.papyrus.uml.umlefacet.metamodel.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.genmodel#//efacet">
+  <foreignModel>umlefacet.ecore</foreignModel>
+  <genPackages prefix="UmlEFacet" basePackage="org.eclipse.papyrus.uml.efacet.metamodel"
+      disposableProviderFactory="true" ecorePackage="umlefacet.ecore#/">
+    <genClasses ecoreClass="umlefacet.ecore#//ProfileFacetSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlefacet.ecore#//ProfileFacetSet/profileQualifiedName"/>
+      <genOperations ecoreOperation="umlefacet.ecore#//ProfileFacetSet/getProfileFacetSet"/>
+    </genClasses>
+    <genClasses ecoreClass="umlefacet.ecore#//StereotypeFacet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlefacet.ecore#//StereotypeFacet/stereotypeQualifiedName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="umlefacet.ecore#//StereotypePropertyElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlefacet.ecore#//StereotypePropertyElement/propertyName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlefacet.ecore#//StereotypePropertyElement/isDerived"/>
+    </genClasses>
+    <genClasses ecoreClass="umlefacet.ecore#//StereotypePropertyFacetReference"/>
+    <genClasses ecoreClass="umlefacet.ecore#//StereotypePropertyFacetAttribute"/>
+  </genPackages>
+</genmodel:GenModel>

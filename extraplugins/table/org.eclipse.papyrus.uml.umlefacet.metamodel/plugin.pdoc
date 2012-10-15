@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plugin provides an specific metamodel to represents Profile, Stereotype and their properties&#xD;&#xA;using FacetSet and Facets.">
+  <implicitDependencies plugin="org.eclipse.uml.uml2" comment="This plugin is done for UML, but doesn't provide explicit dependencies on it"/>
+  <referent firstName="vincent" lastName="lorenzo" eMail="vincent.lorenzo@cea.fr" currentCompany="CEA-LIST"/>
+</doc:Documentation>
