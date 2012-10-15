@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * Edit policy used to refresh the label that display the id and the text of a requirement.
- *
+ * 
  */
 public class RequirementInfoLabelUpdateEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
 
@@ -38,9 +38,9 @@ public class RequirementInfoLabelUpdateEditPolicy extends AbstractAppliedStereot
 		EditPart compartment = host.getParent();
 		EditPart classEditPart = compartment.getParent();
 		//Getting the class out of the edit part.
-		Element clazz =(Element) ((View) classEditPart.getModel()).getElement();
+		Element clazz = (Element)((View)classEditPart.getModel()).getElement();
 		return clazz;
 	}
-	
-	
+
+
 }

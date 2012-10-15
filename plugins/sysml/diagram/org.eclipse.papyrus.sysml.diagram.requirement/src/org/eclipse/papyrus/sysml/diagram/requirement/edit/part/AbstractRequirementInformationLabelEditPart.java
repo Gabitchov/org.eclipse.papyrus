@@ -30,14 +30,14 @@ import org.eclipse.uml2.uml.Element;
 public abstract class AbstractRequirementInformationLabelEditPart extends LabelEditPart {
 
 	Requirement requirement;
-	
+
 	public AbstractRequirementInformationLabelEditPart(View view) {
 		super(view);
 	}
 
 	@Override
 	protected void createDefaultEditPolicies() {
-		
+
 		/*
 		 * edit policy used to refresh the labels when the stereotype application "Requirement" is updated.
 		 */
@@ -47,7 +47,7 @@ public abstract class AbstractRequirementInformationLabelEditPart extends LabelE
 		removeEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		removeEditPolicy(EditPolicy.COMPONENT_ROLE);
 	}
-	
+
 	@Override
 	protected IFigure createFigure() {
 		IFigure figure = new WrappingLabel();
@@ -55,16 +55,16 @@ public abstract class AbstractRequirementInformationLabelEditPart extends LabelE
 		figure.setFont(Display.getDefault().getSystemFont());
 		return figure;
 	}
-	
+
 	@Override
 	public IFigure getFigure() {
 		IFigure figure = super.getFigure();
 		refreshLabelText();
 		return figure;
 	}
-	
+
 	public abstract void refreshLabelText();
-	
+
 	/**
 	 * Refreshes the text of the label.
 	 */
@@ -77,21 +77,21 @@ public abstract class AbstractRequirementInformationLabelEditPart extends LabelE
 	/**
 	 * Gets the requirement associated to this edit part.
 	 */
-	protected Requirement getRequirement(){
+	protected Requirement getRequirement() {
 		EditPart compartment = this.getParent();
 		EditPart classEditPart = compartment.getParent();
 		//Getting the class out of the edit part.
-		Element clazz =(Element) ((View) classEditPart.getModel()).getElement();
+		Element clazz = (Element)((View)classEditPart.getModel()).getElement();
 		//Getting the requirement out of the class.
-		if (clazz != null){
-			for (EObject appliedStereotype : clazz.getStereotypeApplications()){
-				if (appliedStereotype instanceof Requirement){
-					return ((Requirement) appliedStereotype);
+		if(clazz != null) {
+			for(EObject appliedStereotype : clazz.getStereotypeApplications()) {
+				if(appliedStereotype instanceof Requirement) {
+					return ((Requirement)appliedStereotype);
 				}
 			}
 		}
 		return null;
 	}
-	
-	
+
+
 }

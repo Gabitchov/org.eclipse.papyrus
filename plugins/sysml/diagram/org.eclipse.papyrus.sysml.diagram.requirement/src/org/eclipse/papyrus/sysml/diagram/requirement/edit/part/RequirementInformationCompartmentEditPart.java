@@ -30,13 +30,12 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ClassAttributeCompart
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 
 /**
- * Compartment used to display the id and the text of the requirement. 
- * The actual display of these information is performed by 
+ * Compartment used to display the id and the text of the requirement.
+ * The actual display of these information is performed by
  * RequirementIdLabelEditPart and RequirementTextLabelEditPart
- *
+ * 
  */
-public class RequirementInformationCompartmentEditPart extends
-		ResizeableListCompartmentEditPart {
+public class RequirementInformationCompartmentEditPart extends ResizeableListCompartmentEditPart {
 
 	public static final String COMPARTMENT_NAME = "InformationCompartment"; //$NON-NLS-1$
 
@@ -49,7 +48,7 @@ public class RequirementInformationCompartmentEditPart extends
 	}
 
 	public String getCompartmentName() {
-		return COMPARTMENT_NAME; 
+		return COMPARTMENT_NAME;
 	}
 
 
@@ -84,11 +83,10 @@ public class RequirementInformationCompartmentEditPart extends
 		Point loc = new Point(x, y);
 		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
-	
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();
 	}
 
 }
-

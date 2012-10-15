@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class InheritedElementViewProvider extends UMLViewProvider {
 
-	
+
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
 
@@ -184,11 +184,10 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}
-	
+
 	@Override
-	public Node createClass_2008(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
-		
+	public Node createClass_2008(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(SysMLGraphicalTypes.SHAPE_SYSML_REQUIREMENT_AS_CLASSIFER_ID);
@@ -204,16 +203,16 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID), true, true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID), true, true, true, true);
-		
+
 		/*
 		 * Addition of the information compartment, and the labels it contains.
 		 */
 		Node compartment = createCompartment(node, SysMLGraphicalTypes.COMPARTMENT_SYSML_REQUIREMENT_IDINFO_AS_LIST_ID, true, true, true, true);
 		createLabel(compartment, SysMLGraphicalTypes.LABEL_SYSML_REQUIREMENT_ID_ID);
 		createLabel(compartment, SysMLGraphicalTypes.LABEL_SYSML_REQUIREMENT_TEXT_ID);
-		
+
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Class");
 		return node;
-		
+
 	}
 }

@@ -26,8 +26,8 @@ import org.eclipse.uml2.uml.NamedElement;
 
 public class RequirementEditPart extends ClassEditPart {
 
-	
-	
+
+
 	public RequirementEditPart(View view) {
 		super(view);
 	}
@@ -43,13 +43,13 @@ public class RequirementEditPart extends ClassEditPart {
 		return primaryShape = new RequirementFigure(); //$NON-NLS-1$
 	}
 
-	public void refreshTitle(){
-		NamedElement clazz =(NamedElement) ((View) this.getModel()).getElement();
+	public void refreshTitle() {
+		NamedElement clazz = (NamedElement)((View)this.getModel()).getElement();
 		String requirementName = clazz.getName();
-		((RequirementFigure) this.getFigure()).setName(requirementName);
+		((RequirementFigure)this.getFigure()).setName(requirementName);
 	}
 
-	
+
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof RequirementInformationCompartmentEditPart) {
@@ -71,7 +71,7 @@ public class RequirementEditPart extends ClassEditPart {
 		}
 		return super.removeFixedChild(childEditPart);
 	}
-	
+
 	@Override
 	public IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof RequirementInformationCompartmentEditPart) {
