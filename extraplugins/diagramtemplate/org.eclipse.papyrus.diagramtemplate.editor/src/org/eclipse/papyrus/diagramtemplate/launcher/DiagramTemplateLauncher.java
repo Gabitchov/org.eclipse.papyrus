@@ -43,6 +43,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
 import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
 import org.eclipse.papyrus.diagramtemplate.Selection;
@@ -53,12 +54,16 @@ import org.eclipse.papyrus.diagramtemplate.editor.provider.DiagramKindContentPro
 import org.eclipse.papyrus.diagramtemplate.utils.Messages;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.ui.IEditorPart;
@@ -89,7 +94,7 @@ public class DiagramTemplateLauncher {
 	 */
 	public enum CreationReportKind {
 		SUCCESS, FAIL
-	};
+	}
 
 	/**
 	 * The creation report information
@@ -182,11 +187,11 @@ public class DiagramTemplateLauncher {
 
 		//Guess which of the View is the new one
 		EditPartViewer viewer = actualEditPart.getViewer();
-		Map map = viewer.getEditPartRegistry();
+		Map<?, ?> map = viewer.getEditPartRegistry();
 
 		//We must have a copy since map may change during the loop
-		Map mapCopy = new HashMap<Object, Object>(map);
-		Iterator it = mapCopy.keySet().iterator();
+		Map<?, ?> mapCopy = new HashMap<Object, Object>(map);
+		Iterator<?> it = mapCopy.keySet().iterator();
 		boolean found = false;
 		while(it.hasNext() && !found) {
 			Object view = it.next();
@@ -249,7 +254,7 @@ public class DiagramTemplateLauncher {
 	 * @param editPartToShowIn
 	 *        the editPart to show elements in
 	 */
-	protected void addElementsFor(List selectionList, EObject root, DiagramEditor activeEditor, EditPart editPartToShowIn) {
+	protected void addElementsFor(List<?> selectionList, EObject root, DiagramEditor activeEditor, EditPart editPartToShowIn) {
 		// Go through the SelectionRef
 		for(Object object : selectionList) {
 			if(object instanceof SelectionRef) {
@@ -444,7 +449,7 @@ public class DiagramTemplateLauncher {
 	 * @param diResourceSet
 	 *        The Papyrus resource to create the diagrams in
 	 */
-	protected void createDiagramFor(List selectionList, DiagramDefinition diagramDefinition, DiResourceSet diResourceSet) {
+	protected void createDiagramFor(List<?> selectionList, DiagramDefinition diagramDefinition, ModelSet modelSet) {
 		//Go through the selection and try to find elements in the target model that match
 		for(Object object : selectionList) {
 
@@ -501,10 +506,10 @@ public class DiagramTemplateLauncher {
 											// System.err.println("FoundForAll Sub: " + diagramDefinition.getName());
 											// It matches: create a diagram
 											try {
-												creationCommandDescriptor.getCommand().createDiagram(diResourceSet, eObject, name);
+												creationCommandDescriptor.getCommand().createDiagram(modelSet, eObject, name);
 
 												//Identify the new diagram
-												TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
+												TreeIterator<EObject> it = NotationUtils.getNotationResource(modelSet).getAllContents();
 												while(it.hasNext()) {
 													EObject diagram = it.next();
 													if(diagram instanceof Diagram) {
@@ -528,10 +533,10 @@ public class DiagramTemplateLauncher {
 											// It matches: create a diagram
 
 											try {
-												creationCommandDescriptor.getCommand().createDiagram(diResourceSet, eObject, name);
+												creationCommandDescriptor.getCommand().createDiagram(modelSet, eObject, name);
 
 												//Identify the new diagram
-												TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
+												TreeIterator<EObject> it = NotationUtils.getNotationResource(modelSet).getAllContents();
 												while(it.hasNext()) {
 													EObject diagram = it.next();
 													if(diagram instanceof Diagram) {
@@ -563,10 +568,10 @@ public class DiagramTemplateLauncher {
 							}
 
 							try {
-								creationCommandDescriptor.getCommand().createDiagram(diResourceSet, selection.getElement(), name);
+								creationCommandDescriptor.getCommand().createDiagram(modelSet, selection.getElement(), name);
 
 								//Identify the new diagram
-								TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
+								TreeIterator<EObject> it = NotationUtils.getNotationResource(modelSet).getAllContents();
 								while(it.hasNext()) {
 									EObject diagram = it.next();
 									if(diagram instanceof Diagram) {
@@ -628,7 +633,7 @@ public class DiagramTemplateLauncher {
 		creationReport = new HashMap<EObject, CreationReportKind>();
 
 		if(template != null) {
-			DiResourceSet diResourceSet = new DiResourceSet();
+			ModelSet modelSet = new DiResourceSet();
 
 			if(template.getTargetRoot().eResource() != null) {
 				String targetModelLocation = template.getTargetRoot().eResource().getURI().toPlatformString(false);
@@ -638,10 +643,14 @@ public class DiagramTemplateLauncher {
 
 				if(file.exists()) {
 
-					diResourceSet.loadResources(file);
+					try {
+						modelSet.loadModels(file);
+					} catch (ModelMultiException ex) {
+						ex.printStackTrace(System.out);
+					}
 
 					//Identify already available diagrams
-					TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
+					TreeIterator<EObject> it = NotationUtils.getNotationResource(modelSet).getAllContents();
 					while(it.hasNext()) {
 						EObject diagram = it.next();
 						if(diagram instanceof Diagram) {
@@ -652,16 +661,16 @@ public class DiagramTemplateLauncher {
 					// Create diagrams
 					if(!template.getDiagramDefinitions().isEmpty()) {
 						for(DiagramDefinition diagramDefinition : template.getDiagramDefinitions()) {
-							createDiagramFor(diagramDefinition.getSelection(), diagramDefinition, diResourceSet);
+							createDiagramFor(diagramDefinition.getSelection(), diagramDefinition, modelSet);
 						}
 					} else {
 						// Create empty diagrams
-						EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
+						EditorUtils.getTransactionalIPageMngr(DiModelUtils.getDiResource(modelSet), modelSet.getTransactionalEditingDomain());
 					}
 
 					// Save the resource
 					try {
-						diResourceSet.save(new NullProgressMonitor());
+						modelSet.save(new NullProgressMonitor());
 					} catch (IOException e) {
 						e.printStackTrace();
 						// return false;
@@ -675,8 +684,8 @@ public class DiagramTemplateLauncher {
 						try {
 							IEditorPart editor = IDE.openEditor(page, file, true);
 
-							if(editor instanceof PapyrusMultiDiagramEditor) {
-								ServicesRegistry services = ((PapyrusMultiDiagramEditor)editor).getServicesRegistry();
+							if(editor instanceof IMultiDiagramEditor) {
+								ServicesRegistry services = ((IMultiDiagramEditor)editor).getServicesRegistry();
 								IPageMngr pageMngr = services.getService(IPageMngr.class);
 
 								pageMngr.closeAllOpenedPages();

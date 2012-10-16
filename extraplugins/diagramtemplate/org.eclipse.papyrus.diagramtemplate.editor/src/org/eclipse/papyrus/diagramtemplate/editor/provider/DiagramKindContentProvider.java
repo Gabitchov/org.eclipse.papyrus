@@ -18,9 +18,9 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 
 /**
  * 

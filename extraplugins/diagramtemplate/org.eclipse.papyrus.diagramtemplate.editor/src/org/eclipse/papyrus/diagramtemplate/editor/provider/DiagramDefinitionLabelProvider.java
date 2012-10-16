@@ -15,10 +15,10 @@ package org.eclipse.papyrus.diagramtemplate.editor.provider;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.papyrus.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.swt.graphics.Image;
 
 /**
