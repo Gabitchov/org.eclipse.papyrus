@@ -16,7 +16,7 @@ import org.eclipse.papyrus.infra.core.serviceregistry.ServicesRegistry;
 public class AliasServiceEntry extends ServiceTypeEntry {
 
 	/** The real service entry. */
-//	private ServiceTypeEntry referencedService;
+	//	private ServiceTypeEntry referencedService;
 
 	/** The instance of the real service. */
 	private Object serviceInstance;
@@ -38,6 +38,7 @@ public class AliasServiceEntry extends ServiceTypeEntry {
 	 * @throws ServiceException
 	 *         If service can't be started.
 	 */
+	@Override
 	public Object getServiceInstance() throws ServiceException {
 
 		checkState(ServiceState.started);
@@ -50,9 +51,10 @@ public class AliasServiceEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void createService() throws ServiceException {
 		checkState(ServiceState.registered);
-		
+
 		setState(ServiceState.created);
 	}
 
@@ -64,6 +66,7 @@ public class AliasServiceEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void initService(ServicesRegistry servicesRegistry) throws ServiceException {
 		checkState(ServiceState.created);
 		try {
@@ -84,6 +87,7 @@ public class AliasServiceEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void startService() throws ServiceException {
 		setState(ServiceState.started);
 	}
@@ -92,6 +96,7 @@ public class AliasServiceEntry extends ServiceTypeEntry {
 	 * Dispose the alias.
 	 * The referenced service is not disposed
 	 */
+	@Override
 	public void disposeService() throws ServiceException {
 
 		serviceInstance = null;

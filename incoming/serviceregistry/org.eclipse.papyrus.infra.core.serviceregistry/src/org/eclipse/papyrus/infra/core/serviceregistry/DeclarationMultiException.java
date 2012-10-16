@@ -22,7 +22,7 @@ import java.util.List;
  * An exception used to gather multi exceptions encountered during declarations reading.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class DeclarationMultiException extends DeclarationException {
 
@@ -30,11 +30,12 @@ public class DeclarationMultiException extends DeclarationException {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<Throwable> errors;
+
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public DeclarationMultiException() {
 		// TODO Auto-generated constructor stub
@@ -42,7 +43,7 @@ public class DeclarationMultiException extends DeclarationException {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 */
 	public DeclarationMultiException(String message) {
@@ -52,7 +53,7 @@ public class DeclarationMultiException extends DeclarationException {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param cause
 	 */
 	public DeclarationMultiException(Throwable cause) {
@@ -62,7 +63,7 @@ public class DeclarationMultiException extends DeclarationException {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 * @param cause
 	 */
@@ -72,24 +73,12 @@ public class DeclarationMultiException extends DeclarationException {
 	}
 
 	/**
-	 * Constructor.
-	 *
-	 * @param message
-	 * @param cause
-	 * @param enableSuppression
-	 * @param writableStackTrace
-	 */
-	public DeclarationMultiException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param string
-	 * @param warnings The warnings used to initialize this object. No clone is per
+	 * @param warnings
+	 *        The warnings used to initialize this object. No clone is per
 	 */
 	public DeclarationMultiException(String string, List<Throwable> warnings) {
 		this.errors = warnings;
@@ -100,43 +89,44 @@ public class DeclarationMultiException extends DeclarationException {
 	 * 
 	 * @param throwable
 	 */
-	public void addThrowable( Throwable throwable )  {
-		if( errors == null) {
+	public void addThrowable(Throwable throwable) {
+		if(errors == null) {
 			errors = new ArrayList<Throwable>();
 		}
 		errors.add(throwable);
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 */
 	public boolean isEmpty() {
-		if(errors == null) 
+		if(errors == null) {
 			return true;
-		
+		}
+
 		return errors.isEmpty();
 	}
-	
+
 	/**
 	 * 
 	 * @see java.lang.Throwable#toString()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
 	public String toString() {
-		if( errors == null || errors.size()==0) {
-		return super.toString();
+		if(errors == null || errors.size() == 0) {
+			return super.toString();
 		}
-		
+
 		StringBuffer buff = new StringBuffer(super.toString());
-		for( Throwable error : errors) {
-			buff.append("\n").append( error.getMessage() ); 
+		for(Throwable error : errors) {
+			buff.append("\n").append(error.getMessage());
 		}
-		
+
 		return buff.toString();
-		
-		
+
+
 	}
 }

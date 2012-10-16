@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.infra.core.serviceregistry.internal;
 
-import org.eclipse.papyrus.infra.core.serviceregistry.IService;
 import org.eclipse.papyrus.infra.core.serviceregistry.ServiceException;
 import org.eclipse.papyrus.infra.core.serviceregistry.ServiceState;
 import org.eclipse.papyrus.infra.core.serviceregistry.ServicesRegistry;

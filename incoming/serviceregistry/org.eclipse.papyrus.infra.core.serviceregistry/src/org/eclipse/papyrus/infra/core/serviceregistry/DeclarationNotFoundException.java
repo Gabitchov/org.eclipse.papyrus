@@ -17,7 +17,7 @@ package org.eclipse.papyrus.infra.core.serviceregistry;
 
 /**
  * @author cedric dumoulin
- *
+ * 
  */
 public class DeclarationNotFoundException extends DeclarationException {
 
@@ -28,7 +28,7 @@ public class DeclarationNotFoundException extends DeclarationException {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public DeclarationNotFoundException() {
 		super();
@@ -36,19 +36,7 @@ public class DeclarationNotFoundException extends DeclarationException {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param message
-	 * @param cause
-	 * @param enableSuppression
-	 * @param writableStackTrace
-	 */
-	public DeclarationNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
-
-	/**
-	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 * @param cause
 	 */
@@ -58,7 +46,7 @@ public class DeclarationNotFoundException extends DeclarationException {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param message
 	 */
 	public DeclarationNotFoundException(String message) {
@@ -67,7 +55,7 @@ public class DeclarationNotFoundException extends DeclarationException {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param cause
 	 */
 	public DeclarationNotFoundException(Throwable cause) {

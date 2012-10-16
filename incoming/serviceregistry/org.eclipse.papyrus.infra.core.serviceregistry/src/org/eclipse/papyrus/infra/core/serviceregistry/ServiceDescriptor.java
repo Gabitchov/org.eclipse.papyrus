@@ -20,7 +20,7 @@ public class ServiceDescriptor {
 	 */
 	public enum ServiceTypeKind {
 		service, serviceFactory, pojo, alias
-	};
+	}
 
 	/** Classname of the service. USed to start the service */
 	private String serviceClassname;

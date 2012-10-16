@@ -34,7 +34,6 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	public ServiceFactoryEntry(ServiceDescriptor serviceDescriptor) {
 		super(serviceDescriptor);
 		setState(ServiceState.registered);
-
 	}
 
 	/**
@@ -59,12 +58,11 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 * @throws ServiceException
 	 *         If service can't be started.
 	 */
+	@Override
 	public Object getServiceInstance() throws ServiceException {
 
 		if(factoryInstance == null) {
-			throw new BadStateException("Service is not available (state="
-		       + state.toString() 
-		       + "). ", state, serviceDescriptor);
+			throw new BadStateException("Service is not available (state=" + state.toString() + "). ", state, serviceDescriptor);
 
 		}
 		// Get the service instance if needed.
@@ -94,6 +92,7 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void createService() throws ServiceException {
 		checkState(ServiceState.registered);
 		// Exit if already created.
@@ -121,6 +120,7 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void initService(ServicesRegistry servicesRegistry) throws ServiceException {
 		checkState(ServiceState.created);
 		try {
@@ -141,6 +141,7 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void startService() throws ServiceException {
 
 		checkState(ServiceState.initialized);
@@ -162,9 +163,11 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	/**
 	 * Dispose the service.
 	 */
+	@Override
 	public void disposeService() throws ServiceException {
-		if(factoryInstance == null)
+		if(factoryInstance == null) {
 			return;
+		}
 
 		factoryInstance.disposeService();
 		factoryInstance = null;

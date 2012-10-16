@@ -51,10 +51,12 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 * @throws ServiceException
 	 *         If service can't be started.
 	 */
+	@Override
 	public Object getServiceInstance() throws ServiceException {
 
-		if(serviceInstance == null)
+		if(serviceInstance == null) {
 			throw new BadStateException("Service is not created.", state, serviceDescriptor);
+		}
 
 		return serviceInstance;
 	}
@@ -64,6 +66,7 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void createService() throws ServiceException {
 		checkState(ServiceState.registered);
 		// Exit if already created.
@@ -91,6 +94,7 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void initService(ServicesRegistry servicesRegistry) throws ServiceException {
 		setState(ServiceState.initialized);
 	}
@@ -100,6 +104,7 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void startService() throws ServiceException {
 		setState(ServiceState.started);
 	}
@@ -107,9 +112,11 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	/**
 	 * Do nothing.
 	 */
+	@Override
 	public void disposeService() throws ServiceException {
-		if(serviceInstance == null)
+		if(serviceInstance == null) {
 			return;
+		}
 
 		serviceInstance = null;
 		setState(ServiceState.disposed);

@@ -22,7 +22,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author cedric dumoulin
- *
+ * 
  */
 // Annotation accessible at runtime
 @Retention(RetentionPolicy.RUNTIME)
@@ -34,24 +34,29 @@ public @interface Service {
 	 * Constant used to specify that the id is not set by the user.
 	 */
 	static String ID_NOT_SET = "";
+
 	/**
 	 * Possible type of startup.
 	 */
-	public enum StartupKind {lazy, startup};
-	
-	/* 
+	public enum StartupKind {
+		lazy, startup
+	}
+
+	/*
 	 * Service Id
 	 */
 	String id() default ID_NOT_SET;
-	
+
 	/**
 	 * Kind of startup requested for the service.
+	 * 
 	 * @return
 	 */
 	StartupKind startupKind() default StartupKind.lazy;
-	
+
 	/**
 	 * Service priority level. Default is 0.
+	 * 
 	 * @return
 	 */
 	int priority() default 0;
