@@ -21,7 +21,7 @@
       </dragAssistant>
    </extension>
    <extension point="org.eclipse.ui.navigator.navigatorContent">
-      <navigatorContent activeByDefault="false" contentProvider="org.eclipse.papyrus.views.modelexplorer.MoDiscoContentProvider" id="org.eclipse.papyrus.views.modelexplorer.navigatorContent" labelProvider="org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider" name="Model Contents" priority="lowest">
+      <navigatorContent activeByDefault="false" contentProvider="org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider" id="org.eclipse.papyrus.views.modelexplorer.navigatorContent" labelProvider="org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider" name="Model Contents" priority="lowest">
          <triggerPoints>
             <or>
                <instanceof value="org.eclipse.emf.ecore.EObject">
@@ -72,16 +72,6 @@
          </dropAssistant>
     
       </navigatorContent>
-   </extension>
-    <extension point="org.eclipse.ui.popupMenus">
-      <objectContribution adaptable="false" id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery" objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
-         <action class="org.eclipse.papyrus.views.modelexplorer.actions.ExecuteQueryAction" id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery" label="Execute Query">
-         </action>
-      </objectContribution>
-      <objectContribution adaptable="false" id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery" objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
-         <action class="org.eclipse.papyrus.views.modelexplorer.actions.CreateQueryAction" id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery" label="Create Query">
-         </action>
-      </objectContribution>
    </extension>
     <!--  
     <extension
