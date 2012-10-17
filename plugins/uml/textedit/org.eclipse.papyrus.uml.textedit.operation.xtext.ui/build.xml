@@ -1,0 +1,100 @@
+<project name="org.eclipse.papyrus.alf.ui" basedir=".">
+	
+		<!-- Define the build directories-->
+		<property name="src.dir" value="${basedir}\src"/>
+		<property name="src.gen.dir" value="${basedir}\src-gen"/>
+		<property name="build.dir" value="${basedir}\bin"/>
+		<property name="build.infos.dir" value="${basedir}\buildinfos"/>
+	
+		<!-- Define the location were javac can find required plugins -->
+		<property environment="env"/>
+		<path id="eclipse.classpath">
+			<fileset dir="${env.ECLIPSE_HOME}\plugins">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+	
+		<!-- Define the location were lib used by pmd are stored -->
+		<path id="pmd.classpath">
+			<fileset dir="${env.PMD_HOME}\lib">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+	
+		<!-- Define the location of the jar file containing the alf implementation-->
+		<path id="org.eclipse.papyrus.alf">
+			<fileset dir="..\..\org.eclipse.papyrus.alf\workspace\plugin">
+				<include name="org.eclipse.papyrus.alf.jar"/>
+			</fileset>
+		</path>
+	
+		<!-- Define the location of the jar file containing the alf operation implementation-->
+		<path id="org.eclipse.papyrus.operation.editor.xtext">
+			<fileset dir="..\..\org.eclipse.papyrus.operation.editor.xtext\workspace\plugin">
+				<include name="org.eclipse.papyrus.operation.editor.xtext.jar"/>
+			</fileset>
+		</path>
+	
+		<!-- Define entry point when you find an element named findbugs -->
+		<taskdef name="findbugs" classpath="${env.FINDBUGS_HOME}\lib\findbugs-ant.jar"  classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
+		
+		<!-- Define entry point when you find an element named PMD -->
+		<taskdef name="pmd" classpathref="pmd.classpath"  classname="net.sourceforge.pmd.ant.PMDTask"/>
+	
+		<!-- Set up directories for the build and info that have to be retrieved in hudson-->
+		<target name="init">
+			<tstamp/>
+			<delete dir="${build.dir}"/>
+			<mkdir dir="${build.dir}"/>
+			<delete dir="${build.infos.dir}"/>
+			<mkdir dir="${build.infos.dir}"/>
+			<mkdir dir="${build.infos.dir}\bugsreport"/>
+			<mkdir dir="${build.infos.dir}\checkstyle"/>
+		</target>
+	
+		<!-- Perfom a  checkstyle on the code with pmd tool. Compiling is not required -->
+		<target name="pmd" depends="init">
+			<pmd shortfilenames="true">
+				<ruleset>${env.PMD_HOME}\lib\rulesets\java\basic.xml</ruleset>
+				<ruleset>${env.PMD_HOME}\lib\rulesets\java\unusedcode.xml</ruleset>
+				<ruleset>${env.PMD_HOME}\lib\rulesets\java\unnecessary.xml</ruleset>
+				<ruleset>${env.PMD_HOME}\lib\rulesets\java\codesize.xml</ruleset>
+				<ruleset>${env.PMD_HOME}\lib\rulesets\java\strictexception.xml</ruleset>
+				<ruleset>${env.PMD_HOME}\lib\rulesets\java\braces.xml</ruleset>
+				<formatter type="xml" toFile="${build.infos.dir}\checkstyle\${ant.project.name}.pmd.xml"/>
+				<fileset dir="${src.dir}">
+					<include name="**/*.java"/>
+				</fileset>
+				<auxclasspath path="${src.gen.dir}"/>
+			</pmd>
+		</target>
+		
+		<!-- Compilation phase of the project -->
+		<target name="compile" depends="pmd">
+			<echo message="${toString:org.eclipse.papyrus.alf}"/>
+			<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}">
+				<compilerarg value="-Xlint:all"/>
+				<classpath refid="org.eclipse.papyrus.alf"/>
+				<classpath refid="org.eclipse.papyrus.operation.editor.xtext"/>
+				<classpath refid="eclipse.classpath"/>
+			</javac>
+			<javac includeantruntime="false" srcdir="${src.gen.dir}" destdir="${build.dir}">
+				<compilerarg value="-Xlint:all"/>
+				<classpath refid="org.eclipse.papyrus.alf"/>
+				<classpath refid="org.eclipse.papyrus.operation.editor.xtext"/>
+				<classpath refid="eclipse.classpath"/>
+			</javac>
+		</target>
+	
+		<!-- Try to detect bugs within code after compiling -->
+		<target name="findbugs" depends="compile">
+			<findbugs home="${env.FINDBUGS_HOME}" output="xml" outputfile="${build.infos.dir}\bugsreport\${ant.project.name}.sa.xml">
+				<class location="${build.dir}"/>
+				<classpath refid="org.eclipse.papyrus.alf"/>
+				<auxclasspath refid="org.eclipse.papyrus.operation.editor.xtext"/>
+				<auxclasspath refid="eclipse.classpath"/>
+				<auxclasspath path="${src.gen.dir}"/>
+				<sourcePath path="${src.dir}"/>
+			</findbugs>
+		</target>
+</project>
