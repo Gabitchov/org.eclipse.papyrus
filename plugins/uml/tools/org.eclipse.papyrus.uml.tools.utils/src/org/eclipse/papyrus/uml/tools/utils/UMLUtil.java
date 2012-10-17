@@ -117,6 +117,10 @@ public class UMLUtil {
 	 *         The first matching stereotype, or null if none was found
 	 */
 	public static Stereotype getAppliedStereotype(Element umlElement, String stereotypeName, boolean strict) {
+		if(umlElement == null || stereotypeName == null) {
+			return null;
+		}
+
 		Stereotype stereotype = umlElement.getAppliedStereotype(stereotypeName);
 		if(strict || stereotype != null) {
 			return stereotype;
@@ -146,6 +150,10 @@ public class UMLUtil {
 	 * @return
 	 */
 	public static Stereotype findStereotype(Element umlElement, String stereotypeName) {
+		if(umlElement == null || stereotypeName == null) {
+			return null;
+		}
+
 		Stereotype stereotype = null;
 		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
 		if(umlPackage == null) {
@@ -173,6 +181,10 @@ public class UMLUtil {
 	 * @return
 	 */
 	public static List<Stereotype> findSubstereotypes(Element umlElement, String stereotypeName) {
+		if(umlElement == null || stereotypeName == null) {
+			return null;
+		}
+
 		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
 		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
 
@@ -185,7 +197,7 @@ public class UMLUtil {
 			for(Profile profile : umlPackage.getAllAppliedProfiles()) {
 				for(Stereotype ownedStereotype : profile.getOwnedStereotypes()) {
 					for(Stereotype superStereotype : getAllSuperStereotypes(ownedStereotype)) {
-						if(superStereotype.getQualifiedName().equals(stereotypeName)) {
+						if(stereotypeName.equals(superStereotype.getQualifiedName())) {
 							stereotypes.add(ownedStereotype);
 						}
 					}

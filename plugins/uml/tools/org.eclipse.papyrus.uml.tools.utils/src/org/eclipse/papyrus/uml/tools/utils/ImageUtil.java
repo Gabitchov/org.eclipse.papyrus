@@ -196,6 +196,7 @@ public class ImageUtil {
 		// Before converting to an int type, check
 		// to ensure that file is not larger than Integer.MAX_VALUE.
 		if(length > Integer.MAX_VALUE) {
+			is.close();
 			throw new IOException("Image too big to encode");
 		}
 
@@ -211,6 +212,7 @@ public class ImageUtil {
 
 		// Ensure all the bytes have been read in
 		if(offset < bytes.length) {
+			is.close();
 			throw new IOException("Could not completely read file " + file.getName());
 		}
 
