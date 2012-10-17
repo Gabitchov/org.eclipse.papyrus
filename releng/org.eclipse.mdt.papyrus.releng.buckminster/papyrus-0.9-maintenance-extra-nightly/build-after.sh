@@ -29,7 +29,9 @@ rm -rf tmp
 mkdir -p "tmp/extra"
 
 (cd ${p2UpdateSiteDir} && mkdir ./extra)
-mv ${p2UpdateSiteDir}/* ${p2UpdateSiteDir}/extra
+
+shopt -s extglob
+(mv ${p2UpdateSiteDir}/!(extra) ${p2UpdateSiteDir}/extra)
 cp ${compositeFilesDir}/* ${p2UpdateSiteDir}
 
 # create the update site zip
