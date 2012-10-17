@@ -73,27 +73,30 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 
 			Object oldObject = notif.getOldValue();
 			StateEditPart stateEditPart = getContainingEditPart(notif.getNotifier());
-			if(object instanceof Behavior) {
-				//Get the request to create the editPart
-				createRequest = getCreateRequest(object, stateEditPart);
-			}
-			//Get the request to delete the editPart
-			deleteRequest = getDeleteRequest(oldObject, stateEditPart);
-			//handle both request if needed
-			CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of one of the behaviros of selected state");//$NON-NLS-0$
-			org.eclipse.gef.commands.Command cmd1 = getCommandFromRequest(createRequest, stateEditPart);
-			if(cmd1 != null && cmd1.canExecute()) {
-				cc.compose(new CommandProxy(cmd1));
-			}
-			org.eclipse.gef.commands.Command cmd2 = getCommandFromRequest(deleteRequest, stateEditPart);
-			if(cmd2 != null && cmd2.canExecute()) {
-				cc.compose(new CommandProxy(cmd2));
-			}
 
-			refreshEditParts(cc, Collections.singleton((IGraphicalEditPart)stateEditPart));
+			if (stateEditPart!=null){
+				if(object instanceof Behavior) {
+					//Get the request to create the editPart
+					createRequest = getCreateRequest(object, stateEditPart);
+				}
+				//Get the request to delete the editPart
+				deleteRequest = getDeleteRequest(oldObject, stateEditPart);
+				//handle both request if needed
+				CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of one of the behaviros of selected state");//$NON-NLS-0$
+				org.eclipse.gef.commands.Command cmd1 = getCommandFromRequest(createRequest, stateEditPart);
+				if(cmd1 != null && cmd1.canExecute()) {
+					cc.compose(new CommandProxy(cmd1));
+				}
+				org.eclipse.gef.commands.Command cmd2 = getCommandFromRequest(deleteRequest, stateEditPart);
+				if(cmd2 != null && cmd2.canExecute()) {
+					cc.compose(new CommandProxy(cmd2));
+				}
+
+				refreshEditParts(cc, Collections.singleton((IGraphicalEditPart)stateEditPart));
 
 
-			return cc;
+				return cc;
+			}
 		}
 		return null;
 	}
