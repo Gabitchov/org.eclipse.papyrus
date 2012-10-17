@@ -223,8 +223,20 @@ PropertyCallExpression :
 	'.' propertyName = ID ('[' index=Expression ']')? (suffix = SuffixExpression)?
 ;
 
+//LinkOperationExpression :
+//	'.' kind = LinkOperationKind tuple = LinkOperationTuple
+//;
+
 LinkOperationExpression :
+	CreateOrDestroyLinkOperationExpression | ClearAssocExpression
+;
+
+CreateOrDestroyLinkOperationExpression :
 	'.' kind = LinkOperationKind tuple = LinkOperationTuple
+;
+
+ClearAssocExpression :
+	'.' 'clearAssoc' '('end = Expression')'
 ;
 
 LinkOperationTuple :
@@ -241,8 +253,7 @@ LinkOperationTupleElement :
 
 enum LinkOperationKind :
 	CREATE = 'createLink' |
-	DESTROY = 'destroyLink' |
-	CLEAR = 'clearAssoc'
+	DESTROY = 'destroyLink'
 ;
 
 SequenceOperationExpression : 
@@ -391,7 +402,7 @@ SequenceElement :
 ;
 
 ClassExtentExpression :
-	{ClassExtentExpression} '.' 'allInstances' '(' ')'
+	{ClassExtentExpression} '.' 'allInstances' '(' ')' (suffix = SuffixExpression)?
 ;
 
 /*****************

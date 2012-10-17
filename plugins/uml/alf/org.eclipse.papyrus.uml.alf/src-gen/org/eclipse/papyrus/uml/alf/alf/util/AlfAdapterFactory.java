@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.alf.alf.util;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -254,6 +243,16 @@ public class AlfAdapterFactory extends AdapterFactoryImpl
       public Adapter caseLinkOperationExpression(LinkOperationExpression object)
       {
         return createLinkOperationExpressionAdapter();
+      }
+      @Override
+      public Adapter caseCreateOrDestroyLinkOperationExpression(CreateOrDestroyLinkOperationExpression object)
+      {
+        return createCreateOrDestroyLinkOperationExpressionAdapter();
+      }
+      @Override
+      public Adapter caseClearAssocExpression(ClearAssocExpression object)
+      {
+        return createClearAssocExpressionAdapter();
       }
       @Override
       public Adapter caseLinkOperationTuple(LinkOperationTuple object)
@@ -1123,6 +1122,36 @@ public class AlfAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLinkOperationExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.alf.alf.CreateOrDestroyLinkOperationExpression <em>Create Or Destroy Link Operation Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.uml.alf.alf.CreateOrDestroyLinkOperationExpression
+   * @generated
+   */
+  public Adapter createCreateOrDestroyLinkOperationExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.alf.alf.ClearAssocExpression <em>Clear Assoc Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.uml.alf.alf.ClearAssocExpression
+   * @generated
+   */
+  public Adapter createClearAssocExpressionAdapter()
   {
     return null;
   }

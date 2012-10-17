@@ -4,7 +4,7 @@
     editorDirectory="/org.eclipse.papyrus.uml.alf.editor/src" modelPluginID="org.eclipse.papyrus.uml.alf"
     forceOverwrite="true" modelName="Alf" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.alf.edit"
-    editorPluginID="org.eclipse.papyrus.uml.alf.editor">
+    editorPluginID="org.eclipse.papyrus.uml.alf.editor" runtimeVersion="2.8">
   <genPackages prefix="Alf" basePackage="org.eclipse.papyrus.uml.alf" disposableProviderFactory="true"
       ecorePackage="Alf.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Alf.ecore#//BooleanValue">
@@ -14,7 +14,6 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Alf.ecore#//LinkOperationKind">
       <genEnumLiterals ecoreEnumLiteral="Alf.ecore#//LinkOperationKind/CREATE"/>
       <genEnumLiterals ecoreEnumLiteral="Alf.ecore#//LinkOperationKind/DESTROY"/>
-      <genEnumLiterals ecoreEnumLiteral="Alf.ecore#//LinkOperationKind/CLEAR"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Alf.ecore#//SelectOrRejectOperator">
       <genEnumLiterals ecoreEnumLiteral="Alf.ecore#//SelectOrRejectOperator/SELECT"/>
@@ -166,9 +165,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//PropertyCallExpression/index"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//PropertyCallExpression/suffix"/>
     </genClasses>
-    <genClasses ecoreClass="Alf.ecore#//LinkOperationExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//LinkOperationExpression/kind"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//LinkOperationExpression/tuple"/>
+    <genClasses ecoreClass="Alf.ecore#//LinkOperationExpression"/>
+    <genClasses ecoreClass="Alf.ecore#//CreateOrDestroyLinkOperationExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//CreateOrDestroyLinkOperationExpression/kind"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//CreateOrDestroyLinkOperationExpression/tuple"/>
+    </genClasses>
+    <genClasses ecoreClass="Alf.ecore#//ClearAssocExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//ClearAssocExpression/end"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//LinkOperationTuple">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//LinkOperationTuple/linkOperationTupleElement"/>
@@ -247,7 +250,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceConstructionExpression/rangeUpper"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//SequenceElement"/>
-    <genClasses ecoreClass="Alf.ecore#//ClassExtentExpression"/>
+    <genClasses ecoreClass="Alf.ecore#//ClassExtentExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//ClassExtentExpression/suffix"/>
+    </genClasses>
     <genClasses ecoreClass="Alf.ecore#//Block">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//Block/sequence"/>
     </genClasses>

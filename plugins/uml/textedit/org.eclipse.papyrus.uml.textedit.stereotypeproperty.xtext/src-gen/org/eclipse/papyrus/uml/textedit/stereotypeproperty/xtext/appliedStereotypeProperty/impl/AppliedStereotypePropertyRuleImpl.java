@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,8 +14,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
-
-import org.eclipse.uml2.uml.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,14 +32,24 @@ import org.eclipse.uml2.uml.Property;
 public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Container implements AppliedStereotypePropertyRule
 {
   /**
-   * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
+   * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getProperty()
    * @generated
    * @ordered
    */
-  protected Property property;
+  protected static final String PROPERTY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getProperty()
+   * @generated
+   * @ordered
+   */
+  protected String property = PROPERTY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -90,27 +87,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public Property getProperty()
-  {
-    if (property != null && property.eIsProxy())
-    {
-      InternalEObject oldProperty = (InternalEObject)property;
-      property = (Property)eResolveProxy(oldProperty);
-      if (property != oldProperty)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY, oldProperty, property));
-      }
-    }
-    return property;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Property basicGetProperty()
+  public String getProperty()
   {
     return property;
   }
@@ -120,9 +97,9 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProperty(Property newProperty)
+  public void setProperty(String newProperty)
   {
-    Property oldProperty = property;
+    String oldProperty = property;
     property = newProperty;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY, oldProperty, property));
@@ -203,8 +180,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        if (resolve) return getProperty();
-        return basicGetProperty();
+        return getProperty();
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         return getValue();
     }
@@ -222,7 +198,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        setProperty((Property)newValue);
+        setProperty((String)newValue);
         return;
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         setValue((ExpressionValueRule)newValue);
@@ -242,7 +218,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        setProperty((Property)null);
+        setProperty(PROPERTY_EDEFAULT);
         return;
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         setValue((ExpressionValueRule)null);
@@ -262,11 +238,28 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
     switch (featureID)
     {
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY:
-        return property != null;
+        return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
         return value != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (property: ");
+    result.append(property);
+    result.append(')');
+    return result.toString();
   }
 
 } //AppliedStereotypePropertyRuleImpl

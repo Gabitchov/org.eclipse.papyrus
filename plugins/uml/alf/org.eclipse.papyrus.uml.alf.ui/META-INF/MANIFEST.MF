@@ -21,4 +21,4 @@ Require-Bundle: org.eclipse.xtext.ui,
 Export-Package: org.eclipse.papyrus.uml.alf.ui.contentassist,
  org.eclipse.papyrus.uml.alf.ui.contentassist.antlr
 Bundle-Version: 0.9.1.qualifier
-
+Import-Package: org.apache.log4j

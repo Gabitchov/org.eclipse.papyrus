@@ -1,18 +1,8 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -77,7 +67,7 @@ public interface AppliedStereotypePropertyPackage extends EPackage
   int APPLIED_STEREOTYPE_PROPERTY_RULE = 0;
 
   /**
-   * The feature id for the '<em><b>Property</b></em>' reference.
+   * The feature id for the '<em><b>Property</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -143,15 +133,15 @@ public interface AppliedStereotypePropertyPackage extends EPackage
   EClass getAppliedStereotypePropertyRule();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule#getProperty <em>Property</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule#getProperty <em>Property</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Property</em>'.
+   * @return the meta object for the attribute '<em>Property</em>'.
    * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule#getProperty()
    * @see #getAppliedStereotypePropertyRule()
    * @generated
    */
-  EReference getAppliedStereotypePropertyRule_Property();
+  EAttribute getAppliedStereotypePropertyRule_Property();
 
   /**
    * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule#getValue <em>Value</em>}'.
@@ -219,12 +209,12 @@ public interface AppliedStereotypePropertyPackage extends EPackage
     EClass APPLIED_STEREOTYPE_PROPERTY_RULE = eINSTANCE.getAppliedStereotypePropertyRule();
 
     /**
-     * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Property</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY = eINSTANCE.getAppliedStereotypePropertyRule_Property();
+    EAttribute APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY = eINSTANCE.getAppliedStereotypePropertyRule_Property();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.

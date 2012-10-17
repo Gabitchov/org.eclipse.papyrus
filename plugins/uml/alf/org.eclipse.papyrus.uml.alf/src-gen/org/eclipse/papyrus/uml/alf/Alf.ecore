@@ -163,9 +163,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkOperationExpression" eSuperTypes="#//SuffixExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="LinkOperationExpression" eSuperTypes="#//SuffixExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateOrDestroyLinkOperationExpression"
+      eSuperTypes="#//LinkOperationExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//LinkOperationKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="#//LinkOperationTuple"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClearAssocExpression" eSuperTypes="#//LinkOperationExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LinkOperationTuple">
@@ -182,7 +188,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="LinkOperationKind">
     <eLiterals name="CREATE" literal="createLink"/>
     <eLiterals name="DESTROY" value="1" literal="destroyLink"/>
-    <eLiterals name="CLEAR" value="2" literal="clearAssoc"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceOperationExpression" eSuperTypes="#//SuffixExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operationName" eType="#//QualifiedNameWithBinding"
@@ -292,7 +297,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassExtentExpression" eSuperTypes="#//SuffixExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassExtentExpression" eSuperTypes="#//SuffixExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" eType="#//StatementSequence"
         containment="true"/>

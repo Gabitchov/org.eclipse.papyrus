@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
@@ -906,10 +893,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:48:7: ( '->' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:48:9: '->'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:48:7: ( 'clearAssoc' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:48:9: 'clearAssoc'
             {
-            match("->"); 
+            match("clearAssoc"); 
 
 
             }
@@ -927,10 +914,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:49:7: ( 'reduce' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:49:9: 'reduce'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:49:7: ( '->' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:49:9: '->'
             {
-            match("reduce"); 
+            match("->"); 
 
 
             }
@@ -948,10 +935,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:50:7: ( 'ordered' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:50:9: 'ordered'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:50:7: ( 'reduce' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:50:9: 'reduce'
             {
-            match("ordered"); 
+            match("reduce"); 
 
 
             }
@@ -969,10 +956,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:51:7: ( 'isUnique' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:51:9: 'isUnique'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:51:7: ( 'ordered' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:51:9: 'ordered'
             {
-            match("isUnique"); 
+            match("ordered"); 
 
 
             }
@@ -990,10 +977,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:52:7: ( 'null' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:52:9: 'null'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:52:7: ( 'isUnique' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:52:9: 'isUnique'
             {
-            match("null"); 
+            match("isUnique"); 
 
 
             }
@@ -1011,10 +998,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:53:7: ( 'this' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:53:9: 'this'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:53:7: ( 'null' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:53:9: 'null'
             {
-            match("this"); 
+            match("null"); 
 
 
             }
@@ -1032,10 +1019,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:54:7: ( 'super' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:54:9: 'super'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:54:7: ( 'this' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:54:9: 'this'
             {
-            match("super"); 
+            match("this"); 
 
 
             }
@@ -1053,10 +1040,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:55:7: ( 'new' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:55:9: 'new'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:55:7: ( 'super' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:55:9: 'super'
             {
-            match("new"); 
+            match("super"); 
 
 
             }
@@ -1074,10 +1061,11 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:56:7: ( '{' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:56:9: '{'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:56:7: ( 'new' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:56:9: 'new'
             {
-            match('{'); 
+            match("new"); 
+
 
             }
 
@@ -1094,11 +1082,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:57:7: ( '..' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:57:9: '..'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:57:7: ( '{' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:57:9: '{'
             {
-            match(".."); 
-
+            match('{'); 
 
             }
 
@@ -1115,10 +1102,11 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:58:7: ( '}' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:58:9: '}'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:58:7: ( '..' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:58:9: '..'
             {
-            match('}'); 
+            match(".."); 
+
 
             }
 
@@ -1135,11 +1123,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:59:7: ( 'allInstances' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:59:9: 'allInstances'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:59:7: ( '}' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:59:9: '}'
             {
-            match("allInstances"); 
-
+            match('}'); 
 
             }
 
@@ -1156,10 +1143,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:60:7: ( '/*@' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:60:9: '/*@'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:60:7: ( 'allInstances' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:60:9: 'allInstances'
             {
-            match("/*@"); 
+            match("allInstances"); 
 
 
             }
@@ -1177,10 +1164,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:61:7: ( 'inline' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:61:9: 'inline'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:61:7: ( '/*@' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:61:9: '/*@'
             {
-            match("inline"); 
+            match("/*@"); 
 
 
             }
@@ -1198,10 +1185,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:62:7: ( '*/' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:62:9: '*/'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:62:7: ( 'inline' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:62:9: 'inline'
             {
-            match("*/"); 
+            match("inline"); 
 
 
             }
@@ -1219,10 +1206,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:63:7: ( '//@' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:63:9: '//@'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:63:7: ( '*/' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:63:9: '*/'
             {
-            match("//@"); 
+            match("*/"); 
 
 
             }
@@ -1240,10 +1227,11 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:64:7: ( ';' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:64:9: ';'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:64:7: ( '//@' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:64:9: '//@'
             {
-            match(';'); 
+            match("//@"); 
+
 
             }
 
@@ -1260,11 +1248,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:65:7: ( 'let' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:65:9: 'let'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:65:7: ( ';' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:65:9: ';'
             {
-            match("let"); 
-
+            match(';'); 
 
             }
 
@@ -1281,10 +1268,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:66:7: ( 'if' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:66:9: 'if'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:66:7: ( 'let' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:66:9: 'let'
             {
-            match("if"); 
+            match("let"); 
 
 
             }
@@ -1302,10 +1289,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:67:7: ( 'else' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:67:9: 'else'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:67:7: ( 'if' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:67:9: 'if'
             {
-            match("else"); 
+            match("if"); 
 
 
             }
@@ -1323,10 +1310,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:68:7: ( 'or' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:68:9: 'or'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:68:7: ( 'else' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:68:9: 'else'
             {
-            match("or"); 
+            match("else"); 
 
 
             }
@@ -1344,10 +1331,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:69:7: ( 'switch' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:69:9: 'switch'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:69:7: ( 'or' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:69:9: 'or'
             {
-            match("switch"); 
+            match("or"); 
 
 
             }
@@ -1365,10 +1352,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:70:7: ( 'case' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:70:9: 'case'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:70:7: ( 'switch' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:70:9: 'switch'
             {
-            match("case"); 
+            match("switch"); 
 
 
             }
@@ -1386,10 +1373,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:71:7: ( 'default' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:71:9: 'default'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:71:7: ( 'case' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:71:9: 'case'
             {
-            match("default"); 
+            match("case"); 
 
 
             }
@@ -1407,10 +1394,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:72:7: ( 'while' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:72:9: 'while'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:72:7: ( 'default' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:72:9: 'default'
             {
-            match("while"); 
+            match("default"); 
 
 
             }
@@ -1428,10 +1415,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:73:7: ( 'do' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:73:9: 'do'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:73:7: ( 'while' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:73:9: 'while'
             {
-            match("do"); 
+            match("while"); 
 
 
             }
@@ -1449,10 +1436,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:74:7: ( 'for' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:74:9: 'for'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:74:7: ( 'do' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:74:9: 'do'
             {
-            match("for"); 
+            match("do"); 
 
 
             }
@@ -1470,10 +1457,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:75:7: ( 'in' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:75:9: 'in'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:75:7: ( 'for' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:75:9: 'for'
             {
-            match("in"); 
+            match("for"); 
 
 
             }
@@ -1491,10 +1478,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:76:7: ( 'break' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:76:9: 'break'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:76:7: ( 'in' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:76:9: 'in'
             {
-            match("break"); 
+            match("in"); 
 
 
             }
@@ -1512,10 +1499,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:77:7: ( 'return' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:77:9: 'return'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:77:7: ( 'break' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:77:9: 'break'
             {
-            match("return"); 
+            match("break"); 
 
 
             }
@@ -1533,10 +1520,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:78:7: ( 'accept' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:78:9: 'accept'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:78:7: ( 'return' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:78:9: 'return'
             {
-            match("accept"); 
+            match("return"); 
 
 
             }
@@ -1554,10 +1541,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:79:7: ( 'classify' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:79:9: 'classify'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:79:7: ( 'accept' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:79:9: 'accept'
             {
-            match("classify"); 
+            match("accept"); 
 
 
             }
@@ -1575,10 +1562,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:80:7: ( 'from' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:80:9: 'from'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:80:7: ( 'classify' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:80:9: 'classify'
             {
-            match("from"); 
+            match("classify"); 
 
 
             }
@@ -1596,10 +1583,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:81:7: ( 'to' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:81:9: 'to'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:81:7: ( 'from' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:81:9: 'from'
             {
-            match("to"); 
+            match("from"); 
 
 
             }
@@ -1617,10 +1604,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:82:7: ( 'true' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:82:9: 'true'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:82:7: ( 'to' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:82:9: 'to'
             {
-            match("true"); 
+            match("to"); 
 
 
             }
@@ -1638,10 +1625,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:83:7: ( 'false' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:83:9: 'false'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:83:7: ( 'true' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:83:9: 'true'
             {
-            match("false"); 
+            match("true"); 
 
 
             }
@@ -1659,10 +1646,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:84:7: ( 'createLink' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:84:9: 'createLink'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:84:7: ( 'false' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:84:9: 'false'
             {
-            match("createLink"); 
+            match("false"); 
 
 
             }
@@ -1680,10 +1667,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:85:7: ( 'destroyLink' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:85:9: 'destroyLink'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:85:7: ( 'createLink' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:85:9: 'createLink'
             {
-            match("destroyLink"); 
+            match("createLink"); 
 
 
             }
@@ -1701,10 +1688,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:86:7: ( 'clearAssoc' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:86:9: 'clearAssoc'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:86:7: ( 'destroyLink' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:86:9: 'destroyLink'
             {
-            match("clearAssoc"); 
+            match("destroyLink"); 
 
 
             }
@@ -2184,10 +2171,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_INTEGERVALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:19: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:19: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             int alt13=4;
             int LA13_0 = input.LA(1);
 
@@ -2233,9 +2220,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -2253,17 +2240,17 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     switch (alt3) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:23: '0'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:23: '0'
                             {
                             match('0'); 
 
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:27: '1' .. '9' ( ( '_' )? '0' .. '9' )*
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:27: '1' .. '9' ( ( '_' )? '0' .. '9' )*
                             {
                             matchRange('1','9'); 
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:36: ( ( '_' )? '0' .. '9' )*
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:36: ( ( '_' )? '0' .. '9' )*
                             loop2:
                             do {
                                 int alt2=2;
@@ -2276,9 +2263,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                                 switch (alt2) {
                             	case 1 :
-                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:37: ( '_' )? '0' .. '9'
+                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:37: ( '_' )? '0' .. '9'
                             	    {
-                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:37: ( '_' )?
+                            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:37: ( '_' )?
                             	    int alt1=2;
                             	    int LA1_0 = input.LA(1);
 
@@ -2287,7 +2274,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                             	    }
                             	    switch (alt1) {
                             	        case 1 :
-                            	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:37: '_'
+                            	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:37: '_'
                             	            {
                             	            match('_'); 
 
@@ -2316,9 +2303,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:54: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:54: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:54: ( '0b' | '0B' )
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:54: ( '0b' | '0B' )
                     int alt4=2;
                     int LA4_0 = input.LA(1);
 
@@ -2346,7 +2333,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     switch (alt4) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:55: '0b'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:55: '0b'
                             {
                             match("0b"); 
 
@@ -2354,7 +2341,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:60: '0B'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:60: '0B'
                             {
                             match("0B"); 
 
@@ -2365,7 +2352,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
 
                     matchRange('0','1'); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:75: ( ( '_' )? '0' .. '1' )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:75: ( ( '_' )? '0' .. '1' )*
                     loop6:
                     do {
                         int alt6=2;
@@ -2378,9 +2365,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:76: ( '_' )? '0' .. '1'
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:76: ( '_' )? '0' .. '1'
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:76: ( '_' )?
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:76: ( '_' )?
                     	    int alt5=2;
                     	    int LA5_0 = input.LA(1);
 
@@ -2389,7 +2376,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     	    }
                     	    switch (alt5) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:76: '_'
+                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:76: '_'
                     	            {
                     	            match('_'); 
 
@@ -2412,9 +2399,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:92: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:92: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:92: ( '0x' | '0X' )
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:92: ( '0x' | '0X' )
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -2442,7 +2429,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     switch (alt7) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:93: '0x'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:93: '0x'
                             {
                             match("0x"); 
 
@@ -2450,7 +2437,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:98: '0X'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:98: '0X'
                             {
                             match("0X"); 
 
@@ -2469,7 +2456,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:133: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:133: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     loop9:
                     do {
                         int alt9=2;
@@ -2482,9 +2469,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:134: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:134: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:134: ( '_' )?
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:134: ( '_' )?
                     	    int alt8=2;
                     	    int LA8_0 = input.LA(1);
 
@@ -2493,7 +2480,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     	    }
                     	    switch (alt8) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:134: '_'
+                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:134: '_'
                     	            {
                     	            match('_'); 
 
@@ -2524,10 +2511,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:170: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:170: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
                     {
                     match('0'); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:174: ( '_' )?
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:174: ( '_' )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -2536,7 +2523,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:174: '_'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:174: '_'
                             {
                             match('_'); 
 
@@ -2546,7 +2533,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
 
                     matchRange('0','7'); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:188: ( ( '_' )? '0' .. '7' )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:188: ( ( '_' )? '0' .. '7' )*
                     loop12:
                     do {
                         int alt12=2;
@@ -2559,9 +2546,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:189: ( '_' )? '0' .. '7'
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:189: ( '_' )? '0' .. '7'
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:189: ( '_' )?
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:189: ( '_' )?
                     	    int alt11=2;
                     	    int LA11_0 = input.LA(1);
 
@@ -2570,7 +2557,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     	    }
                     	    switch (alt11) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7336:189: '_'
+                    	            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7448:189: '_'
                     	            {
                     	            match('_'); 
 
@@ -2611,10 +2598,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2632,7 +2619,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     {
                     if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                         input.consume();
@@ -2643,7 +2630,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     loop14:
                     do {
                         int alt14=2;
@@ -2680,10 +2667,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:70: '\\'' ( options {greedy=false; } : . )* '\\''
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:70: '\\'' ( options {greedy=false; } : . )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:75: ( options {greedy=false; } : . )*
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:75: ( options {greedy=false; } : . )*
                     loop15:
                     do {
                         int alt15=2;
@@ -2699,7 +2686,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7338:103: .
+                    	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7450:103: .
                     	    {
                     	    matchAny(); 
 
@@ -2734,11 +2721,11 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7340:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7340:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7452:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7452:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7340:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7452:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop17:
             do {
                 int alt17=3;
@@ -2754,7 +2741,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7340:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7452:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2770,7 +2757,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7340:61: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7452:61: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2807,8 +2794,8 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7342:17: ( '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7342:19: '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7454:17: ( '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7454:19: '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
@@ -2821,7 +2808,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7342:31: ( options {greedy=false; } : . )*
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7454:31: ( options {greedy=false; } : . )*
             loop18:
             do {
                 int alt18=2;
@@ -2846,7 +2833,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                 switch (alt18) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7342:59: .
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7454:59: .
             	    {
             	    matchAny(); 
 
@@ -2876,12 +2863,12 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:17: ( '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:19: '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:17: ( '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:19: '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:24: (~ ( ( '\\n' | '\\r' | '@' ) ) )*
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:24: (~ ( ( '\\n' | '\\r' | '@' ) ) )*
             loop19:
             do {
                 int alt19=2;
@@ -2894,7 +2881,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:24: ~ ( ( '\\n' | '\\r' | '@' ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:24: ~ ( ( '\\n' | '\\r' | '@' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='?')||(input.LA(1)>='A' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2914,7 +2901,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:44: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:44: ( ( '\\r' )? '\\n' )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2923,9 +2910,9 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:45: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:45: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:45: ( '\\r' )?
+                    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:45: ( '\\r' )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -2934,7 +2921,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
                     }
                     switch (alt20) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7344:45: '\\r'
+                            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7456:45: '\\r'
                             {
                             match('\r'); 
 
@@ -2966,10 +2953,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7346:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7346:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7458:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7458:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7346:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7458:12: ( '0' .. '9' )+
             int cnt22=0;
             loop22:
             do {
@@ -2983,7 +2970,7 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7346:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7458:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3015,10 +3002,10 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7348:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7348:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7460:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7460:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7348:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7460:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt23=0;
             loop23:
             do {
@@ -3072,8 +3059,8 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7350:16: ( . )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7350:18: .
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7462:16: ( . )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:7462:18: .
             {
             matchAny(); 
 
@@ -3843,110 +3830,110 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
     protected DFA24 dfa24 = new DFA24(this);
     static final String DFA24_eotS =
         "\1\uffff\1\63\1\66\1\71\1\75\1\77\1\102\1\uffff\1\106\3\uffff\1"+
-        "\114\1\117\1\121\1\123\2\130\1\135\1\137\2\uffff\1\143\2\uffff\5"+
-        "\130\2\uffff\1\130\1\uffff\10\130\2\u0086\1\uffff\2\60\22\uffff"+
-        "\1\u008d\3\uffff\1\u0090\16\uffff\1\u0093\1\130\1\u0096\1\130\1"+
-        "\uffff\1\130\1\uffff\1\u009c\12\uffff\1\130\1\u00a1\4\130\1\u00a6"+
-        "\4\130\2\uffff\3\130\1\uffff\10\130\1\u00b9\6\130\1\uffff\1\u0086"+
-        "\1\uffff\1\u0086\4\uffff\1\u00c2\2\uffff\2\130\1\uffff\2\130\1\uffff"+
-        "\2\130\4\uffff\4\130\1\uffff\1\u00cd\1\130\1\u00cf\1\130\1\uffff"+
-        "\7\130\1\u00d8\12\130\1\uffff\1\130\1\u00e5\4\130\1\u0086\2\uffff"+
-        "\12\130\1\uffff\1\u00f4\1\uffff\1\u00f5\1\u00f6\6\130\1\uffff\1"+
-        "\u00fd\1\130\1\u00ff\11\130\1\uffff\1\u0109\15\130\3\uffff\1\u0117"+
-        "\5\130\1\uffff\1\130\1\uffff\7\130\1\u0125\1\130\1\uffff\1\u0127"+
-        "\1\u0128\2\130\1\u012b\4\130\1\u0130\1\u0131\1\u0132\1\130\1\uffff"+
-        "\1\u0134\1\u0135\1\130\1\u0137\1\130\1\u0139\7\130\1\uffff\1\u0141"+
-        "\2\uffff\2\130\1\uffff\2\130\1\u0146\1\u0147\3\uffff\1\u0148\2\uffff"+
-        "\1\130\1\uffff\1\u014a\1\uffff\3\130\1\u014e\1\u014f\2\130\1\uffff"+
-        "\2\130\1\u0154\1\u0155\3\uffff\1\130\1\uffff\1\u0157\2\130\2\uffff"+
+        "\114\1\117\1\121\1\123\2\130\1\135\1\137\2\uffff\1\143\2\uffff\6"+
+        "\130\2\uffff\1\130\1\uffff\7\130\2\u0086\1\uffff\2\60\22\uffff\1"+
+        "\u008d\3\uffff\1\u0090\16\uffff\1\u0093\1\130\1\u0096\1\130\1\uffff"+
+        "\1\130\1\uffff\1\u009c\12\uffff\5\130\1\u00a6\4\130\1\u00ab\4\130"+
+        "\2\uffff\3\130\1\uffff\4\130\1\u00b9\6\130\1\uffff\1\u0086\1\uffff"+
+        "\1\u0086\4\uffff\1\u00c2\2\uffff\2\130\1\uffff\2\130\1\uffff\2\130"+
+        "\4\uffff\11\130\1\uffff\1\u00d2\1\130\1\u00d4\1\130\1\uffff\7\130"+
+        "\1\u00dd\5\130\1\uffff\1\130\1\u00e5\4\130\1\u0086\2\uffff\10\130"+
+        "\1\u00f2\6\130\1\uffff\1\u00f9\1\uffff\1\u00fa\1\u00fb\6\130\1\uffff"+
+        "\1\u0102\6\130\1\uffff\1\u0109\13\130\1\uffff\6\130\3\uffff\1\u011b"+
+        "\5\130\1\uffff\4\130\1\u0125\1\130\1\uffff\1\u0127\1\u0128\2\130"+
+        "\1\u012b\10\130\1\u0134\1\u0135\1\u0136\1\130\1\uffff\1\u0138\1"+
+        "\u0139\1\130\1\u013b\1\130\1\u013d\3\130\1\uffff\1\u0141\2\uffff"+
+        "\2\130\1\uffff\2\130\1\u0146\1\u0147\3\130\1\u014b\3\uffff\1\u014c"+
+        "\2\uffff\1\130\1\uffff\1\u014e\1\uffff\1\u014f\2\130\1\uffff\2\130"+
+        "\1\u0154\1\u0155\2\uffff\1\130\1\u0157\1\130\2\uffff\1\130\2\uffff"+
         "\2\130\1\u015c\1\130\2\uffff\1\130\1\uffff\4\130\1\uffff\1\u0163"+
-        "\1\130\1\u0165\1\u0166\1\130\1\u0168\1\uffff\1\130\2\uffff\1\u016a"+
-        "\1\uffff\1\u016b\2\uffff";
+        "\1\u0164\1\u0165\2\130\1\u0168\3\uffff\1\130\1\u016a\1\uffff\1\u016b"+
+        "\2\uffff";
     static final String DFA24_eofS =
         "\u016c\uffff";
     static final String DFA24_minS =
         "\1\0\1\75\1\57\1\53\1\55\1\72\1\74\1\uffff\1\75\3\uffff\1\75\1"+
-        "\46\2\75\1\146\1\141\1\52\1\75\2\uffff\1\56\2\uffff\1\145\1\156"+
-        "\1\145\1\150\1\145\2\uffff\1\143\1\uffff\1\145\1\154\1\141\1\145"+
+        "\46\2\75\1\146\1\141\1\52\1\75\2\uffff\1\56\2\uffff\1\141\1\145"+
+        "\1\156\1\145\1\150\1\145\2\uffff\1\143\1\uffff\1\145\1\154\1\145"+
         "\1\150\1\141\1\162\1\141\2\60\1\uffff\2\0\22\uffff\1\75\3\uffff"+
         "\1\75\16\uffff\1\60\1\125\1\60\1\145\1\uffff\1\163\1\0\1\100\12"+
-        "\uffff\1\144\1\60\1\145\1\154\1\167\1\151\1\60\1\165\1\160\1\151"+
-        "\1\154\2\uffff\1\154\1\143\1\163\1\uffff\1\164\1\163\1\151\1\163"+
-        "\1\141\1\145\1\154\1\146\1\60\1\151\1\162\1\157\1\154\1\145\1\162"+
+        "\uffff\1\141\1\163\1\145\1\154\1\144\1\60\1\145\1\154\1\167\1\151"+
+        "\1\60\1\165\1\160\1\151\1\154\2\uffff\1\154\1\143\1\163\1\uffff"+
+        "\1\164\1\163\1\151\1\146\1\60\1\151\1\162\1\157\1\154\1\145\1\162"+
         "\1\uffff\1\60\1\uffff\1\60\4\uffff\1\75\2\uffff\1\164\1\151\1\uffff"+
-        "\1\156\1\154\1\uffff\1\162\1\164\4\uffff\2\165\2\145\1\uffff\1\60"+
-        "\1\154\1\60\1\163\1\uffff\2\145\1\164\1\145\1\111\1\145\1\165\1"+
-        "\60\1\145\1\163\1\145\1\163\2\141\1\154\1\141\1\164\1\145\1\uffff"+
-        "\1\154\1\60\1\155\1\163\2\141\1\60\2\uffff\1\141\1\156\1\151\2\141"+
-        "\1\171\1\143\1\162\1\143\1\162\1\uffff\1\60\1\uffff\2\60\1\162\2"+
-        "\143\1\156\1\160\1\162\1\uffff\1\60\1\164\1\60\1\163\1\162\1\164"+
-        "\1\145\1\165\2\162\1\145\1\154\1\uffff\1\60\1\145\1\153\1\154\1"+
-        "\156\1\145\1\161\2\164\1\160\1\145\1\156\1\164\1\145\3\uffff\1\60"+
-        "\1\150\1\164\1\163\1\164\1\145\1\uffff\1\163\1\uffff\1\151\1\101"+
-        "\1\145\1\143\1\154\1\157\1\155\1\60\1\154\1\uffff\2\60\1\154\1\143"+
-        "\1\60\1\165\3\145\3\60\1\144\1\uffff\2\60\1\164\1\60\1\144\1\60"+
-        "\1\146\1\163\1\114\2\164\1\171\1\151\1\uffff\1\60\2\uffff\2\145"+
-        "\1\uffff\1\145\1\144\2\60\3\uffff\1\60\2\uffff\1\141\1\uffff\1\60"+
-        "\1\uffff\1\171\1\163\1\151\2\60\1\114\1\156\1\uffff\1\154\1\157"+
-        "\2\60\3\uffff\1\156\1\uffff\1\60\1\157\1\156\2\uffff\1\151\1\145"+
-        "\1\60\1\146\2\uffff\1\143\1\uffff\1\143\1\153\1\156\1\144\1\uffff"+
-        "\1\60\1\145\2\60\1\153\1\60\1\uffff\1\163\2\uffff\1\60\1\uffff\1"+
-        "\60\2\uffff";
+        "\1\156\1\154\1\uffff\1\162\1\164\4\uffff\1\141\1\163\1\145\1\141"+
+        "\1\154\2\165\2\145\1\uffff\1\60\1\154\1\60\1\163\1\uffff\2\145\1"+
+        "\164\1\145\1\111\1\145\1\165\1\60\1\145\1\163\1\141\1\164\1\145"+
+        "\1\uffff\1\154\1\60\1\155\1\163\2\141\1\60\2\uffff\1\141\1\156\1"+
+        "\151\2\141\1\171\1\162\1\163\1\60\1\164\1\145\1\143\1\162\1\143"+
+        "\1\162\1\uffff\1\60\1\uffff\2\60\1\162\2\143\1\156\1\160\1\162\1"+
+        "\uffff\1\60\1\164\1\165\2\162\1\145\1\154\1\uffff\1\60\1\145\1\153"+
+        "\1\154\1\156\1\145\1\161\2\164\1\160\1\101\1\151\1\uffff\1\145\1"+
+        "\143\1\145\1\156\1\164\1\145\3\uffff\1\60\1\150\1\164\1\163\1\164"+
+        "\1\145\1\uffff\1\163\1\154\1\157\1\155\1\60\1\154\1\uffff\2\60\1"+
+        "\154\1\143\1\60\1\165\3\145\1\163\1\146\1\114\1\164\3\60\1\144\1"+
+        "\uffff\2\60\1\164\1\60\1\144\1\60\1\164\1\171\1\151\1\uffff\1\60"+
+        "\2\uffff\2\145\1\uffff\1\145\1\144\2\60\1\163\1\171\1\151\1\60\3"+
+        "\uffff\1\60\2\uffff\1\141\1\uffff\1\60\1\uffff\1\60\1\114\1\156"+
+        "\1\uffff\1\154\1\157\2\60\2\uffff\1\157\1\60\1\156\2\uffff\1\156"+
+        "\2\uffff\1\151\1\145\1\60\1\146\2\uffff\1\143\1\uffff\1\153\1\143"+
+        "\1\156\1\144\1\uffff\3\60\1\145\1\153\1\60\3\uffff\1\163\1\60\1"+
+        "\uffff\1\60\2\uffff";
     static final String DFA24_maxS =
         "\1\uffff\1\76\2\75\1\76\1\72\1\75\1\uffff\1\76\3\uffff\1\174\3"+
-        "\75\1\164\1\141\2\75\2\uffff\1\56\2\uffff\1\145\1\162\1\165\1\162"+
-        "\1\167\2\uffff\1\163\1\uffff\1\145\1\170\1\162\1\157\1\150\2\162"+
+        "\75\1\164\1\141\2\75\2\uffff\1\56\2\uffff\1\162\1\145\1\162\1\165"+
+        "\1\162\1\167\2\uffff\1\163\1\uffff\1\145\1\170\1\157\1\150\2\162"+
         "\1\141\2\71\1\uffff\2\uffff\22\uffff\1\75\3\uffff\1\76\16\uffff"+
         "\1\172\1\157\1\172\1\145\1\uffff\1\163\1\uffff\1\100\12\uffff\1"+
-        "\164\1\172\1\145\1\154\1\167\1\151\1\172\1\165\1\160\1\151\1\154"+
-        "\2\uffff\1\154\1\143\1\163\1\uffff\1\164\1\163\1\151\1\163\2\145"+
-        "\1\154\1\164\1\172\1\151\1\162\1\157\1\154\1\145\1\162\1\uffff\1"+
-        "\71\1\uffff\1\71\4\uffff\1\75\2\uffff\1\164\1\151\1\uffff\1\156"+
-        "\1\154\1\uffff\1\162\1\164\4\uffff\2\165\2\145\1\uffff\1\172\1\154"+
-        "\1\172\1\163\1\uffff\2\145\1\164\1\145\1\111\1\145\1\165\1\172\1"+
-        "\145\1\163\1\145\1\163\2\141\1\154\1\141\1\164\1\145\1\uffff\1\154"+
-        "\1\172\1\155\1\163\2\141\1\71\2\uffff\1\141\1\156\1\151\2\141\1"+
-        "\171\1\143\1\162\1\143\1\162\1\uffff\1\172\1\uffff\2\172\1\162\2"+
-        "\143\1\156\1\160\1\162\1\uffff\1\172\1\164\1\172\1\163\1\162\1\164"+
-        "\1\145\1\165\2\162\1\145\1\154\1\uffff\1\172\1\145\1\153\1\154\1"+
-        "\156\1\145\1\161\2\164\1\160\1\145\1\156\1\164\1\145\3\uffff\1\172"+
-        "\1\150\1\164\1\163\1\164\1\145\1\uffff\1\163\1\uffff\1\151\1\101"+
-        "\1\145\1\143\1\154\1\157\1\155\1\172\1\154\1\uffff\2\172\1\154\1"+
-        "\143\1\172\1\165\3\145\3\172\1\144\1\uffff\2\172\1\164\1\172\1\144"+
-        "\1\172\1\146\1\163\1\114\2\164\1\171\1\151\1\uffff\1\172\2\uffff"+
-        "\2\145\1\uffff\1\145\1\144\2\172\3\uffff\1\172\2\uffff\1\141\1\uffff"+
-        "\1\172\1\uffff\1\171\1\163\1\151\2\172\1\114\1\156\1\uffff\1\154"+
-        "\1\157\2\172\3\uffff\1\156\1\uffff\1\172\1\157\1\156\2\uffff\1\151"+
-        "\1\145\1\172\1\146\2\uffff\1\143\1\uffff\1\143\1\153\1\156\1\144"+
-        "\1\uffff\1\172\1\145\2\172\1\153\1\172\1\uffff\1\163\2\uffff\1\172"+
-        "\1\uffff\1\172\2\uffff";
+        "\145\1\163\1\145\1\154\1\164\1\172\1\145\1\154\1\167\1\151\1\172"+
+        "\1\165\1\160\1\151\1\154\2\uffff\1\154\1\143\1\163\1\uffff\1\164"+
+        "\1\163\1\151\1\164\1\172\1\151\1\162\1\157\1\154\1\145\1\162\1\uffff"+
+        "\1\71\1\uffff\1\71\4\uffff\1\75\2\uffff\1\164\1\151\1\uffff\1\156"+
+        "\1\154\1\uffff\1\162\1\164\4\uffff\1\141\1\163\1\145\1\141\1\154"+
+        "\2\165\2\145\1\uffff\1\172\1\154\1\172\1\163\1\uffff\2\145\1\164"+
+        "\1\145\1\111\1\145\1\165\1\172\1\145\1\163\1\141\1\164\1\145\1\uffff"+
+        "\1\154\1\172\1\155\1\163\2\141\1\71\2\uffff\1\141\1\156\1\151\2"+
+        "\141\1\171\1\162\1\163\1\172\1\164\1\145\1\143\1\162\1\143\1\162"+
+        "\1\uffff\1\172\1\uffff\2\172\1\162\2\143\1\156\1\160\1\162\1\uffff"+
+        "\1\172\1\164\1\165\2\162\1\145\1\154\1\uffff\1\172\1\145\1\153\1"+
+        "\154\1\156\1\145\1\161\2\164\1\160\1\101\1\151\1\uffff\1\145\1\143"+
+        "\1\145\1\156\1\164\1\145\3\uffff\1\172\1\150\1\164\1\163\1\164\1"+
+        "\145\1\uffff\1\163\1\154\1\157\1\155\1\172\1\154\1\uffff\2\172\1"+
+        "\154\1\143\1\172\1\165\3\145\1\163\1\146\1\114\1\164\3\172\1\144"+
+        "\1\uffff\2\172\1\164\1\172\1\144\1\172\1\164\1\171\1\151\1\uffff"+
+        "\1\172\2\uffff\2\145\1\uffff\1\145\1\144\2\172\1\163\1\171\1\151"+
+        "\1\172\3\uffff\1\172\2\uffff\1\141\1\uffff\1\172\1\uffff\1\172\1"+
+        "\114\1\156\1\uffff\1\154\1\157\2\172\2\uffff\1\157\1\172\1\156\2"+
+        "\uffff\1\156\2\uffff\1\151\1\145\1\172\1\146\2\uffff\1\143\1\uffff"+
+        "\1\153\1\143\1\156\1\144\1\uffff\3\172\1\145\1\153\1\172\3\uffff"+
+        "\1\163\1\172\1\uffff\1\172\2\uffff";
     static final String DFA24_acceptS =
         "\7\uffff\1\7\1\uffff\1\12\1\13\1\14\10\uffff\1\41\1\42\1\uffff"+
-        "\1\44\1\45\5\uffff\1\56\1\60\1\uffff\1\66\12\uffff\1\144\2\uffff"+
-        "\1\151\1\152\1\11\1\23\1\1\1\64\1\132\1\2\1\3\1\130\1\34\1\4\1\46"+
+        "\1\44\1\45\6\uffff\1\57\1\61\1\uffff\1\67\11\uffff\1\144\2\uffff"+
+        "\1\151\1\152\1\11\1\23\1\1\1\65\1\132\1\2\1\3\1\130\1\34\1\4\1\47"+
         "\1\131\1\35\1\5\1\15\1\27\1\uffff\1\6\1\7\1\30\1\uffff\1\10\1\12"+
         "\1\13\1\14\1\16\1\136\1\20\1\17\1\135\1\22\1\137\1\21\1\24\1\40"+
-        "\4\uffff\1\144\3\uffff\1\134\1\36\1\133\1\37\1\41\1\42\1\57\1\43"+
-        "\1\44\1\45\13\uffff\1\56\1\60\3\uffff\1\66\17\uffff\1\143\1\uffff"+
+        "\4\uffff\1\144\3\uffff\1\134\1\36\1\133\1\37\1\41\1\42\1\60\1\43"+
+        "\1\44\1\45\17\uffff\1\57\1\61\3\uffff\1\67\13\uffff\1\143\1\uffff"+
         "\1\150\1\uffff\1\145\1\151\1\140\1\31\1\uffff\1\141\1\32\2\uffff"+
-        "\1\101\2\uffff\1\70\2\uffff\1\62\1\146\1\65\1\147\4\uffff\1\72\4"+
-        "\uffff\1\107\22\uffff\1\77\7\uffff\1\142\1\33\12\uffff\1\123\1\uffff"+
-        "\1\55\10\uffff\1\67\14\uffff\1\100\16\uffff\1\52\1\53\1\110\6\uffff"+
-        "\1\71\1\uffff\1\74\11\uffff\1\106\15\uffff\1\54\15\uffff\1\76\1"+
-        "\uffff\1\111\1\102\2\uffff\1\63\4\uffff\1\47\1\103\1\116\1\uffff"+
-        "\1\73\1\115\1\uffff\1\104\1\uffff\1\122\7\uffff\1\121\4\uffff\1"+
-        "\120\1\26\1\50\1\uffff\1\126\3\uffff\1\117\1\75\4\uffff\1\51\1\124"+
-        "\1\uffff\1\105\4\uffff\1\127\6\uffff\1\25\1\uffff\1\114\1\112\1"+
-        "\uffff\1\125\1\uffff\1\113\1\61";
+        "\1\102\2\uffff\1\71\2\uffff\1\63\1\146\1\66\1\147\11\uffff\1\73"+
+        "\4\uffff\1\110\15\uffff\1\100\7\uffff\1\142\1\33\17\uffff\1\123"+
+        "\1\uffff\1\56\10\uffff\1\70\7\uffff\1\101\14\uffff\1\75\6\uffff"+
+        "\1\53\1\54\1\111\6\uffff\1\72\6\uffff\1\107\21\uffff\1\55\11\uffff"+
+        "\1\77\1\uffff\1\112\1\103\2\uffff\1\64\10\uffff\1\50\1\104\1\116"+
+        "\1\uffff\1\74\1\115\1\uffff\1\105\1\uffff\1\122\3\uffff\1\121\4"+
+        "\uffff\1\120\1\26\3\uffff\1\117\1\51\1\uffff\1\126\1\76\4\uffff"+
+        "\1\52\1\124\1\uffff\1\106\4\uffff\1\127\6\uffff\1\25\1\46\1\113"+
+        "\2\uffff\1\125\1\uffff\1\114\1\62";
     static final String DFA24_specialS =
         "\1\0\54\uffff\1\1\1\3\53\uffff\1\2\u0111\uffff}>";
     static final String[] DFA24_transitionS = {
             "\11\60\2\57\2\60\1\57\22\60\1\57\1\17\1\56\1\60\1\24\1\23\1"+
             "\15\1\55\1\11\1\12\1\2\1\3\1\7\1\4\1\26\1\22\1\52\11\53\1\5"+
-            "\1\41\1\6\1\1\1\10\1\13\1\60\32\54\1\27\1\60\1\30\1\16\1\54"+
-            "\1\60\1\40\1\50\1\44\1\45\1\43\1\47\1\54\1\21\1\20\2\54\1\42"+
-            "\1\54\1\33\1\32\1\51\1\54\1\31\1\35\1\34\2\54\1\46\3\54\1\36"+
-            "\1\14\1\37\1\25\uff81\60",
+            "\1\42\1\6\1\1\1\10\1\13\1\60\32\54\1\27\1\60\1\30\1\16\1\54"+
+            "\1\60\1\41\1\50\1\31\1\45\1\44\1\47\1\54\1\21\1\20\2\54\1\43"+
+            "\1\54\1\34\1\33\1\51\1\54\1\32\1\36\1\35\2\54\1\46\3\54\1\37"+
+            "\1\14\1\40\1\25\uff81\60",
             "\1\62\1\61",
             "\1\64\15\uffff\1\65",
             "\1\67\21\uffff\1\70",
@@ -3971,18 +3958,18 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\142",
             "",
             "",
-            "\1\146",
-            "\1\150\3\uffff\1\147",
-            "\1\152\17\uffff\1\151",
-            "\1\153\6\uffff\1\154\2\uffff\1\155",
-            "\1\160\17\uffff\1\156\1\uffff\1\157",
+            "\1\147\12\uffff\1\146\2\uffff\1\151\2\uffff\1\150",
+            "\1\152",
+            "\1\154\3\uffff\1\153",
+            "\1\156\17\uffff\1\155",
+            "\1\157\6\uffff\1\160\2\uffff\1\161",
+            "\1\164\17\uffff\1\162\1\uffff\1\163",
             "",
             "",
-            "\1\164\10\uffff\1\163\6\uffff\1\165",
+            "\1\170\10\uffff\1\167\6\uffff\1\171",
             "",
-            "\1\167",
-            "\1\170\13\uffff\1\171",
-            "\1\172\12\uffff\1\173\2\uffff\1\175\2\uffff\1\174",
+            "\1\173",
+            "\1\174\13\uffff\1\175",
             "\1\176\11\uffff\1\177",
             "\1\u0080",
             "\1\u0083\15\uffff\1\u0081\2\uffff\1\u0082",
@@ -4049,29 +4036,29 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u009d\5\uffff\1\u009f\11\uffff\1\u009e",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\3\130\1\u00a0"+
+            "\1\u009e\3\uffff\1\u009d",
+            "\1\u009f",
+            "\1\u00a0",
+            "\1\u00a1",
+            "\1\u00a2\5\uffff\1\u00a4\11\uffff\1\u00a3",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\3\130\1\u00a5"+
             "\26\130",
-            "\1\u00a2",
-            "\1\u00a3",
-            "\1\u00a4",
-            "\1\u00a5",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u00a7",
             "\1\u00a8",
             "\1\u00a9",
             "\1\u00aa",
-            "",
-            "",
-            "\1\u00ab",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u00ac",
             "\1\u00ad",
-            "",
             "\1\u00ae",
             "\1\u00af",
+            "",
+            "",
             "\1\u00b0",
             "\1\u00b1",
-            "\1\u00b2\3\uffff\1\u00b3",
+            "\1\u00b2",
+            "",
+            "\1\u00b3",
             "\1\u00b4",
             "\1\u00b5",
             "\1\u00b6\14\uffff\1\u00b7\1\u00b8",
@@ -4109,25 +4096,25 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u00ca",
             "\1\u00cb",
             "\1\u00cc",
-            "",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u00cd",
             "\1\u00ce",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u00cf",
             "\1\u00d0",
-            "",
             "\1\u00d1",
-            "\1\u00d2",
+            "",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u00d3",
-            "\1\u00d4",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u00d5",
+            "",
             "\1\u00d6",
             "\1\u00d7",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u00d8",
             "\1\u00d9",
             "\1\u00da",
             "\1\u00db",
             "\1\u00dc",
-            "\1\u00dd",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u00de",
             "\1\u00df",
             "\1\u00e0",
@@ -4151,26 +4138,26 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u00ef",
             "\1\u00f0",
             "\1\u00f1",
-            "\1\u00f2",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u00f3",
-            "",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u00f4",
+            "\1\u00f5",
+            "\1\u00f6",
             "\1\u00f7",
             "\1\u00f8",
-            "\1\u00f9",
-            "\1\u00fa",
-            "\1\u00fb",
-            "\1\u00fc",
             "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\1\u00fe",
+            "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u00fc",
+            "\1\u00fd",
+            "\1\u00fe",
+            "\1\u00ff",
             "\1\u0100",
             "\1\u0101",
-            "\1\u0102",
+            "",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u0103",
             "\1\u0104",
             "\1\u0105",
@@ -4190,23 +4177,23 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u0112",
             "\1\u0113",
             "\1\u0114",
+            "",
             "\1\u0115",
             "\1\u0116",
+            "\1\u0117",
+            "\1\u0118",
+            "\1\u0119",
+            "\1\u011a",
             "",
             "",
             "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\1\u0118",
-            "\1\u0119",
-            "\1\u011a",
-            "\1\u011b",
             "\1\u011c",
-            "",
             "\1\u011d",
-            "",
             "\1\u011e",
             "\1\u011f",
             "\1\u0120",
+            "",
             "\1\u0121",
             "\1\u0122",
             "\1\u0123",
@@ -4223,21 +4210,21 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u012d",
             "\1\u012e",
             "\1\u012f",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u0130",
+            "\1\u0131",
+            "\1\u0132",
             "\1\u0133",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u0137",
             "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\1\u0136",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\1\u0138",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u013a",
-            "\1\u013b",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u013c",
-            "\1\u013d",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u013e",
             "\1\u013f",
             "\1\u0140",
@@ -4252,20 +4239,20 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u0145",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "",
-            "",
-            "",
-            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "",
-            "",
+            "\1\u0148",
             "\1\u0149",
+            "\1\u014a",
+            "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "",
+            "",
             "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "",
-            "\1\u014b",
-            "\1\u014c",
+            "",
             "\1\u014d",
+            "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u0150",
             "\1\u0151",
@@ -4276,11 +4263,11 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "",
             "",
-            "",
             "\1\u0156",
-            "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\1\u0158",
+            "",
+            "",
             "\1\u0159",
             "",
             "",
@@ -4298,15 +4285,15 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
             "\1\u0162",
             "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
-            "\1\u0164",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
+            "\1\u0166",
             "\1\u0167",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "",
+            "",
+            "",
             "\1\u0169",
-            "",
-            "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
             "",
             "\12\130\7\uffff\32\130\4\uffff\1\130\1\uffff\32\130",
@@ -4402,29 +4389,29 @@ public class InternalAppliedStereotypePropertyLexer extends Lexer {
 
                         else if ( (LA24_0==']') ) {s = 24;}
 
-                        else if ( (LA24_0=='r') ) {s = 25;}
+                        else if ( (LA24_0=='c') ) {s = 25;}
 
-                        else if ( (LA24_0=='o') ) {s = 26;}
+                        else if ( (LA24_0=='r') ) {s = 26;}
 
-                        else if ( (LA24_0=='n') ) {s = 27;}
+                        else if ( (LA24_0=='o') ) {s = 27;}
 
-                        else if ( (LA24_0=='t') ) {s = 28;}
+                        else if ( (LA24_0=='n') ) {s = 28;}
 
-                        else if ( (LA24_0=='s') ) {s = 29;}
+                        else if ( (LA24_0=='t') ) {s = 29;}
 
-                        else if ( (LA24_0=='{') ) {s = 30;}
+                        else if ( (LA24_0=='s') ) {s = 30;}
 
-                        else if ( (LA24_0=='}') ) {s = 31;}
+                        else if ( (LA24_0=='{') ) {s = 31;}
 
-                        else if ( (LA24_0=='a') ) {s = 32;}
+                        else if ( (LA24_0=='}') ) {s = 32;}
 
-                        else if ( (LA24_0==';') ) {s = 33;}
+                        else if ( (LA24_0=='a') ) {s = 33;}
 
-                        else if ( (LA24_0=='l') ) {s = 34;}
+                        else if ( (LA24_0==';') ) {s = 34;}
 
-                        else if ( (LA24_0=='e') ) {s = 35;}
+                        else if ( (LA24_0=='l') ) {s = 35;}
 
-                        else if ( (LA24_0=='c') ) {s = 36;}
+                        else if ( (LA24_0=='e') ) {s = 36;}
 
                         else if ( (LA24_0=='d') ) {s = 37;}
 

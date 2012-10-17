@@ -50,9 +50,10 @@ public class AppliedStereotypePropertyJavaValidator extends AbstractAppliedStere
 
 	@Check
 	public void checkAppliedStereotypePropertyRule_property(AppliedStereotypePropertyRule appliedStereotypePropertyRule) {
-		Property property = appliedStereotypePropertyRule.getProperty();
+		//Property property = appliedStereotypePropertyRule.getProperty();
 		Property propertyContext = contextElement.getStereotypeProperty();
-		if(!(property.equals(contextElement.getStereotypeProperty()))) {
+		// if(!(property.equals(contextElement.getStereotypeProperty()))) {
+		if(!(appliedStereotypePropertyRule.getProperty().equals(contextElement.getStereotypeProperty().getName()))) {
 			error("bad property", AppliedStereotypePropertyPackage.eINSTANCE.getAppliedStereotypePropertyRule_Property());
 		}
 	}

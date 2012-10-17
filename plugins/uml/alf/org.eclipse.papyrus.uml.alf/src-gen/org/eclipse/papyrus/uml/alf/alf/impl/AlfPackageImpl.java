@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.alf.alf.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -44,6 +33,7 @@ import org.eclipse.papyrus.uml.alf.alf.ClassificationExpression;
 import org.eclipse.papyrus.uml.alf.alf.ClassificationFromClause;
 import org.eclipse.papyrus.uml.alf.alf.ClassificationToClause;
 import org.eclipse.papyrus.uml.alf.alf.ClassifyStatement;
+import org.eclipse.papyrus.uml.alf.alf.ClearAssocExpression;
 import org.eclipse.papyrus.uml.alf.alf.CollectOrIterateOperation;
 import org.eclipse.papyrus.uml.alf.alf.CollectOrIterateOperator;
 import org.eclipse.papyrus.uml.alf.alf.CompoundAcceptStatementCompletion;
@@ -51,6 +41,7 @@ import org.eclipse.papyrus.uml.alf.alf.ConcurrentClauses;
 import org.eclipse.papyrus.uml.alf.alf.ConditionalAndExpression;
 import org.eclipse.papyrus.uml.alf.alf.ConditionalOrExpression;
 import org.eclipse.papyrus.uml.alf.alf.ConditionalTestExpression;
+import org.eclipse.papyrus.uml.alf.alf.CreateOrDestroyLinkOperationExpression;
 import org.eclipse.papyrus.uml.alf.alf.DoStatement;
 import org.eclipse.papyrus.uml.alf.alf.DocumentedStatement;
 import org.eclipse.papyrus.uml.alf.alf.EmptyStatement;
@@ -372,6 +363,20 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
    * @generated
    */
   private EClass linkOperationExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass createOrDestroyLinkOperationExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass clearAssocExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1866,9 +1871,9 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLinkOperationExpression_Kind()
+  public EClass getCreateOrDestroyLinkOperationExpression()
   {
-    return (EAttribute)linkOperationExpressionEClass.getEStructuralFeatures().get(0);
+    return createOrDestroyLinkOperationExpressionEClass;
   }
 
   /**
@@ -1876,9 +1881,39 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getLinkOperationExpression_Tuple()
+  public EAttribute getCreateOrDestroyLinkOperationExpression_Kind()
   {
-    return (EReference)linkOperationExpressionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)createOrDestroyLinkOperationExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCreateOrDestroyLinkOperationExpression_Tuple()
+  {
+    return (EReference)createOrDestroyLinkOperationExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getClearAssocExpression()
+  {
+    return clearAssocExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getClearAssocExpression_End()
+  {
+    return (EReference)clearAssocExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2479,6 +2514,16 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
   public EClass getClassExtentExpression()
   {
     return classExtentExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getClassExtentExpression_Suffix()
+  {
+    return (EReference)classExtentExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3864,8 +3909,13 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     createEReference(propertyCallExpressionEClass, PROPERTY_CALL_EXPRESSION__SUFFIX);
 
     linkOperationExpressionEClass = createEClass(LINK_OPERATION_EXPRESSION);
-    createEAttribute(linkOperationExpressionEClass, LINK_OPERATION_EXPRESSION__KIND);
-    createEReference(linkOperationExpressionEClass, LINK_OPERATION_EXPRESSION__TUPLE);
+
+    createOrDestroyLinkOperationExpressionEClass = createEClass(CREATE_OR_DESTROY_LINK_OPERATION_EXPRESSION);
+    createEAttribute(createOrDestroyLinkOperationExpressionEClass, CREATE_OR_DESTROY_LINK_OPERATION_EXPRESSION__KIND);
+    createEReference(createOrDestroyLinkOperationExpressionEClass, CREATE_OR_DESTROY_LINK_OPERATION_EXPRESSION__TUPLE);
+
+    clearAssocExpressionEClass = createEClass(CLEAR_ASSOC_EXPRESSION);
+    createEReference(clearAssocExpressionEClass, CLEAR_ASSOC_EXPRESSION__END);
 
     linkOperationTupleEClass = createEClass(LINK_OPERATION_TUPLE);
     createEReference(linkOperationTupleEClass, LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT);
@@ -3950,6 +4000,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     sequenceElementEClass = createEClass(SEQUENCE_ELEMENT);
 
     classExtentExpressionEClass = createEClass(CLASS_EXTENT_EXPRESSION);
+    createEReference(classExtentExpressionEClass, CLASS_EXTENT_EXPRESSION__SUFFIX);
 
     blockEClass = createEClass(BLOCK);
     createEReference(blockEClass, BLOCK__SEQUENCE);
@@ -4163,6 +4214,8 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     operationCallExpressionEClass.getESuperTypes().add(this.getSuffixExpression());
     propertyCallExpressionEClass.getESuperTypes().add(this.getSuffixExpression());
     linkOperationExpressionEClass.getESuperTypes().add(this.getSuffixExpression());
+    createOrDestroyLinkOperationExpressionEClass.getESuperTypes().add(this.getLinkOperationExpression());
+    clearAssocExpressionEClass.getESuperTypes().add(this.getLinkOperationExpression());
     sequenceOperationExpressionEClass.getESuperTypes().add(this.getSuffixExpression());
     sequenceReductionExpressionEClass.getESuperTypes().add(this.getSuffixExpression());
     sequenceExpansionExpressionEClass.getESuperTypes().add(this.getSuffixExpression());
@@ -4324,8 +4377,13 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     initEReference(getPropertyCallExpression_Suffix(), this.getSuffixExpression(), null, "suffix", null, 0, 1, PropertyCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(linkOperationExpressionEClass, LinkOperationExpression.class, "LinkOperationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLinkOperationExpression_Kind(), this.getLinkOperationKind(), "kind", null, 0, 1, LinkOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLinkOperationExpression_Tuple(), this.getLinkOperationTuple(), null, "tuple", null, 0, 1, LinkOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(createOrDestroyLinkOperationExpressionEClass, CreateOrDestroyLinkOperationExpression.class, "CreateOrDestroyLinkOperationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCreateOrDestroyLinkOperationExpression_Kind(), this.getLinkOperationKind(), "kind", null, 0, 1, CreateOrDestroyLinkOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCreateOrDestroyLinkOperationExpression_Tuple(), this.getLinkOperationTuple(), null, "tuple", null, 0, 1, CreateOrDestroyLinkOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(clearAssocExpressionEClass, ClearAssocExpression.class, "ClearAssocExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getClearAssocExpression_End(), this.getExpression(), null, "end", null, 0, 1, ClearAssocExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(linkOperationTupleEClass, LinkOperationTuple.class, "LinkOperationTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLinkOperationTuple_LinkOperationTupleElement(), this.getLinkOperationTupleElement(), null, "linkOperationTupleElement", null, 0, -1, LinkOperationTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4410,6 +4468,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     initEClass(sequenceElementEClass, SequenceElement.class, "SequenceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(classExtentExpressionEClass, ClassExtentExpression.class, "ClassExtentExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getClassExtentExpression_Suffix(), this.getSuffixExpression(), null, "suffix", null, 0, 1, ClassExtentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBlock_Sequence(), this.getStatementSequence(), null, "sequence", null, 0, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4579,7 +4638,6 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     initEEnum(linkOperationKindEEnum, LinkOperationKind.class, "LinkOperationKind");
     addEEnumLiteral(linkOperationKindEEnum, LinkOperationKind.CREATE);
     addEEnumLiteral(linkOperationKindEEnum, LinkOperationKind.DESTROY);
-    addEEnumLiteral(linkOperationKindEEnum, LinkOperationKind.CLEAR);
 
     initEEnum(selectOrRejectOperatorEEnum, SelectOrRejectOperator.class, "SelectOrRejectOperator");
     addEEnumLiteral(selectOrRejectOperatorEEnum, SelectOrRejectOperator.SELECT);

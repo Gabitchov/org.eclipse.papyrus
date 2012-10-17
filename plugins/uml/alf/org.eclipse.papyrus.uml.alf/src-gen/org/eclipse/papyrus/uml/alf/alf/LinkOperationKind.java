@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.alf.alf;
 
 import java.util.Arrays;
@@ -48,17 +37,7 @@ public enum LinkOperationKind implements Enumerator
    * @generated
    * @ordered
    */
-  DESTROY(1, "DESTROY", "destroyLink"),
-
-  /**
-   * The '<em><b>CLEAR</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #CLEAR_VALUE
-   * @generated
-   * @ordered
-   */
-  CLEAR(2, "CLEAR", "clearAssoc");
+  DESTROY(1, "DESTROY", "destroyLink");
 
   /**
    * The '<em><b>CREATE</b></em>' literal value.
@@ -91,21 +70,6 @@ public enum LinkOperationKind implements Enumerator
   public static final int DESTROY_VALUE = 1;
 
   /**
-   * The '<em><b>CLEAR</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>CLEAR</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @see #CLEAR
-   * @model literal="clearAssoc"
-   * @generated
-   * @ordered
-   */
-  public static final int CLEAR_VALUE = 2;
-
-  /**
    * An array of all the '<em><b>Link Operation Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -116,7 +80,6 @@ public enum LinkOperationKind implements Enumerator
     {
       CREATE,
       DESTROY,
-      CLEAR,
     };
 
   /**
@@ -177,7 +140,6 @@ public enum LinkOperationKind implements Enumerator
     {
       case CREATE_VALUE: return CREATE;
       case DESTROY_VALUE: return DESTROY;
-      case CLEAR_VALUE: return CLEAR;
     }
     return null;
   }

@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.alf.alf.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -110,6 +99,8 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory
       case AlfPackage.OPERATION_CALL_EXPRESSION: return createOperationCallExpression();
       case AlfPackage.PROPERTY_CALL_EXPRESSION: return createPropertyCallExpression();
       case AlfPackage.LINK_OPERATION_EXPRESSION: return createLinkOperationExpression();
+      case AlfPackage.CREATE_OR_DESTROY_LINK_OPERATION_EXPRESSION: return createCreateOrDestroyLinkOperationExpression();
+      case AlfPackage.CLEAR_ASSOC_EXPRESSION: return createClearAssocExpression();
       case AlfPackage.LINK_OPERATION_TUPLE: return createLinkOperationTuple();
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT: return createLinkOperationTupleElement();
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION: return createSequenceOperationExpression();
@@ -613,6 +604,28 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory
   {
     LinkOperationExpressionImpl linkOperationExpression = new LinkOperationExpressionImpl();
     return linkOperationExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CreateOrDestroyLinkOperationExpression createCreateOrDestroyLinkOperationExpression()
+  {
+    CreateOrDestroyLinkOperationExpressionImpl createOrDestroyLinkOperationExpression = new CreateOrDestroyLinkOperationExpressionImpl();
+    return createOrDestroyLinkOperationExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ClearAssocExpression createClearAssocExpression()
+  {
+    ClearAssocExpressionImpl clearAssocExpression = new ClearAssocExpressionImpl();
+    return clearAssocExpression;
   }
 
   /**

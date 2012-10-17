@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.alf.alf.util;
 
 import org.eclipse.emf.ecore.EObject;
@@ -339,6 +328,24 @@ public class AlfSwitch<T> extends Switch<T>
         LinkOperationExpression linkOperationExpression = (LinkOperationExpression)theEObject;
         T result = caseLinkOperationExpression(linkOperationExpression);
         if (result == null) result = caseSuffixExpression(linkOperationExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AlfPackage.CREATE_OR_DESTROY_LINK_OPERATION_EXPRESSION:
+      {
+        CreateOrDestroyLinkOperationExpression createOrDestroyLinkOperationExpression = (CreateOrDestroyLinkOperationExpression)theEObject;
+        T result = caseCreateOrDestroyLinkOperationExpression(createOrDestroyLinkOperationExpression);
+        if (result == null) result = caseLinkOperationExpression(createOrDestroyLinkOperationExpression);
+        if (result == null) result = caseSuffixExpression(createOrDestroyLinkOperationExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AlfPackage.CLEAR_ASSOC_EXPRESSION:
+      {
+        ClearAssocExpression clearAssocExpression = (ClearAssocExpression)theEObject;
+        T result = caseClearAssocExpression(clearAssocExpression);
+        if (result == null) result = caseLinkOperationExpression(clearAssocExpression);
+        if (result == null) result = caseSuffixExpression(clearAssocExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1402,6 +1409,38 @@ public class AlfSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseLinkOperationExpression(LinkOperationExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Create Or Destroy Link Operation Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Create Or Destroy Link Operation Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCreateOrDestroyLinkOperationExpression(CreateOrDestroyLinkOperationExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Clear Assoc Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Clear Assoc Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseClearAssocExpression(ClearAssocExpression object)
   {
     return null;
   }

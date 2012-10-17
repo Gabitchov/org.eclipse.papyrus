@@ -3,8 +3,7 @@ Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproper
- ty.xtext;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;singleton:=true
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
@@ -42,4 +41,5 @@ Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation
 Bundle-Version: 0.9.1.qualifier
-
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib

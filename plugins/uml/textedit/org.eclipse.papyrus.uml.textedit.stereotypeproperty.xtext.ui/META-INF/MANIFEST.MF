@@ -1,12 +1,10 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.stereotypeproperty.
- xtext.ui.internal.AppliedStereotypePropertyActivator
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal.AppliedStereotypePropertyActivator
 Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproper
- ty.xtext.ui;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui;singleton:=true
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;bundle-version="0.9.1";visibility:=reexport,
@@ -40,4 +38,4 @@ Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.outline,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.quickfix
 Bundle-Version: 0.9.1.qualifier
-
+Import-Package: org.apache.log4j

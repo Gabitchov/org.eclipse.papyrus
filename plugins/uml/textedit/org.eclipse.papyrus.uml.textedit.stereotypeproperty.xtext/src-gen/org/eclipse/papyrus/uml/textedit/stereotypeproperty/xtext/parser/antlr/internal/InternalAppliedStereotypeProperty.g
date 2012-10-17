@@ -80,15 +80,20 @@ ruleAppliedStereotypePropertyRule returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
+		lv_property_0_0=RULE_ID
 		{
-			if ($current==null) {
+			newLeafNode(lv_property_0_0, grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyIDTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getAppliedStereotypePropertyRuleRule());
 	        }
-        }
-	otherlv_0=RULE_ID
-	{
-		newLeafNode(otherlv_0, grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyCrossReference_0_0()); 
-	}
+       		setWithLastConsumed(
+       			$current, 
+       			"property",
+        		lv_property_0_0, 
+        		"ID");
+	    }
 
 )
 )(
@@ -2439,18 +2444,58 @@ ruleLinkOperationExpression returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getLinkOperationExpressionAccess().getCreateOrDestroyLinkOperationExpressionParserRuleCall_0()); 
+    }
+    this_CreateOrDestroyLinkOperationExpression_0=ruleCreateOrDestroyLinkOperationExpression
+    { 
+        $current = $this_CreateOrDestroyLinkOperationExpression_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getLinkOperationExpressionAccess().getClearAssocExpressionParserRuleCall_1()); 
+    }
+    this_ClearAssocExpression_1=ruleClearAssocExpression
+    { 
+        $current = $this_ClearAssocExpression_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleCreateOrDestroyLinkOperationExpression
+entryRuleCreateOrDestroyLinkOperationExpression returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getCreateOrDestroyLinkOperationExpressionRule()); }
+	 iv_ruleCreateOrDestroyLinkOperationExpression=ruleCreateOrDestroyLinkOperationExpression 
+	 { $current=$iv_ruleCreateOrDestroyLinkOperationExpression.current; } 
+	 EOF 
+;
+
+// Rule CreateOrDestroyLinkOperationExpression
+ruleCreateOrDestroyLinkOperationExpression returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 (	otherlv_0='.' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getLinkOperationExpressionAccess().getFullStopKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getCreateOrDestroyLinkOperationExpressionAccess().getFullStopKeyword_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLinkOperationExpressionAccess().getKindLinkOperationKindEnumRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getCreateOrDestroyLinkOperationExpressionAccess().getKindLinkOperationKindEnumRuleCall_1_0()); 
 	    }
 		lv_kind_1_0=ruleLinkOperationKind		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getLinkOperationExpressionRule());
+	            $current = createModelElementForParent(grammarAccess.getCreateOrDestroyLinkOperationExpressionRule());
 	        }
        		set(
        			$current, 
@@ -2464,11 +2509,11 @@ ruleLinkOperationExpression returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLinkOperationExpressionAccess().getTupleLinkOperationTupleParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getCreateOrDestroyLinkOperationExpressionAccess().getTupleLinkOperationTupleParserRuleCall_2_0()); 
 	    }
 		lv_tuple_2_0=ruleLinkOperationTuple		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getLinkOperationExpressionRule());
+	            $current = createModelElementForParent(grammarAccess.getCreateOrDestroyLinkOperationExpressionRule());
 	        }
        		set(
        			$current, 
@@ -2480,6 +2525,61 @@ ruleLinkOperationExpression returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleClearAssocExpression
+entryRuleClearAssocExpression returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getClearAssocExpressionRule()); }
+	 iv_ruleClearAssocExpression=ruleClearAssocExpression 
+	 { $current=$iv_ruleClearAssocExpression.current; } 
+	 EOF 
+;
+
+// Rule ClearAssocExpression
+ruleClearAssocExpression returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='.' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getClearAssocExpressionAccess().getFullStopKeyword_0());
+    }
+	otherlv_1='clearAssoc' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getClearAssocExpressionAccess().getClearAssocKeyword_1());
+    }
+	otherlv_2='(' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getClearAssocExpressionAccess().getLeftParenthesisKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getClearAssocExpressionAccess().getEndExpressionParserRuleCall_3_0()); 
+	    }
+		lv_end_3_0=ruleExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getClearAssocExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"end",
+        		lv_end_3_0, 
+        		"Expression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_4=')' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getClearAssocExpressionAccess().getRightParenthesisKeyword_4());
+    }
+)
 ;
 
 
@@ -4236,7 +4336,25 @@ ruleClassExtentExpression returns [EObject current=null]
     {
     	newLeafNode(otherlv_4, grammarAccess.getClassExtentExpressionAccess().getRightParenthesisKeyword_4());
     }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getClassExtentExpressionAccess().getSuffixSuffixExpressionParserRuleCall_5_0()); 
+	    }
+		lv_suffix_5_0=ruleSuffixExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getClassExtentExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"suffix",
+        		lv_suffix_5_0, 
+        		"SuffixExpression");
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+)?)
 ;
 
 
@@ -7149,12 +7267,6 @@ ruleLinkOperationKind returns [Enumerator current=null]
 	{
         $current = grammarAccess.getLinkOperationKindAccess().getDESTROYEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_1, grammarAccess.getLinkOperationKindAccess().getDESTROYEnumLiteralDeclaration_1()); 
-    }
-)
-    |(	enumLiteral_2='clearAssoc' 
-	{
-        $current = grammarAccess.getLinkOperationKindAccess().getCLEAREnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_2, grammarAccess.getLinkOperationKindAccess().getCLEAREnumLiteralDeclaration_2()); 
     }
 ));
 

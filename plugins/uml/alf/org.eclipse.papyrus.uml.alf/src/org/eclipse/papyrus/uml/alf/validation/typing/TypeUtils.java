@@ -14,24 +14,23 @@
 package org.eclipse.papyrus.uml.alf.validation.typing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-//import org.eclipse.papyrus.uml.alf.alf.OperationCallExpressionWithoutDot;
 import org.eclipse.papyrus.uml.alf.alf.AdditiveExpression;
 import org.eclipse.papyrus.uml.alf.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.alf.AndExpression;
 import org.eclipse.papyrus.uml.alf.alf.BOOLEAN_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.ClassExtentExpression;
 import org.eclipse.papyrus.uml.alf.alf.ClassificationExpression;
+import org.eclipse.papyrus.uml.alf.alf.ClearAssocExpression;
 import org.eclipse.papyrus.uml.alf.alf.CollectOrIterateOperation;
 import org.eclipse.papyrus.uml.alf.alf.ConditionalAndExpression;
 import org.eclipse.papyrus.uml.alf.alf.ConditionalOrExpression;
 import org.eclipse.papyrus.uml.alf.alf.ConditionalTestExpression;
+import org.eclipse.papyrus.uml.alf.alf.CreateOrDestroyLinkOperationExpression;
 import org.eclipse.papyrus.uml.alf.alf.EqualityExpression;
 import org.eclipse.papyrus.uml.alf.alf.ExclusiveOrExpression;
 import org.eclipse.papyrus.uml.alf.alf.Expression;
@@ -42,6 +41,7 @@ import org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression;
 import org.eclipse.papyrus.uml.alf.alf.IsUniqueOperation;
 import org.eclipse.papyrus.uml.alf.alf.LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.LinkOperationExpression;
+import org.eclipse.papyrus.uml.alf.alf.LinkOperationTupleElement;
 import org.eclipse.papyrus.uml.alf.alf.MultiplicativeExpression;
 import org.eclipse.papyrus.uml.alf.alf.NameExpression;
 import org.eclipse.papyrus.uml.alf.alf.NonLiteralValueSpecification;
@@ -71,19 +71,20 @@ import org.eclipse.papyrus.uml.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.uml.alf.alf.ValueSpecification;
 import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.uml.alf.validation.AlfJavaValidator;
-import org.eclipse.papyrus.uml.alf.validation.PredefinedBehaviorsAndTypesUtils;
-import org.eclipse.uml2.common.util.UML2Util;
+import org.eclipse.papyrus.uml.alf.validation.NamingUtils;
+import org.eclipse.papyrus.uml.tools.utils.NameResolutionUtils;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
-import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.PrimitiveType;
-import org.eclipse.uml2.uml.TemplateParameter;
-import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
+//import org.eclipse.papyrus.uml.alf.alf.OperationCallExpressionWithoutDot;
 
 public class TypeUtils {
 	
@@ -796,11 +797,18 @@ public class TypeUtils {
 			if (exp.getInvocationCompletion()==null) { // && exp.getSequenceConstructionCompletion() == null) {
 				List<EObject> visibleVariableOrParametersOrProperties = AlfScopeProvider.scopingTool.getVisibleVariablesOrParametersOrProperties(exp).resolveByName(exp.getId()) ;
 				if (visibleVariableOrParametersOrProperties.isEmpty()) {
-					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
-							"Could not resolve local variable, property or parameter " + exp.getId(), 
-							exp, 
-							AlfPackage.eINSTANCE.getNameExpression_Id()) ;
-					return TypeExpressionFactory.eInstance.createTypeExpression(error);
+					// Try to resolve the name as a classifier name
+					List<NamedElement> resolvedClassifiers = NameResolutionUtils.getNamedElements(exp.getId(), AlfJavaValidator.getContextClassifier(), UMLPackage.eINSTANCE.getClassifier()) ;
+					if (resolvedClassifiers.size() == 1) {
+						typeOfPrefix = TypeExpressionFactory.eInstance.createTypeExpression(resolvedClassifiers.get(0)) ;
+					}
+					else {
+						ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
+								"Could not resolve local variable, property or parameter " + exp.getId(), 
+								exp, 
+								AlfPackage.eINSTANCE.getNameExpression_Id()) ;
+						return TypeExpressionFactory.eInstance.createTypeExpression(error);
+					}
 				}
 				else if (visibleVariableOrParametersOrProperties.size()>1) {
 					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
@@ -950,10 +958,25 @@ public class TypeUtils {
 		TypeExpression typeOfPrefix = propagatedTypeOfPrefix ;
 				
 		if (typeOfPrefix == null) {
-			String errorMessage = "Type of prefix is undefined. Could not validate suffix." ;
-			ErrorTypeFacade error = 
-				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
-			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			// If the owner of this suffix expression is a name expression, try to resolve a classifier
+			if (exp.eContainer() instanceof NameExpression) {
+				NameExpression contextNameExpression = (NameExpression)exp.eContainer() ;
+				String name = "" ;
+				for (UnqualifiedName n : contextNameExpression.getPath().getNamespace()) {
+					name += n.getName() + "::" ;
+				}
+				name += contextNameExpression.getId() ;
+				List<NamedElement> resolved = NameResolutionUtils.getNamedElements(name, AlfJavaValidator.getContextClassifier(), UMLPackage.eINSTANCE.getClassifier()) ;
+				if (resolved.size() == 1) {
+					typeOfPrefix = TypeExpressionFactory.eInstance.createTypeExpression(resolved.get(0)) ;
+				}
+			}
+			if (typeOfPrefix == null) {
+				String errorMessage = "Type of prefix is undefined. Could not validate suffix." ;
+				ErrorTypeFacade error = 
+						TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
+				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			}
 		}
 		else if (typeOfPrefix.getTypeFacade() == TypeUtils._undefined) {
 			String errorMessage = "The invocation prefix has no return parameter." ;
@@ -984,18 +1007,10 @@ public class TypeUtils {
 		}
 
 		if (exp instanceof ClassExtentExpression) {
-			// TODO
-			String errorMessage = "Class extent expressions are not supported in this version of the Alf editor" ;
-			ErrorTypeFacade unsupportedCase = 
-				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
-			return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+			return getTypeOfClassExtentExpression((ClassExtentExpression)exp, typeOfPrefix) ;
 		}
 		else if (exp instanceof LinkOperationExpression) {
-			// TODO
-			String errorMessage = "Link operation expressions are not supported in this version of the Alf editor" ;
-			ErrorTypeFacade unsupportedCase = 
-				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
-			return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+			return getTypeOfLinkOperationExpression((LinkOperationExpression)exp, typeOfPrefix) ;
 		}
 		else if (exp instanceof OperationCallExpression) {
 			return getTypeOfOperationCallExpression((OperationCallExpression)exp, typeOfPrefix) ;
@@ -1012,6 +1027,146 @@ public class TypeUtils {
 		else {// exp instanceof SequenceReductionExpression 
 			return getTypeOfSequenceReductionExpression((SequenceReductionExpression) exp, typeOfPrefix) ;
 		}
+	}
+
+	private TypeExpression getTypeOfLinkOperationExpression(
+			LinkOperationExpression exp, TypeExpression typeOfPrefix) {
+		if (exp instanceof CreateOrDestroyLinkOperationExpression) {
+			return getTypeOfCreateOrDestroyLinkOperationExpression((CreateOrDestroyLinkOperationExpression)exp, typeOfPrefix) ;
+		}
+		else {
+			return getTypeOfClearAssocOperationExpression((ClearAssocExpression)exp, typeOfPrefix) ;
+		}
+	}
+
+	private TypeExpression getTypeOfClearAssocOperationExpression(
+			ClearAssocExpression exp, TypeExpression typeOfPrefix) {
+		Classifier cddAssociation = typeOfPrefix.getTypeFacade().extractActualType() ;
+		if (! (cddAssociation instanceof Association)) {
+			String errorMessage = "Prefix does not resolve to an Association" ;
+			ErrorTypeFacade error = 
+				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, AlfPackage.eINSTANCE.getCreateOrDestroyLinkOperationExpression_Tuple()) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+		}
+		TypeExpression typeOfEndValue = null ;
+		if (exp.getEnd() != null) {
+			typeOfEndValue = new TypeUtils().getTypeOfExpression(exp.getEnd()) ;
+		}
+		if (typeOfEndValue != null && typeOfEndValue.getTypeFacade() instanceof ErrorTypeFacade) {
+			return typeOfEndValue ;
+		}
+		return TypeExpressionFactory.eInstance.createTypeExpression(_undefined, 0, 0, false, false);
+	}
+
+	private TypeExpression getTypeOfCreateOrDestroyLinkOperationExpression(
+			CreateOrDestroyLinkOperationExpression exp,
+			TypeExpression typeOfPrefix) {
+		Classifier cddAssociation = typeOfPrefix.getTypeFacade().extractActualType() ;
+		if (! (cddAssociation instanceof Association)) {
+			String errorMessage = "Prefix does not resolve to an Association" ;
+			ErrorTypeFacade error = 
+				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, AlfPackage.eINSTANCE.getCreateOrDestroyLinkOperationExpression_Tuple()) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+		}
+		if (exp.getTuple() != null && exp.getTuple().getLinkOperationTupleElement() != null) {
+			Association association = (Association)cddAssociation ;
+			if (association.getMemberEnds().size() != exp.getTuple().getLinkOperationTupleElement().size()) {
+				String errorMessage = "Invalid number of tuple elements" ;
+				ErrorTypeFacade error = 
+					TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, AlfPackage.eINSTANCE.getCreateOrDestroyLinkOperationExpression_Tuple()) ;
+				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			}
+			else {
+				List<Property> alreadyFoundEnds = new ArrayList<Property>() ;
+				for (LinkOperationTupleElement tupleElem : exp.getTuple().getLinkOperationTupleElement()) {
+					// first try to retrieve corresponding end
+					String cddEndName = tupleElem.getRole() ;
+					Property end = null ;
+					if (cddEndName.startsWith("'")) {
+						cddEndName = cddEndName.substring(1, cddEndName.length() - 1) ;
+					}
+					List<NamedElement> resolvedEnds = NameResolutionUtils.getNamedElements(cddEndName, association, UMLPackage.eINSTANCE.getProperty()) ;
+					if (resolvedEnds.size() == 0) {
+						String errorMessage = cddEndName + "cannot be resolved in the context of " + association.getName() ;
+						ErrorTypeFacade error = 
+							TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, tupleElem, AlfPackage.eINSTANCE.getLinkOperationTupleElement_Role()) ;
+						return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+					}
+					else if (resolvedEnds.size() > 1) {
+						String errorMessage = cddEndName + " resolves to multiple ends in the context of " + association.getName() ;
+						ErrorTypeFacade error = 
+							TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, tupleElem, AlfPackage.eINSTANCE.getLinkOperationTupleElement_Role()) ;
+						return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+					}
+					else {
+						end = (Property)resolvedEnds.get(0) ;
+						if (alreadyFoundEnds.contains(end)) {
+							String errorMessage = "Link end data for " + end.getName() + " are already specified" ;
+							ErrorTypeFacade error = 
+								TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, tupleElem, AlfPackage.eINSTANCE.getLinkOperationTupleElement_Role()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+						}
+						else {
+							alreadyFoundEnds.add(end) ;
+						}
+					}
+					// Then check if index is correct
+					if (tupleElem.getRoleIndex() != null) {
+						if (! end.isOrdered()) {
+							String errorMessage = "End " + end.getName() + " is not ordered. No index can be specified." ;
+							ErrorTypeFacade error = 
+								TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, tupleElem, AlfPackage.eINSTANCE.getLinkOperationTupleElement_RoleIndex()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+						}
+						else {
+							TypeExpression typeOfIndex = new TypeUtils().getTypeOfExpression(tupleElem.getRoleIndex()) ;
+							if (typeOfIndex.getTypeFacade() instanceof ErrorTypeFacade) {
+								return typeOfIndex ;
+							}
+							else {
+								int compatibilityLevel = _integer.isCompatibleWithMe(typeOfIndex.getTypeFacade()) ;
+								if (compatibilityLevel == 0) {
+									String errorMessage = "Expecting an expression of type Integer. Found an expression of type " + typeOfIndex.getLabel() ;
+									ErrorTypeFacade error = 
+										TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, tupleElem, AlfPackage.eINSTANCE.getLinkOperationTupleElement_RoleIndex()) ;
+									return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+								}
+								else if (typeOfIndex.getMultiplicity().getUpperBound() != 1) {
+									String errorMessage = "Expecting an expression of type Integer. Found an expression of type " + typeOfIndex.getLabel() ;
+									ErrorTypeFacade error = 
+										TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, tupleElem, AlfPackage.eINSTANCE.getLinkOperationTupleElement_RoleIndex()) ;
+									return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+								}
+							}
+						}
+					}
+					// Then check if value is correct
+					TypeExpression expectedType = TypeExpressionFactory.eInstance.createTypeExpression(end) ;
+					TypeExpression typeOfArgument = new TypeUtils().getTypeOfExpression(tupleElem.getObject()) ;
+					if (typeOfArgument.getTypeFacade() instanceof ErrorTypeFacade) {
+						return typeOfArgument ;
+					}
+					else {
+						if (expectedType.getTypeFacade().isCompatibleWithMe(typeOfArgument.getTypeFacade()) == 0) {
+							String errorMessage = "Expecting an expression of type " + expectedType.getTypeFacade().getLabel() +" . Found an expression of type " + typeOfArgument.getTypeFacade().getLabel() ;
+							ErrorTypeFacade error = 
+								TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, tupleElem, AlfPackage.eINSTANCE.getLinkOperationTupleElement_RoleIndex()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+						}
+					}
+				}
+			}
+		}
+		return TypeExpressionFactory.eInstance.createTypeExpression(_undefined, 0, 0, false, false);
+	}
+
+	private TypeExpression getTypeOfClassExtentExpression(
+			ClassExtentExpression exp, TypeExpression typeOfPrefix) {
+		if (exp.getSuffix() != null && exp.getSuffix() != suffixToBeIgnored) {
+			TypeExpression propagatedTypeOfPrefix = TypeExpressionFactory.eInstance.createTypeExpression(typeOfPrefix.getTypeFacade(), 0, -1, true, false) ;
+			return getTypeOfSuffixExpression(exp.getSuffix(), propagatedTypeOfPrefix) ;
+		}
+		return TypeExpressionFactory.eInstance.createTypeExpression(typeOfPrefix.getTypeFacade(), 0, -1, true, false);
 	}
 
 	public TypeExpression getTypeOfSequenceOperationExpression(SequenceOperationExpression exp, TypeExpression typeOfPrefix) {

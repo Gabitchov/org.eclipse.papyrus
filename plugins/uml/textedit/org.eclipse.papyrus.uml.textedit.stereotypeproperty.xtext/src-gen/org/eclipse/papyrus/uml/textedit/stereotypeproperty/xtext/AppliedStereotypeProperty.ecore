@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="appliedStereotypeProperty" nsURI="http://www.eclipse.org/papyrus/uml/textedit/property/xtext/StereotypeProperty"
     nsPrefix="appliedStereotypeProperty">
   <eClassifiers xsi:type="ecore:EClass" name="AppliedStereotypePropertyRule">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass ../../../../../../../../../org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType ../../../../../../../../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ExpressionValueRule"
         containment="true"/>
   </eClassifiers>

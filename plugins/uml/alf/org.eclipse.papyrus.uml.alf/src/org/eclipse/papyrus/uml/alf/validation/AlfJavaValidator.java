@@ -1434,9 +1434,9 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	
 	@Check
 	public void checkTemplateBindingInQualifiedNameWithBinding(QualifiedNameWithBinding expression) {
-		//if (expression.getBinding() != null) {
-		//	String errorMessage = "Template bindings are not supported in this version of the Alf editor." ; // TODO
-		//	warning(errorMessage, AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Binding()) ;
-		//}
+		if (expression.getBinding() != null) {
+			String errorMessage = "Template bindings are not supported in this version of the Alf editor." ; // TODO
+			warning(errorMessage, AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Binding()) ;
+		}
 	}
 }
