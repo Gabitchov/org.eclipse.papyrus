@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.uml.textedit.operation.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.uml.textedit.operation.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.uml.textedit.operation.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.uml.textedit.operation.xtext" forceOverwrite="true"
+    modelName="Operation" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.operation.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.uml.textedit.operation.xtext.editor" runtimeVersion="2.8"
+    usedGenPackages="../../../../../../../../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/Alf.genmodel#//alf">
+  <genPackages prefix="Operation" basePackage="org.eclipse.papyrus.uml.textedit.operation.xtext"
+      disposableProviderFactory="true" ecorePackage="Operation.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Operation.ecore#//VisibilityIndicator">
+      <genEnumLiterals ecoreEnumLiteral="Operation.ecore#//VisibilityIndicator/PUBLIC"/>
+      <genEnumLiterals ecoreEnumLiteral="Operation.ecore#//VisibilityIndicator/PRIVATE"/>
+      <genEnumLiterals ecoreEnumLiteral="Operation.ecore#//VisibilityIndicator/PROTECTED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Operation.ecore#//ParameterDirection">
+      <genEnumLiterals ecoreEnumLiteral="Operation.ecore#//ParameterDirection/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="Operation.ecore#//ParameterDirection/OUT"/>
+      <genEnumLiterals ecoreEnumLiteral="Operation.ecore#//ParameterDirection/INOUT"/>
+    </genEnums>
+    <genClasses ecoreClass="Operation.ecore#//OperationDefinitionOrStub">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//OperationDefinitionOrStub/declaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//OperationDefinitionOrStub/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//OperationDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//OperationDeclaration/isConstructor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//OperationDeclaration/isDestructor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//OperationDeclaration/visibilityIndicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//OperationDeclaration/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//OperationDeclaration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//OperationDeclaration/formalParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//OperationDeclaration/returnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//OperationDeclaration/redefinition"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//FormalParameters">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//FormalParameters/formalParameterList"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//FormalParameterList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//FormalParameterList/formalParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//FormalParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//FormalParameter/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//FormalParameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//FormalParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//TypePart">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//TypePart/typeName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//TypePart/multiplicity"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//Multiplicity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//Multiplicity/range"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//Multiplicity/ordered"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//Multiplicity/nonUnique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//Multiplicity/sequence"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//MultiplicityRange">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//MultiplicityRange/lower"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//MultiplicityRange/upper"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//NUMBER_LITERAL_WITHOUT_SUFFIX">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Operation.ecore#//NUMBER_LITERAL_WITHOUT_SUFFIX/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//INTEGER_LITERAL_WITHOUT_SUFFIX"/>
+    <genClasses ecoreClass="Operation.ecore#//UNLIMITED_LITERAL_WITHOUT_SUFFIX"/>
+    <genClasses ecoreClass="Operation.ecore#//TypeName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//TypeName/qualifiedName"/>
+    </genClasses>
+    <genClasses ecoreClass="Operation.ecore#//RedefinitionClause">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Operation.ecore#//RedefinitionClause/redefinedOperations"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

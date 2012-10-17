@@ -1,0 +1,77 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+
+grammar org.eclipse.papyrus.uml.textedit.operation.xtext.Operation 
+//with org.eclipse.xtext.common.Terminals
+with org.eclipse.papyrus.uml.alf.Alf
+
+import "http://www.eclipse.org/uml2/4.0.0/UML" as uml
+
+generate operation "http://www.eclipse.org/papyrus/uml/textedit/operation/xtext/Operation"
+
+OperationDefinitionOrStub : 
+	declaration = OperationDeclaration ( ';' | body = Block ) ;
+
+OperationDeclaration : 
+	(( isConstructor ?= '@Create') | ( isDestructor ?= '@Destroy'))? 
+	( visibilityIndicator = VisibilityIndicator )? 
+	( abstract ?= 'abstract' )? name = ID formalParameters = FormalParameters
+	( ':' returnType = TypePart )? ( redefinition = RedefinitionClause )? ;
+
+enum VisibilityIndicator : 
+	PUBLIC = 'public' | 
+	PRIVATE = 'private' |
+	PROTECTED = 'protected' ;
+
+FormalParameters : 
+	{FormalParameters} '(' ( formalParameterList = FormalParameterList )? ')' ;
+	
+FormalParameterList : 
+	formalParameter += FormalParameter ( ',' formalParameter += FormalParameter )* ;
+	
+FormalParameter : 
+	// To be added ( <DOCUMENTATION_COMMENT> )?
+	//stereotypeAnnotations = StereotypeAnnotations 
+	direction = ParameterDirection 
+	name = ID ':' type = TypePart ;
+
+TypePart : 
+	typeName = TypeName ( multiplicity = Multiplicity )? ;
+
+Multiplicity : 
+	{Multiplicity} '[' ( range = MultiplicityRange )? ']'
+	( ordered ?= 'ordered' ( nonUnique ?= 'nonUnique' )? | nonUnique ?='nonUnique' ( ordered ?= 'ordered' )? | sequence ?= 'sequence' )? ;
+	
+MultiplicityRange : 
+	( lower = NUMBER_LITERAL_WITHOUT_SUFFIX '..' )? upper = NUMBER_LITERAL_WITHOUT_SUFFIX ;
+
+NUMBER_LITERAL_WITHOUT_SUFFIX :
+	INTEGER_LITERAL_WITHOUT_SUFFIX | UNLIMITED_LITERAL_WITHOUT_SUFFIX ;
+
+INTEGER_LITERAL_WITHOUT_SUFFIX :
+	value = IntegerValue ;
+
+UNLIMITED_LITERAL_WITHOUT_SUFFIX :
+	value = '*' ;
+
+TypeName :
+	{TypeName}(qualifiedName = QualifiedNameWithBinding | 'any') ;
+	
+enum ParameterDirection : 
+	IN = 'in' | 
+	OUT = 'out' | 
+	INOUT = 'inout' ;
+		
+RedefinitionClause : 
+	'redefines' redefinedOperations = QualifiedNameList ;
