@@ -18,7 +18,7 @@ updateSite=/shared/jobs/${JOB_NAME}/updateSite
 
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteSignal
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteDirName
-compositeFileDir=/opt/public/modeling/mdt/papyrus/compositeExtra
+compositeFilesDir=/opt/public/modeling/mdt/papyrus/compositeExtra
 # note: the version and build id used by the cronPromote.sh are taken from papyrus-0.9-maintenance-nightly
 
 #FULL_BUILD_ID=$(cat $promoteDirName)
