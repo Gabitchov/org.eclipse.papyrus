@@ -14,7 +14,7 @@
 ########## publishing ##########
 
 p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.extra.build.feature_*-eclipse.feature/site.p2
-updateSite=/shared/jobs/${JOB_NAME}/updateSite
+updateSite=/shared/jobs/${JOB_NAME}/updateSite/extra
 
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteSignal
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteDirName
