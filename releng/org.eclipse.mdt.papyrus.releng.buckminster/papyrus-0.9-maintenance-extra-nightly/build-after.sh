@@ -14,11 +14,11 @@
 ########## publishing ##########
 
 p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.extra.build.feature_*-eclipse.feature/site.p2
-updateSite=/shared/jobs/${JOB_NAME}/updateSite/extra
+updateSite=/shared/jobs/${JOB_NAME}/updateSite
 
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteSignal
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteDirName
-compositeFilesDir=/shared/modeling/mdt/papyrus/tmpCompositeExtra
+compositeFileDir=/opt/public/modeling/mdt/papyrus/compositeExtra
 # note: the version and build id used by the cronPromote.sh are taken from papyrus-0.9-maintenance-nightly
 
 #FULL_BUILD_ID=$(cat $promoteDirName)
@@ -28,15 +28,16 @@ zipName=Papyrus-Extra.zip
 rm -rf tmp
 mkdir -p "tmp/extra"
 
+mkdir ${p2UpdateSiteDir}/extra
+mv ${p2UpdateSiteDir}/* ${p2UpdateSiteDir}/extra
+cp ${compositeFilesDir}/* ${p2UpdateSiteDir}
+
 # create the update site zip
 (cd $p2UpdateSiteDir && zip -r $updateZipName *)
 mv $p2UpdateSiteDir/$updateZipName "tmp/extra"
 
-#rm -rf $updateSite
-rm -rf ${updateSite}/../*
+rm -rf $updateSite
 mv $p2UpdateSiteDir $updateSite
-
-cp ${compositeFilesDir}/compositeArtifacts.xml ${compositeFilesDir}/compositeContent.xml ${updateSite}/..
 
 mv revision.txt "tmp/extra"
 
