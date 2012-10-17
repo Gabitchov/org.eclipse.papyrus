@@ -17,15 +17,12 @@
       [Enter License Description here.]
    </license>
 
-   <plugin
-         id="org.eclipse.papyrus.dsml.validation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <requires>
+      <import feature="org.eclipse.papyrus.dsml.validation.generator.feature" version="0.9.1" match="greaterOrEqual"/>
+   </requires>
 
    <plugin
-         id="org.eclipse.papyrus.dsml.validation.generator"
+         id="org.eclipse.papyrus.dsml.validation"
          download-size="0"
          install-size="0"
          version="0.0.0"
