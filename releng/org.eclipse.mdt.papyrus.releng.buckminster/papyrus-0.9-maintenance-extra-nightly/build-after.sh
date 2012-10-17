@@ -33,6 +33,8 @@ mkdir -p "tmp/extra"
 mv $p2UpdateSiteDir/$updateZipName "tmp/extra"
 
 rm -rf $updateSite
+rm -rf $updateSite/../*
+mkdir $updateSite
 mv $p2UpdateSiteDir $updateSite
 
 cp ${compositeFilesDir}/compositeArtifacts.xml ${compositeFilesDir}/compositeContent.xml ${updateSite}/..
