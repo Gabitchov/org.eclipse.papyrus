@@ -28,7 +28,7 @@ zipName=Papyrus-Extra.zip
 rm -rf tmp
 mkdir -p "tmp/extra"
 
-mkdir ${p2UpdateSiteDir}/extra
+(cd ${p2UpdateSiteDir} && mkdir ./extra)
 mv ${p2UpdateSiteDir}/* ${p2UpdateSiteDir}/extra
 cp ${compositeFilesDir}/* ${p2UpdateSiteDir}
 
