@@ -188,7 +188,7 @@ public class AssociationClassHelper extends ElementHelper {
 		// 2. creation of the associationClass Node without semantic element
 		// creation of the node
 		IAdaptable elementAdapter = new EObjectAdapter(associationClass);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, true, diagramPreferencesHint);
 
 		CreateCommand associationClassNodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, containerView);
 		cc.compose(associationClassNodeCreationCommand);
@@ -202,7 +202,7 @@ public class AssociationClassHelper extends ElementHelper {
 		// target
 		if(endEditPart[0] == null) {
 			// creation of the node
-			ViewDescriptor _descriptor = new ViewDescriptor(new EObjectAdapter(endToDisplay.get(0)), Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
+			ViewDescriptor _descriptor = new ViewDescriptor(new EObjectAdapter(endToDisplay.get(0)), Node.class, null, ViewUtil.APPEND, true, diagramPreferencesHint);
 
 			// get the command and execute it.
 			CreateCommand endNodeCreationCommand = new CreateCommand(getEditingDomain(), _descriptor, containerView);
@@ -217,7 +217,7 @@ public class AssociationClassHelper extends ElementHelper {
 
 		if(endEditPart[1] == null) {
 			// creation of the node
-			ViewDescriptor _descriptor = new ViewDescriptor(new EObjectAdapter(endToDisplay.get(2)), Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
+			ViewDescriptor _descriptor = new ViewDescriptor(new EObjectAdapter(endToDisplay.get(2)), Node.class, null, ViewUtil.APPEND, true, diagramPreferencesHint);
 
 			// get the command and execute it.
 			CreateCommand endNodeCreationCommand = new CreateCommand(getEditingDomain(), _descriptor, containerView);

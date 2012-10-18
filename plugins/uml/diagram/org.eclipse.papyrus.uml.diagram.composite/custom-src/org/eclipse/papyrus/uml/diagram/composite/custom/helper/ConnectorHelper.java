@@ -163,7 +163,7 @@ public class ConnectorHelper extends ElementHelper {
 			}
 
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(sourceRole), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(sourceRole), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)sourceParent.getModel()));
@@ -186,7 +186,7 @@ public class ConnectorHelper extends ElementHelper {
 			}
 
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(targetRole), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(targetRole), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)targetParent.getModel()));

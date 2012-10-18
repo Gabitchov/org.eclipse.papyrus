@@ -106,7 +106,7 @@ public class TimeObservationHelper extends ElementHelper {
 
 		// 2. creation of the node TimeObservation
 		IAdaptable elementAdapter = new EObjectAdapter(timeObservation);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.TimeObservation_8006).getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.TimeObservation_8006).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)containerView));
 		cc.compose(nodeCreationCommand);
 

@@ -78,7 +78,7 @@ public class DiagramShortCutHelper extends ElementHelper {
 		//creation of the node DiagramShortCut
 
 		IAdaptable elementAdapter = new EObjectAdapter(diagram);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.Diagram_8016).getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.Diagram_8016).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		DiagramShortCutCreationViewCommand nodeCreationCommand = new DiagramShortCutCreationViewCommand(getEditingDomain(), descriptor, ((View)containerView));
 		cc.compose(nodeCreationCommand);
 

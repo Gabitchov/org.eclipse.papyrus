@@ -117,7 +117,7 @@ public class DurationObservationHelper extends ElementHelper {
 		// 2. creation of the node DurationObservation
 
 		IAdaptable elementAdapter = new EObjectAdapter(durationObservation);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.DurationObservation_8007).getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.DurationObservation_8007).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)containerView));
 		cc.compose(nodeCreationCommand);
 

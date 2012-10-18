@@ -333,7 +333,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			CompositeCommand cc = new CompositeCommand("Drop");
 			IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
 
-			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 
 			CreateCommand createStateMachine = new CreateCommand(getEditingDomain(), descriptor, (View)(getHost().getModel()));
 
@@ -372,7 +372,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			CompositeCommand cc = new CompositeCommand("Drop");
 			IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
 
-			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 
 			CreateCommand createState = new CreateCommand(getEditingDomain(), descriptor, (View)(getHost().getModel()));
 
@@ -541,7 +541,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		IAdaptable targetAdapter = null;
 		if(sourceEditPart == null) {
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, (View)sourceParent.getModel());
@@ -557,7 +557,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		if((target != null) && !target.equals(source)) {
 			if(targetEditPart == null) {
 				// creation of the node
-				ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+				ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
 				// get the command and execute it.
 				CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)targetParent.getModel()));
@@ -616,7 +616,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 		// Create the command targeting host parent (owner of the ShapeCompartmentEditPart) 
 		CreateViewCommand createCommand = null;
 		if(nodeVISUALID != ConnectionPointReferenceEditPart.VISUAL_ID) {

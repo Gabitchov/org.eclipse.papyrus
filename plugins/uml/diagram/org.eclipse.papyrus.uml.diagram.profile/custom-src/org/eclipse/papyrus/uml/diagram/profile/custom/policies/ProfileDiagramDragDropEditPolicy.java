@@ -475,9 +475,9 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 
 				//we create the view command
 				if(containerView.get(0).equals(getHost().getModel())) {//we are on the diagram
-					descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(MetaclassEditPart.VISUAL_ID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+					descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(MetaclassEditPart.VISUAL_ID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 				} else {
-					descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(MetaclassEditPartCN.VISUAL_ID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+					descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(MetaclassEditPartCN.VISUAL_ID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 				}
 
 				CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
@@ -544,7 +544,7 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 
 		if(sourceEditPart == null) {
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
@@ -560,7 +560,7 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 		}
 		if(targetEditPart == null) {
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));

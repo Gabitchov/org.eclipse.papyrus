@@ -127,7 +127,7 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 		 */
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		IAdaptable elementAdapter = new EObjectAdapter(element);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, true, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
 		CreateCommand nodeCreationCommand = new CreateCommand(editingdomain, descriptor, diagram);
 

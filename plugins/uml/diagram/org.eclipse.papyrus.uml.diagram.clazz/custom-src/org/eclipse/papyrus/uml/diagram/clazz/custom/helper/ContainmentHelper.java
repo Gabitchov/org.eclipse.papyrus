@@ -278,7 +278,7 @@ public class ContainmentHelper extends ElementHelper {
 	 *        the container that will contain the view of the dropped element <B> cannot be null</B>
 	 */
 	protected void dropElementToDiagram(CompositeCommand cc, PackageableElement droppedElement, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
-		ViewDescriptor droppedElementDescriptor = new ViewDescriptor(new EObjectAdapter(droppedElement), Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
+		ViewDescriptor droppedElementDescriptor = new ViewDescriptor(new EObjectAdapter(droppedElement), Node.class, null, ViewUtil.APPEND, true, diagramPreferencesHint);
 
 		CreateCommand containedNodeCreationCommand = new CreateCommand(this.editDomain, droppedElementDescriptor, containerView);
 		cc.add(containedNodeCreationCommand);

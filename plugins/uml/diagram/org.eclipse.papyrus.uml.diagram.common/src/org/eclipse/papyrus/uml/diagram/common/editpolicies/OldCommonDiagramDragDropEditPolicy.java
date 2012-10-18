@@ -160,7 +160,7 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 		IAdaptable targetAdapter = null;
 		if(sourceEditPart == null) {
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
@@ -174,7 +174,7 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 		}
 		if(targetEditPart == null) {
 			// creation of the node
-			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
@@ -407,7 +407,7 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
 		cc.compose(createCommand);
 
@@ -567,7 +567,7 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 
 		// 2. creation of the node Comment
 		IAdaptable elementAdapter = new EObjectAdapter(constraint);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, commentType.getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, commentType.getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, (containerView));
 		cc.compose(nodeCreationCommand);
 
@@ -644,7 +644,7 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 
 		// 2. creation of the node Comment
 		IAdaptable elementAdapter = new EObjectAdapter(comment);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, commentType.getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, commentType.getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, (containerView));
 		cc.compose(nodeCreationCommand);
 

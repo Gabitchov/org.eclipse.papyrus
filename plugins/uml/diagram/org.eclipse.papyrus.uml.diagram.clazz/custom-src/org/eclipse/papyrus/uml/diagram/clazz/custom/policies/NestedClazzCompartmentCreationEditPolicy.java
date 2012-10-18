@@ -92,7 +92,7 @@ public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEdi
 		if (nodeVISUALID == -1 ){			
 			cc.compose(UnexecutableCommand.INSTANCE);
 		} else {			
-			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.getElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, ((GraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)UMLElementTypes.getElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, ((GraphicalEditPart)getHost()).getDiagramPreferencesHint());
 			CreateCommand createCommand = new CreateUniqueViewCommand(editingDomain, descriptor, ((View)(getHost().getModel())));
 			cc.compose(createCommand);
 		}

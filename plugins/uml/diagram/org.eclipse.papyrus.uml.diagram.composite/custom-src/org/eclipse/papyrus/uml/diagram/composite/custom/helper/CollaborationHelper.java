@@ -80,7 +80,7 @@ public class CollaborationHelper extends ElementHelper {
 			CollaborationUseFromTypeCreateCommand cUseCreateCommand = new CollaborationUseFromTypeCreateCommand(req, (StructuredClassifier)graphicalParentObject, semanticElement, semanticAdapter);
 
 			// 2. Prepare the drop command
-			ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)cUseCreateCommand.getCommandResult().getReturnValue(), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, false, graphicalTarget.getDiagramPreferencesHint());
+			ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)cUseCreateCommand.getCommandResult().getReturnValue(), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, true, graphicalTarget.getDiagramPreferencesHint());
 			CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(reTarget(graphicalTarget).getModel())));
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
 

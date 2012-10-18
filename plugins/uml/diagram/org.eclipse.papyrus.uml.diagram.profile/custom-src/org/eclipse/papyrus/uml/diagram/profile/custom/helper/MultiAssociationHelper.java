@@ -166,7 +166,7 @@ public class MultiAssociationHelper extends ElementHelper {
 
 				// creation of the node
 				IAdaptable elementAdapter = new EObjectAdapter(currentEnd.getType());
-				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, associationNodeEditPart.getDiagramPreferencesHint());
+				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, true, associationNodeEditPart.getDiagramPreferencesHint());
 
 				// get the command and execute it.
 				CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, (View)((View)associationNodeEditPart.getModel()).eContainer());
@@ -247,7 +247,7 @@ public class MultiAssociationHelper extends ElementHelper {
 
 				// creation of the node
 				IAdaptable elementAdapter = new EObjectAdapter(currentEnd.getType());
-				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
+				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, true, diagramPreferencesHint);
 
 				// get the command and execute it.
 				CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, containerView);

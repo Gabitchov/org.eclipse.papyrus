@@ -165,7 +165,7 @@ public class SelfCompartmentNotificationHelper extends NotificationHelper {
 						for(Object child : childrenToDraw) {
 							if(child instanceof EObject) {
 								IAdaptable adapter = new EObjectAdapter((EObject)child);
-								ViewDescriptor descriptor = new ViewDescriptor(adapter, Node.class, childType.getSemanticHint(), ViewUtil.APPEND, false, compartmentPart.getDiagramPreferencesHint());
+								ViewDescriptor descriptor = new ViewDescriptor(adapter, Node.class, childType.getSemanticHint(), ViewUtil.APPEND, true, compartmentPart.getDiagramPreferencesHint());
 								CreateCommand nodeCreationCommand = new CreateCommand(compartmentPart.getEditingDomain(), descriptor, compartmentView);
 								command.add(nodeCreationCommand);
 							}

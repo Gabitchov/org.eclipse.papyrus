@@ -96,7 +96,7 @@ public class ContainmentCircleViewCreateCommand extends AbstractTransactionalCom
 		this.preferenceHint = preferencesHint;
 		this.createConnectionViewRequest = createConnectionViewRequest;
 		// make sure the return object is available even before executing/undoing/redoing
-		descriptor = new ViewDescriptor(new SemanticAdapter(null, null), Node.class, null, ViewUtil.APPEND, false, preferencesHint);
+		descriptor = new ViewDescriptor(new SemanticAdapter(null, null), Node.class, null, ViewUtil.APPEND, true, preferencesHint);
 
 		setResult(CommandResult.newOKCommandResult(descriptor));
 	}

@@ -299,7 +299,7 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 		// Create the command targeting host parent (owner of the
 		// ShapeCompartmentEditPart)
 		CreateViewCommand createCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(getHost().getParent().getModel())));
