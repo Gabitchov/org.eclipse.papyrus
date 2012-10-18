@@ -1,361 +1,485 @@
 package org.eclipse.papyrus.infra.table.efacet.menu.handler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.mapping.ModelStatus;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.emf.facet.efacet.core.IFacetManagerFactory;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Column;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.FeatureColumn;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
-import org.eclipse.emf.facet.widgets.table.ui.command.ITableCommandFactory;
-import org.eclipse.emf.facet.widgets.table.ui.command.ITableCommandFactoryFactory;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetInternal;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetProvider;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractTableEditor;
 import org.eclipse.papyrus.infra.table.efacet.menu.Activator;
+import org.eclipse.papyrus.infra.table.efacet.menu.factory.ITableCommandFactory;
+import org.eclipse.papyrus.infra.table.efacet.menu.factory.TableCommandFactory;
 import org.eclipse.papyrus.infra.table.efacet.menu.factory.TableInstanceCommandFactory;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.TableContentsUtils;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.EditorPart;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 //FIXME : uml dependency
 public class SelectColumnsHandler extends AbstractHandler {
 
+	private final String ADDITIONAL_CONTENTS_FACET_SET_NAME = "AdditionalContentsForTable";
 
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final CompoundCommand compoundCmd = new CompoundCommand("Papyrus Show/Hide columns");
-		final PapyrusTable papyrusTable = getPapyrusTable();
-		final ITableWidget widget = getTableWidget();
-		TransactionalEditingDomain domain = getEditingDomain();
-		ICommand addFacetSetToResourceCommand = null;
-		if(papyrusTable != null && widget != null) {
-			//the contents of the table
-			final List<EObject> contents = TableContentsUtils.getTableContents(papyrusTable, papyrusTable.getTable().getContext(), false);
+	private final String ADDITIONAL_CONTENTS_FACET_SET_NS_URI = "http://www.eclipse.org/papyrustableefacet/additionalcontentsfacetset";
 
-			//all stereotypes used in the table
-			final Set<Stereotype> stereotypes = new HashSet<Stereotype>();
+	private final String ADDITIONAL_CONTENTS_FACET_SET_PREFIX = "additionalcontentsfacetset";
 
-			//all stereotypes identified by their qualified name
-			final Map<String, Stereotype> mapName_stereotypes = new HashMap<String, Stereotype>();
+	private final String ADDITIONAL_CONTENTS_FACET_SET_DOCUMENTATION = "This FacetSet provides facets to edit easily additional contents (as Stereotype Properties). It had been generated by the Papyrus Show/Hide columns";
 
-			//all facets applied on the table + all applicable facets representing stereotypes
-			final Set<Facet> allFacets = new TreeSet<Facet>(new EcoreFeatureComparator());
+	/** all direct features available in the table */
+	final protected SortedSet<ETypedElement> allDirectFeatures = new TreeSet<ETypedElement>(new EcoreENamedElementComparator());
 
-			final SortedSet<ETypedElement> allFeatures = new TreeSet<ETypedElement>(new EcoreFeatureComparator());
-			final Map<ETypedElement, Column> columnsFeatureMap = new HashMap<ETypedElement, Column>();
-			final Map<EClass, Stereotype> eClassSteMap = new TreeMap<EClass, Stereotype>(new EcoreFeatureComparator());
+	/** all additional possible contents */
+	final protected Collection<FacetSet> allAdditionalContents = new HashSet<FacetSet>();
 
+	/** the initial direct features visibles in the table */
+	final protected Collection<ETypedElement> initialDirectFeatureSelected = new HashSet<ETypedElement>();
 
-			//1. Get all direct features and store all used stereotypes
-			for(EObject current : contents) {
-				allFeatures.addAll(current.eClass().getEAllStructuralFeatures());
-				if(current instanceof Element) {
-					stereotypes.addAll(((Element)current).getAppliedStereotypes());
-				}
-			}
+	/** the initial additional features visibles in the table */
+	final protected Collection<ETypedElement> initialAdditionalFeatureSelected = new HashSet<ETypedElement>();
 
-			//1. bis 
-			//   - complete the list of features with the features of the columns
-			//   - map the columns with the features
-			for(final Column current : papyrusTable.getTable().getColumns()) {
-				if(current instanceof FeatureColumn) {
-					final FeatureColumn col = (FeatureColumn)current;
-					final ETypedElement feature = col.getFeature();
-					columnsFeatureMap.put(feature, col);
-					if(feature instanceof FacetElement) {
-						allFacets.add((Facet)feature.eContainer());
-					}
-				}
-			}
+	/** the list of the facetSet used in the current table */
+	final protected Collection<FacetSet> facetSetsUsedInTheTable = new HashSet<FacetSet>();
 
-			//2. look for an existing facetSet representing the stereotype
-			final String facetSetName = "localFacetSet";
-			final String facetSetURI = "http://www.eclipse.org/papyrustableefacet/localfacetset";
-			FacetSet localSet = null;
-			EcoreUtil.resolveAll(papyrusTable);
-			Resource res = papyrusTable.eResource();
-			if(res == null) {
-				if(domain == null) {
-					domain = TransactionUtil.getEditingDomain(contents.get(0));
-				}
-				try {
-					ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-					domain = serviceRegistry.getService(TransactionalEditingDomain.class);
-				} catch (ServiceException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	/** the map between existing columns (visible or not) and the feature */
+	final protected Map<ETypedElement, Column> columnsFeatureMap = new HashMap<ETypedElement, Column>();
 
 
-				EList<Resource> resources = domain.getResourceSet().getResources();
-				for(Resource tmpRes : resources) {
-					URI uri = tmpRes.getURI();
-					if(uri.fileExtension().equals("notation")) {
-						int i = 0;
-						i++;
-						EList<EObject> allContents = res.getContents();
-						i++;
-					}
-				}
-			}
-			for(final EObject current : res.getContents()) {
-				if(current instanceof FacetSet && facetSetName.equals(((FacetSet)current).getName())) {
-					localSet = (FacetSet)current;
-					break;
-				}
-			}
+	//TODO remove it
+	final StereotypeManagement management = new StereotypeManagement();
 
-			//2. bis if the facetSet doesn't exist, we create it
-			if(localSet == null) {
-				final String documentation = "This FacetSet provides facet to edit easily the properties of the stereotypes. It had been generated by the Papyrus Show/Hide columns";
-				localSet = FacetFactory.createFacetSet("localfacetset", "localfacetset", "http://www.eclipse.org/papyrustableefacet/localfacetset", documentation);
-				final FacetSet set = localSet;
-				addFacetSetToResourceCommand = new AbstractTransactionalCommand(getEditingDomain(), "Attach local facetSet to the resource", null) {
+	/**
+	 * clear the fields
+	 */
+	protected void clearFields() {
+		this.allDirectFeatures.clear();
+		this.initialDirectFeatureSelected.clear();
+		this.initialAdditionalFeatureSelected.clear();
+		this.facetSetsUsedInTheTable.clear();
+		this.columnsFeatureMap.clear();
+		this.allAdditionalContents.clear();
+	}
 
-					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						papyrusTable.eResource().getContents().add(set);
-						return CommandResult.newOKCommandResult();
-					}
-				};
-			}
-
-			//3. we associate each stereotype to its qualified name
-			for(final Stereotype ste : stereotypes) {
-				mapName_stereotypes.put(ste.getQualifiedName(), ste);
-			}
-
-			//4. we map the stereotype with the existing Facet //TODO currently, we assume that the stereotype has not changed
-			List<Stereotype> unmappedStereotype = new ArrayList<Stereotype>(stereotypes);
-			for(final EClassifier currentFacet : localSet.getEClassifiers()) {
-				if(currentFacet instanceof Facet) {
-					for(final FacetOperation op : ((Facet)currentFacet).getFacetOperations()) {
-						if("getStereotypeQualifiedName".equals(op.getName())) {
-							final String qName = ((StringLiteralQuery)op.getQuery()).getValue();
-							unmappedStereotype.remove(mapName_stereotypes.get(qName));
-							break;
-						}
-					}
-				}
-			}
-
-			final List<Facet> createdEFacet = new ArrayList<Facet>();
-
-			//5. we create the Facet for the unmapped stereotypes
-			for(final Stereotype ste : unmappedStereotype) {
-				Facet facet = FacetFactory.createFacet(ste);
-				createdEFacet.add(facet);
-			}
-			allFacets.addAll(createdEFacet);
-
-			//6. we create the input 
-			final Collection<EObject> dialogInput = new ArrayList<EObject>();
-			dialogInput.addAll(allFeatures);
-			dialogInput.addAll(allFacets);
-
-			//7. we build the initial selection
-			final Collection<ETypedElement> initialSelection = new ArrayList<ETypedElement>(columnsFeatureMap.keySet());
-
-			ColumnsToHideDialog dialog = new ColumnsToHideDialog(Display.getCurrent().getActiveShell(), dialogInput, initialSelection, getLabelProvider());
-			if(dialog.open() == Window.OK) {
-				final Object[] result = dialog.getResult();
-				final List<Object> resultAsList = Arrays.asList(result);
-
-				final List<Object> columnsToAdd = new ArrayList<Object>(resultAsList);
-				columnsToAdd.removeAll(initialSelection);
-				//these columns should be set To Visible OR created
-
-				List<Column> columnsToShow = new ArrayList<Column>();
-				List<ETypedElement> columnsToCreate = new ArrayList<ETypedElement>();
-				for(final Object currentColumn : columnsToAdd) {
-					if(columnsFeatureMap.containsKey(currentColumn)) {
-						columnsToShow.add(columnsFeatureMap.get(currentColumn));
-					} else {
-						columnsToCreate.add((ETypedElement)currentColumn);
-					}
-				}
-
-				List<Object> featureToHide = new ArrayList<Object>(initialSelection);
-				featureToHide.removeAll(resultAsList);
-
-
-				//these columns should be hidden
-				List<Column> columnsToHide = new ArrayList<Column>();
-				for(final Object current : featureToHide) {
-					Column toHide = columnsFeatureMap.get(current);
-					if(toHide != null) {
-						columnsToHide.add(toHide);
-					}
-				}
-
-				ITableWidgetInternal widgetController = (ITableWidgetInternal)widget;
-				ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
-				boolean putOnTheTop = false;
-
-				final Command showHideCommand = TableInstanceCommandFactory.createShowHideColumnCommand(widgetController, domain, commandFactory, papyrusTable.getTable(), columnsToShow, columnsToHide, putOnTheTop);
-				if(showHideCommand != null && showHideCommand.canExecute()) {
-					compoundCmd.append(showHideCommand);
-				}
-				if(addFacetSetToResourceCommand != null) { //TODO : test if the current selection need to it!
-					compoundCmd.append(new GMFtoEMFCommandWrapper(addFacetSetToResourceCommand));
-				}
-
-				//TODO : complete with the removeFacetSetFromResource command or remove Facet from facetSet command				
-
-				if(!createdEFacet.isEmpty()) {
-					final FacetSet set = localSet;
-					ICommand cmd = new AbstractTransactionalCommand(getEditingDomain(), "Add Facet to the local facetSet", null) {
-
-						@Override
-						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-							set.getEClassifiers().addAll(createdEFacet);
-							return CommandResult.newOKCommandResult();
-						}
-					};
-					compoundCmd.append(new GMFtoEMFCommandWrapper(cmd));
-				}
-
-
-				domain.getCommandStack().execute(compoundCmd);
-				IFacetSetCatalogManagerFactory.DEFAULT.getOrCreateFacetSetCatalogManager(res.getResourceSet()).registerFacetSet(localSet);
-				List<FacetSet> facetSetToAdd = new ArrayList<FacetSet>();
-				facetSetToAdd.add(localSet);
-
-				widget.addColumns(columnsToCreate, facetSetToAdd);//TODO should be chained with the previous command
-			}
+	//TODO look for an existing method in EMF for EPackage
+	private FacetSet getRootFacetSet(final FacetElement facetElement) {
+		EObject container = facetElement;
+		while(container.eContainer() != null) {
+			container = container.eContainer();
 		}
-
+		if(container instanceof FacetSet) {
+			return (FacetSet)container;
+		}
 		return null;
 	}
 
-	protected Command getBuildedCommand() {
-		CompoundCommand compoundCommand = new CompoundCommand();
+	/**
+	 * Inits the fields of this class
+	 * 
+	 * @param widget
+	 *        the table widget
+	 * @param papyrusTable
+	 *        the papyrus table
+	 */
+	protected void initField(final ITableWidget widget, final PapyrusTable papyrusTable) {
+		clearFields();
+		//the contents of the table
+		final List<EObject> contents = TableContentsUtils.getTableContents(papyrusTable, papyrusTable.getTable().getContext(), false);
 
-		return compoundCommand;
-	}
-
-	protected Command getShowHideExistingColumnCommand() {
-		CompoundCommand compoundCommand = new CompoundCommand();
-
-		return compoundCommand;
-	}
-
-	protected Command getAddAndCreateNewColumnsCommand() {
-		CompoundCommand compoundCommand = new CompoundCommand();
-
-		return compoundCommand;
-	}
-
-
-	public class EcoreFeatureComparator implements Comparator<ENamedElement> {
-
-		public int compare(ENamedElement o1, ENamedElement o2) {
-			return o1.getName().compareToIgnoreCase(o2.getName());
+		//1. Get all direct features
+		for(final EObject current : contents) {
+			this.allDirectFeatures.addAll(current.eClass().getEAllStructuralFeatures());
 		}
 
-	}
-
-	public class StereotypeNameComparator implements Comparator<Stereotype> {//TODO rename into NamedElement Comparator
-
-		public int compare(Stereotype o1, Stereotype o2) {
-			return o1.getName().compareToIgnoreCase(o2.getName());
+		//2. we build the list of the initialSelection
+		final List<Column> visibleColumns = widget.getVisibleColumns(false);
+		final Set<ETypedElement> visibleFeatures = new HashSet<ETypedElement>();
+		for(final Column current : visibleColumns) {
+			if(current instanceof FeatureColumn) {
+				final ETypedElement feature = ((FeatureColumn)current).getFeature();
+				if(feature instanceof FacetElement) {
+					this.initialAdditionalFeatureSelected.add(feature);
+				} else {
+					this.initialDirectFeatureSelected.add(feature);
+				}
+			}
 		}
 
+		for(final Column current : papyrusTable.getTable().getColumns()) {
+			if(current instanceof FeatureColumn) {
+				final FeatureColumn col = (FeatureColumn)current;
+				final ETypedElement feature = col.getFeature();
+				//3. we associate each features to each columns
+				this.columnsFeatureMap.put(feature, col);
+
+				//3 bis. we build the list of the initialSelection
+				if(feature instanceof FacetElement) {
+					final FacetSet set = getRootFacetSet((FacetElement)feature);
+					this.facetSetsUsedInTheTable.add(set);
+				}
+			}
+		}
+
+		//4. get the additional features
+		final FacetSet additionFeatureRootFacetSet = getAdditionalContentsFacetSet(papyrusTable);
+		if(additionFeatureRootFacetSet != null) {
+			//TODO ask for that to Grégoire Dupé!
+			//TODO before update the source code of EMF-Facet
+			final List<EPackage> sets = additionFeatureRootFacetSet.getESubpackages();
+			for(final EPackage ePackage : sets) {
+				if(ePackage instanceof FacetSet) {
+					this.allAdditionalContents.add((FacetSet)ePackage);
+				}
+			}
+		}
+		this.allAdditionalContents.addAll(this.facetSetsUsedInTheTable);
+		this.allAdditionalContents.addAll(this.management.getAdditionalFeatures(papyrusTable, contents, this.facetSetsUsedInTheTable));
+
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 * 
+	 * @param event
+	 * @return
+	 * @throws ExecutionException
+	 */
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
+
+		final CompoundCommand compoundCmd = new CompoundCommand("Papyrus Show/Hide columns command");
+		final PapyrusTable papyrusTable = getPapyrusTable();
+		final ITableWidget widget = getTableWidget();
+		final TransactionalEditingDomain domain = getEditingDomain();
+		FacetSet additionFeatureRootFacetSet = getAdditionalContentsFacetSet(papyrusTable);
+		if(papyrusTable != null && widget != null) {
+			initField(widget, papyrusTable);
+			final Collection<ETypedElement> initialSelection = new ArrayList<ETypedElement>();
+			initialSelection.addAll(this.initialDirectFeatureSelected);
+			initialSelection.addAll(this.initialAdditionalFeatureSelected);
+			final Collection<ENamedElement> allFacetSets = new TreeSet<ENamedElement>(new EcoreENamedElementComparator());
+			allFacetSets.addAll(this.facetSetsUsedInTheTable);
+			allFacetSets.addAll(this.allAdditionalContents);
+			final ColumnsToShowDialog dialog = new ColumnsToShowDialog(Display.getCurrent().getActiveShell(), this.allDirectFeatures, allFacetSets, initialSelection, getLabelProvider(), new SortedColumnContentProvider());
+			if(dialog.open() == Window.OK) {
+				final Object[] result = dialog.getResult();
+				final Set<ETypedElement> directFeatures = (Set<ETypedElement>)result[0];
+				final Set<ETypedElement> additionalFeatures = (Set<ETypedElement>)result[1];
+				if(!directFeatures.equals(this.initialDirectFeatureSelected)) {
+					//1. get command to show/hide direct features
+					final Command cmd = getShowHideDirectFeatureColumnsCommand(papyrusTable, (ITableWidgetInternal)widget, directFeatures);
+					if(cmd != null) {
+						compoundCmd.append(cmd);
+					}
+				}
+
+				if(!additionalFeatures.equals(initialAdditionalFeatureSelected)) {
+					// 2. get the command to show/hide additional contents
+					final Command cmd2 = getCreateDestroyAdditonalFeatureColumnsCommand(papyrusTable, (ITableWidgetInternal)widget, additionalFeatures);
+					if(cmd2 != null) {
+						compoundCmd.append(cmd2);
+					}
+
+					//3. get command to store/unstore facets
+					final Set<FacetSet> requiredFacetSets = new HashSet<FacetSet>();
+					final Set<FacetSet> toAddToResource = new HashSet<FacetSet>();
+					final Set<FacetSet> uselessFacetSets = new HashSet<FacetSet>();
+					for(final ETypedElement current : additionalFeatures) {
+						assert (current instanceof FacetElement);
+						final FacetSet root = getRootFacetSet((FacetElement)current);
+						assert root != null;
+						requiredFacetSets.add(root);
+						if(root.eResource() == null) {
+							toAddToResource.add(root);
+						}
+					}
+
+					if(additionFeatureRootFacetSet != null) {
+						for(final EPackage set : additionFeatureRootFacetSet.getESubpackages()) {
+							if(set instanceof FacetSet && !requiredFacetSets.contains(set)) {
+								uselessFacetSets.add((FacetSet)set);//TODO and if this facetSet is required by another table
+							}
+						}
+					}
+
+					//4. add required facetSet to the resource
+					if(additionFeatureRootFacetSet == null) {
+						//we create the facetset
+						additionFeatureRootFacetSet = EFacetFactory.eINSTANCE.createFacetSet();
+						additionFeatureRootFacetSet.setName(this.ADDITIONAL_CONTENTS_FACET_SET_NAME);
+						additionFeatureRootFacetSet.setNsPrefix(this.ADDITIONAL_CONTENTS_FACET_SET_PREFIX);
+						additionFeatureRootFacetSet.setNsURI(this.ADDITIONAL_CONTENTS_FACET_SET_NS_URI);
+						additionFeatureRootFacetSet.setDocumentation(this.ADDITIONAL_CONTENTS_FACET_SET_DOCUMENTATION);
+						additionFeatureRootFacetSet.getESubpackages().addAll(toAddToResource);
+						final FacetSet createdFacetSet = additionFeatureRootFacetSet;
+						final ICommand addLocalFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
+
+							@Override
+							protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+								papyrusTable.eResource().getContents().add(createdFacetSet);
+								return CommandResult.newOKCommandResult();
+							}
+						};
+						compoundCmd.append(new GMFtoEMFCommandWrapper(addLocalFacetSetToResource));
+					} else if(toAddToResource != null) {
+						final FacetSet localSet = additionFeatureRootFacetSet;
+						final ICommand addNewFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
+
+							@Override
+							protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+								localSet.getESubpackages().addAll(toAddToResource);
+								return CommandResult.newOKCommandResult();
+							}
+						};
+						compoundCmd.append(new GMFtoEMFCommandWrapper(addNewFacetSetToResource));
+					}
+
+					//5. remove useless facets set
+					//TODO
+				}
+				if(!compoundCmd.isEmpty()) {
+					domain.getCommandStack().execute(compoundCmd);
+				}
+
+			}
+		}
+		//we clear the fields
+		clearFields();
+		return null;
+	}
+
+	//TODO should be moved in another classes to be used by the stereotypemanager?
+	protected FacetSet getAdditionalContentsFacetSet(final PapyrusTable table) {
+		FacetSet set = null;
+		final Resource resource = table.eResource();
+		final Iterator<EObject> iter = resource.getContents().iterator();
+		while(iter.hasNext() && set == null) {
+			final EObject current = iter.next();
+			if(current instanceof FacetSet) {
+				final FacetSet tmp = (FacetSet)current;
+				if(this.ADDITIONAL_CONTENTS_FACET_SET_NS_URI.equals(tmp.getNsURI())) {
+					set = tmp;
+				}
+			}
+		}
+
+		return set;
+	}
+
+	/**
+	 * 
+	 * @param papyrusTable
+	 *        the papyrus table
+	 * @param widget
+	 *        the widget
+	 * @param selectedFeatures
+	 *        the direct features selected
+	 * @return
+	 *         the command to show/hide the required columns (we doesn't destroy columns, because EMF-Facet will cerate it, if they are required, for
+	 *         the next added element in the table)
+	 */
+	protected Command getShowHideDirectFeatureColumnsCommand(final PapyrusTable papyrusTable, final ITableWidgetInternal widget, final Collection<ETypedElement> selectedFeatures) {
+		final CompoundCommand compoundCmd = new CompoundCommand("Show/Hide direct features command");
+
+		//1. calculus of the columns to show/add
+		final List<ETypedElement> featuresToAdd = new ArrayList<ETypedElement>(selectedFeatures);
+		featuresToAdd.removeAll(this.initialDirectFeatureSelected);
+		//these columns should be set To Visible OR created
+
+		//2. calculus of the columns to hide
+		final List<Object> directFeaturesToHide = new ArrayList<Object>(this.initialDirectFeatureSelected);
+		directFeaturesToHide.removeAll(selectedFeatures);
+
+		//these columns should be hidden
+		final List<Column> columnsToHide = new ArrayList<Column>();
+		for(final Object current : directFeaturesToHide) {
+			final Column toHide = this.columnsFeatureMap.get(current);
+			if(toHide != null) {
+				columnsToHide.add(toHide);
+			}
+		}
+
+		final List<Column> columnsToShow = new ArrayList<Column>();
+
+		//not useful for direct features
+		final List<ETypedElement> columnsToCreate = new ArrayList<ETypedElement>();
+
+		for(final Object currentColumn : featuresToAdd) {
+			if(this.columnsFeatureMap.containsKey(currentColumn)) {
+				columnsToShow.add(this.columnsFeatureMap.get(currentColumn));
+			} else {
+				columnsToCreate.add((ETypedElement)currentColumn);
+			}
+		}
+
+		final TransactionalEditingDomain domain = getEditingDomain();
+		final ITableWidgetInternal widgetController = widget;
+		final ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
+		final boolean putOnTheTop = false;
+
+		final Command showHideCommand = TableInstanceCommandFactory.createShowHideColumnCommand(widgetController, domain, commandFactory, papyrusTable.getTable(), columnsToShow, columnsToHide, putOnTheTop);
+
+		if(showHideCommand != null && showHideCommand.canExecute()) {
+			compoundCmd.append(showHideCommand);
+		}
+
+		//columns to create should always be null with direct features!
+		assert columnsToCreate.isEmpty();
+		if(!compoundCmd.isEmpty() && compoundCmd.canExecute()) {
+			return compoundCmd;
+		}
+		return null;
+
+	}
+
+	/**
+	 * 
+	 * @param papyrusTable
+	 *        the papyrus table
+	 * @param widget
+	 *        the widget
+	 * @param selectedAdditionalFeatures
+	 *        the addtional features selected
+	 * @return
+	 *         the command to create and destroy the required columns (can be <code>null</code>)
+	 *         /!\ EMF-Facet allows to hide EMF-Facet columns, so if such column already exists but are not visible, we show them
+	 */
+	private Command getCreateDestroyAdditonalFeatureColumnsCommand(final PapyrusTable papyrusTable, final ITableWidgetInternal widget, final Collection<ETypedElement> selectedAdditionalFeatures) {
+		final CompoundCommand compoundCmd = new CompoundCommand("Show/Hide additional features command");
+
+		//1. calculus of the columns to show/add
+		//these columns should be set to visible or created
+		final List<ETypedElement> featuresToAdd = new ArrayList<ETypedElement>(selectedAdditionalFeatures);
+		featuresToAdd.removeAll(this.initialAdditionalFeatureSelected);
+
+		//we should take into account that EMF-Facet allows to destroy AND hide columns, so some columns can already exists but are currently not visible
+		final List<ETypedElement> columnsToCreate = new ArrayList<ETypedElement>();
+		columnsToCreate.addAll(featuresToAdd);
+		final List<Column> existingColumnsToShow = new ArrayList<Column>();
+
+		final ListIterator<ETypedElement> iter = columnsToCreate.listIterator();
+		while(iter.hasNext()) {
+			final ETypedElement current = iter.next();
+			if(this.columnsFeatureMap.containsKey(current)) {
+				existingColumnsToShow.add(this.columnsFeatureMap.get(current));
+				iter.remove();
+			}
+		}
+
+		//2. calculus of the columns to hide/destroy
+		final List<ETypedElement> additionalFeaturesToHide = new ArrayList<ETypedElement>(this.initialAdditionalFeatureSelected);
+		additionalFeaturesToHide.removeAll(selectedAdditionalFeatures);
+
+		final TransactionalEditingDomain domain = getEditingDomain();
+		final ITableWidgetInternal widgetController = widget;
+
+		final boolean putOnTheTop = false;
+
+		final Set<FacetSet> facetSets = new HashSet<FacetSet>();
+		for(final ETypedElement current : selectedAdditionalFeatures) {
+			if(current instanceof FacetElement) {
+				final FacetSet set = getRootFacetSet((FacetElement)current);
+				if(set != null) {
+					facetSets.add(set);
+				}
+			}
+		}
+
+		facetSets.addAll(papyrusTable.getTable().getFacetSets());
+
+
+		final ITableCommandFactory tableCommandFactory = getTableCmdFactory(domain, papyrusTable.eResource().getResourceSet(), papyrusTable.getTable());
+		final Command createColumns = tableCommandFactory.createAddColumnCommand(columnsToCreate, new ArrayList<FacetSet>(facetSets));
+		if(createColumns != null && createColumns.canExecute()) {
+			compoundCmd.append(createColumns);
+		}
+
+
+
+		final Command removeColumns = tableCommandFactory.createRemoveColumnsCommand(additionalFeaturesToHide);
+		if(removeColumns != null && removeColumns.canExecute()) {
+			compoundCmd.append(removeColumns);
+		}
+
+		final ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
+		if(existingColumnsToShow.size() != 0) {
+			final Command showHideCommand = TableInstanceCommandFactory.createShowHideColumnCommand(widgetController, domain, commandFactory, papyrusTable.getTable(), existingColumnsToShow, new ArrayList<Column>(), putOnTheTop);
+			if(showHideCommand != null && showHideCommand.canExecute()) {
+				compoundCmd.append(showHideCommand);
+			}
+		}
+
+		if(!compoundCmd.isEmpty()) {
+			return compoundCmd;
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the editing domain used by this handler or <code>null</code> if not found
+	 */
 	private TransactionalEditingDomain getEditingDomain() {
 		TransactionalEditingDomain domain = null;
 		domain = TransactionUtil.getEditingDomain(getPapyrusTable());
 		return domain;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the current table editor, or <code>null</code> if not found
+	 */
 	private AbstractTableEditor getCurrentTableEditor() {
-
 		final IStructuredSelection selection = (IStructuredSelection)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 		final Object current = selection.getFirstElement();
 		if(current instanceof EObject) {
@@ -363,7 +487,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 			IEditorPart part = null;
 			try {
 				part = ServiceUtilsForResource.getInstance().getNestedActiveIEditorPart(((EObject)current).eResource());
-			} catch (ServiceException e) {
+			} catch (final ServiceException e) {
 				Activator.log.error(e);
 			}
 			if(part instanceof AbstractTableEditor) {
@@ -374,16 +498,26 @@ public class SelectColumnsHandler extends AbstractHandler {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the papyrus table
+	 */
 	private PapyrusTable getPapyrusTable() {
-		IEditorPart part = getCurrentTableEditor();
+		final IEditorPart part = getCurrentTableEditor();
 		if(part != null) {
 			return (PapyrusTable)part.getAdapter(PapyrusTable.class);
 		}
 		return null;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the table widget
+	 */
 	private ITableWidget getTableWidget() {
-		IAdaptable editor = getCurrentTableEditor();
+		final IAdaptable editor = getCurrentTableEditor();
 		final ITableWidgetProvider provider = (ITableWidgetProvider)editor.getAdapter(ITableWidgetProvider.class);
 		if(provider != null) {
 			return provider.getTableWidget();
@@ -391,9 +525,32 @@ public class SelectColumnsHandler extends AbstractHandler {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the label provider by for the dialog
+	 */
 	private ILabelProvider getLabelProvider() {
-		AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		final AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory);
 		return labelProvider;
+	}
+
+	/**
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param resourceSet
+	 *        the resource set
+	 * @param table
+	 *        the table
+	 * @return
+	 *         the command factory for these parameters
+	 */
+	//TODO duplicated code from the AbstractTriggerListener
+	private static ITableCommandFactory getTableCmdFactory(final TransactionalEditingDomain editingDomain, final ResourceSet resourceSet, final Table table) {
+		final IFacetManager facetManager = IFacetManagerFactory.DEFAULT.getOrCreateFacetManager(resourceSet);
+		final ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(editingDomain);
+		return new TableCommandFactory(table, editingDomain, commandFactory, facetManager);
 	}
 }

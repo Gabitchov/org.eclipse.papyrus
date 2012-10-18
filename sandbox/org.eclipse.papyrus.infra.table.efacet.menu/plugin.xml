@@ -18,7 +18,7 @@
             locationURI="popup:org.eclipse.ui.popup.any">
          <command
                commandId="org.eclipse.papyrus.infra.table.efacet.menu.command.select.columns"
-               label="Select Columns"
+               label="Select Columns To Show"
                style="push"
                tooltip="Select the columns to display">
          </command>

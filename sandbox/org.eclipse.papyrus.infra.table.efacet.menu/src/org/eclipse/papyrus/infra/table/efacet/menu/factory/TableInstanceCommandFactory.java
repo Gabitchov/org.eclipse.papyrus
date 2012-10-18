@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.table.efacet.menu.factory;
 
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -55,30 +56,44 @@ import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetInte
 //EMF-Facet should provides a best way to hide columns
 public final class TableInstanceCommandFactory {
 
-	public static Command createShowHideColumnCommand(final ITableWidgetInternal widgetController,final EditingDomain editingDomain, ICommandFactory commandFactory, final Table table, final List<Column> columnsToShow, final List<Column> columnsToHide, final boolean putOnTheTop) {
-		CompoundCommand compoundCommand = new CompoundCommand("Show/hide column"); //$NON-NLS-1$
+	public static Command createShowHideColumnCommand(final ITableWidgetInternal widgetController,final EditingDomain editingDomain, final ICommandFactory commandFactory, final Table table, final List<Column> columnsToShow, final List<Column> columnsToHide, final boolean putOnTheTop) {
+		final CompoundCommand compoundCommand = new CompoundCommand("Show/hide column"); //$NON-NLS-1$
 
-		for(Column current : columnsToShow) {
+		for(final Column current : columnsToShow) {
 			if(current instanceof SourceColumn) {
-				Command cmd = commandFactory.createSetCommand(editingDomain, current, TablePackage.eINSTANCE.getSourceColumn_IsHidden(), Boolean.FALSE);
+				final Command cmd = commandFactory.createSetCommand(editingDomain, current, TablePackage.eINSTANCE.getSourceColumn_IsHidden(), Boolean.FALSE);
 				if(cmd.canExecute()) {
 					compoundCommand.append(cmd);
 				}
 			}
 		}
 //		HashSet<FeatureColumn> fColumnsToHide = new HashSet<FeatureColumn>();
-		HashSet<ETypedElement> featureToHide = new HashSet<ETypedElement>();
-		for(Column current : columnsToHide) {
+		final HashSet<ETypedElement> featureToHide = new HashSet<ETypedElement>();
+		for(final Column current : columnsToHide) {
 			if(current instanceof FeatureColumn) {
 //				fColumnsToHide.add((FeatureColumn)current);
 				featureToHide.add(((FeatureColumn)current).getFeature());
 			} else {
-				Command cmd = commandFactory.createSetCommand(editingDomain, current, TablePackage.eINSTANCE.getSourceColumn_IsHidden(), Boolean.TRUE);
+				final Command cmd = commandFactory.createSetCommand(editingDomain, current, TablePackage.eINSTANCE.getSourceColumn_IsHidden(), Boolean.TRUE);
 				compoundCommand.append(cmd);
 			}
 		}
-		Command tmp = createHideColumnCommand(widgetController,editingDomain, table,featureToHide);
-		
+
+		final EList<Column> currentColumns = table.getColumns();
+		final List<Column> toHide2 = new ArrayList<Column>(currentColumns);
+		toHide2.removeAll(columnsToHide);
+		toHide2.removeAll(columnsToShow);
+		final List<Column> visibleColumns = widgetController.getVisibleColumns(false);
+		for(final Column col : toHide2) {
+			if(visibleColumns.contains(col)) {
+				columnsToShow.add(col);
+			} else if(col instanceof FeatureColumn) {
+				featureToHide.add(((FeatureColumn)col).getFeature());
+			}
+		}
+
+		final Command tmp = createHideColumnCommand(widgetController,editingDomain, table,featureToHide);
+
 		if(tmp != null) {
 			compoundCommand.append(tmp);
 		}
@@ -107,14 +122,14 @@ public final class TableInstanceCommandFactory {
 	//}
 
 
-	
+
 	private TableInstanceCommandFactory() {
 		// Prevents instantiation
 	}
 
 	/**
 	 * This method retruns an EMF command deleting the a collection of EObject
-	 * 
+	 *
 	 * @param label
 	 *        This label will be visible in the menu 'Edit'.
 	 * @param eObjects
@@ -122,9 +137,9 @@ public final class TableInstanceCommandFactory {
 	 * @return
 	 */
 	public static Command delete(final String label, final Collection<? extends EObject> eObjects, final EditingDomain domain, final ICommandFactory factory) {
-		List<Command> cmdList = new ArrayList<Command>();
-		for(EObject eObject : eObjects) {
-			Command command = factory.createDeleteCommand(domain, eObject);
+		final List<Command> cmdList = new ArrayList<Command>();
+		for(final EObject eObject : eObjects) {
+			final Command command = factory.createDeleteCommand(domain, eObject);
 			cmdList.add(command);
 		}
 		Command result = null;
@@ -136,13 +151,13 @@ public final class TableInstanceCommandFactory {
 
 	/**
 	 * This method create a command deleting use less row and columns.
-	 * 
+	 *
 	 * @param controller
 	 * @return null if no action has to be performed.
 	 */
 	public static final Command createRemoveUselessRowsAndColumnsCommand(final EditingDomain domain, final ICommandFactory factory, final Table table) {
-		List<Command> cmdList = new ArrayList<Command>();
-		List<Row> rowsToRemove = TableInstanceUtils.findUselessRow(table);
+		final List<Command> cmdList = new ArrayList<Command>();
+		final List<Row> rowsToRemove = TableInstanceUtils.findUselessRow(table);
 //		if(TableWidgetController.DEBUG_REMOVE_USELESS_ROWS_AND_COLUMNS) {
 //			DebugUtils.debug("Rows to be removed: " + rowsToRemove.size()); //$NON-NLS-1$
 //		}
@@ -168,7 +183,7 @@ public final class TableInstanceCommandFactory {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param column
 	 *        a column
 	 * @param isHidden
@@ -208,7 +223,7 @@ public final class TableInstanceCommandFactory {
 		IsOneOfQuery conformanceQuery;
 		if(typeCustomization == null) {
 			conformanceQuery = QueryFactory.eINSTANCE.createIsOneOfQuery();
-			ICommandFactoryResult<EClassCustomization> createEClassCustom = customCmdFactory.createEClassCustomization(customization, EcorePackage.eINSTANCE.getETypedElement(), conformanceQuery);
+			final ICommandFactoryResult<EClassCustomization> createEClassCustom = customCmdFactory.createEClassCustomization(customization, EcorePackage.eINSTANCE.getETypedElement(), conformanceQuery);
 			typeCustomization = createEClassCustom.getResult();
 			resultCmd.append(createEClassCustom.getCommand());
 		} else {
@@ -216,7 +231,7 @@ public final class TableInstanceCommandFactory {
 				//				throw new TableWidgetRuntimeException("Unexpected type for the variable 'featureContainer'"); //$NON-NLS-1$
 				//TODO
 			}
-			DerivedTypedElement conformanceTE = (DerivedTypedElement)typeCustomization.getConformanceTypedElement();
+			final DerivedTypedElement conformanceTE = (DerivedTypedElement)typeCustomization.getConformanceTypedElement();
 			conformanceQuery = (IsOneOfQuery)conformanceTE.getQuery();
 		}
 		//		final HashSet<ETypedElement> featuresToHide = new HashSet<ETypedElement>();
@@ -263,7 +278,7 @@ public final class TableInstanceCommandFactory {
 
 	//	/**
 	//	 * This method retruns an EMF command deleting the a collection of EObject
-	//	 * 
+	//	 *
 	//	 * @param label
 	//	 *        This label will be visible in the menu 'Edit'.
 	//	 * @param eObjects
@@ -285,7 +300,7 @@ public final class TableInstanceCommandFactory {
 	//
 	//	/**
 	//	 * This method create a command deleting use less row and columns.
-	//	 * 
+	//	 *
 	//	 * @param controller
 	//	 * @return null if no action has to be performed.
 	//	 */
@@ -316,7 +331,7 @@ public final class TableInstanceCommandFactory {
 	private static class CommandList extends LinkedList<Command> {
 
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = 4393120485370832319L;
 

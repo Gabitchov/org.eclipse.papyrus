@@ -19,6 +19,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  org.eclipse.emf.facet.widgets.celleditors.ecore;bundle-version="0.2.1",
- org.eclipse.emf.facet.efacet.core
+ org.eclipse.emf.facet.efacet.core,
+ org.eclipse.papyrus.uml.tools;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.tools.utils,
+ org.eclipse.papyrus.uml.umlefacet.metamodel;bundle-version="0.9.2"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
