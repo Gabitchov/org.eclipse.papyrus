@@ -21,8 +21,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.dsml.validation.generation.wizard.CreateEMFValidationProject;
 import org.eclipse.papyrus.dsml.validation.model.elements.impl.ConstraintManagerImpl;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Profile;
 

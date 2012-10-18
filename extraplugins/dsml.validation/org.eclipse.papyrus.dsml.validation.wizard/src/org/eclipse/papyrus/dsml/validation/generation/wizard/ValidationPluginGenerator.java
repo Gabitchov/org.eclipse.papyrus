@@ -23,7 +23,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
-import org.eclipse.papyrus.dsml.validation.model.elements.impl.ValidationRuleImpl;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
