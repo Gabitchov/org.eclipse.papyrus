@@ -238,9 +238,9 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			List<Object> values = (List<Object>) currentPropValue;
 			ArrayList<String> baseElements = new ArrayList<String>();
 
-			for(int i = 0; i < values.size(); i++) {
+			for(Object value : values) {
 				// display the base element's qualified name
-				Element baseElement = (Element)UMLUtil.getBaseElement((EObject)values.get(i));
+				Element baseElement = (Element)UMLUtil.getBaseElement((EObject)value);
 				String name = Util.getLabel(baseElement, true);
 				if(name != null) {
 					baseElements.add(name);
