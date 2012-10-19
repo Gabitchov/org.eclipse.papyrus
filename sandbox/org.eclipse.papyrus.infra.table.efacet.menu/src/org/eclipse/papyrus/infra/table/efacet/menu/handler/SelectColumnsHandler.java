@@ -33,6 +33,7 @@ import org.eclipse.emf.facet.efacet.core.IFacetManagerFactory;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Column;
@@ -208,6 +209,10 @@ public class SelectColumnsHandler extends AbstractHandler {
 			final Collection<ENamedElement> allFacetSets = new TreeSet<ENamedElement>(new EcoreENamedElementComparator());
 			allFacetSets.addAll(this.facetSetsUsedInTheTable);
 			allFacetSets.addAll(this.allAdditionalContents);
+			FacetSet set = getAdditionalContentsFacetSet(papyrusTable);
+			if(set!=null){
+				allFacetSets.remove(set);
+			}
 			final ColumnsToShowDialog dialog = new ColumnsToShowDialog(Display.getCurrent().getActiveShell(), this.allDirectFeatures, allFacetSets, initialSelection, getLabelProvider(), new SortedColumnContentProvider());
 			if(dialog.open() == Window.OK) {
 				final Object[] result = dialog.getResult();
@@ -227,66 +232,67 @@ public class SelectColumnsHandler extends AbstractHandler {
 					if(cmd2 != null) {
 						compoundCmd.append(cmd2);
 					}
+					//
+					//					//3. get command to store/unstore facets
+					//					final Set<FacetSet> requiredFacetSets = new HashSet<FacetSet>();
+					//					final Set<FacetSet> toAddToResource = new HashSet<FacetSet>();
+					//					final Set<FacetSet> uselessFacetSets = new HashSet<FacetSet>();
+					//					for(final ETypedElement current : additionalFeatures) {
+					//						assert (current instanceof FacetElement);
+					//						final FacetSet root = getRootFacetSet((FacetElement)current);
+					//						assert root != null;
+					//						requiredFacetSets.add(root);
+					//						if(root.eResource() == null) {
+					//							toAddToResource.add(root);
+					//						}
+					//					}
+					//
+					//					if(additionFeatureRootFacetSet != null) {
+					//						for(final EPackage set : additionFeatureRootFacetSet.getESubpackages()) {
+					//							if(set instanceof FacetSet && !requiredFacetSets.contains(set)) {
+					//								uselessFacetSets.add((FacetSet)set);//TODO and if this facetSet is required by another table
+					//							}
+					//						}
+					//					}
 
-					//3. get command to store/unstore facets
-					final Set<FacetSet> requiredFacetSets = new HashSet<FacetSet>();
-					final Set<FacetSet> toAddToResource = new HashSet<FacetSet>();
-					final Set<FacetSet> uselessFacetSets = new HashSet<FacetSet>();
-					for(final ETypedElement current : additionalFeatures) {
-						assert (current instanceof FacetElement);
-						final FacetSet root = getRootFacetSet((FacetElement)current);
-						assert root != null;
-						requiredFacetSets.add(root);
-						if(root.eResource() == null) {
-							toAddToResource.add(root);
-						}
-					}
-
-					if(additionFeatureRootFacetSet != null) {
-						for(final EPackage set : additionFeatureRootFacetSet.getESubpackages()) {
-							if(set instanceof FacetSet && !requiredFacetSets.contains(set)) {
-								uselessFacetSets.add((FacetSet)set);//TODO and if this facetSet is required by another table
-							}
-						}
-					}
-
-					//4. add required facetSet to the resource
-					if(additionFeatureRootFacetSet == null) {
-						//we create the facetset
-						additionFeatureRootFacetSet = EFacetFactory.eINSTANCE.createFacetSet();
-						additionFeatureRootFacetSet.setName(this.ADDITIONAL_CONTENTS_FACET_SET_NAME);
-						additionFeatureRootFacetSet.setNsPrefix(this.ADDITIONAL_CONTENTS_FACET_SET_PREFIX);
-						additionFeatureRootFacetSet.setNsURI(this.ADDITIONAL_CONTENTS_FACET_SET_NS_URI);
-						additionFeatureRootFacetSet.setDocumentation(this.ADDITIONAL_CONTENTS_FACET_SET_DOCUMENTATION);
-						additionFeatureRootFacetSet.getESubpackages().addAll(toAddToResource);
-						final FacetSet createdFacetSet = additionFeatureRootFacetSet;
-						final ICommand addLocalFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
-
-							@Override
-							protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-								papyrusTable.eResource().getContents().add(createdFacetSet);
-								return CommandResult.newOKCommandResult();
-							}
-						};
-						compoundCmd.append(new GMFtoEMFCommandWrapper(addLocalFacetSetToResource));
-					} else if(toAddToResource != null) {
-						final FacetSet localSet = additionFeatureRootFacetSet;
-						final ICommand addNewFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
-
-							@Override
-							protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-								localSet.getESubpackages().addAll(toAddToResource);
-								return CommandResult.newOKCommandResult();
-							}
-						};
-						compoundCmd.append(new GMFtoEMFCommandWrapper(addNewFacetSetToResource));
-					}
+					//					//4. add required facetSet to the resource
+					//					if(additionFeatureRootFacetSet == null) {
+					//						//we create the facetset
+					//						additionFeatureRootFacetSet = EFacetFactory.eINSTANCE.createFacetSet();
+					//						additionFeatureRootFacetSet.setName(this.ADDITIONAL_CONTENTS_FACET_SET_NAME);
+					//						additionFeatureRootFacetSet.setNsPrefix(this.ADDITIONAL_CONTENTS_FACET_SET_PREFIX);
+					//						additionFeatureRootFacetSet.setNsURI(this.ADDITIONAL_CONTENTS_FACET_SET_NS_URI);
+					//						additionFeatureRootFacetSet.setDocumentation(this.ADDITIONAL_CONTENTS_FACET_SET_DOCUMENTATION);
+					//						additionFeatureRootFacetSet.getESubpackages().addAll(toAddToResource);
+					//						final FacetSet createdFacetSet = additionFeatureRootFacetSet;
+					//						final ICommand addLocalFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
+					//
+					//							@Override
+					//							protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+					//								papyrusTable.eResource().getContents().add(createdFacetSet);
+					//								return CommandResult.newOKCommandResult();
+					//							}
+					//						};
+					//						compoundCmd.append(new GMFtoEMFCommandWrapper(addLocalFacetSetToResource));
+					//					} else if(toAddToResource != null) {
+					//						final FacetSet localSet = additionFeatureRootFacetSet;
+					//						final ICommand addNewFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
+					//
+					//							@Override
+					//							protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+					//								localSet.getESubpackages().addAll(toAddToResource);
+					//								return CommandResult.newOKCommandResult();
+					//							}
+					//						};
+					//						compoundCmd.append(new GMFtoEMFCommandWrapper(addNewFacetSetToResource));
+					//					}
 
 					//5. remove useless facets set
 					//TODO
 				}
 				if(!compoundCmd.isEmpty()) {
 					domain.getCommandStack().execute(compoundCmd);
+					System.out.println("fait");
 				}
 
 			}
@@ -433,9 +439,124 @@ public class SelectColumnsHandler extends AbstractHandler {
 			}
 		}
 
-		facetSets.addAll(papyrusTable.getTable().getFacetSets());
+		facetSets.addAll(papyrusTable.getTable().getFacetSets());//TODO!
 
 
+		//TODO : 
+		//register new facetSet into the root facetSet
+		//unregister the facetset not used 
+		//
+		//-----------------------NEW - NEW NEW - NEW NEW //-----------------------NEW - NEW NEW - NEW NEW //-----------------------NEW - NEW NEW - NEW NEW //-----------------------NEW - NEW NEW - NEW NEW 
+
+		//we list the required FacetSet
+		//TODO : and if others facets are applied on the table? (facet not used for column but fut appearance?)
+		FacetSet additionFeatureRootFacetSet = getAdditionalContentsFacetSet(papyrusTable);
+		//the required facetset in the 
+		final Set<FacetSet> requiredSubFacetSets = new HashSet<FacetSet>();
+		final Set<FacetSet> toAddToResource = new HashSet<FacetSet>();
+		for(final ETypedElement current : selectedAdditionalFeatures) {
+			FacetSet root = getRootFacetSet((FacetElement)current);
+			if(root.eResource()==null){
+				toAddToResource.add((FacetSet)root);
+				EObject container = current;
+				while(container!=null){
+					if(container instanceof FacetSet){
+						requiredSubFacetSets.add((FacetSet)container);
+					}
+					container = container.eContainer();
+				}
+			}else if(root == additionFeatureRootFacetSet){
+				EObject container = current;
+				while(container!=null){
+					if(container instanceof FacetSet && container!=additionFeatureRootFacetSet){
+						requiredSubFacetSets.add((FacetSet)container);
+					}
+					container = container.eContainer();
+				}
+			}
+		}
+
+
+
+
+		//we list the useless facetset ownled by the addition contents facetset
+		final Set<FacetSet> uselessFacetSets = new HashSet<FacetSet>();
+		if(additionFeatureRootFacetSet != null) {
+			for(final EPackage set : additionFeatureRootFacetSet.getESubpackages()) {
+				if(set instanceof FacetSet && !requiredSubFacetSets.contains(set)) {
+					uselessFacetSets.add((FacetSet)set);//TODO and if this facetSet is required by another table
+				}
+			}
+		}
+
+		//we calculate the new registered FacetSet for the addition contents facetset
+		final Collection<FacetSet> newValue = new HashSet<FacetSet>();
+		final Collection<FacetSet> oldValue = new HashSet<FacetSet>();
+		if(additionFeatureRootFacetSet != null) {
+			for(final EPackage current : additionFeatureRootFacetSet.getESubpackages()) {//TODO waiting fot he patch of 392413: FacetSet metamodel : FacetSet#getFacetSets always return a new list
+				if(current instanceof FacetSet) {
+					oldValue.add((FacetSet)current);
+				}
+			}
+			newValue.addAll(oldValue);
+		}
+		newValue.addAll(toAddToResource);
+		newValue.removeAll(uselessFacetSets);
+		//TODO test if the new value and the old value are the same!
+
+		if(!oldValue.equals(newValue)) {
+			//5. register the new value for the sub facetset registred by the additional content facetset
+			if(additionFeatureRootFacetSet == null) {
+				//we create the facetset
+				additionFeatureRootFacetSet = EFacetFactory.eINSTANCE.createFacetSet();
+				additionFeatureRootFacetSet.setName(this.ADDITIONAL_CONTENTS_FACET_SET_NAME);
+				additionFeatureRootFacetSet.setNsPrefix(this.ADDITIONAL_CONTENTS_FACET_SET_PREFIX);
+				additionFeatureRootFacetSet.setNsURI(this.ADDITIONAL_CONTENTS_FACET_SET_NS_URI);
+				additionFeatureRootFacetSet.setDocumentation(this.ADDITIONAL_CONTENTS_FACET_SET_DOCUMENTATION);
+				additionFeatureRootFacetSet.getESubpackages().addAll(newValue);
+				final FacetSet createdFacetSet = additionFeatureRootFacetSet;
+				final ICommand addLocalFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
+
+					@Override
+					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+						papyrusTable.eResource().getContents().add(createdFacetSet);
+						return CommandResult.newOKCommandResult();
+					}
+				};
+				compoundCmd.append(new GMFtoEMFCommandWrapper(addLocalFacetSetToResource));
+			} else if(toAddToResource != null) {
+				final FacetSet localSet = additionFeatureRootFacetSet;
+				final ICommand addNewFacetSetToResource = new AbstractTransactionalCommand(domain, "Add Additional Contents FacetSet to the resource", null) {
+
+					@Override
+					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+						localSet.getESubpackages().clear();
+						localSet.getESubpackages().addAll(newValue);
+						return CommandResult.newOKCommandResult();
+					}
+				};
+				compoundCmd.append(new GMFtoEMFCommandWrapper(addNewFacetSetToResource));
+			}
+
+			//remove the additionFeatureRootFacetSet if not needed
+			if(newValue.size() == 0 && additionFeatureRootFacetSet != null) {
+				final FacetSet toRemove = additionFeatureRootFacetSet;
+				final ICommand removeAdditionalFacetSet = new AbstractTransactionalCommand(domain, "Remove additional FacetSet from resource", null) {
+
+					@Override
+					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+						papyrusTable.eResource().getContents().remove(toRemove);
+						return CommandResult.newOKCommandResult();
+					}
+				};
+				compoundCmd.append(new GMFtoEMFCommandWrapper(removeAdditionalFacetSet));
+			} else if(newValue.size() != 0 && additionFeatureRootFacetSet != null) {
+				facetSets.add(additionFeatureRootFacetSet);
+				//facetSets.addAll(requiredSubFacetSets);//TODO so that ailleurs!
+				facetSets.removeAll(requiredSubFacetSets);
+			}
+		}
+		//END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW END OF NEW 
 		final ITableCommandFactory tableCommandFactory = getTableCmdFactory(domain, papyrusTable.eResource().getResourceSet(), papyrusTable.getTable());
 		final Command createColumns = tableCommandFactory.createAddColumnCommand(columnsToCreate, new ArrayList<FacetSet>(facetSets));
 		if(createColumns != null && createColumns.canExecute()) {
@@ -443,12 +564,12 @@ public class SelectColumnsHandler extends AbstractHandler {
 		}
 
 
-
-		final Command removeColumns = tableCommandFactory.createRemoveColumnsCommand(additionalFeaturesToHide);
-		if(removeColumns != null && removeColumns.canExecute()) {
-			compoundCmd.append(removeColumns);
+		if(additionalFeaturesToHide.size() != 0) {
+			final Command removeColumns = tableCommandFactory.createRemoveColumnsCommand(additionalFeaturesToHide);
+			if(removeColumns != null && removeColumns.canExecute()) {
+				compoundCmd.append(removeColumns);
+			}
 		}
-
 		final ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
 		if(existingColumnsToShow.size() != 0) {
 			final Command showHideCommand = TableInstanceCommandFactory.createShowHideColumnCommand(widgetController, domain, commandFactory, papyrusTable.getTable(), existingColumnsToShow, new ArrayList<Column>(), putOnTheTop);
