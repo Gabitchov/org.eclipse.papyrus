@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension-point id="labelProvider" name="labelProvider" schema="schema/labelProvider.exsd"/>
+ <extension
+       point="org.eclipse.papyrus.infra.core.service">
+    <service
+          classname="org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl"
+          description="A Service to instantiate label providers"
+          id="org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService"
+          priority="1"
+          startKind="lazy">
+    </service>
+ </extension>
+</plugin>
