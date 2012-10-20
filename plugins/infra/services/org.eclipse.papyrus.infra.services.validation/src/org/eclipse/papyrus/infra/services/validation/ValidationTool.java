@@ -21,10 +21,10 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
@@ -33,26 +33,15 @@ import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 public class ValidationTool {
 
 	/** Current element */
-	private Object element;
+	protected Object element;
 
 	/** current eobject */
-	private EObject eObject;
+	protected EObject eObject;
 
 	/** current editing domain */
-	private EditingDomain domain;
+	protected EditingDomain domain;
 
-
-	/**
-	 * Constructor:
-	 * create a new instance of the validation tool for a specific model element
-	 * 
-	 * @param element
-	 *        a model element
-	 */
-	public ValidationTool(Object element) {
-		this.element = element;
-		setEObject((EObject)Platform.getAdapterManager().getAdapter(element, EObject.class));
-	}
+	protected Resource resource;
 
 	/**
 	 * Constructor:
@@ -60,8 +49,11 @@ public class ValidationTool {
 	 * 
 	 * @param eObject
 	 *        a model element
+	 * @param resource
+	 *        the resource for which we look for markers.
 	 */
-	public ValidationTool(EObject eObject) {
+	public ValidationTool(EObject eObject, Resource resource) {
+		this.resource = resource;
 		setEObject(eObject);
 	}
 
@@ -101,19 +93,20 @@ public class ValidationTool {
 
 	public IMarker[] getMarkers() {
 		if(getEObject() != null) {
-			if(getEObject().eResource() != null) {
-				URI uri = getEObject().eResource().getURI();
-				String platformResourceString = uri.toPlatformString(true);
-				IFile file = (platformResourceString != null ?
-					ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
-				if(file != null) {
-					try {
-						// TODO: quite inefficient, since requested for each element (could cache markers, already done
-						// by findMarkers operation?)
-						return file.findMarkers(IMarker.PROBLEM, true, 0);
-					} catch (CoreException e) {
-					}
+			// use URI of resource passed in constructor instead of the resource of the eObject
+			// This assures that the same resource is used for deletion and for validation (fix for bug 392497)
+			URI uri = resource.getURI();
+			String platformResourceString = uri.toPlatformString(true);
+			IFile file = (platformResourceString != null ?
+				ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
+			if(file != null) {
+				try {
+					// TODO: quite inefficient, since requested for each element (could cache markers, already done
+					// by findMarkers operation?)
+					return file.findMarkers(IMarker.PROBLEM, true, 0);
+				} catch (CoreException e) {
 				}
+
 			}
 		}
 		return null;

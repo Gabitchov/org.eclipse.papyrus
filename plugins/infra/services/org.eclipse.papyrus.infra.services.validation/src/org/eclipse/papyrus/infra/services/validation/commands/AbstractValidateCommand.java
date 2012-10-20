@@ -52,8 +52,9 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
 
 	protected TransactionalEditingDomain domain;
+
 	protected EObject selectedElement;
-	
+
 	/**
 	 * Creates a new ImportLibraryFromRepositoryCommand
 	 * 
@@ -66,121 +67,128 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 * @param description
 	 *        description of the command
 	 */
-	
+
 	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement) {
-		super (domain, label, Collections.EMPTY_LIST);
+		super(domain, label, Collections.EMPTY_LIST);
 		this.domain = domain;
 		this.selectedElement = selectedElement;
 	}
-	
+
 	protected void handleDiagnostic(Diagnostic diagnostic)
 	{
-	    // Do not show a dialog, as in the original version since the user sees the result directly
+		// Do not show a dialog, as in the original version since the user sees the result directly
 		// in the model explorer
 		Resource resource = getResource();
-		if (resource != null) {
-			if (selectedElement != null) {
-				ValidationTool vt = new ValidationTool(selectedElement);
+		if(resource != null) {
+			if(selectedElement != null) {
+				ValidationTool vt = new ValidationTool(selectedElement, resource);
 				vt.deleteSubMarkers();
 			}
-			
+
 			// IPath path = new Path(resource.getURI().toPlatformString (false));
 			// IWorkspaceRoot wsRoot = ResourcesPlugin.getWorkspace().getRoot();
 			// IFile file = wsRoot.getFile(path);
 			// eclipseResourcesUtil.deleteMarkers (file);
 
-			for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
+			for(Diagnostic childDiagnostic : diagnostic.getChildren()) {
 				eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
 				// createMarkersOnDi (file, childDiagnostic);
 			}
 		}
 	}
 
+	/**
+	 * @return The resource on which markers should be applied.
+	 *         Currently, the function simply returns the first resource of the resource-set which happens to be the
+	 *         "notation" resource. This might change in the future.
+	 */
 	protected Resource getResource() {
 		Resource resource = eclipseResourcesUtil != null ? domain.getResourceSet().getResources().get(0) : null;
 		return resource;
 	}
-	
-	protected void runValidation (final EObject validateElement) {
-		 final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		 IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress()
-		 {
-			 public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
-		     {
-				 try {
-					 final Diagnostic diagnostic = validate(progressMonitor, validateElement);
-					 shell.getDisplay().asyncExec (new Runnable() {
-						 public void run()
-						 {
-							 if (progressMonitor.isCanceled()) {
-								 handleDiagnostic(Diagnostic.CANCEL_INSTANCE);
-							 }
-							 else {
-								 handleDiagnostic(diagnostic);
-							 }
-						 }
-					 });
-				 }
-				 finally {
-					 progressMonitor.done();
-				 }    
-		      }
-		 };
-		    
-		 if (eclipseResourcesUtil != null) {
-			 runnableWithProgress = eclipseResourcesUtil.getWorkspaceModifyOperation(runnableWithProgress);
-		 }
 
-		 try {
-		     // This runs the operation, and shows progress.
-		     // (It appears to be a bad thing to fork this onto another thread.)
-		     new ProgressMonitorDialog(shell).run(true, true, runnableWithProgress);
-		 }
-		 catch (Exception exception) {
-		      EMFEditUIPlugin.INSTANCE.log(exception);
-		 }
+	protected void runValidation(final EObject validateElement) {
+		final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress()
+		{
+
+			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
+			{
+				try {
+					final Diagnostic diagnostic = validate(progressMonitor, validateElement);
+					shell.getDisplay().asyncExec(new Runnable() {
+
+						public void run()
+						{
+							if(progressMonitor.isCanceled()) {
+								handleDiagnostic(Diagnostic.CANCEL_INSTANCE);
+							}
+							else {
+								handleDiagnostic(diagnostic);
+							}
+						}
+					});
+				}
+				finally {
+					progressMonitor.done();
+				}
+			}
+		};
+
+		if(eclipseResourcesUtil != null) {
+			runnableWithProgress = eclipseResourcesUtil.getWorkspaceModifyOperation(runnableWithProgress);
+		}
+
+		try {
+			// This runs the operation, and shows progress.
+			// (It appears to be a bad thing to fork this onto another thread.)
+			new ProgressMonitorDialog(shell).run(true, true, runnableWithProgress);
+		} catch (Exception exception) {
+			EMFEditUIPlugin.INSTANCE.log(exception);
+		}
 	}
 
 	/**
-	 * This simply execute the command.
+	 * This simply executes the command.
 	 */
 	protected Diagnostic validate(IProgressMonitor progressMonitor, EObject validateElement)
 	{
 		int count = 0;
-		for (Iterator<?> i = validateElement.eAllContents(); i.hasNext(); i.next()) {
+		for(Iterator<?> i = validateElement.eAllContents(); i.hasNext(); i.next()) {
 			++count;
 		}
 
 		progressMonitor.beginTask("", count);
 
-		AdapterFactory adapterFactory = 
+		AdapterFactory adapterFactory =
 			domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain)domain).getAdapterFactory() : null;
 		Diagnostician diagnostician = createDiagnostician(adapterFactory, progressMonitor);
-	    
+
 		BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(validateElement);
 		Map<Object, Object> context = diagnostician.createDefaultContext();
-		
-		progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object [] {diagnostician.getObjectLabel(validateElement)}));
+
+		progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[]{ diagnostician.getObjectLabel(validateElement) }));
 		diagnostician.validate(validateElement, diagnostic, context);
-	 
+
 		return diagnostic;
 	}
-	
+
 	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor)
 	{
 		return new Diagnostician() {
+
 			@Override
-	        public String getObjectLabel(EObject eObject) {
-				if (adapterFactory != null && !eObject.eIsProxy())
+			public String getObjectLabel(EObject eObject) {
+				if(adapterFactory != null && !eObject.eIsProxy())
 				{
 					IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
-					if (itemLabelProvider != null) {
+					if(itemLabelProvider != null) {
 						return itemLabelProvider.getText(eObject);
 					}
 				}
 				return super.getObjectLabel(eObject);
 			}
-	  
+
 			@Override
 			public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 				progressMonitor.worked(1);
@@ -188,7 +196,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			}
 		};
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

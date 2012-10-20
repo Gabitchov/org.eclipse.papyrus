@@ -24,9 +24,9 @@ import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 
 
 public class ValidateDelMarkersFromSubtreeCommand extends AbstractValidateCommand {
-	
-	public ValidateDelMarkersFromSubtreeCommand (EObject selectedElement) {
-		super ("Delete markers from subtree", TransactionUtil.getEditingDomain (selectedElement), selectedElement);
+
+	public ValidateDelMarkersFromSubtreeCommand(EObject selectedElement) {
+		super("Delete markers from subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
 	}
 
 	/**
@@ -34,10 +34,10 @@ public class ValidateDelMarkersFromSubtreeCommand extends AbstractValidateComman
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-	
-		ValidationTool vt = new ValidationTool(selectedElement);
+
+		ValidationTool vt = new ValidationTool(selectedElement, getResource());
 		vt.deleteSubMarkers();
-		
+
 		return null;
-	}		
+	}
 }

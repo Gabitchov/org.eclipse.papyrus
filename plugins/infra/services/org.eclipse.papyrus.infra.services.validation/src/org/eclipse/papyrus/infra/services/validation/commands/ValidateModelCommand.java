@@ -25,42 +25,44 @@ import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 
 /**
  * use to validate the model from a selected element in the model
- *
+ * 
  */
 public class ValidateModelCommand extends AbstractValidateCommand {
 
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param selectedElement
 	 */
 	public ValidateModelCommand(EObject selectedElement) {
 		super("Validate model", TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement));
 	}
 
-	
+
 	/**
 	 * get the root element
+	 * 
 	 * @param selectedElement
 	 * @return the root element
 	 */
-	private static EObject getTopOwner(EObject selectedElement){
+	private static EObject getTopOwner(EObject selectedElement) {
 		EObject selectedObject = selectedElement;
 		while(selectedObject.eContainer() != null) {
 			selectedObject = selectedObject.eContainer();
 		}
 		return selectedObject;
-		
+
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// replace selection by model instead of current selection
-		if( selectedElement!=null){
-			ValidationTool vt = new ValidationTool(selectedElement);
+		if(selectedElement != null) {
+			ValidationTool vt = new ValidationTool(selectedElement, getResource());
 			vt.deleteSubMarkers();
 			runValidation(selectedElement);
 		}

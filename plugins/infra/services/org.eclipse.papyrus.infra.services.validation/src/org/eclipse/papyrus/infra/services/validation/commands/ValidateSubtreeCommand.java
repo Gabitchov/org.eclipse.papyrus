@@ -24,9 +24,9 @@ import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 
 
 public class ValidateSubtreeCommand extends AbstractValidateCommand {
-	
-	public ValidateSubtreeCommand (EObject selectedElement) {
-		super ("Validate subtree", TransactionUtil.getEditingDomain (selectedElement), selectedElement);
+
+	public ValidateSubtreeCommand(EObject selectedElement) {
+		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
 	}
 
 	/**
@@ -35,9 +35,9 @@ public class ValidateSubtreeCommand extends AbstractValidateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ValidationTool vt = new ValidationTool(selectedElement);
+		ValidationTool vt = new ValidationTool(selectedElement, getResource());
 		vt.deleteSubMarkers();
-		runValidation (selectedElement);
+		runValidation(selectedElement);
 		return null;
-	}		
+	}
 }

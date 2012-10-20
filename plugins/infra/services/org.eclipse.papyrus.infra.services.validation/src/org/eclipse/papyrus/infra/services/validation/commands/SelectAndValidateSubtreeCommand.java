@@ -49,7 +49,7 @@ public class SelectAndValidateSubtreeCommand extends AbstractValidateCommand {
 		int result = dialog.open();
 
 		if(result == IDialogConstants.OK_ID) {
-			ValidationTool vt = new ValidationTool(selectedElement);
+			ValidationTool vt = new ValidationTool(selectedElement, getResource());
 			vt.deleteSubMarkers();
 			runValidation(selectedElement);
 		}
