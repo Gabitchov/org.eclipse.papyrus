@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.moka.engine" name="%extension-point.name" schema="schema/org.eclipse.papyrus.moka.engine.exsd"/>
+	<!--Define the extension provided to papyrus popmenu by the Moka plugin-->
+    <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+	        <command
+	              commandId="org.eclipse.papyrus.moka.popupmenu.execution.executebehavior"
+	              icon="icons/execute.png">
+	           <visibleWhen
+	                 checkEnabled="true">
+	           </visibleWhen>
+	        </command>
+      </menuContribution>
+   </extension>
+   
+   <!--Define commands related to the execution engine-->
+   <extension point="org.eclipse.ui.commands">
+   	  <!--Categories which owns the different commands-->
+      <!--Command targeting an action which define how to run the current behavior-->
+      <command
+            defaultHandler="org.eclipse.papyrus.moka.ui.popupmenu.execution.RunBehaviorAction"
+            description="%command.description"
+            id="org.eclipse.papyrus.moka.popupmenu.execution.executebehavior"
+            name="%command.name">
+      </command>
+   </extension>
+   
+   <!--Association between the command definition and its behavior-->
+   <extension point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.moka.ui.popupmenu.execution.RunBehaviorAction"
+            commandId="org.eclipse.papyrus.moka.popupmenu.execution.executebehavior">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.moka.propertyTester.isBehavior"
+                     value="true">
+               </test>
+            </with>
+         </activeWhen>
+      </handler>
+   </extension>
+   
+     <extension
+      point = "org.eclipse.ui.preferencePages">
+       <page id="org.eclipse.papyrus.moka.ui.preferences"
+	    class="org.eclipse.papyrus.moka.ui.preferences.MokaPreferencePage"
+            name="%page.name">
+       </page>
+   </extension>>
+</plugin>
