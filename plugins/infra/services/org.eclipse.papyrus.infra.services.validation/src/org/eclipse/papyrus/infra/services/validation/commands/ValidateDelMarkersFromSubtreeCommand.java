@@ -35,7 +35,7 @@ public class ValidateDelMarkersFromSubtreeCommand extends AbstractValidateComman
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ValidationTool vt = new ValidationTool(selectedElement, getResource());
+		ValidationTool vt = new ValidationTool(selectedElement);
 		vt.deleteSubMarkers();
 
 		return null;

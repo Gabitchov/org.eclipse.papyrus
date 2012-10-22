@@ -49,6 +49,18 @@ public class ValidationTool {
 	 * 
 	 * @param eObject
 	 *        a model element
+	 */
+	public ValidationTool(EObject eObject) {
+		this.resource = ValidationUtils.getValidationResource(eObject);
+		setEObject(eObject);
+	}
+
+	/**
+	 * Constructor:
+	 * create a new instance of the validation tool for a specific model element
+	 * 
+	 * @param eObject
+	 *        a model element
 	 * @param resource
 	 *        the resource for which we look for markers.
 	 */

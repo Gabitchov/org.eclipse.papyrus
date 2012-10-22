@@ -73,7 +73,7 @@ public class SelectAndValidateModelCommand extends AbstractValidateCommand {
 
 		if(result == IDialogConstants.OK_ID) {
 			if(selectedElement != null) {
-				ValidationTool vt = new ValidationTool(selectedElement, getResource());
+				ValidationTool vt = new ValidationTool(selectedElement);
 				vt.deleteSubMarkers();
 				runValidation(selectedElement);
 			}

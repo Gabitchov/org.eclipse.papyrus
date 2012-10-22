@@ -62,7 +62,7 @@ public class ValidateModelCommand extends AbstractValidateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// replace selection by model instead of current selection
 		if(selectedElement != null) {
-			ValidationTool vt = new ValidationTool(selectedElement, getResource());
+			ValidationTool vt = new ValidationTool(selectedElement);
 			vt.deleteSubMarkers();
 			runValidation(selectedElement);
 		}

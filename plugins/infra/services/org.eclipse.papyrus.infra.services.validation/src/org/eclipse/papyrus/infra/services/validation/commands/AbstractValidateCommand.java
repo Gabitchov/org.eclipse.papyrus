@@ -19,7 +19,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -31,12 +30,12 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
-import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
+import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
@@ -47,9 +46,6 @@ import org.eclipse.ui.PlatformUI;
  * @author Ansgar Radermacher (CEA LIST)
  */
 abstract public class AbstractValidateCommand extends AbstractTransactionalCommand {
-
-	protected EclipseResourcesUtil eclipseResourcesUtil =
-		EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
 
 	protected TransactionalEditingDomain domain;
 
@@ -78,7 +74,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	{
 		// Do not show a dialog, as in the original version since the user sees the result directly
 		// in the model explorer
-		Resource resource = getResource();
+		Resource resource = getValidationResource();
 		if(resource != null) {
 			if(selectedElement != null) {
 				ValidationTool vt = new ValidationTool(selectedElement, resource);
@@ -91,7 +87,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			// eclipseResourcesUtil.deleteMarkers (file);
 
 			for(Diagnostic childDiagnostic : diagnostic.getChildren()) {
-				eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
+				ValidationUtils.eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
 				// createMarkersOnDi (file, childDiagnostic);
 			}
 		}
@@ -102,9 +98,8 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 *         Currently, the function simply returns the first resource of the resource-set which happens to be the
 	 *         "notation" resource. This might change in the future.
 	 */
-	protected Resource getResource() {
-		Resource resource = eclipseResourcesUtil != null ? domain.getResourceSet().getResources().get(0) : null;
-		return resource;
+	protected Resource getValidationResource() {
+		return ValidationUtils.getValidationResourceViaDomain(domain);
 	}
 
 	protected void runValidation(final EObject validateElement) {
@@ -135,8 +130,8 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			}
 		};
 
-		if(eclipseResourcesUtil != null) {
-			runnableWithProgress = eclipseResourcesUtil.getWorkspaceModifyOperation(runnableWithProgress);
+		if(ValidationUtils.eclipseResourcesUtil != null) {
+			runnableWithProgress = ValidationUtils.eclipseResourcesUtil.getWorkspaceModifyOperation(runnableWithProgress);
 		}
 
 		try {

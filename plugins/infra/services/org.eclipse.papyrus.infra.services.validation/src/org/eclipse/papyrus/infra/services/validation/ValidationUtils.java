@@ -18,12 +18,16 @@ import java.util.Map;
 import java.util.MissingResourceException;
 
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 
 
 public class ValidationUtils {
@@ -89,4 +93,30 @@ public class ValidationUtils {
 		}
 		return null;
 	}
+
+	/**
+	 * Convenience function delegating to getResourceViaDomain(domain)
+	 * 
+	 * @return The resource on which markers should be applied.
+	 */
+	public static Resource getValidationResource(EObject eObject) {
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
+		return getValidationResourceViaDomain(domain);
+	}
+
+	/**
+	 * @return The resource on which markers should be applied.
+	 *         Currently, the function simply returns the first resource of the resource-set which happens to be the
+	 *         "notation" resource. This might change in the future.
+	 */
+	public static Resource getValidationResourceViaDomain(TransactionalEditingDomain domain) {
+		if(domain != null) {
+			Resource resource = eclipseResourcesUtil != null ? domain.getResourceSet().getResources().get(0) : null;
+			return resource;
+		}
+		return null;
+	}
+
+	public static EclipseResourcesUtil eclipseResourcesUtil =
+		EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
 }

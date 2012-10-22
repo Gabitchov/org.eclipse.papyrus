@@ -18,26 +18,25 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
 
 
 public class ValidateDelMarkersFromModelCommand extends AbstractValidateCommand {
-	
-	public ValidateDelMarkersFromModelCommand (EObject selectedElement) {
-		super ("Delete markers from model", TransactionUtil.getEditingDomain (selectedElement), selectedElement);
+
+	public ValidateDelMarkersFromModelCommand(EObject selectedElement) {
+		super("Delete markers from model", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Resource resource = getResource();
-		if ((resource != null) && (eclipseResourcesUtil != null)) {
-			eclipseResourcesUtil.deleteMarkers(getResource());
+		if(ValidationUtils.eclipseResourcesUtil != null) {
+			ValidationUtils.eclipseResourcesUtil.deleteMarkers(getValidationResource());
 		}
 		return null;
-	}		
+	}
 }
