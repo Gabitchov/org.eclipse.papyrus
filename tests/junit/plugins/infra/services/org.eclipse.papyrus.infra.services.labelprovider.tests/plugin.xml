@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <context
+            description="A context for testing EMF Label Provider"
+            id="org.eclipse.papyrus.infra.services.labelprovider.tests.EMFContext">
+      </context>
+      <context
+            description="A context for testing EMF and UML Label Providers"
+            id="org.eclipse.papyrus.infra.services.labelprovider.tests.UMLContext">
+      </context>
+      <labelProvider
+            priority="5"
+            provider="org.eclipse.papyrus.infra.services.labelprovider.tests.providers.EMFLabelProviderTest">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.services.labelprovider.tests.EMFContext">
+         </labelProviderContext>
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.services.labelprovider.tests.UMLContext">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="1"
+            provider="org.eclipse.papyrus.infra.services.labelprovider.tests.providers.UMLLabelProviderTest">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.services.labelprovider.tests.UMLContext">
+         </labelProviderContext>
+      </labelProvider>
+   </extension>
+
+</plugin>

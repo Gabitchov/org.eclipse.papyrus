@@ -117,6 +117,8 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 								}
 
 								labelProvider.registerProvider(priority, provider);
+							} else {
+								Activator.log.warn("The context for label provider " + e.getAttribute("provider") + " is null");
 							}
 						}
 					}
@@ -155,7 +157,8 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 		}
 
 		if(!labelProviders.containsKey(context)) {
-
+			Activator.log.warn("Unknown label provider context: " + context + ". The default label provider will be used");
+			return getLabelProvider();
 		}
 		return labelProviders.get(context);
 	}
