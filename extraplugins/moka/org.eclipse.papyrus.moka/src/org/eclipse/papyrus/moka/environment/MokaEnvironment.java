@@ -31,8 +31,8 @@ public class MokaEnvironment {
 	// Logging facility provided by Papyrus
 	public static LogHelper log;
 
-	// TODO connect this with preferences
-	// TODO Could be useful to relax the type of the parameter 
+	// TODO 1. Connect this with preferences
+	// TODO 2. It could be useful to relax the type of the parameter 
 	// (e.g., could be an active class, where the engine would implicitly instantiate that
 	// class and start its classifier behavior)
 	public static void executeBehavior(Behavior behavior) {
