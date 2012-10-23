@@ -4367,7 +4367,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 			<object
 	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 		    	id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
-			    <method name="getType()" value="AppliedStereotypeContainer,AppliedStereotypeProperty"/>
+			    <method name="getType()" value="AppliedStereotypeContainer,AppliedStereotypeProperty,AppliedStereotypesComment,AppliedStereotypesCommentLink"/>
 		   </object>
 	   </editpartProvider>
 </extension>

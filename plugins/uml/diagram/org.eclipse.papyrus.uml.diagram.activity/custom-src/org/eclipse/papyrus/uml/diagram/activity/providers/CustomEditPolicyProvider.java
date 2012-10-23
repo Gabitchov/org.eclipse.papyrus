@@ -16,13 +16,17 @@ package org.eclipse.papyrus.uml.diagram.activity.providers;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
@@ -48,36 +52,47 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
-		if(editPart instanceof IPrimaryEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-		}
-		if(editPart instanceof NamedElementEditPart ){
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
+
+			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
+			if( editPart instanceof IPrimaryEditPart){
+
+
+				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
+			}
+
+			if(!( editPart instanceof ConnectionEditPart)){
+				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+
+			}
+			if(editPart instanceof NamedElementEditPart ){
+				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+			}
 		}
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public boolean provides(IOperation operation) {
-		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)) {
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		public boolean provides(IOperation operation) {
+			CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
+			if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
+				return false;
+			}
+			
+			EditPart gep = (EditPart)epOperation.getEditPart();
+			String diagramType =((View) gep.getModel()).getDiagram().getType();
+			if(ActivityDiagramEditPart.MODEL_ID.equals(diagramType)) {
+				return true;
+			}
 			return false;
 		}
-		GraphicalEditPart gep = (GraphicalEditPart)epOperation.getEditPart();
-		String diagramType = gep.getNotationView().getDiagram().getType();
-		if(ActivityDiagramEditPart.MODEL_ID.equals(diagramType)) {
-			return true;
-		}
-		return false;
-	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void removeProviderChangeListener(IProviderChangeListener listener) {
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		public void removeProviderChangeListener(IProviderChangeListener listener) {
+		}
 	}
-}
