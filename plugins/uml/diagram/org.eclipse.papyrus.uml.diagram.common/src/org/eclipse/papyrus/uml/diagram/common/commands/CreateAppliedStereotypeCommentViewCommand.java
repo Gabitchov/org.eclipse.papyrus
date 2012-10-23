@@ -49,6 +49,7 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 	protected int x;
 	protected int y;
 	protected TransactionalEditingDomain domain;
+	protected Boolean isBorderedElement;
 	
 	/**
 	 * 
@@ -59,13 +60,14 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 	 * @param StereotypeApplication
 	 * @param displayit
 	 */
-	public CreateAppliedStereotypeCommentViewCommand(TransactionalEditingDomain domain,View owner,int x, int y, EObject base_Element) {
+	public CreateAppliedStereotypeCommentViewCommand(TransactionalEditingDomain domain,View owner,int x, int y, EObject base_Element, boolean isABordererElement) {
 		super(domain);
 		this.owner = owner;
 		this.base_element=base_Element;
 		this.x=x;
 		this.y=y;
 		this.domain= domain;
+		this.isBorderedElement=isABordererElement;
 		
 	}
 	@SuppressWarnings("unchecked")
@@ -84,7 +86,13 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		node.getStyles().add(ts);
 		node.setElement(null);
 		node.setType(AppliedStereotypesCommentEditPart.ID);
-		ViewUtil.insertChildView((View)owner.eContainer(), node, ViewUtil.APPEND, true);
+		View econtainer=(View)owner.eContainer();
+		if( isBorderedElement){
+			if(econtainer.eContainer()!=null){
+				econtainer=(View)econtainer.eContainer();
+			}
+		}
+		ViewUtil.insertChildView(econtainer, node, ViewUtil.APPEND, true);
 		
 		
 		EObjectValueStyle eObjectValueStyle=(EObjectValueStyle)node.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
