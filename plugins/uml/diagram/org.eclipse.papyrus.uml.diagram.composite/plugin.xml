@@ -2892,7 +2892,7 @@
             id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
          <method
                name="getType()"
-               value="AppliedStereotypeContainer,AppliedStereotypeProperty">
+               value="AppliedStereotypeContainer,AppliedStereotypeProperty,AppliedStereotypesComment,AppliedStereotypesCommentLink">
          </method>
       </object>
    </editpartProvider>
