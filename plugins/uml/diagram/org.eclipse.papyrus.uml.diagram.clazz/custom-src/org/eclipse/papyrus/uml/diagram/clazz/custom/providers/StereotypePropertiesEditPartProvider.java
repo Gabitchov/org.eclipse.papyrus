@@ -27,6 +27,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeConpartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypePropertyEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypesCommentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypesCommentLinkEditPart;
 
 
 public class StereotypePropertiesEditPartProvider extends RestrictedAbstractEditPartProvider {
@@ -46,6 +48,9 @@ public class StereotypePropertiesEditPartProvider extends RestrictedAbstractEdit
 		
 		nodeMap.put(AppliedStereotypeConpartmentEditPart.ID, AppliedStereotypeConpartmentEditPart.class);
 		nodeMap.put(AppliedStereotypePropertyEditPart.ID, AppliedStereotypeMultilinePropertyEditPart.class);
+		nodeMap.put(AppliedStereotypesCommentEditPart.ID, AppliedStereotypesCommentEditPart.class);
+		edgeMap.put(AppliedStereotypesCommentLinkEditPart.ID, AppliedStereotypesCommentLinkEditPart.class);
+		
 	}
 
 	/**
