@@ -24,7 +24,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
@@ -54,13 +56,14 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		super();
 	}
 
+	
+
 	@Override
 	public void activate() {
 		super.activate();
 
 		// if stereotype has been applied, compartment has to be created
-		final GraphicalEditPart editPart = (GraphicalEditPart)getHost();
-		Element umlElement = (Element)editPart.resolveSemanticElement();
+		Element umlElement = getUMLElement();
 		//umlElement may be null if the semantic element has been deleted and the view hasn't been cleaned
 		if(umlElement != null) {
 			Iterator<EObject> iterator = umlElement.getStereotypeApplications().iterator();
@@ -74,7 +77,10 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 	protected boolean hasToDisplayCompartment(EObject applicationOfStereotype) {
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
-
+		String stereotypesLocalizationToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization((View)getHost().getModel());
+		if( !(stereotypesLocalizationToDisplay.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION))){
+			return false;
+		}
 		HashSet<org.eclipse.uml2.uml.Stereotype> stereoSet = new HashSet<org.eclipse.uml2.uml.Stereotype>();
 		ArrayList<String> stPropList = new ArrayList<String>();
 
@@ -284,8 +290,10 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 								Display.getCurrent().asyncExec(new Runnable() {
 
 									public void run() {
-										DeleteCommand command = new DeleteCommand(currentNode);
-										editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+										if(currentNode!=null&&editPart.getEditingDomain()!=null){
+											DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(),currentNode);
+											editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+										}
 									}
 								});
 							}

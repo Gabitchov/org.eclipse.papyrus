@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
@@ -27,6 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditP
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.NestedResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
@@ -76,8 +78,15 @@ public class AppliedStereotypeConpartmentEditPart extends ResizeableListCompartm
 			rcf = new AppliedStereotypeCompartmentFigure(getCompartmentName(), getMapMode());
 		} else {
 			rcf = new NestedResizableCompartmentFigure(getMapMode());
-		}
 
+		}
+		if( this.getParent() instanceof AppliedStereotypesCommentEditPart){
+			rcf.setBorder(null);
+			if(rcf.getTextPane().getChildren().size()>0 &&rcf.getTextPane().getChildren().get(0) instanceof WrappingLabel){
+				WrappingLabel label=(WrappingLabel)rcf.getTextPane().getChildren().get(0);
+				label.setAlignment(PositionConstants.LEFT);
+			}
+		}
 		ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 		layout.setStretchMajorAxis(false);
 		layout.setStretchMinorAxis(false);
@@ -87,7 +96,7 @@ public class AppliedStereotypeConpartmentEditPart extends ResizeableListCompartm
 
 		return rcf;
 	}
-	
+
 
 	/**
 	 * 
