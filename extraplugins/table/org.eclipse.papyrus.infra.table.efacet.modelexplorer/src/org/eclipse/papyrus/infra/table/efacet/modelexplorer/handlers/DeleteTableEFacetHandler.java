@@ -13,14 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.table.efacet.modelexplorer.handlers;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -54,8 +51,6 @@ public class DeleteTableEFacetHandler extends AbstractTableEFacetHandler {
 			final CompoundCommand command = new CompoundCommand();
 
 			for(final PapyrusTable table : tables) {
-				final ECrossReferenceAdapter cross = ECrossReferenceAdapter.getCrossReferenceAdapter(table);
-				final Collection<Setting> ref = cross.getInverseReferences(table);
 				final Command sashRemoveComd = new RecordingCommand(editingDomain) {
 
 					@Override
@@ -70,6 +65,9 @@ public class DeleteTableEFacetHandler extends AbstractTableEFacetHandler {
 				};
 				// the destroy element command is a good way to destroy the cross reference
 				command.append(sashRemoveComd);
+				//see bug 392845: [Table] The delete action on new table doesn't work properly
+				command.append(new GMFtoEMFCommandWrapper(new DestroyElementPapyrusCommand(new DestroyElementRequest(table.getTable(), false))));
+
 				command.append(new GMFtoEMFCommandWrapper(new DestroyElementPapyrusCommand(new DestroyElementRequest(table, false))));
 			}
 			return command.isEmpty() ? UnexecutableCommand.INSTANCE : command;
