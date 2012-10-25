@@ -106,7 +106,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 		// if no listener is registered, a listener is added on the editor to remove the notifications 
 		// when the editor is closed the listener removes too the choices made by the user.
 		addClosingEditorListener(initialURI);
-		
+
 		// all the verification are made with the uri without the file extension
 		// each load is performed for a set of resources
 		URI trimFileExtensionAndFragment = uri.trimFragment().trimFileExtension();
@@ -252,7 +252,8 @@ public class AskUserStrategy implements ILoadingStrategy {
 	}
 
 	/**
-	 * NO for all registers the NoForAll URI  and do nothing
+	 * NO for all registers the NoForAll URI and do nothing
+	 * 
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -291,6 +292,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Yes for All registers Yes For All URI and refresh the tabs to take in account the loaded elements
+	 * 
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -350,6 +352,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * No runnable does not accept the URI asked
+	 * 
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -373,6 +376,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Yes registers the URI and refresh the tab to take in account the loaded elements
+	 * 
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -384,6 +388,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Register the notification created to the URI open by the editor
+	 * 
 	 * @param initialURI
 	 * @param notification
 	 */
@@ -428,7 +433,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 	 * If the editor is not opened or activated some listeners will be triggered to launch the refresh
 	 * 
 	 * @author tfaure
-	 *
+	 * 
 	 */
 	private class LoadAndRefreshRunnable implements NotificationRunnable {
 
@@ -530,6 +535,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Add a page listener
+	 * 
 	 * @param listener
 	 * @return
 	 */
@@ -544,6 +550,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Register a listener of the perspective to know when the editor is finally closed
+	 * 
 	 * @param listener
 	 * @return
 	 */
@@ -557,6 +564,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Unregister a perspective listener
+	 * 
 	 * @param listener
 	 * @return
 	 */
@@ -612,8 +620,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * An empty {@link IPartListener} implementation
+	 * 
 	 * @author tfaure
-	 *
+	 * 
 	 */
 	private class EditorAdapter implements IPartListener {
 
@@ -636,8 +645,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Listener which is notifid when an editor is activated
+	 * 
 	 * @author tfaure
-	 *
+	 * 
 	 */
 	private class EditorActivateListener extends EditorAdapter {
 
@@ -662,8 +672,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Listener which is notifid when an editor is closed
+	 * 
 	 * @author tfaure
-	 *
+	 * 
 	 */
 	private class EditorCloseListener extends EditorAdapter {
 
@@ -688,8 +699,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * A perspective listener which choices of an user
+	 * 
 	 * @author tfaure
-	 *
+	 * 
 	 */
 	protected class EditorClosePerspectiveListener implements IPerspectiveListener {
 

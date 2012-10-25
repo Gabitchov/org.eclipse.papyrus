@@ -4,6 +4,7 @@
    <extension-point id="loadingStrategy" name="loadingStrategy" schema="schema/loadingStrategy.exsd"/>
    <extension-point id="loadingStrategyExtender" name="loadingStrategyExtender" schema="schema/loadingStrategyExtender.exsd"/>
    <extension-point id="currentStrategyChooser" name="Current Strategy Chooser" schema="schema/currentStrategyChooser.exsd"/>
+   <extension-point id="loadedAuthorizedResource" name="loadedAuthorizedResource" schema="schema/loadedAuthorizedResource.exsd"/>
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <serviceFactory
