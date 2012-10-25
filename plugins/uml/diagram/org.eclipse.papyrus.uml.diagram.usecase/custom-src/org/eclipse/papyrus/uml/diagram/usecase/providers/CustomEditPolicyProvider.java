@@ -16,12 +16,16 @@ package org.eclipse.papyrus.uml.diagram.usecase.providers;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
@@ -48,13 +52,22 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-		editPart.installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
-		if(editPart instanceof IPrimaryEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-		}
-		if(editPart instanceof NamedElementEditPart ){
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
+
+			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
+			if( editPart instanceof IPrimaryEditPart){
+
+
+				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
+			}
+
+			if(!( editPart instanceof ConnectionEditPart)){
+				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+
+			}
+			if(editPart instanceof NamedElementEditPart ){
+				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+			}
 		}
 	}
 
@@ -64,11 +77,12 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 */
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)) {
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
-		GraphicalEditPart gep = (GraphicalEditPart)epOperation.getEditPart();
-		String diagramType = gep.getNotationView().getDiagram().getType();
+
+		EditPart gep = (EditPart)epOperation.getEditPart();
+		String diagramType =((View) gep.getModel()).getDiagram().getType();
 		if(UseCaseDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
