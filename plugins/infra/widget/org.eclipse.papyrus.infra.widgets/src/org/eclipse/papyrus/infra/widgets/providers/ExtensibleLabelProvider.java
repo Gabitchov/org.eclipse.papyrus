@@ -87,7 +87,6 @@ public class ExtensibleLabelProvider implements ILabelProvider, ILabelProviderLi
 		for(List<IFilteredLabelProvider> filteredProviders : providers.values()) {
 			for(IFilteredLabelProvider provider : filteredProviders) {
 				if(provider.accept(element)) {
-					System.out.println("Using provider " + provider.getClass().getName());
 					return provider;
 				}
 			}
