@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: LabelProvider service
+Bundle-Name: LabelProvider service (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.labelprovider;singleton:=true
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.services.labelprovider.Activator
