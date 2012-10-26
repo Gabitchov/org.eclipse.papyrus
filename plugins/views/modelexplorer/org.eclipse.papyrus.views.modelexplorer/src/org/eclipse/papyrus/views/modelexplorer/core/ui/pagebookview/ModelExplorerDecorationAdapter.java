@@ -118,8 +118,18 @@ public class ModelExplorerDecorationAdapter {
 		if(decoratedImage == null) {
 			// Otherwise create a new image and store it
 			ImageDescriptor[] decorationImages = new ImageDescriptor[5];
+			// Store the decoration by position 
+			IPapyrusDecoration[] decorationByPosition = new IPapyrusDecoration[5];			
+			
 			for(IPapyrusDecoration decoration : decorations) {
-				decorationImages[decoration.getPositionForJFace()] = decoration.getDecorationImageForME();
+				IPapyrusDecoration existingDecoration = decorationByPosition[decoration.getPositionForJFace()];
+				if (existingDecoration == null || existingDecoration.getPriority() < decoration.getPriority()) {
+					// if no decoration exists for the current position
+					// or if the existing decoration has a lower priority than the current
+					// replace the existing decoration with the current one
+					decorationImages[decoration.getPositionForJFace()] = decoration.getDecorationImageForME();
+					decorationByPosition[decoration.getPositionForJFace()] = decoration;
+				}
 			}
 			ImageDescriptor decoratedImageDesc = new DecorationOverlayIcon(decoratorTarget, decorationImages, size16);
 			Activator.getDefault().getImageRegistry().put(decoratedImageId, decoratedImageDesc);

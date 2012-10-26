@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -125,17 +126,22 @@ public class MarkersMonitorService implements IService {
 
 		try {
 			EList<Resource> resources = ServiceUtils.getInstance().getModelSet(servicesRegistry).getResources();
+			// create a copy of the list, see bug 392194 (avoid concurrent modification exceptions)
+			EList<Resource> resourcesCopy = new BasicEList<Resource>(resources);
 			// loop over all resources (e.g. error markers are on notation, breakpoints on UML model)
-			for(Resource resource : resources) {
+			for(Resource resource : resourcesCopy) {
 				URI uri = resource.getURI();
 				String platformResourceString = uri.toPlatformString(true);
-				IFile file = (platformResourceString != null ? ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
+				IFile file = (platformResourceString != null ?
+					ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) :
+					null);
 				if(file != null) {
 					try {
 						markers = file.findMarkers(null /* all markers */, true, 0);
 
 						for(int i = 0; i < markers.length; i++) {
-							EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(markers[i], null, ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
+							EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(markers[i], null,
+								ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
 							if(eObjectFromMarker != null) {
 								decorationService.addDecoration(markers[i], eObjectFromMarker);
 							}

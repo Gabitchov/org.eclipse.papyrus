@@ -93,6 +93,10 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 		return marker.getAttribute(IMarker.MESSAGE, "");
 	}
 
+	public int getPriority(IMarker marker) {
+		return marker.getAttribute(IMarker.SEVERITY, -1);
+	}
+
 	public MarkChildren supportsMarkerPropagation() {
 		return PreferencePage.getHierarchicalMarkers();
 	}
@@ -129,7 +133,7 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 			}
 			message += " marker(s) in one of the children";
 			IPapyrusDecoration deco = new Decoration(null, EValidator.MARKER,
-				getImageDescriptorForGE(childSeverity), getImageDescriptorForME(childSeverity), message, null);
+				getImageDescriptorForGE(childSeverity), getImageDescriptorForME(childSeverity), message, null, childSeverity);
 			deco.setPosition(PreferedPosition.NORTH_WEST);
 			return deco;
 		}

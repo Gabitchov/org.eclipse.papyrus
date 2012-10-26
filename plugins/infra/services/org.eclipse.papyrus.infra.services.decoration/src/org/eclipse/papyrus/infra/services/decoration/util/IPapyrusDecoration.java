@@ -23,8 +23,25 @@ import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPos
  * associated message.
  * We explicitly prefix the interface with IPapyrus to avoid confusion with the IDecoration
  * interface in JFace.
+ * A priority can be associated to a decoration. In the case where multiple decoration icons have the same positon, 
+ * the priority allows to choose the which decoration icon will be shown. 
  */
 public interface IPapyrusDecoration {
+	
+	/**
+	 * Gets the priority.
+	 * 
+	 * @return the priority
+	 */
+	int getPriority();
+	
+	/**
+	 * Sets the priority.
+	 * 
+	 * @param priority
+	 * 		  the new priority
+	 */
+	void setPriority(int priority);
 
 	/**
 	 * Sets the message.

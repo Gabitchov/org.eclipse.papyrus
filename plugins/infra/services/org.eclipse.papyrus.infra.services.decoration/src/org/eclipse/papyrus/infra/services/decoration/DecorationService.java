@@ -191,8 +191,9 @@ public class DecorationService extends Observable implements IDecorationService 
 				ImageDescriptor imageForGE = infoUtil.getImageDescriptorForGE(marker);
 				ImageDescriptor imageForME = infoUtil.getImageDescriptorForME(marker);
 				PreferedPosition position = infoUtil.getPreferedPosition(marker);
+				int priority = infoUtil.getPriority(marker);
 				IPapyrusDecoration decoration =
-					addDecoration(marker.toString(), marker.getType(), element, imageForGE, imageForME, position, infoUtil.getMessage(marker));
+					addDecoration(marker.toString(), marker.getType(), element, imageForGE, imageForME, position, infoUtil.getMessage(marker), priority);
 
 				return decoration;
 			}
@@ -216,20 +217,23 @@ public class DecorationService extends Observable implements IDecorationService 
 	 *        the decoration
 	 * @param message
 	 *        the message
+	 * @param priority
+	 *        the priority
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#addDecoration(java.lang.String, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.jface.resource.ImageDescriptor, java.lang.String)
 	 */
-	public IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, PreferedPosition position, String message) {
+	public IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, PreferedPosition position, String message, int priority) {
 
 		Decoration decoration = decorations.get(id);
 		if(decoration == null) {
-			decoration = new Decoration(id, type, decorationImageForGE, decorationImageForME, message, element);
+			decoration = new Decoration(id, type, decorationImageForGE, decorationImageForME, message, element, priority);
 			decorations.put(id, decoration);
 		}
 		else {
 			decoration.setDecorationImageForGE(decorationImageForGE);
 			decoration.setDecorationImageForME(decorationImageForME);
 			decoration.setMessage(message);
+			decoration.setPriority(priority);
 		}
 		decoration.setPosition(position);
 
