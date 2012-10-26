@@ -83,6 +83,12 @@ public interface IDecorationSpecificFunctions {
 	public String getMessage(IMarker marker);
 
 	/**
+	 * return the priority of a decoration. This enables to select a marker with a high priority, if multiple markers for the
+	 * same model element and the same position exist. See also bug 392724
+	 */
+	public int getPriority(IMarker marker);
+
+	/**
 	 * does the decoration type support a propagation from child to parent, e.g. in case of a problem marker
 	 * parents (package) might be marked as containing warnings or errors
 	 */

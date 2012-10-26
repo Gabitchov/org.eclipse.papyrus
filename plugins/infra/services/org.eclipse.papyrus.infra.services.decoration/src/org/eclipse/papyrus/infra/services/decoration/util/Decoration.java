@@ -74,6 +74,8 @@ public class Decoration implements IPapyrusDecoration {
 	/** The position. */
 	private PreferedPosition position;
 
+	/** The priority. */
+	private int priority;
 
 	/**
 	 * Instantiates a new decoration.
@@ -86,8 +88,10 @@ public class Decoration implements IPapyrusDecoration {
 	 *        the message
 	 * @param element
 	 *        the element
+	 * @param priority
+	 *        the priority
 	 */
-	public Decoration(String id, String type, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, String message, EObject element) {
+	public Decoration(String id, String type, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, String message, EObject element, int priority) {
 
 		this.id = id;
 		this.decorationImageForGE = decorationImageForGE;
@@ -96,6 +100,7 @@ public class Decoration implements IPapyrusDecoration {
 		this.element = element;
 		this.type = type;
 		this.position = PreferedPosition.SOUTH_EAST;
+		this.priority = priority;
 	}
 
 
@@ -263,5 +268,24 @@ public class Decoration implements IPapyrusDecoration {
 			}
 		}
 		return message;
+	}
+	
+	/**
+	 * Gets the priority.
+	 * 
+	 * @return the priority
+	 */
+	public int getPriority() {
+		return priority;
+	}
+
+	/**
+	 * Sets the priority.
+	 * 
+	 * @param priority
+	 * 		  the new priority
+	 */
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 }

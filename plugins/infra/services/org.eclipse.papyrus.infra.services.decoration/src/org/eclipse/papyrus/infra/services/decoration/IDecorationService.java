@@ -87,7 +87,7 @@ public interface IDecorationService extends IService {
 	 *        the message
 	 * @return the created (or existing) decoration
 	 */
-	IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationForGE, ImageDescriptor decorationForME, PreferedPosition position, String message);
+	IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationForGE, ImageDescriptor decorationForME, PreferedPosition position, String message, int priority);
 
 	/**
 	 * Removes the decoration.
