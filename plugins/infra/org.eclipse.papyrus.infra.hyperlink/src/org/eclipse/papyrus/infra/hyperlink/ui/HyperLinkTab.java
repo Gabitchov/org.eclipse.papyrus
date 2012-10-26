@@ -17,18 +17,21 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
@@ -209,7 +212,21 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 			Activator.log.error(e);
 		}
 		this.hyperlinkObjects = hyperLinkHelper.getFilteredObject(hyperlinkObjects);
-		tableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
+
+		ILabelProvider provider = null;
+		if(element != null) {
+			try {
+				provider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, element).getLabelProvider();
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
+		}
+
+		if(provider == null) {
+			provider = new LabelProvider();
+		}
+
+		tableViewer.setLabelProvider(provider);
 		getTableViewer().setInput(this.hyperlinkObjects);
 	}
 

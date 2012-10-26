@@ -30,5 +30,12 @@
             tab="org.eclipse.papyrus.infra.hyperlink.ui.DefaultHyperLinkTab">
       </hyperlinktab>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="40"
+            provider="org.eclipse.papyrus.infra.hyperlink.util.HyperLinkFilteredLabelProvider">
+      </labelProvider>
+   </extension>
 
 </plugin>

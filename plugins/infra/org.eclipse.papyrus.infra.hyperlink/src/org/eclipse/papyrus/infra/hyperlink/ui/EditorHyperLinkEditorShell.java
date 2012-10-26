@@ -15,13 +15,17 @@ package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.EditorHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
-import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;
@@ -124,7 +128,13 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 					hyperLinkEditor.setObject(selection);
 
 					//TODO : remove this dependency
-					DecoratingLabelProviderWTooltips labelProvider = new DecoratingLabelProviderWTooltips(new MoDiscoLabelProvider());
+					ILabelProvider labelProvider;
+					try {
+						labelProvider = ServiceUtilsForEObject.getInstance().getServiceRegistry(amodel).getService(LabelProviderService.class).getLabelProvider();
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+						labelProvider = new LabelProvider();
+					}
 					getObjectLabeltext().setText(labelProvider.getText(selection));
 					if(usedefaultTooltip) {
 						getTooltipInputText().setText(getObjectLabeltext().getText());

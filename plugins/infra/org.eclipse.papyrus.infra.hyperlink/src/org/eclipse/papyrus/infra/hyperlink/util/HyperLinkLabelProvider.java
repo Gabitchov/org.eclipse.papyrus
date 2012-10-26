@@ -13,41 +13,32 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.util;
 
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * The Class DocumentLabelProvider.
  */
-public class HyperLinkLabelProvider implements ILabelProvider {
+public class HyperLinkLabelProvider extends LabelProvider {
 
 	/** The HYPERLIN k_ we b_ ico n_ path. */
-	protected final String HYPERLINK_WEB_ICON_PATH = "/icons/obj16/hyperlink.gif"; //$NON-NLS-1$
+	protected final String HYPERLINK_WEB_ICON_PATH = "/icons/hyperlink.gif"; //$NON-NLS-1$
 
 	/** The HYPERLIN k_ documen t_ ico n_ path. */
-	protected final String HYPERLINK_DOCUMENT_ICON_PATH = "/icons/obj16/file.gif"; //$NON-NLS-1$
+	protected final String HYPERLINK_DOCUMENT_ICON_PATH = "/icons/file.gif"; //$NON-NLS-1$
+
 	/** The SEP. */
 	private final String SEP = " - "; //$NON-NLS-1$
-	
-	/** The editor registry. */
-	private IPageIconsRegistry editorRegistry;
-	
-	/**
-	 * Instantiates a new object label provider.
-	 * 
-	 * @param imagePath
-	 *        the image path
-	 */
-	public HyperLinkLabelProvider(IPageIconsRegistry editorFactoryRegistry ) {
-		this.editorRegistry = editorFactoryRegistry;
-	}
 
 	/**
 	 * {@inheritedDoc}.
@@ -57,19 +48,28 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 	 * 
 	 * @return the image
 	 */
+	@Override
 	public Image getImage(Object element) {
-		//TODO remove the uml.diagram.common call
 		if(element instanceof HyperLinkDocument) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", HYPERLINK_DOCUMENT_ICON_PATH).createImage(); //$NON-NLS-1$
-		}
-		else if(element instanceof HyperLinkWeb) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", HYPERLINK_WEB_ICON_PATH).createImage(); //$NON-NLS-1$
+			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, HYPERLINK_DOCUMENT_ICON_PATH);
 		}
 
-		else if(element instanceof HyperLinkEditor){
-			return ((HyperLinkEditor)element).getImage(((HyperLinkEditor)element).getObject());
+		if(element instanceof HyperLinkWeb) {
+			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, HYPERLINK_WEB_ICON_PATH);
 		}
-		return null;
+
+		if(element instanceof HyperLinkEditor) {
+			EObject editorContext = EMFHelper.getEObject(((HyperLinkEditor)element).getObject());
+			if(editorContext != null) {
+				try {
+					return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, editorContext).getLabelProvider().getImage(editorContext);
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+				}
+			}
+		}
+
+		return super.getImage(element);
 	}
 
 	/**
@@ -80,64 +80,28 @@ public class HyperLinkLabelProvider implements ILabelProvider {
 	 * 
 	 * @return the text
 	 */
+	@Override
 	public String getText(Object element) {
 		String out = ""; //$NON-NLS-1$
 		if(element instanceof HyperLinkDocument) {
 			out = ((HyperLinkDocument)element).getHyperlinkDocument();
 		} else if(element instanceof HyperLinkWeb) {
 			out = ((HyperLinkWeb)element).getHyperLinkWeb();
-		}else if(element instanceof HyperLinkEditor){
-			out = ((HyperLinkEditor)element).getText(((HyperLinkEditor)element).getObject());
+		} else if(element instanceof HyperLinkEditor) {
+			EObject editorContext = EMFHelper.getEObject(((HyperLinkEditor)element).getObject());
+			if(editorContext != null) {
+				try {
+					return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, editorContext).getLabelProvider().getText(editorContext);
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+				}
+			}
 		} else {
-			return null;
+			return super.getText(element);
 		}
+
 		out = out + SEP + ((HyperLinkObject)element).getTooltipText();
 		return out;
-	}
-	
-	public String getTooltipText(Object element){
-		return ((HyperLinkObject)element).getTooltipText();
-	}
-
-	/**
-	 * {@inheritedDoc}.
-	 * 
-	 * @param listener
-	 *        the listener
-	 */
-	public void addListener(ILabelProviderListener listener) {
-	}
-
-	/**
-	 * {@inheritedDoc}.
-	 */
-	public void dispose() {
-	}
-
-	/**
-	 * {@inheritedDoc}.
-	 * 
-	 * @param element
-	 *        the element
-	 * @param property
-	 *        the property
-	 * 
-	 * @return true, if checks if is label property
-	 */
-	public boolean isLabelProperty(Object element, String property) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	/**
-	 * {@inheritedDoc}.
-	 * 
-	 * @param listener
-	 *        the listener
-	 */
-	public void removeListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

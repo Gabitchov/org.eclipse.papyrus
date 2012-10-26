@@ -18,17 +18,19 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -275,29 +277,32 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 		defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 
+		EObject contextElement = EMFHelper.getEObject(element);
 
-
-		IPageIconsRegistry editorRegistry = null;
-		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-		try {
-			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
-			e.printStackTrace();
+		ILabelProvider provider = null;
+		if(contextElement != null) {
+			try {
+				provider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, contextElement).getLabelProvider();
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
 		}
+
+		if(provider == null) {
+			provider = new LabelProvider();
+		}
+
+
 		//init tableviewer
 		availableHyperLinkViewer = new TableViewer(availableHyperLink);
-		availableHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
+		availableHyperLinkViewer.setLabelProvider(provider);
 		availableHyperLinkViewer.setContentProvider(new HyperLinkContentProvider());
 
 		availableHyperLinkViewer.setInput(hyperlinkObjects);
 
 		defaultHyperLinkViewer = new TableViewer(defaultHyperLink);
-		defaultHyperLinkViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
+		defaultHyperLinkViewer.setLabelProvider(provider);
 		defaultHyperLinkViewer.setContentProvider(new HyperLinkContentProvider());
-
-
-
-
 	}
 
 	/**

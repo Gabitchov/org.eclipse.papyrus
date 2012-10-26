@@ -15,16 +15,18 @@ package org.eclipse.papyrus.infra.hyperlink.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -57,6 +59,8 @@ public class EditorNavigationDialog extends Dialog {
 
 	protected List<HyperLinkObject> hyperlinkResult = new ArrayList<HyperLinkObject>();
 
+	protected EObject contextElement;
+
 	/**
 	 * 
 	 * dialog to display a list of hyperlinks. the button ok is use to excute
@@ -67,9 +71,10 @@ public class EditorNavigationDialog extends Dialog {
 	 * @param hyperlinkObjects
 	 *        the list of hyperlinkObjects
 	 */
-	public EditorNavigationDialog(Shell parentShell, ArrayList<HyperLinkObject> hyperlinkObjects) {
+	public EditorNavigationDialog(Shell parentShell, ArrayList<HyperLinkObject> hyperlinkObjects, EObject contextElement) {
 		super(parentShell);
 		this.hyperlinkObjects = hyperlinkObjects;
+		this.contextElement = contextElement;
 		parentShell.setText(Messages.DiagramNavigationDialog_ChooseHyperLinks);
 	}
 
@@ -97,14 +102,20 @@ public class EditorNavigationDialog extends Dialog {
 		tableViewer.setContentProvider(contentProvider);
 
 		// set the label provider
-		IPageIconsRegistry editorRegistry = null;
-		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-		try {
-			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
-			e.printStackTrace();
+		ILabelProvider provider = null;
+		if(contextElement != null) {
+			try {
+				provider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, contextElement).getLabelProvider();
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
 		}
-		tableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
+
+		if(provider == null) {
+			provider = new LabelProvider();
+		}
+
+		tableViewer.setLabelProvider(provider);
 		tableViewer.setInput(this.hyperlinkObjects);
 
 		//Check the first element by default

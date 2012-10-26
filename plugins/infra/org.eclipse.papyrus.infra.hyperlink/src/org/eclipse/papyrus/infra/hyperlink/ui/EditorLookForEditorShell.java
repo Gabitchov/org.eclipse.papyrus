@@ -22,16 +22,14 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
@@ -40,18 +38,17 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkEditorHelpersRegistrationUtil;
-import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
@@ -134,8 +131,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				EObject elt = (EObject)((IStructuredSelection)treeViewer.getSelection()).getFirstElement();
 
 				setContainer(elt);
-				ServicesRegistry servicesRegistry = EditorUtils.getServiceRegistry();
-				ModelSet modelSet = servicesRegistry.getService(ModelSet.class);
+				ModelSet modelSet = ServiceUtilsForEObject.getInstance().getModelSet(elt);
 
 				ICreationCommand creationCommand = iCreationCommandRegistry.getCommand(commandDescriptor.getCommandId());
 				creationCommand.createDiagram(modelSet, container, null);
@@ -146,11 +142,9 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				getModeFilteredTree().getViewer().setInput(null);
 				getModeFilteredTree().getViewer().setInput(model.eResource());
 			} catch (NotFoundException ex) {
-				ex.printStackTrace();
-			} catch (BackboneException ex) {
-				ex.printStackTrace();
+				Activator.log.error(ex);
 			} catch (ServiceException ex) {
-				ex.printStackTrace();
+				Activator.log.error(ex);
 			}
 		}
 
@@ -219,13 +213,24 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		////				return null;
 		//			}
 		//		});
-		ILabelProvider labelProvider = new LocalLabelProvider();
+
+		ILabelProvider labelProvider;
+		ServicesRegistry registry = null;
+
+		try {
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(model);
+			labelProvider = registry.getService(LabelProviderService.class).getLabelProvider();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			labelProvider = new LabelProvider();
+		}
+
 		treeViewer.setLabelProvider(labelProvider);
 		//treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
 		treeViewer.setContentProvider(new SemanticEMFContentProvider(new EObject[]{ amodel }));
 		//		treeViewer.setContentProvider(new CustomizableModelContentProvider());
 		//treeViewer.setInput(model.eResource());
-		treeViewer.setInput(EditorUtils.getServiceRegistry());
+		treeViewer.setInput(registry);
 
 		// install diagramlist
 		diagramListTreeViewer = getDiagramfilteredTree().getViewer();
@@ -236,7 +241,6 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		//diagramListTreeViewer.setLabelProvider(new ObjectLabelProvider(null));
 
 		//we can't reuse the same instance of the label provider see bug 385599: [Hyperlink] We can't select the diagram/table for referencing them
-		labelProvider = new LocalLabelProvider();
 		diagramListTreeViewer.setLabelProvider(labelProvider);
 
 
@@ -367,71 +371,5 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		}
 		return false;
 	}
-
-	//TODO Refactoring delete this class to remove the PapyrusTable dependencies!
-	private class LocalLabelProvider extends DecoratingLabelProviderWTooltips {
-
-		public LocalLabelProvider() {
-			super(new MoDiscoLabelProvider());
-		}
-
-		/**
-		 * Return the EditorRegistry for nested editor descriptors. Subclass should
-		 * implements this method in order to return the registry associated to the
-		 * extension point namespace.
-		 * 
-		 * @return the EditorRegistry for nested editor descriptors
-		 *         FIXME : use a deprecated method
-		 */
-		protected IPageIconsRegistry createEditorRegistry() {
-			try {
-				return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
-			} catch (ServiceException e) {
-				// Not found, return an empty one which return null for each
-				// request.
-				return new PageIconsRegistry();
-			}
-		}
-
-		/**
-		 * the icon registry
-		 */
-		private IPageIconsRegistry editorRegistry;
-
-		/**
-		 * Get the EditorRegistry used to create editor instances. This default
-		 * implementation return the singleton eINSTANCE. This method can be
-		 * subclassed to return another registry.
-		 * 
-		 * @return the singleton eINSTANCE of editor registry
-		 */
-		protected IPageIconsRegistryExtended getEditorRegistry() {
-			if(editorRegistry == null) {
-				editorRegistry = createEditorRegistry();
-			}
-			if(!(editorRegistry instanceof IPageIconsRegistryExtended)) {
-				throw new RuntimeException("The editor registry do not implement IPageIconsRegistryExtended");////$NON-NLS-1$
-			}
-			return (IPageIconsRegistryExtended)editorRegistry;
-		}
-
-		@Override
-		public String getText(Object element) {
-			if(element instanceof PapyrusTableInstance) {
-				return ((PapyrusTableInstance)element).getName();
-			}
-			return super.getText(element);
-		}
-
-
-		@Override
-		public Image getImage(Object element) {
-			if(element instanceof PapyrusTableInstance) {
-				return getEditorRegistry().getEditorIcon(element);
-			}
-			return super.getImage(element);
-		}
-	}
-
 
 }
