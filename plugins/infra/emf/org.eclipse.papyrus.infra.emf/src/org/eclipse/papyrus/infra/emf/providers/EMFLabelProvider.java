@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IDetailLabelProvider;
 import org.eclipse.swt.graphics.Image;
+
 /**
  * This class handles labels for EMF Objects
  * The class can handle the following cases :
@@ -42,7 +43,7 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 	 * Creates a new EMFObjectLabelProvider.
 	 */
 	public EMFLabelProvider() {
-		super(Activator.getDefault().getCustomizationManager());
+		super(Activator.getDefault().getCustomizationManager()); //Note: CustomizableModelLabelProvider doesn't use the CustomizationManager. It relies on the content provider's CustomizationManager
 		baseEMFLabelProvider = new StandardEMFLabelProvider();
 	}
 

@@ -8,13 +8,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
@@ -91,17 +86,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		// if the element is a compartment
 		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
 			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, ICON_COMPARTMENT);
-		} else if(element instanceof Diagram) {
-			IPageIconsRegistry registry = null;
-			try {
-				registry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry().getService(IPageIconsRegistry.class);
-			} catch (ServiceException e) {
-				// nothing to do
-			}
-			if(registry == null) {
-				registry = new PageIconsRegistry();
-			}
-			return registry.getEditorIcon(element);
 		}
 
 		return super.getImage(element);
@@ -280,8 +264,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			// when the element is not a NamedElement, we return its Type name
 			String className = element.eClass().getName();
 			return className;
-		} else if(element instanceof Diagram) {
-			return ((Diagram)element).getName();
 		} else if(element instanceof View) { // maybe it is a view of a compartment
 			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
 			if(dummyEP instanceof ResizableCompartmentEditPart) {

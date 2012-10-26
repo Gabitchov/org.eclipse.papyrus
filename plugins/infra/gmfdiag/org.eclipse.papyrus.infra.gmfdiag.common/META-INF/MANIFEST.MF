@@ -31,7 +31,9 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.0"
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.1"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2

@@ -50,7 +50,10 @@ public class GMFToCSSConverter {
 	}
 
 	private HexColor getColor(int color) {
-		return getColor(FigureUtilities.integerToColor(color));
+		Color swtColor = FigureUtilities.integerToColor(color);
+		HexColor result = getColor(swtColor);
+		swtColor.dispose();
+		return result;
 	}
 
 	private String twoDigitsHexString(int color) {

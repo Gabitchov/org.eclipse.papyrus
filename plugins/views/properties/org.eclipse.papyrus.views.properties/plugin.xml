@@ -61,8 +61,19 @@
    <extension
          point="org.eclipse.papyrus.views.properties.labelprovider">
       <labelProvider
-            labelProvider="org.eclipse.papyrus.views.properties.providers.EMFFilteredLabelProvider"
+            labelProvider="org.eclipse.papyrus.infra.emf.providers.EMFFilteredLabelProvider"
             priority="100">
       </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <context
+            description="The properties view label provider context (Widgets)"
+            id="org.eclipse.papyrus.views.properties.labelProvider.context">
+      </context>
+      <context
+            description="The properties view label provider context (Header)"
+            id="org.eclipse.papyrus.views.properties.header.labelProvider.context">
+      </context>
    </extension>
 </plugin>

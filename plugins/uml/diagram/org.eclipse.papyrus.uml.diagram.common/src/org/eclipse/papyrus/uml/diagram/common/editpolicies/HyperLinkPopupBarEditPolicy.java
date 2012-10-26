@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.Graphics;
@@ -28,29 +29,43 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Handle;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.CellLabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -105,10 +120,11 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * Dispose.
 		 */
 		public void dispose() {
-			if(this.getIcon() != null && (!this.getIcon().isDisposed())) {
-				this.getIcon().dispose();
-			}
+			//Nothing. Do not dispose the Image, as it may be shared
 
+			//			if(this.getIcon() != null && (!this.getIcon().isDisposed())) {
+			//				this.getIcon().dispose();
+			//			}
 		}
 
 		/**
@@ -443,8 +459,20 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	public int addObjectList(int positonwidth, List<?> objectList) {
 		for(int i = 0; i < objectList.size(); i++) {
 			PopupBarLabelHandle handle = null;
-			HyperLinkLabelProvider hyperLinkLabelProvider = new HyperLinkLabelProvider(getEditorRegistry());
-			handle = new PopupBarLabelHandle(hyperLinkObjectList.get(i), hyperLinkLabelProvider.getImage(objectList.get(i)));
+
+			ILabelProvider labelProvider = null;
+			try {
+				EObject contextElement = EMFHelper.getEObject(getHost());
+				labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, contextElement).getLabelProvider();
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
+
+			if(labelProvider == null) {
+				labelProvider = new LabelProvider();
+			}
+
+			handle = new PopupBarLabelHandle(hyperLinkObjectList.get(i), labelProvider.getImage(objectList.get(i)));
 
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
@@ -452,9 +480,13 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			r1.setSize(16, 16);
 
 			Label l = new Label();
-			l.setText(hyperLinkLabelProvider.getTooltipText(hyperLinkObjectList.get(i)));
-
+			if(labelProvider instanceof CellLabelProvider) {
+				l.setText(((CellLabelProvider)labelProvider).getToolTipText(hyperLinkObjectList.get(i)));
+			} else {
+				l.setText(labelProvider.getText(hyperLinkObjectList.get(i)));
+			}
 			handle.setToolTip(l);
+
 			handle.setPreferredSize(16, 16);
 			handle.setBounds(r1);
 			handle.setBackgroundColor(ColorConstants.white);
@@ -677,5 +709,68 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 				hideDiagramAssistantAfterDelay(getDisappearanceDelay());
 			}
 		}
+	}
+
+	@Override
+	protected boolean shouldShowDiagramAssistant() {
+		return getHost().isActive() && isPreferenceOn() && isHostEditable() && isHostResolvable() && isDiagramPartActive();
+	}
+
+	/**
+	 * Checks if the diagram part is active.
+	 * 
+	 * @return True if the diagram part is active; false otherwise.
+	 */
+	private boolean isDiagramPartActive() {
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+
+		if(window != null) {
+			IWorkbenchPage page = window.getActivePage();
+			if(page != null) {
+				IWorkbenchPart activePart = page.getActivePart();
+
+				IDiagramWorkbenchPart editorPart = null;
+
+				if(activePart instanceof IDiagramWorkbenchPart) {
+					editorPart = (IDiagramWorkbenchPart)activePart;
+				} else if(activePart instanceof IAdaptable) {
+					editorPart = (IDiagramWorkbenchPart)((IAdaptable)activePart).getAdapter(IDiagramWorkbenchPart.class);
+				}
+
+				if(editorPart == null) {
+					return false;
+				}
+
+				return editorPart.getDiagramEditPart().getRoot().equals(((IGraphicalEditPart)getHost()).getRoot());
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Checks if the host editpart is editable.
+	 * 
+	 * @return True if the host is editable; false otherwise.
+	 */
+	private boolean isHostEditable() {
+		if(getHost() instanceof GraphicalEditPart) {
+			return ((GraphicalEditPart)getHost()).isEditModeEnabled();
+		}
+		return true;
+	}
+
+	/**
+	 * Is the host's semantic reference resolvable (if applicable)?
+	 * 
+	 * @return true if the semantic reference is resolvable, true if there is no
+	 *         semantic reference, and false otherwise
+	 */
+	private boolean isHostResolvable() {
+		final View view = (View)getHost().getModel();
+		EObject element = view.getElement();
+		if(element != null) {
+			return !element.eIsProxy();
+		}
+		return true;
 	}
 }

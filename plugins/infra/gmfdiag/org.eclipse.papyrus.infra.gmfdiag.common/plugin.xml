@@ -104,6 +104,13 @@
          </dependsOn>
       </serviceFactory>
    </extension>
+<extension
+      point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+   <labelProvider
+         priority="40"
+         provider="org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramFilteredLabelProvider">
+   </labelProvider>
+</extension>
 
 
 </plugin>

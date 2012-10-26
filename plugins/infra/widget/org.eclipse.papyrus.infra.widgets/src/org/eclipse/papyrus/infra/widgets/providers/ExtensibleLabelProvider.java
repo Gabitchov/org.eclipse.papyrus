@@ -24,7 +24,15 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Image;
 
-
+/**
+ * An ExtensibleLabelProvider encapsulates a set of LabelProviders. Each LabelProvider handles only a few kind of elements.
+ * The ExtensibleLabelProvider retrieves the most appropriate LabelProvider for each object.
+ * 
+ * When more than one LabelProvider match an element, the one with the smaller priority is used.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class ExtensibleLabelProvider implements ILabelProvider, ILabelProviderListener {
 
 	private final Set<ILabelProviderListener> listeners;
@@ -79,6 +87,7 @@ public class ExtensibleLabelProvider implements ILabelProvider, ILabelProviderLi
 		for(List<IFilteredLabelProvider> filteredProviders : providers.values()) {
 			for(IFilteredLabelProvider provider : filteredProviders) {
 				if(provider.accept(element)) {
+					System.out.println("Using provider " + provider.getClass().getName());
 					return provider;
 				}
 			}

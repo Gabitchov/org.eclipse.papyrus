@@ -44,7 +44,6 @@ import org.eclipse.papyrus.uml.properties.creation.ConnectorTypeEditorFactory;
 import org.eclipse.papyrus.uml.properties.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.uml.properties.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.uml.properties.creation.UMLPropertyEditorFactory;
-import org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider;
 import org.eclipse.papyrus.uml.tools.databinding.ExtensionRequiredObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
@@ -52,6 +51,7 @@ import org.eclipse.papyrus.uml.tools.databinding.ProvidedInterfaceObservableList
 import org.eclipse.papyrus.uml.tools.databinding.RequiredInterfaceObservableList;
 import org.eclipse.papyrus.uml.tools.providers.UMLContainerContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.providers.FeatureContentProvider;
 import org.eclipse.uml2.uml.Connector;

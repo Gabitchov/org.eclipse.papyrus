@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,22 +9,26 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.views.properties.providers;
+package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
+import org.eclipse.uml2.uml.Element;
 
 /**
- * A LabelProvider which only accepts EMF Objects (EObject, or objects which can be adapted to EObjects)
+ * The Modisco customizable label provider doesn't handle standard EObjects,
+ * while standard EMF label providers don't handle MoDisco elements.
+ * 
+ * This label provider aggregates both a MoDisco label provider and an
+ * EMF Label Provider.
  * 
  * @author Camille Letavernier
- * 
  */
-public class EMFFilteredLabelProvider extends EMFLabelProvider implements IFilteredLabelProvider {
+public class UMLFilteredLabelProvider extends UMLLabelProvider implements IFilteredLabelProvider {
 
 	public boolean accept(IStructuredSelection selection) {
 		if(selection.isEmpty()) {
@@ -47,8 +51,16 @@ public class EMFFilteredLabelProvider extends EMFLabelProvider implements IFilte
 			return accept((IStructuredSelection)element);
 		}
 
-		//The element is an EObject or can be adapted to an EObject
-		return EMFHelper.getEObject(element) != null;
+		//The element is a UML Element or can be adapted to an EObject
+		EObject eObject = EMFHelper.getEObject(element);
+		if(eObject == null) {
+			return false;
+		}
+		if(eObject instanceof Element) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

@@ -12,12 +12,10 @@ package org.eclipse.papyrus.infra.emf.providers;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -80,30 +78,6 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 		//		}
 
 		return result.toArray();
-	}
-
-	/**
-	 * @param owner
-	 *        the owner of the diagrams
-	 * @return the list of diagrams contained by the given owner
-	 */
-	private List<Diagram> findAllExistingDiagrams(EObject owner) {
-		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
-
-		// Walk on page (Diagram) references
-		for(Object page : pageMngr.allPages()) {
-			if(!(page instanceof Diagram)) {
-				continue;
-			}
-			// We have a GMF Diagram
-			Diagram diagram = (Diagram)page;
-			if(owner.equals(diagram.getElement())) {
-				diagrams.add(diagram);
-			}
-
-		}
-
-		return diagrams;
 	}
 
 	/**

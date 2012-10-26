@@ -3,7 +3,7 @@ package org.eclipse.papyrus.uml.tools.databinding;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.uml2.uml.ExtensionEnd;
 
 /**

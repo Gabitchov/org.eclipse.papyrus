@@ -214,7 +214,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 			}
 			if(defaultHyperLinkObject.size() > 1) {
 				// open a dialog to choose a diagram
-				EditorNavigationDialog diagramNavigationDialog = new EditorNavigationDialog(getHost().getViewer().getControl().getShell(), defaultHyperLinkObject);
+				EditorNavigationDialog diagramNavigationDialog = new EditorNavigationDialog(getHost().getViewer().getControl().getShell(), defaultHyperLinkObject, semanticElement);
 				diagramNavigationDialog.open();
 				final List<HyperLinkObject> hList = diagramNavigationDialog.getSelectedHyperlinks();
 				Command command = new Command() {

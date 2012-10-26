@@ -58,6 +58,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.configuration.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSRefreshHandler;
 import org.eclipse.papyrus.infra.gmfdiag.css.provider.CustomStyle;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 
@@ -307,7 +308,9 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 
 		if(isInteger(feature)) {
 			if(feature.getName().endsWith("Color")) {
-				declaration.setExpression(converter.convert(FigureUtilities.integerToColor((Integer)style.eGet(feature))));
+				Color color = FigureUtilities.integerToColor((Integer)style.eGet(feature));
+				declaration.setExpression(converter.convert(color));
+				color.dispose();
 			} else {
 				declaration.setExpression(converter.convert((Integer)style.eGet(feature)));
 			}

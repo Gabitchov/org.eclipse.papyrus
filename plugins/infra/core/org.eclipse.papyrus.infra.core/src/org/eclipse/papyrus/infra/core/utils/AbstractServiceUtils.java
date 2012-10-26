@@ -118,4 +118,38 @@ public abstract class AbstractServiceUtils<T> {
 	public IEditorPart getNestedActiveIEditorPart(T from) throws ServiceException {
 		return getISashWindowsContainer(from).getActiveEditor();
 	}
+
+	/**
+	 * Returns an implementation of the requested service, from the specified context
+	 * 
+	 * @param service
+	 *        The service for which an implementation is requested
+	 * @param from
+	 *        The context from which the service should be retrieved
+	 * @return
+	 *         The implementation of the requested service
+	 * @throws ServiceException
+	 *         If an error occurs (e.g. cannot find the ServicesRegistry or the Service)
+	 * 
+	 */
+	public <S> S getService(Class<S> service, T from) throws ServiceException {
+		return getServiceRegistry(from).getService(service);
+	}
+
+	/**
+	 * Returns an implementation of the requested service, from the specified context
+	 * 
+	 * @param service
+	 *        The service for which an implementation is requested
+	 * @param from
+	 *        The context from which the service should be retrieved
+	 * @return
+	 *         The implementation of the requested service
+	 * @throws ServiceException
+	 *         If an error occurs (e.g. cannot find the ServicesRegistry or the Service)
+	 * 
+	 */
+	public Object getService(Object service, T from) throws ServiceException {
+		return getServiceRegistry(from).getService(service);
+	}
 }

@@ -32,16 +32,15 @@ public class HyperLinkTableEditorHelper extends AbstractHyperLinkEditorHelper {
 	@Override
 	public HyperLinkEditor getHyperLinkObjectFor(Object object) {
 		if(object instanceof PapyrusTableInstance) {
-			return new HyperLinkTableEditor();
+			return new HyperLinkEditor();
 		}
 		return null;
 	}
 
 	@Override
 	public CreateEAnnotationCommand getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, HyperLinkObject hyperlinkObject) {
-		if(hyperlinkObject instanceof HyperLinkTableEditor) {
-			HyperLinkTableEditor hyperLinkDiagram = (HyperLinkTableEditor)hyperlinkObject;
-			return new CreateHyperLinkTableCommand(domain, object, hyperLinkDiagram.getTooltipText(), ((PapyrusTableInstance)hyperLinkDiagram.getObject()).getName(), (EModelElement)hyperLinkDiagram.getObject(), hyperLinkDiagram.getIsDefault());
+		if(hyperlinkObject instanceof HyperLinkEditor && hyperlinkObject.getObject() instanceof PapyrusTableInstance) {
+			return new CreateHyperLinkTableCommand(domain, object, hyperlinkObject.getTooltipText(), ((PapyrusTableInstance)hyperlinkObject.getObject()).getName(), (EModelElement)hyperlinkObject.getObject(), hyperlinkObject.getIsDefault());
 		} else {
 			return null;
 		}
@@ -51,7 +50,7 @@ public class HyperLinkTableEditorHelper extends AbstractHyperLinkEditorHelper {
 	@Override
 	public HyperLinkEditor getHyperLinkObjectForEAnnotation(EAnnotation eAnnotation) {
 		if(eAnnotation.getSource().equals(HyperLinkTableConstants.HYPERLINK_TABLE)) {
-			HyperLinkTableEditor hyperLinkDiagram = new HyperLinkTableEditor();
+			HyperLinkEditor hyperLinkDiagram = new HyperLinkEditor();
 			List<EObject> list = eAnnotation.getReferences();
 			if(list.size() > 0) {
 				if(eAnnotation.getReferences().get(0).eResource() != null) {

@@ -38,5 +38,19 @@
       <editorhyperlink
             helper="org.eclipse.papyrus.infra.table.common.hyperlink.HyperLinkTableEditorHelper">
       </editorhyperlink>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.labelprovider">
+      <labelProvider
+            labelProvider="org.eclipse.papyrus.infra.table.common.providers.FilteredTableLabelProvider"
+            priority="45">
+      </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="45"
+            provider="org.eclipse.papyrus.infra.table.common.providers.FilteredTableLabelProvider">
+      </labelProvider>
    </extension> 
 </plugin>

@@ -33,7 +33,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.gef;bundle-version="3.8.1",
- org.eclipse.gmf.runtime.notation;bundle-version="1.5.0"
+ org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.uml.properties.constraints,
  org.eclipse.papyrus.uml.properties.creation,
  org.eclipse.papyrus.uml.properties.databinding,
@@ -48,7 +49,6 @@ Export-Package: org.eclipse.papyrus.uml.properties.constraints,
  org.eclipse.papyrus.uml.properties.profile.ui.panels,
  org.eclipse.papyrus.uml.properties.profile.ui.section,
  org.eclipse.papyrus.uml.properties.profile.ui.views,
- org.eclipse.papyrus.uml.properties.providers,
  org.eclipse.papyrus.uml.properties.util,
  org.eclipse.papyrus.uml.properties.widgets
 Bundle-Vendor: %providerName

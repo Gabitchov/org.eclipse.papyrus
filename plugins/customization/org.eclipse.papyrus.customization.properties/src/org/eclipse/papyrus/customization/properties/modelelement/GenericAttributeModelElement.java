@@ -24,7 +24,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
@@ -122,7 +125,11 @@ public class GenericAttributeModelElement extends AbstractModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		return new EMFLabelProvider();
+		try {
+			return ServiceUtilsForResource.getInstance().getServiceRegistry(source.eResource()).getService(LabelProviderService.class).getLabelProvider();
+		} catch (ServiceException ex) {
+			return new LabelProvider();
+		}
 	}
 
 	@Override
