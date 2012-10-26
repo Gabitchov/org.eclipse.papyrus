@@ -16,10 +16,15 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.core.commands.AddCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
@@ -46,10 +51,13 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditP
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
@@ -64,13 +72,12 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 	public boolean provides(IOperation operation) {
 
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-		if(!(epOperation.getEditPart() instanceof IGraphicalEditPart)) {
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
-
-		// Make sure this concern Internal Block Diagram only
-		IGraphicalEditPart gep = (IGraphicalEditPart)epOperation.getEditPart();
-		String diagramType = gep.getNotationView().getDiagram().getType();
+		
+		EditPart gep = (EditPart)epOperation.getEditPart();
+		String diagramType =((View) gep.getModel()).getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
@@ -165,12 +172,19 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		if(editPart instanceof DependencyEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-
 		if(editPart instanceof ConnectorEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		if(editPart instanceof NamedElementEditPart ){
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+		
+		// add behavior for the application of stereotypes display
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
+			
+			if( editPart instanceof IPrimaryEditPart){
+				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
+			}
+			if(editPart instanceof NamedElementEditPart ){
+				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+			}
 		}
 
 	}
