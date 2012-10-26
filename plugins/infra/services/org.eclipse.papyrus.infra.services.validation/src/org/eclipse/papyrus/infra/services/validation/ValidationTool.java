@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
@@ -41,18 +42,7 @@ public class ValidationTool {
 	/** current editing domain */
 	private EditingDomain domain;
 
-
-	/**
-	 * Constructor:
-	 * create a new instance of the validation tool for a specific model element
-	 * 
-	 * @param element
-	 *        a model element
-	 */
-	public ValidationTool(Object element) {
-		this.element = element;
-		setEObject((EObject)Platform.getAdapterManager().getAdapter(element, EObject.class));
-	}
+	protected Resource resource;
 
 	/**
 	 * Constructor:
@@ -62,9 +52,23 @@ public class ValidationTool {
 	 *        a model element
 	 */
 	public ValidationTool(EObject eObject) {
+		this.resource = ValidationUtils.getValidationResource(eObject);
 		setEObject(eObject);
 	}
 
+	/**
+	 * Constructor:
+	 * create a new instance of the validation tool for a specific model element
+	 * 
+	 * @param eObject
+	 *        a model element
+	 * @param resource
+	 *        the resource for which we look for markers.
+	 */
+	public ValidationTool(EObject eObject, Resource resource) {
+		this.resource = resource;
+		setEObject(eObject);
+	}
 
 	public void tryChildIfEmpty() {
 		// element has no eObject. try parent
@@ -102,7 +106,7 @@ public class ValidationTool {
 	public IMarker[] getMarkers() {
 		if(getEObject() != null) {
 			if(getEObject().eResource() != null) {
-				URI uri = getEObject().eResource().getURI();
+				URI uri = resource.getURI();
 				String platformResourceString = uri.toPlatformString(true);
 				IFile file = (platformResourceString != null ?
 					ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
@@ -162,5 +166,4 @@ public class ValidationTool {
 		// reached, if subEObj == null
 		return false;
 	}
-
 }
