@@ -4,7 +4,7 @@ xmlns:xmi="http://www.omg.org/XMI"
 xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" 
 xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration" 
-fillingMode="CONTEXT_FEATURE">
+fillMode="CONTEXT_FEATURE">
   <listenContextFeature href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioralFeature/ownedParameter"/>
   <tableConfiguration>
     <canBePresentedInTheTable xmi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.papyrus.uml.efacet/resources/uml.efacet#//uml_element/isInstanceOfParameter"/>
