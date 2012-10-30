@@ -237,7 +237,7 @@ public class ProfileEFacetPackageImpl extends EPackageImpl implements ProfileEFa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEObjectFacetRepresentation_Represented_element_xmi_id() {
+	public EAttribute getEObjectFacetRepresentation_RepresentedElement_XMI_ID() {
 		return (EAttribute)eObjectFacetRepresentationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -352,7 +352,7 @@ public class ProfileEFacetPackageImpl extends EPackageImpl implements ProfileEFa
 		initEClass(stereotypePropertyFacetAttributeEClass, StereotypePropertyFacetAttribute.class, "StereotypePropertyFacetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(eObjectFacetRepresentationEClass, EObjectFacetRepresentation.class, "EObjectFacetRepresentation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getEObjectFacetRepresentation_Represented_element_xmi_id(), ecorePackage.getEString(), "represented_element_xmi_id", null, 1, 1, EObjectFacetRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEObjectFacetRepresentation_RepresentedElement_XMI_ID(), ecorePackage.getEString(), "representedElement_XMI_ID", null, 1, 1, EObjectFacetRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

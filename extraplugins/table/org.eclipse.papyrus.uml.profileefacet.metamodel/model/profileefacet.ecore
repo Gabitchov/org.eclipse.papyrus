@@ -72,7 +72,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This element is used to store the XMI_ID of the represented element."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="represented_element_xmi_id"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="representedElement_XMI_ID"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The XMI_ID of the represented element."/>

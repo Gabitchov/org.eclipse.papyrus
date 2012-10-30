@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresented_element_xmi_id <em>Represented element xmi id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,28 +37,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EObjectFacetRepresentation extends EObject, EModelElement {
 	/**
-	 * Returns the value of the '<em><b>Represented element xmi id</b></em>' attribute.
+	 * Returns the value of the '<em><b>Represented Element XMI ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The XMI_ID of the represented element.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Represented element xmi id</em>' attribute.
-	 * @see #setRepresented_element_xmi_id(String)
-	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.ProfileEFacetPackage#getEObjectFacetRepresentation_Represented_element_xmi_id()
+	 * @return the value of the '<em>Represented Element XMI ID</em>' attribute.
+	 * @see #setRepresentedElement_XMI_ID(String)
+	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.ProfileEFacetPackage#getEObjectFacetRepresentation_RepresentedElement_XMI_ID()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getRepresented_element_xmi_id();
+	String getRepresentedElement_XMI_ID();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresented_element_xmi_id <em>Represented element xmi id</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Represented element xmi id</em>' attribute.
-	 * @see #getRepresented_element_xmi_id()
+	 * @param value the new value of the '<em>Represented Element XMI ID</em>' attribute.
+	 * @see #getRepresentedElement_XMI_ID()
 	 * @generated
 	 */
-	void setRepresented_element_xmi_id(String value);
+	void setRepresentedElement_XMI_ID(String value);
 
 } // EObjectFacetRepresentation

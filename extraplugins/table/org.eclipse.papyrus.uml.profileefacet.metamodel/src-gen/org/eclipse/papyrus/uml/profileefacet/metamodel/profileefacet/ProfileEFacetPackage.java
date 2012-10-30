@@ -168,7 +168,7 @@ public interface ProfileEFacetPackage extends EPackage {
 	int PROFILE_FACET_SET__CATEGORIES = EFacetPackage.FACET_SET__CATEGORIES;
 
 	/**
-	 * The feature id for the '<em><b>Represented element xmi id</b></em>' attribute.
+	 * The feature id for the '<em><b>Represented Element XMI ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -331,7 +331,7 @@ public interface ProfileEFacetPackage extends EPackage {
 	int STEREOTYPE_FACET__EXTENDED_FACETS = EFacetPackage.FACET__EXTENDED_FACETS;
 
 	/**
-	 * The feature id for the '<em><b>Represented element xmi id</b></em>' attribute.
+	 * The feature id for the '<em><b>Represented Element XMI ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -476,7 +476,7 @@ public interface ProfileEFacetPackage extends EPackage {
 	int STEREOTYPE_PROPERTY_ELEMENT__CATEGORIES = EFacetPackage.FACET_ELEMENT__CATEGORIES;
 
 	/**
-	 * The feature id for the '<em><b>Represented element xmi id</b></em>' attribute.
+	 * The feature id for the '<em><b>Represented Element XMI ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -774,7 +774,7 @@ public interface ProfileEFacetPackage extends EPackage {
 	int STEREOTYPE_PROPERTY_FACET_REFERENCE__OVERRIDE = EFacetPackage.FACET_REFERENCE__OVERRIDE;
 
 	/**
-	 * The feature id for the '<em><b>Represented element xmi id</b></em>' attribute.
+	 * The feature id for the '<em><b>Represented Element XMI ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1036,7 +1036,7 @@ public interface ProfileEFacetPackage extends EPackage {
 	int STEREOTYPE_PROPERTY_FACET_ATTRIBUTE__OVERRIDE = EFacetPackage.FACET_ATTRIBUTE__OVERRIDE;
 
 	/**
-	 * The feature id for the '<em><b>Represented element xmi id</b></em>' attribute.
+	 * The feature id for the '<em><b>Represented Element XMI ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1091,7 +1091,7 @@ public interface ProfileEFacetPackage extends EPackage {
 	int EOBJECT_FACET_REPRESENTATION__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Represented element xmi id</b></em>' attribute.
+	 * The feature id for the '<em><b>Represented Element XMI ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1214,15 +1214,15 @@ public interface ProfileEFacetPackage extends EPackage {
 	EClass getEObjectFacetRepresentation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresented_element_xmi_id <em>Represented element xmi id</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Represented element xmi id</em>'.
-	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresented_element_xmi_id()
+	 * @return the meta object for the attribute '<em>Represented Element XMI ID</em>'.
+	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.EObjectFacetRepresentation#getRepresentedElement_XMI_ID()
 	 * @see #getEObjectFacetRepresentation()
 	 * @generated
 	 */
-	EAttribute getEObjectFacetRepresentation_Represented_element_xmi_id();
+	EAttribute getEObjectFacetRepresentation_RepresentedElement_XMI_ID();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1339,12 +1339,12 @@ public interface ProfileEFacetPackage extends EPackage {
 		EClass EOBJECT_FACET_REPRESENTATION = eINSTANCE.getEObjectFacetRepresentation();
 
 		/**
-		 * The meta object literal for the '<em><b>Represented element xmi id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Represented Element XMI ID</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID = eINSTANCE.getEObjectFacetRepresentation_Represented_element_xmi_id();
+		EAttribute EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID = eINSTANCE.getEObjectFacetRepresentation_RepresentedElement_XMI_ID();
 
 	}
 

@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypeP
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.impl.StereotypeFacetImpl#getRepresented_element_xmi_id <em>Represented element xmi id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.impl.StereotypeFacetImpl#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.impl.StereotypeFacetImpl#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
  * </ul>
  * </p>
@@ -48,24 +48,24 @@ import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypeP
  */
 public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
-	 * The default value of the '{@link #getRepresented_element_xmi_id() <em>Represented element xmi id</em>}' attribute.
+	 * The default value of the '{@link #getRepresentedElement_XMI_ID() <em>Represented Element XMI ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRepresented_element_xmi_id()
+	 * @see #getRepresentedElement_XMI_ID()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String REPRESENTED_ELEMENT_XMI_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRepresented_element_xmi_id() <em>Represented element xmi id</em>}' attribute.
+	 * The cached value of the '{@link #getRepresentedElement_XMI_ID() <em>Represented Element XMI ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRepresented_element_xmi_id()
+	 * @see #getRepresentedElement_XMI_ID()
 	 * @generated
 	 * @ordered
 	 */
-	protected String represented_element_xmi_id = REPRESENTED_ELEMENT_XMI_ID_EDEFAULT;
+	protected String representedElement_XMI_ID = REPRESENTED_ELEMENT_XMI_ID_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getStereotypeQualifiedName() <em>Stereotype Qualified Name</em>}' attribute.
@@ -111,8 +111,8 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRepresented_element_xmi_id() {
-		return represented_element_xmi_id;
+	public String getRepresentedElement_XMI_ID() {
+		return representedElement_XMI_ID;
 	}
 
 	/**
@@ -120,11 +120,11 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRepresented_element_xmi_id(String newRepresented_element_xmi_id) {
-		String oldRepresented_element_xmi_id = represented_element_xmi_id;
-		represented_element_xmi_id = newRepresented_element_xmi_id;
+	public void setRepresentedElement_XMI_ID(String newRepresentedElement_XMI_ID) {
+		String oldRepresentedElement_XMI_ID = representedElement_XMI_ID;
+		representedElement_XMI_ID = newRepresentedElement_XMI_ID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProfileEFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID, oldRepresented_element_xmi_id, represented_element_xmi_id));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProfileEFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID, oldRepresentedElement_XMI_ID, representedElement_XMI_ID));
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ProfileEFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				return getRepresented_element_xmi_id();
+				return getRepresentedElement_XMI_ID();
 			case ProfileEFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
 				return getStereotypeQualifiedName();
 		}
@@ -188,7 +188,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ProfileEFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				setRepresented_element_xmi_id((String)newValue);
+				setRepresentedElement_XMI_ID((String)newValue);
 				return;
 			case ProfileEFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
 				setStereotypeQualifiedName((String)newValue);
@@ -206,7 +206,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ProfileEFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				setRepresented_element_xmi_id(REPRESENTED_ELEMENT_XMI_ID_EDEFAULT);
+				setRepresentedElement_XMI_ID(REPRESENTED_ELEMENT_XMI_ID_EDEFAULT);
 				return;
 			case ProfileEFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
 				setStereotypeQualifiedName(STEREOTYPE_QUALIFIED_NAME_EDEFAULT);
@@ -224,7 +224,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ProfileEFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? represented_element_xmi_id != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(represented_element_xmi_id);
+				return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? representedElement_XMI_ID != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(representedElement_XMI_ID);
 			case ProfileEFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
 				return STEREOTYPE_QUALIFIED_NAME_EDEFAULT == null ? stereotypeQualifiedName != null : !STEREOTYPE_QUALIFIED_NAME_EDEFAULT.equals(stereotypeQualifiedName);
 		}
@@ -273,8 +273,8 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (represented_element_xmi_id: "); //$NON-NLS-1$
-		result.append(represented_element_xmi_id);
+		result.append(" (representedElement_XMI_ID: "); //$NON-NLS-1$
+		result.append(representedElement_XMI_ID);
 		result.append(", stereotypeQualifiedName: "); //$NON-NLS-1$
 		result.append(stereotypeQualifiedName);
 		result.append(')');
