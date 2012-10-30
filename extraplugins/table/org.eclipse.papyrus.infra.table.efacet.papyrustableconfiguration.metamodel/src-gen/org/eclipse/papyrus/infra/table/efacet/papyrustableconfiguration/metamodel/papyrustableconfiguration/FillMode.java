@@ -1,17 +1,16 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2012 CEA LIST.
- *
- *    
+ * 
+ *     
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
+ * ttp://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
- *  
- *****************************************************************************/
-package org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable;
+ *   Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ */
+package org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,19 +20,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Filling Mode</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Fill Mode</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * <!-- begin-model-doc -->
- * @deprecated : You shoudl use the enumeration provided by PapyrusTableConfiguration
- * This enumeration provides literals representing the ways to fill the table.
- * <!-- end-model-doc -->
- * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getFillingMode()
+ * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getFillMode()
  * @model
  * @generated
- * 
  */
-public enum FillingMode implements Enumerator {
+public enum FillMode implements Enumerator {
 	/**
 	 * The '<em><b>User</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -67,10 +61,11 @@ public enum FillingMode implements Enumerator {
 	/**
 	 * The '<em><b>User</b></em>' literal value.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>User</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * This user drops the elements to fill the table.
-	 * <!-- end-model-doc -->
 	 * @see #USER
 	 * @model name="User" literal="USER"
 	 * @generated
@@ -81,10 +76,11 @@ public enum FillingMode implements Enumerator {
 	/**
 	 * The '<em><b>Queries</b></em>' literal value.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Queries</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * We use queries to fill the table.
-	 * <!-- end-model-doc -->
 	 * @see #QUERIES
 	 * @model name="Queries" literal="QUERIES"
 	 * @generated
@@ -95,10 +91,11 @@ public enum FillingMode implements Enumerator {
 	/**
 	 * The '<em><b>Context Feature</b></em>' literal value.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Context Feature</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * We listen a feature of the context of the table to fill it.
-	 * <!-- end-model-doc -->
 	 * @see #CONTEXT_FEATURE
 	 * @model name="ContextFeature" literal="CONTEXT_FEATURE"
 	 * @generated
@@ -107,35 +104,35 @@ public enum FillingMode implements Enumerator {
 	public static final int CONTEXT_FEATURE_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Filling Mode</b></em>' enumerators.
+	 * An array of all the '<em><b>Fill Mode</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final FillingMode[] VALUES_ARRAY =
-		new FillingMode[] {
+	private static final FillMode[] VALUES_ARRAY =
+		new FillMode[] {
 			USER,
 			QUERIES,
 			CONTEXT_FEATURE,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Filling Mode</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Fill Mode</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<FillingMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<FillMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Filling Mode</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Fill Mode</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static FillingMode get(String literal) {
+	public static FillMode get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			FillingMode result = VALUES_ARRAY[i];
+			FillMode result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -144,14 +141,14 @@ public enum FillingMode implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Filling Mode</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Fill Mode</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static FillingMode getByName(String name) {
+	public static FillMode getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			FillingMode result = VALUES_ARRAY[i];
+			FillMode result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -160,12 +157,12 @@ public enum FillingMode implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Filling Mode</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Fill Mode</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static FillingMode get(int value) {
+	public static FillMode get(int value) {
 		switch (value) {
 			case USER_VALUE: return USER;
 			case QUERIES_VALUE: return QUERIES;
@@ -201,7 +198,7 @@ public enum FillingMode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private FillingMode(int value, String name, String literal) {
+	private FillMode(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -245,4 +242,4 @@ public enum FillingMode implements Enumerator {
 		return literal;
 	}
 	
-} //FillingMode
+} //FillMode

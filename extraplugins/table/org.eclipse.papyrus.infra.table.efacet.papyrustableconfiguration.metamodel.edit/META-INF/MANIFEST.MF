@@ -25,8 +25,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.facet.efacet.metamodel;visibility:=reexport,
  org.eclipse.emf.facet.efacet.metamodel.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.9.1";visibility:=reexport,
- org.eclipse.papyrus.infra.table.efacet.metamodel.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.facet.widgets.table.metamodel;visibility:=reexport,
  org.eclipse.emf.facet.widgets.table.metamodel.edit;visibility:=reexport
 

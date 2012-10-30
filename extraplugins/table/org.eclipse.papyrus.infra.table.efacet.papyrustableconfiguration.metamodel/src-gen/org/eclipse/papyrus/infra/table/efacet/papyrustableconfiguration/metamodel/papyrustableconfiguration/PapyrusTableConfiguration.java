@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableConfiguration;
-import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode;
 
 
 
@@ -27,29 +26,23 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Papyrus Table Configuration</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
  * This element registers the parameters to configure a Papyrus EFacet Table
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode
- * <em>Filling Mode</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries
- * <em>Filling Queries</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature
- * <em>Listen Context Feature</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration
- * <em>Table Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillMode <em>Fill Mode</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries <em>Filling Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature <em>Listen Context Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getPastedElementId <em>Pasted Element Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getPastedElementContainementFeature <em>Pasted Element Containement Feature</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration()
  * @model
  * @generated
@@ -57,37 +50,32 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
 public interface PapyrusTableConfiguration extends EObject, EModelElement {
 
 	/**
-	 * Returns the value of the '<em><b>Filling Mode</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode}.
+	 * Returns the value of the '<em><b>Fill Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * This field allows to define the filling mode to use when the table is created.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @return the value of the '<em>Filling Mode</em>' attribute.
-	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
-	 * @see #setFillingMode(FillingMode)
-	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_FillingMode()
+	 * @return the value of the '<em>Fill Mode</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode
+	 * @see #setFillMode(FillMode)
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_FillMode()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	FillingMode getFillingMode();
+	FillMode getFillMode();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode
-	 * <em>Filling Mode</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillMode <em>Fill Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Filling Mode</em>' attribute.
-	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
-	 * @see #getFillingMode()
+	 * @param value the new value of the '<em>Fill Mode</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode
+	 * @see #getFillMode()
 	 * @generated
 	 */
-	void setFillingMode(FillingMode value);
+	void setFillMode(FillMode value);
 
 	/**
 	 * Returns the value of the '<em><b>Filling Queries</b></em>' reference list.
@@ -97,7 +85,6 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * <!-- begin-model-doc -->
 	 * This list registers the queries used to fill the PapyrusTable when it is in Queries Mode
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Filling Queries</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_FillingQueries()
 	 * @model
@@ -112,7 +99,6 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * <!-- begin-model-doc -->
 	 * This field references the feature of the context of the table to listen, when the table in is Feature Mode
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Listen Context Feature</em>' reference.
 	 * @see #setListenContextFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_ListenContextFeature()
@@ -122,14 +108,10 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	EReference getListenContextFeature();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature
-	 * <em>Listen Context Feature</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature <em>Listen Context Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Listen Context Feature</em>' reference.
+	 * @param value the new value of the '<em>Listen Context Feature</em>' reference.
 	 * @see #getListenContextFeature()
 	 * @generated
 	 */
@@ -142,7 +124,6 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * <!-- begin-model-doc -->
 	 * This field references the emf-facet table configuration.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Table Configuration</em>' containment reference.
 	 * @see #setTableConfiguration(TableConfiguration)
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_TableConfiguration()
@@ -152,17 +133,64 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	TableConfiguration getTableConfiguration();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration
-	 * <em>Table Configuration</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Table Configuration</em>' containment reference.
+	 * @param value the new value of the '<em>Table Configuration</em>' containment reference.
 	 * @see #getTableConfiguration()
 	 * @generated
 	 */
 	void setTableConfiguration(TableConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Pasted Element Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This attribute stores the id of the element represented by the row during a paste action in the table.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Pasted Element Id</em>' attribute.
+	 * @see #setPastedElementId(String)
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_PastedElementId()
+	 * @model
+	 * @generated
+	 */
+	String getPastedElementId();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getPastedElementId <em>Pasted Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pasted Element Id</em>' attribute.
+	 * @see #getPastedElementId()
+	 * @generated
+	 */
+	void setPastedElementId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Pasted Element Containement Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This property reference the feature of the context of the table which is used as containement feature
+	 * for the pasted elements.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Pasted Element Containement Feature</em>' reference.
+	 * @see #setPastedElementContainementFeature(EReference)
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_PastedElementContainementFeature()
+	 * @model
+	 * @generated
+	 */
+	EReference getPastedElementContainementFeature();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getPastedElementContainementFeature <em>Pasted Element Containement Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pasted Element Containement Feature</em>' reference.
+	 * @see #getPastedElementContainementFeature()
+	 * @generated
+	 */
+	void setPastedElementContainementFeature(EReference value);
 
 } // PapyrusTableConfiguration

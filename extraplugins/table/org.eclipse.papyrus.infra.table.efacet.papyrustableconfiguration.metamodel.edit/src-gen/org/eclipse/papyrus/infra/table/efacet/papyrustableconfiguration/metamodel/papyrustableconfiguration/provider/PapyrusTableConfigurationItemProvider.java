@@ -33,7 +33,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableconfigurationFactory;
-import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode;
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode;
 import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration;
 import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage;
 
@@ -67,27 +67,29 @@ public class PapyrusTableConfigurationItemProvider extends ItemProviderAdapter i
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFillingModePropertyDescriptor(object);
+			addFillModePropertyDescriptor(object);
 			addFillingQueriesPropertyDescriptor(object);
 			addListenContextFeaturePropertyDescriptor(object);
+			addPastedElementIdPropertyDescriptor(object);
+			addPastedElementContainementFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Filling Mode feature.
+	 * This adds a property descriptor for the Fill Mode feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFillingModePropertyDescriptor(Object object) {
+	protected void addFillModePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusTableConfiguration_fillingMode_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_fillingMode_feature", "_UI_PapyrusTableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 PapyrustableconfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE,
+				 getString("_UI_PapyrusTableConfiguration_fillMode_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_fillMode_feature", "_UI_PapyrusTableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustableconfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__FILL_MODE,
 				 true,
 				 false,
 				 false,
@@ -132,6 +134,50 @@ public class PapyrusTableConfigurationItemProvider extends ItemProviderAdapter i
 				 getString("_UI_PapyrusTableConfiguration_listenContextFeature_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_listenContextFeature_feature", "_UI_PapyrusTableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 PapyrustableconfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Pasted Element Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPastedElementIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTableConfiguration_pastedElementId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_pastedElementId_feature", "_UI_PapyrusTableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustableconfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Pasted Element Containement Feature feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPastedElementContainementFeaturePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTableConfiguration_pastedElementContainementFeature_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_pastedElementContainementFeature_feature", "_UI_PapyrusTableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustableconfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINEMENT_FEATURE,
 				 true,
 				 false,
 				 true,
@@ -190,7 +236,7 @@ public class PapyrusTableConfigurationItemProvider extends ItemProviderAdapter i
 	 */
 	@Override
 	public String getText(Object object) {
-		FillingMode labelValue = ((PapyrusTableConfiguration)object).getFillingMode();
+		FillMode labelValue = ((PapyrusTableConfiguration)object).getFillMode();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PapyrusTableConfiguration_type") : //$NON-NLS-1$
@@ -209,7 +255,8 @@ public class PapyrusTableConfigurationItemProvider extends ItemProviderAdapter i
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PapyrusTableConfiguration.class)) {
-			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE:
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__FILL_MODE:
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__EANNOTATIONS:

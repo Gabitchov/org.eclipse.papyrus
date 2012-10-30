@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider.CustomEditPlugin;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
 import org.eclipse.emf.facet.widgets.celleditors.edit.CelleditorsEditPlugin;
-import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.provider.PapyrustableEditPlugin;
 //import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.provider.Tableinstance02EditPlugin;
 //
 //import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.provider.TableConfigurationEditPlugin;
@@ -56,7 +55,7 @@ public final class PapyrustableconfigurationEditPlugin extends EMFPlugin {
 	 * @generated NOT
 	 */
 	public PapyrustableconfigurationEditPlugin() {
-		super(new ResourceLocator[]{ CelleditorsEditPlugin.INSTANCE, CustomEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, Efacet2EditPlugin.INSTANCE, PapyrustableEditPlugin.INSTANCE,
+		super(new ResourceLocator[]{ CelleditorsEditPlugin.INSTANCE, CustomEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, Efacet2EditPlugin.INSTANCE,
 
 		});
 	}

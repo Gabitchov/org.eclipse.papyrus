@@ -30,6 +30,8 @@ import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode;
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,11 +44,15 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.Papyrustabl
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getFillingMode <em>Filling Mode</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getFillMode <em>Fill Mode</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getContextFeature <em>Context Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getQueries <em>Queries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingUser <em>Using User</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingContextFeature <em>Using Context Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingQueries <em>Using Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getPastedElementId <em>Pasted Element Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getPapyrusTableConfiguration <em>Papyrus Table Configuration</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,7 +115,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFillingMode()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
 	protected static final FillingMode FILLING_MODE_EDEFAULT = FillingMode.USER;
@@ -123,6 +129,26 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @ordered
 	 */
 	protected FillingMode fillingMode = FILLING_MODE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFillMode() <em>Fill Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFillMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final FillMode FILL_MODE_EDEFAULT = FillMode.USER;
+
+	/**
+	 * The cached value of the '{@link #getFillMode() <em>Fill Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFillMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected FillMode fillMode = FILL_MODE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getContextFeature() <em>Context Feature</em>}' reference.
@@ -173,6 +199,46 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @ordered
 	 */
 	protected static final boolean USING_QUERIES_EDEFAULT = false;
+
+	/**
+	 * The default value of the '{@link #getPastedElementId() <em>Pasted Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPastedElementId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PASTED_ELEMENT_ID_EDEFAULT = ""; //$NON-NLS-1$
+
+	/**
+	 * The cached value of the '{@link #getPastedElementId() <em>Pasted Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPastedElementId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String pastedElementId = PASTED_ELEMENT_ID_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPasteElementContainementFeature() <em>Paste Element Containement Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPasteElementContainementFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EReference pasteElementContainementFeature;
+
+	/**
+	 * The cached value of the '{@link #getPapyrusTableConfiguration() <em>Papyrus Table Configuration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPapyrusTableConfiguration()
+	 * @generated
+	 * @ordered
+	 */
+	protected PapyrusTableConfiguration papyrusTableConfiguration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -304,6 +370,27 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FillMode getFillMode() {
+		return fillMode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFillMode(FillMode newFillMode) {
+		FillMode oldFillMode = fillMode;
+		fillMode = newFillMode == null ? FILL_MODE_EDEFAULT : newFillMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__FILL_MODE, oldFillMode, fillMode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getContextFeature() {
 		if (contextFeature != null && contextFeature.eIsProxy()) {
 			InternalEObject oldContextFeature = (InternalEObject)contextFeature;
@@ -356,7 +443,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @generated NOT
 	 */
 	public boolean isUsingUser() {
-		return this.fillingMode.getValue() == FillingMode.USER_VALUE;
+		return this.fillingMode.getValue() == FillMode.USER_VALUE;
 	}
 
 	/**
@@ -366,7 +453,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @generated NOT
 	 */
 	public boolean isUsingContextFeature() {
-		return this.fillingMode.getValue() == FillingMode.CONTEXT_FEATURE_VALUE;
+		return this.fillMode.getValue() == FillMode.CONTEXT_FEATURE_VALUE;
 	}
 
 	/**
@@ -376,7 +463,104 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @generated NOT
 	 */
 	public boolean isUsingQueries() {
-		return this.fillingMode.getValue() == FillingMode.QUERIES_VALUE;
+		return this.fillMode.getValue() == FillMode.QUERIES_VALUE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPastedElementId() {
+		return pastedElementId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPastedElementId(String newPastedElementId) {
+		String oldPastedElementId = pastedElementId;
+		pastedElementId = newPastedElementId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__PASTED_ELEMENT_ID, oldPastedElementId, pastedElementId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPasteElementContainementFeature() {
+		if (pasteElementContainementFeature != null && pasteElementContainementFeature.eIsProxy()) {
+			InternalEObject oldPasteElementContainementFeature = (InternalEObject)pasteElementContainementFeature;
+			pasteElementContainementFeature = (EReference)eResolveProxy(oldPasteElementContainementFeature);
+			if (pasteElementContainementFeature != oldPasteElementContainementFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustablePackage.PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
+			}
+		}
+		return pasteElementContainementFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference basicGetPasteElementContainementFeature() {
+		return pasteElementContainementFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPasteElementContainementFeature(EReference newPasteElementContainementFeature) {
+		EReference oldPasteElementContainementFeature = pasteElementContainementFeature;
+		pasteElementContainementFeature = newPasteElementContainementFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PapyrusTableConfiguration getPapyrusTableConfiguration() {
+		if (papyrusTableConfiguration != null && papyrusTableConfiguration.eIsProxy()) {
+			InternalEObject oldPapyrusTableConfiguration = (InternalEObject)papyrusTableConfiguration;
+			papyrusTableConfiguration = (PapyrusTableConfiguration)eResolveProxy(oldPapyrusTableConfiguration);
+			if (papyrusTableConfiguration != oldPapyrusTableConfiguration) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustablePackage.PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION, oldPapyrusTableConfiguration, papyrusTableConfiguration));
+			}
+		}
+		return papyrusTableConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PapyrusTableConfiguration basicGetPapyrusTableConfiguration() {
+		return papyrusTableConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPapyrusTableConfiguration(PapyrusTableConfiguration newPapyrusTableConfiguration) {
+		PapyrusTableConfiguration oldPapyrusTableConfiguration = papyrusTableConfiguration;
+		papyrusTableConfiguration = newPapyrusTableConfiguration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION, oldPapyrusTableConfiguration, papyrusTableConfiguration));
 	}
 
 	/**
@@ -409,6 +593,8 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 				return getTable();
 			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
 				return getFillingMode();
+			case PapyrustablePackage.PAPYRUS_TABLE__FILL_MODE:
+				return getFillMode();
 			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
 				if (resolve) return getContextFeature();
 				return basicGetContextFeature();
@@ -420,6 +606,14 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 				return isUsingContextFeature();
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_QUERIES:
 				return isUsingQueries();
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTED_ELEMENT_ID:
+				return getPastedElementId();
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
+				if (resolve) return getPasteElementContainementFeature();
+				return basicGetPasteElementContainementFeature();
+			case PapyrustablePackage.PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION:
+				if (resolve) return getPapyrusTableConfiguration();
+				return basicGetPapyrusTableConfiguration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -445,12 +639,24 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
 				setFillingMode((FillingMode)newValue);
 				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__FILL_MODE:
+				setFillMode((FillMode)newValue);
+				return;
 			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
 				setContextFeature((EReference)newValue);
 				return;
 			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
 				getQueries().clear();
 				getQueries().addAll((Collection<? extends Query>)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTED_ELEMENT_ID:
+				setPastedElementId((String)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
+				setPasteElementContainementFeature((EReference)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION:
+				setPapyrusTableConfiguration((PapyrusTableConfiguration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -476,11 +682,23 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
 				setFillingMode(FILLING_MODE_EDEFAULT);
 				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__FILL_MODE:
+				setFillMode(FILL_MODE_EDEFAULT);
+				return;
 			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
 				setContextFeature((EReference)null);
 				return;
 			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
 				getQueries().clear();
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTED_ELEMENT_ID:
+				setPastedElementId(PASTED_ELEMENT_ID_EDEFAULT);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
+				setPasteElementContainementFeature((EReference)null);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION:
+				setPapyrusTableConfiguration((PapyrusTableConfiguration)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -502,6 +720,8 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 				return table != null;
 			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
 				return fillingMode != FILLING_MODE_EDEFAULT;
+			case PapyrustablePackage.PAPYRUS_TABLE__FILL_MODE:
+				return fillMode != FILL_MODE_EDEFAULT;
 			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
 				return contextFeature != null;
 			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
@@ -512,6 +732,12 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 				return isUsingContextFeature() != USING_CONTEXT_FEATURE_EDEFAULT;
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_QUERIES:
 				return isUsingQueries() != USING_QUERIES_EDEFAULT;
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTED_ELEMENT_ID:
+				return PASTED_ELEMENT_ID_EDEFAULT == null ? pastedElementId != null : !PASTED_ELEMENT_ID_EDEFAULT.equals(pastedElementId);
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
+				return pasteElementContainementFeature != null;
+			case PapyrustablePackage.PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION:
+				return papyrusTableConfiguration != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -532,6 +758,10 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 		result.append(type);
 		result.append(", fillingMode: "); //$NON-NLS-1$
 		result.append(fillingMode);
+		result.append(", fillMode: "); //$NON-NLS-1$
+		result.append(fillMode);
+		result.append(", pastedElementId: "); //$NON-NLS-1$
+		result.append(pastedElementId);
 		result.append(')');
 		return result.toString();
 	}

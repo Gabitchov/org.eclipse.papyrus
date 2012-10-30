@@ -218,9 +218,12 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 
 		final PapyrusTableConfiguration configuration = getPapyrusTableConfiguration();
 		if(configuration != null) {
-			papyrusTable.setFillingMode(configuration.getFillingMode());
+			papyrusTable.setFillMode(configuration.getFillMode());
 			papyrusTable.setContextFeature(configuration.getListenContextFeature());
 			papyrusTable.getQueries().addAll(configuration.getFillingQueries());
+			papyrusTable.setPastedElementId(configuration.getPastedElementId());
+			papyrusTable.setPasteElementContainementFeature(configuration.getPastedElementContainementFeature());
+			papyrusTable.setPapyrusTableConfiguration(configuration);
 		}
 
 		final EObject context = getTableContext();

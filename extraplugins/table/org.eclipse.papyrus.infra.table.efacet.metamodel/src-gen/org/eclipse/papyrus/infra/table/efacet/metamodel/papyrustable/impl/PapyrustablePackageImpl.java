@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustableFactory;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,7 +100,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 		isInited = true;
 
 		// Initialize simple dependencies
-		TablePackage.eINSTANCE.eClass();
+		PapyrustableconfigurationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		thePapyrustablePackage.createPackageContents();
@@ -166,8 +167,8 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusTable_ContextFeature() {
-		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(4);
+	public EAttribute getPapyrusTable_FillMode() {
+		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -175,7 +176,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusTable_Queries() {
+	public EReference getPapyrusTable_ContextFeature() {
 		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -184,8 +185,8 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPapyrusTable_UsingUser() {
-		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(6);
+	public EReference getPapyrusTable_Queries() {
+		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -193,7 +194,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPapyrusTable_UsingContextFeature() {
+	public EAttribute getPapyrusTable_UsingUser() {
 		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -202,8 +203,44 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPapyrusTable_UsingQueries() {
+	public EAttribute getPapyrusTable_UsingContextFeature() {
 		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPapyrusTable_UsingQueries() {
+		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPapyrusTable_PastedElementId() {
+		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPapyrusTable_PasteElementContainementFeature() {
+		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPapyrusTable_PapyrusTableConfiguration() {
+		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -248,11 +285,15 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__TYPE);
 		createEReference(papyrusTableEClass, PAPYRUS_TABLE__TABLE);
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__FILLING_MODE);
+		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__FILL_MODE);
 		createEReference(papyrusTableEClass, PAPYRUS_TABLE__CONTEXT_FEATURE);
 		createEReference(papyrusTableEClass, PAPYRUS_TABLE__QUERIES);
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__USING_USER);
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__USING_CONTEXT_FEATURE);
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__USING_QUERIES);
+		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__PASTED_ELEMENT_ID);
+		createEReference(papyrusTableEClass, PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE);
+		createEReference(papyrusTableEClass, PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION);
 
 		// Create enums
 		fillingModeEEnum = createEEnum(FILLING_MODE);
@@ -284,6 +325,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TablePackage theTablePackage = (TablePackage)EPackage.Registry.INSTANCE.getEPackage(TablePackage.eNS_URI);
+		PapyrustableconfigurationPackage thePapyrustableconfigurationPackage = (PapyrustableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(PapyrustableconfigurationPackage.eNS_URI);
 		ExtensiblePackage theExtensiblePackage = (ExtensiblePackage)EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
 
 		// Create type parameters
@@ -299,11 +341,15 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 		initEAttribute(getPapyrusTable_Type(), ecorePackage.getEString(), "type", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTable_Table(), theTablePackage.getTable(), null, "table", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_FillingMode(), this.getFillingMode(), "fillingMode", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPapyrusTable_FillMode(), thePapyrustableconfigurationPackage.getFillMode(), "fillMode", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTable_ContextFeature(), ecorePackage.getEReference(), null, "contextFeature", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTable_Queries(), theExtensiblePackage.getQuery(), null, "queries", null, 0, -1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_UsingUser(), ecorePackage.getEBoolean(), "usingUser", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_UsingContextFeature(), ecorePackage.getEBoolean(), "usingContextFeature", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_UsingQueries(), ecorePackage.getEBoolean(), "usingQueries", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPapyrusTable_PastedElementId(), ecorePackage.getEString(), "pastedElementId", "", 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getPapyrusTable_PasteElementContainementFeature(), theEcorePackage.getEReference(), null, "pasteElementContainementFeature", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPapyrusTable_PapyrusTableConfiguration(), thePapyrustableconfigurationPackage.getPapyrusTableConfiguration(), null, "papyrusTableConfiguration", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(fillingModeEEnum, FillingMode.class, "FillingMode"); //$NON-NLS-1$

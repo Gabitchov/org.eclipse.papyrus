@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider.CustomEditPlugin;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
 import org.eclipse.emf.facet.widgets.celleditors.edit.CelleditorsEditPlugin;
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.provider.PapyrustableconfigurationEditPlugin;
 
 //import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.provider.Tableinstance02EditPlugin;
 //
@@ -52,20 +53,17 @@ public final class PapyrustableEditPlugin extends EMFPlugin {
 	 * Create the instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated NOT
 	 */
 	public PapyrustableEditPlugin() {
-		super(new ResourceLocator[]{ CelleditorsEditPlugin.INSTANCE, CustomEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, Efacet2EditPlugin.INSTANCE,/*
-																																					 * TableConfigurationEditPlugin
-																																					 * .
-																																					 * INSTANCE
-																																					 * ,
-																																					 * Tableinstance02EditPlugin
-																																					 * .
-																																					 * INSTANCE
-																																					 * ,
-																																					 */});
+		super
+		  (new ResourceLocator [] {
+		     CelleditorsEditPlugin.INSTANCE,
+		     CustomEditPlugin.INSTANCE,
+		     EcoreEditPlugin.INSTANCE,
+		     Efacet2EditPlugin.INSTANCE,
+		     PapyrustableconfigurationEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**

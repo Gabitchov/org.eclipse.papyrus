@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode;
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,11 +41,15 @@ import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFillingMode <em>Filling Mode</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFillMode <em>Fill Mode</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getContextFeature <em>Context Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getQueries <em>Queries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#isUsingUser <em>Using User</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#isUsingContextFeature <em>Using Context Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#isUsingQueries <em>Using Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPastedElementId <em>Pasted Element Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPapyrusTableConfiguration <em>Papyrus Table Configuration</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,7 +142,8 @@ public interface PapyrusTable extends EModelElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * This attribute allows to store how the table should be filled.
+	 * @deprecated : You shoudl use the enumeration provided by PapyrusTableConfiguration
+	 * This enumeration provides literals representing the ways to fill the table.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Filling Mode</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
@@ -155,8 +162,37 @@ public interface PapyrusTable extends EModelElement {
 	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
 	 * @see #getFillingMode()
 	 * @generated
+	 * @deprecated
 	 */
 	void setFillingMode(FillingMode value);
+
+	/**
+	 * Returns the value of the '<em><b>Fill Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This attribute allows to store how the table should be filled.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Fill Mode</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode
+	 * @see #setFillMode(FillMode)
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_FillMode()
+	 * @model
+	 * @generated
+	 */
+	FillMode getFillMode();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFillMode <em>Fill Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fill Mode</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode
+	 * @see #getFillMode()
+	 * @generated
+	 */
+	void setFillMode(FillMode value);
 
 	/**
 	 * Returns the value of the '<em><b>Context Feature</b></em>' reference.
@@ -239,5 +275,82 @@ public interface PapyrusTable extends EModelElement {
 	 * @generated
 	 */
 	boolean isUsingQueries();
+
+	/**
+	 * Returns the value of the '<em><b>Pasted Element Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This attribute stores the id of the element represented by the row during a paste action in the table.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Pasted Element Id</em>' attribute.
+	 * @see #setPastedElementId(String)
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_PastedElementId()
+	 * @model default=""
+	 * @generated
+	 */
+	String getPastedElementId();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPastedElementId <em>Pasted Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pasted Element Id</em>' attribute.
+	 * @see #getPastedElementId()
+	 * @generated
+	 */
+	void setPastedElementId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Paste Element Containement Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This property reference the feature of the context of the table which is used as containement feature
+	 * for the pasted elements.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Paste Element Containement Feature</em>' reference.
+	 * @see #setPasteElementContainementFeature(EReference)
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_PasteElementContainementFeature()
+	 * @model
+	 * @generated
+	 */
+	EReference getPasteElementContainementFeature();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Paste Element Containement Feature</em>' reference.
+	 * @see #getPasteElementContainementFeature()
+	 * @generated
+	 */
+	void setPasteElementContainementFeature(EReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Papyrus Table Configuration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This property references the initial PapyrusTableConfiguration used to create this table.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Papyrus Table Configuration</em>' reference.
+	 * @see #setPapyrusTableConfiguration(PapyrusTableConfiguration)
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_PapyrusTableConfiguration()
+	 * @model
+	 * @generated
+	 */
+	PapyrusTableConfiguration getPapyrusTableConfiguration();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPapyrusTableConfiguration <em>Papyrus Table Configuration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Papyrus Table Configuration</em>' reference.
+	 * @see #getPapyrusTableConfiguration()
+	 * @generated
+	 */
+	void setPapyrusTableConfiguration(PapyrusTableConfiguration value);
 
 } // PapyrusTable

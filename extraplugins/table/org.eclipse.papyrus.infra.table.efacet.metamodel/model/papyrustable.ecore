@@ -27,6 +27,11 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillingMode" eType="#//FillingMode">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="@deprecated : You shoudl use the enumeration provided by PapyrusTableConfiguration&#xD;&#xA;This enumeration provides literals representing the ways to fill the table."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillMode" eType="ecore:EEnum platform:/plugin/org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel/model/papyrustableconfiguration.ecore#//FillMode">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This attribute allows to store how the table should be filled."/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -36,7 +41,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="queries" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//extensible/Query">
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//extensible/Query">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This field references the queries used to fill table when the table is in queries mode."/>
       </eAnnotations>
@@ -62,10 +67,28 @@
         <details key="documentation" value="This attribute is true when fillingMode==Queries."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This attribute stores the id of the element represented by the row during a paste action in the table."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pasteElementContainementFeature"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This property reference the feature of the context of the table which is used as containement feature&#xD;&#xA;for the pasted elements."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="papyrusTableConfiguration"
+        eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel/model/papyrustableconfiguration.ecore#//PapyrusTableConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This property references the initial PapyrusTableConfiguration used to create this table."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FillingMode">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="This enumeration provides literals representing the ways to fill the table."/>
+      <details key="documentation" value="@deprecated : You shoudl use the enumeration provided by PapyrusTableConfiguration&#xD;&#xA;This enumeration provides literals representing the ways to fill the table."/>
     </eAnnotations>
     <eLiterals name="User" literal="USER">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

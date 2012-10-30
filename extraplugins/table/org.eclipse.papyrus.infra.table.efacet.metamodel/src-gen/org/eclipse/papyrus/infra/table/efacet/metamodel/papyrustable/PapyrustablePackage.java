@@ -127,13 +127,22 @@ public interface PapyrustablePackage extends EPackage {
 	int PAPYRUS_TABLE__FILLING_MODE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Fill Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE__FILL_MODE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Context Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE__CONTEXT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int PAPYRUS_TABLE__CONTEXT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Queries</b></em>' reference list.
@@ -142,7 +151,7 @@ public interface PapyrustablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE__QUERIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int PAPYRUS_TABLE__QUERIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Using User</b></em>' attribute.
@@ -151,7 +160,7 @@ public interface PapyrustablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE__USING_USER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int PAPYRUS_TABLE__USING_USER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Using Context Feature</b></em>' attribute.
@@ -160,7 +169,7 @@ public interface PapyrustablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE__USING_CONTEXT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
+	int PAPYRUS_TABLE__USING_CONTEXT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Using Queries</b></em>' attribute.
@@ -169,7 +178,34 @@ public interface PapyrustablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE__USING_QUERIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
+	int PAPYRUS_TABLE__USING_QUERIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Pasted Element Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE__PASTED_ELEMENT_ID = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Paste Element Containement Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Papyrus Table Configuration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>Papyrus Table</em>' class.
@@ -178,7 +214,7 @@ public interface PapyrustablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 9;
+	int PAPYRUS_TABLE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode <em>Filling Mode</em>}' enum.
@@ -246,6 +282,17 @@ public interface PapyrustablePackage extends EPackage {
 	EAttribute getPapyrusTable_FillingMode();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFillMode <em>Fill Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fill Mode</em>'.
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFillMode()
+	 * @see #getPapyrusTable()
+	 * @generated
+	 */
+	EAttribute getPapyrusTable_FillMode();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getContextFeature <em>Context Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,6 +346,39 @@ public interface PapyrustablePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPapyrusTable_UsingQueries();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPastedElementId <em>Pasted Element Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Pasted Element Id</em>'.
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPastedElementId()
+	 * @see #getPapyrusTable()
+	 * @generated
+	 */
+	EAttribute getPapyrusTable_PastedElementId();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Paste Element Containement Feature</em>'.
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPasteElementContainementFeature()
+	 * @see #getPapyrusTable()
+	 * @generated
+	 */
+	EReference getPapyrusTable_PasteElementContainementFeature();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPapyrusTableConfiguration <em>Papyrus Table Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Papyrus Table Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getPapyrusTableConfiguration()
+	 * @see #getPapyrusTable()
+	 * @generated
+	 */
+	EReference getPapyrusTable_PapyrusTableConfiguration();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode <em>Filling Mode</em>}'.
@@ -375,6 +455,14 @@ public interface PapyrustablePackage extends EPackage {
 		EAttribute PAPYRUS_TABLE__FILLING_MODE = eINSTANCE.getPapyrusTable_FillingMode();
 
 		/**
+		 * The meta object literal for the '<em><b>Fill Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PAPYRUS_TABLE__FILL_MODE = eINSTANCE.getPapyrusTable_FillMode();
+
+		/**
 		 * The meta object literal for the '<em><b>Context Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -413,6 +501,30 @@ public interface PapyrustablePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PAPYRUS_TABLE__USING_QUERIES = eINSTANCE.getPapyrusTable_UsingQueries();
+
+		/**
+		 * The meta object literal for the '<em><b>Pasted Element Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PAPYRUS_TABLE__PASTED_ELEMENT_ID = eINSTANCE.getPapyrusTable_PastedElementId();
+
+		/**
+		 * The meta object literal for the '<em><b>Paste Element Containement Feature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE = eINSTANCE.getPapyrusTable_PasteElementContainementFeature();
+
+		/**
+		 * The meta object literal for the '<em><b>Papyrus Table Configuration</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION = eINSTANCE.getPapyrusTable_PapyrusTableConfiguration();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode <em>Filling Mode</em>}' enum.

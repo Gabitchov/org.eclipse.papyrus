@@ -77,11 +77,15 @@ public class PapyrusTableItemProvider
 			addTypePropertyDescriptor(object);
 			addTablePropertyDescriptor(object);
 			addFillingModePropertyDescriptor(object);
+			addFillModePropertyDescriptor(object);
 			addContextFeaturePropertyDescriptor(object);
 			addQueriesPropertyDescriptor(object);
 			addUsingUserPropertyDescriptor(object);
 			addUsingContextFeaturePropertyDescriptor(object);
 			addUsingQueriesPropertyDescriptor(object);
+			addPastedElementIdPropertyDescriptor(object);
+			addPasteElementContainementFeaturePropertyDescriptor(object);
+			addPapyrusTableConfigurationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -166,6 +170,28 @@ public class PapyrusTableItemProvider
 				 getString("_UI_PapyrusTable_fillingMode_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_fillingMode_feature", "_UI_PapyrusTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 PapyrustablePackage.Literals.PAPYRUS_TABLE__FILLING_MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Fill Mode feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFillModePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTable_fillMode_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_fillMode_feature", "_UI_PapyrusTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustablePackage.Literals.PAPYRUS_TABLE__FILL_MODE,
 				 true,
 				 false,
 				 false,
@@ -285,6 +311,72 @@ public class PapyrusTableItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Pasted Element Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPastedElementIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTable_pastedElementId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_pastedElementId_feature", "_UI_PapyrusTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustablePackage.Literals.PAPYRUS_TABLE__PASTED_ELEMENT_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Paste Element Containement Feature feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPasteElementContainementFeaturePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTable_pasteElementContainementFeature_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_pasteElementContainementFeature_feature", "_UI_PapyrusTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustablePackage.Literals.PAPYRUS_TABLE__PASTE_ELEMENT_CONTAINEMENT_FEATURE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Papyrus Table Configuration feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPapyrusTableConfigurationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTable_papyrusTableConfiguration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_papyrusTableConfiguration_feature", "_UI_PapyrusTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustablePackage.Literals.PAPYRUS_TABLE__PAPYRUS_TABLE_CONFIGURATION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns PapyrusTable.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,9 +416,11 @@ public class PapyrusTableItemProvider
 			case PapyrustablePackage.PAPYRUS_TABLE__NAME:
 			case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
 			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
+			case PapyrustablePackage.PAPYRUS_TABLE__FILL_MODE:
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_USER:
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_CONTEXT_FEATURE:
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_QUERIES:
+			case PapyrustablePackage.PAPYRUS_TABLE__PASTED_ELEMENT_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

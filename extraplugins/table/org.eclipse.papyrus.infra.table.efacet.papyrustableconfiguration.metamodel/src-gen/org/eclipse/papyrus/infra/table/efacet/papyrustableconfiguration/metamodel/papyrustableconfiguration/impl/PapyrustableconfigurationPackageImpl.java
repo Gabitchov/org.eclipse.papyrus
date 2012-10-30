@@ -15,18 +15,15 @@ package org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamod
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
-
+import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.TablePackage;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableconfigurationPackage;
-
-import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
-
+import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.FillMode;
 import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration;
 import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationFactory;
 import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage;
@@ -44,6 +41,13 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 	 * @generated
 	 */
 	private EClass papyrusTableConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum fillModeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -92,7 +96,7 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		isInited = true;
 
 		// Initialize simple dependencies
-		PapyrustablePackage.eINSTANCE.eClass();
+		TablePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		thePapyrustableconfigurationPackage.createPackageContents();
@@ -123,7 +127,7 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPapyrusTableConfiguration_FillingMode() {
+	public EAttribute getPapyrusTableConfiguration_FillMode() {
 		return (EAttribute)papyrusTableConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -159,6 +163,33 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPapyrusTableConfiguration_PastedElementId() {
+		return (EAttribute)papyrusTableConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPapyrusTableConfiguration_PastedElementContainementFeature() {
+		return (EReference)papyrusTableConfigurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getFillMode() {
+		return fillModeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PapyrustableconfigurationFactory getPapyrustableconfigurationFactory() {
 		return (PapyrustableconfigurationFactory)getEFactoryInstance();
 	}
@@ -183,10 +214,15 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 
 		// Create classes and their features
 		papyrusTableConfigurationEClass = createEClass(PAPYRUS_TABLE_CONFIGURATION);
-		createEAttribute(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE);
+		createEAttribute(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__FILL_MODE);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION);
+		createEAttribute(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID);
+		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINEMENT_FEATURE);
+
+		// Create enums
+		fillModeEEnum = createEEnum(FILL_MODE);
 	}
 
 	/**
@@ -213,9 +249,9 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		PapyrustablePackage thePapyrustablePackage = (PapyrustablePackage)EPackage.Registry.INSTANCE.getEPackage(PapyrustablePackage.eNS_URI);
 		ExtensiblePackage theExtensiblePackage = (ExtensiblePackage)EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
 		TableconfigurationPackage theTableconfigurationPackage = (TableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(TableconfigurationPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -226,10 +262,18 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(papyrusTableConfigurationEClass, PapyrusTableConfiguration.class, "PapyrusTableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getPapyrusTableConfiguration_FillingMode(), thePapyrustablePackage.getFillingMode(), "fillingMode", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPapyrusTableConfiguration_FillMode(), this.getFillMode(), "fillMode", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTableConfiguration_FillingQueries(), theExtensiblePackage.getQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTableConfiguration_ListenContextFeature(), ecorePackage.getEReference(), null, "listenContextFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTableConfiguration_TableConfiguration(), theTableconfigurationPackage.getTableConfiguration(), null, "tableConfiguration", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPapyrusTableConfiguration_PastedElementId(), theEcorePackage.getEString(), "pastedElementId", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPapyrusTableConfiguration_PastedElementContainementFeature(), theEcorePackage.getEReference(), null, "pastedElementContainementFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		// Initialize enums and add enum literals
+		initEEnum(fillModeEEnum, FillMode.class, "FillMode"); //$NON-NLS-1$
+		addEEnumLiteral(fillModeEEnum, FillMode.USER);
+		addEEnumLiteral(fillModeEEnum, FillMode.QUERIES);
+		addEEnumLiteral(fillModeEEnum, FillMode.CONTEXT_FEATURE);
 
 		// Create resource
 		createResource(eNS_URI);

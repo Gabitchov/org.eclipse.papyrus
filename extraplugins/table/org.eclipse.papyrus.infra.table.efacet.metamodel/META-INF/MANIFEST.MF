@@ -16,6 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.widgets.celleditors;visibility:=reexport,
  org.eclipse.emf.facet.custom.metamodel;visibility:=reexport,
  org.eclipse.emf.facet.efacet.metamodel;visibility:=reexport,
- org.eclipse.emf.facet.widgets.table.metamodel;visibility:=reexport
+ org.eclipse.emf.facet.widgets.table.metamodel;visibility:=reexport,
+ org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel
 Bundle-Version: 0.9.1.qualifier
 
