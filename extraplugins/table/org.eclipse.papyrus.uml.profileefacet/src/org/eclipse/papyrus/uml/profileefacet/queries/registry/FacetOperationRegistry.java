@@ -58,6 +58,14 @@ public class FacetOperationRegistry {
 
 	public static final String UML_ENUMERATION_MULTI_VALUE_OPERATION_ID = "getUMLEnumerationMultiValue"; //$NON-NLS-1$
 
+	public static final String DATATYPE_MULTI_VALUE_OPERATION_ID = "getDatatypeMultiValue";//$NON-NLS-1$
+
+	public static final String DATATYPE_SINGLE_VALUE_OPERATION_ID = "getDatatypeSingleValue";//$NON-NLS-1$
+
+	public static final String PRIMITIVE_TYPE_MULTI_VALUE_OPERATION_ID = "getPrimitiveTypeMultiValue";//$NON-NLS-1$
+
+	public static final String PRIMITIVE_TYPE_SINGLE_VALUE_OPERATION_ID = "getPrimitiveTypeSingleValue";//$NON-NLS-1$
+
 	/** this map register the FacetOperation : key = id of the operation, value = the operation itself */
 	private final Map<String, FacetOperation> registry;
 
@@ -69,6 +77,8 @@ public class FacetOperationRegistry {
 
 	/** the name of the facet which contains the FacetOperation */
 	private static final String STEREOTYPED_ELEMENT_FACET_NAME = "stereotyped_element"; //$NON-NLS-1$
+
+
 
 	/**
 	 * 
