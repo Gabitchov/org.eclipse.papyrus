@@ -20,6 +20,7 @@ import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypeFacet;
 import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement;
+import org.eclipse.papyrus.uml.profileefacet.utils.Constants;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 

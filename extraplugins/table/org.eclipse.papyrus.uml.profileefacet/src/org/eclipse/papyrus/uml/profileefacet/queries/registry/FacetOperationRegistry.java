@@ -24,38 +24,39 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.profileefacet.Activator;
+import org.eclipse.papyrus.uml.profileefacet.messages.Messages;
 
 
 public class FacetOperationRegistry {
 
 	/** the keys to get the FacetOperation */
-	public static final String STRING_SINGLE_VALUE_OPERATION_ID = "getStringSingleValue";
+	public static final String STRING_SINGLE_VALUE_OPERATION_ID = "getStringSingleValue"; //$NON-NLS-1$
 
-	public static final String STRING_MULTI_VALUE_OPERATION_ID = "getStringMultiValue";
+	public static final String STRING_MULTI_VALUE_OPERATION_ID = "getStringMultiValue"; //$NON-NLS-1$
 
-	public static final String EOBJECT_SINGLE_REFERENCE_OPERATION_ID = "getEObjectSingleReferenceValue";
+	public static final String EOBJECT_SINGLE_REFERENCE_OPERATION_ID = "getEObjectSingleReferenceValue"; //$NON-NLS-1$
 
-	public static final String EOBJECT_MULTI_REFERENCE_OPERATION_ID = "getEObjectMultiReferenceValue";
+	public static final String EOBJECT_MULTI_REFERENCE_OPERATION_ID = "getEObjectMultiReferenceValue"; //$NON-NLS-1$
 
-	public static final String BOOLEAN_SINGLE_VALUE_OPERATION_ID = "getBooleanSingleValue";
+	public static final String BOOLEAN_SINGLE_VALUE_OPERATION_ID = "getBooleanSingleValue"; //$NON-NLS-1$
 
-	public static final String BOOLEAN_MULTI_VALUE_OPERATION_ID = "getBooleanMultiValue";
+	public static final String BOOLEAN_MULTI_VALUE_OPERATION_ID = "getBooleanMultiValue"; //$NON-NLS-1$
 
-	public static final String INTEGER_SINGLE_VALUE_OPERATION_ID = "getIntegerSingleValue";
+	public static final String INTEGER_SINGLE_VALUE_OPERATION_ID = "getIntegerSingleValue"; //$NON-NLS-1$
 
-	public static final String INTEGER_MULTI_VALUE_OPERATION_ID = "getIntegerMultiValue";
+	public static final String INTEGER_MULTI_VALUE_OPERATION_ID = "getIntegerMultiValue"; //$NON-NLS-1$
 
-	public static final String REAL_SINGLE_VALUE_OPERATION_ID = "getRealSingleValue";
+	public static final String REAL_SINGLE_VALUE_OPERATION_ID = "getRealSingleValue"; //$NON-NLS-1$
 
-	public static final String REAL_MULTI_VALUE_OPERATION_ID = "getRealMultiValue";
+	public static final String REAL_MULTI_VALUE_OPERATION_ID = "getRealMultiValue"; //$NON-NLS-1$
 
-	public static final String UNLIMITED_NATURAL_SINGLE_VALUE_OPERATION_ID = "getUnlimitedNaturalSingleValue";
+	public static final String UNLIMITED_NATURAL_SINGLE_VALUE_OPERATION_ID = "getUnlimitedNaturalSingleValue"; //$NON-NLS-1$
 
-	public static final String UNLIMITED_NATURAL_MULTI_VALUE_OPERATION_ID = "getUnlimitedNaturalMultiValue";
+	public static final String UNLIMITED_NATURAL_MULTI_VALUE_OPERATION_ID = "getUnlimitedNaturalMultiValue"; //$NON-NLS-1$
 
-	public static final String UML_ENUMERATION_SINGLE_VALUE_OPERATION_ID = "getUMLEnumerationSingleValue";
+	public static final String UML_ENUMERATION_SINGLE_VALUE_OPERATION_ID = "getUMLEnumerationSingleValue"; //$NON-NLS-1$
 
-	public static final String UML_ENUMERATION_MULTI_VALUE_OPERATION_ID = "getUMLEnumerationMultiValue";
+	public static final String UML_ENUMERATION_MULTI_VALUE_OPERATION_ID = "getUMLEnumerationMultiValue"; //$NON-NLS-1$
 
 	/** this map register the FacetOperation : key = id of the operation, value = the operation itself */
 	private final Map<String, FacetOperation> registry;
@@ -64,10 +65,10 @@ public class FacetOperationRegistry {
 	private final Facet stereotyped_element_facet;
 
 	/** the NS_URI of the facetSet which contains the FacetOperation */
-	private static final String STEREOTYPE_FACET_SET_URI = "org.eclipse.papyrus.uml.profileefacet/0.9/uml_stereotype";
+	private static final String STEREOTYPE_FACET_SET_URI = "org.eclipse.papyrus.uml.profileefacet/0.9/uml_stereotype"; //$NON-NLS-1$
 
 	/** the name of the facet which contains the FacetOperation */
-	private static final String STEREOTYPED_ELEMENT_FACET_NAME = "stereotyped_element";
+	private static final String STEREOTYPED_ELEMENT_FACET_NAME = "stereotyped_element"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -81,7 +82,7 @@ public class FacetOperationRegistry {
 		this.registry = new HashMap<String, FacetOperation>();
 		this.stereotyped_element_facet = getStereotypedElementFacet(resourceSet, STEREOTYPE_FACET_SET_URI, STEREOTYPED_ELEMENT_FACET_NAME);
 		if(this.stereotyped_element_facet == null) {
-			Activator.log.error(NLS.bind("The required facet {0} has not been found", STEREOTYPED_ELEMENT_FACET_NAME), new NullPointerException());
+			Activator.log.error(NLS.bind(Messages.FacetOperationRegistry_RequiredFacetNotFound, STEREOTYPED_ELEMENT_FACET_NAME), new NullPointerException());
 		}
 	}
 
@@ -96,7 +97,7 @@ public class FacetOperationRegistry {
 		if(op == null) {
 			op = findFacetOperation(id);
 			if(op == null) {
-				Activator.log.error(NLS.bind("The required FacetOperation called {0} has not been found", id), new NullPointerException());
+				Activator.log.error(NLS.bind(Messages.FacetOperationRegistry_RequiredFacetOperationNotFound, id), new NullPointerException());
 			}
 			this.registry.put(id, op);
 		}

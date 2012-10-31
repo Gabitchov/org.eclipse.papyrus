@@ -11,18 +11,22 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.profileefacet.queries.getter;
+package org.eclipse.papyrus.uml.profileefacet.messages;
 
+import org.eclipse.osgi.util.NLS;
 
-public class Constants {
+public class Messages extends NLS {
 
-	
-	private Constants() {
-		//to prevent instanciation
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.profileefacet.messages.messages"; //$NON-NLS-1$
+
+	public static String FacetOperationRegistry_RequiredFacetNotFound;
+
+	public static String FacetOperationRegistry_RequiredFacetOperationNotFound;
+	static {
+		// initialize resource bundle
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
-	
-	public static final String STEREOTYPE_QUALIFIED_NAME = "stereotypeQualifiedName";
-	public static final String STEREOTYPE_PROPERTY_NAME = "stereotypePropertyName";
-	public static final String EDITED_FEATURE = "editedFeature";
-	
+
+	private Messages() {
+	}
 }
