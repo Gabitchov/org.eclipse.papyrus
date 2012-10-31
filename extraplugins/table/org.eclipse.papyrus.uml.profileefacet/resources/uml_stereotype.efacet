@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="ASCII"?>
+<efacet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
+	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
+	xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
+	name="uml_stereotype" nsURI="org.eclipse.papyrus.uml.profileefacet/0.9/uml_stereotype"
+	nsPrefix="uml_stereotype_efacet" documentation="This FacetSet provides facets for UML">
+	<eClassifiers xsi:type="efacet:Facet" name="stereotyped_element">
+		<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+		<facetOperations name="getBooleanMultiValue"
+			lowerBound="1" upperBound="-1"
+			documentation="Returns a multi value on Boolean for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetBooleanMultiValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getBooleanSingleValue"
+			lowerBound="1"
+			documentation="Returns a single value on Boolean for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetBooleanSingleValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getEObjectMultiReferenceValue"
+			lowerBound="1" upperBound="-1"
+			documentation="Returns a multi reference on EObject for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetEObjectMultiReference">
+			</query>
+		</facetOperations>
+		<facetOperations name="getEObjectSingleReferenceValue"
+			lowerBound="1"
+			documentation="Returns a single reference on EObject for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetEObjectSingleReference">
+			</query>
+		</facetOperations>
+		<facetOperations name="getIntegerMultiValue"
+			lowerBound="1" upperBound="-1"
+			documentation="Returns a multi value on int for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetIntMultiValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getIntegerSingleValue"
+			lowerBound="1"
+			documentation="Returns a single value on int for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetIntSingleValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getRealMultiValue" lowerBound="1"
+			upperBound="-1"
+			documentation="Returns a multi value on int for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EDouble" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetRealMultiValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getRealSingleValue" lowerBound="1"
+			documentation="Returns a single value on int for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EDouble" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetRealSingleValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getStringMultiValue"
+			lowerBound="1" upperBound="-1"
+			documentation="Returns a multi value on string for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetStringMultiValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getStringSingleValue"
+			lowerBound="1"
+			documentation="Returns a single string value for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetStringSingleValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getUnlimitedNaturalMultiValue"
+			lowerBound="1" upperBound="-1"
+			documentation="Returns a multi value on string for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetUnlimitedNaturalMultiValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getUnlimitedNaturalSingleValue"
+			lowerBound="1"
+			documentation="Returns a single string value for a property of a stereotype">
+			<eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetUnlimitedNaturalSingleValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getUMLEnumerationMultiValue"
+			lowerBound="1" upperBound="-1"
+			documentation="Returns a multi value on string for a property of a stereotype">
+			<eType xsi:type="ecore:EClass"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetUMLEnumerationMultiValue">
+			</query>
+		</facetOperations>
+		<facetOperations name="getUMLEnumerationSingleValue"
+			lowerBound="1"
+			documentation="Returns a single string value for a property of a stereotype">
+			<eType xsi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral" />
+			<eParameters name="editedFeature">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.uml.profileefacet.queries.getter.GetUMLEnumerationSingleValue">
+			</query>
+		</facetOperations>
+	</eClassifiers>
+</efacet:FacetSet>
