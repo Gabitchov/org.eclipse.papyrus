@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.ENamedElement;
  * A comparator for ENamedElement
  *
  */
-public class EcoreENamedElementComparator implements Comparator<ENamedElement> {
+public class ENamedElementComparator implements Comparator<ENamedElement> {
 
 	public int compare(final ENamedElement namedElement1, final ENamedElement namedElement2) {
 		if(namedElement1 == null) {
