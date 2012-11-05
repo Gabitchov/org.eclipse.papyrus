@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.usecase.figure;
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
@@ -37,8 +38,10 @@ public class UseCaseFigure extends NodeNamedElementFigure implements IPapyrusNod
 	 */
 	public UseCaseFigure() {
 		super();
+		
 		SplitEllipseLayout layoutThis = new SplitEllipseLayout();
 		this.setLayoutManager(layoutThis);
+		layoutThis.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
 		shapeCompartment = new RectangleFigure();
 		add(shapeCompartment);
 		shapeCompartment.setBorder(null);
