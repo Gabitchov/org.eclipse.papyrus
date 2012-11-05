@@ -192,8 +192,43 @@ public class SplitEllipseLayout extends GravityConstrainedFlowLayout {
 			totalHeight -= prefHeight;
 			y += newBounds.height + spacing;
 		}
+		if(minorAlignment==ALIGN_CENTER){
+			alignVerticalCenter(totalMinHeight, totalHeight, container);
+		}
+		
 	}
 
+	private void alignVerticalCenter(int minHeight, int totalHeight, IFigure container){
+		//calculus of space for y
+		int containerHeight= container.getBounds().height;
+		int heightContent=0;
+		Iterator iter = container.getChildren().iterator();
+		while(iter.hasNext()) {
+			IFigure f = (IFigure)iter.next();
+			Dimension dim= f.getPreferredSize();
+			heightContent=heightContent+dim.height;
+		}
+		
+		
+		int spaceY=(containerHeight-heightContent)/3;
+		if(spaceY>0){
+			iter = container.getChildren().iterator();
+			while(iter.hasNext()) {
+				IFigure f = (IFigure)iter.next();
+				f.invalidate();
+				Dimension dim= f.getPreferredSize();
+				Rectangle rec=f.getBounds();
+				rec.y=rec.y+spaceY;
+				rec.height=dim.height;
+				f.setBounds(rec);
+				
+				System.err.println(f);
+			}
+		}
+		
+	}
+	
+	
 	/**
 	 * Gets the list of children after applying the layout options of ignore
 	 * invisible children & reverse children
