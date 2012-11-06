@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
@@ -21,22 +23,33 @@ import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypeFacet;
 import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement;
 import org.eclipse.papyrus.uml.profileefacet.utils.Constants;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 
 public abstract class GetGenericValue<R> implements IJavaQuery2<Element, R> {
 
-	public R evaluate(Element source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+	public R evaluate(final Element source, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
 		final StereotypePropertyElement element = (StereotypePropertyElement)parameterValues.getParameterValueByName(Constants.EDITED_FEATURE).getValue();
 		if(element != null) {
-			EObject container = element.eContainer();
+			final EObject container = element.eContainer();
 			assert container instanceof StereotypeFacet;
-			StereotypeFacet facet = (StereotypeFacet)container;
+			final StereotypeFacet facet = (StereotypeFacet)container;
 			final String stereotypeQN = facet.getStereotypeQualifiedName();
 			final Stereotype appliedStereotype = source.getAppliedStereotype(stereotypeQN);
 			if(appliedStereotype != null) {
 				return (R)source.getValue(appliedStereotype, element.getPropertyName());
+			} else if(appliedStereotype == null) {//the property can comes from inheritance...
+				for(Stereotype appliedSte : source.getAppliedStereotypes()) {
+					final Collection<Stereotype> superClasses = StereotypeUtil.getAllSuperStereotypes(appliedSte);
+					for(final Stereotype current : superClasses) {
+						if(current.getQualifiedName().equals(stereotypeQN)) {
+							return (R)source.getValue(appliedSte, element.getPropertyName());
+						}
+					}
+				}
+
 			}
 		}
 		return null;
