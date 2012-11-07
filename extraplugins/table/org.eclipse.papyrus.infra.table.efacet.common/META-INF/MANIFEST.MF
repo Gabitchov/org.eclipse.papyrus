@@ -31,10 +31,17 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.widgets.celleditors.editor;bundle-version="0.2.0",
  org.eclipse.emf.facet.widgets.celleditors.ecore;bundle-version="0.2.0",
  org.eclipse.emf.facet.efacet.core,
- org.eclipse.emf.facet.util.core
+ org.eclipse.emf.facet.util.core,
+ org.eclipse.papyrus.infra.emf,
+ org.eclipse.papyrus.infra.widgets.toolbox,
+ org.eclipse.papyrus.infra.tools,
+ org.eclipse.papyrus.uml.tools.utils,
+ org.eclipse.papyrus.uml.umlefacet.metamodel;bundle-version="0.9.2",
+ org.eclipse.uml2.uml;bundle-version="4.0.1"
 Export-Package: org.eclipse.papyrus.infra.table.efacet.common.editor,
  org.eclipse.papyrus.infra.table.efacet.common.factory,
  org.eclipse.papyrus.infra.table.efacet.common.handlers,
- org.eclipse.papyrus.infra.table.efacet.common.listener
+ org.eclipse.papyrus.infra.table.efacet.common.listener,
+ org.eclipse.papyrus.infra.table.efacet.common.utils
 Bundle-Version: 0.9.1.qualifier
 
