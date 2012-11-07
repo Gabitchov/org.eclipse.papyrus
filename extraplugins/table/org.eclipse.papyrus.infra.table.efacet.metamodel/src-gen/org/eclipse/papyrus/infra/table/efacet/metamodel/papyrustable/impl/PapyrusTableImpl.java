@@ -443,7 +443,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @generated NOT
 	 */
 	public boolean isUsingUser() {
-		return this.fillingMode.getValue() == FillMode.USER_VALUE;
+		return this.fillMode.getValue() == FillMode.USER_VALUE;
 	}
 
 	/**
