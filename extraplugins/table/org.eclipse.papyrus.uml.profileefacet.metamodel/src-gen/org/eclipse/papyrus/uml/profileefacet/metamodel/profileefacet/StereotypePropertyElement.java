@@ -26,7 +26,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyName <em>Property Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyQualifiedName <em>Property Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#isIsDerived <em>Is Derived</em>}</li>
  * </ul>
  * </p>
@@ -37,29 +37,29 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
  */
 public interface StereotypePropertyElement extends FacetElement, EObjectFacetRepresentation {
 	/**
-	 * Returns the value of the '<em><b>Property Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Property Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * the name of the represented property of stereotype
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Property Name</em>' attribute.
-	 * @see #setPropertyName(String)
-	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.ProfileEFacetPackage#getStereotypePropertyElement_PropertyName()
+	 * @return the value of the '<em>Property Qualified Name</em>' attribute.
+	 * @see #setPropertyQualifiedName(String)
+	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.ProfileEFacetPackage#getStereotypePropertyElement_PropertyQualifiedName()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getPropertyName();
+	String getPropertyQualifiedName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyName <em>Property Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyQualifiedName <em>Property Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property Name</em>' attribute.
-	 * @see #getPropertyName()
+	 * @param value the new value of the '<em>Property Qualified Name</em>' attribute.
+	 * @see #getPropertyQualifiedName()
 	 * @generated
 	 */
-	void setPropertyName(String value);
+	void setPropertyQualifiedName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Derived</b></em>' attribute.

@@ -192,7 +192,7 @@ public class ProfileEFacetPackageImpl extends EPackageImpl implements ProfileEFa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStereotypePropertyElement_PropertyName() {
+	public EAttribute getStereotypePropertyElement_PropertyQualifiedName() {
 		return (EAttribute)stereotypePropertyElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -276,7 +276,7 @@ public class ProfileEFacetPackageImpl extends EPackageImpl implements ProfileEFa
 		createEAttribute(stereotypeFacetEClass, STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME);
 
 		stereotypePropertyElementEClass = createEClass(STEREOTYPE_PROPERTY_ELEMENT);
-		createEAttribute(stereotypePropertyElementEClass, STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME);
+		createEAttribute(stereotypePropertyElementEClass, STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME);
 		createEAttribute(stereotypePropertyElementEClass, STEREOTYPE_PROPERTY_ELEMENT__IS_DERIVED);
 
 		stereotypePropertyFacetReferenceEClass = createEClass(STEREOTYPE_PROPERTY_FACET_REFERENCE);
@@ -344,7 +344,7 @@ public class ProfileEFacetPackageImpl extends EPackageImpl implements ProfileEFa
 		addEOperation(stereotypeFacetEClass, this.getStereotypePropertyElement(), "getStereotypePropertyElements", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stereotypePropertyElementEClass, StereotypePropertyElement.class, "StereotypePropertyElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getStereotypePropertyElement_PropertyName(), ecorePackage.getEString(), "propertyName", null, 1, 1, StereotypePropertyElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getStereotypePropertyElement_PropertyQualifiedName(), ecorePackage.getEString(), "propertyQualifiedName", null, 1, 1, StereotypePropertyElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getStereotypePropertyElement_IsDerived(), ecorePackage.getEBoolean(), "isDerived", "false", 0, 1, StereotypePropertyElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(stereotypePropertyFacetReferenceEClass, StereotypePropertyFacetReference.class, "StereotypePropertyFacetReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

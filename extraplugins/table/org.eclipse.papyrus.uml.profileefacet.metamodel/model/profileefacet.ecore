@@ -44,8 +44,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="the abstract type used to represent the properties of the stereotype"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyQualifiedName"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="the name of the represented property of stereotype"/>
       </eAnnotations>

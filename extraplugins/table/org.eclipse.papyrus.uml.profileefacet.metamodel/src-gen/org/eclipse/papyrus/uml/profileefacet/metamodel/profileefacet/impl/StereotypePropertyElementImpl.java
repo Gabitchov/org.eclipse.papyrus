@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypeP
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.impl.StereotypePropertyElementImpl#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.impl.StereotypePropertyElementImpl#getPropertyName <em>Property Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.impl.StereotypePropertyElementImpl#getPropertyQualifiedName <em>Property Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.impl.StereotypePropertyElementImpl#isIsDerived <em>Is Derived</em>}</li>
  * </ul>
  * </p>
@@ -61,24 +61,24 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 	protected String representedElement_XMI_ID = REPRESENTED_ELEMENT_XMI_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPropertyName() <em>Property Name</em>}' attribute.
+	 * The default value of the '{@link #getPropertyQualifiedName() <em>Property Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyName()
+	 * @see #getPropertyQualifiedName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROPERTY_NAME_EDEFAULT = null;
+	protected static final String PROPERTY_QUALIFIED_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPropertyName() <em>Property Name</em>}' attribute.
+	 * The cached value of the '{@link #getPropertyQualifiedName() <em>Property Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyName()
+	 * @see #getPropertyQualifiedName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String propertyName = PROPERTY_NAME_EDEFAULT;
+	protected String propertyQualifiedName = PROPERTY_QUALIFIED_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
@@ -145,8 +145,8 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPropertyName() {
-		return propertyName;
+	public String getPropertyQualifiedName() {
+		return propertyQualifiedName;
 	}
 
 	/**
@@ -154,11 +154,11 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPropertyName(String newPropertyName) {
-		String oldPropertyName = propertyName;
-		propertyName = newPropertyName;
+	public void setPropertyQualifiedName(String newPropertyQualifiedName) {
+		String oldPropertyQualifiedName = propertyQualifiedName;
+		propertyQualifiedName = newPropertyQualifiedName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME, oldPropertyName, propertyName));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME, oldPropertyQualifiedName, propertyQualifiedName));
 	}
 
 	/**
@@ -192,8 +192,8 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 		switch (featureID) {
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__REPRESENTED_ELEMENT_XMI_ID:
 				return getRepresentedElement_XMI_ID();
-			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME:
-				return getPropertyName();
+			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME:
+				return getPropertyQualifiedName();
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__IS_DERIVED:
 				return isIsDerived();
 		}
@@ -211,8 +211,8 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__REPRESENTED_ELEMENT_XMI_ID:
 				setRepresentedElement_XMI_ID((String)newValue);
 				return;
-			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME:
-				setPropertyName((String)newValue);
+			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME:
+				setPropertyQualifiedName((String)newValue);
 				return;
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__IS_DERIVED:
 				setIsDerived((Boolean)newValue);
@@ -232,8 +232,8 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__REPRESENTED_ELEMENT_XMI_ID:
 				setRepresentedElement_XMI_ID(REPRESENTED_ELEMENT_XMI_ID_EDEFAULT);
 				return;
-			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME:
-				setPropertyName(PROPERTY_NAME_EDEFAULT);
+			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME:
+				setPropertyQualifiedName(PROPERTY_QUALIFIED_NAME_EDEFAULT);
 				return;
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__IS_DERIVED:
 				setIsDerived(IS_DERIVED_EDEFAULT);
@@ -252,8 +252,8 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 		switch (featureID) {
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__REPRESENTED_ELEMENT_XMI_ID:
 				return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? representedElement_XMI_ID != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(representedElement_XMI_ID);
-			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME:
-				return PROPERTY_NAME_EDEFAULT == null ? propertyName != null : !PROPERTY_NAME_EDEFAULT.equals(propertyName);
+			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME:
+				return PROPERTY_QUALIFIED_NAME_EDEFAULT == null ? propertyQualifiedName != null : !PROPERTY_QUALIFIED_NAME_EDEFAULT.equals(propertyQualifiedName);
 			case ProfileEFacetPackage.STEREOTYPE_PROPERTY_ELEMENT__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
 		}
@@ -304,8 +304,8 @@ public abstract class StereotypePropertyElementImpl extends FacetElementImpl imp
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (representedElement_XMI_ID: "); //$NON-NLS-1$
 		result.append(representedElement_XMI_ID);
-		result.append(", propertyName: "); //$NON-NLS-1$
-		result.append(propertyName);
+		result.append(", propertyQualifiedName: "); //$NON-NLS-1$
+		result.append(propertyQualifiedName);
 		result.append(", isDerived: "); //$NON-NLS-1$
 		result.append(isDerived);
 		result.append(')');

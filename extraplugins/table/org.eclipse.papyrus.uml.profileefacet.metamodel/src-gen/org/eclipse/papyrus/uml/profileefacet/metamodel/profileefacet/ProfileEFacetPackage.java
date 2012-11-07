@@ -485,13 +485,13 @@ public interface ProfileEFacetPackage extends EPackage {
 	int STEREOTYPE_PROPERTY_ELEMENT__REPRESENTED_ELEMENT_XMI_ID = EFacetPackage.FACET_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Property Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME = EFacetPackage.FACET_ELEMENT_FEATURE_COUNT + 1;
+	int STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME = EFacetPackage.FACET_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -783,13 +783,13 @@ public interface ProfileEFacetPackage extends EPackage {
 	int STEREOTYPE_PROPERTY_FACET_REFERENCE__REPRESENTED_ELEMENT_XMI_ID = EFacetPackage.FACET_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Property Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_PROPERTY_FACET_REFERENCE__PROPERTY_NAME = EFacetPackage.FACET_REFERENCE_FEATURE_COUNT + 1;
+	int STEREOTYPE_PROPERTY_FACET_REFERENCE__PROPERTY_QUALIFIED_NAME = EFacetPackage.FACET_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -1045,13 +1045,13 @@ public interface ProfileEFacetPackage extends EPackage {
 	int STEREOTYPE_PROPERTY_FACET_ATTRIBUTE__REPRESENTED_ELEMENT_XMI_ID = EFacetPackage.FACET_ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Property Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_PROPERTY_FACET_ATTRIBUTE__PROPERTY_NAME = EFacetPackage.FACET_ATTRIBUTE_FEATURE_COUNT + 1;
+	int STEREOTYPE_PROPERTY_FACET_ATTRIBUTE__PROPERTY_QUALIFIED_NAME = EFacetPackage.FACET_ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -1162,15 +1162,15 @@ public interface ProfileEFacetPackage extends EPackage {
 	EClass getStereotypePropertyElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyName <em>Property Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyQualifiedName <em>Property Qualified Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Property Name</em>'.
-	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyName()
+	 * @return the meta object for the attribute '<em>Property Qualified Name</em>'.
+	 * @see org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#getPropertyQualifiedName()
 	 * @see #getStereotypePropertyElement()
 	 * @generated
 	 */
-	EAttribute getStereotypePropertyElement_PropertyName();
+	EAttribute getStereotypePropertyElement_PropertyQualifiedName();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement#isIsDerived <em>Is Derived</em>}'.
@@ -1293,12 +1293,12 @@ public interface ProfileEFacetPackage extends EPackage {
 		EClass STEREOTYPE_PROPERTY_ELEMENT = eINSTANCE.getStereotypePropertyElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Property Qualified Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_NAME = eINSTANCE.getStereotypePropertyElement_PropertyName();
+		EAttribute STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME = eINSTANCE.getStereotypePropertyElement_PropertyQualifiedName();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Derived</b></em>' attribute feature.
