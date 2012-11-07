@@ -1,22 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Controlmode For EFacet Table (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.controlmode;singleton:=true
 Bundle-Version: 0.9.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.controlmode.Activator
-Bundle-Vendor: Eclipse Modeling Project
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.common,
- org.eclipse.emf.ecore,
- org.eclipse.emf.edit,
- org.eclipse.papyrus.infra.services.controlmode,
- com.google.guava,
- org.eclipse.papyrus.infra.gmfdiag.commands,
- org.eclipse.emf.transaction,
- org.eclipse.papyrus.infra.core,
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.papyrus.infra.services.controlmode,
  org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.9.1",
  org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1",
- org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0"
+ org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
+ org.eclipse.papyrus.infra.services.controlmode.history,
+ org.eclipse.papyrus.infra.table.efacet.common;bundle-version="0.9.1"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
