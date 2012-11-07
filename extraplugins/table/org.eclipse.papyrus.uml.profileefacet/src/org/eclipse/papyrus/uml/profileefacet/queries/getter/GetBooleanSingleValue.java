@@ -15,6 +15,6 @@ package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
 
 
-public class GetBooleanSingleValue extends GetGenericValue<Boolean> {
+public class GetBooleanSingleValue extends GetGenericSingleValue<Boolean> {
 	
 }

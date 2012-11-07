@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
 
 
-public class GetUnlimitedNaturalSingleValue extends GetGenericValue<String> {
+public class GetUnlimitedNaturalSingleValue extends GetGenericSingleValue<String> {
 
 
 }

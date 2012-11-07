@@ -14,6 +14,6 @@
 package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
 
-public class GetPrimitiveTypeSingleValue extends GetGenericValue<String> {
+public class GetPrimitiveTypeSingleValue extends GetGenericSingleValue<String> {
 
 }

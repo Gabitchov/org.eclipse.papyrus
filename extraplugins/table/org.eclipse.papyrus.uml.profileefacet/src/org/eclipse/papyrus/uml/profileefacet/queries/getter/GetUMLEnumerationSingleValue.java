@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 
 
-public class GetUMLEnumerationSingleValue extends GetGenericValue<EnumerationLiteral> {
+public class GetUMLEnumerationSingleValue extends GetGenericSingleValue<EnumerationLiteral> {
 
 
 }

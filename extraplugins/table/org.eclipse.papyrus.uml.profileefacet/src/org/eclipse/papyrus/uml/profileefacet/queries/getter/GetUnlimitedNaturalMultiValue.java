@@ -13,8 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
-import java.util.List;
 
 
-public class GetUnlimitedNaturalMultiValue extends GetGenericValue<List<Integer>> {
+public class GetUnlimitedNaturalMultiValue extends GetGenericMultiValue<Boolean> {
 }

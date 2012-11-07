@@ -16,6 +16,6 @@ package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
 
 
-public class GetRealSingleValue extends GetGenericValue<Double> {
+public class GetRealSingleValue extends GetGenericSingleValue<Double> {
 
 }

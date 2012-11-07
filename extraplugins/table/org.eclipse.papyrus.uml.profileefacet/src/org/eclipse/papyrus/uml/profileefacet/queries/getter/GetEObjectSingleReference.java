@@ -16,6 +16,6 @@ package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 import org.eclipse.emf.ecore.EObject;
 
 
-public class GetEObjectSingleReference extends GetGenericValue<EObject> {
+public class GetEObjectSingleReference extends GetGenericSingleValue<EObject> {
 
 }

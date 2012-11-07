@@ -13,11 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EEnumLiteral;
 
 
-public class GetUMLEnumerationMultiValue extends GetGenericValue<List<EEnumLiteral>> {
+public class GetUMLEnumerationMultiValue extends GetGenericMultiValue<Boolean>{
 
 }

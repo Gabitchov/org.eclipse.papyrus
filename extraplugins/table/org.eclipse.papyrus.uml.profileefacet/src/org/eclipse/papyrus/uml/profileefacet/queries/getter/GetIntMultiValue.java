@@ -13,9 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
-import java.util.List;
 
 
-public class GetIntMultiValue extends GetGenericValue<List<Integer>> {
+public class GetIntMultiValue  extends GetGenericMultiValue<Boolean>{
 
 }

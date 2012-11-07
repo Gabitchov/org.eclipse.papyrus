@@ -15,4 +15,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.profileefacet.queries.registry
+Export-Package: org.eclipse.papyrus.uml.profileefacet.queries.getter,
+ org.eclipse.papyrus.uml.profileefacet.queries.registry

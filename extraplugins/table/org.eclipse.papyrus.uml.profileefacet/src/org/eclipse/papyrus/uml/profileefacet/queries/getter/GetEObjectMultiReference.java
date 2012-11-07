@@ -13,11 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profileefacet.queries.getter;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EObject;
 
 
-public class GetEObjectMultiReference extends GetGenericValue<List<EObject>> {
+public class GetEObjectMultiReference  extends GetGenericMultiValue<Boolean>{
 
 }
