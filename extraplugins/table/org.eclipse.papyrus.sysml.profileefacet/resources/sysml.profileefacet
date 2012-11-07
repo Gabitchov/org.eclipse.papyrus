@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="ASCII"?>
+<profileefacet:ProfileFacetSet
+	xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmi:id="_o8ZzoSjAEeKiBuqu85tSMA"
+	name="SysML" nsURI="http://www.eclipse.org/papyrus/profileefacet/SysML"
+	nsPrefix="SysML" documentation="This FacetSet represents the UML Profile SysML"
+	representedElement_XMI_ID="_TZ_nULU5EduiKqCzJMWbGw"
+	profileQualifiedName="SysML" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+	xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration"
+	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.1.incubation"
+	xmlns:papyrustable="http://www.eclipse.org/Papyrus/PapyrusTable/0.9.0/papyrustable"
+	xmlns:profileefacet="http://www.eclipse.org/papyrus/0.9/profileefacet"
+	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
+	xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation">
+
+	<eSubpackages xmi:type="profileefacet:ProfileFacetSet"
+		xmi:id="_QuGVYijoEeKJaKDvrGSCoA" name="ModelElements"
+		nsURI="http://www.eclipse.org/papyrus/profileefacet/SysML::ModelElements"
+		nsPrefix="ModelElements" documentation="This FacetSet represents the UML Profile ModelElements"
+		representedElement_XMI_ID="_Gx8MgLX7EduFmqQsrNB9lw"
+		profileQualifiedName="SysML::ModelElements">
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVYyjoEeKJaKDvrGSCoA" name="View"
+			documentation="This facet represents the eClass View."
+			representedElement_XMI_ID="_mPGvULU9Edu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::ModelElements::View">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVZCjoEeKJaKDvrGSCoA" name="viewPoint" lowerBound="1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::ModelElements::View::viewPoint."
+				representedElement_XMI_ID="_3Qho8LU9Edu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::ModelElements::View::viewPoint"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVZijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVZyjoEeKJaKDvrGSCoA"
+						element="_QuGVZCjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVaCjoEeKJaKDvrGSCoA" name="ViewPoint"
+			documentation="This facet represents the eClass ViewPoint."
+			representedElement_XMI_ID="_mhSEcLU9Edu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::ModelElements::ViewPoint">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVaSjoEeKJaKDvrGSCoA" name="stakeHolders" upperBound="-1"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::ModelElements::ViewPoint::stakeHolders."
+				representedElement_XMI_ID="__VwDoLU9Edu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::ModelElements::ViewPoint::stakeHolders">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVayjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getStringMultiValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVbCjoEeKJaKDvrGSCoA"
+						element="_QuGVaSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVbSjoEeKJaKDvrGSCoA" name="purpose" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::ModelElements::ViewPoint::purpose."
+				representedElement_XMI_ID="__lB1wLU9Edu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::ModelElements::ViewPoint::purpose">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVbyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getStringSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVcCjoEeKJaKDvrGSCoA"
+						element="_QuGVbSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVcSjoEeKJaKDvrGSCoA" name="concerns" upperBound="-1"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::ModelElements::ViewPoint::concerns."
+				representedElement_XMI_ID="__s9pwLU9Edu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::ModelElements::ViewPoint::concerns">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVcyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getStringMultiValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVdCjoEeKJaKDvrGSCoA"
+						element="_QuGVcSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVdSjoEeKJaKDvrGSCoA" name="languages" upperBound="-1"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::ModelElements::ViewPoint::languages."
+				representedElement_XMI_ID="__48QQLU9Edu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::ModelElements::ViewPoint::languages">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVdyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getStringMultiValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVeCjoEeKJaKDvrGSCoA"
+						element="_QuGVdSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVeSjoEeKJaKDvrGSCoA" name="methods" upperBound="-1"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::ModelElements::ViewPoint::methods."
+				representedElement_XMI_ID="_AEs0ULU-Edu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::ModelElements::ViewPoint::methods">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVeyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getStringMultiValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVfCjoEeKJaKDvrGSCoA"
+						element="_QuGVeSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+	</eSubpackages>
+	<eSubpackages xmi:type="profileefacet:ProfileFacetSet"
+		xmi:id="_QuGVfSjoEeKJaKDvrGSCoA" name="Blocks"
+		nsURI="http://www.eclipse.org/papyrus/profileefacet/SysML::Blocks"
+		nsPrefix="Blocks" documentation="This FacetSet represents the UML Profile Blocks"
+		representedElement_XMI_ID="_fSw28LX7EduFmqQsrNB9lw"
+		profileQualifiedName="SysML::Blocks">
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVfijoEeKJaKDvrGSCoA" name="Block"
+			documentation="This facet represents the eClass Block."
+			representedElement_XMI_ID="_8J2A8LVAEdu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::Blocks::Block">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVfyjoEeKJaKDvrGSCoA" name="isEncapsulated" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::Block::isEncapsulated."
+				representedElement_XMI_ID="__AIRkLVAEdu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::Blocks::Block::isEncapsulated">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVgSjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getBooleanSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVgijoEeKJaKDvrGSCoA"
+						element="_QuGVfyjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVgyjoEeKJaKDvrGSCoA" name="Unit"
+			documentation="This facet represents the eClass Unit."
+			representedElement_XMI_ID="_t9k6ELVBEdu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::Blocks::Unit">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVhCjoEeKJaKDvrGSCoA" name="dimension" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::Unit::dimension."
+				representedElement_XMI_ID="_U8AxIKGxEdyj2Ya50HPlXg"
+				propertyQualifiedName="SysML::Blocks::Unit::dimension">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVhijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVhyjoEeKJaKDvrGSCoA"
+						element="_QuGVhCjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGViCjoEeKJaKDvrGSCoA" name="ValueType"
+			documentation="This facet represents the eClass ValueType."
+			representedElement_XMI_ID="_yfp-ILVBEdu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::Blocks::ValueType">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGViSjoEeKJaKDvrGSCoA" name="unit" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ValueType::unit."
+				representedElement_XMI_ID="_mfPXUKGxEdyj2Ya50HPlXg"
+				propertyQualifiedName="SysML::Blocks::ValueType::unit">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGViyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVjCjoEeKJaKDvrGSCoA"
+						element="_QuGViSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVjSjoEeKJaKDvrGSCoA" name="dimension" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ValueType::dimension."
+				representedElement_XMI_ID="_pj40EKGxEdyj2Ya50HPlXg"
+				propertyQualifiedName="SysML::Blocks::ValueType::dimension">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVjyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVkCjoEeKJaKDvrGSCoA"
+						element="_QuGVjSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVkSjoEeKJaKDvrGSCoA" name="NestedConnectorEnd"
+			documentation="This facet represents the eClass NestedConnectorEnd."
+			representedElement_XMI_ID="_moxaQLVCEdu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::Blocks::NestedConnectorEnd">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVkijoEeKJaKDvrGSCoA" name="propertyPath" lowerBound="1"
+				upperBound="-1" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::NestedConnectorEnd::propertyPath."
+				representedElement_XMI_ID="_oH640LVCEdu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::Blocks::NestedConnectorEnd::propertyPath">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVlCjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVlSjoEeKJaKDvrGSCoA"
+						element="_QuGVkijoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVlijoEeKJaKDvrGSCoA" name="ParticipantProperty"
+			documentation="This facet represents the eClass ParticipantProperty."
+			representedElement_XMI_ID="_AJuDYKGwEdyj2Ya50HPlXg"
+			stereotypeQualifiedName="SysML::Blocks::ParticipantProperty">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVlyjoEeKJaKDvrGSCoA" name="end" lowerBound="1" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ParticipantProperty::end."
+				representedElement_XMI_ID="_X_BroKGwEdyj2Ya50HPlXg"
+				propertyQualifiedName="SysML::Blocks::ParticipantProperty::end">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVmSjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVmijoEeKJaKDvrGSCoA"
+						element="_QuGVlyjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVmyjoEeKJaKDvrGSCoA" name="ConnectorProperty"
+			documentation="This facet represents the eClass ConnectorProperty."
+			representedElement_XMI_ID="_FC-RUKGwEdyj2Ya50HPlXg"
+			stereotypeQualifiedName="SysML::Blocks::ConnectorProperty">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVnCjoEeKJaKDvrGSCoA" name="connector" lowerBound="1"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ConnectorProperty::connector."
+				representedElement_XMI_ID="_bq6ukKGwEdyj2Ya50HPlXg"
+				propertyQualifiedName="SysML::Blocks::ConnectorProperty::connector">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVnijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVnyjoEeKJaKDvrGSCoA"
+						element="_QuGVnCjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+	</eSubpackages>
+	<eSubpackages xmi:type="profileefacet:ProfileFacetSet"
+		xmi:id="_QuGVoCjoEeKJaKDvrGSCoA" name="PortAndFlows"
+		nsURI="http://www.eclipse.org/papyrus/profileefacet/SysML::PortAndFlows"
+		nsPrefix="PortAndFlows" documentation="This FacetSet represents the UML Profile PortAndFlows"
+		representedElement_XMI_ID="_rpx28LX7EduFmqQsrNB9lw"
+		profileQualifiedName="SysML::PortAndFlows">
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVoSjoEeKJaKDvrGSCoA" name="FlowPort"
+			documentation="This facet represents the eClass FlowPort."
+			representedElement_XMI_ID="_lNvKMLVDEdu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::PortAndFlows::FlowPort">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVoijoEeKJaKDvrGSCoA" name="isAtomic" lowerBound="1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::PortAndFlows::FlowPort::isAtomic."
+				representedElement_XMI_ID="_TrY4ULVEEdu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::PortAndFlows::FlowPort::isAtomic"
+				isDerived="true">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVpCjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getBooleanSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVpSjoEeKJaKDvrGSCoA"
+						element="_QuGVoijoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVpijoEeKJaKDvrGSCoA" name="isConjugated" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::PortAndFlows::FlowPort::isConjugated."
+				representedElement_XMI_ID="_T-tc8LVEEdu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::PortAndFlows::FlowPort::isConjugated">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVqCjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getBooleanSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVqSjoEeKJaKDvrGSCoA"
+						element="_QuGVpijoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVqijoEeKJaKDvrGSCoA" name="direction" lowerBound="1"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::PortAndFlows::FlowPort::direction."
+				representedElement_XMI_ID="_ULDP0LVEEdu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::PortAndFlows::FlowPort::direction">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVrCjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getUMLEnumerationSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVrSjoEeKJaKDvrGSCoA"
+						element="_QuGVqijoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVrijoEeKJaKDvrGSCoA" name="FlowProperty"
+			documentation="This facet represents the eClass FlowProperty."
+			representedElement_XMI_ID="_mB-qkLVDEdu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::PortAndFlows::FlowProperty">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGVryjoEeKJaKDvrGSCoA" name="direction" lowerBound="1"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::PortAndFlows::FlowProperty::direction."
+				representedElement_XMI_ID="_M9NJELVEEdu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::PortAndFlows::FlowProperty::direction">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVsSjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getUMLEnumerationSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVsijoEeKJaKDvrGSCoA"
+						element="_QuGVryjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVsyjoEeKJaKDvrGSCoA" name="ItemFlow"
+			documentation="This facet represents the eClass ItemFlow."
+			representedElement_XMI_ID="_9cdikLVEEdu2ieF4ON8UjA"
+			stereotypeQualifiedName="SysML::PortAndFlows::ItemFlow">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVtCjoEeKJaKDvrGSCoA" name="itemProperty" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty."
+				representedElement_XMI_ID="__ulWMLVEEdu2ieF4ON8UjA"
+				propertyQualifiedName="SysML::PortAndFlows::ItemFlow::itemProperty">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVtijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVtyjoEeKJaKDvrGSCoA"
+						element="_QuGVtCjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+	</eSubpackages>
+	<eSubpackages xmi:type="profileefacet:ProfileFacetSet"
+		xmi:id="_QuGVuCjoEeKJaKDvrGSCoA" name="Activities"
+		nsURI="http://www.eclipse.org/papyrus/profileefacet/SysML::Activities"
+		nsPrefix="Activities" documentation="This FacetSet represents the UML Profile Activities"
+		representedElement_XMI_ID="_C2zXMLX8EduFmqQsrNB9lw"
+		profileQualifiedName="SysML::Activities">
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVuSjoEeKJaKDvrGSCoA" name="Rate"
+			documentation="This facet represents the eClass Rate."
+			representedElement_XMI_ID="_2a7ZQLXjEduHWpAaWjM62w"
+			stereotypeQualifiedName="SysML::Activities::Rate">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVuijoEeKJaKDvrGSCoA" name="rate" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Activities::Rate::rate."
+				representedElement_XMI_ID="_YzasYLXkEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Activities::Rate::rate">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVvCjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVvSjoEeKJaKDvrGSCoA"
+						element="_QuGVuijoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVvijoEeKJaKDvrGSCoA" name="Probability"
+			documentation="This facet represents the eClass Probability."
+			representedElement_XMI_ID="_3MEiULXjEduHWpAaWjM62w"
+			stereotypeQualifiedName="SysML::Activities::Probability">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVvyjoEeKJaKDvrGSCoA" name="probability" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Activities::Probability::probability."
+				representedElement_XMI_ID="_frTxQLXkEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Activities::Probability::probability">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVwSjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVwijoEeKJaKDvrGSCoA"
+						element="_QuGVvyjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+	</eSubpackages>
+	<eSubpackages xmi:type="profileefacet:ProfileFacetSet"
+		xmi:id="_QuGVwyjoEeKJaKDvrGSCoA" name="Allocations"
+		nsURI="http://www.eclipse.org/papyrus/profileefacet/SysML::Allocations"
+		nsPrefix="Allocations" documentation="This FacetSet represents the UML Profile Allocations"
+		representedElement_XMI_ID="_NxdG4LX8EduFmqQsrNB9lw"
+		profileQualifiedName="SysML::Allocations">
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVxCjoEeKJaKDvrGSCoA" name="Allocated"
+			documentation="This facet represents the eClass Allocated."
+			representedElement_XMI_ID="_Hj0sgLXnEduHWpAaWjM62w"
+			stereotypeQualifiedName="SysML::Allocations::Allocated">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVxSjoEeKJaKDvrGSCoA" name="allocatedFrom" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Allocations::Allocated::allocatedFrom."
+				representedElement_XMI_ID="_Sj35kLXnEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Allocations::Allocated::allocatedFrom"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVxyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVyCjoEeKJaKDvrGSCoA"
+						element="_QuGVxSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVySjoEeKJaKDvrGSCoA" name="allocatedTo" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Allocations::Allocated::allocatedTo."
+				representedElement_XMI_ID="_S07NULXnEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Allocations::Allocated::allocatedTo"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGVyyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGVzCjoEeKJaKDvrGSCoA"
+						element="_QuGVySjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+	</eSubpackages>
+	<eSubpackages xmi:type="profileefacet:ProfileFacetSet"
+		xmi:id="_QuGVzSjoEeKJaKDvrGSCoA" name="Requirements"
+		nsURI="http://www.eclipse.org/papyrus/profileefacet/SysML::Requirements"
+		nsPrefix="Requirements" documentation="This FacetSet represents the UML Profile Requirements"
+		representedElement_XMI_ID="_OOJC4LX8EduFmqQsrNB9lw"
+		profileQualifiedName="SysML::Requirements">
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGVzijoEeKJaKDvrGSCoA" name="TestCase"
+			documentation="This facet represents the eClass TestCase."
+			representedElement_XMI_ID="_Sb6wELXqEduHWpAaWjM62w"
+			stereotypeQualifiedName="SysML::Requirements::TestCase">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGVzyjoEeKJaKDvrGSCoA" name="verifies" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::TestCase::verifies."
+				representedElement_XMI_ID="_zN7ToKG1Edyj2Ya50HPlXg"
+				propertyQualifiedName="SysML::Requirements::TestCase::verifies"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV0SjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV0ijoEeKJaKDvrGSCoA"
+						element="_QuGVzyjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGV0yjoEeKJaKDvrGSCoA" name="Requirement"
+			documentation="This facet represents the eClass Requirement."
+			representedElement_XMI_ID="_xajygLXqEduHWpAaWjM62w"
+			stereotypeQualifiedName="SysML::Requirements::Requirement">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGV1CjoEeKJaKDvrGSCoA" name="text" lowerBound="1" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::text."
+				representedElement_XMI_ID="_3DxdwLXqEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::text">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV1ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getStringSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV1yjoEeKJaKDvrGSCoA"
+						element="_QuGV1CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetAttribute"
+				xmi:id="_QuGV2CjoEeKJaKDvrGSCoA" name="id" lowerBound="1" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::id."
+				representedElement_XMI_ID="_3YlQILXqEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::id">
+				<eType xmi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV2ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getStringSingleValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV2yjoEeKJaKDvrGSCoA"
+						element="_QuGV2CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV3CjoEeKJaKDvrGSCoA" name="derived" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::derived."
+				representedElement_XMI_ID="_3jp3sLXqEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::derived"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV3ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV3yjoEeKJaKDvrGSCoA"
+						element="_QuGV3CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV4CjoEeKJaKDvrGSCoA" name="derivedFrom" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::derivedFrom."
+				representedElement_XMI_ID="_3wFxMLXqEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::derivedFrom"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV4ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV4yjoEeKJaKDvrGSCoA"
+						element="_QuGV4CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV5CjoEeKJaKDvrGSCoA" name="satisfiedBy" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::satisfiedBy."
+				representedElement_XMI_ID="_FHcz4LXrEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::satisfiedBy"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV5ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV5yjoEeKJaKDvrGSCoA"
+						element="_QuGV5CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV6CjoEeKJaKDvrGSCoA" name="refinedBy" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::refinedBy."
+				representedElement_XMI_ID="_F-KZcLXrEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::refinedBy"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV6ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV6yjoEeKJaKDvrGSCoA"
+						element="_QuGV6CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV7CjoEeKJaKDvrGSCoA" name="tracedTo" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::tracedTo."
+				representedElement_XMI_ID="_O6rBcLXrEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::tracedTo"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV7ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV7yjoEeKJaKDvrGSCoA"
+						element="_QuGV7CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV8CjoEeKJaKDvrGSCoA" name="verifiedBy" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::verifiedBy."
+				representedElement_XMI_ID="_PHumALXrEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::verifiedBy"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV8ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV8yjoEeKJaKDvrGSCoA"
+						element="_QuGV8CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV9CjoEeKJaKDvrGSCoA" name="master" changeable="false"
+				derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::master."
+				representedElement_XMI_ID="_PStuALXrEduHWpAaWjM62w"
+				propertyQualifiedName="SysML::Requirements::Requirement::master"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV9ijoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectSingleReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV9yjoEeKJaKDvrGSCoA"
+						element="_QuGV9CjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+		<eClassifiers xmi:type="profileefacet:StereotypeFacet"
+			xmi:id="_QuGV-CjoEeKJaKDvrGSCoA" name="RequirementRelated"
+			documentation="This facet represents the eClass RequirementRelated."
+			representedElement_XMI_ID="_ypiHELXqEduHWpAaWjM62w"
+			stereotypeQualifiedName="SysML::Requirements::RequirementRelated">
+			<extendedMetaclass xmi:type="ecore:EClass"
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV-SjoEeKJaKDvrGSCoA" name="tracedFrom" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::tracedFrom."
+				representedElement_XMI_ID="_0nBtgLX1Edu94_NE0EO5_A"
+				propertyQualifiedName="SysML::Requirements::RequirementRelated::tracedFrom"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV-yjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGV_CjoEeKJaKDvrGSCoA"
+						element="_QuGV-SjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGV_SjoEeKJaKDvrGSCoA" name="satisfies" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::satisfies."
+				representedElement_XMI_ID="_0yJ_cLX1Edu94_NE0EO5_A"
+				propertyQualifiedName="SysML::Requirements::RequirementRelated::satisfies"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGV_yjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGWACjoEeKJaKDvrGSCoA"
+						element="_QuGV_SjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGWASjoEeKJaKDvrGSCoA" name="refines" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::refines."
+				representedElement_XMI_ID="_1AqVgLX1Edu94_NE0EO5_A"
+				propertyQualifiedName="SysML::Requirements::RequirementRelated::refines"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGWAyjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGWBCjoEeKJaKDvrGSCoA"
+						element="_QuGWASjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
+				xmi:id="_QuGWBSjoEeKJaKDvrGSCoA" name="verifies" upperBound="-1"
+				changeable="false" derived="true"
+				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::verifies."
+				representedElement_XMI_ID="_56-VIMq4Ed2earfX6q16xg"
+				propertyQualifiedName="SysML::Requirements::RequirementRelated::verifies"
+				isDerived="true">
+				<eType xmi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				<query xmi:type="query:OperationCallQuery" xmi:id="_QuGWByjoEeKJaKDvrGSCoA">
+					<operation xmi:type="efacet:FacetOperation"
+						href="platform:/plugin/org.eclipse.papyrus.uml.profileefacet/resources/uml_stereotype.efacet#//stereotyped_element/getEObjectMultiReferenceValue" />
+					<arguments xmi:type="query:EObjectLiteralQuery" xmi:id="_QuGWCCjoEeKJaKDvrGSCoA"
+						element="_QuGWBSjoEeKJaKDvrGSCoA" />
+				</query>
+			</facetElements>
+		</eClassifiers>
+	</eSubpackages>
+</profileefacet:ProfileFacetSet>
