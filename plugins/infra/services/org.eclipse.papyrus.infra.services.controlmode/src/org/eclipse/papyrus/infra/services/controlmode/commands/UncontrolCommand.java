@@ -258,6 +258,9 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			for(Diagram diag : controlledDiagrams) {
 				uncontrol(getEditingDomain(), diag, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.POST_NOTATION);
 			}
+			
+			//uncontrol for PapyrusTable
+			uncontrol(getEditingDomain(),eObject,  controlledNotation, notationResource,compoundCommand, STATE_CONTROL.POST_NOTATION);
 		}
 	}
 

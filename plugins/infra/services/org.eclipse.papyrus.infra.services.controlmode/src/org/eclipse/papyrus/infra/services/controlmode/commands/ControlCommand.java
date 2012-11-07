@@ -31,6 +31,9 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -269,6 +272,9 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		for(Diagram diag : diagrams) {
 			control(getEditingDomain(), diag, getNotationResourceForCurrent(eObject), controlledNotation, compoundCommand, STATE_CONTROL.POST_NOTATION);
 		}
+
+		//control for PapyrusTable
+		control(getEditingDomain(), eObject, getNotationResourceForCurrent(eObject), controlledNotation, compoundCommand, STATE_CONTROL.POST_NOTATION);
 	}
 
 	/**
@@ -280,7 +286,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 */
 	protected void controlDi(CompoundCommand compoundCommand, final List<Diagram> diagrams) throws SashEditorException {
 		// Create a new SashWindowManager
-		SashWindowsMngr windowsMngr = DiUtils.createDefaultSashWindowsMngr();
+		final SashWindowsMngr windowsMngr = DiUtils.createDefaultSashWindowsMngr();
 		Resource diResource = SashModelUtils.getSashModel(modelSet).getResource();
 		// add pages to the page list
 		for(Diagram diagram : diagrams) {
@@ -297,8 +303,30 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		// Control the DI model
 		compoundCommand.append(new AddCommand(getEditingDomain(), controlledDI.getContents(), windowsMngr, 0));
 
+		//FIXME : remove this workaround after the refactoring
+		final Adapter adapter = new Adapter() {
+
+			public void notifyChanged(Notification notification) {
+				//nothing to do 
+			}
+
+			public Notifier getTarget() {
+				return windowsMngr;
+			}
+
+			public void setTarget(Notifier newTarget) {
+				//nothing to do
+			}
+
+			public boolean isAdapterForType(Object type) {
+				return type == SashWindowsMngr.class;
+			}
+
+		};
+		eObject.eAdapters().add(adapter);
 		// POST control operation
 		control(getEditingDomain(), eObject, diResource, controlledDI, compoundCommand, STATE_CONTROL.POST_DI);
+		eObject.eAdapters().remove(adapter);
 	}
 
 	/**
