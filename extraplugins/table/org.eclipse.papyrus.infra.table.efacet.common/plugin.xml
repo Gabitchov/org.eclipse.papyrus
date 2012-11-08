@@ -151,4 +151,30 @@
             locationURI="popup:org.eclipse.ui.popup.any">
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Open a dialog to select the columns to display"
+            id="org.eclipse.papyrus.infra.table.efacet.common.selectvisiblecolumns"
+            name="Select the columns to Show">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="org.eclipse.papyrus.infra.table.efacet.common.selectvisiblecolumns"
+               icon="icons/select_columns_to_show.png"
+               label="Select the columns to show"
+               style="push"
+               tooltip="Open a dialog to choose the visible columns">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
 </plugin>
