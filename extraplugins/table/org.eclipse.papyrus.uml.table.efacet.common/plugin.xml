@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.uml.table.efacet.common.provider.UMLTablePropertyTester"
+            id="org.eclipse.papyrus.uml.table.efacet.common.provider"
+            namespace="org.eclipse.papyrus.uml.table.efacet.common.provider"
+            properties="isUMLTable"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.uml.table.efacet.common.handler.SelectColumnsHandler"
+            commandId="org.eclipse.papyrus.infra.table.efacet.common.selectvisiblecolumns">
+         <activeWhen>
+         <and>
+            <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                     </equals>
+                  </with>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.uml.table.efacet.common.provider.isUMLTable"
+                           value="true">
+                     </test>
+                  </with>
+               </and>
+         </activeWhen>
+      </handler>
+   </extension>
+</plugin>
