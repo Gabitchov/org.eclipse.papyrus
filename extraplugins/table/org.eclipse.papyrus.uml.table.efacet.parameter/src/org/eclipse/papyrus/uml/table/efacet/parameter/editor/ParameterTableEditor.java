@@ -14,11 +14,11 @@
 package org.eclipse.papyrus.uml.table.efacet.parameter.editor;
 
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractSynchronizedTableEditor;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
+import org.eclipse.papyrus.uml.table.efacet.common.editor.AbstractUMLTableEFacetEditor;
 
 
-public class ParameterTableEditor extends AbstractSynchronizedTableEditor {
+public class ParameterTableEditor extends AbstractUMLTableEFacetEditor {
 
 	/** the type of the editor */
 	public static final String EDITOR_TYPE = "PapyrusUMLParameterTable"; //$NON-NLS-1$

@@ -18,6 +18,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel;bundle-version="0.9.1",
  org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
  org.eclipse.emf.facet.util.emf.core,
- org.eclipse.papyrus.uml.efacet;bundle-version="0.9.1"
+ org.eclipse.papyrus.uml.efacet;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.table.efacet.common;bundle-version="0.9.1"
 Bundle-Version: 0.9.1.qualifier
 
