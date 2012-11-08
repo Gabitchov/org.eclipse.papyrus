@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profileefacet;singleton:=true
-Bundle-Version: 0.9.2.qualifier
+Bundle-Version: 0.9.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.profileefacet.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.profileefacet.metamodel;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.profileefacet.metamodel;bundle-version="0.9.1",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
  org.eclipse.uml2.uml,
  org.eclipse.emf.facet.query.java.core,

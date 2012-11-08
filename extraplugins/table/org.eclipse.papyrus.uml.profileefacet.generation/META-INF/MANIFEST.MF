@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profileefacet.generation
-Bundle-Version: 0.9.2.qualifier
+Bundle-Version: 0.9.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.profileefacet.generation.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
@@ -10,8 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
  org.eclipse.uml2.uml;bundle-version="4.0.1",
  org.eclipse.emf.facet.efacet.metamodel,
- org.eclipse.papyrus.uml.profileefacet.metamodel;bundle-version="0.9.2",
- org.eclipse.papyrus.uml.profileefacet;bundle-version="0.9.2"
+ org.eclipse.papyrus.uml.profileefacet.metamodel;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.profileefacet;bundle-version="0.9.1"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.profileefacet.generation.factory
