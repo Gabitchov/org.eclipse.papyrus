@@ -296,7 +296,7 @@ public class ProfileEFacetGenericFactory {
 
 		} else if(type instanceof Enumeration) {
 			if(upperBound == -1 || upperBound > 1) {
-				eType = EcorePackage.eINSTANCE.getEEnumLiteral();
+				eType = UMLPackage.eINSTANCE.getEnumerationLiteral();
 				facetOperationCalled = this.registry.getFacetOperation(FacetOperationRegistry.UML_ENUMERATION_MULTI_VALUE_OPERATION_ID);
 			} else {
 				eType = UMLPackage.eINSTANCE.getEnumerationLiteral();

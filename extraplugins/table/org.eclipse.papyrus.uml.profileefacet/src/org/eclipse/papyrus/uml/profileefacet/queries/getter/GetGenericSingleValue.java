@@ -48,7 +48,7 @@ public abstract class GetGenericSingleValue<R> implements IJavaQuery2<Element, R
 					final Collection<Stereotype> superClasses = StereotypeUtil.getAllSuperStereotypes(appliedSte);
 					for(final Stereotype current : superClasses) {
 						if(current.getQualifiedName().equals(stereotypeQN)) {
-							return (R)source.getValue(appliedSte, element.getPropertyQualifiedName());
+							return (R)source.getValue(appliedSte, propertyName);
 						}
 					}
 				}

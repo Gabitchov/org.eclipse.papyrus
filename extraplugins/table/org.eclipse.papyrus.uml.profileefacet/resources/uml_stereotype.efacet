@@ -215,7 +215,7 @@
 			lowerBound="1" upperBound="-1"
 			documentation="Returns a multi value on string for a property of a stereotype">
 			<eType xsi:type="ecore:EClass"
-				href="http://www.eclipse.org/emf/2002/Ecore#//EEnumLiteral" />
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral" />
 			<eParameters name="editedFeature">
 				<eType xsi:type="ecore:EClass"
 					href="http://www.eclipse.org/papyrus/0.9/profileefacet#//StereotypePropertyElement" />
