@@ -64,7 +64,10 @@ public class CreateNewElementInPopupContributionItem extends AbstractTableExtens
 		final ITableWidgetProvider provider = getINatTableWidgetProvider();
 		if(provider != null) {
 			final ITableWidget natTableWidget = provider.getTableWidget();
-			final MenuManager manager = new MenuManager("Create New Element") {
+			// The MenuManager, as a ContributionItem, must have an ID,
+			// because ContributionItems without an ID are rejected by the FilteredMenuManager of the table.
+			final MenuManager manager = new MenuManager("Create New Element", "org.eclipse.papyrus.infra.table.efacet.common.menu.CreateNewElementInPopupContributionItem") { //$NON-NLS-2$
+
 
 				/**
 				 * 
