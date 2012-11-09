@@ -89,7 +89,7 @@
 				</eParameters>
 				<eParameters name="direction" ordered="false">
 					<eType xsi:type="ecore:EEnum"
-						href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection" />
+						href="platform:/plugin/org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowDirection"/>
 				</eParameters>
 				<query xsi:type="javaQuery2:JavaQuery" canBeCached="true"
 					implementationClassName="org.eclipse.papyrus.sysml.efacet.blocks.block.CreateFlowPortQuery" />
