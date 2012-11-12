@@ -586,10 +586,11 @@ public class SelectColumnsHandler extends AbstractHandler {
 		}
 
 		// register all facets sets used in the current table
-		final Command setUsedFacetSetCommand = factory.createSetLoadedFacetSetsCommand(new ArrayList<FacetSet>(allFacetSets));
-		if(setUsedFacetSetCommand != null && setUsedFacetSetCommand.canExecute()) {
-			compoundCmd.append(setUsedFacetSetCommand);
-		}
+		//is already done by the other command to add/remove facetcolumns
+//		final Command setUsedFacetSetCommand = factory.createSetLoadedFacetSetsCommand(new ArrayList<FacetSet>(allFacetSets));
+//		if(setUsedFacetSetCommand != null && setUsedFacetSetCommand.canExecute()) {
+//			compoundCmd.append(setUsedFacetSetCommand);
+//		}
 
 		final ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
 
