@@ -28,7 +28,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVZCjoEeKJaKDvrGSCoA" name="viewPoint" lowerBound="1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::ModelElements::View::viewPoint."
+				documentation="This Facet Reference represents the stereotype property SysML::ModelElements::View::viewPoint."
 				representedElement_XMI_ID="_3Qho8LU9Edu2ieF4ON8UjA"
 				propertyQualifiedName="SysML::ModelElements::View::viewPoint"
 				isDerived="true">
@@ -162,7 +162,7 @@
 				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVhCjoEeKJaKDvrGSCoA" name="dimension" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::Unit::dimension."
+				documentation="This Facet Reference represents the stereotype property SysML::Blocks::Unit::dimension."
 				representedElement_XMI_ID="_U8AxIKGxEdyj2Ya50HPlXg"
 				propertyQualifiedName="SysML::Blocks::Unit::dimension">
 				<eType xmi:type="ecore:EClass"
@@ -184,7 +184,7 @@
 				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGViSjoEeKJaKDvrGSCoA" name="unit" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ValueType::unit."
+				documentation="This Facet Reference represents the stereotype property SysML::Blocks::ValueType::unit."
 				representedElement_XMI_ID="_mfPXUKGxEdyj2Ya50HPlXg"
 				propertyQualifiedName="SysML::Blocks::ValueType::unit">
 				<eType xmi:type="ecore:EClass"
@@ -198,7 +198,7 @@
 			</facetElements>
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVjSjoEeKJaKDvrGSCoA" name="dimension" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ValueType::dimension."
+				documentation="This Facet Reference represents the stereotype property SysML::Blocks::ValueType::dimension."
 				representedElement_XMI_ID="_pj40EKGxEdyj2Ya50HPlXg"
 				propertyQualifiedName="SysML::Blocks::ValueType::dimension">
 				<eType xmi:type="ecore:EClass"
@@ -221,7 +221,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVkijoEeKJaKDvrGSCoA" name="propertyPath" lowerBound="1"
 				upperBound="-1" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::NestedConnectorEnd::propertyPath."
+				documentation="This Facet Reference represents the stereotype property SysML::Blocks::NestedConnectorEnd::propertyPath."
 				representedElement_XMI_ID="_oH640LVCEdu2ieF4ON8UjA"
 				propertyQualifiedName="SysML::Blocks::NestedConnectorEnd::propertyPath">
 				<eType xmi:type="ecore:EClass"
@@ -243,7 +243,7 @@
 				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVlyjoEeKJaKDvrGSCoA" name="end" lowerBound="1" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ParticipantProperty::end."
+				documentation="This Facet Reference represents the stereotype property SysML::Blocks::ParticipantProperty::end."
 				representedElement_XMI_ID="_X_BroKGwEdyj2Ya50HPlXg"
 				propertyQualifiedName="SysML::Blocks::ParticipantProperty::end">
 				<eType xmi:type="ecore:EClass"
@@ -266,7 +266,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVnCjoEeKJaKDvrGSCoA" name="connector" lowerBound="1"
 				derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Blocks::ConnectorProperty::connector."
+				documentation="This Facet Reference represents the stereotype property SysML::Blocks::ConnectorProperty::connector."
 				representedElement_XMI_ID="_bq6ukKGwEdyj2Ya50HPlXg"
 				propertyQualifiedName="SysML::Blocks::ConnectorProperty::connector">
 				<eType xmi:type="ecore:EClass"
@@ -371,7 +371,7 @@
 				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVtCjoEeKJaKDvrGSCoA" name="itemProperty" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty."
+				documentation="This Facet Reference represents the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty."
 				representedElement_XMI_ID="__ulWMLVEEdu2ieF4ON8UjA"
 				propertyQualifiedName="SysML::PortAndFlows::ItemFlow::itemProperty">
 				<eType xmi:type="ecore:EClass"
@@ -400,7 +400,7 @@
 				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVuijoEeKJaKDvrGSCoA" name="rate" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Activities::Rate::rate."
+				documentation="This Facet Reference represents the stereotype property SysML::Activities::Rate::rate."
 				representedElement_XMI_ID="_YzasYLXkEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Activities::Rate::rate">
 				<eType xmi:type="ecore:EClass"
@@ -422,7 +422,7 @@
 				href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVvyjoEeKJaKDvrGSCoA" name="probability" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Activities::Probability::probability."
+				documentation="This Facet Reference represents the stereotype property SysML::Activities::Probability::probability."
 				representedElement_XMI_ID="_frTxQLXkEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Activities::Probability::probability">
 				<eType xmi:type="ecore:EClass"
@@ -452,7 +452,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVxSjoEeKJaKDvrGSCoA" name="allocatedFrom" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Allocations::Allocated::allocatedFrom."
+				documentation="This Facet Reference represents the stereotype property SysML::Allocations::Allocated::allocatedFrom."
 				representedElement_XMI_ID="_Sj35kLXnEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Allocations::Allocated::allocatedFrom"
 				isDerived="true">
@@ -468,7 +468,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVySjoEeKJaKDvrGSCoA" name="allocatedTo" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Allocations::Allocated::allocatedTo."
+				documentation="This Facet Reference represents the stereotype property SysML::Allocations::Allocated::allocatedTo."
 				representedElement_XMI_ID="_S07NULXnEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Allocations::Allocated::allocatedTo"
 				isDerived="true">
@@ -499,7 +499,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGVzyjoEeKJaKDvrGSCoA" name="verifies" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::TestCase::verifies."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::TestCase::verifies."
 				representedElement_XMI_ID="_zN7ToKG1Edyj2Ya50HPlXg"
 				propertyQualifiedName="SysML::Requirements::TestCase::verifies"
 				isDerived="true">
@@ -551,7 +551,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV3CjoEeKJaKDvrGSCoA" name="derived" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::derived."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::Requirement::derived."
 				representedElement_XMI_ID="_3jp3sLXqEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Requirements::Requirement::derived"
 				isDerived="true">
@@ -567,7 +567,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV4CjoEeKJaKDvrGSCoA" name="derivedFrom" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::derivedFrom."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::Requirement::derivedFrom."
 				representedElement_XMI_ID="_3wFxMLXqEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Requirements::Requirement::derivedFrom"
 				isDerived="true">
@@ -583,7 +583,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV5CjoEeKJaKDvrGSCoA" name="satisfiedBy" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::satisfiedBy."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::Requirement::satisfiedBy."
 				representedElement_XMI_ID="_FHcz4LXrEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Requirements::Requirement::satisfiedBy"
 				isDerived="true">
@@ -599,7 +599,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV6CjoEeKJaKDvrGSCoA" name="refinedBy" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::refinedBy."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::Requirement::refinedBy."
 				representedElement_XMI_ID="_F-KZcLXrEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Requirements::Requirement::refinedBy"
 				isDerived="true">
@@ -615,7 +615,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV7CjoEeKJaKDvrGSCoA" name="tracedTo" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::tracedTo."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::Requirement::tracedTo."
 				representedElement_XMI_ID="_O6rBcLXrEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Requirements::Requirement::tracedTo"
 				isDerived="true">
@@ -631,7 +631,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV8CjoEeKJaKDvrGSCoA" name="verifiedBy" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::verifiedBy."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::Requirement::verifiedBy."
 				representedElement_XMI_ID="_PHumALXrEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Requirements::Requirement::verifiedBy"
 				isDerived="true">
@@ -647,7 +647,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV9CjoEeKJaKDvrGSCoA" name="master" changeable="false"
 				derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::Requirement::master."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::Requirement::master."
 				representedElement_XMI_ID="_PStuALXrEduHWpAaWjM62w"
 				propertyQualifiedName="SysML::Requirements::Requirement::master"
 				isDerived="true">
@@ -671,7 +671,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV-SjoEeKJaKDvrGSCoA" name="tracedFrom" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::tracedFrom."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::RequirementRelated::tracedFrom."
 				representedElement_XMI_ID="_0nBtgLX1Edu94_NE0EO5_A"
 				propertyQualifiedName="SysML::Requirements::RequirementRelated::tracedFrom"
 				isDerived="true">
@@ -687,7 +687,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGV_SjoEeKJaKDvrGSCoA" name="satisfies" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::satisfies."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::RequirementRelated::satisfies."
 				representedElement_XMI_ID="_0yJ_cLX1Edu94_NE0EO5_A"
 				propertyQualifiedName="SysML::Requirements::RequirementRelated::satisfies"
 				isDerived="true">
@@ -703,7 +703,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGWASjoEeKJaKDvrGSCoA" name="refines" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::refines."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::RequirementRelated::refines."
 				representedElement_XMI_ID="_1AqVgLX1Edu94_NE0EO5_A"
 				propertyQualifiedName="SysML::Requirements::RequirementRelated::refines"
 				isDerived="true">
@@ -719,7 +719,7 @@
 			<facetElements xmi:type="profileefacet:StereotypePropertyFacetReference"
 				xmi:id="_QuGWBSjoEeKJaKDvrGSCoA" name="verifies" upperBound="-1"
 				changeable="false" derived="true"
-				documentation="This Facet Attribute represents the stereotype property SysML::Requirements::RequirementRelated::verifies."
+				documentation="This Facet Reference represents the stereotype property SysML::Requirements::RequirementRelated::verifies."
 				representedElement_XMI_ID="_56-VIMq4Ed2earfX6q16xg"
 				propertyQualifiedName="SysML::Requirements::RequirementRelated::verifies"
 				isDerived="true">
