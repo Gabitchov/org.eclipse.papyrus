@@ -9,9 +9,7 @@ Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.views.documentation.uml.Activato
- r
+Bundle-Activator: org.eclipse.papyrus.uml.documentation.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.documentation;singleton:=
  true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
