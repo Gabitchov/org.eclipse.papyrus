@@ -12,6 +12,7 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.oclconstraintevaluation;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -29,7 +30,7 @@ import org.eclipse.uml2.uml.Profile;
 
 /**
  * this class is an handler that has in charge to launch an evaluation of the constraint contained in the body of the constraint
- *
+ * 
  */
 public class ComputeConstraintHandler extends AbstractHandler {
 
@@ -70,35 +71,35 @@ public class ComputeConstraintHandler extends AbstractHandler {
 		return eObject;
 	}
 
-/**
- * 
- * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
- *
- * @param event
- * @return null
- * @throws ExecutionException
- */
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 * 
+	 * @param event
+	 * @return null
+	 * @throws ExecutionException
+	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		EObject selectedObject=getSelectedElement();
+		EObject selectedObject = getSelectedElement();
 
 		//test if this is a constraint
-		if( selectedObject instanceof Constraint){
-			Constraint constraint= (Constraint)selectedObject;
+		if(selectedObject instanceof Constraint) {
+			Constraint constraint = (Constraint)selectedObject;
 
 			//test if this is an opaqueExpression
-			if( constraint.getSpecification() instanceof OpaqueExpression){
-				OpaqueExpression opaqueExpression= ((OpaqueExpression)constraint.getSpecification());
+			if(constraint.getSpecification() instanceof OpaqueExpression) {
+				OpaqueExpression opaqueExpression = ((OpaqueExpression)constraint.getSpecification());
 
 				//look for the good body named OCL
-				int indexOfOCLBody=-1;
-				for (int i = 0 ; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1 ; i++) {
-					if (opaqueExpression.getLanguages().get(i).equals("OCL")) {
-						indexOfOCLBody = i ;
+				int indexOfOCLBody = -1;
+				for(int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
+					if(opaqueExpression.getLanguages().get(i).equals("OCL")) {
+						indexOfOCLBody = i;
 					}
 				}
-				if( indexOfOCLBody!=-1){
+				if(indexOfOCLBody != -1) {
 					try {
-						OCLEvaluationView view=(OCLEvaluationView)HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().showView(OCLEvaluationView.ID);
+						OCLEvaluationView view = (OCLEvaluationView)HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().showView(OCLEvaluationView.ID);
 						view.compute(constraint.getContext(), opaqueExpression.getBodies().get(indexOfOCLBody));
 					} catch (PartInitException e) {
 						e.printStackTrace();
@@ -114,22 +115,24 @@ public class ComputeConstraintHandler extends AbstractHandler {
 
 	/**
 	 * return the root package from an element
-	 * @param elem the element
-	 * @return the root package 
+	 * 
+	 * @param elem
+	 *        the element
+	 * @return the root package
 	 */
-	protected org.eclipse.uml2.uml.Package getToPackage(Element elem){
-		org.eclipse.uml2.uml.Package tmp= elem.getNearestPackage();
-		while(tmp.getOwner()!=null && (tmp.getOwner()instanceof Package)){
-			tmp= (org.eclipse.uml2.uml.Package)tmp.getOwner();
+	protected org.eclipse.uml2.uml.Package getToPackage(Element elem) {
+		org.eclipse.uml2.uml.Package tmp = elem.getNearestPackage();
+		while(tmp.getOwner() != null && (tmp.getOwner() instanceof Package)) {
+			tmp = (org.eclipse.uml2.uml.Package)tmp.getOwner();
 		}
 		return tmp;
 	}
-	
+
 	@Override
 	public boolean isEnabled() {
-		EObject eObject=getSelectedElement();
-		if( eObject instanceof Constraint){
-			if( !(getToPackage((Element)eObject) instanceof Profile)){
+		EObject eObject = getSelectedElement();
+		if(eObject instanceof Constraint) {
+			if(!(getToPackage((Element)eObject) instanceof Profile)) {
 				return true;
 			}
 		}

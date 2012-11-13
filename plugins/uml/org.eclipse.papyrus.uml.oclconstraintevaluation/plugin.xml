@@ -31,11 +31,5 @@
           class="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
        />
 </extension>
-   <extension
-         point="org.eclipse.ui.startup">
-      <startup
-            class="org.eclipse.papyrus.uml.oclconstraintevaluation.Activator">
-      </startup>
-   </extension>
 
 </plugin>
