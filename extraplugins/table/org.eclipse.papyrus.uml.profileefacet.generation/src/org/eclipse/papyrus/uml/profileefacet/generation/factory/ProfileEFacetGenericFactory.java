@@ -181,14 +181,14 @@ public class ProfileEFacetGenericFactory {
 	public StereotypePropertyFacetReference createFacetReference(final Property property) {
 		final StereotypePropertyFacetReference facetReference = ProfileEFacetFactory.eINSTANCE.createStereotypePropertyFacetReference();
 		facetReference.setIsDerived(property.isDerived());
+		facetReference.setChangeable(!property.isReadOnly());
+		facetReference.setDerived(true);
 		facetReference.setPropertyQualifiedName(property.getQualifiedName());
 		final XMIResource res = (XMIResource)property.eResource();
 		final String XMI_ID = res.getID(property);
 		facetReference.setRepresentedElement_XMI_ID(XMI_ID);
 		facetReference.setName(property.getName());
-		facetReference.setDocumentation(NLS.bind(Messages.ProfileEFacetGenericFactory_FacetReferenceDocumentation, property.getQualifiedName()));
-		facetReference.setChangeable(!property.isDerived());
-		facetReference.setDerived(true);
+		facetReference.setDocumentation(NLS.bind(Messages.ProfileEFacetGenericFactory_FacetReferenceDocumentation, property.getQualifiedName()));	
 		final Type type = property.getType();
 		final EClassifier eType = EcorePackage.eINSTANCE.getEObject();
 		OperationCallQuery query;
@@ -238,6 +238,9 @@ public class ProfileEFacetGenericFactory {
 		final int upperBound = property.upperBound();
 		final StereotypePropertyFacetAttribute facetAttribute = ProfileEFacetFactory.eINSTANCE.createStereotypePropertyFacetAttribute();
 		facetAttribute.setIsDerived(property.isDerived());
+		facetAttribute.setChangeable(!property.isReadOnly());
+		facetAttribute.setDerived(true);
+		
 		facetAttribute.setPropertyQualifiedName(property.getQualifiedName());
 		final XMIResource res = (XMIResource)property.eResource();
 		final String XMI_ID = res.getID(property);
@@ -245,9 +248,6 @@ public class ProfileEFacetGenericFactory {
 
 		facetAttribute.setName(property.getName());
 		facetAttribute.setDocumentation(NLS.bind(Messages.ProfileEFacetGenericFactory_FacetAttributeDocumentation, property.getQualifiedName()));
-		facetAttribute.setChangeable(!property.isDerived());
-		facetAttribute.setDerived(true);
-
 
 		//UML primitive type
 		if(type instanceof PrimitiveType) {
