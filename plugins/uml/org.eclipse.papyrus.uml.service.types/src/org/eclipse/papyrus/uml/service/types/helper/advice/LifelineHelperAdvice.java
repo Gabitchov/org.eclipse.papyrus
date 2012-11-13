@@ -50,7 +50,7 @@ public class LifelineHelperAdvice extends AbstractEditHelperAdvice {
 			}
 
 			// Destroy related Message
-			if(ift instanceof MessageOccurrenceSpecification) {
+			if((ift instanceof MessageOccurrenceSpecification) && (((MessageOccurrenceSpecification)ift).getMessage() != null)) {
 				dependentsToDestroy.add(((MessageOccurrenceSpecification)ift).getMessage());
 			}
 
