@@ -124,7 +124,7 @@ public class CenterLocator extends BorderItemLocator {
 	public void relocate(IFigure borderItem) {
 		if(getDestructionEventFigure() != null) {
 			if(borderItem.equals(getDestructionEventFigure().getParent())) {
-				borderItem.setLocation(new Point(getHorizontalPosition(borderItem), getParentBorder().y + getParentBorder().height - borderItem.getBounds().height));
+				borderItem.setLocation(new Point(getHorizontalPosition(borderItem), getParentBorder().y + getParentBorder().height - borderItem.getBounds().height / 2));
 				return;
 			}
 		}
@@ -137,7 +137,7 @@ public class CenterLocator extends BorderItemLocator {
 		if(getDestructionEventFigure() != null) {
 			if(borderItem.equals(getDestructionEventFigure().getParent())) {
 				Rectangle realLocation = new Rectangle(proposedLocation);
-				Point point =  new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, getParentBorder().y + getParentBorder().height  - realLocation.height);
+				Point point =  new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, getParentBorder().y + getParentBorder().height  - realLocation.height / 2);
 				realLocation.setLocation(point);
 				return realLocation;
 			}

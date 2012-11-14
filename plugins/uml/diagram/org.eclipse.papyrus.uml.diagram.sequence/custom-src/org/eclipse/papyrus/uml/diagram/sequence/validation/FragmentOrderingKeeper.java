@@ -26,6 +26,8 @@ import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.DestructionOccurrenceUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
@@ -39,6 +41,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -334,6 +337,7 @@ public class FragmentOrderingKeeper {
 					constraint.add(fragment);
 				}
 			}
+			DestructionOccurrenceUtil.reorderDestructionOccurrence(constraint);
 			// store constraint
 			orderConstraints.add(indexConstraint, constraint);
 			indexConstraint++;
@@ -344,7 +348,9 @@ public class FragmentOrderingKeeper {
 			//fill constraint : graphical location and previous order of elements not drawn
 			fillConstraintWithLifelineEvents(constraint, part, indexConstraint);
 			// store constraint
-			orderConstraints.add(indexConstraint, new ArrayList<InteractionFragment>(constraint.values()));
+			ArrayList<InteractionFragment> list = new ArrayList<InteractionFragment>(constraint.values());
+			DestructionOccurrenceUtil.reorderDestructionOccurrence(list);
+			orderConstraints.add(indexConstraint, list);
 			indexConstraint++;
 		}
 		// construct general orderings constraints. Removed, since Combined Fragments own themselves their operands
@@ -371,6 +377,8 @@ public class FragmentOrderingKeeper {
 			if(frag instanceof InteractionFragment && orderedFragments.contains(frag)) {
 				constraint.add((InteractionFragment)frag);
 			}
+			
+			DestructionOccurrenceUtil.constraintDestructionOccurrence(mess, constraint);
 			// store constraint
 			orderConstraints.add(indexConstraint, constraint);
 			indexConstraint++;
@@ -764,16 +772,19 @@ public class FragmentOrderingKeeper {
 		 */
 		initialFragmentsList.removeAll(reorderedFragments);
 		reorderedFragments.addAll(initialFragmentsList);
-
+		
+		DestructionOccurrenceUtil.reorderDestructionOccurrence(reorderedFragments);
+		
 		/*
 		 * Now that we have a valid trace, apply it on orderedFragments.
 		 * Only move operations must be performed on the EList, since others strongly affect the model.
 		 */
-		for(int i = 0; i < reorderedFragments.size(); i++) {
+		int size = reorderedFragments.size();
+		for(int i = 0; i < size; i++) {
 			orderedFragments.move(i, reorderedFragments.get(i));
 		}
 		return valid;
-	}
+	}	
 
 	/**
 	 * Get the fragment to inspect for the trace computing algorithm.

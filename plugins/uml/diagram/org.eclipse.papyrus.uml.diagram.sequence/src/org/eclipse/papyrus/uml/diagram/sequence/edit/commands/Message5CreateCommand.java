@@ -125,7 +125,10 @@ public class Message5CreateCommand extends EditElementCommand {
 
 		if(getTarget() instanceof DestructionOccurrenceSpecification) {
 			receiveMessageEnd = getReceiveMessageEnd();
-			lifeline = receiveMessageEnd.getCovereds().get(0);
+			if(receiveMessageEnd != null)
+				lifeline = receiveMessageEnd.getCovereds().get(0);
+			else
+				lifeline = ((DestructionOccurrenceSpecification)getTarget()).getCovereds().get(0);
 		} else {
 			lifeline = (Lifeline)getTarget();
 		}

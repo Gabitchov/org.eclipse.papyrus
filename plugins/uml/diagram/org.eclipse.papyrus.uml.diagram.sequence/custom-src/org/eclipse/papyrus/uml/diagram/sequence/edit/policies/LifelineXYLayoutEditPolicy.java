@@ -156,6 +156,11 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			if(type.getSemanticHint().equals(req.getViewAndElementDescriptor().getSemanticHint())) {
 				constraint.y = 0; // fix layout offset
 			}
+			
+			String destructionHint = ((IHintedType)UMLElementTypes.DestructionOccurrenceSpecification_3022).getSemanticHint();
+			if (destructionHint.equals(req.getViewAndElementDescriptor().getSemanticHint()) && constraint.width < 0 && constraint.height < 0) {
+				constraint.width = constraint.height = 20 ;// set initial size, same as DestructionOccurrenceSpecificationPreferencePage
+			}
 		}
 		return constraint;
 	}
