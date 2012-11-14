@@ -11,7 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pastedElementContainmentFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context or the same name as the diagram"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lineContentProvider" eType="#//DataProvider"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rowContentProvider" eType="#//DataProvider"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columnContentProvider"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataProvider" abstract="true">
@@ -38,8 +38,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unresolvedPastedText" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Column">
+  <eClassifiers xsi:type="ecore:EClass" name="Column" eSuperTypes="#//Line">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortState"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sorter"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Line" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Row" eSuperTypes="#//Line"/>
 </ecore:EPackage>
