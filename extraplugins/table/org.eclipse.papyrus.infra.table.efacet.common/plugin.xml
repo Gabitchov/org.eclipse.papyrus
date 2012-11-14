@@ -175,6 +175,13 @@
                   checkEnabled="true">
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.ui.edit.paste"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
 </plugin>
