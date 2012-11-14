@@ -16,15 +16,19 @@ package org.eclipse.papyrus.uml.table.efacet.common.handler;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.window.Window;
@@ -35,11 +39,14 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.dialog.CommandCreationProgressMonitorDialog;
 import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractTableEditor;
+import org.eclipse.papyrus.infra.table.efacet.common.exceptions.ErrorInPastePreparationException;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.table.efacet.common.Activator;
+import org.eclipse.papyrus.uml.table.efacet.common.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 public class PasteInTableHandler extends AbstractHandler {
 
@@ -51,10 +58,11 @@ public class PasteInTableHandler extends AbstractHandler {
 
 	private final IPasteInTableCommandProvider provider = new PasteInPapyrusTableCommandProvider();
 
+
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 *
+	 * 
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
@@ -63,54 +71,81 @@ public class PasteInTableHandler extends AbstractHandler {
 		final PapyrusTable papyrusTable = getPapyrusTable();
 		if(papyrusTable != null) {
 			final String contents = getClipboardContents();
-			Command createdCommand;
-			this.useProgressMonitorDialog = false;
-			int returnCode = Window.OK;
 			if(this.useProgressMonitorDialog) {//we create the command using a progress monitor
-				final CommandCreationProgressMonitorDialog commandCreationDialog = new CommandCreationProgressMonitorDialog(Display.getCurrent().getActiveShell());
-				final ProgressMonitorDialog commandExecutionProgressMonitor = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
-				commandCreationDialog.getProgressMonitor().setTaskName("Paste creation...");
-				try {
-					commandCreationDialog.run(true, true, new IRunnableWithProgress() {
-
-						public void run(final IProgressMonitor cancelProvider) throws InvocationTargetException, InterruptedException {
-							final Command cmd = PasteInTableHandler.this.provider.getPasteFromFromStringCommand(papyrusTable, cancelProvider, commandExecutionProgressMonitor, contents, getITableWidget());
-							commandCreationDialog.setCreatedCommand(cmd);
-						}
-					});
-				} catch (final InvocationTargetException e) {
-					Activator.log.error(e);
-				} catch (final InterruptedException e) {
-					Activator.log.error(e);
-
-				}
-				returnCode = commandCreationDialog.getReturnCode();
-				createdCommand = commandCreationDialog.getCreatedCommand();
+				return executeWithProgressMonitorDialog(papyrusTable, contents);
 			} else {
-				createdCommand = this.provider.getPasteFromFromStringCommand(papyrusTable, null, null, contents, getITableWidget());
-			}
-
-			if(returnCode == Window.OK) {
-				if((createdCommand != null) && createdCommand.canExecute()) {
-					getEditingDomain().getCommandStack().execute(createdCommand);
-				} else {
-					final String errorMessage = this.provider.getPasteErrorMessage();
-					if((errorMessage != null) && !errorMessage.equals("")) {
-						NotificationBuilder.createErrorPopup(errorMessage).run();
-					}
-				}
-				//we don't use dialogs to do the paste
-			} else if(returnCode == Window.CANCEL) {
-				NotificationBuilder.createInfoPopup("Paste Action Canceled").run();
+				return executeWithoutProgressMonitorDialog(papyrusTable, contents);
 			}
 		}
 		return null;
 	}
 
+	protected Object executeWithProgressMonitorDialog(final PapyrusTable pTable, final String contents) {
+		Command createdCommand;
+		int returnCode = Window.OK;
 
+		final CommandCreationProgressMonitorDialog commandCreationDialog = new CommandCreationProgressMonitorDialog(Display.getCurrent().getActiveShell());
+		final ProgressMonitorDialog commandExecutionProgressMonitor = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+		commandCreationDialog.getProgressMonitor().setTaskName(Messages.PasteInTableHandler_PasteCreation);
+		try {
+			commandCreationDialog.run(true, true, new IRunnableWithProgress() {
+
+				public void run(final IProgressMonitor cancelProvider) throws InvocationTargetException, InterruptedException {
+					Command cmd;
+					try {
+						cmd = PasteInTableHandler.this.provider.getPasteFromFromStringCommand(pTable, cancelProvider, commandExecutionProgressMonitor, contents, getITableWidget());
+					} catch (ErrorInPastePreparationException e) {
+						NotificationBuilder.createErrorPopup(e.getMessage());
+						commandCreationDialog.setCreatedCommand(null);
+						return;
+					}
+					commandCreationDialog.setCreatedCommand(cmd);
+				}
+			});
+		} catch (final InvocationTargetException e) {
+			Activator.log.error(e);
+		} catch (final InterruptedException e) {
+			Activator.log.error(e);
+
+		}
+		returnCode = commandCreationDialog.getReturnCode();
+		createdCommand = commandCreationDialog.getCreatedCommand();
+
+
+		if(returnCode == Window.OK) {
+			if(createdCommand != null) {
+				if(createdCommand.canExecute()) {
+					getEditingDomain().getCommandStack().execute(createdCommand);
+					manageCommandResult(createdCommand.getResult());
+				} else {
+					NotificationBuilder.createErrorPopup(Messages.PasteInTableHandler_ThePasteCommandCantBeExecuted);
+				}
+			} else {
+				//an error occured during the command creation, nothing to do
+			}
+			//we don't use dialogs to do the paste
+		} else if(returnCode == Window.CANCEL) {
+			NotificationBuilder.createInfoPopup(Messages.PasteInTableHandler_PasteCancelled).run();
+		}
+		return null;
+	}
+
+	protected Object executeWithoutProgressMonitorDialog(final PapyrusTable pTable, final String clipboardContents) {
+		Command createdCommand;
+		try {
+			createdCommand = this.provider.getPasteFromFromStringCommand(pTable, null, null, clipboardContents, getITableWidget());
+		} catch (ErrorInPastePreparationException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
+		getEditingDomain().getCommandStack().execute(createdCommand);
+		manageCommandResult(createdCommand.getResult());
+		return null;
+	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the PapyrusTable for the current nested active editor or <code>null</code> if not found
 	 */
@@ -131,7 +166,6 @@ public class PasteInTableHandler extends AbstractHandler {
 	}
 
 	private ITableWidget getITableWidget() {
-//IEditorPaPlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		ISashWindowsContainer container = null;
 		try {
 			container = ServiceUtilsForActionHandlers.getInstance().getISashWindowsContainer();
@@ -148,7 +182,7 @@ public class PasteInTableHandler extends AbstractHandler {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the clipboard contents used to build the command
 	 */
@@ -181,9 +215,9 @@ public class PasteInTableHandler extends AbstractHandler {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -192,7 +226,7 @@ public class PasteInTableHandler extends AbstractHandler {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the editing domain to use to execute the command
 	 */
@@ -202,21 +236,46 @@ public class PasteInTableHandler extends AbstractHandler {
 		try {
 			serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
 		} catch (final ServiceException e) {
-			Activator.log.error("ServicesRegistry not found", e);
+			Activator.log.error("ServicesRegistry not found", e); //$NON-NLS-1$
 		}
 		try {
 			domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 		} catch (final ServiceException e) {
-			Activator.log.error("Editing Domain not found", e);
+			Activator.log.error("Editing Domain not found", e); //$NON-NLS-1$
 		}
 		return domain;
 	}
 
 	/**
 	 * allows to define if we want use dialog to prevent the user that the command creation and the command execution can take a long time
-	 *
+	 * 
 	 */
 	public void setWithProgressMonitorDialog(final boolean useProgressMonitorDialog) {
 		this.useProgressMonitorDialog = useProgressMonitorDialog;
+	}
+
+	private Collection<IStatus> getInterestingIStatus(final Collection<?> result) {
+		final Collection<IStatus> status = new ArrayList<IStatus>();
+		for(final Object current : result) {
+			if(current instanceof IStatus) {
+				status.add((IStatus)current);
+			}
+		}
+		return status;
+	}
+
+	/**
+	 * 
+	 * @param commandResult
+	 *        the result of the executed command
+	 */
+	private void manageCommandResult(final Collection<?> commandResult) {
+		final Collection<IStatus> status = getInterestingIStatus(commandResult);
+		for(IStatus iStatus : status) {
+			final int severity = iStatus.getSeverity();
+			if(severity == IStatus.ERROR || severity == IStatus.WARNING) {
+				Activator.getDefault().getLog().log(iStatus);
+			}
+		}
 	}
 }

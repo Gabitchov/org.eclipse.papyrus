@@ -35,5 +35,19 @@
                </and>
          </activeWhen>
       </handler>
+      <handler
+            class="org.eclipse.papyrus.uml.table.efacet.common.handler.PasteInTableHandler"
+            commandId="org.eclipse.ui.edit.paste">
+         <activeWhen>
+            <with
+                  variable="selection">
+              <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.uml.table.efacet.common.provider.isUMLTable"
+                           value="true">
+                     </test>
+            </with>
+         </activeWhen>
+      </handler>
    </extension>
 </plugin>

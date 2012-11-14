@@ -16,7 +16,12 @@ Require-Bundle: org.eclipse.uml2.uml;bundle-version="4.0.1",
  org.eclipse.papyrus.uml.profileefacet.metamodel;bundle-version="0.9.1",
  org.eclipse.core.expressions,
  org.eclipse.emf.facet.efacet.core,
- org.eclipse.papyrus.uml.profileefacet.generation;bundle-version="0.9.1"
+ org.eclipse.papyrus.uml.profileefacet.generation;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.widgets.toolbox,
+ org.eclipse.papyrus.infra.services.edit,
+ org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.profileefacet;bundle-version="0.9.1"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.table.efacet.common.editor

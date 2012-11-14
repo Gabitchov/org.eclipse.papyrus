@@ -13,15 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.table.efacet.common.handler;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Column;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.papyrus.infra.table.efacet.common.exceptions.ErrorInPastePreparationException;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 
 /**
@@ -34,12 +30,17 @@ public interface IPasteInTableCommandProvider {
 	/**
 	 * row separator in the clipboard contents
 	 */
-	public static final String ROW_SEPARATOR = "\n";
+	public static final String ROW_SEPARATOR = "\n"; //$NON-NLS-1$
 
 	/**
 	 * column separator in the clipboard contents
 	 */
-	public static final String COLUMN_SEPARATOR = "\t";
+	public static final String COLUMN_SEPARATOR = "\t"; //$NON-NLS-1$
+
+	/**
+	 * the separator used for multivalue
+	 */
+	public static final String MULTI_VALUE_SEPARATOR = ","; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -51,11 +52,12 @@ public interface IPasteInTableCommandProvider {
 	 *        the progress monitor used during the command execution (can be <code>null</code>)
 	 * @param clipboardContents
 	 *        the clipboard contents
-	 * @param visibleColumns TODO
+	 * 
 	 * @return
 	 *         the command to create the paste in the table command
+	 * @throws ErrorInPastePreparationException
 	 */
-	public Command getPasteFromFromStringCommand(final PapyrusTable table, final IProgressMonitor commandCreationCancelProvider, final ProgressMonitorDialog commandExecutionProgressMonitor, final String clipboardContents,  ITableWidget iTableWidget);
+	public Command getPasteFromFromStringCommand(final PapyrusTable table, final IProgressMonitor commandCreationCancelProvider, final ProgressMonitorDialog commandExecutionProgressMonitor, final String clipboardContents, ITableWidget iTableWidget) throws ErrorInPastePreparationException;
 
 	/**
 	 * 
@@ -63,11 +65,12 @@ public interface IPasteInTableCommandProvider {
 	 *        the paste table where the paste is done
 	 * @param clipboardContents
 	 *        the clipboard contents
-	 * @param iTableWidget TODO
+	 * @param iTableWidget
+	 *        the nattable widget
 	 * @return
 	 *         <code>true</code> if the paste is allowed in the table
 	 */
-	public boolean isPasteEnabled(final PapyrusTable papyrusTable, final String clipboardContents, ITableWidget iTableWidget);
+	public boolean isPasteEnabled(final PapyrusTable papyrusTable, final String clipboardContents, final ITableWidget iTableWidget);
 
 	/**
 	 * 

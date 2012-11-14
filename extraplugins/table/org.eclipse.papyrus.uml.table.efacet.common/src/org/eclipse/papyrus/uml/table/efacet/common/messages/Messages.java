@@ -44,6 +44,40 @@ public class Messages extends NLS {
 	public static String ColumnsToShowDialog_SelectAllAvailablesFeatures;
 
 	public static String ColumnsToShowDialog_ShowAllPossibilities;
+
+	public static String PasteInPapyrusTableCommandProvider_0;
+
+	public static String PasteInPapyrusTableCommandProvider_1;
+
+	public static String PasteInPapyrusTableCommandProvider_2;
+
+	public static String PasteInPapyrusTableCommandProvider_3;
+	public static String PasteInPapyrusTableCommandProvider_Pasting;
+
+	public static String PasteInPapyrusTableCommandProvider_PastingInTable;
+
+	public static String PasteInPapyrusTableCommandProvider_ProblemsToSetPropertyValue;
+
+	public static String PasteInPapyrusTableCommandProvider_ProblemToApplyStereotype;
+
+	public static String PasteInPapyrusTableCommandProvider_ProblemToSetStereotypeValue;
+
+	public static String PasteInPapyrusTableCommandProvider_RequiredStereotypeCantBeFound;
+
+	public static String PasteInPapyrusTableCommandProvider_RequiredStereotypeNotApplied;
+
+	public static String PasteInPapyrusTableCommandProvider_StereotypePropertyCantBeResolved;
+
+	public static String PasteInPapyrusTableCommandProvider_TheEnumerationLiteralCantBeFound;
+
+	public static String PasteInPapyrusTableCommandProvider_TheStereotypeCantBeApplied;
+
+	public static String PasteInPapyrusTableCommandProvider_TheTextCantBeMappedOnAnExistingElement;
+	public static String PasteInTableHandler_PasteCancelled;
+
+	public static String PasteInTableHandler_PasteCreation;
+
+	public static String PasteInTableHandler_ThePasteCommandCantBeExecuted;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
