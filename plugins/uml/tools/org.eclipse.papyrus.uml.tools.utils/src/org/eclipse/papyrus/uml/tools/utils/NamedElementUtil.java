@@ -159,6 +159,19 @@ public class NamedElementUtil {
 		return (name != null) ? name : "";
 	}
 
+	/**
+	 * 
+	 * @param childQualifiedName
+	 *        the qualifiedName of an element
+	 * @return
+	 *         the qualified name of its parent
+	 */
+	public static String getParentQualifiedName(final String childQualifiedName) {
+		final String childName = getNameFromQualifiedName(childQualifiedName);
+		final String parentQualifiedName = childQualifiedName.substring(0, childQualifiedName.length() - (NamedElement.SEPARATOR.length() + childName.length()));
+		return (parentQualifiedName != null) ? parentQualifiedName : "";
+	}
+
 
 	public static String getName(NamedElement element) {
 		if(element.getName() != null) {
