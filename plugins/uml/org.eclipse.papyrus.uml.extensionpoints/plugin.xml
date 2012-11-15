@@ -7,10 +7,20 @@
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            description="Standard profile for UML models"
+            description="Standard L2 profile for UML models (contains most stereotypes from UML 2.3 Standard profile)"
             iconpath="icons/uml.gif"
-            name="Standard"
-            path="pathmap://UML_PROFILES/Standard.profile.uml"
+            name="Standard L2"
+            path="pathmap://UML_PROFILES/StandardL2.profile.uml"
+            provider="Eclipse.org">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Standard L3 profile for UML models"
+            iconpath="icons/uml.gif"
+            name="Standard L3"
+            path="pathmap://UML_PROFILES/StandardL3.profile.uml"
             provider="Eclipse.org">
       </profile>
    </extension>
