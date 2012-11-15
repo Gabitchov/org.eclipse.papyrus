@@ -65,13 +65,17 @@ public class NameResolutionHelper {
 		Namespace enclosingNamespace = scope.getNamespace();
 		String prefix = "";
 		while(enclosingNamespace != null) {
-			prefix += enclosingNamespace.getName() + NamedElementUtil.QUALIFIED_NAME_SEPARATOR;
+//			prefix += enclosingNamespace.getName() + NamedElementUtil.QUALIFIED_NAME_SEPARATOR;
+			prefix="";
 			computeNames(prefix, enclosingNamespace, false);
 			enclosingNamespace = enclosingNamespace.getNamespace();
 		}
 
 		// Compute names related to the root context model
 		Namespace model = scope.getModel();
+		if(model==null){
+			model  = scope;
+		}
 		if(filter != null) {
 			if(filter.isSuperTypeOf(model.eClass())) {
 				List<NamedElement> l = this.allNames.get(model.getName());
