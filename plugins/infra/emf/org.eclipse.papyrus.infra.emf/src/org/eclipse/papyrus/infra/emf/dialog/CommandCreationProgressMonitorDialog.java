@@ -51,6 +51,9 @@ public class CommandCreationProgressMonitorDialog extends ProgressMonitorDialog 
 	/** the created command */
 	private Command createdCommand = null;
 
+	/** an exception threw by the command creation */
+	private Exception exception;
+
 	/**
 	 * 
 	 * Constructor.
@@ -81,5 +84,19 @@ public class CommandCreationProgressMonitorDialog extends ProgressMonitorDialog 
 	public Command getCreatedCommand() {
 		return this.createdCommand;
 	}
+
+	public void setCaughtException(final Exception e) {
+		this.exception = e;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the exception throwed by the command creation
+	 */
+	public Exception getCaughtException() {
+		return this.exception;
+	}
+
 
 }
