@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.uml.table.efacet.common.Activator;
 
 
-public class PasteErrorStatus extends AbstractWarningPasteResultStatus implements IStatus {
+public class PasteWarningStatus extends AbstractWarningPasteResultStatus implements IStatus {
 
 	/**
 	 * Instantiates a new error in paste status.
@@ -36,7 +36,7 @@ public class PasteErrorStatus extends AbstractWarningPasteResultStatus implement
 	 * @param pastedString
 	 *        the pasted string
 	 */
-	public PasteErrorStatus(final String statusMessage, final EObject element) {
+	public PasteWarningStatus(final String statusMessage, final EObject element) {
 		super(statusMessage, element);
 	}
 }

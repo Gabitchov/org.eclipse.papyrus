@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.table.efacet.common.handler;
+package org.eclipse.papyrus.uml.table.efacet.common.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,7 +53,7 @@ public abstract class AbstractPasteInTableCommandProvider implements IPasteInTab
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sysml.table.efacet.flowport.provider.internal.provider.IPasteInTableCommandProvider#getPasteErrorMessage()
+	 * @see org.eclipse.papyrus.uml.table.efacet.common.provider.sysml.table.efacet.flowport.provider.internal.provider.IPasteInTableCommandProvider#getPasteErrorMessage()
 	 * 
 	 * @return
 	 */

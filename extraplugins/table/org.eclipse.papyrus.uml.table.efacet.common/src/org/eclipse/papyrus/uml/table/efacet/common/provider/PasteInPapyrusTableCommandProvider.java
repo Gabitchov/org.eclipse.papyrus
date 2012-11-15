@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.table.efacet.common.handler;
+package org.eclipse.papyrus.uml.table.efacet.common.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +23,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -45,6 +46,7 @@ import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.internal.CommonCorePlugin;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -64,9 +66,11 @@ import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypeF
 import org.eclipse.papyrus.uml.profileefacet.metamodel.profileefacet.StereotypePropertyElement;
 import org.eclipse.papyrus.uml.profileefacet.utils.StereotypePropertyUtils;
 import org.eclipse.papyrus.uml.table.efacet.common.messages.Messages;
-import org.eclipse.papyrus.uml.table.efacet.common.status.PasteErrorStatus;
+import org.eclipse.papyrus.uml.table.efacet.common.status.PasteWarningStatus;
 import org.eclipse.papyrus.uml.table.efacet.common.status.StereotypeApplicationErrorStatus;
 import org.eclipse.papyrus.uml.table.efacet.common.status.UnresolvedReferenceErrorInPasteStatus;
+import org.eclipse.papyrus.uml.table.efacet.common.utils.ValueContainer;
+import org.eclipse.papyrus.uml.table.efacet.common.utils.MultiValueContainer;
 import org.eclipse.papyrus.uml.tools.utils.NameResolutionHelper;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.ui.statushandlers.StatusManager;
@@ -109,7 +113,7 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	/** the string used for uml unlimited natural */
 	private static final String UML_UNLIMITED_NATURAL = "UnlimitedNatural"; //$NON-NLS-1$
 
-	
+
 
 	private static final int MIN_ROWS_FOR_PROGRESS_MONITOR = 5;
 
@@ -218,7 +222,7 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 					@Override
 					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 						final Element el = (Element)commandCreation.getCommandResult().getReturnValue();
-						final PasteErrorStatus rootStatus = new PasteErrorStatus(Messages.PasteInPapyrusTableCommandProvider_ProblemToApplyStereotype, el);
+						final PasteWarningStatus rootStatus = new PasteWarningStatus(Messages.PasteInPapyrusTableCommandProvider_ProblemToApplyStereotype, el);
 						for(final Stereotype ste : stereotypeToApply) {
 							if(el.getApplicableStereotype(ste.getQualifiedName()) == null) {
 								final IStatus status = new StereotypeApplicationErrorStatus(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_TheStereotypeCantBeApplied, ste.getQualifiedName(), el), el, ste.getQualifiedName());
@@ -240,103 +244,55 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 			//8.7 we set these properties values
 			for(int i = 0; i < cells.length; i++) {
 				final EStructuralFeature feature = features.get(i);
-				final String valueAsString = cells[i];
+				if(feature.isChangeable()) {
+					final String valueAsString = cells[i];
 
-				if(valueAsString != null && !"".equals(valueAsString) && !"null".equals(valueAsString)) { //$NON-NLS-1$ //$NON-NLS-2$
-					final Object realValue = deduceValueFromString((Namespace)tableContext, feature, valueAsString);
+					if(valueAsString != null && !"".equals(valueAsString) && !"null".equals(valueAsString)) { //$NON-NLS-1$ //$NON-NLS-2$
+						final ValueContainer<?> realValue = deduceValueFromString((Namespace)tableContext, feature, valueAsString);
 
-					if(realValue != null) {
-						//it is a property of stereotype
-						if(feature instanceof StereotypePropertyElement) {
-							final String steQN = ((StereotypeFacet)feature.eContainer()).getStereotypeQualifiedName();
-							final String propertyQN = ((StereotypePropertyElement)feature).getPropertyQualifiedName();
-							final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
+						if(realValue != null) {
+							//it is a property of stereotype
+							if(feature instanceof StereotypePropertyElement) {
+								final String steQN = ((StereotypeFacet)feature.eContainer()).getStereotypeQualifiedName();
+								final String propertyQN = ((StereotypePropertyElement)feature).getPropertyQualifiedName();
+								final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
 
-							final String cmdName = NLS.bind("Set value for the property {0} of the stereotype {1}.", new String[]{ propertyName, steQN }); //$NON-NLS-1$
-							final ICommand setStereotypePropertyValue = new AbstractTransactionalCommand(editingDomain, cmdName, null) {
+								final String cmdName = NLS.bind("Set value for the property {0} of the stereotype {1}.", new String[]{ propertyName, steQN }); //$NON-NLS-1$
+								final ICommand setStereotypePropertyValue = new AbstractTransactionalCommand(editingDomain, cmdName, null) {
 
-								@Override
-								protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-									final Element createdElement = (Element)commandCreation.getCommandResult().getReturnValue();
-									final PasteErrorStatus rootStatus = new PasteErrorStatus(Messages.PasteInPapyrusTableCommandProvider_ProblemToSetStereotypeValue, createdElement);
-									//FIXME : the inheritance is not managed
-									final Stereotype stereotype = createdElement.getAppliedStereotype(steQN);
-									if(stereotype == null) {
-										final IStatus status = new StereotypeApplicationErrorStatus(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_RequiredStereotypeNotApplied, steQN, createdElement), createdElement, steQN);
-										rootStatus.addChildren(status);
-										return new CommandResult(rootStatus, rootStatus);
+									@Override
+									protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+										//FIXME : streotype inheritance not managed
+										final Element createdElement = (Element)commandCreation.getCommandResult().getReturnValue();
+										final Stereotype stereotype = createdElement.getAppliedStereotype(steQN);
+										final Object valueToSet = realValue.getValue();
+										if(stereotype == null) {
+											final IStatus status = new StereotypeApplicationErrorStatus(NLS.bind("The required stereotype {0} is not applied on the element", steQN), createdElement, steQN);
+											return CommandResult.newOKCommandResult(status);//FIXME : OK command result ?
+										}
+										createdElement.setValue(stereotype, propertyName, valueToSet);
+										return CommandResult.newOKCommandResult(realValue.getStatus(createdElement));
 									}
-									if(realValue instanceof Collection<?>) {
-										final Collection<Object> valueToSet = new ArrayList<Object>();
-										for(final Object current : (Collection<?>)realValue) {
-											if(current instanceof UnresolvedReferenceErrorInPasteStatus) {
-												((UnresolvedReferenceErrorInPasteStatus)current).setElement(createdElement);
-												rootStatus.addChildren((IStatus)current);
-											} else {
-												valueToSet.add(current);
-											}
-										}
-										if(!valueToSet.isEmpty()) {
-											createdElement.setValue(stereotype, propertyName, valueToSet);
-										}
-									} else {
-										if(realValue instanceof UnresolvedReferenceErrorInPasteStatus) {
-											((UnresolvedReferenceErrorInPasteStatus)realValue).setElement(createdElement);
-											rootStatus.addChildren((IStatus)realValue);
-										} else {
-											createdElement.setValue(stereotype, propertyName, realValue);
-										}
-									}
-									if(rootStatus.isMultiStatus()) {
-										return new CommandResult(rootStatus, rootStatus);
-									}
-									return CommandResult.newOKCommandResult();
-								}
-							};
+								};
 
-							cmd.append(new GMFtoEMFCommandWrapper(setStereotypePropertyValue));
-						} else {//it is a direct feature
-							final String label = NLS.bind("Set the value for the feature {0}.", feature.getName()); //$NON-NLS-1$
-							final ICommand setValueCommand = new AbstractTransactionalCommand(editingDomain, label, null) {
+								cmd.append(new GMFtoEMFCommandWrapper(setStereotypePropertyValue));
+							} else {//it is a direct feature
+								final String label = NLS.bind("Set the value for the feature {0}.", feature.getName()); //$NON-NLS-1$
+								final ICommand setValueCommand = new AbstractTransactionalCommand(editingDomain, label, null) {
 
-								@Override
-								protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-									final EObject createdElement = (EObject)commandCreation.getCommandResult().getReturnValue();
-									final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(createdElement);
-									final PasteErrorStatus rootStatus = new PasteErrorStatus(Messages.PasteInPapyrusTableCommandProvider_ProblemsToSetPropertyValue, createdElement);
-
-									if(realValue instanceof Collection) {
-										final Collection<Object> valueToSet = new ArrayList<Object>();
-										for(final Object current : (Collection<?>)realValue) {
-											if(current instanceof UnresolvedReferenceErrorInPasteStatus) {
-												((UnresolvedReferenceErrorInPasteStatus)current).setElement(createdElement);
-												rootStatus.addChildren((IStatus)current);
-											} else {
-												valueToSet.add(current);
-											}
-										}
-										if(!valueToSet.isEmpty()) {
-											final SetRequest request = new SetRequest(getEditingDomain(), createdElement, feature, valueToSet);
-											final ICommand localSetValueCommand = provider.getEditCommand(request);
-											localSetValueCommand.execute(monitor, info);
-										}
-									} else {
-										if(realValue instanceof UnresolvedReferenceErrorInPasteStatus) {
-											((UnresolvedReferenceErrorInPasteStatus)realValue).setElement(createdElement);
-											rootStatus.addChildren((IStatus)realValue);
-										} else {
-											final SetRequest request = new SetRequest(getEditingDomain(), createdElement, feature, realValue);
-											final ICommand localSetValueCommand = provider.getEditCommand(request);
-											localSetValueCommand.execute(monitor, info);
-										}
+									@Override
+									protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+										final EObject createdElement = (EObject)commandCreation.getCommandResult().getReturnValue();
+										final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(createdElement);
+										final Object valueToSet = realValue.getValue();
+										final SetRequest request = new SetRequest(getEditingDomain(), createdElement, feature, valueToSet);
+										final ICommand localSetValueCommand = provider.getEditCommand(request);
+										localSetValueCommand.execute(monitor, info);
+										return CommandResult.newOKCommandResult(realValue.getStatus(createdElement));
 									}
-									if(rootStatus.isMultiStatus()) {
-										return new CommandResult(rootStatus, rootStatus);
-									}
-									return CommandResult.newOKCommandResult();
-								}
-							};
-							cmd.append(new GMFtoEMFCommandWrapper(setValueCommand));
+								};
+								cmd.append(new GMFtoEMFCommandWrapper(setValueCommand));
+							}
 						}
 					}
 				}
@@ -492,20 +448,21 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 
 
 	//FIXME?  use the UML Type Factory? 
-	protected Object deduceBooleanValue(final boolean isMany, final String valueAsString) throws ErrorInPastePreparationException {
-		Object returnedValue = null;
+	protected ValueContainer<?> deduceBooleanValue(final boolean isMany, final String valueAsString) throws ErrorInPastePreparationException {
+		ValueContainer<?> returnedValue = null;
 		if(isMany) {
 			final Collection<Boolean> values = new ArrayList<Boolean>();
 			for(final String str : valueAsString.split(MULTI_VALUE_SEPARATOR)) {
-				final Boolean value = (Boolean)deduceBooleanValue(false, str);
-				if(value != null) {
-					values.add(value);
+				if(BooleanHelper.isBoolean(str)) {
+					values.add(Boolean.valueOf(valueAsString));
+				} else {
+					throw new ErrorInPastePreparationException(NLS.bind(TYPE_FORMAT_ERROR_MESSAGE, str, UML_BOOLEAN));
 				}
 			}
-			returnedValue = values;
+			returnedValue = new MultiValueContainer<Boolean>(values);
 		} else {
 			if(BooleanHelper.isBoolean(valueAsString)) {
-				returnedValue = Boolean.valueOf(valueAsString);
+				returnedValue = new ValueContainer<Boolean>(Boolean.valueOf(valueAsString));
 			} else {
 				throw new ErrorInPastePreparationException(NLS.bind(TYPE_FORMAT_ERROR_MESSAGE, valueAsString, UML_BOOLEAN));
 			}
@@ -514,20 +471,22 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	}
 
 
-	protected Object deduceDoubleValue(final boolean isMany, final String valueAsString) throws ErrorInPastePreparationException {
-		Object returnedValue = null;
+	protected ValueContainer<?> deduceDoubleValue(final boolean isMany, final String valueAsString) throws ErrorInPastePreparationException {
+		ValueContainer<?> returnedValue = null;
 		if(isMany) {
 			final Collection<Double> values = new ArrayList<Double>();
 			for(final String str : valueAsString.split(MULTI_VALUE_SEPARATOR)) {
-				final Double value = (Double)deduceDoubleValue(false, str);
+				final Double value = Double.valueOf(str);
 				if(value != null) {
 					values.add(value);
+				} else {
+					throw new ErrorInPastePreparationException(NLS.bind(TYPE_FORMAT_ERROR_MESSAGE, str, "Double")); //$NON-NLS-1$
 				}
 			}
-			returnedValue = values;
+			returnedValue = new MultiValueContainer<Double>(values);
 		} else {
 			try {
-				returnedValue = Double.valueOf(valueAsString);
+				returnedValue = new ValueContainer<Double>(Double.valueOf(valueAsString));
 			} catch (final NumberFormatException e) {
 				throw new ErrorInPastePreparationException(NLS.bind(TYPE_FORMAT_ERROR_MESSAGE, valueAsString, "Double")); //$NON-NLS-1$
 			}
@@ -536,23 +495,25 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	}
 
 
-	protected Object deduceEnumerationLiteralValue(final boolean isMany, final String valueAsString, final Enumeration enumeration) throws ErrorInPastePreparationException {
-		Object returnedValue = null;
+	protected ValueContainer<?> deduceEnumerationLiteralValue(final boolean isMany, final String valueAsString, final Enumeration enumeration) throws ErrorInPastePreparationException {
+		ValueContainer<?> returnedValue = null;
 		if(isMany) {
-			final Collection<EnumerationLiteral> value = new ArrayList<EnumerationLiteral>();
+			final Collection<EnumerationLiteral> values = new ArrayList<EnumerationLiteral>();
 			for(final String str : valueAsString.split(MULTI_VALUE_SEPARATOR)) {
-				final EnumerationLiteral lit = (EnumerationLiteral)deduceEnumerationLiteralValue(false, str, enumeration);
+				final EnumerationLiteral lit = (EnumerationLiteral)enumeration.getMember(str);
 				if(lit != null) {
-					value.add(lit);
+					values.add(lit);
+				} else {
+					throw new ErrorInPastePreparationException(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_TheEnumerationLiteralCantBeFound, str));
 				}
 			}
-			returnedValue = value;
+			returnedValue = new MultiValueContainer<EnumerationLiteral>(values);
 		} else {
 			final EnumerationLiteral lit = (EnumerationLiteral)enumeration.getMember(valueAsString);
 			if(lit == null) {
 				throw new ErrorInPastePreparationException(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_TheEnumerationLiteralCantBeFound, valueAsString));
 			}
-			returnedValue = lit;
+			returnedValue = new ValueContainer<EnumerationLiteral>(lit);
 		}
 		return returnedValue;
 	}
@@ -587,51 +548,56 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	 * @warning : the property ErrorInPasteStatus#element has not been setted in the returned status (because we don't know it here, it have not been
 	 *          yet created.
 	 */
-	protected Object deduceEObjectValue(final Namespace namespace, final EStructuralFeature feature, final EClass eClass, final boolean isMany, final String valueAsString) {
-		Object returnedValue = null;
+	protected ValueContainer<?> deduceEObjectValue(final Namespace namespace, final EStructuralFeature feature, final EClass eClass, final boolean isMany, final String valueAsString) {
+		ValueContainer<?> returnedValue = null;
 		NameResolutionHelper helper = this.nameResolutionHelpers.get(eClass);
 		if(helper == null) {
 			helper = new NameResolutionHelper(namespace, eClass);
 			this.nameResolutionHelpers.put(eClass, helper);
 		}
 		if(isMany) {
-			final Collection<Object> value = new HashSet<Object>();
+			final PasteWarningStatus root = new PasteWarningStatus("Problem to find some references", null);
+			final Collection<EObject> values = new HashSet<EObject>();
 			for(final String str : valueAsString.split(MULTI_VALUE_SEPARATOR)) {
 				final List<NamedElement> elements = helper.getNamedElements(str);
 				if(elements.size() == 1) {
-					value.add(elements.get(0));
+					values.add(elements.get(0));
 				} else {
-					value.add(new UnresolvedReferenceErrorInPasteStatus(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_TheTextCantBeMappedOnAnExistingElement, valueAsString), null, feature, str));
+					root.addChildren(new UnresolvedReferenceErrorInPasteStatus(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_TheTextCantBeMappedOnAnExistingElement, valueAsString), null, feature, str));
 				}
-				returnedValue = value;
+				if(root.isMultiStatus()) {
+					returnedValue = new MultiValueContainer<EObject>(values, root);
+				}
+				returnedValue = new MultiValueContainer<EObject>(values);
 			}
 		} else {
 			final List<NamedElement> elements = helper.getNamedElements(valueAsString);
 			if(elements.size() == 1) {
 				//it is OK
-				returnedValue = elements.get(0);
+				returnedValue = new ValueContainer<EObject>(elements.get(0));
 			} else {
-				returnedValue = new UnresolvedReferenceErrorInPasteStatus(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_TheTextCantBeMappedOnAnExistingElement, valueAsString), null, feature, valueAsString);
+				returnedValue = new ValueContainer<EObject>(null, new UnresolvedReferenceErrorInPasteStatus(NLS.bind(Messages.PasteInPapyrusTableCommandProvider_TheTextCantBeMappedOnAnExistingElement, valueAsString), null, feature, valueAsString));
 			}
 		}
 		return returnedValue;
 	}
 
 
-	protected Object deduceIntValue(final boolean isMany, final String valueAsString) throws ErrorInPastePreparationException {
-		Object returnedValue = null;
+	protected ValueContainer<?> deduceIntValue(final boolean isMany, final String valueAsString) throws ErrorInPastePreparationException {
+		ValueContainer<?> returnedValue = null;
 		if(isMany) {
 			final Collection<Integer> values = new ArrayList<Integer>();
 			for(final String str : valueAsString.split(MULTI_VALUE_SEPARATOR)) {
-				final Integer value = (Integer)deduceIntValue(false, str);
-				if(value != null) {
-					values.add(value);
+				try {
+					values.add(Integer.valueOf(str));
+				} catch (final NumberFormatException e) {
+					throw new ErrorInPastePreparationException(NLS.bind(TYPE_FORMAT_ERROR_MESSAGE, str, UML_INTEGER));
 				}
 			}
-			returnedValue = values;
+			returnedValue = new MultiValueContainer<Integer>(values);
 		} else {
 			try {
-				returnedValue = Integer.valueOf(valueAsString);
+				returnedValue = new ValueContainer<Integer>(Integer.valueOf(valueAsString));
 			} catch (final NumberFormatException e) {
 				throw new ErrorInPastePreparationException(NLS.bind(TYPE_FORMAT_ERROR_MESSAGE, valueAsString, UML_INTEGER));
 			}
@@ -640,16 +606,16 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	}
 
 
-	protected Object deduceStringValue(final boolean isMany, final String valueAsString) {
-		Object returnedValue = null;
+	protected ValueContainer<?> deduceStringValue(final boolean isMany, final String valueAsString) {
+		ValueContainer<?> returnedValue = null;
 		if(isMany) {
 			final Collection<String> values = new ArrayList<String>();
 			for(final String str : valueAsString.split(MULTI_VALUE_SEPARATOR)) {
 				values.add(str);
 			}
-			returnedValue = values;
+			returnedValue = new MultiValueContainer<String>(values);
 		} else {
-			returnedValue = valueAsString;
+			returnedValue = new ValueContainer<String>(valueAsString);
 		}
 		return returnedValue;
 	}
@@ -666,8 +632,8 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	 * @return
 	 *         the value for the pasted string or <code>null</code> if not found
 	 */
-	protected Object deduceValueFromString(final Namespace tableContext, final EStructuralFeature feature, final String valueAsString) throws ErrorInPastePreparationException {
-		Object realValue = null;
+	protected ValueContainer<?> deduceValueFromString(final Namespace tableContext, final EStructuralFeature feature, final String valueAsString) throws ErrorInPastePreparationException {
+		ValueContainer<?> realValue = null;
 		final int upperbound = feature.getUpperBound();
 		boolean isMany = (upperbound > 1 || upperbound == -1);
 		EClassifier featureType = null;
@@ -752,5 +718,4 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 		this.managedColumns = getManagedColumns(iTableWidget);
 		return super.isPasteEnabled(papyrusTable, clipboardContents, iTableWidget);
 	}
-	
 }

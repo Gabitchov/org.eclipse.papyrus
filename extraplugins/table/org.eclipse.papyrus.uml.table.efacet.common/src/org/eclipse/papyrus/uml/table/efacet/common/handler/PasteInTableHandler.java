@@ -44,6 +44,8 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTabl
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.table.efacet.common.Activator;
 import org.eclipse.papyrus.uml.table.efacet.common.messages.Messages;
+import org.eclipse.papyrus.uml.table.efacet.common.provider.IPasteInTableCommandProvider;
+import org.eclipse.papyrus.uml.table.efacet.common.provider.PasteInPapyrusTableCommandProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.statushandlers.StatusManager;
@@ -94,20 +96,25 @@ public class PasteInTableHandler extends AbstractHandler {
 					Command cmd;
 					try {
 						cmd = PasteInTableHandler.this.provider.getPasteFromFromStringCommand(pTable, cancelProvider, commandExecutionProgressMonitor, contents, getITableWidget());
+						commandCreationDialog.setCreatedCommand(cmd);
 					} catch (ErrorInPastePreparationException e) {
-						NotificationBuilder.createErrorPopup(e.getMessage());
+						commandCreationDialog.setCaughtException(e);
 						commandCreationDialog.setCreatedCommand(null);
-						return;
 					}
-					commandCreationDialog.setCreatedCommand(cmd);
 				}
 			});
 		} catch (final InvocationTargetException e) {
 			Activator.log.error(e);
 		} catch (final InterruptedException e) {
 			Activator.log.error(e);
-
 		}
+		final Exception e = commandCreationDialog.getCaughtException();
+		if(e != null) {
+			if(e instanceof ErrorInPastePreparationException)
+				NotificationBuilder.createErrorPopup(e.getMessage()).run();
+			return null;
+		}
+
 		returnCode = commandCreationDialog.getReturnCode();
 		createdCommand = commandCreationDialog.getCreatedCommand();
 

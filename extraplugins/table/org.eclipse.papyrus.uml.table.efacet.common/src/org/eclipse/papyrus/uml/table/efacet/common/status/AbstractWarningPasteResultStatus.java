@@ -91,7 +91,7 @@ public abstract class AbstractWarningPasteResultStatus implements IStatus {
 	 * @return
 	 */
 	public String getMessage() {
-		return this.message;
+		return "Paste Warning: " + this.message;
 	}
 
 	/**
@@ -156,12 +156,17 @@ public abstract class AbstractWarningPasteResultStatus implements IStatus {
 	}
 
 	/**
-	 * Setter for {@link #element}
+	 * Setter for {@link #element}. The set is propagated to its children
 	 * 
 	 * @param element
 	 *        the element on which we have a problem
 	 */
 	public void setElement(final EObject element) {
 		this.element = element;
+		for(final IStatus status : children) {
+			if(status instanceof AbstractWarningPasteResultStatus) {
+				((AbstractWarningPasteResultStatus)status).setElement(element);
+			}
+		}
 	}
 }
