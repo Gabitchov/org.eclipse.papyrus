@@ -88,7 +88,10 @@ public class NameResolutionUtils {
 
 		// If no named elements have been found, tries to evaluate the name using the root context model has a root of the qualified name
 		if(resolvedNamedElements.isEmpty()) {
-			final Namespace model = scope.getModel();
+			Namespace model = scope.getModel();
+			if(model==null){
+				model = scope;
+			}
 			if(model.getName().equals(nameFragments.get(0))) {
 				if(nameFragments.size() == 1) {
 					if(filter != null) {
