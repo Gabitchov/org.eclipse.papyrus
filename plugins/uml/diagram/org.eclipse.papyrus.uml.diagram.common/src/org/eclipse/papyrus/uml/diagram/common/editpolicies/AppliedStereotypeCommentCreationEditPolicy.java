@@ -199,8 +199,10 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 							if(editPart instanceof BorderedBorderItemEditPart ){
 								isBorderElement=true;
 							}
-							CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View)editPart.getModel(),x,y, semanticElement,isBorderElement);
-							domain.getCommandStack().execute(command);
+							if(getAppliedStereotypeCommentNode()==null){
+								CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View)editPart.getModel(),x,y, semanticElement,isBorderElement);
+								domain.getCommandStack().execute(command);
+							}
 						}
 					});
 				}
