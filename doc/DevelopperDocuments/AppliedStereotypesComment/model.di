@@ -59,6 +59,9 @@
         <children>
           <emfPageIdentifier href="model.notation#_y6p5QBaoEeK2bPy_5yA69Q"/>
         </children>
+        <children>
+          <emfPageIdentifier href="model.notation#_rIoE8BwaEeKjG5zMFxAVTA"/>
+        </children>
       </children>
     </windows>
   </sashModel>

@@ -93,6 +93,11 @@ Figure 8: Remove the display of applied stereotype property&#xD;
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_ZT--oBwaEeKjG5zMFxAVTA" clientDependency="_jVXkABwaEeKjG5zMFxAVTA" name="TestUseCases">
+      <ownedComment xmi:id="_RC8bEC_aEeKRCpw1GQ-68A" annotatedElement="_szg0cC_ZEeKRCpw1GQ-68A">
+        <body> Display stereotype directly as comment shape by selecteing two propertie!&#xD;
+a bug was raised because several comment were created &#xD;
+393530: [Stereotypes] doublon of applied stereotype comment can be created</body>
+      </ownedComment>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_jVXkABwaEeKjG5zMFxAVTA" name="Dependency1" client="_ZT--oBwaEeKjG5zMFxAVTA" supplier="_43PMcBaoEeK2bPy_5yA69Q"/>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_xA9xUBwaEeKjG5zMFxAVTA" name="Display stereotype application directly in comment"/>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_3JZIIBwaEeKjG5zMFxAVTA" name="Display from a display as compartment"/>
@@ -105,6 +110,7 @@ Figure 8: Remove the display of applied stereotype property&#xD;
         <extensionPoint xmi:id="_KWyKEBwbEeKjG5zMFxAVTA" name="point"/>
         <include xmi:id="_Tz3vkBwbEeKjG5zMFxAVTA" addition="_xA9xUBwaEeKjG5zMFxAVTA"/>
         <include xmi:id="_URFQABwbEeKjG5zMFxAVTA" addition="_3JZIIBwaEeKjG5zMFxAVTA"/>
+        <include xmi:id="_0oUNgC_ZEeKRCpw1GQ-68A" addition="_szg0cC_ZEeKRCpw1GQ-68A"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Usage" xmi:id="_N8sg0BwbEeKjG5zMFxAVTA" name="Usage1" client="_-1reYBwaEeKjG5zMFxAVTA" supplier="_ex_scBapEeK2bPy_5yA69Q"/>
       <packagedElement xmi:type="uml:Usage" xmi:id="_O_vSMBwbEeKjG5zMFxAVTA" name="Usage2" client="_6JvTsBwaEeKjG5zMFxAVTA" supplier="_ex_scBapEeK2bPy_5yA69Q"/>
@@ -126,6 +132,7 @@ Figure 8: Remove the display of applied stereotype property&#xD;
       <packagedElement xmi:type="uml:Usage" xmi:id="_0tajABwcEeKjG5zMFxAVTA" name="Usage11" client="_wLWGABwcEeKjG5zMFxAVTA" supplier="_mXxLABapEeK2bPy_5yA69Q"/>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_1TtG8BwcEeKjG5zMFxAVTA" clientDependency="_3zHIoBwcEeKjG5zMFxAVTA" name="move the stereotyped element"/>
       <packagedElement xmi:type="uml:Usage" xmi:id="_3zHIoBwcEeKjG5zMFxAVTA" name="Usage12" client="_1TtG8BwcEeKjG5zMFxAVTA" supplier="_mXxLABapEeK2bPy_5yA69Q"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_szg0cC_ZEeKRCpw1GQ-68A" name="Creation of a comment by selecting several properties of stereotype "/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_SOH00BasEeK2bPy_5yA69Q" clientDependency="_ivOxEBwaEeKjG5zMFxAVTA" name="SolutionProposition">
       <ownedComment xmi:id="_8kDFUBa8EeK2bPy_5yA69Q">
