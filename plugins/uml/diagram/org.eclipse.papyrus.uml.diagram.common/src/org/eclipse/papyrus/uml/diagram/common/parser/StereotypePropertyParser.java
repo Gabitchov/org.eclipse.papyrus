@@ -77,7 +77,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 				return result;
 			}
 			else{return "";}
-			
+
 		}
 		return "<UNDEFINED>";
 	}
@@ -145,9 +145,9 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			final EObject stereotypeApplication=((View)view.eContainer()).getElement();
 			final Stereotype stereotype=UMLUtil.getStereotype(stereotypeApplication);
 			final Element umlElement=UMLUtil.getBaseElement(stereotypeApplication); 
-
-
-			return StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
+			if(stereotype!=null && property!=null && umlElement!=null){
+				return StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
+			}
 		}
 		return "<UNDEFINED>";
 	}

@@ -69,20 +69,52 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 		return (View)((EObject)getHost().getModel()).eContainer();
 	}
 
-	
+
 	/**
 	 * this method is used to create a notation node for the property of the stereotype
 	 * @param editPart the  editpart container
-	 * @param property the property of the stereotype that we want to edit with the application of the stereotype
+	 * @param stereotypesPropertiesToDisplay list of applied stereotype properties to display
+	 * @param node the comaprtment node that contains all properties
+	 * @param stereotype the stereotype associated to compartment node 
 	 */
-	protected void executeAppliedStereotypePropertytCreation(final GraphicalEditPart editPart, final Property property) {
+	protected void executeAppliedStereotypePropertytCreation(final GraphicalEditPart editPart, final String stereotypesPropertiesToDisplay,final View node, final Stereotype stereotype) {
 		try {
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 				public void run() {
 					Display.getCurrent().asyncExec(new Runnable() {
 						public void run() {
-							CreateAppliedStereotypePropertyViewCommand command= new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), property);
-							editPart.getEditingDomain().getCommandStack().execute(command);
+
+							StringTokenizer propStringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, ",");
+							while(propStringTokenizer.hasMoreElements()) {
+								// extract property to display
+								String propertyQN = propStringTokenizer.nextToken();
+								//get a property that is interesting for us
+								if( propertyQN.startsWith(stereotype.getQualifiedName())){
+
+									String propertyName= propertyQN.substring(propertyQN.lastIndexOf(".")+1);
+									Property stereotypeProperty=StereotypeUtil.getPropertyByName(stereotype, propertyName);
+
+									Node sterotypePropertyNode= null;
+									int i=0;
+									//we go through all sub nodes to get sub node that is link to this property
+									while(i<node.getChildren().size()&&sterotypePropertyNode==null){
+										if( (node.getChildren().get(i)) instanceof Node){
+											final Node currentNode=(Node)(node.getChildren().get(i));
+											if(currentNode.getType().equals(AppliedStereotypePropertyEditPart.ID)){
+												if( currentNode.getElement().equals(stereotypeProperty)){
+													sterotypePropertyNode= currentNode;
+												}
+											}
+										}
+										i++;
+									}
+									if( sterotypePropertyNode==null){
+										//System.err.println("+ add "+stereotypeProperty );
+										CreateAppliedStereotypePropertyViewCommand command= new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotypeProperty);
+										editPart.getEditingDomain().getCommandStack().execute(command);
+									}
+								}
+							}
 						}
 					});
 				}
@@ -99,7 +131,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 	public void notifyChanged(Notification notification) {
 		// refresh obly when the EAnnotation about stereotype is added or remove
 		// to update only property of stereotype application
-		
+
 
 		// if element that has changed is a stereotype => refresh the label.
 		if(notification.getNotifier() instanceof Node && (notification.getEventType()==Notification.ADD) &&(notification.getNewValue() instanceof EAnnotation)) {
@@ -111,9 +143,9 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 	}
 
 
-/**
- * maybe to remove
- */
+	/**
+	 * maybe to remove
+	 */
 	protected void refreshEAnnotation() {
 		final GraphicalEditPart editPart= (GraphicalEditPart)getHost();
 		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)editPart.getNotationView().eContainer());
@@ -143,66 +175,46 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 	 * Refreshes the stereotype application property 
 	 */
 	public void refreshDisplay() {
+		if(((View)getHost().getModel()).eContainer()!=null ){
+			String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)((View)getHost().getModel()).eContainer());
+			final GraphicalEditPart editPart= (GraphicalEditPart)getHost();
+			final View node=editPart.getNotationView();
 
-		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)((View)getHost().getModel()).eContainer());
-		final GraphicalEditPart editPart= (GraphicalEditPart)getHost();
-		final View node=editPart.getNotationView();
+			//1. Manage adding of application stereotype properties
+			EObject stereotypeApplication=editPart.resolveSemanticElement();
+			Stereotype stereotype=UMLUtil.getStereotype(stereotypeApplication);
+			//if stereotype is null all property of stereotype has to be removed!
+			if( stereotype!=null){
+				//go through each stereotype property
+				executeAppliedStereotypePropertytCreation(editPart, stereotypesPropertiesToDisplay, node, stereotype);
 
-		//1. Manage adding of application stereotype properties
-		EObject stereotypeApplication=editPart.resolveSemanticElement();
-		Stereotype stereotype=UMLUtil.getStereotype(stereotypeApplication);
-		//go through each stereotype property
-
-		manageAddingStereotypeProperties(stereotypesPropertiesToDisplay, editPart, node, stereotype);
-		
-		//Manage removing of Stereotype application properties
-		manageRemovingPropertiesNodes(stereotypesPropertiesToDisplay, editPart, node, stereotype);
+				//Manage removing of Stereotype application properties
+				manageRemovingPropertiesNodes(stereotypesPropertiesToDisplay, editPart, node, stereotype);
 
 
+			}
+			else{
+				try{
+					editPart.getEditingDomain().runExclusive(new Runnable() {
+						public void run() {
+							Display.getCurrent().asyncExec(new Runnable() {
+								public void run() {
+									DeleteCommand command= new DeleteCommand((View)getHost().getModel());
+									editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+								}
 
-	}
-
-	
-	/**
-	 * this method is used to add if needed propertyNode by taking in account a list of properties to display
-	 * @param stereotypesPropertiesToDisplay a list of qualified name of properties
-	 * @param editPart the graphical editpart that is the container
-	 * @param node the notation node that is the container
-	 * @param stereotype the stereotype that is display in this container
-	 */
-	protected void manageAddingStereotypeProperties(String stereotypesPropertiesToDisplay, final GraphicalEditPart editPart, final View node, Stereotype stereotype) {
-		// fill our data structure in order to generate the string
-		StringTokenizer propStringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, ",");
-		while(propStringTokenizer.hasMoreElements()) {
-			// extract property to display
-			String propertyQN = propStringTokenizer.nextToken();
-			//get a property that is interesting for us
-			if( propertyQN.startsWith(stereotype.getQualifiedName())){
-
-				String propertyName= propertyQN.substring(propertyQN.lastIndexOf(".")+1);
-				Property stereotypeProperty=StereotypeUtil.getPropertyByName(stereotype, propertyName);
-
-				Node sterotypePropertyNode= null;
-				int i=0;
-				//we go through all sub nodes to get sub node that is link to this property
-				while(i<node.getChildren().size()&&sterotypePropertyNode==null){
-					if( (node.getChildren().get(i)) instanceof Node){
-						final Node currentNode=(Node)(node.getChildren().get(i));
-						if(currentNode.getType().equals(AppliedStereotypePropertyEditPart.ID)){
-							if( currentNode.getElement().equals(stereotypeProperty)){
-								sterotypePropertyNode= currentNode;
-							}
+							});
 						}
-					}
-					i++;
-				}
-				if( sterotypePropertyNode==null){
-					executeAppliedStereotypePropertytCreation(editPart, stereotypeProperty);
+					});
+				}catch (Exception e) {
+					System.err.println(e);
 				}
 
 			}
 		}
 	}
+
+
 
 	/**
 	 * this method is used to remove nodes of property that are not in a given list
@@ -218,7 +230,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 				final Node currentNode=(Node)(node.getChildren().get(i));
 				if(currentNode.getType().equals(AppliedStereotypePropertyEditPart.ID)){
 					Property property=(Property)currentNode.getElement();
-					String propertyQN= stereotype.getQualifiedName()+"."+property.getName();
+					final String propertyQN= stereotype.getQualifiedName()+"."+property.getName();
 					if(!stereotypesPropertiesToDisplay.contains(propertyQN) ){
 						try{
 							//yes, Execution of the Deletion command
@@ -226,8 +238,12 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 								public void run() {
 									Display.getCurrent().asyncExec(new Runnable() {
 										public void run() {
-											DeleteCommand command= new DeleteCommand(currentNode);
-											editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+											if( currentNode.eContainer()!=null){
+												//System.err.println("- remove "+propertyQN );
+												DeleteCommand command= new DeleteCommand(currentNode);
+												editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+											}
+
 										}
 									});
 								}
