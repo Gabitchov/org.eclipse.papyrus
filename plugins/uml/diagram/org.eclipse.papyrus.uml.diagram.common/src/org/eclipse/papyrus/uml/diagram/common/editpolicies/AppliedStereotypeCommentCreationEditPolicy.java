@@ -93,7 +93,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 		Iterator<View> iteratorView= view.getChildren().iterator();
 		while(iteratorView.hasNext()) {
 			View subview = (View)iteratorView.next();
-			if( !subview.getElement().equals(eobject)){
+			if(subview.getElement()!=null && !subview.getElement().equals(eobject)){
 				nbVisibleCompartment++;
 			}
 		}
@@ -310,4 +310,14 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			}
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void refreshDisplay() {
+		//do nothing
+		//refreshStereotypeDisplay();
+	}
+
 }
