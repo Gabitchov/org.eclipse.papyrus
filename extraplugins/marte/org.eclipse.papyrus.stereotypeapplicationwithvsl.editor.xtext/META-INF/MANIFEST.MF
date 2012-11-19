@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.stereotypeapplicationwithvsl.edito
+ r.xtext,org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext
+ .parseTreeConstruction,org.eclipse.papyrus.stereotypeapplicationwithv
+ sl.editor.xtext.parser.antlr,org.eclipse.papyrus.stereotypeapplicatio
+ nwithvsl.editor.xtext.parser.antlr.internal,org.eclipse.papyrus.stere
+ otypeapplicationwithvsl.editor.xtext.scoping,org.eclipse.papyrus.ster
+ eotypeapplicationwithvsl.editor.xtext.services,org.eclipse.papyrus.st
+ ereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL,
+ org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereot
+ ypeApplicationWithVSL.impl,org.eclipse.papyrus.stereotypeapplicationw
+ ithvsl.editor.xtext.stereotypeApplicationWithVSL.util,org.eclipse.pap
+ yrus.stereotypeapplicationwithvsl.editor.xtext.validation
+Require-Bundle: org.eclipse.xtext,org.eclipse.xtext.generator;resoluti
+ on:=optional,org.apache.commons.logging;resolution:=optional,org.ecli
+ pse.emf.codegen.ecore;resolution:=optional,org.eclipse.emf.mwe.utils;
+ resolution:=optional,org.eclipse.emf.mwe2.launch;resolution:=optional
+ ,com.ibm.icu;resolution:=optional,org.eclipse.xtext.xtend;resolution:
+ =optional,org.eclipse.xtext.util,org.eclipse.emf.ecore,org.eclipse.em
+ f.common,org.antlr.runtime,org.eclipse.uml2.uml;bundle-version="3.1.0
+ ",org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",org.eclipse.p
+ apyrus.marte.vsl;bundle-version="0.7.3",org.eclipse.xtext.gmf.glue;bu
+ ndle-version="0.7.3"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.8.2.qualifier
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Import-Package: org.apache.log4j
+Bundle-SymbolicName: org.eclipse.papyrus.stereotypeapplicationwithvsl.
+ editor.xtext; singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
