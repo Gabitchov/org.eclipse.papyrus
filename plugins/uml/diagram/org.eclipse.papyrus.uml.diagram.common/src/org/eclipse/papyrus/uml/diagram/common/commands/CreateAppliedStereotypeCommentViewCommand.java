@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
@@ -33,24 +34,27 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
+import org.eclipse.gmf.runtime.notation.impl.CompartmentImpl;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypesCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypesCommentLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.common.util.Util;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * the goal of this command is to create a comment in the notation that represent a compartment of stereotypes
  *
  */
 public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand {
-	
+
 	protected View owner;
 	protected EObject base_element;
 	protected int x;
 	protected int y;
 	protected TransactionalEditingDomain domain;
 	protected Boolean isBorderedElement;
-	
+
 	/**
 	 * 
 	 * Constructor.
@@ -68,12 +72,12 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		this.y=y;
 		this.domain= domain;
 		this.isBorderedElement=isABordererElement;
-		
+
 	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doExecute() {
-		
+
 		//create the node
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setVisible(true);
@@ -86,19 +90,15 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		node.getStyles().add(ts);
 		node.setElement(null);
 		node.setType(AppliedStereotypesCommentEditPart.ID);
-		View econtainer=(View)owner.eContainer();
-		if( isBorderedElement){
-			if(econtainer.eContainer()!=null){
-				econtainer=(View)econtainer.eContainer();
-			}
-		}
-		ViewUtil.insertChildView(econtainer, node, ViewUtil.APPEND, true);
-		
-		
+
+		connectCommentNode(owner, node);
+
+
+
 		EObjectValueStyle eObjectValueStyle=(EObjectValueStyle)node.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 		eObjectValueStyle.setEObjectValue(base_element);
 		eObjectValueStyle.setName("BASE_ELEMENT");
-		
+
 		//create the link
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -121,17 +121,80 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		eObjectValueStyle=(EObjectValueStyle)edge.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 		eObjectValueStyle.setEObjectValue(base_element);
 		eObjectValueStyle.setName("BASE_ELEMENT");
-		
+
 		//copy EAnnotation
 		final EAnnotation stereotypeAnnotation=owner.getEAnnotation(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
 		EAnnotation stereotypeAnnotationCopy=EcoreUtil.copy(stereotypeAnnotation);
 		node.getEAnnotations().add(stereotypeAnnotationCopy);
 		RecordingCommand cmd=AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, node, UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
 		cmd.execute();
-		
+
 		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(node);
 		cmd =AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, node, AppliedStereotypeHelper.getStereotypesToDisplay(node), presentationKind);
 		cmd.execute();
 	}
+	
+	/**
+	 * add the comment node form the owner
+	 * @param owner the view from which we want to display a comment stereotype, cannot be null
+	 * @param commentNode node that represent the comment , cannot be null
+	 */
+	private void connectCommentNode(View owner, Node commentNode) {
 
+		//in the case of the edge the comment has to be placed into the common parent of each end
+		if( owner instanceof Edge){
+			View viewSource = ((Edge)owner).getSource();
+			View viewTarget = ((Edge)owner).getSource();
+			//list of source parents
+			ArrayList<View> parentsSource= getParentTree(viewSource);
+			//list of source targets
+			ArrayList<View> parentsTarget= getParentTree(viewTarget);
+			View commonParent= null;
+			int index=0;
+			//find the common
+			while(commonParent==null&& index<parentsSource.size()) {
+				if( parentsTarget.contains(parentsSource.get(index))){
+					commonParent=parentsSource.get(index);
+					if (!(commonParent instanceof BasicCompartment)){
+						commonParent=null;
+					}
+				}
+				index++;
+			}
+			// a common has been found
+			if( commonParent!=null){
+				((Bounds)commentNode.getLayoutConstraint()).setX(100);
+				((Bounds)commentNode.getLayoutConstraint()).setY(100);
+				ViewUtil.insertChildView(commonParent, commentNode, ViewUtil.APPEND, true);
+				return;
+			}
+		}	
+		//generic case
+		View econtainer=(View)owner.eContainer();
+		//for the case of a port
+		if( isBorderedElement){
+			if(econtainer.eContainer()!=null){
+				econtainer=(View)econtainer.eContainer();
+			}
+		}
+		ViewUtil.insertChildView(econtainer, commentNode, ViewUtil.APPEND, true);
+
+	}
+
+	/**
+	 * @param view the view for which we look for its parents, cannot be null
+	 * @return the list of parents of a view
+	 */
+	private ArrayList<View>getParentTree(View view){
+		ArrayList<View> parents= new ArrayList<View>();
+		View currentView= view;
+		while(currentView!=null) {
+			currentView=(View)currentView.eContainer();
+			if(currentView!=null){
+				parents.add(currentView);
+			}
+
+		}
+		return parents;
+	}
 }
