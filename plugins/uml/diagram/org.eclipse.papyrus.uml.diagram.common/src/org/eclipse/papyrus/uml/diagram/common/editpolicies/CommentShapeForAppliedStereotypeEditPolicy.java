@@ -13,11 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransaction;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -102,8 +107,17 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 							//because it is asynchrone the comment node maybe become s null
 							if( commentNode!= null&& TransactionUtil.getEditingDomain(commentNode)!=null){
 								DeleteCommand command= new DeleteCommand(commentNode);
-								TransactionUtil.getEditingDomain(commentNode).getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
-							}
+								 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+									options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+								try{
+									InternalTransaction it=((InternalTransactionalEditingDomain)  TransactionUtil.getEditingDomain(commentNode)).startTransaction(false, options);
+									GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+									warpperCmd.execute();
+									it.commit();
+								}catch(Exception e){
+									System.err.println(e);
+								}
+								}
 						}
 					});
 				}

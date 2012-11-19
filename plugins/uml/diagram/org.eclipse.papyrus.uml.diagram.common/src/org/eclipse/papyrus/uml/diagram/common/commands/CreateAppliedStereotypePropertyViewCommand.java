@@ -13,7 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -32,7 +36,8 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 	protected Property property;
 	
 	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain,View owner, Property property) {
-		super(domain);
+		
+		super(domain, "CreateStereotypePropertyView");
 		this.owner = owner;
 		this.property=property;
 		

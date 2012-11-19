@@ -61,7 +61,7 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 	 * @param displayit
 	 */
 	public CreateAppliedStereotypeCommentViewCommand(TransactionalEditingDomain domain,View owner,int x, int y, EObject base_Element, boolean isABordererElement) {
-		super(domain);
+		super(domain,"CreateAppliedStereotypeCommentView");
 		this.owner = owner;
 		this.base_element=base_Element;
 		this.x=x;
