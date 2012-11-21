@@ -522,33 +522,32 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 								(GraphicalEditPart) hostPart,
 								(MessageOccurrenceSpecification) timeObservation
 										.getEvent());
-				if (request instanceof CreateConnectionRequest) {
-					CreateConnectionRequest req = (CreateConnectionRequest) request;
-					req.setLocation(new Point(req.getLocation().x,
-							messageOccurrenceLoc.y));
-				} else if (request instanceof ReconnectRequest) {
-					ReconnectRequest req = (ReconnectRequest) request;
-					req.setLocation(new Point(req.getLocation().x,
-							messageOccurrenceLoc.y));
-				}
+				setRequestLocation(messageOccurrenceLoc);
 			} else if (timeObservation.getEvent() instanceof ExecutionOccurrenceSpecification) {
 				Point executionOccurrenceLoc = SequenceUtil
 						.findLocationOfExecutionOccurrence(
 								(GraphicalEditPart) hostPart,
 								(ExecutionOccurrenceSpecification) timeObservation
 										.getEvent());
-				if (request instanceof CreateConnectionRequest) {
-					CreateConnectionRequest req = (CreateConnectionRequest) request;
-					req.setLocation(new Point(req.getLocation().x,
-							executionOccurrenceLoc.y));
-				} else if (request instanceof ReconnectRequest) {
-					ReconnectRequest req = (ReconnectRequest) request;
-					req.setLocation(new Point(req.getLocation().x,
-							executionOccurrenceLoc.y));
-				}
+				setRequestLocation(executionOccurrenceLoc);
 			}
 
 			return CommandResult.newOKCommandResult();
+		}
+
+		private void setRequestLocation(Point occurrenceLoc) {
+			if(occurrenceLoc == null)
+				return;
+			
+			if (request instanceof CreateConnectionRequest) {
+				CreateConnectionRequest req = (CreateConnectionRequest) request;
+				req.setLocation(new Point(req.getLocation().x,
+						occurrenceLoc.y));
+			} else if (request instanceof ReconnectRequest) {
+				ReconnectRequest req = (ReconnectRequest) request;
+				req.setLocation(new Point(req.getLocation().x,
+						occurrenceLoc.y));
+			}
 		}
 
 		@Override

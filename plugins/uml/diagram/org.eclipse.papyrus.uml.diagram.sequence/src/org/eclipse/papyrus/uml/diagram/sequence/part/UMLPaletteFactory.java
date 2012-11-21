@@ -21,6 +21,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.requests.SimpleFactory;
+import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gef.tools.ConnectionCreationTool;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
@@ -582,6 +583,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 	
+	// see also CustomConnectionHandleEditPolicy.getHandleFigures()
 	private Tool createObservationLinkCreationTool() {
 		ConnectionCreationTool tool = new ConnectionCreationTool(new SimpleFactory(ObservationLink.class)){
 			protected String getCommandName() {
@@ -605,7 +607,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 									getTargetingConditional());
 					if (editPart != null)
 						editPart = editPart.getTargetEditPart(getTargetRequest());
-					boolean changed = getTargetEditPart() != editPart;
+					// fix observation link moving over ExecutionSpecificationEditPart
+					if (getTargetRequest() instanceof TargetRequest)
+						((TargetRequest) getTargetRequest()).setTargetEditPart(editPart);
+					boolean changed = getTargetEditPart() != editPart;					
 					setTargetEditPart(editPart);
 					return changed;
 				} else
