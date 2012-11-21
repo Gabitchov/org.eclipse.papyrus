@@ -200,7 +200,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 							listener = new NotificationListener() {
 
 								public void notifyChanged(Notification notification) {
-									Connector newValue = (Connector)notification.getNewValue();
+									Object newValue = notification.getNewValue();
 
 									Map<?, ?> map = viewer.getEditPartRegistry();
 									EditPart editPart = (EditPart)map.get(newValue);
