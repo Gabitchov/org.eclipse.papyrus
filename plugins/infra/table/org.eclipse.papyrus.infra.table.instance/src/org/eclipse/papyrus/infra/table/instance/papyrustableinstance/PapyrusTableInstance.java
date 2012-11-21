@@ -9,6 +9,7 @@ package org.eclipse.papyrus.infra.table.instance.papyrustableinstance;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.facet.infra.query.ModelQuery;
@@ -28,6 +29,8 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInsta
  *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#isIsSynchronized <em>Is Synchronized</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getFillingQueries <em>Filling Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPastedElementId <em>Pasted Element Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -153,5 +156,57 @@ public interface PapyrusTableInstance extends EModelElement {
 	 * @generated
 	 */
 	EList<ModelQuery> getFillingQueries();
+
+	/**
+	 * Returns the value of the '<em><b>Pasted Element Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This attribute stores the id of the element represented by the row during a paste action in the table.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Pasted Element Id</em>' attribute.
+	 * @see #setPastedElementId(String)
+	 * @see org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_PastedElementId()
+	 * @model default=""
+	 * @generated
+	 */
+	String getPastedElementId();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPastedElementId <em>Pasted Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pasted Element Id</em>' attribute.
+	 * @see #getPastedElementId()
+	 * @generated
+	 */
+	void setPastedElementId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Paste Element Containement Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This property reference the feature of the context of the table which is used as containement feature
+	 * for the pasted elements.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Paste Element Containement Feature</em>' reference.
+	 * @see #setPasteElementContainementFeature(EReference)
+	 * @see org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage#getPapyrusTableInstance_PasteElementContainementFeature()
+	 * @model
+	 * @generated
+	 */
+	EReference getPasteElementContainementFeature();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Paste Element Containement Feature</em>' reference.
+	 * @see #getPasteElementContainementFeature()
+	 * @generated
+	 */
+	void setPasteElementContainementFeature(EReference value);
 
 } // PapyrusTableInstance

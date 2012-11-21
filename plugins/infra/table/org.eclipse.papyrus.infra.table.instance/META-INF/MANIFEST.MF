@@ -8,7 +8,8 @@ Export-Package: org.eclipse.papyrus.infra.table.instance,
   uses:="org.eclipse.emf.ecore.util,
    org.eclipse.emf.ecore,
    org.eclipse.emf.common.notify.impl,
-   org.eclipse.emf.common.notify"
+   org.eclipse.emf.common.notify",
+ org.eclipse.papyrus.infra.table.instance.util
 Bundle-Version: 0.9.1.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
