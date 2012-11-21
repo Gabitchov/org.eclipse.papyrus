@@ -3,6 +3,8 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionHandleEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.handles.ConnectionHandle;
@@ -35,6 +37,24 @@ public final class CustomConnectionHandleEditPolicy extends
 					else
 						return SequenceUtil.OBSERVATION_LINK_REQUEST_START;
 				}
+				
+				// see also UMLPaletteFactory.createObservationLinkCreationTool()
+				protected boolean updateTargetUnderMouse() {
+					if (!isTargetLocked()) {
+						EditPart editPart = getCurrentViewer()
+								.findObjectAtExcluding(getLocation(), getExclusionSet(),
+										getTargetingConditional());
+						if (editPart != null)
+							editPart = editPart.getTargetEditPart(getTargetRequest());
+						// fix observation link moving over ExecutionSpecificationEditPart
+						if (getTargetRequest() instanceof TargetRequest)
+							((TargetRequest) getTargetRequest()).setTargetEditPart(editPart);
+						boolean changed = getTargetEditPart() != editPart;					
+						setTargetEditPart(editPart);
+						return changed;
+					} else
+						return false;
+				}						
 			});
 			list.add(connectionHandle);
 		}
