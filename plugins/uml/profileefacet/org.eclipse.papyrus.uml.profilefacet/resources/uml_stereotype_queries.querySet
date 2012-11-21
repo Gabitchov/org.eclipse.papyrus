@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ASCII"?>
+<query:ModelQuerySet xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+	xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation"
+	name="uml_stereotype_queries" description="">
+	<associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/" />
+	<associatedMetamodels href="http://www.eclipse.org/uml2/4.0.0/UML#/" />
+	<queries xsi:type="query:JavaModelQuery" name="getBooleanMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on Boolean for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetBooleanMultiValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getBooleanSingleValue"
+		lowerBound="1"
+		description="Returns a single value on Boolean for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetBooleanSingleValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getDatatypeMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on primitive type for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetDatatypeMultiValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getDatatypeSingleValue"
+		lowerBound="1"
+		description="Returns a single value on primitive type for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetDatatypeSingleValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getEObjectMultiReferenceValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi reference on EObject for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetEObjectMultiReference">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getEObjectSingleReferenceValue"
+		lowerBound="1"
+		description="Returns a single reference on EObject for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetEObjectSingleReference">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getIntegerMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on int for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetIntMultiValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getIntegerSingleValue"
+		lowerBound="1"
+		description="Returns a single value on int for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetIntSingleValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getPrimitiveTypeMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on primitive type for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetPrimitiveTypeMultiValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getPrimitiveTypeSingleValue"
+		lowerBound="1"
+		description="Returns a single value on primitive type for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetPrimitiveTypeSingleValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getRealMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on int for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetRealMultiValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EDouble" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getRealSingleValue"
+		lowerBound="1"
+		description="Returns a single value on int for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetRealSingleValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EDouble" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getStringMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on string for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetStringMultiValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getStringSingleValue"
+		lowerBound="1"
+		description="Returns a single string value for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetStringSingleValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getUnlimitedNaturalMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on string for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetUnlimitedNaturalMultiValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getUnlimitedNaturalSingleValue"
+		lowerBound="1"
+		description="Returns a single string value for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetUnlimitedNaturalSingleValue">
+		<returnType xsi:type="ecore:EDataType"
+			href="http://www.eclipse.org/emf/2002/Ecore#//EInt" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getUMLEnumerationMultiValue"
+		lowerBound="1" upperBound="-1"
+		description="Returns a multi value on string for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetUMLEnumerationMultiValue">
+		<returnType xsi:type="ecore:EClass"
+			href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral" />
+	</queries>
+	<queries xsi:type="query:JavaModelQuery" name="getUMLEnumerationSingleValue"
+		lowerBound="1"
+		description="Returns a single string value for a property of a stereotype"
+		implementationClassName="org.eclipse.papyrus.uml.profilefacet.queries.getter.GetUMLEnumerationSingleValue">
+		<returnType xsi:type="ecore:EClass"
+			href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral" />
+	</queries>
+</query:ModelQuerySet>
