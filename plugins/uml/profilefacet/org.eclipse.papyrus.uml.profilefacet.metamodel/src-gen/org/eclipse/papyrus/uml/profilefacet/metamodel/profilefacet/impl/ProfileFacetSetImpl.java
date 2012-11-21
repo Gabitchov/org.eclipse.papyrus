@@ -103,14 +103,14 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	protected EList<StereotypeFacet> stereotypeFacets;
 
 	/**
-	 * The cached value of the '{@link #getSubProfileFacetSet() <em>Sub Profile Facet Set</em>}' containment reference.
+	 * The cached value of the '{@link #getSubProfileFacetSet() <em>Sub Profile Facet Set</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSubProfileFacetSet()
 	 * @generated
 	 * @ordered
 	 */
-	protected ProfileFacetSet subProfileFacetSet;
+	protected EList<ProfileFacetSet> subProfileFacetSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,42 +190,11 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProfileFacetSet getSubProfileFacetSet() {
+	public EList<ProfileFacetSet> getSubProfileFacetSet() {
+		if (subProfileFacetSet == null) {
+			subProfileFacetSet = new EObjectContainmentEList<ProfileFacetSet>(ProfileFacetSet.class, this, ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET);
+		}
 		return subProfileFacetSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSubProfileFacetSet(ProfileFacetSet newSubProfileFacetSet, NotificationChain msgs) {
-		ProfileFacetSet oldSubProfileFacetSet = subProfileFacetSet;
-		subProfileFacetSet = newSubProfileFacetSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET, oldSubProfileFacetSet, newSubProfileFacetSet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSubProfileFacetSet(ProfileFacetSet newSubProfileFacetSet) {
-		if (newSubProfileFacetSet != subProfileFacetSet) {
-			NotificationChain msgs = null;
-			if (subProfileFacetSet != null)
-				msgs = ((InternalEObject)subProfileFacetSet).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET, null, msgs);
-			if (newSubProfileFacetSet != null)
-				msgs = ((InternalEObject)newSubProfileFacetSet).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET, null, msgs);
-			msgs = basicSetSubProfileFacetSet(newSubProfileFacetSet, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET, newSubProfileFacetSet, newSubProfileFacetSet));
 	}
 
 	/**
@@ -239,7 +208,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 			case ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS:
 				return ((InternalEList<?>)getStereotypeFacets()).basicRemove(otherEnd, msgs);
 			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				return basicSetSubProfileFacetSet(null, msgs);
+				return ((InternalEList<?>)getSubProfileFacetSet()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -284,7 +253,8 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 				getStereotypeFacets().addAll((Collection<? extends StereotypeFacet>)newValue);
 				return;
 			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				setSubProfileFacetSet((ProfileFacetSet)newValue);
+				getSubProfileFacetSet().clear();
+				getSubProfileFacetSet().addAll((Collection<? extends ProfileFacetSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -308,7 +278,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 				getStereotypeFacets().clear();
 				return;
 			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				setSubProfileFacetSet((ProfileFacetSet)null);
+				getSubProfileFacetSet().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -329,7 +299,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 			case ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS:
 				return stereotypeFacets != null && !stereotypeFacets.isEmpty();
 			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				return subProfileFacetSet != null;
+				return subProfileFacetSet != null && !subProfileFacetSet.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

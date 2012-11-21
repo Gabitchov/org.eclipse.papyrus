@@ -38,6 +38,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="subProfileFacetSet"
+        upperBound="-1"
         eType="#//ProfileFacetSet"
         containment="true"/>
   </eClassifiers>

@@ -196,7 +196,7 @@ public interface ProfileFacetPackage extends EPackage {
 	int PROFILE_FACET_SET__STEREOTYPE_FACETS = FacetPackage.FACET_SET_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Sub Profile Facet Set</b></em>' containment reference.
+	 * The feature id for the '<em><b>Sub Profile Facet Set</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1143,10 +1143,10 @@ public interface ProfileFacetPackage extends EPackage {
 	EReference getProfileFacetSet_StereotypeFacets();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getSubProfileFacetSet <em>Sub Profile Facet Set</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getSubProfileFacetSet <em>Sub Profile Facet Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Sub Profile Facet Set</em>'.
+	 * @return the meta object for the containment reference list '<em>Sub Profile Facet Set</em>'.
 	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getSubProfileFacetSet()
 	 * @see #getProfileFacetSet()
 	 * @generated
@@ -1307,7 +1307,7 @@ public interface ProfileFacetPackage extends EPackage {
 		EReference PROFILE_FACET_SET__STEREOTYPE_FACETS = eINSTANCE.getProfileFacetSet_StereotypeFacets();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Profile Facet Set</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Sub Profile Facet Set</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -81,29 +81,19 @@ public interface ProfileFacetSet extends FacetSet, EObjectFacetRepresentation {
 	EList<StereotypeFacet> getStereotypeFacets();
 
 	/**
-	 * Returns the value of the '<em><b>Sub Profile Facet Set</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Sub Profile Facet Set</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Profile Facet Set</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Profile Facet Set</em>' containment reference.
-	 * @see #setSubProfileFacetSet(ProfileFacetSet)
+	 * @return the value of the '<em>Sub Profile Facet Set</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage#getProfileFacetSet_SubProfileFacetSet()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ProfileFacetSet getSubProfileFacetSet();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getSubProfileFacetSet <em>Sub Profile Facet Set</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sub Profile Facet Set</em>' containment reference.
-	 * @see #getSubProfileFacetSet()
-	 * @generated
-	 */
-	void setSubProfileFacetSet(ProfileFacetSet value);
+	EList<ProfileFacetSet> getSubProfileFacetSet();
 
 } // ProfileFacetSet
