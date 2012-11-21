@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+<Composite xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt">
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout makeColumnsEqualWidth="true"
-				numColumns="2"></ppel:PropertiesLayout>
+			<ppel:PropertiesLayout numColumns="2"
+				makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}"
 			property="papyrustableinstance:PapyrusTableInstance:name"></ppe:StringEditor>
@@ -18,21 +18,29 @@
 	</Composite>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout makeColumnsEqualWidth="false"
-				numColumns="3"></ppel:PropertiesLayout>
-		</Composite.layout>
-		<ppe:StringMultiline input="{Binding}"
-			property="papyrustableinstance:PapyrusTableInstance:table.description" customLabel="Description"></ppe:StringMultiline>
-	</Composite>
-	<Composite>
-		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="3"
 				makeColumnsEqualWidth="false"></ppel:PropertiesLayout>
 		</Composite.layout>
+		<ppe:StringMultiline input="{Binding}"
+			property="papyrustableinstance:PapyrusTableInstance:table.description"
+			customLabel="Description"></ppe:StringMultiline>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout makeColumnsEqualWidth="false"
+				numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
 		<ppe:ReferenceLabel input="{Binding}"
-			property="papyrustableinstance:PapyrusTableInstance:table.context" customLabel="Context"></ppe:ReferenceLabel>
+			property="papyrustableinstance:PapyrusTableInstance:table.context"
+			customLabel="Context"></ppe:ReferenceLabel>
 		<ppe:BooleanRadio input="{Binding}"
 			property="papyrustableinstance:PapyrusTableInstance:isSynchronized"></ppe:BooleanRadio>
+		<ppe:ReferenceDialog
+			property="papyrustableinstance:PapyrusTableInstance:pastedElementId"
+			input="{Binding}"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog
+			property="papyrustableinstance:PapyrusTableInstance:pasteElementContainementFeature"
+			input="{Binding}"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>
 		<Composite.layout>
@@ -43,8 +51,8 @@
 	</Composite>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="2"
-				makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
+			<ppel:PropertiesLayout makeColumnsEqualWidth="true"
+				numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:BooleanRadio input="{Binding}"
 			property="papyrustableinstance:PapyrusTableInstance:table.hideEmptyColumns"
@@ -55,8 +63,8 @@
 	</Composite>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="2"
-				makeColumnsEqualWidth="true"></ppel:PropertiesLayout>
+			<ppel:PropertiesLayout makeColumnsEqualWidth="true"
+				numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
 			property="papyrustableinstance:PapyrusTableInstance:table.customizations"

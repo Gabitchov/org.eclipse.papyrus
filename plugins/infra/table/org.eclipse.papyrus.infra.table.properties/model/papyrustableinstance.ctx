@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" name="papyrustableinstance">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="papyrustableinstance">
   <dependencies href="ppe:/context/org.eclipse.papyrus.infra.table.properties/model/tableinstance2.ctx#/"/>
   <tabs label="Default" id="default" category="default">
     <sections name="Single PapyrusTableInstance" sectionFile="ui/SinglePapyrusTableInstance.xwt">
@@ -16,7 +16,7 @@
       <properties xsi:type="constraints:ValueProperty" name="className" value="PapyrusTableInstance"/>
     </constraints>
   </views>
-  <views name="Multiple PapyrusTableInstance" sections="//@tabs.0/@sections.1" elementMultiplicity="-1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+  <views elementMultiplicity="-1" name="Multiple PapyrusTableInstance" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePapyrusTableInstance">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PapyrusTableInstance"/>
@@ -25,11 +25,13 @@
   </views>
   <dataContexts name="papyrustableinstance" label="papyrustableinstance">
     <elements name="PapyrusTableInstance">
-      <properties name="name"/>
-      <properties name="type"/>
-      <properties name="isSynchronized" type="Boolean"/>
-      <properties name="table" type="Reference"/>
-      <properties name="fillingQueries" type="Reference" multiplicity="-1"/>
+      <properties name="name" description="The name of the table."/>
+      <properties name="type" description="The type of the table"/>
+      <properties name="isSynchronized" type="Boolean" description="Indicates if the table is synchronized with its context or not. Synchronization is done with the filling queries."/>
+      <properties name="table" type="Reference" description="The TableInstance"/>
+      <properties name="fillingQueries" type="Reference" multiplicity="-1" description="The queries used to fill the table"/>
+      <properties name="pastedElementId" description="This attribute stores the id of the element represented by the row during a paste action in the table."/>
+      <properties name="pasteElementContainementFeature" label="" type="Reference" description="This property reference the feature of the context of the table which is used as containement feature for the pasted elements."/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.table.properties/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.table.properties.modelelement;
@@ -22,10 +23,14 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 import org.eclipse.papyrus.infra.table.properties.provider.CustomizationContentProvider;
 import org.eclipse.papyrus.infra.table.properties.provider.CustomizationLabelProvider;
+import org.eclipse.papyrus.infra.table.properties.provider.ElementTypeContentProvider;
 import org.eclipse.papyrus.infra.table.properties.provider.FacetLabelProvider;
 import org.eclipse.papyrus.infra.table.properties.provider.FillingQueriesContentProvider;
+import org.eclipse.papyrus.infra.table.properties.provider.PasteElementContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
@@ -100,6 +105,18 @@ public class PapyrusTableModelElement extends EMFModelElement {
 			EStructuralFeature feature = getFeature(featurePath);
 			return new CustomizationContentProvider(feature, getSource(featurePath), local_preference);
 		}
+
+		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_PastedElementId()) {
+			return new ElementTypeContentProvider();
+		}
+
+		if(feature == PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_PasteElementContainementFeature()) {
+			if(source instanceof PapyrusTableInstance) {
+				return new PasteElementContainmentFeatureContentProvider((PapyrusTableInstance)source);
+			}
+		}
+
 		return super.getContentProvider(propertyPath);
 	}
 
