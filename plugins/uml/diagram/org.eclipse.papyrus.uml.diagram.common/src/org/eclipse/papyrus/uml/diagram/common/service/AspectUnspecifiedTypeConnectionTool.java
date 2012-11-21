@@ -284,7 +284,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				listener = new NotificationListener() {
 
 					public void notifyChanged(Notification notification) {
-						Connector newValue = (Connector)notification.getNewValue();
+						Object newValue = notification.getNewValue();
 						EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
 						for(IAspectAction action : postActions) {
 							action.run(editPart);
