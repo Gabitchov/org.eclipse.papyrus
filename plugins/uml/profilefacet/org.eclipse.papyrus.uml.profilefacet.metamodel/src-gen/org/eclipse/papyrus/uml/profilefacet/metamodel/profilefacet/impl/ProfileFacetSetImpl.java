@@ -13,14 +13,18 @@
 package org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -28,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.impl.FacetSetImpl;
 
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.EObjectFacetRepresentation;
@@ -44,8 +49,6 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFac
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getProfileQualifiedName <em>Profile Qualified Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getStereotypeFacets <em>Stereotype Facets</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getSubProfileFacetSet <em>Sub Profile Facet Set</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,26 +94,6 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	 * @ordered
 	 */
 	protected String profileQualifiedName = PROFILE_QUALIFIED_NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getStereotypeFacets() <em>Stereotype Facets</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStereotypeFacets()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<StereotypeFacet> stereotypeFacets;
-
-	/**
-	 * The cached value of the '{@link #getSubProfileFacetSet() <em>Sub Profile Facet Set</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubProfileFacetSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ProfileFacetSet> subProfileFacetSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,41 +159,33 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * FIXME write JUnit test
 	 */
 	public EList<StereotypeFacet> getStereotypeFacets() {
-		if (stereotypeFacets == null) {
-			stereotypeFacets = new EObjectContainmentEList<StereotypeFacet>(StereotypeFacet.class, this, ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS);
+		final EList<StereotypeFacet> facets = new BasicEList<StereotypeFacet>();
+		for(final Facet current : getFacets()){
+			if(current instanceof StereotypeFacet){
+				facets.add((StereotypeFacet)current);
+			}
 		}
-		return stereotypeFacets;
+		return ECollections.unmodifiableEList(facets);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	  * @generated NOT
+	 * FIXME write JUnit test
 	 */
 	public EList<ProfileFacetSet> getSubProfileFacetSet() {
-		if (subProfileFacetSet == null) {
-			subProfileFacetSet = new EObjectContainmentEList<ProfileFacetSet>(ProfileFacetSet.class, this, ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET);
+		final EList<ProfileFacetSet> facets = new BasicEList<ProfileFacetSet>();
+		for(final EPackage current : getESubpackages()){
+			if(current instanceof ProfileFacetSet){
+				facets.add((ProfileFacetSet)current);
+			}
 		}
-		return subProfileFacetSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS:
-				return ((InternalEList<?>)getStereotypeFacets()).basicRemove(otherEnd, msgs);
-			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				return ((InternalEList<?>)getSubProfileFacetSet()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return ECollections.unmodifiableEList(facets);
 	}
 
 	/**
@@ -225,10 +200,6 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 				return getRepresentedElement_XMI_ID();
 			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
 				return getProfileQualifiedName();
-			case ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS:
-				return getStereotypeFacets();
-			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				return getSubProfileFacetSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -248,14 +219,6 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
 				setProfileQualifiedName((String)newValue);
 				return;
-			case ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS:
-				getStereotypeFacets().clear();
-				getStereotypeFacets().addAll((Collection<? extends StereotypeFacet>)newValue);
-				return;
-			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				getSubProfileFacetSet().clear();
-				getSubProfileFacetSet().addAll((Collection<? extends ProfileFacetSet>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -274,12 +237,6 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
 				setProfileQualifiedName(PROFILE_QUALIFIED_NAME_EDEFAULT);
 				return;
-			case ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS:
-				getStereotypeFacets().clear();
-				return;
-			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				getSubProfileFacetSet().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -296,10 +253,6 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 				return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? representedElement_XMI_ID != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(representedElement_XMI_ID);
 			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
 				return PROFILE_QUALIFIED_NAME_EDEFAULT == null ? profileQualifiedName != null : !PROFILE_QUALIFIED_NAME_EDEFAULT.equals(profileQualifiedName);
-			case ProfileFacetPackage.PROFILE_FACET_SET__STEREOTYPE_FACETS:
-				return stereotypeFacets != null && !stereotypeFacets.isEmpty();
-			case ProfileFacetPackage.PROFILE_FACET_SET__SUB_PROFILE_FACET_SET:
-				return subProfileFacetSet != null && !subProfileFacetSet.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

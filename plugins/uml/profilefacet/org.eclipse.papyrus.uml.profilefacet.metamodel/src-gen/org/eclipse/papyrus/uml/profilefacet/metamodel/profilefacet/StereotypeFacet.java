@@ -29,7 +29,6 @@ import org.eclipse.emf.facet.infra.facet.Facet;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeProperties <em>Stereotype Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,19 +63,11 @@ public interface StereotypeFacet extends Facet, EObjectFacetRepresentation {
 	void setStereotypeQualifiedName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Stereotype Properties</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Stereotype Properties</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stereotype Properties</em>' containment reference list.
-	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage#getStereotypeFacet_StereotypeProperties()
-	 * @model containment="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
-	EList<StereotypePropertyElement> getStereotypeProperties();
+	EList<StereotypePropertyElement> getStereotypePropertyElements();
 
 } // StereotypeFacet

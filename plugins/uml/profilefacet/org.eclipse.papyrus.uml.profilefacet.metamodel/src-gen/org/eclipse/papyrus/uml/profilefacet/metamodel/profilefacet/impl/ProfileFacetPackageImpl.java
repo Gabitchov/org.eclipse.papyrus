@@ -167,24 +167,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProfileFacetSet_StereotypeFacets() {
-		return (EReference)profileFacetSetEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProfileFacetSet_SubProfileFacetSet() {
-		return (EReference)profileFacetSetEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getStereotypeFacet() {
 		return stereotypeFacetEClass;
 	}
@@ -196,15 +178,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	 */
 	public EAttribute getStereotypeFacet_StereotypeQualifiedName() {
 		return (EAttribute)stereotypeFacetEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStereotypeFacet_StereotypeProperties() {
-		return (EReference)stereotypeFacetEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -300,12 +273,9 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 		// Create classes and their features
 		profileFacetSetEClass = createEClass(PROFILE_FACET_SET);
 		createEAttribute(profileFacetSetEClass, PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME);
-		createEReference(profileFacetSetEClass, PROFILE_FACET_SET__STEREOTYPE_FACETS);
-		createEReference(profileFacetSetEClass, PROFILE_FACET_SET__SUB_PROFILE_FACET_SET);
 
 		stereotypeFacetEClass = createEClass(STEREOTYPE_FACET);
 		createEAttribute(stereotypeFacetEClass, STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME);
-		createEReference(stereotypeFacetEClass, STEREOTYPE_FACET__STEREOTYPE_PROPERTIES);
 
 		stereotypePropertyElementEClass = createEClass(STEREOTYPE_PROPERTY_ELEMENT);
 		createEAttribute(stereotypePropertyElementEClass, STEREOTYPE_PROPERTY_ELEMENT__PROPERTY_QUALIFIED_NAME);
@@ -366,12 +336,15 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 		// Initialize classes and features; add operations and parameters
 		initEClass(profileFacetSetEClass, ProfileFacetSet.class, "ProfileFacetSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getProfileFacetSet_ProfileQualifiedName(), ecorePackage.getEString(), "profileQualifiedName", null, 1, 1, ProfileFacetSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getProfileFacetSet_StereotypeFacets(), this.getStereotypeFacet(), null, "stereotypeFacets", null, 0, -1, ProfileFacetSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getProfileFacetSet_SubProfileFacetSet(), this.getProfileFacetSet(), null, "subProfileFacetSet", null, 0, -1, ProfileFacetSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(profileFacetSetEClass, this.getStereotypeFacet(), "getStereotypeFacets", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(profileFacetSetEClass, this.getProfileFacetSet(), "getSubProfileFacetSet", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stereotypeFacetEClass, StereotypeFacet.class, "StereotypeFacet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStereotypeFacet_StereotypeQualifiedName(), ecorePackage.getEString(), "stereotypeQualifiedName", null, 1, 1, StereotypeFacet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getStereotypeFacet_StereotypeProperties(), this.getStereotypePropertyElement(), null, "stereotypeProperties", null, 0, -1, StereotypeFacet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(stereotypeFacetEClass, this.getStereotypePropertyElement(), "getStereotypePropertyElements", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stereotypePropertyElementEClass, StereotypePropertyElement.class, "StereotypePropertyElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStereotypePropertyElement_PropertyQualifiedName(), ecorePackage.getEString(), "propertyQualifiedName", null, 1, 1, StereotypePropertyElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

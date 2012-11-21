@@ -187,31 +187,13 @@ public interface ProfileFacetPackage extends EPackage {
 	int PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME = FacetPackage.FACET_SET_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Facets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE_FACET_SET__STEREOTYPE_FACETS = FacetPackage.FACET_SET_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Sub Profile Facet Set</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE_FACET_SET__SUB_PROFILE_FACET_SET = FacetPackage.FACET_SET_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE_FACET_SET_FEATURE_COUNT = FacetPackage.FACET_SET_FEATURE_COUNT + 4;
+	int PROFILE_FACET_SET_FEATURE_COUNT = FacetPackage.FACET_SET_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypeFacetImpl <em>Stereotype Facet</em>}' class.
@@ -476,22 +458,13 @@ public interface ProfileFacetPackage extends EPackage {
 	int STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME = FacetPackage.FACET_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Stereotype Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_FACET__STEREOTYPE_PROPERTIES = FacetPackage.FACET_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Stereotype Facet</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_FACET_FEATURE_COUNT = FacetPackage.FACET_FEATURE_COUNT + 3;
+	int STEREOTYPE_FACET_FEATURE_COUNT = FacetPackage.FACET_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypePropertyElementImpl <em>Stereotype Property Element</em>}' class.
@@ -1132,28 +1105,6 @@ public interface ProfileFacetPackage extends EPackage {
 	EAttribute getProfileFacetSet_ProfileQualifiedName();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getStereotypeFacets <em>Stereotype Facets</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Stereotype Facets</em>'.
-	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getStereotypeFacets()
-	 * @see #getProfileFacetSet()
-	 * @generated
-	 */
-	EReference getProfileFacetSet_StereotypeFacets();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getSubProfileFacetSet <em>Sub Profile Facet Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sub Profile Facet Set</em>'.
-	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet#getSubProfileFacetSet()
-	 * @see #getProfileFacetSet()
-	 * @generated
-	 */
-	EReference getProfileFacetSet_SubProfileFacetSet();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet <em>Stereotype Facet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1173,17 +1124,6 @@ public interface ProfileFacetPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStereotypeFacet_StereotypeQualifiedName();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeProperties <em>Stereotype Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Stereotype Properties</em>'.
-	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeProperties()
-	 * @see #getStereotypeFacet()
-	 * @generated
-	 */
-	EReference getStereotypeFacet_StereotypeProperties();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement <em>Stereotype Property Element</em>}'.
@@ -1299,22 +1239,6 @@ public interface ProfileFacetPackage extends EPackage {
 		EAttribute PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME = eINSTANCE.getProfileFacetSet_ProfileQualifiedName();
 
 		/**
-		 * The meta object literal for the '<em><b>Stereotype Facets</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROFILE_FACET_SET__STEREOTYPE_FACETS = eINSTANCE.getProfileFacetSet_StereotypeFacets();
-
-		/**
-		 * The meta object literal for the '<em><b>Sub Profile Facet Set</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROFILE_FACET_SET__SUB_PROFILE_FACET_SET = eINSTANCE.getProfileFacetSet_SubProfileFacetSet();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypeFacetImpl <em>Stereotype Facet</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1331,14 +1255,6 @@ public interface ProfileFacetPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME = eINSTANCE.getStereotypeFacet_StereotypeQualifiedName();
-
-		/**
-		 * The meta object literal for the '<em><b>Stereotype Properties</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STEREOTYPE_FACET__STEREOTYPE_PROPERTIES = eINSTANCE.getStereotypeFacet_StereotypeProperties();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypePropertyElementImpl <em>Stereotype Property Element</em>}' class.

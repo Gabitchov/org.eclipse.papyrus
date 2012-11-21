@@ -17,6 +17,14 @@
           key="documentation"
           value="a 'ProfileFacetSet' is used to represent a UML Profile"/>
     </eAnnotations>
+    <eOperations
+        name="getStereotypeFacets"
+        upperBound="-1"
+        eType="#//StereotypeFacet"/>
+    <eOperations
+        name="getSubProfileFacetSet"
+        upperBound="-1"
+        eType="#//ProfileFacetSet"/>
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="profileQualifiedName"
@@ -29,18 +37,6 @@
             value="the qualified name of the represented profile"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="stereotypeFacets"
-        upperBound="-1"
-        eType="#//StereotypeFacet"
-        containment="true"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="subProfileFacetSet"
-        upperBound="-1"
-        eType="#//ProfileFacetSet"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -52,6 +48,10 @@
           key="documentation"
           value="a 'StereotypeFacet' is used to represent a UML Stereotype"/>
     </eAnnotations>
+    <eOperations
+        name="getStereotypePropertyElements"
+        upperBound="-1"
+        eType="#//StereotypePropertyElement"/>
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="stereotypeQualifiedName"
@@ -64,12 +64,6 @@
             value="the qualified name of the represented stereotype"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="stereotypeProperties"
-        upperBound="-1"
-        eType="#//StereotypePropertyElement"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
