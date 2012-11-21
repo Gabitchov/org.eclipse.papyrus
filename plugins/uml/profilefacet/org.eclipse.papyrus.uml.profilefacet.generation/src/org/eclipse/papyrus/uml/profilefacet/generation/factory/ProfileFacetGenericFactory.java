@@ -15,29 +15,21 @@ package org.eclipse.papyrus.uml.profilefacet.generation.factory;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.facet.infra.facet.FacetReference;
-import org.eclipse.emf.facet.infra.facet.impl.FacetAttributeImpl;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
-import org.eclipse.emf.facet.infra.query.QueryFactory;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.Argument;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.EStructuralFeatureArgument;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.ParametricQuery;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.ParametricqueryFactory;
 import org.eclipse.papyrus.uml.profilefacet.generation.Activator;
 import org.eclipse.papyrus.uml.profilefacet.generation.messages.Messages;
-import org.eclipse.papyrus.uml.profilefacet.generation.utils.CreatedEObjectWithModelQuery;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetFactory;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet;
-import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyFacetAttribute;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyFacetReference;
 import org.eclipse.papyrus.uml.profilefacet.queries.registry.QueryRegistry;
@@ -106,7 +98,7 @@ public class ProfileFacetGenericFactory {
 	 * @return
 	 *         the ProfileFacetSet for this profile or <code>null</code> if the profile argument doesn't contains steretoypes with properties
 	 */
-	public CreatedEObjectWithModelQuery<ProfileFacetSet> createProfileFacetSet(final Profile profile) {
+	public ProfileFacetSet createProfileFacetSet(final Profile profile) {
 		final ProfileFacetSet set = ProfileFacetFactory.eINSTANCE.createProfileFacetSet();
 		set.setName(profile.getName());
 		set.setProfileQualifiedName(profile.getQualifiedName());
@@ -116,33 +108,26 @@ public class ProfileFacetGenericFactory {
 		final XMIResource res = (XMIResource)profile.eResource();
 		final String XMI_ID = res.getID(profile);
 		set.setRepresentedElement_XMI_ID(XMI_ID);
-		Collection<ModelQuery> queries = new ArrayList<ModelQuery>();
 		for(final PackageableElement packagedElement : profile.getPackagedElements()) {
 			if(packagedElement instanceof Profile) {
-				final CreatedEObjectWithModelQuery<ProfileFacetSet> createdElement = createProfileFacetSet((Profile)packagedElement);
-				if(createdElement != null) {
-					final ProfileFacetSet subProfile = createdElement.getCreatedElement();
+				final ProfileFacetSet subProfile = createProfileFacetSet((Profile)packagedElement);
 					//We ignore empty facetSet
-					if(subProfile != null && (subProfile.getStereotypeFacets().size() != 0 || subProfile.getSubProfileFacetSet().size() != 0)) {
+				if(subProfile != null && (subProfile.getStereotypeFacets().size() != 0 || subProfile.getSubProfileFacetSet().size() != 0)) {
 						set.getESubpackages().add(subProfile);
-						queries.addAll(createdElement.getCreatedQueries());
-					}
 				}
 			} else if(packagedElement instanceof Stereotype) {
-				final CreatedEObjectWithModelQuery<StereotypeFacet> createdElement = createFacet((Stereotype)packagedElement);
-				final StereotypeFacet stereotypeFacet = createdElement.getCreatedElement();
+				final StereotypeFacet stereotypeFacet = createFacet((Stereotype)packagedElement);
 
 				//we ignore stereotypes without properties
 
 				if(stereotypeFacet.getStereotypePropertyElements().size() != 0) {
 					set.getFacets().add(stereotypeFacet);
-					queries.addAll(createdElement.getCreatedQueries());
 				}
 			}
 		}
 
 		if(set.getStereotypeFacets().size() != 0 || set.getSubProfileFacetSet().size() != 0) {
-			return new CreatedEObjectWithModelQuery<ProfileFacetSet>(set, queries);
+			return set;
 		}
 
 		return null;
@@ -156,7 +141,7 @@ public class ProfileFacetGenericFactory {
 	 * @return
 	 *         the created facet for this stereotype or <code>null</code> if the stereotype doesn't contain property
 	 */
-	public CreatedEObjectWithModelQuery<StereotypeFacet> createFacet(final Stereotype stereotype) {
+	public StereotypeFacet createFacet(final Stereotype stereotype) {
 		final StereotypeFacet facet = ProfileFacetFactory.eINSTANCE.createStereotypeFacet();
 		facet.setStereotypeQualifiedName(stereotype.getQualifiedName());
 		facet.setName(stereotype.getName());
@@ -170,29 +155,26 @@ public class ProfileFacetGenericFactory {
 			ignoredPropertyName.add(BASE_ + extendedMetaclassName.getName());
 		}
 
-		final Collection<ModelQuery> queries = new ArrayList<ModelQuery>();
 		//		for(final Property attribute : stereotype.getAllAttributes()) { //in this case we duplicate facet properties for the same attribute
 		for(final Property attribute : stereotype.getAttributes()) {
 			if(ignoredPropertyName.contains(attribute.getName())) {
 				continue;
 			}
 			if(attribute.getType() instanceof DataType) {
-				final CreatedEObjectWithModelQuery<StereotypePropertyFacetAttribute> createdValue = createFacetAttribute(attribute);
-				if(createdValue.getCreatedElement() != null) {
-					facet.getEAttributes().add(createdValue.getCreatedElement());
-					queries.addAll(createdValue.getCreatedQueries());
+				final StereotypePropertyFacetAttribute attr = createFacetAttribute(attribute);
+				if(attr!= null) {
+					facet.getEAttributes().add(attr);
 				}
 			} else if(attribute.getType() instanceof EObject) {
-				final CreatedEObjectWithModelQuery<StereotypePropertyFacetReference> createdValue = createFacetReference(attribute);
-				if(createdValue.getCreatedElement() != null) {
-					facet.getEReferences().add(createdValue.getCreatedElement());
-					queries.addAll(createdValue.getCreatedQueries());
+				final StereotypePropertyFacetReference ref = createFacetReference(attribute);
+				if(ref!= null) {
+					facet.getEReferences().add(ref);
 				}
 			}
 		}
 
 
-		return new CreatedEObjectWithModelQuery<StereotypeFacet>(facet, queries);
+		return facet;
 	}
 
 
@@ -203,7 +185,7 @@ public class ProfileFacetGenericFactory {
 	 * @return
 	 *         the created FacetReference for this property
 	 */
-	public CreatedEObjectWithModelQuery<StereotypePropertyFacetReference> createFacetReference(final Property property) {
+	public StereotypePropertyFacetReference createFacetReference(final Property property) {
 		final StereotypePropertyFacetReference facetReference = ProfileFacetFactory.eINSTANCE.createStereotypePropertyFacetReference();
 		facetReference.setIsDerived(property.isDerived());
 		facetReference.setChangeable(!property.isReadOnly());
@@ -263,10 +245,8 @@ public class ProfileFacetGenericFactory {
 		facetReference.setEType(eType);
 		facetReference.setValueQuery(getQuery);
 		facetReference.setSetQuery(setQuery);
-		final Collection<ModelQuery> queries = new ArrayList<ModelQuery>();
-		queries.add(getQuery);
-		queries.add(setQuery);
-		return new CreatedEObjectWithModelQuery<StereotypePropertyFacetReference>(facetReference, queries);
+
+		return facetReference;
 	}
 
 	/**
@@ -276,7 +256,7 @@ public class ProfileFacetGenericFactory {
 	 * @return
 	 *         the created FacetAttribute for this property
 	 */
-	public CreatedEObjectWithModelQuery<StereotypePropertyFacetAttribute> createFacetAttribute(final Property property) {
+	public StereotypePropertyFacetAttribute createFacetAttribute(final Property property) {
 		final Type type = property.getType();
 		EClassifier eType = null;
 		ParametricQuery getQuery;
@@ -419,10 +399,8 @@ public class ProfileFacetGenericFactory {
 		facetAttribute.setEType(eType);
 		facetAttribute.setValueQuery(getQuery);
 		facetAttribute.setSetQuery(setQuery);
-		final Collection<ModelQuery> queries = new ArrayList<ModelQuery>();
-		queries.add(getQuery);
-		queries.add(setQuery);
-		return new CreatedEObjectWithModelQuery<StereotypePropertyFacetAttribute>(facetAttribute, queries);
+		
+		return facetAttribute;
 	}
 
 }

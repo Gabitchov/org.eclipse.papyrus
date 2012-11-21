@@ -17,5 +17,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.profilefacet.generation.factory,
- org.eclipse.papyrus.uml.profilefacet.generation.utils
+Export-Package: org.eclipse.papyrus.uml.profilefacet.generation.factory
