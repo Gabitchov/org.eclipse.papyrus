@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.profilefacet.queries.getter;
+package org.eclipse.papyrus.uml.profilefacet.queries.setter;
 
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
@@ -20,7 +20,7 @@ import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.uml2.uml.Element;
 
 
-public class GetGenericSingleValue<R> implements IJavaModelQuery<Element, R>{
+public class SetGenericSingleValue<R> implements IJavaModelQuery<Element, R>{
 
 	
 	//FIXME : maybe we should implements IJavaModelQueryWithEditingDomain
