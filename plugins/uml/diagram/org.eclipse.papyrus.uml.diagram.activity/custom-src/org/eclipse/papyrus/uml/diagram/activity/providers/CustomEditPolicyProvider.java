@@ -56,14 +56,11 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			if( editPart instanceof IPrimaryEditPart){
-
-
 				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
-			}
+				if(!( editPart instanceof ConnectionEditPart)){
+					editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 
-			if(!( editPart instanceof ConnectionEditPart)){
-				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-
+				}
 			}
 			if(editPart instanceof NamedElementEditPart ){
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
@@ -71,28 +68,28 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		}
 	}
 
-		/**
-		 * 
-		 * {@inheritDoc}
-		 */
-		public boolean provides(IOperation operation) {
-			CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-			if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
-				return false;
-			}
-			
-			EditPart gep = (EditPart)epOperation.getEditPart();
-			String diagramType =((View) gep.getModel()).getDiagram().getType();
-			if(ActivityDiagramEditPart.MODEL_ID.equals(diagramType)) {
-				return true;
-			}
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	public boolean provides(IOperation operation) {
+		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
 
-		/**
-		 * 
-		 * {@inheritDoc}
-		 */
-		public void removeProviderChangeListener(IProviderChangeListener listener) {
+		EditPart gep = (EditPart)epOperation.getEditPart();
+		String diagramType =((View) gep.getModel()).getDiagram().getType();
+		if(ActivityDiagramEditPart.MODEL_ID.equals(diagramType)) {
+			return true;
 		}
+		return false;
 	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	public void removeProviderChangeListener(IProviderChangeListener listener) {
+	}
+}
