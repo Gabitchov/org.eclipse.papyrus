@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plugin contributes to the Shape Service. It proposes a profile to annote elements in a UML model. First implementation is the possibility to annote Types and to display the associated shape on this type representations and the representations of TypedElement typed by this annotated type.">
+  <referent firstName="Remi" lastName="Schnekenburger" eMail="remi.schnekenburger@cea.fr" currentCompany="CEA LIST"/>
+</doc:Documentation>

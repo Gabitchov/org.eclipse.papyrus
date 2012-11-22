@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_dL4lkPXAEeGSQON-DQ-5eg" name="Symbols" metaclassReference="_ikJDsPXAEeGSQON-DQ-5eg _ikJDsfXAEeGSQON-DQ-5eg" metamodelReference="_dL4lkfXAEeGSQON-DQ-5eg">
+  <eAnnotations xmi:id="_aiwKsfXBEeGSQON-DQ-5eg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_aRBksfXFEeGSQON-DQ-5eg" name="Symbols" nsURI="http:///schemas/Symbols/_aRBksPXFEeGSQON-DQ-5eg/1" nsPrefix="Symbols">
+      <eAnnotations xmi:id="_aRBkwfXFEeGSQON-DQ-5eg" source="PapyrusVersion">
+        <details xmi:id="_aRBkwvXFEeGSQON-DQ-5eg" key="Version" value="0.0.2"/>
+        <details xmi:id="_aRBkw_XFEeGSQON-DQ-5eg" key="Comment" value="Renamed Profile"/>
+        <details xmi:id="_aRBkxPXFEeGSQON-DQ-5eg" key="Copyright" value="CEA LIST, 2012"/>
+        <details xmi:id="_aRBkxfXFEeGSQON-DQ-5eg" key="Date" value="2012-09-03"/>
+        <details xmi:id="_aRBkxvXFEeGSQON-DQ-5eg" key="Author" value="Remi Schnekenburger"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_aRBksvXFEeGSQON-DQ-5eg" name="TypeSymbolDefinition">
+        <eAnnotations xmi:id="_aRBks_XFEeGSQON-DQ-5eg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k3fmYPXAEeGSQON-DQ-5eg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aRBktPXFEeGSQON-DQ-5eg" name="base_Type" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_aRBktvXFEeGSQON-DQ-5eg" name="symbolPath" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_aRBkuPXFEeGSQON-DQ-5eg" name="TypeSymbolUsage">
+        <eAnnotations xmi:id="_aRBkufXFEeGSQON-DQ-5eg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_m69S8PXAEeGSQON-DQ-5eg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aRBkuvXFEeGSQON-DQ-5eg" name="base_Type" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aRBkvPXFEeGSQON-DQ-5eg" name="base_TypedElement" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TypedElement"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_aiwKsvXBEeGSQON-DQ-5eg" name="Profile" nsURI="http:///schemas/Profile/_aiwKsPXBEeGSQON-DQ-5eg/0" nsPrefix="Profile">
+      <eAnnotations xmi:id="_aiwKwvXBEeGSQON-DQ-5eg" source="PapyrusVersion">
+        <details xmi:id="_aiwKw_XBEeGSQON-DQ-5eg" key="Version" value="0.0.1"/>
+        <details xmi:id="_aiwKxPXBEeGSQON-DQ-5eg" key="Comment" value="First version of the profile. Definiton of 2 stereotypes, one to link type to a symbol, the other one to declare if the symbol should be used or not."/>
+        <details xmi:id="_aiwKxfXBEeGSQON-DQ-5eg" key="Copyright" value="CEA LIST, 2012"/>
+        <details xmi:id="_aiwKxvXBEeGSQON-DQ-5eg" key="Date" value="2012-09-03"/>
+        <details xmi:id="_aiwKx_XBEeGSQON-DQ-5eg" key="Author" value="Remi Schnekenburger"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_aiwKs_XBEeGSQON-DQ-5eg" name="TypeSymbolDefinition">
+        <eAnnotations xmi:id="_aiwKtPXBEeGSQON-DQ-5eg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_k3fmYPXAEeGSQON-DQ-5eg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aiwKtfXBEeGSQON-DQ-5eg" name="base_Type" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_aiwKt_XBEeGSQON-DQ-5eg" name="symbolPath" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_aiwKufXBEeGSQON-DQ-5eg" name="TypeSymbolUsage">
+        <eAnnotations xmi:id="_aiwKuvXBEeGSQON-DQ-5eg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_m69S8PXAEeGSQON-DQ-5eg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aiwKu_XBEeGSQON-DQ-5eg" name="base_Type" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_aiwKvfXBEeGSQON-DQ-5eg" name="base_TypedElement" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TypedElement"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_ikJDsPXAEeGSQON-DQ-5eg" alias="Type">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+  </elementImport>
+  <elementImport xmi:id="_ikJDsfXAEeGSQON-DQ-5eg" alias="TypedElement">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TypedElement"/>
+  </elementImport>
+  <packageImport xmi:id="_dL4lkfXAEeGSQON-DQ-5eg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_dL4lkvXAEeGSQON-DQ-5eg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_k3fmYPXAEeGSQON-DQ-5eg" name="TypeSymbolDefinition">
+    <ownedAttribute xmi:id="_qLTCUPXAEeGSQON-DQ-5eg" name="base_Type" association="_qLTCUfXAEeGSQON-DQ-5eg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_FVWY0PXBEeGSQON-DQ-5eg" name="symbolPath" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JkaaQPXBEeGSQON-DQ-5eg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JkaaQfXBEeGSQON-DQ-5eg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_JkaaQvXBEeGSQON-DQ-5eg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_m69S8PXAEeGSQON-DQ-5eg" name="TypeSymbolUsage">
+    <ownedAttribute xmi:id="_r-CyUPXAEeGSQON-DQ-5eg" name="base_Type" association="_r-CyUfXAEeGSQON-DQ-5eg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_sgwd0PXAEeGSQON-DQ-5eg" name="base_TypedElement" association="_sgwd0fXAEeGSQON-DQ-5eg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TypedElement"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_qLTCUfXAEeGSQON-DQ-5eg" name="E_TypeSymbolDefinition_Type1" memberEnd="_qLTCUvXAEeGSQON-DQ-5eg _qLTCUPXAEeGSQON-DQ-5eg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_qLTCUvXAEeGSQON-DQ-5eg" name="extension_TypeSymbolDefinition" type="_k3fmYPXAEeGSQON-DQ-5eg" aggregation="composite" association="_qLTCUfXAEeGSQON-DQ-5eg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_r-CyUfXAEeGSQON-DQ-5eg" name="E_TypeSymbolUsage_Type1" memberEnd="_r-CyUvXAEeGSQON-DQ-5eg _r-CyUPXAEeGSQON-DQ-5eg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_r-CyUvXAEeGSQON-DQ-5eg" name="extension_TypeSymbolUsage" type="_m69S8PXAEeGSQON-DQ-5eg" aggregation="composite" association="_r-CyUfXAEeGSQON-DQ-5eg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_sgwd0fXAEeGSQON-DQ-5eg" name="E_TypeSymbolUsage_TypedElement1" memberEnd="_sgwd0vXAEeGSQON-DQ-5eg _sgwd0PXAEeGSQON-DQ-5eg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_sgwd0vXAEeGSQON-DQ-5eg" name="extension_TypeSymbolUsage" type="_m69S8PXAEeGSQON-DQ-5eg" aggregation="composite" association="_sgwd0fXAEeGSQON-DQ-5eg"/>
+  </packagedElement>
+</uml:Profile>

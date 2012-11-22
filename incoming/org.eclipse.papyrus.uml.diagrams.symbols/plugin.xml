@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+      <shapeProvider
+            class="org.eclipse.papyrus.uml.diagram.symbols.provider.TypedElementShapeProvider"
+            description="Provides the shapes based on the type for a typed element, based on a stereotype description of the stereotype"
+            id="org.eclipse.papyrus.uml.diagram.symbols.typedelementshapeprovider"
+            name="Typed Element Shape Provider">
+         <Priority
+               name="Lowest"></Priority>
+      </shapeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://Symbols_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.uml.diagram.symbols/resources/"/>
+            </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Profile that manages the definiton of symbols for UML elements"
+            iconpath="icons/symbols.gif"
+            name="Symbols"
+            path="pathmap://Symbols_PROFILES/symbols.profile.uml"
+            provider="CEA LIST">
+      </profile>
+   </extension>
+</plugin>
