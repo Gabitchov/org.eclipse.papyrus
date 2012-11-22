@@ -308,10 +308,13 @@ public class PreferenceConstantHelper {
 			break;
 		case LABEL_VISIBILITY:
 			sb.append(LABEL_VISIBILITY_CONSTANT);
+			break;
 		case LOCATION_X:
 			sb.append(LOCATION_X_CONSTANT);
+			break;
 		case LOCATION_Y:
 			sb.append(LOCATION_Y_CONSTANT);
+			break;
 		default:
 			break;
 		}
