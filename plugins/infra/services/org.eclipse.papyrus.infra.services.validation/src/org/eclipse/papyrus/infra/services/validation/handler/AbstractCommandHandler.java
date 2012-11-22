@@ -25,10 +25,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
-import org.eclipse.papyrus.infra.services.validation.Activator;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -36,7 +33,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * This abstract command handler manages:
  * - current selection in order to build a list of the selected {@link EObject}
- * - execute the command (returned by children) in Papyrus {@link TransactionalEditingDomain}
+ * - execute the command (returned by children)
  * - calculate the command enablement and visibility regarding the command executability
  * (the command is now shown in menu if not executable).
  * 
@@ -139,12 +136,15 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		try {
-			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
-			util.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
-		} catch (ServiceException e) {
-			Activator.log.error("Unexpected error while executing command.", e); //$NON-NLS-1$
-		}
+		//		try {
+		//			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
+		//			util.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
+		//			
+		//		} catch (ServiceException e) {
+		//			Activator.log.error("Unexpected error while executing command.", e); //$NON-NLS-1$
+		//		}
+
+		getCommand().execute(); //Validation commands should not be executed in the stack trace
 
 		return null;
 	}
