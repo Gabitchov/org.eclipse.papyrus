@@ -40,31 +40,31 @@ public class PackageDiagramEditPolicyProvider extends AbstractProvider implement
 		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
-		
+
 		EditPart gep = (EditPart)epOperation.getEditPart();
 		String diagramType =((View) gep.getModel()).getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
-//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart) {
-//			return true;
-//		}
-//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart) {
-//			return true;
-//		}
-//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
-//			return true;
-//		}
-//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN) {
-//			return true;
-//		}
-//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart) {
-//			return true;
-//		}
-//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN) {
-//			return true;
-//		}
+		//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart) {
+		//			return true;
+		//		}
+		//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart) {
+		//			return true;
+		//		}
+		//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
+		//			return true;
+		//		}
+		//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN) {
+		//			return true;
+		//		}
+		//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart) {
+		//			return true;
+		//		}
+		//		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN) {
+		//			return true;
+		//		}
 
 		return true;
 	}
@@ -75,14 +75,10 @@ public class PackageDiagramEditPolicyProvider extends AbstractProvider implement
 
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			if( editPart instanceof IPrimaryEditPart){
-
-
 				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
-			}
-
-			if(!( editPart instanceof ConnectionEditPart)){
-				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-
+				if(!( editPart instanceof ConnectionEditPart)){
+					editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+				}
 			}
 			if(editPart instanceof NamedElementEditPart ){
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());

@@ -56,14 +56,10 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			if( editPart instanceof IPrimaryEditPart){
-
-
 				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
-			}
-
-			if(!( editPart instanceof ConnectionEditPart)){
-				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-
+				if(!( editPart instanceof ConnectionEditPart)){
+					editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+				}
 			}
 			if(editPart instanceof NamedElementEditPart ){
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
