@@ -528,7 +528,6 @@
 	</decoratorProvider>
 </extension>
 <extension
-      id="stereotype-ep-provider"
       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
    <editpartProvider
          class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.StereotypePropertiesEditPartProvider">
@@ -540,12 +539,74 @@
             id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
          <method
                name="getType()"
-               value="AppliedStereotypeContainer,AppliedStereotypeProperty">
+               value="AppliedStereotypeContainer,AppliedStereotypeProperty,compartment_shape_display">
+         </method>
+      </object>
+   </editpartProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+   <editpartProvider
+         class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.ShapeCompartmentEditPartProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+            id="org.eclipse.papyrus.sysml.diagram.internalblock.editpart.ShapeCompartmentDisplay">
+         <method
+               name="getType()"
+               value="compartment_shape_display">
          </method>
       </object>
    </editpartProvider>
 </extension>
 
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+
+	<!-- Custom graphical types view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.ShapeCompartmentViewProvider">
+		<Priority name="Medium"></Priority>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Property, SysML::ActorPartProperty, SysML::ValueProperty, SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, compartment_sysml_blockproperty_structure"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="UML::Dependency, UML::Connector"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_connector, link_uml_dependency"></context>
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Class" -->
+		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Class"></method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Class"></context>			
+		
+		<!-- "uml.Port" -->
+		<object id="uml.Port" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Port"></method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Port"></context>			
+		
+		<!-- "uml.Property" -->
+		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Property"></method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Property"></context>			
+		
+		<!-- "uml.Connector" -->
+		<object id="uml.Connector" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Connector"></method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Connector"></context>			
+		
+		<!-- "uml.Dependency" -->
+		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Dependency"></method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"></context>			
+		
+	</viewProvider>	
+
+</extension>
 <!-- // End of user code 
   -->
 

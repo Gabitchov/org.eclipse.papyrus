@@ -12,6 +12,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.listener,
  org.eclipse.papyrus.infra.gmfdiag.common.preferences,
  org.eclipse.papyrus.infra.gmfdiag.common.providers,
+ org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
  org.eclipse.papyrus.infra.gmfdiag.common.utils
 Bundle-Version: 0.9.1.qualifier
 Bundle-Name: %pluginName
@@ -29,5 +30,6 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.emf.workspace;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.1",
- org.eclipse.core.databinding;bundle-version="1.4.1"
+ org.eclipse.core.databinding;bundle-version="1.4.1",
+ org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.4.1"
 

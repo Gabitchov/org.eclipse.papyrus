@@ -25,9 +25,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 
 /**
  * This utils provides methods to manipulate compartments of the EditPart
@@ -108,9 +110,26 @@ public class CompartmentUtils {
 						compartments.add((View)child);
 					}
 				}
+			} else if(child instanceof Node && isShapeCompartment((Node)child)) { // possible for shapes. 
+				if(includeTitleCompartment) {
+					compartments.add((View)child);
+				} else {
+					if(!isCompartmentName(editpart, (View)child)) {
+						compartments.add((View)child);
+					}
+				}
 			}
 		}
 		return compartments;
+	}
+	
+	/**
+	 * Returns <code>true</code> if the view corresponds to the display of a shape in a compartment
+	 * @param view the view to test
+	 * @return <code>true</code> if the view corresponds to the display of a shape in a compartment
+	 */
+	public static boolean isShapeCompartment(View view) {
+		return IShapeCompartmentEditPart.VIEW_TYPE.equals(view.getType());
 	}
 
 	/**

@@ -688,4 +688,28 @@
          tabId="org.eclipse.papyrus.uml.diagram.common.heuristictab">
    </hyperlinktab>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+   <shapeProvider
+         class="org.eclipse.papyrus.uml.diagram.common.service.shape.ActorShapeProvider"
+         description="Provides a stickman shape for all actors and typed element by actors"
+         id="org.eclipse.papyrus.uml.diagram.common.actorshapeprovider"
+         name="Actor Shape Provider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </shapeProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+   <shapeProvider
+         class="org.eclipse.papyrus.uml.diagram.common.service.shape.StereotypedElementShapeProvider"
+         description="Provides the shapes based on the stereotype applied on the element"
+         id="org.eclipse.papyrus.uml.diagram.common.stereotypedelementshapeprovider"
+         name="Stereotyped Element Shape Provider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </shapeProvider>
+</extension>
 </plugin>

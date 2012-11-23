@@ -46,7 +46,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 		super(taggedLabelValue);
 
 		setLayoutManager(new AutomaticCompartmentLayoutManager());
-		setOpaque(true);
+		setOpaque(false);
 		createContentPane(compartmentFigure);
 
 	}
@@ -65,6 +65,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 			newFigure.setFill(false);
 			newFigure.setBorder(null);
 			newFigure.setOutline(false);
+			newFigure.setOpaque(false);
 			this.add(newFigure);
 			containerFigures.put(id, newFigure);
 		}

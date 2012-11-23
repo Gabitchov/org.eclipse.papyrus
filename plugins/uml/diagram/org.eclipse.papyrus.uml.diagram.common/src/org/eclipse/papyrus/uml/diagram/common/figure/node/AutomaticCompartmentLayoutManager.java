@@ -18,10 +18,15 @@ import java.util.List;
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 
 /**
  * this is the layout manager in charge to place element in compartment element.
@@ -41,10 +46,14 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	// list of none compartments ex wrapping label etc...
 	protected ArrayList<IFigure> notCompartmentList = new ArrayList<IFigure>();
 
+	// background figure
+	//protected IFigure backgroundFigure;
+
 	protected boolean addExtraHeight = true;
 
 	/**
 	 * set the distance between compartments
+	 * 
 	 * @param addExtraHeight
 	 */
 	public void setAddExtraHeight(boolean addExtraHeight) {
@@ -86,7 +95,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 	@Override
 	public Dimension getMinimumSize(IFigure container, int wHint, int hHint) {
-		return new Dimension(20,20);
+		return new Dimension(20, 20);
 	}
 
 	/**
@@ -132,6 +141,9 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	public void layout(IFigure container) {
 		collectInformationOnChildren(container);
 
+		//		container.remove(backgroundFigure);
+		//		container.add(backgroundFigure, 0);
+
 		// this list contains the visible compartments (that is to say :
 		// notCompartmentList + compartmentsList
 		List<IFigure> visibleCompartments = new ArrayList<IFigure>();
@@ -144,19 +156,18 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		if(compartmentList.size() != 0) {
 			// visit all compartment
 			for(int i = 0; i < container.getChildren().size(); i++) {
-				IFigure currentCompartment= (IFigure) container.getChildren().get(i);
+				IFigure currentCompartment = (IFigure)container.getChildren().get(i);
 				// this is a visible compartment
-				if( visibleCompartments.contains(currentCompartment)){
-					
+				if(visibleCompartments.contains(currentCompartment)) {
+
 					Rectangle bound = new Rectangle(currentCompartment.getBounds());
 					currentCompartment.invalidate();
-					Dimension pref=currentCompartment.getPreferredSize();
+					Dimension pref = currentCompartment.getPreferredSize();
 					currentCompartment.invalidate();
-					Dimension prefConstraint=currentCompartment.getPreferredSize(container.getBounds().width-40,-1);
-					if( pref.width<prefConstraint.width){
+					Dimension prefConstraint = currentCompartment.getPreferredSize(container.getBounds().width - 40, -1);
+					if(pref.width < prefConstraint.width) {
 						bound.setSize(pref);
-					}
-					else{
+					} else {
 						bound.setSize(prefConstraint);
 					}
 					//bound.setSize(getPreferedSize(currentCompartment));
@@ -170,11 +181,10 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 						bound.width = container.getBounds().width;
 					}
 					currentCompartment.setBounds(bound);
-				}
-				else{
+				} else {
 					// this is a none visible compartment
 					Rectangle bound = new Rectangle(currentCompartment.getBounds());
-					bound.setSize(1,1);
+					bound.setSize(1, 1);
 					currentCompartment.setBounds(bound);
 				}
 			}
@@ -182,6 +192,14 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		} else {
 			layoutCenterForLabel(container);
 		}
+
+		//		if(backgroundFigure!=null) {
+		//			Rectangle bound = new Rectangle(((IFigure)container).getBounds());
+		//			bound.y = container.getBounds().y + 1;
+		//			bound.x = container.getBounds().x + 3;
+		//			backgroundFigure.setBounds(bound);	
+		//		}
+		//		
 	}
 
 	/**
@@ -227,20 +245,23 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	/**
 	 * use to know what kind of element we have in order to apply the good
 	 * policy for the disposition
+	 * 
 	 * @param container
 	 */
 	public void collectInformationOnChildren(IFigure container) {
 		compartmentList = new ArrayList<IFigure>();
 		notCompartmentList = new ArrayList<IFigure>();
 		for(int i = 0; i < container.getChildren().size(); i++) {
-			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))||((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
+			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))) {
 				compartmentList.add(((IFigure)container.getChildren().get(i)));
+			} else if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel || ((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
+				notCompartmentList.add(((IFigure)container.getChildren().get(i)));
 			} else {
-				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel) {
-					notCompartmentList.add(((IFigure)container.getChildren().get(i)));
+				if((container.getChildren().get(i)) instanceof ScalableCompartmentFigure) {
+					compartmentList.add((IFigure)container.getChildren().get(i));
 				}
-			}
 
+			}
 		}
 	}
 
@@ -273,7 +294,9 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 * @return true if this is the case
 	 */
 	public boolean isAGMFContainer(IFigure figure) {
-		if (figure instanceof StereotypePropertiesCompartment){return false;}
+		if(figure instanceof StereotypePropertiesCompartment) {
+			return false;
+		}
 		if(figure.getChildren().size() > 0) {
 			if(figure.getChildren().get(0) instanceof ResizableCompartmentFigure) {
 				return true;

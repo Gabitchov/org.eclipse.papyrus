@@ -11,19 +11,35 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.commands;
+package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 
-/**
- * @deprecated use {@link org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand} instead.
- */
-@Deprecated
-public class SetNodeVisibilityCommand extends org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand {
 
-	public SetNodeVisibilityCommand(TransactionalEditingDomain domain, View view, Boolean isVisible) {
-		super(domain, view, isVisible);
+public class SetNodeVisibilityCommand extends RecordingCommand {
+
+	/** view to modify */
+	protected View view;
+	
+	/** visibility to set */
+	protected Boolean isVisible;
+
+	public SetNodeVisibilityCommand(TransactionalEditingDomain domain, View view,Boolean isVisible ) {
+		super(domain);
+		this.view=view;
+		this.isVisible=isVisible;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void doExecute() {
+		if(view.isVisible()!=isVisible){
+			view.setVisible(isVisible);
+		}
 	}
 
 }

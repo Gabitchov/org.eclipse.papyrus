@@ -206,9 +206,11 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
 			graphics.fillGradient(rectangle, isVertical);
 		} else {
+			applyTransparency(graphics);
 			graphics.setBackgroundColor(getBackgroundColor());
 			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillRectangle(rectangle);
+			graphics.setAlpha(0);
 		}
 	}
 

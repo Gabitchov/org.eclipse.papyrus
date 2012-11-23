@@ -576,7 +576,7 @@
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomViewProvider">
 		<Priority name="Medium"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ActorPartProperty, SysML::ReferenceProperty, UML::EnumerationLiteral, SysML::ConstraintBlock, UML::Signal, UML::Operation, SysML::FlowProperty, UML::PrimitiveType, UML::Port, SysML::ConstraintProperty, SysML::ValueProperty, UML::Reception, UML::Interface, UML::Constraint, UML::DataType, SysML::Unit, UML::Enumeration, SysML::ValueType, UML::Actor, UML::Property, SysML::Dimension, SysML::FlowSpecification, SysML::PartProperty, SysML::Block, SysML::FlowPort"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_uml_element_as_shape, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="SysML::AssociationNone, UML::Dependency, SysML::Association, UML::InterfaceRealization, UML::Generalization, SysML::AssociationSharedDirected, SysML::AssociationCompositeDirected, SysML::AssociationComposite, UML::Usage, SysML::AssociationNoneDirected, SysML::AssociationShared"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>
 		
@@ -789,13 +789,13 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomNodeGraphicalTypes">
-			<method name="getType()" value="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
+			<method name="getType()" value="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_element_as_shape, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
 		</object>
 		
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomGraphicalTypes_Decorations">
-			<method name="getType()" value="linklabel_uml_association_target_role, compartment_sysml_value_as_list, label_sysml_block_name, compartment_sysml_flowproperty_as_list, affixedlabel_uml_port_label, affixedlabel_sysml_flowport_label, linklabel_uml_association_source_multiplicity, label_sysml_dimension_name, linklabel_uml_appliedstereotype, linklabel_uml_association_source_role, linklabel_uml_association_target_multiplicity, compartment_sysml_constraint_as_list, label_sysml_valuetype_name, compartment_sysml_flowport_as_list, linklabel_uml_namedelement_name, compartment_sysml_reference_as_list, label_sysml_flowspecification_name, compartment_uml_property_as_list, label_sysml_unit_name, affixedlabel_uml_namedelement_name, compartment_uml_port_as_list, label_sysml_constraintblock_name, compartment_sysml_parameter_as_list, compartment_sysml_property_as_list, compartment_uml_enumerationliteral_as_list, affixedlabel_uml_appliedstereotype, compartment_uml_operation_as_list, compartment_sysml_part_as_list, label_uml_namedelement_name"/>
+			<method name="getType()" value="linklabel_uml_association_target_role, compartment_sysml_value_as_list, compartment_shape_display, label_sysml_block_name, compartment_sysml_flowproperty_as_list, affixedlabel_uml_port_label, affixedlabel_sysml_flowport_label, linklabel_uml_association_source_multiplicity, label_sysml_dimension_name, linklabel_uml_appliedstereotype, linklabel_uml_association_source_role, linklabel_uml_association_target_multiplicity, compartment_sysml_constraint_as_list, label_sysml_valuetype_name, compartment_sysml_flowport_as_list, linklabel_uml_namedelement_name, compartment_sysml_reference_as_list, label_sysml_flowspecification_name, compartment_uml_property_as_list, label_sysml_unit_name, affixedlabel_uml_namedelement_name, compartment_uml_port_as_list, label_sysml_constraintblock_name, compartment_sysml_parameter_as_list, compartment_sysml_property_as_list, compartment_uml_enumerationliteral_as_list, affixedlabel_uml_appliedstereotype, compartment_uml_operation_as_list, compartment_sysml_part_as_list, label_uml_namedelement_name"/>
 		</object>
 		
 		<context views="org.eclipse.papyrus.sysml.diagram.blockdefinition.CustomNodeGraphicalTypes"/>
@@ -1439,8 +1439,8 @@
 	</binding>
 		
 </extension>
+
 <extension
-      id="stereotype-ep-provider"
       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
    <editpartProvider
          class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.StereotypePropertiesEditPartProvider">
@@ -1449,7 +1449,7 @@
       </Priority>
       <object
             class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-            id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.editpart.AppliedStereotypeContainer">
          <method
                name="getType()"
                value="AppliedStereotypeContainer,AppliedStereotypeProperty">
@@ -1457,6 +1457,150 @@
       </object>
    </editpartProvider>
 </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+   <editpartProvider
+         class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ShapeCompartmentEditPartProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.editpart.ShapeCompartmentDisplay">
+         <method
+               name="getType()"
+               value="compartment_shape_display">
+         </method>
+      </object>
+   </editpartProvider>
+</extension>
+
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+	<!-- Custom graphical types view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ShapeCompartmentViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ActorPartProperty, SysML::ReferenceProperty, UML::EnumerationLiteral, SysML::ConstraintBlock, UML::Signal, UML::Operation, SysML::FlowProperty, UML::PrimitiveType, UML::Port, SysML::ConstraintProperty, SysML::ValueProperty, UML::Reception, UML::Interface, UML::Constraint, UML::DataType, SysML::Unit, UML::Enumeration, SysML::ValueType, UML::Actor, UML::Property, SysML::Dimension, SysML::FlowSpecification, SysML::PartProperty, SysML::Block, SysML::FlowPort"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_uml_element_as_shape, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="SysML::AssociationNone, UML::Dependency, SysML::Association, UML::InterfaceRealization, UML::Generalization, SysML::AssociationSharedDirected, SysML::AssociationCompositeDirected, SysML::AssociationComposite, UML::Usage, SysML::AssociationNoneDirected, SysML::AssociationShared"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>
+		
+		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
+		
+		<!-- "uml.Actor" -->
+		<object id="uml.Actor" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Actor"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Actor"/>			
+		
+		<!-- "uml.Class" -->
+		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Class"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Class"/>			
+		
+		<!-- "uml.Constraint" -->
+		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Constraint"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Constraint"/>			
+		
+		<!-- "uml.DataType" -->
+		<object id="uml.DataType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.DataType"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.DataType"/>			
+		
+		<!-- "uml.Enumeration" -->
+		<object id="uml.Enumeration" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Enumeration"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Enumeration"/>			
+		
+		<!-- "uml.EnumerationLiteral" -->
+		<object id="uml.EnumerationLiteral" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.EnumerationLiteral"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.EnumerationLiteral"/>			
+		
+		<!-- "uml.InstanceSpecification" -->
+		<object id="uml.InstanceSpecification" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.InstanceSpecification"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.InstanceSpecification"/>			
+		
+		<!-- "uml.Interface" -->
+		<object id="uml.Interface" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Interface"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Interface"/>			
+		
+		<!-- "uml.Operation" -->
+		<object id="uml.Operation" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Operation"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Operation"/>			
+		
+		<!-- "uml.Port" -->
+		<object id="uml.Port" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Port"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Port"/>			
+		
+		<!-- "uml.PrimitiveType" -->
+		<object id="uml.PrimitiveType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.PrimitiveType"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.PrimitiveType"/>			
+		
+		<!-- "uml.Property" -->
+		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Property"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Property"/>			
+		
+		<!-- "uml.Reception" -->
+		<object id="uml.Reception" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Reception"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Reception"/>			
+		
+		<!-- "uml.Signal" -->
+		<object id="uml.Signal" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Signal"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Signal"/>			
+		
+		<!-- "uml.Association" -->
+		<object id="uml.Association" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Association"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Association"/>			
+		
+		<!-- "uml.Dependency" -->
+		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Dependency"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"/>			
+		
+		<!-- "uml.Generalization" -->
+		<object id="uml.Generalization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Generalization"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Generalization"/>			
+		
+		<!-- "uml.InterfaceRealization" -->
+		<object id="uml.InterfaceRealization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.InterfaceRealization"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.InterfaceRealization"/>			
+		
+		<!-- "uml.Usage" -->
+		<object id="uml.Usage" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Usage"/>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Usage"/>			
+	</viewProvider>
+</extension>	
 <!-- // End of user code 
   -->
 
