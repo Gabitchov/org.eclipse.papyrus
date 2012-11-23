@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
@@ -36,7 +38,11 @@ import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Row;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
+import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
+import org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
@@ -64,6 +70,11 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 	private INatTableWidgetProvider provider;
 
 	/**
+	 * the ModelQuery Catalog
+	 */
+	private final ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -85,87 +96,182 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 	 *         the command to do the synchronization
 	 */
 	protected CompoundCommand getSynchronizationCommand(final TransactionalEditingDomain domain) {
-		CompoundCommand command = new CompoundCommand("Command to synchronize table with its context"); //$NON-NLS-1$
+		if(!this.table.getFillingQueries().isEmpty()) {
+			CompoundCommand command = new CompoundCommand("Command to synchronize table with its context"); //$NON-NLS-1$
 
-		//the list of the elements to add in the table
-		final List<EObject> elementsToAdd = new ArrayList<EObject>();
-		//the list of the element to remove in the table
-		final List<EObject> elementToRemove = new ArrayList<EObject>();
-		//a new element has been added to the model
-		for(ModelQuery query : this.table.getFillingQueries()) {
-			ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
-			AbstractModelQuery impl = null;
-			try {
-				impl = catalog.getModelQueryImpl(query);
-			} catch (ModelQueryException e) {
-				Activator.getDefault().log.error(e);
-			}
-			if(impl != null) {
-				ModelQueryResult result = impl.evaluate(this.table.getTable().getContext());
-				Object value = result.getValue();
-				if(value instanceof Collection<?>) {
-					//the build the list of the elements to add in the table 
-					for(Object currentObject : (Collection<?>)value) {
-						if(currentObject instanceof EObject && !this.table.getTable().getElements().contains(currentObject)) {
-							elementsToAdd.add((EObject)currentObject);
-						}
-					}
-
-					/*
-					 * we build the list of the elements to remove from the table
-					 */
-					for(EObject currentObject : this.table.getTable().getElements()) {
-						if(!((Collection<?>)value).contains(currentObject)) {
-							elementToRemove.add(currentObject);
-						}
-					}
-				} else {
-					//nothing to do for the moment
-				}
-			}
-		}
-
-		if(!elementsToAdd.isEmpty()) {
-			final List<EObject> forbiddenElements = getForbiddenElement(elementsToAdd);
-			/*
-			 * The following line is commented because it doesn't work correctly : The same new object is added many times!
-			 */
-			//command.append(TableInstanceCommandFactory.createAddRowsCommand(elementsToAdd, (NatTableWidget)this.provider.getNatTableWidget()));
-			elementsToAdd.removeAll(forbiddenElements);
-			command.append(getAddElementCommand(domain, elementsToAdd, this.provider.getNatTableWidget()));
-
-			//we don't display a message because we will get it each time the synchronized table is refreshed
-			//we display a message 
-			//			if(!forbiddenElements.isEmpty()) {
-			//				command.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Display Notification", null) {
+			//		// the list of the elements to add in the table
+			//		final List<EObject> elementsToAdd = new ArrayList<EObject>();
 			//
-			//					@Override
-			//					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			//						String list = "";
-			//						//TODO, maybe the label provider can manage a list?
-			//						ILabelProvider labelProvider = new UMLLabelProvider();
-			//						Iterator<EObject> iter = forbiddenElements.iterator();
-			//						while(iter.hasNext()) {
-			//							list += labelProvider.getText(iter.next());
-			//							if(iter.hasNext()) {
-			//								list += ", ";
-			//							}
-			//						}
-			//						//new NotificationBuilder().setBuilderClass(CombinedPopupAndViewBuilder.class).setType(Type.WARNING).setTitle("Synchronized Table Message").setMessage("The following elements should be put in the table by the <<FillingQueries>>, but the query <<CanBePresentedInTheTable>> refuses them. " + "\n" + list).run();
-			//						return CommandResult.newOKCommandResult();
-			//					}
-			//				}));
-			//			}
-		}
+			//		// the list of the element to remove in the table
+			//		final List<EObject> elementToRemove = new ArrayList<EObject>();
 
-		if(!elementToRemove.isEmpty()) {
-			command.append(getRemoveElementCommand(domain, elementToRemove, this.provider.getNatTableWidget()));
-		}
-		if(!command.isEmpty()) {
-			return command;
+			// all the elements in the table
+			final Collection<EObject> allElements = getAllElementsUsingFillingqueries();
+
+			final List<EObject> currentElements = this.table.getTable().getElements();
+
+			//		//a new element has been added to the model
+			//		for(ModelQuery query : this.table.getFillingQueries()) {
+			//			ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
+			//			AbstractModelQuery impl = null;
+			//			try {
+			//				impl = catalog.getModelQueryImpl(query);
+			//			} catch (ModelQueryException e) {
+			//				Activator.getDefault().log.error(e);
+			//			}
+			//			if(impl != null) {
+			//				ModelQueryResult result = impl.evaluate(this.table.getTable().getContext());
+			//				Object value = result.getValue();
+			//				if(value instanceof Collection<?>) {
+			//					//the build the list of the elements to add in the table 
+			//					for(Object currentObject : (Collection<?>)value) {
+			//						if(currentObject instanceof EObject && !this.table.getTable().getElements().contains(currentObject)) {
+			//							elementsToAdd.add((EObject)currentObject);
+			//						}
+			//					}
+			//
+			//					/*
+			//					 * we build the list of the elements to remove from the table
+			//					 */
+			//					for(EObject currentObject : this.table.getTable().getElements()) {
+			//						if(!((Collection<?>)value).contains(currentObject)) {
+			//							elementToRemove.add(currentObject);
+			//						}
+			//					}
+			//				} else {
+			//					//nothing to do for the moment
+			//				}
+			//			}
+			//		}
+			// we build the list of the elements to add in the table
+			List<EObject> elementsToAdd = new ArrayList<EObject>(allElements);
+			elementsToAdd.removeAll(currentElements);
+
+			/*
+			 * we build the list of the elements to remove from the
+			 * table
+			 */
+			List<EObject> elementsToRemove = new ArrayList<EObject>(currentElements);
+			elementsToRemove.removeAll(allElements);
+
+			if(!elementsToAdd.isEmpty()) {
+				final List<EObject> forbiddenElements = getForbiddenElement(elementsToAdd);
+				/*
+				 * The following line is commented because it doesn't work correctly : The same new object is added many times!
+				 */
+				//command.append(TableInstanceCommandFactory.createAddRowsCommand(elementsToAdd, (NatTableWidget)this.provider.getNatTableWidget()));
+				elementsToAdd.removeAll(forbiddenElements);
+				command.append(getAddElementCommand(domain, elementsToAdd, this.provider.getNatTableWidget()));
+
+				//we don't display a message because we will get it each time the synchronized table is refreshed
+				//we display a message 
+				//			if(!forbiddenElements.isEmpty()) {
+				//				command.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Display Notification", null) {
+				//
+				//					@Override
+				//					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				//						String list = "";
+				//						//TODO, maybe the label provider can manage a list?
+				//						ILabelProvider labelProvider = new UMLLabelProvider();
+				//						Iterator<EObject> iter = forbiddenElements.iterator();
+				//						while(iter.hasNext()) {
+				//							list += labelProvider.getText(iter.next());
+				//							if(iter.hasNext()) {
+				//								list += ", ";
+				//							}
+				//						}
+				//						//new NotificationBuilder().setBuilderClass(CombinedPopupAndViewBuilder.class).setType(Type.WARNING).setTitle("Synchronized Table Message").setMessage("The following elements should be put in the table by the <<FillingQueries>>, but the query <<CanBePresentedInTheTable>> refuses them. " + "\n" + list).run();
+				//						return CommandResult.newOKCommandResult();
+				//					}
+				//				}));
+				//			}
+			}
+
+			if(!elementsToRemove.isEmpty()) {
+				command.append(getRemoveElementCommand(domain, elementsToRemove, this.provider.getNatTableWidget()));
+			}
+
+			if(!allElements.isEmpty()) {
+				// respect the order of the lines!
+				command.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, null, null) {
+
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						TableInstance table = provider.getNatTableWidget().getTableInstance();
+						List<Row> newOrder = new ArrayList<Row>();
+						List<Row> rows = table.getRows();
+						Assert.isTrue(rows.size() == allElements.size());
+						for(EObject current : allElements) {
+							for(Row currentRow : rows) {
+								if(currentRow.getElement() == current) {
+									newOrder.add(currentRow);
+									break;
+								}
+							}
+						}
+						ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
+						Command command = commandFactory.createSetCommand(domain, table, TableinstancePackage.eINSTANCE.getTableInstance_Rows(), newOrder);
+						command.execute();
+						return null;
+					}
+				}));
+			}
+			if(!command.isEmpty()) {
+				return command;
+			}
 		}
 		return null;
 	}
+
+	/**
+	 * 
+	 * @return
+	 *         a collection with the elements returned by the filling queries
+	 */
+	private Collection<EObject> getAllElementsUsingFillingqueries() {
+		final List<ModelQuery> queries = this.table.getFillingQueries();
+		if(queries.size() == 1) {
+			AbstractModelQuery impl = null;
+			try {
+				impl = catalog.getModelQueryImpl(queries.get(0));
+			} catch (ModelQueryException e) {
+				Activator.log.error(e);
+			}
+			Assert.isNotNull(impl != null);
+			ModelQueryResult result = impl.evaluate(this.table.getTable().getContext());
+			Object value = result.getValue();
+			Assert.isTrue(value instanceof Collection<?>);
+			return Collections.checkedCollection((Collection<EObject>)value, EObject.class);
+		} else {
+			final Collection<EObject> allElements = new LinkedHashSet<EObject>();
+			for(ModelQuery query : this.table.getFillingQueries()) {
+				AbstractModelQuery impl = null;
+				try {
+					impl = catalog.getModelQueryImpl(query);
+				} catch (ModelQueryException e) {
+					Activator.log.error(e);
+				}
+
+				if(impl != null) {
+					ModelQueryResult result = impl.evaluate(this.table.getTable().getContext());
+					Object value = result.getValue();
+					if(value instanceof Collection<?>) {
+						// we build the list of all the element which should be in
+						// the table
+						for(Object currentObject : (Collection<?>)value) {
+							if(currentObject instanceof EObject) {
+								allElements.add((EObject)currentObject);
+							}
+						}
+					}
+				}
+			}
+			return allElements;
+		}
+
+
+	}
+
 
 	/**
 	 * 
@@ -186,33 +292,34 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 				widget.addRows(elementsToAdd);
 				for(EObject current : elementsToAdd) {
 					if(!widget.getTableInstance().getElements().contains(current)) {//we re-test during the execution, to avoid the same element will be added many times
-							widget.addRows(Collections.singletonList(current));
+						widget.addRows(Collections.singletonList(current));
 					}
 				}
-//					List<EObject> toAdd = new ArrayList<EObject>();
-//					toAdd.add(current);
-//					Command command = TableInstanceCommandFactory.createAddRowsCommand(toAdd, (NatTableWidget)widget);
-//					if(command != null) {
-//						command.execute();
-//					}
-//				}
-//			}
+				//					List<EObject> toAdd = new ArrayList<EObject>();
+				//					toAdd.add(current);
+				//					Command command = TableInstanceCommandFactory.createAddRowsCommand(toAdd, (NatTableWidget)widget);
+				//					if(command != null) {
+				//						command.execute();
+				//					}
+				//				}
+				//			}
 				//I change the implementation of this command, because, when we create a new element in the model explorer, the facet column are not created
-//				for(EObject current : elementsToAdd) {
-//					if(!widget.getTableInstance().getElements().contains(current)) {//we re-test during the execution, to avoid the same element will be added many times
-//						
-//						List<EObject> toAdd = new ArrayList<EObject>();
-//						toAdd.add(current);
-//						Command command = TableInstanceCommandFactory.createAddRowsCommand(toAdd, (NatTableWidget)widget);
-//						if(command != null) {
-//							command.execute();
-//						}
-//					}
-//				}
+				//				for(EObject current : elementsToAdd) {
+				//					if(!widget.getTableInstance().getElements().contains(current)) {//we re-test during the execution, to avoid the same element will be added many times
+				//						
+				//						List<EObject> toAdd = new ArrayList<EObject>();
+				//						toAdd.add(current);
+				//						Command command = TableInstanceCommandFactory.createAddRowsCommand(toAdd, (NatTableWidget)widget);
+				//						if(command != null) {
+				//							command.execute();
+				//						}
+				//					}
+				//				}
 				return null;
 			}
-			});
+		});
 	}
+
 	/**
 	 * 
 	 * @param domain

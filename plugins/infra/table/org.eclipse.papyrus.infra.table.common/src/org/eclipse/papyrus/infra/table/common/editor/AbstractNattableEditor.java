@@ -19,10 +19,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
@@ -36,17 +39,21 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.EContainerC
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.MetaClassColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUtils;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.table.common.Activator;
 import org.eclipse.papyrus.infra.table.common.internal.IPapyrusNatTableWidget;
 import org.eclipse.papyrus.infra.table.common.internal.TableEditorInput;
 import org.eclipse.papyrus.infra.table.common.listener.ModelTriggerListener;
 import org.eclipse.papyrus.infra.table.common.listener.TableTriggerListener;
+import org.eclipse.papyrus.infra.table.common.util.FillingQueriesUtil;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -66,10 +73,10 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 	protected PapyrusTableInstance rawModel;
 
 	/** listener on the model for synchronized table */
-	private TriggerListener modelTriggerListener;
+	protected TriggerListener modelTriggerListener;
 
 	/** listener on the table for synchronized table : listen the properties "isSynchronized" and "fillingQueries" */
-	private TriggerListener tableTriggerListener;
+	protected TriggerListener tableTriggerListener;
 
 	/**
 	 * the part name synchronizer
@@ -119,6 +126,30 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.tableTriggerListener);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * + update the content of the table if the table is synchronized
+	 */
+	@Override
+	public void createPartControl(Composite parent) {
+		super.createPartControl(parent);
+		// we update the table
+		if (rawModel.isIsSynchronized()) {
+			Notification impl = new ENotificationImpl((InternalEObject) rawModel, FillingQueriesUtil.OPEN_TABLE,null, null, null);
+			List<Notification> notifications = Collections.singletonList(impl);
+			ResourceSetChangeEvent event = new ResourceSetChangeEvent((TransactionalEditingDomain) getEditingDomain(), null,notifications);
+			Command cmd = null;
+			try {
+				cmd = this.modelTriggerListener.transactionAboutToCommit(event);
+				if (cmd != null && cmd.canExecute()) {
+					cmd.execute();
+				}
+			} catch (Exception e) {
+				Activator.log.error("I can't update the opened table", e);
+			}
+		}
+	}
+	
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.table.common.internal.NatTableEditor#dispose()

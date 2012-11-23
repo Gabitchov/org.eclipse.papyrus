@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.table.common.util.FillingQueriesUtil;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
@@ -55,22 +56,18 @@ public class ModelTriggerListener extends AbstractSynchronizedTableTriggerListen
 	@Override
 	protected Command trigger(TransactionalEditingDomain domain, Notification notification) {
 		if(this.table.isIsSynchronized()) {
-			//we look for the file extension
 			Object notifier = notification.getNotifier();
-			String fileExtension = null;
-			if(notifier instanceof XMIResource) {
-				fileExtension = ((XMIResource)notifier).getURI().fileExtension();
-
-			} else if(notifier instanceof EObject) {
-				Resource res = ((EObject)notifier).eResource();
-				if(res != null && res.getURI() != null) {
-					fileExtension = res.getURI().fileExtension();
+			int eventType = notification.getEventType();
+			if(notifier instanceof PapyrusTableInstance) {
+				if(this.table.isIsSynchronized()) {
+					switch(eventType) {
+					case FillingQueriesUtil.OPEN_TABLE:
+						return getSynchronizationCommand(domain);
+					default:
+						break;
+					}
 				}
-			}
-
-			//we only listen the modification on the UML model
-			if("uml".equals(fileExtension)) { //$NON-NLS-1$
-				int eventType = notification.getEventType();
+			} else if(notifier instanceof org.eclipse.uml2.uml.Element) { //we only listen the modification on the UML model
 				//we can't do a test on the element which provide the notification, because each action on the model can change the result of the query
 				switch(eventType) {
 				//I think that only Set and Unset are required to get all changes in the model
