@@ -36,7 +36,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
@@ -90,8 +91,6 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	 * The applied label.
 	 */
 	private CLabel appliedLabel;
-
-	private TransactionalEditingDomain domain;
 
 	/**
 	 * the factory to create elements
@@ -154,14 +153,16 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	 */
 	protected void applyProfile(final Package thepackage, final Profile profile, final boolean withSubProfiles) {
 		try {
-			getDomain().runExclusive(new Runnable() {
+			final TransactionalEditingDomain domain = getEditingDomain(thepackage);
+			domain.runExclusive(new Runnable() {
 
 				public void run() {
 
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							getDomain().getCommandStack().execute(new RecordingCommand(domain) {
+
+							domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 								@Override
 								protected void doExecute() {
@@ -425,8 +426,13 @@ public class AppliedProfileCompositeOnModel extends Composite {
 		}
 	}
 
-	public TransactionalEditingDomain getDomain() {
-		return EditorUtils.getTransactionalEditingDomain();
+	public TransactionalEditingDomain getEditingDomain(Element context) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(context);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
 	}
 
 	/**
@@ -549,10 +555,6 @@ public class AppliedProfileCompositeOnModel extends Composite {
 		}
 	}
 
-	public void setDomain(TransactionalEditingDomain domain) {
-		this.domain = domain;
-	}
-
 	/**
 	 * Sets the selection.
 	 * 
@@ -573,14 +575,15 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	 */
 	protected void unApplyProfile(final Package thepackage, final Profile profile) {
 		try {
-			getDomain().runExclusive(new Runnable() {
+			final TransactionalEditingDomain domain = getEditingDomain(thepackage);
+			domain.runExclusive(new Runnable() {
 
 				public void run() {
-
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							getDomain().getCommandStack().execute(new RecordingCommand(domain) {
+
+							domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 								@Override
 								protected void doExecute() {

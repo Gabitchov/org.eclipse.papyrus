@@ -12,7 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecorationOverlayIcon;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
@@ -31,7 +32,7 @@ public class ModelExplorerDecorationAdapter {
 	protected Image decoratorTarget;
 
 	/** The decoration. */
-	protected EList<IPapyrusDecoration> decorations;
+	protected List<IPapyrusDecoration> decorations;
 
 	/** The decoration position. */
 	protected int decorationPosition;
@@ -67,7 +68,7 @@ public class ModelExplorerDecorationAdapter {
 	 * @param decorationPosition
 	 *        the decoration position
 	 */
-	public void setDecorations(EList<IPapyrusDecoration> decorations) {
+	public void setDecorations(List<IPapyrusDecoration> decorations) {
 		this.decorations = decorations;
 	}
 
@@ -103,6 +104,9 @@ public class ModelExplorerDecorationAdapter {
 	 *        the decoration position
 	 */
 	public Image getDecoratedImage() {
+		if(decoratorTarget == null) {
+			return null;
+		}
 
 		if(decorations == null) {
 			return decoratorTarget;

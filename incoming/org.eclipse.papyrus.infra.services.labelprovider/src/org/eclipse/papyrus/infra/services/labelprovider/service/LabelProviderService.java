@@ -57,4 +57,29 @@ public interface LabelProviderService extends IService {
 	 */
 	public ILabelProvider getLabelProvider(String context);
 
+	/**
+	 * Retrieves the LabelProvider for the given context. The provider will return
+	 * labels based on the contextElement
+	 * 
+	 * @param context
+	 *        The context in which the ILabelProvider will be used. According to the context,
+	 *        a different implementation may be returned. If the context is unknown or null,
+	 *        the standard ILabelProvider will be returned
+	 * @param contextElement
+	 *        The element against which the labels should be computed. It can for example
+	 *        be the base namespace to compute relative labels.
+	 * @return
+	 */
+	public ILabelProvider getLabelProvider(String context, Object contextElement);
+
+	/**
+	 * Retrieves the default LabelProvider. The provider will return
+	 * labels based on the contextElement
+	 * 
+	 * @param contextElement
+	 *        The element against which the labels should be computed. It can for example
+	 *        be the base namespace to compute relative labels.
+	 */
+	public ILabelProvider getLabelProvider(Object contextElement);
+
 }

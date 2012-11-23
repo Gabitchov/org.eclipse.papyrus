@@ -22,7 +22,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
 
 /**
@@ -31,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
  * 
  */
 //TODO : This ContentProvider should extend SemanticUMLContentProvider
+@Deprecated
 public class DiagramContentProvider extends MoDiscoContentProvider {
 
 	@Override
@@ -82,8 +82,9 @@ public class DiagramContentProvider extends MoDiscoContentProvider {
 					result.add((EObject)pageMngr.allPages().get(i));
 				}
 			}
+
 			EObject[] eObject = new EObject[result.size()];
-			return NotationUtils.getNotationModel().getResource().getContents().toArray(eObject);
+			return result.toArray(eObject);
 
 		} catch (Exception e) {
 			Activator.log.error(e);

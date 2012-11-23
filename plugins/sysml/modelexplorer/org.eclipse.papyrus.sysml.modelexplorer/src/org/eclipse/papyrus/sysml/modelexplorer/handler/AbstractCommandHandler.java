@@ -219,7 +219,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 
 		try {
 
-			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
+			ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
 			creationcommand = getCommand();
 
 			util.getTransactionalEditingDomain().getCommandStack().execute(creationcommand);
@@ -241,6 +241,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * 
 	 * @return true (enabled) when the command can be executed.
 	 */
+	@Override
 	public boolean isEnabled() {
 		return getCommand().canExecute();
 	}

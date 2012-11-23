@@ -54,6 +54,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
@@ -81,12 +82,17 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+		ServicesRegistry registry;
+		try {
+			registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+		} catch (ServiceException ex) {
+			throw new ExecutionException("Cannot retrieve the ServicesRegistry", ex);
+		}
+
 		EObject container = null;
 		// if editor is open and active
-		if(getMultiDiagramEditor() != null) {
-			container = getSelectedElement();
-		}
-		runAsTransaction(container);
+		container = getSelectedElement();
+		runAsTransaction(container, registry);
 		return null;
 	}
 
@@ -98,13 +104,13 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 *        The uml element to which the diagram should be attached, if possible.
 	 * @throws ExecutionException
 	 */
-	protected void runAsTransaction(EObject container) throws ExecutionException {
+	protected void runAsTransaction(EObject container, ServicesRegistry registry) throws ExecutionException {
 
 		ModelSet modelSet;
 		try {
-			modelSet = EditorUtils.getServiceRegistry().getService(ModelSet.class);
+			modelSet = registry.getService(ModelSet.class);
 		} catch (ServiceException e) {
-			throw new ExecutionException("Can't get diResourceSet", e);
+			throw new ExecutionException("Can't get ModelSet", e);
 		}
 
 		runAsTransaction(modelSet, container, null);
@@ -343,22 +349,17 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	}
 
 	/**
-	 * Get the ServiceRegistry of the main editor.
-	 * 
-	 * @return
-	 */
-	protected ServicesRegistry getServiceRegistry() {
-		return EditorUtils.getServiceRegistry();
-	}
-
-	/**
 	 * Get the ISashWindowsContentProvider from the main editor.
 	 * 
 	 * @return
 	 */
-	protected ISashWindowsContentProvider getISashWindowsContentProvider() {
-		return EditorUtils.getISashWindowsContentProvider();
-
+	protected ISashWindowsContentProvider getISashWindowsContentProvider(ServicesRegistry registry) {
+		try {
+			return registry.getService(ISashWindowsContentProvider.class);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
 	}
 
 	/**

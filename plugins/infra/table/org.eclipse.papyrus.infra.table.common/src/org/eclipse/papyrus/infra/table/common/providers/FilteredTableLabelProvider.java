@@ -13,8 +13,8 @@ package org.eclipse.papyrus.infra.table.common.providers;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
 
 /**
  * A Filter Label Provider for {@link PapyrusTableInstance}

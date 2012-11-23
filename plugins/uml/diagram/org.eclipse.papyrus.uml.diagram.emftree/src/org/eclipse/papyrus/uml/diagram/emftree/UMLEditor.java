@@ -161,7 +161,6 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 
 	@Override
 	public void init(IEditorSite site, IEditorInput editorInput) {
-		System.out.println(this.getClass().getSimpleName() + ".init()");
 		super.init(site, editorInput);
 		setPartName("emf tree");
 	}

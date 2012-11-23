@@ -16,7 +16,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.efacet.core;bundle-version="0.2.0",
  org.eclipse.emf.facet.custom.core;bundle-version="0.2.0",
  org.eclipse.emf.facet.custom.ui;bundle-version="0.2.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.emf.editor.part,
  org.eclipse.papyrus.infra.emf.editor.providers
 Bundle-Vendor: Eclipse Modeling Project

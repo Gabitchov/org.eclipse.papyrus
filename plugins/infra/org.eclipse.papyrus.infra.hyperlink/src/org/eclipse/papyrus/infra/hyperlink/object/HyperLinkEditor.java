@@ -16,11 +16,9 @@ package org.eclipse.papyrus.infra.hyperlink.object;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
@@ -56,13 +54,14 @@ public class HyperLinkEditor extends HyperLinkObject {
 	 */
 	@Override
 	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
-		IPageIconsRegistry editorRegistry = null;
-		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
+		IPageIconsRegistry editorRegistry;
 		try {
-			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
+			editorRegistry = ServiceUtilsForEObject.getInstance().getService(IPageIconsRegistry.class, amodel);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
+			return;
 		}
+
 		EditorHyperLinkEditorShell editor = new EditorHyperLinkEditorShell(editorRegistry, amodel);
 		editor.setHyperLinkEditor(this);
 		editor.open();

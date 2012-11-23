@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -117,6 +118,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 	 * @return the selected
 	 * @deprecated
 	 */
+	@Deprecated
 	@Override
 	public Element getSelected() {
 		return getElement();
@@ -144,8 +146,8 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 			return;
 		}
 		try {
-
-			getDomain().runExclusive(new Runnable() {
+			final TransactionalEditingDomain domain = getEditingDomain(elt);
+			domain.runExclusive(new Runnable() {
 
 				public void run() {
 
@@ -154,15 +156,15 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 						public void run() {
 
 							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getDomain(), diagramElement, st.getQualifiedName(), presentationKind);
-							getDomain().getCommandStack().execute(command);
+							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
+							domain.getCommandStack().execute(command);
 						}
 					});
 				}
 			});
 
 		} catch (Exception e) {
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 
 	}
@@ -180,8 +182,11 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 		if(diagramElement == null) {
 			return;
 		}
+
+		final TransactionalEditingDomain domain = getEditingDomain(elt);
+
 		try {
-			getDomain().runExclusive(new Runnable() {
+			domain.runExclusive(new Runnable() {
 
 				public void run() {
 
@@ -189,15 +194,15 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 						public void run() {
 							String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(getDomain(), diagramElement, st.getQualifiedName(), presentationKind);
+							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
 
-							getDomain().getCommandStack().execute(command);
+							domain.getCommandStack().execute(command);
 						}
 					});
 				}
 			});
 		} catch (Exception e) {
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 
 	}

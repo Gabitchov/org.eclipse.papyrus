@@ -29,8 +29,11 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.extension.commands.ICreationCondition;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.widgets.toolbox.dialog.InformationDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -64,12 +67,19 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		NavigableElement navElement = getNavigableElementWhereToCreateDiagram();
+		ServicesRegistry registry;
+		try {
+			registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
 
 		if(navElement == null) {
 			InformationDialog dialog = new InformationDialog(Display.getCurrent().getActiveShell(), "Impossible diagram creation", "It is not possible to create this diagram on the selected element.", null, null, SWT.OK, MessageDialog.WARNING, new String[]{ IDialogConstants.OK_LABEL });
 			dialog.open();
 		} else {
-			createDiagram(navElement);
+			createDiagram(navElement, registry);
 		}
 		return null;
 	}
@@ -98,8 +108,14 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 		return null;
 	}
 
-	private void createDiagram(NavigableElement navElement) {
-		ModelSet modelSet = EditorUtils.getDiResourceSet();
+	private void createDiagram(NavigableElement navElement, ServicesRegistry registry) {
+		ModelSet modelSet;
+		try {
+			modelSet = ServiceUtils.getInstance().getModelSet(registry);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return;
+		}
 
 		if(navElement != null && modelSet != null) {
 			try {

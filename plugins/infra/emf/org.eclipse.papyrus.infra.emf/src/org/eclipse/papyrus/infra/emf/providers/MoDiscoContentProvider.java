@@ -53,31 +53,11 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
 	@Override
 	public Object[] getChildren(final Object parentElement) {
-		ArrayList<Object> result = new ArrayList<Object>();
-
-		Object[] arrayObject = super.getChildren(parentElement);
-		if(arrayObject != null) {
-			for(int i = 0; i < arrayObject.length; i++) {
-				result.add(arrayObject[i]);
-			}
+		Object[] children = super.getChildren(parentElement);
+		if(children == null) {
+			return new Object[0];
 		}
-		/**
-		 * Refactoring with bug 358732
-		 */
-		//
-		//		if (parentElement instanceof IAdaptable) {
-		//			EObject eObject = (EObject)((IAdaptable)parentElement).getAdapter(EObject.class);
-		//			if(eObject !=null) {
-		//				List<Diagram> diagramList = findAllExistingDiagrams(eObject);
-		//					Iterator<Diagram> iterator = diagramList.iterator();
-		//					while (iterator.hasNext()) {
-		//						result.add(iterator.next());
-		//					}
-		//			}
-		//
-		//		}
-
-		return result.toArray();
+		return children;
 	}
 
 	/**

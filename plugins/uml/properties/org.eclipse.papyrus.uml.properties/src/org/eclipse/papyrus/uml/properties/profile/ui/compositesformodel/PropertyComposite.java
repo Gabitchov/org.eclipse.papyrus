@@ -18,8 +18,10 @@ package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementLabelProvider;
@@ -27,6 +29,7 @@ import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTre
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.ValueTreeObject;
+import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
@@ -41,9 +44,13 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class PropertyComposite extends DecoratedTreeComposite {
 
-	public TransactionalEditingDomain getDomain() {
-		// used by heir AppliedStereotypePropertyCompositeWithView
-		return EditorUtils.getTransactionalEditingDomain();
+	public TransactionalEditingDomain getEditingDomain(EModelElement context) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(context);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
 	}
 
 	/**
@@ -56,7 +63,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		super(parent, SWT.NONE, "Property values", false);
 	}
 
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -131,12 +138,12 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 	}
 
-	public void itemDClicked () {
+	public void itemDClicked() {
 		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
 		// re-initialize value tree objects (model is already updated, value in tree object is not)
 		pTO.reInitChilds();
 	}
-	
+
 	/**
 	 * Action triggered when the add button is pressed.
 	 */
@@ -160,10 +167,10 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 		// if lower multiplicity is equal to upper multiplicity : cannot add
 		if(lower == upper && pTO.getValue() != null) {
-			if (pTO.getValue() instanceof EList) {
+			if(pTO.getValue() instanceof EList) {
 				@SuppressWarnings("unchecked")
-				EList<Object> currentValues = (EList<Object>) pTO.getValue ();
-				if (currentValues.size() >= upper) {
+				EList<Object> currentValues = (EList<Object>)pTO.getValue();
+				if(currentValues.size() >= upper) {
 					Message.warning("Multiplicity of this property is " + property.getLower() + ".." + property.getUpper() + "\n" + "Impossible to add a new value.");
 					return;
 				}
@@ -176,29 +183,28 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		// Retrieve current value
 		ArrayList<Object> currentPropertyValues = new ArrayList<Object>();
 		Object currentValue = pTO.getValue();
-		if (currentValue != null) {
-			
+		if(currentValue != null) {
+
 			if(upper == 1) {
 				currentPropertyValues.add(currentValue);
 
 			} else { // if (upper != 1) {
-				
+
 				@SuppressWarnings("unchecked")
-				EList<Object> currentValues = (EList<Object>) currentValue;
+				EList<Object> currentValues = (EList<Object>)currentValue;
 				for(int i = 0; i < currentValues.size(); i++) {
 					currentPropertyValues.add(currentValues.get(i));
 				}
 			}
 		}
 
-		if (property.isMultivalued() || (currentPropertyValues.size() < upper)) {
-			ValueTreeObject.createInstance(pTO, null).editMe ();
-		}
-		else {
+		if(property.isMultivalued() || (currentPropertyValues.size() < upper)) {
+			ValueTreeObject.createInstance(pTO, null).editMe();
+		} else {
 			Message.warning("Upper multiplicity of " + property.getName() + " is " + property.getUpper());
 		}
 		// Update value tree objects
-		pTO.reInitChilds ();
+		pTO.reInitChilds();
 	}
 
 	/**
@@ -213,9 +219,8 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 		TreeItem[] items = getTree().getSelection();
 		for(int i = 0; i < nbrOfSelection; i++) {
-			ValueTreeObject vTO = (ValueTreeObject) items[i].getData();
-			AppliedStereotypePropertyTreeObject pTO = 
-				(AppliedStereotypePropertyTreeObject) treeViewer.getInput();
+			ValueTreeObject vTO = (ValueTreeObject)items[i].getData();
+			AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
 			Property property = pTO.getProperty();
 
 			int lower = property.getLower();
@@ -230,25 +235,25 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			Object currentVal = pTO.getValue();
 			ArrayList<Object> tempValues = new ArrayList<Object>();
 
-			if (upper != 1) {
+			if(upper != 1) {
 				@SuppressWarnings("unchecked")
-				EList<Object> currentValues = (EList<Object>) currentVal;
-				tempValues.addAll (currentValues);
-			
-				if (tempValues.size() > lower) {
+				EList<Object> currentValues = (EList<Object>)currentVal;
+				tempValues.addAll(currentValues);
+
+				if(tempValues.size() > lower) {
 					tempValues.remove(vTO.getValue());
 				}
 			}
-				
+
 			if(property.isMultivalued()) {
 				// setPropertiesValue(selectedElt, stereotype, property, tempValues);
-				pTO.updateValue (tempValues);
+				pTO.updateValue(tempValues);
 			} else {
-				pTO.updateValue (null);
+				pTO.updateValue(null);
 			}
 
 			// Update value tree objects
-			pTO.reInitChilds ();
+			pTO.reInitChilds();
 		}
 	}
 
@@ -315,8 +320,8 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	 */
 	public void setInput(AppliedStereotypePropertyTreeObject element) {
 		treeViewer.setInput(element);
-		if (element != null) {
-			element.reInitChilds ();
+		if(element != null) {
+			element.reInitChilds();
 		}
 		refresh();
 	}

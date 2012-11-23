@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
@@ -61,32 +62,33 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	protected void touchModel() {
 
 		// CommandSupport.exec ("update stereotype", /* command)
-		if (currentView == null) {
+		if(currentView == null) {
 			return;
 		}
-		
+
 		try {
-			getDomain().runExclusive(new Runnable() {
-			
+			final TransactionalEditingDomain domain = getEditingDomain(currentView);
+			domain.runExclusive(new Runnable() {
+
 
 				public void run() {
 
-					Display.getCurrent().asyncExec( new Runnable() {
+					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							String localization = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(currentView);
-							RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(getDomain(), currentView, localization);
+							RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, currentView, localization);
 
-							getDomain().getCommandStack().execute(command);
-				
+							domain.getCommandStack().execute(command);
+
 						}
 					});
-	
+
 				}
 			});
 
 		} catch (Exception e) {
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
 
@@ -97,7 +99,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void addButtonPressed() {
 		super.addButtonPressed();
 		touchModel();
-		stereotypeComposite.refreshTreeViewer ();
+		stereotypeComposite.refreshTreeViewer();
 	}
 
 	/**
@@ -107,7 +109,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void removeButtonPressed() {
 		super.removeButtonPressed();
 		touchModel();
-		stereotypeComposite.refreshTreeViewer ();
+		stereotypeComposite.refreshTreeViewer();
 	}
 
 	/**
@@ -117,7 +119,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void upButtonPressed() {
 		super.upButtonPressed();
 		touchModel();
-		stereotypeComposite.refreshTreeViewer ();
+		stereotypeComposite.refreshTreeViewer();
 	}
 
 	/**
@@ -127,7 +129,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void downButtonPressed() {
 		super.downButtonPressed();
 		touchModel();
-		stereotypeComposite.refreshTreeViewer ();
+		stereotypeComposite.refreshTreeViewer();
 	}
 
 	/**
@@ -136,7 +138,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	protected void createPropTree() {
 		super.createPropTree();
-		getTree().addListener(SWT.MouseDoubleClick, new StereotypePropertiesDoubleClickListener (treeViewer, stereotypeComposite, this));
+		getTree().addListener(SWT.MouseDoubleClick, new StereotypePropertiesDoubleClickListener(treeViewer, stereotypeComposite, this));
 	}
 
 	/**
@@ -152,6 +154,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	/**
 	 * 
 	 */
+	@Override
 	public void disposeListeners() {
 		super.disposeListeners();
 		stereotypeComposite.disposeListeners();

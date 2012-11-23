@@ -14,7 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration.util;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
@@ -257,7 +258,7 @@ public class Decoration implements IPapyrusDecoration {
 		}
 	}
 
-	public static String getMessageFromDecorations(EList<IPapyrusDecoration> decorations) {
+	public static String getMessageFromDecorations(List<IPapyrusDecoration> decorations) {
 		String message = "";
 		if(decorations != null) {
 			for(IPapyrusDecoration decoration : decorations) {

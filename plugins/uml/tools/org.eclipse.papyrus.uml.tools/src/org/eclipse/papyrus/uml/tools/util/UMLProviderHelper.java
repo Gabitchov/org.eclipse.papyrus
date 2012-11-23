@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
-import org.eclipse.papyrus.infra.emf.providers.strategy.StrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
 import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
+import org.eclipse.papyrus.infra.widgets.strategy.StrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 import org.eclipse.papyrus.uml.tools.providers.UMLContainmentBrowseStrategy;
 
@@ -42,7 +42,12 @@ public class UMLProviderHelper {
 	 * @return
 	 */
 	public static EMFGraphicalContentProvider encapsulateProvider(IStructuredContentProvider provider, EObject editedEObject, EStructuralFeature feature, ResourceSet root) {
-		String historyId = HistoryUtil.getHistoryID(editedEObject, feature);
+		String historyId;
+		if(editedEObject != null && feature != null) {
+			historyId = HistoryUtil.getHistoryID(editedEObject, feature);
+		} else {
+			historyId = "DefaultHistory";
+		}
 
 		IStructuredContentProvider contentProvider;
 

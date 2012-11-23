@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.e4.ui.css.core.dom.ExtendedDocumentCSS;
 import org.eclipse.e4.ui.css.core.dom.parsers.CSSParser;
 import org.eclipse.e4.ui.css.core.dom.parsers.CSSParserFactory;
@@ -32,8 +31,7 @@ import org.eclipse.e4.ui.css.core.dom.properties.converters.ICSSValueConverter;
 import org.eclipse.e4.ui.css.core.impl.engine.AbstractCSSEngine;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSConditionFactoryImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSSelectorFactoryImpl;
-import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
-import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.BooleanConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.IntegerConverter;
@@ -355,11 +353,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		Display.getCurrent().asyncExec(new Runnable() {
 
 			public void run() {
-				try {
-					(new RefreshHandler()).execute(null);
-				} catch (ExecutionException ex) {
-					Activator.log.error(ex);
-				}
+				DiagramHelper.refreshDiagrams(); //TODO: Contextual refresh
 			}
 		});
 

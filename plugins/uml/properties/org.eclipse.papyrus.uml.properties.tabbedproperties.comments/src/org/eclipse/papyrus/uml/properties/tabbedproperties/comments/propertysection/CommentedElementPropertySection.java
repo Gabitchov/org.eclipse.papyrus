@@ -63,7 +63,9 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.parser.HTMLCleaner;
@@ -185,7 +187,7 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 
 		// creates the rich text editor content
 		richText = CommentRichTextFormToolkit.createFocusAwareRichTextEditor(getWidgetFactory(), mainComposite, "", comment, //$NON-NLS-1$
-		SWT.NONE, EditorUtils.getMultiDiagramEditor().getEditorSite());
+			SWT.NONE, EditorUtils.getMultiDiagramEditor().getEditorSite());
 		data = new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1);
 		data.heightHint = 240;
 		richText.setLayoutData(data);
@@ -350,7 +352,7 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 
 							// this is the real element, not a ghost one. display it in the list
 							if(!isProxy) {
-								if(comment.getAnnotatedElements().contains((Element)inputElement)) {
+								if(comment.getAnnotatedElements().contains(inputElement)) {
 									annotatedElements.add(comment);
 								}
 							}
@@ -394,6 +396,7 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public String getText(Object element) {
 			if(element instanceof Comment) {
 				String body = ((Comment)element).getBody();
@@ -476,7 +479,14 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 			final Element element = getElement();
 
 			// add a comment to this element
-			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+			TransactionalEditingDomain domain;
+			try {
+				domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(element);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+				return;
+			}
+
 			// open transaction to save the comment body
 			// retrieve editing domain
 			if(domain != null) {
@@ -542,7 +552,13 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 			}
 
 			// add a comment to this element
-			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+			TransactionalEditingDomain domain;
+			try {
+				domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(element);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+				return;
+			}
 			// open transaction to save the comment body
 			// retrieve editing domain
 			if(domain != null) {
@@ -680,7 +696,15 @@ public class CommentedElementPropertySection extends AbstractPropertySection imp
 				IAdaptable sourceAdapter = (IAdaptable)((List)request.getNewObject()).get(0);
 				IAdaptable targetAdapter = new SemanticAdapter(null, selectionEditPart.getModel());
 
-				CreateCommentLinkTransactionnalCommand linkVisualIDCommand = new CreateCommentLinkTransactionnalCommand(EditorUtils.getTransactionalEditingDomain(), selectionEditPart.getViewer(), sourceAdapter, targetAdapter);
+				TransactionalEditingDomain domain;
+				try {
+					domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(element);
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+					return;
+				}
+
+				CreateCommentLinkTransactionnalCommand linkVisualIDCommand = new CreateCommentLinkTransactionnalCommand(domain, selectionEditPart.getViewer(), sourceAdapter, targetAdapter);
 				CompositeCommand compoundCommand = new CompositeCommand("Display Comment with link");
 				compoundCommand.compose(new CommandProxy(createCommand));
 				compoundCommand.compose(linkVisualIDCommand);

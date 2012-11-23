@@ -16,28 +16,71 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
+import java.util.List;
+
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
+import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
+import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.ModelExplorerDecorationAdapter;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.internal.navigator.NavigatorDecoratingLabelProvider;
 
 /**
- * the label provider that inherits of modisco label provider
- * 
+ * A LabelProvider with support for decorations
  */
 public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelProvider {
 
-	private MoDiscoLabelProvider moDiscoLP;
+	private DecorationService decorationService;
 
-	public DecoratingLabelProviderWTooltips(ILabelProvider labelProvider) {
+	public DecoratingLabelProviderWTooltips(ILabelProvider labelProvider, ServicesRegistry servicesRegistry) {
 		super(labelProvider);
-		if(labelProvider instanceof MoDiscoLabelProvider) {
-			moDiscoLP = (MoDiscoLabelProvider)labelProvider;
+		try {
+			this.decorationService = servicesRegistry.getService(DecorationService.class);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
 		}
 	}
 
 	@Override
 	public String getToolTipText(Object element) {
-		return moDiscoLP.getMarkerMessage(element);
+		if(decorationService == null) {
+			return null;
+		}
+
+		List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
+		return Decoration.getMessageFromDecorations(decorations);
+	}
+
+	@Override
+	public Image getImage(Object element) {
+		Image baseImage = super.getImage(element);
+
+		if(decorationService == null) {
+			return baseImage;
+		}
+		// Get the Model Explorer Adapter
+		ModelExplorerDecorationAdapter adapter = new ModelExplorerDecorationAdapter(baseImage);
+
+
+		//Set the adapter decoration with position as indicated by decoration (from decoration service)
+		if(element != null) {
+			if(element instanceof EObject || (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
+				List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
+				if(decorations != null) {
+					adapter.setDecorations(decorations);
+				}
+			}
+		}
+
+		//return the target decorated
+		return adapter.getDecoratedImage();
+
 	}
 
 	@Override

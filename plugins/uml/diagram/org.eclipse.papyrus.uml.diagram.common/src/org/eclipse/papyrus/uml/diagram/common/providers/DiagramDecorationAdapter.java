@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.providers;
 
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.Locator;
@@ -20,7 +22,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.handles.HandleBounds;
@@ -47,9 +48,9 @@ public class DiagramDecorationAdapter {
 
 
 	/** The decoration. */
-	protected EList<IDecoration> decorations;
+	protected List<IDecoration> decorations;
 
-	protected EList<IPapyrusDecoration> pDecorations;
+	protected List<IPapyrusDecoration> pDecorations;
 
 	/** The decoration image. */
 	protected Image decorationImage;
@@ -132,7 +133,7 @@ public class DiagramDecorationAdapter {
 	 *        the is volatile
 	 * @return the set of JFace decorations
 	 */
-	public EList<IDecoration> setDecorations(EList<IPapyrusDecoration> pDecorations, int percentageFromSource, int margin, boolean isVolatile) {
+	public List<IDecoration> setDecorations(List<IPapyrusDecoration> pDecorations, int percentageFromSource, int margin, boolean isVolatile) {
 
 		final int distBetweenIconsPercent = 20;
 		final int percentageMin = 10;
@@ -321,10 +322,7 @@ public class DiagramDecorationAdapter {
 		}
 
 		public void relocate(IFigure target) {
-			Rectangle bounds =
-				reference instanceof HandleBounds
-					? new PrecisionRectangle(((HandleBounds)reference).getHandleBounds())
-					: new PrecisionRectangle(reference.getBounds());
+			Rectangle bounds = reference instanceof HandleBounds ? new PrecisionRectangle(((HandleBounds)reference).getHandleBounds()) : new PrecisionRectangle(reference.getBounds());
 
 			reference.translateToAbsolute(bounds);
 			target.translateToRelative(bounds);
@@ -337,8 +335,7 @@ public class DiagramDecorationAdapter {
 			if(decorationX > pTL.x) {
 				// only set position, if it is inside the figure, i.e. bigger than left margin
 				pDecoration.setX(decorationX);
-			}
-			else {
+			} else {
 				pDecoration.setX(pTL.x);
 			}
 			target.setLocation(pDecoration);

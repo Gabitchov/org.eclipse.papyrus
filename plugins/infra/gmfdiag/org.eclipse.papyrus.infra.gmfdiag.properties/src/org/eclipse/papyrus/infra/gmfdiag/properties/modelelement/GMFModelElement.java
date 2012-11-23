@@ -21,8 +21,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.GradientObservableValue;
-import org.eclipse.papyrus.infra.gmfdiag.properties.providers.GMFLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
@@ -84,7 +88,12 @@ public class GMFModelElement extends EMFModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		return new GMFLabelProvider();
+		try {
+			return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, source).getLabelProvider();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return new LabelProvider();
+		}
 	}
 
 }

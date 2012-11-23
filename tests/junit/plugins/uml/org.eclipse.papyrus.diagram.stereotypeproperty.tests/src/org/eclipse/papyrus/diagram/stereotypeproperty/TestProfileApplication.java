@@ -18,7 +18,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.uml2.uml.Model;
@@ -29,7 +30,7 @@ import org.junit.Test;
 public class TestProfileApplication extends AbstractPapyrusTestCase {
 
 	@Test
-	public void testToManageModel() {
+	public void testToManageModel() throws ServiceException {
 		RegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
 		final Model root = ((Model)getDiagramEditPart().resolveSemanticElement());
 		assertTrue("Registered profile not found", registeredProfile != null);
@@ -39,7 +40,7 @@ public class TestProfileApplication extends AbstractPapyrusTestCase {
 		assertTrue("strange profile", ("".equals(registeredProfile.qualifiednames)));
 		final Profile profile = (Profile)modelResource.getContents().get(0);
 		//	PackageUtil.applyProfile(root,profile, false);
-		final TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(papyrusEditor.getServicesRegistry());
 		AppliedProfileCommand appliedProfileCommand = new AppliedProfileCommand(domain, root, profile);
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(appliedProfileCommand));
 

@@ -26,7 +26,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.preference.ProfilePreferenceConstants;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementContentProvider;
@@ -59,8 +60,13 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * 
 	 * @return the domain
 	 */
-	public TransactionalEditingDomain getDomain() {
-		return EditorUtils.getTransactionalEditingDomain();
+	public TransactionalEditingDomain getEditingDomain(Element context) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(context);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
 	}
 
 	/** The panel that display applied stereotypes. */
@@ -272,8 +278,8 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * 
 	 * @param propertyView
 	 */
-	public void refreshTreeViewer () {
-		treeViewer.refresh ();
+	public void refreshTreeViewer() {
+		treeViewer.refresh();
 	}
 
 	/**
@@ -428,15 +434,15 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	public void applyStereotype(final Element elt, final Stereotype st) {
 		try {
-
-			getDomain().runExclusive(new Runnable() {
+			final TransactionalEditingDomain domain = getEditingDomain(elt);
+			domain.runExclusive(new Runnable() {
 
 				public void run() {
 
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+							domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 								@Override
 								protected void doExecute() {
@@ -466,15 +472,15 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	protected void unapplyStereotype(final Element elt, final Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
 		try {
-
-			getDomain().runExclusive(new Runnable() {
+			final TransactionalEditingDomain domain = getEditingDomain(elt);
+			domain.runExclusive(new Runnable() {
 
 				public void run() {
 
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+							domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 								@Override
 								protected void doExecute() {
@@ -504,15 +510,15 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	public void reorderStereotypeApplications(final Element element, final EList stereotypes) {
 		try {
-
-			getDomain().runExclusive(new Runnable() {
+			final TransactionalEditingDomain domain = getEditingDomain(element);
+			domain.runExclusive(new Runnable() {
 
 				public void run() {
 
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+							domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 								@Override
 								protected void doExecute() {

@@ -222,7 +222,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	}
 
 	private DiagramNavigator createNavigator(Composite parent, IPageSite pageSite) {
-		return new DiagramNavigator(parent, pageSite);
+		return new DiagramNavigator(parent, pageSite, multiEditor.getServicesRegistry());
 	}
 
 	@Override
@@ -281,7 +281,11 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 		refreshSelection();
 
 		// Refresh outline contents content with the new selection
-		refresh();
+		try {
+			refresh(); //When outline breaks, the selectionChangeEvent is borken too. It may prevent the others views from receiving it...
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -290,7 +294,7 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	private void refreshSelection() {
 
 		if(multiEditor.getActiveEditor() != null) {
-			GraphicalViewer viewer = (GraphicalViewer)multiEditor.getActiveEditor().getAdapter(GraphicalViewer.class);
+			GraphicalViewer viewer = (GraphicalViewer)multiEditor.getAdapter(GraphicalViewer.class);
 			if(viewer == null) { // In case of an editor that is not GEF based.
 				root = null;
 				diagram = null;
@@ -324,7 +328,6 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	//FIXME: Sometimes, this method is called before #createControl(), which results in a NPE with sashComp
 	//Temporary fix : A non-null test has been added to avoid breaking the view
 	private void refresh() {
-
 		// Trash and re-Create Overview
 		if((overview != null) && !(overview.isDisposed())) {
 			overview.dispose();

@@ -20,7 +20,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
@@ -132,8 +133,16 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 		if(getElement() instanceof Image) {
 
 			final File imgFile = new File(iconSelected);
+			Image image = (Image)getElement();
 
-			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+			TransactionalEditingDomain domain;
+			try {
+				domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(image);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+				return;
+			}
+
 			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(domain, "Set Image content", null) {
 
 				/**
@@ -159,9 +168,15 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 	protected void removeAction() {
 		// Erase image content
 		if(getElement() instanceof Image) {
-
-			TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
-			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(dom, "Remove Image content", null) {
+			Image image = (Image)getElement();
+			TransactionalEditingDomain domain;
+			try {
+				domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(image);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+				return;
+			}
+			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(domain, "Remove Image content", null) {
 
 				/**
 				 * {@inheritDoc}
@@ -177,7 +192,7 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 				}
 			};
 
-			dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(operation));
+			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(operation));
 
 			refresh();
 		}

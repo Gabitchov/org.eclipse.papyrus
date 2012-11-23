@@ -97,7 +97,7 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	/**
 	 * The serviceRegistry.
 	 */
-//	private ServicesRegistry servicesRegistry;
+	//	private ServicesRegistry servicesRegistry;
 
 	/**
 	 * Associated editor. Needed by saveAs to synchronize editor input.
@@ -179,7 +179,7 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 */
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 
-//		this.servicesRegistry = servicesRegistry;
+		//		this.servicesRegistry = servicesRegistry;
 
 		// Retrieve required services.
 		resourceSet = servicesRegistry.getService(ModelSet.class);
@@ -222,27 +222,27 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 			// Check if commandStack is null (meaning that transactionalEditingDomain 
 			// is disposed
 			CommandStack commandStack = transactionalEditingDomain.getCommandStack();
-			if( commandStack != null) {
+			if(commandStack != null) {
 				transactionalEditingDomain.getCommandStack().removeCommandStackListener(commandStackListener);
 			}
 			transactionalEditingDomain.removeResourceSetListener(resourceSetListener);
-//			resourceSetListener = null;
+			//			resourceSetListener = null;
 		}
-		
+
 		// clean properties in order to help GC
 		inputChangedListeners.clear();
 		inputChangedListeners = null;
 		multiDiagramEditor = null;
-//		servicesRegistry = null;
+		//		servicesRegistry = null;
 		transactionalEditingDomain = null;
 		resourceSet = null;
 		lifeCycleEvent = null;
-		
+
 		postSaveListeners.clear();
 		saveListeners.clear();
 		preSaveListeners.clear();
-		
-		
+
+
 	}
 
 	/**
@@ -474,8 +474,9 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 		 */
 		public boolean isDirty() {
 			for(ISaveablePart part : this) {
-				if(part.isDirty())
+				if(part.isDirty()) {
 					return true;
+				}
 			}
 
 			return false;

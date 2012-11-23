@@ -20,9 +20,10 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.labelprovider.Activator;
+import org.eclipse.papyrus.infra.services.labelprovider.service.ContextualLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.ExtensibleLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.widgets.providers.ExtensibleLabelProvider;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
 
 /**
  * Default implementation for the LabelProviderService
@@ -56,6 +57,12 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 		readLabelProviders(config);
 	}
 
+	/**
+	 * Parses the available contexts from the extension point
+	 * 
+	 * @param config
+	 *        The extension point IConfigurationElements
+	 */
 	private void readContexts(IConfigurationElement[] config) {
 		for(IConfigurationElement e : config) {
 			try {
@@ -87,6 +94,12 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 		}
 	}
 
+	/**
+	 * Parses the available label providers from the extension point
+	 * 
+	 * @param config
+	 *        The extension point IConfigurationElements
+	 */
 	private void readLabelProviders(IConfigurationElement[] config) {
 		for(IConfigurationElement e : config) {
 			try {
@@ -163,6 +176,9 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 		return labelProviders.get(context);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	private class SharedExtensibleLabelProvider extends ExtensibleLabelProvider {
 
 		@Override
@@ -175,6 +191,28 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 		public void doDispose() {
 			super.dispose(); //Disposed only when the service is disposed
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ILabelProvider getLabelProvider(String context, Object contextElement) {
+		ILabelProvider provider = getLabelProvider(context);
+		if(provider instanceof ContextualLabelProvider) {
+			((ContextualLabelProvider)provider).setContext(contextElement);
+		}
+		return provider;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ILabelProvider getLabelProvider(Object contextElement) {
+		ILabelProvider provider = getLabelProvider();
+		if(provider instanceof ContextualLabelProvider) {
+			((ContextualLabelProvider)provider).setContext(contextElement);
+		}
+		return provider;
 	}
 
 }

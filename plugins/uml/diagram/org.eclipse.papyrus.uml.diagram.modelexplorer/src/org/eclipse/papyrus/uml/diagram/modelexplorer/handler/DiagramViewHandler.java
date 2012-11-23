@@ -16,11 +16,14 @@ package org.eclipse.papyrus.uml.diagram.modelexplorer.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramContentProvider;
-import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramLabelProvider;
-import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.ToolItem;
@@ -55,13 +58,20 @@ public class DiagramViewHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+		ILabelProvider labelProvider;
+		try {
+			labelProvider = ServiceUtilsForHandlers.getInstance().getService(LabelProviderService.class, event).getLabelProvider();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			labelProvider = new LabelProvider();
+		}
+
 		if(((ToolItem)((Event)event.getTrigger()).widget).getSelection()) {
 			getCommonNavigator().getCommonViewer().setContentProvider(new DiagramContentProvider());
-			getCommonNavigator().getCommonViewer().setLabelProvider(new DiagramLabelProvider());
 		} else {
 			getCommonNavigator().getCommonViewer().setContentProvider(new MoDiscoContentProvider());
-			getCommonNavigator().getCommonViewer().setLabelProvider(new DecoratingLabelProviderWTooltips(new MoDiscoLabelProvider()));
 		}
+		getCommonNavigator().getCommonViewer().setLabelProvider(labelProvider);
 		getCommonNavigator().getCommonViewer().refresh();
 		return null;
 	}

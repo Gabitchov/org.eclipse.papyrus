@@ -16,8 +16,8 @@ import java.util.TreeMap;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.infra.widgets.providers.ExtensibleLabelProvider;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.ExtensibleLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.views.properties.Activator;
 
 /**

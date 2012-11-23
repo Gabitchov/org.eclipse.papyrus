@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.widgets.providers.IDetailLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**

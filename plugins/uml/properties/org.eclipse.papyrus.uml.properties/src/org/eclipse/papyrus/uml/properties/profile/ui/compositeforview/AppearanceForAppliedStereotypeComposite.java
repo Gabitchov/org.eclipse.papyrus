@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
@@ -310,7 +311,12 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	}
 
 	public TransactionalEditingDomain getDomain() {
-		return EditorUtils.getTransactionalEditingDomain();
+		try {
+			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(element);
+		} catch (Exception ex){
+			Activator.log.error(ex);
+			return null;
+		}
 	}
 
 	/**

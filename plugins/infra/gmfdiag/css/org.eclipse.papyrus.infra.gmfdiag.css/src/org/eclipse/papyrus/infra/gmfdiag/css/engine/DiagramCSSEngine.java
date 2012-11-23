@@ -14,14 +14,12 @@ package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 import java.io.IOException;
 import java.net.URL;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
-import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.SemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
@@ -108,11 +106,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 
 	public void handleChange(ChangeEvent event) {
 		resetCache();
-		try {
-			(new RefreshHandler()).execute(null);
-		} catch (ExecutionException ex) {
-			Activator.log.error(ex);
-		}
+		DiagramHelper.refreshDiagrams(); //FIXME: Should be contextual. We should only refresh the editor(s) containing this Diagram
 	}
 
 	@Override

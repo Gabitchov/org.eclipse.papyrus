@@ -195,7 +195,7 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 	 * @return the editing domain (can be null)
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		ServiceUtilsForActionHandlers serviceUtils = new ServiceUtilsForActionHandlers();
+		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 		TransactionalEditingDomain editingDomain = null;
 		try {
 			editingDomain = serviceUtils.getTransactionalEditingDomain();

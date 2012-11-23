@@ -21,7 +21,13 @@
       </dragAssistant>
    </extension>
    <extension point="org.eclipse.ui.navigator.navigatorContent">
-      <navigatorContent activeByDefault="false" contentProvider="org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider" id="org.eclipse.papyrus.views.modelexplorer.navigatorContent" labelProvider="org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider" name="Model Contents" priority="lowest">
+      <navigatorContent
+            activeByDefault="false"
+            contentProvider="org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider"
+            id="org.eclipse.papyrus.views.modelexplorer.navigatorContent"
+            labelProvider="org.eclipse.jface.viewers.LabelProvider"
+            name="Model Contents"
+            priority="lowest">
          <triggerPoints>
             <or>
                <instanceof value="org.eclipse.emf.ecore.EObject">
@@ -231,7 +237,7 @@
          </instanceof>
       </selectionEnablement>
       <editorInputEnablement>
-         <instanceof value="org.eclipse.ui.part.IFileEditorInput">
+         <instanceof value="org.eclipse.ui.IFileEditorInput">
          </instanceof>
       </editorInputEnablement>
    </linkHelper>

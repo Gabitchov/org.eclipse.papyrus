@@ -21,10 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForWorkbenchPage;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -65,11 +63,8 @@ public class LinkHelper implements ILinkHelper {
 		//test if the selection come the tree viewer in order to avoid  cycle: Diagram -> tree-> diagram
 		// if the diagram has been selected the selection is not a TreeSelection
 		if(selection instanceof ITreeSelection) {
-			IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-
-
 			try {
-				ISashWindowsContainer windowsContainer = ServiceUtils.getInstance().getISashWindowsContainer(papyrusEditor.getServicesRegistry());
+				ISashWindowsContainer windowsContainer = ServiceUtilsForWorkbenchPage.getInstance().getISashWindowsContainer(aPage);
 
 				Iterator<IEditorPart> iterPart = windowsContainer.getVisibleIEditorParts().iterator();
 

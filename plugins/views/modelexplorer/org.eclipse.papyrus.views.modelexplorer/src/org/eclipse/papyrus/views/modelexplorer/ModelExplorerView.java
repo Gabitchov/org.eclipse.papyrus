@@ -22,7 +22,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -40,6 +39,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.ToolTip;
@@ -51,9 +51,9 @@ import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesMod
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
 import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
@@ -95,6 +95,13 @@ import com.google.common.collect.Lists;
  * 
  */
 public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement, IEditingDomainProvider {
+
+	/**
+	 * The context of the LabelProviderService used by this view
+	 * 
+	 * @see {@link LabelProviderService}
+	 */
+	public static final String LABEL_PROVIDER_SERVICE_CONTEXT = "org.eclipse.papyrus.views.modelexplorer.labelProvider.context";
 
 	/**
 	 * The associated EditorPart
@@ -323,15 +330,29 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		@SuppressWarnings("unchecked")
 		// get label provider from content service (which in turn evaluates extension points in
 		// function of the input)
-		Set<Object> descriptors = contentService.findDescriptorsByTriggerPoint(getInitialInput(), false);
+		Object input = getInitialInput();
+		Set<Object> descriptors = contentService.findDescriptorsByTriggerPoint(input, false);
 		for(Object descriptor : descriptors) {
 			if(descriptor instanceof NavigatorContentDescriptor) {
-				try {
-					ILabelProvider labelProvider = ((NavigatorContentDescriptor)descriptor).createLabelProvider();
-					viewer.setLabelProvider(new DecoratingLabelProviderWTooltips(labelProvider)); // add for decorator and tooltip support
-				} catch (CoreException e) {
-					Activator.log.error(e);
+				ILabelProvider labelProvider = null;
+
+				if(input instanceof ServicesRegistry) {
+					ServicesRegistry registry = (ServicesRegistry)input;
+					try {
+						labelProvider = registry.getService(LabelProviderService.class).getLabelProvider(LABEL_PROVIDER_SERVICE_CONTEXT);
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+					}
+
+					labelProvider = new DecoratingLabelProviderWTooltips(labelProvider, (ServicesRegistry)input);
 				}
+
+				if(labelProvider == null) {
+					labelProvider = new LabelProvider();
+				}
+
+				//ILabelProvider labelProvider = ((NavigatorContentDescriptor)descriptor).createLabelProvider();
+				viewer.setLabelProvider(labelProvider); // add for decorator and tooltip support
 				break;
 			}
 		}
@@ -584,16 +605,20 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * @return
 	 */
 	private IPropertySheetPage getPropertySheetPage() {
-		final IMultiDiagramEditor multiDiagramEditor = EditorUtils.getMultiDiagramEditor();
+		try {
+			final IMultiDiagramEditor multiDiagramEditor = ServiceUtils.getInstance().getService(IMultiDiagramEditor.class, serviceRegistry);
 
-		if(multiDiagramEditor != null) {
-			if(propertySheetPage == null) {
-				if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
-					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
-					this.propertySheetPage = new TabbedPropertySheetPage(contributor);
+			if(multiDiagramEditor != null) {
+				if(propertySheetPage == null) {
+					if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
+						ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
+						this.propertySheetPage = new TabbedPropertySheetPage(contributor);
+					}
 				}
+				return propertySheetPage;
 			}
-			return propertySheetPage;
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
 		}
 		return null;
 	}
@@ -649,8 +674,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Expands the given CommonViewer to reveal the given elements
-	 * @param elementList The elements to reveal
-	 * @param commonViewer The CommonViewer they are to be revealed in
+	 * 
+	 * @param elementList
+	 *        The elements to reveal
+	 * @param commonViewer
+	 *        The CommonViewer they are to be revealed in
 	 */
 	public static void reveal(Iterable<?> elementList, CommonViewer commonViewer) {
 		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
@@ -680,15 +708,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				// reveal the resource if necessary
 				Resource r = null;
-				if (!parents.isEmpty()) {
-					 r = parents.get(parents.size() - 1).eResource();
+				if(!parents.isEmpty()) {
+					r = parents.get(parents.size() - 1).eResource();
 				} else {
 					r = currentEObject.eResource();
 				}
 
-				if (r != null) {
+				if(r != null) {
 					ResourceSet rs = r.getResourceSet();
-					if (rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
+					if(rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
 						commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
 						commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
 					}
@@ -720,11 +748,14 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		selectReveal(new StructuredSelection(matchingItemsToSelect), commonViewer);
 	}
-	
+
 	/**
 	 * Selects the given ISelection in the given CommonViwer
-	 * @param structuredSelection The ISelection to select
-	 * @param commonViewer The ComonViewer to select it in
+	 * 
+	 * @param structuredSelection
+	 *        The ISelection to select
+	 * @param commonViewer
+	 *        The ComonViewer to select it in
 	 */
 	public static void selectReveal(ISelection structuredSelection, Viewer commonViewer) {
 		commonViewer.setSelection(structuredSelection, true);
@@ -732,8 +763,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Selects and, if possible, reveals the given ISelection in the given CommonViwer
-	 * @param selection The ISelection to select
-	 * @param viewer The ComonViewer to select it in
+	 * 
+	 * @param selection
+	 *        The ISelection to select
+	 * @param viewer
+	 *        The ComonViewer to select it in
 	 */
 	public static void reveal(ISelection selection, CommonViewer viewer) {
 		if(selection instanceof IStructuredSelection) {

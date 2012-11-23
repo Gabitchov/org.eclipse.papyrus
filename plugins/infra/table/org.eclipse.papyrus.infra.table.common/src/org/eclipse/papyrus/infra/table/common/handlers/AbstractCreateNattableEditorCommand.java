@@ -49,8 +49,6 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
-import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -58,7 +56,6 @@ import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.table.common.Activator;
@@ -368,22 +365,13 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	}
 
 	/**
-	 * Get the current MultiDiagramEditor.
-	 * 
-	 * @return
-	 * @throws BackboneException
-	 */
-	protected IMultiDiagramEditor getMultiDiagramEditor() throws BackboneException {
-		return EditorUtils.getMultiDiagramEditorChecked();
-	}
-
-	/**
 	 * Returns the context used to create the table
 	 * 
 	 * @return
 	 *         the context used to create the table or <code>null</code> if not found
 	 * @throws ServiceException
 	 */
+	//FIXME: This method introduces a dependency to UML. Use the semantic service instead.
 	protected EObject getTableContext() {
 		List<EObject> selection = getSelection();
 

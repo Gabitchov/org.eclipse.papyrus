@@ -89,7 +89,7 @@
                   This is the class that implements the provider.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.uml.diagram.paletteconfiguration.service.IAspectActionProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider"/>
                </appInfo>
             </annotation>
          </attribute>

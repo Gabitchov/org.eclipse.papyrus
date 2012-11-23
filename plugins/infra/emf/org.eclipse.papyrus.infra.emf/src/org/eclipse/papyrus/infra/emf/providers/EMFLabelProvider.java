@@ -24,7 +24,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.widgets.providers.IDetailLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**

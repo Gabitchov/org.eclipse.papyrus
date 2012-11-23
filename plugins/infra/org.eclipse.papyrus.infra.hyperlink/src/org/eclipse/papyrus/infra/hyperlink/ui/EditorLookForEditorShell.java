@@ -35,7 +35,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -244,7 +243,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		diagramListTreeViewer.setLabelProvider(labelProvider);
 
 
-		diagramListTreeViewer.setContentProvider(new EditorListContentProvider());
+		diagramListTreeViewer.setContentProvider(new EditorListContentProvider(model));
 		diagramListTreeViewer.setInput(" "); //$NON-NLS-1$
 
 		// add listner on the new button to display menu for each diagram
@@ -270,10 +269,18 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
 				IStructuredSelection iSelection = (IStructuredSelection)getModeFilteredTree().getViewer().getSelection();
-				Iterator iterator = iSelection.iterator();
+				Iterator<?> iterator = iSelection.iterator();
+
+				IPageMngr pageManager;
+				try {
+					pageManager = ServiceUtilsForEObject.getInstance().getIPageMngr(model);
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+					return;
+				}
+
 				while(iterator.hasNext()) {
-					IPageMngr pageMngr = EditorUtils.getIPageMngr();
-					pageMngr.removePage(iterator.next());
+					pageManager.removePage(iterator.next());
 				}
 				getDiagramfilteredTree().getViewer().setInput(null);
 				getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$

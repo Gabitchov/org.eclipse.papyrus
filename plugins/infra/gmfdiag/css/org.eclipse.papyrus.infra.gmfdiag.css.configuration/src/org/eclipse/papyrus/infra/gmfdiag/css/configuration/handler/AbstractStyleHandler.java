@@ -165,7 +165,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 
 		try {
 			resource.save(new HashMap<Object, Object>());
-			(new CSSRefreshHandler()).execute(null);
+			(new CSSRefreshHandler()).execute(null); //FIXME: NPE on ExecutionEvent
 		} catch (IOException ex) {
 			Activator.log.error(ex);
 			MessageDialog.open(MessageDialog.ERROR, parentShell, "Style error", "An unexpected error occured while trying to save the Stylesheet", SWT.NONE);

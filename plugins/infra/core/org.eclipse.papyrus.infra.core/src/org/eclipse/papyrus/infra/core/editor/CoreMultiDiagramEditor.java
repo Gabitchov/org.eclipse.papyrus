@@ -363,7 +363,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			}
 		}
 
-		if(EditingDomain.class == adapter) {
+		if(EditingDomain.class == adapter || TransactionalEditingDomain.class == adapter) {
 			return transactionalEditingDomain;
 		}
 

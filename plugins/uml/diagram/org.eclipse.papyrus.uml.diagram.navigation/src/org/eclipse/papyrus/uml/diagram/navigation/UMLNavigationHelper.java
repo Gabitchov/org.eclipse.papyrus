@@ -23,29 +23,33 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLNavigationHelper {
 
 	public static final String BEHAVIORAL_NAVIGATION = "Behavioral";
+
 	public static final String STRUCTURAL_NAVIGATION = "Structural";
 
 	@SuppressWarnings("serial")
-	private static HashMap<EStructuralFeature, String> featureNavigationTypeMap = new HashMap<EStructuralFeature, String >() {{
-		put(UMLPackage.Literals.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR, BEHAVIORAL_NAVIGATION);
-		put(UMLPackage.Literals.CALL_BEHAVIOR_ACTION__BEHAVIOR, BEHAVIORAL_NAVIGATION);
-		put(UMLPackage.Literals.BEHAVIORAL_FEATURE__METHOD, BEHAVIORAL_NAVIGATION);
-		put(UMLPackage.Literals.STATE__ENTRY, BEHAVIORAL_NAVIGATION);
-		put(UMLPackage.Literals.STATE__DO_ACTIVITY, BEHAVIORAL_NAVIGATION);
-		put(UMLPackage.Literals.STATE__EXIT, BEHAVIORAL_NAVIGATION);
-		put(UMLPackage.Literals.TRANSITION__EFFECT, BEHAVIORAL_NAVIGATION);
+	private static HashMap<EStructuralFeature, String> featureNavigationTypeMap = new HashMap<EStructuralFeature, String>() {
 
-		put(UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT, STRUCTURAL_NAVIGATION);
-		put(UMLPackage.Literals.ELEMENT__OWNED_ELEMENT, STRUCTURAL_NAVIGATION);
-		put(UMLPackage.Literals.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR, STRUCTURAL_NAVIGATION);
-	}};
+		{
+			put(UMLPackage.Literals.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR, BEHAVIORAL_NAVIGATION);
+			put(UMLPackage.Literals.CALL_BEHAVIOR_ACTION__BEHAVIOR, BEHAVIORAL_NAVIGATION);
+			put(UMLPackage.Literals.BEHAVIORAL_FEATURE__METHOD, BEHAVIORAL_NAVIGATION);
+			put(UMLPackage.Literals.STATE__ENTRY, BEHAVIORAL_NAVIGATION);
+			put(UMLPackage.Literals.STATE__DO_ACTIVITY, BEHAVIORAL_NAVIGATION);
+			put(UMLPackage.Literals.STATE__EXIT, BEHAVIORAL_NAVIGATION);
+			put(UMLPackage.Literals.TRANSITION__EFFECT, BEHAVIORAL_NAVIGATION);
+
+			put(UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT, STRUCTURAL_NAVIGATION);
+			put(UMLPackage.Literals.ELEMENT__OWNED_ELEMENT, STRUCTURAL_NAVIGATION);
+			put(UMLPackage.Literals.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR, STRUCTURAL_NAVIGATION);
+		}
+	};
 
 	public static String getNavigationType(NavigableElement navElement) {
 		return getNavigationTypeFromFeature(navElement.getFeature());
 	}
 
 	public static String getNavigationTypeFromFeature(EStructuralFeature feature) {
-		if (feature == null) {
+		if(feature == null) {
 			// no feature specified, report structural
 			// because it is the root element
 			return STRUCTURAL_NAVIGATION;

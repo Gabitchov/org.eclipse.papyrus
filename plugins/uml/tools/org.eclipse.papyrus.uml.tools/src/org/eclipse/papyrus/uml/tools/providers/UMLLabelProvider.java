@@ -3,12 +3,6 @@ package org.eclipse.papyrus.uml.tools.providers;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
-import org.eclipse.gmf.runtime.notation.BasicCompartment;
-import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.tools.Activator;
@@ -46,9 +40,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	/** icon for metaclass */
 	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$
 
-	/** icon for a compartment */
-	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
-
 	/**
 	 * 
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
@@ -81,11 +72,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 
 			//If image is null, return the standard EMF image
 			return image == null ? super.getImage(element) : image;
-		}
-
-		// if the element is a compartment
-		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
-			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, ICON_COMPARTMENT);
 		}
 
 		return super.getImage(element);
@@ -264,11 +250,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			// when the element is not a NamedElement, we return its Type name
 			String className = element.eClass().getName();
 			return className;
-		} else if(element instanceof View) { // maybe it is a view of a compartment
-			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
-			if(dummyEP instanceof ResizableCompartmentEditPart) {
-				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();
-			}
 		}
 
 		return super.getText(element);

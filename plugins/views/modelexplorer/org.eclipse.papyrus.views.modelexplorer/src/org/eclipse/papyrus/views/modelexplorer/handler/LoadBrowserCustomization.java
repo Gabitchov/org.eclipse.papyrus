@@ -15,6 +15,7 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,8 +44,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.uml.tools.model.UmlUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.services.semantic.service.SemanticService;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Shell;
@@ -84,7 +85,16 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
 			final List<MetamodelView> registeredCustomizations = customizationManager.getRegisteredCustomizations();
 
-			final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, getMetamodels());
+			LoadCustomizationsDialog loadCustomizationsDialog;
+
+			try {
+				ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+				loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, getMetamodels(registry));
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+				loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, Collections.<EPackage> emptyList());
+			}
+
 			if(Window.OK == loadCustomizationsDialog.open()) {
 				try {
 
@@ -220,37 +230,32 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		return builder.toString();
 	}
 
+	//	/**
+	//	 * Get the metmodel URI
+	//	 * **/
+	//@Unused
+	//	private String getMetamodelURI() {
+	//
+	//		try {
+	//			EList<EObject> contents = UmlUtils.getUmlResource(getModelSet()).getContents();
+	//			if(contents.size() > 0) {
+	//				EObject eObject = contents.get(0);
+	//				EClass eClass = eObject.eClass();
+	//				if(eClass != null) {
+	//					return eClass.getEPackage().getNsURI();
+	//				}
+	//			}
+	//		} catch (Exception e) {
+	//			Activator.log.error(e);
+	//		}
+	//		return ""; //$NON-NLS-1$
+	//	}
+
 	/**
 	 * Get the metmodel URI
 	 * **/
-	public String getMetamodelURI() {
-
-		try {
-			EList<EObject> contents = UmlUtils.getUmlResource(getModelSet()).getContents();
-			if(contents.size() > 0) {
-				EObject eObject = contents.get(0);
-				EClass eClass = eObject.eClass();
-				if(eClass != null) {
-					return eClass.getEPackage().getNsURI();
-				}
-			}
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
-		return ""; //$NON-NLS-1$
-	}
-
-	/**
-	 * Get the metmodel URI
-	 * **/
-	public List<EPackage> getMetamodels() {
+	protected List<EPackage> getMetamodels(ServicesRegistry serviceRegistry) {
 		List<EPackage> ePackages = new ArrayList<EPackage>();
-		ServicesRegistry serviceRegistry = null;
-		try {
-			serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-		} catch (ServiceException e) {
-			Activator.log.error(e);
-		}
 
 		/*
 		 * we look for the current editors, because their are represented in the model explorer
@@ -259,30 +264,32 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		IPageMngr pageMngr = null;
 		try {
 			pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+			List<Object> pages = pageMngr.allPages();
+			for(int i = 0; i < pages.size(); i++) {
+				if(pages.get(i) instanceof EObject) {
+					EPackage ePackage = ((EObject)pages.get(i)).eClass().getEPackage();
+					if(!ePackages.contains(ePackage)) {
+						ePackages.add(ePackage);
+					}
+				}
+			}
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
-		List<Object> pages = pageMngr.allPages();
-		for(int i = 0; i < pages.size(); i++) {
-			if(pages.get(i) instanceof EObject) {
-				EPackage ePackage = ((EObject)pages.get(i)).eClass().getEPackage();
-				if(!ePackages.contains(ePackage)) {
-					ePackages.add(ePackage);
-				}
-			}
-		}
 
 		try {
-			EList<EObject> contents = UmlUtils.getUmlResource(getModelSet()).getContents();
-			if(contents.size() > 0) {
-				EObject eObject = contents.get(0);
-				EClass eClass = eObject.eClass();
+			SemanticService semantic = serviceRegistry.getService(SemanticService.class);
+			for(EObject rootElement : semantic.getSemanticRoots()) {
+				EClass eClass = rootElement.eClass();
 				if(eClass != null) {
-					ePackages.add(eClass.getEPackage());
+					EPackage ePackage = eClass.getEPackage();
+					if(!ePackages.contains(ePackage)) {
+						ePackages.add(eClass.getEPackage());
+					}
 				}
 			}
-		} catch (Exception e) {
-			Activator.log.error(e);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
 		}
 		return ePackages;
 	}

@@ -34,23 +34,21 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 /**
  * this an helper to manage hyperlink document
- *
+ * 
  */
-
 public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 
-	
+
 	@Override
 	public HyperLinkObject getHyperLinkObject(EAnnotation eAnnotation) {
 		if(eAnnotation.getSource().equals(HyperLinkConstants.HYPERLINK_DOCUMENT)) {
 			HyperLinkDocument hyperLinkDocument = new HyperLinkDocument();
 			hyperLinkDocument.setHyperlinkDocument(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_DOCUMENT_LOCALIZATION));
 			hyperLinkDocument.setTooltipText(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT));
-			if(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION)!=null){
-				boolean isDefaultNaviagation=Boolean.parseBoolean(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION));
+			if(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION) != null) {
+				boolean isDefaultNaviagation = Boolean.parseBoolean(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION));
 				hyperLinkDocument.setIsDefault(isDefaultNaviagation);
-			}
-			else{
+			} else {
 				hyperLinkDocument.setIsDefault(false);
 			}
 
@@ -59,18 +57,22 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 
 		return null;
 	}
+
 	@Override
 	public RecordingCommand getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, HyperLinkObject hyperlinkObject) {
-		if( hyperlinkObject instanceof HyperLinkDocument){
-			HyperLinkDocument hyperLinkDocument= (HyperLinkDocument)hyperlinkObject;
-			return new CreateHyperLinkDocumentCommand(domain, object, hyperLinkDocument.getTooltipText(), hyperLinkDocument.getHyperlinkDocument(),hyperlinkObject.getIsDefault());
+		if(hyperlinkObject instanceof HyperLinkDocument) {
+			HyperLinkDocument hyperLinkDocument = (HyperLinkDocument)hyperlinkObject;
+			return new CreateHyperLinkDocumentCommand(domain, object, hyperLinkDocument.getTooltipText(), hyperLinkDocument.getHyperlinkDocument(), hyperlinkObject.getIsDefault());
+		} else {
+			return null;
 		}
-		else{return null;}
 	}
+
 	@Override
 	public String getNameofManagedHyperLink() {
 		return Messages.DocumentHyperLinkHelper_Document;
 	}
+
 	@Override
 	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
 		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
@@ -80,14 +82,14 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 		}
 
 	}
-	
+
 	@Override
 	public List<HyperLinkObject> getFilteredObject(List<HyperLinkObject> hyperlinkObjects) {
-		ArrayList<HyperLinkObject> result= new ArrayList<HyperLinkObject>();
-		Iterator<HyperLinkObject> iterator= hyperlinkObjects.iterator();
+		ArrayList<HyperLinkObject> result = new ArrayList<HyperLinkObject>();
+		Iterator<HyperLinkObject> iterator = hyperlinkObjects.iterator();
 		while(iterator.hasNext()) {
-			HyperLinkObject hyperlinkObject = (HyperLinkObject)iterator.next();
-			if(hyperlinkObject instanceof HyperLinkDocument){
+			HyperLinkObject hyperlinkObject = iterator.next();
+			if(hyperlinkObject instanceof HyperLinkDocument) {
 				result.add(hyperlinkObject);
 			}
 		}

@@ -21,7 +21,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppliedProfileCompositeWithView;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
@@ -62,6 +61,7 @@ public class AppliedProfileSection extends AbstractPropertySection {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void refresh() {
 		appliedProfileComposite.refresh();
 	}
@@ -70,6 +70,7 @@ public class AppliedProfileSection extends AbstractPropertySection {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
 		if(selection instanceof IStructuredSelection) {
@@ -86,8 +87,6 @@ public class AppliedProfileSection extends AbstractPropertySection {
 					appliedProfileComposite.setSelection(selection);
 				}
 			}
-
-			appliedProfileComposite.setDomain(EditorUtils.getTransactionalEditingDomain());
 		}
 	}
 
@@ -113,9 +112,11 @@ public class AppliedProfileSection extends AbstractPropertySection {
 	/**
 	 * 
 	 */
+	@Override
 	public void dispose() {
 		super.dispose();
-		if(appliedProfileComposite != null)
+		if(appliedProfileComposite != null) {
 			appliedProfileComposite.disposeListeners();
+		}
 	}
 }

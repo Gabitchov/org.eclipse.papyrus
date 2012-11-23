@@ -79,5 +79,16 @@ public abstract class TransactionalDropStrategy extends AbstractDropStrategy {
 		return EMFHelper.resolveEditingDomain(targetEditPart);
 	}
 
-	public abstract Command doGetCommand(Request request, EditPart targetEditPart);
+	/**
+	 * The command to be executed when the strategy is applied.
+	 * Should return null if the strategy cannot handle the request.
+	 * 
+	 * @param request
+	 *        The drop request
+	 * @param targetEditPart
+	 *        The target edit part
+	 * @return
+	 *         A command, or null if the strategy cannot handle the request
+	 */
+	protected abstract Command doGetCommand(Request request, EditPart targetEditPart);
 }

@@ -15,14 +15,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
-import static org.eclipse.papyrus.infra.core.Activator.log;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -57,70 +56,6 @@ import org.eclipse.ui.PlatformUI;
  */
 // FIXME throws Exception (eg: NotFoundException) instead of null
 public class EditorUtils {
-
-	/**
-	 * Gets the {@link IMultiDiagramEditor} interface of the a Eclipse active
-	 * editor, if possible, or null if not possible. <br>
-	 * WARNING - This method doesn't work during the initialization of the main
-	 * editor. See note in class doc. <br>
-	 * This method return null if there is no active editor, or if the editor is
-	 * not instance of IMultiDiagramEditor. <br>
-	 * This method is designed to be used by ui actions that interact with the
-	 * active editor. <br>
-	 * This method should not be used during the editor initialization phase. <br>
-	 * In any case, a check should be done on the returned value that can be
-	 * null. Usage of this method is discouraged. Use {@link #getMultiDiagramEditorChecked()} instead.
-	 * 
-	 * 
-	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
-	 */
-	public static IMultiDiagramEditor getMultiDiagramEditor() {
-		// Lookup ServiceRegistry
-		IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if(workbenchWindow == null) {
-			return null;
-		}
-		IWorkbenchPage page = workbenchWindow.getActivePage();
-		if(page == null) {
-			return null;
-		}
-		IEditorPart editor = page.getActiveEditor();
-		if(editor instanceof IMultiDiagramEditor) {
-			return (IMultiDiagramEditor)editor;
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Gets the {@link IMultiDiagramEditor} interface of the a Eclipse active
-	 * editor, if possible, or throw an exception if not possible. <br>
-	 * WARNING - This method throw an exception during the initialization of the
-	 * main editor. This method throws an exception if there is no active
-	 * editor, or if the editor is not instance of IMultiDiagramEditor. <br>
-	 * This method is designed to be used by ui actions that interact with the
-	 * active editor. <br>
-	 * 
-	 * 
-	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
-	 * @throws BackboneException
-	 *         If it is not possible to get an instanceof {@link IMultiDiagramEditor}
-	 */
-	public static IMultiDiagramEditor getMultiDiagramEditorChecked() throws BackboneException {
-		IEditorPart editor;
-		try {
-			editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		} catch (NullPointerException e) {
-			// Can't get the active editor
-			throw new BackboneException("Can't get the current Eclipse Active Editor: There is no active editor at this time.");
-		}
-
-		if(editor instanceof IMultiDiagramEditor) {
-			return (IMultiDiagramEditor)editor;
-		} else {
-			throw new BackboneException("Can't get an Active Editor instance of IMultiDiagramEditor. (actual type:" + editor.getClass().getName() + ")");
-		}
-	}
 
 	/**
 	 * Gets the opened multi-diagram editors.
@@ -174,6 +109,374 @@ public class EditorUtils {
 			}
 		}
 		return list.toArray(new IMultiDiagramEditor[list.size()]);
+	}
+
+	/**
+	 * Create an instance of IPageMngr acting on the provided resource. This
+	 * instance is suitable to add, remove, close or open diagrams.
+	 * 
+	 * @param diResource
+	 * @return The non transactional implementation of IPageMngr
+	 */
+	public static IPageMngr getIPageMngr(Resource diResource) {
+		return DiSashModelMngr.createIPageMngr(diResource);
+	}
+
+	/**
+	 * Create an instance of IPageMngr acting on the provided resource. This
+	 * instance is suitable to add, remove, close or open diagrams.
+	 * 
+	 * @param diResource
+	 * @param editingDomain
+	 * 
+	 * @return The transactional implementation of IPageMngr
+	 */
+	public static IPageMngr getTransactionalIPageMngr(Resource diResource, TransactionalEditingDomain editingDomain) {
+		return TransactionalDiSashModelMngr.createIPageMngr(diResource, editingDomain);
+	}
+
+
+	////////////////////////////////////////////
+	// The following methods are deprecated. They have been replaced by specific
+	// implementations of ServiceUtils (e.g. ServiceUtilsForHandlers, ServiceUtilsForEObject),
+	// which depend on a specific context (ExecutionEvent, EObject, ...) instead of
+	// the active editor
+	////////////////////////////////////////////
+
+	/**
+	 * Gets the {@link IMultiDiagramEditor} interface of the a Eclipse active
+	 * editor, if possible, or null if not possible. <br>
+	 * WARNING - This method doesn't work during the initialization of the main
+	 * editor. See note in class doc. <br>
+	 * This method return null if there is no active editor, or if the editor is
+	 * not instance of IMultiDiagramEditor. <br>
+	 * This method is designed to be used by ui actions that interact with the
+	 * active editor. <br>
+	 * This method should not be used during the editor initialization phase. <br>
+	 * In any case, a check should be done on the returned value that can be
+	 * null. Usage of this method is discouraged. Use {@link #getMultiDiagramEditorChecked()} instead.
+	 * 
+	 * 
+	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
+	 */
+	public static IMultiDiagramEditor getMultiDiagramEditor() {
+		// Lookup ServiceRegistry
+		IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if(workbenchWindow == null) {
+			return null;
+		}
+		IWorkbenchPage page = workbenchWindow.getActivePage();
+		if(page == null) {
+			return null;
+		}
+		IEditorPart editor = page.getActiveEditor();
+		if(editor instanceof IMultiDiagramEditor) {
+			return (IMultiDiagramEditor)editor;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Lookup the currently active Diagram from the Papyrus editor. Return the
+	 * current Diagram or null if none is active. <br>
+	 * WARNING - This method doesn't work during the initialization of the main
+	 * editor. See note in class doc. <br>
+	 * This method return null if the ServicesRegistry can not be found. <br>
+	 * TODO This method introduce dependency on GMF. It can be moved to a GMF
+	 * plugin.
+	 * 
+	 * @return The active diagram or null if not found.
+	 * 
+	 * @deprecated The core do make suppositions about the type of nested
+	 *             Editors, GMF stuff should be moved in GMF projects. In many
+	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
+	 */
+	//	@Deprecated
+	//	public static Diagram lookupEditorActiveDiagram() {
+	//		DiagramEditor diagEditor = lookupActiveDiagramEditor();
+	//		return diagEditor == null ? null : diagEditor.getDiagram();
+	//	}
+
+	/**
+	 * Lookup the currently active Diagram from the Papyrus editor. Return the
+	 * current Diagram or null if none is active. <br>
+	 * WARNING - This method doesn't work during the initialization of the main
+	 * editor. See note in class doc. <br>
+	 * This method return null if the ServicesRegistry can not be found. <br>
+	 * TODO This method introduce dependency on GMF. It can be moved to a GMF
+	 * plugin.
+	 * 
+	 * @return the active diagram editor or null if not found.
+	 * 
+	 * @deprecated The core do make suppositions about the type of nested
+	 *             Editors, GMF stuff should be moved in GMF projects. In many
+	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
+	 */
+	//	@Deprecated
+	//	public static DiagramEditor lookupActiveDiagramEditor() {
+	//		// Get the active page within the sashcontainer
+	//		IEditorPart activeEditor = lookupActiveNestedIEditor();
+	//		// Check if it is a GMF DiagramEditor
+	//		if(activeEditor instanceof DiagramEditor) {
+	//			return ((DiagramEditor)activeEditor);
+	//		} else {
+	//			// Not found
+	//			return null;
+	//		}
+	//
+	//	}
+
+	/**
+	 * Lookup the currently active {@link IEditorPart} from the Papyrus editor.
+	 * Return the current nested editor part, or null if it can not be found. <br>
+	 * WARNING - This method doesn't work during the initialization of the main
+	 * editor. See note in class doc. <br>
+	 * This method return null if the ServicesRegistry can not be found. <br>
+	 * This method is designed to be used by ui actions that interact with the
+	 * active editor. <br>
+	 * This method should not be used during the editor initialization phase. <br>
+	 * In any case, a check should be done on the returned value that can be
+	 * null. An alternative is to use
+	 * serviceRegistry.getService(ISashWindowsContainer
+	 * .class).getActiveEditor(); <br>
+	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever
+	 * it is possible. <br>
+	 * 
+	 * 
+	 * @return
+	 * @deprecated Check
+	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
+	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 *             <ul>
+	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             </ul>
+	 */
+	@Deprecated
+	public static IEditorPart lookupActiveNestedIEditor() {
+		// Get the sashwindow container
+		ISashWindowsContainer container = getSashWindowContainer();
+		// Get the active page within the sashcontainer
+		return container == null ? null : container.getActiveEditor();
+	}
+
+	/**
+	 * Lookup the currently active IEditor in the SashSystem. If the currently
+	 * eclipse active editor doesn't contains a {@link ISashWindowsContainer},
+	 * return null. If the current SashSystem page is not a IEditor, return
+	 * null. <br>
+	 * WARNING - This method doesn't work during the initialization of the main
+	 * editor. See note in class doc. <br>
+	 * This method return null if the ServicesRegistry can not be found. <br>
+	 * This method is designed to be used by ui actions that interact with the
+	 * active editor. <br>
+	 * This method should not be used during the editor initialization phase. <br>
+	 * In any case, a check should be done on the returned value that can be
+	 * null. An alternative is to use
+	 * serviceRegistry.getService(ISashWindowsContainer
+	 * .class).getActiveSashWindowsPage(); <br>
+	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever
+	 * it is possible.
+	 * 
+	 * @return
+	 * @deprecated Check
+	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
+	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 *             <ul>
+	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             </ul>
+	 */
+	@Deprecated
+	public static IPage lookupActiveNestedPage() {
+
+		// Get the sashwindow container
+		ISashWindowsContainer container = getSashWindowContainer();
+		// Get the active page within the sashcontainer
+		return container == null ? null : container.getActiveSashWindowsPage();
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	private static ISashWindowsContainer getSashWindowContainer() {
+
+		try {
+			return getServiceRegistryChecked().getService(ISashWindowsContainer.class);
+		} catch (ServiceException e) {
+			// The contract says that we return null if not found
+			return null;
+		}
+	}
+
+	/**
+	 * Gets the di resource set.
+	 * 
+	 * @return Get the current {@link DiResourceSet} or null if not found.
+	 * @deprecated Check
+	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
+	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 *             <ul>
+	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             </ul>
+	 */
+	@Deprecated
+	public static DiResourceSet getDiResourceSet() {
+		try {
+			ServicesRegistry registry = getServiceRegistry();
+			return registry == null ? null : registry.getService(DiResourceSet.class);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the {@link TransactionalEditingDomain} of the current active Eclipse
+	 * Editor. This method should be used only when it is sure that the active
+	 * editor exist, and that you want the EditingDomain of this editor. <br>
+	 * This method return null if the TransactionalEditingDomain can not be
+	 * found. <br>
+	 * This method is designed to be used by ui actions that interact with the
+	 * active editor. <br>
+	 * This method should not be used during the editor initialization phase. <br>
+	 * In any case, a check should be done on the returned value that can be
+	 * null. An alternative is to use {@link #getTransactionalEditingDomainChecked()} and to catch the
+	 * exception. <br>
+	 * It is preferable to use {@link #getTransactionalEditingDomain(ServicesRegistry)} whenever it is
+	 * possible. <br>
+	 * In GMF EditParts or EditPolicies, the ServiceRegistry can be retrieved
+	 * with methods from
+	 * org.eclipse.papyrus.uml.diagram.common.util.DiagramCoreServiceUtils <br>
+	 * WARNING: This method can return null if there is no Active Editor. This
+	 * happen during the editor initialization, especially when there is no
+	 * other editor opened.
+	 * 
+	 * @return Get the current {@link TransactionalEditingDomain} or null if not
+	 *         found
+	 * @deprecated Check
+	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
+	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 *             <ul>
+	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             </ul>
+	 */
+	@Deprecated
+	public static TransactionalEditingDomain getTransactionalEditingDomain() {
+		try {
+			ServicesRegistry registry = getServiceRegistry();
+			return registry == null ? null : registry.getService(TransactionalEditingDomain.class);
+		} catch (IllegalStateException e) {
+			// Registry can't be found, do nothing.
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the {@link TransactionalEditingDomain} of the current active Eclipse
+	 * Editor. This method should be used only when it is sure that the active
+	 * editor exist, and that you want the EditingDomain of this editor. <br>
+	 * This method is designed to be used by ui actions that interact with the
+	 * active editor. <br>
+	 * This method should not be used during the editor initialization phase. <br>
+	 * It is preferable to use {@link #getTransactionalEditingDomain(ServicesRegistry)} whenever it is
+	 * possible. <br>
+	 * This method throw a {@link ServiceException} if the
+	 * TransactionalEditingDomain can not be found. <br>
+	 * In GMF EditParts or EditPolicies, the ServiceRegistry can be retrieved
+	 * with methods from
+	 * org.eclipse.papyrus.uml.diagram.common.util.DiagramCoreServiceUtils
+	 * 
+	 * 
+	 * WARNING: This method throws an exception when no Active Editor is found.
+	 * This happen during the editor initialization, especially when there is no
+	 * other editor opened.
+	 * 
+	 * @return Get the current {@link TransactionalEditingDomain}
+	 * @throws ServiceException
+	 * @throws ServiceNotFoundException
+	 * @deprecated Check
+	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
+	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 *             <ul>
+	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
+	 *             <li>
+	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             </ul>
+	 */
+	@Deprecated
+	public static TransactionalEditingDomain getTransactionalEditingDomainChecked() throws ServiceException {
+		try {
+			ServicesRegistry registry = getServiceRegistryChecked();
+			return registry.getService(TransactionalEditingDomain.class);
+		} catch (IllegalStateException e) {
+			throw new ServiceException(e);
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	/**
+	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
+	 * 
+	 * @param servicesRegistry
+	 * @return
+	 * @deprecated Check
+	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
+	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 *             <ul>
+	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
+	 *             </ul>
+	 */
+	@Deprecated
+	public static TransactionalEditingDomain getTransactionalEditingDomain(ServicesRegistry registry) {
+		try {
+			return registry.getService(TransactionalEditingDomain.class);
+		} catch (IllegalStateException e) {
+			// Registry can't be found, do nothing.
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
+	 * 
+	 * @param servicesRegistry
+	 * @return
+	 * @throws ServiceException
+	 *         If the TransactionalEditingDomain can not be found.
+	 * @deprecated Check
+	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
+	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 *             <ul>
+	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
+	 *             </ul>
+	 */
+	@Deprecated
+	public static TransactionalEditingDomain getTransactionalEditingDomainChecked(ServicesRegistry registry) throws ServiceException {
+		return registry.getService(TransactionalEditingDomain.class);
 	}
 
 	/**
@@ -334,327 +637,33 @@ public class EditorUtils {
 	}
 
 	/**
-	 * Create an instance of IPageMngr acting on the provided resource. This
-	 * instance is suitable to add, remove, close or open diagrams.
-	 * 
-	 * @param diResource
-	 * @return The non transactional implementation of IPageMngr
-	 */
-	public static IPageMngr getIPageMngr(Resource diResource) {
-		return DiSashModelMngr.createIPageMngr(diResource);
-	}
-
-	/**
-	 * Create an instance of IPageMngr acting on the provided resource. This
-	 * instance is suitable to add, remove, close or open diagrams.
-	 * 
-	 * @param diResource
-	 * @param editingDomain
-	 * 
-	 * @return The transactional implementation of IPageMngr
-	 */
-	public static IPageMngr getTransactionalIPageMngr(Resource diResource, TransactionalEditingDomain editingDomain) {
-		return TransactionalDiSashModelMngr.createIPageMngr(diResource, editingDomain);
-	}
-
-	/**
-	 * Lookup the currently active Diagram from the Papyrus editor. Return the
-	 * current Diagram or null if none is active. <br>
-	 * WARNING - This method doesn't work during the initialization of the main
-	 * editor. See note in class doc. <br>
-	 * This method return null if the ServicesRegistry can not be found. <br>
-	 * TODO This method introduce dependency on GMF. It can be moved to a GMF
-	 * plugin.
-	 * 
-	 * @return The active diagram or null if not found.
-	 * 
-	 * @deprecated The core do make suppositions about the type of nested
-	 *             Editors, GMF stuff should be moved in GMF projects. In many
-	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
-	 */
-	//	public static Diagram lookupEditorActiveDiagram() {
-	//		DiagramEditor diagEditor = lookupActiveDiagramEditor();
-	//		return diagEditor == null ? null : diagEditor.getDiagram();
-	//	}
-
-	/**
-	 * Lookup the currently active Diagram from the Papyrus editor. Return the
-	 * current Diagram or null if none is active. <br>
-	 * WARNING - This method doesn't work during the initialization of the main
-	 * editor. See note in class doc. <br>
-	 * This method return null if the ServicesRegistry can not be found. <br>
-	 * TODO This method introduce dependency on GMF. It can be moved to a GMF
-	 * plugin.
-	 * 
-	 * @return the active diagram editor or null if not found.
-	 * 
-	 * @deprecated The core do make suppositions about the type of nested
-	 *             Editors, GMF stuff should be moved in GMF projects. In many
-	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
-	 */
-	//	public static DiagramEditor lookupActiveDiagramEditor() {
-	//		// Get the active page within the sashcontainer
-	//		IEditorPart activeEditor = lookupActiveNestedIEditor();
-	//		// Check if it is a GMF DiagramEditor
-	//		if(activeEditor instanceof DiagramEditor) {
-	//			return ((DiagramEditor)activeEditor);
-	//		} else {
-	//			// Not found
-	//			return null;
-	//		}
-	//
-	//	}
-
-	/**
-	 * Lookup the currently active {@link IEditorPart} from the Papyrus editor.
-	 * Return the current nested editor part, or null if it can not be found. <br>
-	 * WARNING - This method doesn't work during the initialization of the main
-	 * editor. See note in class doc. <br>
-	 * This method return null if the ServicesRegistry can not be found. <br>
+	 * Gets the {@link IMultiDiagramEditor} interface of the a Eclipse active
+	 * editor, if possible, or throw an exception if not possible. <br>
+	 * WARNING - This method throw an exception during the initialization of the
+	 * main editor. This method throws an exception if there is no active
+	 * editor, or if the editor is not instance of IMultiDiagramEditor. <br>
 	 * This method is designed to be used by ui actions that interact with the
 	 * active editor. <br>
-	 * This method should not be used during the editor initialization phase. <br>
-	 * In any case, a check should be done on the returned value that can be
-	 * null. An alternative is to use
-	 * serviceRegistry.getService(ISashWindowsContainer
-	 * .class).getActiveEditor(); <br>
-	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever
-	 * it is possible. <br>
 	 * 
 	 * 
-	 * @return
-	 * @deprecated Check
-	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
-	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
-	 *             <ul>
-	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
-	 *             </ul>
+	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
+	 * @throws BackboneException
+	 *         If it is not possible to get an instanceof {@link IMultiDiagramEditor}
 	 */
-	@Deprecated
-	public static IEditorPart lookupActiveNestedIEditor() {
-		// Get the sashwindow container
-		ISashWindowsContainer container = getSashWindowContainer();
-		// Get the active page within the sashcontainer
-		return container == null ? null : container.getActiveEditor();
-	}
-
-	/**
-	 * Lookup the currently active IEditor in the SashSystem. If the currently
-	 * eclipse active editor doesn't contains a {@link ISashWindowsContainer},
-	 * return null. If the current SashSystem page is not a IEditor, return
-	 * null. <br>
-	 * WARNING - This method doesn't work during the initialization of the main
-	 * editor. See note in class doc. <br>
-	 * This method return null if the ServicesRegistry can not be found. <br>
-	 * This method is designed to be used by ui actions that interact with the
-	 * active editor. <br>
-	 * This method should not be used during the editor initialization phase. <br>
-	 * In any case, a check should be done on the returned value that can be
-	 * null. An alternative is to use
-	 * serviceRegistry.getService(ISashWindowsContainer
-	 * .class).getActiveSashWindowsPage(); <br>
-	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever
-	 * it is possible.
-	 * 
-	 * @return
-	 * @deprecated Check
-	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
-	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
-	 *             <ul>
-	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
-	 *             </ul>
-	 */
-	@Deprecated
-	public static IPage lookupActiveNestedPage() {
-
-		// Get the sashwindow container
-		ISashWindowsContainer container = getSashWindowContainer();
-		// Get the active page within the sashcontainer
-		return container == null ? null : container.getActiveSashWindowsPage();
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	private static ISashWindowsContainer getSashWindowContainer() {
-
+	public static IMultiDiagramEditor getMultiDiagramEditorChecked() throws BackboneException {
+		IEditorPart editor;
 		try {
-			return getServiceRegistryChecked().getService(ISashWindowsContainer.class);
-		} catch (ServiceException e) {
-			// The contract says that we return null if not found
-			return null;
+			editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		} catch (NullPointerException e) {
+			// Can't get the active editor
+			throw new BackboneException("Can't get the current Eclipse Active Editor: There is no active editor at this time.");
 		}
-	}
 
-	/**
-	 * Gets the di resource set.
-	 * 
-	 * @return Get the current {@link DiResourceSet} or null if not found.
-	 * @deprecated Check
-	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
-	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
-	 *             <ul>
-	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
-	 *             </ul>
-	 */
-	@Deprecated
-	public static DiResourceSet getDiResourceSet() {
-		try {
-			ServicesRegistry registry = getServiceRegistry();
-			return registry == null ? null : registry.getService(DiResourceSet.class);
-		} catch (ServiceException e) {
-			log.error(e);
+		if(editor instanceof IMultiDiagramEditor) {
+			return (IMultiDiagramEditor)editor;
+		} else {
+			throw new BackboneException("Can't get an Active Editor instance of IMultiDiagramEditor. (actual type:" + editor.getClass().getName() + ")");
 		}
-		return null;
-	}
-
-	/**
-	 * Gets the {@link TransactionalEditingDomain} of the current active Eclipse
-	 * Editor. This method should be used only when it is sure that the active
-	 * editor exist, and that you want the EditingDomain of this editor. <br>
-	 * This method return null if the TransactionalEditingDomain can not be
-	 * found. <br>
-	 * This method is designed to be used by ui actions that interact with the
-	 * active editor. <br>
-	 * This method should not be used during the editor initialization phase. <br>
-	 * In any case, a check should be done on the returned value that can be
-	 * null. An alternative is to use {@link #getTransactionalEditingDomainChecked()} and to catch the
-	 * exception. <br>
-	 * It is preferable to use {@link #getTransactionalEditingDomain(ServicesRegistry)} whenever it is
-	 * possible. <br>
-	 * In GMF EditParts or EditPolicies, the ServiceRegistry can be retrieved
-	 * with methods from
-	 * org.eclipse.papyrus.uml.diagram.common.util.DiagramCoreServiceUtils <br>
-	 * WARNING: This method can return null if there is no Active Editor. This
-	 * happen during the editor initialization, especially when there is no
-	 * other editor opened.
-	 * 
-	 * @return Get the current {@link TransactionalEditingDomain} or null if not
-	 *         found
-	 * @deprecated Check
-	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
-	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
-	 *             <ul>
-	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
-	 *             </ul>
-	 */
-	@Deprecated
-	public static TransactionalEditingDomain getTransactionalEditingDomain() {
-		try {
-			ServicesRegistry registry = getServiceRegistry();
-			return registry == null ? null : registry.getService(TransactionalEditingDomain.class);
-		} catch (IllegalStateException e) {
-			// Registry can't be found, do nothing.
-		} catch (ServiceException e) {
-			log.error(e);
-		}
-		return null;
-	}
-
-	/**
-	 * Gets the {@link TransactionalEditingDomain} of the current active Eclipse
-	 * Editor. This method should be used only when it is sure that the active
-	 * editor exist, and that you want the EditingDomain of this editor. <br>
-	 * This method is designed to be used by ui actions that interact with the
-	 * active editor. <br>
-	 * This method should not be used during the editor initialization phase. <br>
-	 * It is preferable to use {@link #getTransactionalEditingDomain(ServicesRegistry)} whenever it is
-	 * possible. <br>
-	 * This method throw a {@link ServiceException} if the
-	 * TransactionalEditingDomain can not be found. <br>
-	 * In GMF EditParts or EditPolicies, the ServiceRegistry can be retrieved
-	 * with methods from
-	 * org.eclipse.papyrus.uml.diagram.common.util.DiagramCoreServiceUtils
-	 * 
-	 * 
-	 * WARNING: This method throws an exception when no Active Editor is found.
-	 * This happen during the editor initialization, especially when there is no
-	 * other editor opened.
-	 * 
-	 * @return Get the current {@link TransactionalEditingDomain}
-	 * @throws ServiceException
-	 * @throws ServiceNotFoundException
-	 * @deprecated Check
-	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
-	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
-	 *             <ul>
-	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
-	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
-	 *             </ul>
-	 */
-	@Deprecated
-	public static TransactionalEditingDomain getTransactionalEditingDomainChecked() throws ServiceException {
-		try {
-			ServicesRegistry registry = getServiceRegistryChecked();
-			return registry.getService(TransactionalEditingDomain.class);
-		} catch (IllegalStateException e) {
-			throw new ServiceException(e);
-		} catch (Exception e) {
-			throw new ServiceException(e);
-		}
-	}
-
-	/**
-	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
-	 * 
-	 * @param servicesRegistry
-	 * @return
-	 * @deprecated Check
-	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
-	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
-	 *             <ul>
-	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
-	 *             </ul>
-	 */
-	@Deprecated
-	public static TransactionalEditingDomain getTransactionalEditingDomain(ServicesRegistry registry) {
-		try {
-			return registry.getService(TransactionalEditingDomain.class);
-		} catch (IllegalStateException e) {
-			// Registry can't be found, do nothing.
-		} catch (ServiceException e) {
-			log.error(e);
-		}
-		return null;
-	}
-
-	/**
-	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
-	 * 
-	 * @param servicesRegistry
-	 * @return
-	 * @throws ServiceException
-	 *         If the TransactionalEditingDomain can not be found.
-	 * @deprecated Check
-	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
-	 *             /cookbook/PapyrusCookBook.odt and use one of the replacement:
-	 *             <ul>
-	 *             <li>org.eclipse.papyrus.infra.core.utils.ServiceUtils</li>
-	 *             </ul>
-	 */
-	@Deprecated
-	public static TransactionalEditingDomain getTransactionalEditingDomainChecked(ServicesRegistry registry) throws ServiceException {
-		return registry.getService(TransactionalEditingDomain.class);
 	}
 
 }

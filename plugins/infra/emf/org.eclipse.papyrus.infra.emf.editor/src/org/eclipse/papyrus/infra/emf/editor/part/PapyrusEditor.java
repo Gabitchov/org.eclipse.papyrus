@@ -15,7 +15,6 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
@@ -24,13 +23,18 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.editor.Activator;
 import org.eclipse.papyrus.infra.emf.editor.actions.MoDiscoDropAdapter;
 import org.eclipse.papyrus.infra.emf.editor.providers.CustomizableContentProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
@@ -73,6 +77,11 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 	 */
 	protected IPropertySheetPage iPropertySheetPage;
 
+	/**
+	 * The services registry associated to this editor
+	 */
+	protected ServicesRegistry registry;
+
 	@Override
 	public void createPages() {
 		// Creates the model from the editor input
@@ -90,6 +99,16 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 
 		Composite parent = new Composite(gParent, SWT.NONE);
 		parent.setLayout(new PropertiesLayout());
+
+		//		try {
+		//			registry = new ServicesRegistry();
+		//			registry.add(LabelProviderService.class, 1, new LabelProviderServiceImpl());
+		//			registry.add(ServiceUtilsForResourceInitializerService.class, 1, new ServiceUtilsForResourceInitializerService());
+		//			//registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+		//			registry.startRegistry();
+		//		} catch (ServiceException ex) {
+		//			Activator.log.error(ex);
+		//		}
 
 		// Only creates the other pages if there is something that can be edited
 		//
@@ -249,7 +268,20 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 	}
 
 	protected ILabelProvider createLabelProvider() {
-		return new CustomizableModelLabelProvider(getCustomizationManager());
+		LabelProviderService service = new LabelProviderServiceImpl();
+		try {
+			service.startService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return new LabelProvider();
+		}
+		return service.getLabelProvider();
+		//		try {
+		//			return registry.getService(LabelProviderService.class).getLabelProvider();
+		//		} catch (ServiceException ex) {
+		//			Activator.log.error(ex);
+		//			return new LabelProvider();
+		//		}
 	}
 
 	public void commandStackChanged(EventObject event) {

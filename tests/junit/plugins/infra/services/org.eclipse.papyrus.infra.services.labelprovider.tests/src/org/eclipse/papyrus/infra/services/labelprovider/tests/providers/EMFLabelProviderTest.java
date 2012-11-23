@@ -12,8 +12,8 @@
 package org.eclipse.papyrus.infra.services.labelprovider.tests.providers;
 
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.tests.LabelProviderServiceTest;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**

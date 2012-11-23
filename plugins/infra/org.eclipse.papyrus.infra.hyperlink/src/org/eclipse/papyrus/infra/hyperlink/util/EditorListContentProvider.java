@@ -16,19 +16,26 @@ package org.eclipse.papyrus.infra.hyperlink.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 
 
 /**
- * The Class DiagramContentProvider.
+ * The Class EditorListContentProvider.
  */
 //TODO why a tree content provider
-//TODO : extends the label provider of the ModelExplorer to get the customization
 public class EditorListContentProvider implements ITreeContentProvider {
+
+	//The context of the ContentProvider
+	private EObject model;
+
+	public EditorListContentProvider(EObject model) {
+		this.model = model;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -56,14 +63,14 @@ public class EditorListContentProvider implements ITreeContentProvider {
 	 */
 	public Object[] getElements(Object inputElement) {
 		try {
-			IPageMngr iPageMngr = EditorUtils.getIPageMngr();
+			IPageMngr iPageMngr = ServiceUtilsForEObject.getInstance().getIPageMngr(model);
 			Object[] result = iPageMngr.allPages().toArray();
 
 			List<Object> res = new ArrayList<Object>();
 			for(Object current : result) {
-				if(current != null /* && current instanceof PapyrusTableInstance */) { 
-//					 if the model is a little bit corrupted, we can have a null element in the list 
-					 res.add(current);
+				if(current != null /* && current instanceof PapyrusTableInstance */) {
+					//					 if the model is a little bit corrupted, we can have a null element in the list 
+					res.add(current);
 				}
 			}
 			return res.toArray();

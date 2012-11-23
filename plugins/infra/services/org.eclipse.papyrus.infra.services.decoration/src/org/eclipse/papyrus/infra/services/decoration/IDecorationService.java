@@ -12,9 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration;
 
+import java.util.List;
 import java.util.Observer;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.services.IService;
@@ -106,5 +106,5 @@ public interface IDecorationService extends IService {
 	 *        the navigate to parents
 	 * @return the decoration
 	 */
-	EList<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents);
+	List<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents);
 }

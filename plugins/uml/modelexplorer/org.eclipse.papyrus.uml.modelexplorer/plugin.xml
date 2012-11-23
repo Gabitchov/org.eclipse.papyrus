@@ -10,8 +10,14 @@
       <modelqueryset file="resource/PapyrusBrowserQuery.querySet"/>
    </extension>
    <extension point="org.eclipse.ui.navigator.navigatorContent">
-      <navigatorContent activeByDefault="true" contentProvider="org.eclipse.papyrus.uml.modelexplorer.UMLContentProvider" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif" id="org.eclipse.papyrus.views.modelexplorer.UMLnavigatorContent"
-      		labelProvider="org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider" name="UML Model Contents" priority="lower">
+      <navigatorContent
+            activeByDefault="true"
+            contentProvider="org.eclipse.papyrus.uml.tools.providers.UMLContentProvider"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+            id="org.eclipse.papyrus.views.modelexplorer.UMLnavigatorContent"
+            labelProvider="org.eclipse.jface.viewers.LabelProvider"
+            name="UML Model Contents"
+            priority="lower">
          <triggerPoints>
             <or>
                <instanceof value="org.eclipse.emf.ecore.EObject">
@@ -860,7 +866,7 @@
 <!-- UI Menu declaration for creation commands -->
 <extension point="org.eclipse.ui.menus">
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild" allPopups="false">
+	<menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild">
 	
 		<!-- Creation menu action for Abstraction -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AbstractionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" label="Create a new Abstraction" style="push" tooltip="Create a new Abstraction">
@@ -1854,9 +1860,6 @@
      verified (isVisible and isEnabled) before any attempt to execute the command, 
      and to mask the command in case it is not supported or executable.
   -->
-<extension point="org.eclipse.ui.startup">
-	<startup class="org.eclipse.papyrus.views.modelexplorer.Activator"/>
-</extension>
 <extension point="org.eclipse.core.runtime.adapters">
    <factory adaptableType="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem" class="org.eclipse.papyrus.uml.modelexplorer.factory.ModelElementItemFactory">
       <adapter type="org.eclipse.uml2.uml.NamedElement">
@@ -1869,12 +1872,12 @@
       </facetset>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/UMLFacetDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
+      <browserCustomization file="resource/NotationCustomization.uiCustom" loadByDefault="true">
+      </browserCustomization>
       <browserCustomization
-            file="resource/UMLFacetDefaultBrowserCustomization.uiCustom"
-            loadByDefault="true"/>
-      <browserCustomization
-            file="resource/NotationCustomization.uiCustom"
-            loadByDefault="true">
+            file="resource/UMLReadOnly.uiCustom"
+            loadByDefault="false">
       </browserCustomization>
    </extension>
 </plugin>

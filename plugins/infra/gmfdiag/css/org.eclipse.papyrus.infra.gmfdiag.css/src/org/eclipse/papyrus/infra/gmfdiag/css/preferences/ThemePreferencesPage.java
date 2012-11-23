@@ -13,12 +13,11 @@ package org.eclipse.papyrus.infra.gmfdiag.css.preferences;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.util.PropertyChangeEvent;
-import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.WorkspaceCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.theme.Theme;
@@ -74,11 +73,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		boolean result = super.performOk();
 		if(needsRefresh) {
 			WorkspaceCSSEngine.instance.reset();
-			try {
-				(new RefreshHandler()).execute(null);
-			} catch (ExecutionException ex) {
-				Activator.log.error(ex);
-			}
+			DiagramHelper.refreshDiagrams();
 		}
 		return result;
 	}

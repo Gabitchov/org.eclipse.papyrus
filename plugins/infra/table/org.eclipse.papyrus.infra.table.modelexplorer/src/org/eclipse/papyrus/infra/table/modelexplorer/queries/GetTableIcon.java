@@ -16,7 +16,6 @@ package org.eclipse.papyrus.infra.table.modelexplorer.queries;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuery;
 
@@ -27,6 +26,6 @@ public class GetTableIcon extends AbstractGetEditorIconQuery implements IJavaMod
 	 * {@inheritDoc}
 	 */
 	public String evaluate(final PapyrusTableInstance context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		return "/" + ((IPageIconsRegistryExtended)getEditorRegistry()).getEditorURLIcon(context); //$NON-NLS-1$
+		return "/" + getEditorRegistry(context).getEditorURLIcon(context); //$NON-NLS-1$
 	}
 }

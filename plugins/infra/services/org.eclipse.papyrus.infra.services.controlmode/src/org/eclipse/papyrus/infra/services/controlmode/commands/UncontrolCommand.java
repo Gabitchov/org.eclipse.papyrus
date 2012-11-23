@@ -52,11 +52,13 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
@@ -118,7 +120,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 * @param label
 	 * @param affectedFiles
 	 * @param selectedObject
-	 * @param deleteUncontrolledResources whether to delete uncontrolled resources
+	 * @param deleteUncontrolledResources
+	 *        whether to delete uncontrolled resources
 	 */
 	public UncontrolCommand(TransactionalEditingDomain domain, EObject selectedObject, String label, List<?> affectedFiles, boolean deleteUncontrolledResources) {
 		super(domain, label, affectedFiles);
@@ -128,10 +131,16 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		controlledResourceToRemove = new LinkedList<ControledResource>();
 		addedControlledResource = new LinkedList<ControledResource>();
 		deleteResources = deleteUncontrolledResources;
-		
+
 		ResourceSet set = domain.getResourceSet();
-		if (set instanceof ModelSet) {
-			modelSet = (ModelSet) set;
+		if(set instanceof ModelSet) {
+			modelSet = (ModelSet)set;
+		} else {
+			try {
+				modelSet = ServiceUtilsForEObject.getInstance().getModelSet(selectedObject);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
 		}
 	}
 
@@ -143,13 +152,11 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		commands = getCommandExtensions();
 		IStatus status = doRedo(monitor, info);
 		CommandResult result;
-		if (status.equals(Status.OK_STATUS)) {
-			result = CommandResult.newOKCommandResult();			
-		}
-		else if (status.equals(Status.CANCEL_STATUS)) {
+		if(status.equals(Status.OK_STATUS)) {
+			result = CommandResult.newOKCommandResult();
+		} else if(status.equals(Status.CANCEL_STATUS)) {
 			result = CommandResult.newErrorCommandResult("Unable to execute uncontrol command");
-		}
-		else {
+		} else {
 			result = CommandResult.newCancelledCommandResult();
 		}
 		return result;
@@ -179,10 +186,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION).toString());
 			this.controlledDI = getEditingDomain().getResourceSet().getResource(newDiURI, true);
 		}
-		if (modelSet == null) {
-			modelSet = EditorUtils.getDiResourceSet();
-		}
-		
+
 		CompoundCommand compoundCommand = new CompoundCommand();
 		uncontrolNotation(compoundCommand);
 		uncontrolModel(compoundCommand);
@@ -258,9 +262,9 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			for(Diagram diag : controlledDiagrams) {
 				uncontrol(getEditingDomain(), diag, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.POST_NOTATION);
 			}
-			
+
 			//uncontrol for PapyrusTable
-			uncontrol(getEditingDomain(),eObject,  controlledNotation, notationResource,compoundCommand, STATE_CONTROL.POST_NOTATION);
+			uncontrol(getEditingDomain(), eObject, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.POST_NOTATION);
 		}
 	}
 
@@ -281,7 +285,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			newURL = HistoryUtils.resolve(uriPath, newURL);
 			oldURL = HistoryUtils.resolve(uriPath, oldURL);
 			Set<ControledResource> controledOldURL = new HashSet<ControledResource>(HistoryUtils.getControledResourcesForURL(modelSet, oldURL));
-			controledOldURL.addAll(HistoryUtils.getControledResourcesForURL(modelSet, oldURL.substring(oldURL.lastIndexOf("/")+1,oldURL.length())));
+			controledOldURL.addAll(HistoryUtils.getControledResourcesForURL(modelSet, oldURL.substring(oldURL.lastIndexOf("/") + 1, oldURL.length())));
 			List<ControledResource> controledNewURL = HistoryUtils.getControledResourcesForURL(modelSet, newURL);
 			for(ControledResource resourceOldURL : controledOldURL) {
 				if(resourceOldURL.getChildren().isEmpty()) {

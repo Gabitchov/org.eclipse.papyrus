@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.section;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -21,8 +22,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
@@ -266,14 +265,13 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 			if(part instanceof ContentOutline) {
 				IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part).getAdapter(IContributedContentsView.class));
 				if(contributedView != null) {
-					part = (IWorkbenchPart)contributedView.getContributingPart();
+					part = contributedView.getContributingPart();
 				}
 			}
-			if(part instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
-				domain = EditorUtils.getTransactionalEditingDomain();
-			} else
-				domain = null;
+
+			if(part instanceof IAdaptable) {
+				domain = (TransactionalEditingDomain)((IAdaptable)part).getAdapter(TransactionalEditingDomain.class);
+			}
 		}
 	}
 
@@ -418,6 +416,7 @@ public class AppliedStereotypeKindAppearanceSection extends AbstractPropertySect
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void dispose() {
 		if(comboStereotypeAppearance != null && !comboStereotypeAppearance.isDisposed()) {
 			comboStereotypeAppearance.removeSelectionListener(comboStereotypeAppearanceListener);

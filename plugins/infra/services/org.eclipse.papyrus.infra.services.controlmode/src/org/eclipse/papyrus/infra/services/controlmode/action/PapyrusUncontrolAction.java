@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.CommandActionHandler;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.services.controlmode.commands.UncontrolCommand;
 import org.eclipse.papyrus.infra.services.controlmode.util.ControlModeUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
@@ -103,6 +103,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	/**
 	 * {@inheritDoc}
 	 */
+	//FIXME: This method introduces a dependency to UML. Use the semantic service instead.
 	@Override
 	public void run() {
 		// check if the uncontrol is made from the parent resource. If not, warn the user and disable action
@@ -119,7 +120,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 
 		try {
 			boolean confirmDelete = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Delete controlled resources?", "Delete the original controlled files ?");
-			UncontrolCommand transactionalCommand = new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null, confirmDelete);
+			UncontrolCommand transactionalCommand = new UncontrolCommand((TransactionalEditingDomain)getEditingDomain(), eObject, "Uncontrol", null, confirmDelete);
 			IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
 			if(!status.isOK()) {
 				NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to uncontrol").run();

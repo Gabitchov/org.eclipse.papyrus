@@ -13,7 +13,8 @@ package org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysec
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.properties.tabbedproperties.comments.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -40,6 +41,7 @@ public class FocusAwareCommentRichText extends CommentRichText {
 	/**
 	 * Adds listeners to manage the activation and focus events.
 	 */
+	@Override
 	protected void addListeners() {
 		editorControl = getControlSite(editor);
 
@@ -80,7 +82,14 @@ public class FocusAwareCommentRichText extends CommentRichText {
 				return;
 			}
 
-			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+			TransactionalEditingDomain domain;
+			try {
+				domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(getComment());
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+				return;
+			}
+
 			// open transaction to save the comment body
 			// retrieve editing domain
 			if(domain != null) {

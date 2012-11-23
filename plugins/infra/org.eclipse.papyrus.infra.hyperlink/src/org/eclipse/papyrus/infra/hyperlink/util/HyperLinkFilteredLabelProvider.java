@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.hyperlink.util;
 
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 
 
 public class HyperLinkFilteredLabelProvider extends HyperLinkLabelProvider implements IFilteredLabelProvider {

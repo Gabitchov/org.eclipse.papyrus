@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.profile.providers;
 import java.util.Iterator;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 
 
 public class AppliedStereotypePropertyFilteredLabelProvider extends AppliedStereotypePropertyLabelProvider implements IFilteredLabelProvider {

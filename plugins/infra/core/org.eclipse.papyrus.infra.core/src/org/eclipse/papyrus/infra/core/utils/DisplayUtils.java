@@ -11,15 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
-import static org.eclipse.papyrus.infra.core.Activator.log;
-
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
+
 /**
  * Util class for display in Papyrus (label providers, etc...)
+ * 
+ * @deprecated Use the LabelProviderService instead
  */
+@Deprecated
 public class DisplayUtils {
 
 	/**
@@ -34,9 +37,9 @@ public class DisplayUtils {
 			return registry == null ? null : registry.getService(ILabelProvider.class);
 		} catch (IllegalStateException e) {
 			// Registry can't be found, do nothing.
-			log.error(e);
+			Activator.log.error(e);
 		} catch (ServiceException e) {
-			log.error(e);
+			Activator.log.error(e);
 		}
 		return null;
 	}

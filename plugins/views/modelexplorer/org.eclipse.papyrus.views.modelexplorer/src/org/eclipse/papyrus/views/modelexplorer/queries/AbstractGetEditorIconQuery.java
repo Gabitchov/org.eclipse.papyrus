@@ -14,18 +14,19 @@
 
 package org.eclipse.papyrus.views.modelexplorer.queries;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
 /**
  * 
  * An abstract class to get the iconRegistery
- *
+ * 
  */
-public abstract class AbstractGetEditorIconQuery{//we don't need to implements IJavaModelQuery  here
+public abstract class AbstractGetEditorIconQuery {//we don't need to implements IJavaModelQuery  here
 
 	/**
 	 * the icon registry
@@ -39,9 +40,9 @@ public abstract class AbstractGetEditorIconQuery{//we don't need to implements I
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
 	 */
-	protected IPageIconsRegistryExtended getEditorRegistry() {
+	protected IPageIconsRegistryExtended getEditorRegistry(EObject context) {
 		if(editorRegistry == null) {
-			editorRegistry = createEditorRegistry();
+			editorRegistry = createEditorRegistry(context);
 		}
 		if(!(editorRegistry instanceof IPageIconsRegistryExtended)) {
 			throw new RuntimeException("The editor registry do not implement IPageIconsRegistryExtended");////$NON-NLS-1$
@@ -55,11 +56,10 @@ public abstract class AbstractGetEditorIconQuery{//we don't need to implements I
 	 * extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
-	 *         FIXME : use a deprecated method
 	 */
-	protected IPageIconsRegistry createEditorRegistry() {
+	protected IPageIconsRegistry createEditorRegistry(EObject context) {
 		try {
-			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+			return ServiceUtilsForEObject.getInstance().getService(IPageIconsRegistry.class, context);
 		} catch (ServiceException e) {
 			// Not found, return an empty one which return null for each
 			// request.

@@ -15,6 +15,10 @@ import java.util.List;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.ui.IEditorPart;
 
 
 public class DiagramHelper {
@@ -37,6 +41,36 @@ public class DiagramHelper {
 			for(EditPart childEditPart : (List<EditPart>)diagramEditPart.getConnections()) {
 				refresh(childEditPart, true);
 			}
+		}
+	}
+
+	/**
+	 * Refreshes all diagrams in this IEditorPart (Including nested editors when necessary)
+	 * 
+	 * @param editorPart
+	 */
+	//FIXME: The current implementation only refreshes the active editor diagram 
+	public static void refresh(IEditorPart editorPart) {
+		if(editorPart instanceof IMultiDiagramEditor) {
+			editorPart = ((IMultiDiagramEditor)editorPart).getActiveEditor();
+		}
+
+		if(editorPart instanceof DiagramEditor) {
+			DiagramEditor diagramEditor = (DiagramEditor)editorPart;
+			DiagramEditPart topEditPart = diagramEditor.getDiagramEditPart();
+			if(topEditPart != null) {
+				DiagramHelper.refresh(topEditPart, true);
+			}
+		}
+	}
+
+	/**
+	 * Refreshes all opened diagrams
+	 */
+	//FIXME: The current implementation only refreshes the active diagrams
+	public static void refreshDiagrams() {
+		for(IMultiDiagramEditor activeMultiEditor : EditorUtils.getMultiDiagramEditors()) {
+			refresh(activeMultiEditor);
 		}
 	}
 }

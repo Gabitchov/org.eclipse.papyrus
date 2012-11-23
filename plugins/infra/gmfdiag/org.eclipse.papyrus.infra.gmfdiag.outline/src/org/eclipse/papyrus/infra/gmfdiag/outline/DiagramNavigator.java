@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.IViewerNotification;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
@@ -32,7 +31,11 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.outline.internal.Activator;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -59,6 +62,8 @@ public class DiagramNavigator extends Composite {
 	 * The creation command registry
 	 */
 	ICreationCommandRegistry creationCommandRegistry;
+
+	private final ServicesRegistry registry;
 
 	/**
 	 * This content provider filters the event from graphical object to only refresh when it's
@@ -109,8 +114,9 @@ public class DiagramNavigator extends Composite {
 	 * @param pageSite
 	 *        the site
 	 */
-	public DiagramNavigator(Composite parent, IPageSite pageSite) {
+	public DiagramNavigator(Composite parent, IPageSite pageSite, ServicesRegistry registry) {
 		super(parent, SWT.BORDER);
+		this.registry = registry;
 		GridLayout gl = new GridLayout();
 		gl.marginHeight = 0;
 		gl.marginWidth = 0;
@@ -149,15 +155,16 @@ public class DiagramNavigator extends Composite {
 	 * Set the tree providers for the outline
 	 */
 	protected void initProviders() {
-		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(
-				getAdapterFactory());
+		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(getAdapterFactory());
 		adapterContentProvider.inputChanged(viewer, null, null);
 		viewer.setContentProvider(new DiagramOrientedContentProvider(adapterContentProvider));
-		ILabelProvider labelProvider = new DiagramOrientedLabelProvider(new AdapterFactoryLabelProvider(
-				getAdapterFactory()));
-		ILabelProvider fullLabelProvider = new DecoratingLabelProvider(labelProvider, Activator.getDefault()
-				.getWorkbench().getDecoratorManager().getLabelDecorator());
-		viewer.setLabelProvider(fullLabelProvider);
+		try {
+			ILabelProvider labelProvider = ServiceUtils.getInstance().getService(LabelProviderService.class, registry).getLabelProvider();
+			ILabelProvider fullLabelProvider = new DecoratingLabelProvider(labelProvider, Activator.getDefault().getWorkbench().getDecoratorManager().getLabelDecorator());
+			viewer.setLabelProvider(fullLabelProvider);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**

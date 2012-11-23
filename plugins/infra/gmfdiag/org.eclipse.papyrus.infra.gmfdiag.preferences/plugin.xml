@@ -47,7 +47,7 @@
       </page>
       <page
             category="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
-            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusDiagramsPreferencePage"
+            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.PapyrusAllDiagramsPreferencePage"
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusAllDiagramsPreferencePage"
             name="Diagrams">
          <enabledWhen>

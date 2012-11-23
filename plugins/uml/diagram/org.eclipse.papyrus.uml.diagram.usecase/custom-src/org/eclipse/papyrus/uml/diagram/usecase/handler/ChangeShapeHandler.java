@@ -66,7 +66,7 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
+		ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
 		try {
 			transactionalEditingDomain = util.getTransactionalEditingDomain();
 		} catch (Exception e) {

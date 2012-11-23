@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.controlmode.profile.validation;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -34,7 +33,8 @@ import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.controlmode.profile.Activator;
@@ -100,6 +100,7 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 	 *        validation context
 	 * @return validation status
 	 */
+	@Override
 	public IStatus validate(IValidationContext ctx) {
 		try {
 			if(ctx.equals(lastValidatedContext)) {
@@ -240,9 +241,17 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 		boolean readOnlyPackages = false;
 		StringBuffer readOnlyPackagesList = new StringBuffer();
 		//Check if controlled package is loaded
-		for(Iterator<Package> iterator = controlledPackages.iterator(); iterator.hasNext();) {
-			Package pack = iterator.next();
-			EditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+		EditingDomain domain = null;
+		for(Package pack : controlledPackages) {
+			if(domain == null) {
+				try {
+					domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(pack);
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+					return false;
+				}
+			}
+
 			if(pack.eIsProxy()) {
 				EObject loadedObject = domain.getResourceSet().getEObject(((InternalEObject)pack).eProxyURI(), true);
 				if(loadedObject != null) {
@@ -271,6 +280,7 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 				}
 			}
 		}
+
 		//Report error if the controlled package is read-only
 		if(readOnlyPackages) {
 			String msg = NLS.bind(Messages.error_readonly, readOnlyPackagesList.toString());

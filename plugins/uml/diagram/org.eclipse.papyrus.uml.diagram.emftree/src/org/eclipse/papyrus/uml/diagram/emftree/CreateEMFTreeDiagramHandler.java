@@ -13,13 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.emftree;
 
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.diagram.common.handler.CreateDiagramHandler;
 
 public class CreateEMFTreeDiagramHandler extends CreateDiagramHandler {
 
 	@Override
-	protected void addNewDiagram() {
-		addNewDiagram("Emf Tree", EmfTreeDiagramEditorFactory.EMF_DIAGRAM_TYPE, null);
+	protected void addNewDiagram(ServicesRegistry registry) {
+		addNewDiagram("Emf Tree", EmfTreeDiagramEditorFactory.EMF_DIAGRAM_TYPE, null, registry);
 	}
 
 }

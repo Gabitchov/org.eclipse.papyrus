@@ -139,7 +139,9 @@ public class ExportAllDiagrams {
 				try {
 					op.run(monitor);
 				} catch (InvocationTargetException e) {
+					Activator.log.error(e);
 				} catch (InterruptedException e) {
+					Activator.log.error(e);
 				}
 				return Status.OK_STATUS;
 			}
@@ -200,7 +202,7 @@ public class ExportAllDiagrams {
 				} catch (RollbackException e) {
 				}
 			} else {
-				Activator.log("no transactional editing domain found", Status.WARNING);
+				Activator.log.warn("no transactional editing domain found");
 			}
 
 			List<Diagram> diagrams = new ArrayList<Diagram>();
@@ -219,7 +221,7 @@ public class ExportAllDiagrams {
 			newMonitor.worked(1);
 			export(new SubProgressMonitor(newMonitor, 9), diagrams);
 		} else {
-			Activator.log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.ExportAllDiagrams_3));
+			Activator.log.warn(Messages.ExportAllDiagrams_3);
 		}
 
 	}
@@ -248,7 +250,7 @@ public class ExportAllDiagrams {
 				diagnostic.add(newDiagnostic);
 
 			} else {
-				Activator.log(new Status(Status.INFO, Activator.PLUGIN_ID, message));
+				Activator.log.info(message);
 			}
 
 		}
@@ -341,7 +343,7 @@ public class ExportAllDiagrams {
 				}
 			} catch (SWTError e) {
 				String message = Messages.ExportAllDiagrams_9;
-				Activator.log(new Exception(message, e));
+				Activator.log.error(message, new Exception(message, e));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -357,7 +359,8 @@ public class ExportAllDiagrams {
 		} catch (Throwable e) {
 			BasicDiagnostic newDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, "", 0, String.format(Messages.ExportAllDiagrams_11, uniqueFileName, diagram.eResource().getURI().toString()), null); //$NON-NLS-1$
 			diagnostic.add(newDiagnostic);
-			Activator.log(String.format(Messages.ExportAllDiagrams_11, uniqueFileName, diagram.eResource().getURI().toString()), IStatus.ERROR, e);
+			String errorMessage = String.format(Messages.ExportAllDiagrams_11, uniqueFileName, diagram.eResource().getURI().toString());
+			Activator.log.error(errorMessage, e);
 		}
 	}
 

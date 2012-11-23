@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 
 /**
  * A LabelProvider which only accepts EMF Objects (EObject, or objects which can be adapted to EObjects)

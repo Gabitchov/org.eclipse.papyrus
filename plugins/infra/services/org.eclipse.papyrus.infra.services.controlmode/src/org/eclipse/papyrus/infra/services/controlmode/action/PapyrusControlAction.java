@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -37,7 +38,6 @@ import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.infra.services.controlmode.util.ControlModeUtil;
@@ -127,6 +127,7 @@ public class PapyrusControlAction extends ControlAction {
 	/**
 	 * {@inheritDoc}
 	 */
+	//FIXME: This method introduces a dependency to UML. Use the semantic service instead.
 	@Override
 	public void run() {
 		// check if object selection is in the current model set. If not, warn the user and disable action
@@ -154,7 +155,7 @@ public class PapyrusControlAction extends ControlAction {
 				return;
 			}
 			try {
-				ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
+				ControlCommand transactionalCommand = new ControlCommand((TransactionalEditingDomain)getEditingDomain(), controlledModel, eObject, "Control", null);
 				IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
 				if(status.isOK()) {
 					notifySave();

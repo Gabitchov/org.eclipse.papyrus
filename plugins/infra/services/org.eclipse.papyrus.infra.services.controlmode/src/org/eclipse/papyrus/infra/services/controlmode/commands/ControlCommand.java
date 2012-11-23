@@ -48,6 +48,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -57,7 +58,8 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.exception.SashEditorException;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.controlmode.commands.IControlCommand.STATE_CONTROL;
@@ -115,8 +117,14 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		addContext(new EditingDomainUndoContext(domain));
 
 		ResourceSet set = domain.getResourceSet();
-		if (set instanceof ModelSet) {
-			modelSet = (ModelSet) set;
+		if(set instanceof ModelSet) {
+			modelSet = (ModelSet)set;
+		} else {
+			try {
+				modelSet = ServiceUtilsForResource.getInstance().getModelSet(model);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
 		}
 	}
 
@@ -128,13 +136,11 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		commands = getCommandExtensions();
 		IStatus status = doRedo(monitor, info);
 		CommandResult result;
-		if (status.equals(Status.OK_STATUS)) {
-			result = CommandResult.newOKCommandResult();			
-		}
-		else if (status.equals(Status.CANCEL_STATUS)) {
+		if(status.equals(Status.OK_STATUS)) {
+			result = CommandResult.newOKCommandResult();
+		} else if(status.equals(Status.CANCEL_STATUS)) {
 			result = CommandResult.newErrorCommandResult("Unable to execute control command");
-		}
-		else {
+		} else {
 			result = CommandResult.newCancelledCommandResult();
 		}
 		return result;
@@ -156,10 +162,6 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (modelSet == null) {
-			modelSet = EditorUtils.getDiResourceSet();
-		}
-
 		// Create the URI from models that will be created
 		final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString());
 		this.controlledNotation = getResource(newNotationURI);
@@ -453,7 +455,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param parentURIFullPath
 	 */
 	protected void assignToChildExistingControledResources(EditingDomain domain, CompoundCommand compoundCommand, ControledResource child, String controledResourceURL, List<ControledResource> controledFromParent, String parentURL, URI controledURIFullPath, URI parentURIFullPath) {
-		for(ControledResource r : controledFromParent) {	
+		for(ControledResource r : controledFromParent) {
 			if(r.getResourceURL() != null) {
 				URI fullPathParent = URI.createURI(r.getResourceURL()).resolve(parentURIFullPath);
 				Resource resourceLoaded = modelSet.getResource(fullPathParent, false);
@@ -573,8 +575,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @return
 	 */
 	protected Resource getHistoryResource(EObject eObject) {
-		if (eObject.eResource() != null) {
-			return modelSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(HistoryModel.MODEL_FILE_EXTENSION), true);			
+		if(eObject.eResource() != null) {
+			return modelSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(HistoryModel.MODEL_FILE_EXTENSION), true);
 		}
 		return null;
 	}

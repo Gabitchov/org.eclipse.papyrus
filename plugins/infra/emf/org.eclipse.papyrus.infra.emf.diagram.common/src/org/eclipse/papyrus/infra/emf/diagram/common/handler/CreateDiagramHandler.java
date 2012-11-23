@@ -22,7 +22,12 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 
 /**
@@ -43,14 +48,25 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 * @return
 	 * @throws ExecutionException
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+		final ServicesRegistry registry;
+
+		TransactionalEditingDomain editingDomain;
+
+		try {
+			registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+			editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
+
 		RecordingCommand command = new RecordingCommand(editingDomain, "Create EMF Diagram") {
 
 			@Override
 			protected void doExecute() {
-				addNewDiagram();
+				addNewDiagram(registry);
 			}
 
 		};
@@ -62,7 +78,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	/**
 	 * Subclasses should implements this method.
 	 */
-	protected abstract void addNewDiagram();
+	protected abstract void addNewDiagram(ServicesRegistry registry);
 
 	/**
 	 * Add a new Diagram to the graphical model.
@@ -71,7 +87,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	 *        The diagram to add to graphical model. This will be the diagram provided to
 	 *        {@link IPluggableEditorFactory#createIPageModel(Object, org.eclipse.papyrus.infra.core.services.ServicesRegistry)}
 	 */
-	protected void addNewDiagram(String name, String type, EObject diagram) {
+	protected void addNewDiagram(String name, String type, EObject diagram, ServicesRegistry registry) {
 
 		// TODO Create a special node inside the sash model (di) instead of introducing 
 		// a dependence on notation.
@@ -91,15 +107,11 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 
 		// Attach to sash in order to show it
 		// Add the diagram as a page to the current sash folder
-		EditorUtils.getISashWindowsContentProvider().addPage(di2Diagram);
+		try {
+			registry.getService(ISashWindowsContentProvider.class).addPage(di2Diagram);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
 	}
 
-	/**
-	 * Get the main editing doamin.
-	 * 
-	 * @return
-	 */
-	protected TransactionalEditingDomain getEditingDomain() {
-		return EditorUtils.getTransactionalEditingDomain();
-	}
 }

@@ -8,7 +8,7 @@
             contentProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramContentProvider"
             icon="icon/diagrams.gif"
             id="org.eclipse.papyrus.views.modelexplorer.DiagramNavigatorContent"
-            labelProvider="org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramLabelProvider"
+            labelProvider="org.eclipse.jface.viewers.LabelProvider"
             name="Diagram Model Contents"
             priority="lower">
          <triggerPoints>

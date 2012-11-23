@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.uml.properties.profile.ui.section;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -10,8 +11,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.swt.SWT;
@@ -132,12 +131,14 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void dispose() {
 
 		super.dispose();
 		diagramElement.eAdapters().remove(this);
-		if(comboStereotypePropertiesPlace != null && !comboStereotypePropertiesPlace.isDisposed())
+		if(comboStereotypePropertiesPlace != null && !comboStereotypePropertiesPlace.isDisposed()) {
 			comboStereotypePropertiesPlace.removeSelectionListener(comboStereotypePropertiesPlaceListener);
+		}
 	}
 
 	/**
@@ -175,14 +176,13 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 			if(part instanceof ContentOutline) {
 				IContributedContentsView contributedView = ((IContributedContentsView)((ContentOutline)part).getAdapter(IContributedContentsView.class));
 				if(contributedView != null) {
-					part = (IWorkbenchPart)contributedView.getContributingPart();
+					part = contributedView.getContributingPart();
 				}
 			}
-			if(part instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
-				domain = EditorUtils.getTransactionalEditingDomain();
-			} else
-				domain = null;
+
+			if(part instanceof IAdaptable) {
+				domain = (TransactionalEditingDomain)((IAdaptable)part).getAdapter(TransactionalEditingDomain.class);
+			}
 		}
 	}
 

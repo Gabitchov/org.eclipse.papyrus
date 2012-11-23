@@ -57,7 +57,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 	 *        The editing domain on which the commands are executed
 	 */
 	public ProfileApplicationObservableList(Package umlSource, EditingDomain domain) {
-		super(new LinkedList<Object>(umlSource.getAllAppliedProfiles()), Profile.class);
+		super(new LinkedList<Object>(umlSource.getAppliedProfiles()), Profile.class);
 		this.umlSource = umlSource;
 		this.domain = domain;
 		commands = new LinkedList<Command>();
@@ -188,7 +188,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 
 	private void refreshCacheList() {
 		wrappedList.clear();
-		wrappedList.addAll(umlSource.getAllAppliedProfiles());
+		wrappedList.addAll(umlSource.getAppliedProfiles());
 		fireListChange(null);
 	}
 

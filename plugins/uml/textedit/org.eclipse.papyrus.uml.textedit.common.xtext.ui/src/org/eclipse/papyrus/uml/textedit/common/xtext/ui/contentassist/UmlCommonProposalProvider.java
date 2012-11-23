@@ -6,6 +6,7 @@ package org.eclipse.papyrus.uml.textedit.common.xtext.ui.contentassist;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
@@ -15,7 +16,11 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
@@ -38,7 +43,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 
 
 	/** the label provider */
-	protected ILabelProvider labelProvider = DisplayUtils.getLabelProvider();
+	protected ILabelProvider labelProvider;
 
 	/** the edited model */
 	private Namespace model = null;
@@ -81,7 +86,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 
 	/**
 	 * 
-	 * This method initializes the fields {@link #model} {@link #contextElement} thanks to the current selection
+	 * This method initializes the fields {@link #model} {@link #contextElement} {@link #labelProvider} thanks to the current selection
 	 * 
 	 */
 	protected void initModel() {
@@ -104,6 +109,14 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 				}
 			}
 		}
+
+		try {
+			labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, model).getLabelProvider();
+		} catch (ServiceException ex) {
+			Logger.getLogger(UmlCommonActivator.class).error(ex);
+			labelProvider = new LabelProvider();
+		}
+
 		Assert.isNotNull(contextElement, "I can't find the edited element"); //$NON-NLS-1$
 		Assert.isNotNull(this.model, "I can't find the model owning the edited element"); //$NON-NLS-1$
 	}
@@ -355,14 +368,14 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
 
 		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted
-			context.getOffset(), // Offset
-			context.getSelectedText().length(), // Replacement length
-			completionString.length(), // cursorPosition
-			labelProvider.getImage(namedElement), // image
-			" " + displayString, // displayString //$NON-NLS-1$
-			null, // contextInformation
-			additionalProposalInfo // additionalProposalInfo
-			);
+		context.getOffset(), // Offset
+		context.getSelectedText().length(), // Replacement length
+		completionString.length(), // cursorPosition
+		labelProvider.getImage(namedElement), // image
+		" " + displayString, // displayString //$NON-NLS-1$
+		null, // contextInformation
+		additionalProposalInfo // additionalProposalInfo
+		);
 		return completionProposal;
 	}
 
@@ -380,14 +393,14 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	protected ICompletionProposal createCompletionProposal(String completionString, String displayString, ContentAssistContext context) {
 
 		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted
-			context.getOffset(), // Offset
-			context.getSelectedText().length(), // Replacement length
-			completionString.length(), // cursorPosition
-			null, // image
-			" " + displayString, // displayString //$NON-NLS-1$
-			null, // contextInformation
-			null // additionalProposalInfo
-			);
+		context.getOffset(), // Offset
+		context.getSelectedText().length(), // Replacement length
+		completionString.length(), // cursorPosition
+		null, // image
+		" " + displayString, // displayString //$NON-NLS-1$
+		null, // contextInformation
+		null // additionalProposalInfo
+		);
 		return completionProposal;
 	}
 
@@ -409,14 +422,14 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
 
 		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted
-			context.getOffset() - context.getPrefix().length(), // Offset
-			context.getPrefix().length(), // Replacement length
-			completionString.length(), // cursorPosition
-			labelProvider.getImage(namedElement), // image
-			" " + displayString, // displayString //$NON-NLS-1$
-			null, // contextInformation
-			additionalProposalInfo // additionalProposalInfo
-			);
+		context.getOffset() - context.getPrefix().length(), // Offset
+		context.getPrefix().length(), // Replacement length
+		completionString.length(), // cursorPosition
+		labelProvider.getImage(namedElement), // image
+		" " + displayString, // displayString //$NON-NLS-1$
+		null, // contextInformation
+		additionalProposalInfo // additionalProposalInfo
+		);
 		return completionProposal;
 	}
 

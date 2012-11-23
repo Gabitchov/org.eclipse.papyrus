@@ -21,10 +21,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
@@ -204,13 +201,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		downHyperLinkButton.setLayoutData(gridData3);
 		addListeners();
 		tableViewer.setContentProvider(contentProvider);
-		IPageIconsRegistry editorRegistry = null;
-		IMultiDiagramEditor papyrusEditor = EditorUtils.getMultiDiagramEditor();
-		try {
-			editorRegistry = papyrusEditor.getServicesRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
-			Activator.log.error(e);
-		}
+
 		this.hyperlinkObjects = hyperLinkHelper.getFilteredObject(hyperlinkObjects);
 
 		ILabelProvider provider = null;

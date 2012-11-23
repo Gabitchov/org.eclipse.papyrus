@@ -52,6 +52,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
@@ -284,7 +285,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				listener = new NotificationListener() {
 
 					public void notifyChanged(Notification notification) {
-						Connector newValue = (Connector)notification.getNewValue();
+						Edge newValue = (Edge)notification.getNewValue();
 						EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
 						for(IAspectAction action : postActions) {
 							action.run(editPart);

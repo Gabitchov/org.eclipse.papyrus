@@ -13,17 +13,18 @@ package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 
 import java.util.Iterator;
 
-import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 
 /**
- * A FilteredLabelProvider for GMF Diagrams
+ * A FilteredLabelProvider for GMF Notation model
  * 
  * @author Camille Letavernier
  */
-public class DiagramFilteredLabelProvider extends DiagramLabelProvider implements IFilteredLabelProvider {
+public class NotationFilteredLabelProvider extends NotationLabelProvider implements IFilteredLabelProvider {
 
 
 	public boolean accept(IStructuredSelection selection) {
@@ -47,8 +48,9 @@ public class DiagramFilteredLabelProvider extends DiagramLabelProvider implement
 			return accept((IStructuredSelection)element);
 		}
 
-		//The element is a Diagram or can be adapted to a Diagram
-		return EMFHelper.getEObject(element) instanceof Diagram;
+		//Accept elements from the Notation metamodel
+		EObject eObject = EMFHelper.getEObject(element);
+		return eObject != null && eObject.eClass().getEPackage() == NotationPackage.eINSTANCE;
 	}
 
 }

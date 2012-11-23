@@ -18,11 +18,11 @@ package org.eclipse.papyrus.uml.diagram.common.providers;
 import static org.eclipse.papyrus.uml.diagram.common.Activator.log;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
@@ -172,7 +172,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			// add decoration
 			if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
 				if(view.getElement() != null) {
-					EList<IPapyrusDecoration> decorations = decorationService.getDecorations(view.getElement(), false);
+					List<IPapyrusDecoration> decorations = decorationService.getDecorations(view.getElement(), false);
 					if((decorations != null) && (decorations.size() > 0)) {
 
 						if(view instanceof Edge) {

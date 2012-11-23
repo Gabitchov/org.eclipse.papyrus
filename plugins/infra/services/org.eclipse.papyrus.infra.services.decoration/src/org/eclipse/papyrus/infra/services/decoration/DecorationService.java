@@ -13,13 +13,13 @@
 package org.eclipse.papyrus.infra.services.decoration;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -192,8 +192,7 @@ public class DecorationService extends Observable implements IDecorationService 
 				ImageDescriptor imageForME = infoUtil.getImageDescriptorForME(marker);
 				PreferedPosition position = infoUtil.getPreferedPosition(marker);
 				int priority = infoUtil.getPriority(marker);
-				IPapyrusDecoration decoration =
-					addDecoration(marker.toString(), marker.getType(), element, imageForGE, imageForME, position, infoUtil.getMessage(marker), priority);
+				IPapyrusDecoration decoration = addDecoration(marker.toString(), marker.getType(), element, imageForGE, imageForME, position, infoUtil.getMessage(marker), priority);
 
 				return decoration;
 			}
@@ -217,8 +216,8 @@ public class DecorationService extends Observable implements IDecorationService 
 	 *        the decoration
 	 * @param message
 	 *        the message
-	 * @param priority 
-	 * 		  the priority
+	 * @param priority
+	 *        the priority
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#addDecoration(java.lang.String, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.jface.resource.ImageDescriptor, java.lang.String)
 	 */
@@ -228,8 +227,7 @@ public class DecorationService extends Observable implements IDecorationService 
 		if(decoration == null) {
 			decoration = new Decoration(id, type, decorationImageForGE, decorationImageForME, message, element, priority);
 			decorations.put(id, decoration);
-		}
-		else {
+		} else {
 			decoration.setDecorationImageForGE(decorationImageForGE);
 			decoration.setDecorationImageForME(decorationImageForME);
 			decoration.setMessage(message);
@@ -251,7 +249,7 @@ public class DecorationService extends Observable implements IDecorationService 
 	 * @return the decoration
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#getDecoration(java.lang.Object, boolean)
 	 */
-	public EList<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents) {
+	public List<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents) {
 		DecorationUtils tool = new DecorationUtils(element);
 		tool.tryChildIfEmpty();
 		if(tool.getEObject() != null) {

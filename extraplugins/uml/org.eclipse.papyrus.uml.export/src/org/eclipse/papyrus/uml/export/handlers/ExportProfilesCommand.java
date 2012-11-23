@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.export.handlers;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -49,8 +48,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
-
-import org.eclipse.papyrus.uml.export.dialog.ExportProfilesIconsDialog;
 import org.eclipse.papyrus.uml.export.dialog.ExportProfilesParametersDialog;
 import org.eclipse.papyrus.uml.export.dialog.ProfilesToExportSelectionDialog;
 import org.eclipse.papyrus.uml.export.messages.Messages;
@@ -146,7 +143,7 @@ public class ExportProfilesCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
 
 
-		ServiceUtilsForActionHandlers serviceUtils = new ServiceUtilsForActionHandlers();
+		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 		UmlModel openedModel;
 
 		try {

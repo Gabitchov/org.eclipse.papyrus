@@ -12,18 +12,28 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * A Label Provider for GMF Diagrams
+ * A Label Provider for GMF Notation model
  */
-public class DiagramLabelProvider extends EMFLabelProvider {
+public class NotationLabelProvider extends EMFLabelProvider {
+
+	/** icon for a compartment */
+	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
 
 	@Override
 	protected Image getImage(EObject element) {
@@ -38,6 +48,11 @@ public class DiagramLabelProvider extends EMFLabelProvider {
 				registry = new PageIconsRegistry();
 			}
 			return registry.getEditorIcon(element);
+		}
+
+		// if the element is a compartment
+		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
+			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, ICON_COMPARTMENT);
 		}
 
 		return super.getImage(element);
@@ -58,6 +73,13 @@ public class DiagramLabelProvider extends EMFLabelProvider {
 	protected String getText(EObject element) {
 		if(element instanceof Diagram) {
 			return ((Diagram)element).getName();
+		}
+
+		if(element instanceof View) { // maybe it is a view of a compartment
+			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
+			if(dummyEP instanceof ResizableCompartmentEditPart) {
+				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();
+			}
 		}
 
 		return super.getText(element);

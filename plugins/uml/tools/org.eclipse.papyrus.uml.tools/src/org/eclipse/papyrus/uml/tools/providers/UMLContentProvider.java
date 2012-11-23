@@ -17,15 +17,20 @@ import java.util.Collections;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
+import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -46,6 +51,44 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 	protected Stereotype stereotype;
 
 	protected ResourceSet root;
+
+	public UMLContentProvider() {
+		//Empty (@see #setInput())
+	}
+
+	@Override
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		IStructuredContentProvider semanticProvider = null;
+
+		if(newInput instanceof EObject) {
+			EObject eObject = (EObject)newInput;
+			semanticProvider = getSemanticProvider(eObject);
+		}
+
+		if(newInput instanceof Resource) {
+			semanticProvider = getSemanticProvider((Resource)newInput);
+		}
+
+		if(newInput instanceof ResourceSet) {
+			root = (ResourceSet)newInput;
+			semanticProvider = getSemanticProvider(root);
+		}
+
+		if(newInput instanceof ServicesRegistry) {
+			try {
+				root = ServiceUtils.getInstance().getModelSet((ServicesRegistry)newInput);
+				semanticProvider = getSemanticProvider(root);
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+			}
+		}
+
+		if(semanticProvider != null) {
+			encapsulated = UMLProviderHelper.encapsulateProvider(semanticProvider, null, feature, root);
+		}
+
+		super.inputChanged(viewer, oldInput, newInput);
+	}
 
 	/**
 	 * Constructor.
@@ -97,6 +140,18 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 
 		IStructuredContentProvider semanticProvider = getSemanticProvider(source, feature, stereotype);
 		encapsulated = UMLProviderHelper.encapsulateProvider(semanticProvider, eObject, feature, root);
+	}
+
+	protected IStructuredContentProvider getSemanticProvider(ResourceSet root) {
+		return new SemanticUMLContentProvider(root);
+	}
+
+	protected IStructuredContentProvider getSemanticProvider(Resource root) {
+		return new SemanticUMLContentProvider(root.getContents().toArray(new EObject[0]));
+	}
+
+	protected IStructuredContentProvider getSemanticProvider(EObject root) {
+		return new SemanticUMLContentProvider(new EObject[]{ root });
 	}
 
 	/**

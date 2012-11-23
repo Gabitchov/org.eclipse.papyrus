@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.navigation;
 
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.preference.NavigationPreferenceInitializer;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
@@ -26,6 +27,8 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
+
+	public static LogHelper log;
 
 	/**
 	 * The constructor
@@ -43,6 +46,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(this);
 		NavigationPreferenceInitializer preferenceInitializer = new NavigationPreferenceInitializer();
 		preferenceInitializer.initializeDefaultPreferences();
 	}

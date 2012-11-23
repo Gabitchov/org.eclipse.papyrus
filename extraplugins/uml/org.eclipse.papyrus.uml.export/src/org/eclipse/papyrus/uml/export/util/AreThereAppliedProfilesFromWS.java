@@ -18,7 +18,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.uml.export.Activator;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -57,10 +59,10 @@ public class AreThereAppliedProfilesFromWS extends PropertyTester {
 		Object currentValue = null;
 		if(ARE_THERE_APPLIED_PROFILES.equals(property)) {
 
-			ServiceUtilsForActionHandlers serviceUtils = new ServiceUtilsForActionHandlers();
+			ServicesRegistry registry = ((IMultiDiagramEditor)editor).getServicesRegistry();
 			UmlModel openedModel;
 			try {
-				openedModel = (UmlModel)serviceUtils.getModelSet().getModel(UmlModel.MODEL_ID);
+				openedModel = (UmlModel)ServiceUtils.getInstance().getModelSet(registry).getModel(UmlModel.MODEL_ID);
 				EObject root = openedModel.lookupRoot();
 				Object[] profiles = ProfileUtil.getAppliedProfilesFromWS(root);
 
@@ -72,11 +74,9 @@ public class AreThereAppliedProfilesFromWS extends PropertyTester {
 				}
 				return (currentValue == expectedValue);
 			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Activator.log.error(e);
 			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 
 		}

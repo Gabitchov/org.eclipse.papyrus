@@ -103,6 +103,7 @@ public class HTMLCommentEditorDialogConfiguration extends DefaultDirectEditorCon
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		protected void createButtonsForButtonBar(Composite parent) {
 			// create OK and Cancel buttons by default
 			// remove the OK button as default button, so Carriage Return key pressed does not close the dialog
@@ -123,7 +124,7 @@ public class HTMLCommentEditorDialogConfiguration extends DefaultDirectEditorCon
 		/**
 		 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 		 * 
-		 *@param parent
+		 * @param parent
 		 *        the parent composite to contain the dialog area
 		 * @return the dialog area control
 		 */

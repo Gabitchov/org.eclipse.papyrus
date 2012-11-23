@@ -103,37 +103,47 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 				descriptors.addAll(getDisplay(part).getTabDescriptors(views));
 			}
 
+			//FIXME: In some cases (e.g. Selection in the Papyrus Tree outline), the IWorkbenchPart is not an ITabbedPropertySheetPageContributor
+			//TODO: Investigate on this case and fix the issue (contributor == null in this case)
+			ITabbedPropertySheetPageContributor contributor;
+			if(part instanceof ITabbedPropertySheetPageContributor) {
+				contributor = (ITabbedPropertySheetPageContributor)part;
+			} else {
+				contributor = (ITabbedPropertySheetPageContributor)(part.getAdapter(ITabbedPropertySheetPageContributor.class));
+			}
 
-			// get all tab descriptors for the registered extension points
-			TabbedPropertyRegistry registry = TabbedPropertyRegistryFactory.getInstance().createRegistry((ITabbedPropertySheetPageContributor)part);
+			if(contributor != null) {
+				// get all tab descriptors for the registered extension points
+				TabbedPropertyRegistry registry = TabbedPropertyRegistryFactory.getInstance().createRegistry(contributor);
 
-			// invoke dynamically on the tab registry, as method is private
-			// problem of implementation of tabbed properties tabbed registry. Either contribution using extension points, either a tabprovider
-			// both contribution can not exist together, the only solution is to make a workaround.
-			try {
-				Method method = TabbedPropertyRegistry.class.getDeclaredMethod("getAllTabDescriptors"); //$NON-NLS-1$
-				method.setAccessible(true);
-				ITabDescriptor[] registeredTabDesriptors;
+				// invoke dynamically on the tab registry, as method is private
+				// problem of implementation of tabbed properties tabbed registry. Either contribution using extension points, either a tabprovider
+				// both contribution can not exist together, the only solution is to make a workaround.
+				try {
+					Method method = TabbedPropertyRegistry.class.getDeclaredMethod("getAllTabDescriptors"); //$NON-NLS-1$
+					method.setAccessible(true);
+					ITabDescriptor[] registeredTabDesriptors;
 
-				registeredTabDesriptors = (ITabDescriptor[])method.invoke(registry);
+					registeredTabDesriptors = (ITabDescriptor[])method.invoke(registry);
 
-				if(registeredTabDesriptors != null) {
-					for(ITabDescriptor descriptor : registeredTabDesriptors) {
-						if(descriptor.getSectionDescriptors().size() > 0) {
-							descriptors.add(descriptor);
+					if(registeredTabDesriptors != null) {
+						for(ITabDescriptor descriptor : registeredTabDesriptors) {
+							if(descriptor.getSectionDescriptors().size() > 0) {
+								descriptors.add(descriptor);
+							}
 						}
 					}
+				} catch (IllegalArgumentException e) {
+					Activator.log.error(e);
+				} catch (IllegalAccessException e) {
+					Activator.log.error(e);
+				} catch (InvocationTargetException e) {
+					Activator.log.error(e);
+				} catch (SecurityException e) {
+					Activator.log.error(e);
+				} catch (NoSuchMethodException e) {
+					Activator.log.error(e);
 				}
-			} catch (IllegalArgumentException e) {
-				Activator.log.error(e);
-			} catch (IllegalAccessException e) {
-				Activator.log.error(e);
-			} catch (InvocationTargetException e) {
-				Activator.log.error(e);
-			} catch (SecurityException e) {
-				Activator.log.error(e);
-			} catch (NoSuchMethodException e) {
-				Activator.log.error(e);
 			}
 
 			orderTabDescriptors(descriptors);

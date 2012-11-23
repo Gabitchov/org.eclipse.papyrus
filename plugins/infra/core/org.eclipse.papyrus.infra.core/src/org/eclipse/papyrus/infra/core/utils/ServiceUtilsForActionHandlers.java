@@ -36,8 +36,14 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author cedric dumoulin
  * 
+ * @deprecated 0.10: Use org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers instead
  */
+@Deprecated
 public class ServiceUtilsForActionHandlers {
+
+	private ServiceUtilsForActionHandlers() {
+		//Singleton
+	}
 
 	private final static ServiceUtilsForActionHandlers instance = new ServiceUtilsForActionHandlers();
 

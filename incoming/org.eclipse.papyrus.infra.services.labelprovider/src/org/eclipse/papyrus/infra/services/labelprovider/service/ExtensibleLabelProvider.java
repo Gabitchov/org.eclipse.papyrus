@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.widgets.providers;
+package org.eclipse.papyrus.infra.services.labelprovider.service;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.perspective;
 
 import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard;
+import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
@@ -25,6 +26,8 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 
 	/** constant for the definition of papyrus model explorer **/
 	protected static final String ID_MODELEXPLORER = "org.eclipse.papyrus.views.modelexplorer.modelexplorer";
+
+	public static final String ID_BOTTOM_FOLDER = "org.eclipse.papyrus.perspective.folder.bottom";
 
 	/**
 	 * 
@@ -55,6 +58,8 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
 		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
 		layout.addShowViewShortcut(ID_MODELEXPLORER);
+		layout.addShowViewShortcut(IPageLayout.ID_PROBLEM_VIEW);
+		layout.addShowViewShortcut("org.eclipse.pde.runtime.LogView"); //Error log. //A constant doesn't seem to exist for this ID
 
 		layout.addActionSet("org.eclipse.debug.ui.launchActionSet");
 
@@ -84,8 +89,12 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		// place outline under the model explorer
 		layout.addView(IPageLayout.ID_OUTLINE, IPageLayout.BOTTOM, 0.5f, ID_MODELEXPLORER);
 
-		// place properties under the editor
-		layout.addView(IPageLayout.ID_PROP_SHEET, IPageLayout.BOTTOM, (float)0.70, editorArea);
+		// place properties and problem views under the editor
+		IFolderLayout bottomFolder = layout.createFolder(ID_BOTTOM_FOLDER, IPageLayout.BOTTOM, 0.70f, editorArea);
+
+		bottomFolder.addView(IPageLayout.ID_PROP_SHEET);
+		bottomFolder.addView(IPageLayout.ID_PROBLEM_VIEW);
+
 		// bottom.addView("org.eclipse.pde.runtime.LogView");
 	}
 }

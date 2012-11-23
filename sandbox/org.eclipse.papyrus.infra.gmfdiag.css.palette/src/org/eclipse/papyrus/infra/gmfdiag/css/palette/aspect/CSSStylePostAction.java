@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.palette.aspect;
 
 import java.util.Collections;
@@ -36,7 +47,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
+/**
+ * A Palette post action to automatically add a CSS Style on a newly created element
+ * 
+ * @author Camille Letavernier
+ */
 public class CSSStylePostAction extends ModelPostAction {
 
 	private StringCombo editor;
@@ -53,7 +68,7 @@ public class CSSStylePostAction extends ModelPostAction {
 
 	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		editor = new StringCombo(parent, SWT.NONE);
-		editor.setContentProvider(EmptyContentProvider.instance); //We should not depend on the CSS Parser ; do not use CSSClassContentProvider 
+		editor.setContentProvider(EmptyContentProvider.instance); //TODO: We should not depend on the CSS Parser ; do not use CSSClassContentProvider.
 		return editor;
 	}
 
@@ -85,7 +100,7 @@ public class CSSStylePostAction extends ModelPostAction {
 	}
 
 	//We should not depend on the properties view to edit the custom style.
-	//FIXME: Move CustomStyleValueCommand to infra.gmfdiag.common (or infra.gmfdiag.tools) 
+	//FIXME: Move CustomStyleValueCommand to infra.gmfdiag.common (or infra.gmfdiag.tools)
 	@Override
 	public void run(final EditPart editPart) {
 		TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(editPart);

@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeConpartmentEditPart;
@@ -120,7 +120,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		final Resource modelResource = Util.getResourceSet(root).getResource(modelUri, true);
 		final Profile profile = (Profile)modelResource.getContents().get(0);
 		//	PackageUtil.applyProfile(root,profile, false);
-		final TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(papyrusEditor.getServicesRegistry());
 		AppliedProfileCommand appliedProfileCommand = new AppliedProfileCommand(domain, root, profile);
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(appliedProfileCommand));
 

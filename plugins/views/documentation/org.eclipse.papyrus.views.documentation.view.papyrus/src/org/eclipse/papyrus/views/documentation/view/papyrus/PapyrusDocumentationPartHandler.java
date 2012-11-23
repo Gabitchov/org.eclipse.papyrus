@@ -25,15 +25,21 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.DiagramsUtil;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.views.documentation.DocumentationManager;
 import org.eclipse.papyrus.views.documentation.IDocumentationManager;
 import org.eclipse.papyrus.views.documentation.view.IDocumentationPartHandler;
 import org.eclipse.papyrus.views.documentation.view.SelectResourceDialog;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -52,10 +58,14 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 	}
 
 	public void executeCommand(IWorkbenchPart part, Command cmd) {
-		CoreMultiDiagramEditor editor = getPapyrusEditor(part);
-		if(editor != null && cmd != null) {
-			TransactionalEditingDomain domain = (TransactionalEditingDomain)editor.getEditingDomain();
-			domain.getCommandStack().execute(cmd);
+		ServicesRegistry registry = getServicesRegistry(part);
+		if(registry != null && cmd != null) {
+			try {
+				TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
+				domain.getCommandStack().execute(cmd);
+			} catch (ServiceException ex) {
+				ex.printStackTrace(System.err);
+			}
 		}
 	}
 
@@ -78,9 +88,9 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 
 	public void openElement(IWorkbenchPart part, URI elementUri) {
 		try {
-			CoreMultiDiagramEditor editor = getPapyrusEditor(part);
-			if(editor != null) {
-				EditingDomain ed = editor.getEditingDomain();
+			ServicesRegistry registry = getServicesRegistry(part);
+			if(registry != null) {
+				EditingDomain ed = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
 				if(ed != null) {
 					EObject eObject = ed.getResourceSet().getEObject(elementUri, false);
 					Diagram diagram = null;
@@ -93,7 +103,7 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 						}
 					}
 					if(diagram != null) {
-						IPageMngr pageMngr = (IPageMngr)editor.getAdapter(IPageMngr.class);
+						IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(registry);
 						if(pageMngr != null) {
 							if(pageMngr.isOpen(diagram)) {
 								pageMngr.closePage(diagram);
@@ -109,8 +119,8 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 
 	public EObject openElementSelectionDialog(IWorkbenchPart part) {
 		Object selectedElement = null;
-		CoreMultiDiagramEditor editor = getPapyrusEditor(part);
-		if(editor != null) {
+		ServicesRegistry registry = getServicesRegistry(part);
+		if(registry != null) {
 			ISelectionStatusValidator validator = new ISelectionStatusValidator() {
 
 				public IStatus validate(Object[] selectedElements) {
@@ -129,16 +139,29 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 					return enableOK ? new Status(IStatus.OK, "org.eclipse.emf.common.ui", 0, msg, null) : new Status(IStatus.ERROR, "org.eclipse.emf.common.ui", 0, msg, null);
 				}
 			};
-			selectedElement = SelectResourceDialog.openElementSelection(editor.getServicesRegistry(), new MoDiscoLabelProvider(), new MoDiscoContentProvider(), validator, null, true);
+
+			ILabelProvider labelProvider;
+			try {
+				labelProvider = registry.getService(LabelProviderService.class).getLabelProvider();
+			} catch (ServiceException ex) {
+				ex.printStackTrace(System.out);
+				labelProvider = new LabelProvider();
+			}
+
+			selectedElement = SelectResourceDialog.openElementSelection(registry, labelProvider, new MoDiscoContentProvider(), validator, null, true);
 		}
 		return adapt(selectedElement);
 	}
 
 	public boolean isReadOnly(IWorkbenchPart part, EObject eObject) {
-		CoreMultiDiagramEditor editor = getPapyrusEditor(part);
-		if(editor != null && eObject != null) {
-			TransactionalEditingDomain domain = (TransactionalEditingDomain)editor.getEditingDomain();
-			return domain.isReadOnly(eObject.eResource());
+		ServicesRegistry registry = getServicesRegistry(part);
+		if(registry != null && eObject != null) {
+			try {
+				TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
+				return domain.isReadOnly(eObject.eResource());
+			} catch (ServiceException ex) {
+				ex.printStackTrace(System.out);
+			}
 		}
 		return false;
 	}
@@ -153,13 +176,13 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 		return null;
 	}
 
-	private static CoreMultiDiagramEditor getPapyrusEditor(IWorkbenchPart part) {
-		if(part instanceof CoreMultiDiagramEditor) {
-			return (CoreMultiDiagramEditor)part;
+	private static ServicesRegistry getServicesRegistry(IWorkbenchPart part) {
+		if(part instanceof IMultiDiagramEditor) {
+			return ((IMultiDiagramEditor)part).getServicesRegistry();
 		}
 		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if(activeEditor instanceof CoreMultiDiagramEditor) {
-			return (CoreMultiDiagramEditor)activeEditor;
+		if(activeEditor instanceof IMultiDiagramEditor) {
+			return ((IMultiDiagramEditor)activeEditor).getServicesRegistry();
 		}
 		return null;
 	}
