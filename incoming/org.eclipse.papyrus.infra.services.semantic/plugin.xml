@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.services.semantic.service.impl.SemanticServiceImpl"
+            description="Default implementation for the SemanticService"
+            id="org.eclipse.papyrus.infra.services.semantic.service.SemanticService"
+            priority="1"
+            startKind="lazy">
+      </service>
+   </extension>
+
+</plugin>
