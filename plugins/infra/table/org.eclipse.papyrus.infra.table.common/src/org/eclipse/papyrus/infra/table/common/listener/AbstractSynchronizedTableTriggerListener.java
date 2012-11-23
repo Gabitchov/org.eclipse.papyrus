@@ -200,18 +200,19 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 						TableInstance table = provider.getNatTableWidget().getTableInstance();
 						List<Row> newOrder = new ArrayList<Row>();
 						List<Row> rows = table.getRows();
-						Assert.isTrue(rows.size() == allElements.size());
-						for(EObject current : allElements) {
-							for(Row currentRow : rows) {
-								if(currentRow.getElement() == current) {
-									newOrder.add(currentRow);
-									break;
+
+						//Assert.isTrue(rows.size() == allElements.size());//not the case when we are deleting elements of the table
+							for(EObject current : allElements) {
+								for(Row currentRow : rows) {
+									if(currentRow.getElement() == current) {
+										newOrder.add(currentRow);
+										break;
+									}
 								}
 							}
-						}
-						ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
-						Command command = commandFactory.createSetCommand(domain, table, TableinstancePackage.eINSTANCE.getTableInstance_Rows(), newOrder);
-						command.execute();
+							ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(domain);
+							Command command = commandFactory.createSetCommand(domain, table, TableinstancePackage.eINSTANCE.getTableInstance_Rows(), newOrder);
+							command.execute();
 						return null;
 					}
 				}));
