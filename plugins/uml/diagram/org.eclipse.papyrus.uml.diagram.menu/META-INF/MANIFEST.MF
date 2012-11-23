@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0"
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.uml.diagram.menu,
  org.eclipse.papyrus.uml.diagram.menu.actions,
  org.eclipse.papyrus.uml.diagram.menu.actions.handlers
