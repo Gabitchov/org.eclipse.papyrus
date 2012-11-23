@@ -37,6 +37,7 @@ Export-Package: org.eclipse.papyrus.infra.table.common,
  org.eclipse.papyrus.infra.table.common.editor,
  org.eclipse.papyrus.infra.table.common.factory,
  org.eclipse.papyrus.infra.table.common.handlers,
+ org.eclipse.papyrus.infra.table.common.listener,
  org.eclipse.papyrus.infra.table.common.messages,
  org.eclipse.papyrus.infra.table.common.modelresource,
  org.eclipse.papyrus.infra.table.common.util

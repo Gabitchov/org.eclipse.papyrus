@@ -73,10 +73,10 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 	protected PapyrusTableInstance rawModel;
 
 	/** listener on the model for synchronized table */
-	private TriggerListener modelTriggerListener;
+	protected TriggerListener modelTriggerListener;
 
 	/** listener on the table for synchronized table : listen the properties "isSynchronized" and "fillingQueries" */
-	private TriggerListener tableTriggerListener;
+	protected TriggerListener tableTriggerListener;
 
 	/**
 	 * the part name synchronizer
