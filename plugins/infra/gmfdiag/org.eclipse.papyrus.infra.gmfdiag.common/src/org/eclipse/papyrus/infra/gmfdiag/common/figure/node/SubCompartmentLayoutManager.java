@@ -84,7 +84,6 @@ public class SubCompartmentLayoutManager extends AbstractLayout {
 				if(dim.height == 0) {
 					dim.height = 20;
 				}
-
 			}
 		}
 		return dim;

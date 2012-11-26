@@ -16,9 +16,13 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -34,6 +38,7 @@ import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyE
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ShapeFlowLayout;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SubCompartmentLayoutManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
@@ -101,11 +106,11 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		// result.getParent().setBackgroundColor(ColorConstants.lightGray);
 		ShapeCompartmentLayoutManager layoutManager = new ShapeCompartmentLayoutManager();
 		result.setLayoutManager(layoutManager);
-		ConstrainedToolbarLayout layout = new ShapeFlowLayout();
-		layout.setHorizontal(true);
-		layout.setStretchMinorAxis(true);
-		layout.setStretchMajorAxis(true);
-		layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
+		ShapeFlowLayout layout = new ShapeFlowLayout();
+//		layout.setHorizontal(true);
+//		layout.setStretchMinorAxis(true);
+//		layout.setStretchMajorAxis(true);
+//		layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
 
 		result.getContentPane().setLayoutManager(layout);
 
@@ -133,13 +138,14 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 					IFigure imageFigure = new BorderedScalableImageFigure(image, false, false, true);
 					imageFigure.setOpaque(false);
 					imageFigure.setVisible(true);
-					contentPane.add(imageFigure);	
+					contentPane.add(imageFigure);
 				} else {
 					Activator.log.debug("No image will be drawn");
 				}
 				
 			}
 		}
+		
 	}
 
 
@@ -167,6 +173,8 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	 */
 	public class ShapeCompartmentLayoutManager extends SubCompartmentLayoutManager {
 
+		public static final int MIN_PREFERRED_SIZE = 40; 
+		
 		/**
 		 * {@inheritDoc}
 		 */
@@ -174,26 +182,27 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		public void layout(IFigure container) {
 			super.layout(container);
 		}
-	}
-
-	public class ShapeFlowLayout extends ConstrainedToolbarLayout {
-
+		
 		/**
 		 * {@inheritDoc}
 		 */
 		@Override
-		public void layout(IFigure parent) {
-			super.layout(parent);
+		protected Dimension calculatePreferredSize(IFigure figure, int wHint, int hHint) {
+			Dimension dim =  super.calculatePreferredSize(figure, wHint, hHint);
+			
+			dim.height = Math.max(MIN_PREFERRED_SIZE, dim.height);
+			
+			return dim;
 		}
-
+		
 	}
 
 	public class BorderedScalableImageFigure extends ScalableImageFigure {
 
 		public BorderedScalableImageFigure(RenderedImage renderedImage, boolean useDefaultImageSize, boolean useOriginalColors, boolean antiAlias) {
 			super(renderedImage, useDefaultImageSize, useOriginalColors, antiAlias);
-			// setBorder(new LineBorder(ColorConstants.red));
-			setAlignment(PositionConstants.CENTER);
+			//setBorder(new LineBorder(ColorConstants.red, 2));
+			setAlignment(PositionConstants.CENTER|PositionConstants.MIDDLE);
 			setMaintainAspectRatio(true);
 		}
 

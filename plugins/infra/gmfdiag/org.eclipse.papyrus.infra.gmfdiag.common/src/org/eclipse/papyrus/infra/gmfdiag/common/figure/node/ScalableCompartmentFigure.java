@@ -4,7 +4,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 /**
- * Specific figure for the comaprtment
+ * Specific figure for the compartment
  */
 public class ScalableCompartmentFigure extends ResizableCompartmentFigure {
 
