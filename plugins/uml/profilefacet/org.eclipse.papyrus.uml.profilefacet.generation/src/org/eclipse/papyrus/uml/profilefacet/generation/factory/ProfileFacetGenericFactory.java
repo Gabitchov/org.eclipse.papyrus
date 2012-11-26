@@ -25,6 +25,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.EStructuralFeatureArgument;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.ParametricQuery;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.ParametricqueryFactory;
+import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.StringArgument;
 import org.eclipse.papyrus.uml.profilefacet.generation.Activator;
 import org.eclipse.papyrus.uml.profilefacet.generation.messages.Messages;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetFactory;
@@ -33,6 +34,7 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFac
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyFacetAttribute;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyFacetReference;
 import org.eclipse.papyrus.uml.profilefacet.queries.registry.QueryRegistry;
+import org.eclipse.papyrus.uml.profilefacet.utils.ArgumentUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -74,12 +76,11 @@ public class ProfileFacetGenericFactory {
 	private final QueryRegistry registry;
 
 	/** String for the get query description */
-	public static final String GET_QUERY_DESCRIPTION = "Getter for the stereotype property {0}";
+	public static final String GET_QUERY_DESCRIPTION = Messages.ProfileFacetGenericFactory_GetterForStereotypeProperty;
 
 	/** String for the set query description */
-	public static final String SET_QUERY_DESCRIPTION = "Setter for the stereotype property {0}";
+	public static final String SET_QUERY_DESCRIPTION = Messages.ProfileFacetGenericFactory_SetterForStereotypeProperty;
 
-	//FIXME : manage the read-only properties 
 	/**
 	 * 
 	 * Constructor.
@@ -111,9 +112,9 @@ public class ProfileFacetGenericFactory {
 		for(final PackageableElement packagedElement : profile.getPackagedElements()) {
 			if(packagedElement instanceof Profile) {
 				final ProfileFacetSet subProfile = createProfileFacetSet((Profile)packagedElement);
-					//We ignore empty facetSet
+				//We ignore empty facetSet
 				if(subProfile != null && (subProfile.getStereotypeFacets().size() != 0 || subProfile.getSubProfileFacetSet().size() != 0)) {
-						set.getESubpackages().add(subProfile);
+					set.getESubpackages().add(subProfile);
 				}
 			} else if(packagedElement instanceof Stereotype) {
 				final StereotypeFacet stereotypeFacet = createFacet((Stereotype)packagedElement);
@@ -121,7 +122,7 @@ public class ProfileFacetGenericFactory {
 				//we ignore stereotypes without properties
 
 				if(stereotypeFacet.getStereotypePropertyElements().size() != 0) {
-					set.getFacets().add(stereotypeFacet);
+					set.getEClassifiers().add(stereotypeFacet);
 				}
 			}
 		}
@@ -143,7 +144,8 @@ public class ProfileFacetGenericFactory {
 	 */
 	public StereotypeFacet createFacet(final Stereotype stereotype) {
 		final StereotypeFacet facet = ProfileFacetFactory.eINSTANCE.createStereotypeFacet();
-		facet.setStereotypeQualifiedName(stereotype.getQualifiedName());
+		final String stereotypeQualifiedName = stereotype.getQualifiedName();
+		facet.setStereotypeQualifiedName(stereotypeQualifiedName);
 		facet.setName(stereotype.getName());
 		facet.getESuperTypes().add(UMLPackage.eINSTANCE.getElement());
 		final XMIResource res = (XMIResource)stereotype.eResource();
@@ -162,21 +164,51 @@ public class ProfileFacetGenericFactory {
 			}
 			if(attribute.getType() instanceof DataType) {
 				final StereotypePropertyFacetAttribute attr = createFacetAttribute(attribute);
-				if(attr!= null) {
-					facet.getEAttributes().add(attr);
+				if(attr != null) {
+					facet.getEStructuralFeatures().add(attr);
 				}
 			} else if(attribute.getType() instanceof EObject) {
 				final StereotypePropertyFacetReference ref = createFacetReference(attribute);
-				if(ref!= null) {
-					facet.getEReferences().add(ref);
+				if(ref != null) {
+					facet.getEStructuralFeatures().add(ref);
 				}
 			}
 		}
 
 
+		//set the condition query (test on the appied stereotype)
+		final ModelQuery query = getQueryForIsAppliedStereotype(stereotypeQualifiedName);
+		facet.setConditionQuery(query);
 		return facet;
 	}
 
+	/**
+	 * 
+	 * @param stereotypeQualifiedName
+	 *        the stereotype qualified name
+	 * @return
+	 *         the query to test if the required stereotype is applied on the element
+	 */
+	protected ModelQuery getQueryForIsAppliedStereotype(final String stereotypeQualifiedName) {
+		//1. create the returned query
+		final ParametricQuery query = ParametricqueryFactory.eINSTANCE.createParametricQuery();
+		query.setName("IsApplied_" + stereotypeQualifiedName + "_query"); //$NON-NLS-1$ //$NON-NLS-2$
+		query.setLowerBound(0);
+		query.setUpperBound(1);
+		query.setReturnType(EcorePackage.eINSTANCE.getEBoolean());
+
+		//2.create the argument for this query
+		final StringArgument arg = ParametricqueryFactory.eINSTANCE.createStringArgument();
+		arg.setArgumentName(ArgumentUtils.STEREOTYPE_QUALIFIED_NAME);
+		arg.setValue(stereotypeQualifiedName);
+		query.getArguments().add(arg);
+
+		//3.set tge called query
+		final ModelQuery testStereotypeCalledQuery = this.registry.getModelQuery(QueryRegistry.IS_APPLIED_REQUIRED_STEREOTYPE);
+		query.setCalledQuery(testStereotypeCalledQuery);
+
+		return query;
+	}
 
 	/**
 	 * 
@@ -197,17 +229,18 @@ public class ProfileFacetGenericFactory {
 		facetReference.setName(property.getName());
 		final Type type = property.getType();
 		final EClassifier eType = EcorePackage.eINSTANCE.getEObject();
-		ParametricQuery getQuery;
-		ParametricQuery setQuery;
+		
 
 		final int upperBound = property.upperBound();
 		facetReference.setLowerBound(property.getLower());
 		facetReference.setUpperBound(property.getUpper());
 
+		ModelQuery getCalledQuery = null;
+		ModelQuery setCalledQuery = null;
+		
 		//EObject reference
 		if(type instanceof Element) {
-			ModelQuery getCalledQuery = null;
-			ModelQuery setCalledQuery = null;
+			
 			if(upperBound == -1 || upperBound > 1) {
 				getCalledQuery = this.registry.getModelQuery(QueryRegistry.GET_EOBJECT_MULTI_REFERENCE_OPERATION_ID);
 				setCalledQuery = this.registry.getModelQuery(QueryRegistry.SET_EOBJECT_MULTI_REFERENCE_OPERATION_ID);
@@ -216,32 +249,40 @@ public class ProfileFacetGenericFactory {
 				setCalledQuery = this.registry.getModelQuery(QueryRegistry.GET_EOBJECT_SINGLE_REFERENCE_OPERATION_ID);
 			}
 
-			//we create the query
-			getQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
-			setQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
-
-			getQuery.setCalledQuery(getCalledQuery);
-			setQuery.setCalledQuery(setCalledQuery);
-			//we prepare the arguments
-			EStructuralFeatureArgument arg = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
-			arg.setValue(facetReference);
-			getQuery.setName("get_" + property.getQualifiedName() + "_value");
-			getQuery.setDescription(NLS.bind(GET_QUERY_DESCRIPTION, property.getQualifiedName()));
-			getQuery.getArguments().add(arg);
-			getQuery.setLowerBound(facetReference.getLowerBound());
-			getQuery.setUpperBound(facetReference.getUpperBound());
-			getQuery.setReturnType(eType);
-
-			setQuery.setName("set_" + property.getQualifiedName() + "_value");
-			setQuery.setDescription(NLS.bind(SET_QUERY_DESCRIPTION, property.getQualifiedName()));
-			setQuery.getArguments().add(arg);
-			setQuery.setLowerBound(0);
-			setQuery.setUpperBound(1);
-			setQuery.setReturnType(eType);
-
 		} else {
 			return null;
 		}
+		//1. we create the getValueQuery
+		ParametricQuery getQuery = getQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
+		getQuery.setName("get_" + property.getQualifiedName() + "_value"); //$NON-NLS-1$ //$NON-NLS-2$
+		getQuery.setDescription(NLS.bind(GET_QUERY_DESCRIPTION, property.getQualifiedName()));
+
+		getQuery.setLowerBound(facetReference.getLowerBound());
+		getQuery.setUpperBound(facetReference.getUpperBound());
+		getQuery.setReturnType(eType);
+		
+		getQuery.setCalledQuery(getCalledQuery);
+		//1.bis we create the argument
+		final EStructuralFeatureArgument getArgument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
+		getArgument.setArgumentName(ArgumentUtils.EDITED_FEATURE);
+		getArgument.setValue(facetReference);
+		getQuery.getArguments().add(getArgument);
+		
+		
+		//2. we create the setValueQuery
+		ParametricQuery setQuery= ParametricqueryFactory.eINSTANCE.createParametricQuery();
+		setQuery.setName("set_" + property.getQualifiedName() + "_value"); //$NON-NLS-1$ //$NON-NLS-2$
+		setQuery.setDescription(NLS.bind(SET_QUERY_DESCRIPTION, property.getQualifiedName()));
+		setQuery.setLowerBound(0);
+		setQuery.setUpperBound(1);
+		setQuery.setReturnType(eType);
+		setQuery.setCalledQuery(setCalledQuery);
+		//2.bis we create the argument
+		final EStructuralFeatureArgument setArgument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
+		setArgument.setArgumentName(ArgumentUtils.EDITED_FEATURE);
+		setArgument.setValue(facetReference);
+		setQuery.getArguments().add(setArgument);
+		
 		facetReference.setEType(eType);
 		facetReference.setValueQuery(getQuery);
 		facetReference.setSetQuery(setQuery);
@@ -259,9 +300,6 @@ public class ProfileFacetGenericFactory {
 	public StereotypePropertyFacetAttribute createFacetAttribute(final Property property) {
 		final Type type = property.getType();
 		EClassifier eType = null;
-		ParametricQuery getQuery;
-		ParametricQuery setQuery;
-
 		final int upperBound = property.upperBound();
 		final StereotypePropertyFacetAttribute facetAttribute = ProfileFacetFactory.eINSTANCE.createStereotypePropertyFacetAttribute();
 		facetAttribute.setIsDerived(property.isDerived());
@@ -367,39 +405,47 @@ public class ProfileFacetGenericFactory {
 					setCalledQuery = this.registry.getModelQuery(QueryRegistry.SET_DATATYPE_SINGLE_VALUE_OPERATION_ID);
 				}
 			} else {
-				Activator.log.warn(NLS.bind(Messages.ProfileEFacetGenericFactory_TypeNotManagedMessage, type));
+				Activator.log.warn(NLS.bind(Messages.ProfileFacetGenericFactory_TheTypeIsNotManaged, type));
 				return null;
 
 			}
 		}
-
-		//1. we create the queries
-		getQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
-		setQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
+		
+		facetAttribute.setEType(eType);
+		
+		//1. we create the getValueQuery
+		final ParametricQuery getQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
 		getQuery.setCalledQuery(getCalledQuery);
-		setQuery.setCalledQuery(setCalledQuery);
-		//we prepare the arguments
-		final EStructuralFeatureArgument argument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
-		argument.setValue(facetAttribute);
-
-		getQuery.setName("get_" + property.getQualifiedName() + "_value");
+		getQuery.setName("get_" + property.getQualifiedName() + "_value"); //$NON-NLS-1$ //$NON-NLS-2$
 		getQuery.setDescription(NLS.bind(GET_QUERY_DESCRIPTION, property.getQualifiedName()));
-		getQuery.getArguments().add(argument);
 		getQuery.setLowerBound(facetAttribute.getLowerBound());
 		getQuery.setUpperBound(facetAttribute.getUpperBound());
 		getQuery.setReturnType(eType);
+		
+		//1.bis we prepare the argument
+		final EStructuralFeatureArgument getArgument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
+		getArgument.setValue(facetAttribute);
+		getArgument.setArgumentName(ArgumentUtils.EDITED_FEATURE);
+		getQuery.getArguments().add(getArgument);
 
-		setQuery.setName("set_" + property.getQualifiedName() + "_value");
+		facetAttribute.setValueQuery(getQuery);
+		
+		//2. we create the setValueQuery
+		final ParametricQuery 		setQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
+		setQuery.setCalledQuery(setCalledQuery);
+		setQuery.setName("set_" + property.getQualifiedName() + "_value"); //$NON-NLS-1$ //$NON-NLS-2$
 		setQuery.setDescription(NLS.bind(SET_QUERY_DESCRIPTION, property.getQualifiedName()));
-		setQuery.getArguments().add(argument);
 		setQuery.setLowerBound(0);
 		setQuery.setUpperBound(1);
 		setQuery.setReturnType(eType);
-
-		facetAttribute.setEType(eType);
-		facetAttribute.setValueQuery(getQuery);
-		facetAttribute.setSetQuery(setQuery);
 		
+		//2.bis we prepare the argument
+		final EStructuralFeatureArgument setArgument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
+		setArgument.setValue(facetAttribute);
+		setArgument.setArgumentName(ArgumentUtils.EDITED_FEATURE);
+		setQuery.getArguments().add(setArgument);		
+
+		facetAttribute.setSetQuery(setQuery);
 		return facetAttribute;
 	}
 

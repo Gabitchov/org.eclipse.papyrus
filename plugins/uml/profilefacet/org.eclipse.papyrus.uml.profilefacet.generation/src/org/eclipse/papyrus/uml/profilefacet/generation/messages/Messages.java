@@ -27,7 +27,12 @@ public class Messages extends NLS {
 
 	public static String ProfileEFacetGenericFactory_FacetSetDocumentation;
 
-	public static String ProfileEFacetGenericFactory_TypeNotManagedMessage;
+	public static String ProfileFacetGenericFactory_GetterForStereotypeProperty;
+
+	public static String ProfileFacetGenericFactory_SetterForStereotypeProperty;
+
+	public static String ProfileFacetGenericFactory_TheTypeIsNotManaged;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
