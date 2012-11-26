@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.emf.export.handler.EMFSaveAsHandler"
+            description="Allow to do a &quot;Save As&quot; of a part of a model"
+            id="org.eclipse.papyrus.infra.emf.export.save.as.command"
+            name="EMF Save As">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="org.eclipse.papyrus.infra.emf.export.save.as.command"
+               label="&quot;Save As&quot; a part of the model"
+               style="push"
+               tooltip="&quot;Save As&quot; a part of the model">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
