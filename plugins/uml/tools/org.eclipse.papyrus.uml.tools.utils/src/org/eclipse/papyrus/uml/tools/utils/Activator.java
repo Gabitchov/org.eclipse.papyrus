@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -43,6 +44,8 @@ public class Activator extends Plugin {
 	 * 
 	 */
 	private ResourceBundle resourceBundle;
+	
+	public static LogHelper log;
 
 	/**
 	 * The constructor.
@@ -71,6 +74,7 @@ public class Activator extends Plugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		log = new LogHelper(this);
 	}
 
 	/*
