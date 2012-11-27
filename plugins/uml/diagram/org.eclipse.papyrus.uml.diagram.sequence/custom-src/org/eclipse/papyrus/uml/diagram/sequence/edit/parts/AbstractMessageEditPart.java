@@ -21,13 +21,14 @@ import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.Message;
 
-public abstract class AbstractMessageEditPart extends ConnectionNodeEditPart {
+public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart {
 	
 	private List messageEventParts;
 	
@@ -129,7 +130,7 @@ public abstract class AbstractMessageEditPart extends ConnectionNodeEditPart {
 		return null;
 	}
 	
-	public abstract IFigure getPrimaryShape() ;
+	//public abstract IFigure getPrimaryShape() ;
 	
 	public void setLineWidth(int width) {
 		if(getPrimaryShape() instanceof MessageFigure){
