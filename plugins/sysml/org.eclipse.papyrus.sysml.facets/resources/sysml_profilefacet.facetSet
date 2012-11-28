@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ASCII"?>
+<profilefacet:ProfileFacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:paramQuery="http://www.eclipse.org/papyrus/infra/emf/facet/parametric/query/0.9.1" xmlns:profilefacet="http://www.eclipse.org/papyrus/0.9/profilefacet" name="SysML" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML" nsPrefix="SysML" representedElement_XMI_ID="_TZ_nULU5EduiKqCzJMWbGw" profileQualifiedName="SysML">
+  <eSubpackages xsi:type="profilefacet:ProfileFacetSet" name="ModelElements" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML::ModelElements" nsPrefix="ModelElements" representedElement_XMI_ID="_Gx8MgLX7EduFmqQsrNB9lw" profileQualifiedName="SysML::ModelElements">
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="View" representedElement_XMI_ID="_mPGvULU9Edu2ieF4ON8UjA" stereotypeQualifiedName="SysML::ModelElements::View">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="viewPoint" lowerBound="1" changeable="false" derived="true" representedElement_XMI_ID="_3Qho8LU9Edu2ieF4ON8UjA" propertyQualifiedName="SysML::ModelElements::View::viewPoint" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::ModelElements::View::viewPoint_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::ModelElements::View::viewPoint_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::ModelElements::View_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ViewPoint" representedElement_XMI_ID="_mhSEcLU9Edu2ieF4ON8UjA" stereotypeQualifiedName="SysML::ModelElements::ViewPoint">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="stakeHolders" upperBound="-1" derived="true" representedElement_XMI_ID="__VwDoLU9Edu2ieF4ON8UjA" propertyQualifiedName="SysML::ModelElements::ViewPoint::stakeHolders">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::ModelElements::ViewPoint::stakeHolders_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::ModelElements::ViewPoint::stakeHolders_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="purpose" derived="true" representedElement_XMI_ID="__lB1wLU9Edu2ieF4ON8UjA" propertyQualifiedName="SysML::ModelElements::ViewPoint::purpose">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::ModelElements::ViewPoint::purpose_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::ModelElements::ViewPoint::purpose_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="concerns" upperBound="-1" derived="true" representedElement_XMI_ID="__s9pwLU9Edu2ieF4ON8UjA" propertyQualifiedName="SysML::ModelElements::ViewPoint::concerns">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::ModelElements::ViewPoint::concerns_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::ModelElements::ViewPoint::concerns_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="languages" upperBound="-1" derived="true" representedElement_XMI_ID="__48QQLU9Edu2ieF4ON8UjA" propertyQualifiedName="SysML::ModelElements::ViewPoint::languages">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::ModelElements::ViewPoint::languages_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::ModelElements::ViewPoint::languages_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="methods" upperBound="-1" derived="true" representedElement_XMI_ID="_AEs0ULU-Edu2ieF4ON8UjA" propertyQualifiedName="SysML::ModelElements::ViewPoint::methods">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::ModelElements::ViewPoint::methods_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::ModelElements::ViewPoint::methods_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::ModelElements::ViewPoint_query"/>
+    </eClassifiers>
+    <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  </eSubpackages>
+  <eSubpackages xsi:type="profilefacet:ProfileFacetSet" name="Blocks" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML::Blocks" nsPrefix="Blocks" representedElement_XMI_ID="_fSw28LX7EduFmqQsrNB9lw" profileQualifiedName="SysML::Blocks">
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Block" representedElement_XMI_ID="_8J2A8LVAEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::Blocks::Block">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="isEncapsulated" derived="true" representedElement_XMI_ID="__AIRkLVAEdu2ieF4ON8UjA" propertyQualifiedName="SysML::Blocks::Block::isEncapsulated">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::Block::isEncapsulated_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::Block::isEncapsulated_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Blocks::Block_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Unit" representedElement_XMI_ID="_t9k6ELVBEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::Blocks::Unit">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="dimension" derived="true" representedElement_XMI_ID="_U8AxIKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::Unit::dimension">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::Unit::dimension_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::Unit::dimension_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Blocks::Unit_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ValueType" representedElement_XMI_ID="_yfp-ILVBEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::Blocks::ValueType">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="unit" derived="true" representedElement_XMI_ID="_mfPXUKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ValueType::unit">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ValueType::unit_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ValueType::unit_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="dimension" derived="true" representedElement_XMI_ID="_pj40EKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ValueType::dimension">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ValueType::dimension_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ValueType::dimension_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Blocks::ValueType_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="NestedConnectorEnd" representedElement_XMI_ID="_moxaQLVCEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::Blocks::NestedConnectorEnd">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="propertyPath" lowerBound="1" upperBound="-1" derived="true" representedElement_XMI_ID="_oH640LVCEdu2ieF4ON8UjA" propertyQualifiedName="SysML::Blocks::NestedConnectorEnd::propertyPath">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::NestedConnectorEnd::propertyPath_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::NestedConnectorEnd::propertyPath_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Blocks::NestedConnectorEnd_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ParticipantProperty" representedElement_XMI_ID="_AJuDYKGwEdyj2Ya50HPlXg" stereotypeQualifiedName="SysML::Blocks::ParticipantProperty">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="end" lowerBound="1" derived="true" representedElement_XMI_ID="_X_BroKGwEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ParticipantProperty::end">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ParticipantProperty::end_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ParticipantProperty::end_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Blocks::ParticipantProperty_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ConnectorProperty" representedElement_XMI_ID="_FC-RUKGwEdyj2Ya50HPlXg" stereotypeQualifiedName="SysML::Blocks::ConnectorProperty">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="connector" lowerBound="1" derived="true" representedElement_XMI_ID="_bq6ukKGwEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ConnectorProperty::connector">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ConnectorProperty::connector_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ConnectorProperty::connector_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Blocks::ConnectorProperty_query"/>
+    </eClassifiers>
+    <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  </eSubpackages>
+  <eSubpackages xsi:type="profilefacet:ProfileFacetSet" name="PortAndFlows" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML::PortAndFlows" nsPrefix="PortAndFlows" representedElement_XMI_ID="_rpx28LX7EduFmqQsrNB9lw" profileQualifiedName="SysML::PortAndFlows">
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="FlowPort" representedElement_XMI_ID="_lNvKMLVDEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::PortAndFlows::FlowPort">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="isAtomic" lowerBound="1" changeable="false" derived="true" representedElement_XMI_ID="_TrY4ULVEEdu2ieF4ON8UjA" propertyQualifiedName="SysML::PortAndFlows::FlowPort::isAtomic" isDerived="true">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::PortAndFlows::FlowPort::isAtomic_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::PortAndFlows::FlowPort::isAtomic_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="isConjugated" derived="true" representedElement_XMI_ID="_T-tc8LVEEdu2ieF4ON8UjA" propertyQualifiedName="SysML::PortAndFlows::FlowPort::isConjugated">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::PortAndFlows::FlowPort::isConjugated_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::PortAndFlows::FlowPort::isConjugated_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="direction" lowerBound="1" derived="true" representedElement_XMI_ID="_ULDP0LVEEdu2ieF4ON8UjA" propertyQualifiedName="SysML::PortAndFlows::FlowPort::direction">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::PortAndFlows::FlowPort::direction_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::PortAndFlows::FlowPort::direction_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::PortAndFlows::FlowPort_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="FlowProperty" representedElement_XMI_ID="_mB-qkLVDEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::PortAndFlows::FlowProperty">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="direction" lowerBound="1" derived="true" representedElement_XMI_ID="_M9NJELVEEdu2ieF4ON8UjA" propertyQualifiedName="SysML::PortAndFlows::FlowProperty::direction">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::PortAndFlows::FlowProperty::direction_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::PortAndFlows::FlowProperty::direction_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::PortAndFlows::FlowProperty_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ItemFlow" representedElement_XMI_ID="_9cdikLVEEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::PortAndFlows::ItemFlow">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="itemProperty" derived="true" representedElement_XMI_ID="__ulWMLVEEdu2ieF4ON8UjA" propertyQualifiedName="SysML::PortAndFlows::ItemFlow::itemProperty">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::PortAndFlows::ItemFlow::itemProperty_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::PortAndFlows::ItemFlow::itemProperty_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::PortAndFlows::ItemFlow_query"/>
+    </eClassifiers>
+    <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  </eSubpackages>
+  <eSubpackages xsi:type="profilefacet:ProfileFacetSet" name="Activities" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML::Activities" nsPrefix="Activities" representedElement_XMI_ID="_C2zXMLX8EduFmqQsrNB9lw" profileQualifiedName="SysML::Activities">
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Rate" representedElement_XMI_ID="_2a7ZQLXjEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Activities::Rate">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="rate" derived="true" representedElement_XMI_ID="_YzasYLXkEduHWpAaWjM62w" propertyQualifiedName="SysML::Activities::Rate::rate">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Activities::Rate::rate_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Activities::Rate::rate_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Activities::Rate_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Probability" representedElement_XMI_ID="_3MEiULXjEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Activities::Probability">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="probability" derived="true" representedElement_XMI_ID="_frTxQLXkEduHWpAaWjM62w" propertyQualifiedName="SysML::Activities::Probability::probability">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Activities::Probability::probability_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Activities::Probability::probability_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Activities::Probability_query"/>
+    </eClassifiers>
+    <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  </eSubpackages>
+  <eSubpackages xsi:type="profilefacet:ProfileFacetSet" name="Allocations" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML::Allocations" nsPrefix="Allocations" representedElement_XMI_ID="_NxdG4LX8EduFmqQsrNB9lw" profileQualifiedName="SysML::Allocations">
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Allocated" representedElement_XMI_ID="_Hj0sgLXnEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Allocations::Allocated">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="allocatedFrom" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_Sj35kLXnEduHWpAaWjM62w" propertyQualifiedName="SysML::Allocations::Allocated::allocatedFrom" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Allocations::Allocated::allocatedFrom_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Allocations::Allocated::allocatedFrom_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="allocatedTo" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_S07NULXnEduHWpAaWjM62w" propertyQualifiedName="SysML::Allocations::Allocated::allocatedTo" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Allocations::Allocated::allocatedTo_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Allocations::Allocated::allocatedTo_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Allocations::Allocated_query"/>
+    </eClassifiers>
+    <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  </eSubpackages>
+  <eSubpackages xsi:type="profilefacet:ProfileFacetSet" name="Requirements" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML::Requirements" nsPrefix="Requirements" representedElement_XMI_ID="_OOJC4LX8EduFmqQsrNB9lw" profileQualifiedName="SysML::Requirements">
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="TestCase" representedElement_XMI_ID="_Sb6wELXqEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Requirements::TestCase">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="verifies" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_zN7ToKG1Edyj2Ya50HPlXg" propertyQualifiedName="SysML::Requirements::TestCase::verifies" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::TestCase::verifies_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::TestCase::verifies_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Requirements::TestCase_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Requirement" representedElement_XMI_ID="_xajygLXqEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Requirements::Requirement">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="text" lowerBound="1" derived="true" representedElement_XMI_ID="_3DxdwLXqEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::text">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::text_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::text_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetAttribute" name="id" lowerBound="1" derived="true" representedElement_XMI_ID="_3YlQILXqEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::id">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::id_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::id_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="derived" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_3jp3sLXqEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::derived" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::derived_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::derived_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="derivedFrom" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_3wFxMLXqEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::derivedFrom" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::derivedFrom_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::derivedFrom_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="satisfiedBy" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_FHcz4LXrEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::satisfiedBy" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::satisfiedBy_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::satisfiedBy_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="refinedBy" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_F-KZcLXrEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::refinedBy" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::refinedBy_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::refinedBy_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="tracedTo" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_O6rBcLXrEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::tracedTo" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::tracedTo_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::tracedTo_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="verifiedBy" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_PHumALXrEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::verifiedBy" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::verifiedBy_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::verifiedBy_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="master" changeable="false" derived="true" representedElement_XMI_ID="_PStuALXrEduHWpAaWjM62w" propertyQualifiedName="SysML::Requirements::Requirement::master" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::Requirement::master_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::Requirement::master_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Requirements::Requirement_query"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="RequirementRelated" representedElement_XMI_ID="_ypiHELXqEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Requirements::RequirementRelated">
+      <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="tracedFrom" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_0nBtgLX1Edu94_NE0EO5_A" propertyQualifiedName="SysML::Requirements::RequirementRelated::tracedFrom" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::RequirementRelated::tracedFrom_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::RequirementRelated::tracedFrom_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="satisfies" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_0yJ_cLX1Edu94_NE0EO5_A" propertyQualifiedName="SysML::Requirements::RequirementRelated::satisfies" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::RequirementRelated::satisfies_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::RequirementRelated::satisfies_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="refines" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_1AqVgLX1Edu94_NE0EO5_A" propertyQualifiedName="SysML::Requirements::RequirementRelated::refines" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::RequirementRelated::refines_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::RequirementRelated::refines_value"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="verifies" upperBound="-1" changeable="false" derived="true" representedElement_XMI_ID="_56-VIMq4Ed2earfX6q16xg" propertyQualifiedName="SysML::Requirements::RequirementRelated::verifies" isDerived="true">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Requirements::RequirementRelated::verifies_value"/>
+        <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Requirements::RequirementRelated::verifies_value"/>
+      </eStructuralFeatures>
+      <conditionQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#IsApplied_SysML::Requirements::RequirementRelated_query"/>
+    </eClassifiers>
+    <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  </eSubpackages>
+  <extendedPackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+</profilefacet:ProfileFacetSet>
