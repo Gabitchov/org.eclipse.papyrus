@@ -1,12 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration,
  org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl,
  org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.util
@@ -17,4 +9,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query;visibility:=reexport,
  org.eclipse.emf.facet.widgets.nattable.tableconfiguration;visibility:=reexport,
  org.eclipse.emf.facet.infra.browser.custom;visibility:=reexport
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.9.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.papyrustableconfi
+ guration.metamodel;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

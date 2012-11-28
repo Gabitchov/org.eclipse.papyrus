@@ -1,17 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.editor;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Export-Package: org.eclipse.papyrus.infra.table.papyrustableconfigurat
+ ion.metamodel.PapyrusTableConfiguration.presentation
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.presentation.PapyrustableconfigurationEditorPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -21,4 +18,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
  org.eclipse.emf.facet.widgets.nattable.tableconfiguration.edit;visibility:=reexport,
  org.eclipse.emf.facet.infra.browser.custom.edit;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.1.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.table.papyrustableconfigur
+ ation.metamodel.PapyrusTableConfiguration.presentation.Papyrustableco
+ nfigurationEditorPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.papyrustableconfi
+ guration.metamodel.editor;singleton:=true
+
