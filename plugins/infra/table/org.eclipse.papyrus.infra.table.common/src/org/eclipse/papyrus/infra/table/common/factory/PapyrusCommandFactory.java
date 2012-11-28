@@ -42,7 +42,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.table.common.Activator;
 
 /**
  * 
@@ -54,8 +53,8 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 	/**
 	 * 
 	 * @see org.eclipse.emf.facet.widgets.celleditors.internal.DefaultCommandFactory#handles(org.eclipse.emf.edit.domain.EditingDomain)
-	 *
-	 *  {@inheritDoc}
+	 * 
+	 *      {@inheritDoc}
 	 */
 	@Override
 	public boolean handles(final EditingDomain editingDomain) {
@@ -88,7 +87,8 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 	}
 
 	/**
-	 * The ElementEditService can be used for UML Element and for view and for... others things, but it doesn't work correctly with the nattable widget
+	 * The ElementEditService can be used for UML Element and for view and for... others things, but it doesn't work correctly with the nattable
+	 * widget
 	 * elements
 	 * 
 	 * @param owner
@@ -109,22 +109,23 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 			return true;
 		} else if(owner instanceof Customization) {
 			return true;
-		} else if(owner instanceof TypeView){
+		} else if(owner instanceof TypeView) {
 			return true;
-		}else if(owner instanceof ReferenceView){
+		} else if(owner instanceof ReferenceView) {
 			return true;
-		}else if(owner instanceof AttributeView){
+		} else if(owner instanceof AttributeView) {
 			return true;
-		}else if(owner instanceof CustomViewFeature){
+		} else if(owner instanceof CustomViewFeature) {
 			return true;
-		}else if(owner instanceof StaticFeatureValue){
+		} else if(owner instanceof StaticFeatureValue) {
 			return true;
 		}
 		//we add this test,because, it is possible that we forget some emf-facet elements
-		String className = owner.getClass().getCanonicalName();
+		final String className = owner.getClass().getCanonicalName();
 		if(className.contains("org.eclipse.emf.facet")) { //$NON-NLS-1$
-			String message = "the type " + className + " should be included in the test"; //$NON-NLS-1$ //$NON-NLS-2$
-			Activator.getDefault().log.info(message);
+			//TODO : write a factory for the new metamodel
+			//			String message = "the type " + className + " should be included in the test"; //$NON-NLS-1$ //$NON-NLS-2$
+			//			Activator.getDefault().log.info(message);
 			return true;
 		}
 		return false;
@@ -143,16 +144,16 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		if(isEMFFacetElement(owner)) {
 			return super.createAddCommand(editingDomain, owner, feature, value);
 		}
-		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
-		if(testArgs(owner, feature) && elementEditService != null) {
-			EObject current = (EObject)owner;
-			Object values = current.eGet((EStructuralFeature)feature);
+		final IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
+		if(testArgs(owner, feature) && (elementEditService != null)) {
+			final EObject current = (EObject)owner;
+			final Object values = current.eGet((EStructuralFeature)feature);
 			if(values instanceof List<?>) {
-				ArrayList<Object> newList = new ArrayList<Object>();
+				final ArrayList<Object> newList = new ArrayList<Object>();
 				newList.addAll((List<?>)values);
 				newList.add(value);
-				SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, current, (EStructuralFeature)feature, newList);
-				ICommand command = elementEditService.getEditCommand(request);
+				final SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, current, (EStructuralFeature)feature, newList);
+				final ICommand command = elementEditService.getEditCommand(request);
 				if(command.canExecute()) {
 					return new GMFtoEMFCommandWrapper(command);
 				}
@@ -174,10 +175,10 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		if(isEMFFacetElement(elementToDestroy)) {
 			return super.createDeleteCommand(editingDomain, elementToDestroy);
 		}
-		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
-		if(testArgs(elementToDestroy, null) && elementEditService != null) {
-			DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)editingDomain, (EObject)elementToDestroy, false);
-			ICommand command = elementEditService.getEditCommand(request);
+		final IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
+		if(testArgs(elementToDestroy, null) && (elementEditService != null)) {
+			final DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)editingDomain, (EObject)elementToDestroy, false);
+			final ICommand command = elementEditService.getEditCommand(request);
 			if(command.canExecute()) {
 				return new GMFtoEMFCommandWrapper(command);
 			}
@@ -199,18 +200,18 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 			return super.createMoveCommand(editingDomain, owner, feature, value, index);
 		}
 
-		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
-		if(testArgs(owner, feature) && elementEditService != null) {
-			EObject current = (EObject)owner;
-			Object values = current.eGet((EStructuralFeature)feature);
+		final IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
+		if(testArgs(owner, feature) && (elementEditService != null)) {
+			final EObject current = (EObject)owner;
+			final Object values = current.eGet((EStructuralFeature)feature);
 			if(values instanceof List<?>) {
-				ArrayList<Object> newList = new ArrayList<Object>();
+				final ArrayList<Object> newList = new ArrayList<Object>();
 				newList.addAll((List<?>)values);
-				int currentIndex = ((List<?>)values).indexOf(value);
+				final int currentIndex = ((List<?>)values).indexOf(value);
 				newList.remove(currentIndex);
 				newList.add(index, value);
-				SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EStructuralFeature)feature, newList);
-				ICommand command = elementEditService.getEditCommand(request);
+				final SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EStructuralFeature)feature, newList);
+				final ICommand command = elementEditService.getEditCommand(request);
 				if(command.canExecute()) {
 					return new GMFtoEMFCommandWrapper(command);
 				}
@@ -232,10 +233,10 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		if(isEMFFacetElement(owner)) {
 			return super.createRemoveCommand(editingDomain, owner, feature, value);
 		}
-		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
-		if(testArgs(owner, feature) && elementEditService != null) {
-			DestroyReferenceRequest request = new DestroyReferenceRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EReference)feature, (EObject)value, false);
-			ICommand command = elementEditService.getEditCommand(request);
+		final IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
+		if(testArgs(owner, feature) && (elementEditService != null)) {
+			final DestroyReferenceRequest request = new DestroyReferenceRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EReference)feature, (EObject)value, false);
+			final ICommand command = elementEditService.getEditCommand(request);
 			if(command.canExecute()) {
 				return new GMFtoEMFCommandWrapper(command);
 			}
@@ -256,10 +257,10 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		if(isEMFFacetElement(owner)) {
 			return super.createSetCommand(editingDomain, owner, feature, value);
 		}
-		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
-		if(testArgs(owner, feature) && elementEditService != null) {
-			SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EStructuralFeature)feature, value);
-			ICommand command = elementEditService.getEditCommand(request);
+		final IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
+		if(testArgs(owner, feature) && (elementEditService != null)) {
+			final SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EStructuralFeature)feature, value);
+			final ICommand command = elementEditService.getEditCommand(request);
 			if(command.canExecute()) {
 				return new GMFtoEMFCommandWrapper(command);
 			}
@@ -280,16 +281,16 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		if(isEMFFacetElement(owner)) {
 			return super.createSetCommand(null, owner, feature, value, index);
 		}
-		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
-		if(testArgs(owner, feature) && elementEditService != null) {
-			EObject current = (EObject)owner;
-			Object values = current.eGet((EStructuralFeature)feature);
+		final IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
+		if(testArgs(owner, feature) && (elementEditService != null)) {
+			final EObject current = (EObject)owner;
+			final Object values = current.eGet((EStructuralFeature)feature);
 			if(values instanceof List<?>) {
-				ArrayList<Object> newList = new ArrayList<Object>();
+				final ArrayList<Object> newList = new ArrayList<Object>();
 				newList.addAll((List<?>)values);
 				newList.set(index, value);
-				SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EStructuralFeature)feature, newList);
-				ICommand command = elementEditService.getEditCommand(request);
+				final SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, (EObject)owner, (EStructuralFeature)feature, newList);
+				final ICommand command = elementEditService.getEditCommand(request);
 				if(command.canExecute()) {
 					return new GMFtoEMFCommandWrapper(command);
 				}

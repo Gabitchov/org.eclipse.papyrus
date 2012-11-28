@@ -141,6 +141,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 				}
 			};
 		}
+		if(adapter == PapyrusTableInstance.class) {
+			return this.tableEditorInput.getPapyrusTableInstance();
+		}
 		return null;
 	}
 

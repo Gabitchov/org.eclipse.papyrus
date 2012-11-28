@@ -200,7 +200,8 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 						TableInstance table = provider.getNatTableWidget().getTableInstance();
 						List<Row> newOrder = new ArrayList<Row>();
 						List<Row> rows = table.getRows();
-						Assert.isTrue(rows.size() == allElements.size());
+
+						//Assert.isTrue(rows.size() == allElements.size());//not the case when we are deleting elements of the table
 						for(EObject current : allElements) {
 							for(Row currentRow : rows) {
 								if(currentRow.getElement() == current) {

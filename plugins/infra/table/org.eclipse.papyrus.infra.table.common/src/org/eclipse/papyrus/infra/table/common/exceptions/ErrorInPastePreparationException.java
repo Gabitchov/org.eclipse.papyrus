@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2012 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,20 +11,24 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.table.common.util;
+package org.eclipse.papyrus.infra.table.common.exceptions;
 
-import org.eclipse.emf.common.notify.Notification;
 
-public class FillingQueriesUtil {
+public class ErrorInPastePreparationException extends Exception {
+
 
 	/**
-	 * The constructor for this class
+	 * the serial version UID
 	 */
-	private FillingQueriesUtil() {
-		//nothing to do
+	private static final long serialVersionUID = -2707065012620342372L;
+
+
+	public ErrorInPastePreparationException(final String message) {
+		super(message);
 	}
 
-	/** the value for the event which opens the table */
-	public static final int OPEN_TABLE = Notification.EVENT_TYPE_COUNT + 1;
 
+	public ErrorInPastePreparationException(final String message, final Throwable cause) {
+		super(message, cause);
+	}
 }

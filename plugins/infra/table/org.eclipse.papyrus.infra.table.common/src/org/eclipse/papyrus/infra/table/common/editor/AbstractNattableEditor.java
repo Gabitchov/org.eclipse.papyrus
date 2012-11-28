@@ -127,21 +127,20 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * + update the content of the table if the table is synchronized
+	 * {@inheritDoc} + update the content of the table if the table is synchronized
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
 		// we update the table
-		if (rawModel.isIsSynchronized()) {
-			Notification impl = new ENotificationImpl((InternalEObject) rawModel, FillingQueriesUtil.OPEN_TABLE,null, null, null);
+		if(rawModel.isIsSynchronized()) {
+			Notification impl = new ENotificationImpl((InternalEObject)rawModel, FillingQueriesUtil.OPEN_TABLE, null, null, null);
 			List<Notification> notifications = Collections.singletonList(impl);
-			ResourceSetChangeEvent event = new ResourceSetChangeEvent((TransactionalEditingDomain) getEditingDomain(), null,notifications);
+			ResourceSetChangeEvent event = new ResourceSetChangeEvent((TransactionalEditingDomain)getEditingDomain(), null, notifications);
 			Command cmd = null;
 			try {
 				cmd = this.modelTriggerListener.transactionAboutToCommit(event);
-				if (cmd != null && cmd.canExecute()) {
+				if(cmd != null && cmd.canExecute()) {
 					cmd.execute();
 				}
 			} catch (Exception e) {
@@ -149,12 +148,12 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.table.common.internal.NatTableEditor#dispose()
-	 *
-	 *  {@inheritDoc}
+	 * 
+	 *      {@inheritDoc}
 	 */
 	@Override
 	public void dispose() {
@@ -169,7 +168,7 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 	 */
 	private void initHiddenColumn(final PapyrusTableInstance rawModel2) {
 		for(Column current : rawModel2.getTable().getColumns()) {
-			if(current instanceof DefaultLabelColumn || current instanceof MetaClassColumn || current instanceof EContainerColumn){
+			if(current instanceof DefaultLabelColumn || current instanceof MetaClassColumn || current instanceof EContainerColumn) {
 				String name = NatTableWidgetInternalUtils.getColumnName(current);
 				if(getInitialHiddenColumns().contains(name)) {
 					current.setIsHidden(true);
@@ -181,7 +180,7 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 	/**
 	 * 
 	 * @return
-	 * a list of the names of the columns to hide by default
+	 *         a list of the names of the columns to hide by default
 	 */
 	protected List<String> getInitialHiddenColumns() {
 		return Collections.emptyList();
