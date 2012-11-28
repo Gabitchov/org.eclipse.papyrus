@@ -6,14 +6,14 @@
     modelPluginID="org.eclipse.papyrus.uml.profilefacet.metamodel" modelName="Profilefacet"
     nonNLSMarkers="true" testsDirectory="/org.eclipse.papyrus.uml.profilefacet.metamodel.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.facet/model/facet.genmodel#//facet platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query">
+    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.facet/model/facet.genmodel#//facet platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query">
   <foreignModel>profilefacet.ecore</foreignModel>
   <genPackages prefix="ProfileFacet" basePackage="org.eclipse.papyrus.uml.profilefacet.metamodel"
       disposableProviderFactory="true" ecorePackage="profilefacet.ecore#/">
     <genClasses ecoreClass="profilefacet.ecore#//ProfileFacetSet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute profilefacet.ecore#//ProfileFacetSet/profileQualifiedName"/>
-      <genOperations ecoreOperation="profilefacet.ecore#//ProfileFacetSet/getOwnedProfileFacetSets"/>
       <genOperations ecoreOperation="profilefacet.ecore#//ProfileFacetSet/getStereotypeFacets"/>
+      <genOperations ecoreOperation="profilefacet.ecore#//ProfileFacetSet/getSubProfileFacetSet"/>
     </genClasses>
     <genClasses ecoreClass="profilefacet.ecore#//StereotypeFacet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute profilefacet.ecore#//StereotypeFacet/stereotypeQualifiedName"/>

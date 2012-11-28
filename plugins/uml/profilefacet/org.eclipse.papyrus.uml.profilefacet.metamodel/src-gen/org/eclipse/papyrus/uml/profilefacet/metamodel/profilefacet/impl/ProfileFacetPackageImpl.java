@@ -15,13 +15,9 @@ package org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.facet.infra.facet.FacetPackage;
-
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.EObjectFacetRepresentation;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetFactory;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage;
@@ -35,7 +31,6 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePro
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFacetPackage {
@@ -43,7 +38,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass profileFacetSetEClass = null;
@@ -51,7 +45,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypeFacetEClass = null;
@@ -59,7 +52,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypePropertyElementEClass = null;
@@ -67,7 +59,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypePropertyFacetReferenceEClass = null;
@@ -75,7 +66,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stereotypePropertyFacetAttributeEClass = null;
@@ -83,19 +73,19 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass eObjectFacetRepresentationEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage#eNS_URI
 	 * @see #init()
@@ -108,7 +98,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -116,18 +105,16 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>
-	 * This method is used to initialize {@link ProfileFacetPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
-	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>This method is used to initialize {@link ProfileFacetPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static ProfileFacetPackage init() {
-		if(isInited)
-			return (ProfileFacetPackage)EPackage.Registry.INSTANCE.getEPackage(ProfileFacetPackage.eNS_URI);
+		if (isInited) return (ProfileFacetPackage)EPackage.Registry.INSTANCE.getEPackage(ProfileFacetPackage.eNS_URI);
 
 		// Obtain or create and register package
 		ProfileFacetPackageImpl theProfileFacetPackage = (ProfileFacetPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProfileFacetPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ProfileFacetPackageImpl());
@@ -146,7 +133,7 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 		// Mark meta-data to indicate it can't be changed
 		theProfileFacetPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ProfileFacetPackage.eNS_URI, theProfileFacetPackage);
 		return theProfileFacetPackage;
@@ -155,7 +142,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProfileFacetSet() {
@@ -165,7 +151,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getProfileFacetSet_ProfileQualifiedName() {
@@ -175,7 +160,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypeFacet() {
@@ -185,7 +169,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getStereotypeFacet_StereotypeQualifiedName() {
@@ -195,7 +178,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypePropertyElement() {
@@ -205,7 +187,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getStereotypePropertyElement_PropertyQualifiedName() {
@@ -215,7 +196,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getStereotypePropertyElement_IsDerived() {
@@ -225,7 +205,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypePropertyFacetReference() {
@@ -235,7 +214,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStereotypePropertyFacetAttribute() {
@@ -245,7 +223,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEObjectFacetRepresentation() {
@@ -255,7 +232,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEObjectFacetRepresentation_RepresentedElement_XMI_ID() {
@@ -265,7 +241,6 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProfileFacetFactory getProfileFacetFactory() {
@@ -275,22 +250,19 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -315,22 +287,19 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -339,24 +308,28 @@ public class ProfileFacetPackageImpl extends EPackageImpl implements ProfileFace
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		FacetPackage theFacetPackage = (FacetPackage)EPackage.Registry.INSTANCE.getEPackage(FacetPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		FacetPackage theFacetPackage = (FacetPackage)EPackage.Registry.INSTANCE.getEPackage(FacetPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		profileFacetSetEClass.getESuperTypes().add(theFacetPackage.getFacetSet());
+		profileFacetSetEClass.getESuperTypes().add(theEcorePackage.getEPackage());
 		profileFacetSetEClass.getESuperTypes().add(this.getEObjectFacetRepresentation());
-		stereotypeFacetEClass.getESuperTypes().add(theFacetPackage.getFacet());
+		profileFacetSetEClass.getESuperTypes().add(theFacetPackage.getFacetSet());
+		stereotypeFacetEClass.getESuperTypes().add(theEcorePackage.getEClass());
 		stereotypeFacetEClass.getESuperTypes().add(this.getEObjectFacetRepresentation());
-		stereotypePropertyElementEClass.getESuperTypes().add(theFacetPackage.getFacetStructuralFeature());
+		stereotypeFacetEClass.getESuperTypes().add(theFacetPackage.getFacet());
 		stereotypePropertyElementEClass.getESuperTypes().add(this.getEObjectFacetRepresentation());
-		stereotypePropertyFacetReferenceEClass.getESuperTypes().add(theFacetPackage.getFacetReference());
+		stereotypePropertyElementEClass.getESuperTypes().add(theFacetPackage.getFacetStructuralFeature());
+		stereotypePropertyFacetReferenceEClass.getESuperTypes().add(theEcorePackage.getEReference());
 		stereotypePropertyFacetReferenceEClass.getESuperTypes().add(this.getStereotypePropertyElement());
-		stereotypePropertyFacetAttributeEClass.getESuperTypes().add(theFacetPackage.getFacetAttribute());
+		stereotypePropertyFacetReferenceEClass.getESuperTypes().add(theFacetPackage.getFacetReference());
+		stereotypePropertyFacetAttributeEClass.getESuperTypes().add(theEcorePackage.getEAttribute());
 		stereotypePropertyFacetAttributeEClass.getESuperTypes().add(this.getStereotypePropertyElement());
+		stereotypePropertyFacetAttributeEClass.getESuperTypes().add(theFacetPackage.getFacetAttribute());
 		eObjectFacetRepresentationEClass.getESuperTypes().add(theEcorePackage.getEObject());
 
 		// Initialize classes and features; add operations and parameters
