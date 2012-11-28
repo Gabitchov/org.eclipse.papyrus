@@ -15,6 +15,6 @@ package org.eclipse.papyrus.uml.profilefacet.queries.getter;
 
 
 
-public class GetEObjectMultiReference  extends GetGenericMultiValue<Boolean>{
+public class GetEObjectMultiReference extends GetGenericMultiValue<Boolean> {
 
 }

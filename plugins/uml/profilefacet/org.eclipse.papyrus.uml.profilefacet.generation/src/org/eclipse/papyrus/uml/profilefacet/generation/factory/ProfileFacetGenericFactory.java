@@ -206,7 +206,7 @@ public class ProfileFacetGenericFactory {
 		//3.set tge called query
 		final ModelQuery testStereotypeCalledQuery = this.registry.getModelQuery(QueryRegistry.IS_APPLIED_REQUIRED_STEREOTYPE);
 		query.setCalledQuery(testStereotypeCalledQuery);
-
+		query.setDescription(NLS.bind("Test if the stereotype {0} or one of its specialization is applied on the element", stereotypeQualifiedName));
 		return query;
 	}
 
@@ -229,7 +229,7 @@ public class ProfileFacetGenericFactory {
 		facetReference.setName(property.getName());
 		final Type type = property.getType();
 		final EClassifier eType = EcorePackage.eINSTANCE.getEObject();
-		
+
 
 		final int upperBound = property.upperBound();
 		facetReference.setLowerBound(property.getLower());
@@ -237,10 +237,10 @@ public class ProfileFacetGenericFactory {
 
 		ModelQuery getCalledQuery = null;
 		ModelQuery setCalledQuery = null;
-		
+
 		//EObject reference
 		if(type instanceof Element) {
-			
+
 			if(upperBound == -1 || upperBound > 1) {
 				getCalledQuery = this.registry.getModelQuery(QueryRegistry.GET_EOBJECT_MULTI_REFERENCE_OPERATION_ID);
 				setCalledQuery = this.registry.getModelQuery(QueryRegistry.SET_EOBJECT_MULTI_REFERENCE_OPERATION_ID);
@@ -260,17 +260,17 @@ public class ProfileFacetGenericFactory {
 		getQuery.setLowerBound(facetReference.getLowerBound());
 		getQuery.setUpperBound(facetReference.getUpperBound());
 		getQuery.setReturnType(eType);
-		
+
 		getQuery.setCalledQuery(getCalledQuery);
 		//1.bis we create the argument
 		final EStructuralFeatureArgument getArgument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
 		getArgument.setArgumentName(ArgumentUtils.EDITED_FEATURE);
 		getArgument.setValue(facetReference);
 		getQuery.getArguments().add(getArgument);
-		
-		
+
+
 		//2. we create the setValueQuery
-		ParametricQuery setQuery= ParametricqueryFactory.eINSTANCE.createParametricQuery();
+		ParametricQuery setQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
 		setQuery.setName("set_" + property.getQualifiedName() + "_value"); //$NON-NLS-1$ //$NON-NLS-2$
 		setQuery.setDescription(NLS.bind(SET_QUERY_DESCRIPTION, property.getQualifiedName()));
 		setQuery.setLowerBound(0);
@@ -282,7 +282,7 @@ public class ProfileFacetGenericFactory {
 		setArgument.setArgumentName(ArgumentUtils.EDITED_FEATURE);
 		setArgument.setValue(facetReference);
 		setQuery.getArguments().add(setArgument);
-		
+
 		facetReference.setEType(eType);
 		facetReference.setValueQuery(getQuery);
 		facetReference.setSetQuery(setQuery);
@@ -410,9 +410,9 @@ public class ProfileFacetGenericFactory {
 
 			}
 		}
-		
+
 		facetAttribute.setEType(eType);
-		
+
 		//1. we create the getValueQuery
 		final ParametricQuery getQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
 		getQuery.setCalledQuery(getCalledQuery);
@@ -421,7 +421,7 @@ public class ProfileFacetGenericFactory {
 		getQuery.setLowerBound(facetAttribute.getLowerBound());
 		getQuery.setUpperBound(facetAttribute.getUpperBound());
 		getQuery.setReturnType(eType);
-		
+
 		//1.bis we prepare the argument
 		final EStructuralFeatureArgument getArgument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
 		getArgument.setValue(facetAttribute);
@@ -429,21 +429,21 @@ public class ProfileFacetGenericFactory {
 		getQuery.getArguments().add(getArgument);
 
 		facetAttribute.setValueQuery(getQuery);
-		
+
 		//2. we create the setValueQuery
-		final ParametricQuery 		setQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
+		final ParametricQuery setQuery = ParametricqueryFactory.eINSTANCE.createParametricQuery();
 		setQuery.setCalledQuery(setCalledQuery);
 		setQuery.setName("set_" + property.getQualifiedName() + "_value"); //$NON-NLS-1$ //$NON-NLS-2$
 		setQuery.setDescription(NLS.bind(SET_QUERY_DESCRIPTION, property.getQualifiedName()));
 		setQuery.setLowerBound(0);
 		setQuery.setUpperBound(1);
 		setQuery.setReturnType(eType);
-		
+
 		//2.bis we prepare the argument
 		final EStructuralFeatureArgument setArgument = ParametricqueryFactory.eINSTANCE.createEStructuralFeatureArgument();
 		setArgument.setValue(facetAttribute);
 		setArgument.setArgumentName(ArgumentUtils.EDITED_FEATURE);
-		setQuery.getArguments().add(setArgument);		
+		setQuery.getArguments().add(setArgument);
 
 		facetAttribute.setSetQuery(setQuery);
 		return facetAttribute;

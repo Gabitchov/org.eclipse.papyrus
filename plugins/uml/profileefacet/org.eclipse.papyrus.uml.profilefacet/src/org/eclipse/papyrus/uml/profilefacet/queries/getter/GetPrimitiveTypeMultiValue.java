@@ -15,6 +15,6 @@ package org.eclipse.papyrus.uml.profilefacet.queries.getter;
 
 
 
-public class GetPrimitiveTypeMultiValue extends GetGenericMultiValue<Boolean>{
+public class GetPrimitiveTypeMultiValue extends GetGenericMultiValue<Boolean> {
 
 }

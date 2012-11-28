@@ -36,21 +36,23 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.*;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
- * to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage
  * @generated
  */
 public class ProfileFacetSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static ProfileFacetPackage modelPackage;
@@ -59,10 +61,11 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfileFacetSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = ProfileFacetPackage.eINSTANCE;
 		}
 	}
@@ -71,6 +74,7 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
@@ -84,80 +88,125 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case ProfileFacetPackage.PROFILE_FACET_SET: {
-				ProfileFacetSet profileFacetSet = (ProfileFacetSet)theEObject;
-				T result = caseProfileFacetSet(profileFacetSet);
-				if (result == null) result = caseFacetSet(profileFacetSet);
-				if (result == null) result = caseEObjectFacetRepresentation(profileFacetSet);
-				if (result == null) result = caseEPackage(profileFacetSet);
-				if (result == null) result = caseENamedElement(profileFacetSet);
-				if (result == null) result = caseEModelElement(profileFacetSet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProfileFacetPackage.STEREOTYPE_FACET: {
-				StereotypeFacet stereotypeFacet = (StereotypeFacet)theEObject;
-				T result = caseStereotypeFacet(stereotypeFacet);
-				if (result == null) result = caseFacet(stereotypeFacet);
-				if (result == null) result = caseEObjectFacetRepresentation(stereotypeFacet);
-				if (result == null) result = caseEClass(stereotypeFacet);
-				if (result == null) result = caseEClassifier(stereotypeFacet);
-				if (result == null) result = caseENamedElement(stereotypeFacet);
-				if (result == null) result = caseEModelElement(stereotypeFacet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProfileFacetPackage.STEREOTYPE_PROPERTY_ELEMENT: {
-				StereotypePropertyElement stereotypePropertyElement = (StereotypePropertyElement)theEObject;
-				T result = caseStereotypePropertyElement(stereotypePropertyElement);
-				if (result == null) result = caseFacetStructuralFeature(stereotypePropertyElement);
-				if (result == null) result = caseEObjectFacetRepresentation(stereotypePropertyElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_REFERENCE: {
-				StereotypePropertyFacetReference stereotypePropertyFacetReference = (StereotypePropertyFacetReference)theEObject;
-				T result = caseStereotypePropertyFacetReference(stereotypePropertyFacetReference);
-				if (result == null) result = caseFacetReference(stereotypePropertyFacetReference);
-				if (result == null) result = caseStereotypePropertyElement(stereotypePropertyFacetReference);
-				if (result == null) result = caseEReference(stereotypePropertyFacetReference);
-				if (result == null) result = caseFacetStructuralFeature(stereotypePropertyFacetReference);
-				if (result == null) result = caseEObjectFacetRepresentation(stereotypePropertyFacetReference);
-				if (result == null) result = caseEStructuralFeature(stereotypePropertyFacetReference);
-				if (result == null) result = caseETypedElement(stereotypePropertyFacetReference);
-				if (result == null) result = caseENamedElement(stereotypePropertyFacetReference);
-				if (result == null) result = caseEModelElement(stereotypePropertyFacetReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_ATTRIBUTE: {
-				StereotypePropertyFacetAttribute stereotypePropertyFacetAttribute = (StereotypePropertyFacetAttribute)theEObject;
-				T result = caseStereotypePropertyFacetAttribute(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseFacetAttribute(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseStereotypePropertyElement(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseEAttribute(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseFacetStructuralFeature(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseEObjectFacetRepresentation(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseEStructuralFeature(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseETypedElement(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseENamedElement(stereotypePropertyFacetAttribute);
-				if (result == null) result = caseEModelElement(stereotypePropertyFacetAttribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION: {
-				EObjectFacetRepresentation eObjectFacetRepresentation = (EObjectFacetRepresentation)theEObject;
-				T result = caseEObjectFacetRepresentation(eObjectFacetRepresentation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		switch(classifierID) {
+		case ProfileFacetPackage.PROFILE_FACET_SET:
+		{
+			ProfileFacetSet profileFacetSet = (ProfileFacetSet)theEObject;
+			T result = caseProfileFacetSet(profileFacetSet);
+			if(result == null)
+				result = caseFacetSet(profileFacetSet);
+			if(result == null)
+				result = caseEObjectFacetRepresentation(profileFacetSet);
+			if(result == null)
+				result = caseEPackage(profileFacetSet);
+			if(result == null)
+				result = caseENamedElement(profileFacetSet);
+			if(result == null)
+				result = caseEModelElement(profileFacetSet);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ProfileFacetPackage.STEREOTYPE_FACET:
+		{
+			StereotypeFacet stereotypeFacet = (StereotypeFacet)theEObject;
+			T result = caseStereotypeFacet(stereotypeFacet);
+			if(result == null)
+				result = caseFacet(stereotypeFacet);
+			if(result == null)
+				result = caseEObjectFacetRepresentation(stereotypeFacet);
+			if(result == null)
+				result = caseEClass(stereotypeFacet);
+			if(result == null)
+				result = caseEClassifier(stereotypeFacet);
+			if(result == null)
+				result = caseENamedElement(stereotypeFacet);
+			if(result == null)
+				result = caseEModelElement(stereotypeFacet);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ProfileFacetPackage.STEREOTYPE_PROPERTY_ELEMENT:
+		{
+			StereotypePropertyElement stereotypePropertyElement = (StereotypePropertyElement)theEObject;
+			T result = caseStereotypePropertyElement(stereotypePropertyElement);
+			if(result == null)
+				result = caseFacetStructuralFeature(stereotypePropertyElement);
+			if(result == null)
+				result = caseEObjectFacetRepresentation(stereotypePropertyElement);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_REFERENCE:
+		{
+			StereotypePropertyFacetReference stereotypePropertyFacetReference = (StereotypePropertyFacetReference)theEObject;
+			T result = caseStereotypePropertyFacetReference(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseFacetReference(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseStereotypePropertyElement(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseEReference(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseFacetStructuralFeature(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseEObjectFacetRepresentation(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseEStructuralFeature(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseETypedElement(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseENamedElement(stereotypePropertyFacetReference);
+			if(result == null)
+				result = caseEModelElement(stereotypePropertyFacetReference);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_ATTRIBUTE:
+		{
+			StereotypePropertyFacetAttribute stereotypePropertyFacetAttribute = (StereotypePropertyFacetAttribute)theEObject;
+			T result = caseStereotypePropertyFacetAttribute(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseFacetAttribute(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseStereotypePropertyElement(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseEAttribute(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseFacetStructuralFeature(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseEObjectFacetRepresentation(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseEStructuralFeature(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseETypedElement(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseENamedElement(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = caseEModelElement(stereotypePropertyFacetAttribute);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION:
+		{
+			EObjectFacetRepresentation eObjectFacetRepresentation = (EObjectFacetRepresentation)theEObject;
+			T result = caseEObjectFacetRepresentation(eObjectFacetRepresentation);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -167,7 +216,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -182,7 +233,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Stereotype Facet</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -197,7 +250,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Stereotype Property Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -212,7 +267,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Stereotype Property Facet Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -227,7 +284,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Stereotype Property Facet Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -242,7 +301,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject Facet Representation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -257,7 +318,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -272,7 +335,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -287,7 +352,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EPackage</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -302,7 +369,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -317,7 +386,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EClassifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -332,7 +403,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EClass</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -347,7 +420,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Facet</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -362,7 +437,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Structural Feature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -377,7 +454,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ETyped Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -392,7 +471,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EStructural Feature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -407,7 +488,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EReference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -422,7 +505,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -437,7 +522,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EAttribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -452,7 +539,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -467,7 +556,9 @@ public class ProfileFacetSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

@@ -19,12 +19,10 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.uml2.uml.Element;
 
-public abstract class SetGenericMultiValue<R> extends
-		SetGenericSingleValue<List<R>> {
+public abstract class SetGenericMultiValue<R> extends SetGenericSingleValue<List<R>> {
 
 	@Override
-	public List<R> evaluate(Element source, ParameterValueList parameterValues)
-			throws ModelQueryExecutionException {
+	public List<R> evaluate(Element source, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		// FIXME
 		return super.evaluate(source, parameterValues);
 	}

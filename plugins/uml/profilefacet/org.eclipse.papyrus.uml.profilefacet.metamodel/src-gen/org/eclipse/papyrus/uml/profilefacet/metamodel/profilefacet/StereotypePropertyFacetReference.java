@@ -18,12 +18,12 @@ import org.eclipse.emf.facet.infra.facet.FacetReference;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Stereotype Property Facet Reference</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * a 'StereotypePropertyFacetReference is used to represent a property typed by an EObject
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage#getStereotypePropertyFacetReference()
  * @model
  * @generated

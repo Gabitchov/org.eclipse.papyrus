@@ -12,7 +12,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.papyrus.uml.profilefacet.metamodel;bundle-version="0.9.1",
- org.eclipse.emf.facet.infra.common.core;bundle-version="0.2.1"
+ org.eclipse.emf.facet.infra.common.core;bundle-version="0.2.1",
+ org.eclipse.papyrus.uml.tools.utils
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.profilefacet.queries.registry
+Export-Package: org.eclipse.papyrus.uml.profilefacet.queries.getter,
+ org.eclipse.papyrus.uml.profilefacet.queries.registry,
+ org.eclipse.papyrus.uml.profilefacet.queries.setter,
+ org.eclipse.papyrus.uml.profilefacet.queries.tester,
+ org.eclipse.papyrus.uml.profilefacet.utils

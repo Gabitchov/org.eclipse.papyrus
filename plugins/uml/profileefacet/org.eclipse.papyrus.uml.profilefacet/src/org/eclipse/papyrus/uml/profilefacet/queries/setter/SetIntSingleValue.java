@@ -15,6 +15,6 @@ package org.eclipse.papyrus.uml.profilefacet.queries.setter;
 
 
 
-public class SetIntSingleValue extends SetGenericSingleValue<Integer>{
+public class SetIntSingleValue extends SetGenericSingleValue<Integer> {
 
 }

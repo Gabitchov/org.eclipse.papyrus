@@ -18,12 +18,12 @@ import org.eclipse.emf.facet.infra.facet.FacetAttribute;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Stereotype Property Facet Attribute</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * a 'StereotypePropertyFacetReference is used to represent a property typed by a DataType, a PrimitiveType or an Enumeration
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage#getStereotypePropertyFacetAttribute()
  * @model
  * @generated

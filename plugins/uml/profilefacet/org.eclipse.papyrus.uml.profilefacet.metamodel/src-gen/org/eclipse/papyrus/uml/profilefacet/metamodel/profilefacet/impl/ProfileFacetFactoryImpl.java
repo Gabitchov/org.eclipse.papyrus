@@ -26,23 +26,25 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.*;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFacetFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ProfileFacetFactory init() {
 		try {
 			ProfileFacetFactory theProfileFacetFactory = (ProfileFacetFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.9/profilefacet"); //$NON-NLS-1$ 
-			if (theProfileFacetFactory != null) {
+			if(theProfileFacetFactory != null) {
 				return theProfileFacetFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ProfileFacetFactoryImpl();
@@ -52,6 +54,7 @@ public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFace
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfileFacetFactoryImpl() {
@@ -61,23 +64,29 @@ public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ProfileFacetPackage.PROFILE_FACET_SET: return createProfileFacetSet();
-			case ProfileFacetPackage.STEREOTYPE_FACET: return createStereotypeFacet();
-			case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_REFERENCE: return createStereotypePropertyFacetReference();
-			case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_ATTRIBUTE: return createStereotypePropertyFacetAttribute();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eClass.getClassifierID()) {
+		case ProfileFacetPackage.PROFILE_FACET_SET:
+			return createProfileFacetSet();
+		case ProfileFacetPackage.STEREOTYPE_FACET:
+			return createStereotypeFacet();
+		case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_REFERENCE:
+			return createStereotypePropertyFacetReference();
+		case ProfileFacetPackage.STEREOTYPE_PROPERTY_FACET_ATTRIBUTE:
+			return createStereotypePropertyFacetAttribute();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfileFacetSet createProfileFacetSet() {
@@ -88,6 +97,7 @@ public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeFacet createStereotypeFacet() {
@@ -98,6 +108,7 @@ public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypePropertyFacetReference createStereotypePropertyFacetReference() {
@@ -108,6 +119,7 @@ public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypePropertyFacetAttribute createStereotypePropertyFacetAttribute() {
@@ -118,6 +130,7 @@ public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProfileFacetPackage getProfileFacetPackage() {
@@ -127,6 +140,7 @@ public class ProfileFacetFactoryImpl extends EFactoryImpl implements ProfileFace
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -16,5 +16,5 @@ package org.eclipse.papyrus.uml.profilefacet.queries.setter;
 
 
 public class SetBooleanSingleValue extends SetGenericSingleValue<Boolean> {
-	
+
 }

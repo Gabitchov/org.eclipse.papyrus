@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.profilefacet.queries.getter;
 
 
 
-public class GetRealMultiValue  extends GetGenericMultiValue<Boolean>{
+public class GetRealMultiValue extends GetGenericMultiValue<Boolean> {
 
 
 }

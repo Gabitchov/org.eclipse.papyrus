@@ -20,23 +20,25 @@ import org.eclipse.emf.facet.infra.facet.Facet;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Stereotype Facet</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * a 'StereotypeFacet' is used to represent a UML Stereotype
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeQualifiedName <em>Stereotype Qualified Name
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage#getStereotypeFacet()
  * @model
  * @generated
  */
 public interface StereotypeFacet extends Facet, EObjectFacetRepresentation {
+
 	/**
 	 * Returns the value of the '<em><b>Stereotype Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -44,6 +46,7 @@ public interface StereotypeFacet extends Facet, EObjectFacetRepresentation {
 	 * <!-- begin-model-doc -->
 	 * the qualified name of the represented stereotype
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Stereotype Qualified Name</em>' attribute.
 	 * @see #setStereotypeQualifiedName(String)
 	 * @see org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetPackage#getStereotypeFacet_StereotypeQualifiedName()
@@ -53,10 +56,13 @@ public interface StereotypeFacet extends Facet, EObjectFacetRepresentation {
 	String getStereotypeQualifiedName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet#getStereotypeQualifiedName
+	 * <em>Stereotype Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Stereotype Qualified Name</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Stereotype Qualified Name</em>' attribute.
 	 * @see #getStereotypeQualifiedName()
 	 * @generated
 	 */
@@ -65,6 +71,7 @@ public interface StereotypeFacet extends Facet, EObjectFacetRepresentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @model kind="operation"
 	 * @generated
 	 */

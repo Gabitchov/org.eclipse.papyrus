@@ -11,10 +11,19 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.profilefacet.queries.getter;
+package org.eclipse.papyrus.uml.profilefacet.utils;
 
 
+public class ArgumentUtils {
 
-public class GetBooleanSingleValue extends GetGenericSingleValue<Boolean> {
 
+	private ArgumentUtils() {
+		//to prevent instanciation
+	}
+
+	public static final String STEREOTYPE_QUALIFIED_NAME = "stereotypeQualifiedName";
+
+	public static final String EDITED_FEATURE = "editedFeature";
+
+	public static final String EDITING_DOMAIN = "editingDomain";
 }

@@ -15,6 +15,6 @@ package org.eclipse.papyrus.uml.profilefacet.queries.setter;
 
 
 
-public class SetEObjectMultiReference  extends SetGenericMultiValue<Boolean>{
+public class SetEObjectMultiReference extends SetGenericMultiValue<Boolean> {
 
 }

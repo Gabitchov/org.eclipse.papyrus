@@ -47,18 +47,22 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePro
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypeFacetImpl#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypeFacetImpl#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypeFacetImpl#getRepresentedElement_XMI_ID <em>Represented
+ * Element XMI ID</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.StereotypeFacetImpl#getStereotypeQualifiedName <em>Stereotype Qualified
+ * Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
+
 	/**
 	 * The default value of the '{@link #getRepresentedElement_XMI_ID() <em>Represented Element XMI ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRepresentedElement_XMI_ID()
 	 * @generated
 	 * @ordered
@@ -69,6 +73,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	 * The cached value of the '{@link #getRepresentedElement_XMI_ID() <em>Represented Element XMI ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRepresentedElement_XMI_ID()
 	 * @generated
 	 * @ordered
@@ -79,6 +84,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	 * The default value of the '{@link #getStereotypeQualifiedName() <em>Stereotype Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getStereotypeQualifiedName()
 	 * @generated
 	 * @ordered
@@ -89,6 +95,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	 * The cached value of the '{@link #getStereotypeQualifiedName() <em>Stereotype Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getStereotypeQualifiedName()
 	 * @generated
 	 * @ordered
@@ -98,6 +105,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StereotypeFacetImpl() {
@@ -107,6 +115,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,6 +126,7 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getRepresentedElement_XMI_ID() {
@@ -126,18 +136,20 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRepresentedElement_XMI_ID(String newRepresentedElement_XMI_ID) {
 		String oldRepresentedElement_XMI_ID = representedElement_XMI_ID;
 		representedElement_XMI_ID = newRepresentedElement_XMI_ID;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID, oldRepresentedElement_XMI_ID, representedElement_XMI_ID));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getStereotypeQualifiedName() {
@@ -147,30 +159,32 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStereotypeQualifiedName(String newStereotypeQualifiedName) {
 		String oldStereotypeQualifiedName = stereotypeQualifiedName;
 		stereotypeQualifiedName = newStereotypeQualifiedName;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME, oldStereotypeQualifiedName, stereotypeQualifiedName));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
-	 * FIXME : write JUnit test
+	 *            FIXME : write JUnit test
 	 */
 	public EList<StereotypePropertyElement> getStereotypePropertyElements() {
 		final EList<StereotypePropertyElement> proeprties = new BasicEList<StereotypePropertyElement>();
-		for(final EStructuralFeature current : getEAttributes()){
-			if(current instanceof StereotypePropertyElement){
+		for(final EStructuralFeature current : getEAttributes()) {
+			if(current instanceof StereotypePropertyElement) {
 				proeprties.add((StereotypePropertyElement)current);
 			}
 		}
-		for(final EStructuralFeature current : getEReferences()){
-			if(current instanceof StereotypePropertyElement){
+		for(final EStructuralFeature current : getEReferences()) {
+			if(current instanceof StereotypePropertyElement) {
 				proeprties.add((StereotypePropertyElement)current);
 			}
 		}
@@ -180,15 +194,16 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				return getRepresentedElement_XMI_ID();
-			case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
-				return getStereotypeQualifiedName();
+		switch(featureID) {
+		case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
+			return getRepresentedElement_XMI_ID();
+		case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
+			return getStereotypeQualifiedName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,18 +211,19 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				setRepresentedElement_XMI_ID((String)newValue);
-				return;
-			case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
-				setStereotypeQualifiedName((String)newValue);
-				return;
+		switch(featureID) {
+		case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
+			setRepresentedElement_XMI_ID((String)newValue);
+			return;
+		case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
+			setStereotypeQualifiedName((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -215,17 +231,18 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				setRepresentedElement_XMI_ID(REPRESENTED_ELEMENT_XMI_ID_EDEFAULT);
-				return;
-			case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
-				setStereotypeQualifiedName(STEREOTYPE_QUALIFIED_NAME_EDEFAULT);
-				return;
+		switch(featureID) {
+		case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
+			setRepresentedElement_XMI_ID(REPRESENTED_ELEMENT_XMI_ID_EDEFAULT);
+			return;
+		case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
+			setStereotypeQualifiedName(STEREOTYPE_QUALIFIED_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,15 +250,16 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
-				return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? representedElement_XMI_ID != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(representedElement_XMI_ID);
-			case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
-				return STEREOTYPE_QUALIFIED_NAME_EDEFAULT == null ? stereotypeQualifiedName != null : !STEREOTYPE_QUALIFIED_NAME_EDEFAULT.equals(stereotypeQualifiedName);
+		switch(featureID) {
+		case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
+			return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? representedElement_XMI_ID != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(representedElement_XMI_ID);
+		case ProfileFacetPackage.STEREOTYPE_FACET__STEREOTYPE_QUALIFIED_NAME:
+			return STEREOTYPE_QUALIFIED_NAME_EDEFAULT == null ? stereotypeQualifiedName != null : !STEREOTYPE_QUALIFIED_NAME_EDEFAULT.equals(stereotypeQualifiedName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -249,19 +267,23 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == EObject.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
+		if(baseClass == EObject.class) {
+			switch(derivedFeatureID) {
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == EObjectFacetRepresentation.class) {
-			switch (derivedFeatureID) {
-				case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID: return ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID;
-				default: return -1;
+		if(baseClass == EObjectFacetRepresentation.class) {
+			switch(derivedFeatureID) {
+			case ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID:
+				return ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -270,19 +292,23 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == EObject.class) {
-			switch (baseFeatureID) {
-				default: return -1;
+		if(baseClass == EObject.class) {
+			switch(baseFeatureID) {
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == EObjectFacetRepresentation.class) {
-			switch (baseFeatureID) {
-				case ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID: return ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID;
-				default: return -1;
+		if(baseClass == EObjectFacetRepresentation.class) {
+			switch(baseFeatureID) {
+			case ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID:
+				return ProfileFacetPackage.STEREOTYPE_FACET__REPRESENTED_ELEMENT_XMI_ID;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -291,11 +317,13 @@ public class StereotypeFacetImpl extends FacetImpl implements StereotypeFacet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (representedElement_XMI_ID: "); //$NON-NLS-1$

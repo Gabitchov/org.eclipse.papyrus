@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.profilefacet.queries.setter;
 
 
 
-public class SetRealMultiValue  extends SetGenericMultiValue<Boolean>{
+public class SetRealMultiValue extends SetGenericMultiValue<Boolean> {
 
 
 }

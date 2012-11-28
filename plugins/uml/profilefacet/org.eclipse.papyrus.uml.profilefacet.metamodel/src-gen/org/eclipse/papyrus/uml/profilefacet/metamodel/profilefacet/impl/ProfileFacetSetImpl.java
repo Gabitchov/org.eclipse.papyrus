@@ -47,18 +47,22 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFac
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getRepresentedElement_XMI_ID <em>Represented Element XMI ID</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getProfileQualifiedName <em>Profile Qualified Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getRepresentedElement_XMI_ID <em>Represented
+ * Element XMI ID</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl.ProfileFacetSetImpl#getProfileQualifiedName <em>Profile Qualified Name
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet {
+
 	/**
 	 * The default value of the '{@link #getRepresentedElement_XMI_ID() <em>Represented Element XMI ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRepresentedElement_XMI_ID()
 	 * @generated
 	 * @ordered
@@ -69,6 +73,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	 * The cached value of the '{@link #getRepresentedElement_XMI_ID() <em>Represented Element XMI ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRepresentedElement_XMI_ID()
 	 * @generated
 	 * @ordered
@@ -79,6 +84,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	 * The default value of the '{@link #getProfileQualifiedName() <em>Profile Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProfileQualifiedName()
 	 * @generated
 	 * @ordered
@@ -89,6 +95,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	 * The cached value of the '{@link #getProfileQualifiedName() <em>Profile Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProfileQualifiedName()
 	 * @generated
 	 * @ordered
@@ -98,6 +105,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileFacetSetImpl() {
@@ -107,6 +115,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,6 +126,7 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getRepresentedElement_XMI_ID() {
@@ -126,18 +136,20 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRepresentedElement_XMI_ID(String newRepresentedElement_XMI_ID) {
 		String oldRepresentedElement_XMI_ID = representedElement_XMI_ID;
 		representedElement_XMI_ID = newRepresentedElement_XMI_ID;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID, oldRepresentedElement_XMI_ID, representedElement_XMI_ID));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProfileQualifiedName() {
@@ -147,25 +159,27 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProfileQualifiedName(String newProfileQualifiedName) {
 		String oldProfileQualifiedName = profileQualifiedName;
 		profileQualifiedName = newProfileQualifiedName;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME, oldProfileQualifiedName, profileQualifiedName));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
-	 * FIXME write JUnit test
+	 *            FIXME write JUnit test
 	 */
 	public EList<StereotypeFacet> getStereotypeFacets() {
 		final EList<StereotypeFacet> facets = new BasicEList<StereotypeFacet>();
-		for(final Facet current : getFacets()){
-			if(current instanceof StereotypeFacet){
+		for(final Facet current : getFacets()) {
+			if(current instanceof StereotypeFacet) {
 				facets.add((StereotypeFacet)current);
 			}
 		}
@@ -175,13 +189,14 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	  * @generated NOT
-	 * FIXME write JUnit test
+	 * 
+	 * @generated NOT
+	 *            FIXME write JUnit test
 	 */
 	public EList<ProfileFacetSet> getSubProfileFacetSet() {
 		final EList<ProfileFacetSet> facets = new BasicEList<ProfileFacetSet>();
-		for(final EPackage current : getESubpackages()){
-			if(current instanceof ProfileFacetSet){
+		for(final EPackage current : getESubpackages()) {
+			if(current instanceof ProfileFacetSet) {
 				facets.add((ProfileFacetSet)current);
 			}
 		}
@@ -191,15 +206,16 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
-				return getRepresentedElement_XMI_ID();
-			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
-				return getProfileQualifiedName();
+		switch(featureID) {
+		case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
+			return getRepresentedElement_XMI_ID();
+		case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
+			return getProfileQualifiedName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,18 +223,19 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
-				setRepresentedElement_XMI_ID((String)newValue);
-				return;
-			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
-				setProfileQualifiedName((String)newValue);
-				return;
+		switch(featureID) {
+		case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
+			setRepresentedElement_XMI_ID((String)newValue);
+			return;
+		case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
+			setProfileQualifiedName((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -226,17 +243,18 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
-				setRepresentedElement_XMI_ID(REPRESENTED_ELEMENT_XMI_ID_EDEFAULT);
-				return;
-			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
-				setProfileQualifiedName(PROFILE_QUALIFIED_NAME_EDEFAULT);
-				return;
+		switch(featureID) {
+		case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
+			setRepresentedElement_XMI_ID(REPRESENTED_ELEMENT_XMI_ID_EDEFAULT);
+			return;
+		case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
+			setProfileQualifiedName(PROFILE_QUALIFIED_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,15 +262,16 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
-				return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? representedElement_XMI_ID != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(representedElement_XMI_ID);
-			case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
-				return PROFILE_QUALIFIED_NAME_EDEFAULT == null ? profileQualifiedName != null : !PROFILE_QUALIFIED_NAME_EDEFAULT.equals(profileQualifiedName);
+		switch(featureID) {
+		case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
+			return REPRESENTED_ELEMENT_XMI_ID_EDEFAULT == null ? representedElement_XMI_ID != null : !REPRESENTED_ELEMENT_XMI_ID_EDEFAULT.equals(representedElement_XMI_ID);
+		case ProfileFacetPackage.PROFILE_FACET_SET__PROFILE_QUALIFIED_NAME:
+			return PROFILE_QUALIFIED_NAME_EDEFAULT == null ? profileQualifiedName != null : !PROFILE_QUALIFIED_NAME_EDEFAULT.equals(profileQualifiedName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -260,19 +279,23 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == EObject.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
+		if(baseClass == EObject.class) {
+			switch(derivedFeatureID) {
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == EObjectFacetRepresentation.class) {
-			switch (derivedFeatureID) {
-				case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID: return ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID;
-				default: return -1;
+		if(baseClass == EObjectFacetRepresentation.class) {
+			switch(derivedFeatureID) {
+			case ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID:
+				return ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -281,19 +304,23 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == EObject.class) {
-			switch (baseFeatureID) {
-				default: return -1;
+		if(baseClass == EObject.class) {
+			switch(baseFeatureID) {
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == EObjectFacetRepresentation.class) {
-			switch (baseFeatureID) {
-				case ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID: return ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID;
-				default: return -1;
+		if(baseClass == EObjectFacetRepresentation.class) {
+			switch(baseFeatureID) {
+			case ProfileFacetPackage.EOBJECT_FACET_REPRESENTATION__REPRESENTED_ELEMENT_XMI_ID:
+				return ProfileFacetPackage.PROFILE_FACET_SET__REPRESENTED_ELEMENT_XMI_ID;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -302,11 +329,13 @@ public class ProfileFacetSetImpl extends FacetSetImpl implements ProfileFacetSet
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (representedElement_XMI_ID: "); //$NON-NLS-1$
