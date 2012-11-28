@@ -43,18 +43,20 @@ import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.Parametricque
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.impl.ParametricQueryImpl#getCalledQuery <em>Called Query</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.impl.ParametricQueryImpl#getArguments <em>Arguments</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.impl.ParametricQueryImpl#getCalledQuery <em>Called Query</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.impl.ParametricQueryImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQuery {
+
 	/**
 	 * The cached value of the '{@link #getCalledQuery() <em>Called Query</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCalledQuery()
 	 * @generated
 	 * @ordered
@@ -65,6 +67,7 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getArguments()
 	 * @generated
 	 * @ordered
@@ -74,6 +77,7 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ParametricQueryImpl() {
@@ -83,6 +87,7 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,14 +98,15 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelQuery getCalledQuery() {
-		if (calledQuery != null && calledQuery.eIsProxy()) {
+		if(calledQuery != null && calledQuery.eIsProxy()) {
 			InternalEObject oldCalledQuery = (InternalEObject)calledQuery;
 			calledQuery = (ModelQuery)eResolveProxy(oldCalledQuery);
-			if (calledQuery != oldCalledQuery) {
-				if (eNotificationRequired())
+			if(calledQuery != oldCalledQuery) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY, oldCalledQuery, calledQuery));
 			}
 		}
@@ -110,6 +116,7 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelQuery basicGetCalledQuery() {
@@ -119,22 +126,24 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCalledQuery(ModelQuery newCalledQuery) {
 		ModelQuery oldCalledQuery = calledQuery;
 		calledQuery = newCalledQuery;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY, oldCalledQuery, calledQuery));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Argument> getArguments() {
-		if (arguments == null) {
+		if(arguments == null) {
 			arguments = new EObjectContainmentEList<Argument>(Argument.class, this, ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS);
 		}
 		return arguments;
@@ -143,13 +152,14 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
+			return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -157,16 +167,18 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
-				if (resolve) return getCalledQuery();
-				return basicGetCalledQuery();
-			case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
-				return getArguments();
+		switch(featureID) {
+		case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
+			if(resolve)
+				return getCalledQuery();
+			return basicGetCalledQuery();
+		case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
+			return getArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,19 +186,20 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
-				setCalledQuery((ModelQuery)newValue);
-				return;
-			case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
-				getArguments().clear();
-				getArguments().addAll((Collection<? extends Argument>)newValue);
-				return;
+		switch(featureID) {
+		case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
+			setCalledQuery((ModelQuery)newValue);
+			return;
+		case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
+			getArguments().clear();
+			getArguments().addAll((Collection<? extends Argument>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -194,17 +207,18 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
-				setCalledQuery((ModelQuery)null);
-				return;
-			case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
-				getArguments().clear();
-				return;
+		switch(featureID) {
+		case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
+			setCalledQuery((ModelQuery)null);
+			return;
+		case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
+			getArguments().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,15 +226,16 @@ public class ParametricQueryImpl extends ModelQueryImpl implements ParametricQue
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
-				return calledQuery != null;
-			case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
-				return arguments != null && !arguments.isEmpty();
+		switch(featureID) {
+		case ParametricqueryPackage.PARAMETRIC_QUERY__CALLED_QUERY:
+			return calledQuery != null;
+		case ParametricqueryPackage.PARAMETRIC_QUERY__ARGUMENTS:
+			return arguments != null && !arguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

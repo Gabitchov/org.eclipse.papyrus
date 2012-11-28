@@ -1,12 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMF Facet Queries (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.facet.queries;singleton:=true
 Bundle-Version: 0.9.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.emf.facet.queries.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query;bundle-version="0.2.0",
  org.eclipse.emf.facet.infra.query.core;bundle-version="0.2.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.emf.facet.queries,
+ org.eclipse.papyrus.infra.emf.facet.queries.factory,
+ org.eclipse.papyrus.infra.emf.facet.queries.parametric,
+ org.eclipse.papyrus.infra.emf.facet.queries.parametricquery,
+ org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.impl,
+ org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.util

@@ -19,27 +19,28 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>EStructural Feature Argument</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.EStructuralFeatureArgument#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.EStructuralFeatureArgument#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.ParametricqueryPackage#getEStructuralFeatureArgument()
  * @model
  * @generated
  */
 public interface EStructuralFeatureArgument extends Argument {
+
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Value</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(EStructuralFeature)
 	 * @see org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.ParametricqueryPackage#getEStructuralFeatureArgument_Value()
@@ -49,10 +50,13 @@ public interface EStructuralFeatureArgument extends Argument {
 	EStructuralFeature getValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.EStructuralFeatureArgument#getValue <em>Value</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.EStructuralFeatureArgument#getValue <em>Value</em>}'
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Value</em>' reference.
 	 * @see #getValue()
 	 * @generated
 	 */

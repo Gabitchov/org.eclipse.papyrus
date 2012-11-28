@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.facet.queries.parametric;
 
 import java.util.Collections;
@@ -8,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQueryParameter;
+import org.eclipse.emf.facet.infra.query.QueryFactory;
 import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
@@ -43,8 +57,7 @@ public class FacetParametricQuery extends AbstractModelQuery {
 
 			List<ModelQueryParameterValue> calledParameterValues = getParameterValues(calledQuery, arguments);
 
-			List<ModelQueryResult> result = modelQueryImpl.evaluate(modelQueryContext, calledParameterValues);
-			return result;
+			return modelQueryImpl.basicEvaluate(context, calledParameterValues);
 		}
 
 		return Collections.emptyList();
@@ -52,22 +65,22 @@ public class FacetParametricQuery extends AbstractModelQuery {
 
 	private List<ModelQueryParameterValue> getParameterValues(ModelQuery calledQuery, List<Argument> arguments) {
 		List<ModelQueryParameterValue> result = new LinkedList<ModelQueryParameterValue>();
-		int i = 0;
 
 		for(Argument argument : arguments) {
-			ModelQueryParameter parameter = calledQuery.getParameters().get(i);
 			ModelQueryParameterValue parameterValue = RuntimeFactory.eINSTANCE.createModelQueryParameterValue();
-			parameterValue.setParameter(parameter);
+			ModelQueryParameter modelQueryParameter = QueryFactory.eINSTANCE.createModelQueryParameter();
 
+			Object value = null;
+			final String name = argument.getArgumentName();
 			if(argument instanceof StringArgument) {
-				//TODO: Check type conformance with the parameter
-				parameterValue.setValue(((StringArgument)argument).getValue());
+				value = ((StringArgument)argument).getValue();
 			} else if(argument instanceof EStructuralFeatureArgument) {
-				parameterValue.setValue(((EStructuralFeatureArgument)argument).getValue());
+				value = ((EStructuralFeatureArgument)argument).getValue();
 			}
-
+			modelQueryParameter.setName(name);
+			parameterValue.setParameter(modelQueryParameter);
+			parameterValue.setValue(value);
 			result.add(parameterValue);
-			i++;
 		}
 		return result;
 	}

@@ -27,23 +27,25 @@ import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.*;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ParametricqueryFactoryImpl extends EFactoryImpl implements ParametricqueryFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ParametricqueryFactory init() {
 		try {
 			ParametricqueryFactory theParametricqueryFactory = (ParametricqueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/infra/emf/facet/parametric/query/0.9.1"); //$NON-NLS-1$ 
-			if (theParametricqueryFactory != null) {
+			if(theParametricqueryFactory != null) {
 				return theParametricqueryFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ParametricqueryFactoryImpl();
@@ -53,6 +55,7 @@ public class ParametricqueryFactoryImpl extends EFactoryImpl implements Parametr
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ParametricqueryFactoryImpl() {
@@ -62,22 +65,27 @@ public class ParametricqueryFactoryImpl extends EFactoryImpl implements Parametr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ParametricqueryPackage.PARAMETRIC_QUERY: return createParametricQuery();
-			case ParametricqueryPackage.STRING_ARGUMENT: return createStringArgument();
-			case ParametricqueryPackage.ESTRUCTURAL_FEATURE_ARGUMENT: return createEStructuralFeatureArgument();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		switch(eClass.getClassifierID()) {
+		case ParametricqueryPackage.PARAMETRIC_QUERY:
+			return createParametricQuery();
+		case ParametricqueryPackage.STRING_ARGUMENT:
+			return createStringArgument();
+		case ParametricqueryPackage.ESTRUCTURAL_FEATURE_ARGUMENT:
+			return createEStructuralFeatureArgument();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ParametricQuery createParametricQuery() {
@@ -88,6 +96,7 @@ public class ParametricqueryFactoryImpl extends EFactoryImpl implements Parametr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StringArgument createStringArgument() {
@@ -98,6 +107,7 @@ public class ParametricqueryFactoryImpl extends EFactoryImpl implements Parametr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EStructuralFeatureArgument createEStructuralFeatureArgument() {
@@ -108,6 +118,7 @@ public class ParametricqueryFactoryImpl extends EFactoryImpl implements Parametr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ParametricqueryPackage getParametricqueryPackage() {
@@ -117,6 +128,7 @@ public class ParametricqueryFactoryImpl extends EFactoryImpl implements Parametr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
