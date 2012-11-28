@@ -31,18 +31,19 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.policy.CustomDragDropEditPolicy;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 
 public class PackageDiagramEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
 	public boolean provides(IOperation operation) {
 
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart) && !(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
 
-		EditPart gep = (EditPart)epOperation.getEditPart();
-		String diagramType =((View) gep.getModel()).getDiagram().getType();
+		EditPart gep = epOperation.getEditPart();
+		String diagramType = ((View)gep.getModel()).getDiagram().getType();
 		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
@@ -71,16 +72,19 @@ public class PackageDiagramEditPolicyProvider extends AbstractProvider implement
 
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
-		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
 
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-			if( editPart instanceof IPrimaryEditPart){
-				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
-				if(!( editPart instanceof ConnectionEditPart)){
+			if(editPart instanceof IPrimaryEditPart) {
+				if(UMLUtil.resolveUMLElement(editPart) != null) {
+					editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
+				}
+
+				if(!(editPart instanceof ConnectionEditPart)) {
 					editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 				}
 			}
-			if(editPart instanceof NamedElementEditPart ){
+			if(editPart instanceof NamedElementEditPart) {
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 			}
 		}

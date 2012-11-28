@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeComp
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 
 /**
  * this is an editpolicy provider in charge to install a policy to create a
@@ -52,17 +53,19 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
 
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-			if( editPart instanceof IPrimaryEditPart){
-				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
-				if(!( editPart instanceof ConnectionEditPart)){
-					editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+			if(editPart instanceof IPrimaryEditPart) {
+				if(UMLUtil.resolveUMLElement(editPart) != null) {
+					editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
+				}
 
+				if(!(editPart instanceof ConnectionEditPart)) {
+					editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 				}
 			}
-			if(editPart instanceof NamedElementEditPart ){
+			if(editPart instanceof NamedElementEditPart) {
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 			}
 		}
@@ -74,12 +77,12 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 */
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)&&!(epOperation.getEditPart() instanceof ConnectionEditPart)) {
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart) && !(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
 
-		EditPart gep = (EditPart)epOperation.getEditPart();
-		String diagramType =((View) gep.getModel()).getDiagram().getType();
+		EditPart gep = epOperation.getEditPart();
+		String diagramType = ((View)gep.getModel()).getDiagram().getType();
 		if(ActivityDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
