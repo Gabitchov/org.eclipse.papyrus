@@ -1,92 +1,22 @@
 <?xml version="1.0" encoding="ASCII"?>
 <query:ModelQuerySet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:paramQuery="http://www.eclipse.org/papyrus/infra/emf/facet/parametric/query/0.9.1" xmlns:profilefacet="http://www.eclipse.org/papyrus/0.9/profilefacet" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="QueriesFor_SysML" description="Queries used by the generated facetset SysML">
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::Unit::dimension_value" description="Getter for the stereotype property SysML::Blocks::Unit::dimension">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/Unit/dimension"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::verifies_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::verifies">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/verifies"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::tracedFrom_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::tracedFrom" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/tracedFrom"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Activities::Rate::rate_value" description="Setter for the stereotype property SysML::Activities::Rate::rate">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Rate/rate"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowPort::isAtomic_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowPort::isAtomic">
+  <associatedMetamodels href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::Block_query" description="Test if the stereotype SysML::Blocks::Block or one of its specialization is applied on the element">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setBooleanSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isAtomic"/>
-    </arguments>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::Block"/>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::refines_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::refines">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/refines"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowProperty::direction_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowProperty::direction">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setUMLEnumerationSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowProperty/direction"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::View::viewPoint_value" description="Getter for the stereotype property SysML::ModelElements::View::viewPoint" lowerBound="1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//ModelElements/View/viewPoint"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::derivedFrom_value" description="Setter for the stereotype property SysML::Requirements::Requirement::derivedFrom">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derivedFrom"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::stakeHolders_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::stakeHolders" upperBound="-1">
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::purpose_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::purpose">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringMultiValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringSingleValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/stakeHolders"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/purpose"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::NestedConnectorEnd::propertyPath_value" description="Setter for the stereotype property SysML::Blocks::NestedConnectorEnd::propertyPath">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/NestedConnectorEnd/propertyPath"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowPort::direction_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowPort::direction">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setUMLEnumerationSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/direction"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::methods_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::methods" upperBound="-1">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::methods_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::methods">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringMultiValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringMultiValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/methods"/>
     </arguments>
@@ -98,14 +28,234 @@
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Allocations/Allocated/allocatedTo"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::stakeHolders_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::stakeHolders">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::verifies_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::verifies">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/verifies"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::master_value" description="Getter for the stereotype property SysML::Requirements::Requirement::master">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/master"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::NestedConnectorEnd::propertyPath_value" description="Setter for the stereotype property SysML::Blocks::NestedConnectorEnd::propertyPath">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/NestedConnectorEnd/propertyPath"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowPort::isAtomic_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowPort::isAtomic" lowerBound="1">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getBooleanSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isAtomic"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::TestCase::verifies_value" description="Getter for the stereotype property SysML::Requirements::TestCase::verifies" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/TestCase/verifies"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::ParticipantProperty_query" description="Test if the stereotype SysML::Blocks::ParticipantProperty or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::ParticipantProperty"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Allocations::Allocated_query" description="Test if the stereotype SysML::Allocations::Allocated or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Allocations::Allocated"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Activities::Rate::rate_value" description="Getter for the stereotype property SysML::Activities::Rate::rate">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Rate/rate"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Activities::Probability::probability_value" description="Setter for the stereotype property SysML::Activities::Probability::probability">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Probability/probability"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::master_value" description="Setter for the stereotype property SysML::Requirements::Requirement::master">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/master"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::satisfiedBy_value" description="Getter for the stereotype property SysML::Requirements::Requirement::satisfiedBy" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/satisfiedBy"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Requirements::RequirementRelated_query" description="Test if the stereotype SysML::Requirements::RequirementRelated or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Requirements::RequirementRelated"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::refines_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::refines" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/refines"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::stakeHolders_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::stakeHolders" upperBound="-1">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringMultiValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringMultiValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/stakeHolders"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::Unit::dimension_value" description="Setter for the stereotype property SysML::Blocks::Unit::dimension">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::id_value" description="Setter for the stereotype property SysML::Requirements::Requirement::id">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/id"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::Block::isEncapsulated_value" description="Getter for the stereotype property SysML::Blocks::Block::isEncapsulated">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getBooleanSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Blocks/Block/isEncapsulated"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::ValueType::unit_value" description="Getter for the stereotype property SysML::Blocks::ValueType::unit">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ValueType/unit"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::NestedConnectorEnd_query" description="Test if the stereotype SysML::Blocks::NestedConnectorEnd or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::NestedConnectorEnd"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowPort::direction_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowPort::direction" lowerBound="1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getUMLEnumerationSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/direction"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::derivedFrom_value" description="Getter for the stereotype property SysML::Requirements::Requirement::derivedFrom" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derivedFrom"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::satisfies_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::satisfies">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/satisfies"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::View::viewPoint_value" description="Getter for the stereotype property SysML::ModelElements::View::viewPoint" lowerBound="1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//ModelElements/View/viewPoint"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Activities::Probability::probability_value" description="Getter for the stereotype property SysML::Activities::Probability::probability">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Probability/probability"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowProperty::direction_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowProperty::direction" lowerBound="1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getUMLEnumerationSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowProperty/direction"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::Unit_query" description="Test if the stereotype SysML::Blocks::Unit or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::Unit"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::derived_value" description="Setter for the stereotype property SysML::Requirements::Requirement::derived">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derived"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Allocations::Allocated::allocatedTo_value" description="Setter for the stereotype property SysML::Allocations::Allocated::allocatedTo">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Allocations/Allocated/allocatedTo"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::Block::isEncapsulated_value" description="Setter for the stereotype property SysML::Blocks::Block::isEncapsulated">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setBooleanSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Blocks/Block/isEncapsulated"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Allocations::Allocated::allocatedFrom_value" description="Setter for the stereotype property SysML::Allocations::Allocated::allocatedFrom">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Allocations/Allocated/allocatedFrom"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Requirements::TestCase_query" description="Test if the stereotype SysML::Requirements::TestCase or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Requirements::TestCase"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::tracedTo_value" description="Setter for the stereotype property SysML::Requirements::Requirement::tracedTo">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/tracedTo"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::ValueType_query" description="Test if the stereotype SysML::Blocks::ValueType or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::ValueType"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::ModelElements::ViewPoint_query" description="Test if the stereotype SysML::ModelElements::ViewPoint or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::ModelElements::ViewPoint"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::PortAndFlows::FlowPort_query" description="Test if the stereotype SysML::PortAndFlows::FlowPort or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::PortAndFlows::FlowPort"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::text_value" description="Getter for the stereotype property SysML::Requirements::Requirement::text" lowerBound="1">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/text"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::Unit::dimension_value" description="Getter for the stereotype property SysML::Blocks::Unit::dimension">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
@@ -117,67 +267,6 @@
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
     <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Activities::Rate"/>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Requirements::TestCase_query" description="Test if the stereotype SysML::Requirements::TestCase or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Requirements::TestCase"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ConnectorProperty::connector_value" description="Setter for the stereotype property SysML::Blocks::ConnectorProperty::connector">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ConnectorProperty/connector"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::master_value" description="Getter for the stereotype property SysML::Requirements::Requirement::master">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/master"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::ValueType::unit_value" description="Getter for the stereotype property SysML::Blocks::ValueType::unit">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ValueType/unit"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowProperty::direction_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowProperty::direction" lowerBound="1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getUMLEnumerationSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowProperty/direction"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::Block::isEncapsulated_value" description="Getter for the stereotype property SysML::Blocks::Block::isEncapsulated">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getBooleanSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Blocks/Block/isEncapsulated"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::TestCase::verifies_value" description="Setter for the stereotype property SysML::Requirements::TestCase::verifies">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/TestCase/verifies"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::derived_value" description="Setter for the stereotype property SysML::Requirements::Requirement::derived">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derived"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::Block::isEncapsulated_value" description="Setter for the stereotype property SysML::Blocks::Block::isEncapsulated">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setBooleanSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Blocks/Block/isEncapsulated"/>
-    </arguments>
-  </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::NestedConnectorEnd::propertyPath_value" description="Getter for the stereotype property SysML::Blocks::NestedConnectorEnd::propertyPath" upperBound="-1" lowerBound="1">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
@@ -185,188 +274,32 @@
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/NestedConnectorEnd/propertyPath"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::satisfies_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::satisfies">
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Allocations::Allocated::allocatedFrom_value" description="Getter for the stereotype property SysML::Allocations::Allocated::allocatedFrom" upperBound="-1">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/satisfies"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Allocations::Allocated::allocatedFrom_value" description="Setter for the stereotype property SysML::Allocations::Allocated::allocatedFrom">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Allocations/Allocated/allocatedFrom"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::PortAndFlows::FlowPort_query" description="Test if the stereotype SysML::PortAndFlows::FlowPort or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::PortAndFlows::FlowPort"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Requirements::Requirement_query" description="Test if the stereotype SysML::Requirements::Requirement or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Requirements::Requirement"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowPort::isConjugated_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowPort::isConjugated">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setBooleanSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isConjugated"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::concerns_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::concerns">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringMultiValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/concerns"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::verifies_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::verifies" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/verifies"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::refinedBy_value" description="Getter for the stereotype property SysML::Requirements::Requirement::refinedBy" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/refinedBy"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::ItemFlow::itemProperty_value" description="Getter for the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//PortAndFlows/ItemFlow/itemProperty"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::tracedFrom_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::tracedFrom">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::satisfiedBy_value" description="Setter for the stereotype property SysML::Requirements::Requirement::satisfiedBy">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/tracedFrom"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/satisfiedBy"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::text_value" description="Setter for the stereotype property SysML::Requirements::Requirement::text">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/text"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::derived_value" description="Getter for the stereotype property SysML::Requirements::Requirement::derived" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derived"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::derivedFrom_value" description="Getter for the stereotype property SysML::Requirements::Requirement::derivedFrom" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derivedFrom"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Requirements::RequirementRelated_query" description="Test if the stereotype SysML::Requirements::RequirementRelated or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Requirements::RequirementRelated"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::Block_query" description="Test if the stereotype SysML::Blocks::Block or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::Block"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::ModelElements::ViewPoint_query" description="Test if the stereotype SysML::ModelElements::ViewPoint or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::ModelElements::ViewPoint"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::satisfies_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::satisfies" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/satisfies"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::id_value" description="Getter for the stereotype property SysML::Requirements::Requirement::id" lowerBound="1">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/id"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Activities::Probability::probability_value" description="Getter for the stereotype property SysML::Activities::Probability::probability">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Probability/probability"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::methods_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::methods">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::stakeHolders_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::stakeHolders">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringMultiValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/methods"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/stakeHolders"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::concerns_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::concerns" upperBound="-1">
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::methods_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::methods" upperBound="-1">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringMultiValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/concerns"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowPort::isConjugated_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowPort::isConjugated">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getBooleanSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isConjugated"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::TestCase::verifies_value" description="Getter for the stereotype property SysML::Requirements::TestCase::verifies" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/TestCase/verifies"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::verifiedBy_value" description="Setter for the stereotype property SysML::Requirements::Requirement::verifiedBy">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/verifiedBy"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::NestedConnectorEnd_query" description="Test if the stereotype SysML::Blocks::NestedConnectorEnd or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::NestedConnectorEnd"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::purpose_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::purpose">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/purpose"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::tracedTo_value" description="Getter for the stereotype property SysML::Requirements::Requirement::tracedTo" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/tracedTo"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::satisfiedBy_value" description="Getter for the stereotype property SysML::Requirements::Requirement::satisfiedBy" upperBound="-1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/satisfiedBy"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/methods"/>
     </arguments>
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::languages_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::languages" upperBound="-1">
@@ -376,78 +309,39 @@
       <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/languages"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::ConnectorProperty_query" description="Test if the stereotype SysML::Blocks::ConnectorProperty or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::ConnectorProperty"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::ItemFlow::itemProperty_value" description="Setter for the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//PortAndFlows/ItemFlow/itemProperty"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Allocations::Allocated_query" description="Test if the stereotype SysML::Allocations::Allocated or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Allocations::Allocated"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::ValueType_query" description="Test if the stereotype SysML::Blocks::ValueType or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::ValueType"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ValueType::unit_value" description="Setter for the stereotype property SysML::Blocks::ValueType::unit">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ValueType/unit"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Allocations::Allocated::allocatedTo_value" description="Setter for the stereotype property SysML::Allocations::Allocated::allocatedTo">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::refinedBy_value" description="Setter for the stereotype property SysML::Requirements::Requirement::refinedBy">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Allocations/Allocated/allocatedTo"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/refinedBy"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::ParticipantProperty_query" description="Test if the stereotype SysML::Blocks::ParticipantProperty or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::ParticipantProperty"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ParticipantProperty::end_value" description="Setter for the stereotype property SysML::Blocks::ParticipantProperty::end">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::id_value" description="Getter for the stereotype property SysML::Requirements::Requirement::id" lowerBound="1">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringSingleValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ParticipantProperty/end"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/id"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::ModelElements::View_query" description="Test if the stereotype SysML::ModelElements::View or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::ModelElements::View"/>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowProperty::direction_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowProperty::direction">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setUMLEnumerationSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowProperty/direction"/>
+    </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::tracedTo_value" description="Setter for the stereotype property SysML::Requirements::Requirement::tracedTo">
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::refinedBy_value" description="Getter for the stereotype property SysML::Requirements::Requirement::refinedBy" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/refinedBy"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::tracedFrom_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::tracedFrom">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/tracedTo"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowPort::isAtomic_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowPort::isAtomic" lowerBound="1">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getBooleanSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isAtomic"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Activities::Probability::probability_value" description="Setter for the stereotype property SysML::Activities::Probability::probability">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Probability/probability"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/tracedFrom"/>
     </arguments>
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::verifiedBy_value" description="Getter for the stereotype property SysML::Requirements::Requirement::verifiedBy" upperBound="-1">
@@ -457,26 +351,98 @@
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/verifiedBy"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::text_value" description="Getter for the stereotype property SysML::Requirements::Requirement::text" lowerBound="1">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringSingleValue"/>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::View::viewPoint_value" description="Setter for the stereotype property SysML::ModelElements::View::viewPoint">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/text"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//ModelElements/View/viewPoint"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::refinedBy_value" description="Setter for the stereotype property SysML::Requirements::Requirement::refinedBy">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowPort::direction_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowPort::direction">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setUMLEnumerationSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/direction"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::derivedFrom_value" description="Setter for the stereotype property SysML::Requirements::Requirement::derivedFrom">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/refinedBy"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derivedFrom"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::Unit_query" description="Test if the stereotype SysML::Blocks::Unit or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::Unit"/>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::concerns_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::concerns">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringMultiValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/concerns"/>
+    </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::ValueType::dimension_value" description="Getter for the stereotype property SysML::Blocks::ValueType::dimension">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::TestCase::verifies_value" description="Setter for the stereotype property SysML::Requirements::TestCase::verifies">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/TestCase/verifies"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::tracedFrom_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::tracedFrom" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/tracedFrom"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::ParticipantProperty::end_value" description="Getter for the stereotype property SysML::Blocks::ParticipantProperty::end" lowerBound="1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ParticipantProperty/end"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowPort::isConjugated_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowPort::isConjugated">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setBooleanSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isConjugated"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::satisfies_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::satisfies" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/satisfies"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::verifies_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::verifies" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/verifies"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ParticipantProperty::end_value" description="Setter for the stereotype property SysML::Blocks::ParticipantProperty::end">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ParticipantProperty/end"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::tracedTo_value" description="Getter for the stereotype property SysML::Requirements::Requirement::tracedTo" upperBound="-1">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/tracedTo"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowPort::isConjugated_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowPort::isConjugated">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getBooleanSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isConjugated"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ValueType::dimension_value" description="Setter for the stereotype property SysML::Blocks::ValueType::dimension">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
@@ -488,70 +454,56 @@
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
     <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::PortAndFlows::FlowProperty"/>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::PortAndFlows::ItemFlow_query" description="Test if the stereotype SysML::PortAndFlows::ItemFlow or one of its specialization is applied on the element">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::PortAndFlows::ItemFlow"/>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Activities::Rate::rate_value" description="Getter for the stereotype property SysML::Activities::Rate::rate">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ConnectorProperty::connector_value" description="Setter for the stereotype property SysML::Blocks::ConnectorProperty::connector">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Rate/rate"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ConnectorProperty/connector"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::id_value" description="Setter for the stereotype property SysML::Requirements::Requirement::id">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringSingleValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/id"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Activities::Probability_query" description="Test if the stereotype SysML::Activities::Probability or one of its specialization is applied on the element">
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Blocks::ConnectorProperty_query" description="Test if the stereotype SysML::Blocks::ConnectorProperty or one of its specialization is applied on the element">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
-    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Activities::Probability"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Blocks::ConnectorProperty"/>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::master_value" description="Setter for the stereotype property SysML::Requirements::Requirement::master">
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::ItemFlow::itemProperty_value" description="Getter for the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/master"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//PortAndFlows/ItemFlow/itemProperty"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Allocations::Allocated::allocatedFrom_value" description="Getter for the stereotype property SysML::Allocations::Allocated::allocatedFrom" upperBound="-1">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::RequirementRelated::refines_value" description="Setter for the stereotype property SysML::Requirements::RequirementRelated::refines">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Allocations/Allocated/allocatedFrom"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/refines"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::languages_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::languages">
-    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringMultiValue"/>
-    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/languages"/>
-    </arguments>
-  </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ValueType::dimension_value" description="Setter for the stereotype property SysML::Blocks::ValueType::dimension">
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::ValueType::dimension_value" description="Getter for the stereotype property SysML::Blocks::ValueType::dimension">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ValueType/dimension"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::satisfiedBy_value" description="Setter for the stereotype property SysML::Requirements::Requirement::satisfiedBy">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::ModelElements::ViewPoint::concerns_value" description="Getter for the stereotype property SysML::ModelElements::ViewPoint::concerns" upperBound="-1">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getStringMultiValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/satisfiedBy"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/concerns"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::purpose_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::purpose">
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::PortAndFlows::ItemFlow_query" description="Test if the stereotype SysML::PortAndFlows::ItemFlow or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::PortAndFlows::ItemFlow"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::languages_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::languages">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringSingleValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringMultiValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/purpose"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/languages"/>
     </arguments>
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::ConnectorProperty::connector_value" description="Getter for the stereotype property SysML::Blocks::ConnectorProperty::connector" lowerBound="1">
@@ -561,32 +513,82 @@
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ConnectorProperty/connector"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Blocks::ParticipantProperty::end_value" description="Getter for the stereotype property SysML::Blocks::ParticipantProperty::end" lowerBound="1">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Activities::Rate::rate_value" description="Setter for the stereotype property SysML::Activities::Rate::rate">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ParticipantProperty/end"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Rate/rate"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::RequirementRelated::refines_value" description="Getter for the stereotype property SysML::Requirements::RequirementRelated::refines" upperBound="-1">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::verifiedBy_value" description="Setter for the stereotype property SysML::Requirements::Requirement::verifiedBy">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectMultiReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/verifiedBy"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::ItemFlow::itemProperty_value" description="Setter for the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//PortAndFlows/ItemFlow/itemProperty"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ValueType::unit_value" description="Setter for the stereotype property SysML::Blocks::ValueType::unit">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ValueType/unit"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::ModelElements::View_query" description="Test if the stereotype SysML::ModelElements::View or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::ModelElements::View"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::text_value" description="Setter for the stereotype property SysML::Requirements::Requirement::text">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//Requirements/Requirement/text"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::FlowPort::isAtomic_value" description="Setter for the stereotype property SysML::PortAndFlows::FlowPort::isAtomic">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setBooleanSingleValue"/>
+    <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/isAtomic"/>
+    </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::Requirements::Requirement::derived_value" description="Getter for the stereotype property SysML::Requirements::Requirement::derived" upperBound="-1">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectMultiReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/RequirementRelated/refines"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/derived"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::View::viewPoint_value" description="Setter for the stereotype property SysML::ModelElements::View::viewPoint">
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::Unit::dimension_value" description="Setter for the stereotype property SysML::Blocks::Unit::dimension">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//ModelElements/View/viewPoint"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/Unit/dimension"/>
     </arguments>
   </queries>
-  <queries xsi:type="paramQuery:ParametricQuery" name="get_SysML::PortAndFlows::FlowPort::direction_value" description="Getter for the stereotype property SysML::PortAndFlows::FlowPort::direction" lowerBound="1">
-    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getUMLEnumerationSingleValue"/>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Activities::Probability_query" description="Test if the stereotype SysML::Activities::Probability or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Activities::Probability"/>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::ViewPoint::purpose_value" description="Setter for the stereotype property SysML::ModelElements::ViewPoint::purpose">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setStringSingleValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
-      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//PortAndFlows/FlowPort/direction"/>
+      <value xsi:type="profilefacet:StereotypePropertyFacetAttribute" href="sysml_profilefacet.facetSet#//ModelElements/ViewPoint/purpose"/>
     </arguments>
+  </queries>
+  <queries xsi:type="paramQuery:ParametricQuery" name="IsApplied_SysML::Requirements::Requirement_query" description="Test if the stereotype SysML::Requirements::Requirement or one of its specialization is applied on the element">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#isAppliedRequiredStereotype"/>
+    <arguments xsi:type="paramQuery:StringArgument" argumentName="stereotypeQualifiedName" value="SysML::Requirements::Requirement"/>
   </queries>
 </query:ModelQuerySet>
