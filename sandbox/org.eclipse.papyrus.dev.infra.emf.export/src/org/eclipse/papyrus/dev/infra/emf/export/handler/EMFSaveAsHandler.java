@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.infra.emf.export.handler;
+package org.eclipse.papyrus.dev.infra.emf.export.handler;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.emf.export.Activator;
+import org.eclipse.papyrus.dev.infra.emf.export.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
 import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.swt.widgets.Display;

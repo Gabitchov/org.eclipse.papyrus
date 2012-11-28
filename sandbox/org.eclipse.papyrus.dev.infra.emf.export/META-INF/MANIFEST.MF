@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Export EMF (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.export;singleton:=true
 Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.emf.export.Activator
+Bundle-Activator: org.eclipse.papyrus.dev.infra.emf.export.Activator
 Bundle-Vendor: Eclipse Modeling Language
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.infra.emf.export;
+package org.eclipse.papyrus.dev.infra.emf.export;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -10,7 +10,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.emf.export"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.dev.infra.emf.export"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

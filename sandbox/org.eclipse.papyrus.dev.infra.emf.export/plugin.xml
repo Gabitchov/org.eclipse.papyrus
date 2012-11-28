@@ -4,9 +4,9 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.infra.emf.export.handler.EMFSaveAsHandler"
+            defaultHandler="org.eclipse.papyrus.dev.infra.emf.export.handler.EMFSaveAsHandler"
             description="Allow to do a &quot;Save As&quot; of a part of a model"
-            id="org.eclipse.papyrus.infra.emf.export.save.as.command"
+            id="org.eclipse.papyrus.dev.infra.emf.export.save.as.command"
             name="EMF Save As">
       </command>
    </extension>
@@ -16,7 +16,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.ui.popup.any">
          <command
-               commandId="org.eclipse.papyrus.infra.emf.export.save.as.command"
+               commandId="org.eclipse.papyrus.dev.infra.emf.export.save.as.command"
                label="&quot;Save As&quot; a part of the model"
                style="push"
                tooltip="&quot;Save As&quot; a part of the model">
