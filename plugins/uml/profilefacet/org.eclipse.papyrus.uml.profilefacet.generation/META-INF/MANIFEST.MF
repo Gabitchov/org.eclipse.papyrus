@@ -1,10 +1,6 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Profile Facet Generation Plugin (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.profilefacet.generation
-Bundle-Version: 0.9.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.profilefacet.generation.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Export-Package: org.eclipse.papyrus.uml.profilefacet.generation.factor
+ y
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
@@ -12,9 +8,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.uml.profilefacet;bundle-version="0.9.1",
  org.eclipse.papyrus.uml.profilefacet.metamodel;bundle-version="0.9.1",
- org.eclipse.emf.facet.infra.query.core;bundle-version="0.2.2",
+ org.eclipse.emf.facet.infra.query.core;bundle-version="0.2.1",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
  org.eclipse.papyrus.infra.emf.facet.queries;bundle-version="0.9.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.profilefacet.generation.factory
+Bundle-Version: 0.9.1.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Activator: org.eclipse.papyrus.uml.profilefacet.generation.Acti
+ vator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.profilefacet.generation
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
