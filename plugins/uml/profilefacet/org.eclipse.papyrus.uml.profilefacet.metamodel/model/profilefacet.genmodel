@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012 CEA LIST.&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.uml.profilefacet.metamodel/src-gen" editDirectory="/org.eclipse.papyrus.uml.profilefacet.metamodel.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.uml.profilefacet.metamodel.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.uml.profilefacet.metamodel" modelName="Profilefacet"
+    nonNLSMarkers="true" testsDirectory="/org.eclipse.papyrus.uml.profilefacet.metamodel.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.facet/model/facet.genmodel#//facet platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query">
+  <foreignModel>profilefacet.ecore</foreignModel>
+  <genPackages prefix="ProfileFacet" basePackage="org.eclipse.papyrus.uml.profilefacet.metamodel"
+      disposableProviderFactory="true" ecorePackage="profilefacet.ecore#/">
+    <genClasses ecoreClass="profilefacet.ecore#//ProfileFacetSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute profilefacet.ecore#//ProfileFacetSet/profileQualifiedName"/>
+      <genOperations ecoreOperation="profilefacet.ecore#//ProfileFacetSet/getStereotypeFacets"/>
+      <genOperations ecoreOperation="profilefacet.ecore#//ProfileFacetSet/getSubProfileFacetSet"/>
+    </genClasses>
+    <genClasses ecoreClass="profilefacet.ecore#//StereotypeFacet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute profilefacet.ecore#//StereotypeFacet/stereotypeQualifiedName"/>
+      <genOperations ecoreOperation="profilefacet.ecore#//StereotypeFacet/getStereotypePropertyElements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="profilefacet.ecore#//StereotypePropertyElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute profilefacet.ecore#//StereotypePropertyElement/propertyQualifiedName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute profilefacet.ecore#//StereotypePropertyElement/isDerived"/>
+    </genClasses>
+    <genClasses ecoreClass="profilefacet.ecore#//StereotypePropertyFacetReference"/>
+    <genClasses ecoreClass="profilefacet.ecore#//StereotypePropertyFacetAttribute"/>
+    <genClasses image="false" ecoreClass="profilefacet.ecore#//EObjectFacetRepresentation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute profilefacet.ecore#//EObjectFacetRepresentation/representedElement_XMI_ID"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
