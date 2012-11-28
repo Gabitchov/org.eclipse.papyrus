@@ -64,6 +64,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 				if(currentEditPart instanceof IPrimaryEditPart) {
 					if(elementList.contains(semanticFromGMFElement.getSemanticElement(currentEditPart))) {
 						researchedEditPart = ((IGraphicalEditPart)currentEditPart);
+						break;
 					}
 				}
 
