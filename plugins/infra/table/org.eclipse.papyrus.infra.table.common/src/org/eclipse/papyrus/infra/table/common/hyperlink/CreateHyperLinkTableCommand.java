@@ -20,7 +20,8 @@ import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 
-public class CreateHyperLinkTableCommand extends CreateEAnnotationCommand{
+public class CreateHyperLinkTableCommand extends CreateEAnnotationCommand {
+
 	/** The hyperlink kind. */
 	public String tooltiptext;
 
@@ -30,6 +31,7 @@ public class CreateHyperLinkTableCommand extends CreateEAnnotationCommand{
 	private EModelElement table;
 
 	protected boolean isDefaultNavigation;
+
 	/**
 	 * Instantiates a new creates the hyper link command.
 	 * 
@@ -47,7 +49,7 @@ public class CreateHyperLinkTableCommand extends CreateEAnnotationCommand{
 		this.tooltiptext = tooltiptext;
 		this.name = name;
 		this.table = diagram;
-		this.isDefaultNavigation=isDefaultNavigation;
+		this.isDefaultNavigation = isDefaultNavigation;
 	}
 
 	/**
@@ -58,7 +60,7 @@ public class CreateHyperLinkTableCommand extends CreateEAnnotationCommand{
 		eAnnotation.getReferences().add(table);
 		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(HyperLinkTableConstants.HYPERLINK_TABLE_NAME, this.name); //TODO change that!
-		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefaultNavigation);
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, "" + this.isDefaultNavigation);
 		attachEannotation(eAnnotation, getObject());
 	}
 }

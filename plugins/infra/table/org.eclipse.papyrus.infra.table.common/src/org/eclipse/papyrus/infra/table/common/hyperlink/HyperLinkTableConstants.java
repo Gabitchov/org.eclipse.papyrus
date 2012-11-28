@@ -20,7 +20,8 @@ public class HyperLinkTableConstants {
 	public static final String HYPERLINK_TABLE = HyperLinkConstants.PAPYRUS_HYPERLINK_PREFIX + "Table";
 
 	public static final String HYPERLINK_TABLE_NAME = "table_name";
-	private HyperLinkTableConstants(){
+
+	private HyperLinkTableConstants() {
 		//nothing to do
 	}
 }

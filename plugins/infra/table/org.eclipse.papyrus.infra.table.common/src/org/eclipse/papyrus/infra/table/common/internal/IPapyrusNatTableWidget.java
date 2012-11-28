@@ -22,7 +22,7 @@ import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
  * 
  * This interface is used to add some useful method to INatTableWidget
  * 
- *
+ * 
  */
 @Deprecated
 /**
@@ -35,16 +35,18 @@ public interface IPapyrusNatTableWidget extends INatTableWidget {
 
 	/**
 	 * This method allow to add elements in the table without execute the command in the command stack
+	 * 
 	 * @param elementsToAdd
-	 * the list of the elements to add
+	 *        the list of the elements to add
 	 */
 	@Deprecated
 	public void addRowsOutOfCommandStack(List<EObject> elementsToAdd);
 
 	/**
 	 * This method allow to remove elements from the table without execute the command in the command stack
+	 * 
 	 * @param elementsToDelete
-	 * the list of the element to delete
+	 *        the list of the element to delete
 	 */
 	@Deprecated
 	public void removeRowsOutOfCommandStack(List<EObject> elementsToDelete);

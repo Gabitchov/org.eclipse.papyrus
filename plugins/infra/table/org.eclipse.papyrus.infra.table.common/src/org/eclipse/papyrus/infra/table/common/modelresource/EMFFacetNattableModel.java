@@ -24,9 +24,9 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 /**
  * A model used to save data from the {@link DefaultNattableEditor}
- *
+ * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelWithSharedResource<TableInstance> implements IModel {
 
@@ -50,9 +50,9 @@ public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelW
 
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public EMFFacetNattableModel() {
 
@@ -67,9 +67,9 @@ public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelW
 
 	/**
 	 * Get the file extension used for this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -79,9 +79,9 @@ public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelW
 
 	/**
 	 * Get the identifier used to register this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -92,7 +92,7 @@ public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelW
 
 	/**
 	 * Add a new initialized {@link Diagram} to the model.
-	 *
+	 * 
 	 * @param newDiagram
 	 *        The diagram to add.
 	 */
@@ -102,7 +102,7 @@ public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelW
 
 	/**
 	 * Add a new initialized {@link Diagram} to the model.
-	 *
+	 * 
 	 * @param newDiagram
 	 *        The diagram to add.
 	 */
@@ -111,9 +111,9 @@ public class EMFFacetNattableModel extends /* AbstractBaseModel */AbstractModelW
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)
-	 *
+	 * 
 	 * @param object
 	 * @return
 	 */

@@ -20,10 +20,11 @@ public class FillingQueriesUtil {
 	/**
 	 * The constructor for this class
 	 */
-	private FillingQueriesUtil(){
+	private FillingQueriesUtil() {
 		//nothing to do
 	}
-	/** the value for the event which opens the table*/
+
+	/** the value for the event which opens the table */
 	public static final int OPEN_TABLE = Notification.EVENT_TYPE_COUNT + 1;
-	
+
 }

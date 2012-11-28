@@ -17,18 +17,18 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.swt.graphics.Image;
 
-public class HyperLinkTableEditor extends HyperLinkEditor{
-	
-	
+public class HyperLinkTableEditor extends HyperLinkEditor {
+
+
 	public Image getImage(Object element) {//TODO remove this method
-		if(element instanceof PapyrusTableInstance){
+		if(element instanceof PapyrusTableInstance) {
 			return getEditorRegistry().getEditorIcon(element);
 		}
 		return null;
 	}
 
 	public String getText(Object element) {//TODO remove this method
-		if(element instanceof PapyrusTableInstance){
+		if(element instanceof PapyrusTableInstance) {
 			return ((PapyrusTableInstance)element).getName();
 		}
 		return null;

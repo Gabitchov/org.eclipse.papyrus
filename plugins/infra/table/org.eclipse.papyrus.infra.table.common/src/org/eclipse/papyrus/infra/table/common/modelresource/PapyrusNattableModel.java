@@ -25,9 +25,9 @@ import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTabl
 
 /**
  * A model used to save data from the {@link DefaultNattableEditor}
- *
+ * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableInstance> implements IModel {
 
@@ -51,9 +51,9 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public PapyrusNattableModel() {
 
@@ -68,9 +68,9 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 	/**
 	 * Get the file extension used for this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -80,9 +80,9 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 	/**
 	 * Get the identifier used to register this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -93,7 +93,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 	/**
 	 * Add a new initialized {@link PapyrusTableInstance} to the model.
-	 *
+	 * 
 	 * @param tableInstance
 	 *        The tableInstance to add.
 	 */
@@ -103,7 +103,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 	/**
 	 * Add a new initialized {@link PapyrusTableInstance} to the model.
-	 *
+	 * 
 	 * @param tableInstance
 	 *        The tableInstance to add.
 	 */
@@ -112,9 +112,9 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)
-	 *
+	 * 
 	 * @param object
 	 * @return
 	 */
