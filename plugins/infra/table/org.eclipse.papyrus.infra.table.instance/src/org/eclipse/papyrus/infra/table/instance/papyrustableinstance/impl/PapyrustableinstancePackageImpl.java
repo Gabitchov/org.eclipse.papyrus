@@ -168,7 +168,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusTableInstance_PasteElementContainementFeature() {
+	public EReference getPapyrusTableInstance_PastedElementContainmentFeature() {
 		return (EReference)papyrusTableInstanceEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -207,7 +207,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__TABLE);
 		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES);
 		createEAttribute(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID);
-		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE);
+		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE);
 	}
 
 	/**
@@ -253,7 +253,7 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		initEReference(getPapyrusTableInstance_Table(), theTableinstance2Package.getTableInstance2(), null, "table", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableInstance_FillingQueries(), theQueryPackage.getModelQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPapyrusTableInstance_PastedElementId(), ecorePackage.getEString(), "pastedElementId", "", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPapyrusTableInstance_PasteElementContainementFeature(), theEcorePackage.getEReference(), null, "pasteElementContainementFeature", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTableInstance_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

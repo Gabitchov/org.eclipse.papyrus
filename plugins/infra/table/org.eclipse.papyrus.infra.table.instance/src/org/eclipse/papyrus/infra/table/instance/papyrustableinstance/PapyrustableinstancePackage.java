@@ -134,13 +134,13 @@ public interface PapyrustableinstancePackage extends EPackage {
 	int PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Paste Element Containement Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Papyrus Table Instance</em>' class.
@@ -229,15 +229,15 @@ public interface PapyrustableinstancePackage extends EPackage {
 	EAttribute getPapyrusTableInstance_PastedElementId();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Paste Element Containement Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPasteElementContainementFeature()
+	 * @return the meta object for the reference '<em>Pasted Element Containment Feature</em>'.
+	 * @see org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance#getPastedElementContainmentFeature()
 	 * @see #getPapyrusTableInstance()
 	 * @generated
 	 */
-	EReference getPapyrusTableInstance_PasteElementContainementFeature();
+	EReference getPapyrusTableInstance_PastedElementContainmentFeature();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -320,12 +320,12 @@ public interface PapyrustableinstancePackage extends EPackage {
 		EAttribute PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID = eINSTANCE.getPapyrusTableInstance_PastedElementId();
 
 		/**
-		 * The meta object literal for the '<em><b>Paste Element Containement Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Pasted Element Containment Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE = eINSTANCE.getPapyrusTableInstance_PasteElementContainementFeature();
+		EReference PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE = eINSTANCE.getPapyrusTableInstance_PastedElementContainmentFeature();
 
 	}
 

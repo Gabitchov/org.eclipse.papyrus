@@ -42,7 +42,7 @@ import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.Papyrustabl
  *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getFillingQueries <em>Filling Queries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getPastedElementId <em>Pasted Element Id</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.instance.papyrustableinstance.impl.PapyrusTableInstanceImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -151,14 +151,14 @@ EModelElementImpl implements PapyrusTableInstance {
 	protected String pastedElementId = PASTED_ELEMENT_ID_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPasteElementContainementFeature() <em>Paste Element Containement Feature</em>}' reference.
+	 * The cached value of the '{@link #getPastedElementContainmentFeature() <em>Pasted Element Containment Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPasteElementContainementFeature()
+	 * @see #getPastedElementContainmentFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EReference pasteElementContainementFeature;
+	protected EReference pastedElementContainmentFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -318,16 +318,16 @@ EModelElementImpl implements PapyrusTableInstance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPasteElementContainementFeature() {
-		if (pasteElementContainementFeature != null && pasteElementContainementFeature.eIsProxy()) {
-			InternalEObject oldPasteElementContainementFeature = (InternalEObject)pasteElementContainementFeature;
-			pasteElementContainementFeature = (EReference)eResolveProxy(oldPasteElementContainementFeature);
-			if (pasteElementContainementFeature != oldPasteElementContainementFeature) {
+	public EReference getPastedElementContainmentFeature() {
+		if (pastedElementContainmentFeature != null && pastedElementContainmentFeature.eIsProxy()) {
+			InternalEObject oldPastedElementContainmentFeature = (InternalEObject)pastedElementContainmentFeature;
+			pastedElementContainmentFeature = (EReference)eResolveProxy(oldPastedElementContainmentFeature);
+			if (pastedElementContainmentFeature != oldPastedElementContainmentFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
 			}
 		}
-		return pasteElementContainementFeature;
+		return pastedElementContainmentFeature;
 	}
 
 	/**
@@ -335,8 +335,8 @@ EModelElementImpl implements PapyrusTableInstance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference basicGetPasteElementContainementFeature() {
-		return pasteElementContainementFeature;
+	public EReference basicGetPastedElementContainmentFeature() {
+		return pastedElementContainmentFeature;
 	}
 
 	/**
@@ -344,11 +344,11 @@ EModelElementImpl implements PapyrusTableInstance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPasteElementContainementFeature(EReference newPasteElementContainementFeature) {
-		EReference oldPasteElementContainementFeature = pasteElementContainementFeature;
-		pasteElementContainementFeature = newPasteElementContainementFeature;
+	public void setPastedElementContainmentFeature(EReference newPastedElementContainmentFeature) {
+		EReference oldPastedElementContainmentFeature = pastedElementContainmentFeature;
+		pastedElementContainmentFeature = newPastedElementContainmentFeature;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
 	}
 
 	/**
@@ -372,9 +372,9 @@ EModelElementImpl implements PapyrusTableInstance {
 				return getFillingQueries();
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID:
 				return getPastedElementId();
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				if (resolve) return getPasteElementContainementFeature();
-				return basicGetPasteElementContainementFeature();
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				if (resolve) return getPastedElementContainmentFeature();
+				return basicGetPastedElementContainmentFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -407,8 +407,8 @@ EModelElementImpl implements PapyrusTableInstance {
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID:
 				setPastedElementId((String)newValue);
 				return;
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				setPasteElementContainementFeature((EReference)newValue);
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				setPastedElementContainmentFeature((EReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -440,8 +440,8 @@ EModelElementImpl implements PapyrusTableInstance {
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID:
 				setPastedElementId(PASTED_ELEMENT_ID_EDEFAULT);
 				return;
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				setPasteElementContainementFeature((EReference)null);
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				setPastedElementContainmentFeature((EReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -467,8 +467,8 @@ EModelElementImpl implements PapyrusTableInstance {
 				return fillingQueries != null && !fillingQueries.isEmpty();
 			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID:
 				return PASTED_ELEMENT_ID_EDEFAULT == null ? pastedElementId != null : !PASTED_ELEMENT_ID_EDEFAULT.equals(pastedElementId);
-			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				return pasteElementContainementFeature != null;
+			case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				return pastedElementContainmentFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}

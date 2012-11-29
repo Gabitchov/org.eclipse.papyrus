@@ -39,7 +39,7 @@
 			property="papyrustableinstance:PapyrusTableInstance:pastedElementId"
 			input="{Binding}"></ppe:ReferenceDialog>
 		<ppe:ReferenceDialog
-			property="papyrustableinstance:PapyrusTableInstance:pasteElementContainementFeature"
+			property="papyrustableinstance:PapyrusTableInstance:pastedElementContainmentFeature"
 			input="{Binding}"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>

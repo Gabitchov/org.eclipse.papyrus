@@ -31,7 +31,7 @@
       <properties name="table" type="Reference" description="The TableInstance"/>
       <properties name="fillingQueries" type="Reference" multiplicity="-1" description="The queries used to fill the table"/>
       <properties name="pastedElementId" description="This attribute stores the id of the element represented by the row during a paste action in the table."/>
-      <properties name="pasteElementContainementFeature" label="" type="Reference" description="This property reference the feature of the context of the table which is used as containement feature for the pasted elements."/>
+      <properties name="pastedElementContainmentFeature" label="" type="Reference" description="This property reference the feature of the context of the table which is used as containement feature for the pasted elements."/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.table.properties/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
