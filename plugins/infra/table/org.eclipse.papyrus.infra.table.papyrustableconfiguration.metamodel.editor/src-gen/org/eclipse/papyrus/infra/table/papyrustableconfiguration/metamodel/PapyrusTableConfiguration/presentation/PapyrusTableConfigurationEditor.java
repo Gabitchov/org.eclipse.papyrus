@@ -719,7 +719,7 @@ public class PapyrusTableConfigurationEditor
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FacetItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new QueryItemProviderAdapterFactory());
-		//adapterFactory.addAdapterFactory(new RuntimeItemProviderAdapterFactory());
+//		adapterFactory.addAdapterFactory(new RuntimeItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TableconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new Tableconfiguration2ItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UicustomItemProviderAdapterFactory());

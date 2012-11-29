@@ -88,13 +88,13 @@ public interface PapyrusTableConfigurationPackage extends EPackage {
 	int PAPYRUS_TABLE_CONFIGURATION__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Paste Element Containement Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+	int PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Pasted Element Id</b></em>' attribute.
@@ -135,15 +135,15 @@ public interface PapyrusTableConfigurationPackage extends EPackage {
 	EClass getPapyrusTableConfiguration();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Paste Element Containement Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPasteElementContainementFeature()
+	 * @return the meta object for the reference '<em>Pasted Element Containment Feature</em>'.
+	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementContainmentFeature()
 	 * @see #getPapyrusTableConfiguration()
 	 * @generated
 	 */
-	EReference getPapyrusTableConfiguration_PasteElementContainementFeature();
+	EReference getPapyrusTableConfiguration_PastedElementContainmentFeature();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementId <em>Pasted Element Id</em>}'.
@@ -200,12 +200,12 @@ public interface PapyrusTableConfigurationPackage extends EPackage {
 		EClass PAPYRUS_TABLE_CONFIGURATION = eINSTANCE.getPapyrusTableConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Paste Element Containement Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Pasted Element Containment Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE = eINSTANCE.getPapyrusTableConfiguration_PasteElementContainementFeature();
+		EReference PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = eINSTANCE.getPapyrusTableConfiguration_PastedElementContainmentFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Pasted Element Id</b></em>' attribute feature.

@@ -25,7 +25,7 @@ import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfigura
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementId <em>Pasted Element Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}</li>
  * </ul>
@@ -37,30 +37,30 @@ import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfigura
  */
 public interface PapyrusTableConfiguration extends EModelElement {
 	/**
-	 * Returns the value of the '<em><b>Paste Element Containement Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Pasted Element Containment Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Paste Element Containement Feature</em>' reference isn't clear,
+	 * If the meaning of the '<em>Pasted Element Containment Feature</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Paste Element Containement Feature</em>' reference.
-	 * @see #setPasteElementContainementFeature(EReference)
-	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfigurationPackage#getPapyrusTableConfiguration_PasteElementContainementFeature()
+	 * @return the value of the '<em>Pasted Element Containment Feature</em>' reference.
+	 * @see #setPastedElementContainmentFeature(EReference)
+	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfigurationPackage#getPapyrusTableConfiguration_PastedElementContainmentFeature()
 	 * @model
 	 * @generated
 	 */
-	EReference getPasteElementContainementFeature();
+	EReference getPastedElementContainmentFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Paste Element Containement Feature</em>' reference.
-	 * @see #getPasteElementContainementFeature()
+	 * @param value the new value of the '<em>Pasted Element Containment Feature</em>' reference.
+	 * @see #getPastedElementContainmentFeature()
 	 * @generated
 	 */
-	void setPasteElementContainementFeature(EReference value);
+	void setPastedElementContainmentFeature(EReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Pasted Element Id</b></em>' attribute.
