@@ -50,6 +50,7 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -69,6 +70,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 
 import org.eclipse.swt.events.ControlAdapter;
@@ -719,7 +721,6 @@ public class PapyrusTableConfigurationEditor
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FacetItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new QueryItemProviderAdapterFactory());
-		//adapterFactory.addAdapterFactory(new RuntimeItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TableconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new Tableconfiguration2ItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UicustomItemProviderAdapterFactory());
@@ -952,7 +953,7 @@ public class PapyrusTableConfigurationEditor
 		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
@@ -1493,6 +1494,7 @@ public class PapyrusTableConfigurationEditor
 		//
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
 
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
@@ -1618,7 +1620,7 @@ public class PapyrusTableConfigurationEditor
 	 */
 	public void gotoMarker(IMarker marker) {
 		try {
-			if (marker.getType().equals(EValidator.MARKER)) {
+			if (marker.isSubtypeOf(EValidator.MARKER)) {
 				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
 				if (uriAttribute != null) {
 					URI uri = URI.createURI(uriAttribute);

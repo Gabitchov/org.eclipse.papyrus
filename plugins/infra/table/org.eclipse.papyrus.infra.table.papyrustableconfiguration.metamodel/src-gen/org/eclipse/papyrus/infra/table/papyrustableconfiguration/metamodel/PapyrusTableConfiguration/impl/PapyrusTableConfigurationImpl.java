@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.Papyr
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getPastedElementId <em>Pasted Element Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getTableConfiguration <em>Table Configuration</em>}</li>
  * </ul>
@@ -41,14 +41,14 @@ import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.Papyr
 public class PapyrusTableConfigurationImpl extends 
 EModelElementImpl implements PapyrusTableConfiguration {
 	/**
-	 * The cached value of the '{@link #getPasteElementContainementFeature() <em>Paste Element Containement Feature</em>}' reference.
+	 * The cached value of the '{@link #getPastedElementContainmentFeature() <em>Pasted Element Containment Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPasteElementContainementFeature()
+	 * @see #getPastedElementContainmentFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EReference pasteElementContainementFeature;
+	protected EReference pastedElementContainmentFeature;
 
 	/**
 	 * The default value of the '{@link #getPastedElementId() <em>Pasted Element Id</em>}' attribute.
@@ -104,16 +104,16 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPasteElementContainementFeature() {
-		if (pasteElementContainementFeature != null && pasteElementContainementFeature.eIsProxy()) {
-			InternalEObject oldPasteElementContainementFeature = (InternalEObject)pasteElementContainementFeature;
-			pasteElementContainementFeature = (EReference)eResolveProxy(oldPasteElementContainementFeature);
-			if (pasteElementContainementFeature != oldPasteElementContainementFeature) {
+	public EReference getPastedElementContainmentFeature() {
+		if (pastedElementContainmentFeature != null && pastedElementContainmentFeature.eIsProxy()) {
+			InternalEObject oldPastedElementContainmentFeature = (InternalEObject)pastedElementContainmentFeature;
+			pastedElementContainmentFeature = (EReference)eResolveProxy(oldPastedElementContainmentFeature);
+			if (pastedElementContainmentFeature != oldPastedElementContainmentFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
 			}
 		}
-		return pasteElementContainementFeature;
+		return pastedElementContainmentFeature;
 	}
 
 	/**
@@ -121,8 +121,8 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference basicGetPasteElementContainementFeature() {
-		return pasteElementContainementFeature;
+	public EReference basicGetPastedElementContainmentFeature() {
+		return pastedElementContainmentFeature;
 	}
 
 	/**
@@ -130,11 +130,11 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPasteElementContainementFeature(EReference newPasteElementContainementFeature) {
-		EReference oldPasteElementContainementFeature = pasteElementContainementFeature;
-		pasteElementContainementFeature = newPasteElementContainementFeature;
+	public void setPastedElementContainmentFeature(EReference newPastedElementContainmentFeature) {
+		EReference oldPastedElementContainmentFeature = pastedElementContainmentFeature;
+		pastedElementContainmentFeature = newPastedElementContainmentFeature;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
 	}
 
 	/**
@@ -223,9 +223,9 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				if (resolve) return getPasteElementContainementFeature();
-				return basicGetPasteElementContainementFeature();
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				if (resolve) return getPastedElementContainmentFeature();
+				return basicGetPastedElementContainmentFeature();
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID:
 				return getPastedElementId();
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
@@ -242,8 +242,8 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				setPasteElementContainementFeature((EReference)newValue);
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				setPastedElementContainmentFeature((EReference)newValue);
 				return;
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID:
 				setPastedElementId((String)newValue);
@@ -263,8 +263,8 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				setPasteElementContainementFeature((EReference)null);
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				setPastedElementContainmentFeature((EReference)null);
 				return;
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID:
 				setPastedElementId(PASTED_ELEMENT_ID_EDEFAULT);
@@ -284,8 +284,8 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-				return pasteElementContainementFeature != null;
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+				return pastedElementContainmentFeature != null;
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID:
 				return PASTED_ELEMENT_ID_EDEFAULT == null ? pastedElementId != null : !PASTED_ELEMENT_ID_EDEFAULT.equals(pastedElementId);
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:

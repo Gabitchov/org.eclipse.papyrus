@@ -118,7 +118,7 @@ public class PapyrusTableConfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusTableConfiguration_PasteElementContainementFeature() {
+	public EReference getPapyrusTableConfiguration_PastedElementContainmentFeature() {
 		return (EReference)papyrusTableConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -169,7 +169,7 @@ public class PapyrusTableConfigurationPackageImpl extends EPackageImpl implement
 
 		// Create classes and their features
 		papyrusTableConfigurationEClass = createEClass(PAPYRUS_TABLE_CONFIGURATION);
-		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE);
+		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE);
 		createEAttribute(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION);
 	}
@@ -210,7 +210,7 @@ public class PapyrusTableConfigurationPackageImpl extends EPackageImpl implement
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(papyrusTableConfigurationEClass, PapyrusTableConfiguration.class, "PapyrusTableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPapyrusTableConfiguration_PasteElementContainementFeature(), theEcorePackage.getEReference(), null, "pasteElementContainementFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTableConfiguration_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPapyrusTableConfiguration_PastedElementId(), theEcorePackage.getEString(), "pastedElementId", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableConfiguration_TableConfiguration(), theTableconfiguration2Package.getTableConfiguration2(), null, "TableConfiguration", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

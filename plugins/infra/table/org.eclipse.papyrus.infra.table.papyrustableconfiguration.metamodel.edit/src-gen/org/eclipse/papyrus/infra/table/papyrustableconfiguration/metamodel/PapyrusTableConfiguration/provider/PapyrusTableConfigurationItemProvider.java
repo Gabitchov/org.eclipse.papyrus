@@ -75,26 +75,26 @@ public class PapyrusTableConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPasteElementContainementFeaturePropertyDescriptor(object);
+			addPastedElementContainmentFeaturePropertyDescriptor(object);
 			addPastedElementIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Paste Element Containement Feature feature.
+	 * This adds a property descriptor for the Pasted Element Containment Feature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPasteElementContainementFeaturePropertyDescriptor(Object object) {
+	protected void addPastedElementContainmentFeaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusTableConfiguration_pasteElementContainementFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_pasteElementContainementFeature_feature", "_UI_PapyrusTableConfiguration_type"),
-				 PapyrusTableConfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE,
+				 getString("_UI_PapyrusTableConfiguration_pastedElementContainmentFeature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_pastedElementContainmentFeature_feature", "_UI_PapyrusTableConfiguration_type"),
+				 PapyrusTableConfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE,
 				 true,
 				 false,
 				 true,
