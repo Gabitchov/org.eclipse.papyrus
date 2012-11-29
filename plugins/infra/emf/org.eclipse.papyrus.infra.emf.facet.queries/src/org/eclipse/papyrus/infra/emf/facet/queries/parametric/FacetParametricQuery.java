@@ -18,16 +18,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQueryParameter;
 import org.eclipse.emf.facet.infra.query.QueryFactory;
 import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
+import org.eclipse.emf.facet.infra.query.core.AbstractModelQueryWithEditingDomain;
 import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
+import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryContext;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryParameterValue;
-import org.eclipse.emf.facet.infra.query.runtime.ModelQueryResult;
 import org.eclipse.emf.facet.infra.query.runtime.RuntimeFactory;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.Argument;
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.EStructuralFeatureArgument;
@@ -35,7 +36,7 @@ import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.ParametricQue
 import org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.StringArgument;
 
 
-public class FacetParametricQuery extends AbstractModelQuery {
+public class FacetParametricQuery extends AbstractModelQueryWithEditingDomain {
 
 	protected ParametricQuery parametricModelQuery;
 
@@ -55,8 +56,10 @@ public class FacetParametricQuery extends AbstractModelQuery {
 			ModelQueryContext modelQueryContext = RuntimeFactory.eINSTANCE.createModelQueryContext();
 			modelQueryContext.getSelectedModelElements().add(context);
 
-			List<ModelQueryParameterValue> calledParameterValues = getParameterValues(calledQuery, arguments);
-
+			final List<ModelQueryParameterValue> calledParameterValues = getParameterValues(calledQuery, arguments);
+			if(parameterValues != null && !parameterValues.isEmpty()) {
+				calledParameterValues.addAll(parameterValues);
+			}
 			return modelQueryImpl.basicEvaluate(context, calledParameterValues);
 		}
 
@@ -83,5 +86,41 @@ public class FacetParametricQuery extends AbstractModelQuery {
 			result.add(parameterValue);
 		}
 		return result;
+	}
+
+	/**
+	 * This method must be overridden by each sub class to implement query
+	 * evaluation.
+	 * 
+	 * @param context
+	 *        The query evaluation context
+	 * @param parameterValues
+	 *        The query parameter values
+	 * @param editingDomain
+	 *        The editing domain used to perform EMF Command
+	 * @return A list of ModelQueryResult (one per evaluation)
+	 * @throws ModelQueryExecutionException
+	 */
+	public Object basicEvaluate(final EObject context, final List<ModelQueryParameterValue> parameterValues, EditingDomain editingDomain) throws ModelQueryException {
+		ModelQuery calledQuery = parametricModelQuery.getCalledQuery();
+		List<Argument> arguments = parametricModelQuery.getArguments();
+
+		final ModelQuerySetCatalog querySetCatalog = ModelQuerySetCatalog.getSingleton();
+		if(calledQuery != null) {
+			final AbstractModelQuery modelQueryImpl = querySetCatalog.getModelQueryImpl(calledQuery);
+			if(!(modelQueryImpl instanceof AbstractModelQueryWithEditingDomain)) {
+				return basicEvaluate(context, parameterValues);
+			}
+			ModelQueryContext modelQueryContext = RuntimeFactory.eINSTANCE.createModelQueryContext();
+			modelQueryContext.getSelectedModelElements().add(context);
+
+			final List<ModelQueryParameterValue> calledParameterValues = getParameterValues(calledQuery, arguments);
+			if(parameterValues != null && !parameterValues.isEmpty()) {
+				calledParameterValues.addAll(parameterValues);
+			}
+			return ((AbstractModelQueryWithEditingDomain)modelQueryImpl).basicEvaluate(context, calledParameterValues, editingDomain);
+		}
+
+		return Collections.emptyList();
 	}
 }

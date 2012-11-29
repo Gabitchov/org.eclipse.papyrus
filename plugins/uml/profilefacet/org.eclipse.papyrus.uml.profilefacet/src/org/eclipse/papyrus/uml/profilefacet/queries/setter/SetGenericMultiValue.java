@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profilefacet.queries.setter;
 
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.uml2.uml.Element;
@@ -23,19 +25,13 @@ public abstract class SetGenericMultiValue<R> extends SetGenericSingleValue<List
 
 	@Override
 	public List<R> evaluate(Element source, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		// FIXME
-		return super.evaluate(source, parameterValues);
+		super.evaluate(source, parameterValues);
+		return Collections.emptyList();
 	}
-	// public List<R> evaluate(final Element source, final IParameterValueList2
-	// parameterValues, final IFacetManager facetManager) throws
-	// DerivedTypedElementException {
-	// final List<R> value = super.evaluate(source, parameterValues,
-	// facetManager);
-	// if(value == null) {
-	// return Collections.emptyList();
-	// } else {
-	// return value;
-	// }
-	// }
 
+	@Override
+	public List<R> evaluate(Element source, ParameterValueList parameterValues, EditingDomain domain) throws ModelQueryExecutionException {
+		super.evaluate(source, parameterValues, domain);
+		return Collections.emptyList();
+	}
 }
