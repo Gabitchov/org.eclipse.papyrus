@@ -111,7 +111,7 @@ public class PapyrusTableModelElement extends EMFModelElement {
 			return new ElementTypeContentProvider();
 		}
 
-		if(feature == PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_PasteElementContainementFeature()) {
+		if(feature == PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_PastedElementContainmentFeature()) {
 			if(source instanceof PapyrusTableInstance) {
 				return new PasteElementContainmentFeatureContentProvider((PapyrusTableInstance)source);
 			}

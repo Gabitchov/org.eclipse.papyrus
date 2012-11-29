@@ -93,7 +93,7 @@ public abstract class AbstractPasteInTableCommandProvider implements IPasteInTab
 	 *         the containement feature for the created element
 	 */
 	protected EReference getContainementFeature(final PapyrusTableInstance papyrusTable) {
-		return UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
+		return papyrusTable.getPastedElementContainmentFeature();
 	}
 
 	/**
