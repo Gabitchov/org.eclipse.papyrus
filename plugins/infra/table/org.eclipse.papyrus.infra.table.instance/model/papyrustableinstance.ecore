@@ -32,5 +32,17 @@
         <details key="documentation" value="The queries used to fill the table"/>
       </eAnnotations>
     </eStructuralFeatures>
+     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This attribute stores the id of the element represented by the row during a paste action in the table."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pasteElementContainementFeature"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This property reference the feature of the context of the table which is used as containement feature&#xD;&#xA;for the pasted elements."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

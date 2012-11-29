@@ -10,10 +10,14 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.emf.facet.infra.query.QueryPackage;
+
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Package;
+
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstanceFactory;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
@@ -155,6 +159,24 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPapyrusTableInstance_PastedElementId() {
+		return (EAttribute)papyrusTableInstanceEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPapyrusTableInstance_PasteElementContainementFeature() {
+		return (EReference)papyrusTableInstanceEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PapyrustableinstanceFactory getPapyrustableinstanceFactory() {
 		return (PapyrustableinstanceFactory)getEFactoryInstance();
 	}
@@ -184,6 +206,8 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		createEAttribute(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__IS_SYNCHRONIZED);
 		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__TABLE);
 		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES);
+		createEAttribute(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__PASTED_ELEMENT_ID);
+		createEReference(papyrusTableInstanceEClass, PAPYRUS_TABLE_INSTANCE__PASTE_ELEMENT_CONTAINEMENT_FEATURE);
 	}
 
 	/**
@@ -228,6 +252,8 @@ public class PapyrustableinstancePackageImpl extends EPackageImpl implements Pap
 		initEAttribute(getPapyrusTableInstance_IsSynchronized(), ecorePackage.getEBoolean(), "isSynchronized", "false", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableInstance_Table(), theTableinstance2Package.getTableInstance2(), null, "table", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableInstance_FillingQueries(), theQueryPackage.getModelQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPapyrusTableInstance_PastedElementId(), ecorePackage.getEString(), "pastedElementId", "", 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTableInstance_PasteElementContainementFeature(), theEcorePackage.getEReference(), null, "pasteElementContainementFeature", null, 0, 1, PapyrusTableInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
