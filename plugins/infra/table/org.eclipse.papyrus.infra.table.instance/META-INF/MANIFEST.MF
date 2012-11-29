@@ -5,7 +5,8 @@ Export-Package: org.eclipse.papyrus.infra.table.instance,
   uses:="org.eclipse.emf.ecore.util,
    org.eclipse.emf.ecore,
    org.eclipse.emf.common.notify.impl,
-   org.eclipse.emf.common.notify"
+   org.eclipse.emf.common.notify",
+ org.eclipse.papyrus.infra.table.instance.util
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName

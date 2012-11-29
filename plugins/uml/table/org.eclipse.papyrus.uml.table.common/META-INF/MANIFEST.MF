@@ -22,7 +22,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions,
  org.eclipse.emf.facet.infra.facet.core;bundle-version="0.2.1",
  org.eclipse.papyrus.uml.profilefacet;bundle-version="0.10.0",
- org.eclipse.emf.facet.util.emf.core;bundle-version="0.2.1"
+ org.eclipse.emf.facet.util.emf.core;bundle-version="0.2.1",
+ org.eclipse.emf.edit.ui,
+ org.eclipse.papyrus.infra.gmfdiag.commands,
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier
