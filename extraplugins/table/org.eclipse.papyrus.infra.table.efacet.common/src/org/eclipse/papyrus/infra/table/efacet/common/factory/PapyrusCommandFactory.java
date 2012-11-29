@@ -29,6 +29,7 @@ import org.eclipse.emf.facet.infra.browser.custom.ReferenceView;
 import org.eclipse.emf.facet.infra.browser.custom.StaticFeatureValue;
 import org.eclipse.emf.facet.infra.browser.custom.TypeView;
 import org.eclipse.emf.facet.infra.facet.Facet;
+import org.eclipse.emf.facet.infra.facet.FacetStructuralFeature;
 import org.eclipse.emf.facet.widgets.celleditors.internal.DefaultCommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Row;
@@ -121,6 +122,8 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		} else if(owner instanceof CustomViewFeature) {
 			return true;
 		} else if(owner instanceof StaticFeatureValue) {
+			return true;
+		}else if(owner instanceof FacetStructuralFeature){
 			return true;
 		}
 		//we add this test,because, it is possible that we forget some emf-facet elements
