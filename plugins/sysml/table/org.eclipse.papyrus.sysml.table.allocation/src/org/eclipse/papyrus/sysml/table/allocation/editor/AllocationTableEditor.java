@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.table.allocation.editor;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.table.common.editor.AbstractNattableEditor;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.uml.table.common.editor.AbstractUMLTableEditor;
 
 
 /**
@@ -23,7 +24,7 @@ import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTabl
  * The requirement table editor
  * 
  */
-public class AllocationTableEditor extends AbstractNattableEditor {
+public class AllocationTableEditor extends AbstractUMLTableEditor {
 
 
 	/** the type of the editor */

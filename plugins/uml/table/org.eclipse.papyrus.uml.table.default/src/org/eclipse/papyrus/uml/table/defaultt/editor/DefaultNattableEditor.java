@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.table.defaultt.editor;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.table.common.editor.AbstractNattableEditor;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.uml.table.common.editor.AbstractUMLTableEditor;
 
 
 /**
@@ -23,7 +24,7 @@ import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTabl
  * 
  * @author dumoulin
  */
-public class DefaultNattableEditor extends AbstractNattableEditor {
+public class DefaultNattableEditor extends AbstractUMLTableEditor {
 
 
 
