@@ -7,7 +7,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.papyrus.uml.profilefacet.metamodel;bundle-version="0.10.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.2.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0"
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
+ org.eclipse.emf.edit,
+ org.eclipse.papyrus.infra.gmfdiag.commands,
+ org.eclipse.gmf.runtime.common.core,
+ org.eclipse.gmf.runtime.emf.commands.core,
+ org.eclipse.emf.facet.infra.facet.core
 Export-Package: org.eclipse.papyrus.uml.profilefacet.queries.getter,
  org.eclipse.papyrus.uml.profilefacet.queries.registry,
  org.eclipse.papyrus.uml.profilefacet.queries.setter,
