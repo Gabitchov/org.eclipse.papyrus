@@ -40,7 +40,6 @@ import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -48,6 +47,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -56,8 +56,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.util.Log;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
@@ -67,9 +65,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -83,9 +78,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
-import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -96,6 +89,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
@@ -106,6 +100,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
@@ -126,6 +121,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
@@ -1853,10 +1849,50 @@ public class LifelineEditPart extends NamedElementEditPart {
 			Dimension size = getPrimaryShape().getFigureLifelineNameContainerFigure().getPreferredSize(-1, oldNameContainerHeight);
 			if(!LifelineResizeHelper.isManualSize(this)){
 				if(size.width != rect.width){ 
+					moveExecutionParts(new Dimension(size.width - rect.width, 0)); 
 					rect.width = size.width;
 					updateLifelineBounds(rect);
 				}
 			}					
+		}
+	}
+	
+	protected void moveExecutionParts(Dimension sizeDelta) {
+		{
+			Rectangle leftMostExecution = null;
+			List<ShapeNodeEditPart> childShapeNodeEditPart = this.getChildShapeNodeEditPart();
+			for(ShapeNodeEditPart executionSpecificationEP : childShapeNodeEditPart) {
+				if(executionSpecificationEP.resolveSemanticElement() instanceof ExecutionSpecification) {
+					Rectangle bounds = executionSpecificationEP.getFigure().getBounds();
+					Point point = bounds.getLocation();
+					if(leftMostExecution == null || leftMostExecution.x > point.x )
+						leftMostExecution = bounds;
+				}
+			}
+			if(leftMostExecution == null)
+				return;
+			
+			Rectangle dotLineBounds = this.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
+			int targetX = (int) (dotLineBounds.x + Math.round((dotLineBounds.width - leftMostExecution.width) /2.0 ) );
+			sizeDelta.width += (targetX - leftMostExecution.x); // adjust width to keep execution in center line
+		}
+		
+		{ // move all executions
+			ChangeBoundsRequest request = new ChangeBoundsRequest();
+			request.setMoveDelta(new Point(0, 0));
+			request.setSizeDelta(sizeDelta);
+			request.setEditParts(this);
+			Point loc = this.getFigure().getBounds().getTopRight().getCopy();
+			this.getFigure().translateToAbsolute(loc);
+			request.setLocation(loc);
+			request.setType(RequestConstants.REQ_MOVE_CHILDREN);
+			
+			CompoundCommand compoundCmd = new CompoundCommand();
+			compoundCmd.setLabel("Move or Resize");
+			InteractionCompartmentXYLayoutEditPolicy.addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)this, 1);
+			
+			if(compoundCmd.canExecute())
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new GEFtoEMFCommandWrapper(compoundCmd.unwrap()), true);
 		}
 	}
 

@@ -17,12 +17,18 @@ package org.eclipse.papyrus.uml.service.types.helper;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.uml.service.types.utils.InteractionConstraintUtil;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -63,5 +69,43 @@ public class ConstraintEditHelper extends ElementEditHelper {
 		};
 		
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper#getSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
+	 * 
+	 * @param req
+	 * @return
+	 */
+
+	@Override
+	protected ICommand getSetCommand(SetRequest req) {
+		EStructuralFeature feature = req.getFeature();
+		Object value = req.getValue();
+		if(value != null) {
+			EObject elementToEdit = req.getElementToEdit();
+			if(UMLPackage.eINSTANCE.getInteractionConstraint_Minint() == feature) {
+				Integer minintValue = InteractionConstraintUtil.getNonNegativeInteger((ValueSpecification)value);
+				if(minintValue == null) {
+					return UnexecutableCommand.INSTANCE;
+				}
+				InteractionConstraint element = (InteractionConstraint)elementToEdit;
+				Integer maxintValue = InteractionConstraintUtil.getMaxintValue(element);
+				if(maxintValue != null && maxintValue.intValue() < minintValue.intValue()) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			} else if(UMLPackage.eINSTANCE.getInteractionConstraint_Maxint() == feature) {
+				InteractionConstraint element = (InteractionConstraint)elementToEdit;
+				Integer maxintValue = InteractionConstraintUtil.getNonNegativeInteger((ValueSpecification)value);
+				if(maxintValue == null || maxintValue.intValue() == 0) {
+					return UnexecutableCommand.INSTANCE;
+				}
+				Integer minintValue = InteractionConstraintUtil.getMinintValue(element);
+				if(minintValue != null && maxintValue.intValue() < minintValue.intValue()) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+		}
+		return super.getSetCommand(req);
 	}
 }

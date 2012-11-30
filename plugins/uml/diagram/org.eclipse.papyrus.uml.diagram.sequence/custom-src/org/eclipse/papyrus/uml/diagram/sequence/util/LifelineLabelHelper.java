@@ -112,9 +112,14 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	private String getCustomLabel(Lifeline lifeline, int displayValue) {
 		StringBuilder sb = new StringBuilder();		
 		appendName(lifeline, displayValue, sb);
-		
-		// handle represent type label
-		appendType(lifeline, displayValue, sb);
+		boolean displayType = isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_TYPE );
+		if( lifeline.getRepresents() == null || isCheck(displayValue , LifelinePreferencePage.SHOW_LIFELINE_NAME ) ){
+			displayType = false;
+		}
+		if(displayType){
+			// handle represent type label
+			appendType(lifeline, displayValue, sb);
+		}
 		return sb.toString();
 	}
 
@@ -124,11 +129,14 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 		String lifelineName = lifeline.getName(); 
 		if( element == null || isCheck(displayValue , LifelinePreferencePage.SHOW_LIFELINE_NAME ) ){
 			appendString(sb, lifelineName, UNAMED);
+			return;
 		}else{
 			// represents is not null
 			if(isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_NAME )){
 				appendString(sb, element.getName(), UNAMED);				
-			}else if(!isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_NAME ))  // hide represent name and type
+			}
+			//  if neither <1> or <2> are checked, show lifeline name (or <unnamed> when the lifeline has no name)
+			else if(!isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_TYPE ))
 				appendString(sb, lifelineName, UNAMED);
 		}
 	}
@@ -154,7 +162,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	private void appendString(StringBuilder sb, String str, String defaultValue) {
-		if(str != null && str.length() > 0)
+		if(str != null)
 			sb.append(str);
 		else
 			sb.append(defaultValue);

@@ -104,6 +104,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LoopOperatorUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -491,46 +492,9 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		StringBuilder sb = new StringBuilder("");
 
 		if(InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)) {
-			Integer minValue = null;
-			Integer maxValue = null;
-			if(guard != null) {
-				ValueSpecification maxint = guard.getMaxint();
-				try {
-					maxValue = maxint.integerValue();
-				} catch (Exception e) {
-				}
-				ValueSpecification minint = guard.getMinint();
-				try {
-					minValue = minint.integerValue();
-				} catch (Exception e) {
-				}
-			}
-
-//			if(minValue == null && maxValue == null) {
-//				minValue = 0;
-//				maxValue = -1;
-//			} else if(minValue == null) {
-//				minValue = 0;
-//			} else if(maxValue == null) {
-//				maxValue = minValue;
-//			}
-
-			if(minValue != null && maxValue != null) {
-				sb.append('[');
-				sb.append(minValue);
-				if(minValue != maxValue) {
-					sb.append(',');
-					if(maxValue == -1) {
-						sb.append('*');
-					} else {
-						sb.append(maxValue);
-					}
-				}
-				sb.append(']');
-	
-				if(specValue != null && specValue.length() > 0) {
-					sb.append(' ');
-				}
+			String condition = LoopOperatorUtil.getLoopCondition(guard);
+			if(condition != null) {
+				sb.append(condition);
 			}
 		}
 
