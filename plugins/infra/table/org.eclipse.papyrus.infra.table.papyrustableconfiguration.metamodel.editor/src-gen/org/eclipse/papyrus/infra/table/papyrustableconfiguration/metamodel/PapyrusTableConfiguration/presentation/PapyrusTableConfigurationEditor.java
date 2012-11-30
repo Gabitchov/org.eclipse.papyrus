@@ -175,6 +175,7 @@ import org.eclipse.emf.facet.infra.facet.edit.provider.FacetItemProviderAdapterF
 
 import org.eclipse.emf.facet.infra.query.edit.provider.QueryItemProviderAdapterFactory;
 
+//import org.eclipse.emf.facet.infra.query.runtime.edit.provider.RuntimeItemProviderAdapterFactory;
 import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.provider.ModelCellEditorItemProviderAdapterFactory;
 
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.provider.TableconfigurationItemProviderAdapterFactory;
@@ -721,6 +722,7 @@ public class PapyrusTableConfigurationEditor
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FacetItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new QueryItemProviderAdapterFactory());
+//		adapterFactory.addAdapterFactory(new RuntimeItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TableconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new Tableconfiguration2ItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UicustomItemProviderAdapterFactory());

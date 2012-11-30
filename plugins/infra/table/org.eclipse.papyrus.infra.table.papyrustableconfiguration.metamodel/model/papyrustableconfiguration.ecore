@@ -8,5 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementId" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="TableConfiguration" eType="ecore:EClass platform:/plugin/org.eclipse.emf.facet.widgets.nattable.tableconfiguration/model/tableConfiguration2.ecore#//TableConfiguration2"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultColumns" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
   </eClassifiers>
 </ecore:EPackage>

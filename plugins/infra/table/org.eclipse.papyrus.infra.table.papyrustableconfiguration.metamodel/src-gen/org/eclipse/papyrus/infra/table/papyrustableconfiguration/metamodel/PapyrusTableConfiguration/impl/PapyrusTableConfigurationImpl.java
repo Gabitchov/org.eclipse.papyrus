@@ -12,13 +12,17 @@
  */
 package org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration;
 import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfigurationPackage;
@@ -33,6 +37,7 @@ import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.Papyr
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getPastedElementId <em>Pasted Element Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getTableConfiguration <em>Table Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl.PapyrusTableConfigurationImpl#getDefaultColumns <em>Default Columns</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,6 +84,16 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	 * @ordered
 	 */
 	protected TableConfiguration2 tableConfiguration;
+
+	/**
+	 * The cached value of the '{@link #getDefaultColumns() <em>Default Columns</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultColumns()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EStructuralFeature> defaultColumns;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,6 +221,18 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<EStructuralFeature> getDefaultColumns() {
+		if (defaultColumns == null) {
+			defaultColumns = new EObjectResolvingEList<EStructuralFeature>(EStructuralFeature.class, this, PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS);
+		}
+		return defaultColumns;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -230,6 +257,8 @@ EModelElementImpl implements PapyrusTableConfiguration {
 				return getPastedElementId();
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				return getTableConfiguration();
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS:
+				return getDefaultColumns();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -239,6 +268,7 @@ EModelElementImpl implements PapyrusTableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -250,6 +280,10 @@ EModelElementImpl implements PapyrusTableConfiguration {
 				return;
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				setTableConfiguration((TableConfiguration2)newValue);
+				return;
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS:
+				getDefaultColumns().clear();
+				getDefaultColumns().addAll((Collection<? extends EStructuralFeature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -272,6 +306,9 @@ EModelElementImpl implements PapyrusTableConfiguration {
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				setTableConfiguration((TableConfiguration2)null);
 				return;
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS:
+				getDefaultColumns().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -290,6 +327,8 @@ EModelElementImpl implements PapyrusTableConfiguration {
 				return PASTED_ELEMENT_ID_EDEFAULT == null ? pastedElementId != null : !PASTED_ELEMENT_ID_EDEFAULT.equals(pastedElementId);
 			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				return tableConfiguration != null;
+			case PapyrusTableConfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS:
+				return defaultColumns != null && !defaultColumns.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
