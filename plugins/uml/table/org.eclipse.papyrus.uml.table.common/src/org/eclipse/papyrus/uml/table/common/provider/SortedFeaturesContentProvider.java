@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.table.common.provider;
 
+import java.rmi.activation.Activator;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -93,14 +94,8 @@ public class SortedFeaturesContentProvider implements ITreeContentProvider {
 	 */
 	public Object[] getChildren(final Object parentElement) {
 		if(parentElement instanceof StereotypeFacet) {
-			final Set<StereotypePropertyElement> facetElements = new TreeSet<StereotypePropertyElement>(stereotypePropertyElement);//FIXME
-			//FIXME
-			try {
-				facetElements.addAll(((StereotypeFacet)parentElement).getStereotypePropertyElements());
-			} catch (Exception e) {
-				int i = 0;
-				i++;
-			}
+			final Set<StereotypePropertyElement> facetElements = new TreeSet<StereotypePropertyElement>(stereotypePropertyElement);
+			facetElements.addAll(((StereotypeFacet)parentElement).getStereotypePropertyElements());
 			return facetElements.toArray();
 		}
 		if(parentElement instanceof EStructuralFeature) {
@@ -108,8 +103,12 @@ public class SortedFeaturesContentProvider implements ITreeContentProvider {
 		}
 		if(parentElement instanceof Facet) {
 			final Set<ENamedElement> facetElements = new TreeSet<ENamedElement>(comparator);
-			//FIXME
-			//			facetElements.addAll(((Facet)parentElement).getFacetElements());
+			for(final Object current : ((Facet)parentElement).getEStructuralFeatures()) {
+				if(current instanceof ENamedElement) {
+					facetElements.add((ENamedElement)current);
+				}
+
+			}
 			return facetElements.toArray();
 		}
 
@@ -155,6 +154,15 @@ public class SortedFeaturesContentProvider implements ITreeContentProvider {
 		}
 		if(element instanceof ProfileFacetSet) {
 			return ((ProfileFacetSet)element).eContainer();
+		}
+		if(element instanceof Facet) {
+			return ((Facet)element).eContainer();
+		}
+		if(element instanceof FacetSet) {
+			return null;
+		}
+		if(element instanceof FacetStructuralFeature) {
+			return ((FacetStructuralFeature)element).eContainer();
 		}
 		//FIXME
 		//		if(element instanceof Element) {

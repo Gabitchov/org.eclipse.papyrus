@@ -173,6 +173,7 @@ import org.eclipse.emf.facet.infra.facet.edit.provider.FacetItemProviderAdapterF
 
 import org.eclipse.emf.facet.infra.query.edit.provider.QueryItemProviderAdapterFactory;
 
+//import org.eclipse.emf.facet.infra.query.runtime.edit.provider.RuntimeItemProviderAdapterFactory;
 import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.provider.ModelCellEditorItemProviderAdapterFactory;
 
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.provider.TableconfigurationItemProviderAdapterFactory;

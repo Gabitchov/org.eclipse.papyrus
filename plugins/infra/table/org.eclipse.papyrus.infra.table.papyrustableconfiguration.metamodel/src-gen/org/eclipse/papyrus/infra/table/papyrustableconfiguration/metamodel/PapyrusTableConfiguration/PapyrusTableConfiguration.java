@@ -12,9 +12,11 @@
  */
 package org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 
 /**
@@ -28,6 +30,7 @@ import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfigura
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getPastedElementId <em>Pasted Element Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getDefaultColumns <em>Default Columns</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,5 +116,21 @@ public interface PapyrusTableConfiguration extends EModelElement {
 	 * @generated
 	 */
 	void setTableConfiguration(TableConfiguration2 value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Columns</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EStructuralFeature}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Columns</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Columns</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfigurationPackage#getPapyrusTableConfiguration_DefaultColumns()
+	 * @model
+	 * @generated
+	 */
+	EList<EStructuralFeature> getDefaultColumns();
 
 } // PapyrusTableConfiguration

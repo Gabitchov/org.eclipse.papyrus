@@ -77,6 +77,7 @@ public class PapyrusTableConfigurationItemProvider
 
 			addPastedElementContainmentFeaturePropertyDescriptor(object);
 			addPastedElementIdPropertyDescriptor(object);
+			addDefaultColumnsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -121,6 +122,28 @@ public class PapyrusTableConfigurationItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Default Columns feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefaultColumnsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTableConfiguration_defaultColumns_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTableConfiguration_defaultColumns_feature", "_UI_PapyrusTableConfiguration_type"),
+				 PapyrusTableConfigurationPackage.Literals.PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

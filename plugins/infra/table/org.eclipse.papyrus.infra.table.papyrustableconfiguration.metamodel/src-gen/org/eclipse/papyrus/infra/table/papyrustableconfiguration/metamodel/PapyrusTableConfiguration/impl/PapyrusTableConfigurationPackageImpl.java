@@ -145,6 +145,15 @@ public class PapyrusTableConfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPapyrusTableConfiguration_DefaultColumns() {
+		return (EReference)papyrusTableConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PapyrusTableConfigurationFactory getPapyrusTableConfigurationFactory() {
 		return (PapyrusTableConfigurationFactory)getEFactoryInstance();
 	}
@@ -172,6 +181,7 @@ public class PapyrusTableConfigurationPackageImpl extends EPackageImpl implement
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE);
 		createEAttribute(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__PASTED_ELEMENT_ID);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION);
+		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS);
 	}
 
 	/**
@@ -213,6 +223,7 @@ public class PapyrusTableConfigurationPackageImpl extends EPackageImpl implement
 		initEReference(getPapyrusTableConfiguration_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPapyrusTableConfiguration_PastedElementId(), theEcorePackage.getEString(), "pastedElementId", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableConfiguration_TableConfiguration(), theTableconfiguration2Package.getTableConfiguration2(), null, "TableConfiguration", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTableConfiguration_DefaultColumns(), theEcorePackage.getEStructuralFeature(), null, "defaultColumns", null, 0, -1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -115,13 +115,22 @@ public interface PapyrusTableConfigurationPackage extends EPackage {
 	int PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Default Columns</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Papyrus Table Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+	int PAPYRUS_TABLE_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 
 	/**
@@ -166,6 +175,17 @@ public interface PapyrusTableConfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPapyrusTableConfiguration_TableConfiguration();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getDefaultColumns <em>Default Columns</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Default Columns</em>'.
+	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration#getDefaultColumns()
+	 * @see #getPapyrusTableConfiguration()
+	 * @generated
+	 */
+	EReference getPapyrusTableConfiguration_DefaultColumns();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -222,6 +242,14 @@ public interface PapyrusTableConfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION = eINSTANCE.getPapyrusTableConfiguration_TableConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Columns</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS = eINSTANCE.getPapyrusTableConfiguration_DefaultColumns();
 
 	}
 

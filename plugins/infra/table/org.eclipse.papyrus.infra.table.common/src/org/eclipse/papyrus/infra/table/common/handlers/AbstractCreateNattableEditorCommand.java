@@ -29,8 +29,15 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.facet.infra.facet.Facet;
+import org.eclipse.emf.facet.infra.facet.FacetAttribute;
+import org.eclipse.emf.facet.infra.facet.FacetReference;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
 import org.eclipse.emf.facet.infra.query.ModelQuerySet;
 import org.eclipse.emf.facet.infra.query.core.AbstractModelQuery;
@@ -38,8 +45,14 @@ import org.eclipse.emf.facet.infra.query.core.ModelQuerySetCatalog;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
 import org.eclipse.emf.facet.infra.query.runtime.ModelQueryResult;
 import org.eclipse.emf.facet.widgets.nattable.NatTableWidgetUtils;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.AttributeColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetAttributeColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetReferenceColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.ReferenceColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Factory;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUtils;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
@@ -69,6 +82,8 @@ import org.eclipse.papyrus.infra.table.common.modelresource.PapyrusNattableModel
 import org.eclipse.papyrus.infra.table.common.util.QueryRepresentation;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstanceFactory;
+import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration;
+import org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
@@ -230,6 +245,35 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(elements, defaultDescription, getTableConfiguration2(), getTableContext(), null);
 		tableInstance.setDescription(description);
 
+		final PapyrusTableConfiguration papyrusConfiguration = getPapyrusTableConfiguration();
+		if(papyrusConfiguration != null) {
+			papyrusTable.setPastedElementContainmentFeature(papyrusConfiguration.getPastedElementContainmentFeature());
+			papyrusTable.setPastedElementId(papyrusConfiguration.getPastedElementId());
+
+			for(final EStructuralFeature feature : papyrusConfiguration.getDefaultColumns()) {
+				if(feature instanceof FacetAttribute) {
+					FacetAttributeColumn col = TableinstanceFactory.eINSTANCE.createFacetAttributeColumn();
+					col.setAttribute((FacetAttribute)feature);
+					tableInstance.getColumns().add(col);
+					tableInstance.getFacets2().add((Facet)feature.eContainer());
+				} else if(feature instanceof FacetReference) {
+					FacetReferenceColumn col = TableinstanceFactory.eINSTANCE.createFacetReferenceColumn();
+					col.setReference((FacetReference)feature);
+					tableInstance.getColumns().add(col);
+					tableInstance.getFacets2().add((Facet)feature.eContainer());
+				} else if(feature instanceof EAttribute) {
+					AttributeColumn col = TableinstanceFactory.eINSTANCE.createAttributeColumn();
+					col.setAttribute((EAttribute)feature);
+					tableInstance.getColumns().add(col);
+				} else if(feature instanceof EReference) {
+					ReferenceColumn col = TableinstanceFactory.eINSTANCE.createReferenceColumn();
+					col.setReference((EReference)feature);
+					tableInstance.getColumns().add(col);
+				}
+
+			}
+		}
+
 		// Save the model in the associated resource
 		EMFFacetNattableModel model = (EMFFacetNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(EMFFacetNattableModel.MODEL_ID);
 		model.addTableInstance(tableInstance);
@@ -335,6 +379,14 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * 
 	 */
 	protected TableConfiguration2 getTableConfiguration2() {
+		final PapyrusTableConfiguration papyrusConfig = getPapyrusTableConfiguration();
+		if(papyrusConfig != null) {
+			return papyrusConfig.getTableConfiguration();
+		}
+		return null;
+	}
+
+	protected PapyrusTableConfiguration getPapyrusTableConfiguration() {
 		return null;
 	}
 
