@@ -136,6 +136,9 @@ public class ActorShapeProvider extends AbstractShapeProvider {
 		 * {@inheritDoc}
 		 */
 		public void notifyChanged(Notification notification) {
+			if(listener==null) {
+				return;
+			}
 			if(UMLPackage.eINSTANCE.getTypedElement_Type().equals(notification.getFeature())) {
 				listener.notifyChanged(notification);
 			}

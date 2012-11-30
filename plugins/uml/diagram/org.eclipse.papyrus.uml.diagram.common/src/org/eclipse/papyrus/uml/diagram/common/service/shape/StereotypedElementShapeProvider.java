@@ -26,12 +26,13 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * This provider is linked to the {@link ShapeService}. It returns the shapes for a given element corresponding to the stereotypes applied on the business element.  
+ * This provider is linked to the {@link ShapeService}. It returns the shapes for a given element corresponding to the stereotypes applied on the
+ * business element.
  */
 public class StereotypedElementShapeProvider extends AbstractShapeProvider {
-	
+
 	private static final String SHAPE_CONSTANT = "shape";
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -51,14 +52,14 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 					String stereotypeName = tokenizer.nextToken();
 					Stereotype stereotype = ((Element)element).getAppliedStereotype(stereotypeName);
 					org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element)element), stereotype, SHAPE_CONSTANT);
-					if(icon!=null){
+					if(icon != null) {
 						if(icon.getLocation() != "" && icon.getLocation() != null) {
 							url = new URL(icon.getLocation());
 							images.add(RenderedImageFactory.getInstance(url));
-						} 
+						}
 					}
 				}
-				
+
 				return images;
 			} catch (MalformedURLException e) {
 				Activator.log.error(e);
@@ -74,10 +75,10 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		if(!(view instanceof View)) {
 			return false;
 		}
-		
+
 		EObject element = ((View)view).getElement();
 		if(element instanceof Element) {
-			
+
 			// This is an element. does it have stereotypes ? If yes, do the stereotypes have shapes associated ?
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)view);
 			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
@@ -85,14 +86,14 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 				String firstStereotypeName = tokenizer.nextToken();
 				Stereotype stereotype = ((Element)element).getAppliedStereotype(firstStereotypeName);
 				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element)element), stereotype, SHAPE_CONSTANT);
-				if(icon!=null){
+				if(icon != null) {
 					if(icon.getLocation() != "" && icon.getLocation() != null) {
 						return true;
-					} 
+					}
 				}
 			}
 		}
-	
+
 		return false;
 	}
 
@@ -104,7 +105,7 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		if(view == null || !(view instanceof View)) {
 			return null;
 		}
-		
+
 		StereotypedElementShapeProviderNotificationManager notificationManager = new StereotypedElementShapeProviderNotificationManager(diagramEventBroker, view, listener);
 		return notificationManager;
 	}
@@ -113,7 +114,7 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 	 * Notification Manager for the {@link StereotypedElementShapeProvider}.
 	 */
 	public class StereotypedElementShapeProviderNotificationManager extends ProviderNotificationManager implements NotificationListener {
-		
+
 		/**
 		 * Creates a new StereotypedElementShapeProviderNotificationManager.
 		 * 
@@ -137,7 +138,7 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 			}
 			diagramEventBroker.addNotificationListener(view, this);
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -149,19 +150,22 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 			diagramEventBroker.removeNotificationListener(view, this);
 			super.dispose();
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
 		public void notifyChanged(Notification notification) {
-				if(EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(notification.getFeature())) {
-					Object newValue = notification.getNewValue();
-					if(newValue instanceof EAnnotation && UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION.equals(((EAnnotation)newValue).getSource())) {
-						// the stereotype annotation was modified => refresh
-						listener.notifyChanged(notification);
-					}
+			if(listener == null) {
+				return;
+			}
+			if(EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(notification.getFeature())) {
+				Object newValue = notification.getNewValue();
+				if(newValue instanceof EAnnotation && UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION.equals(((EAnnotation)newValue).getSource())) {
+					// the stereotype annotation was modified => refresh
+					listener.notifyChanged(notification);
 				}
+			}
 		}
 	}
-	
+
 }
