@@ -70,13 +70,13 @@ public class ShapeFlowLayout extends FlowLayout {
 		
 		// compute ratio to get the max width (i.e. the multiplier to be sure that figures would take all the width of the compartment
 		double ratioWidth = 1;
-		if(wHint > 0) {
+		if(totalPrefWidth > 0) {
 			ratioWidth =  wHint / totalPrefWidth;	
 		}
 		
 		// compute the ration so the heighest figure would fit the height of the compartment
 		double ratioHeight = 1;
-		if(hHint > 0) {
+		if(maxPrefHeight > 0) {
 			ratioHeight =   hHint / maxPrefHeight;	
 		}
 		

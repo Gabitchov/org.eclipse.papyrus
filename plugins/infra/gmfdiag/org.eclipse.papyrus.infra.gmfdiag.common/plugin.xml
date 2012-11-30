@@ -93,6 +93,15 @@
       </adapter>
    </factory>
 </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+   <decoratorProvider
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.ShapeDecoratorProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </decoratorProvider>
+</extension>
 
 
 

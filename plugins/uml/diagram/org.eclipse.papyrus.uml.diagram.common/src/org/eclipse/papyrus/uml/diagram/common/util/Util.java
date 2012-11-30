@@ -460,17 +460,12 @@ public class Util {
 	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
 	 *         <li> <code>false</code>if not</li>
 	 *         </ul>
+	 *         @deprecated 
+	 *         @see {@link org.eclipse.papyrus.infra.gmfdiag.common.utils.Util} 
 	 */
+	@Deprecated
 	public static boolean isAffixedChildNode(EditPart ep) {
-		if(ep instanceof BorderedBorderItemEditPart) {
-			if(ep.getParent() instanceof CompartmentEditPart) {
-				return false;
-			} else if(ep.getParent() instanceof DiagramEditPart) {
-				return false;
-			}
-			return true;
-		}
-		return false;
+		return org.eclipse.papyrus.infra.gmfdiag.common.utils.Util.isAffixedChildNode(ep);
 	}
 
 	/**
