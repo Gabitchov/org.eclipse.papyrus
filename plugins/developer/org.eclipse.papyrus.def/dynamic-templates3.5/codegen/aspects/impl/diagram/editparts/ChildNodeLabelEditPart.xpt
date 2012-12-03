@@ -23,5 +23,8 @@
 			refreshLabel();
 		}
 	«ENDIF-»
+	if (event.getFeature().equals(org.eclipse.uml2.uml.UMLPackage.eINSTANCE.getFeature_IsStatic())){
+			refreshUnderline();
+	}
 	super.handleNotificationEvent(event);
 «ENDAROUND»

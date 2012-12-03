@@ -542,6 +542,12 @@
 		if (style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
 			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
+		if(resolveSemanticElement() instanceof org.eclipse.uml2.uml.Feature){
+			if(((org.eclipse.uml2.uml.Feature)resolveSemanticElement()).isStatic()){
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			}
+			else{((WrappingLabel)getFigure()).setTextUnderline(false);}
+		}
 	}
 «ENDDEFINE»
 	
