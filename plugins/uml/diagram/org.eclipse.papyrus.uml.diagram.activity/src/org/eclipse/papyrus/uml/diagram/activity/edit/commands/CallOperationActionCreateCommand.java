@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2012 Atos Origin ant  CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
@@ -23,7 +24,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -41,9 +41,9 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class CallOperationActionCreateCommand extends  ActivityNodeCreateCommand {
+public class CallOperationActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -117,7 +117,7 @@ public class CallOperationActionCreateCommand extends  ActivityNodeCreateCommand
 		}
 		CallOperationAction newElement = UMLFactory.eINSTANCE.createCallOperationAction();
 		if(isOperationAlreadyManaged()) {
-			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity,newElement);
+			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity, newElement);
 			getRequest();
 			if(IDialogConstants.OK_ID == dialog.open()) {
 				// initialize the invoked element (no need to use a command, since action is being created)

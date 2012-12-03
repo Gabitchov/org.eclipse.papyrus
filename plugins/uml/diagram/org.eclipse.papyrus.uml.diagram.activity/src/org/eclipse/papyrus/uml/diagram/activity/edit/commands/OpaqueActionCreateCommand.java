@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2012 Atos Origin and CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,10 +9,10 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) - modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
-
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -67,19 +67,20 @@ public class OpaqueActionCreateCommand extends ActivityNodeCreateCommand {
 	public OpaqueActionCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
-	
+
 	/**
-	 * @generated NOT  set appropriate parents
+	 * @generated NOT set appropriate parents
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		OpaqueAction newElement =UMLFactory.eINSTANCE.createOpaqueAction();
+		OpaqueAction newElement = UMLFactory.eINSTANCE.createOpaqueAction();
 		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_OpaqueAction_3007(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
 	/**
 	 * FIXME: replace with setElementToEdit()
 	 * 

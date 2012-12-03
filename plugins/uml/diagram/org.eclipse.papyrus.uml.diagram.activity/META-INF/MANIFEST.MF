@@ -72,13 +72,21 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
+ org.eclipse.jface,
+ org.eclipse.ui.views,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.draw2d;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.emf.validation.ocl;visibility:=reexport,
+ org.eclipse.gef,
+ org.eclipse.gmf.tooling.runtime;bundle-version="3.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDia
- gramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity;singleto
- n:=true
-
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true

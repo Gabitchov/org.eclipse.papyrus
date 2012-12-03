@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2010 Atos Origin and CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos Origin - Initial API and implementation
+ *   Patrick Tessier (CEA LIST)    -  Modification
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -8,19 +22,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.AddVariableValueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class AddVariableValueActionCreateCommand extends ActivityNodeCreateCommand {
+
 	/**
 	 * @generated
 	 */
@@ -78,7 +91,7 @@ public class AddVariableValueActionCreateCommand extends ActivityNodeCreateComma
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		AddVariableValueAction newElement = UMLFactory.eINSTANCE.createAddVariableValueAction();

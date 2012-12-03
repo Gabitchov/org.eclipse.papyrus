@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.AcceptEventAction;
@@ -6781,4 +6782,38 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
+
+		/**
+		 * @generated
+		 */
+		public List<UMLNodeDescriptor> getSemanticChildren(View view) {
+			return UMLDiagramUpdater.getSemanticChildren(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getContainedLinks(View view) {
+			return UMLDiagramUpdater.getContainedLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getIncomingLinks(View view) {
+			return UMLDiagramUpdater.getIncomingLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
+			return UMLDiagramUpdater.getOutgoingLinks(view);
+		}
+	};
 }

@@ -170,7 +170,6 @@ public class SequenceNodeEditPart extends UMLNodeEditPart {
 		}
 		if(childEditPart instanceof SequenceNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((SequenceNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

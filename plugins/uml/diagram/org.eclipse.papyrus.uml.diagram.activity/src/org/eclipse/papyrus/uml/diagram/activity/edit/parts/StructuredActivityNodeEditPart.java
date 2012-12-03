@@ -170,7 +170,6 @@ public class StructuredActivityNodeEditPart extends UMLNodeEditPart {
 		}
 		if(childEditPart instanceof StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

@@ -211,7 +211,6 @@ public class LoopNodeEditPart extends UMLNodeEditPart {
 		}
 		if(childEditPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((LoopNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

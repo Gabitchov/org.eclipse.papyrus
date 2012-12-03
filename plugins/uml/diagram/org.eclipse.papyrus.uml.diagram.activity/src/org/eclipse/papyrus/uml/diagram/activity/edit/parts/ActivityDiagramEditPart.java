@@ -16,8 +16,6 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -29,11 +27,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
 
 /**
  * @generated
@@ -115,29 +110,5 @@ public class ActivityDiagramEditPart extends PapyrusDiagramEditPart {
 			mh.setBorder(null);
 			return Collections.singletonList(mh);
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-		if(event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
-			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				//modification form MOSKitt approach, canonical policies are not called
-				MDTUtil.filterDiagramViews(this.getDiagramView());
-			}
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object getAdapter(Class adapter) {
-		if(adapter != null && adapter.equals(ViewInfo.class)) {
-			return UMLVisualIDRegistry.getDiagramViewInfo();
-		}
-		return super.getAdapter(adapter);
 	}
 }
