@@ -63,6 +63,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
@@ -242,7 +243,6 @@ public class PseudostateTerminateNameEditPart extends LabelEditPart implements I
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -279,7 +279,6 @@ public class PseudostateTerminateNameEditPart extends LabelEditPart implements I
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -499,9 +498,7 @@ public class PseudostateTerminateNameEditPart extends LabelEditPart implements I
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -528,7 +525,6 @@ public class PseudostateTerminateNameEditPart extends LabelEditPart implements I
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -536,7 +532,6 @@ public class PseudostateTerminateNameEditPart extends LabelEditPart implements I
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -544,7 +539,6 @@ public class PseudostateTerminateNameEditPart extends LabelEditPart implements I
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -630,6 +624,13 @@ public class PseudostateTerminateNameEditPart extends LabelEditPart implements I
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 

@@ -10,6 +10,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -22,6 +23,8 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConnectionPointReferenceCreateCommand;
@@ -72,40 +75,26 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case EntryStateBehaviorEditPart.VISUAL_ID:
-
-
-
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-
-
-
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ExitStateBehaviorEditPart.VISUAL_ID:
-
-
-
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InternalTransitionEditPart.VISUAL_ID:
-
-
-
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case RegionEditPart.VISUAL_ID:
-
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -117,14 +106,11 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 						break;
 					}
 				}
-
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case PseudostateEntryPointEditPart.VISUAL_ID:
-
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -141,7 +127,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -157,8 +142,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case PseudostateExitPointEditPart.VISUAL_ID:
-
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -175,7 +158,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -191,8 +173,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
-
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -209,7 +189,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -229,8 +208,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case RegionEditPart.VISUAL_ID:
-
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -242,14 +219,11 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 								break;
 							}
 						}
-
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ConnectionPointReferenceEditPart.VISUAL_ID:
-
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -266,7 +240,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 								break;
 							}
 						}
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -292,13 +265,38 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Transition_7000 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return null;
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Transition_7000 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new TransitionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_667 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_667 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_670 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_670 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -308,28 +306,68 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Behavior_690 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Behavior_690 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new EntryStateBehaviorCreateCommand(req));
 		}
-		if(UMLElementTypes.Behavior_691 == req.getElementType()) {
+		if(UMLElementTypes.Behavior_691 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DoActivityStateBehaviorStateCreateCommand(req));
 		}
-		if(UMLElementTypes.Behavior_692 == req.getElementType()) {
+		if(UMLElementTypes.Behavior_692 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ExitStateBehaviorCreateCommand(req));
 		}
-		if(UMLElementTypes.Transition_680 == req.getElementType()) {
+		if(UMLElementTypes.Transition_680 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InternalTransitionCreateCommand(req));
 		}
-		if(UMLElementTypes.Region_3000 == req.getElementType()) {
+		if(UMLElementTypes.Region_3000 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new RegionCreateCommand(req));
 		}
-		if(UMLElementTypes.Pseudostate_16000 == req.getElementType()) {
+		if(UMLElementTypes.Pseudostate_16000 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PseudostateEntryPointCreateCommand(req));
 		}
-		if(UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
+		if(UMLElementTypes.Pseudostate_17000 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PseudostateExitPointCreateCommand(req));
 		}
-		if(UMLElementTypes.ConnectionPointReference_18000 == req.getElementType()) {
+		if(UMLElementTypes.ConnectionPointReference_18000 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ConnectionPointReferenceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -350,7 +388,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: true
@@ -401,13 +438,32 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Transition_7000 == req.getElementType()) {
-			return getGEFWrapper(new TransitionCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.CommentAnnotatedElement_667 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
 			return null;
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_670 == req.getElementType()) {
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Transition_7000 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new TransitionCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.CommentAnnotatedElement_667 == baseElementType) {
+			return null;
+		}
+		if(UMLElementTypes.ConstraintConstrainedElement_670 == baseElementType) {
 			return null;
 		}
 		return null;

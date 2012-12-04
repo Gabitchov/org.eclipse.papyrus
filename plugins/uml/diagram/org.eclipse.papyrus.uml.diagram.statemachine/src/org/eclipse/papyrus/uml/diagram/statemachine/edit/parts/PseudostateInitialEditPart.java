@@ -167,7 +167,6 @@ public class PseudostateInitialEditPart extends UMLNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -312,7 +311,6 @@ public class PseudostateInitialEditPart extends UMLNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -332,7 +330,6 @@ public class PseudostateInitialEditPart extends UMLNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -373,7 +370,6 @@ public class PseudostateInitialEditPart extends UMLNodeEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**

@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
@@ -46,6 +45,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -61,11 +61,12 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
  */
-public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class CommentBodyEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -92,21 +93,19 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -285,7 +284,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -367,9 +365,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -396,7 +392,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -404,7 +399,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -412,7 +406,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -478,6 +471,13 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 
@@ -559,8 +559,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -575,7 +573,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -605,6 +602,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -620,6 +618,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -633,7 +632,9 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -660,8 +661,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -677,7 +676,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -709,8 +707,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 				}
 			}
 		}
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -722,13 +718,10 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -743,7 +736,6 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -752,17 +744,12 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
-
 
 	/**
 	 * @generated
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
-
 }

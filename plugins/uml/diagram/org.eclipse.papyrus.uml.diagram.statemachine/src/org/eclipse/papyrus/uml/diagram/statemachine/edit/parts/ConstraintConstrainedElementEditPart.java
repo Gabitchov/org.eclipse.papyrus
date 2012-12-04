@@ -2,19 +2,17 @@ package org.eclipse.papyrus.uml.diagram.statemachine.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -36,10 +34,6 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -48,7 +42,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new CommentLinkDescriptor();
 	}
@@ -60,28 +53,16 @@ implements ITreeBranchEditPart {
 		return (CommentLinkDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class CommentLinkDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
 		 */
 		public CommentLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
-
-
-
 	}
-
-
-
 }

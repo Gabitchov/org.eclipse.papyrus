@@ -19,7 +19,6 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
@@ -39,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
@@ -97,40 +97,24 @@ public class StateMachineEditPart extends NamedElementEditPart {
 			((StateMachineNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof StateMachineCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateMachineCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StateMachineCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
-
-
-
-
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateEntryPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PseudostateEntryPointEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if(childEditPart instanceof PseudostateExitPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PseudostateExitPointEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		return false;
 	}
 
@@ -138,15 +122,12 @@ public class StateMachineEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateMachineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateMachineCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -169,9 +150,7 @@ public class StateMachineEditPart extends NamedElementEditPart {
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PseudostateEntryPointEditPart.VISUAL_ID:
 				case PseudostateExitPointEditPart.VISUAL_ID:
-
 					return new BorderItemResizableEditPolicy();
-
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -217,7 +196,6 @@ public class StateMachineEditPart extends NamedElementEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -315,7 +293,6 @@ public class StateMachineEditPart extends NamedElementEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -335,7 +312,6 @@ public class StateMachineEditPart extends NamedElementEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -363,7 +339,6 @@ public class StateMachineEditPart extends NamedElementEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -385,7 +360,6 @@ public class StateMachineEditPart extends NamedElementEditPart {
 		}
 		if(childEditPart instanceof StateMachineCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateMachineCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((StateMachineCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

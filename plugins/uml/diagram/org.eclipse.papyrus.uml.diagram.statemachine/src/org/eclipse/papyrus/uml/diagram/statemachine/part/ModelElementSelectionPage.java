@@ -46,18 +46,15 @@ public class ModelElementSelectionPage extends WizardPage {
 	 */
 	public void createControl(Composite parent) {
 		initializeDialogUnits(parent);
-
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData(GridData.FILL_BOTH));
 		GridLayout layout = new GridLayout();
 		layout.marginWidth = 0;
 		plate.setLayout(layout);
 		setControl(plate);
-
 		Label label = new Label(plate, SWT.NONE);
 		label.setText(getSelectionTitle());
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
-
 		modelViewer = new TreeViewer(plate, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		GridData layoutData = new GridData(GridData.FILL_BOTH);
 		layoutData.heightHint = 300;
@@ -75,7 +72,6 @@ public class ModelElementSelectionPage extends WizardPage {
 				ModelElementSelectionPage.this.updateSelection((IStructuredSelection)event.getSelection());
 			}
 		});
-
 		setPageComplete(validatePage());
 	}
 

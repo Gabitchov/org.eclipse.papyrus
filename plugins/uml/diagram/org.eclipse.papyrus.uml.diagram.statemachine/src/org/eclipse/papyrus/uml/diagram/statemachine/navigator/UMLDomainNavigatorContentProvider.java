@@ -144,7 +144,6 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(resource), parentElement);
 		}
-
 		if(parentElement instanceof UMLDomainNavigatorItem) {
 			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem)parentElement).getEObject()), parentElement);
 		}

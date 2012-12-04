@@ -203,80 +203,31 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(StateMachine_2000, UMLPackage.eINSTANCE.getStateMachine());
-
-
 			elements.put(Region_3000, UMLPackage.eINSTANCE.getRegion());
-
-
 			elements.put(FinalState_5000, UMLPackage.eINSTANCE.getFinalState());
-
-
 			elements.put(State_6000, UMLPackage.eINSTANCE.getState());
-
-
 			elements.put(Pseudostate_8000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_9000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_10000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_11000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_12000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_13000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_14000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_15000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_16000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_17000, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(ConnectionPointReference_18000, UMLPackage.eINSTANCE.getConnectionPointReference());
-
-
 			elements.put(Comment_666, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_668, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Transition_680, UMLPackage.eINSTANCE.getTransition());
-
-
 			elements.put(Behavior_690, UMLPackage.eINSTANCE.getBehavior());
-
-
 			elements.put(Behavior_691, UMLPackage.eINSTANCE.getBehavior());
-
-
 			elements.put(Behavior_692, UMLPackage.eINSTANCE.getBehavior());
-
-
 			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
-
-
 			elements.put(Generalization_19000, UMLPackage.eINSTANCE.getGeneralization());
-
 			elements.put(CommentAnnotatedElement_667, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(ConstraintConstrainedElement_670, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 		}
 		return (ENamedElement)elements.get(type);

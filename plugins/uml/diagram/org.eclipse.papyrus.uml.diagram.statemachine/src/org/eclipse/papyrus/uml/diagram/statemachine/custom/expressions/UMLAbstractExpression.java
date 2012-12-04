@@ -33,8 +33,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 public abstract class UMLAbstractExpression {
 
 	/**
-	 * Expression may return number value which is not directly compatible with
-	 * feature type (e.g. Double when Integer is expected), or EEnumLiteral
+	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral
 	 * meta-object when literal instance is expected
 	 * 
 	 * @generated
@@ -49,10 +48,10 @@ public abstract class UMLAbstractExpression {
 		if(false == value instanceof Number || targetType == null || targetType.getInstanceClass() == null) {
 			return value;
 		}
-		Class targetClass = targetType.getInstanceClass();
+		Class<?> targetClass = targetType.getInstanceClass();
 		Number num = (Number)value;
-		Class valClass = value.getClass();
-		Class targetWrapperClass = targetClass;
+		Class<?> valClass = value.getClass();
+		Class<?> targetWrapperClass = targetClass;
 		if(targetClass.isPrimitive()) {
 			targetWrapperClass = EcoreUtil.wrapperClassFor(targetClass);
 		}
@@ -83,17 +82,17 @@ public abstract class UMLAbstractExpression {
 	/**
 	 * @generated
 	 */
-	private IStatus status = Status.OK_STATUS;
-
-	/**
-	 * @generated
-	 */
 	private final String myBody;
 
 	/**
 	 * @generated
 	 */
 	private final EClassifier myContext;
+
+	/**
+	 * @generated
+	 */
+	private IStatus status = Status.OK_STATUS;
 
 	/**
 	 * @generated
@@ -120,6 +119,7 @@ public abstract class UMLAbstractExpression {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected abstract Object doEvaluate(Object context, Map env);
 
 	/**
@@ -132,6 +132,7 @@ public abstract class UMLAbstractExpression {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	public Object evaluate(Object context, Map env) {
 		if(context().isInstance(context)) {
 			try {
@@ -160,5 +161,4 @@ public abstract class UMLAbstractExpression {
 			UMLDiagramEditorPlugin.getInstance().logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
-
 }

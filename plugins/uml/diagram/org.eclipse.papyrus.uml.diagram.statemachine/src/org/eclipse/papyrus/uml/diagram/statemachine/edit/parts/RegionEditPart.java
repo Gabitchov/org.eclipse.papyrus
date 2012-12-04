@@ -81,15 +81,12 @@ public class RegionEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
-
 		if(childEditPart instanceof RegionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getRegionCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((RegionCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -158,7 +155,6 @@ public class RegionEditPart extends NamedElementEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -196,7 +192,6 @@ public class RegionEditPart extends NamedElementEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -216,7 +211,6 @@ public class RegionEditPart extends NamedElementEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -237,7 +231,6 @@ public class RegionEditPart extends NamedElementEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -256,7 +249,6 @@ public class RegionEditPart extends NamedElementEditPart {
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof RegionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getRegionCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((RegionCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

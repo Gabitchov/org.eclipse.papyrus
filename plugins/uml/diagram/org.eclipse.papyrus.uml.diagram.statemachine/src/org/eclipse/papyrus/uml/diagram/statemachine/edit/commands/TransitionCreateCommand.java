@@ -112,7 +112,6 @@ public class TransitionCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		Transition newElement = UMLFactory.eINSTANCE.createTransition();
 		getContainer().getTransitions().add(newElement);
 		newElement.setSource(getSource());
@@ -121,7 +120,6 @@ public class TransitionCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**

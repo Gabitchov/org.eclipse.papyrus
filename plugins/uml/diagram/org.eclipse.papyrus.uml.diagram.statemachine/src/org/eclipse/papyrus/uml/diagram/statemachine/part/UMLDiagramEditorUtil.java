@@ -69,7 +69,6 @@ public class UMLDiagramEditorUtil {
 			if(elements.size() == element2ViewMap.size()) {
 				return true;
 			}
-
 			if(parentView.isSetElement() && !element2ViewMap.containsKey(parentView.getElement()) && elements.contains(parentView.getElement())) {
 				element2ViewMap.put(parentView.getElement(), parentView);
 				if(elements.size() == element2ViewMap.size()) {
@@ -127,7 +126,6 @@ public class UMLDiagramEditorUtil {
 						}
 					}
 				}
-
 				buildElement2ViewMap(scope, element2ViewMap, elementSet);
 			}
 			return element2ViewMap;
@@ -138,6 +136,7 @@ public class UMLDiagramEditorUtil {
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(Package model, Resource resource) {
@@ -161,19 +160,16 @@ public class UMLDiagramEditorUtil {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Package model = createInitialModel();
 				attachModelToResource(model, modelResource);
-
 				Diagram diagram = ViewService.createDiagram(model, PackageEditPart.MODEL_ID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if(diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
 					diagram.setElement(model);
 				}
-
 				try {
 					modelResource.save(org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorUtil.getSaveOptions());
 					diagramResource.save(org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorUtil.getSaveOptions());
 				} catch (IOException e) {
-
 					UMLDiagramEditorPlugin.getInstance().logError("Unable to store model and diagram resources", e); //$NON-NLS-1$
 				}
 				return CommandResult.newOKCommandResult();
@@ -205,7 +201,6 @@ public class UMLDiagramEditorUtil {
 	private static int findElementsInDiagramByID(DiagramEditPart diagramPart, EObject element, List<EditPart> editPartCollector) {
 		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer)diagramPart.getViewer();
 		final int intialNumOfEditParts = editPartCollector.size();
-
 		if(element instanceof View) { // support notation element lookup
 			EditPart editPart = (EditPart)viewer.getEditPartRegistry().get(element);
 			if(editPart != null) {
@@ -213,7 +208,6 @@ public class UMLDiagramEditorUtil {
 				return 1;
 			}
 		}
-
 		String elementID = EMFCoreUtil.getProxyID(element);
 		@SuppressWarnings("unchecked")
 		List<EditPart> associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
@@ -227,7 +221,6 @@ public class UMLDiagramEditorUtil {
 				editPartCollector.add(nextPart);
 			}
 		}
-
 		if(intialNumOfEditParts == editPartCollector.size()) {
 			if(!associatedParts.isEmpty()) {
 				editPartCollector.add(associatedParts.get(0));
@@ -248,7 +241,6 @@ public class UMLDiagramEditorUtil {
 		if(targetElement.eResource() instanceof XMLResource) {
 			hasStructuralURI = ((XMLResource)targetElement.eResource()).getID(targetElement) == null;
 		}
-
 		View view = null;
 		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
 		if(hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
@@ -257,7 +249,6 @@ public class UMLDiagramEditorUtil {
 			EditPart editPart = editPartHolder.get(0);
 			view = editPart.getModel() instanceof View ? (View)editPart.getModel() : null;
 		}
-
 		return (view == null) ? diagramEditPart.getDiagramView() : view;
 	}
 
@@ -334,7 +325,6 @@ public class UMLDiagramEditorUtil {
 	 */
 	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List<EditPart> editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
-
 		EditPart firstPrimary = null;
 		for(EditPart nextPart : editParts) {
 			diagramPart.getDiagramGraphicalViewer().appendSelection(nextPart);
@@ -342,7 +332,6 @@ public class UMLDiagramEditorUtil {
 				firstPrimary = nextPart;
 			}
 		}
-
 		if(!editParts.isEmpty()) {
 			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}

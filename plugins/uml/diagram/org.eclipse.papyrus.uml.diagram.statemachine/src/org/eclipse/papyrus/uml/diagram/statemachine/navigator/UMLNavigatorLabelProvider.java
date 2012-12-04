@@ -54,7 +54,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			UMLNavigatorGroup group = (UMLNavigatorGroup)element;
 			return UMLDiagramEditorPlugin.getInstance().getBundledImage(group.getIcon());
 		}
-
 		if(element instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem)element;
 			if(!isOwnView(navigatorItem.getView())) {
@@ -62,8 +61,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getImage(navigatorItem.getView());
 		}
-
-
 		return super.getImage(element);
 	}
 
@@ -77,7 +74,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			image = UMLElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
-
 		if(image == null) {
 			image = imageRegistry.get("Navigator?ImageNotFound"); //$NON-NLS-1$
 			imageRegistry.put(key, image);
@@ -90,12 +86,12 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	public Image getImage(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case RegionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Region", UMLElementTypes.Region_3000); //$NON-NLS-1$
 		case PackageEditPart.VISUAL_ID:
 			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/4.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
 		case StateMachineEditPart.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/4.0.0/UML?StateMachine", UMLElementTypes.StateMachine_2000); //$NON-NLS-1$
+		case RegionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/4.0.0/UML?Region", UMLElementTypes.Region_3000); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -147,7 +143,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			UMLNavigatorGroup group = (UMLNavigatorGroup)element;
 			return group.getGroupName();
 		}
-
 		if(element instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem)element;
 			if(!isOwnView(navigatorItem.getView())) {
@@ -155,8 +150,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getText(navigatorItem.getView());
 		}
-
-
 		return super.getText(element);
 	}
 
@@ -168,12 +161,12 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case RegionEditPart.VISUAL_ID:
-			return getRegion_3000Text(view);
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_1000Text(view);
 		case StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_2000Text(view);
+		case RegionEditPart.VISUAL_ID:
+			return getRegion_3000Text(view);
 		}
 		return getUnknownElementText(view);
 	}

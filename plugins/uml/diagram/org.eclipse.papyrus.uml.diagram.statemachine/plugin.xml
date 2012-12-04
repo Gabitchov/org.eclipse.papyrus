@@ -181,7 +181,27 @@
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PackageEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart" id="StateMachine_2000"/>
-         <context elements="Package_1000,StateMachine_2000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart" id="Region_3000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart" id="FinalState_5000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart" id="State_6000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateInitialEditPart" id="Pseudostate_8000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJoinEditPart" id="Pseudostate_9000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateForkEditPart" id="Pseudostate_10000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart" id="Pseudostate_11000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJunctionEditPart" id="Pseudostate_12000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart" id="Pseudostate_13000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart" id="Pseudostate_14000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTerminateEditPart" id="Pseudostate_15000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart" id="Pseudostate_16000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateExitPointEditPart" id="Pseudostate_17000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart" id="ConnectionPointReference_18000"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart" id="Comment_666"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart" id="Constraint_668"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.InternalTransitionEditPart" id="Transition_680"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart" id="Behavior_690"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart" id="Behavior_691"/>
+         <object class="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart" id="Behavior_692"/>
+         <context elements="Package_1000,StateMachine_2000,Region_3000,FinalState_5000,State_6000,Pseudostate_8000,Pseudostate_9000,Pseudostate_10000,Pseudostate_11000,Pseudostate_12000,Pseudostate_13000,Pseudostate_14000,Pseudostate_15000,Pseudostate_16000,Pseudostate_17000,ConnectionPointReference_18000,Comment_666,Constraint_668,Transition_680,Behavior_690,Behavior_691,Behavior_692"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -1275,7 +1295,7 @@
 <extension point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
       <?gmfgen generated="true"?>
       <clientContext id="org.eclipse.papyrus.uml.diagram.statemachineDefaultCtx"/>
- </extension>
+   </extension>
  
  <extension
       point="org.eclipse.emf.transaction.listeners">

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.parts.RegionCompartmentDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentAnnotatedElementEditPart;
@@ -324,15 +325,8 @@ public class UMLDiagramUpdater {
 			if(GeneralizationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
-
-
-
-
 			Classifier dst = link.getGeneral();
 			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
-
-
 		}
 		return result;
 	}
@@ -351,16 +345,9 @@ public class UMLDiagramUpdater {
 			if(TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
-
-
-
-
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
-
-
 		}
 		return result;
 	}
@@ -495,7 +482,6 @@ public class UMLDiagramUpdater {
 			}
 			Classifier container = (Classifier)link.eContainer();
 			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
-
 		}
 		return result;
 	}
@@ -629,19 +615,12 @@ public class UMLDiagramUpdater {
 			if(TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
-
-
-
-
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
 			if(src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
-
-
 		}
 		return result;
 	}
@@ -669,6 +648,40 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
+
+		/**
+		 * @generated
+		 */
+		public List<UMLNodeDescriptor> getSemanticChildren(View view) {
+			return UMLDiagramUpdater.getSemanticChildren(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getContainedLinks(View view) {
+			return UMLDiagramUpdater.getContainedLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getIncomingLinks(View view) {
+			return UMLDiagramUpdater.getIncomingLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
+			return UMLDiagramUpdater.getOutgoingLinks(view);
+		}
+	};
 
 	/**
 	 * @generated

@@ -63,6 +63,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
@@ -243,7 +244,6 @@ public class FinalStateNameEditPart extends LabelEditPart implements ITextAwareE
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -280,7 +280,6 @@ public class FinalStateNameEditPart extends LabelEditPart implements ITextAwareE
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -500,9 +499,7 @@ public class FinalStateNameEditPart extends LabelEditPart implements ITextAwareE
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -529,7 +526,6 @@ public class FinalStateNameEditPart extends LabelEditPart implements ITextAwareE
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -537,7 +533,6 @@ public class FinalStateNameEditPart extends LabelEditPart implements ITextAwareE
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -545,7 +540,6 @@ public class FinalStateNameEditPart extends LabelEditPart implements ITextAwareE
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -631,6 +625,13 @@ public class FinalStateNameEditPart extends LabelEditPart implements ITextAwareE
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 
