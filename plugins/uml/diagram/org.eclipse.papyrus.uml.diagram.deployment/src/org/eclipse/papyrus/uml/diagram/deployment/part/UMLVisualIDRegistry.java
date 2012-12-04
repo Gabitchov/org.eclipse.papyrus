@@ -8,8 +8,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
+import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPartACN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPartCN;
@@ -130,7 +129,6 @@ public class UMLVisualIDRegistry {
 		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return DeploymentDiagramEditPart.VISUAL_ID;
 		}
-
 		return -1;
 	}
 
@@ -596,139 +594,104 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if(diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		if(candidate == -1) {
+			//unrecognized id is always bad
+			return false;
 		}
-		return diagramViewInfo;
+		int basic = getNodeVisualID(containerView, domainElement);
+		return basic == candidate;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getPackage_1000ViewInfo() {
-		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-
-		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "Comment");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2005, ViewInfo.Node, "Constraint");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2002, ViewInfo.Node, "ExecutionEnvironment");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2003, ViewInfo.Node, "Device");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2006, ViewInfo.Node, "Artifact");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2008, ViewInfo.Node, "Node");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(13, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(14, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(10, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(11, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(4, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(12, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(15, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(23, ViewInfo.Node, "Node");
-
-		root.addNode(19, viewInfo);
-
-		root.addNode(32, viewInfo);
-
-		root.addNode(17, viewInfo);
-
-		root.addNode(30, viewInfo);
-
-		viewInfo = new BaseViewInfo(16, ViewInfo.Node, "Device");
-
-		root.addNode(19, viewInfo);
-
-		root.addNode(32, viewInfo);
-
-		root.addNode(17, viewInfo);
-
-		root.addNode(30, viewInfo);
-
-		viewInfo = new BaseViewInfo(21, ViewInfo.Node, "ExecutionEnvironment");
-
-		root.addNode(19, viewInfo);
-
-		root.addNode(17, viewInfo);
-
-		root.addNode(18, viewInfo);
-
-		root.addNode(30, viewInfo);
-
-		root.addNode(31, viewInfo);
-
-		root.addNode(32, viewInfo);
-
-		viewInfo = new BaseViewInfo(25, ViewInfo.Node, "Artifact");
-
-		root.addNode(18, viewInfo);
-
-		root.addNode(19, viewInfo);
-
-		root.addNode(31, viewInfo);
-
-		root.addNode(32, viewInfo);
-
-		viewInfo = new BaseViewInfo(28, ViewInfo.Node, "Artifact");
-
-		root.addNode(26, viewInfo);
-
-		root.addNode(33, viewInfo);
-
-		root.addNode(34, viewInfo);
-
-		return root;
+	public static boolean isCompartmentVisualID(int visualID) {
+		switch(visualID) {
+		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
+		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
+		case NodeCompositeCompartmentEditPart.VISUAL_ID:
+		case ArtifactCompositeCompartmentEditPart.VISUAL_ID:
+		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
+		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ArtifactCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ArtifactCompositeCompartmentEditPartACN.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static boolean isSemanticLeafVisualID(int visualID) {
+		switch(visualID) {
+		case DeploymentDiagramEditPart.VISUAL_ID:
+			return false;
+		case CommentEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
+		/**
+		 * @generated
+		 */
+
+		public int getVisualID(View view) {
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getVisualID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+
+		public String getModelID(View view) {
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getModelID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+
+		public int getNodeVisualID(View containerView, EObject domainElement) {
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+		}
+
+		/**
+		 * @generated
+		 */
+
+		public boolean isCompartmentVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+
+		public boolean isSemanticLeafVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
+		}
+	};
 
 }

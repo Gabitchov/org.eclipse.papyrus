@@ -94,8 +94,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
 
-		// adds a listener to the palette service, which reacts to palette
-		// customizations
+		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 
 		// Share the same editing provider
@@ -310,11 +309,10 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			/**
 			 * Override to provide the additional behavior for the tools. Will intialize with a
 			 * PaletteEditPartFactory that has a TrackDragger that understand how to handle the
-			 * mouseDoubleClick event for shape creation tools. Also will initialize the palette with a
-			 * defaultTool that is the SelectToolEx that undestands how to handle the enter key which will
-			 * result in the creation of the shape also.
+			 * mouseDoubleClick event for shape creation tools. Also will initialize the palette
+			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
+			 * key which will result in the creation of the shape also.
 			 */
-			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -332,7 +330,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
-			@Override
 			public PaletteViewer createPaletteViewer(Composite parent) {
 				PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -351,16 +348,15 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 					paletteKeyHandler = new KeyHandler() {
 
 						/**
-						 * Processes a <i>key released </i> event. This method is called by the Tool whenever
-						 * a key is released, and the Tool is in the proper state. Override to support
-						 * pressing the enter key to create a shape or connection (between two selected
-						 * shapes)
+						 * Processes a <i>key released </i> event. This method is called by the Tool
+						 * whenever a key is released, and the Tool is in the proper state. Override
+						 * to support pressing the enter key to create a shape or connection
+						 * (between two selected shapes)
 						 * 
 						 * @param event
 						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
-						@Override
 						public boolean keyReleased(KeyEvent event) {
 
 							if(event.keyCode == SWT.Selection) {
@@ -397,14 +393,14 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 					paletteMouseListener = new MouseListener() {
 
 						/**
-						 * Flag to indicate that the current active tool should be cleared after a mouse
-						 * double-click event.
+						 * Flag to indicate that the current active tool should be cleared after a
+						 * mouse double-click event.
 						 */
 						private boolean clearActiveTool = false;
 
 						/**
-						 * Override to support double-clicking a palette tool entry to create a shape or
-						 * connection (between two selected shapes).
+						 * Override to support double-clicking a palette tool entry to create a
+						 * shape or connection (between two selected shapes).
 						 * 
 						 * @see MouseListener#mouseDoubleClick(MouseEvent)
 						 */

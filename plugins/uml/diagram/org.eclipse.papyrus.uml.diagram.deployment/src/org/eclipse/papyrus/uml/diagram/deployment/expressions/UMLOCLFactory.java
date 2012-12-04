@@ -54,25 +54,45 @@ public class UMLOCLFactory {
 	/**
 	 * @generated
 	 */
+	private final String[] expressionBodies;
+
+	/**
+	 * @generated
+	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[1];
+		this.expressionBodies = new String[]{ "self.name.concat(\'.file\') ", //$NON-NLS-1$
+		};
+	}
+
+	/**
+	 * @generated
+	 */
+	private static UMLOCLFactory getInstance() {
+		UMLOCLFactory instance = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
+		if(instance == null) {
+			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(instance = new UMLOCLFactory());
+		}
+		return instance;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getExpressionBody(int index) {
+		return getInstance().expressionBodies[index];
 	}
 
 	/**
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
-		UMLOCLFactory cached = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
-		if(cached == null) {
-			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(cached = new UMLOCLFactory());
-		}
+		UMLOCLFactory cached = getInstance();
 		if(index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
 		if(cached.expressions[index] == null) {
-			final String[] exprBodies = new String[]{ "self.name.concat(\'.file\') ", //$NON-NLS-1$
-			};
-			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
@@ -136,8 +156,7 @@ public class UMLOCLFactory {
 			if(oclExpression == null) {
 				return null;
 			}
-			// on the first call, both evalEnvironment and extentMap are clear,
-			// for later we have finally, below.
+			// on the first call, both evalEnvironment and extentMap are clear, for later we have finally, below.
 			EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = oclInstance.getEvaluationEnvironment();
 			// initialize environment
 			for(Object nextKey : env.keySet()) {
@@ -148,9 +167,7 @@ public class UMLOCLFactory {
 				return oclInstance.isInvalid(result) ? null : result;
 			} finally {
 				evalEnv.clear();
-				oclInstance.setExtentMap(null); // clear allInstances cache, and
-												// get the oclInstance ready for
-												// the next call
+				oclInstance.setExtentMap(null); // clear allInstances cache, and get the oclInstance ready for the next call
 			}
 		}
 
@@ -158,8 +175,7 @@ public class UMLOCLFactory {
 		 * @generated
 		 */
 		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
-			// Use EObject as implicit root class for any object, to allow
-			// eContainer() and other EObject operations from OCL expressions
+			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
 			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
 			for(String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);

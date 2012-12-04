@@ -38,8 +38,7 @@ public class ArtifactCompositeCompartmentCanonicalEditPolicy extends CanonicalEd
 	 * @generated
 	 */
 	protected void refreshOnActivate() {
-		// Need to activate editpart children before invoking the canonical
-		// refresh for EditParts to add event listeners
+		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
 		for(int i = 0; i < c.size(); i++) {
 			((EditPart)c.get(i)).activate();
@@ -99,51 +98,34 @@ public class ArtifactCompositeCompartmentCanonicalEditPolicy extends CanonicalEd
 				knownViewChildren.add(v);
 			}
 		}
-		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(),
-		// semanticChildren)
+		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
 		//
-		// iteration happens over list of desired semantic elements, trying to
-		// find best matching View, while original CEP
-		// iterates views, potentially losing view (size/bounds) information -
-		// i.e. if there are few views to reference same EObject, only last one
-		// to answer isOrphaned == true will be used for the domain element
-		// representation, see #cleanCanonicalSemanticChildren()
+		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
+		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
+		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
 		for(Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator.hasNext();) {
 			UMLNodeDescriptor next = descriptorsIterator.next();
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
-			LinkedList<View> perfectMatch = new LinkedList<View>(); // both
-																	// semanticElement
-																	// and hint
-																	// match
-																	// that of
-																	// NodeDescriptor
+			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			for(View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
 				if(next.getModelElement().equals(semanticElement)) {
 					if(hint.equals(childView.getType())) {
 						perfectMatch.add(childView);
-						// actually, can stop iteration over view children here,
-						// but
-						// may want to use not the first view but last one as a
-						// 'real' match (the way original CEP does
-						// with its trick with viewToSemanticMap inside
-						// #cleanCanonicalSemanticChildren
+						// actually, can stop iteration over view children here, but
+						// may want to use not the first view but last one as a 'real' match (the way original CEP does
+						// with its trick with viewToSemanticMap inside #cleanCanonicalSemanticChildren
 					}
 				}
 			}
 			if(perfectMatch.size() > 0) {
-				descriptorsIterator.remove(); // precise match found no need to
-												// create anything for the
-												// NodeDescriptor
-				// use only one view (first or last?), keep rest as orphaned for
-				// further consideration
+				descriptorsIterator.remove(); // precise match found no need to create anything for the NodeDescriptor
+				// use only one view (first or last?), keep rest as orphaned for further consideration
 				knownViewChildren.remove(perfectMatch.getFirst());
 			}
 		}
-		// those left in knownViewChildren are subject to removal - they are our
-		// diagram elements we didn't find match to,
-		// or those we have potential matches to, and thus need to be recreated,
-		// preserving size/location information.
+		// those left in knownViewChildren are subject to removal - they are our diagram elements we didn't find match to,
+		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
 		orphaned.addAll(knownViewChildren);
 		//
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(childDescriptors.size());

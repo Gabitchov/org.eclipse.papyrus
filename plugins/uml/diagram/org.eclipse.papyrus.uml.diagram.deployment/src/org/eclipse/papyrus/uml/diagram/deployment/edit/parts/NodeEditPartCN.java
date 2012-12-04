@@ -44,7 +44,6 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.DeploymentNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
@@ -95,15 +94,13 @@ DeploymentNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new NodeItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -167,8 +164,7 @@ DeploymentNodeEditPart {
 
 		if(childEditPart instanceof NodeCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((NodeCompositeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
@@ -185,8 +181,6 @@ DeploymentNodeEditPart {
 		}
 		if(childEditPart instanceof NodeCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
 			pane.remove(((NodeCompositeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
@@ -341,7 +335,7 @@ DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Deployment_4001);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Deployment_4001);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN) {
@@ -371,7 +365,7 @@ DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN) {
@@ -398,7 +392,7 @@ DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Generalization_4003);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Generalization_4003);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN) {
@@ -428,7 +422,7 @@ DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeEditPartCN) {
