@@ -23,7 +23,7 @@
 			refreshLabel();
 		}
 	«ENDIF-»
-	if (event.getFeature().equals(org.eclipse.uml2.uml.UMLPackage.eINSTANCE.getFeature_IsStatic())){
+	if (org.eclipse.uml2.uml.UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 	}
 	super.handleNotificationEvent(event);
