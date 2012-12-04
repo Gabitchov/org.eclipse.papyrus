@@ -46,6 +46,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -65,6 +66,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -1846,4 +1848,32 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		}
 	}
  
+	public boolean ignoreRequest(Request request) {
+		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))){
+			List parts = ((ChangeBoundsRequest) request).getEditParts();
+			if(parts != null){
+				for(Object obj : parts)
+					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart){
+						return true;
+					}
+			}
+		}
+		
+		return false;
+	}
+	
+	public void showTargetFeedback(Request request) {
+		 if(ignoreRequest(request)) {
+           return;
+       }
+	        
+       super.showTargetFeedback(request);
+	}
+	
+	public Command getCommand(Request request) {
+		if(ignoreRequest(request))
+			return null;
+		
+		return super.getCommand(request);
+	}
 }

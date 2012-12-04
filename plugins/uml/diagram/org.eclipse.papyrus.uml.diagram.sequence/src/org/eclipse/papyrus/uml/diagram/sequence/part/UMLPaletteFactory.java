@@ -20,6 +20,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.Tool;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.SimpleFactory;
 import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gef.tools.ConnectionCreationTool;
@@ -28,6 +29,8 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ObservationLinkPolicy.ObservationLink;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.service.DurationCreationTool;
@@ -378,24 +381,48 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createComment9CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Comment_3009);
 
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
+			protected Command getCommand() {
+				if (!antiScroll){
+					if(getTargetEditPart() instanceof LifelineEditPart){
+						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+						if(parent != null)
+							return parent.getCommand( getTargetRequest() );
+					}
+					return super.getCommand();
+				}
+				return null;
+			}
+		};
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createConstraint10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Constraint_3008);
 
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
+			protected Command getCommand() {
+				if (!antiScroll){
+					if(getTargetEditPart() instanceof LifelineEditPart){
+						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+						if(parent != null)
+							return parent.getCommand( getTargetRequest() );
+					}
+					return super.getCommand();
+				}
+				return null;
+			}
+		};
 		return tool;
 	}
 
@@ -443,7 +470,19 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TimeObservation_3020);
 
-		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
+		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types){
+			protected Command getCommand() {
+				if (!antiScroll){
+					if(getTargetEditPart() instanceof LifelineEditPart){
+						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+						if(parent != null)
+							return parent.getCommand( getTargetRequest() );
+					}
+					return super.getCommand();
+				}
+				return null;
+			}
+		};
 		tool.setDefaultCursor(SharedCursors.HAND);
 		tool.setDisabledCursor(SharedCursors.NO);
 		return tool;

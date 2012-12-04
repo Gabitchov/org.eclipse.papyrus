@@ -45,7 +45,6 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
@@ -68,6 +67,8 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -121,12 +122,15 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -2022,13 +2026,57 @@ public class LifelineEditPart extends NamedElementEditPart {
 		return centerFigure;
 	}
 
+	public InteractionInteractionCompartmentEditPart getParentInteractionCompartmentEditPart(){
+		EditPart part = this;
+		do{
+			part = part.getParent();
+		}while(part != null && !(part instanceof InteractionInteractionCompartmentEditPart));
+		return (InteractionInteractionCompartmentEditPart) part;
+	}
+	
+	public boolean ignoreRequest(Request request) {  // moving editpart causing to add child
+		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))){
+			List parts = ((ChangeBoundsRequest) request).getEditParts();
+			if(parts != null){
+				for(Object obj : parts)
+					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart || obj instanceof CombinedFragmentEditPart){
+						return true;
+					}
+			}
+		}
+		
+		return false;
+	}
+	
+	public void showTargetFeedback(Request request) {
+		 if(ignoreRequest(request)) {
+           return;
+       }
+	        
+       super.showTargetFeedback(request);
+	}
+		
 	/**
 	 * Handle message creation for execution specification
 	 */
 	@Override
 	public Command getCommand(Request request) {
+		if(ignoreRequest(request))  
+			return null;
+		
+		if(request instanceof DropObjectsRequest){  // drop from model explorer
+			DropObjectsRequest dropRequest = (DropObjectsRequest) request;
+			if (dropRequest.getObjects().size() > 0 ){
+				Object obj = dropRequest.getObjects().get(0);
+				if(obj instanceof Comment || obj instanceof Constraint || obj instanceof TimeObservation) {
+					InteractionInteractionCompartmentEditPart part = getParentInteractionCompartmentEditPart();
+					if(part != null)
+						return part.getCommand(request);
+				}
+			}
+		}
+		
 		if(request instanceof CreateConnectionRequest) {
-
 			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest)request;
 			EditPart target = createConnectionRequest.getTargetEditPart();
 			if(target instanceof LifelineEditPart) {
@@ -2051,7 +2099,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			} else {
 				return target.getCommand(request);
 			}
-
 		}
 		return super.getCommand(request);
 	}

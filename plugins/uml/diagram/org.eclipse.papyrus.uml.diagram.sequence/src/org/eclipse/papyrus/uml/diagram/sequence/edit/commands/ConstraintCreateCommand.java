@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -80,18 +81,16 @@ public class ConstraintCreateCommand extends EditElementCommand {
 			container = ((View)container).getElement();
 		}
 		if(container != null) {
-			return container;
+			return getNamespace(container);
 		}
-		return eObject;
+		return getNamespace(eObject);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
-
-		return true;
-
+		return getElementToEdit() instanceof Namespace;
 	}
 
 	/**
@@ -101,7 +100,7 @@ public class ConstraintCreateCommand extends EditElementCommand {
 
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
-		Namespace owner = (Namespace)getElementToEdit();
+		Namespace owner = (Namespace) getElementToEdit();
 		owner.getOwnedRules().add(newElement);
 
 		ElementInitializers.getInstance().init_Constraint_3008(newElement);
@@ -110,6 +109,16 @@ public class ConstraintCreateCommand extends EditElementCommand {
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
+	}
+
+	protected Namespace getNamespace(EObject element) {
+		if(element instanceof Namespace)
+			return (Namespace) element;
+		
+		if(element instanceof Lifeline){
+			return ((Lifeline) element).getInteraction();
+		}
+		return null;
 	}
 
 	/**

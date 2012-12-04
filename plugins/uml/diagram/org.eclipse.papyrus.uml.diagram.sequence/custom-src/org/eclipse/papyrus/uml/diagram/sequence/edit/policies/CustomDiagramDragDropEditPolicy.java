@@ -79,6 +79,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInM
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -287,7 +288,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case DurationConstraintEditPart.VISUAL_ID:
 				return dropIntervalConstraintInLifeline((IntervalConstraint)semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
-				return dropTimeObservationInLifeline((TimeObservation)semanticElement, nodeVISUALID);
+				return dropTimeObservationInLifeline((TimeObservation)semanticElement, nodeVISUALID, location);
 			case CombinedFragment2EditPart.VISUAL_ID:
 				return dropCoRegion((CombinedFragment)semanticElement, nodeVISUALID, location);
 			case CommentEditPart.VISUAL_ID:
@@ -605,9 +606,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the time constraint
 	 * @param nodeVISUALID
 	 *        the node visual id
+	 * @param dropLocation 
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
-	private Command dropTimeObservationInLifeline(TimeObservation observation, int nodeVISUALID) {
+	private Command dropTimeObservationInLifeline(TimeObservation observation, int nodeVISUALID, Point dropLocation) {
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(observation);
 
@@ -635,6 +637,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				}
 			}
 		}
+		
+		if(getHost() instanceof InteractionInteractionCompartmentEditPart){
+			Rectangle newBounds = new Rectangle(dropLocation, new Dimension(-1, -1));
+			((InteractionInteractionCompartmentEditPart)getHost()).getFigure().translateToRelative(newBounds);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+			cc.add(new ICommandProxy(setBoundsCommand));
+			return cc;
+		}
+		
 		return UnexecutableCommand.INSTANCE;
 	}
 

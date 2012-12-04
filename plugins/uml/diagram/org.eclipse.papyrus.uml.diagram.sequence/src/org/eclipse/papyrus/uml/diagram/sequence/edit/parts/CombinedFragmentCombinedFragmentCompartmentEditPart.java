@@ -26,7 +26,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -38,6 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -242,5 +245,33 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
+	
+	public boolean ignoreRequest(Request request) {
+		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))){
+			List parts = ((ChangeBoundsRequest) request).getEditParts();
+			if(parts != null){
+				for(Object obj : parts)
+					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart){
+						return true;
+					}
+			}
+		}
+		
+		return false;
+	}
+	
+	public void showTargetFeedback(Request request) {
+		 if(ignoreRequest(request)) {
+            return;
+        }
+	        
+        super.showTargetFeedback(request);
+	}
+	
+	public Command getCommand(Request request) {
+		if(ignoreRequest(request))
+			return null;
+		
+		return super.getCommand(request);
+	}
 }
