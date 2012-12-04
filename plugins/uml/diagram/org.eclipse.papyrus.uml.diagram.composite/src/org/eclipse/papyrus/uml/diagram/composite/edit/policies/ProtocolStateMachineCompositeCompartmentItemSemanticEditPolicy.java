@@ -14,7 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.composite.edit.policies;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ActivityCompositeCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ActorCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ArtifactCreateCommandCN;
@@ -65,103 +68,214 @@ public class ProtocolStateMachineCompositeCompartmentItemSemanticEditPolicy exte
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Port_3069 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Port_3069 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PortCreateCommand(req));
 		}
-		if(UMLElementTypes.Parameter_3088 == req.getElementType()) {
+		if(UMLElementTypes.Parameter_3088 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ParameterCreateCommand(req));
 		}
-		if(UMLElementTypes.Property_3070 == req.getElementType()) {
+		if(UMLElementTypes.Property_3070 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PropertyPartCreateCommandCN(req));
 		}
-		if(UMLElementTypes.CollaborationUse_3071 == req.getElementType()) {
+		if(UMLElementTypes.CollaborationUse_3071 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CollaborationUseCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Activity_3072 == req.getElementType()) {
+		if(UMLElementTypes.Activity_3072 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActivityCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Interaction_3073 == req.getElementType()) {
+		if(UMLElementTypes.Interaction_3073 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InteractionCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.ProtocolStateMachine_3074 == req.getElementType()) {
+		if(UMLElementTypes.ProtocolStateMachine_3074 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ProtocolStateMachineCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.StateMachine_3075 == req.getElementType()) {
+		if(UMLElementTypes.StateMachine_3075 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new StateMachineCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.FunctionBehavior_3076 == req.getElementType()) {
+		if(UMLElementTypes.FunctionBehavior_3076 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new FunctionBehaviorCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.OpaqueBehavior_3077 == req.getElementType()) {
+		if(UMLElementTypes.OpaqueBehavior_3077 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new OpaqueBehaviorCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Component_3081 == req.getElementType()) {
+		if(UMLElementTypes.Component_3081 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ComponentCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Device_3082 == req.getElementType()) {
+		if(UMLElementTypes.Device_3082 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DeviceCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.ExecutionEnvironment_3083 == req.getElementType()) {
+		if(UMLElementTypes.ExecutionEnvironment_3083 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ExecutionEnvironmentCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Node_3084 == req.getElementType()) {
+		if(UMLElementTypes.Node_3084 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new NodeCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Class_3085 == req.getElementType()) {
+		if(UMLElementTypes.Class_3085 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ClassCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Collaboration_3086 == req.getElementType()) {
+		if(UMLElementTypes.Collaboration_3086 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CollaborationCompositeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Interface_3087 == req.getElementType()) {
+		if(UMLElementTypes.Interface_3087 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InterfaceCreateCommandCN(req));
 		}
-		if(UMLElementTypes.PrimitiveType_3078 == req.getElementType()) {
+		if(UMLElementTypes.PrimitiveType_3078 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Enumeration_3079 == req.getElementType()) {
+		if(UMLElementTypes.Enumeration_3079 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new EnumerationCreateCommandCN(req));
 		}
-		if(UMLElementTypes.DataType_3080 == req.getElementType()) {
+		if(UMLElementTypes.DataType_3080 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DataTypeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Actor_3091 == req.getElementType()) {
+		if(UMLElementTypes.Actor_3091 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActorCreateCommandCN(req));
 		}
-		if(UMLElementTypes.DeploymentSpecification_3092 == req.getElementType()) {
+		if(UMLElementTypes.DeploymentSpecification_3092 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DeploymentSpecificationCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Artifact_3093 == req.getElementType()) {
+		if(UMLElementTypes.Artifact_3093 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ArtifactCreateCommandCN(req));
 		}
-		if(UMLElementTypes.InformationItem_3094 == req.getElementType()) {
+		if(UMLElementTypes.InformationItem_3094 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InformationItemCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Signal_3095 == req.getElementType()) {
+		if(UMLElementTypes.Signal_3095 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new SignalCreateCommandCN(req));
 		}
-		if(UMLElementTypes.UseCase_3096 == req.getElementType()) {
+		if(UMLElementTypes.UseCase_3096 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new UseCaseCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Comment_3097 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3097 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
-		if(UMLElementTypes.DurationConstraint_3116 == req.getElementType()) {
+		if(UMLElementTypes.DurationConstraint_3116 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DurationConstraintCreateCommandCN(req));
 		}
-		if(UMLElementTypes.TimeConstraint_3117 == req.getElementType()) {
+		if(UMLElementTypes.TimeConstraint_3117 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new TimeConstraintCreateCommandCN(req));
 		}
-		if(UMLElementTypes.IntervalConstraint_3118 == req.getElementType()) {
+		if(UMLElementTypes.IntervalConstraint_3118 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new IntervalConstraintCreateCommandCN(req));
 		}
-		if(UMLElementTypes.InteractionConstraint_3119 == req.getElementType()) {
+		if(UMLElementTypes.InteractionConstraint_3119 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InteractionConstraintCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Constraint_3120 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_3120 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ConstraintCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

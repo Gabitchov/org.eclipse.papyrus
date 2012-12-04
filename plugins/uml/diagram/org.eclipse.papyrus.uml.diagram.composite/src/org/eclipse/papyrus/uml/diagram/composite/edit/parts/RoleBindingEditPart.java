@@ -26,9 +26,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.RoleBindingItemSe
 /**
  * @generated
  */
-public class RoleBindingEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -117,5 +115,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public RoleBindingFigure getPrimaryShape() {
 		return (RoleBindingFigure)getFigure();
 	}
-
 }

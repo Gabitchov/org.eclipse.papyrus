@@ -35,14 +35,12 @@ public class InformationFlowPreferencePage extends AbstractPapyrusLinkPreference
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_InformationFlow";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -61,9 +59,7 @@ public class InformationFlowPreferencePage extends AbstractPapyrusLinkPreference
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("ConveyedElements", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -73,5 +69,4 @@ public class InformationFlowPreferencePage extends AbstractPapyrusLinkPreference
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

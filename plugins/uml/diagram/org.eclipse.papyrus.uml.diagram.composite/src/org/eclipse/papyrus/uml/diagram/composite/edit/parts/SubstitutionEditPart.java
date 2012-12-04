@@ -27,9 +27,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.SubstitutionItemS
 /**
  * @generated
  */
-public class SubstitutionEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -118,5 +116,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure)getFigure();
 	}
-
 }

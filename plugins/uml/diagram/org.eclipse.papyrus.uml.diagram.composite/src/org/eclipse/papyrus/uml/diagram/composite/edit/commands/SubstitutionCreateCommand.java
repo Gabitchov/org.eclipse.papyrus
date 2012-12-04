@@ -91,7 +91,6 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		Substitution newElement = UMLFactory.eINSTANCE.createSubstitution();
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getClients().add(getSource());
@@ -100,7 +99,6 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -164,5 +162,4 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

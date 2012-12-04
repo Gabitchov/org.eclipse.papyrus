@@ -26,9 +26,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.ConnectorItemSema
 /**
  * @generated
  */
-public class ConnectorEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -131,5 +129,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public ConnectorFigure getPrimaryShape() {
 		return (ConnectorFigure)getFigure();
 	}
-
 }

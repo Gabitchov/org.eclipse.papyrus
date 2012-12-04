@@ -35,14 +35,12 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_Generalization";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -60,7 +58,6 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -70,5 +67,4 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

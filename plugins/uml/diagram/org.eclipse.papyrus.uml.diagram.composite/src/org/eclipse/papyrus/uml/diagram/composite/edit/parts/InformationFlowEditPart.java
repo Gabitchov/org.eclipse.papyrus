@@ -27,9 +27,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.InformationFlowIt
 /**
  * @generated
  */
-public class InformationFlowEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class InformationFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -118,5 +116,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public InformationFlowFigure getPrimaryShape() {
 		return (InformationFlowFigure)getFigure();
 	}
-
 }

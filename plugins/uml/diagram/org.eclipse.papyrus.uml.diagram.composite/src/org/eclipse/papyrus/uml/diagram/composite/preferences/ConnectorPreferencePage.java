@@ -35,14 +35,12 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_Connector";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -63,13 +61,9 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Stereotype", Boolean.TRUE);
-
 		map.put("Name", Boolean.FALSE);//$NON-NLS-1$
-
 		map.put("SourceMultiplicity", Boolean.FALSE);//$NON-NLS-1$
-
 		map.put("TargetMultiplicity", Boolean.FALSE);//$NON-NLS-1$
-
 		return map;
 	}
 
@@ -79,5 +73,4 @@ public class ConnectorPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

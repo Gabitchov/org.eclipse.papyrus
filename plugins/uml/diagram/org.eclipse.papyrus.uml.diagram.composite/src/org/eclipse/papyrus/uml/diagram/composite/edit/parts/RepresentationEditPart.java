@@ -25,9 +25,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.RepresentationIte
 /**
  * @generated
  */
-public class RepresentationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class RepresentationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -108,5 +106,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public RepresentationFigure getPrimaryShape() {
 		return (RepresentationFigure)getFigure();
 	}
-
 }

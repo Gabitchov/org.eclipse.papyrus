@@ -47,7 +47,6 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.composite.edit.policies.DeploymentSpecificationItemSemanticEditPolicyCN;
@@ -62,9 +61,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * @generated
  */
-public class DeploymentSpecificationEditPartCN extends
-
-ShapeNodeEditPart {
+public class DeploymentSpecificationEditPartCN extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -97,7 +94,6 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -149,7 +145,6 @@ ShapeNodeEditPart {
 			((DeploymentSpecificationNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNamedElementNameLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -199,7 +194,6 @@ ShapeNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -5040,15 +5034,11 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fNamedElementNameLabel = new WrappingLabel();
 			fNamedElementNameLabel.setText("");
 			fNamedElementNameLabel.setForegroundColor(ColorConstants.black);
-
 			fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);
-
 			this.add(fNamedElementNameLabel);
-
 		}
 
 		/**
@@ -5076,7 +5066,6 @@ ShapeNodeEditPart {
 		public WrappingLabel getNamedElementNameLabel() {
 			return fNamedElementNameLabel;
 		}
-
 	}
 
 	/**
@@ -5091,7 +5080,6 @@ ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -5111,7 +5099,6 @@ ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

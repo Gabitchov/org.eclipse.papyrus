@@ -74,7 +74,6 @@ public class InterfaceCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,25 +88,18 @@ public class InterfaceCreateCommandCLN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Interface newElement = UMLFactory.eINSTANCE.createInterface();
-
 		Class owner = (Class)getElementToEdit();
 		owner.getNestedClassifiers().add(newElement);
-
 		ElementInitializers.getInstance().init_Interface_3110(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -125,5 +117,4 @@ public class InterfaceCreateCommandCLN extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -74,7 +74,6 @@ public class ProtocolStateMachineCompositeCreateCommand extends EditElementComma
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,30 +88,22 @@ public class ProtocolStateMachineCompositeCreateCommand extends EditElementComma
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		// Creation constraint for TopLevelNodes
 		if(!(getElementToEdit() instanceof Package)) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ProtocolStateMachine newElement = UMLFactory.eINSTANCE.createProtocolStateMachine();
-
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 		ElementInitializers.getInstance().init_ProtocolStateMachine_2062(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -130,5 +121,4 @@ public class ProtocolStateMachineCompositeCreateCommand extends EditElementComma
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -36,10 +36,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.common.helper.UMLBaseEditHelper;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
@@ -177,13 +177,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
-			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
+			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
+		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, requestContextElementType);
 		ICommand command = requestContextElementType.getEditCommand(request);
-		request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
+		request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, null);
+		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, null);
 		if(command != null) {
 			if(!(command instanceof CompositeTransactionalCommand)) {
 				command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
@@ -249,21 +249,47 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		// check if the type is an extended type, and then create directly the element...
-		IElementType type = req.getElementType();
-		if(type instanceof IExtendedHintedElementType) {
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
-			if(provider == null) {
-				return UnexecutableCommand.INSTANCE;
-			}
-
-			// Retrieve create command from the Element Edit service
-			ICommand createGMFCommand = provider.getEditCommand(req);
-
-			return getGEFWrapper(createGMFCommand);
-		}
-
+		// no more usage of the extended types here. 
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
+		if(provider == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
+		if(provider == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
+		if(provider == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
 	}
 
 	/**
@@ -401,13 +427,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4002(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)
-
-				) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_4002(source, target);
 		}
 
@@ -416,13 +439,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_4003(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)
-
-				) {
+				if(source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistConstraintConstrainedElement_4003(source, target);
 		}
 
@@ -515,13 +535,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvent() != null
-
-				) {
+				if(source.getEvent() != null) {
 					return false;
 				}
 			}
-
 			return canExistTimeObservationEvent_4018(source, target);
 		}
 
@@ -530,13 +547,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
 			if(source != null) {
-				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)
-
-				) {
+				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistDurationObservationEvent_4019(source, target);
 		}
 
@@ -545,13 +559,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateInformationItemRepresented_4020(InformationItem source, Classifier target) {
 			if(source != null) {
-				if(source.getRepresenteds().contains(target)
-
-				) {
+				if(source.getRepresenteds().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistInformationItemRepresented_4020(source, target);
 		}
 
@@ -728,9 +739,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				//Information Flow source constraint
 				if(source != null) {
 					if(!((source instanceof Actor) || (source instanceof Node) || (source instanceof UseCase) || (source instanceof Artifact) || (source instanceof Class) || (source instanceof Component) || (source instanceof Port) || (source instanceof Property) || (source instanceof Interface) || (source instanceof Package) || (source instanceof ActivityNode) || (source instanceof ActivityPartition) || (source instanceof InstanceSpecification))) {
-
 						return false;
-
 					}
 					if(source instanceof InstanceSpecification) {
 						EList<Classifier> classes = ((InstanceSpecification)source).getClassifiers();
@@ -744,9 +753,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				//Information Flow target constraint
 				if(target != null) {
 					if(!((target instanceof Actor) || (target instanceof Node) || (target instanceof UseCase) || (target instanceof Artifact) || (target instanceof Class) || (target instanceof Component) || (target instanceof Port) || (target instanceof Property) || (target instanceof Interface) || (target instanceof Package) || (target instanceof ActivityNode) || (target instanceof ActivityPartition) || (target instanceof InstanceSpecification))) {
-
 						return false;
-
 					}
 					if(target instanceof InstanceSpecification) {
 						EList<Classifier> classes = ((InstanceSpecification)target).getClassifiers();
@@ -764,5 +771,4 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 		}
 	}
-
 }

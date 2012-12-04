@@ -74,7 +74,6 @@ public class LiteralBooleanCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,30 +88,22 @@ public class LiteralBooleanCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		// Creation constraint for TopLevelNodes
 		if(!(getElementToEdit() instanceof Package)) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		LiteralBoolean newElement = UMLFactory.eINSTANCE.createLiteralBoolean();
-
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 		ElementInitializers.getInstance().init_LiteralBoolean_2095(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -130,5 +121,4 @@ public class LiteralBooleanCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

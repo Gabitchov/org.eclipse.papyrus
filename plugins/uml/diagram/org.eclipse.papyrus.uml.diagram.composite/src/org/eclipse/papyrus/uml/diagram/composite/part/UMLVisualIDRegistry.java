@@ -18,8 +18,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
+import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.*;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
@@ -102,7 +101,6 @@ public class UMLVisualIDRegistry {
 		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return CompositeStructureDiagramEditPart.VISUAL_ID;
 		}
-
 		return -1;
 	}
 
@@ -129,2261 +127,1405 @@ public class UMLVisualIDRegistry {
 		}
 		switch(containerVisualID) {
 		case CompositeStructureDiagramEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignalEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignalEvent().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEventEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCallEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCallEvent().isSuperTypeOf(domainElement.eClass())) {
 				return CallEventEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getAnyReceiveEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getAnyReceiveEvent().isSuperTypeOf(domainElement.eClass())) {
 				return AnyReceiveEventEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getChangeEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getChangeEvent().isSuperTypeOf(domainElement.eClass())) {
 				return ChangeEventEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeEvent().isSuperTypeOf(domainElement.eClass())) {
 				return TimeEventEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
 				return DurationObservationEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())) {
 				return TimeObservationEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getLiteralBoolean().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getLiteralBoolean().isSuperTypeOf(domainElement.eClass())) {
 				return LiteralBooleanEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getLiteralInteger().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getLiteralInteger().isSuperTypeOf(domainElement.eClass())) {
 				return LiteralIntegerEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getLiteralNull().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getLiteralNull().isSuperTypeOf(domainElement.eClass())) {
 				return LiteralNullEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getLiteralString().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getLiteralString().isSuperTypeOf(domainElement.eClass())) {
 				return LiteralStringEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural().isSuperTypeOf(domainElement.eClass())) {
 				return LiteralUnlimitedNaturalEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStringExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStringExpression().isSuperTypeOf(domainElement.eClass())) {
 				return StringExpressionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueExpression().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueExpressionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeExpression().isSuperTypeOf(domainElement.eClass())) {
 				return TimeExpressionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExpression().isSuperTypeOf(domainElement.eClass())) {
 				return ExpressionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDuration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDuration().isSuperTypeOf(domainElement.eClass())) {
 				return DurationEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeInterval().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeInterval().isSuperTypeOf(domainElement.eClass())) {
 				return TimeIntervalEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationInterval().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationInterval().isSuperTypeOf(domainElement.eClass())) {
 				return DurationIntervalEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterval().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterval().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInstanceValue().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInstanceValue().isSuperTypeOf(domainElement.eClass())) {
 				return InstanceValueEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPart.VISUAL_ID;
 			}
 			break;
 		case ActivityCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ProtocolStateMachineCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case StateMachineCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case FunctionBehaviorCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case OpaqueBehaviorCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case DeviceCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ExecutionEnvironmentCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case NodeCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassCompositeEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case EnumerationEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationLiteralEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case PropertyPartEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ActivityCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case InteractionCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ProtocolStateMachineCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case StateMachineCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case FunctionBehaviorCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case OpaqueBehaviorCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case DeviceCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case NodeCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassCompositeEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case EnumerationEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationLiteralEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 				return PropertyEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
 				return OperationEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 				return PropertyEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
 				return OperationEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationLiteralEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumerationLiteral().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationLiteralEditPartCLN.VISUAL_ID;
 			}
 			break;
 		case ActivityCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ClassCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
@@ -2391,1779 +1533,1091 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConnectableElement().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConnectableElement().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationRoleEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ActivityCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case InteractionCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case NodeCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ClassCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())) {
 				return ActivityCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return ProtocolStateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return FunctionBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())) {
 				return OpaqueBehaviorCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 				return DeviceCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 				return ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 				return NodeCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())) {
 				return ClassCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationCompositeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())) {
 				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())) {
 				return ActorEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return DeploymentSpecificationEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())) {
 				return ArtifactEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())) {
 				return InformationItemEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())) {
 				return SignalEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())) {
 				return UseCaseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
@@ -4171,59 +2625,39 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getCollaborationUse().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationUseEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConnectableElement().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConnectableElement().isSuperTypeOf(domainElement.eClass())) {
 				return CollaborationRoleEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return TimeConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return IntervalConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return InteractionConstraintEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case PropertyPartCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
 			break;
@@ -7403,73 +5837,43 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())) {
 			return ComponentRealizationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getInterfaceRealization().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getInterfaceRealization().isSuperTypeOf(domainElement.eClass())) {
 			return InterfaceRealizationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getSubstitution().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getSubstitution().isSuperTypeOf(domainElement.eClass())) {
 			return SubstitutionEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getRealization().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getRealization().isSuperTypeOf(domainElement.eClass())) {
 			return RealizationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getManifestation().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getManifestation().isSuperTypeOf(domainElement.eClass())) {
 			return ManifestationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())) {
 			return AbstractionEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())) {
 			return UsageEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getDeployment().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getDeployment().isSuperTypeOf(domainElement.eClass())) {
 			return DeploymentEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
-
-		&& isDependency_4017((Dependency)domainElement)
-
-		) {
+		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass()) && isDependency_4017((Dependency)domainElement)) {
 			return RoleBindingEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
-
-		&& isDependency_4010((Dependency)domainElement)
-
-		) {
+		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass()) && isDependency_4010((Dependency)domainElement)) {
 			return DependencyEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())) {
 			return ConnectorEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())) {
 			return InformationFlowEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -7487,9 +5891,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isProperty_3070(View containerView, Property domainElement) {
-
 		// Property / CollaborationRole constraint		
 		// Restriction for the case where domainElement owner is a Collaboration
 		// If the domainElement is not referenced as one of its owner role
@@ -7502,7 +5904,6 @@ public class UMLVisualIDRegistry {
 				return false;
 			}
 		}
-
 		// General case : no restriction
 		return true;
 	}
@@ -7510,9 +5911,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isDependency_4017(Dependency domainElement) {
-
 		// Test if the dependency is a RoleBinding
 		if(domainElement.getOwner() instanceof CollaborationUse) {
 			CollaborationUse owner = (CollaborationUse)domainElement.getOwner();
@@ -7526,9 +5925,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isDependency_4010(Dependency domainElement) {
-
 		// Test if the dependency is not a RoleBinding
 		if(domainElement.getOwner() instanceof CollaborationUse) {
 			CollaborationUse owner = (CollaborationUse)domainElement.getOwner();
@@ -7542,1929 +5939,186 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if(diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		if(candidate == -1) {
+			//unrecognized id is always bad
+			return false;
 		}
-		return diagramViewInfo;
+		int basic = getNodeVisualID(containerView, domainElement);
+		return basic == candidate;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getPackage_1000ViewInfo() {
-		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-
-		viewInfo = new BaseViewInfo(2060, ViewInfo.Node, "Activity");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2061, ViewInfo.Node, "Interaction");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2062, ViewInfo.Node, "ProtocolStateMachine");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2063, ViewInfo.Node, "StateMachine");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2064, ViewInfo.Node, "FunctionBehavior");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2065, ViewInfo.Node, "OpaqueBehavior");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2069, ViewInfo.Node, "Component");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2070, ViewInfo.Node, "Device");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2071, ViewInfo.Node, "ExecutionEnvironment");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2072, ViewInfo.Node, "Node");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2073, ViewInfo.Node, "Class");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2075, ViewInfo.Node, "Collaboration");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2076, ViewInfo.Node, "Interface");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2066, ViewInfo.Node, "PrimitiveType");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2067, ViewInfo.Node, "Enumeration");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2068, ViewInfo.Node, "DataType");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2077, ViewInfo.Node, "Actor");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2078, ViewInfo.Node, "DeploymentSpecification");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2079, ViewInfo.Node, "Artifact");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2080, ViewInfo.Node, "InformationItem");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2081, ViewInfo.Node, "Signal");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2082, ViewInfo.Node, "UseCase");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2083, ViewInfo.Node, "SignalEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2084, ViewInfo.Node, "CallEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2085, ViewInfo.Node, "AnyReceiveEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2088, ViewInfo.Node, "ChangeEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2089, ViewInfo.Node, "TimeEvent");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2093, ViewInfo.Node, "DurationObservation");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2094, ViewInfo.Node, "TimeObservation");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2095, ViewInfo.Node, "LiteralBoolean");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2096, ViewInfo.Node, "LiteralInteger");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2097, ViewInfo.Node, "LiteralNull");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2098, ViewInfo.Node, "LiteralString");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2099, ViewInfo.Node, "LiteralUnlimitedNatural");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2100, ViewInfo.Node, "StringExpression");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2101, ViewInfo.Node, "OpaqueExpression");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2102, ViewInfo.Node, "TimeExpression");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2103, ViewInfo.Node, "Expression");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2104, ViewInfo.Node, "Duration");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2105, ViewInfo.Node, "TimeInterval");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2106, ViewInfo.Node, "DurationInterval");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2107, ViewInfo.Node, "Interval");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2108, ViewInfo.Node, "InstanceValue");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2109, ViewInfo.Node, "Comment");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2110, ViewInfo.Node, "DurationConstraint");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2111, ViewInfo.Node, "TimeConstraint");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2112, ViewInfo.Node, "IntervalConstraint");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2113, ViewInfo.Node, "InteractionConstraint");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2114, ViewInfo.Node, "Constraint");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6016, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6017, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6018, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6019, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6020, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6021, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6022, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4017, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6027, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6028, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6023, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4013, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6025, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6050, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6051, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6052, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4015, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4020, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6030, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4021, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6031, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6032, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "Port");
-
-		root.addNode(2073, viewInfo);
-
-		root.addNode(3085, viewInfo);
-
-		root.addNode(3070, viewInfo);
-
-		root.addNode(3072, viewInfo);
-
-		root.addNode(2060, viewInfo);
-
-		root.addNode(3073, viewInfo);
-
-		root.addNode(3074, viewInfo);
-
-		root.addNode(3075, viewInfo);
-
-		root.addNode(3076, viewInfo);
-
-		root.addNode(3077, viewInfo);
-
-		root.addNode(2061, viewInfo);
-
-		root.addNode(2062, viewInfo);
-
-		root.addNode(2063, viewInfo);
-
-		root.addNode(2064, viewInfo);
-
-		root.addNode(2065, viewInfo);
-
-		root.addNode(3081, viewInfo);
-
-		root.addNode(3082, viewInfo);
-
-		root.addNode(3083, viewInfo);
-
-		root.addNode(3084, viewInfo);
-
-		root.addNode(2072, viewInfo);
-
-		root.addNode(2071, viewInfo);
-
-		root.addNode(2070, viewInfo);
-
-		root.addNode(2069, viewInfo);
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7077, viewInfo);
-
-		viewInfo = new BaseViewInfo(3088, ViewInfo.Node, "Parameter");
-
-		root.addNode(3072, viewInfo);
-
-		root.addNode(3073, viewInfo);
-
-		root.addNode(3074, viewInfo);
-
-		root.addNode(3075, viewInfo);
-
-		root.addNode(3076, viewInfo);
-
-		root.addNode(3077, viewInfo);
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(2060, viewInfo);
-
-		root.addNode(2061, viewInfo);
-
-		root.addNode(2062, viewInfo);
-
-		root.addNode(2063, viewInfo);
-
-		root.addNode(2064, viewInfo);
-
-		root.addNode(2065, viewInfo);
-
-		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "Property");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		root.addNode(7077, viewInfo);
-
-		viewInfo = new BaseViewInfo(3115, ViewInfo.Node, "ConnectableElement");
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "CollaborationUse");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		viewInfo = new BaseViewInfo(3072, ViewInfo.Node, "Activity");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3073, ViewInfo.Node, "Interaction");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "ProtocolStateMachine");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "StateMachine");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3076, ViewInfo.Node, "FunctionBehavior");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3077, ViewInfo.Node, "OpaqueBehavior");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "Component");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3082, ViewInfo.Node, "Device");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3083, ViewInfo.Node, "ExecutionEnvironment");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3084, ViewInfo.Node, "Node");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3085, ViewInfo.Node, "Class");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3086, ViewInfo.Node, "Collaboration");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3087, ViewInfo.Node, "Interface");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3078, ViewInfo.Node, "PrimitiveType");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3079, ViewInfo.Node, "Enumeration");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "DataType");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3091, ViewInfo.Node, "Actor");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3092, ViewInfo.Node, "DeploymentSpecification");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3093, ViewInfo.Node, "Artifact");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3094, ViewInfo.Node, "InformationItem");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3095, ViewInfo.Node, "Signal");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3096, ViewInfo.Node, "UseCase");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		viewInfo = new BaseViewInfo(3097, ViewInfo.Node, "Comment");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		root.addNode(7077, viewInfo);
-
-		viewInfo = new BaseViewInfo(3116, ViewInfo.Node, "DurationConstraint");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		viewInfo = new BaseViewInfo(3117, ViewInfo.Node, "TimeConstraint");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		viewInfo = new BaseViewInfo(3118, ViewInfo.Node, "IntervalConstraint");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		viewInfo = new BaseViewInfo(3119, ViewInfo.Node, "InteractionConstraint");
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		viewInfo = new BaseViewInfo(3120, ViewInfo.Node, "Constraint");
-
-		root.addNode(7073, viewInfo);
-
-		root.addNode(7050, viewInfo);
-
-		root.addNode(7051, viewInfo);
-
-		root.addNode(7052, viewInfo);
-
-		root.addNode(7053, viewInfo);
-
-		root.addNode(7054, viewInfo);
-
-		root.addNode(7055, viewInfo);
-
-		root.addNode(7056, viewInfo);
-
-		root.addNode(7057, viewInfo);
-
-		root.addNode(7058, viewInfo);
-
-		root.addNode(7059, viewInfo);
-
-		root.addNode(7060, viewInfo);
-
-		root.addNode(7061, viewInfo);
-
-		root.addNode(7063, viewInfo);
-
-		root.addNode(7064, viewInfo);
-
-		root.addNode(7065, viewInfo);
-
-		root.addNode(7066, viewInfo);
-
-		root.addNode(7067, viewInfo);
-
-		root.addNode(7068, viewInfo);
-
-		root.addNode(7069, viewInfo);
-
-		root.addNode(7070, viewInfo);
-
-		root.addNode(7071, viewInfo);
-
-		root.addNode(7072, viewInfo);
-
-		root.addNode(7075, viewInfo);
-
-		viewInfo = new BaseViewInfo(3101, ViewInfo.Node, "Property");
-
-		root.addNode(7033, viewInfo);
-
-		root.addNode(7036, viewInfo);
-
-		viewInfo = new BaseViewInfo(3102, ViewInfo.Node, "Operation");
-
-		root.addNode(7034, viewInfo);
-
-		root.addNode(7037, viewInfo);
-
-		viewInfo = new BaseViewInfo(3100, ViewInfo.Node, "Reception");
-
-		viewInfo = new BaseViewInfo(3066, ViewInfo.Node, "EnumerationLiteral");
-
-		root.addNode(2067, viewInfo);
-
-		root.addNode(3079, viewInfo);
-
-		root.addNode(7049, viewInfo);
-
-		root.addNode(7048, viewInfo);
-
-		viewInfo = new BaseViewInfo(3103, ViewInfo.Node, "Activity");
-
-		viewInfo = new BaseViewInfo(3104, ViewInfo.Node, "Interaction");
-
-		viewInfo = new BaseViewInfo(3105, ViewInfo.Node, "ProtocolStateMachine");
-
-		viewInfo = new BaseViewInfo(3106, ViewInfo.Node, "StateMachine");
-
-		viewInfo = new BaseViewInfo(3107, ViewInfo.Node, "FunctionBehavior");
-
-		viewInfo = new BaseViewInfo(3108, ViewInfo.Node, "OpaqueBehavior");
-
-		viewInfo = new BaseViewInfo(3109, ViewInfo.Node, "Collaboration");
-
-		viewInfo = new BaseViewInfo(3110, ViewInfo.Node, "Interface");
-
-		viewInfo = new BaseViewInfo(3111, ViewInfo.Node, "Enumeration");
-
-		viewInfo = new BaseViewInfo(3112, ViewInfo.Node, "PrimitiveType");
-
-		viewInfo = new BaseViewInfo(3113, ViewInfo.Node, "DataType");
-
-		viewInfo = new BaseViewInfo(3114, ViewInfo.Node, "Class");
-
-		return root;
+	public static boolean isCompartmentVisualID(int visualID) {
+		switch(visualID) {
+		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
+		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
+		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
+		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
+		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
+		case ActivityCompositeCompartmentEditPartCN.VISUAL_ID:
+		case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
+		case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
+		case FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
+		case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
+		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
+		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ClassCompositeCompartmentEditPartCN.VISUAL_ID:
+		case CollaborationCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ActivityCompositeCompartmentEditPart.VISUAL_ID:
+		case InteractionCompositeCompartmentEditPart.VISUAL_ID:
+		case ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID:
+		case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
+		case FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID:
+		case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
+		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
+		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
+		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
+		case NodeCompositeCompartmentEditPart.VISUAL_ID:
+		case ClassCompositeCompartmentEditPart.VISUAL_ID:
+		case CollaborationCompositeCompartmentEditPart.VISUAL_ID:
+		case PropertyPartCompartmentEditPartCN.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
 	}
 
+	/**
+	 * @generated
+	 */
+	public static boolean isSemanticLeafVisualID(int visualID) {
+		switch(visualID) {
+		case CompositeStructureDiagramEditPart.VISUAL_ID:
+			return false;
+		case PrimitiveTypeEditPart.VISUAL_ID:
+		case InterfaceEditPart.VISUAL_ID:
+		case ActorEditPart.VISUAL_ID:
+		case DeploymentSpecificationEditPart.VISUAL_ID:
+		case ArtifactEditPart.VISUAL_ID:
+		case InformationItemEditPart.VISUAL_ID:
+		case SignalEditPart.VISUAL_ID:
+		case UseCaseEditPart.VISUAL_ID:
+		case SignalEventEditPart.VISUAL_ID:
+		case CallEventEditPart.VISUAL_ID:
+		case AnyReceiveEventEditPart.VISUAL_ID:
+		case ChangeEventEditPart.VISUAL_ID:
+		case TimeEventEditPart.VISUAL_ID:
+		case DurationObservationEditPart.VISUAL_ID:
+		case TimeObservationEditPart.VISUAL_ID:
+		case LiteralBooleanEditPart.VISUAL_ID:
+		case LiteralIntegerEditPart.VISUAL_ID:
+		case LiteralNullEditPart.VISUAL_ID:
+		case LiteralStringEditPart.VISUAL_ID:
+		case LiteralUnlimitedNaturalEditPart.VISUAL_ID:
+		case StringExpressionEditPart.VISUAL_ID:
+		case OpaqueExpressionEditPart.VISUAL_ID:
+		case TimeExpressionEditPart.VISUAL_ID:
+		case ExpressionEditPart.VISUAL_ID:
+		case DurationEditPart.VISUAL_ID:
+		case TimeIntervalEditPart.VISUAL_ID:
+		case DurationIntervalEditPart.VISUAL_ID:
+		case IntervalEditPart.VISUAL_ID:
+		case InstanceValueEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
+		case DurationConstraintEditPart.VISUAL_ID:
+		case TimeConstraintEditPart.VISUAL_ID:
+		case IntervalConstraintEditPart.VISUAL_ID:
+		case InteractionConstraintEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
+		case EnumerationLiteralEditPartCLN.VISUAL_ID:
+		case PortEditPart.VISUAL_ID:
+		case CollaborationUseEditPartCN.VISUAL_ID:
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+		case InterfaceEditPartCN.VISUAL_ID:
+		case ParameterEditPart.VISUAL_ID:
+		case ActorEditPartCN.VISUAL_ID:
+		case DeploymentSpecificationEditPartCN.VISUAL_ID:
+		case ArtifactEditPartCN.VISUAL_ID:
+		case InformationItemEditPartCN.VISUAL_ID:
+		case SignalEditPartCN.VISUAL_ID:
+		case UseCaseEditPartCN.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
+		case ReceptionEditPartCLN.VISUAL_ID:
+		case PropertyEditPartCLN.VISUAL_ID:
+		case OperationEditPartCLN.VISUAL_ID:
+		case ActivityEditPartCLN.VISUAL_ID:
+		case InteractionEditPartCLN.VISUAL_ID:
+		case ProtocolStateMachineEditPartCLN.VISUAL_ID:
+		case StateMachineEditPartCLN.VISUAL_ID:
+		case FunctionBehaviorEditPartCLN.VISUAL_ID:
+		case OpaqueBehaviorEditPartCLN.VISUAL_ID:
+		case CollaborationEditPartCLN.VISUAL_ID:
+		case InterfaceEditPartCLN.VISUAL_ID:
+		case EnumerationEditPartCLN.VISUAL_ID:
+		case PrimitiveTypeEditPartCLN.VISUAL_ID:
+		case DataTypeEditPartCLN.VISUAL_ID:
+		case ClassEditPartCLN.VISUAL_ID:
+		case CollaborationRoleEditPartCN.VISUAL_ID:
+		case DurationConstraintEditPartCN.VISUAL_ID:
+		case TimeConstraintEditPartCN.VISUAL_ID:
+		case IntervalConstraintEditPartCN.VISUAL_ID:
+		case InteractionConstraintEditPartCN.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
+		/**
+		 * @generated
+		 */
+		public int getVisualID(View view) {
+			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getVisualID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public String getModelID(View view) {
+			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getModelID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public int getNodeVisualID(View containerView, EObject domainElement) {
+			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isCompartmentVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isSemanticLeafVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
+		}
+	};
 }
