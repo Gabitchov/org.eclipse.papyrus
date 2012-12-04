@@ -13,12 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.ui;
 
+import javax.swing.text.View;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -33,7 +32,7 @@ import org.eclipse.swt.widgets.Control;
 public class GMFEmbeddedEditorActionDelegate extends OpenEmbeddedTextEditorObjectActionDelegate {
 
 	/** selected element in the diagram */
-	protected GraphicalEditPart selectedElement;
+	protected IGraphicalEditPart selectedElement;
 
 	/**
 	 * {@inheritDoc}
@@ -118,8 +117,8 @@ public class GMFEmbeddedEditorActionDelegate extends OpenEmbeddedTextEditorObjec
 	public void selectionChanged(IAction action, ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
 			Object o = ((IStructuredSelection)selection).getFirstElement();
-			if(o instanceof GraphicalEditPart) {
-				selectedElement = ((GraphicalEditPart)o);
+			if(o instanceof IGraphicalEditPart) {
+				selectedElement = ((IGraphicalEditPart)o);
 			}
 		}
 	}
