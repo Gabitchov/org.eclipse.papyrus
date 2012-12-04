@@ -191,8 +191,17 @@ if («EXPAND checkSemanticElement») {
 
 «DEFINE checkDomainElementMetaclass FOR genmodel::GenClass»«EXPAND MetaModel::MetaClass».isSuperTypeOf(domainElement.eClass())«ENDDEFINE»
 
+«REM» [ExtendedConstraint] Model selector constraint  «ENDREM»
 «DEFINE checkDomainElementConstraints(commonBase : gmfgen::GenCommonBase) FOR gmfgen::TypeModelFacet-»
+«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
+«IF commonBase.oclIsTypeOf(gmfgen::GenLink)-»
+«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
 «IF null <> modelElementSelector» && «EXPAND _domainElementConstraintMethodName FOR commonBase»(«EXPAND MetaModel::CastEObject('domainElement') FOR metaClass»)«ENDIF-»
+«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
+«ELSE-»
+«IF null <> modelElementSelector» && «EXPAND _domainElementConstraintMethodName FOR commonBase»(containerView, «EXPAND MetaModel::CastEObject('domainElement') FOR metaClass»)«ENDIF-»
+«ENDIF-»
+«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
 «ENDDEFINE»
 
 «DEFINE checkSemanticElement(genLink : gmfgen::GenLink) FOR gmfgen::LinkModelFacet»«ERROR 'checkSemanticElement is supported only for TypeLinkModelFacet: ' + self.repr()»«ENDDEFINE»
@@ -337,12 +346,21 @@ private static boolean isDiagram(«EXPAND MetaModel::QualifiedClassName FOR doma
 
 «DEFINE _domainElementConstraintMethod(diagramElement : gmfgen::GenCommonBase, expression : gmfgen::ValueExpression, context : genmodel::GenClass) FOR gmfgen::GenExpressionProviderBase»«ERROR 'Constraint method is not supported for ' + self.repr()»«ENDDEFINE»
 
+«REM» [ExtendedConstraint] Model selector constraint  «ENDREM»
 «DEFINE _domainElementConstraintMethod(diagramElement : gmfgen::GenCommonBase, expression : gmfgen::ValueExpression, context : genmodel::GenClass) FOR gmfgen::GenJavaExpressionProvider-»
 	«EXPAND xpt::Common::generatedMemberComment»
+	«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
+	«IF diagramElement.oclIsTypeOf(gmfgen::GenLink)-»
+	«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
 	private static boolean «EXPAND _domainElementConstraintMethodName FOR diagramElement»(«EXPAND MetaModel::QualifiedClassName FOR context» domainElement) {
-«IF injectExpressionBody and (expression.body <> null and expression.body.size() <> 0)-»
+	«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
+	«ELSE-»
+	private static boolean «EXPAND _domainElementConstraintMethodName FOR diagramElement»(org.eclipse.gmf.runtime.notation.View containerView, «EXPAND MetaModel::QualifiedClassName FOR context» domainElement) {
+	«ENDIF-»
+	«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
+«IF injectExpressionBody and (expression.body <> null and expression.body.length() <> 0)-»
 		«expression.body»
-«ELSEIF throwException or (injectExpressionBody and (expression.body = null or expression.body.size() = 0))-»
+«ELSEIF throwException or (injectExpressionBody and (expression.body = null or expression.body.length() = 0))-»
 		// FIXME: implement this method 
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new java.lang.UnsupportedOperationException("No java implementation provided in '«EXPAND _domainElementConstraintMethodName FOR diagramElement»' operation");«EXPAND xpt::Common::nonNLS»
