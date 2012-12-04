@@ -30,6 +30,5 @@ public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage 
 	 */
 	public DiagramRulersAndGridPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
-
 	}
 }

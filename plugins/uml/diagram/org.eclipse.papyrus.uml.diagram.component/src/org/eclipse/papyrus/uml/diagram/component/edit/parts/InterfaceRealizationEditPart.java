@@ -7,14 +7,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.InterfaceRealizationItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class InterfaceRealizationEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,7 +43,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new SimpleDependency();
 	}
@@ -66,9 +64,6 @@ implements ITreeBranchEditPart {
 		 */
 		public SimpleDependency() {
 			this.setForegroundColor(ColorConstants.black);
-
 		}
-
 	}
-
 }

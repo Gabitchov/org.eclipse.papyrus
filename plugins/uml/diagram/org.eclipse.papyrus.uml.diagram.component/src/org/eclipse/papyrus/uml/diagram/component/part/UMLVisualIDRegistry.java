@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionAppliedStereotypeEditPart;
@@ -133,7 +134,6 @@ public class UMLVisualIDRegistry {
 		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return ComponentDiagramEditPart.VISUAL_ID;
 		}
-
 		return -1;
 	}
 
@@ -160,93 +160,63 @@ public class UMLVisualIDRegistry {
 		}
 		switch(containerVisualID) {
 		case ComponentDiagramEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 				return PackageEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentEditPartPCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
 			}
 			break;
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())) {
 				return InterfaceEditPartPCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPartPCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPartPCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartPCN.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeCompartmentEditPartPCN.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
 			}
 			break;
@@ -460,44 +430,28 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())) {
 			return UsageEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getInterfaceRealization().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getInterfaceRealization().isSuperTypeOf(domainElement.eClass())) {
 			return InterfaceRealizationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getSubstitution().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getSubstitution().isSuperTypeOf(domainElement.eClass())) {
 			return SubstitutionEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getManifestation().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getManifestation().isSuperTypeOf(domainElement.eClass())) {
 			return ManifestationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())) {
 			return ComponentRealizationEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())) {
 			return AbstractionEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())) {
 			return DependencyEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -515,140 +469,97 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if(diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		if(candidate == -1) {
+			//unrecognized id is always bad
+			return false;
 		}
-		return diagramViewInfo;
+		int basic = getNodeVisualID(containerView, domainElement);
+		return basic == candidate;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getPackage_1000ViewInfo() {
-		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-
-		viewInfo = new BaseViewInfo(2002, ViewInfo.Node, "Component");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(2003, ViewInfo.Node, "Interface");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(3200, ViewInfo.Node, "Package");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(3201, ViewInfo.Node, "Comment");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(3199, ViewInfo.Node, "Constraint");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(2, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6020, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4014, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6022, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(3, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(4, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4013, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6021, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4015, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		labelInfo = new BaseViewInfo(6023, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-
-		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "Port");
-
-		root.addNode(2002, viewInfo);
-
-		root.addNode(3070, viewInfo);
-
-		root.addNode(3071, viewInfo);
-
-		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "Component");
-
-		root.addNode(7003, viewInfo);
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7001, viewInfo);
-
-		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "Component");
-
-		root.addNode(7002, viewInfo);
-
-		viewInfo = new BaseViewInfo(3072, ViewInfo.Node, "Interface");
-
-		root.addNode(7002, viewInfo);
-
-		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "Comment");
-
-		root.addNode(7002, viewInfo);
-
-		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "Constraint");
-
-		root.addNode(7002, viewInfo);
-
-		return root;
+	public static boolean isCompartmentVisualID(int visualID) {
+		switch(visualID) {
+		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
+		case ComponentCompositeCompartmentEditPartPCN.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
 	}
 
+	/**
+	 * @generated
+	 */
+	public static boolean isSemanticLeafVisualID(int visualID) {
+		switch(visualID) {
+		case ComponentDiagramEditPart.VISUAL_ID:
+			return false;
+		case InterfaceEditPart.VISUAL_ID:
+		case PortEditPart.VISUAL_ID:
+		case InterfaceEditPartPCN.VISUAL_ID:
+		case CommentEditPartPCN.VISUAL_ID:
+		case ConstraintEditPartPCN.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
+		/**
+		 * @generated
+		 */
+		public int getVisualID(View view) {
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getVisualID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public String getModelID(View view) {
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getModelID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public int getNodeVisualID(View containerView, EObject domainElement) {
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isCompartmentVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isSemanticLeafVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
+		}
+	};
 }

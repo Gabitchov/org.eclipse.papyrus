@@ -1,42 +1,17 @@
 package org.eclipse.papyrus.uml.diagram.component.part;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.tooling.runtime.update.UpdaterNodeDescriptor;
 
 /**
  * @generated
  */
-public class UMLNodeDescriptor {
-
-	/**
-	 * @generated
-	 */
-	private final EObject myModelElement;
-
-	/**
-	 * @generated
-	 */
-	private final int myVisualID;
+public class UMLNodeDescriptor extends UpdaterNodeDescriptor {
 
 	/**
 	 * @generated
 	 */
 	public UMLNodeDescriptor(EObject modelElement, int visualID) {
-		myModelElement = modelElement;
-		myVisualID = visualID;
+		super(modelElement, visualID);
 	}
-
-	/**
-	 * @generated
-	 */
-	public EObject getModelElement() {
-		return myModelElement;
-	}
-
-	/**
-	 * @generated
-	 */
-	public int getVisualID() {
-		return myVisualID;
-	}
-
 }

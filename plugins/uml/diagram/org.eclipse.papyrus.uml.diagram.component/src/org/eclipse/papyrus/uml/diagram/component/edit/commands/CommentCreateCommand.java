@@ -62,7 +62,6 @@ public class CommentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -77,30 +76,22 @@ public class CommentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		// Creation constraint for TopLevelNodes
 		if(!(getElementToEdit() instanceof Package)) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Comment newElement = UMLFactory.eINSTANCE.createComment();
-
 		Element owner = (Element)getElementToEdit();
 		owner.getOwnedComments().add(newElement);
-
 		ElementInitializers.getInstance().init_Comment_3201(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -118,5 +109,4 @@ public class CommentCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

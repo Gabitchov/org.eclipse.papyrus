@@ -59,14 +59,12 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = ComponentDiagramEditPart.MODEL_ID + "_ComponentRealization";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -91,9 +89,7 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Name", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -107,5 +103,4 @@ public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

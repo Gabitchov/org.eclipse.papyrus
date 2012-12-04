@@ -61,7 +61,6 @@ public class ComponentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -76,30 +75,22 @@ public class ComponentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		// Creation constraint for TopLevelNodes
 		if(!(getElementToEdit() instanceof Package)) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Component newElement = UMLFactory.eINSTANCE.createComponent();
-
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 		ElementInitializers.getInstance().init_Component_2002(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -117,5 +108,4 @@ public class ComponentCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

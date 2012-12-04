@@ -14,9 +14,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.GeneralizationIte
 /**
  * @generated
  */
-public class GeneralizationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -99,5 +97,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public GeneralizationFigure getPrimaryShape() {
 		return (GeneralizationFigure)getFigure();
 	}
-
 }

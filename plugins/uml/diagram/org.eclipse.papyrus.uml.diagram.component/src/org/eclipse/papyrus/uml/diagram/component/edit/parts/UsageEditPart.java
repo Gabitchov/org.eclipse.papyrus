@@ -5,15 +5,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.UsageDecoration;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UsageItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class UsageEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class UsageEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -53,5 +52,4 @@ implements ITreeBranchEditPart {
 	public UsageDecoration getPrimaryShape() {
 		return (UsageDecoration)getFigure();
 	}
-
 }

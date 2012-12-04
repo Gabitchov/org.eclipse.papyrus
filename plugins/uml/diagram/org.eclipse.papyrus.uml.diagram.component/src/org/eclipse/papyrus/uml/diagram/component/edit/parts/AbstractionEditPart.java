@@ -15,9 +15,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.AbstractionItemSe
 /**
  * @generated
  */
-public class AbstractionEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class AbstractionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -107,5 +105,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

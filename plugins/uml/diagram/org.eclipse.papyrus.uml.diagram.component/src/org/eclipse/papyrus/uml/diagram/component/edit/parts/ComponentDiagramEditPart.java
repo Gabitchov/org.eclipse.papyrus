@@ -14,7 +14,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -25,7 +27,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 /**
  * @generated
  */
-public class ComponentDiagramEditPart extends DiagramEditPart {
+public class ComponentDiagramEditPart extends PapyrusDiagramEditPart {
 
 	/**
 	 * @generated
@@ -49,13 +51,11 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentDiagramItemSemanticEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.ModelCanonicalEditPolicy());
-
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
@@ -106,31 +106,4 @@ public class ComponentDiagramEditPart extends DiagramEditPart {
 			return Collections.singletonList(mh);
 		}
 	}
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-
-		super.handleNotificationEvent(event);
-		if(event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
-			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				//modification form MOSKitt approach, canonical policies are not called
-				MDTUtil.filterDiagramViews(this.getDiagramView());
-			}
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object getAdapter(Class adapter) {
-
-		if(adapter != null && adapter.equals(ViewInfo.class)) {
-			return UMLVisualIDRegistry.getDiagramViewInfo();
-		}
-		return super.getAdapter(adapter);
-	}
-
 }

@@ -22,6 +22,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.editpolicies.SelectionEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -29,7 +30,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
  * 
  * @generated
  */
-public class UMLTextSelectionEditPolicy extends SelectionEditPolicy {
+public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements IRefreshableFeedbackEditPolicy {
 
 	/** The selection feedback figure. @generated */
 	private IFigure selectionFeedbackFigure;

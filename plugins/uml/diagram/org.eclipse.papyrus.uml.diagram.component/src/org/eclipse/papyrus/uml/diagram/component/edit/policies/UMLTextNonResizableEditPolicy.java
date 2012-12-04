@@ -28,6 +28,7 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableEditPolicyEx;
 import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,7 +36,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
  * 
  * @generated
  */
-public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
+public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx implements IRefreshableFeedbackEditPolicy {
 
 	/** The selection feedback figure. @generated */
 	private IFigure selectionFeedbackFigure;

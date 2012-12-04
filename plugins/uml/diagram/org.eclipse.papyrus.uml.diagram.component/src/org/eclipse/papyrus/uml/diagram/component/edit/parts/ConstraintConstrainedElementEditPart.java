@@ -7,14 +7,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,7 +43,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new CommentLinkDescriptor();
 	}
@@ -66,9 +64,6 @@ implements ITreeBranchEditPart {
 		 */
 		public CommentLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }
