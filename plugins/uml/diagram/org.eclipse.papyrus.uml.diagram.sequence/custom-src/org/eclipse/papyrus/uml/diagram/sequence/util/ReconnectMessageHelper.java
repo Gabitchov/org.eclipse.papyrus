@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -149,5 +150,33 @@ public class ReconnectMessageHelper {
 				}
 			}
 		}
+	}
+
+	/**
+	 * It seems that OCL constraints can not hold everything about reconnecting messages.
+	 * 
+	 * @param message
+	 * @param newTarget
+	 */
+	public static boolean canReorientTarget(Message message, Element newTarget) {
+		if(message == null || newTarget == null) {
+			return false;
+		}
+		MessageSort messageSort = message.getMessageSort();
+		if(MessageSort.SYNCH_CALL_LITERAL == messageSort) {
+			return newTarget instanceof ExecutionSpecification;
+		}
+		return true;
+	}
+
+	public static boolean canReorientSource(Message message, Element newSource) {
+		if(message == null || newSource == null) {
+			return false;
+		}
+		MessageSort messageSort = message.getMessageSort();
+		if(MessageSort.SYNCH_CALL_LITERAL == messageSort) {
+			return newSource instanceof ExecutionSpecification;
+		}
+		return true;
 	}
 }

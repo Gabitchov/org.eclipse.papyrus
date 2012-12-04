@@ -305,7 +305,8 @@ public class SequenceDeleteHelper {
 	public static void addDeleteMessageRelatedTimeObservationLinkCommand(
 			TransactionalEditingDomain editingDomain, EditPart editPart,
 			CompositeCommand command, MessageEnd messageEnd,boolean deleteRelatedEvent) {
-		if(messageEnd != null){
+		//Bug fix: messageEnd maybe a Gate instance.
+		if(messageEnd != null && messageEnd instanceof OccurrenceSpecification){
 			OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) messageEnd;
 			EList<Lifeline> receiveCovereds = occurrenceSpecification.getCovereds();
 			CompoundCommand CompoundCommand = new CompoundCommand();

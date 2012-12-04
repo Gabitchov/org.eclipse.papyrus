@@ -36,7 +36,6 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -1113,39 +1112,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 			return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.BOTTOM);
 		}
 		return super.getSourceConnectionAnchor(connEditPart);
-	}
-
-	/**
-	 * Override for add elements on ExecutionSpecification
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			return getParent().getCommand(request);
-		}
-		return super.getCommand(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void showSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().showSourceFeedback(request);
-		}
-		super.showSourceFeedback(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void eraseSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().eraseSourceFeedback(request);
-		}
-		super.eraseSourceFeedback(request);
 	}
 
 }

@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
@@ -59,6 +60,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -83,6 +85,22 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	/** The default spacing used between Execution Specification */
 	private final static int SPACING_HEIGHT = 5;
 
+	// force location of time/duration elements and ES
+	private static final String TIME_CONSTRAINT_HINT = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+
+	private static final String TIME_OBSERVATION_HINT = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+
+	private static final String DURATION_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
+
+	private static final String ACTION_EXECUTION_SPECIFICATION_HINT = ((IHintedType)UMLElementTypes.ActionExecutionSpecification_3006).getSemanticHint();
+
+	private static final String BEHAVIOR_EXECUTION_SPECIFICATION_HINT = ((IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003).getSemanticHint();
+
+	private static final String CO_REGION_HINT = ((IHintedType)UMLElementTypes.CombinedFragment_3018).getSemanticHint();
+
+	private HighlightUtil highlightUtil = new HighlightUtil();
+
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -94,33 +112,25 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				ViewDescriptor viewDescriptor = cvr.getViewDescriptors().iterator().next();
 				String semanticHint = viewDescriptor.getSemanticHint();
 
-				// force location of time/duration elements and ES
-				String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
-				String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
-				String durationConstraintOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
-				String actionExecutionSpecificationHint = ((IHintedType)UMLElementTypes.ActionExecutionSpecification_3006).getSemanticHint();
-				String behaviorExecutionSpecificationHint = ((IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003).getSemanticHint();
-				String coRegionHint = ((IHintedType)UMLElementTypes.CombinedFragment_3018).getSemanticHint();
-
-				if(timeConstraintHint.equals(semanticHint) || timeObservationHint.equals(semanticHint)) {
+				if(TIME_CONSTRAINT_HINT.equals(semanticHint) || TIME_OBSERVATION_HINT.equals(semanticHint)) {
 					Command cmd = getCommandForTimeObservationOrConstraint(cvr, viewDescriptor);
 					if(cmd != null) {
 						return cmd;
 					}
 				}
-				if(durationConstraintOnLifelineHint.equals(semanticHint)) {
+				if(DURATION_CONSTRAINT_ON_LIFELINE_HINT.equals(semanticHint)) {
 					Command cmd = getCommandForDurationConstraint(cvr, viewDescriptor);
 					if(cmd != null) {
 						return cmd;
 					}
 				}
-				if(actionExecutionSpecificationHint.equals(semanticHint) || behaviorExecutionSpecificationHint.equals(semanticHint)) {
-					Command cmd = getCommandForExecutionSpecificationCreation(cvr, viewDescriptor);
+				if(ACTION_EXECUTION_SPECIFICATION_HINT.equals(semanticHint) || BEHAVIOR_EXECUTION_SPECIFICATION_HINT.equals(semanticHint)) {
+						Command cmd = getCommandForExecutionSpecificationCreation(cvr, viewDescriptor);
 					if(cmd != null) {
 						return cmd;
 					}
 				}
-				if(coRegionHint.equals(semanticHint)) {
+				if(CO_REGION_HINT.equals(semanticHint)) {
 					Command cmd = getCommandForCoRegionCreation(cvr, viewDescriptor);
 					if(cmd != null) {
 						return cmd;
@@ -132,6 +142,35 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		return super.getCreateCommand(request);
 	}
 	
+	@Override
+	protected void showLayoutTargetFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			CreateUnspecifiedTypeRequest cvr = (CreateUnspecifiedTypeRequest)request;
+			if(!cvr.getElementTypes().isEmpty()) {
+				IHintedType elementType = (IHintedType)cvr.getElementTypes().iterator().next();
+				String semanticHint = elementType.getSemanticHint();
+				EditPart editPartForHighlight = getHost();
+				if(ACTION_EXECUTION_SPECIFICATION_HINT.equals(semanticHint) || BEHAVIOR_EXECUTION_SPECIFICATION_HINT.equals(semanticHint)) {
+					ShapeNodeEditPart parentExecuteSpecification = getParentWhenCreationExecuteSpecification(cvr.getLocation(), cvr.getSize(), semanticHint);
+					if(parentExecuteSpecification != null) {
+						editPartForHighlight = parentExecuteSpecification;
+					}
+				}
+				if(editPartForHighlight != null) {
+					highlightUtil.unhighlight();
+					highlightUtil.highlight(editPartForHighlight);
+				}
+			}
+		}
+		super.showLayoutTargetFeedback(request);
+	}
+
+	@Override
+	protected void eraseLayoutTargetFeedback(Request request) {
+		super.eraseLayoutTargetFeedback(request);
+		highlightUtil.unhighlight();
+	}
+
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		View childView = (View)child.getModel();
@@ -161,8 +200,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			}
 			
 			String destructionHint = ((IHintedType)UMLElementTypes.DestructionOccurrenceSpecification_3022).getSemanticHint();
-			if (destructionHint.equals(req.getViewAndElementDescriptor().getSemanticHint()) && constraint.width < 0 && constraint.height < 0) {
-				constraint.width = constraint.height = 20 ;// set initial size, same as DestructionOccurrenceSpecificationPreferencePage
+			if(destructionHint.equals(req.getViewAndElementDescriptor().getSemanticHint()) && constraint.width < 0 && constraint.height < 0) {
+				constraint.width = constraint.height = 20;// set initial size, same as DestructionOccurrenceSpecificationPreferencePage
 			}
 		}
 		return constraint;
@@ -208,8 +247,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 	}
 
-	private Command getCommandForExecutionSpecificationCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
-		Point newLocation = cvr.getLocation().getCopy();
+	private Rectangle getCreateExecuteSpecificationBounds(Point location, Dimension size, String semanticHint) {
+		Point newLocation = location == null ? new Point() : location.getCopy();
 
 		if(newLocation.x < 0 || newLocation.y < 0) {
 			newLocation.x = newLocation.y = 0;
@@ -242,11 +281,35 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 
 		// Get the height of the Execution specification
-		int newHeight = getFigureHeight(cvr);
+		int newHeight = getFigureHeight(semanticHint, size);
 
 		// Define the bounds of the new Execution specification
-		Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
-		ShapeNodeEditPart parent = getParent((LifelineEditPart)getHost(), newBounds, executionSpecificationList);
+		return new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
+	}
+
+	private ShapeNodeEditPart getParentWhenCreationExecuteSpecification(Point location, Dimension size, String semanticHint) {
+
+		// Define the bounds of the new Execution specification
+		Rectangle newBounds = getCreateExecuteSpecificationBounds(location, size, semanticHint);
+		// Get the dotline figure
+		List<ShapeNodeEditPart> executionSpecificationList = ((LifelineEditPart)getHost()).getChildShapeNodeEditPart();
+
+		return getParent((LifelineEditPart)getHost(), newBounds, executionSpecificationList);
+	}
+		 
+	private Command getCommandForExecutionSpecificationCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
+
+		LifelineEditPart editPart = (LifelineEditPart)getHost();
+
+		List<ShapeNodeEditPart> executionSpecificationList = editPart.getChildShapeNodeEditPart();
+
+		Point location = cvr.getLocation();
+		Dimension size = cvr.getSize();
+		String semanticHint = viewDescriptor.getSemanticHint();
+		
+		// Define the bounds of the new Execution specification
+		Rectangle newBounds = getCreateExecuteSpecificationBounds(location, size, semanticHint);
+		ShapeNodeEditPart parent = getParentWhenCreationExecuteSpecification(location, size, semanticHint);
 		newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0), false);
 		if(newBounds == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -293,7 +356,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			parentFigure.translateToRelative(referencePoint);
 			referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
 			// Get the height of the element
-			int newHeight = getFigureHeight(cvr);
+			int newHeight = getFigureHeight(viewDescriptor.getSemanticHint(), cvr.getSize());
 			// Define the bounds of the new time element
 			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y - newHeight / 2, -1, newHeight);
 			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
@@ -346,20 +409,14 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        the create request
 	 * @return the height defined in the create request or a default value depending on the created figure
 	 */
-	private int getFigureHeight(CreateRequest cr) {
-		final String timeObsHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
-		final String timeCstHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
-		String semHint = null;
-		if(cr instanceof CreateViewAndElementRequest) {
-			semHint = ((CreateViewAndElementRequest)cr).getViewAndElementDescriptor().getSemanticHint();
-		}
+	private int getFigureHeight(String semanticHint, Dimension size) {
 		int newHeight;
-		if(timeObsHint.equals(semHint) || timeCstHint.equals(semHint)) {
+		if(TIME_OBSERVATION_HINT.equals(semanticHint) || TIME_CONSTRAINT_HINT.equals(semanticHint)) {
 			// height for a time bar (takes precedence on request's size)
 			newHeight = TIME_BAR_HEIGHT;
-		} else if(cr.getSize() != null) {
+		} else if(size != null) {
 			// heigh from request
-			newHeight = cr.getSize().height;
+			newHeight = size.height;
 		} else {
 			newHeight = EXECUTION_INIT_HEIGHT;
 		}

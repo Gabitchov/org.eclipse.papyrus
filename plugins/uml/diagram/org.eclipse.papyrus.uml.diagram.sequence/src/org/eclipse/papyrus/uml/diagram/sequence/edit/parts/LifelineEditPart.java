@@ -116,6 +116,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
@@ -1149,6 +1150,16 @@ public class LifelineEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.DurationObservation_3024);
 		}
 		return types;
+	}
+	
+	@Override
+	protected List getModelChildren() {
+		Object model = getModel();
+		//Fixed bug about inverse order for ExecutionSpecifications.
+		if (model instanceof View){
+			return LifelineModelChildrenHelper.getModelChildren((View)model);
+		}
+		return super.getModelChildren();
 	}
 
 	/**

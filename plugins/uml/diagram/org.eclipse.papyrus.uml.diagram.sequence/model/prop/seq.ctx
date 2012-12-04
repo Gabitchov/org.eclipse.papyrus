@@ -37,7 +37,7 @@
       <properties name="ELEMENT_PapyrusUMLSequenceDiagram_CombinedFragment_CombinedFragmentCompartment.compartment_name.visibility" label="Show Title" type="Boolean" description="Show the Title in the diagram"/>
       <properties name="ELEMENT_PapyrusUMLSequenceDiagram_ConsiderIgnoreFragment_CombinedFragmentCompartment.compartment_name.visibility" label="Show Title" type="Boolean" description="Show the Title in the diagram"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/Model/Environment.xmi#//@modelElementFactories.2"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@modelElementFactories.1"/>
   </dataContexts>
   
    <dataContexts name="MessageStyle" label="MessageStyle">
