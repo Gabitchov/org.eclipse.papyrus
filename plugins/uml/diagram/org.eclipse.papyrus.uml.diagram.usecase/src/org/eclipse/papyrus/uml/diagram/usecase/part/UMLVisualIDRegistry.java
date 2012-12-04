@@ -20,8 +20,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
-import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAppliedStereotypeEditPartTN;

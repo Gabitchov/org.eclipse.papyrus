@@ -13,9 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.part;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 
