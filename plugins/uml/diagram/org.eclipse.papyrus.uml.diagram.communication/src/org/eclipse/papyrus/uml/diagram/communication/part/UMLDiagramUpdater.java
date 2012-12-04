@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConnectorDurationObservationEditPart;
@@ -71,8 +72,6 @@ public class UMLDiagramUpdater {
 		return Collections.emptyList();
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -93,7 +92,6 @@ public class UMLDiagramUpdater {
 		Resource resource = modelElement.eResource();
 		for(Iterator semanticIterator = getPhantomNodesIterator(resource); semanticIterator.hasNext();) {
 			EObject childElement = (EObject)semanticIterator.next();
-
 			if(childElement == modelElement) {
 				continue;
 			}
@@ -104,9 +102,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -145,6 +140,9 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		//change the code generated 
+		//for(Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
+		// by nearestpackage
 		for(Iterator<?> it = modelElement.getNearestPackage().getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -159,7 +157,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
 
 	/**
 	 * @generated
@@ -528,11 +525,6 @@ public class UMLDiagramUpdater {
 			if(MessageEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -541,8 +533,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_8009, MessageEditPart.VISUAL_ID));
-
-
 		}
 		return result;
 	}
@@ -649,11 +639,6 @@ public class UMLDiagramUpdater {
 			if(MessageEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -665,8 +650,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_8009, MessageEditPart.VISUAL_ID));
-
-
 		}
 		return result;
 	}
@@ -720,4 +703,37 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
+	/**
+	 * @generated
+	 */
+	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
+
+		/**
+		 * @generated
+		 */
+		public List<UMLNodeDescriptor> getSemanticChildren(View view) {
+			return UMLDiagramUpdater.getSemanticChildren(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getContainedLinks(View view) {
+			return UMLDiagramUpdater.getContainedLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getIncomingLinks(View view) {
+			return UMLDiagramUpdater.getIncomingLinks(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
+			return UMLDiagramUpdater.getOutgoingLinks(view);
+		}
+	};
 }

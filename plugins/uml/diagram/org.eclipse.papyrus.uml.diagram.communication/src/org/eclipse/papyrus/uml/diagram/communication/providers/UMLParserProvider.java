@@ -86,7 +86,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return diagramName_0Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -213,7 +212,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return durationObservationName_5156Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -247,7 +245,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return messageName_6012Parser;
 	}
-
 
 	/**
 	 * @generated
@@ -349,5 +346,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

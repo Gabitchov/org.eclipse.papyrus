@@ -16,33 +16,25 @@ package org.eclipse.papyrus.uml.diagram.communication.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.IClippingStrategy;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies.CustomOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.edit.policies.PackageItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
 
 /**
  * @generated
  */
-public class ModelEditPart extends DiagramEditPart {
+public class ModelEditPart extends PapyrusDiagramEditPart {
 
 	/**
 	 * @generated
@@ -54,59 +46,11 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
-
-
 	/**
 	 * @generated
 	 */
 	public ModelEditPart(View view) {
 		super(view);
-
-
-		getFigure().setClippingStrategy(new IClippingStrategy() {
-
-			public Rectangle[] getClip(IFigure childFigure) {
-				// very inefficient, since it implies several tree traversals. Bit handles modifications of the tree structure
-				// It's a workaround instead of the better solution to fix BorderedNodeFigure (overload and let it return
-				// getExtendedBounds)
-				// See bug 313985 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985) for more details
-				applyClippingStrategy(childFigure);
-				if(childFigure instanceof BorderedNodeFigure) {
-					return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
-
-				} else {
-					return new Rectangle[]{ childFigure.getBounds() };
-				}
-			}
-		});
-	}
-
-	/**
-	 * @generated
-	 */
-	public void applyClippingStrategy(IFigure fig) {
-		boolean hasBorderedNodeChild = false;
-		for(Object child : fig.getChildren()) {
-			if(child instanceof IFigure) {
-				applyClippingStrategy((IFigure)child);
-				if(child instanceof BorderedNodeFigure) {
-					hasBorderedNodeChild = true;
-				}
-			}
-		}
-		if(hasBorderedNodeChild && (fig.getClippingStrategy() == null)) {
-			fig.setClippingStrategy(new IClippingStrategy() {
-
-				public Rectangle[] getClip(IFigure childFigure) {
-					if(childFigure instanceof BorderedNodeFigure) {
-						return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
-					} else {
-						return new Rectangle[]{ childFigure.getBounds() };
-					}
-				}
-			});
-		}
-
 	}
 
 	/**
@@ -114,25 +58,20 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
-
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.communication.edit.policies.ModelCanonicalEditPolicy());
-
-
 		installEditPolicy("RemoveOrphanView", new CustomOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
-
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
 
 		/**
 		 * @generated
@@ -159,11 +98,10 @@ public class ModelEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
@@ -175,38 +113,4 @@ public class ModelEditPart extends DiagramEditPart {
 			return Collections.singletonList(mh);
 		}
 	}
-
-
-
-
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-
-		super.handleNotificationEvent(event);
-		if(event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
-			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				//modification form MOSKitt approach, canonical policies are not called
-				MDTUtil.filterDiagramViews(this.getDiagramView());
-			}
-		}
-	}
-
-
-	/**
-	 * @generated
-	 */
-	public Object getAdapter(Class adapter) {
-
-		if(adapter != null && adapter.equals(ViewInfo.class)) {
-			return UMLVisualIDRegistry.getDiagramViewInfo();
-		}
-		return super.getAdapter(adapter);
-	}
-
-
-
 }

@@ -26,6 +26,5 @@ public class DiagramPrintingPreferencePage extends PrintingPreferencePage {
 	 */
 	public DiagramPrintingPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
-
 	}
 }

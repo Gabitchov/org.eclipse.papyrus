@@ -15,10 +15,10 @@ package org.eclipse.papyrus.uml.diagram.communication.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.custom.figures.MessageFigure;
@@ -28,9 +28,7 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.policies.MessageItemSe
 /**
  * @generated
  */
-public class MessageEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -69,7 +67,6 @@ implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -79,7 +76,6 @@ implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -94,7 +90,6 @@ implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -104,7 +99,6 @@ implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -124,5 +118,4 @@ implements ITreeBranchEditPart {
 	public MessageFigure getPrimaryShape() {
 		return (MessageFigure)getFigure();
 	}
-
 }

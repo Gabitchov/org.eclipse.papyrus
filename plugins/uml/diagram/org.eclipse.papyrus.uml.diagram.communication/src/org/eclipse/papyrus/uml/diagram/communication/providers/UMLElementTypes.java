@@ -241,39 +241,18 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Interaction_8002, UMLPackage.eINSTANCE.getInteraction());
-
-
 			elements.put(Diagram_8016, NotationPackage.eINSTANCE.getDiagram());
-
-
 			elements.put(Lifeline_8001, UMLPackage.eINSTANCE.getLifeline());
-
-
 			elements.put(Constraint_8004, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Comment_8005, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(TimeObservation_8006, UMLPackage.eINSTANCE.getTimeObservation());
-
-
 			elements.put(DurationObservation_8007, UMLPackage.eINSTANCE.getDurationObservation());
-
-
 			elements.put(Message_8009, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(CommentAnnotatedElement_8010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(ConstraintConstrainedElement_8011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
 			elements.put(DurationObservationEvent_8012, UMLPackage.eINSTANCE.getDurationObservation_Event());
-
 			elements.put(TimeObservationEvent_8013, UMLPackage.eINSTANCE.getTimeObservation_Event());
 		}
 		return (ENamedElement)elements.get(type);
@@ -343,5 +322,4 @@ public class UMLElementTypes {
 		}
 		return null;
 	}
-
 }

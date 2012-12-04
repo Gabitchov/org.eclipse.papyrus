@@ -61,8 +61,17 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
-
+	/**
+	 * @generated
+	 */
+	protected void refreshOnActivate() {
+		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
+		List<?> c = getHost().getChildren();
+		for(int i = 0; i < c.size(); i++) {
+			((EditPart)c.get(i)).activate();
+		}
+		super.refreshOnActivate();
+	}
 
 	/**
 	 * @generated
@@ -154,7 +163,6 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
 		}
-
 		boolean changed = deleteViews(orphaned.iterator());
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
@@ -169,17 +177,13 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		if(changed || createdViews.size() > 0) {
 			postProcessRefreshSemantic(createdViews);
 		}
-
 		Collection<IAdaptable> createdConnectionViews = refreshConnections();
-
 		if(createdViews.size() > 1) {
 			// perform a layout of the container
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
-
 		createdViews.addAll(createdConnectionViews);
-
 		makeViewsImmutable(createdViews);
 	}
 

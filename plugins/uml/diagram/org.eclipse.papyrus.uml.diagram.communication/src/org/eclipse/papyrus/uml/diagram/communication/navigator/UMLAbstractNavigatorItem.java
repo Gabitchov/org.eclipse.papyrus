@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.PlatformObject;
  */
 public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 
-
 	/**
 	 * @generated
 	 */
@@ -39,5 +38,4 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	public Object getParent() {
 		return myParent;
 	}
-
 }

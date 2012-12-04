@@ -44,7 +44,6 @@ public class MessageCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -83,7 +82,6 @@ public class MessageCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_8009(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -91,11 +89,8 @@ public class MessageCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		throw new UnsupportedOperationException();
-
 	}
-
 
 	/**
 	 * @generated
@@ -144,6 +139,7 @@ public class MessageCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
+	 * 
 	 * @generated
 	 */
 	protected Interaction deduceContainer(EObject source, EObject target) {
@@ -157,5 +153,4 @@ public class MessageCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

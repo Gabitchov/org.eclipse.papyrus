@@ -63,13 +63,21 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml.edit;bundle-version="4.0.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.ui.views,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.papyrus.uml.service.types,
+ org.eclipse.draw2d;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.emf.validation;visibility:=reexport,
+ org.eclipse.gef,
+ org.eclipse.gmf.tooling.runtime;bundle-version="3.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 0.10.0.vqualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.communication.part.U
- MLDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.communication;sin
- gleton:=true
-
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.communication; singleton:=true
