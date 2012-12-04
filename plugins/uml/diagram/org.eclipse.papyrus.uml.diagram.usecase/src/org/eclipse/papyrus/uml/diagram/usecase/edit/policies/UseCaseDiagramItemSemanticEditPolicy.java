@@ -16,9 +16,12 @@ package org.eclipse.papyrus.uml.diagram.usecase.edit.policies;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ActorAsRectangleCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ActorCreateCommandTN;
@@ -49,37 +52,86 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Actor_2011 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.Actor_2011 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActorCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Actor_2012 == req.getElementType()) {
+		if(UMLElementTypes.Actor_2012 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActorAsRectangleCreateCommandTN(req));
 		}
-		if(UMLElementTypes.UseCase_2013 == req.getElementType()) {
+		if(UMLElementTypes.UseCase_2013 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new UseCaseCreateCommandTN(req));
 		}
-		if(UMLElementTypes.UseCase_2014 == req.getElementType()) {
+		if(UMLElementTypes.UseCase_2014 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new UseCaseAsRectangleCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Classifier_2015 == req.getElementType()) {
+		if(UMLElementTypes.Classifier_2015 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new SubjectClassifierCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Package_2016 == req.getElementType()) {
+		if(UMLElementTypes.Package_2016 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PackageCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Constraint_2017 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_2017 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ConstraintCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Comment_2018 == req.getElementType()) {
+		if(UMLElementTypes.Comment_2018 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CommentCreateCommandTN(req));
 		}
-		if(UMLElementTypes.NamedElement_2022 == req.getElementType()) {
+		if(UMLElementTypes.NamedElement_2022 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DefaultNamedElementCreateCommandTN(req));
 		}
-		if(UMLElementTypes.NamedElement_2023 == req.getElementType()) {
+		if(UMLElementTypes.NamedElement_2023 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ShapeNamedElementCreateCommand(req));
 		}
-		if(UMLElementTypes.Diagram_2019 == req.getElementType()) {
+		if(UMLElementTypes.Diagram_2019 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

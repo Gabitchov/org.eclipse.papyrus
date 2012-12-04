@@ -227,7 +227,19 @@
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.DefaultNamedElementEditPartTN" id="NamedElement_2022"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShapeNamedElementEditPart" id="NamedElement_2023"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart" id="Diagram_2019"/>
-         <context elements="Package_1000,Actor_2011,Actor_2012,UseCase_2013,UseCase_2014,Classifier_2015,Package_2016,Constraint_2017,Comment_2018,NamedElement_2022,NamedElement_2023,Diagram_2019"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ExtensionPointEditPart" id="ExtensionPoint_3007"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart" id="ExtensionPoint_3008"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentEditPart" id="UseCase_3009"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInComponentEditPart" id="Component_3016"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentEditPartCN" id="Comment_3015"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInComponentEditPart" id="Constraint_3017"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentEditPart" id="Actor_3018"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInPackageEditPart" id="Constraint_3010"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageEditPart" id="Actor_3011"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInPackageEditPart" id="UseCase_3012"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageEditPart" id="Component_3013"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartCN" id="Package_3014"/>
+         <context elements="Package_1000,Actor_2011,Actor_2012,UseCase_2013,UseCase_2014,Classifier_2015,Package_2016,Constraint_2017,Comment_2018,NamedElement_2022,NamedElement_2023,Diagram_2019,ExtensionPoint_3007,ExtensionPoint_3008,UseCase_3009,Component_3016,Comment_3015,Constraint_3017,Actor_3018,Constraint_3010,Actor_3011,UseCase_3012,Component_3013,Package_3014"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -749,9 +761,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.SubjectPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassifierPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassifierPreferencePage"
-            name="Subject Node" />
+            name="Classifier Node" />
 	
 		
 	<?gmfgen generated="true"?>
