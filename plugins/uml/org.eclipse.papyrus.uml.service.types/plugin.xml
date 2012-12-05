@@ -939,9 +939,12 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for LiteralInteger -->
-	<metamodelType id="org.eclipse.papyrus.uml.LiteralInteger" name="UML::LiteralInteger"
-		eclass="LiteralInteger"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="LiteralInteger"
+       edithelper="org.eclipse.papyrus.uml.service.types.helper.LiteralIntegerEditHelper"
+       id="org.eclipse.papyrus.uml.LiteralInteger"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::LiteralInteger">
 			<param name="semanticHint" value="UML::LiteralInteger"/>
 	</metamodelType>
 	
