@@ -59,7 +59,8 @@ public class UnloadHandler extends GraphicalCommandHandler {
 				View view = (View)((IAdaptable)selPart).getAdapter(View.class);
 				if(view != null) {
 					EObject sel = view.getElement();
-					if(!sel.eIsProxy()) {
+					// note: the element may be null if the View is notational only
+					if(sel != null && !sel.eIsProxy()) {
 						final URI uriTrim = sel.eResource().getURI().trimFileExtension();
 						if(!handledURI.contains(uriTrim)) {
 							handledURI.add(uriTrim);
