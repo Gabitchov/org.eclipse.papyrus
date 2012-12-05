@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.sdk.feature"
-      label="Papyrus SDK Binaries (Incubation)"
+      label="Papyrus UML (Incubation)"
       version="0.10.0.qualifier"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.papyrus.infra.core">
