@@ -29,6 +29,10 @@ public class ChangetoActorShapeHandler extends ChangeShapeHandler implements IHa
 	@Override
 	public boolean isEnabled() {
 		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
+		if(editPart == null) {
+			return false;
+		}
+
 		if(((editPart.resolveSemanticElement() instanceof Actor) && (editPart instanceof DefaultNamedElementEditPartTN))) {
 			return true;
 		}
@@ -42,6 +46,7 @@ public class ChangetoActorShapeHandler extends ChangeShapeHandler implements IHa
 	 * @param editPart
 	 * @return
 	 */
+	@Override
 	protected ChangetoDefaultShapeCommand getChangeShapeCommand(final GraphicalEditPart editPart) {
 		ChangetoDefaultShapeCommand command = new ChangetoDefaultShapeCommand(editPart.getEditingDomain(), editPart);
 		return command;

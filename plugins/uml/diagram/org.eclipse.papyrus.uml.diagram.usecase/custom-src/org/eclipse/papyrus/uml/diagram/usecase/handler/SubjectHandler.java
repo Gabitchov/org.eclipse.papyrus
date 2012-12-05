@@ -30,7 +30,12 @@ public class SubjectHandler extends ChangeShapeHandler implements IHandler {
 	@Override
 	public boolean isEnabled() {
 		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		if((editPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Classifier && (!(editPart.resolveSemanticElement() instanceof Actor))&& (!(editPart.resolveSemanticElement() instanceof UseCase)))) {
+
+		if(editPart == null) {
+			return false;
+		}
+
+		if((editPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Classifier && (!(editPart.resolveSemanticElement() instanceof Actor)) && (!(editPart.resolveSemanticElement() instanceof UseCase)))) {
 			if((editPart instanceof SubjectClassifierEditPartTN)) {
 				return false;
 			} else {
@@ -47,6 +52,7 @@ public class SubjectHandler extends ChangeShapeHandler implements IHandler {
 	 * @param editPart
 	 * @return
 	 */
+	@Override
 	protected ChangetoDefaultShapeCommand getChangeShapeCommand(final GraphicalEditPart editPart) {
 		ChangetoDefaultShapeCommand command = new ChangetoDefaultShapeCommand(editPart.getEditingDomain(), editPart);
 		return command;
