@@ -34,8 +34,15 @@ public class LoadResourceAction extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IEditorPart diagramEditor = HandlerUtil.getActiveEditorChecked(event);
 		Shell shell = diagramEditor.getEditorSite().getShell();
-		assert diagramEditor instanceof IDiagramWorkbenchPart;
-		TransactionalEditingDomain editingDomain = ((IDiagramWorkbenchPart)diagramEditor).getDiagramEditPart().getEditingDomain();
+
+		IDiagramWorkbenchPart workbenchPart;
+		if(diagramEditor instanceof IDiagramWorkbenchPart) {
+			workbenchPart = (IDiagramWorkbenchPart)diagramEditor;
+		} else {
+			workbenchPart = (IDiagramWorkbenchPart)diagramEditor.getAdapter(IDiagramWorkbenchPart.class);
+		}
+		assert diagramEditor != null;
+		TransactionalEditingDomain editingDomain = workbenchPart.getDiagramEditPart().getEditingDomain();
 		org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog loadResourceDialog = new org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog(shell, editingDomain);
 		loadResourceDialog.open();
 		return null;
