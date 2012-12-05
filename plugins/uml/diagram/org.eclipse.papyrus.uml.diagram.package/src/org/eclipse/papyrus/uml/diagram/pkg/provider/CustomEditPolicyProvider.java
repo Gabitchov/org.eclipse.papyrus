@@ -14,13 +14,12 @@
 package org.eclipse.papyrus.uml.diagram.pkg.provider;
 
 import org.eclipse.gef.EditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 public class CustomEditPolicyProvider extends PackageDiagramEditPolicyProvider {
 
+	@Override
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 	}
 
 }

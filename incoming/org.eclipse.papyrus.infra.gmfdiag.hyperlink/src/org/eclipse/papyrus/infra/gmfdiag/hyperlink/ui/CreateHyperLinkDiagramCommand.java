@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
+package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -24,7 +24,6 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
  * of hyperlinks
  * 
  */
-//TODO this class (and others classes for diagram hyperlink should be moved into oep.infra.gmfdiag.common, no?
 public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 
 	/** The hyperlink kind. */
@@ -36,6 +35,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	private EModelElement diagram;
 
 	protected boolean isDefaultNavigation;
+
 	/**
 	 * Instantiates a new creates the hyper link command.
 	 * 
@@ -53,18 +53,19 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 		this.tooltiptext = tooltiptext;
 		this.name = name;
 		this.diagram = diagram;
-		this.isDefaultNavigation=isDefaultNavigation;
+		this.isDefaultNavigation = isDefaultNavigation;
 	}
 
 	/**
 	 * {@inheritedDoc}
 	 */
+	@Override
 	protected void doExecute() {
 		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getReferences().add(diagram);
 		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(HyperLinkDiagramConstants.HYPERLINK_DIAGRAM_NAME, this.name);
-		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefaultNavigation); //$NON-NLS-1$
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, "" + this.isDefaultNavigation); //$NON-NLS-1$
 		attachEannotation(eAnnotation, getObject());
 	}
 

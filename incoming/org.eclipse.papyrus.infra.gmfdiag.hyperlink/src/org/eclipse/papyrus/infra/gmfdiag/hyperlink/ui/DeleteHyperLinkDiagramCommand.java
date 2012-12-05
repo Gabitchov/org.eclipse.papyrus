@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
+package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,6 +51,7 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	/**
 	 * {@inheritedDoc}
 	 */
+	@Override
 	protected void doExecute() {
 		ArrayList<EAnnotation> eAnnotationsToRemove = new ArrayList<EAnnotation>();
 		Iterator<EAnnotation> iter = getObject().getEAnnotations().iterator();

@@ -12,12 +12,13 @@
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Bug 363827 - [Improvement] Diagram creation, remember the latest tab chosen
  *  Vincent Lorenzo (CEA-LIST) Vincent.lorenzo@cea.fr (refactoring of the hyperlink)
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
+package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -28,14 +29,11 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * 
  * This hyperlink manager can manage default hyperlinks and creation of diagram with heuristic
  */
-//FIXME: We shouldn't depend on uml here. The superclass expects any kind of EObject
 public class AdvancedHLManager extends HyperLinkManagerShell {
 
 
@@ -55,8 +53,8 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	 *        the view of the uml element
 	 * 
 	 */
-	public AdvancedHLManager(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, Element umlElement, View aview, Package model, HyperLinkHelperFactory hyperHelperFactory) {
-		super(editorFactoryRegistry, domain, umlElement, aview, model, hyperHelperFactory);
+	public AdvancedHLManager(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, EModelElement semanticElement, View aview, HyperLinkHelperFactory hyperHelperFactory) {
+		super(editorFactoryRegistry, domain, semanticElement, aview, hyperHelperFactory);
 	}
 
 	/**

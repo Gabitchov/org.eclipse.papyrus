@@ -75,7 +75,6 @@ public class EditorNavigationDialog extends Dialog {
 		super(parentShell);
 		this.hyperlinkObjects = hyperlinkObjects;
 		this.contextElement = contextElement;
-		parentShell.setText(Messages.DiagramNavigationDialog_ChooseHyperLinks);
 	}
 
 	@Override
@@ -118,11 +117,12 @@ public class EditorNavigationDialog extends Dialog {
 		tableViewer.setLabelProvider(provider);
 		tableViewer.setInput(this.hyperlinkObjects);
 
-		//Check the first element by default
-		if(availableHyperLink.getItemCount() > 0) {
-			availableHyperLink.getItem(0).setChecked(true);
+		//Check all elements by default
+		for(TableItem item : availableHyperLink.getItems()) {
+			item.setChecked(true);
 		}
 
+		getShell().setText(Messages.DiagramNavigationDialog_ChooseHyperLinks);
 		getShell().pack();
 
 		return defaultHyperlinkComposite;

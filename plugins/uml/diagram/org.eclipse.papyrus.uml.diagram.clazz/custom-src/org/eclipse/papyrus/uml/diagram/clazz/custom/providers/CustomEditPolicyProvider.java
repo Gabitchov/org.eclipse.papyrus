@@ -17,8 +17,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
@@ -26,8 +24,6 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultili
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**
  * this is an editpolicy provider in charge to install a policy to create a AssociationClass
@@ -42,14 +38,8 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
-			
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-			if( editPart instanceof IPrimaryEditPart){
-				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-			}
-			
-			if(editPart instanceof NamedElementEditPart ){
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
+			if(editPart instanceof NamedElementEditPart) {
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 			}
 		}

@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
+package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -27,14 +27,15 @@ import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.CreatedNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
-import org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CTabFolder;
@@ -168,7 +169,14 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 	 * code that is called when the button ok is selected
 	 */
 	protected void okPressed() {
-		DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
+		ModelSet modelSet;
+
+		try {
+			modelSet = ServiceUtilsForEObject.getInstance().getModelSet(semanticElement);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return;
+		}
 
 		CompositeCommand compositeCommand = new CompositeCommand("Create diagrams");
 
@@ -187,7 +195,7 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 
 					Text diagramNameText = (Text)tableItem.getData(DIAGRAM_NAME_TEXT_KEY);
 
-					compositeCommand.add(NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, desc.getCommand(), diagramNameText.getText(), diResourceSet));
+					compositeCommand.add(NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, desc.getCommand(), diagramNameText.getText(), modelSet));
 				}
 			} catch (BackboneException e) {
 				e.printStackTrace();
@@ -257,7 +265,11 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 			tableItem.setChecked(false);
 			tableItem.setData(CREATION_ENTRY_KEY, successors);
 
-			tableItem.setText(0, UMLNavigationHelper.getNavigationTypeFromFeature(groupKey.feature));
+			//////FIXME///////
+			//tableItem.setText(0, UMLNavigationHelper.getNavigationTypeFromFeature(groupKey.feature)); //Remove this dependency to UML. LabelProviderService?
+			tableItem.setText(0, "Unknown");
+			//////////////////
+
 			String featureString = "";
 			if(groupKey.feature != null) {
 				featureString = groupKey.feature.getName();

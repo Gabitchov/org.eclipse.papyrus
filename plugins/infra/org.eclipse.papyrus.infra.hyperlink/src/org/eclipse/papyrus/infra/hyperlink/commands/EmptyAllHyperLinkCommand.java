@@ -50,6 +50,7 @@ public class EmptyAllHyperLinkCommand extends AbstractDeleteHyperLinkCommand {
 	 * 
 	 * @return
 	 */
+	@Override
 	protected List<EAnnotation> getEAnnotationsToRemove() {
 		List<EAnnotation> toRemove = super.getEAnnotationsToRemove();
 		Iterator<EAnnotation> iter = getObject().getEAnnotations().iterator();

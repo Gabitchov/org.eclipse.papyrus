@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.editpolicies;
+package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,6 +29,7 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPartViewer;
@@ -37,21 +38,19 @@ import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.AdvancedHLManager;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
@@ -60,29 +59,18 @@ import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display
  * shortcuts on sub-diagrams or to associate hyper-link of files
  */
 public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
-
-	public static Package topPackage(Element element) {
-		if(element.getOwner() == null) {
-			return (Package)element;
-		} else {
-			return topPackage(element.getOwner());
-		}
-	}
 
 	/**
 	 * Default tool placed on the popup bar.
@@ -300,7 +288,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(1 == me.button) // context menu, hide the popup bar
 			{
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()), hyperlinkHelperFactory);
+					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (EModelElement)((IGraphicalEditPart)getHost()).getNotationView().getElement(), ((IGraphicalEditPart)getHost()).getNotationView(), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 					hyperLinkManagerShell.open();
 
@@ -335,16 +323,6 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	private class RoundedRectangleWithTail extends RoundedRectangle {
 
-		/** The b is init. */
-		private boolean bIsInit = false;
-
-		/** The my corner dimension. */
-		// @unused
-		private final int myCornerDimension = 3;
-
-		/** The my tail image. */
-		private Image myTailImage = null;
-
 		/**
 		 * constructor.
 		 */
@@ -360,51 +338,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		}
 
-		/**
-		 * Gets the tail.
-		 * 
-		 * @return the tail
-		 */
-		// @unused
-		private Image getTail() {
-			if(!bIsInit) {
-				if(myTailImage == null) {
-					myTailImage = IMAGE_POPUPBAR_PLUS;
-					bIsInit = true;
-				}
-
-			}
-			return myTailImage;
-
-		}
-
 	}
-
-	/** The IMAG e_ popupba r_ plus. */
-	private static Image IMAGE_POPUPBAR_PLUS = DiagramUIPluginImages.get(DiagramUIPluginImages.IMG_POPUPBAR_PLUS);
-
-	/** The POPUPBA r_ mov e_ figure. */
-	// @unused
-	static private int POPUPBAR_MOVE_FIGURE = 0x02; /*
-													 * Ignore the first
-													 * figureMoved event when
-													 * creating elements inside
-													 * a shape via a popup bar
-													 */
-
-	/** The POPUPBA r_ ondiagramactivated. */
-	// @unused
-	static private int POPUPBAR_ONDIAGRAMACTIVATED = 0x10; /*
-															 * For popup bars on
-															 * diagram and
-															 * machine edit
-															 * parts, where we
-															 * POPUPBAR_DISPLAYATMOUSEHOVERLOCATION
-															 * , don't display
-															 * popup bar until
-															 * user clicks on
-															 * surface
-															 */
 
 	/** The editor registry. */
 	private IPageIconsRegistry editorRegistry;
@@ -510,7 +444,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
-			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+			return ServiceUtilsForEditPart.getInstance().getService(IPageIconsRegistry.class, getHost());
 		} catch (ServiceException e) {
 			// Return an empty registry always providing null;
 			return new PageIconsRegistry();
@@ -551,35 +485,6 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	protected IFigure getFigureBar() {
 
 		return figureBar;
-	}
-
-	/**
-	 * getAll diag in relation with this element or subelements.
-	 * 
-	 * @return the sub diagrams
-	 */
-	// @unused
-	protected ArrayList<Diagram> getSubDiagrams() {
-		Element host = (Element)((GraphicalEditPart)getHost()).getNotationView().getElement();
-		ArrayList<Diagram> result = new ArrayList<Diagram>();
-		if(host != null) {
-			try {
-				IPageMngr iPageMngr = EditorUtils.getIPageMngr();
-				Iterator<Object> iterator = iPageMngr.allPages().iterator();
-				while(iterator.hasNext()) {
-					Object current = iterator.next();
-					if(current instanceof Diagram) {
-						Element diagElement = (Element)((Diagram)current).getElement();
-						if(host.equals(diagElement) || host.allOwnedElements().contains(diagElement)) {
-							result.add((Diagram)current);
-						}
-					}
-				}
-			} catch (Exception e) {
-			}
-
-		}
-		return result;
 	}
 
 	/**
@@ -646,7 +551,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			// add all subdiagrams
 
 			try {
-				hyperLinkObjectList = (ArrayList<HyperLinkObject>)hyperlinkHelperFactory.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView());
+				hyperLinkObjectList = (ArrayList<HyperLinkObject>)hyperlinkHelperFactory.getAllreferenced(((IGraphicalEditPart)getHost()).getNotationView());
 			} catch (HyperLinkException e) {
 				e.printStackTrace();
 			}

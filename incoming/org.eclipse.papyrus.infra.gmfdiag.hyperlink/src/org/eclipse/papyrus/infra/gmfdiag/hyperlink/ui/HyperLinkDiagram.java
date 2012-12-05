@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
+package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;

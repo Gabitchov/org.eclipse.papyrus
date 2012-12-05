@@ -145,7 +145,7 @@
          objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart">
       <action
             class="org.eclipse.papyrus.uml.diagram.common.actions.PasteWithModelAction"
-            definitionId="org.eclipse.papyrus.common.pasteWithModel"
+            definitionId="org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand"
             enablesFor="1"
             icon="icons/paste_edit.gif"
             id="org.eclipse.papyrus.uml.diagram.common.objectContribution.pastewithmodelaction"
@@ -675,16 +675,10 @@
    </GlobalActionHandlerProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.hyperlink.editor.registration">
-   <editorhyperlink
-         helper="org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagramEditorHelper">
-   </editorhyperlink>
-</extension>
-<extension
       point="org.eclipse.papyrus.infra.hyperlink.tab.registration">
    <hyperlinktab
          position="250"
-         tab="org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.LocalDefaultLinkDiagramTab"
+         tab="org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.LocalDefaultLinkDiagramTab"
          tabId="org.eclipse.papyrus.uml.diagram.common.heuristictab">
    </hyperlinktab>
 </extension>

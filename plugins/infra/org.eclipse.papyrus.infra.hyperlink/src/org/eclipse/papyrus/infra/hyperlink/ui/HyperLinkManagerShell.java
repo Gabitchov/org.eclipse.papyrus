@@ -79,9 +79,6 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	protected EObject semanticElement;
 
-	/** the root of the model. */
-	protected EObject amodel;
-
 	/** The domain. */
 	protected TransactionalEditingDomain transactionalEditingDomain;
 
@@ -113,12 +110,11 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 * @param aview
 	 *        the aview of the uml element
 	 */
-	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, EModelElement semanticElement, EModelElement aview, EModelElement model, HyperLinkHelperFactory hyperHelperFactory) {
+	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, EModelElement semanticElement, EModelElement aview, HyperLinkHelperFactory hyperHelperFactory) {
 		super();
 		this.hyperLinkHelperFactory = hyperHelperFactory;
 		this.view = aview;
 		this.semanticElement = semanticElement;
-		this.amodel = model;
 		this.transactionalEditingDomain = domain;
 		createHyperLinkShell();
 
@@ -239,7 +235,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		Iterator<AbstractHyperLinkTab> iter = HyperLinkTabsRegistrationUtil.INSTANCE.getAllHyperLinkTab().iterator();
 		while(iter.hasNext()) {
 			AbstractHyperLinkTab current = iter.next();
-			current.init(getcTabFolder(), allhypHyperlinkObjects, amodel);
+			current.init(getcTabFolder(), allhypHyperlinkObjects, semanticElement);
 			tabList.add(current);
 		}
 

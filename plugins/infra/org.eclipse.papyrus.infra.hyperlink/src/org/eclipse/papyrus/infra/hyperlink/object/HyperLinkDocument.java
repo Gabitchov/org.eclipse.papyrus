@@ -13,26 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.object;
 
+import java.net.URI;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
+import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
-import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
-import org.eclipse.ui.IEditorDescriptor;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorRegistry;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.ide.IDE;
 
 /**
  * The Class HyperLinkDocument. A container of document
@@ -62,30 +55,19 @@ public class HyperLinkDocument extends HyperLinkObject {
 	public void executeSelectPressed() {
 		try {
 			// this is a file try to open it
-			IEditorDescriptor eDesc = PlatformUI.getWorkbench().getEditorRegistry().findEditor(IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
+			String fileName = getHyperlinkDocument();
 
-			// creation of a phantom workspace
-			IWorkspace ws = ResourcesPlugin.getWorkspace();
-			IProject project = ws.getRoot().getProject(Messages.HyperLinkDocument_ExternalFiles);
-			if(!project.exists()) {
-				project.create(null);
-			}
-			if(!project.isOpen()) {
-				project.open(null);
-			}
-			IPath location = new Path(this.getHyperlinkDocument());
-			IFile file = project.getFile(location.lastSegment());
-			if(!file.exists()) {
-				file.createLink(location, IResource.NONE, null);
-			}
-			IEditorInput editorInput = new FileEditorInput(file);
 			IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 			IWorkbenchPage page = window.getActivePage();
-			page.openEditor(editorInput, eDesc.getId());
+
+			URI uri = URIUtil.toURI(fileName, true);
+
+			IFileStore fileStore = EFS.getStore(uri);
+
+			IDE.openEditorOnFileStore(page, fileStore); //Let eclipse determine the better editor type for our file
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		
 	}
 
 	@Override
@@ -96,6 +78,6 @@ public class HyperLinkDocument extends HyperLinkObject {
 		int index = list.indexOf(this);
 		list.remove(this);
 		list.add(index, editor.getHyperlinkDocument());
-		
+
 	}
 }

@@ -42,7 +42,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * this class is GUI that represent a tab for each kind of hyperlink
@@ -172,7 +171,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 
 		newHyperLinkbutton = new Button(diagramComposite, SWT.NONE);
 		newHyperLinkbutton.setText(""); //$NON-NLS-1$
-		newHyperLinkbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Add_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		newHyperLinkbutton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/Add_16x16.gif")); //$NON-NLS-1$
 		newHyperLinkbutton.setLayoutData(gridData4);
 		newHyperLinkbutton.setToolTipText("New hyperlink");
 
@@ -181,21 +180,21 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		hyperLinkListTable.setLayoutData(gridData1);
 		hyperLinkListTable.setLinesVisible(false);
 		modifyHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-		modifyHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Modify.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		modifyHyperLinkButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/Edit_16x16.gif")); //$NON-NLS-1$ 
 		modifyHyperLinkButton.setToolTipText("Edit hyperlink");
 
 		removeHyperLinkButton = new Button(diagramComposite, SWT.NONE);
 		removeHyperLinkButton.setText(""); //$NON-NLS-1$
-		removeHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		removeHyperLinkButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/Delete_16x16.gif")); //$NON-NLS-1$ 
 		removeHyperLinkButton.setToolTipText("Remove hyperlink");
 
 		upHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-		upHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		upHyperLinkButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/ArrowUp_16x16.gif")); //$NON-NLS-1$ 
 		upHyperLinkButton.setToolTipText("Move hyperlink up");
 
 		upHyperLinkButton.setLayoutData(gridData2);
 		downHyperLinkButton = new Button(diagramComposite, SWT.NONE);
-		downHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		downHyperLinkButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/ArrowDown_16x16.gif")); //$NON-NLS-1$ 
 		downHyperLinkButton.setToolTipText("Move hyperlink down");
 
 		downHyperLinkButton.setLayoutData(gridData3);

@@ -48,23 +48,24 @@ public class CreateHyperLinkDocumentCommand extends CreateEAnnotationCommand {
 	 * @param localization
 	 *        the localization
 	 * @param isDefault
-	 * 		  to set this hyperlink as default
+	 *        to set this hyperlink as default
 	 */
 	public CreateHyperLinkDocumentCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String localization, boolean isDefault) {
 		super(domain, object, HyperLinkConstants.HYPERLINK_DOCUMENT);
 		this.tooltiptext = tooltiptext;
 		this.localization = localization;
-		this.isDefault= isDefault;
+		this.isDefault = isDefault;
 	}
 
 	/**
 	 * {@inheritedDoc}
 	 */
+	@Override
 	protected void doExecute() {
 		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
 		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_DOCUMENT_LOCALIZATION, this.localization);
-		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefault); //$NON-NLS-1$
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, "" + this.isDefault); //$NON-NLS-1$
 		attachEannotation(eAnnotation, getObject());
 	}
 

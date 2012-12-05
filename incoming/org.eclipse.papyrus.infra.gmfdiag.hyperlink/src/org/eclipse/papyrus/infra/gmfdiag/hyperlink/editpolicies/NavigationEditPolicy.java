@@ -12,19 +12,19 @@
  *  Patrick Tessier (CEA LIST)-modification
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.editpolicies;
+package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -34,6 +34,9 @@ import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.DiagramsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.AdvancedHLManager;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.HyperLinkDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
@@ -44,11 +47,6 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorNavigationDialog;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
-import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * This class is used to open a new diagram when the double click is detected.
@@ -59,20 +57,6 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 	public static final String NAVIGATION_POLICY = "NavigationEditPolicy";
 
 	public NavigationEditPolicy() {
-	}
-
-	/**
-	 * 
-	 * @param element
-	 *        a UML element
-	 * @return the top package of the given element
-	 */
-	public static Package topPackage(Element element) {
-		if(element.getOwner() == null) {
-			return (Package)element;
-		} else {
-			return topPackage(element.getOwner());
-		}
 	}
 
 	/**
@@ -190,8 +174,8 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 					@Override
 					public void execute() {
 						EObject semanticElement = gep.getNotationView().getElement();
-						if(semanticElement instanceof Element) {
-							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(createEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)semanticElement, gep.getNotationView(), topPackage((Element)semanticElement), hyperlinkHelperFactory);
+						if(semanticElement instanceof EModelElement) {
+							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(createEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (EModelElement)semanticElement, gep.getNotationView(), hyperlinkHelperFactory);
 							hyperLinkManagerShell.setInput(hyperLinkObjectList);
 							hyperLinkManagerShell.open();
 						}
@@ -235,7 +219,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 			}
 
 		} catch (Exception e) {
-			org.eclipse.papyrus.uml.diagram.common.Activator.log.error("Impossible to load hyperlinks", e);
+			Activator.log.error("Impossible to load hyperlinks", e);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
