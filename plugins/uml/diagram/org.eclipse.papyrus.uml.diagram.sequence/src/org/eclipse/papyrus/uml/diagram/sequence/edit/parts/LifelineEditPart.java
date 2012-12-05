@@ -45,8 +45,8 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -67,6 +67,8 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -88,6 +90,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
@@ -98,6 +101,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
@@ -113,15 +117,20 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -1146,6 +1155,16 @@ public class LifelineEditPart extends NamedElementEditPart {
 		}
 		return types;
 	}
+	
+	@Override
+	protected List getModelChildren() {
+		Object model = getModel();
+		//Fixed bug about inverse order for ExecutionSpecifications.
+		if (model instanceof View){
+			return LifelineModelChildrenHelper.getModelChildren((View)model);
+		}
+		return super.getModelChildren();
+	}
 
 	/**
 	 * @generated
@@ -1845,10 +1864,50 @@ public class LifelineEditPart extends NamedElementEditPart {
 			Dimension size = getPrimaryShape().getFigureLifelineNameContainerFigure().getPreferredSize(-1, oldNameContainerHeight);
 			if(!LifelineResizeHelper.isManualSize(this)){
 				if(size.width != rect.width){ 
+					moveExecutionParts(new Dimension(size.width - rect.width, 0)); 
 					rect.width = size.width;
 					updateLifelineBounds(rect);
 				}
 			}					
+		}
+	}
+	
+	protected void moveExecutionParts(Dimension sizeDelta) {
+		{
+			Rectangle leftMostExecution = null;
+			List<ShapeNodeEditPart> childShapeNodeEditPart = this.getChildShapeNodeEditPart();
+			for(ShapeNodeEditPart executionSpecificationEP : childShapeNodeEditPart) {
+				if(executionSpecificationEP.resolveSemanticElement() instanceof ExecutionSpecification) {
+					Rectangle bounds = executionSpecificationEP.getFigure().getBounds();
+					Point point = bounds.getLocation();
+					if(leftMostExecution == null || leftMostExecution.x > point.x )
+						leftMostExecution = bounds;
+				}
+			}
+			if(leftMostExecution == null)
+				return;
+			
+			Rectangle dotLineBounds = this.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
+			int targetX = (int) (dotLineBounds.x + Math.round((dotLineBounds.width - leftMostExecution.width) /2.0 ) );
+			sizeDelta.width += (targetX - leftMostExecution.x); // adjust width to keep execution in center line
+		}
+		
+		{ // move all executions
+			ChangeBoundsRequest request = new ChangeBoundsRequest();
+			request.setMoveDelta(new Point(0, 0));
+			request.setSizeDelta(sizeDelta);
+			request.setEditParts(this);
+			Point loc = this.getFigure().getBounds().getTopRight().getCopy();
+			this.getFigure().translateToAbsolute(loc);
+			request.setLocation(loc);
+			request.setType(RequestConstants.REQ_MOVE_CHILDREN);
+			
+			CompoundCommand compoundCmd = new CompoundCommand();
+			compoundCmd.setLabel("Move or Resize");
+			InteractionCompartmentXYLayoutEditPolicy.addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)this, 1);
+			
+			if(compoundCmd.canExecute())
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new GEFtoEMFCommandWrapper(compoundCmd.unwrap()), true);
 		}
 	}
 
@@ -1967,13 +2026,57 @@ public class LifelineEditPart extends NamedElementEditPart {
 		return centerFigure;
 	}
 
+	public InteractionInteractionCompartmentEditPart getParentInteractionCompartmentEditPart(){
+		EditPart part = this;
+		do{
+			part = part.getParent();
+		}while(part != null && !(part instanceof InteractionInteractionCompartmentEditPart));
+		return (InteractionInteractionCompartmentEditPart) part;
+	}
+	
+	public boolean ignoreRequest(Request request) {  // moving editpart causing to add child
+		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))){
+			List parts = ((ChangeBoundsRequest) request).getEditParts();
+			if(parts != null){
+				for(Object obj : parts)
+					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart || obj instanceof CombinedFragmentEditPart){
+						return true;
+					}
+			}
+		}
+		
+		return false;
+	}
+	
+	public void showTargetFeedback(Request request) {
+		 if(ignoreRequest(request)) {
+           return;
+       }
+	        
+       super.showTargetFeedback(request);
+	}
+		
 	/**
 	 * Handle message creation for execution specification
 	 */
 	@Override
 	public Command getCommand(Request request) {
+		if(ignoreRequest(request))  
+			return null;
+		
+		if(request instanceof DropObjectsRequest){  // drop from model explorer
+			DropObjectsRequest dropRequest = (DropObjectsRequest) request;
+			if (dropRequest.getObjects().size() > 0 ){
+				Object obj = dropRequest.getObjects().get(0);
+				if(obj instanceof Comment || obj instanceof Constraint || obj instanceof TimeObservation) {
+					InteractionInteractionCompartmentEditPart part = getParentInteractionCompartmentEditPart();
+					if(part != null)
+						return part.getCommand(request);
+				}
+			}
+		}
+		
 		if(request instanceof CreateConnectionRequest) {
-
 			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest)request;
 			EditPart target = createConnectionRequest.getTargetEditPart();
 			if(target instanceof LifelineEditPart) {
@@ -1996,7 +2099,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			} else {
 				return target.getCommand(request);
 			}
-
 		}
 		return super.getCommand(request);
 	}

@@ -15,10 +15,16 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.handles.HandleBounds;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -106,6 +112,29 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableShapeEditPolicy() {
 
+			@Override
+			protected Command getResizeCommand(ChangeBoundsRequest request) {
+				// Bugfix: Avoid resize ES with the child size is little than parent one. 
+				EditPart host = getHost();
+				List<ShapeNodeEditPart> movedChildrenParts = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts((ShapeNodeEditPart)host);
+				Rectangle r = getInitialFeedbackBounds().getCopy();
+				getHostFigure().translateToAbsolute(r);
+				r.translate(0, request.getMoveDelta().y);
+				r.resize(0, request.getSizeDelta().height);
+				for(ShapeNodeEditPart child : movedChildrenParts) {
+					IFigure figure = child.getFigure();
+					Rectangle rect = figure.getBounds().getCopy();
+					if (figure instanceof HandleBounds) {
+						rect = ((HandleBounds)figure).getBounds().getCopy();
+					}
+					figure.translateToAbsolute(rect);
+					if(rect.y < r.y || rect.bottom() > r.bottom()) {
+						return UnexecutableCommand.INSTANCE;
+					}
+				}
+				return super.getResizeCommand(request);
+			}
+	
 			@Override
 			protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
 				request.getMoveDelta().x = 0; // reset offset
@@ -308,5 +337,54 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Override for add elements on ExecutionSpecification
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			return getParent().getCommand(request);
+		}
+		return super.getCommand(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().showSourceFeedback(request);
+		}
+		super.showSourceFeedback(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().eraseSourceFeedback(request);
+		}
+		super.eraseSourceFeedback(request);
+	}
+
+	@Override
+	public void showTargetFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().showTargetFeedback(request);
+		}
+		super.showTargetFeedback(request);
+	}
+
+	@Override
+	public void eraseTargetFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().eraseSourceFeedback(request);
+		}
+		super.eraseTargetFeedback(request);
 	}
 }

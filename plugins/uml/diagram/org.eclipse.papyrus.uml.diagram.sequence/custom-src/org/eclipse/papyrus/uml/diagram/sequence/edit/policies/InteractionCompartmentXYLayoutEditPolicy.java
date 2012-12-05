@@ -221,7 +221,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	 * @param number
 	 *        The number of brother of the LifelineEditPart
 	 */
-	private static void addLifelineResizeChildrenCommand(CompoundCommand compoundCmd, ChangeBoundsRequest request, LifelineEditPart lifelineEditPart, int number) {
+	public static void addLifelineResizeChildrenCommand(CompoundCommand compoundCmd, ChangeBoundsRequest request, LifelineEditPart lifelineEditPart, int number) {
 		// If the width increases or decreases, ExecutionSpecification elements need to
 		// be moved
 		int widthDelta;
@@ -259,10 +259,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			}
 		}
 
-		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
-		for(LifelineEditPart lifelineEP : innerConnectableElementList) {
-			addLifelineResizeChildrenCommand(compoundCmd, request, lifelineEP, number * innerConnectableElementList.size());
-		}
+//		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
+//		for(LifelineEditPart lifelineEP : innerConnectableElementList) {
+//			 addLifelineResizeChildrenCommand(compoundCmd, request, lifelineEP, number * innerConnectableElementList.size());
+//		}
 		// fixed bug (id=364711) when lifeline bounds changed update coveredBys'
 		// bounds.
 		addUpdateInteractionFragmentsLocationCommand(compoundCmd, request,

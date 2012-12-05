@@ -36,7 +36,6 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -172,7 +171,7 @@ AbstractExecutionSpecificationEditPart {
 		final NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new DelegatingLayout());
 		//figure.setLayoutManager(new StackLayout());
-	 
+
 		IFigure shape = createNodeShape();
 		figure.add(shape, new FillParentLocator());
 		contentPane = setupContentPane(shape);
@@ -212,15 +211,15 @@ AbstractExecutionSpecificationEditPart {
 		}
 	}
 
-//	/**
-//	 * @generated
-//	 */
-//	@Override
-//	protected void setLineWidth(int width) {
-//		if(primaryShape instanceof Shape) {
-//			((Shape)primaryShape).setLineWidth(width);
-//		}
-//	}
+	//	/**
+	//	 * @generated
+	//	 */
+	//	@Override
+	//	protected void setLineWidth(int width) {
+	//		if(primaryShape instanceof Shape) {
+	//			((Shape)primaryShape).setLineWidth(width);
+	//		}
+	//	}
 
 	/**
 	 * @generated
@@ -976,20 +975,20 @@ AbstractExecutionSpecificationEditPart {
 		return types;
 	}
 
-//	/**
-//	 * @generated
-//	 */
-//	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
-//
-//		/**
-//		 * @generated
-//		 */
-//		public ExecutionSpecificationRectangleFigure() {
-//			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
-//			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
-//		}
-//
-//	}
+	//	/**
+	//	 * @generated
+	//	 */
+	//	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
+	//
+	//		/**
+	//		 * @generated
+	//		 */
+	//		public ExecutionSpecificationRectangleFigure() {
+	//			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
+	//			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
+	//		}
+	//
+	//	}
 
 	/**
 	 * @generated
@@ -1028,7 +1027,7 @@ AbstractExecutionSpecificationEditPart {
 	/**
 	 * Add connection on top off the figure during the feedback.
 	 */
- 
+
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
@@ -1118,36 +1117,4 @@ AbstractExecutionSpecificationEditPart {
 		return super.getSourceConnectionAnchor(connEditPart);
 	}
 
-	/**
-	 * Override for adding elements on ExecutionSpecification
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			return getParent().getCommand(request);
-		}
-		return super.getCommand(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void showSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().showSourceFeedback(request);
-		}
-		super.showSourceFeedback(request);
-	}
-
-	/**
-	 * @generated NOT Override for redirecting creation request to the lifeline
-	 */
-	@Override
-	public void eraseSourceFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().eraseSourceFeedback(request);
-		}
-		super.eraseSourceFeedback(request);
-	}
 }

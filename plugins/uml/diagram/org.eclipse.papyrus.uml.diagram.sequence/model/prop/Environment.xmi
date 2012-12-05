@@ -5,5 +5,8 @@
     xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
    <modelElementFactories
       name="MessageStyle Notation Factory"
-      factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.MessageStyleElementFactory"/>   
+      factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.MessageStyleElementFactory"/>  
+   <modelElementFactories
+      name="Sequence preferences Factory"
+      factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.PreferencesModelElementFactory"/>      
 </environment:Environment>
