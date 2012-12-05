@@ -50,7 +50,6 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart;
@@ -61,6 +60,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN
  */
 public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProvider {
 
+	@Override
 	public boolean provides(IOperation operation) {
 
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
@@ -100,6 +100,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		return super.provides(operation);
 	}
 
+	@Override
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
 
@@ -111,7 +112,6 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		}
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 
 		if((editPart instanceof ConstraintEditPart) || (editPart instanceof ConstraintEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
@@ -141,11 +141,11 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		}
 
 		/*
-		if(editPart instanceof NestedBlockPropertyCompositeEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomNestedBlockPropertyCompositeSemanticEditPolicy());
-		}
-		*/
+		 * if(editPart instanceof NestedBlockPropertyCompositeEditPart) {
+		 * editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
+		 * editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomNestedBlockPropertyCompositeSemanticEditPolicy());
+		 * }
+		 */
 
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy());
@@ -169,7 +169,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		if(editPart instanceof ConnectorEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		if(editPart instanceof NamedElementEditPart ){
+		if(editPart instanceof NamedElementEditPart) {
 			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 		}
 

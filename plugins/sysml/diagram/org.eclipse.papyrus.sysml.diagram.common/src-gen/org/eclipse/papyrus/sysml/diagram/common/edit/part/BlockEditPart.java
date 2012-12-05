@@ -41,8 +41,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
@@ -63,17 +61,17 @@ public class BlockEditPart extends AbstractElementEditPart {
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		// Start of user code custom policies
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.uml.diagram.common.edit.policy.EncapsulatedClassifierResizableShapeEditPolicy());
 		// End of user code
 	}
 
+	@Override
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				if(child instanceof IBorderItemEditPart) {
 					return new BorderItemResizableEditPolicy();
@@ -85,10 +83,12 @@ public class BlockEditPart extends AbstractElementEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -96,6 +96,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 		return lep;
 	}
 
+	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof BlockLabelNameEditPart) {
 			((BlockLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
@@ -162,6 +163,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof BlockLabelNameEditPart) {
 			return true;
@@ -225,6 +227,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof BlockPropertyCompartmentEditPart) {
 			return getPrimaryShape().getBlockPropertyCompartmentFigure();
@@ -276,6 +279,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 		return primaryShape = new BlockFigure();
 	}
 
+	@Override
 	public BlockFigure getPrimaryShape() {
 		return (BlockFigure)primaryShape;
 	}

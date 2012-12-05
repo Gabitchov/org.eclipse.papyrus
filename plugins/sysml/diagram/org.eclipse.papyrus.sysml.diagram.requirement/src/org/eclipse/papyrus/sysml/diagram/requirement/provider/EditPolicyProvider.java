@@ -20,7 +20,6 @@ import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagra
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.policy.CustomDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**
  * Requirement Diagram edit policy provider
@@ -50,7 +49,6 @@ public class EditPolicyProvider extends AbstractProvider implements IEditPolicyP
 
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 	}
 
 }

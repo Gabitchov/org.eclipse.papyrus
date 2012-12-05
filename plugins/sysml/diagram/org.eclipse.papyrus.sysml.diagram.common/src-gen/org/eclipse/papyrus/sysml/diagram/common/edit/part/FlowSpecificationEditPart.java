@@ -30,8 +30,6 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
@@ -50,15 +48,15 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		// Start of user code custom policies
 		// End of user code
 	}
 
+	@Override
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -67,10 +65,12 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -78,6 +78,7 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		return lep;
 	}
 
+	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof FlowSpecificationLabelNameEditPart) {
 			((FlowSpecificationLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
@@ -92,6 +93,7 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof FlowSpecificationLabelNameEditPart) {
 			return true;
@@ -105,6 +107,7 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof FlowPropertyCompartmentEditPart) {
 			return getPrimaryShape().getFlowPropertyCompartmentFigure();
@@ -127,6 +130,7 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		return primaryShape = new FlowSpecificationFigure();
 	}
 
+	@Override
 	public FlowSpecificationFigure getPrimaryShape() {
 		return (FlowSpecificationFigure)primaryShape;
 	}

@@ -27,8 +27,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
@@ -49,15 +47,15 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		// Start of user code custom policies
 		// End of user code
 	}
 
+	@Override
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -66,10 +64,12 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -77,6 +77,7 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 		return lep;
 	}
 
+	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
 			((NamedElementNodeLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
@@ -91,6 +92,7 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
 			return true;
@@ -104,6 +106,7 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof EnumerationLiteralCompartmentEditPart) {
 			return getPrimaryShape().getEnumerationLiteralCompartmentFigure();
@@ -126,6 +129,7 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 		return primaryShape = new EnumerationFigure();
 	}
 
+	@Override
 	public EnumerationFigure getPrimaryShape() {
 		return (EnumerationFigure)primaryShape;
 	}

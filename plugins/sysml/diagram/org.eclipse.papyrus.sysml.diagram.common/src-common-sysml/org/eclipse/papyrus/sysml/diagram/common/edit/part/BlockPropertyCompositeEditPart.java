@@ -45,8 +45,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
@@ -69,16 +67,16 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		installEditPolicy(ShowHideRelatedContentsEditPolicy.SHOW_HIDE_RELATED_CONTENTS_POLICY, new ShowHideRelatedContentsEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new StructuredClassifierCreationEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new EncapsulatedClassifierResizableShapeEditPolicy());
 	}
 
+	@Override
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				if(child instanceof IBorderItemEditPart) {
 					return new BorderItemResizableEditPolicy();
@@ -91,10 +89,12 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -102,6 +102,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		return lep;
 	}
 
+	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 
 		if(childEditPart instanceof PropertyNodeLabelEditPart) {
@@ -130,6 +131,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
 
 		if(childEditPart instanceof PropertyNodeLabelEditPart) {
@@ -155,6 +157,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		return false;
 	}
 
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
 			return getPrimaryShape().getBlockPropertyStructureCompartmentFigure();
@@ -187,6 +190,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		return primaryShape = new BlockPropertyCompositeFigure();
 	}
 
+	@Override
 	public BlockPropertyCompositeFigure getPrimaryShape() {
 		return (BlockPropertyCompositeFigure)primaryShape;
 	}
@@ -207,7 +211,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 
 		// A visual refresh may also be needed when the following properties are changing : aggregation, type, or the related association.
 		if(resolveSemanticElement() != null) {
-			EObject element = (EObject)resolveSemanticElement();
+			EObject element = resolveSemanticElement();
 
 			if((element != null) && (element.equals(event.getNotifier())) && (element instanceof Property)) {
 
@@ -242,7 +246,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		int lineStyle = Graphics.LINE_SOLID;
 
 		if(resolveSemanticElement() != null) {
-			EObject eObject = (EObject)resolveSemanticElement();
+			EObject eObject = resolveSemanticElement();
 			if(((ISpecializationType)SysMLElementTypes.PART_PROPERTY).getMatcher().matches(eObject)) {
 				tag = "part";
 
