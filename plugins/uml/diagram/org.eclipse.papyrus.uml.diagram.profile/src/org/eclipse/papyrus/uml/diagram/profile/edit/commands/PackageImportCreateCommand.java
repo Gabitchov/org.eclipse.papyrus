@@ -45,7 +45,6 @@ public class PackageImportCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -84,7 +83,6 @@ public class PackageImportCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreatePackageImport_1065(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +90,6 @@ public class PackageImportCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		PackageImport newElement = UMLFactory.eINSTANCE.createPackageImport();
 		getContainer().getPackageImports().add(newElement);
 		newElement.setImportingNamespace(getSource());
@@ -100,9 +97,7 @@ public class PackageImportCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
-
 
 	/**
 	 * @generated
@@ -151,6 +146,7 @@ public class PackageImportCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
+	 * 
 	 * @generated
 	 */
 	protected Namespace deduceContainer(EObject source, EObject target) {
@@ -164,5 +160,4 @@ public class PackageImportCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

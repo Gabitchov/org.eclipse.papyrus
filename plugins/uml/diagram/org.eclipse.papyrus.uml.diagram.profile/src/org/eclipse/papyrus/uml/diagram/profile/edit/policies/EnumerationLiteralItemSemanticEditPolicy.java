@@ -38,9 +38,6 @@ public class EnumerationLiteralItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.EnumerationLiteral_1037);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -48,7 +45,6 @@ public class EnumerationLiteralItemSemanticEditPolicy extends UMLBaseItemSemanti
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -63,6 +59,4 @@ public class EnumerationLiteralItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

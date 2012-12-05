@@ -298,7 +298,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return diagramName_2Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -567,7 +566,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return dataTypeName_5061Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -799,7 +797,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return packageImportVisibility_6022Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -895,6 +892,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
+	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {
@@ -959,5 +957,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

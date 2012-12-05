@@ -32,7 +32,6 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static final String compartments[] = { "DataTypeAttributeCompartment", "DataTypeOperationCompartment" };
 
-
 	/**
 	 * @generated
 	 */
@@ -53,36 +52,27 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = ProfileDiagramEditPart.MODEL_ID + "_DataType";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
-
 		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
 		for(String name : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
-
 		map = getStaticCompartmentTitleVisibilityPreferences();
 		for(String name : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
-
-
-
-
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
-
 		// Set the default for the gradient
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
 		//org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new  org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
 		//		new org.eclipse.swt.graphics.RGB(255, 255, 255),
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
-
 	}
 
 	/**
@@ -94,7 +84,6 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 			this.compartmentsList.add(name);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -111,9 +100,7 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-
 		map.put("DataTypeAttributeCompartment", Boolean.FALSE);
-
 		map.put("DataTypeOperationCompartment", Boolean.FALSE);
 		return map;
 	}
@@ -124,7 +111,4 @@ public class DataTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}
-
-
-
 }

@@ -29,9 +29,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.policies.AssociationItemSema
 /**
  * @generated
  */
-public class AssociationEditPart extends
-
-AbstractAssociationEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -87,7 +85,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -97,7 +94,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -124,7 +120,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -134,7 +129,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -154,5 +148,4 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
-
 }

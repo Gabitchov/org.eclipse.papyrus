@@ -45,7 +45,6 @@ public class ExtensionCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -84,7 +83,6 @@ public class ExtensionCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateExtension_1013(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -92,11 +90,8 @@ public class ExtensionCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		throw new UnsupportedOperationException();
-
 	}
-
 
 	/**
 	 * @generated
@@ -145,6 +140,7 @@ public class ExtensionCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
+	 * 
 	 * @generated
 	 */
 	protected Package deduceContainer(EObject source, EObject target) {
@@ -158,5 +154,4 @@ public class ExtensionCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

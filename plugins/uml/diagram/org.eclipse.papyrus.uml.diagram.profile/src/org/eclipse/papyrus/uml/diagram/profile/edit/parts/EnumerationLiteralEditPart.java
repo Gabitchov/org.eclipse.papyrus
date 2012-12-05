@@ -83,17 +83,13 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class EnumerationLiteralEditPart
-
-
-
-extends CompartmentEditPart
-
-implements ITextAwareEditPart, IPrimaryEditPart {
+public class EnumerationLiteralEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -120,21 +116,19 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -324,7 +318,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -406,9 +399,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -435,7 +426,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -443,7 +433,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -451,7 +440,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -517,6 +505,13 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 
@@ -598,8 +593,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -614,7 +607,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -644,6 +636,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -659,6 +652,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -672,7 +666,9 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
+	 * 
+	 * @param theRequest
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -699,8 +695,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -716,8 +710,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -748,6 +740,9 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 				}
 			}
 		}
+		if(UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
+			refreshUnderline();
+		}
 		super.handleNotificationEvent(event);
 	}
 
@@ -767,37 +762,22 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		return new LiteralEnumerationDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LiteralEnumerationDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
 		 */
 		public LiteralEnumerationDescriptor() {
 			this.setText("");
-
 			this.setFont(THIS_FONT);
-
-
 		}
-
-
-
-
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
-
-
 }

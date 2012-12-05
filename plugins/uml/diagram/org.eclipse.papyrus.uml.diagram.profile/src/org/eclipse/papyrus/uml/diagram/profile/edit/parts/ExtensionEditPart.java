@@ -26,9 +26,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ExtensionItemSemant
 /**
  * @generated
  */
-public class ExtensionEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -52,10 +50,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomExtensionItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -74,5 +68,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public ExtensionFigure getPrimaryShape() {
 		return (ExtensionFigure)getFigure();
 	}
-
 }

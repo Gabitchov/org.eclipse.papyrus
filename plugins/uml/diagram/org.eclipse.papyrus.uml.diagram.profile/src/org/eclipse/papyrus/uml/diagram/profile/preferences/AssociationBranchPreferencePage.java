@@ -43,11 +43,5 @@ public class AssociationBranchPreferencePage extends AbstractPapyrusLinkPreferen
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
-
 	}
-
-
-
-
 }

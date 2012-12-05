@@ -57,9 +57,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class AssociationNodeEditPart extends
-
-ShapeNodeEditPart {
+public class AssociationNodeEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -95,10 +93,6 @@ ShapeNodeEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -139,8 +133,6 @@ ShapeNodeEditPart {
 		return (AssociationNodeDescriptor)primaryShape;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -150,10 +142,8 @@ ShapeNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -175,7 +165,9 @@ ShapeNodeEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -218,7 +210,6 @@ ShapeNodeEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -782,17 +773,10 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class AssociationNodeDescriptor extends Shape {
-
-
-
 
 		/**
 		 * @generated
@@ -870,10 +854,8 @@ ShapeNodeEditPart {
 		private int[] scalePointList() {
 			Rectangle pointsBounds = getTemplateBounds();
 			Rectangle actualBounds = getBounds();
-
 			float xScale = ((float)actualBounds.width) / pointsBounds.width;
 			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
 			if(xScale == 1 && yScale == 1) {
 				return myTemplate.toIntArray();
 			}
@@ -884,15 +866,7 @@ ShapeNodeEditPart {
 			}
 			return scaled;
 		}
-
-
-
-
-
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -901,7 +875,6 @@ ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -921,7 +894,6 @@ ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

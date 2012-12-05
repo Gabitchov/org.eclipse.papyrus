@@ -28,9 +28,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.policies.AssociationBranchIt
 /**
  * @generated
  */
-public class AssociationBranchEditPart extends
-
-AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
+public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -69,7 +67,6 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -79,7 +76,6 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -94,7 +90,6 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -104,7 +99,6 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -124,5 +118,4 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure)getFigure();
 	}
-
 }

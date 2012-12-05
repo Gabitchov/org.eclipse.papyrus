@@ -29,9 +29,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ElementImportItemSe
 /**
  * @generated
  */
-public class ElementImportEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ElementImportEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -70,7 +68,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -80,7 +77,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -95,7 +91,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -105,7 +100,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -125,5 +119,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

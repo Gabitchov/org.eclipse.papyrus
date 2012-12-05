@@ -24,9 +24,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ProfileApplicationI
 /**
  * @generated
  */
-public class ProfileApplicationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,10 +46,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProfileApplicationItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -70,5 +64,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

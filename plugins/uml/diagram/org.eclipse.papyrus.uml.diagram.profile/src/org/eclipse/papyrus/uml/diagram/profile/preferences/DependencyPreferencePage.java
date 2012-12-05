@@ -23,8 +23,6 @@ import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
  */
 public class DependencyPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
-
-
 	/**
 	 * @generated
 	 */
@@ -45,10 +43,5 @@ public class DependencyPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
-
 	}
-
-
-
 }
