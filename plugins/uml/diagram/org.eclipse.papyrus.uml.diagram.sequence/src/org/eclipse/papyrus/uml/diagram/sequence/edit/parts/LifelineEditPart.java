@@ -99,6 +99,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEd
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RectangularShadowBorder;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart.StateInvariantLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
@@ -390,7 +391,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		}
 
 		if(childEditPart instanceof StateInvariantEditPart) {
-			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new StateInvariantLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}

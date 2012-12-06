@@ -53,6 +53,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart.StateInvariantResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
@@ -120,7 +122,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					}
 				}
 				if(ACTION_EXECUTION_SPECIFICATION_HINT.equals(semanticHint) || BEHAVIOR_EXECUTION_SPECIFICATION_HINT.equals(semanticHint)) {
-						Command cmd = getCommandForExecutionSpecificationCreation(cvr, viewDescriptor);
+					Command cmd = getCommandForExecutionSpecificationCreation(cvr, viewDescriptor);
 					if(cmd != null) {
 						return cmd;
 					}
@@ -170,6 +172,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		View childView = (View)child.getModel();
 		switch(UMLVisualIDRegistry.getVisualID(childView)) {
+		case StateInvariantEditPart.VISUAL_ID:
+			return new StateInvariantResizableEditPolicy();
 		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 			return new BorderItemResizableEditPolicy();
 		}
@@ -195,7 +199,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			if(type.getSemanticHint().equals(req.getViewAndElementDescriptor().getSemanticHint())) {
 				constraint.y = 0; // fix layout offset
 			}
-			
+
 			String destructionHint = ((IHintedType)UMLElementTypes.DestructionOccurrenceSpecification_3022).getSemanticHint();
 			if(destructionHint.equals(req.getViewAndElementDescriptor().getSemanticHint()) && constraint.width < 0 && constraint.height < 0) {
 				constraint.width = constraint.height = 20;// set initial size, same as DestructionOccurrenceSpecificationPreferencePage
@@ -293,7 +297,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 		return getParent((LifelineEditPart)getHost(), newBounds, executionSpecificationList);
 	}
-		 
+
 	private Command getCommandForExecutionSpecificationCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
 
 		LifelineEditPart editPart = (LifelineEditPart)getHost();
@@ -303,7 +307,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		Point location = cvr.getLocation();
 		Dimension size = cvr.getSize();
 		String semanticHint = viewDescriptor.getSemanticHint();
-		
+
 		// Define the bounds of the new Execution specification
 		Rectangle newBounds = getCreateExecuteSpecificationBounds(location, size, semanticHint);
 		ShapeNodeEditPart parent = getParentWhenCreationExecuteSpecification(location, size, semanticHint);

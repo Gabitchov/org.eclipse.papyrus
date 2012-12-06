@@ -22,6 +22,9 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
@@ -30,12 +33,20 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -46,9 +57,11 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.StateInvariantItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -1107,10 +1120,116 @@ AbstractBorderItemEditPart {
 				refreshLineWidth();
 			} 
 		}
-	}
+	}		
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLineWidth();
 	}
+	
+	protected void refreshBounds() {
+		if (getBorderItemLocator() != null) {
+			int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
+				.getLocation_X())).intValue();
+			int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
+				.getLocation_Y())).intValue();
+			Point loc = new Point(x, y);
+			
+			int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			Dimension size = new Dimension(width, height);
+
+			// fix size
+			getFigure().setBounds(new Rectangle(loc, size)); 
+			getBorderItemLocator().setConstraint(new Rectangle(	loc, size));
+		} else {
+			super.refreshBounds();
+		}
+	}
+	
+	static class StateInvariantLocator extends CenterLocator{
+		public StateInvariantLocator(IFigure parentFigure, int location) {
+			super(parentFigure, location);
+		
+		}
+
+		public void relocate(IFigure borderItem) {
+			Point constraintLocation = getConstraint().getLocation();
+			Dimension size = getSize(borderItem);
+			Point ptNewLocation = new Point(getParentBorder().getCenter().x - size.width / 2, constraintLocation.y);
+			borderItem.setBounds(new Rectangle(ptNewLocation, size));	
+		}
+		
+		public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
+			Rectangle realLocation = new Rectangle(proposedLocation);
+			Point point =  new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, realLocation.y);
+			realLocation.setLocation(point);
+			return realLocation;					
+		}
+	};
+	
+	public static class StateInvariantResizableEditPolicy extends BorderItemResizableEditPolicy{
+		
+		protected Command getResizeCommand(ChangeBoundsRequest request) {
+			IBorderItemEditPart borderItemEP = (IBorderItemEditPart)getHost();
+			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
+			
+			if(borderItemLocator != null) {
+				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+				getHostFigure().translateToAbsolute(rect);
+				rect.translate(request.getMoveDelta());
+				rect.resize(request.getSizeDelta());
+				getHostFigure().translateToRelative(rect);
+				Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
+				
+				if(borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart) borderItemEP.getParent(), borderItemEP, realLocation.getCopy()))
+					return null;
+				
+				ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View)getHost().getModel()), realLocation);
+				return new ICommandProxy(moveCommand);
+			}
+			return null;
+		}
+		
+		protected Command getMoveCommand(ChangeBoundsRequest request) {
+			IBorderItemEditPart borderItemEP = (IBorderItemEditPart)getHost();
+			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
+
+			if(borderItemLocator != null) {
+				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+				getHostFigure().translateToAbsolute(rect);
+				rect.translate(request.getMoveDelta());
+				rect.resize(request.getSizeDelta());
+
+				getHostFigure().translateToRelative(rect);
+				Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
+
+				if(borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart) borderItemEP.getParent(), borderItemEP, realLocation.getCopy()))
+					return null;
+				
+				Point location = realLocation.getTopLeft();
+				ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View)getHost().getModel()), location);
+				return new ICommandProxy(moveCommand);
+			}
+			return null;
+		}
+
+		private boolean restrictInParentBounds(LifelineEditPart ep,
+				IBorderItemEditPart borderItemEP, Rectangle realLocation) {
+			borderItemEP.getFigure().translateToAbsolute(realLocation);
+			
+			Rectangle bounds = ep.getPrimaryShape().getBounds().getCopy();
+			ep.getPrimaryShape().translateToAbsolute(bounds);					
+			int nameHeight = ep.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
+			
+			if(realLocation.y - nameHeight < bounds.y)
+				return false;
+			
+			if(realLocation.getBottom().y > bounds.getBottom().y)
+				return false;
+			
+			return true;
+		}
+	}
+	
 }
