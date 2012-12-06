@@ -246,7 +246,7 @@ public class ProfileFacetGenericFactory {
 				setCalledQuery = this.registry.getModelQuery(QueryRegistry.SET_EOBJECT_MULTI_REFERENCE_OPERATION_ID);
 			} else {
 				getCalledQuery = this.registry.getModelQuery(QueryRegistry.GET_EOBJECT_SINGLE_REFERENCE_OPERATION_ID);
-				setCalledQuery = this.registry.getModelQuery(QueryRegistry.GET_EOBJECT_SINGLE_REFERENCE_OPERATION_ID);
+				setCalledQuery = this.registry.getModelQuery(QueryRegistry.SET_EOBJECT_SINGLE_REFERENCE_OPERATION_ID);
 			}
 
 		} else {

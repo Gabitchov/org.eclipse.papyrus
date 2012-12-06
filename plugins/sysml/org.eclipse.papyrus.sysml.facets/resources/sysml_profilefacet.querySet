@@ -82,14 +82,14 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Activities::Probability::probability_value" description="Setter for the stereotype property SysML::Activities::Probability::probability">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Probability/probability"/>
     </arguments>
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Requirements::Requirement::master_value" description="Setter for the stereotype property SysML::Requirements::Requirement::master">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Requirements/Requirement/master"/>
     </arguments>
@@ -353,7 +353,7 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::ModelElements::View::viewPoint_value" description="Setter for the stereotype property SysML::ModelElements::View::viewPoint">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//ModelElements/View/viewPoint"/>
     </arguments>
@@ -423,7 +423,7 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ParticipantProperty::end_value" description="Setter for the stereotype property SysML::Blocks::ParticipantProperty::end">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ParticipantProperty/end"/>
     </arguments>
@@ -444,7 +444,7 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ValueType::dimension_value" description="Setter for the stereotype property SysML::Blocks::ValueType::dimension">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ValueType/dimension"/>
     </arguments>
@@ -456,7 +456,7 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ConnectorProperty::connector_value" description="Setter for the stereotype property SysML::Blocks::ConnectorProperty::connector">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ConnectorProperty/connector"/>
     </arguments>
@@ -515,7 +515,7 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Activities::Rate::rate_value" description="Setter for the stereotype property SysML::Activities::Rate::rate">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Activities/Rate/rate"/>
     </arguments>
@@ -529,14 +529,14 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::PortAndFlows::ItemFlow::itemProperty_value" description="Setter for the stereotype property SysML::PortAndFlows::ItemFlow::itemProperty">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//PortAndFlows/ItemFlow/itemProperty"/>
     </arguments>
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::ValueType::unit_value" description="Setter for the stereotype property SysML::Blocks::ValueType::unit">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/ValueType/unit"/>
     </arguments>
@@ -569,7 +569,7 @@
   </queries>
   <queries xsi:type="paramQuery:ParametricQuery" name="set_SysML::Blocks::Unit::dimension_value" description="Setter for the stereotype property SysML::Blocks::Unit::dimension">
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#getEObjectSingleReferenceValue"/>
+    <calledQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/uml_stereotype_queries#setEObjectSingleReferenceValue"/>
     <arguments xsi:type="paramQuery:EStructuralFeatureArgument" argumentName="editedFeature">
       <value xsi:type="profilefacet:StereotypePropertyFacetReference" href="sysml_profilefacet.facetSet#//Blocks/Unit/dimension"/>
     </arguments>
