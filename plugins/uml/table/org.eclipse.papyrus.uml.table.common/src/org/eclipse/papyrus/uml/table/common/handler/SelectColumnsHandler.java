@@ -39,10 +39,9 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -93,6 +92,7 @@ import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFac
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement;
 import org.eclipse.papyrus.uml.table.common.Activator;
 import org.eclipse.papyrus.uml.table.common.dialog.ColumnsToShowDialog;
+import org.eclipse.papyrus.uml.table.common.editor.AbstractUMLTableEditor;
 import org.eclipse.papyrus.uml.table.common.provider.AbstractAdditionalContentsProvider;
 import org.eclipse.papyrus.uml.table.common.provider.EMFFacetColumnsProvider;
 import org.eclipse.papyrus.uml.table.common.provider.ProfileFacetSetProvider;
@@ -120,22 +120,22 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class SelectColumnsHandler extends AbstractHandler {
 
 	/** all direct features available in the table */
-	final protected SortedSet<ETypedElement> allDirectFeatures = new TreeSet<ETypedElement>(new ENamedElementComparator());
+	final private SortedSet<ETypedElement> allDirectFeatures = new TreeSet<ETypedElement>(new ENamedElementComparator());
 
 	/** all additional possible contents */
-	final protected Collection<FacetSet> allAdditionalContents = new HashSet<FacetSet>();
+	final private Collection<FacetSet> allAdditionalContents = new HashSet<FacetSet>();
 
 	/** the initial direct features visibles in the table */
-	final protected Collection<ETypedElement> initialDirectFeatureSelected = new HashSet<ETypedElement>();
+	final private Collection<ETypedElement> initialDirectFeatureSelected = new HashSet<ETypedElement>();
 
 	/** the initial additional features visibles in the table */
-	final protected Collection<ETypedElement> initialAdditionalFeatureSelected = new HashSet<ETypedElement>();
+	final private Collection<ETypedElement> initialAdditionalFeatureSelected = new HashSet<ETypedElement>();
 
 	/** the list of the facetSet used in the current table */
-	final protected Collection<FacetSet> facetSetsUsedInTheTable = new HashSet<FacetSet>();
+	final private Collection<FacetSet> facetSetsUsedInTheTable = new HashSet<FacetSet>();
 
 	/** the map between existing columns (visible or not) and the feature */
-	final protected Map<ETypedElement, Column> columnsFeatureMap = new HashMap<ETypedElement, Column>();
+	final private Map<ETypedElement, Column> columnsFeatureMap = new HashMap<ETypedElement, Column>();
 
 
 	/**
@@ -402,7 +402,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	 *         the command to create and destroy the required columns (can be <code>null</code>)
 	 *         /!\ EMF-Facet allows to hide EMF-Facet columns, so if such column already exists but are not visible, we show them
 	 */
-	private Command getCreateDestroyAdditonalFeatureColumnsCommand(final PapyrusTableInstance papyrusTable, final NatTableWidget widget, final Collection<ETypedElement> selectedAdditionalFeatures) {
+	protected Command getCreateDestroyAdditonalFeatureColumnsCommand(final PapyrusTableInstance papyrusTable, final NatTableWidget widget, final Collection<ETypedElement> selectedAdditionalFeatures) {
 
 		final CompoundCommand compoundCmd = new CompoundCommand("Show/Hide additional features command"); //$NON-NLS-1$
 		final ModelSet resourceSet = (ModelSet)papyrusTable.eResource().getResourceSet();
@@ -590,7 +590,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	 * @return
 	 *         the editing domain used by this handler or <code>null</code> if not found
 	 */
-	private TransactionalEditingDomain getEditingDomain() {
+	protected TransactionalEditingDomain getEditingDomain() {
 		TransactionalEditingDomain domain = null;
 		domain = TransactionUtil.getEditingDomain(getPapyrusTable());
 		return domain;
@@ -633,7 +633,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	 * @return
 	 *         the papyrus table
 	 */
-	private PapyrusTableInstance getPapyrusTable() {
+	protected PapyrusTableInstance getPapyrusTable() {
 		final IEditorPart part = getCurrentTableEditor();
 		if(part != null) {
 			return (PapyrusTableInstance)part.getAdapter(PapyrusTableInstance.class);
@@ -646,11 +646,13 @@ public class SelectColumnsHandler extends AbstractHandler {
 	 * @return
 	 *         the table widget
 	 */
-	private NatTableWidget getTableWidget() {
+	protected NatTableWidget getTableWidget() {
 		final IAdaptable editor = getCurrentTableEditor();
-		final INatTableWidgetProvider provider = (INatTableWidgetProvider)editor.getAdapter(INatTableWidgetProvider.class);
-		if(provider != null) {
-			return (NatTableWidget)provider.getNatTableWidget();
+		if(editor != null) {
+			final INatTableWidgetProvider provider = (INatTableWidgetProvider)editor.getAdapter(INatTableWidgetProvider.class);
+			if(provider != null) {
+				return (NatTableWidget)provider.getNatTableWidget();
+			}
 		}
 		return null;
 	}
@@ -962,5 +964,69 @@ public class SelectColumnsHandler extends AbstractHandler {
 		};
 
 		return new GMFtoEMFCommandWrapper(updateContext);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		if(getPapyrusTable() != null) {
+			if(getCurrentTableEditor() instanceof AbstractUMLTableEditor) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	
+	/**
+	 * @return the allDirectFeatures
+	 */
+	public final SortedSet<ETypedElement> getAllDirectFeatures() {
+		return allDirectFeatures;
+	}
+
+
+	
+	/**
+	 * @return the allAdditionalContents
+	 */
+	public final Collection<FacetSet> getAllAdditionalContents() {
+		return allAdditionalContents;
+	}
+
+
+	
+	/**
+	 * @return the initialDirectFeatureSelected
+	 */
+	public final Collection<ETypedElement> getInitialDirectFeatureSelected() {
+		return initialDirectFeatureSelected;
+	}
+
+
+	
+	/**
+	 * @return the initialAdditionalFeatureSelected
+	 */
+	public final Collection<ETypedElement> getInitialAdditionalFeatureSelected() {
+		return initialAdditionalFeatureSelected;
+	}
+
+
+	
+	/**
+	 * @return the facetSetsUsedInTheTable
+	 */
+	public final Collection<FacetSet> getFacetSetsUsedInTheTable() {
+		return facetSetsUsedInTheTable;
+	}
+
+
+	
+	/**
+	 * @return the columnsFeatureMap
+	 */
+	public final Map<ETypedElement, Column> getColumnsFeatureMap() {
+		return columnsFeatureMap;
 	}
 }

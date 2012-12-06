@@ -63,7 +63,8 @@ public class PasteInTableHandler extends AbstractHandler {
 
 	private final IPasteInTableCommandProvider provider = new PasteInPapyrusTableCommandProvider();
 
-private NatTableWidget widget = null;
+	private NatTableWidget widget = null;
+
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
