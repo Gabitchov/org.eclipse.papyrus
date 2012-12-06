@@ -50,4 +50,12 @@
          </activeWhen>
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            class="org.eclipse.papyrus.uml.table.common.menu.ContributionFactory"
+            locationURI="popup:org.eclipse.ui.popup.any">
+      </menuContribution>
+   </extension>
 </plugin>
