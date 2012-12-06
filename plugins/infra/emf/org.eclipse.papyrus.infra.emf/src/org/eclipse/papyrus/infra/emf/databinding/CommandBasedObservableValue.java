@@ -9,12 +9,11 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.infra.emf.databinding;
 
-/**
- * @deprecated
- * @see CommandBasedObservableValue
- */
-public interface CommandBasedObservableValue extends org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservableValue {
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+
+
+public interface CommandBasedObservableValue extends CommandBasedObservable, IObservableValue {
 
 }

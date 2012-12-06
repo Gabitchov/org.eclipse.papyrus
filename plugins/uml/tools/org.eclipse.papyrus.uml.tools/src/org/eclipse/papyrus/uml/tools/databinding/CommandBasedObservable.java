@@ -11,17 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
-import org.eclipse.core.databinding.observable.IObservable;
-import org.eclipse.emf.common.command.Command;
 
+/**
+ * @deprecated
+ * @see org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservable
+ */
+public interface CommandBasedObservable extends org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservable {
 
-public interface CommandBasedObservable extends IObservable {
-
-	/**
-	 * Returns the EMF Command for modifying this Observable's value
-	 * 
-	 * @param value
-	 * @return
-	 */
-	public Command getCommand(Object value);
 }

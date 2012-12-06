@@ -11,9 +11,9 @@ import org.eclipse.jface.viewers.LabelProvider;
  */
 public class MapLabelProvider extends LabelProvider {
 
-	protected final Map<Object, String> objectsToLabels;
+	protected final Map<? extends Object, String> objectsToLabels;
 
-	public MapLabelProvider(Map<Object, String> objectsToLabels) {
+	public MapLabelProvider(Map<? extends Object, String> objectsToLabels) {
 		this.objectsToLabels = objectsToLabels;
 	}
 
