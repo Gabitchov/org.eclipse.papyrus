@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
-import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * Provides the decorator for the shape, based on the shape service
@@ -33,7 +33,7 @@ public class ShapeDecoratorProvider extends AbstractProvider implements IDecorat
 	 * {@inheritDoc}
 	 */
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
-		Node node = ShapeDecorator.getDecoratorTargetNode(decoratorTarget);
+		View node = ShapeDecorator.getDecoratorTargetNode(decoratorTarget);
 		if(node != null) {
 			decoratorTarget.installDecorator(SHAPE_DECORATOR, new ShapeDecorator(decoratorTarget));
 		}

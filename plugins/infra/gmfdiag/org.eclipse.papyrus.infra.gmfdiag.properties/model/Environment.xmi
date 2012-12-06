@@ -15,6 +15,9 @@
   <constraintTypes
       label="GMF Notation Constraint"
       constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.GMFNotationConstraint"/>
+  <constraintTypes
+      label="isDecorableElementConstraint"
+      constraintClass="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.IsDecorableElementConstraint"/>
   <modelElementFactories
       name="GMF Appearance Factory"
       factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.AppearanceModelElementFactory"/>

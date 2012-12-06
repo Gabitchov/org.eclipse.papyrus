@@ -175,12 +175,20 @@
     <sections name="Multiple SemanticListCompartment" sectionFile="ui/MultipleSemanticListCompartment.xwt">
       <widget href="ui/MultipleSemanticListCompartment.xwt#/"/>
     </sections>
+    <sections name="SingleDecorableElement" sectionFile="ui/SingleDecorableElement.xwt">
+      <widget href="ui/SingleDecorableElement.xwt#/"/>
+    </sections>
   </tabs>
   <views name="Single Diagram" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleDiagram">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Diagram"/>
+    </constraints>
+  </views>
+  <views name="Single Decorable Element" sections="//@tabs.0/@sections.58" automaticContext="true" datacontexts="//@dataContexts.0/@elements.29">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isDecorableElementConstraint">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.4"/>
     </constraints>
   </views>
   <views name="Single Edge" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
@@ -662,6 +670,10 @@
     <elements name="BasicCompartment" supertypes="//@dataContexts.0/@elements.24"/>
     <elements name="BasicSemanticCompartment" supertypes="//@dataContexts.0/@elements.25"/>
     <elements name="SemanticListCompartment" supertypes="//@dataContexts.0/@elements.27"/>
+    <elements name="ShapeDecorableElement">
+      <properties name="shape_visibility" label="" type="Boolean" description="Boolean that indicates if the decorations should be visible or not"/>
+      <properties name="shape_direction" type="Reference" description="Direction where the decorations should be placed."/>
+    </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@modelElementFactories.2"/>
   </dataContexts>
 </contexts:Context>

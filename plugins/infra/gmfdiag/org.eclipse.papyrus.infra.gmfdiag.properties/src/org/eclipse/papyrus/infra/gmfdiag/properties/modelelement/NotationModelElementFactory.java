@@ -37,6 +37,11 @@ public class NotationModelElementFactory implements ModelElementFactory {
 
 		if(view != null) {
 			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(view);
+			
+//			if(ShapeDecorator.isDecorable(view)) {
+//				return new ShapeDecorableElement(view, domain);
+//			}
+//			
 			return new GMFModelElement(view, domain);
 		}
 
