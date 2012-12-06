@@ -71,9 +71,15 @@ public abstract class AbstractDropStrategy implements DropStrategy {
 	protected List<Object> getSourceObjects(Request request) {
 		List<Object> result = new LinkedList<Object>();
 		if(request instanceof DropObjectsRequest) {
-			result.addAll(((DropObjectsRequest)request).getObjects());
+			List objects = ((DropObjectsRequest)request).getObjects();
+			if(objects != null) {
+				result.addAll(objects);
+			}
 		} else if(request instanceof GroupRequest) {
-			result.addAll(((ChangeBoundsRequest)request).getEditParts());
+			List editParts = ((ChangeBoundsRequest)request).getEditParts();
+			if(editParts != null) {
+				result.addAll(editParts);
+			}
 		}
 		return result;
 	}

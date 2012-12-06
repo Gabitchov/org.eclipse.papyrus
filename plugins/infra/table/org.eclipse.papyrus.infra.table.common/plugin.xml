@@ -34,12 +34,6 @@
       </commandFactory>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.hyperlink.editor.registration">
-      <editorhyperlink
-            helper="org.eclipse.papyrus.infra.table.common.hyperlink.HyperLinkTableEditorHelper">
-      </editorhyperlink>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.views.properties.labelprovider">
       <labelProvider
             labelProvider="org.eclipse.papyrus.infra.table.common.providers.FilteredTableLabelProvider"

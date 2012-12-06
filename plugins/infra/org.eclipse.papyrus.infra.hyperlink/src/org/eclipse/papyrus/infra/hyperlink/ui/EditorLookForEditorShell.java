@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -39,10 +38,7 @@ import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvid
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
-import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
-import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkEditorHelpersRegistrationUtil;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -369,14 +365,17 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 	}
 
 	protected boolean isAValidEditor(final Object object) {
-		Collection<AbstractHyperLinkEditorHelper> helpers = HyperLinkEditorHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkEditorHelper();
-		for(AbstractHyperLinkEditorHelper current : helpers) {
-			HyperLinkEditor editor = current.getHyperLinkObjectFor(object);
-			if(editor != null) {
-				return true;
-			}
+		if(!(object instanceof EObject)) {
+			return false;
 		}
-		return false;
+
+		EObject eObject = (EObject)object;
+
+		try {
+			return ServiceUtilsForEObject.getInstance().getIPageMngr(eObject).allPages().contains(object);
+		} catch (ServiceException ex) {
+			return false;
+		}
 	}
 
 }

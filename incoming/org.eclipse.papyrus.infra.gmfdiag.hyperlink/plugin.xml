@@ -2,12 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.hyperlink.editor.registration">
-      <editorhyperlink
-            helper="org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.HyperLinkDiagramEditorHelper">
-      </editorhyperlink>
-   </extension>
-   <extension
          point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
       <editpolicyProvider
             class="org.eclipse.papyrus.infra.gmfdiag.hyperlink.providers.HyperlinkEditPolicyProvider">
@@ -15,6 +9,12 @@
                name="Lowest">
          </Priority>
       </editpolicyProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
+      <strategy
+            strategy="org.eclipse.papyrus.infra.gmfdiag.hyperlink.dnd.HyperlinkDropStrategy">
+      </strategy>
    </extension>
 
 </plugin>

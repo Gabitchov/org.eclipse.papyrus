@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.hyperlink.helper;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,11 +26,12 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
+import org.eclipse.papyrus.infra.hyperlink.commands.CreateHyperLinkPageCommand;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkEditorShell;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkEditorHelpersRegistrationUtil;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 /**
  * 
@@ -112,13 +112,10 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper {
 	 * @return
 	 */
 	@Override
-	public RecordingCommand getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, HyperLinkObject HyperLinkObject) {
-		Collection<AbstractHyperLinkEditorHelper> helpers = HyperLinkEditorHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkEditorHelper();
-		for(AbstractHyperLinkEditorHelper current : helpers) {
-			RecordingCommand cmd = current.getAddHyperLinkCommand(domain, object, HyperLinkObject);
-			if(cmd != null) {
-				return cmd;
-			}
+	public RecordingCommand getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, HyperLinkObject hyperLinkObject) {
+		if(hyperLinkObject instanceof HyperLinkEditor) {
+			HyperLinkEditor hyperLinkEditor = (HyperLinkEditor)hyperLinkObject;
+			return new CreateHyperLinkPageCommand(domain, object, hyperLinkEditor.getTooltipText(), HyperLinkConstants.PAPYRUS_HYPERLINK_PAGE, (EObject)hyperLinkEditor.getObject(), hyperLinkObject.getIsDefault());
 		}
 		return null;
 	}
@@ -132,14 +129,9 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper {
 	 * 
 	 */
 	public HyperLinkEditor getHyperLinkObjectFor(final Object editor) {// create an interface for this method?
-		Collection<AbstractHyperLinkEditorHelper> helpers = HyperLinkEditorHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkEditorHelper();
-		for(AbstractHyperLinkEditorHelper current : helpers) {
-			HyperLinkEditor object = current.getHyperLinkObjectFor(editor);
-			if(object != null) {
-				return object;
-			}
-		}
-		return null;
+		HyperLinkEditor hyperLinkEditor = new HyperLinkEditor();
+		hyperLinkEditor.setObject(editor);
+		return hyperLinkEditor;
 	}
 
 	/**
@@ -150,13 +142,17 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper {
 	 *         the HyperLinkEditor corresponding to this eAnnotation
 	 */
 	public HyperLinkEditor getHyperLinkObjectFor(final EAnnotation eAnnotation) {
-		Collection<AbstractHyperLinkEditorHelper> helpers = HyperLinkEditorHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkEditorHelper();
-		for(AbstractHyperLinkEditorHelper current : helpers) {
-			HyperLinkEditor object = current.getHyperLinkObjectForEAnnotation(eAnnotation);
-			if(object != null) {
-				return object;
+		for(String source : HyperLinkConstants.validHyperLinkPageSources) {
+			if(source.equals(eAnnotation.getSource())) {
+				HyperLinkEditor editor = new HyperLinkEditor();
+				editor.setObject(eAnnotation.getReferences().get(0));
+				editor.setIsDefault(Boolean.parseBoolean(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION)));
+				editor.setTooltipText(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT));
+				return editor;
 			}
 		}
+
 		return null;
 	}
+
 }

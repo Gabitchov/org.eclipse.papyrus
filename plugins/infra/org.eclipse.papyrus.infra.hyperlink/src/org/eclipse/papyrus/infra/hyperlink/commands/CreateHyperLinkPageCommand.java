@@ -11,10 +11,11 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
+package org.eclipse.papyrus.infra.hyperlink.commands;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
@@ -24,7 +25,7 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
  * of hyperlinks
  * 
  */
-public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
+public class CreateHyperLinkPageCommand extends CreateEAnnotationCommand {
 
 	/** The hyperlink kind. */
 	public String tooltiptext;
@@ -32,7 +33,10 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	/** The localization. */
 	public String name;
 
-	private EModelElement diagram;
+	/**
+	 * The pageIdentifier to open
+	 */
+	private EObject pageIdentifier;
 
 	protected boolean isDefaultNavigation;
 
@@ -47,12 +51,14 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 *        the hyperlink kind see {@link UMLVisualInformationPapyrusConstant}
 	 * @param name
 	 *        the localization
+	 * @param pageIdentifier
+	 * @param isDefaultNavigation
 	 */
-	public CreateHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String name, EModelElement diagram, boolean isDefaultNavigation) {
-		super(domain, object, HyperLinkDiagramConstants.HYPERLINK_DIAGRAM);
+	public CreateHyperLinkPageCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String name, EObject pageIdentifier, boolean isDefaultNavigation) {
+		super(domain, object, HyperLinkConstants.PAPYRUS_HYPERLINK_PAGE);
 		this.tooltiptext = tooltiptext;
 		this.name = name;
-		this.diagram = diagram;
+		this.pageIdentifier = pageIdentifier;
 		this.isDefaultNavigation = isDefaultNavigation;
 	}
 
@@ -62,10 +68,10 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	@Override
 	protected void doExecute() {
 		EAnnotation eAnnotation = createEAnnotation();
-		eAnnotation.getReferences().add(diagram);
+		eAnnotation.getReferences().add(pageIdentifier);
 		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
-		eAnnotation.getDetails().put(HyperLinkDiagramConstants.HYPERLINK_DIAGRAM_NAME, this.name);
-		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, "" + this.isDefaultNavigation); //$NON-NLS-1$
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_PAGE_NAME, this.name);
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, Boolean.toString(this.isDefaultNavigation));
 		attachEannotation(eAnnotation, getObject());
 	}
 

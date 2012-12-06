@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 
@@ -64,7 +65,7 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	 *        a gmf command
 	 * @return the list of hyperlinks diagram
 	 */
-	protected ArrayList<HyperLinkDiagram> getCreatedHyperlinkDiagramsWithHeuristic(ICommand creationcommand) {
+	protected ArrayList<HyperLinkEditor> getCreatedHyperlinkDiagramsWithHeuristic(ICommand creationcommand) {
 		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
 		if(creationcommand instanceof CompositeCommand) {
 			CompositeCommand compositeCommand = (CompositeCommand)creationcommand;
@@ -73,13 +74,13 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 				diagrams.addAll((Collection<Diagram>)value);
 			}
 		}
-		ArrayList<HyperLinkDiagram> hyperLinkDiagrams = new ArrayList<HyperLinkDiagram>();
+		ArrayList<HyperLinkEditor> hyperLinkDiagrams = new ArrayList<HyperLinkEditor>();
 		for(int i = 0; i < diagrams.size(); i++) {
-			HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
-			hyperLinkDiagram.setDiagram(diagrams.get(i));
-			hyperLinkDiagram.setIsDefault(true);
-			hyperLinkDiagram.setTooltipText(diagrams.get(i).getName());
-			hyperLinkDiagrams.add(hyperLinkDiagram);
+			HyperLinkEditor hyperLinkEditor = new HyperLinkEditor();
+			hyperLinkEditor.setObject(diagrams.get(i));
+			hyperLinkEditor.setIsDefault(true);
+			hyperLinkEditor.setTooltipText(diagrams.get(i).getName());
+			hyperLinkDiagrams.add(hyperLinkEditor);
 		}
 		return hyperLinkDiagrams;
 	}
@@ -89,7 +90,7 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 		super.doAction();
 		//		defaultTab = getDefaultHyperLinkTab();
 		final LocalDefaultLinkDiagramTab heuristicTab = getHeuristicTab();
-		ArrayList<HyperLinkDiagram> defaultdiagramsWithHeuristic = new ArrayList<HyperLinkDiagram>();
+		ArrayList<HyperLinkEditor> defaultdiagramsWithHeuristic = new ArrayList<HyperLinkEditor>();
 		//if the default diagrams is opened, get created default diagrams
 		if(heuristicTab.getDefaultHyperlinkComposite().isVisible()) {
 			heuristicTab.okPressed();

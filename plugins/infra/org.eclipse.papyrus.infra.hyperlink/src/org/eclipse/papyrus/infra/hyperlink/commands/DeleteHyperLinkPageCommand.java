@@ -9,17 +9,19 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Refactoring & simplification
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
+package org.eclipse.papyrus.infra.hyperlink.commands;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 
 /**
@@ -27,10 +29,12 @@ import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
  * web. It will remove the first eannotation that corresponds to the link or the
  * localization of the hyperlink
  */
-public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
+public class DeleteHyperLinkPageCommand extends RecordingCommand {
 
-	/** The localization. */
-	public EModelElement diagram;
+	/** The hyperlink target. */
+	protected EObject page;
+
+	protected EModelElement sourceElement;
 
 	/**
 	 * Instantiates a new delete hyper link command used to suppress a link in
@@ -40,12 +44,13 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 *        the domain
 	 * @param object
 	 *        the object
-	 * @param diagram
-	 *        the localization of the link
+	 * @param page
+	 *        the target of the link
 	 */
-	public DeleteHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, EModelElement diagram) {
-		super(domain, object, HyperLinkDiagramConstants.HYPERLINK_DIAGRAM);
-		this.diagram = diagram;
+	public DeleteHyperLinkPageCommand(TransactionalEditingDomain domain, EModelElement object, EObject page) {
+		super(domain);
+		this.page = page;
+		this.sourceElement = object;
 	}
 
 	/**
@@ -53,21 +58,18 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 */
 	@Override
 	protected void doExecute() {
-		ArrayList<EAnnotation> eAnnotationsToRemove = new ArrayList<EAnnotation>();
-		Iterator<EAnnotation> iter = getObject().getEAnnotations().iterator();
-		// look for interesting eannotations
+		Iterator<EAnnotation> iter = sourceElement.getEAnnotations().iterator();
+
+		//Remove interesting eannotations
 		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			if(currentAnnotation.getSource().equals(HyperLinkDiagramConstants.HYPERLINK_DIAGRAM)) {
-				if(currentAnnotation.getReferences().contains(diagram)) {
-					eAnnotationsToRemove.add(currentAnnotation);
+			for(String annotationName : HyperLinkConstants.validHyperLinkPageSources) {
+				if(annotationName.equals(currentAnnotation.getSource())) {
+					if(currentAnnotation.getReferences().contains(page)) {
+						iter.remove();
+					}
 				}
 			}
 		}
-		// remove all eannotations
-		for(int i = 0; i < eAnnotationsToRemove.size(); i++) {
-			getObject().getEAnnotations().remove(eAnnotationsToRemove.get(i));
-		}
-
 	}
 }

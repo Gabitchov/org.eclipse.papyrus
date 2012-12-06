@@ -126,11 +126,15 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 	@Override
 	public boolean understandsRequest(Request request) {
-		return this.understands(request) || (defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request)) || (defaultDropEditPolicy != null && defaultDropEditPolicy.understandsRequest(request));
+		return this.understands(request) || (defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request)) || (defaultDropEditPolicy != null && defaultDropEditPolicy.understandsRequest(request)) || isCustomRequest(request);
 	}
 
 	protected boolean understands(Request request) {
 		return RequestConstants.REQ_ADD.equals(request.getType());
+	}
+
+	protected boolean isCustomRequest(Request request) {
+		return !findStrategies(request).isEmpty();
 	}
 
 	protected Command getCreationCommand(Request request) {
@@ -300,17 +304,17 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 			super.showTargetFeedback(request);
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		// when default creation edit policy is not overriden and request is a creation request, target edit part should be computed by the default edit policy itself
-		if(!super.understandsRequest(request) && !this.understands(request) && (defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request))) { 
+		if(!super.understandsRequest(request) && !this.understands(request) && (defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request))) {
 			return defaultCreationEditPolicy.getTargetEditPart(request);
 		}
 		return super.getTargetEditPart(request);
 	}
-	
+
 }

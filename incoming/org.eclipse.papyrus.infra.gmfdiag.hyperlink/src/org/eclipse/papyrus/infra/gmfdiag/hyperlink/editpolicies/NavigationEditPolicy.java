@@ -36,13 +36,13 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.DiagramsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.AdvancedHLManager;
-import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.HyperLinkDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.preference.INavigationPreferenceConstant;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorNavigationDialog;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
@@ -150,9 +150,9 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 					Iterator<Diagram> iterDiagram = list.iterator();
 					while(iterDiagram.hasNext()) {
 						Diagram diagram = iterDiagram.next();
-						HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
-						hyperLinkDiagram.setDiagram(diagram);
-						hyperLinkDiagram.setTooltipText(diagram.getName() + " (found by heuristic)");
+						HyperLinkEditor hyperLinkEditor = new HyperLinkEditor();
+						hyperLinkEditor.setObject(diagram);
+						hyperLinkEditor.setTooltipText(diagram.getName() + " (found by heuristic)");
 						// look for if a hyperlink already exists
 						HyperLinkObject foundHyperlink = null;
 						for(int i = 0; i < defaultHyperLinkObject.size() && foundHyperlink == null; i++) {
@@ -163,7 +163,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 						// the diagram was not into the list of existing default
 						// hyperlink
 						if(foundHyperlink == null) {
-							defaultHyperLinkObject.add(hyperLinkDiagram);
+							defaultHyperLinkObject.add(hyperLinkEditor);
 						}
 					}
 				}
