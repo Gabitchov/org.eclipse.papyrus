@@ -18,20 +18,19 @@ import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 /**
  * Interface that stores all constants for the symbol profile
  */
-public interface ISymbolProfileConstants {
+public interface IPapyrusInternalProfileConstants {
 
 	// profile
+	/** main profile name */
+	public final static String PAPYRUS_INTERNAL_PROFILE_NAME = "PapyrusInternal";
 	
-	/** Profile name */
-	public final static String SYMBOL_PROFILE_NAME = "Symbols";
+	/** Symbols Sub Profile name */
+	public final static String SYMBOL_PROFILE_NAME = PAPYRUS_INTERNAL_PROFILE_NAME+ NamedElementUtil.QUALIFIED_NAME_SEPARATOR +"Symbols";
 
 	// stereotypes definition
 	
 	/** TypeSymbolDefinition stereotype name */
 	public final static String TYPE_SYMBOL_DEFINITION_QUALIFIED_NAME = SYMBOL_PROFILE_NAME + NamedElementUtil.QUALIFIED_NAME_SEPARATOR + "TypeSymbolDefinition";
-
-	/** TypeSymbolUsage stereotype name */
-	public final static String TYPE_SYMBOL_USAGE_QUALIFIED_NAME = SYMBOL_PROFILE_NAME + NamedElementUtil.QUALIFIED_NAME_SEPARATOR + "TypeSymbolUsage";
 
 	// Stereotype properties definition
 	

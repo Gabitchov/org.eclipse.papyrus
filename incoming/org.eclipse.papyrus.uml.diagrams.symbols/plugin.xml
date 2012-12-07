@@ -15,16 +15,16 @@
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
-            source="pathmap://Symbols_PROFILES/"
+            source="pathmap://PAPYRUS_INTERNAL_PROFILES/"
             target="platform:/plugin/org.eclipse.papyrus.uml.diagram.symbols/resources/"/>
             </extension>
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            description="Profile that manages the definiton of symbols for UML elements"
+            description="Profile that provides annotations for the tool itself (Decorations, etc.)"
             iconpath="icons/symbols.gif"
-            name="Symbols"
-            path="pathmap://Symbols_PROFILES/symbols.profile.uml"
+            name="Papyrus Internal "
+            path="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml"
             provider="CEA LIST">
       </profile>
    </extension>

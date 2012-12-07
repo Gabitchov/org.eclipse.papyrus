@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
-import org.eclipse.papyrus.uml.diagram.symbols.ISymbolProfileConstants;
+import org.eclipse.papyrus.uml.diagram.symbols.IPapyrusInternalProfileConstants;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener.StereotypeCustomNotification;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
@@ -117,12 +117,12 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 		}
 
 		// type is not null. Look for the stereotype symbol definition
-		Stereotype stereotype = type.getAppliedStereotype(ISymbolProfileConstants.TYPE_SYMBOL_DEFINITION_QUALIFIED_NAME);
+		Stereotype stereotype = type.getAppliedStereotype(IPapyrusInternalProfileConstants.TYPE_SYMBOL_DEFINITION_QUALIFIED_NAME);
 		if(stereotype == null) {
 			return null;
 		}
 
-		Object path = type.getValue(stereotype, ISymbolProfileConstants.TYPE_SYMBOL_DEFINITION_SYMBOL_PATH);
+		Object path = type.getValue(stereotype, IPapyrusInternalProfileConstants.TYPE_SYMBOL_DEFINITION_SYMBOL_PATH);
 		if(path instanceof String && ((String)path).length() > 0) {
 			return path.toString();
 		}

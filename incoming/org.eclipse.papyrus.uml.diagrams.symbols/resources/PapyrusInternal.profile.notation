@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+  <notation:Diagram xmi:id="_dYqdUPXAEeGSQON-DQ-5eg" type="PapyrusUMLProfileDiagram" name="Symbols" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_k4SQkPXAEeGSQON-DQ-5eg" type="1026" fillColor="12621752" gradient="16777215, 16777215, 0">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cDhQED-SEeKj6r7ThQagKA" source="displayNameLabelIcon">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cDh3ID-SEeKj6r7ThQagKA" key="displayNameLabelIcon_value" value="true"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_k4SQkvXAEeGSQON-DQ-5eg" type="1034"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_k4bagPXAEeGSQON-DQ-5eg" type="1071">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k44GcPXAEeGSQON-DQ-5eg" source="PapyrusCSSForceValue">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_k44GcfXAEeGSQON-DQ-5eg" key="showTitle" value="true"/>
+        </eAnnotations>
+        <children xmi:type="notation:Shape" xmi:id="_FVWY0fXBEeGSQON-DQ-5eg" type="3002">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hYfwsD-SEeKj6r7ThQagKA" source="displayNameLabelIcon">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hYfwsT-SEeKj6r7ThQagKA" key="displayNameLabelIcon_value" value="true"/>
+          </eAnnotations>
+          <element xmi:type="uml:Property" href="PapyrusInternal.profile.uml#_FVWY0PXBEeGSQON-DQ-5eg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_FVWY0vXBEeGSQON-DQ-5eg"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_k4bagfXAEeGSQON-DQ-5eg"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_k4bagvXAEeGSQON-DQ-5eg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_k4bag_XAEeGSQON-DQ-5eg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k4bahPXAEeGSQON-DQ-5eg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_k4bahfXAEeGSQON-DQ-5eg" visible="false" type="1019">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k44GcvXAEeGSQON-DQ-5eg" source="PapyrusCSSForceValue">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_k44Gc_XAEeGSQON-DQ-5eg" key="showTitle" value="true"/>
+        </eAnnotations>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_k4bahvXAEeGSQON-DQ-5eg"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_k4bah_XAEeGSQON-DQ-5eg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_k4baiPXAEeGSQON-DQ-5eg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k4baifXAEeGSQON-DQ-5eg"/>
+      </children>
+      <element xmi:type="uml:Stereotype" href="PapyrusInternal.profile.uml#_k3fmYPXAEeGSQON-DQ-5eg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k4SQkfXAEeGSQON-DQ-5eg" x="130" y="190"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_ILql8D_AEeKj6r7ThQagKA" type="1031" fontName="Segoe UI" fillColor="12560536" gradient="16777215, 16777215, 0" lineColor="0">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ILx6sD_AEeKj6r7ThQagKA" source="QualifiedName">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ILx6sT_AEeKj6r7ThQagKA" key="QualifiedNameDepth" value="1000"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IL1lED_AEeKj6r7ThQagKA" source="Stereotype_Annotation">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IL2MID_AEeKj6r7ThQagKA" key="StereotypeWithQualifiedNameList" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IL2MIT_AEeKj6r7ThQagKA" key="StereotypeList" value="StandardProfileL2::Metaclass"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IL2MIj_AEeKj6r7ThQagKA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IL2MIz_AEeKj6r7ThQagKA" key="PropStereoDisplay" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IL2zMD_AEeKj6r7ThQagKA" key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KXY2oD_AEeKj6r7ThQagKA" source="displayNameLabelIcon">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KXY2oT_AEeKj6r7ThQagKA" key="displayNameLabelIcon_value" value="true"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KoP9ID_AEeKj6r7ThQagKA" source="ShadowFigure">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KoP9IT_AEeKj6r7ThQagKA" key="ShadowFigure_Value" value="false"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_ILx6sj_AEeKj6r7ThQagKA" type="1084"/>
+      <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ILzI0D_AEeKj6r7ThQagKA" x="155" y="55"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_cEvpMD_AEeKj6r7ThQagKA" type="1002" fontName="Segoe UI" gradient="8905185, 16777215, 0" lineColor="0">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cEw3UD_AEeKj6r7ThQagKA" source="ShadowFigure">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cEw3UT_AEeKj6r7ThQagKA" key="ShadowFigure_Value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cExeYD_AEeKj6r7ThQagKA" source="displayNameLabelIcon">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cExeYT_AEeKj6r7ThQagKA" key="displayNameLabelIcon_value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cExeYj_AEeKj6r7ThQagKA" source="QualifiedName">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cExeYz_AEeKj6r7ThQagKA" key="QualifiedNameDepth" value="1000"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_cExeZD_AEeKj6r7ThQagKA" type="3"/>
+      <element xmi:type="uml:Comment" href="PapyrusInternal.profile.uml#_cDnn0D_AEeKj6r7ThQagKA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cEvpMT_AEeKj6r7ThQagKA" x="350" y="205" width="246" height="66"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_dYqdUfXAEeGSQON-DQ-5eg"/>
+    <element xmi:type="uml:Profile" href="PapyrusInternal.profile.uml#_16oYAD-SEeKj6r7ThQagKA"/>
+    <edges xmi:type="notation:Connector" xmi:id="_I4SbYD_AEeKj6r7ThQagKA" type="1013" source="_k4SQkPXAEeGSQON-DQ-5eg" target="_ILql8D_AEeKj6r7ThQagKA" lineColor="0">
+      <styles xmi:type="notation:FontStyle" xmi:id="_I4SbYT_AEeKj6r7ThQagKA" fontName="Segoe UI"/>
+      <element xmi:type="uml:Extension" href="PapyrusInternal.profile.uml#_qLTCUfXAEeGSQON-DQ-5eg"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_I4SbYj_AEeKj6r7ThQagKA" points="[-5, -50, 0, 111]$[0, -136, 5, 25]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_lHeN8D_AEeKj6r7ThQagKA" type="1022" source="_cEvpMD_AEeKj6r7ThQagKA" target="_k4SQkPXAEeGSQON-DQ-5eg" lineColor="0">
+      <styles xmi:type="notation:FontStyle" xmi:id="_lHe1AD_AEeKj6r7ThQagKA" fontName="Segoe UI"/>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_lHe1AT_AEeKj6r7ThQagKA"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_lPStMD_AEeKj6r7ThQagKA" id="(0.0,0.5294117647058824)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nhgncD_AEeKj6r7ThQagKA" id="(1.0,0.5)"/>
+    </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_sxNmgD_AEeKj6r7ThQagKA" type="PapyrusUMLProfileDiagram" name="MainDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_tyRa4D_AEeKj6r7ThQagKA" type="1030" fontName="Segoe UI" fillColor="12560536" gradient="16777215, 16777215, 0" lineColor="0">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tyTQED_AEeKj6r7ThQagKA" source="ShadowFigure">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tyTQET_AEeKj6r7ThQagKA" key="ShadowFigure_Value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tyT3Ij_AEeKj6r7ThQagKA" source="QualifiedName">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tyT3Iz_AEeKj6r7ThQagKA" key="QualifiedNameDepth" value="1000"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_w_I_gD_AEeKj6r7ThQagKA" source="displayNameLabelIcon">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_w_JmkD_AEeKj6r7ThQagKA" key="displayNameLabelIcon_value" value="true"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_20vg8D_AEeKj6r7ThQagKA" source="PapyrusHyperLink_Diagram" references="_dYqdUPXAEeGSQON-DQ-5eg">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_20vg8T_AEeKj6r7ThQagKA" key="tooltip_text" value="Symbols"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_20vg8j_AEeKj6r7ThQagKA" key="diagram_name" value="Symbols"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_20vg8z_AEeKj6r7ThQagKA" key="is_default_navigation" value="true"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_tyT3JD_AEeKj6r7ThQagKA" type="1047"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_tyUeMD_AEeKj6r7ThQagKA" type="1042">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_tyUeMT_AEeKj6r7ThQagKA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tyUeMj_AEeKj6r7ThQagKA"/>
+      </children>
+      <element xmi:type="uml:Profile" href="PapyrusInternal.profile.uml#_16oYAD-SEeKj6r7ThQagKA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tyRa4T_AEeKj6r7ThQagKA" x="55" y="35" width="221" height="145"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_sxNmgT_AEeKj6r7ThQagKA"/>
+    <element xmi:type="uml:Profile" href="PapyrusInternal.profile.uml#_dL4lkPXAEeGSQON-DQ-5eg"/>
+  </notation:Diagram>
+</xmi:XMI>
