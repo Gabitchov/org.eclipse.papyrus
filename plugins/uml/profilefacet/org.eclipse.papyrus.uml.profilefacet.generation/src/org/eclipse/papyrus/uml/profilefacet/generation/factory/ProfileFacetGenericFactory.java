@@ -286,7 +286,9 @@ public class ProfileFacetGenericFactory {
 		facetReference.setEType(eType);
 		facetReference.setValueQuery(getQuery);
 		facetReference.setSetQuery(setQuery);
-
+		if(facetReference.isChangeable()  && upperBound==1){//unset is valable only for monovalued properties
+			facetReference.setUnsettable(true);
+		}
 		return facetReference;
 	}
 
