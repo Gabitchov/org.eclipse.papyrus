@@ -57,8 +57,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-//TODO : To be refactored
-//This observable should rely on Papyrus UML Tools
 public class OwnerObservableValue extends AbstractObservableValue implements IChangeListener, AggregatedObservable, CommandBasedObservableValue {
 
 	private Property memberEnd;

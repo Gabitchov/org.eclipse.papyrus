@@ -3,9 +3,12 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.papyrus.infra.gmfdiag.css.ATTRIBUTE_OP;
 import org.eclipse.papyrus.infra.gmfdiag.css.AttributeValue;
 import org.eclipse.papyrus.infra.gmfdiag.css.CssPackage;

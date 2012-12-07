@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
 /**
  * This class is used to open a new diagram when the double click is detected.
@@ -62,7 +62,7 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
-				IPageMngr pageMngr = EditorUtils.getIPageMngr();
+				IPageMngr pageMngr = ServiceUtilsForEObject.getInstance().getIPageMngr(diagramToOpen);
 				if(pageMngr.isOpen(diagramToOpen)) {
 					pageMngr.closePage(diagramToOpen);
 				}

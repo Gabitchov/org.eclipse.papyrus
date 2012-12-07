@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -53,9 +54,10 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -64,8 +66,6 @@ import org.eclipse.papyrus.views.modelexplorer.commands.MoveOpenableCommand;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonDropAdapter;
 
 /**
@@ -78,8 +78,10 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus handleDrop(CommonDropAdapter dropAdapter, DropTargetEvent dropTargetEvent, Object dropTarget) {
-		Object targetElement = dropTarget;
-		execute(getDrop(targetElement));
+		System.out.println("handleDrop");
+		EObject targetElement = EMFHelper.getEObject(dropTarget);
+
+		execute(getEditingDomain(targetElement), getDrop(dropTarget));
 		return null;
 	}
 
@@ -281,8 +283,8 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		return commandList;
 	}
 
-	protected void execute(Command dropCommand) {
-		getEditingDomain().getCommandStack().execute(dropCommand);
+	protected void execute(EditingDomain domain, Command dropCommand) {
+		domain.getCommandStack().execute(dropCommand);
 	}
 
 	/**
@@ -293,6 +295,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @return the list of command
 	 */
 	public CompoundCommand getDrop(Object target) {
+		System.out.println("getDrop target = " + target);
 		CommonDropAdapter dropAdapter = getCommonDropAdapter();
 		List<Command> commandList = new ArrayList<Command>();
 		switch(dropAdapter.getCurrentOperation()) {
@@ -318,6 +321,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			}
 			break;
 		}
+		System.out.println("Target = " + target);
 		return new CompoundCommand(commandList);
 	}
 
@@ -343,6 +347,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus validateDrop(Object target, int operation, TransferData transferType) {
+		System.out.println("ValidateDrop");
 		Command dropCommand = getDrop(target);
 		if(dropCommand.canExecute()) {
 			return Status.OK_STATUS;
@@ -394,14 +399,16 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				//					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
 				//				}
 
-				if(getEditors().contains(eObjectchild)) {
-					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject, (Diagram)eObjectchild));
+				//FIXME: Editors are not necessarily diagrams
+				//Temporary fix: Check whether the eObjectChild is an instanceof Diagram
+				if(eObjectchild instanceof Diagram && getEditors(targetEObject).contains(eObjectchild)) {
+					result.addAll(getDropDiagramIntoCommand(getEditingDomain(targetEObject), targetEObject, (Diagram)eObjectchild));
 				}
 
 				//test if object is an eobject
 				else if(eObjectchild != null) {
 
-					result.addAll(getDropIntoCommand(getEditingDomain(), targetEObject, eObjectchild, eref));
+					result.addAll(getDropIntoCommand(getEditingDomain(targetEObject), targetEObject, eObjectchild, eref));
 				}
 
 			}
@@ -415,8 +422,12 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @return
 	 *         the list of the editors
 	 */
-	private List<Object> getEditors() {
-		return EditorUtils.getIPageMngr().allPages();
+	private List<Object> getEditors(EObject context) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getIPageMngr(context).allPages();
+		} catch (ServiceException ex) {
+			return Collections.emptyList();
+		}
 	}
 
 	/**
@@ -455,7 +466,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 					//test if object is an eobject
 					if(eObjectchild != null && objectOwner != null) {
 
-						result.addAll(getOrderChangeCommand(getEditingDomain(), objectOwner, objectLocation, eObjectchild, before));
+						result.addAll(getOrderChangeCommand(getEditingDomain(eObjectchild), objectOwner, objectLocation, eObjectchild, before));
 					}
 				}
 			}
@@ -468,19 +479,12 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * 
 	 * @return get the Transaction Editing Domain
 	 */
-	protected TransactionalEditingDomain getEditingDomain() {
-		return EditorUtils.getTransactionalEditingDomain();
-	}
-
-	/**
-	 * 
-	 * @return multiDiagramEditor
-	 */
-	protected IMultiDiagramEditor getMultiDiagramEditor() {
-		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if(editorPart instanceof IMultiDiagramEditor) {
-			return (IMultiDiagramEditor)editorPart;
+	protected TransactionalEditingDomain getEditingDomain(EObject context) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(context);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
 		}
-		return null;
 	}
 }

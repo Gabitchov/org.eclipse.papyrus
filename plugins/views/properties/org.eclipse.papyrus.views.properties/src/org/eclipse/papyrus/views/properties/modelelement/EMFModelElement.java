@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -199,7 +199,7 @@ public class EMFModelElement extends AbstractModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		try {
-			return ServiceUtilsForResource.getInstance().getServiceRegistry(source.eResource()).getService(LabelProviderService.class).getLabelProvider();
+			return ServiceUtilsForEObject.getInstance().getServiceRegistry(source).getService(LabelProviderService.class).getLabelProvider();
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 			return new EMFLabelProvider();

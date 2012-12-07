@@ -20,9 +20,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier
 Bundle-Name: CSS Editor UI (Incubation)
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSAct
- ivator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;si
- ngleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSActivator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

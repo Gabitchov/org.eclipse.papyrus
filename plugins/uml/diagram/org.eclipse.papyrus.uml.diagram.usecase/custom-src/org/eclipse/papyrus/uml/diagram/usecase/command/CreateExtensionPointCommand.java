@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editparts.AbstractEditPart;
@@ -30,12 +31,14 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ExtensionPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ExtensionPointEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsInPackageEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Extend;
 import org.eclipse.uml2.uml.ExtensionPoint;
@@ -101,7 +104,15 @@ public class CreateExtensionPointCommand extends Command {
 	 * @return the command to create model element or null
 	 */
 	private ICommandProxy getExtensionPointAddCommand(Extend extend, ExtensionPoint extPoint) {
-		SetExtensionPropertyCmd cmd = new SetExtensionPropertyCmd(extend, extPoint);
+		TransactionalEditingDomain editingDomain;
+		try {
+			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(extend);
+		} catch (ServiceException ex) {
+			UMLDiagramEditorPlugin.getInstance().logError(ex.getMessage(), ex);
+			return null;
+		}
+
+		SetExtensionPropertyCmd cmd = new SetExtensionPropertyCmd(editingDomain, extend, extPoint);
 		return new ICommandProxy(cmd);
 	}
 
@@ -187,7 +198,7 @@ public class CreateExtensionPointCommand extends Command {
 				}
 			}
 			if(!alreadyDrawn) {
-				ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter((EObject)extensionPoint), Node.class, type.getSemanticHint(), useCasePointEP.getDiagramPreferencesHint());
+				ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter(extensionPoint), Node.class, type.getSemanticHint(), useCasePointEP.getDiagramPreferencesHint());
 				CreateViewRequest request = new CreateViewRequest(descriptor);
 				Command nodeCreationCommand = useCasePointEP.getCommand(request);
 				viewsCreationCommand.add(nodeCreationCommand);
@@ -223,8 +234,8 @@ public class CreateExtensionPointCommand extends Command {
 
 		private Extend extend;
 
-		public SetExtensionPropertyCmd(Extend extend, ExtensionPoint extensionPoint) {
-			super(EditorUtils.getTransactionalEditingDomain(), "Set extension point property", null);
+		public SetExtensionPropertyCmd(TransactionalEditingDomain editingDomain, Extend extend, ExtensionPoint extensionPoint) {
+			super(editingDomain, "Set extension point property", null);
 			this.extend = extend;
 			this.extPoint = extensionPoint;
 		}

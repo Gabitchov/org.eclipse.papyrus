@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.eclipse.gef.EditDomain;
@@ -45,7 +46,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -314,8 +316,9 @@ public class CommandHelper {
 		if(parentsOwner instanceof InteractionFragment) {
 			EList<Lifeline> lifelines = ((InteractionFragment)parentsOwner).getCovereds();
 			for(Lifeline l : lifelines) {
-				if(l.getRepresents() != null && l.getRepresents().getType() != null)
+				if(l.getRepresents() != null && l.getRepresents().getType() != null) {
 					types.add(l.getRepresents().getType());
+				}
 				boolean result = addParentsFromLifeline(l, mapTypesPossibleParents);
 				if(result) {
 					existingParent = true;
@@ -323,8 +326,9 @@ public class CommandHelper {
 			}
 		} else if(parentsOwner instanceof Lifeline) {
 			Lifeline l = (Lifeline)parentsOwner;
-			if(l.getRepresents() != null && l.getRepresents().getType() != null)
+			if(l.getRepresents() != null && l.getRepresents().getType() != null) {
 				types.add(l.getRepresents().getType());
+			}
 			existingParent = addParentsFromLifeline(l, mapTypesPossibleParents);
 		}
 
@@ -338,9 +342,17 @@ public class CommandHelper {
 
 		// fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383420, remove connection feedbacks before opening dialog
 		clearConnectionFeedback();
-		
+
+		TransactionalEditingDomain editingDomain;
+		try {
+			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(model);
+		} catch (ServiceException ex) {
+			UMLDiagramEditorPlugin.log.error(ex);
+			return Collections.<NamedElement> emptyList();
+		}
+
 		// Open the selection dialog
-		SelectOrCreateDialog dialog = new SelectOrCreateDialog(Display.getCurrent().getActiveShell(), Messages.CommandHelper_CreateMessage, createTypeLabelProvider(), new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), EditorUtils.getTransactionalEditingDomain(), existingElements, mapTypesPossibleParents, types);
+		SelectOrCreateDialog dialog = new SelectOrCreateDialog(Display.getCurrent().getActiveShell(), Messages.CommandHelper_CreateMessage, createTypeLabelProvider(), new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), editingDomain, existingElements, mapTypesPossibleParents, types);
 
 		// Get the selected result
 		if(dialog.open() == Window.OK) {
@@ -357,22 +369,22 @@ public class CommandHelper {
 
 		return null;
 	}
-	
+
 	private static void clearConnectionFeedback() {
 		AspectUnspecifiedTypeConnectionToolEx conTool = null;
 		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if(editor instanceof CoreMultiDiagramEditor) {
-			editor = ((CoreMultiDiagramEditor) editor).getActiveEditor();
-			if(editor instanceof DiagramEditor){
+			editor = ((CoreMultiDiagramEditor)editor).getActiveEditor();
+			if(editor instanceof DiagramEditor) {
 				DiagramEditor de = (DiagramEditor)editor;
 				DiagramEditPart diagramEP = de.getDiagramEditPart();
 				EditDomain domain = diagramEP.getRoot().getViewer().getEditDomain();
 				Tool tool = domain.getActiveTool();
-				if(tool instanceof AspectUnspecifiedTypeConnectionToolEx){
+				if(tool instanceof AspectUnspecifiedTypeConnectionToolEx) {
 					conTool = (AspectUnspecifiedTypeConnectionToolEx)tool;
 					conTool.clearConnectionFeedback();
 				}
-			}				
+			}
 		}
 	}
 
@@ -391,14 +403,15 @@ public class CommandHelper {
 			for(EObject parent : parents) {
 				if(parent instanceof Classifier) {
 					existingElements.addAll(((Classifier)parent).getAllOperations());
-					
+
 					// add operations from port
 					EList<Property> attrs = ((Classifier)parent).getAllAttributes();
-					for(Property p : attrs)
-						if(p instanceof Port && p.getType() instanceof Classifier){
+					for(Property p : attrs) {
+						if(p instanceof Port && p.getType() instanceof Classifier) {
 							existingElements.addAll(((Classifier)p.getType()).getAllOperations());
 						}
-					
+					}
+
 				} else if(parent instanceof Package) {
 					EList<Element> ownedElements = ((Package)parent).allOwnedElements();
 					for(Element e : ownedElements) {
@@ -476,7 +489,7 @@ public class CommandHelper {
 
 		// and the packages to signal
 		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
-		if(possiblePackages != null && type.getPackage()!= null) {
+		if(possiblePackages != null && type.getPackage() != null) {
 			Package package_ = type.getPackage();
 			possiblePackages.add(package_);
 			// add the owners of the package
@@ -541,7 +554,7 @@ public class CommandHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Execute a EMF command without history
 	 * 
@@ -551,11 +564,11 @@ public class CommandHelper {
 	 *        The command
 	 * @param flag
 	 */
-	public static void executeCommandWithoutHistory(EditingDomain editingDomain, org.eclipse.emf.common.command.Command command,boolean flag) {
+	public static void executeCommandWithoutHistory(EditingDomain editingDomain, org.eclipse.emf.common.command.Command command, boolean flag) {
 		TransactionalCommandStackImpl stack = new TransactionalCommandStackImpl();
 		stack.setEditingDomain((InternalTransactionalEditingDomain)editingDomain);
 		try {
-			stack.execute(command,Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+			stack.execute(command, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (RollbackException e) {
@@ -869,34 +882,31 @@ public class CommandHelper {
 		if(element instanceof Interaction) {
 			gate = ((Interaction)element).createFormalGate(null);
 		} else if(element instanceof CombinedFragment) {
-			CombinedFragment combinedFragment = (CombinedFragment) element;
+			CombinedFragment combinedFragment = (CombinedFragment)element;
 			EList<Gate> cfragmentGates = combinedFragment.getCfragmentGates();
-			if (cfragmentGates.isEmpty()) {
-				gate = ((CombinedFragment) element).createCfragmentGate(null);
+			if(cfragmentGates.isEmpty()) {
+				gate = ((CombinedFragment)element).createCfragmentGate(null);
 			} else {
 				// remove connection feedbacks before opening dialog
 				clearConnectionFeedback();
-				
+
 				Shell shell = Display.getCurrent().getActiveShell();
-				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-						UMLDiagramEditorPlugin.getInstance()
-								.getItemProvidersAdapterFactory());
-				ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-						shell, labelProvider);
+				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+				ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
 				dialog.setTitle("Gates of the CombinedFragment has");
 				dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
 				dialog.setMultipleSelection(false);
-				
+
 				List<Gate> gates = new ArrayList<Gate>();
-				for (Gate actualGate : cfragmentGates) {
+				for(Gate actualGate : cfragmentGates) {
 					gates.add(actualGate);
 				}
-				
+
 				dialog.setElements(gates.toArray());
-				if (dialog.open() == Window.OK) {
-					gate = (Gate) dialog.getFirstResult();
-				}else{ // cancel button
-					throw new OperationCanceledException(); 
+				if(dialog.open() == Window.OK) {
+					gate = (Gate)dialog.getFirstResult();
+				} else { // cancel button
+					throw new OperationCanceledException();
 				}
 			}
 		} else if(element instanceof InteractionUse) {

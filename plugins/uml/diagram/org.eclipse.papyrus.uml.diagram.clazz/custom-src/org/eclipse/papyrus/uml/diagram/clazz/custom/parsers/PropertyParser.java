@@ -20,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -29,7 +30,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
@@ -71,25 +73,34 @@ public class PropertyParser implements IParser {
 		final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Property", (List)null) {
+
+		final TransactionalEditingDomain editingDomain;
+		try {
+			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(property);
+		} catch (ServiceException ex) {
+			return null;
+		}
+
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Property", (List)null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {
-						RecordingCommand rc = new RecordingCommand(EditorUtils.getTransactionalEditingDomain()) {
+						RecordingCommand rc = new RecordingCommand(getEditingDomain()) {
 
+							@Override
 							protected void doExecute() {
 								property.setName(result);
 							}
 						};
-						EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(rc);
+						getEditingDomain().getCommandStack().execute(rc);
 					}
 				});
 				return CommandResult.newOKCommandResult();
 
-			};
+			}
 		};
 		return tc;
 	}

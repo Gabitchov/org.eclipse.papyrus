@@ -32,8 +32,8 @@ import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.DiagramsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.AdvancedHLManager;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
@@ -235,7 +235,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
-			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+			return ServiceUtilsForEditPart.getInstance().getService(IPageIconsRegistry.class, getHost());
 		} catch (ServiceException e) {
 			// Return an empty registry always providing null;
 			return new PageIconsRegistry();

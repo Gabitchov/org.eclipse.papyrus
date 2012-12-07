@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ShapeNamedElementFigure;
@@ -61,7 +61,7 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
-			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+			return ServiceUtilsForEditPart.getInstance().getService(IPageIconsRegistry.class, this);
 		} catch (ServiceException e) {
 			// Not found, return an empty one which return null for each
 			// request.
@@ -121,7 +121,7 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 			String firstStereotypeName = tokenizer.nextToken();
 			Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
 			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(getUMLElement(), stereotype, SHAPE_CONSTANT);
-			if(icon!=null){
+			if(icon != null) {
 				if(icon.getLocation() != "" && icon.getLocation() != null) {
 					try {
 						getPrimaryShape().setIcon(icon.getLocation());

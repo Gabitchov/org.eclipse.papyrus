@@ -14,7 +14,7 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.papyrus.infra.gmfdiag.CSSRuntimeModule}
  */
-@SuppressWarnings("all")
+ @SuppressWarnings("all")
 public abstract class AbstractCSSRuntimeModule extends DefaultRuntimeModule {
 
 	protected Properties properties = null;
@@ -24,17 +24,16 @@ public abstract class AbstractCSSRuntimeModule extends DefaultRuntimeModule {
 		properties = tryBindProperties(binder, "org/eclipse/papyrus/infra/gmfdiag/CSS.properties");
 		super.configure(binder);
 	}
-
+	
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.papyrus.infra.gmfdiag.CSS");
 	}
-
+	
 	public void configureFileExtensions(Binder binder) {
-		if(properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null) {
+		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("css");
-		}
 	}
-
+	
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.infra.gmfdiag.services.CSSGrammarAccess.class;
@@ -42,12 +41,12 @@ public abstract class AbstractCSSRuntimeModule extends DefaultRuntimeModule {
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISemanticSequencer> bindISemanticSequencer() {
-		return org.eclipse.papyrus.infra.gmfdiag.serializer.AbstractCSSSemanticSequencer.class;
+		return org.eclipse.papyrus.infra.gmfdiag.serializer.CSSSemanticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer> bindISyntacticSequencer() {
-		return org.eclipse.papyrus.infra.gmfdiag.serializer.AbstractCSSSyntacticSequencer.class;
+		return org.eclipse.papyrus.infra.gmfdiag.serializer.CSSSyntacticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
@@ -91,8 +90,7 @@ public abstract class AbstractCSSRuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager = true)
-	public Class<? extends org.eclipse.papyrus.infra.gmfdiag.validation.CSSJavaValidator> bindCSSJavaValidator() {
+	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.papyrus.infra.gmfdiag.validation.CSSJavaValidator> bindCSSJavaValidator() {
 		return org.eclipse.papyrus.infra.gmfdiag.validation.CSSJavaValidator.class;
 	}
 

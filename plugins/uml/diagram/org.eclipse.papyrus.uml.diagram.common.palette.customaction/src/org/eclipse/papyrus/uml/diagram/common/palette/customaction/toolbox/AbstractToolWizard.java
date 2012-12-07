@@ -19,20 +19,22 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.palette.customaction.providers.ITool;
 import org.eclipse.swt.widgets.Display;
 
 /**
  * A Wizard util if clients want to create a wizard for tool actions
+ * 
  * @author tfaure
- *
+ * 
  */
 public abstract class AbstractToolWizard extends Wizard implements ITool {
 
 	private EditPart currentEditPart;
+
 	private RecordingCommand command;
+
 	private TransactionalEditingDomain domain;
 
 	public AbstractToolWizard(EditPart part) {
@@ -41,8 +43,8 @@ public abstract class AbstractToolWizard extends Wizard implements ITool {
 
 	public EObject getEObject() {
 		Object model = currentEditPart.getModel();
-		if (model instanceof View) {
-			View view = (View) model;
+		if(model instanceof View) {
+			View view = (View)model;
 			return view.getElement();
 		}
 		return null;
@@ -79,24 +81,20 @@ public abstract class AbstractToolWizard extends Wizard implements ITool {
 
 	public void run(EditPart editPart) {
 		try {
-			final TransactionalEditingDomain editingDomain = ServiceUtils
-				.getInstance().getTransactionalEditingDomain(
-					EditorUtils.getMultiDiagramEditor()
-					.getServicesRegistry());
+			final TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
 			setTransactionalEditingDomain(editingDomain);
-			WizardDialog dialog = new WizardDialog(Display.getDefault()
-				.getActiveShell(), this);
-			if (dialog.open() == WizardDialog.OK) {
+			WizardDialog dialog = new WizardDialog(Display.getDefault().getActiveShell(), this);
+			if(dialog.open() == WizardDialog.OK) {
 				final RecordingCommand iCmd = getCommand();
-				if (iCmd.canExecute()) {
+				if(iCmd.canExecute()) {
 					// execute the command
 					editingDomain.runExclusive(new Runnable() {
 
 						public void run() {
 							Display.getCurrent().asyncExec(new Runnable() {
+
 								public void run() {
-									editingDomain.getCommandStack().execute(
-										iCmd);
+									editingDomain.getCommandStack().execute(iCmd);
 								}
 							});
 						}

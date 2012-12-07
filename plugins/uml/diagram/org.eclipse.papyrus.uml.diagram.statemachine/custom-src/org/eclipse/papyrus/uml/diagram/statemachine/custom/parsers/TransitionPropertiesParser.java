@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -36,7 +37,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallEvent;
@@ -74,15 +76,23 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Transition Properties", (List)null) { //$NON-NLS-1$
+		final TransactionalEditingDomain editingDomain;
+		try {
+			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(transition);
+		} catch (ServiceException ex) {
+			return null;
+		}
+
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Transition Properties", (List)null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {
-						RecordingCommand rc = new RecordingCommand(EditorUtils.getTransactionalEditingDomain()) {
+						RecordingCommand rc = new RecordingCommand(getEditingDomain()) {
 
+							@Override
 							protected void doExecute() {
 								// 1. Cherchez dans le model, si une contrainst
 								// avec le meme nom existe
@@ -90,7 +100,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 								EList<Element> elements = (transition.getModel()).allOwnedElements();
 								Iterator<Element> modelElement = elements.iterator();
 								while(modelElement.hasNext()) {
-									Element pElement = (Element)modelElement.next();
+									Element pElement = modelElement.next();
 									if(pElement instanceof Constraint && (result.equals(((NamedElement)pElement).getName()))) {
 										guardConstraint = (Constraint)pElement;
 										transition.setGuard(guardConstraint);
@@ -107,12 +117,12 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 								// transition.setName(result);
 							}
 						};
-						EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(rc);
+						getEditingDomain().getCommandStack().execute(rc);
 					}
 				});
 				return CommandResult.newOKCommandResult();
 
-			};
+			}
 		};
 		return tc;
 	}
@@ -129,8 +139,9 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		if(event instanceof Notification) {
 			int notificationType = ((Notification)event).getEventType();
 			if(Notification.SET == notificationType) {
-				if(((Notification)event).getNewValue() instanceof Constraint)
+				if(((Notification)event).getNewValue() instanceof Constraint) {
 					guardConstraint = (Constraint)((Notification)event).getNewValue();
+				}
 				return true;
 
 			}
@@ -214,22 +225,25 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		boolean isFirstTrigger = true;
 		for(Trigger t : trans.getTriggers()) {
 			if(t != null) {
-				if(!isFirstTrigger)
+				if(!isFirstTrigger) {
 					result.append(", "); //$NON-NLS-1$
-				else
+				} else {
 					isFirstTrigger = false;
+				}
 				Event e = t.getEvent();
 				if(e instanceof CallEvent) {
-					if(((CallEvent)e).getOperation() != null)
+					if(((CallEvent)e).getOperation() != null) {
 						result.append(((CallEvent)e).getOperation().getName());
-					else
+					} else {
 						result.append(((CallEvent)e).getName());
+					}
 
 				} else if(e instanceof SignalEvent) {
-					if(((SignalEvent)e).getSignal() != null)
+					if(((SignalEvent)e).getSignal() != null) {
 						result.append(((SignalEvent)e).getSignal().getName());
-					else
+					} else {
 						result.append(((SignalEvent)e).getName());
+					}
 				} else if(e instanceof ChangeEvent) {
 					result.append("when ").append("\"").append(retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language")).append("\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 				} else if(e instanceof TimeEvent) {
@@ -299,15 +313,17 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 
 	private String retrieveBody(OpaqueExpression exp, String languageName) {
 		String body = EMPTY_STRING;
-		if(exp == null)
+		if(exp == null) {
 			return body;
+		}
 		int index = 0;
 		for(String _languageName : exp.getLanguages()) {
 			if(_languageName.equals(languageName)) {
-				if(index < exp.getBodies().size())
+				if(index < exp.getBodies().size()) {
 					return exp.getBodies().get(index);
-				else
+				} else {
 					return EMPTY_STRING;
+				}
 			}
 			index++;
 		}

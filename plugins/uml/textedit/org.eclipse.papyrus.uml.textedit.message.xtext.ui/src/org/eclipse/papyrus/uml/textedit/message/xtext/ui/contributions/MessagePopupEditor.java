@@ -25,7 +25,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
 import org.eclipse.uml2.uml.Interaction;
@@ -66,7 +67,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 	/**
 	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
-	 *
+	 * 
 	 * @param editedObject
 	 * @return the text to edit
 	 */
@@ -101,7 +102,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 	/**
 	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#createPopupEditorHelper(java.lang.Object)
-	 *
+	 * 
 	 * @param editPart
 	 * @return the popup editor helper
 	 */
@@ -174,20 +175,15 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 				// Creates and executes the update command
 				UpdateUMLMessageCommand updateCommand = new UpdateUMLMessageCommand(message);
 
-				TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
-				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
+				TransactionalEditingDomain domain = getEditingDomain(modelObject);
+				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 
 			}
 
 
 
 		};
-		return super.createPopupEditorHelper(graphicalEditPart,
-			injector,
-			reconciler,
-			textToEdit,
-			fileExtension,
-			new DefaultXtextSemanticValidator());
+		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new DefaultXtextSemanticValidator());
 	}
 
 	/**
@@ -206,8 +202,9 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 		 * , org.eclipse.core.runtime.IAdaptable)
 		 */
 		/**
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-		 *
+		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+		 *      org.eclipse.core.runtime.IAdaptable)
+		 * 
 		 * @param arg0
 		 * @param arg1
 		 * @return
@@ -225,14 +222,24 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 		/**
 		 * Instantiates a new update uml message command.
-		 *
-		 * @param message the message
+		 * 
+		 * @param message
+		 *        the message
 		 */
 		public UpdateUMLMessageCommand(Message message) {
-			super(EditorUtils.getTransactionalEditingDomain(), "Message Update", getWorkspaceFiles(message));
+			super(MessagePopupEditor.getEditingDomain(message), "Message Update", getWorkspaceFiles(message));
 			this.message = message;
 		}
 
+	}
+
+	static TransactionalEditingDomain getEditingDomain(EObject context) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(context);
+		} catch (ServiceException ex) {
+			ex.printStackTrace(System.err);
+		}
+		return null;
 	}
 
 }

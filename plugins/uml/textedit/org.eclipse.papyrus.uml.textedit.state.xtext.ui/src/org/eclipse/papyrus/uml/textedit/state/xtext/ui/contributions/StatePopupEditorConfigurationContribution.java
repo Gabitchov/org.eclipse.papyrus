@@ -23,7 +23,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.textedit.state.xtext.ui.contentassist.UmlStateProposalProvider;
 import org.eclipse.papyrus.uml.textedit.state.xtext.ui.internal.UmlStateActivator;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
@@ -52,7 +53,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 
 	private State state = null;
 
-	private StateMachine newSubmachine = null ;
+	private StateMachine newSubmachine = null;
 
 	private String newStateName;
 
@@ -93,7 +94,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		}
 		state = (State)graphicalEditPart.resolveSemanticElement();
 
-		UmlStateJavaValidator.init(state) ;
+		UmlStateJavaValidator.init(state);
 
 		// retrieves the XText injector
 		Injector injector = UmlStateActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.state.xtext.UmlState");
@@ -124,14 +125,14 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 				// Retrieves the information to be populated in modelObject
 				newStateName = "" + stateRuleObject.getName();
 
-				newSubmachine = null ;
+				newSubmachine = null;
 
 				newEntryName = "";
 				newDoName = "";
 				newExitName = "";
 
-				if (stateRuleObject.getSubmachine() != null) {
-					newSubmachine = stateRuleObject.getSubmachine().getSubmachine() ;
+				if(stateRuleObject.getSubmachine() != null) {
+					newSubmachine = stateRuleObject.getSubmachine().getSubmachine();
 				}
 
 				if(stateRuleObject.getEntry() != null) {
@@ -158,16 +159,11 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 				// Creates and executes the update command
 				UpdateUMLStateCommand updateCommand = new UpdateUMLStateCommand(state);
 
-				TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
-				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
+				TransactionalEditingDomain domain = getEditingDomain(modelObject);
+				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart,
-			injector,
-			reconciler,
-			textToEdit,
-			fileExtension,
-			new SemanticValidator());
+		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new SemanticValidator());
 	}
 
 	/*
@@ -184,8 +180,8 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 			// name
 			textToEdit = textToEdit + state.getName();
 
-			if (state.isSubmachineState()) {
-				textToEdit += " : " + UmlStateProposalProvider.getSubmachineLabel(state.getSubmachine()) ;
+			if(state.isSubmachineState()) {
+				textToEdit += " : " + UmlStateProposalProvider.getSubmachineLabel(state.getSubmachine());
 			}
 
 			// entryActivity
@@ -232,7 +228,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 
 			state.setName(newStateName);
-			state.setSubmachine(newSubmachine) ;
+			state.setSubmachine(newSubmachine);
 			state.setEntry(updateOrCreateBehavior(BehaviorRole_Local.ENTRY, newEntryKind, newEntryName));
 			state.setDoActivity(updateOrCreateBehavior(BehaviorRole_Local.DO, newDoKind, newDoName));
 			state.setExit(updateOrCreateBehavior(BehaviorRole_Local.EXIT, newExitKind, newExitName));
@@ -240,9 +236,18 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		}
 
 		public UpdateUMLStateCommand(State state) {
-			super(EditorUtils.getTransactionalEditingDomain(), "State Update", getWorkspaceFiles(state));
+			super(StatePopupEditorConfigurationContribution.getEditingDomain(state), "State Update", getWorkspaceFiles(state));
 			this.state = state;
 		}
+	}
+
+	static TransactionalEditingDomain getEditingDomain(EObject context) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(context);
+		} catch (ServiceException ex) {
+			ex.printStackTrace(System.err);
+		}
+		return null;
 	}
 
 	private String behaviorKindAsString(Behavior b) {

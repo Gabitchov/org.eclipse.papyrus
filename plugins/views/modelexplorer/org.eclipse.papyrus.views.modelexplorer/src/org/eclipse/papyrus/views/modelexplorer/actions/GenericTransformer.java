@@ -67,7 +67,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.commands.EObjectInheritanceCopyCommand;
@@ -179,7 +178,7 @@ public class GenericTransformer {
 			// maybe extension point for stereotypes
 			EObject model = (EObject)AdapterFactoryEditingDomain.unwrap(element);
 			// get mixed editing domain to do transaction
-			TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+			TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(model);
 			commandModel = new EObjectInheritanceCopyCommand(model, eclass, domain);
 			globalCommand.add(commandModel);
 			if(graphCopy) {

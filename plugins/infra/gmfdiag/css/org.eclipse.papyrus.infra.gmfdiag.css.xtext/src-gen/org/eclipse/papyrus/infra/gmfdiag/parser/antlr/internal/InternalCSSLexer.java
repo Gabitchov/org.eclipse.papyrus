@@ -2,16 +2,13 @@ package org.eclipse.papyrus.infra.gmfdiag.parser.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
-import org.antlr.runtime.BaseRecognizer;
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.DFA;
-import org.antlr.runtime.EarlyExitException;
-import org.antlr.runtime.IntStream;
-import org.antlr.runtime.MismatchedSetException;
-import org.antlr.runtime.NoViableAltException;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.RecognizerSharedState;
 import org.eclipse.xtext.parser.antlr.Lexer;
+
+
+import org.antlr.runtime.*;
+import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalCSSLexer extends Lexer {
@@ -1112,9 +1109,27 @@ public class InternalCSSLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:9: ( ( '-' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '-' )* )
+            // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:11: ( '-' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '-' )*
             {
+            // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:11: ( '-' )?
+            int alt10=2;
+            int LA10_0 = input.LA(1);
+
+            if ( (LA10_0=='-') ) {
+                alt10=1;
+            }
+            switch (alt10) {
+                case 1 :
+                    // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:11: '-'
+                    {
+                    match('-'); 
+
+                    }
+                    break;
+
+            }
+
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
 
@@ -1124,22 +1139,22 @@ public class InternalCSSLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-            loop10:
+            // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2780:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '-' )*
+            loop11:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( ((LA10_0>='0' && LA10_0<='9')||(LA10_0>='A' && LA10_0<='Z')||LA10_0=='_'||(LA10_0>='a' && LA10_0<='z')) ) {
-                    alt10=1;
+                if ( (LA11_0=='-'||(LA11_0>='0' && LA11_0<='9')||(LA11_0>='A' && LA11_0<='Z')||LA11_0=='_'||(LA11_0>='a' && LA11_0<='z')) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt11) {
             	case 1 :
             	    // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:
             	    {
-            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            	    if ( input.LA(1)=='-'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
 
             	    }
@@ -1153,7 +1168,7 @@ public class InternalCSSLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop11;
                 }
             } while (true);
 
@@ -1177,41 +1192,41 @@ public class InternalCSSLexer extends Lexer {
             // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2782:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
             // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2782:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA13_0=='\"') ) {
-                alt13=1;
+            if ( (LA14_0=='\"') ) {
+                alt14=1;
             }
-            else if ( (LA13_0=='\'') ) {
-                alt13=2;
+            else if ( (LA14_0=='\'') ) {
+                alt14=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
-            switch (alt13) {
+            switch (alt14) {
                 case 1 :
                     // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2782:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
                     // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2782:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
-                    loop11:
+                    loop12:
                     do {
-                        int alt11=3;
-                        int LA11_0 = input.LA(1);
+                        int alt12=3;
+                        int LA12_0 = input.LA(1);
 
-                        if ( (LA11_0=='\\') ) {
-                            alt11=1;
+                        if ( (LA12_0=='\\') ) {
+                            alt12=1;
                         }
-                        else if ( ((LA11_0>='\u0000' && LA11_0<='!')||(LA11_0>='#' && LA11_0<='[')||(LA11_0>=']' && LA11_0<='\uFFFF')) ) {
-                            alt11=2;
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='!')||(LA12_0>='#' && LA12_0<='[')||(LA12_0>=']' && LA12_0<='\uFFFF')) ) {
+                            alt12=2;
                         }
 
 
-                        switch (alt11) {
+                        switch (alt12) {
                     	case 1 :
                     	    // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2782:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
@@ -1245,7 +1260,7 @@ public class InternalCSSLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop11;
+                    	    break loop12;
                         }
                     } while (true);
 
@@ -1258,20 +1273,20 @@ public class InternalCSSLexer extends Lexer {
                     {
                     match('\''); 
                     // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2782:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
-                    loop12:
+                    loop13:
                     do {
-                        int alt12=3;
-                        int LA12_0 = input.LA(1);
+                        int alt13=3;
+                        int LA13_0 = input.LA(1);
 
-                        if ( (LA12_0=='\\') ) {
-                            alt12=1;
+                        if ( (LA13_0=='\\') ) {
+                            alt13=1;
                         }
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='[')||(LA12_0>=']' && LA12_0<='\uFFFF')) ) {
-                            alt12=2;
+                        else if ( ((LA13_0>='\u0000' && LA13_0<='&')||(LA13_0>='(' && LA13_0<='[')||(LA13_0>=']' && LA13_0<='\uFFFF')) ) {
+                            alt13=2;
                         }
 
 
-                        switch (alt12) {
+                        switch (alt13) {
                     	case 1 :
                     	    // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2782:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
@@ -1305,7 +1320,7 @@ public class InternalCSSLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop12;
+                    	    break loop13;
                         }
                     } while (true);
 
@@ -1380,29 +1395,29 @@ public class InternalCSSLexer extends Lexer {
             match("/*"); 
 
             // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2788:24: ( options {greedy=false; } : . )*
-            loop14:
+            loop15:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-                if ( (LA14_0=='*') ) {
-                    int LA14_1 = input.LA(2);
+                if ( (LA15_0=='*') ) {
+                    int LA15_1 = input.LA(2);
 
-                    if ( (LA14_1=='/') ) {
-                        alt14=2;
+                    if ( (LA15_1=='/') ) {
+                        alt15=2;
                     }
-                    else if ( ((LA14_1>='\u0000' && LA14_1<='.')||(LA14_1>='0' && LA14_1<='\uFFFF')) ) {
-                        alt14=1;
+                    else if ( ((LA15_1>='\u0000' && LA15_1<='.')||(LA15_1>='0' && LA15_1<='\uFFFF')) ) {
+                        alt15=1;
                     }
 
 
                 }
-                else if ( ((LA14_0>='\u0000' && LA14_0<=')')||(LA14_0>='+' && LA14_0<='\uFFFF')) ) {
-                    alt14=1;
+                else if ( ((LA15_0>='\u0000' && LA15_0<=')')||(LA15_0>='+' && LA15_0<='\uFFFF')) ) {
+                    alt15=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt15) {
             	case 1 :
             	    // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2788:52: .
             	    {
@@ -1412,7 +1427,7 @@ public class InternalCSSLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop15;
                 }
             } while (true);
 
@@ -1438,18 +1453,18 @@ public class InternalCSSLexer extends Lexer {
             // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2790:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
             // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:2790:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt15=0;
-            loop15:
+            int cnt16=0;
+            loop16:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( ((LA15_0>='\t' && LA15_0<='\n')||LA15_0=='\r'||LA15_0==' ') ) {
-                    alt15=1;
+                if ( ((LA16_0>='\t' && LA16_0<='\n')||LA16_0=='\r'||LA16_0==' ') ) {
+                    alt16=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt16) {
             	case 1 :
             	    // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:
             	    {
@@ -1467,12 +1482,12 @@ public class InternalCSSLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt15 >= 1 ) break loop15;
+            	    if ( cnt16 >= 1 ) break loop16;
                         EarlyExitException eee =
-                            new EarlyExitException(15, input);
+                            new EarlyExitException(16, input);
                         throw eee;
                 }
-                cnt15++;
+                cnt16++;
             } while (true);
 
 
@@ -1508,9 +1523,9 @@ public class InternalCSSLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:1:8: ( T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | RULE_HASH | RULE_T_CLASS | RULE_T_IMPORTANT | RULE_PC_UNIT | RULE_LEN_UNIT | RULE_EM_UNIT | RULE_EX_UNIT | RULE_ANGLE_UNIT | RULE_TIME_UNIT | RULE_FREQ_UNIT | RULE_T_NUM | RULE_ID | RULE_STRING | RULE_CDO | RULE_CDC | RULE_ML_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt16=40;
-        alt16 = dfa16.predict(input);
-        switch (alt16) {
+        int alt17=40;
+        alt17 = dfa17.predict(input);
+        switch (alt17) {
             case 1 :
                 // ../org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/parser/antlr/internal/InternalCSS.g:1:10: T__22
                 {
@@ -1798,7 +1813,7 @@ public class InternalCSSLexer extends Lexer {
 
 
     protected DFA9 dfa9 = new DFA9(this);
-    protected DFA16 dfa16 = new DFA16(this);
+    protected DFA17 dfa17 = new DFA17(this);
     static final String DFA9_eotS =
         "\1\uffff\1\3\2\uffff";
     static final String DFA9_eofS =
@@ -1851,35 +1866,35 @@ public class InternalCSSLexer extends Lexer {
             return "2778:14: ( ( '0' .. '9' )+ | ( '0' .. '9' )* '.' ( '0' .. '9' )+ )";
         }
     }
-    static final String DFA16_eotS =
+    static final String DFA17_eotS =
         "\1\uffff\1\47\10\uffff\1\65\1\67\2\uffff\1\73\3\uffff\4\47\1\uffff"+
         "\10\65\1\123\1\65\2\uffff\3\47\16\uffff\1\65\21\uffff\5\131\1\123"+
         "\1\65\1\131\1\133\1\134\3\65\1\uffff\1\140\3\uffff\1\65\1\uffff"+
         "\1\140\2\uffff\2\142\1\65\3\uffff\1\142";
-    static final String DFA16_eofS =
+    static final String DFA17_eofS =
         "\144\uffff";
-    static final String DFA16_minS =
-        "\1\0\1\143\10\uffff\1\162\1\52\2\uffff\1\55\3\uffff\2\75\2\60\1"+
-        "\uffff\1\143\1\155\1\150\1\156\1\155\1\145\1\141\1\162\1\60\1\172"+
-        "\2\uffff\2\0\1\41\16\uffff\1\154\21\uffff\6\60\1\172\3\60\1\147"+
-        "\1\144\1\141\1\uffff\1\60\3\uffff\1\50\1\uffff\1\60\2\uffff\2\60"+
-        "\1\144\3\uffff\1\60";
-    static final String DFA16_maxS =
-        "\1\uffff\1\160\10\uffff\1\162\1\52\2\uffff\1\55\3\uffff\1\75\1"+
+    static final String DFA17_minS =
+        "\1\0\1\143\10\uffff\1\162\1\52\2\uffff\1\55\3\uffff\2\75\1\60\1"+
+        "\55\1\uffff\1\143\1\155\1\150\1\156\1\155\1\145\1\141\1\162\1\55"+
+        "\1\172\2\uffff\2\0\1\41\16\uffff\1\154\21\uffff\6\55\1\172\3\55"+
+        "\1\147\1\144\1\141\1\uffff\1\55\3\uffff\1\50\1\uffff\1\55\2\uffff"+
+        "\2\55\1\144\3\uffff\1\55";
+    static final String DFA17_maxS =
+        "\1\uffff\1\160\10\uffff\1\162\1\52\2\uffff\1\172\3\uffff\1\75\1"+
         "\151\2\172\1\uffff\1\170\1\155\1\163\1\156\1\170\1\145\1\141\1\162"+
         "\2\172\2\uffff\2\uffff\1\41\16\uffff\1\154\21\uffff\12\172\1\147"+
         "\1\144\1\141\1\uffff\1\172\3\uffff\1\50\1\uffff\1\172\2\uffff\2"+
         "\172\1\144\3\uffff\1\172";
-    static final String DFA16_acceptS =
+    static final String DFA17_acceptS =
         "\2\uffff\1\2\1\4\1\6\1\7\1\11\1\12\1\13\1\14\2\uffff\1\17\1\20"+
         "\1\uffff\1\22\1\23\1\24\4\uffff\1\32\12\uffff\1\41\1\42\3\uffff"+
         "\1\47\1\50\1\1\1\3\1\5\1\10\1\2\1\4\1\6\1\7\1\11\1\12\1\13\1\14"+
         "\1\uffff\1\42\1\46\1\16\1\17\1\20\1\45\1\21\1\22\1\23\1\24\1\25"+
         "\1\26\1\31\1\27\1\41\1\30\1\32\15\uffff\1\37\1\uffff\1\43\1\44\1"+
         "\47\1\uffff\1\33\1\uffff\1\34\1\35\3\uffff\1\40\1\15\1\36\1\uffff";
-    static final String DFA16_specialS =
-        "\1\2\42\uffff\1\1\1\0\77\uffff}>";
-    static final String[] DFA16_transitionS = {
+    static final String DFA17_specialS =
+        "\1\1\42\uffff\1\2\1\0\77\uffff}>";
+    static final String[] DFA17_transitionS = {
             "\11\47\2\46\2\47\1\46\22\47\1\46\1\23\1\43\1\24\1\47\1\26\1"+
             "\47\1\44\1\10\1\11\1\7\1\17\1\3\1\16\1\25\1\13\12\41\1\6\1\2"+
             "\1\45\1\21\1\20\1\47\1\1\32\42\1\14\1\47\1\15\1\47\1\42\1\47"+
@@ -1898,14 +1913,15 @@ public class InternalCSSLexer extends Lexer {
             "\1\66",
             "",
             "",
-            "\1\72",
+            "\1\72\23\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "",
             "",
             "",
             "\1\77",
             "\1\100\53\uffff\1\101",
             "\12\102\7\uffff\32\102\6\uffff\32\102",
-            "\12\103\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
+            "\1\104\2\uffff\12\103\7\uffff\32\104\4\uffff\1\104\1\uffff"+
+            "\32\104",
             "",
             "\1\110\20\uffff\1\107\3\uffff\1\106",
             "\1\111",
@@ -1915,7 +1931,8 @@ public class InternalCSSLexer extends Lexer {
             "\1\120",
             "\1\121",
             "\1\122",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\124",
             "",
             "",
@@ -1954,66 +1971,80 @@ public class InternalCSSLexer extends Lexer {
             "",
             "",
             "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\132",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\135",
             "\1\136",
             "\1\137",
             "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "",
             "",
             "",
             "\1\141",
             "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "",
             "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65",
             "\1\143",
             "",
             "",
             "",
-            "\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65"
+            "\1\65\2\uffff\12\65\7\uffff\32\65\4\uffff\1\65\1\uffff\32"+
+            "\65"
     };
 
-    static final short[] DFA16_eot = DFA.unpackEncodedString(DFA16_eotS);
-    static final short[] DFA16_eof = DFA.unpackEncodedString(DFA16_eofS);
-    static final char[] DFA16_min = DFA.unpackEncodedStringToUnsignedChars(DFA16_minS);
-    static final char[] DFA16_max = DFA.unpackEncodedStringToUnsignedChars(DFA16_maxS);
-    static final short[] DFA16_accept = DFA.unpackEncodedString(DFA16_acceptS);
-    static final short[] DFA16_special = DFA.unpackEncodedString(DFA16_specialS);
-    static final short[][] DFA16_transition;
+    static final short[] DFA17_eot = DFA.unpackEncodedString(DFA17_eotS);
+    static final short[] DFA17_eof = DFA.unpackEncodedString(DFA17_eofS);
+    static final char[] DFA17_min = DFA.unpackEncodedStringToUnsignedChars(DFA17_minS);
+    static final char[] DFA17_max = DFA.unpackEncodedStringToUnsignedChars(DFA17_maxS);
+    static final short[] DFA17_accept = DFA.unpackEncodedString(DFA17_acceptS);
+    static final short[] DFA17_special = DFA.unpackEncodedString(DFA17_specialS);
+    static final short[][] DFA17_transition;
 
     static {
-        int numStates = DFA16_transitionS.length;
-        DFA16_transition = new short[numStates][];
+        int numStates = DFA17_transitionS.length;
+        DFA17_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA16_transition[i] = DFA.unpackEncodedString(DFA16_transitionS[i]);
+            DFA17_transition[i] = DFA.unpackEncodedString(DFA17_transitionS[i]);
         }
     }
 
-    class DFA16 extends DFA {
+    class DFA17 extends DFA {
 
-        public DFA16(BaseRecognizer recognizer) {
+        public DFA17(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 16;
-            this.eot = DFA16_eot;
-            this.eof = DFA16_eof;
-            this.min = DFA16_min;
-            this.max = DFA16_max;
-            this.accept = DFA16_accept;
-            this.special = DFA16_special;
-            this.transition = DFA16_transition;
+            this.decisionNumber = 17;
+            this.eot = DFA17_eot;
+            this.eof = DFA17_eof;
+            this.min = DFA17_min;
+            this.max = DFA17_max;
+            this.accept = DFA17_accept;
+            this.special = DFA17_special;
+            this.transition = DFA17_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | RULE_HASH | RULE_T_CLASS | RULE_T_IMPORTANT | RULE_PC_UNIT | RULE_LEN_UNIT | RULE_EM_UNIT | RULE_EX_UNIT | RULE_ANGLE_UNIT | RULE_TIME_UNIT | RULE_FREQ_UNIT | RULE_T_NUM | RULE_ID | RULE_STRING | RULE_CDO | RULE_CDC | RULE_ML_COMMENT | RULE_WS | RULE_ANY_OTHER );";
@@ -2023,112 +2054,112 @@ public class InternalCSSLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA16_36 = input.LA(1);
+                        int LA17_36 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA16_36>='\u0000' && LA16_36<='\uFFFF')) ) {s = 85;}
+                        if ( ((LA17_36>='\u0000' && LA17_36<='\uFFFF')) ) {s = 85;}
 
                         else s = 39;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA16_35 = input.LA(1);
+                        int LA17_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA16_35>='\u0000' && LA16_35<='\uFFFF')) ) {s = 85;}
+                        if ( (LA17_0=='@') ) {s = 1;}
+
+                        else if ( (LA17_0==';') ) {s = 2;}
+
+                        else if ( (LA17_0==',') ) {s = 3;}
+
+                        else if ( (LA17_0=='{') ) {s = 4;}
+
+                        else if ( (LA17_0=='}') ) {s = 5;}
+
+                        else if ( (LA17_0==':') ) {s = 6;}
+
+                        else if ( (LA17_0=='*') ) {s = 7;}
+
+                        else if ( (LA17_0=='(') ) {s = 8;}
+
+                        else if ( (LA17_0==')') ) {s = 9;}
+
+                        else if ( (LA17_0=='u') ) {s = 10;}
+
+                        else if ( (LA17_0=='/') ) {s = 11;}
+
+                        else if ( (LA17_0=='[') ) {s = 12;}
+
+                        else if ( (LA17_0==']') ) {s = 13;}
+
+                        else if ( (LA17_0=='-') ) {s = 14;}
+
+                        else if ( (LA17_0=='+') ) {s = 15;}
+
+                        else if ( (LA17_0=='>') ) {s = 16;}
+
+                        else if ( (LA17_0=='=') ) {s = 17;}
+
+                        else if ( (LA17_0=='~') ) {s = 18;}
+
+                        else if ( (LA17_0=='!') ) {s = 19;}
+
+                        else if ( (LA17_0=='#') ) {s = 20;}
+
+                        else if ( (LA17_0=='.') ) {s = 21;}
+
+                        else if ( (LA17_0=='%') ) {s = 22;}
+
+                        else if ( (LA17_0=='p') ) {s = 23;}
+
+                        else if ( (LA17_0=='c') ) {s = 24;}
+
+                        else if ( (LA17_0=='m') ) {s = 25;}
+
+                        else if ( (LA17_0=='i') ) {s = 26;}
+
+                        else if ( (LA17_0=='e') ) {s = 27;}
+
+                        else if ( (LA17_0=='d') ) {s = 28;}
+
+                        else if ( (LA17_0=='r') ) {s = 29;}
+
+                        else if ( (LA17_0=='g') ) {s = 30;}
+
+                        else if ( (LA17_0=='s') ) {s = 31;}
+
+                        else if ( (LA17_0=='h') ) {s = 32;}
+
+                        else if ( ((LA17_0>='0' && LA17_0<='9')) ) {s = 33;}
+
+                        else if ( ((LA17_0>='A' && LA17_0<='Z')||LA17_0=='_'||(LA17_0>='a' && LA17_0<='b')||LA17_0=='f'||(LA17_0>='j' && LA17_0<='l')||(LA17_0>='n' && LA17_0<='o')||LA17_0=='q'||LA17_0=='t'||(LA17_0>='v' && LA17_0<='z')) ) {s = 34;}
+
+                        else if ( (LA17_0=='\"') ) {s = 35;}
+
+                        else if ( (LA17_0=='\'') ) {s = 36;}
+
+                        else if ( (LA17_0=='<') ) {s = 37;}
+
+                        else if ( ((LA17_0>='\t' && LA17_0<='\n')||LA17_0=='\r'||LA17_0==' ') ) {s = 38;}
+
+                        else if ( ((LA17_0>='\u0000' && LA17_0<='\b')||(LA17_0>='\u000B' && LA17_0<='\f')||(LA17_0>='\u000E' && LA17_0<='\u001F')||LA17_0=='$'||LA17_0=='&'||LA17_0=='?'||LA17_0=='\\'||LA17_0=='^'||LA17_0=='`'||LA17_0=='|'||(LA17_0>='\u007F' && LA17_0<='\uFFFF')) ) {s = 39;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA17_35 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA17_35>='\u0000' && LA17_35<='\uFFFF')) ) {s = 85;}
 
                         else s = 39;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
-                        int LA16_0 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA16_0=='@') ) {s = 1;}
-
-                        else if ( (LA16_0==';') ) {s = 2;}
-
-                        else if ( (LA16_0==',') ) {s = 3;}
-
-                        else if ( (LA16_0=='{') ) {s = 4;}
-
-                        else if ( (LA16_0=='}') ) {s = 5;}
-
-                        else if ( (LA16_0==':') ) {s = 6;}
-
-                        else if ( (LA16_0=='*') ) {s = 7;}
-
-                        else if ( (LA16_0=='(') ) {s = 8;}
-
-                        else if ( (LA16_0==')') ) {s = 9;}
-
-                        else if ( (LA16_0=='u') ) {s = 10;}
-
-                        else if ( (LA16_0=='/') ) {s = 11;}
-
-                        else if ( (LA16_0=='[') ) {s = 12;}
-
-                        else if ( (LA16_0==']') ) {s = 13;}
-
-                        else if ( (LA16_0=='-') ) {s = 14;}
-
-                        else if ( (LA16_0=='+') ) {s = 15;}
-
-                        else if ( (LA16_0=='>') ) {s = 16;}
-
-                        else if ( (LA16_0=='=') ) {s = 17;}
-
-                        else if ( (LA16_0=='~') ) {s = 18;}
-
-                        else if ( (LA16_0=='!') ) {s = 19;}
-
-                        else if ( (LA16_0=='#') ) {s = 20;}
-
-                        else if ( (LA16_0=='.') ) {s = 21;}
-
-                        else if ( (LA16_0=='%') ) {s = 22;}
-
-                        else if ( (LA16_0=='p') ) {s = 23;}
-
-                        else if ( (LA16_0=='c') ) {s = 24;}
-
-                        else if ( (LA16_0=='m') ) {s = 25;}
-
-                        else if ( (LA16_0=='i') ) {s = 26;}
-
-                        else if ( (LA16_0=='e') ) {s = 27;}
-
-                        else if ( (LA16_0=='d') ) {s = 28;}
-
-                        else if ( (LA16_0=='r') ) {s = 29;}
-
-                        else if ( (LA16_0=='g') ) {s = 30;}
-
-                        else if ( (LA16_0=='s') ) {s = 31;}
-
-                        else if ( (LA16_0=='h') ) {s = 32;}
-
-                        else if ( ((LA16_0>='0' && LA16_0<='9')) ) {s = 33;}
-
-                        else if ( ((LA16_0>='A' && LA16_0<='Z')||LA16_0=='_'||(LA16_0>='a' && LA16_0<='b')||LA16_0=='f'||(LA16_0>='j' && LA16_0<='l')||(LA16_0>='n' && LA16_0<='o')||LA16_0=='q'||LA16_0=='t'||(LA16_0>='v' && LA16_0<='z')) ) {s = 34;}
-
-                        else if ( (LA16_0=='\"') ) {s = 35;}
-
-                        else if ( (LA16_0=='\'') ) {s = 36;}
-
-                        else if ( (LA16_0=='<') ) {s = 37;}
-
-                        else if ( ((LA16_0>='\t' && LA16_0<='\n')||LA16_0=='\r'||LA16_0==' ') ) {s = 38;}
-
-                        else if ( ((LA16_0>='\u0000' && LA16_0<='\b')||(LA16_0>='\u000B' && LA16_0<='\f')||(LA16_0>='\u000E' && LA16_0<='\u001F')||LA16_0=='$'||LA16_0=='&'||LA16_0=='?'||LA16_0=='\\'||LA16_0=='^'||LA16_0=='`'||LA16_0=='|'||(LA16_0>='\u007F' && LA16_0<='\uFFFF')) ) {s = 39;}
-
-                        if ( s>=0 ) return s;
-                        break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 16, _s, input);
+                new NoViableAltException(getDescription(), 17, _s, input);
             error(nvae);
             throw nvae;
         }

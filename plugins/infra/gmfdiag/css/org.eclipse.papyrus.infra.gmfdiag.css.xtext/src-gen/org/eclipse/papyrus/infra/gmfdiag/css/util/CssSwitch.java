@@ -4,7 +4,9 @@ package org.eclipse.papyrus.infra.gmfdiag.css.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.eclipse.papyrus.infra.gmfdiag.css.Angle;
 import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
 import org.eclipse.papyrus.infra.gmfdiag.css.AttributeValue;

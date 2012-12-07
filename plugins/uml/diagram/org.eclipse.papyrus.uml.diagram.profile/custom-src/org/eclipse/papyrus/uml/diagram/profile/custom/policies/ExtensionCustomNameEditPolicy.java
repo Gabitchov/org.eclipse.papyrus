@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.ExtensionHelper;
 import org.eclipse.swt.widgets.Display;
@@ -128,9 +128,8 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 			if(hostSemanticElement instanceof Extension) {
 				if(((Extension)hostSemanticElement).getStereotype() instanceof Stereotype) {
 
-					//	final TransactionalEditingDomain domain = ((GraphicalEditPart)getHost()).getEditingDomain();
-					final TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();//((GraphicalEditPart)getHost()).getEditingDomain();
 					try {
+						final TransactionalEditingDomain domain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
 
 						((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 

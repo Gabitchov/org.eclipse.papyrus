@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.serializer;
 
+import com.google.inject.Inject;
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.gmfdiag.services.CSSGrammarAccess;
 import org.eclipse.xtext.IGrammarAccess;
@@ -15,10 +15,8 @@ import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISyn
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
-import com.google.inject.Inject;
-
-@SuppressWarnings("restriction")
-public class AbstractCSSSyntacticSequencer extends AbstractSyntacticSequencer {
+@SuppressWarnings("all")
+public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected CSSGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AttributeValue_WSTerminalRuleCall_1_a;
@@ -115,21 +113,47 @@ public class AbstractCSSSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getCDCToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getCDORule())
 			return getCDOToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getT_IMPORTANTRule())
+			return getT_IMPORTANTToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getWSRule())
 			return getWSToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * terminal CDC:
+	 * 	'-->';
+	 */
 	protected String getCDCToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "-->";
 	}
+	
+	/**
+	 * terminal CDO:
+	 * 	'<!--';
+	 */
 	protected String getCDOToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "<!--";
 	}
+	
+	/**
+	 * terminal T_IMPORTANT:
+	 * 	'!important';
+	 */
+	protected String getT_IMPORTANTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "!important";
+	}
+	
+	/**
+	 * terminal WS:
+	 * 	(' ' | '\t' | '\r' | '\n')+;
+	 */
 	protected String getWSToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
@@ -502,7 +526,7 @@ public class AbstractCSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     (CDC | WS | CDO)*
+	 *     (WS | CDC | CDO)*
 	 */
 	protected void emit_Stylesheet___CDCTerminalRuleCall_1_2_or_CDOTerminalRuleCall_1_1_or_WSTerminalRuleCall_1_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -510,7 +534,7 @@ public class AbstractCSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     (CDC | CDO | WS)+
+	 *     (WS | CDC | CDO)+
 	 */
 	protected void emit_Stylesheet___CDCTerminalRuleCall_1_2_or_CDOTerminalRuleCall_1_1_or_WSTerminalRuleCall_1_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -518,7 +542,7 @@ public class AbstractCSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ((CDO WS*) | (CDC WS*))*
+	 *     ((CDC WS*) | (CDO WS*))*
 	 */
 	protected void emit_Stylesheet_____CDCTerminalRuleCall_2_1_1_0_WSTerminalRuleCall_2_1_1_1_a___or___CDOTerminalRuleCall_2_1_0_0_WSTerminalRuleCall_2_1_0_1_a____a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

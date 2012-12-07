@@ -4,23 +4,14 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.services;
 
-import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Alternatives;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.EnumLiteralDeclaration;
-import org.eclipse.xtext.EnumRule;
-import org.eclipse.xtext.Grammar;
-import org.eclipse.xtext.GrammarUtil;
-import org.eclipse.xtext.Group;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
-import org.eclipse.xtext.service.GrammarProvider;
-
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.Inject;
+
+import java.util.List;
+
+import org.eclipse.xtext.*;
+import org.eclipse.xtext.service.GrammarProvider;
+import org.eclipse.xtext.service.AbstractElementFinder.*;
 
 
 @Singleton
@@ -60,12 +51,19 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCDCTerminalRuleCall_3_1_1_0 = (RuleCall)cGroup_3_1_1.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_3_1_1_1 = (RuleCall)cGroup_3_1_1.eContents().get(1);
 		
-		//Stylesheet:
+		////Do not create a Stylesheet for WS* (This seems to cause a serialization problem when editing an EMF Model from an Empty file)
+		//
+		//
+		////Do not ignore WS as @charset must be followed by exactly one Space.
+		// Stylesheet:
+		//
 		//	("@charset " charset=STRING ";")? (WS | CDO | CDC)* (imports+=Import (CDO WS* | CDC WS*)*)* (contents+=Content (CDO
+		//
 		//	WS* | CDC WS*)*)*;
 		public ParserRule getRule() { return rule; }
 
 		//("@charset " charset=STRING ";")? (WS | CDO | CDC)* (imports+=Import (CDO WS* | CDC WS*)*)* (contents+=Content (CDO WS*
+		//
 		//| CDC WS*)*)*
 		public Group getGroup() { return cGroup; }
 
@@ -165,6 +163,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Content:
+		//
 		//	Ruleset | Media | Page;
 		public ParserRule getRule() { return rule; }
 
@@ -208,6 +207,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//Import:
+		//
 		//	"@import" (WS* string=STRING | WS uri=Uri) WS* (media+=ID WS* ("," WS* media+=ID)*)? ";" WS*;
 		public ParserRule getRule() { return rule; }
 
@@ -302,6 +302,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
 		
 		//Media:
+		//
 		//	"@media" WS media+=ID WS* ("," WS* media+=ID)* "{" WS* rules+=Ruleset* "}" WS*;
 		public ParserRule getRule() { return rule; }
 
@@ -378,7 +379,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
 		
 		//Page:
+		//
 		//	{Page} "@page" WS* pseudo=PseudoPage? "{" WS* declarations+=Declaration? (";" WS* declarations+=Declaration?)* "}"
+		//
 		//	WS*;
 		public ParserRule getRule() { return rule; }
 
@@ -443,6 +446,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//PseudoPage:
+		//
 		//	":" id=ID WS*;
 		public ParserRule getRule() { return rule; }
 
@@ -485,11 +489,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
 		
 		//Ruleset:
+		//
 		//	selectors+=Selector ("," WS* selectors+=Selector)* "{" WS* properties+=Declaration? (";" WS*
+		//
 		//	properties+=Declaration?)* "}" WS*;
 		public ParserRule getRule() { return rule; }
 
 		//selectors+=Selector ("," WS* selectors+=Selector)* "{" WS* properties+=Declaration? (";" WS* properties+=Declaration?)*
+		//
 		//"}" WS*
 		public Group getGroup() { return cGroup; }
 
@@ -557,6 +564,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCompositeSelectorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Selector:
+		//
 		//	SimpleSelector WS* | CompositeSelector;
 		public ParserRule getRule() { return rule; }
 
@@ -591,7 +599,10 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRightSelectorParserRuleCall_2_0 = (RuleCall)cRightAssignment_2.eContents().get(0);
 		
 		////left=SimpleSelector (combinator=Combinator right=Selector | WS+ (combinator=Combinator? right=Selector)?)?;
+		//
+		//
 		//CompositeSelector:
+		//
 		//	left=SimpleSelector (WS+ | WS* combinator=Combinator) right=Selector;
 		public ParserRule getRule() { return rule; }
 
@@ -643,6 +654,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConditionSelectorConditionParserRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
 		
 		//SimpleSelector:
+		//
 		//	elementName=(ID | "*") condition+=SelectorCondition* | condition+=SelectorCondition+;
 		public ParserRule getRule() { return rule; }
 
@@ -686,6 +698,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPseudoParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//SelectorCondition:
+		//
 		//	CSSId | Class | Attribute | Pseudo;
 		public ParserRule getRule() { return rule; }
 
@@ -713,6 +726,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Combinator:
+		//
 		//	kind=KIND WS*;
 		public ParserRule getRule() { return rule; }
 
@@ -745,6 +759,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
 		
 		//Declaration:
+		//
 		//	property=ID WS* ":" WS* expression=Expression (important?=T_IMPORTANT WS*)?;
 		public ParserRule getRule() { return rule; }
 
@@ -794,6 +809,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubtermsSubtermParserRuleCall_1_0 = (RuleCall)cSubtermsAssignment_1.eContents().get(0);
 		
 		//Expression:
+		//
 		//	terms=Term subterms+=Subterm*;
 		public ParserRule getRule() { return rule; }
 
@@ -822,6 +838,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTermTermParserRuleCall_1_0 = (RuleCall)cTermAssignment_1.eContents().get(0);
 		
 		//Subterm:
+		//
 		//	operator=Operator? term=Term;
 		public ParserRule getRule() { return rule; }
 
@@ -861,11 +878,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Term:
-		//	(Number | Percentage | Length | Ems | Exs | Angle | Time | Frequency | Name | StringValue | Uri | HexColor | Function)
-		//	WS*;
+		//
+		//	(Number | Percentage | Length | Ems | Exs | Angle | Time | Frequency | Name | StringValue | Uri | HexColor |
+		//
+		//	Function) WS*;
 		public ParserRule getRule() { return rule; }
 
 		//(Number | Percentage | Length | Ems | Exs | Angle | Time | Frequency | Name | StringValue | Uri | HexColor | Function)
+		//
 		//WS*
 		public Group getGroup() { return cGroup; }
 
@@ -927,6 +947,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Function:
+		//
 		//	name=ID "(" WS* args=Expression ")";
 		public ParserRule getRule() { return rule; }
 
@@ -961,6 +982,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueIDTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//Name:
+		//
 		//	value=ID;
 		public ParserRule getRule() { return rule; }
 
@@ -980,7 +1002,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueT_NUMTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
 		////Terms  
-		//Number:
+		// Number:
+		//
 		//	op=UnaryOperator? value=T_NUM;
 		public ParserRule getRule() { return rule; }
 
@@ -1011,6 +1034,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitPC_UNITTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//Percentage:
+		//
 		//	op=UnaryOperator? value=T_NUM unit=PC_UNIT;
 		public ParserRule getRule() { return rule; }
 
@@ -1047,6 +1071,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitLEN_UNITTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//Length:
+		//
 		//	op=UnaryOperator? value=T_NUM unit=LEN_UNIT;
 		public ParserRule getRule() { return rule; }
 
@@ -1083,6 +1108,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitEM_UNITTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//Ems:
+		//
 		//	op=UnaryOperator? value=T_NUM unit=EM_UNIT;
 		public ParserRule getRule() { return rule; }
 
@@ -1119,6 +1145,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitEX_UNITTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//Exs:
+		//
 		//	op=UnaryOperator? value=T_NUM unit=EX_UNIT;
 		public ParserRule getRule() { return rule; }
 
@@ -1155,6 +1182,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitANGLE_UNITTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//Angle:
+		//
 		//	op=UnaryOperator? value=T_NUM unit=ANGLE_UNIT;
 		public ParserRule getRule() { return rule; }
 
@@ -1191,6 +1219,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitTIME_UNITTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//Time:
+		//
 		//	op=UnaryOperator? value=T_NUM unit=TIME_UNIT;
 		public ParserRule getRule() { return rule; }
 
@@ -1227,6 +1256,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnitFREQ_UNITTerminalRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//Frequency:
+		//
 		//	op=UnaryOperator? value=T_NUM unit=FREQ_UNIT;
 		public ParserRule getRule() { return rule; }
 
@@ -1263,7 +1293,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		/// * | 'url(' WS? url=URL WS? ')' * / //TODO
-		//Uri:
+		// Uri:
+		//
 		//	"url(" WS? value=STRING WS? ")";
 		public ParserRule getRule() { return rule; }
 
@@ -1295,6 +1326,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//StringValue:
+		//
 		//	value=STRING;
 		public ParserRule getRule() { return rule; }
 
@@ -1311,16 +1343,23 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueHASHTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		////terminal URL:
-		////	(('!' | '#' | '$' | '%' | '&' | '*' | '-' | '~') / * | NON_ASCII  |  ESCAPE * /)*;
+		// //	(('!' | '#' | '$' | '%' | '&' | '*' | '-' | '~') / * | NON_ASCII  |  ESCAPE * /)*;
+		//
+		//
 		////terminal NON_ASCII:
-		////	(\0240..\0377) //Chars 160 to 255
-		////;
-		////terminal UNICODE:
+		// //	(\0240..\0377) //Chars 160 to 255
+		// //;
+		// //terminal UNICODE:
+		//
+		//
 		////	'\\' HEXA (HEXA (HEXA (HEXA (HEXA (HEXA)?)?)?)?)? ('\r\n' | ' ' | '\t' | '\r' | '\n')?;
-		////
-		////terminal ESCAPE:
+		// //
+		// //terminal ESCAPE:
+		//
+		//
 		////	UNICODE | ('\\' !('\r' | '\n' | '0'..'9' | 'a'..'f' | 'A'..'F'));
-		//HexColor:
+		// HexColor:
+		//
 		//	value=HASH;
 		public ParserRule getRule() { return rule; }
 
@@ -1342,6 +1381,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//Operator:
+		//
 		//	"/" WS* | "," WS*;
 		public ParserRule getRule() { return rule; }
 
@@ -1373,6 +1413,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassT_CLASSTerminalRuleCall_0 = (RuleCall)cClassAssignment.eContents().get(0);
 		
 		//Class:
+		//
 		//	class=T_CLASS;
 		public ParserRule getRule() { return rule; }
 
@@ -1396,6 +1437,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Attribute:
+		//
 		//	"[" WS* name=ID WS* value=AttributeValue? "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1440,6 +1482,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//AttributeValue:
+		//
 		//	operator=ATTRIBUTE_OP WS* value=(ID | STRING) WS*;
 		public ParserRule getRule() { return rule; }
 
@@ -1490,6 +1533,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_1_4 = (Keyword)cGroup_1_1.eContents().get(4);
 		
 		//Pseudo:
+		//
 		//	":" (pseudo=ID | pseudo=ID "(" WS* (args=ID WS*)? ")");
 		public ParserRule getRule() { return rule; }
 
@@ -1545,6 +1589,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueHASHTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//CSSId:
+		//
 		//	value=HASH;
 		public ParserRule getRule() { return rule; }
 
@@ -1561,6 +1606,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOperatorUNARYEnumRuleCall_0 = (RuleCall)cOperatorAssignment.eContents().get(0);
 		
 		//UnaryOperator:
+		//
 		//	operator=UNARY;
 		public ParserRule getRule() { return rule; }
 
@@ -1581,6 +1627,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPLUSPlusSignKeyword_1_0 = (Keyword)cPLUSEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum UNARY:
+		//
 		//	NEG="-" | PLUS="+";
 		public EnumRule getRule() { return rule; }
 
@@ -1609,6 +1656,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSIBLINGPlusSignKeyword_1_0 = (Keyword)cSIBLINGEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum KIND:
+		//
 		//	FIRST_CHILD=">" | SIBLING="+";
 		public EnumRule getRule() { return rule; }
 
@@ -1639,6 +1687,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cUNEQUALSExclamationMarkEqualsSignKeyword_2_0 = (Keyword)cUNEQUALSEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum ATTRIBUTE_OP:
+		//
 		//	EQUALS="=" | CONTAINS="~=" | UNEQUALS="!=";
 		public EnumRule getRule() { return rule; }
 
@@ -1722,21 +1771,44 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tWS;
 	private TerminalRule tANY_OTHER;
 	
-	private final GrammarProvider grammarProvider;
+	private final Grammar grammar;
 
 	@Inject
 	public CSSGrammarAccess(GrammarProvider grammarProvider) {
-		this.grammarProvider = grammarProvider;
+		this.grammar = internalFindGrammar(grammarProvider);
 	}
 	
-	public Grammar getGrammar() {	
-		return grammarProvider.getGrammar(this);
+	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
+		Grammar grammar = grammarProvider.getGrammar(this);
+		while (grammar != null) {
+			if ("org.eclipse.papyrus.infra.gmfdiag.CSS".equals(grammar.getName())) {
+				return grammar;
+			}
+			List<Grammar> grammars = grammar.getUsedGrammars();
+			if (!grammars.isEmpty()) {
+				grammar = grammars.iterator().next();
+			} else {
+				return null;
+			}
+		}
+		return grammar;
+	}
+	
+	
+	public Grammar getGrammar() {
+		return grammar;
 	}
 	
 
 	
-	//Stylesheet:
+	////Do not create a Stylesheet for WS* (This seems to cause a serialization problem when editing an EMF Model from an Empty file)
+	//
+	//
+	////Do not ignore WS as @charset must be followed by exactly one Space.
+	// Stylesheet:
+	//
 	//	("@charset " charset=STRING ";")? (WS | CDO | CDC)* (imports+=Import (CDO WS* | CDC WS*)*)* (contents+=Content (CDO
+	//
 	//	WS* | CDC WS*)*)*;
 	public StylesheetElements getStylesheetAccess() {
 		return (pStylesheet != null) ? pStylesheet : (pStylesheet = new StylesheetElements());
@@ -1747,6 +1819,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Content:
+	//
 	//	Ruleset | Media | Page;
 	public ContentElements getContentAccess() {
 		return (pContent != null) ? pContent : (pContent = new ContentElements());
@@ -1757,6 +1830,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Import:
+	//
 	//	"@import" (WS* string=STRING | WS uri=Uri) WS* (media+=ID WS* ("," WS* media+=ID)*)? ";" WS*;
 	public ImportElements getImportAccess() {
 		return (pImport != null) ? pImport : (pImport = new ImportElements());
@@ -1767,6 +1841,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Media:
+	//
 	//	"@media" WS media+=ID WS* ("," WS* media+=ID)* "{" WS* rules+=Ruleset* "}" WS*;
 	public MediaElements getMediaAccess() {
 		return (pMedia != null) ? pMedia : (pMedia = new MediaElements());
@@ -1777,7 +1852,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Page:
+	//
 	//	{Page} "@page" WS* pseudo=PseudoPage? "{" WS* declarations+=Declaration? (";" WS* declarations+=Declaration?)* "}"
+	//
 	//	WS*;
 	public PageElements getPageAccess() {
 		return (pPage != null) ? pPage : (pPage = new PageElements());
@@ -1788,6 +1865,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PseudoPage:
+	//
 	//	":" id=ID WS*;
 	public PseudoPageElements getPseudoPageAccess() {
 		return (pPseudoPage != null) ? pPseudoPage : (pPseudoPage = new PseudoPageElements());
@@ -1798,7 +1876,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Ruleset:
+	//
 	//	selectors+=Selector ("," WS* selectors+=Selector)* "{" WS* properties+=Declaration? (";" WS*
+	//
 	//	properties+=Declaration?)* "}" WS*;
 	public RulesetElements getRulesetAccess() {
 		return (pRuleset != null) ? pRuleset : (pRuleset = new RulesetElements());
@@ -1809,6 +1889,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Selector:
+	//
 	//	SimpleSelector WS* | CompositeSelector;
 	public SelectorElements getSelectorAccess() {
 		return (pSelector != null) ? pSelector : (pSelector = new SelectorElements());
@@ -1819,7 +1900,10 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////left=SimpleSelector (combinator=Combinator right=Selector | WS+ (combinator=Combinator? right=Selector)?)?;
+	//
+	//
 	//CompositeSelector:
+	//
 	//	left=SimpleSelector (WS+ | WS* combinator=Combinator) right=Selector;
 	public CompositeSelectorElements getCompositeSelectorAccess() {
 		return (pCompositeSelector != null) ? pCompositeSelector : (pCompositeSelector = new CompositeSelectorElements());
@@ -1830,6 +1914,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SimpleSelector:
+	//
 	//	elementName=(ID | "*") condition+=SelectorCondition* | condition+=SelectorCondition+;
 	public SimpleSelectorElements getSimpleSelectorAccess() {
 		return (pSimpleSelector != null) ? pSimpleSelector : (pSimpleSelector = new SimpleSelectorElements());
@@ -1840,6 +1925,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SelectorCondition:
+	//
 	//	CSSId | Class | Attribute | Pseudo;
 	public SelectorConditionElements getSelectorConditionAccess() {
 		return (pSelectorCondition != null) ? pSelectorCondition : (pSelectorCondition = new SelectorConditionElements());
@@ -1850,6 +1936,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Combinator:
+	//
 	//	kind=KIND WS*;
 	public CombinatorElements getCombinatorAccess() {
 		return (pCombinator != null) ? pCombinator : (pCombinator = new CombinatorElements());
@@ -1860,6 +1947,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Declaration:
+	//
 	//	property=ID WS* ":" WS* expression=Expression (important?=T_IMPORTANT WS*)?;
 	public DeclarationElements getDeclarationAccess() {
 		return (pDeclaration != null) ? pDeclaration : (pDeclaration = new DeclarationElements());
@@ -1870,6 +1958,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Expression:
+	//
 	//	terms=Term subterms+=Subterm*;
 	public ExpressionElements getExpressionAccess() {
 		return (pExpression != null) ? pExpression : (pExpression = new ExpressionElements());
@@ -1880,6 +1969,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Subterm:
+	//
 	//	operator=Operator? term=Term;
 	public SubtermElements getSubtermAccess() {
 		return (pSubterm != null) ? pSubterm : (pSubterm = new SubtermElements());
@@ -1890,8 +1980,10 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Term:
-	//	(Number | Percentage | Length | Ems | Exs | Angle | Time | Frequency | Name | StringValue | Uri | HexColor | Function)
-	//	WS*;
+	//
+	//	(Number | Percentage | Length | Ems | Exs | Angle | Time | Frequency | Name | StringValue | Uri | HexColor |
+	//
+	//	Function) WS*;
 	public TermElements getTermAccess() {
 		return (pTerm != null) ? pTerm : (pTerm = new TermElements());
 	}
@@ -1901,6 +1993,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Function:
+	//
 	//	name=ID "(" WS* args=Expression ")";
 	public FunctionElements getFunctionAccess() {
 		return (pFunction != null) ? pFunction : (pFunction = new FunctionElements());
@@ -1911,6 +2004,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Name:
+	//
 	//	value=ID;
 	public NameElements getNameAccess() {
 		return (pName != null) ? pName : (pName = new NameElements());
@@ -1921,7 +2015,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////Terms  
-	//Number:
+	// Number:
+	//
 	//	op=UnaryOperator? value=T_NUM;
 	public NumberElements getNumberAccess() {
 		return (pNumber != null) ? pNumber : (pNumber = new NumberElements());
@@ -1932,6 +2027,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Percentage:
+	//
 	//	op=UnaryOperator? value=T_NUM unit=PC_UNIT;
 	public PercentageElements getPercentageAccess() {
 		return (pPercentage != null) ? pPercentage : (pPercentage = new PercentageElements());
@@ -1942,6 +2038,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Length:
+	//
 	//	op=UnaryOperator? value=T_NUM unit=LEN_UNIT;
 	public LengthElements getLengthAccess() {
 		return (pLength != null) ? pLength : (pLength = new LengthElements());
@@ -1952,6 +2049,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Ems:
+	//
 	//	op=UnaryOperator? value=T_NUM unit=EM_UNIT;
 	public EmsElements getEmsAccess() {
 		return (pEms != null) ? pEms : (pEms = new EmsElements());
@@ -1962,6 +2060,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Exs:
+	//
 	//	op=UnaryOperator? value=T_NUM unit=EX_UNIT;
 	public ExsElements getExsAccess() {
 		return (pExs != null) ? pExs : (pExs = new ExsElements());
@@ -1972,6 +2071,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Angle:
+	//
 	//	op=UnaryOperator? value=T_NUM unit=ANGLE_UNIT;
 	public AngleElements getAngleAccess() {
 		return (pAngle != null) ? pAngle : (pAngle = new AngleElements());
@@ -1982,6 +2082,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Time:
+	//
 	//	op=UnaryOperator? value=T_NUM unit=TIME_UNIT;
 	public TimeElements getTimeAccess() {
 		return (pTime != null) ? pTime : (pTime = new TimeElements());
@@ -1992,6 +2093,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Frequency:
+	//
 	//	op=UnaryOperator? value=T_NUM unit=FREQ_UNIT;
 	public FrequencyElements getFrequencyAccess() {
 		return (pFrequency != null) ? pFrequency : (pFrequency = new FrequencyElements());
@@ -2002,7 +2104,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * | 'url(' WS? url=URL WS? ')' * / //TODO
-	//Uri:
+	// Uri:
+	//
 	//	"url(" WS? value=STRING WS? ")";
 	public UriElements getUriAccess() {
 		return (pUri != null) ? pUri : (pUri = new UriElements());
@@ -2013,6 +2116,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringValue:
+	//
 	//	value=STRING;
 	public StringValueElements getStringValueAccess() {
 		return (pStringValue != null) ? pStringValue : (pStringValue = new StringValueElements());
@@ -2023,16 +2127,23 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////terminal URL:
-	////	(('!' | '#' | '$' | '%' | '&' | '*' | '-' | '~') / * | NON_ASCII  |  ESCAPE * /)*;
+	// //	(('!' | '#' | '$' | '%' | '&' | '*' | '-' | '~') / * | NON_ASCII  |  ESCAPE * /)*;
+	//
+	//
 	////terminal NON_ASCII:
-	////	(\0240..\0377) //Chars 160 to 255
-	////;
-	////terminal UNICODE:
+	// //	(\0240..\0377) //Chars 160 to 255
+	// //;
+	// //terminal UNICODE:
+	//
+	//
 	////	'\\' HEXA (HEXA (HEXA (HEXA (HEXA (HEXA)?)?)?)?)? ('\r\n' | ' ' | '\t' | '\r' | '\n')?;
-	////
-	////terminal ESCAPE:
+	// //
+	// //terminal ESCAPE:
+	//
+	//
 	////	UNICODE | ('\\' !('\r' | '\n' | '0'..'9' | 'a'..'f' | 'A'..'F'));
-	//HexColor:
+	// HexColor:
+	//
 	//	value=HASH;
 	public HexColorElements getHexColorAccess() {
 		return (pHexColor != null) ? pHexColor : (pHexColor = new HexColorElements());
@@ -2043,6 +2154,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Operator:
+	//
 	//	"/" WS* | "," WS*;
 	public OperatorElements getOperatorAccess() {
 		return (pOperator != null) ? pOperator : (pOperator = new OperatorElements());
@@ -2053,6 +2165,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Class:
+	//
 	//	class=T_CLASS;
 	public ClassElements getClassAccess() {
 		return (pClass != null) ? pClass : (pClass = new ClassElements());
@@ -2063,6 +2176,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Attribute:
+	//
 	//	"[" WS* name=ID WS* value=AttributeValue? "]";
 	public AttributeElements getAttributeAccess() {
 		return (pAttribute != null) ? pAttribute : (pAttribute = new AttributeElements());
@@ -2073,6 +2187,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AttributeValue:
+	//
 	//	operator=ATTRIBUTE_OP WS* value=(ID | STRING) WS*;
 	public AttributeValueElements getAttributeValueAccess() {
 		return (pAttributeValue != null) ? pAttributeValue : (pAttributeValue = new AttributeValueElements());
@@ -2083,6 +2198,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Pseudo:
+	//
 	//	":" (pseudo=ID | pseudo=ID "(" WS* (args=ID WS*)? ")");
 	public PseudoElements getPseudoAccess() {
 		return (pPseudo != null) ? pPseudo : (pPseudo = new PseudoElements());
@@ -2093,6 +2209,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CSSId:
+	//
 	//	value=HASH;
 	public CSSIdElements getCSSIdAccess() {
 		return (pCSSId != null) ? pCSSId : (pCSSId = new CSSIdElements());
@@ -2103,6 +2220,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnaryOperator:
+	//
 	//	operator=UNARY;
 	public UnaryOperatorElements getUnaryOperatorAccess() {
 		return (pUnaryOperator != null) ? pUnaryOperator : (pUnaryOperator = new UnaryOperatorElements());
@@ -2113,6 +2231,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum UNARY:
+	//
 	//	NEG="-" | PLUS="+";
 	public UNARYElements getUNARYAccess() {
 		return (unknownRuleUNARY != null) ? unknownRuleUNARY : (unknownRuleUNARY = new UNARYElements());
@@ -2123,6 +2242,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum KIND:
+	//
 	//	FIRST_CHILD=">" | SIBLING="+";
 	public KINDElements getKINDAccess() {
 		return (unknownRuleKIND != null) ? unknownRuleKIND : (unknownRuleKIND = new KINDElements());
@@ -2133,6 +2253,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum ATTRIBUTE_OP:
+	//
 	//	EQUALS="=" | CONTAINS="~=" | UNEQUALS="!=";
 	public ATTRIBUTE_OPElements getATTRIBUTE_OPAccess() {
 		return (unknownRuleATTRIBUTE_OP != null) ? unknownRuleATTRIBUTE_OP : (unknownRuleATTRIBUTE_OP = new ATTRIBUTE_OPElements());
@@ -2143,111 +2264,132 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal HASH:
+	//
 	//	"#" ("A".."Z" | "a".."z" | "0".."9")+;
 	public TerminalRule getHASHRule() {
 		return (tHASH != null) ? tHASH : (tHASH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HASH"));
 	} 
 
 	//terminal T_CLASS:
+	//
 	//	"." ID;
 	public TerminalRule getT_CLASSRule() {
 		return (tT_CLASS != null) ? tT_CLASS : (tT_CLASS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "T_CLASS"));
 	} 
 
 	////This is not the exact CSS Grammar
-	//terminal T_IMPORTANT:
+	// terminal T_IMPORTANT:
+	//
 	//	"!important";
 	public TerminalRule getT_IMPORTANTRule() {
 		return (tT_IMPORTANT != null) ? tT_IMPORTANT : (tT_IMPORTANT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "T_IMPORTANT"));
 	} 
 
 	//terminal PC_UNIT:
+	//
 	//	"%";
 	public TerminalRule getPC_UNITRule() {
 		return (tPC_UNIT != null) ? tPC_UNIT : (tPC_UNIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PC_UNIT"));
 	} 
 
 	//terminal LEN_UNIT:
+	//
 	//	"px" | "cm" | "mm" | "in" | "pt" | "pc";
 	public TerminalRule getLEN_UNITRule() {
 		return (tLEN_UNIT != null) ? tLEN_UNIT : (tLEN_UNIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LEN_UNIT"));
 	} 
 
 	//terminal EM_UNIT:
+	//
 	//	"em";
 	public TerminalRule getEM_UNITRule() {
 		return (tEM_UNIT != null) ? tEM_UNIT : (tEM_UNIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EM_UNIT"));
 	} 
 
 	//terminal EX_UNIT:
+	//
 	//	"ex";
 	public TerminalRule getEX_UNITRule() {
 		return (tEX_UNIT != null) ? tEX_UNIT : (tEX_UNIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EX_UNIT"));
 	} 
 
 	//terminal ANGLE_UNIT:
+	//
 	//	"deg" | "rad" | "grad";
 	public TerminalRule getANGLE_UNITRule() {
 		return (tANGLE_UNIT != null) ? tANGLE_UNIT : (tANGLE_UNIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANGLE_UNIT"));
 	} 
 
 	//terminal TIME_UNIT:
+	//
 	//	"s" | "ms";
 	public TerminalRule getTIME_UNITRule() {
 		return (tTIME_UNIT != null) ? tTIME_UNIT : (tTIME_UNIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "TIME_UNIT"));
 	} 
 
 	//terminal FREQ_UNIT:
+	//
 	//	"hz" | "mhz";
 	public TerminalRule getFREQ_UNITRule() {
 		return (tFREQ_UNIT != null) ? tFREQ_UNIT : (tFREQ_UNIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FREQ_UNIT"));
 	} 
 
 	//terminal T_NUM:
+	//
 	//	"0".."9"+ | "0".."9"* "." "0".."9"+;
 	public TerminalRule getT_NUMRule() {
 		return (tT_NUM != null) ? tT_NUM : (tT_NUM = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "T_NUM"));
 	} 
 
 	//terminal ID:
-	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//
+	//	"-"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9" | "-")*;
 	public TerminalRule getIDRule() {
 		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
 	} 
 
 	//terminal STRING:
+	//
 	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
+	//
 	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
 	} 
 
 	//terminal CDO:
+	//
 	//	"<!--";
 	public TerminalRule getCDORule() {
 		return (tCDO != null) ? tCDO : (tCDO = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CDO"));
 	} 
 
 	//terminal CDC:
+	//
 	//	"-->";
 	public TerminalRule getCDCRule() {
 		return (tCDC != null) ? tCDC : (tCDC = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CDC"));
 	} 
 
 	////Doesn't exactly match CSS Comments... * / can be protected by \ : \* / doesn't close the comment in XText, while it does in CSS 
+	//
+	//
 	//terminal ML_COMMENT:
+	//
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
 	} 
 
 	//terminal WS:
+	//
 	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
 	} 
 
 	//terminal ANY_OTHER:
+	//
 	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));

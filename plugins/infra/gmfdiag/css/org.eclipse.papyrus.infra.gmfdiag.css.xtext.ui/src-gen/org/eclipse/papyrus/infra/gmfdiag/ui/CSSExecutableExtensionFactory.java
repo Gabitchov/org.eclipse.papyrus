@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class CSSExecutableExtensionFactory extends AbstractGuiceAwareExecutableE
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSActivator.getInstance().getBundle();
+		return CSSActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSActivator.getInstance().getInjector("org.eclipse.papyrus.infra.gmfdiag.CSS");
+		return CSSActivator.getInstance().getInjector(CSSActivator.ORG_ECLIPSE_PAPYRUS_INFRA_GMFDIAG_CSS);
 	}
 	
 }

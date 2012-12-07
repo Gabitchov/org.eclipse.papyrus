@@ -23,19 +23,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
-import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
-import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * this class is used to constraint the behavior of a node to obtain the
@@ -56,22 +51,6 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	}
 
 	/**
-	 * 
-	 * @return the service registry from the backbone. it can return null if it
-	 *         does not found the {@link DiagramEditDomain}
-	 */
-	public ServicesRegistry getServicesRegistry() {
-		IDiagramEditDomain domain = getDiagramEditDomain();
-		if(domain instanceof DiagramEditDomain) {
-			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-			if(part instanceof UmlGmfDiagramEditor) {
-				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Return the EditorRegistry for nested editor descriptors. Subclass should
 	 * implements this method in order to return the registry associated to the
 	 * extension point namespace.
@@ -81,13 +60,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
-			ServicesRegistry servicesRegistry = getServicesRegistry();
-
-			if(servicesRegistry != null) {
-				return servicesRegistry.getService(IPageIconsRegistry.class);
-			} else {
-				return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
-			}
+			return ServiceUtilsForEditPart.getInstance().getService(IPageIconsRegistry.class, this);
 		} catch (ServiceException e) {
 			// Not found, return an empty one which return null for each
 			// request.
