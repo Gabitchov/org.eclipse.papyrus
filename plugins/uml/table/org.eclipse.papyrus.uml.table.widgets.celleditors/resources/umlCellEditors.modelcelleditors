@@ -18,6 +18,9 @@
   <modelCellEditors xsi:type="modelCellEditor:UnaryReferenceCellEditor" cellId="uml_unary_reference_cell_papyrus" unaryReferenceCellEditorImpl="org.eclipse.papyrus.uml.table.widget.celleditors.editors.UnaryReferencePapyrusCellEditor">
     <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
   </modelCellEditors>
+    <modelCellEditors xsi:type="modelCellEditor:UnaryReferenceCellEditor" cellId="uml_unary_reference_cell_papyrus" unaryReferenceCellEditorImpl="org.eclipse.papyrus.uml.table.widget.celleditors.editors.UnaryReferencePapyrusCellEditor">
+    <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </modelCellEditors>
   <modelCellEditors xsi:type="modelCellEditor:BasicCellEditor" cellId="emf_enumerator_cell_papyrus" basicCellEditorImpl="org.eclipse.papyrus.uml.table.widget.celleditors.editors.EnumeratorEditor">
     <cellType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EEnumerator"/>
   </modelCellEditors>
