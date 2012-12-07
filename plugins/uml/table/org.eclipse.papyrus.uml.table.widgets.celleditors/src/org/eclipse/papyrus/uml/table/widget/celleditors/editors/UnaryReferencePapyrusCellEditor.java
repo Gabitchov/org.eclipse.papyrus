@@ -20,18 +20,18 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
 import org.eclipse.emf.facet.widgets.celleditors.IListener;
 import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
 import org.eclipse.emf.facet.widgets.celleditors.internal.core.UnaryReferenceCellEditor;
+import org.eclipse.papyrus.infra.emf.utils.TransactionalUnsetter;
 import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.TreeToFlatContentProvider;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement;
 import org.eclipse.papyrus.uml.profilefacet.utils.StereotypePropertyUtils;
 import org.eclipse.papyrus.uml.table.widget.celleditors.composite.UnaryReferencePapyrusCellEditorComposite;
-import org.eclipse.papyrus.uml.table.widget.celleditors.utils.StereotypePropertyFacetElementUtils;
 import org.eclipse.papyrus.uml.table.widget.celleditors.utils.NoReferencedElement;
+import org.eclipse.papyrus.uml.table.widget.celleditors.utils.StereotypePropertyFacetElementUtils;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -87,16 +87,23 @@ public class UnaryReferencePapyrusCellEditor extends UnaryReferenceCellEditor {
 				}
 			}
 
-			//tricks to do the unset
-			if(feature.isUnsettable()) {
-				//add the possibility to set the Null value
-				availableValues.add(0, new NoReferencedElement("null"));
-			}
+			//add the possibility to set the Null value (or a reset to the default value;
+			availableValues.add(0, new NoReferencedElement("null")); //$NON-NLS-1$
+
 			this.cellEditorComposite = new UnaryReferencePapyrusCellEditorComposite(parent, availableValues, source, feature);
 			this.cellEditorComposite.addCommitListener(new IListener() {
 
 				public void handleEvent() {
-					editHandler.commit();
+					final EObject value = cellEditorComposite.getValue();
+					if(value instanceof NoReferencedElement && !realFeature.isUnsettable()) {
+						//tricks because many properties are unsettable, and EMF-Facet calls isUnsettable() before to do set(null) -> we can't do a set(null) when the feature isUnsettable 
+						//we doesn't do a set null, but an unset
+						final TransactionalUnsetter unsetter = new TransactionalUnsetter(realSource, realFeature);
+						unsetter.doUnset();
+						cellEditorComposite.dispose();
+					} else {
+						editHandler.commit();
+					}
 				}
 			});
 		}
