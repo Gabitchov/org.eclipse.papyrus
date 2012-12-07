@@ -9,6 +9,7 @@
  * Contributors:
  *		
  *		CEA LIST - Initial API and implementation
+ *		Arthur Daussy - arthur.daussy@atos.net - 395920: [Block Diagram Definition] All element contained by a block should be able to be linked to constraint or comment
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
@@ -34,6 +35,8 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.DimensionEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortChildLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowSpecificationEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.UnitEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ValueTypeEditPart;
@@ -64,6 +67,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.EnumerationEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceRealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
@@ -73,6 +77,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeComm
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**
@@ -115,7 +120,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		if(gep instanceof BlockDefinitionDiagramEditPart) {
 			return true;
 		}
-		
+
 		return super.provides(operation);
 	}
 
@@ -259,20 +264,34 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		if(editPart instanceof InterfaceRealizationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		
-		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
 
-			if( editPart instanceof IPrimaryEditPart){
+		if(editPart instanceof FlowPortChildLabelEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+
+		if(editPart instanceof FlowPortAffixedNodeEditPart || editPart instanceof PortAffixedNodeEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+
+		if(editPart instanceof AbstractElementChildLabelEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
+
+			if(editPart instanceof IPrimaryEditPart) {
 
 
 				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
 			}
 
-			if(editPart instanceof NamedElementEditPart ){
+			if(editPart instanceof NamedElementEditPart) {
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 				editPart.installEditPolicy(ShapeCompartmentEditPolicy.SHAPE_COMPARTMENT_EDIT_POLICY, new ShapeCompartmentEditPolicy());
 			}
 		}
-		
+
 	}
 }
