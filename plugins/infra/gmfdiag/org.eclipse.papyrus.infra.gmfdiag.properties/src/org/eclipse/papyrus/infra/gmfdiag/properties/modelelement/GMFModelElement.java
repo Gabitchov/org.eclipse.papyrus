@@ -45,18 +45,18 @@ import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
  */
 public class GMFModelElement extends EMFModelElement {
 
-	private final static Map<Integer, String> labels = new HashMap<Integer, String>();
-	static {
-		labels.put(0, "North-West");
-		labels.put(1, "North");
-		labels.put(2, "North-East");
-		labels.put(3, "West");
-		labels.put(4, "Center");
-		labels.put(5, "East");
-		labels.put(6, "South-West");
-		labels.put(7, "South");
-		labels.put(8, "South-East");
-	}
+//	private final static Map<Integer, String> labels = new HashMap<Integer, String>();
+//	static {
+//		labels.put(0, "North-West");
+//		labels.put(1, "North");
+//		labels.put(2, "North-East");
+//		labels.put(3, "West");
+//		labels.put(4, "Center");
+//		labels.put(5, "East");
+//		labels.put(6, "South-West");
+//		labels.put(7, "South");
+//		labels.put(8, "South-East");
+//	}
 
 	/**
 	 * 
@@ -88,14 +88,6 @@ public class GMFModelElement extends EMFModelElement {
 	 */
 	@Override
 	protected IObservable doGetObservable(String propertyPath) {
-		if(ShapeDecorator.SHAPE_DECORATOR_VISIBILITY.equals(propertyPath)) {
-			return new CustomBooleanStyleObservableValue((View)source, domain, ShapeDecorator.SHAPE_DECORATOR_VISIBILITY);
-		}
-
-		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
-			return new CustomIntStyleObservableValue((View)source, domain, ShapeDecorator.SHAPE_DECORATOR_DIRECTION);
-		}
-
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
 
@@ -121,13 +113,13 @@ public class GMFModelElement extends EMFModelElement {
 	 */
 	@Override
 	public boolean isEditable(String propertyPath) {
-		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
-			return true;
-		}
-
-		if(ShapeDecorator.SHAPE_DECORATOR_VISIBILITY.equals(propertyPath)) {
-			return true;
-		}
+//		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
+//			return true;
+//		}
+//
+//		if(ShapeDecorator.SHAPE_DECORATOR_VISIBILITY.equals(propertyPath)) {
+//			return true;
+//		}
 
 		return super.isEditable(propertyPath);
 	}
@@ -137,10 +129,10 @@ public class GMFModelElement extends EMFModelElement {
 	 */
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-
-		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
-			return new MapLabelProvider(labels);
-		}
+//
+//		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
+//			return new MapLabelProvider(labels);
+//		}
 
 		return new GMFLabelProvider();
 	}
@@ -150,17 +142,17 @@ public class GMFModelElement extends EMFModelElement {
 	 */
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
-		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
-			return new AbstractStaticContentProvider() {
-
-				/**
-				 * {@inheritDoc}
-				 */
-				public Object[] getElements() {
-					return labels.keySet().toArray(new Integer[0]);
-				}
-			};
-		}
+//		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
+//			return new AbstractStaticContentProvider() {
+//
+//				/**
+//				 * {@inheritDoc}
+//				 */
+//				public Object[] getElements() {
+//					return labels.keySet().toArray(new Integer[0]);
+//				}
+//			};
+//		}
 
 		return super.getContentProvider(propertyPath);
 	}
