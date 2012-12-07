@@ -30,7 +30,7 @@ public class NoReferencedElement extends EModelElementImpl {
 	/**
 	 * default text used by {@link #toString()}
 	 */
-	private static final String DEFAULT_TEXT = "<Undefined>";
+	private static final String DEFAULT_TEXT = "<Undefined>"; //$NON-NLS-1$
 
 	/**
 	 * 
