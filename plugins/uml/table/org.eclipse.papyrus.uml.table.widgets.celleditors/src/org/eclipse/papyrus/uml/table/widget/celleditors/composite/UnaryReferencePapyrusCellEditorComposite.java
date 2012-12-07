@@ -22,6 +22,7 @@ import java.util.TreeMap;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
 import org.eclipse.emf.facet.widgets.celleditors.internal.Messages;
 import org.eclipse.emf.facet.widgets.internal.CustomizableLabelProvider;
@@ -29,9 +30,14 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.fieldassist.ComboContentAdapter;
 import org.eclipse.jface.fieldassist.ContentProposalAdapter;
 import org.eclipse.jface.fieldassist.SimpleContentProposalProvider;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement;
+import org.eclipse.papyrus.uml.profilefacet.utils.StereotypePropertyUtils;
+import org.eclipse.papyrus.uml.table.widget.celleditors.utils.StereotypePropertyFacetElementUtils;
+import org.eclipse.papyrus.uml.table.widget.celleditors.utils.NoReferencedElement;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
@@ -54,6 +60,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditorComposite<EObject> {
 
@@ -63,17 +71,14 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 
 	private final Combo combo;
 
-	private final ReferenceCombo referenceCombo;
-
 	private final Control parentControl;
 
-	private EObject source;
+	private final EObject source;
 
 	private final Map<String, EObject> fElements = new TreeMap<String, EObject>();
 
-	private EObject semanticRoot;
 
-	private EStructuralFeature feature;
+	private final EStructuralFeature feature;
 
 	/**
 	 * @param parent
@@ -81,15 +86,35 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 	 * @param eObjects
 	 *        the possible choices
 	 */
-	public UnaryReferencePapyrusCellEditorComposite(final Composite parent, final List<EObject> eObjects, final EObject source, final EStructuralFeature feature) {
+	public UnaryReferencePapyrusCellEditorComposite(final Composite parent, final List<EObject> eObjects, final EObject source1, final EStructuralFeature feature1) {
 		super(parent);
-		this.source = source;
-		this.feature = feature;
+		assert source1 instanceof Element;
+		this.source = StereotypePropertyFacetElementUtils.getRealSource(source1, feature1);
+		this.feature = StereotypePropertyFacetElementUtils.getRealFeature(source1, feature1);
+		Stereotype ste = null;
+		if(feature1 instanceof StereotypePropertyElement) {
+			ste = StereotypePropertyUtils.getAppliedStereotype((Element)source1, (StereotypePropertyElement)feature1);
+		}
 		this.parentControl = parent;
+		final ILabelProvider labelProvider = new UMLLabelProvider();
+		final ILabelProvider customizableLabelProvider = new CustomizableLabelProvider();
+		final UMLContentProvider provider;
+		if(ste != null) {
+			provider = new UMLContentProvider(source, feature, ste, source.eResource().getResourceSet());
+		} else {
+			provider = new UMLContentProvider(source1, feature1, null, source.eResource().getResourceSet());
+		}
 
-		final CustomizableLabelProvider customizableLabelProvider = new CustomizableLabelProvider();
+		EObject noReferencedElement = null;
+
 		for(EObject eObject : eObjects) {
-			String label = customizableLabelProvider.getText(eObject);
+			String label;
+			if(eObject instanceof NoReferencedElement) {
+				label = eObject.toString();
+				noReferencedElement = eObject;
+			} else {
+				label = customizableLabelProvider.getText(eObject);;
+			}
 			// find a unique label
 			if(this.fElements.get(label) != null) {
 				int suffix = 2;
@@ -109,7 +134,6 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 		setLayout(compositeLayout);
 
 		this.combo = new Combo(this, SWT.DROP_DOWN);
-		this.referenceCombo = null;
 
 		// reduce the font so that the Combo fits in the cell
 		FontData[] fontData = Display.getDefault().getSystemFont().getFontData();
@@ -119,10 +143,33 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 		for(String label : this.fElements.keySet()) {
 			this.combo.add(label);
 		}
+
+		//we force the null value to the first place
+		if(noReferencedElement != null) {
+			this.combo.remove(noReferencedElement.toString());
+			this.combo.add(noReferencedElement.toString(), 0);
+		}
+
 		GridData comboGridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		this.combo.setLayoutData(comboGridData);
 		addCompletionHandler(this.combo, this.fElements.keySet());
 
+		//we set the initial value in the combo : 
+		Object currentValue = this.source.eGet(this.feature);
+		if(currentValue == null) {
+			if(noReferencedElement != null) {
+				int index = this.combo.indexOf(noReferencedElement.toString());
+				if(index > -1) {
+					this.combo.select(index);
+				}
+			}
+		} else {
+			final String txt = customizableLabelProvider.getText(currentValue);
+			int index = this.combo.indexOf(txt);
+			if(index > -1) {
+				this.combo.select(index);
+			}
+		}
 		this.combo.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -150,8 +197,6 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				final UMLContentProvider provider = new UMLContentProvider(source, feature);
-				ILabelProvider labelProvider = new UMLLabelProvider();
 				TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getCurrent().getActiveShell()) {
 
 					@Override
@@ -229,6 +274,8 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 			}
 		});
 
+
+
 		this.combo.forceFocus();
 	}
 
@@ -246,20 +293,20 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.emf.facet.widgets.celleditors.IWidget#getValue()
+	 * 
+	 * @return
+	 */
 	public EObject getValue() {
-		EObject eObject = this.fElements.get(this.combo.getText());
-		return eObject;
+		return this.fElements.get(this.combo.getText());
 	}
 
 	protected void commit() {
 		fireCommit();
 	}
 
-	public void setValue(final EObject value) {
-		//
-		int d = 0;
-		d++;
-	}
 
 	protected Button getButton() {
 		return this.button;
@@ -275,5 +322,9 @@ public class UnaryReferencePapyrusCellEditorComposite extends AbstractCellEditor
 
 	protected Map<String, EObject> getfElements() {
 		return this.fElements;
+	}
+
+	public void setValue(EObject value) {
+		//not used
 	}
 }
