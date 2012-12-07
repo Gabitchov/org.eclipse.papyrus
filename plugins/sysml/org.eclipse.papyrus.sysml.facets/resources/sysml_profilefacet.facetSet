@@ -53,7 +53,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Unit" representedElement_XMI_ID="_t9k6ELVBEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::Blocks::Unit">
       <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="dimension" derived="true" representedElement_XMI_ID="_U8AxIKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::Unit::dimension">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="dimension" unsettable="true" derived="true" representedElement_XMI_ID="_U8AxIKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::Unit::dimension">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::Unit::dimension_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::Unit::dimension_value"/>
@@ -62,12 +62,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ValueType" representedElement_XMI_ID="_yfp-ILVBEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::Blocks::ValueType">
       <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="unit" derived="true" representedElement_XMI_ID="_mfPXUKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ValueType::unit">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="unit" unsettable="true" derived="true" representedElement_XMI_ID="_mfPXUKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ValueType::unit">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ValueType::unit_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ValueType::unit_value"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="dimension" derived="true" representedElement_XMI_ID="_pj40EKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ValueType::dimension">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="dimension" unsettable="true" derived="true" representedElement_XMI_ID="_pj40EKGxEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ValueType::dimension">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ValueType::dimension_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ValueType::dimension_value"/>
@@ -85,7 +85,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ParticipantProperty" representedElement_XMI_ID="_AJuDYKGwEdyj2Ya50HPlXg" stereotypeQualifiedName="SysML::Blocks::ParticipantProperty">
       <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="end" lowerBound="1" derived="true" representedElement_XMI_ID="_X_BroKGwEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ParticipantProperty::end">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="end" lowerBound="1" unsettable="true" derived="true" representedElement_XMI_ID="_X_BroKGwEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ParticipantProperty::end">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ParticipantProperty::end_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ParticipantProperty::end_value"/>
@@ -94,7 +94,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ConnectorProperty" representedElement_XMI_ID="_FC-RUKGwEdyj2Ya50HPlXg" stereotypeQualifiedName="SysML::Blocks::ConnectorProperty">
       <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="connector" lowerBound="1" derived="true" representedElement_XMI_ID="_bq6ukKGwEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ConnectorProperty::connector">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="connector" lowerBound="1" unsettable="true" derived="true" representedElement_XMI_ID="_bq6ukKGwEdyj2Ya50HPlXg" propertyQualifiedName="SysML::Blocks::ConnectorProperty::connector">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Blocks::ConnectorProperty::connector_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Blocks::ConnectorProperty::connector_value"/>
@@ -134,7 +134,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="ItemFlow" representedElement_XMI_ID="_9cdikLVEEdu2ieF4ON8UjA" stereotypeQualifiedName="SysML::PortAndFlows::ItemFlow">
       <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="itemProperty" derived="true" representedElement_XMI_ID="__ulWMLVEEdu2ieF4ON8UjA" propertyQualifiedName="SysML::PortAndFlows::ItemFlow::itemProperty">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="itemProperty" unsettable="true" derived="true" representedElement_XMI_ID="__ulWMLVEEdu2ieF4ON8UjA" propertyQualifiedName="SysML::PortAndFlows::ItemFlow::itemProperty">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::PortAndFlows::ItemFlow::itemProperty_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::PortAndFlows::ItemFlow::itemProperty_value"/>
@@ -146,7 +146,7 @@
   <eSubpackages xsi:type="profilefacet:ProfileFacetSet" name="Activities" nsURI="http://www.eclipse.org/papyrus/profilefacet/SysML::Activities" nsPrefix="Activities" representedElement_XMI_ID="_C2zXMLX8EduFmqQsrNB9lw" profileQualifiedName="SysML::Activities">
     <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Rate" representedElement_XMI_ID="_2a7ZQLXjEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Activities::Rate">
       <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="rate" derived="true" representedElement_XMI_ID="_YzasYLXkEduHWpAaWjM62w" propertyQualifiedName="SysML::Activities::Rate::rate">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="rate" unsettable="true" derived="true" representedElement_XMI_ID="_YzasYLXkEduHWpAaWjM62w" propertyQualifiedName="SysML::Activities::Rate::rate">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Activities::Rate::rate_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Activities::Rate::rate_value"/>
@@ -155,7 +155,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="profilefacet:StereotypeFacet" name="Probability" representedElement_XMI_ID="_3MEiULXjEduHWpAaWjM62w" stereotypeQualifiedName="SysML::Activities::Probability">
       <eSuperTypes href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="probability" derived="true" representedElement_XMI_ID="_frTxQLXkEduHWpAaWjM62w" propertyQualifiedName="SysML::Activities::Probability::probability">
+      <eStructuralFeatures xsi:type="profilefacet:StereotypePropertyFacetReference" name="probability" unsettable="true" derived="true" representedElement_XMI_ID="_frTxQLXkEduHWpAaWjM62w" propertyQualifiedName="SysML::Activities::Probability::probability">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
         <valueQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#get_SysML::Activities::Probability::probability_value"/>
         <setQuery xsi:type="paramQuery:ParametricQuery" href="sysml_profilefacet.querySet#set_SysML::Activities::Probability::probability_value"/>
