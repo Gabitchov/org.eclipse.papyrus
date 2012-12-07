@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
@@ -514,4 +515,10 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return false;
 	}
 
+	protected ConnectionRouter getDummyConnectionRouter(CreateConnectionRequest req) {
+		if(req.getSourceEditPart() instanceof InteractionEditPart || req.getSourceEditPart() instanceof CombinedFragmentEditPart){
+			return ConnectionRouter.NULL; 
+		}
+		return super.getDummyConnectionRouter(req);
+	}
 }

@@ -188,7 +188,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			return false;
 		
 		if(model == this.resolveSemanticElement()) {
-			System.out.println( ((OccurrenceSpecification) model).getName() );
 			if(!this.getNotationView().equals( e.getTarget()))
 				return true;
 		}

@@ -17,13 +17,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.DelegatingLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -32,10 +30,8 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -45,8 +41,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.FixedAnchor;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ActionExecutionSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy;
@@ -1023,98 +1017,4 @@ AbstractExecutionSpecificationEditPart {
 		}
 		return result;
 	}
-
-	/**
-	 * Add connection on top off the figure during the feedback.
-	 */
-
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
-			List<?> relationshipTypes = createRequest.getElementTypes();
-			for(Object obj : relationshipTypes) {
-				if(UMLElementTypes.Message_4003.equals(obj)) {
-					// Sync Message
-					if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
-						return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.TOP);
-					}
-					// otherwise, this is a recursive call, let destination free
-				}
-			}
-		} else if(request instanceof ReconnectRequest) {
-			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
-			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof MessageEditPart) {
-				// Sync Message
-				return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.TOP);
-			}
-		}
-
-		return super.getTargetConnectionAnchor(request);
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
-	 * 
-	 * @param connEditPart
-	 *        The connection edit part.
-	 * @return The anchor.
-	 */
-
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		if(connEditPart instanceof MessageEditPart) {
-			// Sync Message
-			return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.TOP);
-		}
-		return super.getTargetConnectionAnchor(connEditPart);
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
-	 * 
-	 * @param request
-	 *        The request
-	 * @return The anchor
-	 */
-
-	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
-			List<?> relationshipTypes = createRequest.getElementTypes();
-			for(Object obj : relationshipTypes) {
-				if(UMLElementTypes.Message_4005.equals(obj)) {
-					// Reply Message
-					return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.BOTTOM);
-				}
-			}
-		} else if(request instanceof ReconnectRequest) {
-			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
-			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof Message3EditPart) {
-				// Reply Message
-				return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.BOTTOM);
-			}
-		}
-		return super.getSourceConnectionAnchor(request);
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
-	 * 
-	 * @param connEditPart
-	 *        The connection edit part.
-	 * @return The anchor.
-	 */
-
-	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		if(connEditPart instanceof Message3EditPart) {
-			// Reply Message
-			return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.BOTTOM);
-		}
-		return super.getSourceConnectionAnchor(connEditPart);
-	}
-
 }

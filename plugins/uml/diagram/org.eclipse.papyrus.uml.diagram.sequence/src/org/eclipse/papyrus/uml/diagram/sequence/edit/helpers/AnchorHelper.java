@@ -2,6 +2,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
@@ -23,7 +24,6 @@ import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.FixedAnchor;
 
 
 public class AnchorHelper {
@@ -95,55 +95,66 @@ public class AnchorHelper {
 		public IntersectionPointAnchor(IFigure fig) {
 			super(fig);
 		}
-		
+					
 		protected Point getLocation(Point ownReference, Point foreignReference) {
 			PointList intersections = getIntersectionPoints(ownReference, foreignReference);
-			if (intersections!=null && intersections.size()!=0) {
+			if (intersections != null && intersections.size() > 0) {
 				int size = intersections.size();
-				double dist = foreignReference.getDistance(ownReference);
-				for(int i = 0; i < size; i ++){
+				Point near = intersections.getPoint(0);
+				double dist = ownReference.getDistance(near);
+				for(int i = 1; i < size; i ++){
 					Point loc = intersections.getPoint(i);
-					if(isInOrder(foreignReference,ownReference,dist, loc)){
-						return loc;
+					double d = ownReference.getDistance(loc);
+					if(d < dist){
+						dist = d;
+						near = loc;
 					}
 				}
-				return intersections.getFirstPoint();
+				return near;
 			}
 			return null;
 		}	
 		
-		private boolean isInOrder(Point start, Point end, double dist, Point loc) {
-			double total = loc.getDistance(start);
-			double dist2 = loc.getDistance(end);
-			if(total < dist || total < dist2)
-				return false;
-			
-			if(Math.abs(total - dist - dist2) < 0.01)
-				return true;
-			
-			return false;
-		}	
+//		private boolean isInOrder(Point start, Point end, double dist, Point loc) {
+//			double total = loc.getDistance(start);
+//			double dist2 = loc.getDistance(end);
+//			if(total < dist || total < dist2)
+//				return false;
+//			
+//			if(Math.abs(total - dist - dist2) < 0.01)
+//				return true;
+//			
+//			return false;
+//		}	
 	}
 
-	public static class FixedAnchorEx extends FixedAnchor {
-
+	public static class FixedAnchorEx extends SlidableAnchor {
+		
 		private int location;
 
 		public FixedAnchorEx(IFigure f, int location) {
-			super(f, location);
+			super(f, location ==  PositionConstants.TOP ? new PrecisionPoint(0.0, 0.0) : new PrecisionPoint(0.0, 1.0));
 			this.location = location;
 		}
 
 		public Point getLocation(Point reference) {
-			if(location == TOP)
-				return getBox().getTop();
-			else if(location == BOTTOM)
-				return getBox().getBottom();
-
+			if(location ==  PositionConstants.TOP){
+				Point topLeft = getBox().getTopLeft();
+				if(reference.x < topLeft.x)
+					return topLeft;
+				else
+					return getBox().getTopRight();
+			}else if(location ==  PositionConstants.BOTTOM){
+				Point bottomLeft = getBox().getBottomLeft();
+				if(reference.x < bottomLeft.x)
+					return bottomLeft;
+				else
+					return getBox().getBottomRight();
+			}
 			return super.getLocation(reference);
 		}
 	}
-	
+
 	public static class SideAnchor extends SlidableAnchor{
 
 		private boolean isRight;
@@ -161,7 +172,7 @@ public class AnchorHelper {
 		public String getTerminal() {
 			String side = isRight? "R": "L";
 			return super.getTerminal() + "{" + side + "}";
-		}
+		}		
 	}
 	
 	public static class InnerPointAnchor extends SlidableAnchor{

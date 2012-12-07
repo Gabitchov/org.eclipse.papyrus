@@ -63,6 +63,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
@@ -333,6 +334,33 @@ public class LifelineEditPart extends NamedElementEditPart {
 		return lep;
 	}
 
+	protected NodeFigure createNodeFigure() {
+		return new BorderedNodeFigure(createMainFigure()){
+			@Override
+			public void setBackgroundColor(Color bg) {
+				if (getPrimaryShape() != null) {
+					NodeFigure dashLineRectangle = getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
+					dashLineRectangle.setBackgroundColor(bg);
+				}
+			}
+			
+			@Override
+			public void setOpaque(boolean opaque) {
+				if (getPrimaryShape() != null) {
+					NodeFigure dashLineRectangle = getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
+					dashLineRectangle.setOpaque(opaque);
+				}
+			}
+			
+			public boolean containsPoint(int x, int y) {
+				if (primaryShape != null) {
+					return primaryShape.containsPoint(x, y);
+				}
+				return super.containsPoint(x, y);
+			}
+		};
+	}	
+	
 	/**
 	 * @generated
 	 */

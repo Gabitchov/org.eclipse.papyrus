@@ -3,11 +3,11 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RelativeLocator;
-import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -16,6 +16,7 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -23,8 +24,10 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.handles.HandleBounds;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
@@ -38,7 +41,9 @@ import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 
@@ -374,5 +379,95 @@ public abstract class AbstractExecutionSpecificationEditPart extends
 			getParent().eraseSourceFeedback(request);
 		}
 		super.eraseTargetFeedback(request);
+	}
+	
+	/**
+	 * Add connection on top off the figure during the feedback.
+	 */
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for(Object obj : relationshipTypes) {
+				if(UMLElementTypes.Message_4003.equals(obj)) {
+					// Sync Message
+					if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
+						return new AnchorHelper.FixedAnchorEx(getFigure(),  PositionConstants.TOP);
+					}
+					// otherwise, this is a recursive call, let destination free
+				}
+			}
+		} else if(request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if(connectionEditPart instanceof MessageEditPart) {
+				// Sync Message
+				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
+			}
+		}
+
+		return super.getTargetConnectionAnchor(request);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
+	 * 
+	 * @param connEditPart
+	 *        The connection edit part.
+	 * @return The anchor.
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		if(connEditPart instanceof MessageEditPart) {
+			// Sync Message
+			return new AnchorHelper.FixedAnchorEx(getFigure(),  PositionConstants.TOP);
+		}
+		return super.getTargetConnectionAnchor(connEditPart);
+	}
+	
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
+	 * 
+	 * @param request
+	 *        The request
+	 * @return The anchor
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for(Object obj : relationshipTypes) {
+				if(UMLElementTypes.Message_4005.equals(obj)) {
+					// Reply Message
+					return new AnchorHelper.FixedAnchorEx(getFigure(),PositionConstants.BOTTOM);
+				}
+			}
+		} else if(request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if(connectionEditPart instanceof Message3EditPart) {
+				// Reply Message
+				return new AnchorHelper.FixedAnchorEx(getFigure(),PositionConstants.BOTTOM);
+			}
+		}
+		return super.getSourceConnectionAnchor(request);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
+	 * 
+	 * @param connEditPart
+	 *        The connection edit part.
+	 * @return The anchor.
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
+		if(connEditPart instanceof Message3EditPart) {
+			// Reply Message
+			return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
+		}
+		return super.getSourceConnectionAnchor(connEditPart);
 	}
 }

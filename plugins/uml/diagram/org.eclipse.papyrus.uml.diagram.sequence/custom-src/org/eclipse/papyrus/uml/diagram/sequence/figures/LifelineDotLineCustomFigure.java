@@ -18,7 +18,10 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 
@@ -119,7 +122,28 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 	 */
 	protected void outlineShape(Graphics graphics) {
 		if(!inlineMode) {
+			paintDashLineBackground(graphics);
 			super.outlineShape(graphics);
+		}
+	}
+	
+	protected void paintDashLineBackground(Graphics graphics) {
+		NodeFigure dashLineRectangle = getDashLineRectangle();
+		if(!dashLineRectangle.isOpaque())
+			return ;
+		
+		Rectangle r = getBounds().getCopy();
+		r.x = r.x + r.width / 2;
+		r.width = 1;		
+		Rectangle lineBounds = r.expand(4, 0);
+		
+		graphics.pushState();
+		try{
+			graphics.setBackgroundColor(dashLineRectangle.getBackgroundColor());
+			graphics.setForegroundColor(dashLineRectangle.getForegroundColor());
+			graphics.fillRectangle(lineBounds);
+		}finally{
+			graphics.popState();
 		}
 	}
 
