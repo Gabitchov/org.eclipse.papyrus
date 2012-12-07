@@ -12,7 +12,7 @@
  *   Arthur Daussy - Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements.
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.figure.node;
+package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
@@ -20,8 +20,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
  * This correct the bug where invisible label can be selected
  * 
  * @author arthur daussy
- * @deprecated use org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel
- * 
  */
 public class PapyrusWrappingLabel extends WrappingLabel {
 

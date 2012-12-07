@@ -32,6 +32,8 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.DimensionEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortChildLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowSpecificationEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.UnitEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ValueTypeEditPart;
@@ -62,12 +64,10 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.EnumerationEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceRealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 
 /**
@@ -247,9 +247,20 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		if(editPart instanceof InterfaceRealizationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		if(editPart instanceof NamedElementEditPart) {
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+
+		if(editPart instanceof FlowPortChildLabelEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
+
+		if(editPart instanceof FlowPortAffixedNodeEditPart || editPart instanceof PortAffixedNodeEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+
+		if(editPart instanceof AbstractElementChildLabelEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+
+	
 
 	}
 }
