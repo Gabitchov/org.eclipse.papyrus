@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.diagramtemplate.editor
+Export-Package: org.eclipse.papyrus.diagramtemplate.editor,
+ org.eclipse.papyrus.diagramtemplate.launcher
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
