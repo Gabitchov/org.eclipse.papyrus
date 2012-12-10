@@ -605,7 +605,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	 */
 	private AbstractNattableEditor getCurrentTableEditor() {
 		ISelection platformSelection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(platformSelection instanceof ISelection) {
+		if(platformSelection instanceof IStructuredSelection) {
 			final IStructuredSelection selection = (IStructuredSelection)platformSelection;
 			final Object current = selection.getFirstElement();
 			if(current instanceof EObject) {
