@@ -75,6 +75,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
@@ -603,26 +604,29 @@ public class SelectColumnsHandler extends AbstractHandler {
 	 *         the current table editor, or <code>null</code> if not found
 	 */
 	private AbstractNattableEditor getCurrentTableEditor() {
-		final IStructuredSelection selection = (IStructuredSelection)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		final Object current = selection.getFirstElement();
-		if(current instanceof EObject) {
+		ISelection platformSelection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		if(platformSelection instanceof ISelection) {
+			final IStructuredSelection selection = (IStructuredSelection)platformSelection;
+			final Object current = selection.getFirstElement();
+			if(current instanceof EObject) {
 
-			IEditorPart part = null;
-			try {
-				part = ServiceUtilsForResource.getInstance().getNestedActiveIEditorPart(((EObject)current).eResource());
-			} catch (final ServiceException e) {
-				Activator.log.error(e);
-			}
-			if(part instanceof AbstractNattableEditor) {
-				return (AbstractNattableEditor)part;
-			}
+				IEditorPart part = null;
+				try {
+					part = ServiceUtilsForResource.getInstance().getNestedActiveIEditorPart(((EObject)current).eResource());
+				} catch (final ServiceException e) {
+					Activator.log.error(e);
+				}
+				if(part instanceof AbstractNattableEditor) {
+					return (AbstractNattableEditor)part;
+				}
 
-		} else {//there is not select when click on a gray part of the table
-			final IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-			if(part instanceof AbstractMultiPageSashEditor) {
-				final IEditorPart editorPart = ((AbstractMultiPageSashEditor)part).getActiveEditor();
-				if(editorPart instanceof AbstractNattableEditor) {
-					return (AbstractNattableEditor)editorPart;
+			} else {//there is not select when click on a gray part of the table
+				final IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+				if(part instanceof AbstractMultiPageSashEditor) {
+					final IEditorPart editorPart = ((AbstractMultiPageSashEditor)part).getActiveEditor();
+					if(editorPart instanceof AbstractNattableEditor) {
+						return (AbstractNattableEditor)editorPart;
+					}
 				}
 			}
 		}
@@ -978,7 +982,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	}
 
 
-	
+
 	/**
 	 * @return the allDirectFeatures
 	 */
@@ -987,7 +991,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	}
 
 
-	
+
 	/**
 	 * @return the allAdditionalContents
 	 */
@@ -996,7 +1000,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	}
 
 
-	
+
 	/**
 	 * @return the initialDirectFeatureSelected
 	 */
@@ -1005,7 +1009,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	}
 
 
-	
+
 	/**
 	 * @return the initialAdditionalFeatureSelected
 	 */
@@ -1014,7 +1018,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	}
 
 
-	
+
 	/**
 	 * @return the facetSetsUsedInTheTable
 	 */
@@ -1023,7 +1027,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	}
 
 
-	
+
 	/**
 	 * @return the columnsFeatureMap
 	 */
