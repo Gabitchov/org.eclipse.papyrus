@@ -3,7 +3,8 @@ Bundle-Activator: org.eclipse.papyrus.diagramtemplate.editor.DiagramTe
  mplateEditorPlugin$Implementation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.diagramtemplate.editor
+Export-Package: org.eclipse.papyrus.diagramtemplate.editor,
+ org.eclipse.papyrus.diagramtemplate.launcher
 Bundle-Version: 0.9.1.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
