@@ -17,7 +17,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
@@ -30,7 +34,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 /**
  * A Widget for editing Strings with File paths
@@ -92,6 +95,15 @@ public class StringFileSelector extends StringEditor {
 		browseWorkspace.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
+				LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+				try {
+					labelProviderService.startService();
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+				}
+
+				ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+
 				IFile currentFile = FileUtil.getIFile(text.getText());
 
 				TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
@@ -99,7 +111,7 @@ public class StringFileSelector extends StringEditor {
 					dialog.setTitle(labelText);
 				}
 				dialog.setContentProvider(new WorkspaceContentProvider());
-				dialog.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
+				dialog.setLabelProvider(labelProvider);
 
 
 				if(currentFile != null && currentFile.exists()) {

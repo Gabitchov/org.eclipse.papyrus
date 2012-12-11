@@ -78,7 +78,6 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus handleDrop(CommonDropAdapter dropAdapter, DropTargetEvent dropTargetEvent, Object dropTarget) {
-		System.out.println("handleDrop");
 		EObject targetElement = EMFHelper.getEObject(dropTarget);
 
 		execute(getEditingDomain(targetElement), getDrop(dropTarget));
@@ -295,7 +294,6 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * @return the list of command
 	 */
 	public CompoundCommand getDrop(Object target) {
-		System.out.println("getDrop target = " + target);
 		CommonDropAdapter dropAdapter = getCommonDropAdapter();
 		List<Command> commandList = new ArrayList<Command>();
 		switch(dropAdapter.getCurrentOperation()) {
@@ -321,7 +319,6 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			}
 			break;
 		}
-		System.out.println("Target = " + target);
 		return new CompoundCommand(commandList);
 	}
 
@@ -347,7 +344,6 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus validateDrop(Object target, int operation, TransferData transferType) {
-		System.out.println("ValidateDrop");
 		Command dropCommand = getDrop(target);
 		if(dropCommand.canExecute()) {
 			return Status.OK_STATUS;

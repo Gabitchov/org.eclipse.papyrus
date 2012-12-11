@@ -7,7 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.NullSelector;
@@ -18,7 +22,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 /**
  * A Widget for editing multi-valued Strings with File paths
@@ -126,8 +129,17 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 	}
 
 	protected void browseWorkspace() {
+		LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+		try {
+			labelProviderService.startService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+
+		ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+
 		ReferenceSelector selector = new ReferenceSelector();
-		selector.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
+		selector.setLabelProvider(labelProvider);
 		selector.setContentProvider(new WorkspaceContentProvider());
 
 
@@ -136,7 +148,7 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 			dialog.setTitle(labelText);
 		}
 
-		dialog.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
+		dialog.setLabelProvider(labelProvider);
 
 		dialog.setOrdered(true);
 		dialog.setUnique(true);

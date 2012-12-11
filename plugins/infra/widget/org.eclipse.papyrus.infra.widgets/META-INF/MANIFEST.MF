@@ -9,7 +9,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.ui.ide;bundle-version="3.7.0",
  org.eclipse.papyrus.infra.tools;bundle-version="0.10.0",
- com.ibm.icu;bundle-version="4.4.2"
+ com.ibm.icu;bundle-version="4.4.2",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.widgets,
  org.eclipse.papyrus.infra.widgets.creation,
  org.eclipse.papyrus.infra.widgets.databinding,
@@ -25,6 +27,6 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.widgets.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets
+Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
