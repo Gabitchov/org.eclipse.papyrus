@@ -129,7 +129,9 @@ public class TransactionalMergeFactory {
 		if(elementMerger != null) {
 			elementMerger.setDiffElement(element);
 		}
-		Assert.isNotNull(elementMerger, NLS.bind("Merger for {0} not found", element));
+		//cf bug 396267: [UML Compare] it is not possible to merge a difference on a stereotype property
+		//Assert.isNotNull(elementMerger, NLS.bind("Merger for {0} not found", element));
+		Assert.isNotNull(elementMerger, NLS.bind("Merger for {0} not found", element.getClass()));
 		return elementMerger;
 	}
 
