@@ -102,7 +102,8 @@ public class CompareUMLFileInput implements ICompareUMLFileInput {
 	 * @return
 	 */
 	public Object getAdapter(Class adapter) {
-		throw new UnsupportedOperationException();
+		return null;
+//		throw new UnsupportedOperationException();
 	}
 
 	/**
