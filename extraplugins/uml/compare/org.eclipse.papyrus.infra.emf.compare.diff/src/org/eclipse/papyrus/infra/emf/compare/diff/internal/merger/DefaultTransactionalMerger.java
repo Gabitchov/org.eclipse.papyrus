@@ -75,7 +75,9 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 	//---------------------These methods comes from ITransactionalMerger
 	public Command getApplyInOriginCommand(TransactionalEditingDomain domain) {
 		final PapyrusOptionsAdapter adapter = PapyrusCompareOptionsUtils.getPapyrusOptionsAdapter(diff);
-		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff)); //$NON-NLS-1$
+		//cf bug 396267: [UML Compare] it is not possible to merge a difference on a stereotype property
+		//final CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff)); //$NON-NLS-1$
+		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff.getClass())); //$NON-NLS-1$
 		if(adapter==null || adapter.canApplyInOrigin()) {
 			cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 			cmd.append(getDoApplyInOriginCommand(domain));
@@ -88,7 +90,9 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 
 	public Command getUndoInTargetCommand(TransactionalEditingDomain domain) {
 		final PapyrusOptionsAdapter adapter = PapyrusCompareOptionsUtils.getPapyrusOptionsAdapter(diff);
-		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff)); //$NON-NLS-1$
+		//cf bug 396267: [UML Compare] it is not possible to merge a difference on a stereotype property
+		//final CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff)); //$NON-NLS-1$
+		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff.getClass())); //$NON-NLS-1$
 		if(adapter == null || adapter.canUndoInTarget()) {
 			cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 			cmd.append(getDoUndoInTargetCommand(domain));
@@ -179,8 +183,8 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 			}
 			domain = TransactionUtil.getEditingDomain(element);
 		}
-
-		Assert.isNotNull(domain, NLS.bind("I didn't found the EditingDomain for {0}", diff)); //$NON-NLS-1$
+		assert domain!=null; //cf bug 396267: [UML Compare] it is not possible to merge a difference on a stereotype property
+//		Assert.isNotNull(domain, NLS.bind("I didn't found the EditingDomain for {0}", diff)); //$NON-NLS-1$
 		return domain;
 
 	}
