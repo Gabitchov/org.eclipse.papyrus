@@ -2009,7 +2009,7 @@
    <editpartProvider
          class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CUMLEditPartProvider">
       <Priority
-            name="Highest">
+            name="High">
       </Priority>
       <object
             class="org.eclipse.gmf.runtime.notation.Diagram"
