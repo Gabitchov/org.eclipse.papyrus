@@ -11,4 +11,13 @@
             class="org.eclipse.papyrus.uml.profilefacet.listener.ReapplyProfileTriggerListener">
       </listener>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.controlmode.customControlCommand">
+      <customControlCommand
+            controlCommand="org.eclipse.papyrus.uml.profilefacet.controlmode.ProfileFacetSetControlCommand">
+      </customControlCommand>
+      <customUncontrolCommand
+            uncontrolCommand="org.eclipse.papyrus.uml.profilefacet.controlmode.ProfileFacetSetUncontrolCommand">
+      </customUncontrolCommand>
+   </extension>
 </plugin>
