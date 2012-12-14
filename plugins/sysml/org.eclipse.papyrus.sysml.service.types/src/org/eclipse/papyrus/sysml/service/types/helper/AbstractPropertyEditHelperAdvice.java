@@ -55,6 +55,12 @@ public abstract class AbstractPropertyEditHelperAdvice extends AbstractEditHelpe
 
 		// check association has not be duplicated yet
 		Association originalAssociation = propertyToBeDuplicated.getAssociation();
+		
+		// if property has no association, no need to duplicate one...
+		if(originalAssociation == null) {
+			return super.getBeforeDuplicateCommand(request);
+		}
+		
 		Association newAssociation = (Association)request.getAllDuplicatedElementsMap().get(originalAssociation);
 		if(newAssociation != null && newAssociation.equals(newPart.getAssociation())) {
 			return super.getBeforeDuplicateCommand(request);

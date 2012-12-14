@@ -3,6 +3,7 @@ Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
+ org.eclipse.papyrus.infra.gmfdiag.common.advice,
  org.eclipse.papyrus.infra.gmfdiag.common.commands,
  org.eclipse.papyrus.infra.gmfdiag.common.editpart,
  org.eclipse.papyrus.infra.gmfdiag.common.editpolicies,

@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.commands.IPapyrusDuplicateCommandConstants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -58,9 +59,6 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 
 	/** list of object to duplicate */
 	protected List<Object> eObjectsToBeDuplicated = null;
-
-	/** Constant used as a key for the parameters map of the duplication request */
-	public static final String ADDITIONAL_DUPLICATED_ELEMENTS = "Additional_Duplicated_Elements";
 
 	/**
 	 * Constructor.
@@ -171,7 +169,7 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 			if(externalObjectsDuplicateCommand != null && externalObjectsDuplicateCommand.canExecute()) {
 				IStatus status = externalObjectsDuplicateCommand.execute(progressMonitor, info);
 				if(!status.isOK()) {
-					return CommandResult.newErrorCommandResult(status.getException());
+					return CommandResult.newErrorCommandResult(status.getMessage());
 				}
 			}
 		}
@@ -204,7 +202,7 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 				EObject object = (EObject)o;
 				DuplicateElementsRequest request = new DuplicateElementsRequest(Collections.singletonList(object));
 				request.setAllDuplicatedElementsMap(duplicatedElementsMap);
-				request.setParameter(PapyrusDuplicateWrapperCommand.ADDITIONAL_DUPLICATED_ELEMENTS, duplicatedExternalElements);
+				request.setParameter(IPapyrusDuplicateCommandConstants.ADDITIONAL_DUPLICATED_ELEMENTS, duplicatedExternalElements);
 				request.setParameter("Target_Owner", BusinessModelResolver.getInstance().getBusinessModel(container));
 				IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
 				ICommand command = service.getEditCommand(request);

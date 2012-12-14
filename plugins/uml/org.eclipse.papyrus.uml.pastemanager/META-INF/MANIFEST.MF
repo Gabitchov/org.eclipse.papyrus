@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1",
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.1"
 Export-Package: org.eclipse.papyrus.uml.pastemanager,
  org.eclipse.papyrus.uml.pastemanager.command,
  org.eclipse.papyrus.uml.pastemanager.request,

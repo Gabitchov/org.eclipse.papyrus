@@ -40,9 +40,9 @@
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <binding
             context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-         <elementType
+         <!--<elementType
                pattern="org\.eclipse\.papyrus\.uml\.([^d]|$|d([^i]|$)|di([^a]|$)|dia([^g]|$)|diag([^r]|$)|diagr([^a]|$)|diagra([^m]|$))">
-         </elementType>
+         </elementType>-->
          <advice
                ref="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice">
          </advice>

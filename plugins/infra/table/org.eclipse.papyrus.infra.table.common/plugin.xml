@@ -72,4 +72,27 @@
          </command>
       </menuContribution>
    </extension>
+   
+     <!-- ElementType bindings for diagram duplication with paste command -->
+ <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <adviceBinding
+               class="org.eclipse.papyrus.infra.table.common.advice.TableDuplicateEditHelperAdvice"
+               id="org.eclipse.papyrus.infra.table.common.advice.TableDuplicateEditHelperAdvice"
+               inheritance="all"
+               typeId="org.eclipse.papyrus.uml.Element">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+	
+		<!--<elementType pattern="org\.eclipse\.papyrus\.uml\..*" />-->
+		<advice ref="org.eclipse.papyrus.infra.table.common.advice.TableDuplicateEditHelperAdvice" />
+	</binding>
+</extension>
 </plugin>
