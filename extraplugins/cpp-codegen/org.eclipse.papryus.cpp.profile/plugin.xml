@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension
+			point="org.eclipse.emf.ecore.uri_mapping">
+		<mapping
+			source="pathmap://PapyrusCpp_LIBRARIES/"
+			target="platform:/plugin/org.eclipse.papyrus.cpp.profile/libraries/"/>
+		<mapping
+			source="pathmap://PapyrusCpp_PROFILES/"
+			target="platform:/plugin/org.eclipse.papyrus.cpp.profile/profiles/"/>
+	</extension>
+  
+	<extension
+			point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri="http://papyrus/CppProfile/1"
+			class = "Cpp.CppPackage"
+			genModel = "profile/Cpp.genmodel"/> 
+	</extension>
+  
+	<extension 
+			point="org.eclipse.uml2.uml.generated_package">
+		<profile
+			uri="http://papyrus/CppProfile/1"
+			location="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+	</extension>
+
+	<extension
+			point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+		<library
+			description="Standard C Ansi types"
+			iconpath="icons/transfo_cpp.gif"
+			name="AnsiCLibrary"
+			path="pathmap://PapyrusCpp_LIBRARIES/AnsiCLibrary.uml"
+			provider="CEA LIST"/>
+	</extension>
+   
+	<extension
+			point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+		<profile
+			description="C++ profile used in code generation"
+			iconpath="icons/transfo_cpp.gif"
+			name="PapyrusCpp"
+			path="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml"
+			provider="CEA LIST"/>
+		<profile
+			description="C profile used in code generation"
+			iconpath="icons/transfo_cpp.gif"
+			name="PapyrusC"
+			path="pathmap://PapyrusCpp_PROFILES/PapyrusC.profile.uml"
+			provider="CEA LIST"/>
+	</extension>
+</plugin>
