@@ -63,7 +63,6 @@ import org.junit.Test;
 /**
  * Test class for Copy/paste actions with copied elements that are context of diagrams. Diagrams should be duplicated also.
  */
-@Ignore
 public class TestCopyPasteElementsWithDiagrams {
 
 	/** is the test initialized already */
@@ -124,7 +123,7 @@ public class TestCopyPasteElementsWithDiagrams {
 	private static ArrayList<Diagram> initialDiagrams;
 
 	/** initial number of diagrams */
-	private static final int initialNumberOfDiagrams = 4;
+	private static final int initialNumberOfDiagrams = 6;
 
 	private static final int initialNumberOfDiagramsP4 = 1;
 	/** package P4 */
@@ -266,7 +265,7 @@ public class TestCopyPasteElementsWithDiagrams {
 
 		/** diagrams */
 		Diagram currentDiagramView = diagramEditPart.getDiagramView();
-		Collection<Diagram> diagrams = getDiagrams(currentDiagramView);
+		Collection<Diagram> diagrams = getAllDiagramsInAllResourceSet(currentDiagramView);
 		initialDiagrams = new ArrayList<Diagram>(diagrams);
 		Assert.assertEquals("There should be " + initialNumberOfDiagrams + " diagrams in the notation model", initialNumberOfDiagrams, initialDiagrams.size());
 
@@ -297,6 +296,133 @@ public class TestCopyPasteElementsWithDiagrams {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		page.closeEditor(editor, false);
 	}
+	
+	/**
+	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	@Test
+	public void testCopyPasteBlockWithOneDiagram() throws Exception {
+		String NEW_BLOCK_NAME = "Copy_Of_B1_1";
+		int expectedNumberOfDiagramsInNewPackage = 1;
+		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 0;
+		int expectedNumberOfDiagrams = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
+
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+
+		// copy of P1 into SysML Model.
+		TestUtils.copyEditParts(Arrays.<Object> asList((editPartBlockB1_P1)));
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		TestUtils.pasteWithModelEditParts(EditorUtils.getDiagramEditPart(), true);
+
+		// check the sysml model => should have a new copy of p1
+		NamedElement newBlock = ((Package)viewPackageP1.getElement()).getPackagedElement(NEW_BLOCK_NAME);
+		Assert.assertNotNull("Impossible to get the new Block", newBlock);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+
+		// check the new diagrams..
+		Collection<Diagram> newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after paste", expectedNumberOfDiagrams, newListOfDiagrams.size());
+		List<Diagram> newBlockDiagrams = getOwnedDiagrams(newBlock, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Block after paste", expectedNumberOfDiagramsInNewPackage, newBlockDiagrams.size());
+		List<Diagram> newBlockAndChildrenDiagrams = getOwnedDiagrams(newBlock, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newBlockAndChildrenDiagrams.size());
+		//checkElements(newBlock, viewBlockB1_P1.getElement(), newBlock, viewBlockB1_P1.getElement());
+
+		// test undo
+		EditorUtils.getCommandStack().undo();
+		newBlock = ((Package)viewPackageP1.getElement()).getPackagedElement(NEW_BLOCK_NAME);
+		Assert.assertNull("New Block was not deleted during undo()", newBlock);
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+
+		// test redo
+		EditorUtils.getCommandStack().redo();
+		newBlock = ((Package)viewPackageP1.getElement()).getPackagedElement(NEW_BLOCK_NAME);
+		Assert.assertNotNull("Impossible to get the new Block during redo()", newBlock);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+		newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after redo", expectedNumberOfDiagrams, newListOfDiagrams.size());
+		newBlockDiagrams = getOwnedDiagrams(newBlock, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Block after redo", expectedNumberOfDiagramsInNewPackage, newBlockDiagrams.size());
+		newBlockAndChildrenDiagrams = getOwnedDiagrams(newBlock, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Block and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newBlockAndChildrenDiagrams.size());
+		//checkElements(newBlock, viewBlockB1_P1.getElement(), newBlock, viewBlockB1_P1.getElement());
+
+
+		// do undo to get back previous state
+		EditorUtils.getCommandStack().undo();
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + initialNumberOfDiagrams + " diagrams after undo", initialNumberOfDiagrams, newListOfDiagrams.size());
+	}
+	
+	/**
+	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	@Test
+	public void testCopyPastePackageWithSeveralDiagrams() throws Exception {
+		String NEW_P1_NAME = "Copy_Of_P1_1";
+		int expectedNumberOfDiagramsInNewPackage = 0;
+		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 2;
+		int expectedNumberOfDiagrams = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		Assert.assertEquals("There should be "+initialNumberOfDiagrams+ " diagrams in the model", initialNumberOfDiagrams, getAllDiagramsInAllResourceSet(getDiagramView()).size());
+		
+		
+		// copy of P1 into SysML Model.
+		TestUtils.copyEditParts(Arrays.<Object> asList((editPartPackageP1)));
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		TestUtils.pasteWithModelEditParts(EditorUtils.getDiagramEditPart(), true);
+
+		// check the sysml model => should have a new copy of p1
+		Package sysmlModel = (Package)getDiagramView().getElement();
+
+		Package newPackage = sysmlModel.getNestedPackage(NEW_P1_NAME);
+		Assert.assertNotNull("Impossible to get the new Package", newPackage);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+
+		// check the new diagrams..
+		Collection<Diagram> newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after paste", expectedNumberOfDiagrams, newListOfDiagrams.size());
+		List<Diagram> newPackageDiagrams = getOwnedDiagrams(newPackage, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
+		List<Diagram> newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
+		//checkElements(newPackage, viewPackageP1.getElement(), newPackage, viewPackageP1.getElement());
+
+
+		// test undo
+		EditorUtils.getCommandStack().undo();
+		newPackage = sysmlModel.getNestedPackage(NEW_P1_NAME);
+		Assert.assertNull("New Package was not deleted during undo()", newPackage);
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + initialNumberOfDiagrams + " diagrams after undo", initialNumberOfDiagrams, newListOfDiagrams.size());
+
+		// test redo
+		EditorUtils.getCommandStack().redo();
+		newPackage = sysmlModel.getNestedPackage(NEW_P1_NAME);
+		Assert.assertNotNull("Impossible to get the new Package during redo()", newPackage);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+		newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after redo", expectedNumberOfDiagrams, newListOfDiagrams.size());
+		newPackageDiagrams = getOwnedDiagrams(newPackage, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
+		newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
+		//checkElements(newPackage, viewPackageP1.getElement(), newPackage, viewPackageP1.getElement());
+
+		// do undo to get back previous state
+		EditorUtils.getCommandStack().undo();
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + initialNumberOfDiagrams + " diagrams after undo", initialNumberOfDiagrams, newListOfDiagrams.size());
+	}
 
 	/**
 	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
@@ -305,6 +431,66 @@ public class TestCopyPasteElementsWithDiagrams {
 	 *         exception thrown in case of problems
 	 */
 	@Test
+	public void testCopyPasteSimplePackageWithAllocationAndDiagram() throws Exception {
+		int expectedNumberOfDiagramsInNewPackage = 0;
+		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 1;
+		int expected = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
+
+		Assert.assertTrue("Editor should not be in dirty state", ! EditorUtils.getDiagramEditor().isDirty());
+
+		// copy of P2 into SysML Model.
+		// should copy the IBD in P1_B2
+		TestUtils.copyEditParts(Arrays.<Object> asList((editPartPackageP2)));
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		TestUtils.pasteWithModelEditParts(EditorUtils.getDiagramEditPart(), true);
+
+		// check the sysml model => should have a new copy of p2
+		Package sysmlModel = (Package)getDiagramView().getElement();
+		Package newPackage = sysmlModel.getNestedPackage("Copy_Of_P2_1");
+		Assert.assertNotNull("Impossible to get the new Package", newPackage);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+		
+		// check the new diagrams..
+		Collection<Diagram> newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + expected + " diagrams after paste", expected, newListOfDiagrams.size());
+		List<Diagram> newPackageDiagrams = getOwnedDiagrams(newPackage, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
+		List<Diagram> newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
+		//checkElements(newPackage, viewPackageP2.getElement(), newPackage, viewPackageP2.getElement());
+
+		// test undo
+		EditorUtils.getCommandStack().undo();
+		newPackage = sysmlModel.getNestedPackage("Copy_Of_P2_1");
+		Assert.assertNull("New Package was not deleted during undo()", newPackage);
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+
+		// test redo
+		EditorUtils.getCommandStack().redo();
+		newPackage = sysmlModel.getNestedPackage("Copy_Of_P2_1");
+		Assert.assertNotNull("Impossible to get the new Package during redo()", newPackage);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+		newPackageDiagrams = getOwnedDiagrams(newPackage, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
+		newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
+		//checkElements(newPackage, viewPackageP2.getElement(), newPackage, viewPackageP2.getElement());
+
+		// do undo to get back previous state
+		EditorUtils.getCommandStack().undo();
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
+		Assert.assertEquals("There should be " + initialNumberOfDiagrams + " diagrams after undo", initialNumberOfDiagrams, newListOfDiagrams.size());
+	}
+	
+	/**
+	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	@Test
+	@Ignore
 	public void testCopyPasteSimplePackageWithOneBlockAndOneDiagram() throws Exception {
 		int expectedNumberOfDiagramsInNewPackage = 1;
 		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage;
@@ -321,8 +507,8 @@ public class TestCopyPasteElementsWithDiagrams {
 
 		
 		Package newPackage = sysmlModel.getNestedPackage("Copy_Of_P4_P1_1");
-		//Assert.assertNotNull("Impossible to get the new Package", newPackage);
-		//Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+		Assert.assertNotNull("Impossible to get the new Package", newPackage);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
 
 		// check the new diagrams..
 		Collection<Diagram> newListOfDiagrams = getAllDiagramsInAllResourceSet(getDiagramView());
@@ -355,182 +541,9 @@ public class TestCopyPasteElementsWithDiagrams {
 		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
 	}
 
-	/**
-	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
-	 * 
-	 * @throws Exception
-	 *         exception thrown in case of problems
-	 */
-	@Test
-	public void testCopyPasteSimplePackageWithAllocationAndDiagram() throws Exception {
-		int expectedNumberOfDiagramsInNewPackage = 0;
-		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 1;
-		int expected = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
-
-		Assert.assertTrue("Editor should not be in dirty state", ! EditorUtils.getDiagramEditor().isDirty());
-
-		// copy of P2 into SysML Model.
-		// should copy the IBD in P1_B2
-		TestUtils.copyEditParts(Arrays.<Object> asList((editPartPackageP2)));
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-		TestUtils.pasteWithModelEditParts(EditorUtils.getDiagramEditPart(), true);
-
-		// check the sysml model => should have a new copy of p2
-		Package sysmlModel = (Package)getDiagramView().getElement();
-		Package newPackage = sysmlModel.getNestedPackage("Copy_Of_P2_1");
-		Assert.assertNotNull("Impossible to get the new Package", newPackage);
-		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
-		
-		// check the new diagrams..
-		Collection<Diagram> newListOfDiagrams = getDiagrams(getDiagramView());
-		Assert.assertEquals("There should be " + expected + " diagrams after paste", expected, newListOfDiagrams.size());
-		List<Diagram> newPackageDiagrams = getOwnedDiagrams(newPackage, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
-		List<Diagram> newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
-		//checkElements(newPackage, viewPackageP2.getElement(), newPackage, viewPackageP2.getElement());
-
-		// test undo
-		EditorUtils.getCommandStack().undo();
-		newPackage = sysmlModel.getNestedPackage("Copy_Of_P2_1");
-		Assert.assertNull("New Package was not deleted during undo()", newPackage);
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-
-		// test redo
-		EditorUtils.getCommandStack().redo();
-		newPackage = sysmlModel.getNestedPackage("Copy_Of_P2_1");
-		Assert.assertNotNull("Impossible to get the new Package during redo()", newPackage);
-		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
-		newPackageDiagrams = getOwnedDiagrams(newPackage, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
-		newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
-		//checkElements(newPackage, viewPackageP2.getElement(), newPackage, viewPackageP2.getElement());
-
-		// do undo to get back previous state
-		EditorUtils.getCommandStack().undo();
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-	}
 	
-	/**
-	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
-	 * 
-	 * @throws Exception
-	 *         exception thrown in case of problems
-	 */
-	@Test
-	public void testCopyPastePackageWithSeveralDiagrams() throws Exception {
-		String NEW_P1_NAME = "Copy_Of_P1_1";
-		int expectedNumberOfDiagramsInNewPackage = 0;
-		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 2;
-		int expectedNumberOfDiagrams = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
-
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-
-		// copy of P1 into SysML Model.
-		TestUtils.copyEditParts(Arrays.<Object> asList((editPartPackageP1)));
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-		TestUtils.pasteWithModelEditParts(EditorUtils.getDiagramEditPart(), true);
-
-		// check the sysml model => should have a new copy of p1
-		Package sysmlModel = (Package)getDiagramView().getElement();
-
-		Package newPackage = sysmlModel.getNestedPackage(NEW_P1_NAME);
-		Assert.assertNotNull("Impossible to get the new Package", newPackage);
-		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
-
-		// check the new diagrams..
-		Collection<Diagram> newListOfDiagrams = getDiagrams(getDiagramView());
-		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after paste", expectedNumberOfDiagrams, newListOfDiagrams.size());
-		List<Diagram> newPackageDiagrams = getOwnedDiagrams(newPackage, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
-		List<Diagram> newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
-		//checkElements(newPackage, viewPackageP1.getElement(), newPackage, viewPackageP1.getElement());
-
-
-		// test undo
-		EditorUtils.getCommandStack().undo();
-		newPackage = sysmlModel.getNestedPackage(NEW_P1_NAME);
-		Assert.assertNull("New Package was not deleted during undo()", newPackage);
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-
-		// test redo
-		EditorUtils.getCommandStack().redo();
-		newPackage = sysmlModel.getNestedPackage(NEW_P1_NAME);
-		Assert.assertNotNull("Impossible to get the new Package during redo()", newPackage);
-		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
-		newListOfDiagrams = getDiagrams(getDiagramView());
-		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after redo", expectedNumberOfDiagrams, newListOfDiagrams.size());
-		newPackageDiagrams = getOwnedDiagrams(newPackage, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
-		newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
-		//checkElements(newPackage, viewPackageP1.getElement(), newPackage, viewPackageP1.getElement());
-
-		// do undo to get back previous state
-		EditorUtils.getCommandStack().undo();
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-	}
-
-	/**
-	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
-	 * 
-	 * @throws Exception
-	 *         exception thrown in case of problems
-	 */
-	@Test
-	public void testCopyPasteBlockWithOneDiagram() throws Exception {
-		String NEW_BLOCK_NAME = "Copy_Of_B1_1";
-		int expectedNumberOfDiagramsInNewPackage = 1;
-		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 0;
-		int expectedNumberOfDiagrams = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
-
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-
-		// copy of P1 into SysML Model.
-		TestUtils.copyEditParts(Arrays.<Object> asList((editPartBlockB1_P1)));
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-		TestUtils.pasteWithModelEditParts(EditorUtils.getDiagramEditPart(), true);
-
-		// check the sysml model => should have a new copy of p1
-		NamedElement newBlock = ((Package)viewPackageP1.getElement()).getPackagedElement(NEW_BLOCK_NAME);
-		Assert.assertNotNull("Impossible to get the new Block", newBlock);
-		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
-
-		// check the new diagrams..
-		Collection<Diagram> newListOfDiagrams = getDiagrams(getDiagramView());
-		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after paste", expectedNumberOfDiagrams, newListOfDiagrams.size());
-		List<Diagram> newBlockDiagrams = getOwnedDiagrams(newBlock, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Block after paste", expectedNumberOfDiagramsInNewPackage, newBlockDiagrams.size());
-		List<Diagram> newBlockAndChildrenDiagrams = getOwnedDiagrams(newBlock, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newBlockAndChildrenDiagrams.size());
-		//checkElements(newBlock, viewBlockB1_P1.getElement(), newBlock, viewBlockB1_P1.getElement());
-
-		// test undo
-		EditorUtils.getCommandStack().undo();
-		newBlock = ((Package)viewPackageP1.getElement()).getPackagedElement(NEW_BLOCK_NAME);
-		Assert.assertNull("New Block was not deleted during undo()", newBlock);
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-
-		// test redo
-		EditorUtils.getCommandStack().redo();
-		newBlock = ((Package)viewPackageP1.getElement()).getPackagedElement(NEW_BLOCK_NAME);
-		Assert.assertNotNull("Impossible to get the new Block during redo()", newBlock);
-		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
-		newListOfDiagrams = getDiagrams(getDiagramView());
-		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after redo", expectedNumberOfDiagrams, newListOfDiagrams.size());
-		newBlockDiagrams = getOwnedDiagrams(newBlock, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Block after redo", expectedNumberOfDiagramsInNewPackage, newBlockDiagrams.size());
-		newBlockAndChildrenDiagrams = getOwnedDiagrams(newBlock, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Block and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newBlockAndChildrenDiagrams.size());
-		//checkElements(newBlock, viewBlockB1_P1.getElement(), newBlock, viewBlockB1_P1.getElement());
-
-
-		// do undo to get back previous state
-		EditorUtils.getCommandStack().undo();
-		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
-	}
+	
+	
 
 	/**
 	 * check the elements given expected numbers
