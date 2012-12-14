@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -33,6 +34,7 @@ import org.eclipse.emf.facet.widgets.celleditors.internal.DefaultCommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Row;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.internal.painter.Customization;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -230,6 +232,15 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 	@Override
 	public Command createRemoveCommand(final EditingDomain editingDomain, final Object owner, final Object feature, final Object value) {
 		//the ElementEditService doesn't work correctly with nattable elements, so we test the edited element
+		
+		//cf bug 396621: [Table] The default columns are not visible just after the creation of the table (when the created table is empty)
+		if(owner instanceof TableInstance && feature==TableinstancePackage.eINSTANCE.getTableInstance_Columns()){
+			if(((TableInstance)owner).getRows().size()==0){
+				return IdentityCommand.INSTANCE;//we can' return a null command!
+			}
+		}
+		
+		
 		if(isEMFFacetElement(owner)) {
 			return super.createRemoveCommand(editingDomain, owner, feature, value);
 		}
