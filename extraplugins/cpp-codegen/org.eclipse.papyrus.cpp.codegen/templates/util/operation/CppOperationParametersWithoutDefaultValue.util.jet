@@ -1,0 +1,33 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.* java.util.*" 
+	class			=	"CppOperationParametersWithoutDefaultValue" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	// Retrieve the Operation
+	Operation currentOperation	= (Operation) argument;
+	Parameter currentParameter;
+		
+	String paramDecl = "";
+	
+	Iterator<Parameter> parameters = currentOperation.getOwnedParameters().iterator();
+	while(parameters.hasNext()) {
+		currentParameter = parameters.next();	
+		if (currentParameter.getDirection () != ParameterDirectionKind.RETURN_LITERAL) {
+			// Prepare parameters
+			CppParameterWithoutDefaultValue jetParam = new CppParameterWithoutDefaultValue();
+			if (!paramDecl.equals("")) {
+				paramDecl += ", ";
+			}
+			paramDecl = paramDecl+jetParam.generate(currentParameter);	
+		}
+	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////
+%><%= paramDecl %>

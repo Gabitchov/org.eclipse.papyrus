@@ -1,0 +1,191 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet" 
+	skeleton        =   "generator.skeleton" 
+	imports			=	"org.eclipse.papyrus.cpp.codegen.utils.GenUtils Cpp.CppInclude org.eclipse.papyrus.cpp.codegen.StdStereo org.eclipse.uml2.uml.Package org.eclipse.uml2.uml.* org.eclipse.papyrus.cpp.codegen.jet.util.* org.eclipse.papyrus.cpp.codegen.jet.doc.*" 
+ 	class			=	"CppClassHeader" 
+ %>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	// Retrieve the class
+	Classifier currentClass = (Classifier) argument;
+
+	// Get the package name
+	String className		= currentClass.getName();
+	String classFULLNAME	= GenUtils.getFullName (currentClass).toUpperCase();
+	String openNS			= GenUtils.openNS (currentClass); 
+	String closeNS			= GenUtils.closeNS (currentClass); 
+	String classDoc			= "";
+	String classOrStruct    = (currentClass instanceof DataType) ? "struct" : "class";
+	
+	// Doc for the class
+	CppElementDoc jDoc		= new CppElementDoc();
+	classDoc				= jDoc.generate(currentClass);
+
+	String includeProtection;
+		
+	// Include declaration "CppInclude"
+	String headerDecl		= "";
+	CppInclude cppInclude =  GenUtils.getApplication(currentClass, CppInclude.class);
+	if (cppInclude != null) {
+		headerDecl = GenUtils.maskNull(cppInclude.getHeader());
+		if (headerDecl.length() > 0) {
+			headerDecl = "// Include from CppInclude declaration" + NL + headerDecl.replace("HFILENAME", classFULLNAME) + NL;
+		}
+	}
+	
+	// Prepare owner package header include
+	Package ownerPackage	= currentClass.getPackage();
+	String ownerInclude		= "";
+	if (ownerPackage != null) {
+		// Create an util template to prepare the declaration
+		CppOwnerPackageIncludeDeclaration jetOwnerInclude		
+							= new CppOwnerPackageIncludeDeclaration();
+		// Execute the util template
+		ownerInclude		= jetOwnerInclude.generate(ownerPackage);
+	}
+	
+	
+	// Prepare owned type and enum declaration
+	String typeEnumDefPackage	= "";
+	String typeEnumDef			= "";
+			
+	CppClassTypeAndEnum jetTE	= new CppClassTypeAndEnum();
+	typeEnumDef					= jetTE.generate(currentClass);
+
+	CppClassTypeAndEnumPackage jetTEp	
+								= new CppClassTypeAndEnumPackage();
+	typeEnumDefPackage			= jetTEp.generate(currentClass);	
+
+
+	// Prepare dependency includes
+	CppClassAllIncludesDeclaration jetClassIncludes
+									= new CppClassAllIncludesDeclaration();
+	String classIncludes			= jetClassIncludes.generate(argument);
+	if (!classIncludes.equals("")) {
+		classIncludes	= "/* Structural includes (inheritance, dependencies...       */"+NL+classIncludes;
+	}
+
+	// Prepare friend dependency includes
+	CppClassIncludeFriendDeclaration jetClassFIncludes
+									= new CppClassIncludeFriendDeclaration();
+	String friendIncludes			= jetClassFIncludes.generate(argument);
+	if (!friendIncludes.equals("")) {
+		friendIncludes	= "/* Friend class declaration       */"+NL+friendIncludes;
+	}
+	
+	// Prepare attributes and Methods declarations
+	String publicAttributes		= "";
+	String publicOperations		= "";
+	String protectedAttributes	= "";
+	String protectedOperations	= "";
+	String privateAttributes	= "";
+	String privateOperations	= "";
+	String packageAttributes	= "";
+	String packageOperations	= "";
+
+	// Attributes
+	CppClassAttributesDeclaration jetClassPAttr = new CppClassAttributesDeclaration();
+	publicAttributes			= jetClassPAttr.generate(currentClass, VisibilityKind.PUBLIC_LITERAL);
+	protectedAttributes			= jetClassPAttr.generate(currentClass, VisibilityKind.PROTECTED_LITERAL);
+	privateAttributes			= jetClassPAttr.generate(currentClass, VisibilityKind.PRIVATE_LITERAL);
+	packageAttributes			= jetClassPAttr.generate(currentClass, VisibilityKind.PACKAGE_LITERAL);
+	
+	// Methods
+	CppClassOperationsDeclaration jetClassPOp = new CppClassOperationsDeclaration();
+	publicOperations			= jetClassPOp.generate(currentClass, VisibilityKind.PUBLIC_LITERAL);
+	protectedOperations			= jetClassPOp.generate(currentClass, VisibilityKind.PROTECTED_LITERAL);
+	privateOperations			= jetClassPOp.generate(currentClass, VisibilityKind.PRIVATE_LITERAL);
+	packageOperations			= jetClassPOp.generate(currentClass, VisibilityKind.PACKAGE_LITERAL);
+	
+	boolean hasConstructor = false;
+	for (Operation operation : currentClass.getOperations ()) {
+		if (GenUtils.hasStereotype(operation, StdStereo.create)) {
+			hasConstructor = true;
+			break;
+		}
+	}
+	String defaultInitializer = "";
+	for (Property attribute : currentClass.getAttributes ()) {
+		if (attribute.isStatic()) {
+			// static attributes are initialized differently
+			continue;
+		}
+		ValueSpecification vs = attribute.getDefaultValue ();
+		if ((vs != null) && (vs.stringValue() != null)) {
+			if (!defaultInitializer.equals("")) {
+				// not first attribute
+				defaultInitializer += ", ";
+			}
+			defaultInitializer += attribute.getName () + "(" + vs.stringValue() + ")";
+		}
+	}
+	// no constructor, add it, if some properties have default values
+	if ((!hasConstructor) && (!defaultInitializer.equals (""))) {
+		defaultInitializer = className + "() : " + defaultInitializer + " {}";  
+	}
+	else {
+		defaultInitializer = "";
+	}
+	
+	// Inline functions implementations
+	String inlineFunctionsImplementation = "";
+	CppClassInlineOperationsImplementation jetInlineClassPOp
+									= new CppClassInlineOperationsImplementation();
+	inlineFunctionsImplementation	= jetInlineClassPOp.generate(currentClass);
+		
+	// Prepare inherited classes or implemented interfaces
+	String inheritedDeclarations = "";
+	CppClassInheritedDeclarations jetInherited
+									= new CppClassInheritedDeclarations();
+	inheritedDeclarations			= jetInherited.generate(currentClass);
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+#ifndef <%= classFULLNAME %>_H
+#define <%= classFULLNAME %>_H
+
+/************************************************************
+              <%= className %> class header
+ ************************************************************/
+
+<%= ownerInclude %>
+
+<%= classIncludes %>
+
+<%= headerDecl %>
+<%= openNS %> 
+<%= typeEnumDefPackage %>
+/************************************************************/
+<%= classDoc %>
+<%= classOrStruct %> <%= className %><%= inheritedDeclarations %> {
+<%= friendIncludes %><%= typeEnumDef %>
+
+  public:
+<%= defaultInitializer %><%= publicAttributes %><%= publicOperations %>
+
+  protected:
+<%= protectedAttributes %><%= protectedOperations %>
+
+  private:
+<%= privateAttributes %><%= privateOperations %>
+
+};
+/************************************************************/
+/* External declarations (package visibility)               */
+<%= packageAttributes %>
+<%= packageOperations %>
+/************************************************************/
+/* Inline functions                                         */
+<%= inlineFunctionsImplementation %>
+<%= closeNS %>
+
+/************************************************************
+              End of <%= className %> class header
+ ************************************************************/
+
+#endif

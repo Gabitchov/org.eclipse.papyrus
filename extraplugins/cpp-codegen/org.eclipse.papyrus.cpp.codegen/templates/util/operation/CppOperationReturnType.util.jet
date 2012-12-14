@@ -1,0 +1,76 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.* org.eclipse.uml2.uml.Class Cpp.* org.eclipse.papyrus.cpp.codegen.utils.*" 
+	class			=	"CppOperationReturnType" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	// Retrieve the Operation
+	Operation currentOperation	= (Operation) argument;
+	
+	String returnTypeName		= "void";
+	String ownerName			= "";
+	Modifier modifier           = new Modifier();
+	
+	// Return type	
+	if (currentOperation.getType() == null) {
+		returnTypeName	= "void";
+	} else {
+		if (currentOperation.getType() == null) {
+			returnTypeName = "undefined";
+		} else {
+			// Treat the type if it is not "package visibility" and owned by a class
+			Type currentType = currentOperation.getType();
+			returnTypeName = GenUtils.qualifiedName (currentType);
+			
+			if (currentType.getVisibility() != VisibilityKind.PACKAGE_LITERAL) {
+				if (currentType.getOwner() instanceof Class) {
+					ownerName = ((Class) currentType.getOwner()).getName();
+				}
+			}
+		}
+		
+		// Treat pointer or ref on return parameter (only one return parameter should exists)
+			// retrieve return parameter
+// RS: changed test: now getReturnResult returns only one param
+//		if (currentOperation.getUml2Operation().getReturnResults().size() == 1) {
+//			org.eclipse.uml2.uml.Parameter uml2Param 
+//				= (org.eclipse.uml2.uml.Parameter) currentOperation.getUml2Operation().getReturnResults().get(0);
+//			Parameter currentRParameter	
+//				= new Parameter(uml2Param);
+//			// case Pointer
+//			if (currentRParameter.hasStereotype(xy, CppPtr.class)) {
+//				isPointer = " "+currentRParameter.getTaggedValue(CppPtr.class, "declaration");
+//			}
+//			if (currentRParameter.hasStereotype(xy, CppRef.class)) {
+//				isRef 	  = " "+currentRParameter.getTaggedValue(CppRef.class, "declaration");
+//			}
+//			if (currentRParameter.hasStereotype(xy, CppConst.class_)) {
+//				isConst = "const ";
+//			}
+//		}
+		if (currentOperation.getReturnResult() instanceof Parameter) {
+			Parameter uml2Param = (Parameter) currentOperation.getReturnResult();
+			modifier = new Modifier(uml2Param);
+		}
+	}
+		
+		
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template two cases : scope required or not
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// No scope details 
+	if (ownerName.equals("")) {	
+//////////////////////////////////////////////////////////////////////////////////////////
+%><%= modifier.isConst %><%= returnTypeName %><%= modifier.ptr %><%= modifier.ref %>
+<%//////////////////////////////////////////////////////////////////////////////////////////
+} else {
+//////////////////////////////////////////////////////////////////////////////////////////
+%><%= modifier.isConst %><%= ownerName %>::<%= returnTypeName %><%= modifier.ptr %><%= modifier.ref %>
+<%//////////////////////////////////////////////////////////////////////////////////////////
+}
+//////////////////////////////////////////////////////////////////////////////////////////%>

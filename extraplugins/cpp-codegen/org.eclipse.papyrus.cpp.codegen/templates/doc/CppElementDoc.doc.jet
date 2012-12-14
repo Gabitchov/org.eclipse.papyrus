@@ -1,0 +1,27 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.doc" 
+	skeleton        =   "../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.Element org.eclipse.papyrus.cpp.codegen.utils.GenUtils" 
+ 	class			=	"CppElementDoc" 
+ %>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Retrieve the element
+	Element currentElt		= (Element) argument;
+	String eltDoc			= "";
+	
+	
+	// Doc for the element
+	eltDoc	= GenUtils.getComments(currentElt);
+	eltDoc	= eltDoc.replaceAll(NL, NL+" * ");
+	
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+/**
+ * <%= eltDoc %>
+ */

@@ -1,0 +1,58 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.* org.eclipse.papyrus.cpp.codegen.jet.doc.* Cpp.* org.eclipse.papyrus.cpp.codegen.utils.*" 
+	class			=	"CppAttributeImplementation" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	// Retrieve the property
+	Property currentAttribute			= (Property) argument;
+	
+	String attributeName	= currentAttribute.getName();
+//	String className		= currentAttribute.getOwner().getName();
+	String typeName			= "";
+	String scopeName		= "";
+//	String prefix			= "";
+	String suffix			= "";
+	String multiple			= "";
+	
+	// For property documentation
+	String propDoc		= "";
+	
+	// Retrieve enum doc
+	CppElementDoc jDoc		= new CppElementDoc();
+	propDoc					= jDoc.generate(currentAttribute);	
+	propDoc					= propDoc.replaceAll(NL, NL+"	");
+	
+	if (currentAttribute.getType() == null) {
+		typeName	= "undefined";
+	}
+	else {	
+		Type type = currentAttribute.getType();
+		typeName	= GenUtils.qualifiedName (type);
+		/*
+		// If type is owned by a class add the scope
+		if (type.getOwner() instanceof Class) {
+			scopeName	= ((Class) type.getOwner()).getName();
+			typeName	= scopeName+"::"+typeName;
+		}
+		*/
+	}
+	
+	// Multiple
+	// TODO? need to evaluate limitMultiplicity stereotype?
+	int upper = currentAttribute.getUpper();
+	if ((upper == -1) || (upper > 1)) {
+		multiple	= "*";
+	}
+	
+	Modifier modifier  = new Modifier(currentAttribute);
+			
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+	<%= propDoc %>
+	<%= typeName %><%= multiple %><%= modifier.ptr %><%= modifier.ref %> <%= attributeName %><%= modifier.array %><%= suffix %>;
