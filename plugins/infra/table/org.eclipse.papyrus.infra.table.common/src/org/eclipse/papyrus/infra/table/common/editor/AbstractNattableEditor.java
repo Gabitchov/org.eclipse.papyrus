@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.commands.State;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
@@ -57,6 +58,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.commands.ICommandService;
 
 /**
  * Abstract class for TableEditor
@@ -144,7 +146,7 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 					cmd.execute();
 				}
 			} catch (Exception e) {
-				Activator.log.error("I can't update the opened table", e);
+				Activator.log.error("I can't update the opened table", e); //$NON-NLS-1$
 			}
 		}
 	}
@@ -332,6 +334,31 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 			setPartName(papyrusTable.getName());
 			// Listen to name change
 			papyrusTable.eAdapters().add(this.tableNameListener);
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.table.common.internal.NatTableEditor#setFocus()
+	 * 
+	 */
+	@Override
+	public void setFocus() {
+		super.setFocus();
+
+		//we update the status of the toggle action on the Table (these actions are declared into oep.infra.table.menu)
+		final ICommandService commandService = (ICommandService)this.getEditorSite().getService(ICommandService.class);
+		if(commandService != null) {
+			org.eclipse.core.commands.Command command = commandService.getCommand("org.eclipse.emf.facet.widget.nattable.common.columns.command"); //$NON-NLS-1$
+			if(command != null) {
+				final State state = command.getState("org.eclipse.ui.commands.toggleState"); //$NON-NLS-1$
+				state.setValue(this.rawModel.getTable().isOnlyShowCommonColumns());
+			}
+			command = commandService.getCommand("org.eclipse.emf.facet.widget.nattable.empty.columns.command"); //$NON-NLS-1$
+			if(command != null) {
+				final State state = command.getState("org.eclipse.ui.commands.toggleState"); //$NON-NLS-1$
+				state.setValue(this.rawModel.getTable().isHideEmptyColumns());
+			}
 		}
 	}
 }

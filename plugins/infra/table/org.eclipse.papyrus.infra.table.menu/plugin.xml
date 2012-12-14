@@ -10,7 +10,7 @@
             id="org.eclipse.emf.facet.widget.nattable.common.columns.command"
             name="Common Columns Command">
          <state
-               class="org.eclipse.papyrus.infra.table.menu.handler.states.OnlyCommonColumnsState"
+               class="org.eclipse.jface.commands.ToggleState"
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
@@ -21,7 +21,7 @@
             id="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
             name="Hide Empty Columns Command">
          <state
-               class="org.eclipse.papyrus.infra.table.menu.handler.states.HideEmptyColumnState"
+               class="org.eclipse.jface.commands.ToggleState"
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
