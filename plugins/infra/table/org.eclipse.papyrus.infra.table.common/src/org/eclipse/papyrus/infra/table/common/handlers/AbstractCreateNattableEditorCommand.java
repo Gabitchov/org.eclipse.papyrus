@@ -79,6 +79,7 @@ import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTabl
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstanceFactory;
 import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 
@@ -457,22 +458,25 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 */
 	protected List<EObject> getSelection() {
 		List<EObject> selectedElements = new ArrayList<EObject>();
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
+		final IWorkbenchWindow ww = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if(ww != null) {
+			ISelection selection = ww.getSelectionService().getSelection();
+			if(selection instanceof IStructuredSelection) {
 
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 
-			Iterator<?> it = structuredSelection.iterator();
-			while(it.hasNext()) {
-				Object object = it.next();
-				if(object instanceof IAdaptable) {
-					EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+				Iterator<?> it = structuredSelection.iterator();
+				while(it.hasNext()) {
+					Object object = it.next();
+					if(object instanceof IAdaptable) {
+						EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
 
-					if(currentEObject != null) {
-						selectedElements.add(currentEObject);
+						if(currentEObject != null) {
+							selectedElements.add(currentEObject);
+						}
 					}
-				}
 
+				}
 			}
 		}
 		return selectedElements;
