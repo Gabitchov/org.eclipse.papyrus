@@ -1,0 +1,49 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.Classifier org.eclipse.uml2.uml.Generalization java.util.Iterator Cpp.* org.eclipse.papyrus.cpp.codegen.utils.GenUtils" 
+	class			=	"CppInterfaceInheritedDeclarations" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	// Retrieve the interface
+	Classifier currentClass		= (Classifier) argument;
+	String decl				= "";
+	String visibility		= "";
+	
+	// Get generalization and implementation relationships
+	Iterator<Generalization> genIt = currentClass.getGeneralizations().iterator();
+	
+	// Parse generalizations
+	while (genIt.hasNext()) {
+		
+		Generalization currentGen = genIt.next();
+		
+		visibility = GenUtils.getVisibility(currentGen);
+			
+		// If not <NoCodeGen>
+		Classifier tmpClassifier = currentGen.getGeneral();
+		if (!GenUtils.hasStereotype(tmpClassifier, CppNoCodeGen.class)) {
+		
+			String targetName = tmpClassifier.getName();
+		
+			if (!decl.equals("")) {
+				decl = decl + ", ";
+			}
+			decl = decl+visibility+" "+targetName;
+		}	
+	}
+	
+	// ":" only if decl not empty
+	String prefix = "";
+	if (!decl.equals("")) {
+		prefix	= ": ";
+		visibility = "public ";
+	}	
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+<%= prefix %><%= decl %>

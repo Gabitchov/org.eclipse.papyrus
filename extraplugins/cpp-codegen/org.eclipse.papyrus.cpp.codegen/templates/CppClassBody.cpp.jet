@@ -1,0 +1,71 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet" 
+	skeleton        =   "generator.skeleton" 
+	imports			=	"org.eclipse.papyrus.cpp.codegen.Constants org.eclipse.papyrus.cpp.codegen.utils.* org.eclipse.emf.common.util.EList Cpp.CppInclude org.eclipse.uml2.uml.Classifier org.eclipse.uml2.uml.Package org.eclipse.papyrus.cpp.codegen.jet.util.* org.eclipse.papyrus.cpp.codegen.Activator" 
+ 	class			=	"CppClassBody" 
+ %>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Retrieve the class
+	Classifier currentClass	= (Classifier) argument;
+	
+	// Get the package name
+	String className	= currentClass.getName();
+	String classFullName= GenUtils.getFullName (currentClass);
+	String classFULLNAME= classFullName.toUpperCase(); 
+	
+	// Retrieve header file suffix
+	String headerFileSuffix = Activator.getDefault().getPluginPreferences().getString("headSuffix");
+	
+	// TODO - Prepare static attribute
+	String staticAttributes = "";
+
+	// Retrieve owner Package
+	Package owner		= currentClass.getPackage();
+	String  fullPath	= "";
+	
+	if (owner != null) {
+		fullPath		= GenUtils.getFullPath(owner) + "/";
+	} // else fullPath == ""
+	
+	// Prepare attributes and Methods declarations
+	String allOperations	= "";
+	
+	// Methods
+	CppClassOperationsImplementation jetClassOp
+							= new CppClassOperationsImplementation();
+	allOperations			= jetClassOp.generate(currentClass);
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+#define <%= classFULLNAME %>_BODY
+
+/************************************************************
+              <%= className %> class body
+ ************************************************************/
+
+<%= Constants.cppIncPreBodyStart %>
+<%= ClassUtils.getCppIncludePreBody(currentClass)
+%><%= Constants.cppIncPreBodyEnd %>
+
+<%= Constants.includeHFile %>
+#include <<%= fullPath %><%= className %>.<%= headerFileSuffix %>>
+
+<%= Constants.cppIncBodyStart %>
+<%= ClassUtils.getCppIncludeBody(currentClass)
+%><%= Constants.cppIncBodyEnd %>
+
+<%= Constants.derivedIncludes %>
+<%= ClassUtils.createIncludeDecl(currentClass) %>
+
+<%= GenUtils.openNS(currentClass) %>
+<%= ClassUtils.getStaticAttributes(currentClass) %>
+<%= allOperations %>
+<%= GenUtils.closeNS(currentClass) %>
+
+/************************************************************
+              End of <%= className %> class body
+ ************************************************************/

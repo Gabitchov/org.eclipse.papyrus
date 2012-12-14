@@ -1,0 +1,38 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.* java.util.* org.eclipse.papyrus.cpp.codegen.utils.GenUtils Cpp.*" 
+	class			=	"CppClassIncludeFriendDeclaration" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	// Retrieve the class
+	Classifier currentClass = (Classifier) argument;
+//	NamedElement currentElt = (NamedElement) argument;
+
+	// Prepare Dependency includes declarations ...
+	// Retrieve package used by current package (dependencies)
+	Iterator<Classifier> friendClassesIt = GenUtils.getUsedClassifiers(currentClass).iterator();
+	
+	// Parsing all as NamedElement
+	String friendClass	= "";
+			
+	while (friendClassesIt.hasNext()) {					
+		Classifier cClass = friendClassesIt.next();		
+
+		if (GenUtils.hasStereotype(cClass, CppFriend.class) &&
+			(!GenUtils.hasStereotype(cClass, CppNoCodeGen.class))) {
+				
+			CppClassFriendDeclaration jetIDecl
+							= new CppClassFriendDeclaration();
+			
+			friendClass		= friendClass+jetIDecl.generate(cClass);
+		}
+	}
+		
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+<%= friendClass %>

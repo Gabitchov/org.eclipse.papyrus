@@ -1,0 +1,72 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"Cpp.* org.eclipse.papyrus.cpp.codegen.utils.GenUtils org.eclipse.uml2.uml.Interface org.eclipse.emf.common.util.EList org.eclipse.uml2.uml.Package org.eclipse.emf.common.util.UniqueEList java.util.* org.eclipse.uml2.uml.PrimitiveType org.eclipse.uml2.uml.Enumeration org.eclipse.uml2.uml.Classifier" 
+	class			=	"CppInterfaceAllIncludesDeclaration" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+		// Retrieve the interface
+		Interface currentInterface		= (Interface) argument;
+		
+		// Prepare Dependency includes declarations ...
+		// Retrieve package used by current package (dependencies)
+		// use a unique list to avoid duplicates
+		EList<Classifier> usedClasses = new UniqueEList<Classifier> ();
+	
+		String newInclude		= "";
+
+		// class attributes dependencies
+		usedClasses.addAll (GenUtils.getOwnedAttributeTypes(currentInterface));
+		// operation parameters dependencies	
+		usedClasses.addAll (GenUtils.getIncludesFromOperations(currentInterface));
+		// dependencies and associations
+		usedClasses.addAll (GenUtils.getRelationships(currentInterface));
+
+		Iterator<Classifier> usedClassesIt = usedClasses.iterator();
+		// Parsing all as NamedElement
+		String includes = "";
+
+		while (usedClassesIt.hasNext())
+		{					
+			Classifier cl = usedClassesIt.next ();
+
+			// Only add include if this is not for the current class
+			if (!currentInterface.equals(cl)) {
+				// ... and if it does not have the stereotype "CppNoCodeGen", unless
+				// it has stereotype "CppExternalClass"
+				if ( (!GenUtils.hasStereotype(cl, CppNoCodeGen.class)) ||
+						 GenUtils.hasStereotype(cl, CppExternClass.class)) {
+
+					if ((cl instanceof Enumeration) || (cl instanceof PrimitiveType))
+					{
+						// Enumeration is not defined in a separate file, but in the
+						// package that owns it => include the owning package (might be a duplicate input, if owning
+						// package is also the owner of current interface) 
+						CppOwnerPackageIncludeDeclaration jetIDecl
+							= new CppOwnerPackageIncludeDeclaration();
+						if (cl.getOwner() instanceof Package) { 
+							newInclude = jetIDecl.generate (cl.getOwner ());
+						}
+						else {
+							newInclude = "";
+						}
+					}
+					else {
+						// include the file associated with the classifier 
+						CppClassIncludeDeclaration jetIDecl
+							= new CppClassIncludeDeclaration();
+						newInclude = jetIDecl.generate (cl);
+					}
+
+					includes = includes+newInclude;
+				}
+			}
+		}
+		
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+<%= includes %>
