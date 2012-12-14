@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.FacetAttribute;
@@ -52,7 +51,6 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetRefere
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.ReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Factory;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUtils;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
@@ -83,8 +81,8 @@ import org.eclipse.papyrus.infra.table.common.util.QueryRepresentation;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstanceFactory;
 import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration;
-import org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 
@@ -472,22 +470,25 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 */
 	protected List<EObject> getSelection() {
 		List<EObject> selectedElements = new ArrayList<EObject>();
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
+		final IWorkbenchWindow ww = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if(ww != null) {
+			ISelection selection = ww.getSelectionService().getSelection();
+			if(selection instanceof IStructuredSelection) {
 
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 
-			Iterator<?> it = structuredSelection.iterator();
-			while(it.hasNext()) {
-				Object object = it.next();
-				if(object instanceof IAdaptable) {
-					EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+				Iterator<?> it = structuredSelection.iterator();
+				while(it.hasNext()) {
+					Object object = it.next();
+					if(object instanceof IAdaptable) {
+						EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
 
-					if(currentEObject != null) {
-						selectedElements.add(currentEObject);
+						if(currentEObject != null) {
+							selectedElements.add(currentEObject);
+						}
 					}
-				}
 
+				}
 			}
 		}
 		return selectedElements;
