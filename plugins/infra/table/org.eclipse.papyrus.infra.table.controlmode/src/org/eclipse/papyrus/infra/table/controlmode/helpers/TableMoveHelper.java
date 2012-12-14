@@ -57,11 +57,12 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.exception.SashEditorException;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
-import org.eclipse.papyrus.infra.table.common.util.AdditionalContentsUtils;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement;
+import org.eclipse.papyrus.uml.profilefacet.utils.AdditionalContentsUtils;
+import org.eclipse.papyrus.uml.profilefacet.utils.ModelQuerySetUtil;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -297,7 +298,7 @@ public final class TableMoveHelper {
 
 							final Collection<ModelQuerySet> sets = new HashSet<ModelQuerySet>();
 							for(final FacetSet current : facetsets) {
-								final ModelQuerySet tmp = getModelQuerySet(current);
+								final ModelQuerySet tmp = ModelQuerySetUtil.getModelQuerySet(current);
 								if(tmp != null) {
 									sets.add(tmp);
 								}
@@ -376,7 +377,7 @@ public final class TableMoveHelper {
 				//we create the facetset
 				final Copier copier = new Copier();
 				final FacetSet copy = (FacetSet)copier.copy(sourceFacetSet);
-				final ModelQuerySet modelQuerySet = getModelQuerySet(sourceFacetSet);
+				final ModelQuerySet modelQuerySet = ModelQuerySetUtil.getModelQuerySet(sourceFacetSet);
 				if(!sourceVSTargetModelQuerySet.containsKey(modelQuerySet)) {
 					final ModelQuerySet duplicatedQuerySet = (ModelQuerySet)copier.copy(modelQuerySet);
 					sourceVSTargetModelQuerySet.put(modelQuerySet, duplicatedQuerySet);
@@ -414,28 +415,6 @@ public final class TableMoveHelper {
 		} else {
 			return compoundCommand;
 		}
-	}
-
-	/**
-	 * 
-	 * @param facetSet
-	 * @return
-	 *         the ModelQuerySet used by the facetSet or <code>null</code> if not found.
-	 *         We assume that there is only one ModelQuerySet by FacetSet
-	 */
-	public static final ModelQuerySet getModelQuerySet(final FacetSet facetSet) {
-		final TreeIterator<EObject> iter = facetSet.eAllContents();
-		while(iter.hasNext()) {
-			final EObject current = iter.next();
-			if(current instanceof StereotypeFacet) {//we assume that there is only one QuerySet used by FacetSet
-				final StereotypeFacet steFacet = (StereotypeFacet)current;
-				return steFacet.getConditionQuery().getModelQuerySet();
-			} else if(current instanceof FacetStructuralFeature) {//we assume that there is only one QuerySet used by FacetSet
-				return ((FacetStructuralFeature)current).getValueQuery().getModelQuerySet();
-
-			}
-		}
-		return null;
 	}
 
 

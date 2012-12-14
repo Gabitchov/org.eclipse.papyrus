@@ -17,7 +17,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.infra.facet.core,
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.emf.commands.core,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core,
+ org.eclipse.papyrus.infra.table.instance,
+ org.eclipse.papyrus.infra.emf,
+ org.eclipse.emf.facet.widgets.nattable.instance
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.profilefacet.queries.getter,

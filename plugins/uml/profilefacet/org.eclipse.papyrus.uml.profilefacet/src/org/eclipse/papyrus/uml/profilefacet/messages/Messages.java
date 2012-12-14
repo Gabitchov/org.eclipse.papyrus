@@ -19,9 +19,20 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.profilefacet.messages.messages"; //$NON-NLS-1$
 
+	public static String AdditionalContentsUtils_ProfileEFacetDescription;
+
 	public static String FacetOperationRegistry_RequiredFacetNotFound;
 
 	public static String FacetOperationRegistry_RequiredFacetOperationNotFound;
+
+	public static String ProfileFacetSetDestroyer_DestroyProfileFacetSetCommand;
+
+	public static String ProfileFacetSetDestroyer_ErrorMessageOnDeleteProfileFacetSet;
+	public static String ProfileFacetSetDestroyer_RemoveColumns;
+
+	public static String ProfileFacetSetDestroyer_RemoveFacetSetAppliedOnTheTable;
+
+	public static String ProfileFacetSetDestroyer_RemoveProfileFacetSetForReappliedProfile;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -21,9 +21,9 @@ public class ArgumentUtils {
 		//to prevent instanciation
 	}
 
-	public static final String STEREOTYPE_QUALIFIED_NAME = "stereotypeQualifiedName";
+	public static final String STEREOTYPE_QUALIFIED_NAME = "stereotypeQualifiedName"; //$NON-NLS-1$
 
-	public static final String EDITED_FEATURE = "editedFeature";
+	public static final String EDITED_FEATURE = "editedFeature"; //$NON-NLS-1$
 
-	public static final String EDITING_DOMAIN = "editingDomain";
+	public static final String EDITING_DOMAIN = "editingDomain"; //$NON-NLS-1$
 }

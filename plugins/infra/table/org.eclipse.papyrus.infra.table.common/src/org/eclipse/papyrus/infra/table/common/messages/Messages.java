@@ -25,8 +25,6 @@ public class Messages extends NLS {
 
 	public static String AbstractCreateNattableEditorCommand_CreateNewTableDialogTitle;
 
-	public static String AdditionalContentsUtils_AdditionContentsEPackageDocumentation;
-
 	public static String NatTableEditor_TableContextLabel;
 
 	public static String NatTableEditor_TableContextTollTip;

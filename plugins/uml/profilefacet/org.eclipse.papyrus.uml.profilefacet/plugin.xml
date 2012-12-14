@@ -5,4 +5,10 @@
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resources/uml_stereotype_queries.querySet"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.transaction.listeners">
+      <listener
+            class="org.eclipse.papyrus.uml.profilefacet.listener.ReapplyProfileTriggerListener">
+      </listener>
+   </extension>
 </plugin>
