@@ -15,6 +15,9 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.swt.graphics.Image;
 
@@ -33,6 +36,15 @@ public class AppliedStereotypeLinkLabelDisplayEditPolicy extends AppliedStereoty
 		super(tag);
 	}
 
+	@Override
+	public String stereotypesToDisplay() {
+		//if the display is not as Brace location the properties of the stereotype is not display 
+		String stereotypespresentationLocation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(((View)getHost().getModel()));
+		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION.equals(stereotypespresentationLocation)) {
+			return super.stereotypesToDisplay();
+		}
+		return "";
+	}
 	/**
 	 * Refreshes the stereotype display
 	 */
