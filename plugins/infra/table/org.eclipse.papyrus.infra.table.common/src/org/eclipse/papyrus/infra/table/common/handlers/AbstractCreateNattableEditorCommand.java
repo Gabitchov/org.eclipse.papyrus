@@ -48,6 +48,7 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.AttributeCo
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetAttributeColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetReferenceColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FeatureColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.ReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
@@ -245,7 +246,14 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			papyrusTable.setPastedElementContainmentFeature(papyrusConfiguration.getPastedElementContainmentFeature());
 			papyrusTable.setPastedElementId(papyrusConfiguration.getPastedElementId());
 
-			for(final EStructuralFeature feature : papyrusConfiguration.getDefaultColumns()) {
+			// Add default column not already added. 
+			List<EStructuralFeature> defaultFeatures = papyrusConfiguration.getDefaultColumns();
+			for(Column column : tableInstance.getColumns()) {
+				if(column instanceof FeatureColumn) {
+					defaultFeatures.remove(((FeatureColumn)column).getFeature());
+				}
+			}
+			for(final EStructuralFeature feature : defaultFeatures) {
 				if(feature instanceof FacetAttribute) {
 					FacetAttributeColumn col = TableinstanceFactory.eINSTANCE.createFacetAttributeColumn();
 					col.setAttribute((FacetAttribute)feature);
