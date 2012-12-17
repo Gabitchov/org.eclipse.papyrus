@@ -308,8 +308,6 @@ public final class ProfileFacetSetMoveHelper {
 						}
 					}
 				}
-			} else {
-				throw new RuntimeException();
 			}
 		}
 	}
