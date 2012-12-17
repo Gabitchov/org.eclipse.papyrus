@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.diff.internal.merger;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.command.Command;
@@ -32,12 +33,12 @@ public class DiffGroupTransactionalMerger extends DefaultTransactionalMerger {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DefaultTransactionalMerger#getApplyInOriginCommand(org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 * @see org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DefaultTransactionalMerger#getApplyInOriginCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, Collection)
 	 * 
 	 * @param domain
 	 * @return
 	 */
-	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
+	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain, Collection<DiffElement> alreadyManaged) {
 		if(somethingToMerge((DiffGroup)diff)) {
 			return TransactionalMergeService.getMergeCommand(domain, diff.getSubDiffElements(), false);
 		}
@@ -46,12 +47,12 @@ public class DiffGroupTransactionalMerger extends DefaultTransactionalMerger {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DefaultTransactionalMerger#getUndoInTargetCommand(org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 * @see org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DefaultTransactionalMerger#getUndoInTargetCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, Collection)
 	 * 
 	 * @param domain
 	 * @return
 	 */
-	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain) {
+	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain, Collection<DiffElement> alreadyManaged) {
 		if(somethingToMerge((DiffGroup)diff)) {
 			return TransactionalMergeService.getMergeCommand(domain, diff.getSubDiffElements(), true); //		doUndoInTarget();
 		}

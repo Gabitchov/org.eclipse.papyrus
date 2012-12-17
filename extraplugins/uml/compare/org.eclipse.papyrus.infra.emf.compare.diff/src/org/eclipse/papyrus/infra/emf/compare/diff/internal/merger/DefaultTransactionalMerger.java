@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.emf.compare.diff.internal.merger;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -77,13 +78,13 @@ import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusOptionsAdapter;
 public class DefaultTransactionalMerger extends AbstractDefaultMerger implements ITransactionalMerger {
 
 	//---------------------These methods comes from ITransactionalMerger
-	public Command getApplyInOriginCommand(TransactionalEditingDomain domain) {
+	public Command getApplyInOriginCommand(TransactionalEditingDomain domain, Collection<DiffElement> alreadyManaged) {
 		final PapyrusOptionsAdapter adapter = PapyrusCompareOptionsUtils.getPapyrusOptionsAdapter(diff);
 		//cf bug 396267: [UML Compare] it is not possible to merge a difference on a stereotype property
 		//final CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff)); //$NON-NLS-1$
 		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff.getClass())); //$NON-NLS-1$
 		if(adapter==null || adapter.canApplyInOrigin()) {
-			cmd.append(getMergeRequiredDifferencesCommand(domain, true));
+			cmd.append(getMergeRequiredDifferencesCommand(domain, true, alreadyManaged));
 			cmd.append(getDoApplyInOriginCommand(domain));
 			cmd.append(getPostProcessCommand(domain));
 		} else {
@@ -92,13 +93,13 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 		return cmd;
 	}
 
-	public Command getUndoInTargetCommand(TransactionalEditingDomain domain) {
+	public Command getUndoInTargetCommand(TransactionalEditingDomain domain, Collection<DiffElement> alreadyManaged) {
 		final PapyrusOptionsAdapter adapter = PapyrusCompareOptionsUtils.getPapyrusOptionsAdapter(diff);
 		//cf bug 396267: [UML Compare] it is not possible to merge a difference on a stereotype property
 		//final CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff)); //$NON-NLS-1$
 		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff.getClass())); //$NON-NLS-1$
 		if(adapter == null || adapter.canUndoInTarget()) {
-			cmd.append(getMergeRequiredDifferencesCommand(domain, false));
+			cmd.append(getMergeRequiredDifferencesCommand(domain, false, alreadyManaged));
 			cmd.append(getDoUndoInTargetCommand(domain));
 			cmd.append(getPostProcessCommand(domain));
 		} else {
@@ -115,7 +116,7 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	public Command getMergeRequiredDifferencesCommand(TransactionalEditingDomain domain, boolean applyInOrigin) {
+	public Command getMergeRequiredDifferencesCommand(TransactionalEditingDomain domain, boolean applyInOrigin, Collection<DiffElement> alreadyManaged) {
 		CompoundCommand cmd = new CompoundCommand("Merge required differences"); //$NON-NLS-1$
 		//		if(mergedDiffs == null) { //we need to clean it, to avoid that the command creation duplicate elements in this list
 		mergedDiffs = new ArrayList<DiffElement>();
@@ -128,12 +129,13 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 		mergedDiffs.add(diff);
 
 		for(DiffElement requiredDiff : getDependencies(applyInOrigin)) {
-			if(requiredDiff.eContainer() != null && !mergedDiffs.contains(requiredDiff)) {
+			if(requiredDiff.eContainer() != null && !alreadyManaged.contains(requiredDiff)) {
 				final ITransactionalMerger merger = TransactionalMergeFactory.createMerger(requiredDiff);
+				alreadyManaged.add(requiredDiff);
 				if(applyInOrigin) {
-					cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain));
+					cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain, alreadyManaged));
 				} else {
-					cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain));
+					cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain, alreadyManaged));
 				}
 			}
 		}
@@ -194,12 +196,12 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 	}
 
 	public boolean canApplyInOrigin() {
-		return getApplyInOriginCommand(getTransactionalEditingDomain(diff)).canExecute();
+		return getApplyInOriginCommand(getTransactionalEditingDomain(diff), new ArrayList<DiffElement>()).canExecute();
 	}
 
 
 	public boolean canUndoInTarget() {
-		return getUndoInTargetCommand(getTransactionalEditingDomain(diff)).canExecute();
+		return getUndoInTargetCommand(getTransactionalEditingDomain(diff), new ArrayList<DiffElement>()).canExecute();
 	}
 
 	//---------------------from Here to the end : duplicated and adapted code from DefaultMerger
