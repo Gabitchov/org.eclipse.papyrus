@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.utils.tests
+Bundle-Version: 0.9.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.tools.utils.tests.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit,
+ org.eclipse.uml2.uml;bundle-version="4.0.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_4ZqbMEgiEeKD36xiElEf0g" name="Model">
+  <packageImport xmi:id="_4ZqbMUgiEeKD36xiElEf0g">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PF14MEgjEeKD36xiElEf0g" name="Class1"/>
+  <packagedElement xmi:type="uml:Model" xmi:id="_QP8T0EgjEeKD36xiElEf0g" name="Model1">
+    <packagedElement xmi:type="uml:Class" xmi:id="_RGln8EgjEeKD36xiElEf0g" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QGBFUEgvEeKD36xiElEf0g" name="Class2"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_S3AmQEgvEeKD36xiElEf0g" name="Class2"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_QzCZ0EgjEeKD36xiElEf0g" name="Class1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RCiX8EgvEeKD36xiElEf0g" name="Class3"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_T1wGcEgvEeKD36xiElEf0g" name="Class3"/>
+  <packagedElement xmi:type="uml:Model" xmi:id="_KsFvEEg2EeKD36xiElEf0g" name="Model2">
+    <packagedElement xmi:type="uml:Model" xmi:id="_MHIwwEg2EeKD36xiElEf0g" name="Model2_1">
+      <packagedElement xmi:type="uml:Model" xmi:id="_M9wPsEg2EeKD36xiElEf0g" name="Model2_2">
+        <packagedElement xmi:type="uml:Class" xmi:id="_Pr1mkEg2EeKD36xiElEf0g" name="Class4"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>
