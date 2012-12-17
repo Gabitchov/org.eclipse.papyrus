@@ -15,13 +15,18 @@ package org.eclipse.papyrus.gmf.diagram.common.edit.policy;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -42,9 +47,35 @@ public class DefaultCreationEditPolicy extends CreationEditPolicy {
 	 */
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
-		// Forbid re-parent in this edit policy (to be used by compartment)
-		// in order to avoid node to be moved in compartments.
-		return UnexecutableCommand.INSTANCE;
+		//the behavior has been changed in order to allow the move of element 
+		//that are not attached to a semantic element
+		// so it Forbid re-parent in this edit policy (to be used by compartment)
+		// in order to avoid node attached to semantic to be moved in compartments.
+		@SuppressWarnings("rawtypes")
+		Iterator editParts = request.getEditParts().iterator();
+        CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
+		while ( editParts.hasNext() ) {
+			EditPart ep = (EditPart)editParts.next();
+			if ( ep instanceof LabelEditPart ) {
+				continue;
+			}		
+			View view = (View)ep.getAdapter(View.class);
+			if ( view == null ) {
+				continue;
+			}
+			
+			EObject semantic = ViewUtil.resolveSemanticElement(view);
+			if ( semantic == null ) {
+				cc.compose(getReparentViewCommand((IGraphicalEditPart)ep));
+			}
+			else{
+				return UnexecutableCommand.INSTANCE;
+			}
+			
+		}
+		return cc.isEmpty() ? null : new ICommandProxy(cc.reduce());
+		
+		
 	}
 
 	/**
