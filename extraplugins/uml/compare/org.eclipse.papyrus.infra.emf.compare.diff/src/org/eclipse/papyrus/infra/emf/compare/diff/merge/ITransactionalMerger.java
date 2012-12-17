@@ -13,7 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.diff.merge;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.compare.diff.merge.DefaultMerger;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
@@ -28,19 +31,23 @@ public interface ITransactionalMerger {
 	/**
 	 * This command should have the same behavior as {@link DefaultMerger#applyInOrigin()}
 	 * 
+	 * @param alreadyManaged
+	 *        the list of the DiffElement already managed buy the command that we are creating
 	 * @return
 	 *         the command to do the action
 	 */
-	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain);
+	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain, final Collection<DiffElement> alreadyManaged);
 
 	/**
 	 * This command should have the same behavior as {@link DefaultMerger#undoInTarget()}
 	 * 
 	 * @param domain
+	 * @param alreadyManaged
+	 *        the list of the DiffElement already managed buy the command that we are creating
 	 * @return
 	 *         the command to do the action
 	 */
-	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain);
+	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain, final Collection<DiffElement> alreadyManaged);
 
 	/**
 	 * This command should have the same behavior as {@link DefaultMerger#doApplyInOrigin}
@@ -65,10 +72,12 @@ public interface ITransactionalMerger {
 	 * 
 	 * @param domain
 	 * @param applyInOrigin
+	 * @param alreadyManaged
+	 *        the list of the DiffElement already managed buy the command that we are creating
 	 * @return
 	 *         the command to do the action
 	 */
-	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin);
+	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin, final Collection<DiffElement> alreadyManaged);
 
 	/**
 	 * This command should have the same behavior as {@link DefaultMerger#postProcess}

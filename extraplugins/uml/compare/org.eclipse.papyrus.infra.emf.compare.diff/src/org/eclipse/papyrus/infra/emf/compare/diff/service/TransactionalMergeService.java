@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.emf.compare.diff.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -124,16 +125,17 @@ public class TransactionalMergeService {
 		} else {
 			merger = TransactionalMergeFactory.createMerger(element);
 		}
+		final Collection<DiffElement> alreadyManaged = new ArrayList<DiffElement>();
 		if(merger instanceof ITransactionalMerger) {
 			if(leftToRight) {
-				cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain));
+				cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain, alreadyManaged));
 			} else {
-				cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain));
+				cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain, alreadyManaged));
 			}
 		} else {
 			throw new UnsupportedOperationException(NLS.bind("I can't found the Papyrus Merger for {0}.", element)); //$NON-NLS-1$
 		}
-
+		alreadyManaged.clear();
 		cmd.append(new FireMergeDiffEndCommand(element, getMergeListeners()));
 		return cmd;
 	}
