@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.tools.utils.tests.tests;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -94,264 +93,194 @@ public class NameResolutionTest {
 
 	@Test
 	public void findClass1() {
-		final List<List<NamedElement>> results = getResults(root, CLASS1, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
-		Assert.assertEquals(2, res1.size()); //FIXME and not 3?
-		Assert.assertEquals(2, res2.size());
+		final List<NamedElement> res1 = getResults(root, CLASS1, UMLPackage.eINSTANCE.getClass_());
+		Assert.assertEquals(2, res1.size()); //the class Model::Model1::Class1 should not be found
+		for(final NamedElement current : res1) {
+			Assert.assertSame(root, current.eContainer());
+		}
 	}
 
 	@Test
 	public void findClass1FromSubPackage() {
-		final List<List<NamedElement>> results = getResults(model1, CLASS1, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
-		Assert.assertEquals(1, res1.size()); //FIXME and not 3?
-		Assert.assertEquals(1, res2.size());
+		final List<NamedElement> res1 = getResults(model1, CLASS1, UMLPackage.eINSTANCE.getClass_());
+		Assert.assertEquals(1, res1.size()); //we should not find the Class1 owned by Model
+		Assert.assertSame(model1, res1.get(0).eContainer());
 	}
 
 
 	@Test
 	public void findClass1WithQualifiedNameFromRoot() {
-		final List<List<NamedElement>> results = getResults(root, MODEL + CLASS1_QN, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS1_QN, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
+		for(final NamedElement current : res1) {
+			Assert.assertSame(root, current.eContainer());
+		}
 	}
 
 	@Test
 	public void findClass1WithQualifiedNameFromSubPackage() {
-		final List<List<NamedElement>> results = getResults(model1, CLASS1_QN, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model1, CLASS1_QN, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(0, res1.size()); //FIXME : 0 and not 1?
-		Assert.assertEquals(0, res2.size());
 	}
 
 	@Test
 	public void findIntegerFromRoot() {
-		final List<List<NamedElement>> results = getResults(root, INTEGER, UMLPackage.eINSTANCE.getType());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, INTEGER, UMLPackage.eINSTANCE.getType());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
 	}
 
 	@Test
 	public void findIntegerFromSubPackage() {
-		final List<List<NamedElement>> results = getResults(model1, INTEGER, UMLPackage.eINSTANCE.getType());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model1, INTEGER, UMLPackage.eINSTANCE.getType());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
 	}
 
 	@Test
 	public void findClass2FromRoot() {
-		final List<List<NamedElement>> results = getResults(root, CLASS2, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void findClass2FromRootWithQualifiedName() {
-		final List<List<NamedElement>> results = getResults(root, CLASS2_QN, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS2_QN, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void findClass2FromSubPackage() {
-		final List<List<NamedElement>> results = getResults(model1, CLASS2, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model1, CLASS2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void findClass2FromSubPackageWithQualifiedName() {
-		final List<List<NamedElement>> results = getResults(model1, CLASS2_QN, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model1, CLASS2_QN, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void findClass3FromRoot() {
-		final List<List<NamedElement>> results = getResults(root, CLASS3, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void findClass3FromRootWithQualifiedName() {
-		final List<List<NamedElement>> results = getResults(root, CLASS3_QN, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS3_QN, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void findClass3FromSubPackage() {
-		final List<List<NamedElement>> results = getResults(model1, CLASS3, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model1, CLASS3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void findClass3FromSubPackageWithQualifiedName() {
-		final List<List<NamedElement>> results = getResults(model1, CLASS3_QN, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model1, CLASS3_QN, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromRoot_V1() {
-		final List<List<NamedElement>> results = getResults(root, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromRoot_V2() {
-		final List<List<NamedElement>> results = getResults(root, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromRoot_V3() {
-		final List<List<NamedElement>> results = getResults(root, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(root, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
-		Assert.assertEquals(2, res2.size());
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromFirstLevel_V1() {
-		final List<List<NamedElement>> results = getResults(model2, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromFirstLevel_V2() {
-		final List<List<NamedElement>> results = getResults(model2, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromFirstLevel_V3() {
-		final List<List<NamedElement>> results = getResults(model2, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
+
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromSecondLevel_V1() {
-		final List<List<NamedElement>> results = getResults(model2_1, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2_1, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromSecondLevel_V2() {
-		final List<List<NamedElement>> results = getResults(model2_1, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2_1, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
+
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromSecondLevel_V3() {
-		final List<List<NamedElement>> results = getResults(model2_1, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2_1, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
+
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromThirdLevel_V1() {
-		final List<List<NamedElement>> results = getResults(model2_2, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2_2, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
+
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromThirdLevel_V2() {
-		final List<List<NamedElement>> results = getResults(model2_2, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2_2, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
+
 	}
 
 	@Test
 	public void finalClass4WithPartialQualifiedNameFromThirdLevel_V3() {
-		final List<List<NamedElement>> results = getResults(model2_2, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
-		final List<NamedElement> res1 = results.get(0);
-		final List<NamedElement> res2 = results.get(1);
+		final List<NamedElement> res1 = getResults(model2_2, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
+
 		Assert.assertEquals(1, res1.size());
-		Assert.assertEquals(1, res2.size());
+
 	}
 
 	/**
+	 * Returns the list of the elements that we are looking for AND verify that the 2 classes {@link NameResolutionHelper} and
+	 * {@link NameResolutionUtils} find the same result
 	 * 
 	 * @param namespace
-	 *        a namespace
+	 *        the namespace where we look for the element
 	 * @param name
-	 *        the name (or qualified name) of the looked for element
+	 *        the name (can be qualified, partially-qualified or not qualified) of the element
 	 * @param wantedEClass
-	 *        the type of the wanted element
+	 *        the wanted eclass
 	 * @return
-	 *         the list of list of results :
-	 *         <ul>
-	 *         <li>
-	 *         the first result is obtained using {@link NameResolutionHelper}</li>
-	 *         <li>the second result is obtained using {@link NameResolutionUtils}</li>
-	 *         </ul>
+	 *         the found elements
 	 */
-	public List<List<NamedElement>> getResults(final Namespace namespace, final String name, final EClass wantedEClass) {
+	public List<NamedElement> getResults(final Namespace namespace, final String name, final EClass wantedEClass) {
 		NameResolutionHelper helper = new NameResolutionHelper(namespace, wantedEClass);
 		List<NamedElement> result1 = helper.getNamedElements(name);
 		List<NamedElement> result2 = NameResolutionUtils.getNamedElements(name, namespace, wantedEClass);
 		Assert.assertEquals("The 2 results are not equals", result1, result2); //$NON-NLS-1$
-		List<List<NamedElement>> result = new ArrayList<List<NamedElement>>();
-		result.add(result1);
-		result.add(result2);
-		return result;
+		return result1;
 	}
 
 	@AfterClass
