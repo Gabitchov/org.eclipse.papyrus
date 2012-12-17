@@ -28,9 +28,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageSort;
 
 /**
  * @generated
@@ -100,7 +102,10 @@ public class Message2CreateCommand extends EditElementCommand {
 				return false;
 			}
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4004(getContainer(), getSource(), getTarget());
+		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4004(getContainer(), getSource(), getTarget())) {
+			return false;
+		}
+		return MessageConnectionHelper.canExist(MessageSort.ASYNCH_CALL_LITERAL, getSource(), getTarget());
 	}
 
 	/**

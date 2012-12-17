@@ -30,15 +30,10 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightConnectionPartEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
@@ -68,10 +63,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	}
 
 	private void installHighlightPolicy(EditPart editPart) {
-		if(editPart instanceof LifelineEditPart || editPart instanceof AbstractExecutionSpecificationEditPart || editPart instanceof CombinedFragmentEditPart || editPart instanceof InteractionOperandEditPart
-			|| editPart instanceof ConstraintEditPart || editPart instanceof CommentEditPart){
-			editPart.installEditPolicy("highlight", new HighlightConnectionPartEditPolicy());
-		}
+		editPart.installEditPolicy("highlight", new HighlightEditPolicy());
 	}
 
 	private void installPopupbarPolicy(final EditPart editPart) {

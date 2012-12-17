@@ -56,9 +56,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class MessageItemSemanticEditPolicy extends AbstractMessageItemSemanticEditPolicy {
 
 	/**
 	 * @generated

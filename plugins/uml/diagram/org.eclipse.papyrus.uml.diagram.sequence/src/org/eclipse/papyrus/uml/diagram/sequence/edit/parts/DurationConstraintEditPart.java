@@ -66,7 +66,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeRelatedSelecti
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
 /**
  * @generated
@@ -132,9 +136,11 @@ BorderedBorderItemEditPart {
 		} else {
 			super.refreshBounds();
 		}
-		
+						
 		//fix combined fragment move
 		this.getFigure().getParent().getLayoutManager().layout(	this.getFigure().getParent());
+		
+		relocateLabelEditPart();				
 	}
 
 	/**
@@ -200,7 +206,11 @@ BorderedBorderItemEditPart {
 	 * @generated NOT use ExternalLabelPositionLocator
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof DurationConstraintLabelEditPart || borderItemEditPart instanceof DurationConstraintAppliedStereotypeEditPart) {
+		if (borderItemEditPart instanceof DurationConstraintLabelEditPart ){
+			DurationConstraintLabelLocator locator = new DurationConstraintLabelLocator(getMainFigure());
+			locator.setParentEditPart(this);
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if(borderItemEditPart instanceof DurationConstraintAppliedStereotypeEditPart) {
 			//use ExternalLabelPositionLocator
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -1332,5 +1342,101 @@ BorderedBorderItemEditPart {
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLineWidth();
+	}	
+
+	private void relocateLabelEditPart() {
+		List list = this.getChildren();
+		for (Object o : list) {
+			if (o instanceof DurationConstraintLabelEditPart) {
+				DurationConstraintLabelEditPart label = (DurationConstraintLabelEditPart) o;
+				if(label.getBorderItemLocator() != null){
+					 IBorderItemLocator loc = label.getBorderItemLocator();
+					 loc.relocate(label.getFigure());
+				}
+			}
+		}
+	}	
+	
+	public Rectangle updateMoveBounds(Rectangle newBounds) {
+		if(getCurrentSideOfParent() == PositionConstants.WEST){
+			Rectangle bounds = this.getFigure().getBounds();
+			return newBounds.translate(-bounds.width, 0);  // keep bounds in left side
+		}			
+		return newBounds;
+	}
+	
+	public int getCurrentSideOfParent(){
+		IBorderItemLocator locator = this.getBorderItemLocator();
+		if(locator != null ){
+			return locator.getCurrentSideOfParent();
+		}
+		return PositionConstants.EAST;
+	}	
+	
+	public static Rectangle fixMessageBounds(Rectangle newBounds,
+			Request cvr, LifelineEditPart host) {
+		Object oc1 = getFirstElement(cvr.getExtendedData()
+				.get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION));
+		Object oc2 = getFirstElement(cvr.getExtendedData()
+				.get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2));
+			
+		if(oc1 != null && oc2 != null && (oc1 instanceof MessageOccurrenceSpecification  || oc2 instanceof MessageOccurrenceSpecification) ){
+			Point start = null, end = null;
+			Rectangle bounds = null;
+			if(oc1 instanceof InteractionFragment)
+				start = SequenceUtil.findLocationOfEvent(host, (InteractionFragment) oc1, true);			
+			if(oc2 instanceof InteractionFragment)
+				end = SequenceUtil.findLocationOfEvent(host, (InteractionFragment) oc2, true);
+			
+			if(start != null && end != null){
+				bounds = (start.y < end.y)? new Rectangle(start, end) : new Rectangle(end, start);
+			}
+			
+			if(bounds != null){
+				IFigure parentFigure = host.getFigure();
+				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
+				parentFigure.translateToRelative(bounds);
+				bounds.translate(parentFigDelta);						
+				if(bounds.y != newBounds.y || newBounds.height != bounds.height){
+					newBounds.y = bounds.y;
+					newBounds.height = bounds.height;		
+				}			
+			}
+		}
+		return newBounds;
+	}
+	
+	static Object getFirstElement(Object obj){
+		if(obj != null && obj instanceof List){
+			List list = (List) obj;
+			if(list.size() > 0)
+				return list.get(0);
+		}
+		return null;
+	}
+	static class DurationConstraintLabelLocator extends ExternalLabelPositionLocator{
+		private DurationConstraintEditPart durationConstraintEditPart;
+
+		public DurationConstraintLabelLocator(IFigure mainFigure) {
+			super(mainFigure);
+		}
+
+		public void setParentEditPart(DurationConstraintEditPart durationConstraintEditPart) {
+			this.durationConstraintEditPart = durationConstraintEditPart;
+		}
+		
+		@Override
+		public void relocate(IFigure target) {
+			if(constraint.y == 0){
+				if(durationConstraintEditPart.getCurrentSideOfParent() == PositionConstants.WEST){
+					Point r = parentFigure.getBounds().getLeft().translate(-20, -5);
+					target.setBounds( new Rectangle(r, target.getPreferredSize() ));
+				}else{
+					Point r = parentFigure.getBounds().getRight().translate(5, -5);
+					target.setBounds( new Rectangle(r, target.getPreferredSize() ));
+				}
+			}else
+				super.relocate(target);
+		}
 	}
 }

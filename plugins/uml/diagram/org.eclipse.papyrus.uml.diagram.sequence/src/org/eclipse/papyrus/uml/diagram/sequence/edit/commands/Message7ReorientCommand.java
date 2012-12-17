@@ -75,7 +75,7 @@ public class Message7ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean canReorientSource() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
@@ -93,7 +93,7 @@ public class Message7ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean canReorientTarget() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
@@ -104,7 +104,13 @@ public class Message7ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4009(container, getLink(), source, getNewTarget());
+		//Fixed bug about message reconnection.
+		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4009(container, getLink(), source, getNewTarget())) {
+			return false;
+		}
+		//FIXME: Please complete reorientTarget() firstly.
+		return false;
+//		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());
 	}
 
 	/**

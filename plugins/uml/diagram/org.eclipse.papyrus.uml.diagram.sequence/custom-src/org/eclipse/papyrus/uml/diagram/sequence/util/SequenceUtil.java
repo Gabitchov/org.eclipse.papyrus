@@ -50,7 +50,6 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -58,10 +57,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -69,9 +66,7 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
@@ -286,6 +281,10 @@ public class SequenceUtil {
 	 * @return the absolute location or null if not found
 	 */
 	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, InteractionFragment fragment) {
+		return findLocationOfEvent(lifelineEditPart, fragment, false);
+	}
+	
+	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, InteractionFragment fragment, boolean relyOnMessageFigure) {
 		if(lifelineEditPart == null) {
 			return null;
 		}
@@ -345,7 +344,7 @@ public class SequenceUtil {
 						}
 					} else if(fragment instanceof MessageOccurrenceSpecification) {
 						// check messages to and from the execution
-						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
+						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment, relyOnMessageFigure);
 						if(loc != null) {
 							return loc;
 						}
@@ -364,7 +363,7 @@ public class SequenceUtil {
 						}
 					} else if(fragment instanceof MessageOccurrenceSpecification) {
 						// check messages to and from the execution
-						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
+						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment, relyOnMessageFigure);
 						if(loc != null) {
 							return loc;
 						}
@@ -373,7 +372,7 @@ public class SequenceUtil {
 			}
 			if(fragment instanceof MessageOccurrenceSpecification) {
 				// check messages to and from the lifeline
-				Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)fragment);
+				Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)fragment, relyOnMessageFigure);
 				if(loc != null) {
 					return loc;
 				}
@@ -454,8 +453,12 @@ public class SequenceUtil {
 	 * @return connection's extremity in absolute coordinates or null
 	 */
 	public static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart) {
+		return getAbsoluteEdgeExtremity(connection, isStart, false);
+	}
+	
+	static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart, boolean relyOnMessageFigure) {		
 		Connection msgFigure = connection.getConnectionFigure();
-		if(connection.getNotationView() instanceof Edge) {
+		if(connection.getNotationView() instanceof Edge && !relyOnMessageFigure) {
 			// rather take up to date model information
 			Edge edge = (Edge)connection.getNotationView();
 			Anchor idAnchor = null;
@@ -515,6 +518,10 @@ public class SequenceUtil {
 	 * @return the absolute location or null
 	 */
 	public static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event) {
+		return findLocationOfMessageOccurrence(nodeEditPart, event, false);
+	}
+	
+	static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {				
 		// messages to the node
 		List<?> targetConnections = nodeEditPart.getTargetConnections();
 		for(Object conn : targetConnections) {
@@ -524,7 +531,7 @@ public class SequenceUtil {
 					// finish event of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, false);
+						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, false, relyOnMessageFigure);
 					}
 				}
 			}
@@ -538,7 +545,7 @@ public class SequenceUtil {
 					// start event of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, true);
+						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, true, relyOnMessageFigure);
 					}
 				}
 			}

@@ -11,25 +11,18 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
@@ -565,9 +558,48 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				return signature.getName();
 			}
 
-			return e.getName();
+			// signature is null
+			return getMessageLabel(e, displayValue);
 		}
 		
+		private String getMessageLabel(Message e, int style) {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(e.getName());
+			
+			// parameters : '(' parameter-list ')'
+			EList<ValueSpecification> arguments = e.getArguments();
+			if(arguments.size() > 0 && (style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_DERIVE) != 0){
+				buffer.append("(");
+				for(int i = 0 ;i < arguments.size(); i ++){					
+					if(i > 0)
+						buffer.append(", ");
+					
+					ValueSpecification arg = arguments.get(i);
+					boolean showEqualMark = false;
+					// name
+					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
+						buffer.append(" ");
+						String name = trimToEmpty(arg.getName());
+						buffer.append(name);
+						if(name.trim().length() > 0)
+							showEqualMark = true;
+					}
+					
+					// value
+					if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+						String value = ValueSpecificationUtil.getSpecificationValue(arg);
+						if(value != null){
+							if(showEqualMark)
+								buffer.append(" = ");
+							buffer.append(value);
+						} 
+					}										
+				}
+				buffer.append(")");			
+			}
+			return buffer.toString();
+		}
+
 		public String getMaskLabel(int value) {
 			return masks.get(value);
 		}

@@ -23,6 +23,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
@@ -209,12 +210,37 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			}
 
 		}
-
-		request.getExtendedData().put(
-				SequenceRequestConstant.SOURCE_LOCATION_DATA,
-				request.getLocation());
-
+		
+		/**
+		 * Sometime, the viewport would be scrolled when drag to select the target of connection by using AutoexposeHelper. We need to adjust the source
+		 * location if needed.
+		 */
+		PointEx sourcePoint = new PointEx(request.getLocation());
+		Viewport vp = findViewport((GraphicalEditPart)getHost().getViewer().getRootEditPart());
+		if(vp != null) {
+			Point loc1 = vp.getClientArea().getLocation().getCopy();
+			sourcePoint.setViewportLocation(loc1);
+		}
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, sourcePoint);
+		//Safely calculate the source model container here.
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(sourcePoint, getHost()));
 		return super.getConnectionCreateCommand(request);
+	}
+
+	protected Viewport findViewport(GraphicalEditPart part) {
+		IFigure figure = null;
+		Viewport port = null;
+		do {
+			if(figure == null)
+				figure = part.getContentPane();
+			else
+				figure = figure.getParent();
+			if(figure instanceof Viewport) {
+				port = (Viewport)figure;
+				break;
+			}
+		} while(figure != part.getFigure() && figure != null);
+		return port;
 	}
 
 	/**
@@ -245,7 +271,15 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		Point sourcePoint = (Point)request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
 		Point targetPoint = request.getLocation();
-
+		
+		//Adjust source location to current coordinate system (the viewport may be scrolled by AutoexposeHelper.).
+		if(sourcePoint instanceof PointEx) {
+			Viewport vp = findViewport((GraphicalEditPart)getHost().getViewer().getRootEditPart());
+			if(vp != null) {
+				Point loc2 = vp.getClientArea().getLocation();
+				sourcePoint = ((PointEx)sourcePoint).adjustToFitNewViewport(loc2);
+			}
+		}
 		// prevent uphill message (leave margin for horizontal messages)
 		boolean messageCreate =((IHintedType)UMLElementTypes.Message_4006).getSemanticHint().equals(requestHint);
 		if(sourcePoint == null || sourcePoint.y >= targetPoint.y + MARGIN) {
@@ -275,7 +309,8 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				return UnexecutableCommand.INSTANCE;
 		}
 
-		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(sourcePoint, getHost()));
+		//The SOURCE MODEL should be calculated when connection started, the scroll bar maybe already changed when connection come to finished.
+		//		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(sourcePoint, getHost()));
 		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(targetPoint, getHost()));
 		// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
 		EditPart targetEditPart = getTargetEditPart(request);
@@ -520,5 +555,37 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return ConnectionRouter.NULL; 
 		}
 		return super.getDummyConnectionRouter(req);
+	}
+	
+	/**
+	 * A new point class which can hold the location of the viewpoint. The user can use adjustToFitNewViewport() service to get the correctly point in
+	 * given viewport.
+	 * 
+	 * @author Jin Liu
+	 */
+	private static class PointEx extends Point {
+
+		private static final long serialVersionUID = -3049675238350676816L;
+
+		private Point viewportLocation;
+
+		public PointEx(Point pt) {
+			super(pt);
+		}
+
+		public void setViewportLocation(Point p) {
+			if(p != null) {
+				viewportLocation = p.getCopy();
+			}
+		}
+
+		public Point adjustToFitNewViewport(Point newViewportLoc) {
+			Point pt = getCopy();
+			if(newViewportLoc != null && viewportLocation != null && !newViewportLoc.equals(viewportLocation)) {
+				pt.x += (viewportLocation.x - newViewportLoc.x);
+				pt.y += (viewportLocation.y - newViewportLoc.y);
+			}
+			return pt;
+		}
 	}
 }

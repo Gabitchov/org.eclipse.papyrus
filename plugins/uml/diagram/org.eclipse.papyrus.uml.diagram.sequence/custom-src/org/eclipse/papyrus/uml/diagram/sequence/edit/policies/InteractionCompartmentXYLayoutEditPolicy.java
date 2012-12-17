@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -72,6 +74,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
@@ -768,22 +772,76 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	@Override
 	protected void showSizeOnDropFeedback(CreateRequest request) {
 		super.showSizeOnDropFeedback(request);
-		if(request instanceof CreateAspectUnspecifiedTypeRequest){
-			CreateAspectUnspecifiedTypeRequest req = (CreateAspectUnspecifiedTypeRequest)request;
-			if(req.getElementTypes().contains(UMLElementTypes.CombinedFragment_3004) || req.getElementTypes().contains(UMLElementTypes.ConsiderIgnoreFragment_3007)){
-				IFigure feedback = getSizeOnDropFeedback(request);
-				Rectangle b = feedback.getBounds().getCopy();
-				feedback.translateToAbsolute(b);
-				
-				HighlightUtil.showSizeOnDropFeedback(request, getHost(),feedback,b);				
+		if (request instanceof CreateAspectUnspecifiedTypeRequest) {
+			CreateAspectUnspecifiedTypeRequest req = (CreateAspectUnspecifiedTypeRequest) request;
+			if (req.getElementTypes().contains(
+					UMLElementTypes.CombinedFragment_3004)
+					|| req.getElementTypes().contains(
+							UMLElementTypes.ConsiderIgnoreFragment_3007)) {
+				Rectangle rect = new Rectangle(request.getLocation(),
+						request.getSize());
+				if (!coveredLifelines.isEmpty()) {
+					for (LifelineEditPart lifeline : coveredLifelines) {
+						HighlightUtil.unhighlight(lifeline);
+					}
+					coveredLifelines.clear();
+				}
+				fillCoveredLifelines(rect);
+				for (LifelineEditPart lifeline : coveredLifelines) {
+					HighlightUtil.highlight(lifeline);
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	private void fillCoveredLifelines(Rectangle rect) {
+		coveredLifelines.clear();
+		Collection values = getHost().getViewer().getEditPartRegistry()
+				.values();
+		for (Object object : values) {
+			if (!(object instanceof LifelineEditPart)) {
+				continue;
+			}
+			LifelineEditPart lifeline = ((LifelineEditPart) object);
+			LifelineFigure primaryShape = lifeline.getPrimaryShape();
+			RectangleFigure nameFigure = primaryShape
+					.getFigureLifelineNameContainerFigure();
+			if (nameFigure != null) {
+				Rectangle r = nameFigure.getBounds().getCopy();
+				nameFigure.translateToAbsolute(r);
+				if (rect.intersects(r)) {
+					coveredLifelines.add(lifeline);
+					continue;
+				}
+			}
+			LifelineDotLineCustomFigure dotLineFigure = primaryShape
+					.getFigureLifelineDotLineFigure();
+			if (dotLineFigure != null) {
+				Rectangle r = dotLineFigure.getBounds().getCopy();
+				if (r.width != 1) {
+					r.shrink(r.width / 2 - 1, 0);
+				}
+				dotLineFigure.translateToAbsolute(r);
+				if (rect.intersects(r)) {
+					coveredLifelines.add(lifeline);
+					continue;
+				}
 			}
 		}
 	}
 
 	@Override
 	protected void eraseSizeOnDropFeedback(Request request) {
-		HighlightUtil.eraseSizeOnDropFeedback(request, getHost());
+		if (!coveredLifelines.isEmpty()) {
+			for (LifelineEditPart lifeline : coveredLifelines) {
+				HighlightUtil.unhighlight(lifeline);
+			}
+			coveredLifelines.clear();
+		}
 		super.eraseSizeOnDropFeedback(request);
 	}
 
+	private List<LifelineEditPart> coveredLifelines = new ArrayList<LifelineEditPart>(
+			1);
 }

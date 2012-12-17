@@ -32,6 +32,7 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -96,7 +97,9 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
@@ -1277,6 +1280,10 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 				refreshLabel();
 			}
 		}
+		
+		if(notification.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.QUALIFIED_NAME.equals(((EAnnotation)notification.getNewValue()).getSource()) ) {
+			refreshLabel();
+		}
 		super.handleNotificationEvent(notification);
 		//fixed bug (id=364711) when bounds changed update coveredBys with the figure's bounds.
 		if (notification.getNotifier() instanceof Bounds) {
@@ -1406,6 +1413,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 		if(element instanceof CombinedFragment) {
 			CombinedFragment combinedFragment = (CombinedFragment)element;
 			String name = combinedFragment.getName();
+			
+			int depth = AppearanceHelper.getQualifiedNameDepth(this.getNotationView());
+			if(depth == 0){ // full qualified
+				name = combinedFragment.getQualifiedName();
+			}
+			
 			WrappingLabel label = getPrimaryShape().getTitleLabel();
 			label.setText(name);
 			

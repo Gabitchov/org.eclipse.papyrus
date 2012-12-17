@@ -167,7 +167,7 @@ public class LifelineMessageCreateHelper {
 
 	public static Command reconnectMessageCreateTarget(ReconnectRequest request, Command command) {
 		LifelineEditPart oldTarget = (LifelineEditPart)request.getConnectionEditPart().getTarget();
-		LifelineEditPart source = (LifelineEditPart)request.getConnectionEditPart().getSource();
+//		LifelineEditPart source = (LifelineEditPart)request.getConnectionEditPart().getSource();
 		LifelineEditPart newTarget = (LifelineEditPart)request.getTarget();
 		// move up the original connection target lifeline, it has only one create message, which will be removed
 		if(getIncomingMessageCreate(oldTarget).size() == 1) {

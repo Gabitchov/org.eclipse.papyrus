@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompart
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 
 /**
  * @generated
@@ -140,5 +142,41 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 			index = 0;
 		}
 		super.addChildVisual(childEditPart, index);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#
+	 * showTargetFeedback(org.eclipse.gef.Request)
+	 */
+	@Override
+	public void showTargetFeedback(Request request) {
+		if (!isEditModeEnabled() || !isActive()) {
+			return;
+		}
+		// Avoid default drop feedback by setting background, just highlight it
+		// with bold border.
+		EditPolicyIterator i = getEditPolicyIterator();
+		while (i.hasNext()) {
+			EditPolicy next = i.next();
+			if (REQ_CREATE.equals(request.getType()) && next.getClass().getName().equals("org.eclipse.papyrus.infra.gmfdiag.dnd.policy.CustomizableDropEditPolicy")) {
+				HighlightUtil.highlight(this);
+			}else{
+				next.showTargetFeedback(request);
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#
+	 * eraseTargetFeedback(org.eclipse.gef.Request)
+	 */
+	@Override
+	public void eraseTargetFeedback(Request request) {
+		super.eraseTargetFeedback(request);
+		HighlightUtil.unhighlight(this);
 	}
 }

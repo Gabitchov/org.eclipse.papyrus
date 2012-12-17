@@ -136,7 +136,11 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	private EditPolicy createCreationEditPolicy() {
 		return new CreationEditPolicy(){
 			protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
-				ICommandProxy commandProxy = (ICommandProxy)super.getCreateElementAndViewCommand(request);
+				Command createCommand = super.getCreateElementAndViewCommand(request);
+				if (createCommand == null || !createCommand.canExecute()){
+					return createCommand;
+				}
+				ICommandProxy commandProxy = (ICommandProxy)createCommand;
 				CompositeCommand command = (CompositeCommand)commandProxy.getICommand();
 				
 				IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;

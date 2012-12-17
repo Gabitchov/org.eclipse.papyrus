@@ -49,6 +49,12 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 
 public abstract class AbstractExecutionSpecificationEditPart extends
 		ShapeNodeEditPart {
+	
+	/**
+	 * Height margin between parent and child ExecutionSpecification.
+	 */
+	public static final int MARGIN_HEIGHT = 15;
+	
 	private List executionSpecificationEndParts;
 
 	public AbstractExecutionSpecificationEditPart(View view) {
@@ -134,7 +140,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends
 						rect = ((HandleBounds)figure).getBounds().getCopy();
 					}
 					figure.translateToAbsolute(rect);
-					if(rect.y < r.y || rect.bottom() > r.bottom()) {
+					if(rect.y  < (r.y+ MARGIN_HEIGHT) || rect.bottom() > (r.bottom() - MARGIN_HEIGHT)) {
 						return UnexecutableCommand.INSTANCE;
 					}
 				}
@@ -376,7 +382,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends
 	@Override
 	public void eraseTargetFeedback(Request request) {
 		if(request instanceof CreateUnspecifiedTypeRequest) {
-			getParent().eraseSourceFeedback(request);
+			getParent().eraseTargetFeedback(request);
 		}
 		super.eraseTargetFeedback(request);
 	}

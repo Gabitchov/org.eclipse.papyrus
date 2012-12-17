@@ -147,6 +147,18 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 		}
 	}
 
+	@Override
+	public boolean containsPoint(int x, int y) {
+		if (!super.containsPoint(x, y)) {
+			return false;
+		}
+		NodeFigure dashLineRectangle = getDashLineRectangle();
+		if (dashLineRectangle.containsPoint(x, y)) {
+			return true;
+		}
+		return false;
+	}
+	
 	// fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=384616
 	public static class DefaultSizeNodeFigureEx extends DefaultSizeNodeFigure {
 

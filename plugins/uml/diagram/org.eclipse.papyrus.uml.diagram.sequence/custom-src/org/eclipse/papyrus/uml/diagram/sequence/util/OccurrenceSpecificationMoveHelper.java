@@ -58,6 +58,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -516,6 +517,10 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		if(newBounds != null) {
 			TransactionalEditingDomain editingDomain = timePart.getEditingDomain();
+			if(timePart instanceof DurationConstraintEditPart){
+				DurationConstraintEditPart dcep = (DurationConstraintEditPart) timePart;
+				newBounds = dcep.updateMoveBounds(newBounds);
+			}
 			// return the resize command
 			ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)timePart.getModel()), newBounds));
 			return resize;

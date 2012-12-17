@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ReconnectMessageHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
@@ -88,7 +89,7 @@ public class MessageReorientCommand extends EditElementCommand {
 			return false;
 		}
 		//Fixed bug about reconnect messages.
-		return ReconnectMessageHelper.canReorientSource(getLink(), getNewSource());
+		return MessageConnectionHelper.canReorientSource(getLink(), getNewSource());
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class MessageReorientCommand extends EditElementCommand {
 		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4003(container, getLink(), source, getNewTarget())) {
 			return false;
 		}
-		return ReconnectMessageHelper.canReorientTarget(getLink(), getNewTarget());
+		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());
 	}
 
 	/**

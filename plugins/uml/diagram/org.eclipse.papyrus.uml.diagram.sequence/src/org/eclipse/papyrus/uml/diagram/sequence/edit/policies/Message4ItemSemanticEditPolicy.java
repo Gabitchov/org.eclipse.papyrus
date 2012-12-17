@@ -57,9 +57,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class Message4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class Message4ItemSemanticEditPolicy extends AbstractMessageItemSemanticEditPolicy {
 
 	/**
 	 * @generated

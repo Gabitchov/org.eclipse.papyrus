@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.BorderLayout;
@@ -30,6 +31,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
@@ -338,10 +340,10 @@ public class LifelineEditPart extends NamedElementEditPart {
 		return new BorderedNodeFigure(createMainFigure()){
 			@Override
 			public void setBackgroundColor(Color bg) {
-				if (getPrimaryShape() != null) {
-					NodeFigure dashLineRectangle = getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
-					dashLineRectangle.setBackgroundColor(bg);
-				}
+//				if (getPrimaryShape() != null) {
+//					NodeFigure dashLineRectangle = getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
+//					dashLineRectangle.setBackgroundColor(bg);
+//				}
 			}
 			
 			@Override
@@ -350,13 +352,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 					NodeFigure dashLineRectangle = getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
 					dashLineRectangle.setOpaque(opaque);
 				}
-			}
-			
-			public boolean containsPoint(int x, int y) {
-				if (primaryShape != null) {
-					return primaryShape.containsPoint(x, y);
-				}
-				return super.containsPoint(x, y);
 			}
 		};
 	}	
@@ -1589,15 +1584,41 @@ public class LifelineEditPart extends NamedElementEditPart {
 			if (fFigureLifelineNameContainerFigure != null
 					&& fFigureLifelineNameContainerFigure.containsPoint(x, y)) {
 				return true;
-			} else if (fFigureLifelineDotLineFigure != null) {
+			} else if (!isInlineMode() && fFigureLifelineDotLineFigure != null) {
 				Rectangle bounds = fFigureLifelineDotLineFigure
 						.getDashLineRectangle().getBounds().getCopy();
 				bounds.expand(4, 0);
 				if (bounds.contains(x, y))
 					return true;
 			}
+			return containsChildFigure(this, x, y);
+		}
 
-			return isChildLifelineSelected(x,y);
+		@Override
+		public IFigure findFigureAt(int x, int y, TreeSearch search) {
+			IFigure figure = super.findFigureAt(x, y, search);
+			if (figure == null){
+				return null;
+			}
+			// 1. First check if the location is enter the Title.
+			if (fFigureLifelineNameContainerFigure != null
+					&& fFigureLifelineNameContainerFigure.containsPoint(x, y)) {
+				return this;
+			} 
+			//2. Check children, maybe contain the Label figure, but we process it before.
+			IFigure child = findChildFigure(this, x, y);
+			if (child != null) {
+				return child;
+			}
+			//3. Finally check the line.
+			if (!isInlineMode() && fFigureLifelineDotLineFigure != null) {
+				Rectangle bounds = fFigureLifelineDotLineFigure
+						.getDashLineRectangle().getBounds().getCopy();
+				bounds.expand(4, 0);
+				if (bounds.contains(x, y))
+					return this;
+			}
+			return null;
 		}
 		
 		@Override
@@ -1628,18 +1649,73 @@ public class LifelineEditPart extends NamedElementEditPart {
 		}
 	}
 
-	private boolean isChildLifelineSelected(int x, int y){
-		if (inlineMode) {
-			List parts = getChildren();
-			for(Object p : parts)
-				if(p instanceof LifelineEditPart) {
-					LifelineEditPart child = (LifelineEditPart)p;
-					IFigure fig = child.getFigure();
-					if(fig.containsPoint(x, y))
-						return true;
+	/**
+	 * Check if the IFigure contains point, only check visible figures.
+	 * 
+	 * @param parent
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	private boolean containsChildFigure(IFigure parent, int x, int y) {
+		if (parent == null) {
+			return false;
+		}
+		Map visualPartMap = getViewer().getVisualPartMap();
+		List figures = parent.getChildren();
+		Point pt = new Point(x, y);
+		parent.translateFromParent(pt);
+		IFigure child;
+		for (int i = figures.size(); i > 0;) {
+			i--;
+			child = (IFigure) figures.get(i);
+			if (!child.isVisible()) {
+				continue;
+			}
+			if (containsChildFigure(child, pt.x, pt.y)) {
+				return true;
+			}
+			if (visualPartMap.containsKey(child)) {
+				if (child.containsPoint(pt)) {
+					return true;
 				}
+			}
 		}
 		return false;
+	}
+
+	/**
+	 * Do NOT care the mode, we just want to check if there are children in
+	 * given location.
+	 */
+	@SuppressWarnings("rawtypes")
+	private IFigure findChildFigure(IFigure parent, int x, int y) {
+		if (parent == null) {
+			return null;
+		}
+		Map visualPartMap = getViewer().getVisualPartMap();
+		List figures = parent.getChildren();
+		Point pt = new Point(x, y);
+		parent.translateFromParent(pt);
+		IFigure child;
+		for (int i = figures.size(); i > 0;) {
+			i--;
+			child = (IFigure) figures.get(i);
+			if (!child.isVisible()) {
+				continue;
+			}
+			IFigure fig = findChildFigure(child, pt.x, pt.y);
+			if (fig != null) {
+				return fig;
+			}
+			if (visualPartMap.containsKey(child)) {
+				if (child.containsPoint(pt)) {
+					return child;
+				}
+			}
+		}
+		return null;
 	}
 	/**
 	 * @generated

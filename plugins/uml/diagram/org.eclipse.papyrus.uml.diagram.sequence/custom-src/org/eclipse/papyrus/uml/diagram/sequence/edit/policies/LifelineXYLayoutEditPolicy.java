@@ -48,10 +48,12 @@ import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCo
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomZOrderCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart.StateInvariantResizableEditPolicy;
@@ -94,9 +96,6 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	private static final String BEHAVIOR_EXECUTION_SPECIFICATION_HINT = ((IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003).getSemanticHint();
 
 	private static final String CO_REGION_HINT = ((IHintedType)UMLElementTypes.CombinedFragment_3018).getSemanticHint();
-
-	private HighlightUtil highlightUtil = new HighlightUtil();
-
 
 	/**
 	 * {@inheritDoc}
@@ -154,8 +153,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					}
 				}
 				if(editPartForHighlight != null) {
-					highlightUtil.unhighlight();
-					highlightUtil.highlight(editPartForHighlight);
+//					HighlightUtil.highlight(editPartForHighlight);
 				}
 			}
 		}
@@ -163,9 +161,15 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	}
 
 	@Override
+	protected void showSizeOnDropFeedback(CreateRequest request) {
+		// TODO Auto-generated method stub
+//		super.showSizeOnDropFeedback(request);
+	}
+	
+	@Override
 	protected void eraseLayoutTargetFeedback(Request request) {
 		super.eraseLayoutTargetFeedback(request);
-		highlightUtil.unhighlight();
+		HighlightUtil.unhighlight();
 	}
 
 	@Override
@@ -327,9 +331,15 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		
 		childBounds.x = bounds.x;
 		childBounds.width = bounds.width;
-		if(bounds.contains(childBounds))
+		//Fixed bug about resize parent of ES, keep 16pixel margin both at top and bottom.
+		int margin = AbstractExecutionSpecificationEditPart.MARGIN_HEIGHT;
+		Rectangle rect = bounds.getCopy();
+		rect.shrink(0, margin);
+		if(rect.contains(childBounds))
 			return null; 
-		bounds.union(childBounds);
+		rect.union(childBounds);
+		rect.expand(0, margin);
+		bounds = rect.getCopy();
 		Command c = new ICommandProxy(new SetBoundsCommand(part.getEditingDomain(), "Resize of Parent Bar", part, bounds.getCopy()));
 		
 		list.remove(part);
@@ -380,20 +390,22 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			Point referenceBottom = ((Point)locBottom).getCopy();
 			// Get the height of the element
 			int newHeight = referenceBottom.y - referenceTop.y;
-			if(newHeight > 0) {
+			if (newHeight > 0) {
 				parentFigure.translateToRelative(referenceTop);
 				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
 				referenceTop.translate(parentFigDelta);
 				// Define the bounds of the new time element
 				Rectangle newBounds = new Rectangle(referenceTop.x, referenceTop.y, -1, newHeight);
+				newBounds = DurationConstraintEditPart.fixMessageBounds(newBounds, cvr, (LifelineEditPart)getHost());
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
-			} else if(newHeight < 0) {
+			} else if (newHeight < 0) {
 				parentFigure.translateToRelative(referenceBottom);
 				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
 				referenceBottom.translate(parentFigDelta);
 				// Define the bounds of the new time element
 				Rectangle newBounds = new Rectangle(referenceBottom.x, referenceBottom.y, -1, -newHeight);
+				newBounds = DurationConstraintEditPart.fixMessageBounds(newBounds, cvr, (LifelineEditPart)getHost());
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 			}
