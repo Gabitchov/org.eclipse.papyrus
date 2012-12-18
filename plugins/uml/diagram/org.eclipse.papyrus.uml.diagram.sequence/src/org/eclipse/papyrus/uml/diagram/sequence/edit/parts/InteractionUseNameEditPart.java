@@ -67,6 +67,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEd
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
+import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -215,7 +216,7 @@ public class InteractionUseNameEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		return ElementIconUtil.getLabelIcon(this);
 	}
 
 	/**

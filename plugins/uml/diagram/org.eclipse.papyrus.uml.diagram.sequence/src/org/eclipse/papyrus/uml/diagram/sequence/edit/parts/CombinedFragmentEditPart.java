@@ -116,11 +116,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperatorKindCompatibleMapping;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
@@ -1306,6 +1308,9 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 		if(resolveSemanticElement() != null) {
 			refreshShadow();
 		}
+		
+		if(ElementIconUtil.isIconNotification(notification))
+			refreshLabelIcon();
 	}
 
 	protected void refreshShadow() {
@@ -1356,6 +1361,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			String operatorKind = combinedFragment.getInteractionOperator().getName();
 			getPrimaryShape().getHeaderLabel().setText(operatorKind);
 		}
+		
 	}
 
 	/**
@@ -1405,6 +1411,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
+		refreshLabelIcon();
+	}
+
+	protected void refreshLabelIcon() {
+		Image image = ElementIconUtil.getLabelIcon(this);
+		getPrimaryShape().getHeaderLabel().setIcon(image);
 	}
 
 	// update label visibility and text
@@ -1425,7 +1437,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			ScopedPreferenceStore store = new ScopedPreferenceStore(InstanceScope.INSTANCE, "org.eclipse.papyrus.infra.gmfdiag.preferences");
 			String visible = store.getString(getTitlePreferenceKey());
 			label.setVisible("true".equals(visible) );		
-		}
+		}	
 	}
 	
 	private DirectEditManager manager;

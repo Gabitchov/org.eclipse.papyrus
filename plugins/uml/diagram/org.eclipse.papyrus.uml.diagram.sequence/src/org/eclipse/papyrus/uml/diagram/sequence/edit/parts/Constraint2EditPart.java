@@ -55,6 +55,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEd
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
+import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -166,7 +167,9 @@ public class Constraint2EditPart extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof WrappingLabel) {
+		if(figure instanceof ConstraintFigure){
+			((ConstraintFigure) figure).setAppliedStereotypeIcon(icon);
+		}else if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
@@ -211,7 +214,7 @@ public class Constraint2EditPart extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		return ElementIconUtil.getLabelIcon(this);
 	}
 
 	/**

@@ -119,6 +119,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.locator.TimeMarkElementPositionL
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper;
@@ -1794,6 +1795,10 @@ public class LifelineEditPart extends NamedElementEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
+		if(ElementIconUtil.isIconNotification(notification)){
+			updateLifelinePosition();
+		}
+
 
 		if(UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(feature)) {
 			// Handle coveredBy attribute

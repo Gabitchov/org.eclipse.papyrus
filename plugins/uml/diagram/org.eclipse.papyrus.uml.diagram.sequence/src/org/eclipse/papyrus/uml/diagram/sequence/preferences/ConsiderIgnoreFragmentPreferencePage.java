@@ -13,24 +13,35 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusElementPreferencePage;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.LabelGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CombinedFragmentPreferencePage.NodeCompartmentGroupEx;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * @generated
  */
-public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePreferencePage {
+public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusElementPreferencePage {
 
 	/**
 	 * @generated NOT
 	 */
 	public static final String compartments[] = { Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title };
+
+	/** the list owning the compartment names for the Node */
+	protected List<String> compartmentsList;
 
 	/**
 	 * @generated
@@ -38,6 +49,8 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePre
 	public ConsiderIgnoreFragmentPreferencePage() {
 		super();
 		setPreferenceKey(PackageEditPart.MODEL_ID + "_ConsiderIgnoreFragment");
+		compartmentsList = new ArrayList<String>();
+		initializeCompartmentsList();
 	}
 
 	/**
@@ -82,14 +95,33 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePre
 		return map;
 	}
 	
-	/**
-	 * @generated NOT
-	 */
-	@Override
 	protected void initializeCompartmentsList() {
 		for(String name : compartments) {
 			this.compartmentsList.add(name);
 		}
 	}
 
+	protected TreeMap<String, String> getLabelRole() {
+		return new TreeMap<String, String>();
+	}
+	
+	protected void createPageContents(Composite parent) {
+		super.createPageContents(parent);
+		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
+		addAbstractGroup(colorGroupForNodeComposite);
+		BackgroundColor backgroundColorGroup = new BackgroundColor(parent, getPreferenceKey(), this);
+		addAbstractGroup(backgroundColorGroup);
+		DecorationGroup decorationGroup = new DecorationGroup(parent, getPreferenceKey(), this);
+		addAbstractGroup(decorationGroup);
+		if(!compartmentsList.isEmpty()) {
+			NodeCompartmentGroupEx compartmentGroup = new NodeCompartmentGroupEx(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), getPreferenceStore());
+			addAbstractGroup(compartmentGroup);
+		}
+
+		//Label role group
+		if(!getLabelRole().isEmpty()) {
+			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
+			addAbstractGroup(compartmentGroup);
+		}
+	}
 }

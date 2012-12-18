@@ -106,9 +106,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LoopOperatorUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.Element;
@@ -1417,6 +1419,20 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 				refreshLineWidth();
 			} 
 		}
+		
+		if(ElementIconUtil.isIconNotification(notification))
+			refreshLabelIcon();
+	}
+	
+	protected void refreshLabelIcon() {
+		Image image = ElementIconUtil.getLabelIcon(this);
+		getPrimaryShape().getInteractionConstraintLabel().setIcon(image);
+	}
+	
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshLabelIcon();
 	}
 	
 	protected void refreshBackgroundColor() {

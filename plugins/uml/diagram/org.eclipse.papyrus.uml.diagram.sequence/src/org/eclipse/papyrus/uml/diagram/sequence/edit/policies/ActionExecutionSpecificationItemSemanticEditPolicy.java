@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -55,7 +52,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCom
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
@@ -94,22 +90,13 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 
 			if(deleteCommand != null) {
 				deleteElementsCommand.add(new ICommandProxy(deleteCommand));
-			}
-		}
-		
-		if (getHost().getParent() instanceof LifelineEditPart) {
-			if (selectedEObject instanceof ExecutionSpecification) {
-				List<OccurrenceSpecification> oss = new ArrayList<OccurrenceSpecification>();
-				oss.add(((ExecutionSpecification) selectedEObject).getStart());
-				oss.add(((ExecutionSpecification) selectedEObject).getFinish());
-				SequenceDeleteHelper
-						.addDeleteRelatedTimeObservationLinkCommand(
-								deleteElementsCommand, req.getEditingDomain(),
-								(LifelineEditPart) getHost().getParent(), oss,true);
 				
-				ExecutionSpecificationComponentEditPolicy.addDestroyElementChildrenCommand(deleteElementsCommand, req.getEditingDomain(), getHost());
+				if (selectedEObject instanceof ExecutionSpecification && getHost() instanceof ShapeNodeEditPart) {
+					SequenceDeleteHelper.destroyExecutionOccurrenceSpecification(req,
+							deleteElementsCommand,  (ShapeNodeEditPart) getHost(), (ExecutionSpecification) selectedEObject);					
+				}
 			}
-		}
+		}		
 		
 		if(deleteElementsCommand.size()>0){
 			return deleteElementsCommand;
@@ -117,7 +104,6 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 		
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * This method has been overridden to also delete linked time/duration views

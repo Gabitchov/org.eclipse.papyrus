@@ -13,8 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -53,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateComma
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.StateInvariantCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.TimeConstraintCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
@@ -66,6 +70,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -145,7 +150,18 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			if(deleteCommand != null) {
 				Command command = new ICommandProxy(deleteCommand);
 				command = LifelineMessageCreateHelper.restoreLifelineOnDelete(command, (LifelineEditPart) getHost());		
-				return command;
+				CompoundCommand deleteElementsCommand = new CompoundCommand();
+				deleteElementsCommand.add(command);
+				if(getHost() instanceof LifelineEditPart){
+					LifelineEditPart ep = (LifelineEditPart) getHost();
+					SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, ep, req.getEditingDomain());
+					List children = ep.getChildren();
+					for(Object obj : children) 
+						if(obj instanceof AbstractExecutionSpecificationEditPart) {
+							SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, (AbstractExecutionSpecificationEditPart)obj, req.getEditingDomain());
+						}
+				}
+				return deleteElementsCommand;
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
