@@ -184,82 +184,96 @@ public class NameResolutionTest {
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromRoot_V1() {
+	public void findClass4WithPartialQualifiedNameFromRoot_V1() {
 		final List<NamedElement> res1 = getResults(root, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromRoot_V2() {
+	public void findClass4WithPartialQualifiedNameFromRoot_V2() {
 		final List<NamedElement> res1 = getResults(root, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromRoot_V3() {
+	public void findClass4WithPartialQualifiedNameFromRoot_V3() {
 		final List<NamedElement> res1 = getResults(root, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(2, res1.size());
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromFirstLevel_V1() {
+	public void findClass4WithPartialQualifiedNameFromFirstLevel_V1() {
 		final List<NamedElement> res1 = getResults(model2, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromFirstLevel_V2() {
+	public void findClass4WithPartialQualifiedNameFromFirstLevel_V2() {
 		final List<NamedElement> res1 = getResults(model2, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromFirstLevel_V3() {
+	public void findClass4WithPartialQualifiedNameFromFirstLevel_V3() {
 		final List<NamedElement> res1 = getResults(model2, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromSecondLevel_V1() {
+	public void findClass4WithPartialQualifiedNameFromSecondLevel_V1() {
 		final List<NamedElement> res1 = getResults(model2_1, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromSecondLevel_V2() {
+	public void findClass4WithPartialQualifiedNameFromSecondLevel_V2() {
 		final List<NamedElement> res1 = getResults(model2_1, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromSecondLevel_V3() {
+	public void findClass4WithPartialQualifiedNameFromSecondLevel_V3() {
 		final List<NamedElement> res1 = getResults(model2_1, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromThirdLevel_V1() {
+	public void findClass4WithPartialQualifiedNameFromThirdLevel_V1() {
 		final List<NamedElement> res1 = getResults(model2_2, CLASS4_QN_DEPTH_1, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromThirdLevel_V2() {
+	public void findClass4WithPartialQualifiedNameFromThirdLevel_V2() {
 		final List<NamedElement> res1 = getResults(model2_2, CLASS4_QN_DEPTH_2, UMLPackage.eINSTANCE.getClass_());
 		Assert.assertEquals(1, res1.size());
 
 	}
 
 	@Test
-	public void finalClass4WithPartialQualifiedNameFromThirdLevel_V3() {
+	public void findClass4WithPartialQualifiedNameFromThirdLevel_V3() {
 		final List<NamedElement> res1 = getResults(model2_2, CLASS4_QN_DEPTH_3, UMLPackage.eINSTANCE.getClass_());
+		Assert.assertEquals(1, res1.size());
+	}
 
+
+	//FIXME bug with template signature, see with Patrick Tessier
+	@Test
+	public void findTemplateSignaturePropertyFromRoot() {
+		final List<NamedElement> res1 = getResults(root, "toto", UMLPackage.eINSTANCE.getProperty());
 		Assert.assertEquals(1, res1.size());
 
+	}
+
+	//FIXME bug with template signature, see with Patrick Tessier
+	@Test
+	public void findTemplateSignaturePropertyFromFirstLevel() {
+		final List<NamedElement> res1 = getResults((Namespace)root.getPackagedElement("Package1"), "toto", UMLPackage.eINSTANCE.getProperty());
+		Assert.assertEquals(1, res1.size());
 	}
 
 	/**

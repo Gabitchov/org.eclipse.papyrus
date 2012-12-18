@@ -19,4 +19,11 @@
       </packagedElement>
     </packagedElement>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_i6tQIEjvEeKxiMTwmoJsPg" name="Package1">
+    <ownedTemplateSignature xmi:id="_pQj-8EjvEeKxiMTwmoJsPg" parameter="_qszTcEjvEeKxiMTwmoJsPg">
+      <ownedParameter xmi:id="_qszTcEjvEeKxiMTwmoJsPg" default="_xtWlEEjvEeKxiMTwmoJsPg">
+        <ownedDefault xmi:type="uml:Property" xmi:id="_xtWlEEjvEeKxiMTwmoJsPg" name="toto"/>
+      </ownedParameter>
+    </ownedTemplateSignature>
+  </packagedElement>
 </uml:Model>
