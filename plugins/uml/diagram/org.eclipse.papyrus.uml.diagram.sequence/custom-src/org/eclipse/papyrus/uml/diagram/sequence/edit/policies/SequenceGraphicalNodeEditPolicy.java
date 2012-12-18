@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
@@ -32,6 +33,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.editpolicies.FeedbackHelper;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -376,6 +378,18 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return super.getReconnectTargetCommand(request);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#showCreationFeedback(org.eclipse.gef.requests.CreateConnectionRequest)
+	 */
+	@Override
+	protected void showCreationFeedback(CreateConnectionRequest request) {
+		FeedbackHelper helper = getFeedbackHelper(request);
+		Point p = new Point(request.getLocation());
+		ConnectionAnchor targetConnectionAnchor = getTargetConnectionAnchor(request);
+		helper.update(targetConnectionAnchor, p);
+		System.out.println(targetConnectionAnchor);
+	}
+	
 	/**
 	 * Check that a message doesn't have its target point above its source point
 	 * 

@@ -149,7 +149,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExecutionSpecificationEndSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ExecutionSpecificationEndGraphicalNodeEditPolicy());
+		//The custom Graphical node edit policy for showing feedback has been removed, and this will be finished in HighlightEditPolicy.
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy(){
 			protected void addSelectionHandles() {  // remove handles
 			}
@@ -237,42 +238,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			}
 		}
 	}	
-	
-	static class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
-		IFigure executionSpecificationEndFeedback;
-
-		@Override
-		public void eraseTargetFeedback(Request request) {
-			super.eraseSourceFeedback(request);
-			if (executionSpecificationEndFeedback != null)
-				removeFeedback(executionSpecificationEndFeedback);
-			executionSpecificationEndFeedback = null;
-		}
-
-		protected void showTargetConnectionFeedback(
-				DropRequest request) {
-			if (executionSpecificationEndFeedback == null) {
-				CircleFigure c = new CircleFigure(DEFAULT_SIZE,
-						DEFAULT_SIZE);
-				c.setForegroundColor(ColorConstants.black);
-				ExecutionSpecificationEndEditPart p = (ExecutionSpecificationEndEditPart) getHost();
-				IFigure parent = p.getFigure().getParent();
-				
-		
-				Rectangle targetBounds = p.getFigure().getBounds().getCopy();
-				p.getFigure().translateToAbsolute(targetBounds);
-				//targetBounds.translate(0, DEFAULT_SIZE /2 );	
-				
-				getFeedbackLayer().translateToRelative(targetBounds);
-				getFeedbackLayer().translateFromParent(targetBounds);
-				
-				c.setBounds(targetBounds);
-				
-				addFeedback(c);
-				executionSpecificationEndFeedback = c;
-			}
-		}
-	}
 	
 	static class ReorientExecutionSpecificationEndCommand extends EditElementCommand{
 		private ReorientReferenceRelationshipRequest request;

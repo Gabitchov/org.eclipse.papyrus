@@ -1348,4 +1348,9 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		}
 		super.performRequest(request);
 	}
+	
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshTransparency();
+	}
 }

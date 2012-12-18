@@ -1501,7 +1501,14 @@ public class LifelineEditPart extends NamedElementEditPart {
 		 */
 		private void createContents() {
 
-			fFigureLifelineNameContainerFigure = new RectangleFigure();
+			fFigureLifelineNameContainerFigure = new RectangleFigure(){
+				protected void fillShape(Graphics graphics) {
+					graphics.pushState();
+					applyTransparency(graphics);
+					graphics.fillRectangle(getBounds());
+					graphics.popState();
+				}
+			};
 			// do not fill to enable gradient
 			fFigureLifelineNameContainerFigure.setFill(false);
 
@@ -2254,6 +2261,11 @@ public class LifelineEditPart extends NamedElementEditPart {
 	public void refresh() {
 		configure(isInlineMode(), false);
 		super.refresh();
+	}
+	
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshTransparency();
 	}
 
 	/**

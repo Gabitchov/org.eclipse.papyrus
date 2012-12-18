@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -52,7 +53,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.FontData;
 
 /**
  * @generated
@@ -1142,4 +1142,16 @@ AbstractCommentEditPart {
 		}
 		return result;
 	}
+	
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshTransparency();
+	}
+	
+	protected void refreshTransparency() {
+        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+        if ( style != null ) {    	
+        	setTransparency(style.getTransparency());
+        }
+    }
 }

@@ -1433,6 +1433,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabelIcon();
+		refreshTransparency();
 	}
 	
 	protected void refreshBackgroundColor() {
@@ -1892,4 +1893,11 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		
 		return super.getCommand(request);
 	}
+	
+	protected void refreshTransparency() {
+        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+        if ( style != null ) {    	
+        	setTransparency(style.getTransparency());
+        }
+    }
 }

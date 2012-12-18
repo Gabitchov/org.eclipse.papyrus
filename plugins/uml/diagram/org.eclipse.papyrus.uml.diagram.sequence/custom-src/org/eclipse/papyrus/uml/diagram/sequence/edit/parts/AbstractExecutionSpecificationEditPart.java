@@ -476,4 +476,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends
 		}
 		return super.getSourceConnectionAnchor(connEditPart);
 	}
+	
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshTransparency();
+	}
 }

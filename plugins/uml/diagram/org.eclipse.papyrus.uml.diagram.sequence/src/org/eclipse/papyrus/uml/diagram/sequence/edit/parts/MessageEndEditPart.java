@@ -347,29 +347,10 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 		CommandHelper.executeCommandWithoutHistory(this.getEditingDomain(), c, true);
 	}
 	
+	/**
+	 * The circle feedback has been moved to HighlightEditPolicy.
+	 */
 	static class MessageEndGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
-		IFigure messageEndFeedback;
-
-		@Override
-		public void eraseTargetFeedback(Request request) {
-			super.eraseSourceFeedback(request);
-			if (messageEndFeedback != null)
-				removeFeedback(messageEndFeedback);
-			messageEndFeedback = null;
-		}
-
-		protected void showTargetConnectionFeedback(
-				DropRequest request) {
-			if (messageEndFeedback == null) {
-				CircleFigure c = new CircleFigure(DEFAULT_SIZE,
-						DEFAULT_SIZE);
-				c.setForegroundColor(ColorConstants.black);
-				MessageEndEditPart p = (MessageEndEditPart) getHost();
-				c.setBounds(p.getFigure().getBounds());
-				addFeedback(c);
-				messageEndFeedback = c;
-			}
-		}
 		
 		protected Connection createDummyConnection(Request req) {
 			Connection conn = super.createDummyConnection(req);

@@ -16,17 +16,23 @@ package org.eclipse.papyrus.uml.diagram.sequence.part;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.SimpleFactory;
 import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gef.tools.ConnectionCreationTool;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -37,6 +43,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.service.DurationCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.TimeObservation;
 
 /**
  * @generated
@@ -176,6 +185,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private final static String CREATEOBSERVATIONLINKCREATIONTOOL = "createObservationLinkCreationTool"; //$NON-NLS-1$
 	
 	/**
+	 * Try to merge Observation Link, Constraint Link and Comment Link to one.
+	 */
+	private final static String CREATELINKCREATIONTOOL = "createLinkCreationTool"; //$NON-NLS-1$
+	/**
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
@@ -271,7 +284,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATEOBSERVATIONLINKCREATIONTOOL)) {
 			return createObservationLinkCreationTool();
 		}
-		
+		if (toolId.equals(CREATELINKCREATIONTOOL)) {
+			return createLinkCreationTool();
+		}
 
 		// default return: null
 		return null;
@@ -620,6 +635,152 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
 		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
+	}
+	
+	private Tool createLinkCreationTool() {
+		final List<IElementType> elementTypes = new ArrayList<IElementType>();
+		return new AspectUnspecifiedTypeConnectionToolEx(elementTypes) {
+			private static final String INVALID_REQUEST_DATA = "Current request is invalid";
+			private EObject elementUnderMouse;
+
+			@Override
+			public void deactivate() {
+				super.deactivate();
+				elementUnderMouse = null;
+				setTargetRequest(null);
+			}
+
+			@Override
+			protected boolean handleMove() {
+				if (!isInState(STATE_CONNECTION_STARTED)) {
+					EditPartViewer currentViewer = getCurrentViewer();
+					if (currentViewer != null) {
+						EditPart editPart = currentViewer
+								.findObjectAt(getLocation());
+						if (editPart != null) {
+							EObject newElement = resolveElementFrom(editPart);
+							if ((elementUnderMouse == null && newElement != null)
+									|| elementUnderMouse != newElement) {
+								elementUnderMouse = newElement;
+								updateElementType();
+								setTargetRequest(createTargetRequest());
+							}
+						}
+					}
+				}
+				if (isRequestInvalid()){
+					return false;
+				}
+				if (isInState(STATE_CONNECTION_STARTED | STATE_INITIAL
+						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
+					updateTargetRequest();
+					updateTargetUnderMouse();
+					EditPart targetEditPart = getTargetEditPart();
+					if (!(targetEditPart instanceof INodeEditPart)) {
+						return false;
+					}
+				}
+				return super.handleMove();
+			}
+
+			protected String getCommandName() {
+				IElementType elementType = getElementType();
+				if (isInState(STATE_CONNECTION_STARTED
+						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
+					if (elementType != null) {
+						return REQ_CONNECTION_END;
+					} else {
+						return SequenceUtil.OBSERVATION_LINK_REQUEST_END;
+					}
+				} else {
+					if (elementType != null) {
+						return REQ_CONNECTION_START;
+					} else {
+						return SequenceUtil.OBSERVATION_LINK_REQUEST_START;
+					}
+				}
+			}
+
+			protected void updateElementType() {
+				elementTypes.clear();
+				if (elementUnderMouse instanceof Comment) {
+					elementTypes
+							.add(UMLElementTypes.CommentAnnotatedElement_4010);
+				} else if (elementUnderMouse instanceof Constraint) {
+					elementTypes
+							.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+				}
+			}
+
+			@Override
+			public IElementType getElementType() {
+				if (!elementTypes.isEmpty()) {
+					return elementTypes.get(0);
+				}
+				return super.getElementType();
+			}
+
+			private EObject resolveElementFrom(EditPart editPart) {
+				if (editPart == null) {
+					return null;
+				}
+				Object model = editPart.getModel();
+				if (model instanceof View) {
+					return ViewUtil.resolveSemanticElement((View) model);
+				}
+				return null;
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.gef.tools.AbstractConnectionCreationTool#
+			 * updateTargetRequest()
+			 */
+			@Override
+			protected void updateTargetRequest() {
+				if (isRequestInvalid()) {
+					setTargetRequest(createTargetRequest());
+				}
+				// Not prepared well yet.
+				if (isRequestInvalid()) {
+					return;
+				}
+				super.updateTargetRequest();
+			}
+
+			private boolean isRequestInvalid() {
+				CreateConnectionRequest targetRequest = (CreateConnectionRequest) getTargetRequest();
+				if (targetRequest.getExtendedData().containsKey(
+						INVALID_REQUEST_DATA)) {
+					return true;
+				} else if (targetRequest instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
+					return ((CreateAspectUnspecifiedTypeConnectionRequest) targetRequest)
+							.getAllRequests().isEmpty();
+				} else {
+					try {
+						targetRequest.getNewObjectType();
+					} catch (Exception e) {
+						return true;
+					}
+				}
+				return false;
+			}
+
+			@SuppressWarnings("unchecked")
+			protected CreateConnectionRequest createTargetRequest() {
+				if (!elementTypes.isEmpty()) {
+					return super.createTargetRequest();
+				}
+				CreateConnectionRequest request = new CreateConnectionRequest();
+				if (!(elementUnderMouse instanceof TimeObservation)) {
+					request.getExtendedData().put(INVALID_REQUEST_DATA, true);
+				} else {
+					request.setFactory(new SimpleFactory(ObservationLink.class));
+				}
+				return request;
+			}
+		};
 	}
 	
 	// see also CustomConnectionHandleEditPolicy.getHandleFigures()

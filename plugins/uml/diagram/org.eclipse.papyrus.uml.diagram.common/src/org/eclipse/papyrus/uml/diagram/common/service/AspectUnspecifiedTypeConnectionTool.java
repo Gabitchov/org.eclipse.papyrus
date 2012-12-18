@@ -365,7 +365,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected CreateAspectUnspecifiedTypeConnectionRequest createTargetRequest() {
+	protected CreateConnectionRequest createTargetRequest() {
 		return new CreateAspectUnspecifiedTypeConnectionRequest(getElementTypes(), false, getPreferencesHint());
 	}
 

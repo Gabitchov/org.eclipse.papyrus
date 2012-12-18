@@ -82,7 +82,44 @@ public class AnchorHelper {
 				// If the old terminal for the connection anchor cannot be resolved (by SlidableAnchor) a null
 				// PrecisionPoint will passed in - this is handled here
 				return createDefaultAnchor();
-			return new AnchorHelper.IntersectionPointAnchor(this, p);
+			return new CombinedFragmentAnchor(this, p);
+		}
+	}
+	
+	/**
+	 * Fixed bug about Connect to/from outside elements, we should use default
+	 * features to avoid interactions.
+	 * 
+	 * @author Jin Liu (jin.liu@soyatec.com)
+	 */
+	public static class CombinedFragmentAnchor extends SlidableAnchor {
+		public CombinedFragmentAnchor(IFigure fig, PrecisionPoint p) {
+			super(fig, p);
+		}
+
+		protected Point getLocation(Point ownReference, Point foreignReference) {
+			Rectangle rect = getOwner().getBounds().getCopy();
+			getOwner().translateToAbsolute(rect);
+			if (!rect.contains(foreignReference)){
+				return super.getLocation(ownReference, foreignReference);
+			}
+			PointList intersections = getIntersectionPoints(ownReference,
+					foreignReference);
+			if (intersections != null && intersections.size() > 0) {
+				int size = intersections.size();
+				Point near = intersections.getPoint(0);
+				double dist = ownReference.getDistance(near);
+				for (int i = 1; i < size; i++) {
+					Point loc = intersections.getPoint(i);
+					double d = ownReference.getDistance(loc);
+					if (d < dist) {
+						dist = d;
+						near = loc;
+					}
+				}
+				return near;
+			}
+			return null;
 		}
 	}
 	

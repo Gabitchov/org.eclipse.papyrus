@@ -1208,37 +1208,16 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif">
  	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a comment link"
-       id="createCommentlink9CreationTool"
-       kind="tool"
-       label="Comment link"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a constraint link"
-       id="createConstraintlink10CreationTool"
-       kind="tool"
-       label="Constraint link"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
- 	</entry>
  	<?gmfgen generated="false"?>
- 	<entry
- 	   defineOnly="true"
-       description="Create an Observation Link"
-       id="createObservationLinkCreationTool"
-       kind="tool"
-       label="Observation Link"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
- 	</entry>
+  <entry
+        defineOnly="true"
+        description="Create Link"
+        id="createLinkCreationTool"
+        kind="tool"
+        label="Link"
+        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
+  </entry>
 
 			</contribution>
 		</paletteProvider>	
@@ -1388,18 +1367,10 @@
           path="/createEdges2Group">
     </predefinedEntry>
     <?gmfgen generated="false"?>
- 	<predefinedEntry
-          id="createObservationLinkCreationTool"
-          path="/createEdges2Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createCommentlink9CreationTool"
-          path="/createEdges2Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createConstraintlink10CreationTool"
-          path="/createEdges2Group">
-    </predefinedEntry>
+  <predefinedEntry
+        id="createLinkCreationTool"
+        path="/createEdges2Group">
+  </predefinedEntry>
 
 
 			</contribution>
