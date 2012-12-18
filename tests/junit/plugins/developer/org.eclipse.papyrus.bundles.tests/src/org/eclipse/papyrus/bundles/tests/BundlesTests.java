@@ -15,6 +15,8 @@ package org.eclipse.papyrus.bundles.tests;
 
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 
 import org.eclipse.osgi.framework.internal.core.BundleFragment;
@@ -246,8 +248,13 @@ public class BundlesTests {
 	 */
 	@Test
 	public void PLUGIN_ID_Test() {
-		String message = ""; //$NON-NLS-1$
-		int nb = 0;
+		String errorMessage = ""; //$NON-NLS-1$.
+		String warningMessage = "";//$NON-NLS-1$ 
+		final Collection<String> possibleIds = new ArrayList<String>();
+		possibleIds.add("ID");//$NON-NLS-1$ 
+		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$ 
+		int nbError = 0;
+		int nbWarning = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			if(!BundleTestsUtils.isJavaProject(current)) {
 				continue; //useful for oep.infra.gmfdiag.css.theme for example
@@ -256,26 +263,33 @@ public class BundlesTests {
 			if(activator != null) {
 				try {
 					final Class<?> activatorClass = current.loadClass(activator);
-					Field plugin_id_field;
-					plugin_id_field = activatorClass.getField("PLUGIN_ID"); //$NON-NLS-1$
+					Field plugin_id_field = null;
+					for(final Field currentField : activatorClass.getFields()) {
+						final String fieldName = currentField.getName();
+						if(possibleIds.contains(fieldName)) {
+							plugin_id_field = currentField;
+							break;
+						}
+					}
 					if(plugin_id_field != null) {
 						final String plugin_id = (String)plugin_id_field.get(activatorClass);
 						if(!plugin_id.equals(current.getSymbolicName())) {
-							nb++;
-							message += NLS.bind("The field PLUGIN_ID of the plugin {0} is not equals to the plugin name.\n", current.getSymbolicName()); //$NON-NLS-1$
+							nbError++;
+							errorMessage += NLS.bind("The field PLUGIN_ID of the plugin {0} is not equals to the plugin name.\n", current.getSymbolicName()); //$NON-NLS-1$
 						}
 					} else {
 						//Never happens. An exception is thrown.
-						nb++;
-						message += NLS.bind("The activator of {0} has no field named PLUGIN_ID.\n", current.getSymbolicName()); //$NON-NLS-1$
+						nbWarning++;
+						warningMessage += NLS.bind("The activator of {0} has no field named PLUGIN_ID.\n", current.getSymbolicName()); //$NON-NLS-1$
 					}
 				} catch (final Exception e) {
-					message += NLS.bind("Exception occured with the plugin {0} \n {1} \n", new Object[]{ current.getSymbolicName(), e }); //$NON-NLS-1$
+					errorMessage += NLS.bind("Exception occured with the plugin {0} \n {1} \n", new Object[]{ current.getSymbolicName(), e }); //$NON-NLS-1$
 				}
 			}
 
 		}
-		Assert.assertTrue(nb + " problems! " + message, nb == 0); //$NON-NLS-1$ 
+		Assert.assertTrue(nbError + " problems! " + errorMessage, nbError == 0); //$NON-NLS-1$ 
+		Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$ 
 	}
 
 }
