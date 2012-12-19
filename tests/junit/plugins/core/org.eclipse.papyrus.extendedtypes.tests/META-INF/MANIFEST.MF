@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.junit,
+Require-Bundle: org.junit4,
  org.eclipse.papyrus.uml.service.types;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.extendedtypes
 Bundle-Vendor: %providerName

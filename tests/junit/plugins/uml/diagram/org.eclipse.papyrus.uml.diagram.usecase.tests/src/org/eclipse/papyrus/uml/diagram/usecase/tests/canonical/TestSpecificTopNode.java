@@ -224,24 +224,24 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.diagram.te
 	public void testToCreateANode(IElementType type) {
 
 		//CREATION
-		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
-		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
+		assertEquals(CREATION + INITIALIZATION_TEST, 0, getDiagramEditPart().getChildren().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, 0, getRootSemanticModel().getOwnedElements().size());
 		ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(new CreateElementRequest(type)), Node.class, ((IHintedType)type).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
 		CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
 
 		//CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command = getDiagramEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
-		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertNotSame(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, UnexecutableCommand.INSTANCE, command);
+		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 1);
+		assertEquals(CREATION + TEST_THE_EXECUTION, 1, getRootView().getChildren().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, getRootView().getChildren().size() == 0);
-		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 0);
+		assertEquals(CREATION + TEST_THE_UNDO, 0, getRootView().getChildren().size());
+		assertEquals(CREATION + TEST_THE_UNDO, 0, getRootSemanticModel().getOwnedElements().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 
-		assertTrue("CREATION: " + TEST_THE_REDO, getDiagramEditPart().getChildren().size() == 1);
+		assertEquals("CREATION: " + TEST_THE_REDO, 1, getDiagramEditPart().getChildren().size());
 
 	}
 

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.emf.utils
-Require-Bundle: org.junit,
+Require-Bundle: org.junit4,
  org.eclipse.emf.ecore.xmi;bundle-version="2.8.0"
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.infra.emf;bundle-version="0.10.0"

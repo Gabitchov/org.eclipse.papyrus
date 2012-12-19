@@ -17,16 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonViewer;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -60,35 +64,65 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 		final List<EObject> selectedElement = new ArrayList<EObject>();
 		selectedElement.add(getRootOfTheModel());
 		getModelExplorerView().revealSemanticElement(selectedElement);
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		final IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer"); //$NON-NLS-1$
+
+		RunnableWithResult<IWorkbenchPart> runnable;
+
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IWorkbenchPart>() {
+
+			public void run() {
+				try {
+					IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					IWorkbenchPart activePart = activePage.getActivePart();
+					setResult(activePart);
+					setStatus(Status.OK_STATUS);
+				} catch (Exception ex) {
+					setStatus(new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getMessage()));
+				}
+			}
+		});
+
+		Assert.assertEquals(runnable.getStatus().getMessage(), IStatus.OK, runnable.getStatus().getSeverity());
+
+		IWorkbenchPart activePart = runnable.getResult();
+
+		Assert.assertTrue("The active part is not the ModelExplorer", activePart instanceof ModelExplorerPageBookView); //$NON-NLS-1$
+
 		final IStructuredSelection currentSelection = getCurrentSelection();
-		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
+		Assert.assertEquals("Only one element should be selected", currentSelection.size(), 1); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
 		if(obj instanceof IAdaptable) {
 			obj = ((IAdaptable)obj).getAdapter(EObject.class);
 		}
-		Assert.isTrue(obj == getRootOfTheModel());
+		Assert.assertSame(getRootOfTheModel(), obj);
 		final IHandler currentHandler = getActiveHandler();
 		if(currentHandler == null) {
 			// not a problem in this case
 		} else {
-			Assert.isTrue(currentHandler.isEnabled() == false, "We can delete the root of the model. It is not the wanted behavior"); //$NON-NLS-1$
+			Assert.assertFalse("We can delete the root of the model. It is not the wanted behavior", currentHandler.isEnabled()); //$NON-NLS-1$
 		}
 	}
 
 	@Test
 	public void deleteLinkItemTest() {
 		final CommonViewer commonViewer = getCommonViewer();
-		commonViewer.expandToLevel(3);
-		final Object[] expandedElement = commonViewer.getExpandedElements();
+
+		RunnableWithResult<Object[]> runnable;
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<Object[]>() {
+
+			public void run() {
+				commonViewer.expandToLevel(3);
+				setResult(commonViewer.getExpandedElements());
+				setStatus(Status.OK_STATUS);
+			}
+		});
+
+		final Object[] expandedElement = runnable.getResult();
 		for(final Object object : expandedElement) {
 			if(object instanceof org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem) {
 				selectElementInTheModelexplorer((ITreeElement)object);
 				final IHandler handler = getActiveHandler();
 				if(handler != null) {
-					Assert.isTrue(handler.isEnabled() == false, "The handler " + handler + " is active on LinkItem, it is not the wanted behavior"); //$NON-NLS-1$ //$NON-NLS-2$
+					Assert.assertFalse("The handler " + handler + " is active on LinkItem, it is not the wanted behavior", handler.isEnabled()); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 		}

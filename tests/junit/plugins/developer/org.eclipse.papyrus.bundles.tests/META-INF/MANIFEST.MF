@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.junit,
+ org.junit4,
  org.eclipse.pde.runtime
 Export-Package: org.eclipse.papyrus.bundles.tests
 Bundle-Vendor: %Bundle-Vendor

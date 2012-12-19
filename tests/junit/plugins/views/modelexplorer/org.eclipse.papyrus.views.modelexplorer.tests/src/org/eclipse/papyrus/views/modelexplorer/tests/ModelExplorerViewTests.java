@@ -16,14 +16,18 @@ package org.eclipse.papyrus.views.modelexplorer.tests;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -46,16 +50,36 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 		final List<EObject> selectedElement = new ArrayList<EObject>();
 		selectedElement.add(getRootOfTheModel());
 		getModelExplorerView().revealSemanticElement(selectedElement);
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		final IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer"); //$NON-NLS-1$
+
+
+		RunnableWithResult<IWorkbenchPart> runnable;
+
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IWorkbenchPart>() {
+
+			public void run() {
+				try {
+					IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					IWorkbenchPart activePart = activePage.getActivePart();
+					setResult(activePart);
+					setStatus(Status.OK_STATUS);
+				} catch (Exception ex) {
+					setStatus(new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getMessage()));
+				}
+			}
+		});
+
+		Assert.assertEquals(runnable.getStatus().getMessage(), IStatus.OK, runnable.getStatus().getSeverity());
+
+		IWorkbenchPart activePart = runnable.getResult();
+
+		Assert.assertTrue("The active part is not the ModelExplorer", activePart instanceof ModelExplorerPageBookView); //$NON-NLS-1$
 		final IStructuredSelection currentSelection = getCurrentSelection();
-		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
+		Assert.assertEquals("Only one element should be selected", currentSelection.size(), 1); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
 		if(obj instanceof IAdaptable) {
 			obj = ((IAdaptable)obj).getAdapter(EObject.class);
 		}
-		Assert.isTrue(obj == getRootOfTheModel(), "The function revealSemanticElement seems doesn't work on the root of the model");
+		Assert.assertSame("The function revealSemanticElement seems doesn't work on the root of the model", obj, getRootOfTheModel()); //$NON-NLS-1$
 	}
 
 }

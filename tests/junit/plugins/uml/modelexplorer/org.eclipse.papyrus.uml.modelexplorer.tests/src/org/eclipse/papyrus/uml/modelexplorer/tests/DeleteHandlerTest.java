@@ -13,23 +13,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.tests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.tests.AbstractHandlerTest;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Model;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -64,21 +68,34 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 		final List<EObject> selectedElement = new ArrayList<EObject>();
 		selectedElement.add(getRootOfTheModel());
 		getModelExplorerView().revealSemanticElement(selectedElement);
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		final IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer"); //$NON-NLS-1$
+
+		RunnableWithResult<IWorkbenchPart> runnable;
+
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IWorkbenchPart>() {
+
+			public void run() {
+				final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				final IWorkbenchPart activePart = activePage.getActivePart();
+				setResult(activePart);
+			}
+		});
+
+		IWorkbenchPart activePart = runnable.getResult();
+
+		assertTrue("The active part is not the ModelExplorer", activePart instanceof ModelExplorerPageBookView); //$NON-NLS-1$
+
 		final IStructuredSelection currentSelection = getCurrentSelection();
-		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
+		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
 		if(obj instanceof IAdaptable) {
 			obj = ((IAdaptable)obj).getAdapter(EObject.class);
 		}
-		Assert.isTrue(obj == getRootOfTheModel());
+		assertEquals(getRootOfTheModel(), obj);
 		final IHandler currentHandler = getActiveHandler();
 		if(currentHandler == null) {
 			// not a problem in this case
 		} else {
-			Assert.isTrue(currentHandler.isEnabled() == false, "We can delete the root of the model. It is not the wanted behavior"); //$NON-NLS-1$
+			Assert.assertFalse("We can delete the root of the model. It is not the wanted behavior", currentHandler.isEnabled()); //$NON-NLS-1$
 		}
 	}
 
@@ -86,51 +103,56 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	 * We test if we can delete other uml elements
 	 */
 	@Test
-	public void deleteUMLElementsTest() {
+	public void deleteUMLElementsTest() throws Exception {
 		testIsModelExplorerActivePart();
 
 		int size = ((Model)getRootOfTheModel()).getPackagedElements().size();
 		EObject elementToDelete;
 		while(((Model)getRootOfTheModel()).getPackagedElements().size() != 0) {
 			//we need to clean the selection
-			getCommonViewer().setSelection(new StructuredSelection());
+
+			Display.getDefault().syncExec(new Runnable() {
+
+				public void run() {
+					getCommonViewer().setSelection(new StructuredSelection());
+				}
+			});
+
 			IStructuredSelection currentSelection = getCurrentSelection();
 			elementToDelete = ((Model)getRootOfTheModel()).getPackagedElements().get(0);
 			List<EObject> selectedElement = new ArrayList<EObject>();
 			selectedElement.add(elementToDelete);
 			getModelExplorerView().revealSemanticElement(selectedElement);
 			currentSelection = getCurrentSelection();
-			Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected");
+			assertEquals("Only one element should be selected", 1, currentSelection.size());
 			Object obj = currentSelection.getFirstElement();
 			if(obj instanceof IAdaptable) {
 				obj = ((IAdaptable)obj).getAdapter(EObject.class);
 			}
-			Assert.isTrue(obj == elementToDelete);
+			Assert.assertEquals(elementToDelete, obj);
 			IHandler currentHandler = getActiveHandler();
-			Assert.isTrue(currentHandler.isEnabled(), "We can't delete the following element" + elementToDelete);
-			try {
-				currentHandler.execute(new ExecutionEvent());
-			} catch (ExecutionException e) {
-				Assert.isTrue(false);
-			}
+			Assert.assertTrue("We can't delete the following element" + elementToDelete, currentHandler.isEnabled());
+
+			currentHandler.execute(new ExecutionEvent());
 
 			int newSize = ((Model)getRootOfTheModel()).getPackagedElements().size();
-			Assert.isTrue(newSize == (size - 1));
+			Assert.assertEquals(size - 1, newSize);
 			//We test the undo
-			Assert.isTrue(getCommandStack().canUndo());
+			Assert.assertTrue(getCommandStack().canUndo());
 			getCommandStack().undo();
 			newSize = ((Model)getRootOfTheModel()).getPackagedElements().size();
-			Assert.isTrue(newSize == size);
+			Assert.assertEquals(size, newSize);
 
 			//we test the redo
-			Assert.isTrue(getCommandStack().canRedo());
+			Assert.assertTrue(getCommandStack().canRedo());
 			getCommandStack().redo();
 			newSize = ((Model)getRootOfTheModel()).getPackagedElements().size();
-			Assert.isTrue(newSize == size - 1);
+			Assert.assertEquals(size - 1, newSize);
 			size = newSize;
 		}
+
 		int newSize = ((Model)getRootOfTheModel()).getPackagedElements().size();
-		Assert.isTrue(newSize == 0);
+		Assert.assertEquals(0, newSize);
 		undoRedo(10);
 	}
 

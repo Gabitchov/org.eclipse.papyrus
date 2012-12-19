@@ -12,11 +12,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.utils;
 
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 
@@ -34,7 +36,17 @@ public class EditorUtils {
 	 *         exception thrown in case of issue
 	 */
 	public static IEditorPart getEditor() throws Exception {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		RunnableWithResult<IEditorPart> runnable;
+
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IEditorPart>() {
+
+			public void run() {
+				IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+				setResult(editor);
+			}
+		});
+
+		return runnable.getResult();
 	}
 
 	public static DiagramEditor getDiagramEditor() throws Exception {

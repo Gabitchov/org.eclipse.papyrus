@@ -31,7 +31,6 @@ import org.eclipse.e4.ui.css.core.dom.properties.converters.ICSSValueConverter;
 import org.eclipse.e4.ui.css.core.impl.engine.AbstractCSSEngine;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSConditionFactoryImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSSelectorFactoryImpl;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.BooleanConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.IntegerConverter;
@@ -42,7 +41,6 @@ import org.eclipse.papyrus.infra.gmfdiag.css.lists.ExtendedStyleSheetList;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
-import org.eclipse.swt.widgets.Display;
 import org.w3c.css.sac.ConditionFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSStyleDeclaration;
@@ -350,12 +348,15 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	 */
 	public void notifyChange(Element elementAdapter) {
 		resetCache(); //TODO: We should only refresh a subset of the cache
-		Display.getCurrent().asyncExec(new Runnable() {
 
-			public void run() {
-				DiagramHelper.refreshDiagrams(); //TODO: Contextual refresh
-			}
-		});
+		//FIXME: It seems the refresh can create a deadlock in some cases
+
+		//		Display.getCurrent().asyncExec(new Runnable() {
+		//
+		//			public void run() {
+		//				DiagramHelper.refreshDiagrams(); //TODO: Contextual refresh
+		//			}
+		//		});
 
 	}
 

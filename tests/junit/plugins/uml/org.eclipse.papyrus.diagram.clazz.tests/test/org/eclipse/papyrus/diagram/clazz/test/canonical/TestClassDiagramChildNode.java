@@ -28,11 +28,12 @@ import org.junit.Test;
  */
 public class TestClassDiagramChildNode extends TestChildNode {
 
-	
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
 	}
+
 	/**
 	 * Test to manage component.
 	 */
@@ -40,7 +41,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageComponent() {
 		testToManageChildNode(UMLElementTypes.Component_3021, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage instance specification.
 	 */
@@ -48,7 +49,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageInstanceSpecification() {
 		testToManageChildNode(UMLElementTypes.InstanceSpecification_3020, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage signal.
 	 */
@@ -56,7 +57,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageSignal() {
 		testToManageChildNode(UMLElementTypes.Signal_3022, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage model.
 	 */
@@ -64,7 +65,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageModel() {
 		testToManageChildNode(UMLElementTypes.Model_3024, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage enumeration.
 	 */
@@ -72,7 +73,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageEnumeration() {
 		testToManageChildNode(UMLElementTypes.Enumeration_3025, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage i package.
 	 */
@@ -80,7 +81,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageIPackage() {
 		testToManageChildNode(UMLElementTypes.Package_3009, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage class.
 	 */
@@ -88,7 +89,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageClass() {
 		testToManageChildNode(UMLElementTypes.Class_3010, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage InforamtionItem.
 	 */
@@ -96,7 +97,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageInformationItem() {
 		testToManageChildNode(UMLElementTypes.InformationItem_3040, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage primitive type.
 	 */
@@ -104,7 +105,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManagePrimitiveType() {
 		testToManageChildNode(UMLElementTypes.PrimitiveType_3026, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage data type.
 	 */
@@ -112,7 +113,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageDataType() {
 		testToManageChildNode(UMLElementTypes.DataType_3027, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage constraint.
 	 */
@@ -120,7 +121,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageConstraint() {
 		testToManageChildNode(UMLElementTypes.Constraint_3029, UMLElementTypes.Package_3009, true);
 	}
-	
+
 	/**
 	 * Test to manage comment.
 	 */
@@ -128,9 +129,10 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	public void testToManageComment() {
 		testToManageChildNode(UMLElementTypes.Comment_3028, UMLElementTypes.Package_3009, true);
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateClassDiagramCommand();
+		return new CreateClassDiagramCommand();
 	}
-	
+
 }

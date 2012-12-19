@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.infra.services.edit.tests.commands;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -15,7 +14,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.internal.ElementEditService;
@@ -46,28 +44,20 @@ public class TestConfigureFeatureCommandFactory extends AbstractTestElementEditS
 	}
 
 	@Test
-	public void testGetEditCommand() {
-		try {
+	public void testGetEditCommand() throws ServiceException, ExecutionException {
+		ICommand correctCommand = ePckgService.getEditCommand(prepareCorrectRequest());
 
-			ICommand correctCommand = ePckgService.getEditCommand(prepareCorrectRequest());
-
-			// Try to execute command and make quick result verification.
-			assertTrue("The service command should be executable.", correctCommand.canExecute());
-			correctCommand.execute(new NullProgressMonitor(), null);
-			assertTrue("The service command result is incorrect.", !ePckg.getESubpackages().isEmpty());
-			assertTrue("The service configure command result is incorrect.", "ASpecificName".equals(ePckg.getESubpackages().get(0).getName()));
-
-		} catch (ServiceException e) {
-			fail("Test aborted - Papyrus editing domain not found.");
-		} catch (ExecutionException e) {
-			fail("Test aborted - Command execution failed.");
-		}
+		// Try to execute command and make quick result verification.
+		assertTrue("The service command should be executable.", correctCommand.canExecute());
+		correctCommand.execute(new NullProgressMonitor(), null);
+		assertTrue("The service command result is incorrect.", !ePckg.getESubpackages().isEmpty());
+		assertTrue("The service configure command result is incorrect.", "ASpecificName".equals(ePckg.getESubpackages().get(0).getName()));
 	}
 
 	/** Prepare a creation request (create a EPackage in an EPackage) and adds a ConfigureFeatureCommand */
 	@SuppressWarnings("unchecked")
 	private IEditCommandRequest prepareCorrectRequest() throws ServiceException {
-		TransactionalEditingDomain editingDomain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+		TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)editor.getAdapter(TransactionalEditingDomain.class);
 		IEditCommandRequest request = new CreateElementRequest(editingDomain, ePckg, ePackgType);
 
 		// Create a configure command factory and add it to the request

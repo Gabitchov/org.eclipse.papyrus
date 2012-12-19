@@ -59,7 +59,9 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.diagram.activity.commands.CreatePinToParameterLinkEAnnotation;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.ConfirmPinAndParameterSyncDialog;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.WarningAndCreateAttributeDialog;
@@ -456,6 +458,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		}
 		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
 
+			@Override
 			protected Boolean openDialog() {
 				WarningAndCreateParameterDialog dialog = new WarningAndCreateParameterDialog(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, labelProvider, preferredDirection);
 				boolean result = dialog.open() == Window.OK;
@@ -489,7 +492,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				for(InvocationAction action : callingActions) {
 					if(action instanceof CallAction) {
 						int index = action.getArguments().size();
-						CompoundCommand cmd = getAddPinsCmd((CallAction)action, Collections.singletonMap(index, (TypedElement)parameter), empty, preferredPinClass);
+						CompoundCommand cmd = getAddPinsCmd(action, Collections.singletonMap(index, (TypedElement)parameter), empty, preferredPinClass);
 						globalCmd.append(cmd);
 					}
 				}
@@ -499,7 +502,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				for(InvocationAction action : callingActions) {
 					if(action instanceof CallAction) {
 						int index = ((CallAction)action).getResults().size();
-						CompoundCommand cmd = getAddPinsCmd((CallAction)action, empty, Collections.singletonMap(index, (TypedElement)parameter), preferredPinClass);
+						CompoundCommand cmd = getAddPinsCmd(action, empty, Collections.singletonMap(index, (TypedElement)parameter), preferredPinClass);
 						globalCmd.append(cmd);
 					}
 				}
@@ -509,7 +512,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 					if(action instanceof CallAction) {
 						int indexIn = action.getArguments().size();
 						int indexOut = ((CallAction)action).getResults().size();
-						CompoundCommand cmd = getAddPinsCmd((CallAction)action, Collections.singletonMap(indexIn, (TypedElement)parameter), Collections.singletonMap(indexOut, (TypedElement)parameter), preferredPinClass);
+						CompoundCommand cmd = getAddPinsCmd(action, Collections.singletonMap(indexIn, (TypedElement)parameter), Collections.singletonMap(indexOut, (TypedElement)parameter), preferredPinClass);
 						globalCmd.append(cmd);
 					}
 				}
@@ -534,6 +537,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		final String message = NLS.bind(Messages.PinAndParameterSynchronizer_UnauthorizedModification, elementLabel);
 		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
 
+			@Override
 			protected Boolean openDialog() {
 				WarningAndCreateAttributeDialog dialog = new WarningAndCreateAttributeDialog(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, labelProvider);
 				boolean result = dialog.open() == Window.OK;
@@ -565,7 +569,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			for(InvocationAction action : callingActions) {
 				if(action instanceof SendSignalAction || action instanceof BroadcastSignalActionEditPart) {
 					int index = action.getArguments().size();
-					CompoundCommand cmd = getAddPinsCmd((SendSignalAction)action, Collections.singletonMap(index, property), preferredPinClass);
+					CompoundCommand cmd = getAddPinsCmd(action, Collections.singletonMap(index, property), preferredPinClass);
 					globalCmd.append(cmd);
 				}
 			}
@@ -586,6 +590,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		final String message = NLS.bind(Messages.PinAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
 		SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
+			@Override
 			protected Void openDialog() {
 				WarningAndLinkDialog dialog = new WarningAndLinkDialog(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, elementLabel);
 				dialog.open();
@@ -725,7 +730,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 					if(action instanceof CallAction) {
 						CompoundCommand cmd = getRemovePinsCmd((CallAction)action, Collections.singletonList(inIndex), emptyList);
 						globalCmd.append(cmd);
-						cmd = getAddPinsCmd((CallAction)action, emptyMap, Collections.singletonMap(outIndex, parameter), null);
+						cmd = getAddPinsCmd(action, emptyMap, Collections.singletonMap(outIndex, parameter), null);
 						globalCmd.append(cmd);
 					}
 				}
@@ -733,7 +738,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				// explore referencing actions to add out
 				for(InvocationAction action : callingActions) {
 					if(action instanceof CallAction) {
-						CompoundCommand cmd = getAddPinsCmd((CallAction)action, emptyMap, Collections.singletonMap(outIndex, parameter), null);
+						CompoundCommand cmd = getAddPinsCmd(action, emptyMap, Collections.singletonMap(outIndex, parameter), null);
 						globalCmd.append(cmd);
 					}
 				}
@@ -745,7 +750,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 					if(action instanceof CallAction) {
 						CompoundCommand cmd = getRemovePinsCmd((CallAction)action, emptyList, Collections.singletonList(outIndex));
 						globalCmd.append(cmd);
-						cmd = getAddPinsCmd((CallAction)action, Collections.singletonMap(inIndex, parameter), emptyMap, null);
+						cmd = getAddPinsCmd(action, Collections.singletonMap(inIndex, parameter), emptyMap, null);
 						globalCmd.append(cmd);
 					}
 				}
@@ -753,7 +758,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				// explore referencing actions to add in
 				for(InvocationAction action : callingActions) {
 					if(action instanceof CallAction) {
-						CompoundCommand cmd = getAddPinsCmd((CallAction)action, Collections.singletonMap(inIndex, parameter), emptyMap, null);
+						CompoundCommand cmd = getAddPinsCmd(action, Collections.singletonMap(inIndex, parameter), emptyMap, null);
 						globalCmd.append(cmd);
 					}
 				}
@@ -890,6 +895,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getCallOperationAction_Target().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
+					@Override
 					protected Void openDialog() {
 						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
@@ -1143,6 +1149,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendSignalAction_Target().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
+					@Override
 					protected Void openDialog() {
 						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
@@ -1176,6 +1183,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Target().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
+					@Override
 					protected Void openDialog() {
 						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
@@ -1192,6 +1200,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Request().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
+					@Override
 					protected Void openDialog() {
 						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
@@ -1527,7 +1536,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		List<InvocationAction> callingActions = getCallingActions(element);
 		for(InvocationAction action : callingActions) {
 			if(action instanceof CallAction) {
-				CompoundCommand cmd = getAddPinsCmd((CallAction)action, addedInputPinMap, addedOutputPinMap, null);
+				CompoundCommand cmd = getAddPinsCmd(action, addedInputPinMap, addedOutputPinMap, null);
 				globalCmd.append(cmd);
 			}
 		}
@@ -1624,7 +1633,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		}
 		List<Property> newAttributes = Collections.emptyList();
 		if(element instanceof Signal) {
-			newAttributes = ((Signal)element).getOwnedAttributes();
+			newAttributes = element.getOwnedAttributes();
 		}
 		Map<Integer, Property> addedInputPinMap = new HashMap<Integer, Property>();
 		// iterate on the list of added attributes to deduce pins indexes
@@ -1638,7 +1647,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		List<InvocationAction> callingActions = getCallingActions(element);
 		for(InvocationAction action : callingActions) {
 			if(action instanceof SendSignalAction) {
-				CompoundCommand cmd = getAddPinsCmd((SendSignalAction)action, addedInputPinMap, null);
+				CompoundCommand cmd = getAddPinsCmd(action, addedInputPinMap, null);
 				globalCmd.append(cmd);
 			}
 		}
@@ -2247,7 +2256,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			if(feature != null && feature.getType() != null) {
 				Type owningType = feature.getType();
 				if(owningType instanceof Type) {
-					pin.setType((Type)owningType);
+					pin.setType(owningType);
 				}
 			}
 		}
@@ -2267,7 +2276,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		if(var != null) {
 			Type owningType = var.getType();
 			if(owningType instanceof Type) {
-				pin.setType((Type)owningType);
+				pin.setType(owningType);
 			}
 		}
 		pin.setName(VALUE_IN_ADD_VARIABLE_VALUE_ACTION);
@@ -2309,7 +2318,13 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected CompoundCommand getResetPinsCmd(ReadStructuralFeatureAction action) {
 		// Get the editing domain
-		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		TransactionalEditingDomain editingdomain;
+		try {
+			editingdomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(action);
+		} catch (ServiceException ex) {
+			Log.error(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, ex.getMessage(), ex);
+			return null;
+		}
 		CompoundCommand globalCmd = new CompoundCommand();
 		// add result pin
 		if(action.getResult() == null) {
@@ -2582,14 +2597,14 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 					//In
 					if(direction == ParameterDirectionKind.IN_LITERAL || direction == ParameterDirectionKind.INOUT_LITERAL) {
 						if(!paramsToIgnore.contains(param)) {
-							inParams.put(inIndex, (TypedElement)param);
+							inParams.put(inIndex, param);
 						}
 						inIndex++;
 					}
 					//Out
 					if(direction == ParameterDirectionKind.OUT_LITERAL || direction == ParameterDirectionKind.INOUT_LITERAL || direction == ParameterDirectionKind.RETURN_LITERAL) {
 						if(!paramsToIgnore.contains(param)) {
-							outParams.put(outIndex, (TypedElement)param);
+							outParams.put(outIndex, param);
 						}
 						outIndex++;
 					}
@@ -2599,7 +2614,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			Integer inIndex = 0;
 			for(TypedElement typeElem : allParams) {
 				if(!paramsToIgnore.contains(typeElem)) {
-					inParams.put(inIndex, (TypedElement)typeElem);
+					inParams.put(inIndex, typeElem);
 				}
 				inIndex++;
 			}
@@ -2929,6 +2944,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	protected boolean askForValidation(final List<? extends NamedElement> listOfActions) {
 		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
 
+			@Override
 			protected Boolean openDialog() {
 				return ConfirmPinAndParameterSyncDialog.openConfirmFromParameter(Display.getDefault().getActiveShell(), listOfActions, labelProvider);
 			}

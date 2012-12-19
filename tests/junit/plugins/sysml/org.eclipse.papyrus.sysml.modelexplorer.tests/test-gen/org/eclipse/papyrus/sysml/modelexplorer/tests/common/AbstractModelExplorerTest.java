@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -47,11 +48,11 @@ import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Model;
@@ -115,9 +116,6 @@ public abstract class AbstractModelExplorerTest {
 	 */
 	@BeforeClass
 	public static void openPapyrusWithAnEmptyProject() throws Exception {
-		System.out.println("openPapyrusWithAnEmptyProject");
-		IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
-		PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
 		// Prepare new project for tests
 		IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject("TestCopyPasteProject");
 		if(!testProject.exists()) {
@@ -129,7 +127,7 @@ public abstract class AbstractModelExplorerTest {
 		}
 
 		// Copy EmptyModel from bundle to the test project
-		IFile emptyModel_di = testProject.getFile("ModelWithBDD.di");
+		final IFile emptyModel_di = testProject.getFile("ModelWithBDD.di");
 		IFile emptyModel_no = testProject.getFile("ModelWithBDD.notation");
 		IFile emptyModel_uml = testProject.getFile("ModelWithBDD.uml");
 
@@ -143,10 +141,21 @@ public abstract class AbstractModelExplorerTest {
 		}
 
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		editor = page.openEditor(new FileEditorInput(emptyModel_di), editorID);
+		Display.getDefault().syncExec(new Runnable() {
 
-		modelExplorerPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(ModelExplorerPageBookView.VIEW_ID);
+			public void run() {
+				try {
+					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					editor = page.openEditor(new FileEditorInput(emptyModel_di), editorID);
+
+					modelExplorerPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(ModelExplorerPageBookView.VIEW_ID);
+					modelExplorerPart.setFocus();
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+				}
+			}
+		});
+
 		Assert.assertNotNull("Model explorer is null", modelExplorerPart);
 
 		prepareTest();
@@ -212,8 +221,16 @@ public abstract class AbstractModelExplorerTest {
 	@AfterClass
 	public static void closePapyrusAndCleanProject() throws Exception {
 		// Close the editor without saving content created during tests
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		page.closeEditor(editor, false);
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				page.closeEditor(editor, false);
+			}
+		});
+
+		editor = null;
+		modelExplorerPart = null;
 	}
 
 
@@ -225,8 +242,17 @@ public abstract class AbstractModelExplorerTest {
 	 * @throws Exception
 	 *         exception thrown in case element could not be selected
 	 */
-	public static void selectAndReveal(EObject object) throws Exception {
-		selectAndReveal(Arrays.asList(object));
+	public static void selectAndReveal(final EObject object) throws Exception {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				try {
+					selectAndReveal(Arrays.asList(object));
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+				}
+			}
+		});
 	}
 
 	/**
@@ -263,7 +289,7 @@ public abstract class AbstractModelExplorerTest {
 	 *         the current editing domain
 	 */
 	protected TransactionalEditingDomain getEditingDomain() throws Exception {
-		return org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+		return (TransactionalEditingDomain)editor.getAdapter(TransactionalEditingDomain.class);
 	}
 
 	/**
@@ -274,7 +300,15 @@ public abstract class AbstractModelExplorerTest {
 	 *         exception thrown in case of problem (NPE, etc.)
 	 */
 	protected boolean isEditorDirty() throws Exception {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().isDirty();
+		RunnableWithResult<Boolean> runnable;
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<Boolean>() {
+
+			public void run() {
+				setResult(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().isDirty());
+			}
+		});
+
+		return runnable.getResult();
 	}
 
 	/**
@@ -285,8 +319,17 @@ public abstract class AbstractModelExplorerTest {
 	 * @throws Exception
 	 *         exception thrown in case element could not be selected
 	 */
-	public static void selectAndRevealDiagram(Diagram object) throws Exception {
-		selectAndRevealDiagram(Arrays.asList(object));
+	public static void selectAndRevealDiagram(final Diagram object) throws Exception {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				try {
+					selectAndRevealDiagram(Arrays.asList(object));
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+				}
+			}
+		});
 	}
 
 	/**
@@ -323,7 +366,7 @@ public abstract class AbstractModelExplorerTest {
 	 * @param commonViewer
 	 *        The CommonViewer they are to be revealed in
 	 */
-	public static void reveal(Iterable<Diagram> elementList, CommonViewer commonViewer) {
+	public static void reveal(final Iterable<Diagram> elementList, final CommonViewer commonViewer) {
 		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
 		// filter out non EMF objects
 		for(Diagram currentEObject : elementList) {

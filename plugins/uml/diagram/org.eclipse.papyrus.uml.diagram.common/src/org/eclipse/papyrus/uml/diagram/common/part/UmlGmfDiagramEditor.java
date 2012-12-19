@@ -85,6 +85,9 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 			// Do nothing
 		}
 
+		partNameSynchronizer = null;
+		diagram = null;
+		servicesRegistry = null;
 	}
 
 	/**
@@ -190,11 +193,10 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 			diagram.eAdapters().add(diagramNameListener);
 		}
 	}
-	
+
 	@Override
 	public void createPartControl(Composite parent) {
-		IContextService contextService = (IContextService) getSite()
-				.getService(IContextService.class);
+		IContextService contextService = (IContextService)getSite().getService(IContextService.class);
 		//FIXME : before Eclipse Juno, this line was not necessary
 		//see bug 367816 and bug 382218
 		contextService.activateContext("org.eclipse.gmf.runtime.diagram.ui.diagramContext"); //$NON-NLS-1$

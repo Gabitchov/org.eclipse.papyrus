@@ -494,9 +494,9 @@ public class ModelSet extends ResourceSetImpl {
 	 * Unload all the resources. Do not disguard associated models.
 	 */
 	public void unload() {
-
 		// call snippets to allow them to do their stuff
 		snippets.performDispose(this);
+		snippets.clear();
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
@@ -515,6 +515,7 @@ public class ModelSet extends ResourceSetImpl {
 		// Dispose Editing Domain
 		if(transactionalEditingDomain != null) {
 			transactionalEditingDomain.dispose();
+			transactionalEditingDomain = null;
 		}
 		// Detach associated factories
 		if(adapterFactories != null) {

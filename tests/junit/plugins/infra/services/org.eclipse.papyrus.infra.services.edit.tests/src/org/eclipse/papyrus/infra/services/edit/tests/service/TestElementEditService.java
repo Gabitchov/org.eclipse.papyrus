@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.services.edit.internal.ElementEditService;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.tests.AbstractTestElementEditService;
@@ -83,8 +82,10 @@ public class TestElementEditService extends AbstractTestElementEditService {
 			assertFalse("The service command should not be executable.", incorrectCommand.canExecute());
 
 		} catch (ServiceException e) {
+			e.printStackTrace(System.out);
 			fail("Test aborted - Papyrus editing domain not found.");
 		} catch (ExecutionException e) {
+			e.printStackTrace(System.out);
 			fail("Test aborted - Command execution failed.");
 		}
 	}
@@ -103,13 +104,13 @@ public class TestElementEditService extends AbstractTestElementEditService {
 
 	/** Correct creation request (create a EPackage in an EPackage) */
 	private IEditCommandRequest prepareCorrectRequest() throws ServiceException {
-		TransactionalEditingDomain editingDomain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+		TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)editor.getAdapter(TransactionalEditingDomain.class);
 		return new CreateElementRequest(editingDomain, ePckg, ePackgType);
 	}
 
 	/** Incorrect creation request (create a EClass in an EPackage) */
 	private IEditCommandRequest prepareIncorrectRequest() throws ServiceException {
-		TransactionalEditingDomain editingDomain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+		TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)editor.getAdapter(TransactionalEditingDomain.class);
 		return new CreateElementRequest(editingDomain, eClass, ePackgType);
 	}
 }

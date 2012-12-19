@@ -63,6 +63,7 @@ import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
@@ -680,7 +681,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * @param commonViewer
 	 *        The CommonViewer they are to be revealed in
 	 */
-	public static void reveal(Iterable<?> elementList, CommonViewer commonViewer) {
+	public static void reveal(Iterable<?> elementList, final CommonViewer commonViewer) {
 		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
 		// filter out non EMF objects
 		Iterable<EObject> list = Iterables.transform(Iterables.filter(elementList, EObject.class), new Function<Object, EObject>() {
@@ -739,10 +740,27 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					if(parent.eContainingFeature() != null && previousParent != null) {
 						commonViewer.expandToLevel(new LinkItemMatchingItem(previousParent, parent.eContainmentFeature()), 1);
 					}
-					commonViewer.expandToLevel(new ModelElementItemMatchingItem(parent), 1);
+
+					final IMatchingItem itemToExpand = new ModelElementItemMatchingItem(parent);
+
+					commonViewer.getControl().getDisplay().syncExec(new Runnable() {
+
+						public void run() {
+							commonViewer.expandToLevel(itemToExpand, 1);
+						}
+					});
+
 					previousParent = parent;
 				}
-				commonViewer.expandToLevel(new LinkItemMatchingItem(currentEObject.eContainer(), currentEObject.eContainmentFeature()), 1);
+
+				final IMatchingItem itemToExpand = new LinkItemMatchingItem(currentEObject.eContainer(), currentEObject.eContainmentFeature());
+
+				commonViewer.getControl().getDisplay().syncExec(new Runnable() {
+
+					public void run() {
+						commonViewer.expandToLevel(itemToExpand, 1);
+					}
+				});
 			}
 		}
 
@@ -757,8 +775,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * @param commonViewer
 	 *        The ComonViewer to select it in
 	 */
-	public static void selectReveal(ISelection structuredSelection, Viewer commonViewer) {
-		commonViewer.setSelection(structuredSelection, true);
+	public static void selectReveal(final ISelection structuredSelection, final Viewer commonViewer) {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				commonViewer.setSelection(structuredSelection, true);
+			}
+		});
 	}
 
 	/**

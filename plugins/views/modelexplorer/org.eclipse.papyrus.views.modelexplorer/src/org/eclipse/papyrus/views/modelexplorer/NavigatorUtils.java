@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
@@ -21,6 +22,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
@@ -52,21 +54,33 @@ public class NavigatorUtils {
 	 * 
 	 * @return the i view part
 	 */
-	public static IViewPart findViewPart(String viewID) {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		if(page == null) {
-			return null;
-		}
-		IViewReference reference = page.findViewReference(viewID);
-		if(reference == null) {
-			return null;
-		}
-		IWorkbenchPart part = reference.getPart(false);
-		if(part instanceof IViewPart) {
-			return (IViewPart)part;
-		} else {
-			return null;
-		}
+	public static IViewPart findViewPart(final String viewID) {
+		RunnableWithResult<IViewPart> runnable;
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IViewPart>() {
+
+			public void run() {
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				if(page == null) {
+					setResult(null);
+					return;
+				}
+				IViewReference reference = page.findViewReference(viewID);
+				if(reference == null) {
+					setResult(null);
+					return;
+				}
+				IWorkbenchPart part = reference.getPart(false);
+				if(part instanceof IViewPart) {
+					setResult((IViewPart)part);
+					return;
+				} else {
+					setResult(null);
+					return;
+				}
+			}
+		});
+
+		return runnable.getResult();
 	}
 
 	/**

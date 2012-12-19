@@ -4,8 +4,7 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor,
  org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple,
  org.eclipse.papyrus.infra.core.sasheditor.editor,
  org.eclipse.papyrus.infra.core.sasheditor.editor.actionbarcontributor,
- org.eclipse.papyrus.infra.core.sasheditor.editor.gef,
- org.eclipse.papyrus.infra.core.sasheditor.multipage.editor
+ org.eclipse.papyrus.infra.core.sasheditor.editor.gef
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName

@@ -27,30 +27,35 @@ public class TestUseCaseLinkOwnedBySource extends TestLinkOwnedBySource {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateUseCaseDiagramCommand();
+		return new CreateUseCaseDiagramCommand();
 	}
-	
+
 	/**
 	 * Test to manage Association.
 	 */
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Actor_2011,UMLElementTypes.Actor_2011,UMLElementTypes.Generalization_4010,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.Actor_2011, UMLElementTypes.Actor_2011, UMLElementTypes.Generalization_4010, UMLElementTypes.Package_2016, true);
 	}
-	
+
 	@Test
 	public void testToManagePackageMerge() {
-		testToManageLink(UMLElementTypes.Package_2016,UMLElementTypes.Package_2016,UMLElementTypes.PackageMerge_4018,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.Package_2016, UMLElementTypes.Package_2016, UMLElementTypes.PackageMerge_4018, UMLElementTypes.Package_2016, true);
 	}
+
 	@Test
 	public void testToManagePackageImport() {
-		testToManageLink(UMLElementTypes.Package_2016,UMLElementTypes.Package_2016,UMLElementTypes.PackageImport_4019,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.Package_2016, UMLElementTypes.Package_2016, UMLElementTypes.PackageImport_4019, UMLElementTypes.Package_2016, true);
 	}
+
+	@Test
 	public void testToManageExtend() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Extend_4009,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Extend_4009, UMLElementTypes.Package_2016, true);
 	}
+
+	@Test
 	public void testToManageInclude() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Include_4008,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Include_4008, UMLElementTypes.Package_2016, true);
 	}
-	
+
 }

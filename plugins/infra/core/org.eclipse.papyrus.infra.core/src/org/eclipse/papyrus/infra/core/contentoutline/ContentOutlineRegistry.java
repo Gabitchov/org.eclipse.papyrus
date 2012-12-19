@@ -91,13 +91,15 @@ public class ContentOutlineRegistry {
 		// look for the one with the highest priority
 		for(IConfigurationElement ele : configElements) {
 			ContentOutlineDescriptor desc = new ContentOutlineDescriptor(ele);
-			if(desc.isHigher(found))
+			if(desc.isHigher(found)) {
 				found = desc;
+			}
 		}
 
 		// Instanciate the object
-		if(found == null)
+		if(found == null) {
 			throw new NotFoundException("No ContentOutline registered.");
+		}
 
 		return found;
 
@@ -154,8 +156,9 @@ public class ContentOutlineRegistry {
 
 			this.element = element;
 			// check parameters
-			if(className == null)
+			if(className == null) {
 				throw new BadClassNameException("Class name must be set", "contentoutline", classAttributeName);
+			}
 
 		}
 

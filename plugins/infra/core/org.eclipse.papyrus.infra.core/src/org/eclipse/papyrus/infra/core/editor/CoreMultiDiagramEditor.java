@@ -79,16 +79,19 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
- * Multi diagram editor allowing to plug various kind of editors. Editors are registered with the help of the Eclipse extension mechanism. This
- * implementation allows to register editors and context
- * separately. An editor should specify which context it need to run. This multi diagram editor allows to show editor side by side in one or more sash
- * windows.
+ * Multi diagram editor allowing to plug various kind of editors. Editors are
+ * registered with the help of the Eclipse extension mechanism. This
+ * implementation allows to register editors and context separately. An editor
+ * should specify which context it need to run. This multi diagram editor allows
+ * to show editor side by side in one or more sash windows.
  * 
- * The real implementation for the generic type T of SashMultiPageEditorPart is actually di2.Diagram
+ * The real implementation for the generic type T of SashMultiPageEditorPart is
+ * actually di2.Diagram
  * 
  * @author cedric dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
- * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a> Refactoring.
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
+ *         Refactoring.
  * 
  *         TODO : remove GMF dependency !
  */
@@ -104,7 +107,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	private ServicesRegistry servicesRegistry;
 
 	/**
-	 * ActionBarContributor Registry. Allows to get an ActionBar by its Id. The registry is initialized from the Eclipse extension mechanism.
+	 * ActionBarContributor Registry. Allows to get an ActionBar by its Id. The
+	 * registry is initialized from the Eclipse extension mechanism.
 	 */
 	private ActionBarContributorRegistry actionBarContributorRegistry;
 
@@ -119,10 +123,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/**
 	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
 	 */
-	protected IEditorInputChangedListener editorInputChangedListener = new IEditorInputChangedListener() {
+	private static class EditorInputChangedListener implements IEditorInputChangedListener {
+
+		private CoreMultiDiagramEditor editor;
+
+		public EditorInputChangedListener(CoreMultiDiagramEditor editor) {
+			this.editor = editor;
+		}
 
 		/**
-		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
+		 * This method is called when the editor input is changed from the
+		 * ISaveAndDirtyService.
 		 * 
 		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
 		 * 
@@ -130,8 +141,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		 */
 		public void editorInputChanged(FileEditorInput fileEditorInput) {
 			// Change the editor input.
-			setInputWithNotify(fileEditorInput);
-			setPartName(fileEditorInput.getName());
+			editor.setInputWithNotify(fileEditorInput);
+			editor.setPartName(fileEditorInput.getName());
 		}
 
 		/**
@@ -143,14 +154,20 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		public void isDirtyChanged() {
 
 			// Run it in async way.
-			getSite().getShell().getDisplay().asyncExec(new Runnable() {
+			editor.getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
 				public void run() {
-					firePropertyChange(IEditorPart.PROP_DIRTY);
+					editor.firePropertyChange(IEditorPart.PROP_DIRTY);
 				}
 			});
 		}
-	};
+
+		public void dispose() {
+			this.editor = null;
+		}
+	}
+
+	protected EditorInputChangedListener editorInputChangedListener = new EditorInputChangedListener(this);
 
 	private TransactionalEditingDomain transactionalEditingDomain;
 
@@ -169,33 +186,58 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	private TabbedPropertySheetPage tabbedPropertySheetPage = null;
 
+	private static class EditingDomainProvider implements IEditingDomainProvider {
+
+		private CoreMultiDiagramEditor editor;
+
+		public EditingDomainProvider(CoreMultiDiagramEditor editor) {
+			this.editor = editor;
+		}
+
+		public EditingDomain getEditingDomain() {
+			return editor.transactionalEditingDomain;
+		}
+
+		public void dispose() {
+			this.editor = null;
+		}
+	}
+
 	/**
 	 * My editing domain provider.
 	 */
-	private IEditingDomainProvider domainProvider = new IEditingDomainProvider() {
+	private EditingDomainProvider domainProvider = new EditingDomainProvider(this);
 
-		public EditingDomain getEditingDomain() {
-			return transactionalEditingDomain;
+	private static class ContentChangedListener implements IContentChangedListener {
+
+		private CoreMultiDiagramEditor editor;
+
+		public ContentChangedListener(CoreMultiDiagramEditor editor) {
+			this.editor = editor;
 		}
-	};
-
-	/**
-	 * A listener on model change events.
-	 */
-	private IContentChangedListener contentChangedListener = new IContentChangedListener() {
 
 		/**
 		 * Called when the content is changed. RefreshTabs.
 		 */
 		public void contentChanged(ContentEvent event) {
-			refreshTabs();
+			editor.refreshTabs();
 		}
-	};
+
+		public void dispose() {
+			this.editor = null;
+		}
+	}
 
 	/**
-	 * Undo context used to have the same undo context in all Papyrus related views and editors.
-	 * TODO : move away, use a version independent of GMF, add a listener that will add
-	 * the context to all commands modifying attached Resources (==> linked to ModelSet ?)
+	 * A listener on model change events.
+	 */
+	private ContentChangedListener contentChangedListener = new ContentChangedListener(this);
+
+	/**
+	 * Undo context used to have the same undo context in all Papyrus related
+	 * views and editors. TODO : move away, use a version independent of GMF,
+	 * add a listener that will add the context to all commands modifying
+	 * attached Resources (==> linked to ModelSet ?)
 	 */
 	private IUndoContext undoContext;
 
@@ -240,7 +282,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create Services Registry
 		try {
 			ServicesRegistry servicesRegistry = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
-			//			servicesRegistry.startRegistry();
+			// servicesRegistry.startRegistry();
 			return servicesRegistry;
 		} catch (ServiceException e) {
 			// Show log and error
@@ -277,9 +319,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	/**
-	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in the
-	 * SashWindow.
-	 * This method is available as soon as the {@link CoreMultiDiagramEditor#init(IEditorSite, IEditorInput)} method is called.
+	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in
+	 * the SashWindow. This method is available as soon as the {@link CoreMultiDiagramEditor#init(IEditorSite, IEditorInput)} method is
+	 * called.
 	 * 
 	 * @return
 	 */
@@ -346,7 +388,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		if(IPropertySheetPage.class == adapter) {
 			// Do not test if tabbedPropertySheetPage is null before calling new
-			// this is managed by Eclipse which only call current method when necessary
+			// this is managed by Eclipse which only call current method when
+			// necessary
 			return getPropertySheetPage();
 		}
 
@@ -368,10 +411,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 
 		/*
-		 * Return context used for undo/redo.
-		 * All papyrus views should use this context.
-		 * The prefer way to get this is to use
-		 * undoContext = servicesRegistry.getService(IUndoContext.class);
+		 * Return context used for undo/redo. All papyrus views should use this
+		 * context. The prefer way to get this is to use undoContext =
+		 * servicesRegistry.getService(IUndoContext.class);
 		 */
 		if(IUndoContext.class == adapter) {
 			return undoContext;
@@ -380,7 +422,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// EMF requirements
 		if(IEditingDomainProvider.class == adapter) {
 
-			// return (IEditingDomainProvider) defaultContext.getTransactionalEditingDomain().getResourceSet();
+			// return (IEditingDomainProvider)
+			// defaultContext.getTransactionalEditingDomain().getResourceSet();
 			return domainProvider;
 		}
 
@@ -483,7 +526,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory) {
 
 			/**
-			 * This implements {@link ILabelProvider}.getText by forwarding it to an object that implements {@link IItemLabelProvider#getText
+			 * This implements {@link ILabelProvider}.getText by forwarding it
+			 * to an object that implements {@link IItemLabelProvider#getText
 			 * IItemLabelProvider.getText}
 			 */
 			@Override
@@ -516,16 +560,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			servicesRegistry.startRegistry();
 		} catch (ModelMultiException e) {
 			try {
-				// with the ModelMultiException it is still possible to open the editors that's why the service registry is still started 
+				// with the ModelMultiException it is still possible to open the
+				// editors that's why the service registry is still started
 				servicesRegistry.startRegistry();
 				warnUser(e);
 			} catch (ServiceException e1) {
 				log.error(e);
-				throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
+				//throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
 			}
 		} catch (ServiceException e) {
 			log.error(e);
-			throw new PartInitException("could not initialize services", e);
+			//throw new PartInitException("could not initialize services", e);
 		}
 
 
@@ -539,7 +584,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			undoContext = servicesRegistry.getService(IUndoContext.class);
 		} catch (ServiceException e) {
 			log.error("A required service is missing.", e);
-			// if one of the services above fail to start, the editor can't run => stop
+			// if one of the services above fail to start, the editor can't run
+			// => stop
 			throw new PartInitException("could not initialize services", e);
 		}
 
@@ -579,11 +625,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 	}
 
-
 	/**
-	 * Init the contextual menu shown in the folder tabs.
-	 * This popup menu is contributed by the help of Eclipse extensions, using the Commands framework.
-	 * I.e, to add a menu item, create a menu, a command and an handler in the extension.
+	 * Init the contextual menu shown in the folder tabs. This popup menu is
+	 * contributed by the help of Eclipse extensions, using the Commands
+	 * framework. I.e, to add a menu item, create a menu, a command and an
+	 * handler in the extension.
 	 */
 	protected void initFolderTabMenus() {
 		ISashWindowsContainer container = getISashWindowsContainer();
@@ -626,17 +672,50 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Avoid memory leak
 		// This call is done from the ServicesRegistry when it is disposed.
 		// Don't need to do it there.
-		//		if(resourceSet != null) {
-		//			resourceSet.unload();
-		//		}
+		// if(resourceSet != null) {
+		// resourceSet.unload();
+		// }
 
 		// dispose available service
 		if(servicesRegistry != null) {
 			try {
 				servicesRegistry.disposeRegistry();
+				servicesRegistry = null;
 			} catch (ServiceMultiException e) {
 				log.error(e);
 			}
+		}
+
+		if(domainProvider != null) {
+			this.domainProvider.dispose();
+			this.domainProvider = null;
+		}
+
+		if(contentChangedListener != null) {
+			this.contentChangedListener.dispose();
+			this.contentChangedListener = null;
+		}
+
+		if(editorInputChangedListener != null) {
+			this.editorInputChangedListener.dispose();
+			this.editorInputChangedListener = null;
+		}
+
+		if(gefAdaptorDelegate != null) {
+			gefAdaptorDelegate.dispose();
+			gefAdaptorDelegate = null;
+		}
+
+		contentOutlineRegistry = null;
+		transactionalEditingDomain = null;
+		resourceSet = null;
+		undoContext = null;
+		saveAndDirtyService = null;
+		sashModelMngr = null;
+
+		if(tabbedPropertySheetPage != null) {
+			tabbedPropertySheetPage.dispose();
+			tabbedPropertySheetPage = null;
 		}
 
 		super.dispose();

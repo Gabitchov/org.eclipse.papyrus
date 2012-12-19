@@ -9,6 +9,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
@@ -37,12 +38,18 @@ public abstract class TestNewModelWizardBase extends TestCase {
 		return wizard;
 	}
 
-	protected IWorkbenchWizard initWizardDialog(IWorkbenchWizard wizard) {
-		wizard.init(getWorkbench(), getSelection());
-		WizardDialog dialog = new WizardDialog(getShell(), wizard);
-		PixelConverter converter = new PixelConverter(JFaceResources.getDialogFont());
-		dialog.setMinimumPageSize(converter.convertWidthInCharsToPixels(70), converter.convertHeightInCharsToPixels(20));
-		dialog.create();
+	protected IWorkbenchWizard initWizardDialog(final IWorkbenchWizard wizard) {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				wizard.init(getWorkbench(), getSelection());
+				WizardDialog dialog = new WizardDialog(getShell(), wizard);
+				PixelConverter converter = new PixelConverter(JFaceResources.getDialogFont());
+				dialog.setMinimumPageSize(converter.convertWidthInCharsToPixels(70), converter.convertHeightInCharsToPixels(20));
+				dialog.create();
+			}
+		});
+
 		return wizard;
 	}
 

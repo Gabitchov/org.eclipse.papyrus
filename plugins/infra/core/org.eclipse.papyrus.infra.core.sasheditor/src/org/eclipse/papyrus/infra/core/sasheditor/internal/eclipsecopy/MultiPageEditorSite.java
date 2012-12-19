@@ -219,6 +219,29 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		return mainEditorSite;
 	}
 
+	private static class PapyrusContextFunction extends ContextFunction {
+
+		private MultiPageEditorSite editorSite;
+
+		public PapyrusContextFunction(MultiPageEditorSite multiPageEditorSite4x) {
+			this.editorSite = multiPageEditorSite4x;
+		}
+
+		@Override
+		public Object compute(IEclipseContext ctxt) {
+			if(editorSite.contextService == null) {
+				editorSite.contextService = new NestableContextService(ctxt.getParent().get(IContextService.class), new ActivePartExpression(editorSite.mainEditorSite.getPart()));
+			}
+			return editorSite.contextService;
+		}
+
+		public void dispose() {
+			this.editorSite = null;
+		}
+	}
+
+	private PapyrusContextFunction contextFunction;
+
 	/**
 	 * Initialize the slave services for this site.
 	 */
@@ -232,17 +255,9 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		//					}
 		//				});
 
+		contextFunction = new PapyrusContextFunction(this);
 
-		context.set(IContextService.class.getName(), new ContextFunction() {
-
-			@Override
-			public Object compute(IEclipseContext ctxt) {
-				if(contextService == null) {
-					contextService = new NestableContextService(ctxt.getParent().get(IContextService.class), new ActivePartExpression(mainEditorSite.getPart()));
-				}
-				return contextService;
-			}
-		});
+		context.set(IContextService.class.getName(), contextFunction);
 
 		// create a local handler service so that when this page
 		// activates/deactivates, its handlers will also be taken into/out of
@@ -313,17 +328,23 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 
 		if(contextService != null) {
 			contextService.dispose();
+			contextService = null;
 		}
 
 		if(serviceLocator != null) {
 			serviceLocator.dispose();
 		}
+		context.remove(IContextService.class.getName());
 		context.dispose();
+
+		contextFunction.dispose();
+		contextFunction = null;
 
 		// dispose properties to help GC
 		setSelectionProvider(null);
 		mainEditorSite = null;
 		editor = null;
+
 		actionBarContributor = null;
 
 	}
@@ -621,14 +642,14 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		if(menuExtenders == null) {
 			menuExtenders = new ArrayList(1);
 		}
-		PartSite.registerContextMenu(menuID, menuMgr, selProvider, true, editor, context, menuExtenders);
+		PartSite.registerContextMenu(menuID, menuMgr, selProvider, true, editor, menuExtenders);
 	}
 
 	public final void registerContextMenu(final String menuId, final MenuManager menuManager, final ISelectionProvider selectionProvider, final boolean includeEditorInput) {
 		if(menuExtenders == null) {
 			menuExtenders = new ArrayList(1);
 		}
-		PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, editor, context, menuExtenders);
+		PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, editor, menuExtenders);
 	}
 
 	/**

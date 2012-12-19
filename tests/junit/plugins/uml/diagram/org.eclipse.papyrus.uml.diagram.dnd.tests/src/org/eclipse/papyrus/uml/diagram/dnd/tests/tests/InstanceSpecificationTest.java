@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.widgets.providers.TreeToFlatContentProvider;
 import org.eclipse.papyrus.uml.diagram.dnd.strategy.instancespecification.ui.ClassifierPropertiesContentProvider;
 import org.eclipse.papyrus.uml.diagram.dnd.tests.Activator;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -113,13 +114,23 @@ public class InstanceSpecificationTest {
 			copyToWorkspace(sourceURL, targetFile);
 		}
 
-		IFile modelFile = project.getFile(modelName + ".di");
+		final IFile modelFile = project.getFile(modelName + ".di");
 
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(modelFile.getName());
-		papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(modelFile), desc.getId());
-		diagram = (Diagram)papyrusEditor.getAdapter(Diagram.class);
-		Assert.assertTrue("Cannot load the test diagram", diagram != null);
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				try {
+					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(modelFile.getName());
+					papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(modelFile), desc.getId());
+					diagram = (Diagram)papyrusEditor.getAdapter(Diagram.class);
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+				}
+			}
+		});
+
+		Assert.assertNotNull("Cannot load the test diagram", diagram);
 	}
 
 	protected static void copyToWorkspace(URL sourceURL, IFile targetFile) throws CoreException, IOException {
@@ -130,14 +141,20 @@ public class InstanceSpecificationTest {
 	}
 
 	@AfterClass
-	public static void dispose() {
-		papyrusEditor.getSite().getPage().closeEditor(papyrusEditor, false);
-		for(IFile modelFile : model) {
-			try {
-				modelFile.delete(true, false, new NullProgressMonitor());
-			} catch (CoreException ex) {
-				Assert.fail("Cannot delete the model");
+	public static void dispose() throws Exception {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				papyrusEditor.getSite().getPage().closeEditor(papyrusEditor, false);
 			}
+		});
+
+		papyrusEditor = null;
+		diagram = null;
+		strategy = null;
+
+		for(IFile modelFile : model) {
+			modelFile.delete(true, false, new NullProgressMonitor());
 		}
 	}
 

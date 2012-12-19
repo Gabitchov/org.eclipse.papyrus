@@ -24,6 +24,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AbstractOverrideableCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.uml.commands.Activator;
 
 /**
  * Handler for the Copy Action
@@ -40,33 +44,42 @@ public class CopyHandler extends AbstractEMFCommandHandler {
 	 * @return
 	 */
 	@Override
-	protected Command getCommand() {
-		final TransactionalEditingDomain editingDomain = getEditingDomain();
-		List<EObject> selection = getSelectedElements();
-		if(editingDomain != null && !selection.isEmpty()) {
-			final Collection<Object> stereotypedSelection = new ArrayList<Object>();
-			stereotypedSelection.addAll(getSelectedElements());
-			//			Iterator<EObject> selecIterator = selection.iterator();
-			//			while(selecIterator.hasNext()) {
-			//				EObject eObject = (EObject)selecIterator.next();
-			//
-			//				if(eObject instanceof Element) {
-			//					stereotypedSelection.addAll(((Element)eObject).getStereotypeApplications());
-			//				}
-			//				//copy stereotype contained into
-			//				Iterator<EObject> iter = eObject.eAllContents();
-			//				while(iter.hasNext()) {
-			//					EObject subeObject = (EObject)iter.next();
-			//					if(subeObject instanceof Element) {
-			//						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
-			//					}
-			//
-			//				}
-			//
-			//			}
+	protected Command getCommand(ServicesRegistry registry) {
+		if(registry != null) {
+			final TransactionalEditingDomain editingDomain;
+			try {
+				editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+				return UnexecutableCommand.INSTANCE;
+			}
 
-			return new PutInClipboardCommand(editingDomain, stereotypedSelection);
-			//return CopyToClipboardCommand.create(getEditingDomain(), stereotypedSelection);
+			List<EObject> selection = getSelectedElements();
+			if(editingDomain != null && !selection.isEmpty()) {
+				final Collection<Object> stereotypedSelection = new ArrayList<Object>();
+				stereotypedSelection.addAll(getSelectedElements());
+				//			Iterator<EObject> selecIterator = selection.iterator();
+				//			while(selecIterator.hasNext()) {
+				//				EObject eObject = (EObject)selecIterator.next();
+				//
+				//				if(eObject instanceof Element) {
+				//					stereotypedSelection.addAll(((Element)eObject).getStereotypeApplications());
+				//				}
+				//				//copy stereotype contained into
+				//				Iterator<EObject> iter = eObject.eAllContents();
+				//				while(iter.hasNext()) {
+				//					EObject subeObject = (EObject)iter.next();
+				//					if(subeObject instanceof Element) {
+				//						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
+				//					}
+				//
+				//				}
+				//
+				//			}
+
+				return new PutInClipboardCommand(editingDomain, stereotypedSelection);
+				//return CopyToClipboardCommand.create(getEditingDomain(), stereotypedSelection);
+			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

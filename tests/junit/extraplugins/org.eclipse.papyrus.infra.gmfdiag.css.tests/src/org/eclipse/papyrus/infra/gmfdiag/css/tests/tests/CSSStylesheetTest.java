@@ -61,7 +61,7 @@ public class CSSStylesheetTest {
 			return;
 		}
 
-		Assert.assertTrue("Invalid color", classView.getFillColor() == rgb(255, 0, 0)); //Red = #FF0000
+		Assert.assertEquals("Invalid color", rgb(255, 0, 0), classView.getFillColor()); //Red = #FF0000
 		Assert.assertNull("Invalid gradient", classView.getGradient());
 		Assert.assertTrue(AppearanceHelper.showElementIcon(classView));
 	}
@@ -70,36 +70,36 @@ public class CSSStylesheetTest {
 	public void testInterfaceStyle() {
 		Shape interfaceView = findShape("Interface1");
 
-		Assert.assertTrue(interfaceView.getGradient() != null);
-		Assert.assertTrue(interfaceView.getFillColor() == rgb(255, 255, 0)); //Yellow = #FFFF00 
-		Assert.assertTrue(interfaceView.getGradient().getGradientColor1() == rgb(255, 0, 0)); //Red = #FF0000 
-		Assert.assertTrue(interfaceView.getGradient().getGradientStyle() == GradientStyle.VERTICAL);
+		Assert.assertNotNull(interfaceView.getGradient());
+		Assert.assertEquals(rgb(255, 255, 0), interfaceView.getFillColor()); //Yellow = #FFFF00 
+		Assert.assertEquals(rgb(255, 0, 0), interfaceView.getGradient().getGradientColor1()); //Red = #FF0000 
+		Assert.assertEquals(GradientStyle.VERTICAL, interfaceView.getGradient().getGradientStyle());
 		Assert.assertTrue(AppearanceHelper.showElementIcon(interfaceView));
 	}
 
 	@Test
 	public void testCSSClassStyle() {
 		Shape interfaceView = findShape("Interface2");
-		Assert.assertTrue(interfaceView.getGradient() != null);
-		Assert.assertTrue(interfaceView.getFillColor() == rgb(144, 238, 144)); //Lightgreen = #90EE90
+		Assert.assertNotNull(interfaceView.getGradient());
+		Assert.assertEquals(rgb(144, 238, 144), interfaceView.getFillColor()); //Lightgreen = #90EE90
 
 		//Case insensitive color name
-		Assert.assertTrue(interfaceView.getGradient().getGradientColor1() == rgb(0, 191, 255)); //DeepSkyBlue = #00BFFF
+		Assert.assertEquals(rgb(0, 191, 255), interfaceView.getGradient().getGradientColor1()); //DeepSkyBlue = #00BFFF
 
-		Assert.assertTrue(interfaceView.getGradient().getGradientStyle() == GradientStyle.HORIZONTAL);
+		Assert.assertEquals(GradientStyle.HORIZONTAL, interfaceView.getGradient().getGradientStyle());
 		Assert.assertFalse(AppearanceHelper.showElementIcon(interfaceView));
 
 		//TODO: Font names should be case-insensitive
-		Assert.assertTrue("KaiTi".equals(interfaceView.getFontName()));
+		Assert.assertEquals("KaiTi", interfaceView.getFontName());
 	}
 
 	@Test
 	public void testPackage() {
 		Shape packageView = findShape("Package1");
-		Assert.assertTrue(packageView.getGradient() != null);
+		Assert.assertNotNull(packageView.getGradient());
 
 		//Inherited style (From *)
-		Assert.assertTrue(packageView.getGradient().getGradientColor1() == rgb(255, 0, 0)); //Red = #FF0000
+		Assert.assertEquals(rgb(255, 0, 0), packageView.getGradient().getGradientColor1()); //Red = #FF0000
 	}
 
 	@Test
@@ -132,19 +132,19 @@ public class CSSStylesheetTest {
 	}
 
 	private void testBlueStyle(Shape shape) {
-		Assert.assertTrue(shape.getFillColor() == rgb(195, 205, 255)); //rgb syntax
+		Assert.assertEquals(rgb(195, 205, 255), shape.getFillColor()); //rgb syntax
 		Assert.assertTrue(shape.isBold());
 		Assert.assertNotNull(shape.getGradient());
 	}
 
 	private void testWhiteStyle(Shape shape) {
-		Assert.assertTrue(shape.getFillColor() == rgb(255, 255, 255)); //White = #FFFFFF (Hexa syntax)
+		Assert.assertEquals(rgb(255, 255, 255), shape.getFillColor()); //White = #FFFFFF (Hexa syntax)
 		Assert.assertFalse(shape.isBold());
 		Assert.assertNull(shape.getGradient());
 	}
 
 	private void testFontName(Shape shape) {
-		Assert.assertTrue("Tunga".equals(shape.getFontName()));
+		Assert.assertEquals("Tunga", shape.getFontName());
 	}
 
 	@After

@@ -16,8 +16,10 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -26,6 +28,7 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.utils.BlockDropHelper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.utils.PartDropHelper;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -53,7 +56,7 @@ public class CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy exten
 		if(dropRequest.getObjects().size() == 1) {
 
 			// List of available drop commands
-			List<Command> commandChoice = new ArrayList<Command>();
+			final List<Command> commandChoice = new ArrayList<Command>();
 
 			// 1. Build command to drop BlockProperty
 			PartDropHelper partDropHelper = new PartDropHelper(getEditingDomain());
@@ -101,9 +104,17 @@ public class CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy exten
 
 			// Prepare the selection command (if several command are available) or return the drop command
 			if(commandChoice.size() > 1) {
-				SelectAndExecuteCommand selectCommand = new SelectAndExecuteCommand("Select drop action for ", PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), commandChoice);
-				return new ICommandProxy(selectCommand);
+				RunnableWithResult<ICommand> runnable;
+				Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<ICommand>() {
 
+					public void run() {
+						setResult(new SelectAndExecuteCommand("Select drop action for ", PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), commandChoice));
+					}
+				});
+
+				ICommand selectCommand = runnable.getResult();
+
+				return new ICommandProxy(selectCommand);
 			} else if(commandChoice.size() == 1) {
 				return commandChoice.get(0);
 			}

@@ -18,12 +18,13 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 
 /**
@@ -34,13 +35,11 @@ public abstract class AbstractTest {
 	public static boolean isInitialized = false;
 
 	public static IEditorPart editor = null;
-	
+
 	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 
 	@BeforeClass
 	public static void openPapyrusWithAnEmptyProject() throws Exception {
-		IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
-		PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
 		// Prepare new project for tests
 		IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject("TestProject");
 		if(!testProject.exists()) {
@@ -52,7 +51,7 @@ public abstract class AbstractTest {
 		}
 
 		// Copy EmptyModel from bundle to the test project
-		IFile emptyModel_di = testProject.getFile("ModelWithIBD.di");
+		final IFile emptyModel_di = testProject.getFile("ModelWithIBD.di");
 		IFile emptyModel_no = testProject.getFile("ModelWithIBD.notation");
 		IFile emptyModel_uml = testProject.getFile("ModelWithIBD.uml");
 
@@ -62,16 +61,33 @@ public abstract class AbstractTest {
 			emptyModel_no.create(Activator.getInstance().getBundle().getResource("/model/ModelWithIBD.notation").openStream(), true, new NullProgressMonitor());
 			emptyModel_uml.create(Activator.getInstance().getBundle().getResource("/model/ModelWithIBD.uml").openStream(), true, new NullProgressMonitor());
 		}
-		
+
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		editor = page.openEditor(new FileEditorInput(emptyModel_di), editorID);
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				try {
+					editor = page.openEditor(new FileEditorInput(emptyModel_di), editorID);
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+				}
+			}
+		});
+
+		Assert.assertNotNull("Failed to open the editor", editor);
 	}
 
 	@AfterClass
 	public static void closePapyrusAndCleanProject() throws Exception {
-		// Close the editor without saving content created during tests
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		page.closeEditor(editor, false);
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				// Close the editor without saving content created during tests
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				page.closeEditor(editor, false);
+			}
+		});
+		editor = null;
 	}
 }

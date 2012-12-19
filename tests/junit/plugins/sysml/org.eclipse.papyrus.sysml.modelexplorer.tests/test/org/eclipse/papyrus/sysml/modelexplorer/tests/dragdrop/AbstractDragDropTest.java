@@ -34,6 +34,7 @@ import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.navigator.dnd.NavigatorDnDService;
 import org.eclipse.ui.navigator.CommonDropAdapter;
@@ -56,7 +57,13 @@ public class AbstractDragDropTest extends AbstractModelExplorerTest {
 	public void testPrepare() throws Exception {
 		// check editor state (should be non dirty)
 		//FIXME: In Papyrus, the editor may be dirty at initialization. This should not be tested here. We simply save the editor as soon as it is opened.
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+			}
+		});
+
 		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty());
 	}
 

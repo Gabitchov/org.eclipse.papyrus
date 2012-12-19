@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.junit
+Require-Bundle: org.junit4
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.sysml.service.types;bundle-version=
  "0.10.0"

@@ -51,6 +51,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
@@ -221,16 +222,35 @@ public class TestUtils {
 	public static Request getCreateRequest(Tool tool) throws Exception {
 
 		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
-			AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool)tool;
+			final AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool)tool;
 			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
-			creationTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
+			Display.getDefault().syncExec(new Runnable() {
+
+				public void run() {
+					try {
+						creationTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
+					} catch (Exception ex) {
+						ex.printStackTrace(System.out);
+					}
+				}
+			});
 
 			return creationTool.createCreateRequest();
 
 		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
-			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
+			final AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
+
 			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
-			connectionTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
+			Display.getDefault().syncExec(new Runnable() {
+
+				public void run() {
+					try {
+						connectionTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
+					} catch (Exception ex) {
+						ex.printStackTrace(System.out);
+					}
+				}
+			});
 
 			return connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
 		}
@@ -457,28 +477,30 @@ public class TestUtils {
 		};
 		history.addOperationHistoryListener(historyChange);
 
-		// Test execution
-		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getDiagramCommandStack().execute(command);
-		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
-			fail("Command execution failed ()");
-		}
+		try {
+			// Test execution
+			historyEventType = OperationHistoryEvent.DONE;
+			EditorUtils.getDiagramCommandStack().execute(command);
+			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+				fail("Command execution failed ()");
+			}
 
-		// Test undo
-		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getDiagramCommandStack().undo();
-		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
-			fail("Command undo failed ()");
-		}
+			// Test undo
+			historyEventType = OperationHistoryEvent.DONE;
+			EditorUtils.getDiagramCommandStack().undo();
+			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+				fail("Command undo failed ()");
+			}
 
-		// Test redo
-		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getDiagramCommandStack().redo();
-		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
-			fail("Command redo failed ()");
+			// Test redo
+			historyEventType = OperationHistoryEvent.DONE;
+			EditorUtils.getDiagramCommandStack().redo();
+			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+				fail("Command redo failed ()");
+			}
+		} finally {
+			// Remove listener, even when the test has failed.
+			history.removeOperationHistoryListener(historyChange);
 		}
-
-		// Remove listener.
-		history.removeOperationHistoryListener(historyChange);
 	}
 }

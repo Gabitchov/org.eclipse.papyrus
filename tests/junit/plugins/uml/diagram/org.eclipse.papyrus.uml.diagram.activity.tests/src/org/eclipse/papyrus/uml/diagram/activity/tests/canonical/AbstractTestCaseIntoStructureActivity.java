@@ -39,8 +39,7 @@ public abstract class AbstractTestCaseIntoStructureActivity extends TestChildNod
 	@Override
 	protected void setUp() throws Exception {
 		projectCreation();
-
-		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
+		assertEquals(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size(), 1);
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 		rootCompartment = null;
 		int index = 0;
@@ -56,10 +55,10 @@ public abstract class AbstractTestCaseIntoStructureActivity extends TestChildNod
 		requestcreation.setSize(new Dimension(500, 500));
 		Command command = rootCompartment.getCommand(requestcreation);
 		assertNotNull(CONTAINER_CREATION + COMMAND_NULL, command);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertNotSame(CONTAINER_CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command, UnexecutableCommand.INSTANCE);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + INITIALIZATION_TEST, rootCompartment.getChildren().size() == 1);
+		assertEquals(CREATION + INITIALIZATION_TEST, rootCompartment.getChildren().size(), 1);
 		containerEditPart = (GraphicalEditPart)rootCompartment.getChildren().get(0);
 		rootCompartment = null;
 		index = 0;
@@ -72,5 +71,4 @@ public abstract class AbstractTestCaseIntoStructureActivity extends TestChildNod
 
 
 	}
-
 }

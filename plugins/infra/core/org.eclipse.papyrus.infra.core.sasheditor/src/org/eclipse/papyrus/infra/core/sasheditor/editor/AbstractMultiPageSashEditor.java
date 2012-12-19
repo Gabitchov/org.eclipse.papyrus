@@ -22,7 +22,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -149,6 +148,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	protected void deactivate() {
 
 		tabsSynchronizer.dispose();
+		tabsSynchronizer = null;
 	}
 
 	/**
@@ -160,6 +160,13 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	@Override
 	public void dispose() {
 		deactivate();
+		//The selection provider keeps a reference to "this". It is not disposed.
+		getSite().setSelectionProvider(null);
+		sashContainer.dispose();
+		sashContainer = null;
+
+		pageProvider = null;
+
 		super.dispose();
 	}
 
@@ -196,8 +203,8 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 
 		// Look in hierarchy
 		Object result = super.getAdapter(adapter);
-		// restrict delegating to the UI thread for bug 144851
-		if(result == null && Display.getCurrent() != null) {
+
+		if(result == null) {
 			IEditorPart innerEditor = getActiveEditor();
 			// see bug 138823 - prevent some subclasses from causing
 			// an infinite loop
@@ -212,14 +219,15 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Needed by MultiPageActionBarContributor and MultiPageSelectionProvider.
 	 */
 	public IEditorPart getActiveEditor() {
-		if( sashContainer.isDisposed()) 
+		if(sashContainer.isDisposed()) {
 			return null;
-		
+		}
+
 		return sashContainer.getActiveEditor();
 	}
 
 	/**
-	 * Get the {@link ISashWindowsContainer}. 
+	 * Get the {@link ISashWindowsContainer}.
 	 * Note the the ISashWindowsContainer can also be acuired with getAdapter(ISashWindowsContainer.class).
 	 */
 	public ISashWindowsContainer getISashWindowsContainer() {
@@ -247,6 +255,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#isDirty()
 	 * @deprecated A SaveAndDirtyService is used instead.
 	 */
+	@Deprecated
 	@Override
 	public boolean isDirty() {
 		//		return sashContainer.isDirty();
@@ -268,8 +277,10 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * 
 	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
 	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
+	 * 
 	 * @deprecated A SaveAndDirtyService is used instead.
 	 */
+	@Deprecated
 	protected void markSaveLocation() {
 		//		return sashContainer.isDirty();
 		EditorVisitor visitor = new EditorVisitor();

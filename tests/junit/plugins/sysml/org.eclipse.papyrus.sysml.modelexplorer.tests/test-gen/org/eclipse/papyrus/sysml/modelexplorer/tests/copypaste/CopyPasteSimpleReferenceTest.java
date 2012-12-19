@@ -20,6 +20,7 @@ import java.util.Map;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
@@ -43,7 +44,13 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 	public void testPrepare() throws Exception {
 		// check editor state (should be non dirty)
 		//FIXME: In Papyrus, the editor may be dirty at initialization. This should not be tested here. We simply save the editor as soon as it is opened.
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+			}
+		});
+
 		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty());
 		// retrieve elements in the model explorer
 		selectAndReveal(rB2_B1_EObject);
@@ -62,7 +69,13 @@ public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest
 
 		// NOTE: save editor. The copy command should not dirty the model, the implementation of the copy command or the editor should be modified
 		Assert.assertFalse("Copy command is dirtying the model, whereas it should not. This assert is here to remember that the test code should be modified: Isdirty = false after copy...", isEditorDirty());
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+			}
+		});
+
 		Assert.assertFalse("Save command is non-dirtying the model, whereas it should. ", isEditorDirty());
 		// END NOTE
 	}

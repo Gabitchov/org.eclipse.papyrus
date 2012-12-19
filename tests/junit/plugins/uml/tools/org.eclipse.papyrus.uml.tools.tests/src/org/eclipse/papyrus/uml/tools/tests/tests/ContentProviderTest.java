@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.tools.tests.Activator;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 //TODO : Test TreeToFlatContentProvider (Number of elements displayed, isValid...)
@@ -146,9 +147,10 @@ public class ContentProviderTest {
 		return isValid;
 	}
 
+	@Ignore("Not implemented yet")
 	@Test
 	public void multipleValuePropertyTest() {
-
+		throw new UnsupportedOperationException("Not implemtend yet");
 	}
 
 	private EStructuralFeature getFeature(String className, String featureName) {

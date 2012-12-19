@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.junit;bundle-version="4.8.1"
+Require-Bundle: org.junit4;bundle-version="4.0.0"
 Bundle-Vendor: %Bundle-Vendor
 Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor.di;bundle-ver
  sion="0.10.0"

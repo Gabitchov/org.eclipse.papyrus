@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.junit;bundle-version="4.8.1",
+Require-Bundle: org.junit4;bundle-version="4.0.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.0",
  org.eclipse.papyrus.uml.diagram.profile;bundle-version="0.10.0",

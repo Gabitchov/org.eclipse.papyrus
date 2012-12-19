@@ -19,7 +19,11 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.commands.Activator;
 import org.eclipse.papyrus.uml.commands.command.PasteElementCommand;
 
 /**
@@ -35,8 +39,19 @@ public class PasteHandler extends AbstractEMFCommandHandler {
 	 * @return
 	 */
 	@Override
-	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+	protected Command getCommand(ServicesRegistry registry) {
+		if(registry == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		final TransactionalEditingDomain editingDomain;
+		try {
+			editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		List<EObject> selection = getSelectedElements();
 		if(editingDomain != null && selection.size() == 1) {
 			//return PasteFromClipboardCommand.create(getEditingDomain(), selection.get(0), null);

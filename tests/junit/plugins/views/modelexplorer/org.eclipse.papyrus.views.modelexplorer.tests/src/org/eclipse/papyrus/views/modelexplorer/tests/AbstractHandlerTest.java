@@ -23,14 +23,16 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.util.core.internal.exported.FileUtils;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -39,6 +41,7 @@ import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IViewPart;
@@ -50,11 +53,12 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.handlers.HandlerProxy;
-import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.part.IPage;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.internal.runners.statements.RunAfters;
 import org.osgi.framework.Bundle;
 
 //TODO a part of this plugin should be moved in an upper test plugin
@@ -83,7 +87,7 @@ public abstract class AbstractHandlerTest {
 
 	private ModelExplorerView modelExplorerView;
 
-	private Command testedCommand;
+	protected Command testedCommand;
 
 	private CommonViewer commonViewer;
 
@@ -105,10 +109,8 @@ public abstract class AbstractHandlerTest {
 	 * @param bundle
 	 *        the bundle used to load the model
 	 */
-	public AbstractHandlerTest(final Bundle bundle) {
-		Assert.isNotNull(bundle, "Bundle can't be null to do the test.");
-		this.bundle = bundle;
-		this.commandId = null;
+	public AbstractHandlerTest(Bundle bundle) {
+		this(null, bundle);
 	}
 
 	/**
@@ -118,8 +120,8 @@ public abstract class AbstractHandlerTest {
 	 * @param commandId
 	 *        the id of the command to test
 	 */
-	public AbstractHandlerTest(final String commandId, final Bundle bundle) {
-		Assert.isNotNull(bundle, "Bundle can't be null to do the test.");
+	public AbstractHandlerTest(String commandId, Bundle bundle) {
+		Assert.assertNotNull("Bundle can't be null to do the test.", bundle);
 		this.commandId = commandId;
 		this.bundle = bundle;
 	}
@@ -133,21 +135,40 @@ public abstract class AbstractHandlerTest {
 	 */
 	// TODO should be moved in an upper plugin test
 	protected IEditorPart openEditor(final IFile file) throws PartInitException {
-		final IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
-		PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
+		RunnableWithResult<IEditorPart> runnable;
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IEditorPart>() {
 
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		final IEditorPart editor = IDE.openEditor(activePage, file);
-		return editor;
+			public void run() {
+				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				try {
+					IEditorPart editor = IDE.openEditor(activePage, file);
+					setResult(editor);
+					setStatus(Status.OK_STATUS);
+				} catch (Exception ex) {
+					setStatus(new Status(IStatus.ERROR, bundle.getSymbolicName(), "Cannot open the editor"));
+				}
+			}
+		});
+
+		Assert.assertEquals(runnable.getStatus().getMessage(), IStatus.OK, runnable.getStatus().getSeverity());
+
+		return runnable.getResult();
 	}
 
 	/**
 	 * This method tests if the active part is the model explorer
 	 */
 	protected void testIsModelExplorerActivePart() {
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		final IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer"); //$NON-NLS-1$
+		RunnableWithResult<IWorkbenchPart> activePartRunnable;
+		Display.getDefault().syncExec(activePartRunnable = new RunnableWithResult.Impl<IWorkbenchPart>(){
+			public void run(){
+				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				IWorkbenchPart activePart = activePage.getActivePart();
+				setResult(activePart);
+			}
+		});
+		
+		Assert.assertTrue("The active part is not the ModelExplorer", activePartRunnable.getResult() instanceof ModelExplorerPageBookView); //$NON-NLS-1$
 	}
 
 	/**
@@ -157,17 +178,23 @@ public abstract class AbstractHandlerTest {
 	 * @param elementToSelect
 	 *        the element to select
 	 */
-	protected void selectElementInTheModelexplorer(final EObject elementToSelect) {
+	protected void selectElementInTheModelexplorer(EObject elementToSelect) {
 		final List<EObject> selectedElement = new ArrayList<EObject>();
 		selectedElement.add(elementToSelect);
-		this.modelExplorerView.revealSemanticElement(selectedElement);
-		final IStructuredSelection currentSelection = (IStructuredSelection)this.selectionService.getSelection();
-		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				modelExplorerView.revealSemanticElement(selectedElement);
+			}
+		});
+
+		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
+		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
 		if(obj instanceof IAdaptable) {
 			obj = ((IAdaptable)obj).getAdapter(EObject.class);
 		}
-		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
+		Assert.assertSame("the current selected element is not the wanted element", elementToSelect, obj); //$NON-NLS-1$
 	}
 
 	/**
@@ -178,15 +205,21 @@ public abstract class AbstractHandlerTest {
 	 *        the element to select
 	 */
 	protected void selectElementInTheModelexplorer(final ITreeElement elementToSelect) {
-		this.commonViewer.setSelection(new StructuredSelection(elementToSelect));
-		final IStructuredSelection currentSelection = (IStructuredSelection)this.selectionService.getSelection();
-		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
-		final Object obj = currentSelection.getFirstElement();
-		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				commonViewer.setSelection(new StructuredSelection(elementToSelect));
+			}
+		});
+
+		IStructuredSelection currentSelection = (IStructuredSelection)selectionService.getSelection();
+		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
+		Object obj = currentSelection.getFirstElement();
+		Assert.assertSame("the current selected element is not the wanted element", elementToSelect, obj); //$NON-NLS-1$
 	}
 
 	protected IStructuredSelection getCurrentSelection() {
-		return (IStructuredSelection)this.selectionService.getSelection();
+		return (IStructuredSelection)selectionService.getSelection();
 	}
 
 	/**
@@ -194,7 +227,7 @@ public abstract class AbstractHandlerTest {
 	 * @return the current handler for the command
 	 */
 	protected IHandler getActiveHandler() {
-		IHandler currentHandler = this.testedCommand.getHandler();
+		IHandler currentHandler = testedCommand.getHandler();
 		if(currentHandler instanceof HandlerProxy) {
 			currentHandler = ((HandlerProxy)currentHandler).getHandler();
 		}
@@ -203,62 +236,78 @@ public abstract class AbstractHandlerTest {
 
 	@Before
 	public void initTests() throws CoreException, IOException {
-		final IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
-		PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
-
 		// we clean the workspace and create a new project to test the handlers
-		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		for(final IProject project : workspace.getRoot().getProjects()) {
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		for(IProject project : workspace.getRoot().getProjects()) {
 			project.delete(true, new NullProgressMonitor());
 		}
-		final IProject testProject = workspace.getRoot().getProject(AbstractHandlerTest.PROJECT_NAME);
+		IProject testProject = workspace.getRoot().getProject(AbstractHandlerTest.PROJECT_NAME);
 		testProject.create(new NullProgressMonitor());
 		testProject.open(new NullProgressMonitor());
 
 		// we copy the file of the tested model in the new project
 		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, //$NON-NLS-1$
-			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, this.bundle);
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, bundle);
 		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, //$NON-NLS-1$
-			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, this.bundle);
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, bundle);
 		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, //$NON-NLS-1$
-			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, this.bundle);
-		final IFile file = testProject.getFile(AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI);
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, bundle);
+		IFile file = testProject.getFile(AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI);
 
 		// we open the editor
-		this.editor = (CoreMultiDiagramEditor)openEditor(file);
-		final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		editor = (CoreMultiDiagramEditor)openEditor(file);
 
-		// we look for the modelexplorer
-		final IViewPart modelexplorer = activeWorkbenchWindow.getActivePage().showView(AbstractHandlerTest.viewId);
-		final ModelExplorerPageBookView view = (ModelExplorerPageBookView)modelexplorer;
-		final IPage currentPage = view.getCurrentPage();
-		final ModelExplorerPage page = (ModelExplorerPage)currentPage;
-		final IViewPart viewer = page.getViewer();
-		this.modelExplorerView = (ModelExplorerView)viewer;
-		this.modelExplorerView.setFocus();
+		RunnableWithResult runnable;
 
-		// we look for the common viewer
-		this.commonViewer = this.modelExplorerView.getCommonViewer();
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl() {
 
-		// we look for the selection service
-		this.selectionService = activeWorkbenchWindow.getSelectionService();
+			public void run() {
+				IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 
-		// we look for the testedCommand
-		final ICommandService commandService = (ICommandService)activeWorkbenchWindow.getService(ICommandService.class);
-		if(this.commandId != null) {
-			this.testedCommand = commandService.getCommand(this.commandId);
-		}
+				// we look for the modelexplorer
+				IViewPart modelexplorer;
+				try {
+					modelexplorer = activeWorkbenchWindow.getActivePage().showView(AbstractHandlerTest.viewId);
+				} catch (PartInitException ex) {
+					ex.printStackTrace(System.out);
+					setStatus(new Status(IStatus.ERROR, bundle.getSymbolicName(), ex.getMessage()));
+					return;
+				}
+				ModelExplorerPageBookView view = (ModelExplorerPageBookView)modelexplorer;
+				IPage currentPage = view.getCurrentPage();
+				ModelExplorerPage page = (ModelExplorerPage)currentPage;
+				IViewPart viewer = page.getViewer();
+				modelExplorerView = (ModelExplorerView)viewer;
+				modelExplorerView.setFocus();
 
-		this.commonViewer.expandToLevel(2);
+				// we look for the common viewer
+				commonViewer = modelExplorerView.getCommonViewer();
 
-		// store the root of the model
-		final Object[] visibleElement = this.commonViewer.getVisibleExpandedElements();
-		if(visibleElement[0] instanceof IAdaptable) {
-			this.modelRoot = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
-		}
+				// we look for the selection service
+				selectionService = activeWorkbenchWindow.getSelectionService();
 
-		while(this.modelRoot.eContainer() != null) {
-			this.modelRoot = this.modelRoot.eContainer();
+				// we look for the testedCommand
+				ICommandService commandService = (ICommandService)activeWorkbenchWindow.getService(ICommandService.class);
+				if(commandId != null) {
+					testedCommand = commandService.getCommand(commandId);
+				}
+
+				commonViewer.expandToLevel(2);
+
+				// store the root of the model
+				Object[] visibleElement = commonViewer.getVisibleExpandedElements();
+				if(visibleElement[0] instanceof IAdaptable) {
+					modelRoot = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
+				}
+
+				setStatus(Status.OK_STATUS);
+			}
+		});
+
+		Assert.assertEquals(runnable.getStatus().getMessage(), IStatus.OK, runnable.getStatus().getSeverity());
+
+		while(modelRoot.eContainer() != null) {
+			modelRoot = modelRoot.eContainer();
 		}
 	}
 
@@ -267,7 +316,7 @@ public abstract class AbstractHandlerTest {
 	 * @return the root of the model
 	 */
 	public EObject getRootOfTheModel() {
-		return this.modelRoot;
+		return modelRoot;
 	}
 
 	/**
@@ -275,7 +324,7 @@ public abstract class AbstractHandlerTest {
 	 * @return the model explorer view
 	 */
 	public ModelExplorerView getModelExplorerView() {
-		return this.modelExplorerView;
+		return modelExplorerView;
 	}
 
 	/**
@@ -283,7 +332,7 @@ public abstract class AbstractHandlerTest {
 	 * @return the common viewer
 	 */
 	public CommonViewer getCommonViewer() {
-		return this.commonViewer;
+		return commonViewer;
 	}
 
 	public TransactionalEditingDomain getEditingDomain() {
@@ -295,13 +344,13 @@ public abstract class AbstractHandlerTest {
 	}
 
 	public void undoRedoTest() {
-		Assert.isTrue(getCommandStack().canUndo(), "I can't undo the command!");
+		Assert.assertTrue("I can't undo the command!", getCommandStack().canUndo());
 		getCommandStack().undo();
-		Assert.isTrue(getCommandStack().canRedo(), "I can't Redo the command!");
+		Assert.assertTrue("I can't Redo the command!", getCommandStack().canRedo());
 		getCommandStack().redo();
 	}
 
-	public void undoRedo(final int time) {
+	public void undoRedo(int time) {
 		for(int i = 0; i < time; i++) {
 			undoRedoTest();
 		}
@@ -309,7 +358,12 @@ public abstract class AbstractHandlerTest {
 
 	@After
 	public void endOfTests() {
-		// So that the Workbench can be closed.
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().closeAllEditors(false);
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				// So that the Workbench can be closed.
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().closeEditor(editor, false);
+			}
+		});
 	}
 }

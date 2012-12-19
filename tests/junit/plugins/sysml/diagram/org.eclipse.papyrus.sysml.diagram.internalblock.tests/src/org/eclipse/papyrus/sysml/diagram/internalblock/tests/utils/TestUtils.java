@@ -50,6 +50,7 @@ import org.eclipse.gmf.runtime.common.ui.action.internal.actions.global.GlobalCo
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.PopupMenuCommand;
 import org.eclipse.gmf.runtime.diagram.ui.menus.PopupMenu;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
@@ -64,6 +65,7 @@ import org.eclipse.jface.commands.ActionHandler;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SelectAndExecuteCommand;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -74,6 +76,7 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
@@ -285,18 +288,30 @@ public class TestUtils {
 		}
 	}
 
-	public static Request getCreateRequest(Tool tool) throws Exception {
+	public static Request getCreateRequest(final Tool tool) throws Exception {
+
+		// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
+		final IDiagramGraphicalViewer viewer = getDiagramEditor().getDiagramGraphicalViewer();
+
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				try {
+					tool.setViewer(viewer);
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+				}
+			}
+		});
+
 		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
 			AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool)tool;
-			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
-			creationTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
 			return creationTool.createCreateRequest();
 		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
 			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
-			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
-			connectionTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
 			return connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
 		}
+
 		throw new Exception("Unexpected kind of creation tool.");
 	}
 
@@ -398,9 +413,9 @@ public class TestUtils {
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied on source.", sourceNestedConnectorEnd);
 			Assert.assertEquals("Nested property path is incorrect for source", nestedSourcePath, sourceNestedConnectorEnd.getPropertyPath());
-//			if(!sourceNestedConnectorEnd.getPropertyPath().equals(nestedSourcePath)) {
-//				fail("The nested property path is incorrect for source.");
-//			}
+			//			if(!sourceNestedConnectorEnd.getPropertyPath().equals(nestedSourcePath)) {
+			//				fail("The nested property path is incorrect for source.");
+			//			}
 		}
 		// Test target connector end	
 		NestedConnectorEnd targetNestedConnectorEnd = UMLUtil.getStereotypeApplication(connector.getEnds().get(1), NestedConnectorEnd.class);
@@ -409,9 +424,9 @@ public class TestUtils {
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied on target.", targetNestedConnectorEnd);
 			Assert.assertEquals("Nested property path is incorrect for target", nestedTargetPath, targetNestedConnectorEnd.getPropertyPath());
-//			if(!targetNestedConnectorEnd.getPropertyPath().equals(nestedTargetPath)) {
-//				fail("The nested property path is incorrect for target.");
-//			}
+			//			if(!targetNestedConnectorEnd.getPropertyPath().equals(nestedTargetPath)) {
+			//				fail("The nested property path is incorrect for target.");
+			//			}
 		}
 	}
 
@@ -480,12 +495,12 @@ public class TestUtils {
 
 	public static void reorientConnectorSource(View relationshipView, View newSourceView, boolean isAllowed) throws Exception {
 		List<Property> nestedPath = Collections.emptyList();
-		reorientConnectorSource((Connector)relationshipView, newSourceView, isAllowed, nestedPath);
+		reorientConnectorSource(relationshipView, newSourceView, isAllowed, nestedPath);
 	}
 
 	public static void reorientConnectorTarget(View relationshipView, View newTargetView, boolean isAllowed) throws Exception {
 		List<Property> nestedPath = Collections.emptyList();
-		reorientConnectorTarget((Connector)relationshipView, newTargetView, isAllowed, nestedPath);
+		reorientConnectorTarget(relationshipView, newTargetView, isAllowed, nestedPath);
 	}
 
 	public static void reorientConnectorSource(View relationshipView, View newSourceView, boolean isAllowed, List<Property> nestedPath) throws Exception {
@@ -537,25 +552,25 @@ public class TestUtils {
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) { // re-orient source
 			// Test source connector end
 			Assert.assertEquals("The partWithPort is incorrect for source (re-oriented).", expectedSourcePartWithPort, modifiedConnectorEnd.getPartWithPort());
-//			if(modifiedConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
-//				fail("The partWithPort is incorrect for source (re-oriented).");
-//			}
+			//			if(modifiedConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+			//				fail("The partWithPort is incorrect for source (re-oriented).");
+			//			}
 			// Test target connector end
 			Assert.assertEquals("The partWithPort is incorrect for target (opposite end).", expectedTargetPartWithPort, oppositeConnectorEnd.getPartWithPort());
-//			if(oppositeConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
-//				fail("The partWithPort is incorrect for target (opposite end).");
-//			}
+			//			if(oppositeConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+			//				fail("The partWithPort is incorrect for target (opposite end).");
+			//			}
 		} else { // re-orient target
 			// Test source connector end
 			Assert.assertEquals("The partWithPort is incorrect for target (re-oriented).", expectedTargetPartWithPort, modifiedConnectorEnd.getPartWithPort());
-//			if(modifiedConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
-//				fail("The partWithPort is incorrect for target .");
-//			}
+			//			if(modifiedConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+			//				fail("The partWithPort is incorrect for target .");
+			//			}
 			// Test target connector end
 			Assert.assertEquals("The partWithPort is incorrect for source (opposite end).", expectedSourcePartWithPort, oppositeConnectorEnd.getPartWithPort());
-//			if(oppositeConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
-//				fail("The partWithPort is incorrect for source (opposite end).");
-//			}
+			//			if(oppositeConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+			//				fail("The partWithPort is incorrect for source (opposite end).");
+			//			}
 		}
 	}
 
@@ -712,19 +727,19 @@ public class TestUtils {
 		history.addOperationHistoryListener(historyChange);
 		// Test execution
 		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getDiagramCommandStack().execute(command);
+		EditorUtils.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 			fail("Command execution failed ()");
 		}
 		// Test undo
 		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getDiagramCommandStack().undo();
+		EditorUtils.getCommandStack().undo();
 		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 			fail("Command undo failed ()");
 		}
 		// Test redo
 		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getDiagramCommandStack().redo();
+		EditorUtils.getCommandStack().redo();
 		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 			fail("Command redo failed ()");
 		}

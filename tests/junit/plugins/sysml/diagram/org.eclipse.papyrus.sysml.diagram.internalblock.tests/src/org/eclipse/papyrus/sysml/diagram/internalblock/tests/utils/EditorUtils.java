@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Tool;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramForMultiEditor;
 import org.eclipse.papyrus.sysml.diagram.internalblock.factory.DiagramPaletteFactory;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 
@@ -95,7 +97,7 @@ public class EditorUtils {
 				return editPart;
 			}
 		}
-		
+
 		throw new Exception("Unable to find edit part for the given view.");
 	}
 
@@ -111,24 +113,31 @@ public class EditorUtils {
 	public static DiagramCommandStack getDiagramCommandStack() throws Exception {
 		return getDiagramEditingDomain().getDiagramCommandStack();
 	}
-	
+
 	public static CommandStack getCommandStack() throws Exception {
 		return getTransactionalEditingDomain().getCommandStack();
 	}
-	
+
 	public static TransactionalEditingDomain getTransactionalEditingDomain() throws Exception {
 
 		ServicesRegistry serviceRegistry = (ServicesRegistry)getEditor().getAdapter(ServicesRegistry.class);
 		try {
-			return (TransactionalEditingDomain)ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+			return ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
 		} catch (ServiceException e) {
 			throw new Exception("Unable to retrieve service.", e);
 		}
 	}
-	
+
 	public static IEditorPart getEditor() throws Exception {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		RunnableWithResult<IEditorPart> getEditorRunnable = new RunnableWithResult.Impl<IEditorPart>() {
+
+			public void run() {
+				setResult(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor());
+			}
+		};
+		Display.getDefault().syncExec(getEditorRunnable);
+		return getEditorRunnable.getResult();
 	}
 
 }

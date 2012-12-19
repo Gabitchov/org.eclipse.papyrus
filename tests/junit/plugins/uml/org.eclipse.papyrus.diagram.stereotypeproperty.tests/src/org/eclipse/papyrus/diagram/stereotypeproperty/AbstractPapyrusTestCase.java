@@ -33,12 +33,14 @@ import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Element;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 
 
@@ -160,7 +162,13 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		//diResourceSet.save( new NullProgressMonitor());
 		//diagramEditor.close(true);
 		papyrusEditor = null;
-		page.closeAllEditors(true);
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				page.closeAllEditors(true);
+			}
+		});
+
 		project.delete(true, new NullProgressMonitor());
 
 		super.tearDown();
@@ -182,43 +190,49 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	/**
 	 * Project creation.
 	 */
-	protected void projectCreation() {
+	protected void projectCreation() throws Exception {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
 		project = root.getProject("ClazzDiagramTestProject");
 		file = project.getFile("ClazzDiagramTest.di");
 		this.diResourceSet = new DiResourceSet();
-		try {
-			//at this point, no resources have been created
-			if(!project.exists()) {
-				project.create(null);
-			}
-			if(!project.isOpen()) {
-				project.open(null);
-			}
 
-			if(file.exists()) {
-				file.delete(true, new NullProgressMonitor());
-			}
-
-			if(!file.exists()) {
-				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
-				diResourceSet.createsModels(file);
-				new CreateUMLModelCommand().createModel(this.diResourceSet);
-				// diResourceSet.createsModels(file);
-				ICreationCommand command = new CreateClassDiagramCommand();
-				command.createDiagram(diResourceSet, null, "ClazzDiagram");
-				diResourceSet.save(new NullProgressMonitor());
-
-			}
-			page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-			papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
-		} catch (Exception e) {
-			System.err.println("error " + e);
+		//at this point, no resources have been created
+		if(!project.exists()) {
+			project.create(null);
+		}
+		if(!project.isOpen()) {
+			project.open(null);
 		}
 
+		if(file.exists()) {
+			file.delete(true, new NullProgressMonitor());
+		}
 
+		if(!file.exists()) {
+			file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
+			diResourceSet.createsModels(file);
+			new CreateUMLModelCommand().createModel(this.diResourceSet);
+			// diResourceSet.createsModels(file);
+			ICreationCommand command = new CreateClassDiagramCommand();
+			command.createDiagram(diResourceSet, null, "ClazzDiagram");
+			diResourceSet.save(new NullProgressMonitor());
+		}
+
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				try {
+					page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
+					papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+				}
+			}
+		});
+
+		Assert.assertNotNull(papyrusEditor);
 	}
 
 }

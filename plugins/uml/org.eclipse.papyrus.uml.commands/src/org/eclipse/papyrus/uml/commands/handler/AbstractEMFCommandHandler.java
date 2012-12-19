@@ -23,13 +23,18 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.uml.commands.Activator;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -72,7 +77,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	 * 
 	 * </pre>
 	 */
-	protected abstract Command getCommand();
+	protected abstract Command getCommand(ServicesRegistry registry);
 
 	/**
 	 * <pre>
@@ -127,8 +132,18 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 
 		List<EObject> selectedEObjects = new ArrayList<EObject>();
 
+		//FIXME: This method should always be called from the UI Thread. 
+		//TODO: Fix the tests and remove the syncExec call 
 		// Parse current selection
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		RunnableWithResult<ISelection> runnable;
+		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<ISelection>() {
+
+			public void run() {
+				setResult(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection());
+			}
+		});
+
+		ISelection selection = runnable.getResult();
 		if(selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 			for(Object current : structuredSelection.toArray()) {
@@ -167,11 +182,10 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		try {
+			ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+			Command emfCommand = getCommand(registry);
 
-			ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
-			Command emfCommand = getCommand();
-
-			util.getTransactionalEditingDomain().getCommandStack().execute(emfCommand);
+			ServiceUtils.getInstance().getTransactionalEditingDomain(registry).getCommandStack().execute(emfCommand);
 
 			return emfCommand.getResult();
 
@@ -190,8 +204,24 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	 * 
 	 * @return true (enabled) when the command can be executed.
 	 */
+	@Override
 	public boolean isEnabled() {
-		return getCommand().canExecute();
+		return getCommand(getServicesRegistryFromSelection()).canExecute();
+	}
+
+	protected ServicesRegistry getServicesRegistryFromSelection() {
+		for(EObject selectedElement : getSelectedElements()) {
+			try {
+				ServicesRegistry registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(selectedElement);
+				if(registry != null) {
+					return registry;
+				}
+			} catch (ServiceException ex) {
+				//Ignore it and keep searching for a ServicesRegistry
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -199,6 +229,6 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	 * @return true (visible) when the command can be executed.
 	 */
 	public boolean isVisible() {
-		return getCommand().canExecute();
+		return getCommand(getServicesRegistryFromSelection()).canExecute();
 	}
 }

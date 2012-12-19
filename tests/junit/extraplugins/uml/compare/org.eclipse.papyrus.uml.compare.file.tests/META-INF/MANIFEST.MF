@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.junit,
+ org.junit4,
  org.eclipse.papyrus.junit.utils;bundle-version="0.10.0",
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.jdt.ui;bundle-version="3.8.0",

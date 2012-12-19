@@ -65,6 +65,12 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 						display.dispose();
 						displays.remove(part);
 					}
+
+					//We remove pointers to the cached IWorkbenchPart, to avoid Memory Leaks.
+					//Even if the closed part is not the previousPart, both parts may share the same objects (e.g. ModelExplorer & DiagramEditor).
+					//We'd better not retain the selection at all. In such a case, we won't receive a SelectionChangedEvent from the ModelExplorer.
+					previousPart = null;
+					previousSelection = null;
 				}
 
 				public void partActivated(IWorkbenchPart part) {
@@ -114,6 +120,7 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
 			if(contributor != null) {
 				// get all tab descriptors for the registered extension points
+				//Memory leak here
 				TabbedPropertyRegistry registry = TabbedPropertyRegistryFactory.getInstance().createRegistry(contributor);
 
 				// invoke dynamically on the tab registry, as method is private
@@ -149,6 +156,9 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 			orderTabDescriptors(descriptors);
 
 			cachedResult = descriptors.toArray(new ITabDescriptor[descriptors.size()]);
+
+			//Workaround for memory leak
+			TabbedPropertyRegistryFactory.getInstance().disposeRegistry((ITabbedPropertySheetPageContributor)part);
 		}
 
 		return cachedResult;

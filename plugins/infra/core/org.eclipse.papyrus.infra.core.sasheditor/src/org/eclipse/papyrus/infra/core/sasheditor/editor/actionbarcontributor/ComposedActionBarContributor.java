@@ -114,6 +114,12 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 		//		if(activeContributor!=this)
 		//		  activeContributor.setActiveEditor(part);
 	}
+	
+	@Override
+	public void dispose(){
+		super.dispose();
+		activeNestedEditor = null;
+	}
 
 	/**
 	 * Get the active nested contributor, if any.

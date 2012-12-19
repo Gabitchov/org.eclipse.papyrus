@@ -120,9 +120,9 @@ public class ServicesRegistry {
 		// Check if the service already exist.
 		ServiceStartupEntry service = addedServices.get(serviceDescriptor.getKey());
 		if(service != null) {
-			if(service.getDescriptor().getPriority() > serviceDescriptor.getPriority())
+			if(service.getDescriptor().getPriority() > serviceDescriptor.getPriority()) {
 				return;
-			else if(service.getDescriptor().getPriority() == serviceDescriptor.getPriority()) {
+			} else if(service.getDescriptor().getPriority() == serviceDescriptor.getPriority()) {
 				log.warning("Two services with same priority (" + serviceDescriptor.getPriority() + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only. (bundles: " + service.getDescriptor().getClassBundleID() + ", " + serviceDescriptor.getClassBundleID() + ")");
 			}
 		}
@@ -130,12 +130,13 @@ public class ServicesRegistry {
 		// Compute the service type entry
 		ServiceTypeEntry serviceTypeEntry;
 		ServiceTypeKind typeKind = serviceDescriptor.getServiceTypeKind();
-		if(typeKind == ServiceTypeKind.service)
+		if(typeKind == ServiceTypeKind.service) {
 			serviceTypeEntry = new ServiceEntry(serviceDescriptor);
-		else if(typeKind == ServiceTypeKind.serviceFactory)
+		} else if(typeKind == ServiceTypeKind.serviceFactory) {
 			serviceTypeEntry = new ServiceFactoryEntry(serviceDescriptor);
-		else
+		} else {
 			serviceTypeEntry = new PojoServiceEntry(serviceDescriptor);
+		}
 
 		// Create the entry
 		ServiceStartupEntry serviceEntry;
@@ -190,19 +191,21 @@ public class ServicesRegistry {
 		// Check if the service already exist.
 		ServiceStartupEntry service = addedServices.get(key);
 		if(service != null) {
-			if(service.getDescriptor().getPriority() > priority)
+			if(service.getDescriptor().getPriority() > priority) {
 				return;
-			else if(service.getDescriptor().getPriority() == priority)
+			} else if(service.getDescriptor().getPriority() == priority) {
 				log.warning("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+			}
 		}
 
 		// Create descriptor and add service.
 		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), startKind, priority);
 
-		if(startKind == ServiceStartKind.STARTUP)
+		if(startKind == ServiceStartKind.STARTUP) {
 			addedServices.put(key, new StartStartupEntry(new ServiceEntry(descriptor, serviceInstance)));
-		else
+		} else {
 			addedServices.put(key, new LazyStartupEntry(new ServiceEntry(descriptor, serviceInstance), this));
+		}
 	}
 
 	/**
@@ -254,19 +257,21 @@ public class ServicesRegistry {
 		// Check if the service already exist.
 		ServiceStartupEntry service = addedServices.get(key);
 		if(service != null) {
-			if(service.getDescriptor().getPriority() > priority)
+			if(service.getDescriptor().getPriority() > priority) {
 				return;
-			else if(service.getDescriptor().getPriority() == priority)
+			} else if(service.getDescriptor().getPriority() == priority) {
 				log.warning("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+			}
 		}
 
 		// Create descriptor and add service.
 		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), startKind, priority);
 
-		if(startKind == ServiceStartKind.STARTUP)
+		if(startKind == ServiceStartKind.STARTUP) {
 			addedServices.put(key, new StartStartupEntry(new PojoServiceEntry(descriptor, serviceInstance)));
-		else
+		} else {
 			addedServices.put(key, new LazyStartupEntry(new PojoServiceEntry(descriptor, serviceInstance), this));
+		}
 
 	}
 
@@ -328,10 +333,11 @@ public class ServicesRegistry {
 			// throw an exception.
 			// If added, say it.
 			service = addedServices.get(key);
-			if(service != null)
+			if(service != null) {
 				throw new BadStateException("Registry should be started before.", service.getState(), service.getDescriptor());
-			else
+			} else {
 				throw new ServiceNotFoundException("No service registered under '" + key + "'");
+			}
 		}
 
 		return service.getServiceInstance();
@@ -357,10 +363,11 @@ public class ServicesRegistry {
 			// throw an exception.
 			// If added, say it.
 			service = addedServices.get(realKey);
-			if(service != null)
+			if(service != null) {
 				throw new BadStateException("Registry should be started before.", service.getState(), service.getDescriptor());
-			else
+			} else {
 				throw new ServiceNotFoundException("No service registered under '" + key + "'");
+			}
 		}
 
 		return (S)service.getServiceInstance();
@@ -406,12 +413,20 @@ public class ServicesRegistry {
 	 *         If a service can't be started.
 	 */
 	public void startRegistry() throws ServiceMultiException {
+		// Create an object to collect errors if any.
+		ServiceMultiException errors = new ServiceMultiException();
 
 		// Build the lookup maps
 		LookupMap map = new LookupMap(addedServices, namedServices);
 
 		// Check if all dependencies exist.
-		checkDependencies(addedServices.values(), map);
+		try {
+			checkDependencies(addedServices.values(), map);
+		} catch (ServiceMultiException ex) {
+			for(Throwable t : ex.getExceptions()) {
+				errors.addException(t);
+			}
+		}
 
 		// Get all roots : LAZY and START
 		Collection<ServiceStartupEntry> roots = getServiceRoots(addedServices.values(), map);
@@ -427,9 +442,6 @@ public class ServicesRegistry {
 			showServices(" Services to start:", toStart);
 		}
 
-		// Create an object to collect errors if any.
-		ServiceMultiException errors = new ServiceMultiException();
-
 		createServices(toStart, errors);
 		// Register all new services : lazy and start
 		registerServices(addedServices.values());
@@ -437,8 +449,9 @@ public class ServicesRegistry {
 		startServices(toStart, errors);
 
 		// Report errors if any
-		if(errors.getExceptions().size() > 0)
+		if(errors.getExceptions().size() > 0) {
 			throw errors;
+		}
 
 	}
 
@@ -558,8 +571,17 @@ public class ServicesRegistry {
 	 *         If a service can't be started.
 	 */
 	private void startServices(List<ServiceStartupEntry> services, LookupMap map) throws ServiceMultiException {
+		// Create an object to collect errors if any.
+		ServiceMultiException errors = new ServiceMultiException();
+
 		// Check if all dependencies exist.
-		checkDependencies(services, map);
+		try {
+			checkDependencies(addedServices.values(), map);
+		} catch (ServiceMultiException ex) {
+			for(Throwable t : ex.getExceptions()) {
+				errors.addException(t);
+			}
+		}
 
 		// Get all roots : LAZY and START
 		Collection<ServiceStartupEntry> roots = getServiceRoots(services, map);
@@ -582,9 +604,6 @@ public class ServicesRegistry {
 		showServices(" Services to start:", toStart);
 		// }
 
-		// Create an object to collect errors if any.
-		ServiceMultiException errors = new ServiceMultiException();
-
 		createServices(toStart, errors);
 		// Register all started services
 		registerServices(toStart);
@@ -592,8 +611,9 @@ public class ServicesRegistry {
 		startServices(toStart, errors);
 
 		// Report errors if any
-		if(errors.getExceptions().size() > 0)
+		if(errors.getExceptions().size() > 0) {
 			throw errors;
+		}
 	}
 
 	/**
@@ -684,8 +704,9 @@ public class ServicesRegistry {
 		}
 
 		// Throw errors if any
-		if(errors.getExceptions().size() > 0)
+		if(errors.getExceptions().size() > 0) {
 			throw errors;
+		}
 	}
 
 	/**
@@ -756,8 +777,9 @@ public class ServicesRegistry {
 	private void walkGraphDepthFirst(List<ServiceStartupEntry> result, ServiceStartupEntry node, LookupMap map) {
 
 		// Do not add already added or started node.
-		if(result.contains(node) || node.isStarted())
+		if(result.contains(node) || node.isStarted()) {
 			return;
+		}
 
 		// add direct child
 		for(String serviceKey : node.getDescriptor().getRequiredServiceKeys()) {
@@ -834,10 +856,11 @@ public class ServicesRegistry {
 		anonymousServices = null;
 		namedServices.clear();
 		namedServices = null;
-		
+
 		// Report errors if any
-		if(errors.getExceptions().size() > 0)
+		if(errors.getExceptions().size() > 0) {
 			throw errors;
+		}
 	}
 
 	/**
@@ -1018,10 +1041,12 @@ public class ServicesRegistry {
 		public ServiceStartupEntry get(String key) {
 
 			ServiceStartupEntry res = map1.get(key);
-			if(res != null)
+			if(res != null) {
 				return res;
-			if(map2 != null)
+			}
+			if(map2 != null) {
 				res = map2.get(key);
+			}
 
 			return res;
 		}
@@ -1037,12 +1062,15 @@ public class ServicesRegistry {
 		public ServiceStartupEntry getChecked(String key) throws ServiceNotFoundException {
 
 			ServiceStartupEntry res = map1.get(key);
-			if(res != null)
+			if(res != null) {
 				return res;
-			if(map2 != null)
+			}
+			if(map2 != null) {
 				res = map2.get(key);
-			if(res != null)
+			}
+			if(res != null) {
 				return res;
+			}
 
 			throw new ServiceNotFoundException("No service found under key '" + key.toString() + "'");
 		}

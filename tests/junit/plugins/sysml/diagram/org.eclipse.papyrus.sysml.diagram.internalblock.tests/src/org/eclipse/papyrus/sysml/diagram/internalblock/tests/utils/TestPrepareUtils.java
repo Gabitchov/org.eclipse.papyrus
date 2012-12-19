@@ -84,89 +84,90 @@ public class TestPrepareUtils {
 		CreateElementRequest createElementRequest = new CreateElementRequest(getTransactionalEditingDomain(), container, elementType);
 
 		EObject typeOwner = EMFCoreUtil.getContainer(container, UMLPackage.eINSTANCE.getPackage());
-		
-		if (elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
+
+		if(elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, UMLElementTypes.ACTOR);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
 			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
-			
+
 			// If container is a Property, substitute container by the Property type
-			if (container instanceof Property) {
-				container = ((Property) container).getType();
+			if(container instanceof Property) {
+				container = ((Property)container).getType();
 				createElementRequest.setContainer(container);
 			}
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-		
-		} else if (elementType == SysMLElementTypes.PART_PROPERTY) {
+
+		} else if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, SysMLElementTypes.BLOCK);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
 			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
-			
+
 			// If container is a Property, substitute container by the Property type
-			if (container instanceof Property) {
-				container = ((Property) container).getType();
+			if(container instanceof Property) {
+				container = ((Property)container).getType();
 				createElementRequest.setContainer(container);
 			}
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-		
-		} else if (elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
+
+		} else if(elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, SysMLElementTypes.BLOCK);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
 			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
-			
+
 			// If container is a Property, substitute container by the Property type
-			if (container instanceof Property) {
-				container = ((Property) container).getType();
+			if(container instanceof Property) {
+				container = ((Property)container).getType();
 				createElementRequest.setContainer(container);
 			}
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-				
-		} else if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
+
+		} else if(elementType == SysMLElementTypes.VALUE_PROPERTY) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, UMLElementTypes.DATA_TYPE);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
 			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
-			
+
 			// If container is a Property, substitute container by the Property type
-			if (container instanceof Property) {
-				container = ((Property) container).getType();
+			if(container instanceof Property) {
+				container = ((Property)container).getType();
 				createElementRequest.setContainer(container);
 			}
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-				
-		} else if (elementType == SysMLElementTypes.FLOW_PORT_NA) {
+
+		} else if(elementType == SysMLElementTypes.FLOW_PORT_NA) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, SysMLElementTypes.FLOW_SPECIFICATION);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
 			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
-			
+
 			// If container is a Property, substitute container by the Property type
-			if (container instanceof Property) {
-				container = ((Property) container).getType();
+			if(container instanceof Property) {
+				container = ((Property)container).getType();
 				createElementRequest.setContainer(container);
 			}
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-				
-		} else if (elementType == UMLElementTypes.PROPERTY) {
-			
+
+		} else if(elementType == UMLElementTypes.PROPERTY) {
+
 			// If container is a Property, substitute container by the Property type
-			if (container instanceof Property) {
-				container = ((Property) container).getType();
+			if(container instanceof Property) {
+				container = ((Property)container).getType();
 				createElementRequest.setContainer(container);
-			}				
+			}
 		}
-		
+
 		ICommand createElementCommand = ElementEditServiceUtils.getCommandProvider(container).getEditCommand(createElementRequest);
 		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createElementCommand));
-		
+
 		return GMFCommandUtils.getCommandEObjectResult(createElementCommand);
 	}
 
 	public static void setBlockIsEncapsulated(final Element block, final boolean isEncapsulated) throws Exception {
 		AbstractTransactionalCommand setCommand = new AbstractTransactionalCommand(getTransactionalEditingDomain(), "Set Block isEncapsulated", null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Block blockApp = UMLUtil.getStereotypeApplication(block, Block.class);
@@ -176,42 +177,42 @@ public class TestPrepareUtils {
 		};
 		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(setCommand));
 	}
-	
+
 	public static EObject createLink(IElementType elementType, EObject source, EObject target) throws Exception {
 		CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(getTransactionalEditingDomain(), source, target, elementType);
-		
+
 		ICommand createRelationshipCommand = ElementEditServiceUtils.getCommandProvider(elementType).getEditCommand(createRelationshipRequest);
 		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createRelationshipCommand));
-		
+
 		return GMFCommandUtils.getCommandEObjectResult(createRelationshipCommand);
 	}
-	
+
 	public static EObject createConnectorLink(final EncapsulatedClassifier container, final ConnectableElement sourceRole, final Property sourcePartWithPort, final ConnectableElement targetRole, final Property targetPartWithPort) throws Exception {
-		
+
 		AbstractTransactionalCommand createConnectorCommand = new AbstractTransactionalCommand(getTransactionalEditingDomain(), "Create connector", null) {
-			
+
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Connector connector = container.createOwnedConnector("ConnectorTest");
-				
+
 				ConnectorEnd connectorEndSrc = connector.createEnd();
 				connectorEndSrc.setRole(sourceRole);
 				connectorEndSrc.setPartWithPort(sourcePartWithPort);
-				
+
 				ConnectorEnd connectorEndTgt = connector.createEnd();
 				connectorEndTgt.setRole(targetRole);
 				connectorEndTgt.setPartWithPort(targetPartWithPort);
-				
+
 				return CommandResult.newOKCommandResult(connector);
 			}
-			
+
 		};
 
 		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createConnectorCommand));
-		
+
 		return GMFCommandUtils.getCommandEObjectResult(createConnectorCommand);
 	}
-	
+
 	public static View createGraphicalNode(IElementType elementType, String graphicalType, View containerView) throws Exception {
 		EObject newObject = createElement(elementType, containerView);
 
@@ -222,11 +223,11 @@ public class TestPrepareUtils {
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
-		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(newObject, erefs);
+		Collection<View> views = EMFCoreUtil.getReferencers(newObject, erefs);
 
 		return (View)views.toArray()[0];
 	}
-	
+
 	public static View createGraphicalNode(IElementType elementType, EObject semanticContainer, String graphicalType, View containerView) throws Exception {
 
 		EObject newObject = createElement(elementType, semanticContainer);
@@ -238,11 +239,11 @@ public class TestPrepareUtils {
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
-		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(newObject, erefs);
+		Collection<View> views = EMFCoreUtil.getReferencers(newObject, erefs);
 
 		return (View)views.toArray()[0];
 	}
-	
+
 	public static View createGraphicalLink(IElementType elementType, String graphicalType, View containerView, EditPart sourceEP, EditPart targetEP) throws Exception {
 		CreateConnectionViewRequest request = createConnectionRequest(elementType, sourceEP, targetEP);
 
@@ -258,7 +259,7 @@ public class TestPrepareUtils {
 
 		return newView;
 	}
-	
+
 	public static CreateConnectionViewRequest createConnectionRequest(IElementType type, EditPart source, EditPart target) {
 		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, Activator.DIAGRAM_PREFERENCES_HINT);
 
@@ -275,7 +276,7 @@ public class TestPrepareUtils {
 		connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
 		return connectionRequest;
 	}
-	
+
 
 	public static View dropFromModelExplorer(IElementType elementType, View containerView) throws Exception {
 		EObject newObject = createElement(elementType, containerView);
@@ -300,7 +301,7 @@ public class TestPrepareUtils {
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
-		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(eObject, erefs);
+		Collection<View> views = EMFCoreUtil.getReferencers(eObject, erefs);
 
 		return (View)views.toArray()[0];
 	}

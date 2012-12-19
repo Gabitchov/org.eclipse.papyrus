@@ -70,16 +70,16 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, containerEditPart.getDiagramPreferencesHint());
 		Command command = containerEditPart.getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
-		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertNotSame(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command, UnexecutableCommand.INSTANCE);
+		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		containerEditPart.refresh();
-		assertTrue(CREATION + TEST_THE_EXECUTION, containerEditPart.getChildren().size() == subElementNumberGN + 2);
+		assertEquals(CREATION + TEST_THE_EXECUTION, containerEditPart.getChildren().size(), subElementNumberGN + 2);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, containerEditPart.getChildren().size() == subElementNumberGN);//strange!!
-		assertTrue(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 0);
+		assertEquals(CREATION + TEST_THE_UNDO, containerEditPart.getChildren().size(), subElementNumberGN);//strange!!
+		assertEquals(CREATION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size(), 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue("CREATION: " + TEST_THE_REDO, containerEditPart.getChildren().size() == subElementNumberGN + 1);
+		assertEquals("CREATION: " + TEST_THE_REDO, containerEditPart.getChildren().size(), subElementNumberGN + 1);
 
 	}
 

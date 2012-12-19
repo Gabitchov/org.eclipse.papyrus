@@ -22,6 +22,7 @@ import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
@@ -57,6 +58,48 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 //See #refresh()
 public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, ISelectionListener {
 
+	private final class ShowAllAction extends Action {
+
+		private ShowAllAction(String text, int style) {
+			super(text, style);
+		}
+
+		@Override
+		public void run() {
+			if(sashComp != null && !sashComp.isDisposed()) {
+				performShowAction();
+			}
+		}
+	}
+
+	private final class ShowOverviewAction extends Action {
+
+		private ShowOverviewAction(String text, int style) {
+			super(text, style);
+		}
+
+		@Override
+		public void run() {
+			if(overview != null && !overview.isDisposed()) {
+				performShowAction();
+			}
+		}
+	}
+
+	private final class ShowTreeAction extends Action {
+
+		private ShowTreeAction(String text, int style) {
+			super(text, style);
+		}
+
+		@Override
+		public void run() {
+			if(navigator != null && !navigator.isDisposed()) {
+				performShowAction();
+			}
+		}
+	}
+
 	protected EditingDomain editingDomain;
 
 	private IMultiDiagramEditor multiEditor;
@@ -80,11 +123,11 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	private Composite overview;
 
 	/** Actions */
-	private IAction showTreeAction;
+	private ActionContributionItem showTreeItem;
 
-	private IAction showOverviewAction;
+	private ActionContributionItem showOverviewItem;
 
-	private IAction showAllAction;
+	private ActionContributionItem showAllItem;
 
 	public DiagramOutline() {
 		super();
@@ -173,48 +216,26 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	 *        the outline tool bar manager
 	 */
 	private void createShowOutlineActions(IToolBarManager tbm) {
-
 		// Show Tree action
-		showTreeAction = new Action(Messages.DiagramOutline_ShowNavigator, IAction.AS_RADIO_BUTTON) {
-
-			@Override
-			public void run() {
-				if(navigator != null && !navigator.isDisposed()) {
-					performShowAction();
-				}
-			}
-		};
+		IAction showTreeAction = new ShowTreeAction(Messages.DiagramOutline_ShowNavigator, IAction.AS_RADIO_BUTTON);
 		showTreeAction.setToolTipText(showTreeAction.getText());
 		showTreeAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/tree_co.gif")); //$NON-NLS-1$
-		tbm.add(showTreeAction);
+		showTreeItem = new ActionContributionItem(showTreeAction);
+		tbm.add(showTreeItem);
 
 		// Show overview action
-		showOverviewAction = new Action(Messages.DiagramOutline_ShowOverview, IAction.AS_RADIO_BUTTON) {
-
-			@Override
-			public void run() {
-				if(overview != null && !overview.isDisposed()) {
-					performShowAction();
-				}
-			}
-		};
+		IAction showOverviewAction = new ShowOverviewAction(Messages.DiagramOutline_ShowOverview, IAction.AS_RADIO_BUTTON);
 		showOverviewAction.setToolTipText(showOverviewAction.getText());
 		showOverviewAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/overview_co.gif")); //$NON-NLS-1$
-		tbm.add(showOverviewAction);
+		showOverviewItem = new ActionContributionItem(showOverviewAction);
+		tbm.add(showOverviewItem);
 
 		// Show All (Tree and Overview) action
-		showAllAction = new Action(Messages.DiagramOutline_ShowBoth, IAction.AS_RADIO_BUTTON) {
-
-			@Override
-			public void run() {
-				if(sashComp != null && !sashComp.isDisposed()) {
-					performShowAction();
-				}
-			}
-		};
+		IAction showAllAction = new ShowAllAction(Messages.DiagramOutline_ShowBoth, IAction.AS_RADIO_BUTTON);
 		showAllAction.setToolTipText(showAllAction.getText());
 		showAllAction.setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/elcl16/all_co.gif")); //$NON-NLS-1$
-		tbm.add(showAllAction);
+		showAllItem = new ActionContributionItem(showAllAction);
+		tbm.add(showAllItem);
 
 		// Set overview as default choice
 		showOverviewAction.setChecked(true);
@@ -261,15 +282,38 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 		// Navigator, overview... can be null
 		if(navigator != null) {
 			navigator.dispose();
+			navigator = null;
 		}
 		if(overview != null) {
 			overview.dispose();
+			overview = null;
 		}
 
 		if(multiEditor != null) {
 			// Remove selection change listener
 			multiEditor.getSite().getPage().removePostSelectionListener(this);
+			multiEditor = null;
 		}
+
+		IToolBarManager toolBarManager = getSite().getActionBars().getToolBarManager();
+		if(showTreeItem != null) {
+			showTreeItem.dispose();
+			showTreeItem = null;
+		}
+
+		if(showOverviewItem != null) {
+			showOverviewItem.dispose();
+			showOverviewItem = null;
+		}
+
+		if(showAllItem != null) {
+			showAllItem.dispose();
+			showAllItem = null;
+		}
+
+		toolBarManager.update(false);
+
+		getSite().setSelectionProvider(null);
 	}
 
 	/**
@@ -395,13 +439,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	private int getShowActionMode() {
 		int showActionMode = -1;
 
-		if(showTreeAction.isChecked()) {
+		if(showTreeItem.getAction().isChecked()) {
 			showActionMode = SHOW_TREE;
 		}
-		if(showOverviewAction.isChecked()) {
+		if(showOverviewItem.getAction().isChecked()) {
 			showActionMode = SHOW_OVERVIEW;
 		}
-		if(showAllAction.isChecked()) {
+		if(showAllItem.getAction().isChecked()) {
 			showActionMode = SHOW_BOTH;
 		}
 

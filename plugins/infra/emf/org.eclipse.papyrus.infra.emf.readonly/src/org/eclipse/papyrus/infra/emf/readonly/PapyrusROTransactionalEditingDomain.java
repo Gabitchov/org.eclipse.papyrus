@@ -30,4 +30,11 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 	public boolean isReadOnly(Resource resource) {
 		return ReadOnlyManager.isReadOnly(resource, this);
 	}
+	
+	@Override
+	public void dispose(){
+		super.dispose();
+		resourceSet = null;
+		adapterFactory = null;
+	}
 }

@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -111,7 +113,6 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	/** The clazzdiagramedit part. */
 	protected DiagramEditPart clazzdiagrameditPart;
 
-
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 * 
@@ -120,7 +121,6 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	@Before
 	@Override
 	protected void setUp() throws Exception {
-
 		super.setUp();
 		projectCreation();
 	}
@@ -151,14 +151,32 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	@After
 	@Override
 	protected void tearDown() throws Exception {
-		papyrusEditor.doSave(new NullProgressMonitor());
-		//diResourceSet.save( new NullProgressMonitor());
-		//diagramEditor.close(true);
-		papyrusEditor = null;
-		page.closeAllEditors(true);
-		project.delete(true, new NullProgressMonitor());
+		RunnableWithResult<Boolean> runnable = new RunnableWithResult.Impl<Boolean>() {
 
-		super.tearDown();
+			public void run() {
+				try {
+					papyrusEditor.doSave(new NullProgressMonitor());
+					//diResourceSet.save( new NullProgressMonitor());
+					//diagramEditor.close(true);
+					papyrusEditor = null;
+					clazzdiagrameditPart = null;
+					diagramEditor = null;
+					page.closeAllEditors(true);
+					project.delete(true, new NullProgressMonitor());
+
+					setResult(true);
+				} catch (Exception ex) {
+					ex.printStackTrace(System.out);
+					setResult(false);
+				}
+			}
+
+		};
+
+		Display.getDefault().syncExec(runnable);
+		if(!runnable.getResult()) {
+			fail("Cannot close the editor and delete the project");
+		}
 	}
 
 	/**
@@ -208,15 +226,26 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				diResourceSet.save(new NullProgressMonitor());
 
 			}
-			page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-			papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
+
+			Runnable runnable = new Runnable() {
+
+				public void run() {
+					try {
+						page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+						IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
+						papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
+					} catch (Exception ex) {
+						ex.printStackTrace(System.out);
+					}
+				}
+			};
+
+			Display.getDefault().syncExec(runnable);
+			Assert.assertNotNull("Failed to open the editor", papyrusEditor);
 		} catch (Exception e) {
 			e.printStackTrace(System.out);
-			Assert.fail("Project creation failed");
+			fail("Project creation failed: " + e.getMessage());
 		}
-
-
 	}
 
 }

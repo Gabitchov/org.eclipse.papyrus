@@ -58,7 +58,7 @@ public class CSSClassProviderTest {
 	}
 
 	@Test
-	public void testResult() {
+	public void testCSSClassContentProvider() {
 		ExtendedCSSEngine engine = diagram.getEngine();
 		IStaticContentProvider provider = new CSSClassContentProvider("Interface", engine);
 		Object[] result = provider.getElements();

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.junit;bundle-version="4.8.1",
+Require-Bundle: org.junit4;bundle-version="4.0.0",
  org.eclipse.papyrus.core.queries.test;bundle-version="0.10.0"
 Bundle-Vendor: Eclipse Modeling Project
 Fragment-Host: org.eclipse.papyrus.uml.diagram.paletteconfiguration;bu
