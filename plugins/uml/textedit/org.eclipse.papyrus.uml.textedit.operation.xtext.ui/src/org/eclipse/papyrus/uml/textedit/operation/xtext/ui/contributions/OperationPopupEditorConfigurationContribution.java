@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.textedit.operation.xtext.operation.OperationDefin
 import org.eclipse.papyrus.uml.textedit.operation.xtext.operation.TypePart;
 import org.eclipse.papyrus.uml.textedit.operation.xtext.validation.OperationJavaValidator;
 import org.eclipse.papyrus.uml.textedit.operation.xtext.validation.OperationSemanticValidator;
+import org.eclipse.papyrus.uml.alf.ui.contributions.AbstractAlfReconciler;
 import org.eclipse.papyrus.uml.alf.validation.NamingUtils;
 import org.eclipse.papyrus.uml.alf.validation.typing.MultiplicityFacade;
 import org.eclipse.papyrus.uml.alf.validation.typing.MultiplicityFacadeFactory;
@@ -41,6 +42,7 @@ import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
+import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 
@@ -84,7 +86,7 @@ public class OperationPopupEditorConfigurationContribution extends
 		// builds a new IXtextEMFReconciler.
 		// Its purpose is to extract any relevant information from the textual specification,
 		// and then merge it in the context UML model if necessary
-		IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
+		IXtextEMFReconciler reconciler = new AbstractAlfReconciler() {
 
 			public void reconcile(EObject modelObject, EObject xtextObject) {
 				OperationDefinitionOrStub xtextOperation = (OperationDefinitionOrStub)xtextObject ;
@@ -124,11 +126,11 @@ public class OperationPopupEditorConfigurationContribution extends
 				//} catch (ExecutionException e) {
 				//	//TODO org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
 				//}
-				TransactionalEditingDomain domain = graphicalEditPart.getEditingDomain() ;
+				TransactionalEditingDomain domain = OperationPopupEditorConfigurationContribution.this.graphicalEditPart.getEditingDomain() ;
 				domain.getCommandStack().execute(updateCommand) ;
 			}
 		};
-		editorHelper = (PopupXtextEditorHelper)super.createPopupEditorHelper(graphicalEditPart, 
+		editorHelper = (PopupXtextEditorHelper)this.createPopupEditorHelper(graphicalEditPart, 
 																		injector, 
 																		reconciler, 
 																		textToEdit, 
@@ -136,6 +138,15 @@ public class OperationPopupEditorConfigurationContribution extends
 																		new OperationSemanticValidator());
 		return editorHelper ;
 	}
+
+	
+	
+	@Override
+	public IPopupEditorHelper createPopupEditorHelper(IGraphicalEditPart editPart, Injector xtextInjector, IXtextEMFReconciler modelReconciler, String textToEdit, String fileExtension, IXTextSemanticValidator semanticValidator) {
+		return new AlfPopupXtextEditorHelper(editPart, xtextInjector, modelReconciler, textToEdit, fileExtension, semanticValidator);
+	}
+
+
 
 	/*
 	 * (non-Javadoc)

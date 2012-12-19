@@ -100,17 +100,17 @@ import com.google.inject.Injector;
 
 public class PopupXtextEditorHelper implements IPopupEditorHelper {
 
-	private static IGraphicalEditPart hostEditPart;
-	private IEditorPart diagramEditor;
-	private int editorOffset;
-	private int initialEditorSize;
-	private int initialDocumentSize;
-	private Composite xtextEditorComposite;
-	private final Injector xtextInjector;
-	private XtextResource xtextResource;
-	private String semanticElementFragment;
-	private EObject semanticElement ;
-	private String textToEdit ;
+	protected static IGraphicalEditPart hostEditPart;
+	protected IEditorPart diagramEditor;
+	protected int editorOffset;
+	protected int initialEditorSize;
+	protected int initialDocumentSize;
+	protected Composite xtextEditorComposite;
+	protected final Injector xtextInjector;
+	protected XtextResource xtextResource;
+	protected String semanticElementFragment;
+	protected EObject semanticElement ;
+	protected String textToEdit ;
 	
 	/**
 	 * get the hos editpart
@@ -124,9 +124,9 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * The file extension used to dynamically select the appropriate xtext editor
 	 */
 	public static String fileExtension ;
-	private IXtextEMFReconciler modelReconciler;
-	private ISyntheticResourceProvider resourceProvider ;
-	private SourceViewerHandle sourceViewerHandle ;
+	protected IXtextEMFReconciler modelReconciler;
+	protected ISyntheticResourceProvider resourceProvider ;
+	protected SourceViewerHandle sourceViewerHandle ;
 	
 	/**
 	 * @return The source viewer handle for this PopupXtextEditorHelper
@@ -136,10 +136,10 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		return sourceViewerHandle;
 	}
 
-	private PartialModelEditor partialEditor ;
-	private Shell diagramShell ;
-	private OperationHistoryListener operationHistoryListener;
-	private IXTextSemanticValidator semanticValidator ;
+	protected PartialModelEditor partialEditor ;
+	protected Shell diagramShell ;
+	protected OperationHistoryListener operationHistoryListener;
+	protected IXTextSemanticValidator semanticValidator ;
 	/**
 	 * The context EObject for this editor. It can be used for content assist, verification, etc.
 	 */
@@ -168,7 +168,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 							String textToEdit, 
 							String fileExtension,
 							IXTextSemanticValidator semanticValidator) {
-		this.hostEditPart = editPart;
+		hostEditPart = editPart;
 		this.xtextInjector = xtextInjector ;
 		this.textToEdit = "" + textToEdit ;
 		this.modelReconciler = modelReconciler ;
@@ -363,7 +363,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 
 
 
-	private boolean isDocumentHasErrors(final IXtextDocument xtextDocument) {
+	protected boolean isDocumentHasErrors(final IXtextDocument xtextDocument) {
 		return (xtextDocument.readOnly(new IUnitOfWork<Boolean, XtextResource>() {
 			public Boolean exec(XtextResource state) throws Exception {
 				IParseResult parseResult = state.getParseResult();
