@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression;
 import org.eclipse.papyrus.uml.alf.alf.InstanceCreationTupleElement;
 import org.eclipse.papyrus.uml.alf.alf.QualifiedNameWithBinding;
-import org.eclipse.papyrus.uml.alf.alf.TupleElement;
+import org.eclipse.papyrus.uml.alf.alf.SequenceElement;
 import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -41,6 +41,21 @@ public class SignatureFacadeFactory {
 	public SignatureFacade createConstructorFacade(InstanceCreationExpression exp) throws Exception {
 		List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
 		Map<String, TypeExpression> argumentsMap = new HashMap<String, TypeExpression>() ;
+		
+		if (exp.getSequenceConstuctionCompletion() != null) {
+			TypeFacade classifier = TypeFacadeFactory.eInstance.createVoidFacade(exp.getConstructor()) ;
+			TypeExpression typeExpression = TypeExpressionFactory.eInstance.createTypeExpression(classifier, 0, -1, false, true) ;
+			if (classifier instanceof ErrorTypeFacade)
+				throw new TypeInferenceException(typeExpression) ;
+			// need to check that all elements in the sequence construction expression are correctly type
+			TypeExpression typeOfSequenceElements = new TypeUtils().getTypeOfSequenceConstructionExpression(exp.getSequenceConstuctionCompletion().getExpression()) ;
+			if (typeOfSequenceElements.getTypeFacade() instanceof ErrorTypeFacade)
+				throw new TypeInferenceException(typeOfSequenceElements) ;
+			if (typeExpression.isCompatibleWithMe(typeOfSequenceElements) == 0) {
+				throw new Exception("Elements of the sequence are not compatible with invoked constructor") ;
+			}
+			return new DefaultConstructorFacade(typeExpression) ;
+		}
 		
 		if (exp.getTuple().getInstanceCreationTupleElement() != null) {
 			for (InstanceCreationTupleElement tupleElement : exp.getTuple().getInstanceCreationTupleElement()) {

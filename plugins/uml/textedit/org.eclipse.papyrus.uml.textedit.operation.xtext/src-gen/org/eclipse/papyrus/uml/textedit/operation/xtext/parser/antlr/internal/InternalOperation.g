@@ -4583,10 +4583,10 @@ ruleInstanceCreationExpression returns [EObject current=null]
 	    }
 
 )
-)(
+)(((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInstanceCreationExpressionAccess().getTupleInstanceCreationTupleParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getInstanceCreationExpressionAccess().getTupleInstanceCreationTupleParserRuleCall_2_0_0_0()); 
 	    }
 		lv_tuple_2_0=ruleInstanceCreationTuple		{
 	        if ($current==null) {
@@ -4604,7 +4604,7 @@ ruleInstanceCreationExpression returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInstanceCreationExpressionAccess().getSuffixSuffixExpressionParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getInstanceCreationExpressionAccess().getSuffixSuffixExpressionParserRuleCall_2_0_1_0()); 
 	    }
 		lv_suffix_3_0=ruleSuffixExpression		{
 	        if ($current==null) {
@@ -4620,6 +4620,25 @@ ruleInstanceCreationExpression returns [EObject current=null]
 
 )
 )?)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getInstanceCreationExpressionAccess().getSequenceConstuctionCompletionSequenceConstructionCompletionParserRuleCall_2_1_0()); 
+	    }
+		lv_sequenceConstuctionCompletion_4_0=ruleSequenceConstructionCompletion		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getInstanceCreationExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"sequenceConstuctionCompletion",
+        		lv_sequenceConstuctionCompletion_4_0, 
+        		"SequenceConstructionCompletion");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))
 ;
 
 
@@ -4928,6 +4947,64 @@ rulePartialSequenceConstructionCompletion returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_1_0, 
+        		"SequenceConstructionExpression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleSequenceConstructionCompletion
+entryRuleSequenceConstructionCompletion returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSequenceConstructionCompletionRule()); }
+	 iv_ruleSequenceConstructionCompletion=ruleSequenceConstructionCompletion 
+	 { $current=$iv_ruleSequenceConstructionCompletion.current; } 
+	 EOF 
+;
+
+// Rule SequenceConstructionCompletion
+ruleSequenceConstructionCompletion returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+(
+		lv_multiplicityIndicator_0_0=	'[' 
+    {
+        newLeafNode(lv_multiplicityIndicator_0_0, grammarAccess.getSequenceConstructionCompletionAccess().getMultiplicityIndicatorLeftSquareBracketKeyword_0_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSequenceConstructionCompletionRule());
+	        }
+       		setWithLastConsumed($current, "multiplicityIndicator", true, "[");
+	    }
+
+)
+)	otherlv_1=']' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getSequenceConstructionCompletionAccess().getRightSquareBracketKeyword_0_1());
+    }
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSequenceConstructionCompletionAccess().getExpressionSequenceConstructionExpressionParserRuleCall_1_0()); 
+	    }
+		lv_expression_2_0=ruleSequenceConstructionExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSequenceConstructionCompletionRule());
+	        }
+       		set(
+       			$current, 
+       			"expression",
+        		lv_expression_2_0, 
         		"SequenceConstructionExpression");
 	        afterParserOrEnumRuleCall();
 	    }

@@ -28,3 +28,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.textedit.operation.xtext.ui.internal.O
 Export-Package: org.eclipse.papyrus.uml.textedit.operation.xtext.ui.contentassist,
  org.eclipse.papyrus.uml.textedit.operation.xtext.ui.contentassist.antlr,
  org.eclipse.papyrus.uml.textedit.operation.xtext.ui.internal
+Import-Package: org.apache.log4j

@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.alf.alf;
  *   <li>{@link org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression#getConstructor <em>Constructor</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression#getTuple <em>Tuple</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression#getSequenceConstuctionCompletion <em>Sequence Constuction Completion</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,5 +101,31 @@ public interface InstanceCreationExpression extends ValueSpecification, NonLiter
    * @generated
    */
   void setSuffix(SuffixExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Sequence Constuction Completion</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Sequence Constuction Completion</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Sequence Constuction Completion</em>' containment reference.
+   * @see #setSequenceConstuctionCompletion(SequenceConstructionCompletion)
+   * @see org.eclipse.papyrus.uml.alf.alf.AlfPackage#getInstanceCreationExpression_SequenceConstuctionCompletion()
+   * @model containment="true"
+   * @generated
+   */
+  SequenceConstructionCompletion getSequenceConstuctionCompletion();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression#getSequenceConstuctionCompletion <em>Sequence Constuction Completion</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Sequence Constuction Completion</em>' containment reference.
+   * @see #getSequenceConstuctionCompletion()
+   * @generated
+   */
+  void setSequenceConstuctionCompletion(SequenceConstructionCompletion value);
 
 } // InstanceCreationExpression

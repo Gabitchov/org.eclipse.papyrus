@@ -73,6 +73,7 @@ import org.eclipse.papyrus.uml.alf.alf.RelationalExpression;
 import org.eclipse.papyrus.uml.alf.alf.ReturnStatement;
 import org.eclipse.papyrus.uml.alf.alf.STRING_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.SelectOrRejectOperation;
+import org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion;
 import org.eclipse.papyrus.uml.alf.alf.SequenceConstructionExpression;
 import org.eclipse.papyrus.uml.alf.alf.SequenceConstructionOrAccessCompletion;
 import org.eclipse.papyrus.uml.alf.alf.SequenceOperationExpression;
@@ -577,6 +578,12 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				   context == grammarAccess.getSequenceExpansionExpressionRule() ||
 				   context == grammarAccess.getSuffixExpressionRule()) {
 					sequence_SelectOrRejectOperation(context, (SelectOrRejectOperation) semanticObject); 
+					return; 
+				}
+				else break;
+			case AlfPackage.SEQUENCE_CONSTRUCTION_COMPLETION:
+				if(context == grammarAccess.getSequenceConstructionCompletionRule()) {
+					sequence_SequenceConstructionCompletion(context, (SequenceConstructionCompletion) semanticObject); 
 					return; 
 				}
 				else break;

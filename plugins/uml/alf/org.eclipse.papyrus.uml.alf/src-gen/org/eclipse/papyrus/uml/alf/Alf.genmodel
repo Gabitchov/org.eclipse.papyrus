@@ -225,6 +225,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/constructor"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/tuple"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/suffix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/sequenceConstuctionCompletion"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//InstanceCreationTuple">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationTuple/instanceCreationTupleElement"/>
@@ -244,6 +245,10 @@
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//PartialSequenceConstructionCompletion">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//PartialSequenceConstructionCompletion/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="Alf.ecore#//SequenceConstructionCompletion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//SequenceConstructionCompletion/multiplicityIndicator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceConstructionCompletion/expression"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//SequenceConstructionExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceConstructionExpression/sequenceElement"/>

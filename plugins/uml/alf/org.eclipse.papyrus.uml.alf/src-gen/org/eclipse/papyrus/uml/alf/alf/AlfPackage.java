@@ -612,7 +612,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSequenceElement()
    * @generated
    */
-  int SEQUENCE_ELEMENT = 58;
+  int SEQUENCE_ELEMENT = 59;
 
   /**
    * The number of structural features of the '<em>Sequence Element</em>' class.
@@ -1938,13 +1938,22 @@ public interface AlfPackage extends EPackage
   int INSTANCE_CREATION_EXPRESSION__SUFFIX = VALUE_SPECIFICATION_FEATURE_COUNT + 2;
 
   /**
+   * The feature id for the '<em><b>Sequence Constuction Completion</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION = VALUE_SPECIFICATION_FEATURE_COUNT + 3;
+
+  /**
    * The number of structural features of the '<em>Instance Creation Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTANCE_CREATION_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 3;
+  int INSTANCE_CREATION_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.impl.InstanceCreationTupleImpl <em>Instance Creation Tuple</em>}' class.
@@ -2123,6 +2132,43 @@ public interface AlfPackage extends EPackage
   int PARTIAL_SEQUENCE_CONSTRUCTION_COMPLETION_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.impl.SequenceConstructionCompletionImpl <em>Sequence Construction Completion</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.uml.alf.alf.impl.SequenceConstructionCompletionImpl
+   * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSequenceConstructionCompletion()
+   * @generated
+   */
+  int SEQUENCE_CONSTRUCTION_COMPLETION = 57;
+
+  /**
+   * The feature id for the '<em><b>Multiplicity Indicator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENCE_CONSTRUCTION_COMPLETION__MULTIPLICITY_INDICATOR = 0;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENCE_CONSTRUCTION_COMPLETION__EXPRESSION = 1;
+
+  /**
+   * The number of structural features of the '<em>Sequence Construction Completion</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENCE_CONSTRUCTION_COMPLETION_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.impl.SequenceConstructionExpressionImpl <em>Sequence Construction Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2130,7 +2176,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSequenceConstructionExpression()
    * @generated
    */
-  int SEQUENCE_CONSTRUCTION_EXPRESSION = 57;
+  int SEQUENCE_CONSTRUCTION_EXPRESSION = 58;
 
   /**
    * The feature id for the '<em><b>Sequence Element</b></em>' containment reference list.
@@ -2167,7 +2213,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getClassExtentExpression()
    * @generated
    */
-  int CLASS_EXTENT_EXPRESSION = 59;
+  int CLASS_EXTENT_EXPRESSION = 60;
 
   /**
    * The feature id for the '<em><b>Suffix</b></em>' containment reference.
@@ -2195,7 +2241,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getBlock()
    * @generated
    */
-  int BLOCK = 60;
+  int BLOCK = 61;
 
   /**
    * The feature id for the '<em><b>Sequence</b></em>' containment reference.
@@ -2223,7 +2269,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getStatementSequence()
    * @generated
    */
-  int STATEMENT_SEQUENCE = 61;
+  int STATEMENT_SEQUENCE = 62;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -2251,7 +2297,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getDocumentedStatement()
    * @generated
    */
-  int DOCUMENTED_STATEMENT = 62;
+  int DOCUMENTED_STATEMENT = 63;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -2288,7 +2334,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getStatement()
    * @generated
    */
-  int STATEMENT = 65;
+  int STATEMENT = 66;
 
   /**
    * The number of structural features of the '<em>Statement</em>' class.
@@ -2307,7 +2353,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getInlineStatement()
    * @generated
    */
-  int INLINE_STATEMENT = 63;
+  int INLINE_STATEMENT = 64;
 
   /**
    * The feature id for the '<em><b>Langage Name</b></em>' attribute.
@@ -2344,7 +2390,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAnnotatedStatement()
    * @generated
    */
-  int ANNOTATED_STATEMENT = 64;
+  int ANNOTATED_STATEMENT = 65;
 
   /**
    * The feature id for the '<em><b>Annotation</b></em>' containment reference.
@@ -2381,7 +2427,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAnnotation()
    * @generated
    */
-  int ANNOTATION = 66;
+  int ANNOTATION = 67;
 
   /**
    * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -2418,7 +2464,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getBlockStatement()
    * @generated
    */
-  int BLOCK_STATEMENT = 67;
+  int BLOCK_STATEMENT = 68;
 
   /**
    * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -2446,7 +2492,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getEmptyStatement()
    * @generated
    */
-  int EMPTY_STATEMENT = 68;
+  int EMPTY_STATEMENT = 69;
 
   /**
    * The number of structural features of the '<em>Empty Statement</em>' class.
@@ -2465,7 +2511,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getLocalNameDeclarationStatement()
    * @generated
    */
-  int LOCAL_NAME_DECLARATION_STATEMENT = 69;
+  int LOCAL_NAME_DECLARATION_STATEMENT = 70;
 
   /**
    * The feature id for the '<em><b>Var Name</b></em>' attribute.
@@ -2520,7 +2566,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getIfStatement()
    * @generated
    */
-  int IF_STATEMENT = 70;
+  int IF_STATEMENT = 71;
 
   /**
    * The feature id for the '<em><b>Sequential Clausses</b></em>' containment reference.
@@ -2557,7 +2603,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSequentialClauses()
    * @generated
    */
-  int SEQUENTIAL_CLAUSES = 71;
+  int SEQUENTIAL_CLAUSES = 72;
 
   /**
    * The feature id for the '<em><b>Conccurent Clauses</b></em>' containment reference list.
@@ -2585,7 +2631,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getConcurrentClauses()
    * @generated
    */
-  int CONCURRENT_CLAUSES = 72;
+  int CONCURRENT_CLAUSES = 73;
 
   /**
    * The feature id for the '<em><b>Non Final Clause</b></em>' containment reference list.
@@ -2613,7 +2659,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getNonFinalClause()
    * @generated
    */
-  int NON_FINAL_CLAUSE = 73;
+  int NON_FINAL_CLAUSE = 74;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2650,7 +2696,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getFinalClause()
    * @generated
    */
-  int FINAL_CLAUSE = 74;
+  int FINAL_CLAUSE = 75;
 
   /**
    * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -2678,7 +2724,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSwitchStatement()
    * @generated
    */
-  int SWITCH_STATEMENT = 75;
+  int SWITCH_STATEMENT = 76;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -2724,7 +2770,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSwitchClause()
    * @generated
    */
-  int SWITCH_CLAUSE = 76;
+  int SWITCH_CLAUSE = 77;
 
   /**
    * The feature id for the '<em><b>Switch Case</b></em>' containment reference list.
@@ -2761,7 +2807,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSwitchCase()
    * @generated
    */
-  int SWITCH_CASE = 77;
+  int SWITCH_CASE = 78;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -2789,7 +2835,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSwitchDefaultClause()
    * @generated
    */
-  int SWITCH_DEFAULT_CLAUSE = 78;
+  int SWITCH_DEFAULT_CLAUSE = 79;
 
   /**
    * The feature id for the '<em><b>Statement Sequence</b></em>' containment reference.
@@ -2817,7 +2863,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getNonEmptyStatementSequence()
    * @generated
    */
-  int NON_EMPTY_STATEMENT_SEQUENCE = 79;
+  int NON_EMPTY_STATEMENT_SEQUENCE = 80;
 
   /**
    * The feature id for the '<em><b>Statement</b></em>' containment reference list.
@@ -2845,7 +2891,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getWhileStatement()
    * @generated
    */
-  int WHILE_STATEMENT = 80;
+  int WHILE_STATEMENT = 81;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2882,7 +2928,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getDoStatement()
    * @generated
    */
-  int DO_STATEMENT = 81;
+  int DO_STATEMENT = 82;
 
   /**
    * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -2919,7 +2965,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getForStatement()
    * @generated
    */
-  int FOR_STATEMENT = 82;
+  int FOR_STATEMENT = 83;
 
   /**
    * The feature id for the '<em><b>Control</b></em>' containment reference.
@@ -2956,7 +3002,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getForControl()
    * @generated
    */
-  int FOR_CONTROL = 83;
+  int FOR_CONTROL = 84;
 
   /**
    * The feature id for the '<em><b>Loop Variable Definition</b></em>' containment reference list.
@@ -2984,7 +3030,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getLoopVariableDefinition()
    * @generated
    */
-  int LOOP_VARIABLE_DEFINITION = 84;
+  int LOOP_VARIABLE_DEFINITION = 85;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3048,7 +3094,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getBreakStatement()
    * @generated
    */
-  int BREAK_STATEMENT = 85;
+  int BREAK_STATEMENT = 86;
 
   /**
    * The number of structural features of the '<em>Break Statement</em>' class.
@@ -3067,7 +3113,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getReturnStatement()
    * @generated
    */
-  int RETURN_STATEMENT = 86;
+  int RETURN_STATEMENT = 87;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3095,7 +3141,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAcceptStatement()
    * @generated
    */
-  int ACCEPT_STATEMENT = 87;
+  int ACCEPT_STATEMENT = 88;
 
   /**
    * The feature id for the '<em><b>Clause</b></em>' containment reference.
@@ -3141,7 +3187,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSimpleAcceptStatementCompletion()
    * @generated
    */
-  int SIMPLE_ACCEPT_STATEMENT_COMPLETION = 88;
+  int SIMPLE_ACCEPT_STATEMENT_COMPLETION = 89;
 
   /**
    * The number of structural features of the '<em>Simple Accept Statement Completion</em>' class.
@@ -3160,7 +3206,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getCompoundAcceptStatementCompletion()
    * @generated
    */
-  int COMPOUND_ACCEPT_STATEMENT_COMPLETION = 89;
+  int COMPOUND_ACCEPT_STATEMENT_COMPLETION = 90;
 
   /**
    * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -3197,7 +3243,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAcceptBlock()
    * @generated
    */
-  int ACCEPT_BLOCK = 90;
+  int ACCEPT_BLOCK = 91;
 
   /**
    * The feature id for the '<em><b>Clause</b></em>' containment reference.
@@ -3234,7 +3280,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAcceptClause()
    * @generated
    */
-  int ACCEPT_CLAUSE = 91;
+  int ACCEPT_CLAUSE = 92;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3271,7 +3317,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getClassifyStatement()
    * @generated
    */
-  int CLASSIFY_STATEMENT = 92;
+  int CLASSIFY_STATEMENT = 93;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3308,7 +3354,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getClassificationClause()
    * @generated
    */
-  int CLASSIFICATION_CLAUSE = 93;
+  int CLASSIFICATION_CLAUSE = 94;
 
   /**
    * The feature id for the '<em><b>Classify From Clause</b></em>' containment reference.
@@ -3354,7 +3400,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getClassificationFromClause()
    * @generated
    */
-  int CLASSIFICATION_FROM_CLAUSE = 94;
+  int CLASSIFICATION_FROM_CLAUSE = 95;
 
   /**
    * The feature id for the '<em><b>Qualified Name List</b></em>' containment reference.
@@ -3382,7 +3428,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getClassificationToClause()
    * @generated
    */
-  int CLASSIFICATION_TO_CLAUSE = 95;
+  int CLASSIFICATION_TO_CLAUSE = 96;
 
   /**
    * The feature id for the '<em><b>Qualified Name List</b></em>' containment reference.
@@ -3410,7 +3456,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getReclassifyAllClause()
    * @generated
    */
-  int RECLASSIFY_ALL_CLAUSE = 96;
+  int RECLASSIFY_ALL_CLAUSE = 97;
 
   /**
    * The number of structural features of the '<em>Reclassify All Clause</em>' class.
@@ -3429,7 +3475,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getQualifiedNameList()
    * @generated
    */
-  int QUALIFIED_NAME_LIST = 97;
+  int QUALIFIED_NAME_LIST = 98;
 
   /**
    * The feature id for the '<em><b>Qualified Name</b></em>' containment reference list.
@@ -3457,7 +3503,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getInvocationOrAssignementOrDeclarationStatement()
    * @generated
    */
-  int INVOCATION_OR_ASSIGNEMENT_OR_DECLARATION_STATEMENT = 98;
+  int INVOCATION_OR_ASSIGNEMENT_OR_DECLARATION_STATEMENT = 99;
 
   /**
    * The feature id for the '<em><b>Type Part OR assigned Part OR invocation Part</b></em>' containment reference.
@@ -3503,7 +3549,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSuperInvocationStatement()
    * @generated
    */
-  int SUPER_INVOCATION_STATEMENT = 99;
+  int SUPER_INVOCATION_STATEMENT = 100;
 
   /**
    * The feature id for the '<em><b>super</b></em>' containment reference.
@@ -3531,7 +3577,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getThisInvocationStatement()
    * @generated
    */
-  int THIS_INVOCATION_STATEMENT = 100;
+  int THIS_INVOCATION_STATEMENT = 101;
 
   /**
    * The feature id for the '<em><b>this</b></em>' containment reference.
@@ -3568,7 +3614,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getInstanceCreationInvocationStatement()
    * @generated
    */
-  int INSTANCE_CREATION_INVOCATION_STATEMENT = 101;
+  int INSTANCE_CREATION_INVOCATION_STATEMENT = 102;
 
   /**
    * The feature id for the '<em><b>new</b></em>' containment reference.
@@ -3596,7 +3642,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getVariableDeclarationCompletion()
    * @generated
    */
-  int VARIABLE_DECLARATION_COMPLETION = 102;
+  int VARIABLE_DECLARATION_COMPLETION = 103;
 
   /**
    * The feature id for the '<em><b>Multiplicity Indicator</b></em>' attribute.
@@ -3642,7 +3688,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAssignmentCompletion()
    * @generated
    */
-  int ASSIGNMENT_COMPLETION = 103;
+  int ASSIGNMENT_COMPLETION = 104;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -3679,7 +3725,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getBooleanValue()
    * @generated
    */
-  int BOOLEAN_VALUE = 104;
+  int BOOLEAN_VALUE = 105;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.LinkOperationKind <em>Link Operation Kind</em>}' enum.
@@ -3689,7 +3735,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getLinkOperationKind()
    * @generated
    */
-  int LINK_OPERATION_KIND = 105;
+  int LINK_OPERATION_KIND = 106;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.SelectOrRejectOperator <em>Select Or Reject Operator</em>}' enum.
@@ -3699,7 +3745,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSelectOrRejectOperator()
    * @generated
    */
-  int SELECT_OR_REJECT_OPERATOR = 106;
+  int SELECT_OR_REJECT_OPERATOR = 107;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.CollectOrIterateOperator <em>Collect Or Iterate Operator</em>}' enum.
@@ -3709,7 +3755,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getCollectOrIterateOperator()
    * @generated
    */
-  int COLLECT_OR_ITERATE_OPERATOR = 107;
+  int COLLECT_OR_ITERATE_OPERATOR = 108;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.ForAllOrExistsOrOneOperator <em>For All Or Exists Or One Operator</em>}' enum.
@@ -3719,7 +3765,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getForAllOrExistsOrOneOperator()
    * @generated
    */
-  int FOR_ALL_OR_EXISTS_OR_ONE_OPERATOR = 108;
+  int FOR_ALL_OR_EXISTS_OR_ONE_OPERATOR = 109;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.AnnotationKind <em>Annotation Kind</em>}' enum.
@@ -3729,7 +3775,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAnnotationKind()
    * @generated
    */
-  int ANNOTATION_KIND = 109;
+  int ANNOTATION_KIND = 110;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.alf.AssignmentOperator <em>Assignment Operator</em>}' enum.
@@ -3739,7 +3785,7 @@ public interface AlfPackage extends EPackage
    * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getAssignmentOperator()
    * @generated
    */
-  int ASSIGNMENT_OPERATOR = 110;
+  int ASSIGNMENT_OPERATOR = 111;
 
 
   /**
@@ -5187,6 +5233,17 @@ public interface AlfPackage extends EPackage
   EReference getInstanceCreationExpression_Suffix();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression#getSequenceConstuctionCompletion <em>Sequence Constuction Completion</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Sequence Constuction Completion</em>'.
+   * @see org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression#getSequenceConstuctionCompletion()
+   * @see #getInstanceCreationExpression()
+   * @generated
+   */
+  EReference getInstanceCreationExpression_SequenceConstuctionCompletion();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.uml.alf.alf.InstanceCreationTuple <em>Instance Creation Tuple</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5334,6 +5391,38 @@ public interface AlfPackage extends EPackage
    * @generated
    */
   EReference getPartialSequenceConstructionCompletion_Expression();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion <em>Sequence Construction Completion</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Sequence Construction Completion</em>'.
+   * @see org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion
+   * @generated
+   */
+  EClass getSequenceConstructionCompletion();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion#isMultiplicityIndicator <em>Multiplicity Indicator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Multiplicity Indicator</em>'.
+   * @see org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion#isMultiplicityIndicator()
+   * @see #getSequenceConstructionCompletion()
+   * @generated
+   */
+  EAttribute getSequenceConstructionCompletion_MultiplicityIndicator();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion#getExpression()
+   * @see #getSequenceConstructionCompletion()
+   * @generated
+   */
+  EReference getSequenceConstructionCompletion_Expression();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.uml.alf.alf.SequenceConstructionExpression <em>Sequence Construction Expression</em>}'.
@@ -7916,6 +8005,14 @@ public interface AlfPackage extends EPackage
     EReference INSTANCE_CREATION_EXPRESSION__SUFFIX = eINSTANCE.getInstanceCreationExpression_Suffix();
 
     /**
+     * The meta object literal for the '<em><b>Sequence Constuction Completion</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION = eINSTANCE.getInstanceCreationExpression_SequenceConstuctionCompletion();
+
+    /**
      * The meta object literal for the '{@link org.eclipse.papyrus.uml.alf.alf.impl.InstanceCreationTupleImpl <em>Instance Creation Tuple</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8036,6 +8133,32 @@ public interface AlfPackage extends EPackage
      * @generated
      */
     EReference PARTIAL_SEQUENCE_CONSTRUCTION_COMPLETION__EXPRESSION = eINSTANCE.getPartialSequenceConstructionCompletion_Expression();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.uml.alf.alf.impl.SequenceConstructionCompletionImpl <em>Sequence Construction Completion</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.uml.alf.alf.impl.SequenceConstructionCompletionImpl
+     * @see org.eclipse.papyrus.uml.alf.alf.impl.AlfPackageImpl#getSequenceConstructionCompletion()
+     * @generated
+     */
+    EClass SEQUENCE_CONSTRUCTION_COMPLETION = eINSTANCE.getSequenceConstructionCompletion();
+
+    /**
+     * The meta object literal for the '<em><b>Multiplicity Indicator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SEQUENCE_CONSTRUCTION_COMPLETION__MULTIPLICITY_INDICATOR = eINSTANCE.getSequenceConstructionCompletion_MultiplicityIndicator();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SEQUENCE_CONSTRUCTION_COMPLETION__EXPRESSION = eINSTANCE.getSequenceConstructionCompletion_Expression();
 
     /**
      * The meta object literal for the '{@link org.eclipse.papyrus.uml.alf.alf.impl.SequenceConstructionExpressionImpl <em>Sequence Construction Expression</em>}' class.

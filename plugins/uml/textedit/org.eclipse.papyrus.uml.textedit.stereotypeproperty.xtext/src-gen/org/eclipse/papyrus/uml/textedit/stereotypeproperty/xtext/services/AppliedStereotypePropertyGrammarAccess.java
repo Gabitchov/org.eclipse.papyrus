@@ -886,7 +886,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	////	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
 	//
 	//
-	//	"new" constructor=QualifiedNameWithBinding tuple=InstanceCreationTuple suffix=SuffixExpression?;
+	//	"new" constructor=QualifiedNameWithBinding (tuple=InstanceCreationTuple suffix=SuffixExpression? |
+	//
+	//	sequenceConstuctionCompletion=SequenceConstructionCompletion);
 	public AlfGrammarAccess.InstanceCreationExpressionElements getInstanceCreationExpressionAccess() {
 		return gaAlf.getInstanceCreationExpressionAccess();
 	}
@@ -959,12 +961,18 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPartialSequenceConstructionCompletionAccess().getRule();
 	}
 
-	////SequenceConstructionCompletion :
-	// //	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
+	//SequenceConstructionCompletion:
 	//
-	//
-	////;
-	// SequenceConstructionExpression:
+	//	(multiplicityIndicator?="[" "]")? expression=SequenceConstructionExpression;
+	public AlfGrammarAccess.SequenceConstructionCompletionElements getSequenceConstructionCompletionAccess() {
+		return gaAlf.getSequenceConstructionCompletionAccess();
+	}
+	
+	public ParserRule getSequenceConstructionCompletionRule() {
+		return getSequenceConstructionCompletionAccess().getRule();
+	}
+
+	//SequenceConstructionExpression:
 	//
 	//	"{" sequenceElement+=SequenceElement (("," sequenceElement+=SequenceElement)* | ".." rangeUpper=Expression) "}";
 	public AlfGrammarAccess.SequenceConstructionExpressionElements getSequenceConstructionExpressionAccess() {

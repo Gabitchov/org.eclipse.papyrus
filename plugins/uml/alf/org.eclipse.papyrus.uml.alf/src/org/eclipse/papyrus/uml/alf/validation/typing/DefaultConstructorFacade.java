@@ -39,9 +39,14 @@ public class DefaultConstructorFacade extends SignatureFacade {
 		this.setReturnType(TypeExpressionFactory.eInstance.createTypeExpression(d)) ;
 	}
 	
+	public DefaultConstructorFacade(TypeExpression t) {
+		this.setName(t.getTypeFacade().getLabel()) ;
+		this.setReturnType(t) ;
+	}
+	
 	@Override
 	public String getName() {
-		return classToBeConstructed.getName();
+		return super.getName() ;
 	}
 
 	@Override
@@ -51,15 +56,7 @@ public class DefaultConstructorFacade extends SignatureFacade {
 
 	@Override
 	public String getLabel() {
-		String label = classToBeConstructed != null ? classToBeConstructed.getName() : datatypeToBeConstructed.getName() ;
-		label += "(" ;
-		boolean first = true ;
-		for (TypeExpression t : parameters) {
-			if (first) first = false ; else label += ", " ;
-			label += t.getLabel() ;
-		}
-		label += ") : " + this.getReturnType().getLabel() ;
-		return label ;
+		return super.getLabel() ;
 	}
 
 	@Override

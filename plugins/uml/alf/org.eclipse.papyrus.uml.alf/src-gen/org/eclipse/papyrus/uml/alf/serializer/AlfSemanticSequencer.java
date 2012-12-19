@@ -73,6 +73,7 @@ import org.eclipse.papyrus.uml.alf.alf.RelationalExpression;
 import org.eclipse.papyrus.uml.alf.alf.ReturnStatement;
 import org.eclipse.papyrus.uml.alf.alf.STRING_LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.SelectOrRejectOperation;
+import org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion;
 import org.eclipse.papyrus.uml.alf.alf.SequenceConstructionExpression;
 import org.eclipse.papyrus.uml.alf.alf.SequenceConstructionOrAccessCompletion;
 import org.eclipse.papyrus.uml.alf.alf.SequenceOperationExpression;
@@ -574,6 +575,12 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getSequenceExpansionExpressionRule() ||
 				   context == grammarAccess.getSuffixExpressionRule()) {
 					sequence_SelectOrRejectOperation(context, (SelectOrRejectOperation) semanticObject); 
+					return; 
+				}
+				else break;
+			case AlfPackage.SEQUENCE_CONSTRUCTION_COMPLETION:
+				if(context == grammarAccess.getSequenceConstructionCompletionRule()) {
+					sequence_SequenceConstructionCompletion(context, (SequenceConstructionCompletion) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1246,7 +1253,10 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (constructor=QualifiedNameWithBinding tuple=InstanceCreationTuple suffix=SuffixExpression?)
+	 *     (
+	 *         constructor=QualifiedNameWithBinding 
+	 *         ((tuple=InstanceCreationTuple suffix=SuffixExpression?) | sequenceConstuctionCompletion=SequenceConstructionCompletion)
+	 *     )
 	 */
 	protected void sequence_InstanceCreationExpression(EObject context, InstanceCreationExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1579,6 +1589,15 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (op=SelectOrRejectOperator name=ID expr=Expression suffix=SuffixExpression?)
 	 */
 	protected void sequence_SelectOrRejectOperation(EObject context, SelectOrRejectOperation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (multiplicityIndicator?='['? expression=SequenceConstructionExpression)
+	 */
+	protected void sequence_SequenceConstructionCompletion(EObject context, SequenceConstructionCompletion semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

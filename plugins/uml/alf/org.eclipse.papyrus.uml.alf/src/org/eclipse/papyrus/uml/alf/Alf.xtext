@@ -359,7 +359,7 @@ InstanceCreationExpression :
 	//'new' constructor=QualifiedNameWithBinding 
 	//	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
 	'new' constructor=QualifiedNameWithBinding 
-		tuple = InstanceCreationTuple (suffix = SuffixExpression) ?
+		(tuple = InstanceCreationTuple (suffix = SuffixExpression) ? | sequenceConstuctionCompletion = SequenceConstructionCompletion)
 ;
 
 InstanceCreationTuple :
@@ -387,9 +387,9 @@ PartialSequenceConstructionCompletion :
 	']' expression = SequenceConstructionExpression
 ;
 
-//SequenceConstructionCompletion :
-//	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
-//;
+SequenceConstructionCompletion :
+	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
+;
 
 SequenceConstructionExpression :
 	'{'sequenceElement+=SequenceElement 

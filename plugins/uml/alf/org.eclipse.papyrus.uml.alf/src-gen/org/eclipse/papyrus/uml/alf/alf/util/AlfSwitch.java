@@ -516,6 +516,13 @@ public class AlfSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AlfPackage.SEQUENCE_CONSTRUCTION_COMPLETION:
+      {
+        SequenceConstructionCompletion sequenceConstructionCompletion = (SequenceConstructionCompletion)theEObject;
+        T result = caseSequenceConstructionCompletion(sequenceConstructionCompletion);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
       {
         SequenceConstructionExpression sequenceConstructionExpression = (SequenceConstructionExpression)theEObject;
@@ -1777,6 +1784,22 @@ public class AlfSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePartialSequenceConstructionCompletion(PartialSequenceConstructionCompletion object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Sequence Construction Completion</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Sequence Construction Completion</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSequenceConstructionCompletion(SequenceConstructionCompletion object)
   {
     return null;
   }

@@ -57,6 +57,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonLiteralValueSpecificationAccess().getAlternatives(), "rule__NonLiteralValueSpecification__Alternatives");
 					put(grammarAccess.getParenthesizedExpressionAccess().getAlternatives_3(), "rule__ParenthesizedExpression__Alternatives_3");
 					put(grammarAccess.getSuperInvocationExpressionAccess().getAlternatives_1(), "rule__SuperInvocationExpression__Alternatives_1");
+					put(grammarAccess.getInstanceCreationExpressionAccess().getAlternatives_2(), "rule__InstanceCreationExpression__Alternatives_2");
 					put(grammarAccess.getSequenceConstructionOrAccessCompletionAccess().getAlternatives(), "rule__SequenceConstructionOrAccessCompletion__Alternatives");
 					put(grammarAccess.getSequenceConstructionOrAccessCompletionAccess().getAlternatives_0_1(), "rule__SequenceConstructionOrAccessCompletion__Alternatives_0_1");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getAlternatives_2(), "rule__SequenceConstructionExpression__Alternatives_2");
@@ -138,6 +139,7 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSuperInvocationExpressionAccess().getGroup(), "rule__SuperInvocationExpression__Group__0");
 					put(grammarAccess.getSuperInvocationExpressionAccess().getGroup_1_1(), "rule__SuperInvocationExpression__Group_1_1__0");
 					put(grammarAccess.getInstanceCreationExpressionAccess().getGroup(), "rule__InstanceCreationExpression__Group__0");
+					put(grammarAccess.getInstanceCreationExpressionAccess().getGroup_2_0(), "rule__InstanceCreationExpression__Group_2_0__0");
 					put(grammarAccess.getInstanceCreationTupleAccess().getGroup(), "rule__InstanceCreationTuple__Group__0");
 					put(grammarAccess.getInstanceCreationTupleAccess().getGroup_2(), "rule__InstanceCreationTuple__Group_2__0");
 					put(grammarAccess.getInstanceCreationTupleAccess().getGroup_2_1(), "rule__InstanceCreationTuple__Group_2_1__0");
@@ -145,6 +147,8 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSequenceConstructionOrAccessCompletionAccess().getGroup_0(), "rule__SequenceConstructionOrAccessCompletion__Group_0__0");
 					put(grammarAccess.getAccessCompletionAccess().getGroup(), "rule__AccessCompletion__Group__0");
 					put(grammarAccess.getPartialSequenceConstructionCompletionAccess().getGroup(), "rule__PartialSequenceConstructionCompletion__Group__0");
+					put(grammarAccess.getSequenceConstructionCompletionAccess().getGroup(), "rule__SequenceConstructionCompletion__Group__0");
+					put(grammarAccess.getSequenceConstructionCompletionAccess().getGroup_0(), "rule__SequenceConstructionCompletion__Group_0__0");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup(), "rule__SequenceConstructionExpression__Group__0");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_2_0(), "rule__SequenceConstructionExpression__Group_2_0__0");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_2_1(), "rule__SequenceConstructionExpression__Group_2_1__0");
@@ -309,8 +313,9 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSuperInvocationExpressionAccess().getOperationNameAssignment_1_1_1(), "rule__SuperInvocationExpression__OperationNameAssignment_1_1_1");
 					put(grammarAccess.getSuperInvocationExpressionAccess().getTupleAssignment_1_1_2(), "rule__SuperInvocationExpression__TupleAssignment_1_1_2");
 					put(grammarAccess.getInstanceCreationExpressionAccess().getConstructorAssignment_1(), "rule__InstanceCreationExpression__ConstructorAssignment_1");
-					put(grammarAccess.getInstanceCreationExpressionAccess().getTupleAssignment_2(), "rule__InstanceCreationExpression__TupleAssignment_2");
-					put(grammarAccess.getInstanceCreationExpressionAccess().getSuffixAssignment_3(), "rule__InstanceCreationExpression__SuffixAssignment_3");
+					put(grammarAccess.getInstanceCreationExpressionAccess().getTupleAssignment_2_0_0(), "rule__InstanceCreationExpression__TupleAssignment_2_0_0");
+					put(grammarAccess.getInstanceCreationExpressionAccess().getSuffixAssignment_2_0_1(), "rule__InstanceCreationExpression__SuffixAssignment_2_0_1");
+					put(grammarAccess.getInstanceCreationExpressionAccess().getSequenceConstuctionCompletionAssignment_2_1(), "rule__InstanceCreationExpression__SequenceConstuctionCompletionAssignment_2_1");
 					put(grammarAccess.getInstanceCreationTupleAccess().getInstanceCreationTupleElementAssignment_2_0(), "rule__InstanceCreationTuple__InstanceCreationTupleElementAssignment_2_0");
 					put(grammarAccess.getInstanceCreationTupleAccess().getInstanceCreationTupleElementAssignment_2_1_1(), "rule__InstanceCreationTuple__InstanceCreationTupleElementAssignment_2_1_1");
 					put(grammarAccess.getInstanceCreationTupleElementAccess().getRoleAssignment_0(), "rule__InstanceCreationTupleElement__RoleAssignment_0");
@@ -321,6 +326,8 @@ public class AlfParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSequenceConstructionOrAccessCompletionAccess().getExpressionAssignment_1(), "rule__SequenceConstructionOrAccessCompletion__ExpressionAssignment_1");
 					put(grammarAccess.getAccessCompletionAccess().getAccessIndexAssignment_0(), "rule__AccessCompletion__AccessIndexAssignment_0");
 					put(grammarAccess.getPartialSequenceConstructionCompletionAccess().getExpressionAssignment_1(), "rule__PartialSequenceConstructionCompletion__ExpressionAssignment_1");
+					put(grammarAccess.getSequenceConstructionCompletionAccess().getMultiplicityIndicatorAssignment_0_0(), "rule__SequenceConstructionCompletion__MultiplicityIndicatorAssignment_0_0");
+					put(grammarAccess.getSequenceConstructionCompletionAccess().getExpressionAssignment_1(), "rule__SequenceConstructionCompletion__ExpressionAssignment_1");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getSequenceElementAssignment_1(), "rule__SequenceConstructionExpression__SequenceElementAssignment_1");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getSequenceElementAssignment_2_0_1(), "rule__SequenceConstructionExpression__SequenceElementAssignment_2_0_1");
 					put(grammarAccess.getSequenceConstructionExpressionAccess().getRangeUpperAssignment_2_1_1(), "rule__SequenceConstructionExpression__RangeUpperAssignment_2_1_1");

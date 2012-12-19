@@ -262,6 +262,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceConstuctionCompletion"
+        eType="#//SequenceConstructionCompletion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceCreationTuple">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceCreationTupleElement"
@@ -287,6 +289,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PartialSequenceConstructionCompletion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//SequenceConstructionExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceConstructionCompletion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicityIndicator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//SequenceConstructionExpression"
         containment="true"/>
   </eClassifiers>

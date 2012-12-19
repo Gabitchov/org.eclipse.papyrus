@@ -122,6 +122,7 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory
       case AlfPackage.SEQUENCE_CONSTRUCTION_OR_ACCESS_COMPLETION: return createSequenceConstructionOrAccessCompletion();
       case AlfPackage.ACCESS_COMPLETION: return createAccessCompletion();
       case AlfPackage.PARTIAL_SEQUENCE_CONSTRUCTION_COMPLETION: return createPartialSequenceConstructionCompletion();
+      case AlfPackage.SEQUENCE_CONSTRUCTION_COMPLETION: return createSequenceConstructionCompletion();
       case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: return createSequenceConstructionExpression();
       case AlfPackage.SEQUENCE_ELEMENT: return createSequenceElement();
       case AlfPackage.CLASS_EXTENT_EXPRESSION: return createClassExtentExpression();
@@ -857,6 +858,17 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory
   {
     PartialSequenceConstructionCompletionImpl partialSequenceConstructionCompletion = new PartialSequenceConstructionCompletionImpl();
     return partialSequenceConstructionCompletion;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SequenceConstructionCompletion createSequenceConstructionCompletion()
+  {
+    SequenceConstructionCompletionImpl sequenceConstructionCompletion = new SequenceConstructionCompletionImpl();
+    return sequenceConstructionCompletion;
   }
 
   /**

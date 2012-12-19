@@ -14,6 +14,7 @@ import org.eclipse.papyrus.uml.alf.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression;
 import org.eclipse.papyrus.uml.alf.alf.InstanceCreationTuple;
 import org.eclipse.papyrus.uml.alf.alf.QualifiedNameWithBinding;
+import org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion;
 import org.eclipse.papyrus.uml.alf.alf.SuffixExpression;
 
 /**
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.uml.alf.alf.SuffixExpression;
  *   <li>{@link org.eclipse.papyrus.uml.alf.alf.impl.InstanceCreationExpressionImpl#getConstructor <em>Constructor</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.alf.alf.impl.InstanceCreationExpressionImpl#getTuple <em>Tuple</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.alf.alf.impl.InstanceCreationExpressionImpl#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.alf.impl.InstanceCreationExpressionImpl#getSequenceConstuctionCompletion <em>Sequence Constuction Completion</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +64,16 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
    * @ordered
    */
   protected SuffixExpression suffix;
+
+  /**
+   * The cached value of the '{@link #getSequenceConstuctionCompletion() <em>Sequence Constuction Completion</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSequenceConstuctionCompletion()
+   * @generated
+   * @ordered
+   */
+  protected SequenceConstructionCompletion sequenceConstuctionCompletion;
 
   /**
    * <!-- begin-user-doc -->
@@ -233,6 +245,54 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
+  public SequenceConstructionCompletion getSequenceConstuctionCompletion()
+  {
+    return sequenceConstuctionCompletion;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetSequenceConstuctionCompletion(SequenceConstructionCompletion newSequenceConstuctionCompletion, NotificationChain msgs)
+  {
+    SequenceConstructionCompletion oldSequenceConstuctionCompletion = sequenceConstuctionCompletion;
+    sequenceConstuctionCompletion = newSequenceConstuctionCompletion;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION, oldSequenceConstuctionCompletion, newSequenceConstuctionCompletion);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSequenceConstuctionCompletion(SequenceConstructionCompletion newSequenceConstuctionCompletion)
+  {
+    if (newSequenceConstuctionCompletion != sequenceConstuctionCompletion)
+    {
+      NotificationChain msgs = null;
+      if (sequenceConstuctionCompletion != null)
+        msgs = ((InternalEObject)sequenceConstuctionCompletion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION, null, msgs);
+      if (newSequenceConstuctionCompletion != null)
+        msgs = ((InternalEObject)newSequenceConstuctionCompletion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION, null, msgs);
+      msgs = basicSetSequenceConstuctionCompletion(newSequenceConstuctionCompletion, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION, newSequenceConstuctionCompletion, newSequenceConstuctionCompletion));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -244,6 +304,8 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
         return basicSetTuple(null, msgs);
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__SUFFIX:
         return basicSetSuffix(null, msgs);
+      case AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION:
+        return basicSetSequenceConstuctionCompletion(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -264,6 +326,8 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
         return getTuple();
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__SUFFIX:
         return getSuffix();
+      case AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION:
+        return getSequenceConstuctionCompletion();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -286,6 +350,9 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
         return;
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__SUFFIX:
         setSuffix((SuffixExpression)newValue);
+        return;
+      case AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION:
+        setSequenceConstuctionCompletion((SequenceConstructionCompletion)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -310,6 +377,9 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__SUFFIX:
         setSuffix((SuffixExpression)null);
         return;
+      case AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION:
+        setSequenceConstuctionCompletion((SequenceConstructionCompletion)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -330,6 +400,8 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
         return tuple != null;
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__SUFFIX:
         return suffix != null;
+      case AlfPackage.INSTANCE_CREATION_EXPRESSION__SEQUENCE_CONSTUCTION_COMPLETION:
+        return sequenceConstuctionCompletion != null;
     }
     return super.eIsSet(featureID);
   }

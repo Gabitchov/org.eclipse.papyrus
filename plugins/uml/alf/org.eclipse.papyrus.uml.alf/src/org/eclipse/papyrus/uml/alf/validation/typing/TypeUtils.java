@@ -71,7 +71,6 @@ import org.eclipse.papyrus.uml.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.uml.alf.alf.ValueSpecification;
 import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.uml.alf.validation.AlfJavaValidator;
-import org.eclipse.papyrus.uml.alf.validation.NamingUtils;
 import org.eclipse.papyrus.uml.tools.utils.NameResolutionUtils;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
@@ -555,6 +554,29 @@ public class TypeUtils {
 				}
 			}
 			catch (Exception e) {
+				ErrorTypeFacade error = null ;
+				if (e instanceof TypeInferenceException) {
+					TypeInferenceException tie = (TypeInferenceException)e ;
+					error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
+							tie.getErrorMessage(), 
+							tie.getErrorSource(), 
+							tie.getErrorFeature()) ;
+				}
+				else {
+					error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
+						e.getMessage(), 
+						exp, 
+						AlfPackage.eINSTANCE.getInstanceCreationExpression_Constructor()) ;
+				}
+				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
+			}
+		}
+		else if (exp.getSequenceConstuctionCompletion()!=null) {
+			// TODO
+			try {
+				SignatureFacade s = SignatureFacadeFactory.eInstance.createConstructorFacade(exp) ;
+				return s.getReturnType() ;
+			} catch (Exception e) {
 				ErrorTypeFacade error = null ;
 				if (e instanceof TypeInferenceException) {
 					TypeInferenceException tie = (TypeInferenceException)e ;

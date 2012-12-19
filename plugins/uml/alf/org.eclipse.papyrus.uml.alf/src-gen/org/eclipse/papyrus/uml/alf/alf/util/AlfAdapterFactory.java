@@ -360,6 +360,11 @@ public class AlfAdapterFactory extends AdapterFactoryImpl
         return createPartialSequenceConstructionCompletionAdapter();
       }
       @Override
+      public Adapter caseSequenceConstructionCompletion(SequenceConstructionCompletion object)
+      {
+        return createSequenceConstructionCompletionAdapter();
+      }
+      @Override
       public Adapter caseSequenceConstructionExpression(SequenceConstructionExpression object)
       {
         return createSequenceConstructionExpressionAdapter();
@@ -1467,6 +1472,21 @@ public class AlfAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPartialSequenceConstructionCompletionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion <em>Sequence Construction Completion</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.uml.alf.alf.SequenceConstructionCompletion
+   * @generated
+   */
+  public Adapter createSequenceConstructionCompletionAdapter()
   {
     return null;
   }

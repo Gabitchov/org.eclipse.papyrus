@@ -536,6 +536,15 @@ public interface AlfFactory extends EFactory
   PartialSequenceConstructionCompletion createPartialSequenceConstructionCompletion();
 
   /**
+   * Returns a new object of class '<em>Sequence Construction Completion</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sequence Construction Completion</em>'.
+   * @generated
+   */
+  SequenceConstructionCompletion createSequenceConstructionCompletion();
+
+  /**
    * Returns a new object of class '<em>Sequence Construction Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

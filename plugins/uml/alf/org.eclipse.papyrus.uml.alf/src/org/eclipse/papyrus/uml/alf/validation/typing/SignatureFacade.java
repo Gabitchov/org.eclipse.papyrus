@@ -19,28 +19,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.uml.alf.alf.InstanceCreationTupleElement;
-import org.eclipse.papyrus.uml.alf.alf.QualifiedNameWithBinding;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.FunctionBehavior;
-import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
-import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Reception;
-import org.eclipse.uml2.uml.StateMachine;
-import org.eclipse.uml2.uml.TemplateParameter;
-import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.TemplateableElement;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 public class SignatureFacade {
 

@@ -34,4 +34,4 @@ Export-Package: org.eclipse.papyrus.uml.textedit.operation.xtext,
  org.eclipse.papyrus.uml.textedit.operation.xtext.utils,
  org.eclipse.papyrus.uml.textedit.operation.xtext.validation,
  org.eclipse.papyrus.uml.textedit.operation.xtext.validation.typing
-
+Import-Package: org.apache.log4j
