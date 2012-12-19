@@ -278,7 +278,6 @@ public class TypeFacadeFactory {
 		}
 		return new VoidFacade(createTypeFacade(visibleClassifiers.get(0))) ;
 	}
-
 	
 
 	public TypeFacade createVoidFacade(QualifiedNameWithBinding exp) {
@@ -325,8 +324,14 @@ public class TypeFacadeFactory {
 					AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Id()) ;
 		}
 		
+		Classifier resolvedClassifier ;
 		// Need to check that potential binding is valid
-		Classifier resolvedClassifier = (Classifier)visibleClassifiers.get(0) ;
+		if (visibleClassifiers.get(0) instanceof ElementImport) {
+			resolvedClassifier = (Classifier)((ElementImport)visibleClassifiers.get(0)).getImportedElement() ;
+		}
+		else {
+			resolvedClassifier = (Classifier)visibleClassifiers.get(0) ;
+		}
 		if (!resolvedClassifier.isTemplate()) {
 			if (remaining.getBinding()!= null) { 
 				return createErrorTypeFacade(remaining.getId() + " is not a template", remaining,
