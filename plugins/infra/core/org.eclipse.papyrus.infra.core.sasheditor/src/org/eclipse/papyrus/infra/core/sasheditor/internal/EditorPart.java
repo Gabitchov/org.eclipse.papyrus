@@ -26,7 +26,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite4x;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -60,7 +59,7 @@ import org.eclipse.ui.part.IWorkbenchPartOrientation;
  */
 @SuppressWarnings("restriction")
 public class EditorPart extends PagePart implements IEditorPage {
- 
+
 	/**
 	 * The model representing the editor.
 	 */
@@ -79,7 +78,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	/**
 	 * The MultiPageContainer system. This is the manager of all tiles.
 	 */
-//	private SashWindowsContainer tilesContainer;
+	//	private SashWindowsContainer tilesContainer;
 
 	/**
 	 * The manager used to access main editor properties like site, actionbars, ...
@@ -117,9 +116,9 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * 
 	 */
 	private DisposeListener widgetDisposedListener = new DisposeListener() {
-		
+
 		/**
-	     * @see org.eclipse.swt.events.DisposeListener#widgetDisposed(org.eclipse.swt.events.DisposeEvent)
+		 * @see org.eclipse.swt.events.DisposeListener#widgetDisposed(org.eclipse.swt.events.DisposeEvent)
 		 * @see SashWindowsContainer#dispose()
 		 * @param e
 		 */
@@ -130,30 +129,30 @@ public class EditorPart extends PagePart implements IEditorPage {
 	};
 
 	// To be removed
-//	private String eventName(int eventType) {
-//		switch(eventType) {
-//		case SWT.MouseEnter:
-//			return "MouseEnter";
-//		case SWT.MouseDown:
-//			return "MouseDown";
-//		case SWT.MouseExit:
-//			return "MouseExit";
-//		case SWT.MouseHover:
-//			return "MouseHover";
-//		case SWT.FocusIn:
-//			return "FocusIn";
-//		case SWT.FocusOut:
-//			return "FocusOut";
-//		case SWT.MouseMove:
-//			return "MouseMove";
-//		case SWT.MouseUp:
-//			return "MouseUp";
-//		case SWT.Activate:
-//			return "Activate";
-//		default:
-//			return Integer.toString(eventType);
-//		}
-//	}
+	//	private String eventName(int eventType) {
+	//		switch(eventType) {
+	//		case SWT.MouseEnter:
+	//			return "MouseEnter";
+	//		case SWT.MouseDown:
+	//			return "MouseDown";
+	//		case SWT.MouseExit:
+	//			return "MouseExit";
+	//		case SWT.MouseHover:
+	//			return "MouseHover";
+	//		case SWT.FocusIn:
+	//			return "FocusIn";
+	//		case SWT.FocusOut:
+	//			return "FocusOut";
+	//		case SWT.MouseMove:
+	//			return "MouseMove";
+	//		case SWT.MouseUp:
+	//			return "MouseUp";
+	//		case SWT.Activate:
+	//			return "Activate";
+	//		default:
+	//			return Integer.toString(eventType);
+	//		}
+	//	}
 
 	/**
 	 * Constructor.
@@ -184,7 +183,8 @@ public class EditorPart extends PagePart implements IEditorPage {
 	/**
 	 * Create the control of this Part, and children's controls.
 	 * 
-	 * @param parent The SWT parent of this EditorPart. This is usually the {@link TabFolderPart}'s control.
+	 * @param parent
+	 *        The SWT parent of this EditorPart. This is usually the {@link TabFolderPart}'s control.
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -200,12 +200,12 @@ public class EditorPart extends PagePart implements IEditorPage {
 			// TODO Create a fake Error Page and initialize this part with.
 			//			editorPart = new ErrorEditorPart();
 			//			editorControl = createEditorPartControl(parent, editorPart);
-//			editorControl = createErrorPartControl(parent, e);
+			//			editorControl = createErrorPartControl(parent, e);
 			createErrorEditorPart(parent, e);
 		} catch (Exception e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			// TODO Create a fake Error Page and initialize this part with.
-//			editorControl = createErrorPartControl(parent, e);
+			//			editorControl = createErrorPartControl(parent, e);
 			createErrorEditorPart(parent, e);
 		}
 	}
@@ -239,12 +239,13 @@ public class EditorPart extends PagePart implements IEditorPage {
 	/**
 	 * Create an EditorPart showing the Exception.
 	 * This is used when the creation of the regular IEditorPart failed.
+	 * 
 	 * @param e
 	 */
 	private void createErrorEditorPart(Composite parent, Exception e) {
-		
+
 		try {
-			PartInitException partInitException = new PartInitException( StatusUtil.getLocalizedMessage(e), StatusUtil.getCause(e));
+			PartInitException partInitException = new PartInitException(StatusUtil.getLocalizedMessage(e), StatusUtil.getCause(e));
 			editorPart = new ErrorEditorPart(partInitException.getStatus());
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent, editorPart);
@@ -258,7 +259,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		}
 
 	}
-	
+
 	/**
 	 * Create the editor associated to this TabPart.
 	 * 
@@ -385,21 +386,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 */
 	protected IEditorSite createSite(IEditorPart editor) {
 		EditorActionBarContributor contributor = createEditorActionBarContributor();
-		
-		// If you got compilation errors with the following line (under 3.X), 
-		// just comment the lines.
-		// Do not commit these change :-)
-		// try eclipse 4.x
-		try {
-			return new MultiPageEditorSite4x(multiEditorManager.getEditorSite(), editor, contributor);
-		} catch (NoClassDefFoundError  e) {
-			// Ok, will use 3.x
-		}
-		catch (NoSuchMethodError  e) {
-			// Ok, will use 3.x
-		}
-	
-		// Use 3.x
+
 		return new MultiPageEditorSite(multiEditorManager.getEditorSite(), editor, contributor);
 	}
 
@@ -441,11 +428,11 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 
 	/**
-	/**
-	 * Dispose all resources used by this part.
-	 * <br/>
+	 * /**
+	 * Dispose all resources used by this part. <br/>
 	 * The Part should not be used after it has been disposed.
 	 */
+	@Override
 	public void dispose() {
 
 		detachListeners(editorControl, true);
@@ -453,30 +440,29 @@ public class EditorPart extends PagePart implements IEditorPage {
 		// This should also trigger the disposal of associated editor.
 		editorControl.dispose();
 		// Dispose the editor.
-//		disposeEditorPart();
-		
+		//		disposeEditorPart();
+
 		// clean up properties to help GC
 		editorModel = null;
-//		editorPart = null;
+		//		editorPart = null;
 		rawModel = null;
 	}
 
 	/**
 	 * Dispose this part and all its children.
-	 * The method is called recursively on children of the part.
-	 * <br/> 
+	 * The method is called recursively on children of the part. <br/>
 	 * SWT resources have already been disposed. We don't need to dispose them again.
 	 * 
 	 */
 	@Override
 	public void disposeThisAndChildren() {
-		
+
 		// Dispose the editor (normally this should be already done).
 		disposeEditorPart();
-		
+
 		// clean up properties to help GC
 		editorModel = null;
-//		editorPart = null;
+		//		editorPart = null;
 		rawModel = null;
 	}
 
@@ -486,25 +472,26 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * Do not dispose it twice.
 	 * 
 	 * @param part
-	 *            The part to dispose; must not be <code>null</code>.
+	 *        The part to dispose; must not be <code>null</code>.
 	 * @copy copied from org.eclipse.ui.part.MultiPageEditorPart.disposePart(IWorkbenchPart) v3.8
 	 */
 	private void disposeEditorPart() {
-		
+
 		// Is the editor already disposed ?
-		if( editorPart == null ) {
+		if(editorPart == null) {
 			return;
 		}
-		
+
 		final IWorkbenchPart part = editorPart;
 		editorPart = null;
-		
+
 		SafeRunner.run(new ISafeRunnable() {
+
 			public void run() {
 				IWorkbenchPartSite partSite = part.getSite();
 				part.dispose();
-				if (partSite instanceof IMultiPageEditorSite) {
-					((IMultiPageEditorSite) partSite).dispose();
+				if(partSite instanceof IMultiPageEditorSite) {
+					((IMultiPageEditorSite)partSite).dispose();
 				}
 			}
 
@@ -675,11 +662,10 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * Garbage this part.
 	 * This part will be not used anymore.
 	 * The part is already marked as ORPHANED. It is not used anymore. It is already detached
-	 * from its parent.
-	 * <br>
+	 * from its parent. <br>
 	 * This method is called by the sashwindows garbage mechanism after the Part has been marked as ORPHANED.
 	 * All resources associated to this part can be disposed.
-	 *  
+	 * 
 	 */
 	@Override
 	public void garbage() {
