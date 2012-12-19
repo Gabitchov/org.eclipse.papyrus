@@ -642,14 +642,14 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		if(menuExtenders == null) {
 			menuExtenders = new ArrayList(1);
 		}
-		PartSite.registerContextMenu(menuID, menuMgr, selProvider, true, editor, menuExtenders);
+		PartSite.registerContextMenu(menuID, menuMgr, selProvider, true, editor, context, menuExtenders);
 	}
 
 	public final void registerContextMenu(final String menuId, final MenuManager menuManager, final ISelectionProvider selectionProvider, final boolean includeEditorInput) {
 		if(menuExtenders == null) {
 			menuExtenders = new ArrayList(1);
 		}
-		PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, editor, menuExtenders);
+		PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, editor, context, menuExtenders);
 	}
 
 	/**
