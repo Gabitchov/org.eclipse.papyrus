@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+  <uml:Model xmi:id="__brzMGmXEd-z7r5RKMpEpA" name="Qompassmodel">
+    <packageImport xmi:id="_8AZ5IGnZEd-Ptdbbm65sVA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/core.uml#_O6TiIDLUEd26WNosUASSSw"/>
+    </packageImport>
+    <packageImport xmi:id="_8AagMGnZEd-Ptdbbm65sVA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://QML_MARTE/marte.uml#_O6TiIDLUEd26WNosUASSSw"/>
+    </packageImport>
+    <packageImport xmi:id="_0gF6ADehEeGPyrZ5I3hMlA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_FdsS8GnaEd-Ptdbbm65sVA" name="ComponentModel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_JQvt0GnaEd-Ptdbbm65sVA" name="Platform">
+      <packagedElement xmi:type="uml:Node" xmi:id="_Y0o9gCgcEeC4DoMvE4KnsQ" name="Node0"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_l0_jAFM2EeGB_eR1RCgBpw" name="HwArchitecture">
+        <ownedAttribute xmi:id="_pkDOsFM2EeGB_eR1RCgBpw" name="node0" visibility="public" type="_Y0o9gCgcEeC4DoMvE4KnsQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q63QoFM2EeGB_eR1RCgBpw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q65F0FM2EeGB_eR1RCgBpw" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_q7b4YFM2EeGB_eR1RCgBpw">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_P1nJAGnaEd-Ptdbbm65sVA" name="DeploymentPlans"/>
+    <profileApplication xmi:id="_8AagMWnZEd-Ptdbbm65sVA">
+      <eAnnotations xmi:id="_8AbHQGnZEd-Ptdbbm65sVA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://papyrus/FCMProfile/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_8AbHQWnZEd-Ptdbbm65sVA">
+      <eAnnotations xmi:id="_8AbHQmnZEd-Ptdbbm65sVA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//HLAM"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_yNSZIAPMEdyuUt-4qHuVvQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_8AbuUGnZEd-Ptdbbm65sVA">
+      <eAnnotations xmi:id="_8AbuUWnZEd-Ptdbbm65sVA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//GCM"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_YgAioAPMEdyuUt-4qHuVvQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_98SbACgbEeC4DoMvE4KnsQ">
+      <eAnnotations xmi:id="_-ASxQCgbEeC4DoMvE4KnsQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://papyrus/CppProfile/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PapyrusCpp_PROFILES/PapyrusCpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_AqXK0CgcEeC4DoMvE4KnsQ">
+      <eAnnotations xmi:id="_AukVYCgcEeC4DoMvE4KnsQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_ippoYFM2EeGB_eR1RCgBpw">
+      <eAnnotations xmi:id="_jCEIYFM2EeGB_eR1RCgBpw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//Alloc"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_ar8OsAPMEdyuUt-4qHuVvQ"/>
+    </profileApplication>
+  </uml:Model>
+  <FCM:Target xmi:id="_egftECgcEeC4DoMvE4KnsQ" base_Node="_Y0o9gCgcEeC4DoMvE4KnsQ"/>
+</xmi:XMI>

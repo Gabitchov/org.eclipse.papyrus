@@ -1,0 +1,61 @@
+[module acceptableEvents('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::qompass::modellibs::core::acceleo::TransitionService /]
+[import org::eclipse::papyrus::qompass::modellibs::core::acceleo::statemachineUtil /]
+[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool /]
+[import org::eclipse::papyrus::qompass::designer::vsl::ParseVSL /]
+
+[comment produce a call event trigger label (TODO) /]
+
+[template public cetrigger(operation: Operation) post(trim())]
+	[boundPackageRef(operation.implementsInterface()).qualifiedName/]::ID_[name/]
+	[comment declare dependency to OperationIDs enumeration /]
+	[boundPackageRef(operation.implementsInterface()).declareDependencyToOperationIDs() /]
+[/template]
+
+
+[template public acceptableEvents(state: State)]
+
+		// loop on state
+		// execute action ...
+		timeout = -1;	// no timeout by default
+[for (transition : Transition | state.outgoing)]
+	[if (transition.trigger->asSequence()->first().event.oclIsKindOf(TimeEvent))]
+		// transition [name/] - trigger: TimeEvent, expression [transition.trigger->asSequence()->first().event.oclAsType(TimeEvent).when.expr.oclAsType(OpaqueExpression)._body->asSequence()->first()/].
+		timeout = [getDurationFromVSL(trigger.event.oclAsType(TimeEvent).when.expr.oclAsType(OpaqueExpression)._body->asSequence()->first())/]/1000;
+	[/if]
+[/for]
+		// get an event from the pool.
+		event = ep->readEvent(timeout);
+	
+[for (transition : Transition | state.outgoing)]
+	[comment big restriction: will only analyse first of possibly multiple triggers/]
+	[if (transition.trigger->asSequence()->first().event.oclIsKindOf(TimeEvent))]
+		// transition [transition.name/] - trigger: TimeEvent (there should be at most one outgoing timed transition per state).
+		if (event.operationID == BasicCalls::ContainerServices::EventPool::ID_TIMEOUT) {
+			newState = STATE_[transition.target.name/];
+[if not (transition.effect = null)]			executor->[state.containingstatemachine().name/]_[transition.name/]_[transition.effect.name/]();
+[/if]
+		}		
+	[/if]
+	[if (transition.trigger->asSequence()->first().event.oclIsKindOf(CallEvent))] 
+		// transition [name/] - trigger: CallEvent, operation [transition.trigger.event.oclAsType(CallEvent).operation.name/]
+		if (event.operationID == [cetrigger(transition.trigger->asSequence()->first().event.oclAsType(CallEvent).operation)/]) {
+			newState = STATE_[transition.target.name/];
+[if not (transition.effect = null)]			executor->[state.containingstatemachine().name/]_[transition.name/]_[transition.effect.name/]();
+[/if]
+		} 
+	[/if]
+	[if (transition.trigger->asSequence()->first().event.oclIsKindOf(SignalEvent))] 
+		// transition [name/] - trigger: SignalEvent, signal [transition.trigger.event.oclAsType(SignalEvent).signal.name/]
+		if (event.operationID == SIG_[transition.trigger.event.oclAsType(SignalEvent).signal.name/]) {
+			newState = STATE_[transition.target.name/]) ;
+[if not (transition.effect = null)]			executor->[state.containingstatemachine().name/]_[transition.name/]_[transition.effect.name/]();
+[/if]
+			// ok = EvQUEUE ;
+		}
+	[/if]
+[/for]
+		if (newState != m_currentState) {
+			m_currentState = newState;
+		}
+[/template]

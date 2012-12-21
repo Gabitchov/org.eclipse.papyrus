@@ -1,0 +1,26 @@
+<!-- ===================================================================== -->
+<!-- Custom targets.                                                       -->
+<!-- Set customBuildCallbacks = build.acceleo in your build.properties.    -->
+<!-- ===================================================================== -->
+<project name="Build Acceleo Module" default="noDefault">    
+    <!-- ================================================================= -->
+    <!-- Default target                                                    -->
+    <!-- ================================================================= -->
+    <target name="noDefault">
+        <echo message="This file must be called with explicit targets" />
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- This will be called automatically after the compilation of each   -->
+    <!-- Bundle... in dependency order.                                    -->
+    <!-- ================================================================= -->
+    <target name="post.compile.@dot">
+        <acceleoCompiler 
+            sourceFolder="${target.folder}"
+            outputFolder="${target.folder}"
+            dependencies="${target.folder}/../../org.eclipse.papyrus.fcm.profile;${target.folder}/../../org.eclipse.papyrus.infra.core;${target.folder}/../../org.eclipse.papyrus.qompass.designer.core;${target.folder}/../../org.eclipse.papyrus.qompass.designer.vsl;${target.folder}/../../org.eclipse.papyrus.marte.vsl;${target.folder}/../../org.eclipse.papyrus.uml.tools;${target.folder}/../../org.eclipse.papyrus.infra.services.validation;${target.folder}/../../org.eclipse.papyrus.infra.services.decoration;${target.folder}/../../org.eclipse.papyrus.cpp.profile;"
+            binaryResource="false"
+            packagesToRegister="">
+        </acceleoCompiler>
+    </target>    
+</project>
