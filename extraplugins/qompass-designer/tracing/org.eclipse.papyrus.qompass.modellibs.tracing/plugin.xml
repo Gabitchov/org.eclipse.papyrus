@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         name="Tracing"
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://QML_TRACE/"
+            target="platform:/plugin/org.eclipse.papyrus.qompass.modellibs.tracing/models/">
+      </mapping>
+   </extension>
+   <extension
+      point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+            name="Qompass model library: tracing"
+            path="pathmap://QML_TRACE/tracing.uml"
+            provider="CEA LIST">
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.qompass.designer.core.instanceConfig">
+      <client
+         configuratorID="IConfiguratorTrace"
+         class="org.eclipse.papyrus.qompass.modellibs.tracing.IConfiguratorTrace">
+      </client>
+      <client
+            class="org.eclipse.papyrus.qompass.modellibs.tracing.IConfiguratorOTF"
+            configuratorID="IConfiguratorOTF">
+      </client>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.tracepoints.traceMechanism">
+      <client
+            class="org.eclipse.papyrus.qompass.modellibs.tracing.QompassTraceMechanism"
+            traceMechID="org.eclipse.papyrus.qompass.modellibs.tracing.qompass">
+      </client>
+   </extension>
+</plugin>
