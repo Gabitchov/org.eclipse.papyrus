@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Qompass Validation rules
+Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.validation;singleton:=true
+Bundle-Version: 0.8.0.vqualifier
+Bundle-Activator: org.eclipse.papyrus.qompass.designer.validation.Activator
+Bundle-Vendor: CEA LIST
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.uml2.uml;bundle-version="3.0.1",
+ org.eclipse.emf.validation;bundle-version="1.3.0",
+ org.eclipse.papyrus.qompass.designer.core;bundle-version="0.7.0",
+ org.eclipse.papyrus.fcm.profile;bundle-version="0.7.0",
+ org.eclipse.ui
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
