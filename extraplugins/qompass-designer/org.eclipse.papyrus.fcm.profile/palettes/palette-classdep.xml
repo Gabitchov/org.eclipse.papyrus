@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition><content>
+	<drawer iconpath="platform:/plugin/org.eclipse.papyrus.fcm.profile/icons/fcm.gif" id="drawer_1290374271120" name="FCM (class)">
+		<aspectTool description="" iconpath="platform:/plugin/org.eclipse.papyrus.fcm.profile/icons/deploy.gif" id="clazz.tool.package_1290374300398"
+				name="DeploymentPlan (Package)" refToolId="clazz.tool.package">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+				<stereotypesToApply><stereotype stereotypeName="FCM::DeploymentPlan"/></stereotypesToApply>
+			</postAction>
+		</aspectTool>
+		<aspectTool description="" iconpath="platform:/plugin/org.eclipse.papyrus.fcm.profile/icons/target.gif" id="clazz.tool.class_123"
+				name="Target (Node)" refToolId="clazz.tool.class">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+				<stereotypesToApply><stereotype stereotypeName="FCM::Target"/></stereotypesToApply>
+			</postAction>
+		</aspectTool>
+		<aspectTool description="" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" id="clazz.tool.class_1290374348967"
+				name="PortKind (Class)" refToolId="clazz.tool.class">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+				<stereotypesToApply><stereotype stereotypeName="FCM::PortKind"/></stereotypesToApply>
+			</postAction>
+		</aspectTool>
+		<aspectTool description="" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" id="clazz.tool.class_1290374391074"
+				name="Configuration (Class)" refToolId="clazz.tool.class">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+				<stereotypesToApply><stereotype stereotypeName="FCM::Configuration"/></stereotypesToApply>
+			</postAction>
+		</aspectTool>
+	</drawer>
+</content></paletteDefinition>

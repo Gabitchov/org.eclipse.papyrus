@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<paletteDefinition><content>
+	<drawer iconpath="platform:/plugin/org.eclipse.papyrus.fcm.profile/icons/fcm.gif" id="drawer_1290172652572" name="FCM (composite)">
+		<aspectTool description="" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"	id="composite.tool.connector_1290173450913"
+				name="Connector (Connector)" refToolId="composite.tool.connector">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+				<stereotypesToApply><stereotype stereotypeName="FCM::Connector"/></stereotypesToApply>
+			</postAction>
+		</aspectTool>
+		<aspectTool description="" iconpath="platform:/plugin/org.eclipse.papyrus.fcm.profile/icons/port.gif" id="composite.tool.class_1290173467575"
+				name="FCM Port" refToolId="composite.tool.port">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+				<stereotypesToApply><stereotype stereotypeName="FCM::Port"/></stereotypesToApply>
+			</postAction>
+		</aspectTool>
+		<aspectTool description="" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" id="composite.tool.class_1290173489631"
+				name="Rule Application (Class)" refToolId="composite.tool.class">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+				<stereotypesToApply><stereotype stereotypeName="FCM::RuleApplication"/></stereotypesToApply>
+			</postAction>
+		</aspectTool>
+	</drawer>
+</content></paletteDefinition>

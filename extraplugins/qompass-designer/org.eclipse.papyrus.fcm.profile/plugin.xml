@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+	<extension-point id="fcmPortMappingRule" name="Port Mapping Rule" schema="schema/fcmPortMappingRule.exsd"/>
+	<extension-point id="fcmEmbeddingRule" name="Connector embedding rule" schema="schema/fcmPortMappingRule.exsd"/>
+
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://papyrus/FCMProfile/1" 
+			class = "FCM.FCMPackage"
+			genModel = "model/FCM.genmodel"/> 
+	</extension>
+  
+	<extension point="org.eclipse.uml2.uml.generated_package">
+		<profile
+			uri="http://papyrus/FCMProfile/1"
+			location="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
+	</extension>
+
+	<extension point="org.eclipse.emf.ecore.uri_mapping">
+		<mapping
+			source="pathmap://FCM_PROFILES/"
+			target="platform:/plugin/org.eclipse.papyrus.fcm.profile/model/"/>
+	</extension>
+   
+	<extension point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+		<profile
+			description="Flexible component model"
+			iconpath="icons/fcm.gif"
+			name="FCM"
+			path="pathmap://FCM_PROFILES/FCM.profile.uml"
+			provider="CEA LIST"/>
+	</extension>
+
+	<extension
+        	point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+		<paletteDefinition
+			ID="com.cea.profiles.fcm.compositePalette"
+			class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+			name="com.cea.profiles.fcm.compositePalette"
+			path="palettes/palette-composite.xml">
+			<Priority
+				name="Medium">
+			</Priority>
+			<editor
+				id="org.eclipse.papyrus.uml.diagram.composite">
+			</editor>
+		</paletteDefinition>
+	</extension>
+	
+	<extension
+			point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+		<paletteDefinition
+			ID="com.cea.profiles.fcm.classPalette"
+			class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+			name="com.cea.profiles.fcm.classPalette"
+			path="palettes/palette-classdep.xml">
+			<Priority
+				name="Medium">
+			</Priority>
+			<editor
+				id="org.eclipse.papyrus.uml.diagram.clazz">
+			</editor>
+		</paletteDefinition>
+	</extension>
+</plugin>
