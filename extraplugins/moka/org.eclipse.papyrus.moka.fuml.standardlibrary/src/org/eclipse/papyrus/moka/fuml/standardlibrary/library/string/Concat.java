@@ -31,6 +31,7 @@ public class Concat extends OpaqueBehaviorExecution {
 			String y = ((StringValue)inputParameters.get(1).values.get(0)).value;
 			StringValue result = new StringValue();
 			result.value = "" + x + y;
+	    	result.type = this.locus.factory.getBuiltInType("String"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;

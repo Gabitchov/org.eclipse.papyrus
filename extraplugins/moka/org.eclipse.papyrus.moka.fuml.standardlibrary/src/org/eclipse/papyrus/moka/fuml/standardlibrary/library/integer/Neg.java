@@ -30,6 +30,7 @@ public class Neg extends OpaqueBehaviorExecution {
 			Integer x = ((IntegerValue)inputParameters.get(0).values.get(0)).value;
 			IntegerValue result = new IntegerValue();
 			result.value = -x;
+	    	result.type = this.locus.factory.getBuiltInType("Integer"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;

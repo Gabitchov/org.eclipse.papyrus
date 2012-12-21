@@ -31,6 +31,7 @@ public class Implies extends OpaqueBehaviorExecution {
 			Boolean y = ((BooleanValue)inputParameters.get(1).values.get(0)).value;
 			BooleanValue result = new BooleanValue();
 			result.value = (x && !y) ? false : true;
+	    	result.type = this.locus.factory.getBuiltInType("Boolean"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;

@@ -28,9 +28,11 @@ public class ListGet extends OpaqueBehaviorExecution {
 	public void doBody(List<ParameterValue> inputParameters, List<ParameterValue> outputParameters) {
 		try {
 			Integer index = ((IntegerValue)inputParameters.get(1).values.get(0)).value;
-			List<Value> list = inputParameters.get(1).values;
+			List<Value> list = inputParameters.get(0).values; // CORRECTED "get(1)" to "get(0)"
 			List<Value> outputs = new ArrayList<Value>();
-			outputs.add(list.get(index - 1));
+			if (index > 0 && index <= list.size()) { // ADDED if statement
+				outputs.add(list.get(index - 1));
+			}
 			outputParameters.get(0).values = outputs;
 		} catch (Exception e) {
 			Debug.println("An error occured during the execution of ListGet " + e.getMessage());

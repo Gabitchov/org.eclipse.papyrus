@@ -30,7 +30,8 @@ public class Abs extends OpaqueBehaviorExecution {
 			Integer x = ((IntegerValue)inputParameters.get(0).values.get(0)).value;
 			IntegerValue result = new IntegerValue();
 			result.value = Math.abs(x);
-			List<Value> outputs = new ArrayList<Value>();
+	    	result.type = this.locus.factory.getBuiltInType("Integer"); // ADDED
+	    	List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;
 		} catch (Exception e) {
@@ -40,7 +41,7 @@ public class Abs extends OpaqueBehaviorExecution {
 
 	@Override
 	public Value new_() {
-		// TODO Auto-generated method stub
-		return null;
+		// ADDED:
+		return new Abs();
 	}
 }

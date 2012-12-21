@@ -31,6 +31,7 @@ public class ToString extends OpaqueBehaviorExecution {
 			Integer x = ((IntegerValue)inputParameters.get(0).values.get(0)).value;
 			StringValue result = new StringValue();
 			result.value = x.toString();
+	    	result.type = this.locus.factory.getBuiltInType("String"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;
@@ -41,7 +42,7 @@ public class ToString extends OpaqueBehaviorExecution {
 
 	@Override
 	public Value new_() {
-		// TODO Auto-generated method stub
-		return null;
+		// ADDED
+		return new ToString();
 	}
 }

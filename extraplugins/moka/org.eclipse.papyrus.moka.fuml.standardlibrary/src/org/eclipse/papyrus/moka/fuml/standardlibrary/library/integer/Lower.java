@@ -33,6 +33,7 @@ public class Lower extends OpaqueBehaviorExecution {
 			BooleanValue result = new BooleanValue();
 			result.value = x < y;
 			List<Value> outputs = new ArrayList<Value>();
+	    	result.type = this.locus.factory.getBuiltInType("Integer"); // ADDED
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;
 		} catch (Exception e) {

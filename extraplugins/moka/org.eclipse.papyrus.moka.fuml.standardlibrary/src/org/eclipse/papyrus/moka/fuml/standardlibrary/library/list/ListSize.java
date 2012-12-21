@@ -30,6 +30,7 @@ public class ListSize extends OpaqueBehaviorExecution {
 			List<Value> list = inputParameters.get(0).values;
 			IntegerValue result = new IntegerValue();
 			result.value = list.size();
+	    	result.type = this.locus.factory.getBuiltInType("Integer"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;

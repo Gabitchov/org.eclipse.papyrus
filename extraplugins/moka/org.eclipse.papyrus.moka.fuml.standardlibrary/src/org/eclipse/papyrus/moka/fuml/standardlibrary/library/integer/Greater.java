@@ -32,6 +32,7 @@ public class Greater extends OpaqueBehaviorExecution {
 			Integer y = ((IntegerValue)inputParameters.get(1).values.get(0)).value;
 			BooleanValue result = new BooleanValue();
 			result.value = x > y;
+	    	result.type = this.locus.factory.getBuiltInType("Integer"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;

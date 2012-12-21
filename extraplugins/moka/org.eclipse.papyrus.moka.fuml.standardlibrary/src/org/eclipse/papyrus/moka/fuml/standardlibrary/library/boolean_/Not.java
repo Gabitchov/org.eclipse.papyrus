@@ -30,6 +30,7 @@ public class Not extends OpaqueBehaviorExecution {
 			Boolean x = ((BooleanValue)inputParameters.get(0).values.get(0)).value;
 			BooleanValue result = new BooleanValue();
 			result.value = !x;
+	    	result.type = this.locus.factory.getBuiltInType("Boolean"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;

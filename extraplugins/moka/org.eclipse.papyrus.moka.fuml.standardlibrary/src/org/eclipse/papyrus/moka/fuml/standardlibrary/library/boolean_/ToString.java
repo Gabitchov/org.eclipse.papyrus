@@ -31,6 +31,7 @@ public class ToString extends OpaqueBehaviorExecution {
 			Boolean x = ((BooleanValue)inputParameters.get(0).values.get(0)).value;
 			StringValue result = new StringValue();
 			result.value = x.toString();
+	    	result.type = this.locus.factory.getBuiltInType("String"); // ADDED
 			List<Value> outputs = new ArrayList<Value>();
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;
