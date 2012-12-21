@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Qompass GenTools C++ plug-in
+Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.cpp;singleton:=true
+Bundle-Version: 0.8.0.vqualifier
+Bundle-Activator: org.eclipse.papyrus.qompass.designer.cpp.Activator
+Bundle-Vendor: CEA LIST
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.qompass.designer.core;bundle-version="0.7.0",
+ org.eclipse.cdt.ui,
+ org.eclipse.papyrus.cpp.codegen,
+ org.eclipse.ui.ide,
+ org.eclipse.core.resources,
+ org.eclipse.cdt.managedbuilder.core,
+ org.eclipse.cdt.core,
+ org.eclipse.papyrus.fcm.profile;bundle-version="0.7.0",
+ org.eclipse.emf.compare.diff;bundle-version="1.2.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.qompass.designer.cpp
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
