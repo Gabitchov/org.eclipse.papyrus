@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet title="Creating a new model">
+<intro>
+	<description>
+    	In this step you will add ports to your MARTE/GCM components
+   </description>
+</intro>
+<item title="Add ports">
+	<description>
+		Use the model explorer to create a new composite diagram within the "components" package
+		Use the standard MARTE mechanism to add ports, i.e. client/server or flow ports - the associated
+		FCM stereotypes will be set automatically.
+	</description>
+</item>
+<item href="/org.eclipse.papyrus.qompass.designer.doc/html/reference/marte.html#ports" title="More information about the Qompass integration of MARTE ports" skip="true">
+	<description>
+		Click on "?" on the right to open the online html help
+	</description>
+</item>
+</cheatsheet>

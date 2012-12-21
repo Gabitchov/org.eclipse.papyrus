@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Main Topic</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+
+<body>
+<h1>Qompass developer guide</h1>
+
+Qompass consists of a set of plugins:
+<ul>
+<li>org.eclipse.papyrus.qompass.designer. This plugin contains the definition of the Qompass feature
+<li>org.eclipse.papyrus.qompass.designer.updateSite: definition of the update site
+<p>
+<li>org.eclipse.papyrus.qompass.designer.examples: This plugin contains a set of examples and tests
+<li><a href="org.eclipse.papyrus.qompass.designer.core.html">org.eclipse.papyrus.qompass.designer.core:</a> The main Qompass plugin
+<li>org.eclipse.papyrus.qompass.designer.cpp: A plugin with support for C++, in particular (1) for the creation
+  and configuration of Eclipse CDT projects and (2) the interaction with the C++ code generator. 
+<li>org.eclipse.papyrus.qompass.designer.description A small plugin providing the "description" view which
+	provides the easy way to describe model elements (via owned comments stereotyped by FCM)
+<li>org.eclipse.papyrus.qompass.designer.packaging: Supports the generation of IDL files from the component model as well
+	as a <a href="http://www.omg.org/spec/CCM/">CCM</a> compatible deployment descriptor from a deployment plan 
+</ul>
+
+<p>
+In addition to the generation plugins, Qompass contains a set of model libraries that are
+dedicated for a specific domain and/or interaction mechanisms.
+
+<ul>
+<li>org.eclipse.papyrus.qompass.designer.modellibs.core: A set of basic interaction mechanisms and container rules as well
+	as portkinds along with the calculation of provided and required interface from the port type
+	and kind ("mapping rules").
+<li>org.eclipse.papyrus.qompass.designer.modellibs.marte: A modeling library for MARTE, contains a set of FCM port kinds
+	suitable for MARTE (client/server and flow ports) and model elements for RtUnit and PpUnit.
+	A model listener performs automatic synchronization between MARTE and FCM stereotypes, e.g.
+	will automatically initialize the FCM port kind attribute with the kind that corresponds to
+	the MARTE stereotype and apply container rules associated with Rtunit and Ppunit. 
+<li>org.eclipse.papyrus.qompass.designer.modellibs.distribution: Distribution support via sockets
+<li>org.eclipse.papyrus.qompass.designer.modellibs.tracing: Tracing support (container rule and interceptor) for OTF
+</ul>
+
+</body>
+</html>

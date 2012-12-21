@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>Connectors</h1>
+
+As in UML, a connector is an element that links two or more parts (or ports of parts) within a
+composition. In UML, the connector only denotes that there is a connection, it does not carry further
+annotations that characterize the interaction or how it is implemented.
+<br>
+In Qompass, a connector carries additional information (via the FCM profile) about a type or implementation
+used for its realization, the connector component. It is important to keep in mind that these two are quite
+different elements: (1) the connector which is merely a "wire" and (2) the referencing connector component.
+Sometimes, the terminlogy is a bit sloppy and we use the term connector for a connector component, if the
+context is clear.<br>
+  
+A connector component is quite similar to a standard component: there is an optional separation
+between its type and its implementation, it owns ports, it may be a composition.
+The main difference is that it needs to be generic, since the connector component has to adapt itself
+to the environment in which it is used, e.g. to the interfaces of ports it connectors.
+The following figure shows a connector and the referenced connector component. The tool chain
+<i>reifies</i> a connector to a connector component during deployment, as shown in the following figure:
+
+<img src="scaled/connector-before-trafo.png" alt="connector before transformation">
+<img src="arrow.png">
+<img src="scaled/connector-after-trafo.png" alt="connector after transformation">
+
+<h2>Selecting connectors</h2>
+The Qompass tool supports the selection of a suitable connector type or implementation by means of
+a dialog which can be found in the context menu (once a connector is selected.
+
+<img src="connector-selection.png" alt="connector selection">
+
+</body>
+</html>

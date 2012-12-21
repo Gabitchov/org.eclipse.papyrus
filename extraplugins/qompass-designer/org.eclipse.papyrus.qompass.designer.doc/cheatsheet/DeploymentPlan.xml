@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet title="Create deployment plan">
+<intro>
+	<description>
+		Generate the instance specification of the system and its internal parts, specify values for configuration attributes and finally
+		allocate to nodes
+	</description>
+</intro>
+   
+<item title="Create initial deployment plan" skip="false">
+	<description>
+		Up to now, we have modeled components and their composition, but we have not yet instantiated these.
+		The convention in Qompass is that a single component, typically called System, is the primary
+		instance. The instantiation of this component implies an instantiation of its parts which
+		in turn will instantiate their parts (if composites). This instantiation process is
+		automated by Qompass. The generated instances are part of a package which we call deployment plan
+		in the sequence.
+		<br/>
+		The automatic generation of the initial deployment plan is performed as follows:
+		Right click on your "system" component > Qompass: Instantiate system (create deployment plan).
+		As a result, a "newDeploymentPlan" package is created within "DeploymentPlans". Note that a
+		deployment plan is a stereotyped UML package serving as a container for the instance
+		specifications. A stereotype attribute points to the main instance.
+	</description>
+</item>
+
+<item title="Configure instance specifications" skip="true">
+	<description>
+		The initial deployment plan contains information about the instances within their system (along with their allocation
+		to a node, see next step). Each instance may have a set of attributes that are subject to configuration, e.g. a FIFO
+		component might have an attribute that denotes its size or the application of a specific policy. By default, all
+		attributes that are part of a component type, are considered as configuration attributes, attributes of implementations
+		need to be marked explicitly by the stereotype FCM::ConfigProperty. UML supports the specification of values via slots.
+		This is done in Qompass as well, a custom dialog facilitates this configuration:
+		Right click on your "system" component > Qompass: Configure instantiate properties.
+		The dialog displays a set of instance specifications that are associated with the property. The
+		previous operation should have created these instances (there should be one instance per deployment plan).
+		Once an instance is selected, the user can select a configuration attribute and provide a value for it. If the attribute
+		has an attached comment, it is assumed to be a description of the configuration attribute and displayed in the dialog
+		(this is the case for elements of the Qompass library). 
+	</description>	 
+</item>
+
+<item title="Allocate instance specifications to nodes" skip="true">
+	<description>
+		In order to deploy the system, the instances created before need to be allocated to a
+		node. The allocation relationship is transitive in two directions: if a composite component
+		instance is allocated to a node, all sub-instances (= instances of contained parts) are
+		implicitly also allocated on this node. Vice versa, a composite needs to exist on all
+		instances where its sub-instances are allocated.
+		<br></br>
+		Qompass supports the allocation by means of a specific dialog. It is available in the
+		context menu of a deployment plan.
+	</description>
+</item>
+
+</cheatsheet>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>Qompass container development</h1>
+
+A container encapsules a component, i.e. it encloses an existing components and delegates ports to
+it. The following figure depicts a container enclosing an component. The principal idea is that the
+container handles the treatment of non-functional properties. Therefore, the existing component can
+focus on the implementation of the business logic. It is therefore also called executor, a term
+introduced by the OMG standard CORBA component model (CCM).<br></br>
+There are two different ways how a container can influence the execution of an executor. Either via
+interception or via extension. The two variants are shown in the sequel.
+
+<h2>How to create a container interceptor</h2>
+
+A container interceptor is basically a delegation connector between a port of the container and the
+executor. Thus, it can be defined in the same way as a connector, but needs to carry the stereotype
+interceptor.<br>
+
+<img src="../img/scaled/container-interceptor.png" alt="An example of a container interceptor">
+<img src="../img/arrow.png">
+<img src="../img/scaled/container-interceptor2.png" alt="Further expansion">
+ 
+<p>
+Further expansion as for a <a href="connector.html">connector</a> 
+
+<h2>Container rules</h2>
+
+A container rule defines which container extensions and/or interceptors should be applied. The
+concept of a container rule has been introduced, since some aggregation/interceptor combinations
+depend on each other. Their independ selection would be error prone, instead a single container
+rule selects the combination.
+
+There are two different kinds of rules:
+<ol>
+<li>local rules that are only visible to a component owning them
+<li>global rules that are visible for all models that import the model library. In both
+	cases, the container rule is principally a stereotyped UML class. In the first case, it is a
+	sub-class owned by the component, which is typically created by the container rule dialog available
+	for the package. In the second the container rule is a normal class owned by a package; use the Qompass
+	palette to create the rule. Then, right on the rule to edit its properties.
+</ol>
+
+<img src="../img/scaled/container-selection.png" alt="container selection">
+
+</body>
+</html>

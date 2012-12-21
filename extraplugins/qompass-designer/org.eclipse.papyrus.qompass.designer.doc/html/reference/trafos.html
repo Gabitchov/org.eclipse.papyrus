@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>Transformations</h1>
+
+Before an Qompass component can be deployed, there is a set of transformations that is applied
+
+<ol>
+<li>Each port is translated into a tripel of a property, an operation returning a reference to the interface
+	provided by the port (if any) and an operation allowing to connect the port (if port has a required
+	interface).
+
+<li>Parts: if a part is typed with an abstract component implementation or a component type, it cannot
+	directly be instantiated in some programming languages, notably C++ (in Java, attributes typed
+	with a class are always implictly references). For these, there are basically two options:
+	<ul>
+	<li>Change the type of the part and replace it by a concrete implementation. Obviously, this can only
+		work, if the deployment uses always the same implementaiton for the part.
+	<li>Assure that the composite only holds a reference to the part, i.e. make the part a pointer and
+		let the bootloader instantiate the sub-parts. The advantage is that it always works, but would not
+		do something useful in the context of variable systems.
+	</ul>
+<li>
+</ol>
+
+A component might either be a type or an implementation. The former is mainly a class with a set of ports
+and no internal structure. It may inherit from other component types, but not from implementations.
+The latter has to realize at least a subset of the services that are provided at its ports (if it does not define all, it
+needs to be declared as abstract). The realization could be either done by an implementation written in a specific programming
+language or the UML action language or by a delegation to an inner part.
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compositeCheatsheet name="Create an Qompass-supported Model with MARTE">
+<taskGroup kind="sequence" name="Create your model" skip="false">
+<intro>
+	<b>Introduction</b>
+	This guide will walk you though the process of creating a MARTE model with &quot;Qompass-support&quot;
+	and generate the code related to your model.
+	You will create an empty model and build it gradually to finally generate the related code.
+	If you need help at any step, click the (?) to the right. Let&apos;s get started!
+</intro>
+	
+<taskGroup kind="choice" name="Step1: Create a new model" skip="true">
+	<intro>
+		Either create a new Qompass model or start with a working example
+	</intro>
+
+	<task kind="cheatsheet" name="Step1a: Create a new model" skip="true">
+		<param name="path" value="MarteNewModel.xml"/>
+    </task>
+    
+	<task kind="cheatsheet" name="Step1b: Start with a working example" skip="true">
+		<param name="path" value="OpenExample.xml"/>
+	</task>
+</taskGroup>
+	
+<task kind="cheatsheet" name="Step2: Model the application components" skip="true">
+	<param name="path" value="MarteAddComponents.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step3: Add ports" skip="true">
+	<param name="path" value="MarteAddPorts.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step3b: Review standard FCM port definition (Start and LifeCycle)" skip="true">
+	<param name="path" value="AddPorts.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step4: Component implementation (not MARTE specific)" skip="true">
+	<onCompletion>
+		<b>Conclusion</b>
+		You have now created a MARTE component which has at the same time FCM annotations. You can now
+		proceed with implementation and deployment as for a standard FCM component
+	</onCompletion>
+	<param name="path" value="ComponentImplementation.xml"/>
+</task>
+	
+<task kind="cheatsheet" name="Step5: continue with platform modeling" skip="true">
+	<onCompletion>
+		<b>Conclusion</b><br/>
+		You have now created a MARTE component which has at the same time FCM annotations. You can now
+		proceed with implementation and deployment as for a standard FCM component
+	</onCompletion>
+	<param name="path" value="PlatformModel.xml"/>
+</task>
+	
+<task kind="cheatsheet" name="Step6: Validate the model" skip="false">
+	<param name="path" value="Validation.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step7: Generate the deployment plan of the system" skip="true">
+	<param name="path" value="DeploymentPlan.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step8: Code generation" skip="true">
+	<onCompletion>
+		<b>Conclusion</b><br/>
+		You have now a project, a model and source code for each target.
+	</onCompletion>
+    <param name="path" value="CodeGeneration.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step9: Code compilation" skip="true">
+	<onCompletion>
+		<b>Conclusion</b><br/>
+		You have now a binary per target which is ready for deployment. The actual transfer
+		to the target is out of Qompass's scope.
+	</onCompletion>
+	<param name="path" value="CodeCompilation.xml"/>
+</task>
+</taskGroup>
+</compositeCheatsheet>

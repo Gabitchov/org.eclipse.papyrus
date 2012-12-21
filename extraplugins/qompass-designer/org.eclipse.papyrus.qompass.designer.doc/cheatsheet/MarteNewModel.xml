@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet title="Creating a new model">
+<intro>
+	<description>
+		In this step you will create a new Qompass Model for MARTE, i.e. a MODEL that applied MARTE GCM as well as the
+		FCM profile.
+	</description>
+</intro>
+<item title="Papyrus Perspective" dialog="false" skip="true">
+	<description> Start setting up your environment&apos;s perspective.</description>
+	<subitem label="Open Papyrus Perspective." skip="true">
+		<command required="false"
+			serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.perspective)"/> 
+	</subitem>
+</item>
+
+<item title="Create a new  project" dialog="true" skip="true">
+	<description>
+	</description>
+	<subitem
+    	label="Start creating the project that will host your model or create a new model within an existing project. 
+    	&#x0A;File &gt; New &gt; Project &gt; Papyrus project &gt; Enter your project name, then select UML as diagram language. On the next page, choose the Qompass template for MARTE."
+		skip="true">
+		<command required="false"
+			serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.ui.wizards.new.project)"/>
+	</subitem>
+</item> 
+</cheatsheet>

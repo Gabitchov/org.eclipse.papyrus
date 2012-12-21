@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compositeCheatsheet name="Create an Qompass-supported Model">
+<taskGroup kind="sequence" name="Create your model" skip="false">
+<intro>
+	<b>Introduction</b>
+	This guide will walk you though the process of creating  an &quot;Qompass-supported&quot; model and generate the code related to your model.
+	You will create an empty model  and build it gradually to finally generate the related code.
+
+	If you need help at any step, click the (?) to the right. Let&apos;s get started!
+</intro>
+
+<taskGroup kind="choice" name="Step1: Create a new model" skip="true">
+	<intro>
+		Either create a new Qompass model or start with a working example
+	</intro>
+
+	<task kind="cheatsheet" name="Step1a: Create a new model" skip="true">
+		<param name="path" value="NewModel.xml"></param>
+	</task>
+
+	<task kind="cheatsheet" name="Step1b: Start with a working example" skip="true">
+		<param name="path" value="OpenExample.xml"/>
+	</task>
+</taskGroup>
+
+<task kind="cheatsheet" name="Step2: Define components" skip="true">
+	<param name="path" value="ComponentDev.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step3: Define component ports" skip="true">
+	<param name="path" value="AddPorts.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step4: Develop component implementations" skip="true">
+	<param name="path" value="ComponentImplementation.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step5: Model the platform" skip="true">
+	<onCompletion>
+		<b>Conclusion</b>
+	</onCompletion>
+	<param name="path" value="PlatformModel.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step6: Validate the model" skip="false">
+	<param name="path" value="Validation.xml"/>
+</task>
+
+
+<task kind="cheatsheet" name="Step7: Generate the deployment plan of the system" skip="true">
+	<param name="path" value="DeploymentPlan.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step8: Code generation" skip="true">
+	<onCompletion>
+		<b>Conclusion</b>
+	</onCompletion>
+    <param name="path" value="CodeGeneration.xml"/>
+</task>
+
+<task kind="cheatsheet" name="Step9: Code compilation" skip="true">
+	<onCompletion>
+		<b>Conclusion</b>
+	</onCompletion>
+	<param name="path" value="CodeCompilation.xml"/>
+</task>
+
+</taskGroup>
+</compositeCheatsheet>

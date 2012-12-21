@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet title="Creating a new model">
+<intro>
+	<description>In this step you will create a new Qompass Model which applies the profile and optionally MARTE GCM</description>
+</intro>
+<item title="Open the Papyrus perspective" dialog="false" skip="true">
+	<description> Start  setting up your environment&apos;s perspective. </description>
+	<command required="false"
+		serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.infra.core.perspective)"/> 
+</item>
+<item title="Create a new project" dialog="true" skip="true">
+	<description>
+	  	Start creating the project that will host your model or create a new model within an existing project. 
+      	&#x0A;File &gt; New &gt; Project &gt; Papyrus project &gt; Enter your project name, then select UML as diagram language. On the next page, choose one of the Qompass templates
+      	(currently two, one including MARTE and one without)
+    </description>
+	<command required="false"
+		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.wizards.1createproject)"/>
+</item>
+<item title="Create additional Papyrus model within the project" dialog="true" skip="true">
+	<description>
+	  	If you need to create additional models within a project, you can do this at any time using the
+	  	Papyrus model wizard.
+	  	Enter your model name, then select UML as diagram language. On the next page, choose one of the Qompass templates
+      	(currently two, one including MARTE and one without)
+    </description>
+	<command required="false"
+		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.wizards.createmodel)"/>
+</item> 
+</cheatsheet>

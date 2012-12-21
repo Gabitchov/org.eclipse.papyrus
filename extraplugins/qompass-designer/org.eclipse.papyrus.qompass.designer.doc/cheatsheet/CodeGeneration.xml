@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet title="Code generation">
+<intro>
+	<description>
+		Once the allocation is specified, the Qompass plug-in applies a sequence of model transformations to generate the code required on each node.
+	</description>
+</intro>
+<item title="The sequence of actions performed automatically by Qompass" skip="true">
+	<description>
+		Select a deployment plan. Right click and choose "Qompass: generate deployment models and code from plan". Choose among
+		the available options: (1) only generate a target model and not code, (2) re-create compilations settings and (3) only
+		generate code for types that have changed. The first option is useful for testing purposes or if the intermediate
+		models produced by Qompass are inputs for other models.
+		The second option is useful, if additional container or connector elements require additional libraries that would not
+		found otherwise. But it overrides user settings.
+		The last option aims to reduce the time for generating an executable: for each elements that is re-generated, the associated
+		file need to be re-compiled.
+		The Qompass plug-in applies a sequence of model transformations that<br/> 
+		(1) add and adapt connectors and containers as required by the application, 
+		(2) transform the component model into an object-oriented model, i.e. replace ports with attributes and suitable access operations, 
+		(3) create boot-code that instantiates the components and 
+		(4) calculate the sub-set of the resulting model that is required on each node.
+		Qompass produces a new plugin for each node of the platform model. It contains a suitable project
+		definition (Eclipse CDT) in the sense that the build settings (macros, include and library paths)
+		should be configured for the application needs. It also contains a folder "model" along with
+		the generated model (called "root.uml") and applies the standard UML model-to-code generators
+		(currently C++) to produce the code required on each node and "
+	</description>
+</item>
+</cheatsheet>

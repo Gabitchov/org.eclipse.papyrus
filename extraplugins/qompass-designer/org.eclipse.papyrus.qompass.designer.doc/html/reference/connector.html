@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>Connectors</h1>
+
+In case of connectors, the terminology is ambiguous: There are two different elements that are denotes
+connector. The first is the UML connector: an element that links two or more parts (or ports of parts) within a
+composition. In UML, the connector only denotes that there is a connection, it does not carry further
+annotations that characterize the interaction or how it is implemented.
+<br>
+In Qompass, a connector carries additional information (via the FCM profile) about a type or implementation
+used for its realization, the connector component. It is important to keep in mind that these two are quite
+different elements: (1) the connector which is merely a "wire" and (2) the referenced connector component.
+Sometimes, the terminology is a bit sloppy and we use the term connector for a connector component, if the
+context is clear.<br>
+  
+A connector component is quite similar to a standard component: there is an optional separation
+between its type and its implementation, it owns ports, it may be a composition of parts typed with
+other components.
+The main difference is that it needs to be generic, since the connector component has to adapt itself
+to the environment in which it is used, e.g. to the interfaces of ports it connectors.
+The following figure shows a connector and the referenced connector component. The tool chain
+<i>reifies</i> a connector to a connector component during deployment, as shown in the following figure:
+
+<img src="../img/scaled/connector-before-trafo.png" alt="connector before transformation">
+<img src="../img/arrow.png">
+<img src="../img/scaled/connector-after-trafo.png" alt="connector after transformation">
+
+<h2>Connector matching algorithm</h2>
+
+In order to check whether a connector can be applied, we need to find a binding of its formal template
+parameter(s) for which all ports of the connector match a port of the application components with which
+it is connected. Of course, a single binding must establish matching for all connector ports at the same
+time. A match is fulfilled, if either
+<ol>
+<li>The ports have an identical kind and type, and one of the ports is conjugated (i.e its provided and
+	required interfaces are swapped). The connector port is typically typed with the formal parameter, i.e.
+	matching is reached if the formal is bound to the same type as the application port.
+<li>The provided interface of one port has a matching required interface of the opposite port and vice versa.
+	Assuming again,that a port of the connector is typed with the formal parameter of the template, the
+	calculation	is limited to the case of mapping rules that expose the formal parameter directly as
+	provided or	required interface, i.e. that do not create a derived interface that depends on the
+	formal parameter. Otherwise,
+	the calculation of the formal parameter would require a reverse execution of the mapping rule
+	(calculation of port type when a provided or required interface is given). This implies in practice
+	that connectors with simple ports using ProvideInterface or UseInterface match: the rule is actually
+	less strong that the first, since it is possible to match ports that have not specifically be designed
+	for each other. For instance, the PushProducer port for a dataype DT has a required interface with an
+	operation "push(in data : DT)". A port with the generic UseInterface kind can match the PushProducer
+	port. Thus, a synchronous call connector s compatible with a PushProducer/PushConsumer port combination.
+</ol>
+
+</body>
+</html>

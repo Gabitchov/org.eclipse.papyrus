@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="/sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>Qompass container development</h1>
+
+A container encapsules a component, i.e. it encloses an existing components and delegates ports to
+it. The following figure depicts a container enclosing an component. The principal idea is that the
+container handles the treatment of non-functional properties. Therefore, the existing component can
+focus on the implementation of the business logic. It is therefore also called executor, a term
+introduced by the OMG standard CORBA component model (CCM).<br></br>
+There are two different ways how a container can influence the execution of an executor. Either via
+interception or via extension. The two variants are shown in the sequel.
+
+<h2>How to create a container interceptor</h2>
+
+A container interceptor is basically a connector between a port of the . Thus, it can be defined in the same way as a
+connector, but needs to carry the stereotype interceptor.
+
+<h2>How to create a container extension</h2>
+         
+A container extension is a 
+
+<h2>How to create a container rule</h2>
+
+Before you create a container rule, you typically create either a interceptor or a container
+extension (see above).
+
+There are two different kinds of rules:
+<ol>
+<li>local rules that are only visible to a component owning them
+<li>global rules that are visible for all models that import the model library. In both
+	cases, the container rule is principally a stereotyped UML class. In the first case, it is a
+	sub-class owned by the component, which is typically created by the container rule dialog available
+	for the package. In the second the container rule is a normal class owned by a package; use the Qompass
+	palette to create the rule. Then, right on the rule to edit its properties.
+</body>
+</html>

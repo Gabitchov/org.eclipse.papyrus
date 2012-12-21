@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet title="Platform Model">
+<intro>
+	<description>
+		The platform modeling consists in specifying the set of nodes on which the system
+		will be deployed.
+	</description>
+</intro>
+
+<item title="Create your platform model" skip="true">
+	<description>
+		The platform definition contains a set of nodes. Each node represents a computation resource on a type level.
+		The specification of a platform is quite similar to the specification of a composite component: it is done by
+		means of a component (class) whose parts represent the nodes. Each of the parts is typed with a node. Since a
+		node is a class as well, the inner structure of a node can be equally modeled via parts. Thus, a hardware
+		specification can be organized hierarchically.
+		As for software components, we are in the end interested in the instances of our computation resources. An
+		operation of the Qompass context menu will create this hardware instances from the class representing the hardware
+		in a similar way as a deployment plan is created.
+		
+		Use the FCM stereotype "Target" on nodes to provide information about supported operating system and
+		available RAM and ROM (currently only the supported operation system information is evaluated).
+		A node represents a certain type of a computing resource, UML instance specifications represent a concrete
+		node instance. This concept is useful, if several identical nodes are used within a system.
+    </description>
+	<subitem
+		label="Create a new class &quot;HWArchitecture;&quot; within a composite diagram (in the package &quot;PlatformModel&quot;), stereotype it as FCM::HwArchitecture"
+		skip="true">
+	</subitem>
+	<subitem
+		label="Create one or more new node types by calling AddChild &gt; Node in the package &quot;PlatformModel&quot;"
+		skip="true">
+	</subitem>
+	<subitem
+		label="Apply the stereotype FCM::Target to the created nodes"
+		skip="true">
+	</subitem>
+	<subitem
+		label="Provide values for stereotype attributes, currently only &quot;supportedOS&quot; is evaluated"
+		skip="true">
+	</subitem>
+	<subitem
+		label="Create parts (make sure that aggregation-kind is set to composite) in the class representing the HW architecture (composite diagram). Type the parts with a node (created in the previous step);"
+		skip="true">
+	</subitem>
+	<subitem
+		label="Create tree of instance specifications associated with the HWArchitecture class: use the context menu on the HWArchitecture class (the menu entry &quot;Create platform definition;&quot; will appear if the HWArchitecture stereotype is applied)"
+		skip="true">
+	</subitem>
+</item>
+</cheatsheet>

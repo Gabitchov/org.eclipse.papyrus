@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Qompass online help and cheat sheet
+Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.doc;singleton:=true
+Bundle-Version: 0.7.0.vqualifier
+Bundle-Activator: org.eclipse.papyrus.qompass.designer.help.Activator
+Bundle-Vendor: CEA LIST
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.help;bundle-version="3.5.0",
+ org.eclipse.ui.cheatsheets;bundle-version="3.4.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="org.eclipse.papyrus.qompass.designer.cheatsheet.category"
+            name="ec3m.cheatsheets">
+      </category>
+      <cheatsheet
+            category="org.eclipse.papyrus.qompass.designer.cheatsheet.category"
+            composite="true"
+            contentFile="cheatsheet/Main.xml"
+            id="org.eclipse.papyrus.qompass.designer.cheatsheet.application"
+            name="Create an Qompass application">
+      </cheatsheet>
+      <cheatsheet
+            category="org.eclipse.papyrus.qompass.designer.cheatsheet.category"
+            composite="true"
+            contentFile="cheatsheet/MarteMain.xml"
+            id="org.eclipse.papyrus.qompass.designer.cheatsheet.applicationMARTE"
+            name="Create an Qompass application with MARTE">
+      </cheatsheet>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc file="toc.xml" primary="true"/>
+      <toc file="help/tocconcepts.xml"/>
+      <toc file="help/tocgettingstarted.xml"/>
+      <toc file="help/tocreference.xml"/>
+      <toc file="help/tocsamples.xml"/>
+      <toc file="help/tocdevguide.xml"/>
+      <toc file="help/tocmarte.xml"/>
+   </extension>
+</plugin>

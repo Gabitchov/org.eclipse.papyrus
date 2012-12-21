@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>Ports</h1>
+
+Ports are interaction points of components. A component may execute operation calls via a port when
+it requires a service. When a component provides a service, a operation of a port is called when the
+service is invoked. In Qompass, this abstraction is also used for data oriented ports, as calls are flexible
+and well handled by the underlying programming language. For instance, data consumption via polling might
+correspond to the call of an &quot;getData&quot; operation (component calls, required interface),
+consumption via push the call of an pushData operation (environment calls, provided interface).
+<p>
+From the user view point, the provision or use of a specific interface is an implementation aspect. Therefore,
+these two interfaces or not specified, but they are calculated or <i>derived</i> from two other port properties:
+its type and its <a href="portKind.html">kind</a>. For instance, a &quot;PullConsumer&quot; port kind could be used in
+conjunction with a data type and would define the &quot;getData&quot; operation above.
+
+</body>
+</html>

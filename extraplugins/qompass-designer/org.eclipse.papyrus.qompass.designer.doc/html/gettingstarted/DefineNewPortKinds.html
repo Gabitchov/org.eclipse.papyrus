@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="/sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>How-to create your own port-kinds</h1>
+
+A port kind characterizes a port. Simple examples of port kinds are (1) the UseInterface and
+ProvideInterface kinds which describe client/server ports and (2) PushPublisher which describe a data
+publisher port for a given data type. In the first case, the port is typed with the interface that is
+provided or required, in the second case, the port is typed with datatype.<br></br>
+Although it does not formally define its semantics, each port kind should be associated with a
+description of the intention behind it. A port kind is always associated with a <b>mapping rule</b>
+that describes which interface a port provides and/or requires when in function
+of its type (and/or additional information, e.g. coming from a MARTE stereotype).
+On the model level, a port kind is first a stereotyped class. It can be created with the Qompass palette.
+<p></p>
+The associated mapping rule is defined defined by means of Java code. You have to create a plugin
+that defines the (plug-in) extension port-mapping provided by the FCM profile plugin. The extension
+contains the (unqualified) name of the port kind and associated rules for the mapping.<br></br>
+
+The class must implement the interface FCM.util.IMappingRule, i.e. the operations getProvided,
+getRequired and needsTransaction. The former two return the provided (required) interface in function
+of the port type. The latter indicates whether the calculation of one of these (potentially) modifies
+the model by creating/or updating a derived interface and thus requires a transaction.
+Examples can be found in the plug-in org.eclipse.papyrus.qompass.designer.stdmappingRules.
+
+</body>
+</html>

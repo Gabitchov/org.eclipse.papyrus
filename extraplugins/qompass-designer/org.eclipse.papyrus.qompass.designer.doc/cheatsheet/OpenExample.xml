@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet title="Create a new model from an example">
+<intro>
+	<description>In this step you will create a new Qompass model from an example</description>
+</intro>
+<item title="Open Papyrus Perspective"  dialog="false" skip="true">
+	<description> Start  setting up your environment&apos;s perspective. </description>
+	<command required="false"
+		serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.papyrus.perspective)"/> 
+</item>
+<item title="Create a new project" dialog="true" skip="true">
+	<description>
+	  		Creating the project that will host your model. You can skip this step, if you want to create the model
+	  		in an existing project.
+      		File > New > Project. Enter your project name.
+    </description>
+	<command required="false"
+		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.ui.wizards.new.project)"/>
+</item> 
+<item title="Create a new project" dialog="true" skip="true">
+	<description>
+	  		Create a new model from an example.
+	  		File > New > Example. Choose an Qompass example. Select the parent folder (it is not possible
+	  		to change the name of the example, since the model files reference each other. Use File > Save As after opening,
+	  		if required).
+    </description>
+	<command required="false"
+		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.ui.wizards.new.project)"/>
+</item> 
+</cheatsheet>
