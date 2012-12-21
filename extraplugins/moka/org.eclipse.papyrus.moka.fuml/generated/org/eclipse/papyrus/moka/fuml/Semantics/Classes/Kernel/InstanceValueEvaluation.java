@@ -22,7 +22,6 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -43,17 +42,24 @@ public class InstanceValueEvaluation extends Evaluation {
 		// value specifications for the specified slot for the feature.
 		// Debug.println("[evaluate] InstanceValueEvaluation...");
 		InstanceSpecification instance = ((InstanceValue)this.specification).getInstance();
-		List<Classifier> types = instance.getClassifiers();
-		Classifier myType = types.get(0);
-		Debug.println("[evaluate] type = " + myType.getName());
+		// List<Classifier> types = instance.getClassifiers();
+		// Classifier myType = types.get(0);
+		// Debug.println("[evaluate] type = " + myType.getName());
 		Value value;
 		if(instance instanceof EnumerationLiteral) {
 			// Debug.println("[evaluate] Type is an enumeration.");
 			EnumerationValue enumerationValue = new EnumerationValue();
-			enumerationValue.type = (Enumeration)myType;
+			// enumerationValue.type = (Enumeration)myType;
+			enumerationValue.type = ((EnumerationLiteral)instance).getEnumeration(); // ADDED
 			enumerationValue.literal = (EnumerationLiteral)instance;
 			value = enumerationValue;
+			Debug.println("[evaluate] type = " + enumerationValue.type.getName()); // ADDED
 		} else {
+			// ADDED:
+			List<Classifier> types = instance.getClassifiers();
+			Classifier myType = types.get(0);
+			Debug.println("[evaluate] type = " + myType.getName());
+			//
 			StructuredValue structuredValue = null;
 			if(myType instanceof DataType) {
 				// Debug.println("[evaluate] Type is a data type.");

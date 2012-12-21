@@ -38,7 +38,7 @@ public class IntegerValue extends PrimitiveValue {
 		// value.
 		boolean isEqual = false;
 		if(otherValue instanceof IntegerValue) {
-			isEqual = ((IntegerValue)otherValue).value == this.value;
+			isEqual = ((IntegerValue)otherValue).value.equals(this.value); // CHANGED == to equals
 		}
 		return isEqual;
 	}

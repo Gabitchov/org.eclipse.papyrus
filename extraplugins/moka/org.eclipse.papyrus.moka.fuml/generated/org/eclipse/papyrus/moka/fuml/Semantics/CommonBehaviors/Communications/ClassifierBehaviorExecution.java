@@ -70,7 +70,8 @@ public class ClassifierBehaviorExecution {
 
 	// TODO tmp
 	public void _startObjectBehavior() {
-		// Asynchronous start of object behavior is deactivated
+		// ADDED:
+		this.execution.execute();
 	}
 
 	public void terminate() {

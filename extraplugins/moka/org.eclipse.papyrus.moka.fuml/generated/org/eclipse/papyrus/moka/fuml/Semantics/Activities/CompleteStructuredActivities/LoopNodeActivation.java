@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Pin;
 public class LoopNodeActivation extends StructuredActivityNodeActivation {
 
 	public List<Values> bodyOutputLists = new ArrayList<Values>();
-
+	
 	public void doStructuredActivity() {
 		// Set the initial values for the body outputs to the values of the loop
 		// variable input pins.
@@ -51,6 +51,9 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 		// List<OutputPin> loopVariables = loopNode.getLoopVariables();
 		// List<OutputPin> resultPins = loopNode.getResults();
 		// List<Values> bodyOutputLists = this.bodyOutputLists;
+		
+		this.bodyOutputLists.clear(); // Added
+		
 		for(int i = 0; i < loopVariableInputs.size(); i++) {
 			InputPin loopVariableInput = loopVariableInputs.get(i);
 			Values bodyOutputList = new Values();
@@ -69,7 +72,7 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 		// loop variables.
 		LoopNode loopNode = (LoopNode)(this.node);
 		List<OutputPin> loopVariables = loopNode.getLoopVariables();
-		List<OutputPin> resultPins = loopNode.getResults();
+		List<OutputPin> resultPins = this.getResults(); // CHANGED from: loopNode.getResults();
 		while(continuing) {
 			// Set loop variable values
 			this.runLoopVariables();
@@ -166,6 +169,7 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 	public void createNodeActivations() {
 		// In addition to creating activations for contained nodes, create
 		// activations for any loop variables.
+		
 		super.createNodeActivations();
 		this.activationGroup.createNodeActivations(this.makeLoopVariableList());
 	}
@@ -186,7 +190,7 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 	public void terminateAll() {
 		// Copy the values of the body outputs to the loop outputs, and then
 		// terminate all activations in the loop.
-		List<OutputPin> resultPins = ((LoopNode)this.node).getResults();
+		List<OutputPin> resultPins = this.getResults(); // CHANGED from: ((LoopNode)this.node).getResults();
 		for(int i = 0; i < bodyOutputLists.size(); i++) {
 			Values bodyOutputList = bodyOutputLists.get(i);
 			OutputPin resultPin = resultPins.get(i);
@@ -235,4 +239,14 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 			this.doLoop(continuing);
 		}
 	}
+	
+	// ADDED:
+	private List<OutputPin> getResults() {
+		LoopNode node = (LoopNode)this.node;
+		List<OutputPin> results = new ArrayList<OutputPin>(node.getResults());
+		List<OutputPin> loopVariables = node.getLoopVariables();
+		results.removeAll(loopVariables);
+		return results;
+	}
+	//
 }

@@ -61,13 +61,19 @@ public class AcceptEventActionActivation extends ActionActivation {
 		// An accept event action activiation is ready to fire only if it is not
 		// already waiting for an event.
 		boolean ready;
-		if(this.waiting) {
+		if(this.isWaiting()) { // CHANGED "this.waiting" to "this.isWaiting()".
 			ready = false;
 		} else {
 			ready = super.isReady();
 		}
 		return ready;
 	}
+	
+	// ADDED:
+	public Boolean isWaiting() {
+		return this.waiting == null? false: this.waiting;
+	}
+	//
 
 	public void doAction() {
 		// Do nothing. [This will never be called.]
@@ -129,7 +135,7 @@ public class AcceptEventActionActivation extends ActionActivation {
 	public void terminate() {
 		// Terminate this action and unregister its event accepter.
 		super.terminate();
-		if(this.waiting) {
+		if(this.isWaiting()) { // CHANGED "this.waiting" to "this.isWaiting()".
 			this.getExecutionContext().unregister(this.eventAccepter);
 			this.waiting = false;
 		}

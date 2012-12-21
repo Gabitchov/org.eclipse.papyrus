@@ -39,7 +39,7 @@ public class UnlimitedNaturalValue extends PrimitiveValue {
 		// unlimited natural value.
 		boolean isEqual = false;
 		if(otherValue instanceof UnlimitedNaturalValue) {
-			isEqual = ((UnlimitedNaturalValue)otherValue).value == this.value;
+			isEqual = ((UnlimitedNaturalValue)otherValue).value.equals(this.value); // CHANGED == to equals
 		}
 		return isEqual;
 	}

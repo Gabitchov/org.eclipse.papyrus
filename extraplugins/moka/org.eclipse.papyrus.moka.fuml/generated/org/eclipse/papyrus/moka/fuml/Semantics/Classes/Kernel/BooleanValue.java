@@ -38,7 +38,7 @@ public class BooleanValue extends PrimitiveValue {
 		// value.
 		boolean isEqual = false;
 		if(otherValue instanceof BooleanValue) {
-			isEqual = ((BooleanValue)otherValue).value == this.value;
+			isEqual = ((BooleanValue)otherValue).value.equals(this.value); // CHANGED == to equals;
 		}
 		return isEqual;
 	}

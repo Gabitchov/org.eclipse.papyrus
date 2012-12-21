@@ -96,10 +96,10 @@ public abstract class ExecutionFactory {
 			// Debug.println("[instantiateOpaqueExecution] Checking " +
 			// this.primitiveBehaviorPrototypes.get(i).objectId() + "...");
 			OpaqueBehaviorExecution prototype = this.primitiveBehaviorPrototypes.get(i - 1);
-			// if (prototype.getBehavior() == behavior) {
+			if (prototype.getBehavior() == behavior) { // CHANGED back to original
 			// TODO Behavior is always different from .getBehavior()
 			// Need to understand why...
-			if(prototype.getBehavior().getQualifiedName().equals(behavior.getQualifiedName())) {
+			// if(prototype.getBehavior().getQualifiedName().equals(behavior.getQualifiedName())) {
 				execution = (OpaqueBehaviorExecution)(prototype.copy());
 			}
 			i = i + 1;

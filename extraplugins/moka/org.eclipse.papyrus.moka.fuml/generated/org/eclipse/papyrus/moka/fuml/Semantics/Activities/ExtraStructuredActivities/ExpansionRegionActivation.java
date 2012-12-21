@@ -136,7 +136,7 @@ public class ExpansionRegionActivation extends ActionActivation {
 			while(j <= outputElements.size()) {
 				OutputPinActivation groupOutput = new OutputPinActivation();
 				groupOutput.run();
-				activationGroup.groupOutputs.add(new OutputPinActivation());
+				activationGroup.groupOutputs.add(groupOutput); // CHANGED "new OutputPinActivation()" to "groupOutput"
 				j = j + 1;
 			}
 			activationGroup.createNodeActivations(region.getNodes());

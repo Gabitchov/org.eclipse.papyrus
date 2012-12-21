@@ -30,8 +30,10 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.LiteralBoolean;
+import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -82,7 +84,7 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 		}
 		Action action = (Action)(this.node);
 		// *** Fire all input pins concurrently. ***
-		List<InputPin> inputPins = action.getInputs();
+		List<InputPin> inputPins = getInputs(action); // CHANGED from: action.getInputs();
 		for(Iterator<InputPin> i = inputPins.iterator(); i.hasNext();) {
 			InputPin pin = i.next();
 			PinActivation pinActivation = this.getPinActivation(pin);
@@ -151,7 +153,7 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 			ready = this.incomingEdges.get(i - 1).hasOffer();
 			i = i + 1;
 		}
-		List<InputPin> inputPins = ((Action)(this.node)).getInputs();
+		List<InputPin> inputPins = getInputs((Action)this.node); // CHANGED from: ((Action)(this.node)).getInputs();
 		int j = 1;
 		while(ready & j <= inputPins.size()) {
 			ready = this.getPinActivation(inputPins.get(j - 1)).isReady();
@@ -162,7 +164,7 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 
 	public Boolean isFiring() {
 		// Indicate whether this action activation is currently firing or not.
-		return firing;
+		return this.firing == null? false: this.firing; // ADDED check for null
 	}
 
 	public abstract void doAction();
@@ -171,7 +173,7 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 		// Fire all output pins and send offers on all outgoing control flows.
 		Action action = (Action)(this.node);
 		// *** Send offers from all output pins concurrently. ***
-		List<OutputPin> outputPins = action.getOutputs();
+		List<OutputPin> outputPins = getOutputs(action); // CHANGED from: action.getOutputs();
 		for(Iterator<OutputPin> i = outputPins.iterator(); i.hasNext();) {
 			OutputPin outputPin = i.next();
 			PinActivation pinActivation = this.getPinActivation(outputPin);
@@ -193,7 +195,7 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 		// (or group), so they must be activated through the action activation.]
 		Action action = (Action)(this.node);
 		List<ActivityNode> inputPinNodes = new ArrayList<ActivityNode>();
-		List<InputPin> inputPins = action.getInputs();
+		List<InputPin> inputPins = getInputs(action); // CHANGED from: action.getInputs();
 		for(int i = 0; i < inputPins.size(); i++) {
 			InputPin inputPin = inputPins.get(i);
 			inputPinNodes.add(inputPin);
@@ -204,7 +206,7 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 			this.addPinActivation((PinActivation)(this.group.getNodeActivation(node)));
 		}
 		List<ActivityNode> outputPinNodes = new ArrayList<ActivityNode>();
-		List<OutputPin> outputPins = action.getOutputs();
+		List<OutputPin> outputPins = getOutputs(action); // CHANGED from: action.getOutputs();
 		for(int i = 0; i < outputPins.size(); i++) {
 			OutputPin outputPin = outputPins.get(i);
 			outputPinNodes.add(outputPin);
@@ -226,6 +228,7 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 		ActivityNodeActivation forkNodeActivation;
 		if(this.outgoingEdges.size() == 0) {
 			forkNodeActivation = new ForkNodeActivation();
+			forkNodeActivation.running = false; // ADDED
 			ActivityEdgeInstance newEdge = new ActivityEdgeInstance();
 			super.addOutgoingEdge(newEdge);
 			forkNodeActivation.addIncomingEdge(newEdge);
@@ -350,4 +353,17 @@ public abstract class ActionActivation extends ActivityNodeActivation {
 		booleanLiteral.setValue(value);
 		return (BooleanValue)(this.getExecutionLocus().executor.evaluate(booleanLiteral));
 	}
+	
+	// ADDED:
+	protected static List<InputPin> getInputs(Action action) {
+		return action instanceof LoopNode? ((LoopNode)action).getLoopVariableInputs():
+			   action.getInputs();
+	}
+	
+	protected static List<OutputPin> getOutputs(Action action) {
+		return action instanceof LoopNode? ((LoopNode)action).getResults():
+			   action instanceof ConditionalNode? ((ConditionalNode)action).getResults():
+			   action.getOutputs();
+	}
+	//
 }

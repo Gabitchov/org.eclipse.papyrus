@@ -61,7 +61,7 @@ public class StructuredActivityNodeActivation extends ActionActivation {
 		// and loop nodes.)
 		Action action = (Action)(this.node);
 		// *** Concurrently send offers from all input pins. ***
-		List<InputPin> inputPins = action.getInputs();
+		List<InputPin> inputPins = getInputs(action); // CHANGED from: action.getInputs();
 		for(Iterator<InputPin> i = inputPins.iterator(); i.hasNext();) {
 			InputPin inputPin = i.next();
 			PinActivation pinActivation = this.getPinActivation(inputPin);
@@ -102,12 +102,12 @@ public class StructuredActivityNodeActivation extends ActionActivation {
 			activityNodes.add(node);
 			if(node instanceof Action) {
 				Action action = (Action)node;
-				List<InputPin> inputPins = action.getInputs();
+				List<InputPin> inputPins = getInputs(action); // CHANGED from: action.getInputs();
 				for(int j = 0; j < inputPins.size(); j++) {
 					InputPin inputPin = inputPins.get(j);
 					activityNodes.add(inputPin);
 				}
-				List<OutputPin> outputPins = action.getOutputs();
+				List<OutputPin> outputPins = getOutputs(action); // CHANGED from: action.getOutputs();
 				for(int j = 0; j < outputPins.size(); j++) {
 					OutputPin outputPin = outputPins.get(j);
 					activityNodes.add(outputPin);
@@ -151,6 +151,7 @@ public class StructuredActivityNodeActivation extends ActionActivation {
 		// Create an activation group and create node activations for all the
 		// nodes within the structured activity node.
 		super.createNodeActivations();
+		
 		this.activationGroup = new ActivityNodeActivationGroup();
 		this.activationGroup.containingNodeActivation = this;
 		this.activationGroup.createNodeActivations(((StructuredActivityNode)(this.node)).getNodes());
