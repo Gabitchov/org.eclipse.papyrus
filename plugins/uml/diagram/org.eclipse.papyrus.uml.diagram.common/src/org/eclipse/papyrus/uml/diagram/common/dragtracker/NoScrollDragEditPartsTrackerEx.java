@@ -26,13 +26,19 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
  */
 public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 
+	/** border size */ 
+	private int border = 10; // default size : 10
+
 	public NoScrollDragEditPartsTrackerEx(EditPart sourceEditPart) {
 		super(sourceEditPart);
 	}
 	
+	/**
+	 * {@inheritDoc} 
+	 */
 	@Override
 	protected void updateTargetRequest() {
-		int BORDER=10;
+		
 		super.updateTargetRequest();
 		Dimension delta = getDragMoveDelta();
 		
@@ -52,12 +58,12 @@ public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 					delta.height=0-childRect.y;
 				}
 				
-				if( virtualPosition.x+virtualPosition.width+BORDER>parentRect.width){
-					delta.width=parentRect.width-childRect.width-childRect.x-BORDER;
+				if( virtualPosition.x+virtualPosition.width+getBorder()>parentRect.width){
+					delta.width=parentRect.width-childRect.width-childRect.x-getBorder();
 				}
 				
-				if( virtualPosition.y+virtualPosition.height+2*BORDER>parentRect.height){
-					delta.height=parentRect.height-childRect.height-childRect.y-2*BORDER;
+				if( virtualPosition.y+virtualPosition.height+2*getBorder()>parentRect.height){
+					delta.height=parentRect.height-childRect.height-childRect.y-2*getBorder();
 				}
 				ChangeBoundsRequest request = (ChangeBoundsRequest) getTargetRequest();
 				Point moveDelta = new Point(delta.width, delta.height);
@@ -70,6 +76,22 @@ public class NoScrollDragEditPartsTrackerEx extends DragEditPartsTrackerEx{
 				setTargetEditPart(getSourceEditPart().getParent());
 			}
 		}
+	}
+	
+	/**
+	 * Returns the border size
+	 * @return the border size
+	 */
+	protected int getBorder() {
+		return this.border;
+	}
+	
+	/**
+	 * Sets the border size
+	 * @param border the new border size
+	 */
+	protected void setBorder(int border) {
+		this.border = border;
 	}
 
 }
