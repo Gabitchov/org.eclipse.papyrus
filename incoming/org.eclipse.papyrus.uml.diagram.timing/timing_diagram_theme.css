@@ -1,0 +1,31 @@
+/* /org.eclipse.papyrus.infra.gmfdiag.css/resources/base.css */
+PapyrusUMLTimingDiagram * {
+	gradient:none;
+}
+
+
+/* /org.eclipse.papyrus.infra.gmfdiag.css.theme/theme/papyrus_theme.css */
+PapyrusUMLTimingDiagram OccurrenceSpecification,MessageOccurrenceSpecification {
+	fillColor: #006000;
+	lineColor: #006000;
+}
+
+PapyrusUMLTimingDiagram Lifeline {
+	gradient: white vertical;
+}
+
+PapyrusUMLTimingDiagram StateInvariant {
+	lineColor: black;
+	fillColor: #9BC7CC;
+	gradient: white vertical;
+}
+
+PapyrusUMLTimingDiagram Interaction {
+	fillColor: #9BC7CC;
+	gradient: none;
+}
+
+PapyrusUMLTimingDiagram Gate {
+	fillColor: #2A52BE;
+	lineColor: #2A52BE;
+}

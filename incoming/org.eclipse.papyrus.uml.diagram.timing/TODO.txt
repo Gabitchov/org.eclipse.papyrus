@@ -1,0 +1,9 @@
+- make the location of time elements relative to the center line of a compact timeline (instead of the top left corner)
+  so that they stay put when the lifeline height changes
+- reconnect a DurationObservation or DurationConstraint to the new StateInvariant when a StateInvariant is cut in two (inserting an occurrence)
+- more unit tests (see /org.eclipse.papyrus.uml.diagram.timing.tests/TODO.txt)
+
+
+dropped features:
+- zooming on Lifelines
+- message labels : will be handled generically on all links in Papyrus sometime in the future

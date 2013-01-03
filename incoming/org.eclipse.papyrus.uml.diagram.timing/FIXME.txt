@@ -1,0 +1,8 @@
+- after renaming a message, we need to undo twice to undo the renaming (there are two "Message Update" commands to undo) 
+	=> Bug 395439 - XText MessagePopupEditor creates two identical commands
+- Bug 395485 - XText validation error when clicking while XText editor is opening
+- Bug 395490 - SelectByTypeHandler fails when Views with no semantic element are present
+- Bug 395800 - NPE in UnloadHandler with notational-only Views
+- when resizing an interaction or adding a lifeline or more state definitions, existing lifelines get smaller and some of their contents (time elements, general orderings and labels) may get hidden
+	=> automatically move contents back inside the Lifelines?
+	   or automatically enlarge the Interaction to make all contents fit?
