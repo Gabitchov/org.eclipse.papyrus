@@ -1,0 +1,70 @@
+remaining tests to write:
+- check that full state invariants are positioned in front of their state definition
+- test deleting a full state invariant (check that related time elements and general orderings are deleted)
+- test hiding a full state invariant (check that related time elements and general orderings are hidden)
+- test hiding an occurrence specification in a full lifeline
+- test that moving a vertical line moves the preceding occurrence specification
+- check that related time elements and general orderings are deleted when deleting a compact occurrence specification
+- check that related time elements and general orderings are deleted when deleting a compact state invariant
+- test hiding a compact occurrence specification (check that related elements are hidden)
+- check that fragment names are updated when changing a state definition name
+- check that vertical lines cannot be deleted
+- test model consistency when modifying the model from the Model Explorer (delete, rename, ...)
+- test reordering Lifelines through drag&drop inside the interaction
+- test reordering state definitions through drag&drop inside the state definition compartment
+- test creating sync/async/reply Messages (check that OccurrenceSpecifications are converted to MessageOccurrenceSpecifications on the fly)
+- test deleting a MessageOccurrenceSpecification (check that the associated Message is deleted)
+- test creating a lost message
+- test moving a lost message floating anchor
+- test creating a found message
+- test moving a found message floating anchor
+- test re-orienting sync/async/reply Messages
+- test re-orienting a create message: everything before the start occurrence must be deleted
+- test re-orienting a destroy message: everything after the destruction occurrence must be deleted
+- test re-orienting the source of a lost message
+- test re-orienting the target of a found message
+- test creating a Gate on the border of an Interaction
+- test renaming a Gate
+- test deleting a Gate (the associated Messages must be deleted)
+- test re-orienting a message from/to a Gate
+- 
+
+- test creating a create message (full and compact): check that occurrences and state invariants before the start occurrence are deleted
+- check that time elements and general orderings are not deleted when creating a create message, unless their related element gets deleted
+- check that deleting the start occurrence (from a create message) restores the timeline to normal (full and compact): starting with a StateInvariant
+- check that deleting the state invariant immediately after a creation occurrence (that starts the timeline) also deletes the creation occurrence
+
+- test creating a delete message: check that a DestructionOccurrenceSpecification is created and that other occurrences and state invariants after it are deleted
+- check that time elements and general orderings are not deleted when adding a DestructionOccurrenceSpecification, unless their related element gets deleted
+- test creating a DestructionOccurrenceSpecification from the palette
+- test deleting a DestructionOccurrenceSpecification
+
+- test creating TimeObservations/TimeConstraints (on occurrence specifications and state invariants)
+- test renaming TimeObservations/TimeConstraints
+- test deleting TimeObservations/TimeConstraints
+- test that changing "firstEvent" on a TimeObservation/TimeConstraint moves the TimeObservation/TimeConstraint
+- test that TimeObservations and TimeConstraints have the same horizontal position as the element they are linked to
+- test creating DurationObservations/DurationConstraints (on occurrence specifications and state invariants)
+- test creating DurationObservation/DurationConstraint from a state invariant to the same state invariant
+- test renaming DurationObservations/DurationConstraints
+- test deleting DurationObservations/DurationConstraints
+- test that a DurationObservation/DurationConstraint on the last StateInvariant is properly positioned
+- test that a DurationObservation/DurationConstraint on a StateInvariant is reconnected to the new StateInvariant when cutting the first StateInvariant in two (not yet implemented)
+- test that DurationObservations/DurationConstraints have the correct horizontal position and size considering the elements they are linked to
+- same thing, on a compact state with occurrences on top of it
+- test that in the presence of a DestructionOccurrenceSpecification, DurationObservations/DurationConstraints on the last state end on this DestructionOccurrenceSpecification
+- test creating a general ordering
+- test renaming a general ordering
+- test deleting a general ordering
+
+
+- test dropping lifelines with their covering fragments
+- test dropping messages (sync/async/reply/create/delete/lost/found)
+- test dropping TimeObservation, TimeConstraint, DurationObservation, DurationConstraint
+- test dropping GeneralOrdering
+- test dropping Gate
+- test dropping non-valid models (to check that validation fixes the model)
+
+- test stereotypes
+- test switching between full and compact lifelines
+- test that what works with OccurrenceSpecifications (moving, hiding, deleting, etc.) also works with MessageOccurrenceSpecifications and DestructionOccurrenceSpecifications
