@@ -111,9 +111,11 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	private String semanticElementFragment;
 	private EObject semanticElement ;
 	private String textToEdit ;
+	/** prevent the reconciliation from being applied twice (See Bug 395439) */
+	private boolean closing = false;
 	
 	/**
-	 * get the hos editpart
+	 * get the host editpart
 	 * @return the editpart
 	 */
 	public static IGraphicalEditPart getHostEditPart() {
@@ -215,22 +217,29 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 */
 	public void closeEditor(boolean isReconcile) {
 		if (sourceViewerHandle != null) {
-			if (isReconcile && this.semanticValidator.validate()) {
-				try {
-					final IXtextDocument xtextDocument = sourceViewerHandle.getDocument();
-					if (!isDocumentHasErrors(xtextDocument)) {
-						int documentGrowth = xtextDocument.getLength() - initialDocumentSize ;
-						String newText = xtextDocument.get(editorOffset , initialEditorSize + documentGrowth) ;
-						xtextResource = partialEditor.createResource(newText) ;						
-						if (xtextResource.getAllContents().hasNext())
-							modelReconciler.reconcile(semanticElement, xtextResource.getAllContents().next()) ;
+			if (!closing) {
+				if (isReconcile && this.semanticValidator.validate()) {
+					try {
+						final IXtextDocument xtextDocument = sourceViewerHandle.getDocument();
+						if (!isDocumentHasErrors(xtextDocument)) {
+							int documentGrowth = xtextDocument.getLength() - initialDocumentSize;
+							String newText = xtextDocument.get(editorOffset, initialEditorSize + documentGrowth);
+							xtextResource = partialEditor.createResource(newText);
+							if (xtextResource.getAllContents().hasNext())
+								modelReconciler.reconcile(semanticElement, xtextResource.getAllContents().next());
+						}
+					} catch (Exception exc) {
+						Activator.logError(exc);
 					}
-				} catch (Exception exc) {
-					Activator.logError(exc);
 				}
 			}
-			xtextEditorComposite.setVisible(false);
-			xtextEditorComposite.dispose() ;
+			try {
+				closing = true;
+				xtextEditorComposite.setVisible(false);
+				xtextEditorComposite.dispose();
+			} finally {
+				closing = false;
+			}
 		}
 		SourceViewerHandle.bindPartialModelEditorClass(null) ;
 	}
