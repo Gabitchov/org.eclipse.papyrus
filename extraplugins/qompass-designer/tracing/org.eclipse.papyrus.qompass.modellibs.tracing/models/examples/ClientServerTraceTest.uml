@@ -19,7 +19,7 @@
     <packageImport xmi:id="__D5MwE2WEeGzNbfAXPgNLA">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_TRACE/tracing.uml#_H-ZqYDKeEd-WprEKTCaiMA"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Package" xmi:id="_LOqIEDLaEd2qeKRLMdIx_A" name="ComponentModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="_LOqIEDLaEd2qeKRLMdIx_A" name="components">
       <packagedElement xmi:type="uml:Package" xmi:id="_OGM88DLaEd2qeKRLMdIx_A" name="Server">
         <packagedElement xmi:type="uml:Class" xmi:id="_oqZNUDLaEd2qeKRLMdIx_A" clientDependency="_YQqH0JYlEd6G9q9hwr11bw" name="CServer_impl" classifierBehavior="_5Vd9UDclEeKAhIrFXfR8zQ">
           <ownedAttribute xmi:type="uml:Port" xmi:id="_4KiE8DLbEd2qeKRLMdIx_A" name="p" type="_cn-H0DLbEd2qeKRLMdIx_A" aggregation="composite"/>
@@ -247,7 +247,7 @@ A single class represents the complete application, typically called &quot;Syste
         </packagedElement>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_v3fMgDLiEd2RVeNawwNNzg" name="PlatformModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="_v3fMgDLiEd2RVeNawwNNzg" name="platform">
       <ownedComment xmi:id="_ZWJ6QDeLEeGPyrZ5I3hMlA" annotatedElement="__1PHIMnhEeCMCo5Ox2CNmg">
         <body>The hardware architecture is also defined by means of a composite class (comparable to the software architecture). The types (NodeA and NodeB) can be stereotyped with information about the used target platform (FCM stereotype target). As for software architecture, instances specification for nodes are derived from this class. Use &quot;Qompass: create platform definition&quot; in the context menu.</body>
       </ownedComment>
@@ -294,7 +294,7 @@ A single class represents the complete application, typically called &quot;Syste
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_gFXHwDeMEeGPyrZ5I3hMlA" name="monoNode" classifier="_zY9vMDLiEd2RVeNawwNNzg"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_234GEDLiEd2RVeNawwNNzg" name="DeploymentPlans">
+    <packagedElement xmi:type="uml:Package" xmi:id="_234GEDLiEd2RVeNawwNNzg" name="deployment">
       <ownedComment xmi:id="_ToVjMDeIEeGPyrZ5I3hMlA" annotatedElement="_QT6okKDjEd-rLNbSWf1QuA">
         <body>A deployment configuration that activates the tracing container rule which will provide OTF tracing. The deployment configuration is linked with the &quot;monolithic&quot; deployment plan</body>
       </ownedComment>

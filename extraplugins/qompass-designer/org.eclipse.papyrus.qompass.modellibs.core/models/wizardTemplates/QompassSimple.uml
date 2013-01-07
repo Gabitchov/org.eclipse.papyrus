@@ -7,7 +7,7 @@
     <packageImport xmi:id="_9AGMMDehEeGPyrZ5I3hMlA">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Package" xmi:id="_FdsS8GnaEd-Ptdbbm65sVA" name="ComponentModel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_FdsS8GnaEd-Ptdbbm65sVA" name="components"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_JQvt0GnaEd-Ptdbbm65sVA" name="Platform">
       <packagedElement xmi:type="uml:Node" xmi:id="_ubZDgCgcEeC4DoMvE4KnsQ" name="Node0"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_TAfiMFM2EeGB_eR1RCgBpw" name="HwArchitecture">
@@ -20,7 +20,7 @@
         </ownedAttribute>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_P1nJAGnaEd-Ptdbbm65sVA" name="DeploymentPlans"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_P1nJAGnaEd-Ptdbbm65sVA" name="deployment"/>
     <profileApplication xmi:id="_8AagMWnZEd-Ptdbbm65sVA">
       <eAnnotations xmi:id="_8AbHQGnZEd-Ptdbbm65sVA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://papyrus/FCMProfile/1#/"/>

@@ -27,6 +27,7 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.uml2.uml.Element;
@@ -35,8 +36,6 @@ import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
-
-import org.eclipse.papyrus.qompass.designer.core.Log;
 
 // TODO: Papyrus dependency => put into separate plug-in and declare as option
 
@@ -236,58 +235,62 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 			 * umlModel.applyProfile(umlStdProfile);
 			 */
 
-			// Retrieve FCM profile
-			Profile fcmProfile =
-				(Profile)getContent(URI.createURI(FCM_PROFILE_URI), domain);
+			if((applyCode & APPLY_FCM) != 0) {
+				// Retrieve FCM profile
+				Profile fcmProfile =
+					(Profile)getContent(URI.createURI(FCM_PROFILE_URI), domain);
 
-			// Apply FCM profile and its nested profiles to new model
-			if((fcmProfile instanceof Profile) && ((applyCode & APPLY_FCM) != 0)) {
-				Profile profile = selectedPkg.getAppliedProfile(fcmProfile.getQualifiedName());
-				if((profile == null) && (!fcmProfile.getOwnedStereotypes().isEmpty())) {
-					selectedPkg.applyProfile(fcmProfile);
+				// Apply FCM profile and its nested profiles to new model
+				if(fcmProfile instanceof Profile) {
+					Profile profile = selectedPkg.getAppliedProfile(fcmProfile.getQualifiedName());
+					if((profile == null) && (!fcmProfile.getOwnedStereotypes().isEmpty())) {
+						selectedPkg.applyProfile(fcmProfile);
+					}
+				}
+				else {
+					MessageDialog.openWarning(
+						null,
+						"Warning",
+						"The FCM profile is not available.");
 				}
 			}
-			else {
-				MessageDialog.openWarning(
-					null,
-					"Warning",
-					"The FCM profile is not available.");
-			}
 
-			// Retrieve MARTE profile
-			Profile marteProfile =
-				(Profile)getContent(URI.createURI(MARTE_PROFILE_URI), domain);
+			if((applyCode & (APPLY_ALLOC | APPLY_HLAM_GCM)) != 0) {
+				// Retrieve MARTE profile
+				Profile marteProfile =
+					(Profile)getContent(URI.createURI(MARTE_PROFILE_URI), domain);
 
-			// Apply MARTE::MARTE_DesignModel::HLAM
-			//     & MARTE::MARTE_DesignModel::GCM
-			if(marteProfile != null) {
-				PackageableElement foundationModel = marteProfile.getPackagedElement("MARTE_Foundations");
-				if((foundationModel instanceof Package) && ((applyCode & APPLY_FCM) != 0)) {
-					PackageableElement alloc = ((Package)foundationModel).getPackagedElement("Alloc");
+				// Apply MARTE::MARTE_DesignModel::HLAM
+				//     & MARTE::MARTE_DesignModel::GCM
+				if(marteProfile != null) {
+					PackageableElement foundationModel = marteProfile.getPackagedElement("MARTE_Foundations");
+					if((foundationModel instanceof Package) && ((applyCode & APPLY_ALLOC) != 0)) {
+						PackageableElement alloc = ((Package)foundationModel).getPackagedElement("Alloc");
 
-					if(selectedPkg.getAppliedProfile(alloc.getQualifiedName()) == null) {
+						// if(selectedPkg.getAppliedProfile(alloc.getQualifiedName()) == null) {
 						selectedPkg.applyProfile((Profile)alloc);
+						// }
 					}
-				}
-				PackageableElement designModel = marteProfile.getPackagedElement("MARTE_DesignModel");
-				if((designModel instanceof Package) && ((applyCode & APPLY_FCM) != 0)) {
-					PackageableElement hlam = ((Package)designModel).getPackagedElement("HLAM");
-					if(hlam instanceof Profile) {
-						if(selectedPkg.getAppliedProfile(hlam.getQualifiedName()) == null) {
+					PackageableElement designModel = marteProfile.getPackagedElement("MARTE_DesignModel");
+					if((designModel instanceof Package) && ((applyCode & APPLY_HLAM_GCM) != 0)) {
+						PackageableElement hlam = ((Package)designModel).getPackagedElement("HLAM");
+						if(hlam instanceof Profile) {
+							// if(selectedPkg.getAppliedProfile(hlam.getQualifiedName()) == null) {
 							selectedPkg.applyProfile((Profile)hlam);
+							// }
 						}
-					}
-					PackageableElement gcm = ((Package)designModel).getPackagedElement("GCM");
-					if(gcm instanceof Profile) {
-						if(selectedPkg.getAppliedProfile(gcm.getQualifiedName()) == null) {
+						PackageableElement gcm = ((Package)designModel).getPackagedElement("GCM");
+						if(gcm instanceof Profile) {
+							// if(selectedPkg.getAppliedProfile(gcm.getQualifiedName()) == null) {
 							selectedPkg.applyProfile((Profile)gcm);
+							// }
 						}
 					}
 				}
-			}
-			else {
-				MessageDialog.openWarning(new Shell(),
-					"Warning", "The MARTE profile is not available.");
+				else {
+					MessageDialog.openWarning(new Shell(),
+						"Warning", "The MARTE profile is not available.");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

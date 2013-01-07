@@ -16,16 +16,16 @@
       	(currently two, one including MARTE and one without)
     </description>
 	<command required="false"
-		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.wizards.1createproject)"/>
+		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.uml.diagram.wizards.1createproject)"/>
 </item>
 <item title="Create additional Papyrus model within the project" dialog="true" skip="true">
 	<description>
 	  	If you need to create additional models within a project, you can do this at any time using the
-	  	Papyrus model wizard.
+	  	Papyrus model wizard. In the context of this tutorial, you can simply skip this step.
 	  	Enter your model name, then select UML as diagram language. On the next page, choose one of the Qompass templates
       	(currently two, one including MARTE and one without)
     </description>
-	<command required="false"
-		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.wizards.createmodel)"/>
+	<command required="true"
+		serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.papyrus.uml.diagram.wizards.createmodel)"/>
 </item> 
 </cheatsheet>

@@ -12,6 +12,15 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
+import org.eclipse.papyrus.qompass.designer.core.Description;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -43,16 +52,6 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 import FCM.ContainerRule;
-
-import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
-import org.eclipse.papyrus.qompass.designer.core.Description;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 /**
  * Select container rules, either from a list of globally defined rules or from
@@ -106,6 +105,9 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		m_instance = null;
 		m_feature = null;
 		m_model = Utils.getUserModel();
+		if(m_model == null) {
+			return false;
+		}
 		return checkAndGetInstances();
 	}
 
@@ -448,8 +450,11 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 	// TODO(?): need a generic utility function for getting all elements obeying a
 	// certain criteria from a model
 	void getInstances(EList<InstanceSpecification> instanceList) {
-		Package deploymentPlans = Utils.getRoot(m_model, "DeploymentPlans");
+		Package deploymentPlans = Utils.getRoot(m_model, DepPlanUtils.depPlanFolder);
 		String featureCandidateName = null;
+		if(deploymentPlans == null) {
+			return;
+		}
 		for(PackageableElement deploymentPlan : deploymentPlans
 			.getPackagedElements()) {
 			if(deploymentPlan instanceof Package) {

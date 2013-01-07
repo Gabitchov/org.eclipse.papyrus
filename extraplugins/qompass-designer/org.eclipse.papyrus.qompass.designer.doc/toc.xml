@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
 
-<toc label="Qompass User Guide">
-   <topic label="Getting Started">
-      <anchor id="gettingstarted"/>
-   </topic>
+<toc label="Qompass Designer User Guide">
    <topic label="Concepts">
       <anchor id="concepts"/>
    </topic>
@@ -19,5 +16,8 @@
    </topic>
    <topic label="MARTE mapping">
       <anchor id="marte"/>
+   </topic>
+   <topic label="Qompass model libraries">
+      <anchor id="modellibs"/>
    </topic>
 </toc>

@@ -2,16 +2,24 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Reference" link_to="toc.xml#reference"> 
-	<topic label="Components"  href="html/reference/component.html"> 
+	<topic
+		label="Components"
+		href="html/reference/component.html"> 
 	</topic>
- <topic href="html/reference/connector.html" label="Connectors">
- </topic>
- <topic href="html/reference/container.html" label="Containers">
- </topic>
- <topic href="html/reference/portKind.html" label="Port kinds">
- </topic>
- <topic href="html/reference/port.html" label="Port">
- </topic>
- <topic href="html/reference/marte.html" label="MARTE mapping">
- </topic>
+	<topic
+		label="Interaction Components"
+		href="html/reference/interactionComponents.html">
+	</topic>
+	<topic
+		label="Containers"
+		href="html/reference/container.html">
+	</topic>
+	<topic
+		label="Port kinds"
+		href="html/reference/portKind.html">
+	</topic>
+	<topic
+		label="Port"
+		href="html/reference/port.html">
+	</topic>
 </toc>

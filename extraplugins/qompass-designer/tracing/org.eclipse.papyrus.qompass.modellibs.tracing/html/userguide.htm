@@ -1,0 +1,213 @@
+<html>
+<head>
+<title>Model-Based Tracing of UML models in Papyrus</title>
+</head>
+<body>
+<h1>Model-Based Tracing of UML models in Papyrus</h1>
+<p></p>
+<div class=WordSection3>
+<h1>1. Introduction</h1>
+<p>
+The Papyrus Trace Framework allows
+annotating UML model elements with a trace annotation. Different kind of model
+elements can be annotated, such as operations or ports. These annotations are
+shown by means of a decoration icon. When the code of the application is
+generated, the trace declaration must lead to an instrumentation of the
+generated code for a specific trace implementation, in our case primarily
+LTTng.</p>
+<h1>2. Annotating Model elements</h1>
+<p >Several model elements can be annotated
+with trace information. In the sequel, we list these and outline the different
+trace options.</p>
+<p  >1. Class/component itself. When a class is annotated, by default its
+creation and destruction is traced. In addition, a class has several features
+(such as operations and attributes). These can be traced without having to
+place a tracepoint on the feature itself. The user can choose whether he wants
+to trace in addition all attributes, all operations or all states. This choice
+is available in the tracing context menu, after the tracepoint has been
+applied.</p>
+<p>2. Port of a component</p>
+<p>
+If a port of a component is traced, an interceptor is placed within the components container. The
+interceptor traces the operations that are associated with a port. For
+instance, a data-flow port is associated with push or pull operations that take
+the concerned data type as parameter.</p>
+<p  align=center ><img
+width=216 height=101 id="Objet 1"
+src="images/image001.gif"></p>
+<p  >3. Operation of a class</p>
+<p  >A tracepoint may
+be placed on an operation of a class. This means that an interceptor (on class
+level) will create a trace event before and/or after the operation has been
+called. In addition, there is the option to add the operation name and the
+model reference into the trace point, or ' in addition ' all of the operations
+parameters. If the trace event is produced before the application invocation,
+out parameters and return values are not part of the trace event.</p>
+<p  align=center ><img
+width=137 height=106 id="Objet 2"
+src="images/image002.gif"></p>
+<p  >4. Property of a class</p>
+<p  >Properties
+(attributes) of a class can be traced, if the attribute's type is itself a
+class. In this case, the tracepoint is interpreted as a trace on the instance.
+It implies activating tracing on the attributes type, but restricting the
+production of a trace to the role (instance) that the type plays within the class
+declaring the attribute. This mechanism can be realized within the framework,
+but is not implemented at the moment.</p>
+<p  >5.
+Trace
+an instance specification</p>
+<p  >Putting a trace
+point on an instance specification is quite similar to putting a trace point to
+an attribute: the classifier referenced by the instance specification will have
+trace support but actual tracing is restricted to concrete instance. Not implemented (planned for 2013)</p>
+<p  ><img width=185 height=61
+id="Objet 4" src="images/image003.gif"></p>
+<p  >6.
+State
+(within a statechart)</p>
+<p  >If a class defines a state-chart, the
+states can be annotated with a trace marker. A trace event is produced, if the
+state is entered and/or left (configurable via option). Not implemented
+(planned for 2013)</p>
+<p  >7.
+Transition:
+A transition can be annotated. A trace event is produced, when the transition
+is fired. </p>
+<p  ><img width=290 height=85
+id="Image 10" src="images/image004.jpg"></p>
+<p  ></p>
+<h1 >Code produced for a trace
+annotation</h1>
+<h2>2.1
+Trace declaration</h2>
+<p >In LTTng, a trace events need to have a
+declaration. We distinguish events that have a generic declaration and those
+requiring a specific declaration. For instance, a call event for an operation
+has a generic declaration, if parameters are not included: all that is needed
+is the operation name (or identifier). Although we could always use a generic
+declaration with the operation name as parameter, we declare the name (and URI
+reference) in the events declaration, i.e. in its meta-data. Thus, an event
+instance does not include the model URI and is therefore quite lcompact on the
+expense of a potentially large number of different events.</p>
+<p >In general, the event declaration includes
+a model reference, e.g. ref. to port or operation and event data. In case of an
+operation call, the event data corresponds to the values of parameter and an
+identification of the associated instance. The following code fragment shows,
+how a tracepoint is declared in case of a port interception. Here, the port 'p',
+typed with interface ICompute is traced, these are the actual of a package
+template with the two formal parameters interface and port.</p>
+<p >We use a canonical name for the event type
+which is composed of the model name, the name of a package template and the
+actual variables for the template. In our example, the model is called
+ClientServerTraceTest, the package methodCall_port_ICompute_p (the underlying package
+template is called methodCall_port, the actual for the two formals Interface
+and port are 'ICompute' and 'p', respectively). The second parameter for the
+event declaration is the elements name, e.g. the operation name ('add' in the
+example) in case of a traced operation.</p>
+<div >
+<p >TRACEPOINT_EVENT(ClientServerTraceTest_methodCall_port_ICompute_p,
+add,</p>
+<p >
+TP_ARGS(const char *, instanceName, int, a, int, b),</p>
+<p >
+TP_FIELDS(</p>
+<p >
+ctf_string(instanceName, instanceName)</p>
+<p >
+ctf_integer(int, a, a)</p>
+<p >
+ctf_integer(int, b, b)</p>
+<p > )</p>
+<p >)</p>
+<p >TRACEPOINT_MODEL_EMF_URI(ClientServerTraceTest_methodCall_port_ICompute_p,
+add, &quot;platform:/resource/org.eclipse.papyrus.qompass.designer.examples/model/ClientServerTraceTest.uml#_4KiE8DLbEd2qeKRLMdIx_A&quot;)</p>
+</div>
+<p  ></p>
+<p >For each trace event, the added
+instrumentation code with invoke the tracepoint, in case of the example above
+by</p>
+<div >
+<p >tracepoint(ClientServerTraceTest_methodCall_port_ICompute_p, add, <span
+style='color:#0000C0'>instanceName, a, b);</p>
+</div>
+<p >Note that instanceName is an attribute of the interception
+class, i.e. not a fixed string, a and b are the actual parameters of an
+operation.</p>
+<h1>3. Example</h1>
+<p >This section demonstrates the use of the trace
+mechanism by means of a very simple application, called client/server trace
+test. The model is available via the 'new example' menu. Select the example
+from the 'Qompass examples' folder. </p>
+<p  align=center ><img width=567 height=314 id="Image 15"
+src="images/image005.jpg" alt=trace4.png></p>
+<p  align=center ><a
+name="_Ref343641256">Figure </a>1: Tracepoint on operation, shown in model
+explorer, diagram and trace view</p>
+<p >Figure 1 shows a
+small test application. A tracepoint is placed on an operation testOp. The
+tracepoint is also visible in the tracepoint view (first selected entry) and in
+the model explorer and the left. The tracepoint view is an additional view that
+can be shown via the Eclipse standard 'show view' dialog, appearing in the
+Papyrus category.</p>
+<p ></p>
+<p ></p>
+<p  align=center ><img width=593 height=71 id="Image 9"
+src="images/image006.jpg" alt=trace9.png></p>
+<p  align=center ><a
+name="_Ref343721358">Figure </a>2: Set trace points via context menu</p>
+<p >Figure 2 shows a
+part of the context menu of a model element in the model explorer or a diagram.
+It contains a sub-menu called 'Tracing' that contains trace related functions.
+In particular, it is possible to toggle a tracepoint, i.e. add or remove a
+tracepoint. A tracepoint can be active or inactive. While the instrumentation
+is always added, i.e. also when the tracepoint is inactive, trace events should
+only be produced for an active tracepoint. This sould be done via the LTTng
+runtime control mechanisms.</p>
+<p ></p>
+<p  ><img width=590 height=342
+id="Image 13" src="images/image007.gif"
+alt=trace8.png></p>
+<p  align=center ><a
+name="_Ref343721365">Figure </a>4: Preference dialog for tracing</p>
+<p >Figure 4 shows the
+preference dialog for tracing within the Papyrus category. The dialog captures
+the different options how a tracepoint of a class, a state and on an operation
+should be interpreted, e.g. whether an operation is be trace with or without
+parameter values.</p>
+<p >In addition to these options, the
+instrumentation has a modular realization mechanism and the default
+implementation among available implementations can be chosen. The Qompass model
+library contains for instance not only an LTTng based trace implementation, but
+also one based on OTF (open trace format).</p>
+<p ></p>
+<p ></p>
+<p  align=center ><b><img width=609 height=263 id="Image 16"
+src="images/image008.jpg"
+alt=trace7-events.png></b></p>
+<p  align=center ><a
+name="_Ref343723153">Figure </a>5: Trace event view via TMF</p>
+<p >Once the tracepoints are set, an
+application can be compiled and executed. Currently, the runtime trace options
+must be set manually (e.g. enable all events). The generated trace can be
+imported by means of the TMF (trace monitoring framework) which is part of the
+LTTng linux-tools. Figure 5
+shows the event view of this framework (note that the view will be replaced by
+an editor from version 2.0 on) displaying the trace of the client/server trace
+test model. The screenshot shows the event timestamp, type and content. It
+depicts that the type corresponds to a qualified name in the model element and
+that the contents contains parameter values.</p>
+<p  align=center ><b></b></p>
+<p  align=center ><b><img width=609 height=280 id="Image 17"
+src="images/image009.jpg"
+alt=trace5-events-filtered.png></b></p>
+<p  align=center ><a
+name="_Ref343723478">Figure </a>6: Trace event view, filtered (only 'testOp'
+is shown)</p>
+<p >In Figure 6, the event view has been restricted
+to the operation 'testOp' by means of a context operation of an element in the
+model explorer or diagram. In this case, only events for the operation testOp
+are shown.</p>
+</div>
+</body>
+</html>

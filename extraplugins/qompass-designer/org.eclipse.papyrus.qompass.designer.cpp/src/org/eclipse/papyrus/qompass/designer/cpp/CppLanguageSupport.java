@@ -28,6 +28,12 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.cpp.codegen.transformation.ModelElementsCreator;
+import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
+import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
@@ -41,13 +47,6 @@ import org.eclipse.uml2.uml.PackageableElement;
 import FCM.CppLibrary;
 import FCM.OperatingSystem;
 import FCM.Target;
-
-import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
-import org.eclipse.papyrus.qompass.designer.core.preferences.EC3MPreferenceConstants;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 /**
  * C/C++ language support
@@ -101,7 +100,7 @@ public class CppLanguageSupport implements ILangSupport {
 	public void setProject(IProject project) {
 		m_project = project;
 		IPreferenceStore store = org.eclipse.papyrus.qompass.designer.core.Activator.getDefault().getPreferenceStore();
-		String prefix = store.getString(EC3MPreferenceConstants.P_CODE_GEN_PREFIX) + "\n\n";
+		String prefix = store.getString(QompassPreferenceConstants.P_CODE_GEN_PREFIX) + "\n\n";
 		creator = new ModelElementsCreator(project, "h", "cpp", prefix);
 	}
 

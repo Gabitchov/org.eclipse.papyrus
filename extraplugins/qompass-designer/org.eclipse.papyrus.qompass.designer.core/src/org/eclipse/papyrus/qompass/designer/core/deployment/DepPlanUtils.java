@@ -6,6 +6,8 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -24,12 +26,9 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 import FCM.DeploymentPlan;
 
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
-
 public class DepPlanUtils {
 
-	public static final String depPlanFolder = "DeploymentPlans";
+	public static final String depPlanFolder = "deployment";
 
 	/**
 	 * Return the package in which deployment plans are stored. Caveat: needs to be executed within a

@@ -10,7 +10,7 @@
 <body>
 <h1>Components</h1>
 
-An Qompass component is a UML class (you might also use a UML component, but this is not recommended), since classes
+An Qompass component is a UML class (you might also use a UML component), since classes
 contain essential properties we require of a component:
 <ul>
 <li>they own a set of ports and may interact through these ports. On the port level, a component needs to declare explicitly,
@@ -23,7 +23,7 @@ contain essential properties we require of a component:
 	These components are also called assembly components.
 </ul>
 
-A component might either be a type or an implementation. The former is mainly a class with a set of ports
+A component might either be a type or an implementation. The former is mainly an abstract class with a set of ports
 and no internal structure. It may inherit from other component types, but not from implementations.
 The latter has to realize at least a subset of the services that are provided at its ports (if it does not define all, it
 needs to be declared as abstract). The realization could be either done by an implementation written in a specific programming

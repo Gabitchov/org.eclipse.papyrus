@@ -8,11 +8,32 @@
         type="text/css">
 </head>
 <body>
-<h1>Qompass Overview</h1>
+<img src="../img/qompass-0.33.jpg" alt="Qompass logo">
+<h1>Overview</h1>
 
-Qompass Designer is a component based modeling / middleware approach that is suitable
-for embedded and real-time applications. The application modeling is based
-on the <a href="http://www.flex-eware.org" target="_parent">Flex-eWare</a>
+Embedded and real-time systems are characterized by timing and resource constraints - sometimes also
+denoted as non-functional properties. Since these systems get more and more complex, it is important
+that the non-functional properties are not just specified in the documentation and respected by the
+implemented system, but that these are explicitly modeled and suitable code is derived from the model.
+
+Qompass Designer is a component based modeling approach that supports the code generation from embedded
+systems. It is part of the Qompass tool-suite integrated into Papyrus. The separation of concerns between
+the two tools is that
+<ul>
+<li>Qompass analyzer analyzes a system, in particular with respect to schedulability
+	analysis. It enables the validation of several variants to allocate software components to execution
+	resources and thus provides an architectural exploration
+<li>Qompass designer supports the code generation for a specified architecture. It enables this code
+	generation by means of a sequence of transformations steps and a final code generation step as
+	shown in the figure below.   
+</ul>
+
+<center>	
+<img src="../img/overview-eng.png" alt="Tool Chain overview">
+</center>
+<p>
+
+Application modeling is based on the <a href="http://www.flex-eware.org" target="_parent">Flex-eWare</a>
 component model (FCM). This component model is aligned with the OMG standard
 (<a href="http://www.omg.org/technology/documents/formal/deployment.htm" target="_parent">D&amp;C</a>), click <a href="component-model.html">here</a> for more
 information on the component model.<br>
@@ -30,10 +51,6 @@ includes not only model elements, but also code by means
 of Acceleo templates. The final code generation uses standard code generation
 facilities of Papyrus. An overview of the approach is shown in the figure
 below.
-
-<p>
-
-<img src="../img/toolchain.png" alt="Tool Chain overview">
 
 <p>
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="modellibs.core" link_to="../org.eclipse.papyrus.qompass.designer.doc/toc.xml#modellibs"> 
+	<topic label="Core model library" href="html/library/core.html"> 
+	</topic>
+	<topic label="CORBA basic types" href="html/library/corba"> 
+	</topic>
+	<topic label="FIFO interaction components" href="html/library/fifo.html">
+	</topic>
+	<topic label="OS abstraction layer" href="html/osal.html"> 
+	</topic>
+	<topic label="State machine execution support" href="html/library/statemachine.html"> 
+	</topic>
+</toc>

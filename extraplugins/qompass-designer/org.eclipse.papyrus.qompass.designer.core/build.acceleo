@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.papyrus.fcm.profile;${target.folder}/../../org.eclipse.papyrus.infra.core;${target.folder}/../../org.eclipse.papyrus.qompass.designer.vsl;${target.folder}/../../org.eclipse.papyrus.marte.vsl;${target.folder}/../../org.eclipse.papyrus.uml.tools;${target.folder}/../../org.eclipse.papyrus.infra.services.validation;${target.folder}/../../org.eclipse.papyrus.infra.services.decoration;${target.folder}/../../org.eclipse.papyrus.cpp.profile;"
+            dependencies="${target.folder}/../../org.eclipse.papyrus.fcm.profile;${target.folder}/../../org.eclipse.papyrus.infra.core;${target.folder}/../../org.eclipse.papyrus.infra.core.sasheditor;${target.folder}/../../org.eclipse.papyrus.qompass.designer.vsl;${target.folder}/../../org.eclipse.papyrus.marte.vsl;${target.folder}/../../org.eclipse.papyrus.cpp.profile;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

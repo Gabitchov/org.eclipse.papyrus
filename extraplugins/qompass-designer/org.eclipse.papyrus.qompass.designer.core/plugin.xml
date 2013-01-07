@@ -332,7 +332,7 @@
 	<extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferencePage"
             id="org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferencePage_ID"
             name="Qompass preferences">

@@ -12,19 +12,28 @@
 <body>
 <h1>Qompass developer guide</h1>
 
-Qompass consists of a set of plugins:
+The objective of this guide is to provide information about the architecture of Qompass designer and enable developers to
+contribute to its development, i.e. it is not intend for people that want to develop applications with Qompass designer.
+This guide is currently quite incomplete and should give a rough overview of the Qompass plug-ins.
+
+In general, there is a separation between the generic transformation mechanisms and the model libraries defining
+interaction components and container extensions. It is quite likely that a contribution only focusses on one of these two,
+for instance on a model library for a dedicated interaction mechanism.
+
+The transformation mechanisms consists of the following plug.ins:
 <ul>
-<li>org.eclipse.papyrus.qompass.designer. This plugin contains the definition of the Qompass feature
-<li>org.eclipse.papyrus.qompass.designer.updateSite: definition of the update site
+<li>org.eclipse.papyrus.qompass.designer.feature This plugin contains the definition of the Qompass feature
 <p>
-<li>org.eclipse.papyrus.qompass.designer.examples: This plugin contains a set of examples and tests
 <li><a href="org.eclipse.papyrus.qompass.designer.core.html">org.eclipse.papyrus.qompass.designer.core:</a> The main Qompass plugin
+<li>org.eclipse.papyrus.qompass.designer.validation: A set of validation rules that check the well-formedness of models,
+	for instance, whether a connection betwee ports if syntactically valid.
+	The validation plug-ins defines a set of EMF validation rules in form of Java code.
+	
 <li>org.eclipse.papyrus.qompass.designer.cpp: A plugin with support for C++, in particular (1) for the creation
   and configuration of Eclipse CDT projects and (2) the interaction with the C++ code generator. 
-<li>org.eclipse.papyrus.qompass.designer.description A small plugin providing the "description" view which
-	provides the easy way to describe model elements (via owned comments stereotyped by FCM)
-<li>org.eclipse.papyrus.qompass.designer.packaging: Supports the generation of IDL files from the component model as well
-	as a <a href="http://www.omg.org/spec/CCM/">CCM</a> compatible deployment descriptor from a deployment plan 
+<li>org.eclipse.papyrus.fcm.profile: A plugin container the Flex-eware component model in form of a static profile
+<li>org.eclipse.papyrus.codegen.cpp: C++ code generator and simple C++ view
+
 </ul>
 
 <p>
@@ -33,7 +42,7 @@ dedicated for a specific domain and/or interaction mechanisms.
 
 <ul>
 <li>org.eclipse.papyrus.qompass.designer.modellibs.core: A set of basic interaction mechanisms and container rules as well
-	as portkinds along with the calculation of provided and required interface from the port type
+	as port kinds along with the calculation of provided and required interface from the port type
 	and kind ("mapping rules").
 <li>org.eclipse.papyrus.qompass.designer.modellibs.marte: A modeling library for MARTE, contains a set of FCM port kinds
 	suitable for MARTE (client/server and flow ports) and model elements for RtUnit and PpUnit.

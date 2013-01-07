@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
+import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -31,9 +33,6 @@ import org.eclipse.uml2.uml.Type;
 import FCM.ContainerRule;
 import FCM.RuleApplication;
 import FCM.Singleton;
-
-import org.eclipse.papyrus.qompass.designer.core.preferences.EC3MPreferenceConstants;
-import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 
 public class Utils {
 
@@ -366,22 +365,6 @@ public class Utils {
 	}
 
 	/**
-	 * Check whether an element belongs a an imported model or model library.
-	 * The check is based on the existence of a packageImport relationship
-	 * pointing at the top level package that owns the passed element.
-	 * 
-	 * @param an
-	 *        element of a library that is potentially imported
-	 */
-	/*
-	 * public static boolean elementIsImported (Element element) { Package top =
-	 * getTop (element); if (top != null) { EClass pkgImport =
-	 * UMLPackage.eINSTANCE.getPackageImport (); return
-	 * (element.getTargetDirectedRelationships (pkgImport).size () > 0); }
-	 * return false; }
-	 */
-
-	/**
 	 * Check whether a class contains a non-port attribute of a given name
 	 * 
 	 * @param cl
@@ -426,6 +409,8 @@ public class Utils {
 	/**
 	 * Return the top element of the model that is currently edited. This function is based on the
 	 * assumption that the user model is the first resource that is loaded into the model set.
+	 * Use this function instead of Utils.getTop (or getModel) if you want to avoid navigating to the
+	 * root of an imported model.
 	 * 
 	 * @return the top level package of the model currently loaded into an editor.
 	 */
@@ -434,12 +419,15 @@ public class Utils {
 		try {
 			// IPath fn = serviceUtils.getModelSet().getFilenameWithoutExtension();
 			EList<Resource> resources = serviceUtils.getModelSet().getResources();
-			if(resources.size() > 0) {
-				Resource userResource = resources.get(0);
-				if(userResource.getContents().size() > 0) {
-					EObject topEObj = userResource.getContents().get(0);
-					if(topEObj instanceof Package) {
-						return (Package)topEObj;
+			if(resources.size() >= 3) {
+				// check first three resources (di, notation, uml)
+				for(int i = 0; i < 3; i++) {
+					Resource userResource = resources.get(i);
+					if(userResource.getContents().size() > 0) {
+						EObject topEObj = userResource.getContents().get(0);
+						if(topEObj instanceof Package) {
+							return (Package)topEObj;
+						}
 					}
 				}
 			}
@@ -476,12 +464,12 @@ public class Utils {
 
 	public static boolean treatNoneAsComposite() {
 		IPreferenceStore store = org.eclipse.papyrus.qompass.designer.core.Activator.getDefault().getPreferenceStore();
-		return store.getBoolean(EC3MPreferenceConstants.P_TREAT_NONE_AS_COMPOSITE);
+		return store.getBoolean(QompassPreferenceConstants.P_TREAT_NONE_AS_COMPOSITE);
 	}
 
 	public static boolean allAttributesAreConfigAttributs() {
 		IPreferenceStore store = org.eclipse.papyrus.qompass.designer.core.Activator.getDefault().getPreferenceStore();
-		return store.getBoolean(EC3MPreferenceConstants.P_ALL_ATTRIBUTES_ARE_CONFIG_ATTRIBUTES);
+		return store.getBoolean(QompassPreferenceConstants.P_ALL_ATTRIBUTES_ARE_CONFIG_ATTRIBUTES);
 	}
 
 	/**

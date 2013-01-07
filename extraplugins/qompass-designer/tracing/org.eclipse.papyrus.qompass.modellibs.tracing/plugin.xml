@@ -6,10 +6,10 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://QML_TRACE/"
-            target="platform:/plugin/org.eclipse.papyrus.qompass.modellibs.tracing/models/">
+            target="platform:/plugin/org.eclipse.papyrus.qompass.modellibs.tracing/models/library/">
       </mapping>
-   </extension>
-   <extension
+	</extension>
+	<extension
       point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
             iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
@@ -17,8 +17,8 @@
             path="pathmap://QML_TRACE/tracing.uml"
             provider="CEA LIST">
       </library>
-   </extension>
-   <extension
+	</extension>
+	<extension
          point="org.eclipse.papyrus.qompass.designer.core.instanceConfig">
       <client
          configuratorID="IConfiguratorTrace"
@@ -28,12 +28,27 @@
             class="org.eclipse.papyrus.qompass.modellibs.tracing.IConfiguratorOTF"
             configuratorID="IConfiguratorOTF">
       </client>
-   </extension>
-   <extension
+	</extension>
+	<extension
          point="org.eclipse.papyrus.infra.services.tracepoints.traceMechanism">
       <client
             class="org.eclipse.papyrus.qompass.modellibs.tracing.QompassTraceMechanism"
             traceMechID="org.eclipse.papyrus.qompass.modellibs.tracing.qompass">
       </client>
-   </extension>
+	</extension>
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard
+			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
+			class="org.eclipse.papyrus.qompass.modellibs.tracing.ClientServerTraceTestModelWizard"
+			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+			id="org.eclipse.papyrus.qompass.modellibs.tracing.newb.ClientServerTraceTest"
+			name="Qompass client/server example with tracing">
+			<selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+	</extension>
+	<extension
+		point="org.eclipse.help.toc">
+		<toc file="help/tocconcepts.xml"/>
+	</extension>
 </plugin>

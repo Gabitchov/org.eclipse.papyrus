@@ -124,37 +124,11 @@ on
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.qompass.modellibs.ami"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.qompass.modellibs.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.qompass.modellibs.distribution"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.eclipse.papyrus.qompass.modellibs.marte"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.qompass.modellibs.tracing"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.papyrus.qompass.designer.examples"

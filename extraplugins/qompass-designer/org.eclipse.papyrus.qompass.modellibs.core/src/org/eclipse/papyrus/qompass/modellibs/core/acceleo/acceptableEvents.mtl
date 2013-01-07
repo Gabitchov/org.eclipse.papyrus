@@ -1,6 +1,6 @@
 [module acceptableEvents('http://www.eclipse.org/uml2/4.0.0/UML')/]
 [import org::eclipse::papyrus::qompass::modellibs::core::acceleo::TransitionService /]
-[import org::eclipse::papyrus::qompass::modellibs::core::acceleo::statemachineUtil /]
+[import org::eclipse::papyrus::qompass::modellibs::core::acceleo::StateMachineUtil /]
 [import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool /]
 [import org::eclipse::papyrus::qompass::designer::vsl::ParseVSL /]
 
@@ -33,7 +33,7 @@
 		// transition [transition.name/] - trigger: TimeEvent (there should be at most one outgoing timed transition per state).
 		if (event.operationID == BasicCalls::ContainerServices::EventPool::ID_TIMEOUT) {
 			newState = STATE_[transition.target.name/];
-[if not (transition.effect = null)]			executor->[state.containingstatemachine().name/]_[transition.name/]_[transition.effect.name/]();
+[if not (transition.effect = null)]			executor->[state.containingStateMachine().name/]_[transition.name/]_[transition.effect.name/]();
 [/if]
 		}		
 	[/if]
@@ -41,7 +41,7 @@
 		// transition [name/] - trigger: CallEvent, operation [transition.trigger.event.oclAsType(CallEvent).operation.name/]
 		if (event.operationID == [cetrigger(transition.trigger->asSequence()->first().event.oclAsType(CallEvent).operation)/]) {
 			newState = STATE_[transition.target.name/];
-[if not (transition.effect = null)]			executor->[state.containingstatemachine().name/]_[transition.name/]_[transition.effect.name/]();
+[if not (transition.effect = null)]			executor->[state.containingStateMachine().name/]_[transition.name/]_[transition.effect.name/]();
 [/if]
 		} 
 	[/if]
@@ -49,7 +49,7 @@
 		// transition [name/] - trigger: SignalEvent, signal [transition.trigger.event.oclAsType(SignalEvent).signal.name/]
 		if (event.operationID == SIG_[transition.trigger.event.oclAsType(SignalEvent).signal.name/]) {
 			newState = STATE_[transition.target.name/]) ;
-[if not (transition.effect = null)]			executor->[state.containingstatemachine().name/]_[transition.name/]_[transition.effect.name/]();
+[if not (transition.effect = null)]			executor->[state.containingStateMachine().name/]_[transition.name/]_[transition.effect.name/]();
 [/if]
 			// ok = EvQUEUE ;
 		}

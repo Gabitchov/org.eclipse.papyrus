@@ -5,6 +5,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.BootLoaderGen;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.papyrus.qompass.designer.core.handlers.AddProfileAndModelLibsHandler;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -24,13 +30,6 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 
 import FCM.DeploymentPlan;
-
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.BootLoaderGen;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.handlers.AddProfileAndModelLibsHandler;
 
 /**
  * Select a connector type and implementation (group)
@@ -267,8 +266,8 @@ public class AllocationDialog extends SelectionStatusDialog {
 			if(!AllocUtils.allocate(is, newNode)) {
 				Shell shell = new Shell();
 				if(MessageDialog.openQuestion(shell, "Error",
-					"Profile application failed. The profile MARTE::Allocation is probably not applied. Try to apply it?")) {
-					AddProfileAndModelLibsHandler.addProfiles(Utils.getTop(is), AddProfileAndModelLibsHandler.APPLY_FCM);
+					"Stereotype application failed. The profile MARTE::Allocation is probably not applied. Try to apply it?")) {
+					AddProfileAndModelLibsHandler.addProfiles(Utils.getTop(is), AddProfileAndModelLibsHandler.APPLY_ALLOC);
 					AllocUtils.allocate(is, newNode);
 				}
 			}
