@@ -66,6 +66,19 @@ public class SelectByTypeHandler extends AbstractHandler {
 						if(values[i] instanceof IGraphicalEditPart) {
 							IGraphicalEditPart nextPart = (IGraphicalEditPart)values[i];
 							EObject o2 = getEObject(nextPart);
+							// Views with no semantic element
+							if (o1 == null || o2 == null) {
+								if(part.getModel() instanceof View && nextPart.getModel() instanceof View) {
+									View view1 = (View) part.getModel();
+									View view2 = (View) nextPart.getModel();
+									if(view1.getType() != null && view1.getType().equals(view2.getType())) {
+										add(listElement, nextPart);
+									}
+								}
+								continue;
+							}
+							
+							// Views with a semantic element
 							if(part instanceof ConnectionEditPart && nextPart instanceof ConnectionEditPart) {
 								if(o1 != o2 && (o1.eClass().equals(o2.eClass()))) {
 									add(listElement, nextPart);
@@ -146,11 +159,11 @@ public class SelectByTypeHandler extends AbstractHandler {
 			if((elem1 instanceof IGraphicalEditPart) && (elem2 instanceof IGraphicalEditPart)) {
 				IGraphicalEditPart part1 = (IGraphicalEditPart)elem1;
 				IGraphicalEditPart part2 = (IGraphicalEditPart)elem2;
-				selectable |= (part1.isSelectable() && part2.isSelectable()) ;
+				selectable &= (part1.isSelectable() && part2.isSelectable()) ;
 				View view1 = (View)part1.getModel();
 				View view2 = (View)part2.getModel();
-				if((view1 != null) && (view2 != null)) {
-					if(view1.getElement().eClass() != view2.getElement().eClass()) {
+				if ((view1 != null) && (view2 != null) && view1.getElement() != null && view2.getElement() != null) {
+					if (view1.getElement().eClass() != view2.getElement().eClass()) {
 						return false;
 					}
 				}
