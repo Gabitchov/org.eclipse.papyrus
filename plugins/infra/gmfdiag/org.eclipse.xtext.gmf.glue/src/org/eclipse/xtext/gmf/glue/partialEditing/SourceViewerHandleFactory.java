@@ -104,6 +104,10 @@ public class SourceViewerHandleFactory {
 					private AnnotationIssueProcessor annotationIssueProcessor;
 					
 					public void processIssues(List<Issue> issues, IProgressMonitor monitor) {
+						if(viewer.getTextWidget() == null) {
+							// the text widget is disposed => don't try displaying errors in this widget
+							return;
+						}
 						IValidationIssueProcessor issueProcessor = result.getIssueProcessor();
 						if (issueProcessor != null)
 							issueProcessor.processIssues(issues, monitor);
