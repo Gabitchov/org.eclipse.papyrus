@@ -16,18 +16,18 @@ package org.eclipse.papyrus.infra.services.tracepoints.handler;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.services.tracepoints.commands.ToggleBreakpointCommand;
+import org.eclipse.papyrus.infra.services.tracepoints.commands.TracepointPropertiesCommand;
 
 /**
- * Handler for toggling a break point. Delegates to associated command
+ * Handler for changing the properties of a tracepoint. Delegates to associated command
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
-public class ToggleBreakpointHandler extends AbstractCommandHandler {
+public class TracepointPropertiesHandler extends AbstractCommandHandler {
 
 	@Override
 	protected Command getCommand() {
 		// not useful to cache command, since selected element may change
-		return new GMFtoEMFCommandWrapper(new ToggleBreakpointCommand(getSelectedElement()));
+		return new GMFtoEMFCommandWrapper(new TracepointPropertiesCommand(getSelectedElement()));
 	}
 }

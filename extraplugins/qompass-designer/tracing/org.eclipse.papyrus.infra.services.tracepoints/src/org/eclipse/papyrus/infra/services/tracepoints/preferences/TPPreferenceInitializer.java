@@ -46,7 +46,7 @@ public class TPPreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP, mechanismID);
 		store.setDefault(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM, mechanismID);
 
-		store.setDefault(TPPreferenceConstants.P_TRACE_OPTION_CLASS, 0);
+		store.setDefault(TPPreferenceConstants.P_TRACE_OPTION_CLASS, 3);
 		store.setDefault(TPPreferenceConstants.P_TRACE_OPTION_STATE, 0);
 		store.setDefault(TPPreferenceConstants.P_TRACE_OPTION_OP, 0);
 	}

@@ -18,6 +18,7 @@ import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.papyrus.infra.services.tracepoints.ITraceMechanism;
+import org.eclipse.papyrus.infra.services.tracepoints.TraceActions;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAClass;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAOperation;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAState;
@@ -69,36 +70,17 @@ public class TPPreferencePage
 			}
 		}
 
-		String[][] taClassOptions = new String[TAClass.values().length][2];
-		String[][] taStateOptions = new String[TAState.values().length][2];
-		i = 0;
-		for(TAClass tLiteral : TAClass.values()) {
-			taClassOptions[i][1] = tLiteral.name();
-			taClassOptions[i][0] = tLiteral.name();
-			i++;
-		}
-		i = 0;
-		for(TAState tLiteral : TAState.values()) {
-			taStateOptions[i][1] = tLiteral.name();
-			taStateOptions[i][0] = tLiteral.name();
-			i++;
-		}
-		String[][] taOperationOptions = new String[TAOperation.values().length][2];
-		i = 0;
-		for(TAOperation tLiteral : TAOperation.values()) {
-			taOperationOptions[i][1] = tLiteral.name();
-			taOperationOptions[i][0] = tLiteral.name();
-			i++;
-		}
+		String[][] taClassOptions = TraceActions.getStringFields(TAClass.values());
+		String[][] taStateOptions = TraceActions.getStringFields(TAState.values());
+		String[][] taOperationOptions = TraceActions.getStringFields(TAOperation.values());
 
-		addField(new MultipleChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_CLASS, "Class options", 3, taClassOptions, getFieldEditorParent(), true));
+		addField(new BinaryEncodedMChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_CLASS, "Class options", 3, taClassOptions, getFieldEditorParent(), true));
 
-		addField(new MultipleChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_STATE, "State options", 3, taStateOptions, getFieldEditorParent(), true));
+		addField(new BinaryEncodedMChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_STATE, "State options", 3, taStateOptions, getFieldEditorParent(), true));
 
 		addField(new RadioGroupFieldEditor(
 			TPPreferenceConstants.P_TRACE_OPTION_OP,
 			"Operations options", 3, taOperationOptions, getFieldEditorParent(), true));
-
 
 		addField(new ComboFieldEditor(
 			TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT,

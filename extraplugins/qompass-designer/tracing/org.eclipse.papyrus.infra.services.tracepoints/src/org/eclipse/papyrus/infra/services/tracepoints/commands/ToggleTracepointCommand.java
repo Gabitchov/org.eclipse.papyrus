@@ -24,10 +24,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 
 public class ToggleTracepointCommand extends AbstractTracepointCommand {
 
-	public static final String tracepointMarkerID = "org.eclipse.papyrus.markers.tracepoint";
-
-	public static final String modelrefMarkerID = "org.eclipse.papyrus.markers.modelref";
-
 	public ToggleTracepointCommand(EObject selectedElement) {
 		super("Toggle tracepoint", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
 	}

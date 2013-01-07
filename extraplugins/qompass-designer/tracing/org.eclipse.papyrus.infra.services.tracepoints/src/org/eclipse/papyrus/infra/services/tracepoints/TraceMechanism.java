@@ -19,6 +19,10 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TraceFeature;
+import org.eclipse.papyrus.infra.services.tracepoints.preferences.TPPreferenceConstants;
 
 
 /**
@@ -46,5 +50,39 @@ public class TraceMechanism {
 			}
 		}
 		return mechanisms;
+	}
+
+	/**
+	 * get the ID of the default realization mechanism. In case of classes, need to store multiple mechanisms (how to trace states, how to trace
+	 * operations)
+	 * 
+	 * @return
+	 */
+	public static String getDefaultMechanism(TraceFeature feature) {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		if(store != null) {
+			if(feature == TraceFeature.Class) {
+				return TraceActions.getStringPrefix(TraceFeature.Port) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT) + "," +
+					TraceActions.getStringPrefix(TraceFeature.State) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM) + "," +
+					TraceActions.getStringPrefix(TraceFeature.Operation) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
+			}
+			else if(feature == TraceFeature.State) {
+				return store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM);
+			}
+			else if(feature == TraceFeature.Operation) {
+				return store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
+			}
+		}
+		return "";
+	}
+
+	/**
+	 * Convenience function. Return defaultTraceMechanisms in function of the element being traced.
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public static String getDefaultMechanism(EObject element) {
+		return getDefaultMechanism(TraceActions.getTraceFeature(element));
 	}
 }

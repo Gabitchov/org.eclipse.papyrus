@@ -56,7 +56,7 @@ import org.eclipse.papyrus.infra.services.tracepoints.MarkerUtils;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceFunctions;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceState;
 import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
-import org.eclipse.papyrus.views.tracepoints.dialogs.TraceActionSelection;
+import org.eclipse.papyrus.infra.services.tracepoints.dialogs.TraceActionSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;

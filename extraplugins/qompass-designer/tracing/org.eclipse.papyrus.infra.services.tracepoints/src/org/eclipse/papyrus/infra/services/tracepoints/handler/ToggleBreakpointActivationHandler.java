@@ -19,8 +19,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.tracepoints.commands.ToggleBreakpointActivationCommand;
 
 /**
- * Action used for pasting either a model element or a shape (i.e. the model element represented
- * by the shape). Delegates to PasteShapeOrElementCommand
+ * Handler for toggling breakpoint activation. Delegates to associated command
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
