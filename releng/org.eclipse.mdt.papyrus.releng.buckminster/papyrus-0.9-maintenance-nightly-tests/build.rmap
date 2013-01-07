@@ -237,7 +237,7 @@
     <!-- MDT UML2 -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT UML2",0) -->
-      <rm:uri format="{0}/modeling/mdt/uml2/updates/4.0.x/">
+      <rm:uri format="{0}/modeling/mdt/uml2/updates/4.0/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -305,7 +305,7 @@
     <!-- GMP -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GMF Runtime",0) -->
-      <rm:uri format="{0}/modeling/gmp/updates/milestones">
+      <rm:uri format="{0}/modeling/gmp/gmf-runtime/updates/maintenance">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -337,7 +337,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.2-M-builds/M20120914-1800/">
+		<rm:uri format="{0}/eclipse/updates/4.2/R-4.2.1-201209141800/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>

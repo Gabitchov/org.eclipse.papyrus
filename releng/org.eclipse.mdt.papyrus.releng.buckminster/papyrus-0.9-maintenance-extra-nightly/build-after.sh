@@ -28,6 +28,7 @@ zipName=Papyrus-Extra.zip
 rm -rf tmp
 mkdir -p "tmp/extra"
 
+# Make a composite update site
 (cd ${p2UpdateSiteDir} && mkdir ./extra)
 
 shopt -s extglob
