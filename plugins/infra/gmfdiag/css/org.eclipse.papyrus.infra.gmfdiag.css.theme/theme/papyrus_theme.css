@@ -89,9 +89,34 @@ SequenceDiagram > Interaction {
 	fillColor:white;
 }
 
-SequenceDiagram CombinedFragment, 
-SequenceDiagram ConsiderIgnoreFragment, 
-SequenceDiagram CombinedFragment *,
-SequenceDiagram ConsiderIgnoreFragment *{
+SequenceDiagram CombinedFragment,ConsiderIgnoreFragment, 
+SequenceDiagram CombinedFragment,ConsiderIgnoreFragment * {
 	fillColor:white;
 }
+
+TimingDiagram OccurrenceSpecification,MessageOccurrenceSpecification {
+	fillColor: #006000;
+	lineColor: #006000;
+}
+
+TimingDiagram Lifeline {
+	gradient: white vertical;
+	fontHeight: 12;
+}
+
+TimingDiagram StateInvariant {
+	lineColor: black;
+	fillColor: #9BC7CC;
+	gradient: white vertical;
+}
+
+TimingDiagram Interaction {
+	fillColor: #9BC7CC;
+	gradient: none;
+}
+
+TimingDiagram Gate {
+	fillColor: #2A52BE;
+	lineColor: #2A52BE;
+}
+
