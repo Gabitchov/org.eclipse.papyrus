@@ -1409,7 +1409,7 @@
             creationCommandClass="org.eclipse.papyrus.uml.diagram.timing.custom.CreateTimingDiagramCommand"
             creationCondition="org.eclipse.papyrus.uml.diagram.timing.custom.TimingDiagramCreationCondition"
             icon="icons/obj16/Diagram_Timing.gif"
-            id="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
+            id="org.eclipse.papyrus.uml.diagram.timing.CreateTimingDiagramCommand"
             language="uml"
             label="UML Timing Diagram">
         </creationCommand>
@@ -1503,7 +1503,7 @@
        id="stereotype-ep-provider"
        point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
        <editpartProvider
-            class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.StereotypePropertiesEditPartProvider">
+            class="org.eclipse.papyrus.uml.diagram.timing.custom.providers.StereotypePropertiesEditPartProvider">
             <Priority name="Medium"/>
 	
 			<object
