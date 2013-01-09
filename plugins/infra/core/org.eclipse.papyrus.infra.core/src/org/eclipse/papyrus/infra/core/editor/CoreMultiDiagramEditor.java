@@ -24,6 +24,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -600,6 +601,29 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Listen on input changed from the ISaveAndDirtyService
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+
+		if(input instanceof IPapyrusPageInput) {
+			IPapyrusPageInput papyrusPageInput = (IPapyrusPageInput)input;
+			IPageMngr pageMngr = getIPageMngr();
+
+			if(papyrusPageInput.closeOtherPages()) {
+				pageMngr.closeAllOpenedPages();
+			}
+
+			for(URI pageIdentifierURI : papyrusPageInput.getPages()) {
+				EObject pageIdentifier = resourceSet.getEObject(pageIdentifierURI, true);
+				if(!pageMngr.allPages().contains(pageIdentifier)) {
+					Activator.log.warn("The object " + pageIdentifier + " does not reference an existing page");
+					continue;
+				}
+
+				if(pageMngr.isOpen(pageIdentifier)) {
+					pageMngr.closePage(pageIdentifier);
+				}
+
+				pageMngr.openPage(pageIdentifier);
+			}
+		}
 	}
 
 	protected void warnUser(ModelMultiException e) {
