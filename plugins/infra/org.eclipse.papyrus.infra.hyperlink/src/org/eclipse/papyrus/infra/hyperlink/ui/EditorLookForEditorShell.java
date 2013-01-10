@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
@@ -415,11 +416,11 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		}
 
 		@Override
-		public String getText(Object element) {
+		public StyledString getStyledText(Object element) {
 			if(element instanceof PapyrusTableInstance) {
-				return ((PapyrusTableInstance)element).getName();
+				return new StyledString(((PapyrusTableInstance)element).getName());
 			}
-			return super.getText(element);
+			return super.getStyledText(element);
 		}
 
 

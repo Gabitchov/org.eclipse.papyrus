@@ -20,10 +20,10 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.helper.EditorHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
-import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -105,12 +105,9 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 		});
 
 		// launch a new editor to choose or create diagrams
-		getChooseDiagramButton().addMouseListener(new MouseListener() {
+		getChooseDiagramButton().addSelectionListener(new SelectionListener() {
 
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
+			public void widgetSelected(SelectionEvent e) {
 				EditorLookForEditorShell editorLookForDiagram = new EditorLookForEditorShell(editorRegistry, amodel);
 				editorLookForDiagram.open();
 				Object selection = editorLookForDiagram.getSelectedEditor();
@@ -124,15 +121,16 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 					hyperLinkEditor.setObject(selection);
 
 					//TODO : remove this dependency
-					DecoratingLabelProviderWTooltips labelProvider = new DecoratingLabelProviderWTooltips(new MoDiscoLabelProvider());
-					getObjectLabeltext().setText(labelProvider.getText(selection));
+					//					DecoratingLabelProviderWTooltips labelProvider = new DecoratingLabelProviderWTooltips(new MoDiscoLabelProvider());
+					getObjectLabeltext().setText(hyperLinkEditor.getText(selection));
 					if(usedefaultTooltip) {
 						getTooltipInputText().setText(getObjectLabeltext().getText());
 					}
 				}
 			}
 
-			public void mouseDoubleClick(MouseEvent e) {
+			public void widgetDefaultSelected(SelectionEvent e) {
+				//Nothing
 			}
 		});
 
