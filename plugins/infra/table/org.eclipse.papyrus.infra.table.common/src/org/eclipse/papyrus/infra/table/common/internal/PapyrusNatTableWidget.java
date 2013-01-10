@@ -43,6 +43,7 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Tableinstan
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Package;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
+import org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.swt.widgets.Composite;
 
@@ -220,4 +221,37 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 		return compoundCommand;
 	}
 
+	/**
+	 * This method takes a list of {@link EObject} and add it to the widget list
+	 * if their are not already in it.
+	 *
+	 * @param newElements
+	 *            The list of EObject elements to be added to the table
+	 */
+	public void addRows(final List<EObject> newElements) {
+		CompoundCommand addRowCommand = TableInstanceCommandFactory.createAddRowsCommand(newElements, this);
+		//see bug 397849: 397849: [Table]Hidden Facets Columns become visible after drop,  creation of paste into the table
+		//we want to avoid that not wanted FacetElement column appears after a drop
+		
+//		if getTableInstance() instanceof TableInstance2) {
+//			TableInstance2 tableInstance2 = (TableInstance2) getTableInstance() ;
+//			try {
+//				this.facetContext.clear();
+//				this.facetContext.addFacets(tableInstance2.getFacets2());
+//				Command setFacetsCommand = TableInstanceCommandFactory.createSetFacetsCommand(
+//						tableInstance2.getFacets2(), newElements, this);
+//				if (setFacetsCommand != null && setFacetsCommand.canExecute()) {
+////					addRowCommand.append(setFacetsCommand);
+//				}
+//			} catch (CoreException e) {
+//				throw new RuntimeException(e);
+//			}
+//		}
+		Command loadCustomizationCommand = TableInstanceCommandFactory
+				.createLoadCustomizationsCommand(getTableInstance().getCustomizations(), this);
+		if (loadCustomizationCommand != null && loadCustomizationCommand.canExecute()) {
+			addRowCommand.append(loadCustomizationCommand);
+		}
+		getEditingDomain().getCommandStack().execute(addRowCommand);
+	}
 }
