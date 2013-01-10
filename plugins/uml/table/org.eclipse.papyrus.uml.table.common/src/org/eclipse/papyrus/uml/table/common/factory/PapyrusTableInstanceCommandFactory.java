@@ -34,20 +34,21 @@ public class PapyrusTableInstanceCommandFactory {
 	//adapted code from NattableWidget#addRows
 	public static Command getAddRowCommand(final List<EObject> newElements, final TableInstance tableInstance, final NatTableWidget widget){
 		CompoundCommand addRowCommand = org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory.createAddRowsCommand(newElements, widget);
-		if (tableInstance instanceof TableInstance2) {
-			TableInstance2 tableInstance2 = (TableInstance2) tableInstance;
-			try {
-				widget.getFacetContext().clear();
-				widget.getFacetContext().addFacets(tableInstance2.getFacets2());
-				Command setFacetsCommand = org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory.createSetFacetsCommand(
-						tableInstance2.getFacets2(), newElements, widget);
-				if (setFacetsCommand != null && setFacetsCommand.canExecute()) {
-					addRowCommand.append(setFacetsCommand);
-				}
-			} catch (CoreException e) {
-				throw new RuntimeException(e);
-			}
-		}
+		//to avoid the creation of facet columns (see bug 397849: [Table]Hidden Facets Columns become visible after drop,  creation of paste into the table)
+//		if (tableInstance instanceof TableInstance2) {
+//			TableInstance2 tableInstance2 = (TableInstance2) tableInstance;
+//			try {
+//				widget.getFacetContext().clear();
+//				widget.getFacetContext().addFacets(tableInstance2.getFacets2());
+//				Command setFacetsCommand = org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory.createSetFacetsCommand(
+//						tableInstance2.getFacets2(), newElements, widget);
+//				if (setFacetsCommand != null && setFacetsCommand.canExecute()) {
+//					addRowCommand.append(setFacetsCommand);
+//				}
+//			} catch (CoreException e) {
+//				throw new RuntimeException(e);
+//			}
+//		}
 		Command loadCustomizationCommand = org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory.createLoadCustomizationsCommand(tableInstance.getCustomizations(), widget);
 		if (loadCustomizationCommand != null && loadCustomizationCommand.canExecute()) {
 			addRowCommand.append(loadCustomizationCommand);
