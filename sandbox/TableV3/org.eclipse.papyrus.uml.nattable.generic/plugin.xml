@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      <editorDiagram
+            factoryClass="org.eclipse.papyrus.uml.nattable.generic.factory.GenericUMLNattableEditorFactory"
+            icon="icons/uml_generic_table.png">
+      </editorDiagram>
+   </extension>
+ <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a UML Generic NatTable Editor"
+            id="org.eclipse.papyrus.uml.nattable.generic.create.command"
+            name="Create a UML Generic NatTable Editor">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.uml.nattable.generic.handlers.CreateNattableEditorCommand"
+            commandId="org.eclipse.papyrus.uml.nattable.generic.create.command">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         id="create.table.menus"
+         name="Create Table Menus"
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.infra.nattable.popupmenu.createnattable">
+         <command
+               commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
+               icon="icons/uml_generic_table.png"
+               label="UML Generic NatTable"
+               mnemonic="&amp;G"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.papyrus.infra.nattable.menu.createnattable">
+         <command
+               commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
+               icon="icons/uml_generic_table.png"
+               label="UML Generic NatTable"
+               mnemonic="&amp;G"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.papyrus.infra.nattable.toolbar.createnattable">
+         <command
+               commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
+               icon="icons/uml_generic_table.gif"
+               label="UML Generic NatTable"
+               mnemonic="&amp;G"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+</plugin>
