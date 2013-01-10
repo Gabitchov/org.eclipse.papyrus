@@ -357,7 +357,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 
 		final TransactionalEditingDomain domain = getEditingDomain();
 
-		Command showHideColumnsCommand = TableInstanceCommandFactory.createShowHideColumnCommand(widget, columnsToShow, columnsToHide, true);
+		Command showHideColumnsCommand = TableInstanceCommandFactory.createShowHideColumnCommand(widget, columnsToShow, columnsToHide, false);
 		if(showHideColumnsCommand != null && showHideColumnsCommand.canExecute()) {
 			compoundCmd.append(showHideColumnsCommand);
 		}
