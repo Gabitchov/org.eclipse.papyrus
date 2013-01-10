@@ -12,10 +12,10 @@ package org.eclipse.papyrus.uml.diagram.timing.custom.figures;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.Shape;
 
 /** A rectangle that is not painted: useful for simplifying layouts */
 public class InvisibleRectangleFigure extends RectangleFigure {
+
 	/**
 	 * Creates a RectangleFigure.
 	 */

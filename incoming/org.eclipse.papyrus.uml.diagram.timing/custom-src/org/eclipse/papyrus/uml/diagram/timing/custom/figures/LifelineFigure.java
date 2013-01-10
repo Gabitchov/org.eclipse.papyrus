@@ -25,29 +25,35 @@ import org.eclipse.swt.graphics.Image;
 public class LifelineFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
 
 	protected final int LABEL_WIDTH = 30;
+
 	protected RectangleFigure nameLabelContainerFigure;
+
 	protected LifelineVerticalLabel nameLabel;
+
 	protected RectangleFigure timeRulerContainerFigure;
+
 	protected RectangleFigure lifelineDataContainerFigure;
+
 	protected RectangleFigure timelineContainerFigure;
 
 	private boolean selected;
+
 	private boolean displayTimeRuler;
 
 	public LifelineFigure() {
 		setShadow(false);
 		createContents();
 		setLayoutManager(new AbstractLayout() {
+
 			public void layout(final IFigure container) {
 				final Rectangle clientArea = container.getClientArea();
 				final List<?> children = container.getChildren();
-				for (int i = 0; i < children.size(); i++) {
-					final IFigure child = (IFigure) children.get(i);
-					if (child == getNameLabelContainerFigure()) {
+				for(int i = 0; i < children.size(); i++) {
+					final IFigure child = (IFigure)children.get(i);
+					if(child == getNameLabelContainerFigure()) {
 						child.setBounds(new Rectangle(clientArea.x, clientArea.y, LifelineFigure.this.LABEL_WIDTH, clientArea.height));
-					} else if (child == getLifelineDataContainerFigure()) {
-						child.setBounds(new Rectangle(clientArea.x + LifelineFigure.this.LABEL_WIDTH, clientArea.y, clientArea.width
-								- LifelineFigure.this.LABEL_WIDTH, clientArea.height));
+					} else if(child == getLifelineDataContainerFigure()) {
+						child.setBounds(new Rectangle(clientArea.x + LifelineFigure.this.LABEL_WIDTH, clientArea.y, clientArea.width - LifelineFigure.this.LABEL_WIDTH, clientArea.height));
 					}
 				}
 			}
@@ -84,7 +90,7 @@ public class LifelineFigure extends PapyrusNodeFigure implements IPapyrusNodeUML
 	@Override
 	public void paintFigure(final Graphics graphics) {
 		super.paintFigure(graphics);
-		if (this.selected) {
+		if(this.selected) {
 			graphics.pushState();
 			graphics.setForegroundColor(ColorConstants.black);
 			graphics.setLineWidth(1);

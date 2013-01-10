@@ -77,7 +77,7 @@ public class TimingDiagramEditPart extends PapyrusDiagramEditPart {
 		@Override
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			final MoveHandle h = new MoveHandle((GraphicalEditPart) getHost());
+			final MoveHandle h = new MoveHandle((GraphicalEditPart)getHost());
 			h.setBorder(null);
 			return Collections.singletonList(h);
 		}
@@ -110,7 +110,7 @@ public class TimingDiagramEditPart extends PapyrusDiagramEditPart {
 		@Override
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			final MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+			final MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 			mh.setBorder(null);
 			return Collections.singletonList(mh);
 		}

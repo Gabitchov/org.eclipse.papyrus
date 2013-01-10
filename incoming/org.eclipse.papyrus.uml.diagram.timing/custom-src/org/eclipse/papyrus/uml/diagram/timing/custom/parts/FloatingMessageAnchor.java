@@ -20,7 +20,9 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
  * gets its relative location from an EAnnotation stored on the Connector.
  */
 public class FloatingMessageAnchor extends ConnectionAnchorBase {
+
 	private final ConnectionEditPart connectionEditPart;
+
 	private final Point defaultOffset;
 
 	public FloatingMessageAnchor(final ConnectionEditPart connEditPart, final Point defaultOffset) {
@@ -38,7 +40,7 @@ public class FloatingMessageAnchor extends ConnectionAnchorBase {
 
 	public Point getLocation(final Point reference) {
 		final Point point = MessageUtils.getMessageConnectorLocation(this.connectionEditPart);
-		if (point != null) {
+		if(point != null) {
 			return new Point(reference.x + point.x, reference.y + point.y);
 		}
 		return new Point(reference.x + this.defaultOffset.x, reference.y + this.defaultOffset.y);

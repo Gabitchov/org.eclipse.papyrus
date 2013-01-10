@@ -29,17 +29,17 @@ public class CustomFullStateInvariantItemSemanticEditPolicy extends FullStateInv
 
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType() == REQ_DELETE) {
+		if(request.getType() == REQ_DELETE) {
 			try {
-				final View view = (View) getHost().getModel();
+				final View view = (View)getHost().getModel();
 				final Set<View> viewsToRemove = new HashSet<View>();
-				if (view.getType().equals(Constants.fullStateInvariantId)) {
+				if(view.getType().equals(Constants.fullStateInvariantId)) {
 					viewsToRemove.addAll(StateInvariantUtils.getViewsToHide(view));
 				}
-				if (viewsToRemove.size() > 0) {
+				if(viewsToRemove.size() > 0) {
 					final CompoundCommand compoundCommand = new CompoundCommand(Messages.hideStateInvariant);
 					compoundCommand.add(super.getCommand(request));
-					for (final View viewToRemove : viewsToRemove) {
+					for(final View viewToRemove : viewsToRemove) {
 						compoundCommand.add(new ICommandProxy(new DeleteCommand(viewToRemove)));
 					}
 					return compoundCommand;

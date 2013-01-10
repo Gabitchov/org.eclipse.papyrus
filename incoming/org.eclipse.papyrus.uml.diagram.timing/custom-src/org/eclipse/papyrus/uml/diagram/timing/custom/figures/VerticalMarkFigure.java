@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Image;
 public class VerticalMarkFigure extends org.eclipse.draw2d.Figure implements IPapyrusUMLElementFigure {
 
 	public static final int PREFERRED_WIDTH = 5;
+
 	public static final int PREFERRED_HEIGHT = 12;
 
 	public VerticalMarkFigure() {

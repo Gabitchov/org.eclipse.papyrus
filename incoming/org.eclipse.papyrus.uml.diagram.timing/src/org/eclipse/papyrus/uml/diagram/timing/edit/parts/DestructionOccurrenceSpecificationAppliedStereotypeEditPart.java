@@ -131,10 +131,7 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry
-						.getType(org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationAppliedStereotypeEditPart.VISUAL_ID),
-				new Point(0, 0));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 0));
 	}
 
 	/**
@@ -160,9 +157,9 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	public IBorderItemLocator getBorderItemLocator() {
 		final IFigure parentFigure = getFigure().getParent();
-		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
+		if(parentFigure != null && parentFigure.getLayoutManager() != null) {
 			final Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
-			return (IBorderItemLocator) constraint;
+			return (IBorderItemLocator)constraint;
 		}
 		return null;
 	}
@@ -172,10 +169,10 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	@Override
 	public void refreshBounds() {
-		final int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		final int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		final int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		final int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		final int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		final int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		final int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		final int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
 		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
 	}
 
@@ -183,12 +180,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected String getLabelTextHelper(final IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getText();
-		} else if (figure instanceof ILabelFigure) {
-			return ((ILabelFigure) figure).getText();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getText();
+		} else if(figure instanceof ILabelFigure) {
+			return ((ILabelFigure)figure).getText();
 		} else {
-			return ((Label) figure).getText();
+			return ((Label)figure).getText();
 		}
 	}
 
@@ -196,12 +193,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected void setLabelTextHelper(final IFigure figure, final String text) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setText(text);
-		} else if (figure instanceof ILabelFigure) {
-			((ILabelFigure) figure).setText(text);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setText(text);
+		} else if(figure instanceof ILabelFigure) {
+			((ILabelFigure)figure).setText(text);
 		} else {
-			((Label) figure).setText(text);
+			((Label)figure).setText(text);
 		}
 	}
 
@@ -209,12 +206,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(final IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getIcon();
-		} else if (figure instanceof ILabelFigure) {
-			return ((ILabelFigure) figure).getIcon();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getIcon();
+		} else if(figure instanceof ILabelFigure) {
+			return ((ILabelFigure)figure).getIcon();
 		} else {
-			return ((Label) figure).getIcon();
+			return ((Label)figure).getIcon();
 		}
 	}
 
@@ -222,12 +219,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected void setLabelIconHelper(final IFigure figure, final Image icon) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setIcon(icon);
-		} else if (figure instanceof ILabelFigure) {
-			((ILabelFigure) figure).setIcon(icon);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setIcon(icon);
+		} else if(figure instanceof ILabelFigure) {
+			((ILabelFigure)figure).setIcon(icon);
 		} else {
-			((Label) figure).setIcon(icon);
+			((Label)figure).setIcon(icon);
 		}
 	}
 
@@ -278,10 +275,10 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	protected String getLabelText() {
 		String text = null;
 		final EObject parserElement = getParserElement();
-		if (parserElement != null && getParser() != null) {
+		if(parserElement != null && getParser() != null) {
 			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
-		if (text == null || text.length() == 0) {
+		if(text == null || text.length() == 0) {
 			text = this.defaultText;
 		}
 		return text;
@@ -293,12 +290,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	public void setLabelText(final String text) {
 		setLabelTextHelper(getFigure(), text);
 		final Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
 		final Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
 	}
 
@@ -306,7 +303,7 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	public String getEditText() {
-		if (getParserElement() == null || getParser() == null) {
+		if(getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
@@ -326,14 +323,14 @@ implements ITextAwareEditPart, IBorderItemEditPart
 		return new ICellEditorValidator() {
 
 			public String isValid(final Object value) {
-				if (value instanceof String) {
+				if(value instanceof String) {
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						final IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+						final IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
 
 							public void run() {
-								setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
 							}
 						});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
@@ -352,7 +349,7 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	public IContentAssistProcessor getCompletionProcessor() {
-		if (getParserElement() == null || getParser() == null) {
+		if(getParserElement() == null || getParser() == null) {
 			return null;
 		}
 		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
@@ -369,9 +366,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	public IParser getParser() {
-		if (this.parser == null) {
-			this.parser = UMLParserProvider.getParser(UMLElementTypes.DestructionOccurrenceSpecification_27, getParserElement(), UMLVisualIDRegistry
-					.getType(org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationAppliedStereotypeEditPart.VISUAL_ID));
+		if(this.parser == null) {
+			this.parser = UMLParserProvider.getParser(UMLElementTypes.DestructionOccurrenceSpecification_27, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationAppliedStereotypeEditPart.VISUAL_ID));
 		}
 		return this.parser;
 	}
@@ -380,9 +376,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected DirectEditManager getManager() {
-		if (this.manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-					UMLEditPartFactory.getTextCellEditorLocator(this)));
+		if(this.manager == null) {
+			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return this.manager;
 	}
@@ -405,8 +400,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected void performDirectEdit(final Point eventLocation) {
-		if (getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
+		if(getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
@@ -414,8 +409,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	private void performDirectEdit(final char initialCharacter) {
-		if (getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager) getManager()).show(initialCharacter);
+		if(getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager)getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
 		}
@@ -429,43 +424,40 @@ implements ITextAwareEditPart, IBorderItemEditPart
 
 		final Request theRequest = request;
 
-		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == this.directEditionMode) {
+		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == this.directEditionMode) {
 			this.directEditionMode = getDirectEditionType();
 		}
-		switch (this.directEditionMode) {
+		switch(this.directEditionMode) {
 		case IDirectEdition.NO_DIRECT_EDITION:
 			// no direct edition mode => does nothing
 			return;
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
-			if (this.configuration == null || this.configuration.getLanguage() == null) {
+			if(this.configuration == null || this.configuration.getLanguage() == null) {
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				this.configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if (this.configuration instanceof IPopupEditorConfiguration) {
-					final IPopupEditorHelper helper = ((IPopupEditorConfiguration) this.configuration).createPopupEditorHelper(this);
+				if(this.configuration instanceof IPopupEditorConfiguration) {
+					final IPopupEditorHelper helper = ((IPopupEditorConfiguration)this.configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
-				} else if (this.configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) this.configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-							resolveSemanticElement(), this.configuration.getTextToEdit(resolveSemanticElement()));
-				} else if (this.configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
-							this.configuration.getTextToEdit(resolveSemanticElement()), this.configuration);
+				} else if(this.configuration instanceof IAdvancedEditorConfiguration) {
+					dialog = ((IAdvancedEditorConfiguration)this.configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), this.configuration.getTextToEdit(resolveSemanticElement()));
+				} else if(this.configuration instanceof IDirectEditorConfiguration) {
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), this.configuration.getTextToEdit(resolveSemanticElement()), this.configuration);
 				} else {
 					return;
 				}
 				final Dialog finalDialog = dialog;
 
-				if (Window.OK == dialog.open()) {
+				if(Window.OK == dialog.open()) {
 					final TransactionalEditingDomain domain = getEditingDomain();
 					final RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 						@Override
 						protected void doExecute() {
-							DestructionOccurrenceSpecificationAppliedStereotypeEditPart.this.configuration.postEditAction(resolveSemanticElement(),
-									((ILabelEditorDialog) finalDialog).getValue());
+							DestructionOccurrenceSpecificationAppliedStereotypeEditPart.this.configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
 
 						}
 					};
@@ -480,13 +472,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 				getEditingDomain().runExclusive(new Runnable() {
 
 					public void run() {
-						if (isActive() && isEditable()) {
-							if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								final Character initialChar = (Character) theRequest.getExtendedData().get(
-										RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+						if(isActive() && isEditable()) {
+							if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+								final Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 								performDirectEdit(initialChar.charValue());
-							} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-								final DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+							} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+								final DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 								performDirectEdit(editRequest.getLocation());
 							} else {
 								performDirectEdit();
@@ -521,17 +512,17 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	protected void refreshLabel() {
 		final EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if (maskLabelPolicy == null) {
+		if(maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
 		final Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
 		final Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
 	}
 
@@ -539,15 +530,15 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		final FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
+		final FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
-		if (resolveSemanticElement() instanceof Feature) {
-			if (((Feature) resolveSemanticElement()).isStatic()) {
-				((WrappingLabel) getFigure()).setTextUnderline(true);
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
 			} else {
-				((WrappingLabel) getFigure()).setTextUnderline(false);
+				((WrappingLabel)getFigure()).setTextUnderline(false);
 			}
 		}
 	}
@@ -556,9 +547,9 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		final FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		final FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
@@ -567,10 +558,9 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	@Override
 	protected void refreshFont() {
-		final FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null) {
-			final FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
-					| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+		final FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if(style != null) {
+			final FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -588,11 +578,11 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	@Override
 	protected void addSemanticListeners() {
-		if (getParser() instanceof ISemanticParser) {
+		if(getParser() instanceof ISemanticParser) {
 			final EObject element = resolveSemanticElement();
-			this.parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
-			for (int i = 0; i < this.parserElements.size(); i++) {
-				addListenerFilter("SemanticModel" + i, this, (EObject) this.parserElements.get(i)); //$NON-NLS-1$
+			this.parserElements = ((ISemanticParser)getParser()).getSemanticElementsBeingParsed(element);
+			for(int i = 0; i < this.parserElements.size(); i++) {
+				addListenerFilter("SemanticModel" + i, this, (EObject)this.parserElements.get(i)); //$NON-NLS-1$
 			}
 		} else {
 			super.addSemanticListeners();
@@ -604,8 +594,8 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	@Override
 	protected void removeSemanticListeners() {
-		if (this.parserElements != null) {
-			for (int i = 0; i < this.parserElements.size(); i++) {
+		if(this.parserElements != null) {
+			for(int i = 0; i < this.parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
 			}
 		} else {
@@ -618,7 +608,7 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 */
 	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
-		if (this.accessibleEP == null) {
+		if(this.accessibleEP == null) {
 			this.accessibleEP = new AccessibleGraphicalEditPart() {
 
 				@Override
@@ -656,7 +646,7 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected boolean checkExtendedEditor() {
-		if (resolveSemanticElement() != null) {
+		if(resolveSemanticElement() != null) {
 			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
 		}
 		return false;
@@ -678,14 +668,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
-		if (this.configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore()
-					.getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+		if(this.configuration == null) {
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			if(languagePreferred != null && !languagePreferred.equals("")) {
 				this.configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
-				this.configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass()
-						.getInstanceClassName());
+				this.configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
 			}
 		}
 	}
@@ -696,11 +684,10 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		final String languagePreferred = Activator.getDefault().getPreferenceStore()
-				.getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != this.configuration.getLanguage()) {
+		final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != this.configuration.getLanguage()) {
 			this.configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
-		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			this.configuration = null;
 		}
 	}
@@ -709,7 +696,7 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	 * Performs the direct edit usually used by GMF editors.
 	 * 
 	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
+	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -718,13 +705,12 @@ implements ITextAwareEditPart, IBorderItemEditPart
 			getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							final Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+					if(isActive() && isEditable()) {
+						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							final Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							final DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							final DirectEditRequest editRequest = (DirectEditRequest)theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
 							performDirectEdit();
@@ -743,25 +729,24 @@ implements ITextAwareEditPart, IBorderItemEditPart
 	@Override
 	protected void handleNotificationEvent(final Notification event) {
 		final Object feature = event.getFeature();
-		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
-			final Integer c = (Integer) event.getNewValue();
+		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+			final Integer c = (Integer)event.getNewValue();
 			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
 			refreshUnderline();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
-			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
+			if(getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}
-			if (getParser() instanceof ISemanticParser) {
-				final ISemanticParser modelParser = (ISemanticParser) getParser();
-				if (modelParser.areSemanticElementsAffected(null, event)) {
+			if(getParser() instanceof ISemanticParser) {
+				final ISemanticParser modelParser = (ISemanticParser)getParser();
+				if(modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
-					if (resolveSemanticElement() != null) {
+					if(resolveSemanticElement() != null) {
 						addSemanticListeners();
 					}
 					refreshLabel();

@@ -44,15 +44,14 @@ public class DestructionOccurrenceSpecificationCreationTool extends CreationTool
 	@Override
 	protected Command getCommand() {
 		final EditPart targetEditPart = getTargetEditPart();
-		final CompositeCommand compositeCommand = new CompositeCommand(
-				Messages.DestructionOccurrenceSpecificationCreationTool_CreateDestructionOccurrenceSpecification);
+		final CompositeCommand compositeCommand = new CompositeCommand(Messages.DestructionOccurrenceSpecificationCreationTool_CreateDestructionOccurrenceSpecification);
 		EditPart timeline;
-		if (targetEditPart instanceof FullStateInvariantEditPartCN) {
-			final FullStateInvariantEditPartCN fullStateInvariantEditPartCN = (FullStateInvariantEditPartCN) targetEditPart;
+		if(targetEditPart instanceof FullStateInvariantEditPartCN) {
+			final FullStateInvariantEditPartCN fullStateInvariantEditPartCN = (FullStateInvariantEditPartCN)targetEditPart;
 			timeline = EditPartUtils.findParentEditPartWithId(targetEditPart, FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID);
 			compositeCommand.add(new CutAndInsertOccurrenceSpecificationCommand(fullStateInvariantEditPartCN, getLocation(), true));
-		} else if (targetEditPart instanceof CompactStateInvariantEditPartCN) {
-			final CompactStateInvariantEditPartCN compactStateInvariantEditPartCN = (CompactStateInvariantEditPartCN) targetEditPart;
+		} else if(targetEditPart instanceof CompactStateInvariantEditPartCN) {
+			final CompactStateInvariantEditPartCN compactStateInvariantEditPartCN = (CompactStateInvariantEditPartCN)targetEditPart;
 			timeline = EditPartUtils.findParentEditPartWithId(targetEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
 			compositeCommand.add(new CutAndInsertOccurrenceSpecificationCompactLifelineCommand(compactStateInvariantEditPartCN, getLocation(), true));
 		} else {

@@ -59,13 +59,13 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Message) {
+		if(false == getElementToEdit() instanceof Message) {
 			return false;
 		}
-		if (this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if(this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (this.reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if(this.reorientDirection == ReorientRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -75,14 +75,14 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(this.oldEnd instanceof MessageEnd && this.newEnd instanceof MessageEnd)) {
+		if(!(this.oldEnd instanceof MessageEnd && this.newEnd instanceof MessageEnd)) {
 			return false;
 		}
 		final Element target = getLink().getOwner();
-		if (!(getLink().eContainer() instanceof Interaction)) {
+		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
-		final Interaction container = (Interaction) getLink().eContainer();
+		final Interaction container = (Interaction)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_50(container, getLink(), getNewSource(), target);
 	}
 
@@ -90,14 +90,14 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(this.oldEnd instanceof Element && this.newEnd instanceof Element)) {
+		if(!(this.oldEnd instanceof Element && this.newEnd instanceof Element)) {
 			return false;
 		}
 		final MessageEnd source = getLink().getReceiveEvent();
-		if (!(getLink().eContainer() instanceof Interaction)) {
+		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
-		final Interaction container = (Interaction) getLink().eContainer();
+		final Interaction container = (Interaction)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_50(container, getLink(), source, getNewTarget());
 	}
 
@@ -106,13 +106,13 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if(this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (this.reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if(this.reorientDirection == ReorientRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -137,34 +137,34 @@ public class MessageLostReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Message getLink() {
-		return (Message) getElementToEdit();
+		return (Message)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected MessageEnd getOldSource() {
-		return (MessageEnd) this.oldEnd;
+		return (MessageEnd)this.oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected MessageEnd getNewSource() {
-		return (MessageEnd) this.newEnd;
+		return (MessageEnd)this.newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getOldTarget() {
-		return (Element) this.oldEnd;
+		return (Element)this.oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Element getNewTarget() {
-		return (Element) this.newEnd;
+		return (Element)this.newEnd;
 	}
 }

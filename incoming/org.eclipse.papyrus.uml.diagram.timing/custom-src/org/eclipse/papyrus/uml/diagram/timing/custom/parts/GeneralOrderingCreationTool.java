@@ -29,7 +29,7 @@ public class GeneralOrderingCreationTool extends AbstractTwoPointCreationTool {
 
 	@Override
 	protected boolean validateSecondTarget(final EditPart firstTarget, final EditPart secondTarget) {
-		if (secondTarget == null || !EditPartUtils.isEditPartFor(secondTarget, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
+		if(secondTarget == null || !EditPartUtils.isEditPartFor(secondTarget, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
 			return false;
 		}
 		return ordered(firstTarget, secondTarget);

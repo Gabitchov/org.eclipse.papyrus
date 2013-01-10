@@ -26,15 +26,19 @@ import org.eclipse.swt.widgets.Display;
 public class VerticalLabel extends AbstractImageFigure {
 
 	private Image img;
+
 	private String myText;
+
 	private Font myImageFont;
+
 	private Color myForegroundColor;
+
 	private Color myBackgroundColor;
 
 	@Override
 	protected void paintFigure(final Graphics g) {
 		final Image image = getImage();
-		if (image != null) {
+		if(image != null) {
 			g.drawImage(image, this.bounds.x, this.bounds.y);
 		}
 	}
@@ -49,7 +53,7 @@ public class VerticalLabel extends AbstractImageFigure {
 	/** {@inheritDoc} */
 	@Override
 	public void removeNotify() {
-		if (this.img != null) {
+		if(this.img != null) {
 			this.img.dispose();
 			this.img = null;
 		}
@@ -59,20 +63,20 @@ public class VerticalLabel extends AbstractImageFigure {
 	/** {@inheritDoc} */
 	public Image getImage() {
 		boolean update = false;
-		if (this.myImageFont != getFont()) {
+		if(this.myImageFont != getFont()) {
 			this.myImageFont = getFont();
 			update = true;
 		}
-		if (needsUpdate(this.myForegroundColor, getForegroundColor())) {
+		if(needsUpdate(this.myForegroundColor, getForegroundColor())) {
 			this.myForegroundColor = getForegroundColor();
 			update = true;
 		}
-		if (needsUpdate(this.myBackgroundColor, getBackgroundColor())) {
+		if(needsUpdate(this.myBackgroundColor, getBackgroundColor())) {
 			this.myBackgroundColor = getBackgroundColor();
 			update = true;
 		}
 
-		if (update) {
+		if(update) {
 			updateImage();
 		}
 		return this.img;
@@ -82,7 +86,7 @@ public class VerticalLabel extends AbstractImageFigure {
 	 * Updates the image with the string provided.
 	 * 
 	 * @param text
-	 *            to display
+	 *        to display
 	 */
 	public void setText(final String text) {
 		this.myText = text;
@@ -99,18 +103,18 @@ public class VerticalLabel extends AbstractImageFigure {
 	 * @return image created
 	 */
 	public void updateImage() {
-		if (this.img != null) {
+		if(this.img != null) {
 			this.img.dispose();
 			this.img = null;
 		}
-		if (getText() == null || getFont() == null) {
+		if(getText() == null || getFont() == null) {
 			return;
 		}
 		setImage(createRotatedImageOfString(getText(), getFont(), getForegroundColor(), getBackgroundColor(), isOpaque()));
 	}
 
 	private void setImage(final Image image) {
-		if (this.img == image) {
+		if(this.img == image) {
 			return;
 		}
 		this.img = image;
@@ -129,7 +133,7 @@ public class VerticalLabel extends AbstractImageFigure {
 		final int width = metrics.getAscent() + metrics.getDescent() + metrics.getLeading();
 
 		final ImageData data = new ImageData(width, height, 32, new PaletteData(0x0000ff00, 0x00ff0000, 0xff000000));
-		if (!opaque) {
+		if(!opaque) {
 			data.transparentPixel = data.palette.getPixel(background.getRGB());
 		}
 
@@ -149,7 +153,7 @@ public class VerticalLabel extends AbstractImageFigure {
 	}
 
 	private static final boolean needsUpdate(final Color cachedColor, final Color actualColor) {
-		if (cachedColor == null && actualColor == null) {
+		if(cachedColor == null && actualColor == null) {
 			return false;
 		}
 		return cachedColor == null || !cachedColor.equals(actualColor);
@@ -157,7 +161,7 @@ public class VerticalLabel extends AbstractImageFigure {
 
 	@Override
 	public Dimension getPreferredSize(final int wHint, final int hHint) {
-		if (this.img != null) {
+		if(this.img != null) {
 			return new Rectangle(this.img.getBounds()).getSize();
 		}
 		return super.getPreferredSize(wHint, hHint);

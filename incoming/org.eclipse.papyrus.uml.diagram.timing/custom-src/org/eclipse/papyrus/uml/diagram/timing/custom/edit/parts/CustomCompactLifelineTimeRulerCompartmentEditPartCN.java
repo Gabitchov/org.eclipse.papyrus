@@ -24,7 +24,7 @@ public class CustomCompactLifelineTimeRulerCompartmentEditPartCN extends Compact
 
 	@Override
 	public IFigure createFigure() {
-		final ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		final ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setBorder(null);
 		result.setTitleVisibility(false);
 		result.setLayoutManager(new FillLayout());
@@ -40,7 +40,7 @@ public class CustomCompactLifelineTimeRulerCompartmentEditPartCN extends Compact
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		((ResizableCompartmentFigure) getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+		((ResizableCompartmentFigure)getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
 		refreshBounds();
 	}
 

@@ -19,6 +19,7 @@ public class MessageSyncFigure extends AbstractMessageFigure {
 	@Override
 	protected RotatableDecoration createTargetDecoration() {
 		final PolygonDecoration df = new PolygonDecoration() {
+
 			@Override
 			protected void outlineShape(final Graphics g) {
 				// no outline: this is a filled arrow

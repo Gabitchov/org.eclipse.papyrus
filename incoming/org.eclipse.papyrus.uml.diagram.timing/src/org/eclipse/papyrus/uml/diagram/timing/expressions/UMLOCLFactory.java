@@ -47,14 +47,13 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[7];
-		this.expressionBodies = new String[] {
-				"self.messageSort=MessageSort::synchCall and self.messageKind<>MessageKind::lost and self.messageKind<>MessageKind::found", //$NON-NLS-1$
-				"self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal", //$NON-NLS-1$
-				"self.messageSort=MessageSort::reply", //$NON-NLS-1$
-				"self.messageSort=MessageSort::createMessage", //$NON-NLS-1$
-				"self.messageSort=MessageSort::deleteMessage", //$NON-NLS-1$
-				"self.messageKind=MessageKind::lost", //$NON-NLS-1$
-				"self.messageKind=MessageKind::found", //$NON-NLS-1$
+		this.expressionBodies = new String[]{ "self.messageSort=MessageSort::synchCall and self.messageKind<>MessageKind::lost and self.messageKind<>MessageKind::found", //$NON-NLS-1$
+		"self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal", //$NON-NLS-1$
+		"self.messageSort=MessageSort::reply", //$NON-NLS-1$
+		"self.messageSort=MessageSort::createMessage", //$NON-NLS-1$
+		"self.messageSort=MessageSort::deleteMessage", //$NON-NLS-1$
+		"self.messageKind=MessageKind::lost", //$NON-NLS-1$
+		"self.messageKind=MessageKind::found", //$NON-NLS-1$
 		};
 	}
 
@@ -63,7 +62,7 @@ public class UMLOCLFactory {
 	 */
 	private static UMLOCLFactory getInstance() {
 		UMLOCLFactory instance = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
-		if (instance == null) {
+		if(instance == null) {
 			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(instance = new UMLOCLFactory());
 		}
 		return instance;
@@ -81,12 +80,11 @@ public class UMLOCLFactory {
 	 */
 	public static UMLAbstractExpression getExpression(final int index, final EClassifier context, final Map<String, EClassifier> environment) {
 		final UMLOCLFactory cached = getInstance();
-		if (index < 0 || index >= cached.expressions.length) {
+		if(index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
-		if (cached.expressions[index] == null) {
-			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
-					environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+		if(cached.expressions[index] == null) {
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
@@ -148,14 +146,14 @@ public class UMLOCLFactory {
 		@Override
 		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(final Object context, final Map env) {
-			if (this.oclExpression == null) {
+			if(this.oclExpression == null) {
 				return null;
 			}
 			// on the first call, both evalEnvironment and extentMap are clear, for later we have finally, below.
 			final EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = this.oclInstance.getEvaluationEnvironment();
 			// initialize environment
-			for (final Object nextKey : env.keySet()) {
-				evalEnv.replace((String) nextKey, env.get(nextKey));
+			for(final Object nextKey : env.keySet()) {
+				evalEnv.replace((String)nextKey, env.get(nextKey));
 			}
 			try {
 				final Object result = this.oclInstance.evaluate(context, this.oclExpression);
@@ -170,12 +168,11 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static void initCustomEnv(final Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
-				final Map<String, EClassifier> environment) {
+		private static void initCustomEnv(final Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, final Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations
 			// from OCL expressions
 			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
-			for (final String varName : environment.keySet()) {
+			for(final String varName : environment.keySet()) {
 				final EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
 			}

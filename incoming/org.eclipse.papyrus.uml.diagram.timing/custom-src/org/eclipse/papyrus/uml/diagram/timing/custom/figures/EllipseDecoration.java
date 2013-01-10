@@ -42,7 +42,7 @@ public class EllipseDecoration extends Ellipse implements RotatableDecoration {
 
 	private Rectangle getOptimizedBounds() {
 		final float lineInset = Math.max(1.0f, getLineWidthFloat()) / 2.0f;
-		final int inset = (int) Math.floor(lineInset);
+		final int inset = (int)Math.floor(lineInset);
 		final Rectangle r = Rectangle.SINGLETON.setBounds(getBounds());
 		r.x += inset;
 		r.y += inset;

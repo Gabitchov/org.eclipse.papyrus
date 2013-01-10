@@ -57,11 +57,11 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	protected IPath getFilePath() {
 		IPath path = getContainerFullPath();
-		if (path == null) {
+		if(path == null) {
 			path = new Path(""); //$NON-NLS-1$
 		}
 		final String fileName = getFileName();
-		if (fileName != null) {
+		if(fileName != null) {
 			path = path.append(fileName);
 		}
 		return path;
@@ -82,11 +82,11 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	@Override
 	protected boolean validatePage() {
-		if (!super.validatePage()) {
+		if(!super.validatePage()) {
 			return false;
 		}
 		final String extension = getExtension();
-		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+		if(extension != null && !getFilePath().toString().endsWith("." + extension)) {
 			setErrorMessage(NLS.bind(Messages.UMLCreationWizardPageExtensionError, extension));
 			return false;
 		}

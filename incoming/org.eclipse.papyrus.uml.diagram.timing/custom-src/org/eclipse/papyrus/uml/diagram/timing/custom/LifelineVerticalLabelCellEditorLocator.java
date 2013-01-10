@@ -28,16 +28,16 @@ public class LifelineVerticalLabelCellEditorLocator implements CellEditorLocator
 	}
 
 	public void relocate(final CellEditor celleditor) {
-		final Text text = (Text) celleditor.getControl();
+		final Text text = (Text)celleditor.getControl();
 		// position the cell editor at the top of the vertical text
 		final Rectangle rect = this.figure.getBounds().getCopy();
 		rect.y -= text.getBounds().height + 5;
 		this.figure.translateToAbsolute(rect);
-		if (!text.getFont().isDisposed()) {
+		if(!text.getFont().isDisposed()) {
 			final int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
 			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 		}
-		if (!rect.equals(new Rectangle(text.getBounds()))) {
+		if(!rect.equals(new Rectangle(text.getBounds()))) {
 			text.setBounds(rect.x, rect.y, rect.width, rect.height);
 		}
 

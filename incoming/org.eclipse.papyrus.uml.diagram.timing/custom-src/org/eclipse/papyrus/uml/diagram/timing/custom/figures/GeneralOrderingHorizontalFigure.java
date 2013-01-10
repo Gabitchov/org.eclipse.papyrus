@@ -39,14 +39,14 @@ public class GeneralOrderingHorizontalFigure extends PapyrusNodeFigure {
 		g.setLineWidth(1);
 
 		// horizontal line
-		g.setLineDash(new int[] { 4, 4 });
+		g.setLineDash(new int[]{ 4, 4 });
 		g.drawLine(x, middleY, x + w, middleY);
-		g.setLineDash(new int[] {});
+		g.setLineDash(new int[]{});
 
 		// arrow
 		g.setAntialias(SWT.ON);
 		g.setBackgroundColor(getForegroundColor());
-		g.fillPolygon(new int[] { middleX - a, this.bounds.y, middleX + a, middleY, middleX - a, this.bounds.y + this.bounds.height });
+		g.fillPolygon(new int[]{ middleX - a, this.bounds.y, middleX + a, middleY, middleX - a, this.bounds.y + this.bounds.height });
 
 		g.popState();
 	}

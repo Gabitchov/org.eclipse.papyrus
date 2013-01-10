@@ -43,18 +43,22 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	private static final Object[] EMPTY_ARRAY = new Object[0];
+
 	/**
 	 * @generated
 	 */
 	private Viewer myViewer;
+
 	/**
 	 * @generated
 	 */
 	private AdapterFactoryEditingDomain myEditingDomain;
+
 	/**
 	 * @generated
 	 */
 	private WorkspaceSynchronizer myWorkspaceSynchronizer;
+
 	/**
 	 * @generated
 	 */
@@ -66,59 +70,59 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	public UMLDomainNavigatorContentProvider() {
 		this.myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		final TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
-		this.myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
+		this.myEditingDomain = (AdapterFactoryEditingDomain)editingDomain;
 		this.myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
+
 			@Override
 			public Object get(final Object key) {
-				if (!containsKey(key)) {
+				if(!containsKey(key)) {
 					put(key, Boolean.TRUE);
 				}
 				return super.get(key);
 			}
 		});
 		this.myViewerRefreshRunnable = new Runnable() {
+
 			public void run() {
-				if (UMLDomainNavigatorContentProvider.this.myViewer != null) {
+				if(UMLDomainNavigatorContentProvider.this.myViewer != null) {
 					UMLDomainNavigatorContentProvider.this.myViewer.refresh();
 				}
 			}
 		};
 		this.myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain, new WorkspaceSynchronizer.Delegate() {
+
 			public void dispose() {
 			}
 
 			public boolean handleResourceChanged(final Resource resource) {
-				for (final Object element : UMLDomainNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
-					final Resource nextResource = (Resource) element;
+				for(final Object element : UMLDomainNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
+					final Resource nextResource = (Resource)element;
 					nextResource.unload();
 				}
-				if (UMLDomainNavigatorContentProvider.this.myViewer != null) {
-					UMLDomainNavigatorContentProvider.this.myViewer.getControl().getDisplay()
-							.asyncExec(UMLDomainNavigatorContentProvider.this.myViewerRefreshRunnable);
+				if(UMLDomainNavigatorContentProvider.this.myViewer != null) {
+					UMLDomainNavigatorContentProvider.this.myViewer.getControl().getDisplay().asyncExec(UMLDomainNavigatorContentProvider.this.myViewerRefreshRunnable);
 				}
 				return true;
 			}
 
 			public boolean handleResourceDeleted(final Resource resource) {
-				for (final Object element : UMLDomainNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
-					final Resource nextResource = (Resource) element;
+				for(final Object element : UMLDomainNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
+					final Resource nextResource = (Resource)element;
 					nextResource.unload();
 				}
-				if (UMLDomainNavigatorContentProvider.this.myViewer != null) {
-					UMLDomainNavigatorContentProvider.this.myViewer.getControl().getDisplay()
-							.asyncExec(UMLDomainNavigatorContentProvider.this.myViewerRefreshRunnable);
+				if(UMLDomainNavigatorContentProvider.this.myViewer != null) {
+					UMLDomainNavigatorContentProvider.this.myViewer.getControl().getDisplay().asyncExec(UMLDomainNavigatorContentProvider.this.myViewerRefreshRunnable);
 				}
 				return true;
 			}
 
 			public boolean handleResourceMoved(final Resource resource, final URI newURI) {
-				for (final Object element : UMLDomainNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
-					final Resource nextResource = (Resource) element;
+				for(final Object element : UMLDomainNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
+					final Resource nextResource = (Resource)element;
 					nextResource.unload();
 				}
-				if (UMLDomainNavigatorContentProvider.this.myViewer != null) {
-					UMLDomainNavigatorContentProvider.this.myViewer.getControl().getDisplay()
-							.asyncExec(UMLDomainNavigatorContentProvider.this.myViewerRefreshRunnable);
+				if(UMLDomainNavigatorContentProvider.this.myViewer != null) {
+					UMLDomainNavigatorContentProvider.this.myViewer.getControl().getDisplay().asyncExec(UMLDomainNavigatorContentProvider.this.myViewerRefreshRunnable);
 				}
 				return true;
 			}
@@ -132,11 +136,11 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		this.myWorkspaceSynchronizer.dispose();
 		this.myWorkspaceSynchronizer = null;
 		this.myViewerRefreshRunnable = null;
-		for (final Object element : this.myEditingDomain.getResourceSet().getResources()) {
-			final Resource resource = (Resource) element;
+		for(final Object element : this.myEditingDomain.getResourceSet().getResources()) {
+			final Resource resource = (Resource)element;
 			resource.unload();
 		}
-		((TransactionalEditingDomain) this.myEditingDomain).dispose();
+		((TransactionalEditingDomain)this.myEditingDomain).dispose();
 		this.myEditingDomain = null;
 	}
 
@@ -176,15 +180,15 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public Object[] getChildren(final Object parentElement) {
-		if (parentElement instanceof IFile) {
-			final IFile file = (IFile) parentElement;
+		if(parentElement instanceof IFile) {
+			final IFile file = (IFile)parentElement;
 			final URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			final Resource resource = this.myEditingDomain.getResourceSet().getResource(fileURI, true);
 			return wrapEObjects(this.myAdapterFctoryContentProvier.getChildren(resource), parentElement);
 		}
 
-		if (parentElement instanceof UMLDomainNavigatorItem) {
-			return wrapEObjects(this.myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem) parentElement).getEObject()), parentElement);
+		if(parentElement instanceof UMLDomainNavigatorItem) {
+			return wrapEObjects(this.myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem)parentElement).getEObject()), parentElement);
 		}
 		return EMPTY_ARRAY;
 	}
@@ -194,9 +198,9 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 */
 	public Object[] wrapEObjects(final Object[] objects, final Object parentElement) {
 		final Collection result = new ArrayList();
-		for (final Object object : objects) {
-			if (object instanceof EObject) {
-				result.add(new UMLDomainNavigatorItem((EObject) object, parentElement, this.myAdapterFctoryContentProvier));
+		for(final Object object : objects) {
+			if(object instanceof EObject) {
+				result.add(new UMLDomainNavigatorItem((EObject)object, parentElement, this.myAdapterFctoryContentProvier));
 			}
 		}
 		return result.toArray();
@@ -206,8 +210,8 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public Object getParent(final Object element) {
-		if (element instanceof UMLAbstractNavigatorItem) {
-			final UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) element;
+		if(element instanceof UMLAbstractNavigatorItem) {
+			final UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem)element;
 			return abstractNavigatorItem.getParent();
 		}
 		return null;

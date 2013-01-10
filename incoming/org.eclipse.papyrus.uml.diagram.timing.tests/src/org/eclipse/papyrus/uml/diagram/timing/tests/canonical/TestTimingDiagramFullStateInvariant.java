@@ -39,9 +39,7 @@ public class TestTimingDiagramFullStateInvariant extends AbstractTimingDiagramTe
 		assertEquals("We should have 3 StateDefinitions at the beginning of this test", 3, stateDefinitionEditParts.size());
 
 		// computeTimelineStringPattern();
-		checkFullTimelinePattern("StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 1_2);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_2_To_State 1_3);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_3_To_State 1_4);VerticalLine;" + "StateInvariant(State 1);");
+		checkFullTimelinePattern("StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 1_2);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_2_To_State 1_3);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_3_To_State 1_4);VerticalLine;" + "StateInvariant(State 1);");
 
 		final Rectangle stateDefBounds1 = getAbsoluteBounds(stateDefinitionEditParts.get(0));
 		final Rectangle stateDefBounds2 = getAbsoluteBounds(stateDefinitionEditParts.get(1));
@@ -56,33 +54,19 @@ public class TestTimingDiagramFullStateInvariant extends AbstractTimingDiagramTe
 		// TODO: check state invariant in front of state definitions
 
 		moveEditPart(stateInvariantEditParts.get(0), getDefaultFullLifelineTimelineCompartment(), new Point(0, distanceBetweenStates));
-		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 1_1);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 1_2);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_2_To_State 1_3);VerticalLine;StateInvariant(State 1);");
+		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 1_1);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 1_2);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_2_To_State 1_3);VerticalLine;StateInvariant(State 1);");
 		moveEditPart(stateInvariantEditParts.get(1), getDefaultFullLifelineTimelineCompartment(), new Point(0, 2 * distanceBetweenStates));
-		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;"
-				+ "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 1_1);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 1_2);VerticalLine;StateInvariant(State 1);");
+		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;" + "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 1_1);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 1_2);VerticalLine;StateInvariant(State 1);");
 		moveEditPart(stateInvariantEditParts.get(3), getDefaultFullLifelineTimelineCompartment(), new Point(0, distanceBetweenStates));
-		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;"
-				+ "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 1_1);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 2_2);VerticalLine;StateInvariant(State 2);");
+		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;" + "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 1_1);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 2_2);VerticalLine;StateInvariant(State 2);");
 		moveEditPart(stateInvariantEditParts.get(3), getDefaultFullLifelineTimelineCompartment(), new Point(0, distanceBetweenStates));
-		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;"
-				+ "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 1_1);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 3_2);VerticalLine;StateInvariant(State 3);");
+		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;" + "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 1_1);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 3_2);VerticalLine;StateInvariant(State 3);");
 		moveEditPart(stateInvariantEditParts.get(2), getDefaultFullLifelineTimelineCompartment(), new Point(0, 2 * distanceBetweenStates));
-		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;"
-				+ "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 3_2);VerticalLine;"
-				+ "StateInvariant(State 3);OccurrenceSpecification(State 3_2_To_State 3_3);VerticalLine;StateInvariant(State 3);");
+		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;" + "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 3_2);VerticalLine;" + "StateInvariant(State 3);OccurrenceSpecification(State 3_2_To_State 3_3);VerticalLine;StateInvariant(State 3);");
 		moveEditPart(stateInvariantEditParts.get(2), getDefaultFullLifelineTimelineCompartment(), new Point(0, -distanceBetweenStates));
-		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;"
-				+ "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 2_2);VerticalLine;"
-				+ "StateInvariant(State 2);OccurrenceSpecification(State 2_2_To_State 3_2);VerticalLine;StateInvariant(State 3);");
+		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 3_1);VerticalLine;" + "StateInvariant(State 3);OccurrenceSpecification(State 3_1_To_State 2_2);VerticalLine;" + "StateInvariant(State 2);OccurrenceSpecification(State 2_2_To_State 3_2);VerticalLine;StateInvariant(State 3);");
 		moveEditPart(stateInvariantEditParts.get(1), getDefaultFullLifelineTimelineCompartment(), new Point(0, -2 * distanceBetweenStates));
-		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 1_1);VerticalLine;"
-				+ "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 2_2);VerticalLine;"
-				+ "StateInvariant(State 2);OccurrenceSpecification(State 2_2_To_State 3_1);VerticalLine;StateInvariant(State 3);");
+		checkFullTimelinePattern("StateInvariant(State 2);OccurrenceSpecification(State 2_1_To_State 1_1);VerticalLine;" + "StateInvariant(State 1);OccurrenceSpecification(State 1_1_To_State 2_2);VerticalLine;" + "StateInvariant(State 2);OccurrenceSpecification(State 2_2_To_State 3_1);VerticalLine;StateInvariant(State 3);");
 	}
 
 	@Test

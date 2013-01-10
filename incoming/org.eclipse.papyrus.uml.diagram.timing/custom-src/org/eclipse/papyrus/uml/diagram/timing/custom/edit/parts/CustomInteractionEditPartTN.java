@@ -40,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
 public class CustomInteractionEditPartTN extends InteractionEditPartTN {
 
 	private static final int HEADER_HEIGHT_PADDING = 4;
+
 	private static final int MIN_HEADER_HEIGHT = 21;
 
 	public CustomInteractionEditPartTN(final View view) {
@@ -63,30 +64,27 @@ public class CustomInteractionEditPartTN extends InteractionEditPartTN {
 				@SuppressWarnings("unchecked")
 				final List<IFigure> children = container.getChildren();
 				int consumedHeight = 0;
-				for (int i = 0; i < children.size(); i++) {
+				for(int i = 0; i < children.size(); i++) {
 					final IFigure child = children.get(i);
-					if (child.equals(interactionRectangleFigure.getHeaderLabelContainer())) {
-						final int height = Math.max(interactionRectangleFigure.getHeaderLabel().getPreferredSize().height + HEADER_HEIGHT_PADDING,
-								MIN_HEADER_HEIGHT);
+					if(child.equals(interactionRectangleFigure.getHeaderLabelContainer())) {
+						final int height = Math.max(interactionRectangleFigure.getHeaderLabel().getPreferredSize().height + HEADER_HEIGHT_PADDING, MIN_HEADER_HEIGHT);
 						child.setBounds(new Rectangle(clientArea.x, clientArea.y + consumedHeight, clientArea.width, height));
 						consumedHeight = consumedHeight + height;
-					} else if (child.equals(interactionRectangleFigure.getCompartmentFigure())) {
-						child.setBounds(new Rectangle(clientArea.x, clientArea.y + consumedHeight, clientArea.width, clientArea.height - 3 - consumedHeight
-								- Constants.TIME_RULER_HEIGHT));
+					} else if(child.equals(interactionRectangleFigure.getCompartmentFigure())) {
+						child.setBounds(new Rectangle(clientArea.x, clientArea.y + consumedHeight, clientArea.width, clientArea.height - 3 - consumedHeight - Constants.TIME_RULER_HEIGHT));
 
-					} else if (child instanceof StereotypePropertiesCompartment) {
+					} else if(child instanceof StereotypePropertiesCompartment) {
 						final int height = child.getPreferredSize().height;
 						child.setBounds(new Rectangle(clientArea.x, clientArea.y + consumedHeight, clientArea.width, height));
 						consumedHeight += height;
-					} else if (child.equals(interactionRectangleFigure.getTimeRulerContainerFigure())) {
-						child.setBounds(new Rectangle(clientArea.x, clientArea.y + clientArea.height - Constants.TIME_RULER_HEIGHT, clientArea.width,
-								Constants.TIME_RULER_HEIGHT));
+					} else if(child.equals(interactionRectangleFigure.getTimeRulerContainerFigure())) {
+						child.setBounds(new Rectangle(clientArea.x, clientArea.y + clientArea.height - Constants.TIME_RULER_HEIGHT, clientArea.width, Constants.TIME_RULER_HEIGHT));
 						consumedHeight += Constants.TIME_RULER_HEIGHT;
-					} else if (i == 0 && !(child instanceof WrappingLabel)) {
+					} else if(i == 0 && !(child instanceof WrappingLabel)) {
 						consumedHeight = consumedHeight + child.getPreferredSize().height;
 						child.setBounds(new Rectangle(clientArea.x, clientArea.y, clientArea.width, consumedHeight));
 					} else {
-						if (i == 0 && !(child instanceof WrappingLabel)) {
+						if(i == 0 && !(child instanceof WrappingLabel)) {
 							consumedHeight = consumedHeight + child.getPreferredSize().height;
 							child.setBounds(new Rectangle(clientArea.x, clientArea.y, clientArea.width, consumedHeight));
 						} else {
@@ -108,14 +106,14 @@ public class CustomInteractionEditPartTN extends InteractionEditPartTN {
 	@Override
 	public Command getCommand(final Request request) {
 		// redirect the "drop objects" request to the compartment
-		if (request instanceof DropObjectsRequest) {
-			final DropObjectsRequest dropObjectsRequest = (DropObjectsRequest) request;
+		if(request instanceof DropObjectsRequest) {
+			final DropObjectsRequest dropObjectsRequest = (DropObjectsRequest)request;
 			final EditPart compartment = EditPartUtils.findFirstChildEditPartWithId(this, InteractionCompartmentEditPartTN.VISUAL_ID);
-			if (compartment != null) {
+			if(compartment != null) {
 				return compartment.getCommand(dropObjectsRequest);
 			}
 			Activator.log.error(new IllegalStateException("No " + InteractionCompartmentEditPartTN.class.getSimpleName() + " found in the " //$NON-NLS-1$ //$NON-NLS-2$
-					+ CustomInteractionEditPartTN.class.getSimpleName()));
+				+ CustomInteractionEditPartTN.class.getSimpleName()));
 		}
 		return super.getCommand(request);
 	}
@@ -126,10 +124,10 @@ public class CustomInteractionEditPartTN extends InteractionEditPartTN {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(final EditPart child) {
-				final View childView = (View) child.getModel();
+				final View childView = (View)child.getModel();
 				final int visualID = UMLVisualIDRegistry.getVisualID(childView);
 				// don't let Gates be resized
-				if (visualID == GateEditPart.VISUAL_ID) {
+				if(visualID == GateEditPart.VISUAL_ID) {
 					return new BorderItemSelectionEditPolicy();
 				}
 				return new NonResizableEditPolicy();

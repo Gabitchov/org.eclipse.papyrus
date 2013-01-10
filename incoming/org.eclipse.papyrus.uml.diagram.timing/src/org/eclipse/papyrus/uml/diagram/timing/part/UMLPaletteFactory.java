@@ -29,70 +29,87 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private final static String CREATEINTERACTIONCREATIONTOOL = "createInteractionCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATELIFELINECREATIONTOOL = "createLifelineCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATESTATEDEFINITIONCREATIONTOOL = "createStateDefinitionCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATETIMEOBSERVATIONCREATIONTOOL = "createTimeObservationCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATETIMECONSTRAINTCREATIONTOOL = "createTimeConstraintCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEDURATIONOBSERVATIONCREATIONTOOL = "createDurationObservationCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEDURATIONCONSTRAINTCREATIONTOOL = "createDurationConstraintCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEOCCURRENCESPECIFICATIONCREATIONTOOL = "createOccurrenceSpecificationCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEDESTRUCTIONOCCURRENCESPECIFICATIONCREATIONTOOL = "createDestructionOccurrenceSpecificationCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEGATECREATIONTOOL = "createGateCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEGENERALORDERINGCREATIONTOOL = "createGeneralOrderingCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEMESSAGESYNCCREATIONTOOL = "createMessageSyncCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEMESSAGEASYNCCREATIONTOOL = "createMessageAsyncCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEMESSAGEREPLYCREATIONTOOL = "createMessageReplyCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATECREATEMESSAGECREATIONTOOL = "createCreateMessageCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATEDELETEMESSAGECREATIONTOOL = "createDeleteMessageCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String CREATELOSTMESSAGECREATIONTOOL = "createLostMessageCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -110,58 +127,58 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Tool createTool(final String toolId) {
-		if (toolId.equals(CREATEINTERACTIONCREATIONTOOL)) {
+		if(toolId.equals(CREATEINTERACTIONCREATIONTOOL)) {
 			return createInteractionCreationTool();
 		}
-		if (toolId.equals(CREATELIFELINECREATIONTOOL)) {
+		if(toolId.equals(CREATELIFELINECREATIONTOOL)) {
 			return createLifelineCreationTool();
 		}
-		if (toolId.equals(CREATESTATEDEFINITIONCREATIONTOOL)) {
+		if(toolId.equals(CREATESTATEDEFINITIONCREATIONTOOL)) {
 			return createStateDefinitionCreationTool();
 		}
-		if (toolId.equals(CREATETIMEOBSERVATIONCREATIONTOOL)) {
+		if(toolId.equals(CREATETIMEOBSERVATIONCREATIONTOOL)) {
 			return createTimeObservationCreationTool();
 		}
-		if (toolId.equals(CREATETIMECONSTRAINTCREATIONTOOL)) {
+		if(toolId.equals(CREATETIMECONSTRAINTCREATIONTOOL)) {
 			return createTimeConstraintCreationTool();
 		}
-		if (toolId.equals(CREATEDURATIONOBSERVATIONCREATIONTOOL)) {
+		if(toolId.equals(CREATEDURATIONOBSERVATIONCREATIONTOOL)) {
 			return createDurationObservationCreationTool();
 		}
-		if (toolId.equals(CREATEDURATIONCONSTRAINTCREATIONTOOL)) {
+		if(toolId.equals(CREATEDURATIONCONSTRAINTCREATIONTOOL)) {
 			return createDurationConstraintCreationTool();
 		}
-		if (toolId.equals(CREATEOCCURRENCESPECIFICATIONCREATIONTOOL)) {
+		if(toolId.equals(CREATEOCCURRENCESPECIFICATIONCREATIONTOOL)) {
 			return createOccurrenceSpecificationCreationTool();
 		}
-		if (toolId.equals(CREATEDESTRUCTIONOCCURRENCESPECIFICATIONCREATIONTOOL)) {
+		if(toolId.equals(CREATEDESTRUCTIONOCCURRENCESPECIFICATIONCREATIONTOOL)) {
 			return createDestructionOccurrenceSpecificationCreationTool();
 		}
-		if (toolId.equals(CREATEGATECREATIONTOOL)) {
+		if(toolId.equals(CREATEGATECREATIONTOOL)) {
 			return createGateCreationTool();
 		}
-		if (toolId.equals(CREATEGENERALORDERINGCREATIONTOOL)) {
+		if(toolId.equals(CREATEGENERALORDERINGCREATIONTOOL)) {
 			return createGeneralOrderingCreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGESYNCCREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGESYNCCREATIONTOOL)) {
 			return createMessageSyncCreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGEASYNCCREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGEASYNCCREATIONTOOL)) {
 			return createMessageAsyncCreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGEREPLYCREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGEREPLYCREATIONTOOL)) {
 			return createMessageReplyCreationTool();
 		}
-		if (toolId.equals(CREATECREATEMESSAGECREATIONTOOL)) {
+		if(toolId.equals(CREATECREATEMESSAGECREATIONTOOL)) {
 			return createCreateMessageCreationTool();
 		}
-		if (toolId.equals(CREATEDELETEMESSAGECREATIONTOOL)) {
+		if(toolId.equals(CREATEDELETEMESSAGECREATIONTOOL)) {
 			return createDeleteMessageCreationTool();
 		}
-		if (toolId.equals(CREATELOSTMESSAGECREATIONTOOL)) {
+		if(toolId.equals(CREATELOSTMESSAGECREATIONTOOL)) {
 			return createLostMessageCreationTool();
 		}
-		if (toolId.equals(CREATEFOUNDMESSAGECREATIONTOOL)) {
+		if(toolId.equals(CREATEFOUNDMESSAGECREATIONTOOL)) {
 			return createFoundMessageCreationTool();
 		}
 

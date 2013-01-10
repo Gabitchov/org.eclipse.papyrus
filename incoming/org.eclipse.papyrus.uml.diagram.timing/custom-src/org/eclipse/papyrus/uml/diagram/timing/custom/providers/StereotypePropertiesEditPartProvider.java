@@ -56,19 +56,19 @@ public class StereotypePropertiesEditPartProvider extends RestrictedAbstractEdit
 	 */
 	@Override
 	public boolean provides(final IOperation operation) {
-		if (operation instanceof CreateGraphicEditPartOperation) {
-			final View newView = ((IEditPartOperation) operation).getView();
-			if (newView == null) {
+		if(operation instanceof CreateGraphicEditPartOperation) {
+			final View newView = ((IEditPartOperation)operation).getView();
+			if(newView == null) {
 				return false;
 			}
 
 			final String graphicalType = newView.getType();
 
-			if ((newView instanceof Node) && (!this.nodeMap.containsKey(graphicalType))) {
+			if((newView instanceof Node) && (!this.nodeMap.containsKey(graphicalType))) {
 				return false;
 			}
 
-			if ((newView instanceof Edge) && (!this.edgeMap.containsKey(graphicalType))) {
+			if((newView instanceof Edge) && (!this.edgeMap.containsKey(graphicalType))) {
 				return false;
 			}
 		}

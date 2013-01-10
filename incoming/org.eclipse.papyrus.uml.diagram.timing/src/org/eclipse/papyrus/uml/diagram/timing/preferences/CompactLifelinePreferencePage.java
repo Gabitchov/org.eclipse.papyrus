@@ -55,13 +55,13 @@ public class CompactLifelinePreferencePage extends AbstractPapyrusNodePreference
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 
 		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
-		for (final String name : map.keySet()) {
+		for(final String name : map.keySet()) {
 			final String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
 
 		map = getStaticCompartmentTitleVisibilityPreferences();
-		for (final String name : map.keySet()) {
+		for(final String name : map.keySet()) {
 			final String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(preferenceName, map.get(name));
 		}
@@ -93,7 +93,7 @@ public class CompactLifelinePreferencePage extends AbstractPapyrusNodePreference
 	 */
 	@Override
 	protected void initializeCompartmentsList() {
-		for (final String name : compartments) {
+		for(final String name : compartments) {
 			this.compartmentsList.add(name);
 		}
 	}

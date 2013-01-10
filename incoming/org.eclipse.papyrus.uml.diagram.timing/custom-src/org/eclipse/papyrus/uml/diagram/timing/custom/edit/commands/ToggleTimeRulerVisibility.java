@@ -42,11 +42,11 @@ public class ToggleTimeRulerVisibility extends GraphicalCommandHandler {
 		final List<IGraphicalEditPart> selectedElements = getSelectedElements();
 		boolean first = true;
 		InteractionEditPartTN interactionEditPart = null;
-		for (final IGraphicalEditPart selectedEditPart : selectedElements) {
-			if (selectedEditPart instanceof FullLifelineEditPartCN || selectedEditPart instanceof CompactLifelineEditPartCN) {
-				if (first) {
-					interactionEditPart = (InteractionEditPartTN) EditPartUtils.findParentEditPartWithId(selectedEditPart, InteractionEditPartTN.VISUAL_ID);
-					if (interactionEditPart != null) {
+		for(final IGraphicalEditPart selectedEditPart : selectedElements) {
+			if(selectedEditPart instanceof FullLifelineEditPartCN || selectedEditPart instanceof CompactLifelineEditPartCN) {
+				if(first) {
+					interactionEditPart = (InteractionEditPartTN)EditPartUtils.findParentEditPartWithId(selectedEditPart, InteractionEditPartTN.VISUAL_ID);
+					if(interactionEditPart != null) {
 						cmd.add(new RefreshCommandForUndo(interactionEditPart));
 						first = false;
 					}
@@ -54,30 +54,30 @@ public class ToggleTimeRulerVisibility extends GraphicalCommandHandler {
 				cmd.add(toggleTimeRulerVisibility(selectedEditPart));
 			}
 		}
-		if (interactionEditPart != null) {
+		if(interactionEditPart != null) {
 			cmd.add(new RefreshCommandForDo(interactionEditPart));
 		}
 		return cmd;
 	}
 
 	private Command toggleTimeRulerVisibility(final IGraphicalEditPart object) {
-		return new ICommandProxy(
-				new AbstractTransactionalCommand(getEditingDomain(), Messages.ToggleTimeRulerVisibility_ToggleTimeRulerVisibility, null, null) {
-					@Override
-					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-						final LifelineEditPart lifelineEditPart = (LifelineEditPart) object;
-						final View lifelineView = (View) lifelineEditPart.getModel();
-						final View timeRulerCompartmentView = ViewUtils.findTimeRulerCompartmentView(lifelineView);
-						timeRulerCompartmentView.setVisible(!timeRulerCompartmentView.isVisible());
-						return CommandResult.newOKCommandResult();
-					}
-				});
+		return new ICommandProxy(new AbstractTransactionalCommand(getEditingDomain(), Messages.ToggleTimeRulerVisibility_ToggleTimeRulerVisibility, null, null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final LifelineEditPart lifelineEditPart = (LifelineEditPart)object;
+				final View lifelineView = (View)lifelineEditPart.getModel();
+				final View timeRulerCompartmentView = ViewUtils.findTimeRulerCompartmentView(lifelineView);
+				timeRulerCompartmentView.setVisible(!timeRulerCompartmentView.isVisible());
+				return CommandResult.newOKCommandResult();
+			}
+		});
 	}
 
 	protected static final LifelineFigure getLifelineFigure(final IFigure figure) {
 		LifelineFigure result = null;
 		result = FigureUtils.findChildFigureInstance(figure, FullLifelineFigure.class);
-		if (result == null) {
+		if(result == null) {
 			result = FigureUtils.findChildFigureInstance(figure, CompactLifelineFigure.class);
 		}
 		return result;

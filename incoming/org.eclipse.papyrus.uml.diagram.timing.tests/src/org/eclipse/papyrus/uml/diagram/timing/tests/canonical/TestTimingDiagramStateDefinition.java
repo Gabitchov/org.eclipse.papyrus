@@ -49,14 +49,13 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 	@Test
 	public void testCreateStateDefinition() {
 		final EditPart stateDefinition = createStateDefinitionInDefaultFullLifeline();
-		final EditPart stateInvariantEditPart = EditPartUtils.findFirstChildEditPartWithId(getDefaultFullLifelineEditPart(),
-				FullStateInvariantEditPartCN.VISUAL_ID);
+		final EditPart stateInvariantEditPart = EditPartUtils.findFirstChildEditPartWithId(getDefaultFullLifelineEditPart(), FullStateInvariantEditPartCN.VISUAL_ID);
 		assertNotNull("A StateInvariant must be created with the first StateDefinition", stateInvariantEditPart);
-		final StateInvariant stateInvariant = (StateInvariant) ((View) stateInvariantEditPart.getModel()).getElement();
+		final StateInvariant stateInvariant = (StateInvariant)((View)stateInvariantEditPart.getModel()).getElement();
 		assertNotNull("The StateInvariant must not be null", stateInvariant);
 		final String stateInvariantId = StateInvariantUtils.getStateInvariantId(stateInvariant);
 		assertNotNull("The StateInvariant id must not be null", stateInvariantId);
-		final String stateDefinitionViewID = StateDefinitionUtils.getStateDefinitionViewID((View) stateDefinition.getModel());
+		final String stateDefinitionViewID = StateDefinitionUtils.getStateDefinitionViewID((View)stateDefinition.getModel());
 		assertEquals("The ids of the StateDefinition and the StateInvariant must be equal", stateDefinitionViewID, stateInvariantId);
 
 	}
@@ -80,8 +79,7 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 	}
 
 	private void expectNStateDefinitions(final int numberOfExpectedStateDefinitions) {
-		assertEquals("There must be " + numberOfExpectedStateDefinitions + " StateDefinitionEditPart", numberOfExpectedStateDefinitions, findStateDefinitions()
-				.size());
+		assertEquals("There must be " + numberOfExpectedStateDefinitions + " StateDefinitionEditPart", numberOfExpectedStateDefinitions, findStateDefinitions().size());
 	}
 
 	/**
@@ -112,19 +110,19 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 	 * Check that there is a StateDefinition with the given name.
 	 * 
 	 * @param expectedName
-	 *            the name of a StateDefinition that should exist.
+	 *        the name of a StateDefinition that should exist.
 	 */
 	protected void checkStateDefinition(final String expectedName) {
-		final View lifelineView = (View) getDefaultFullLifelineEditPart().getModel();
-		final Lifeline lifeline = (Lifeline) lifelineView.getElement();
+		final View lifelineView = (View)getDefaultFullLifelineEditPart().getModel();
+		final Lifeline lifeline = (Lifeline)lifelineView.getElement();
 		final EAnnotation stateDefinitionsEAnnotation = StateDefinitionUtils.getStateDefinitionsEAnnotation(lifeline);
 		assertNotNull("The lifeline should have an EAnnotation for the state definitions", stateDefinitionsEAnnotation);
 
 		// find the entry corresponding to the new StateDefinition
 		Entry<String, String> newEntry = null;
 		final EMap<String, String> details = stateDefinitionsEAnnotation.getDetails();
-		for (final Entry<String, String> entry : details) {
-			if (expectedName.equals(entry.getValue())) {
+		for(final Entry<String, String> entry : details) {
+			if(expectedName.equals(entry.getValue())) {
 				newEntry = entry;
 				break;
 			}
@@ -139,16 +137,16 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 
 	/** Check that no StateDefinition exists with the given name. */
 	protected void checkNoStateDefinition(final String unexpectedName) {
-		final View lifelineView = (View) getDefaultFullLifelineEditPart().getModel();
-		final Lifeline lifeline = (Lifeline) lifelineView.getElement();
+		final View lifelineView = (View)getDefaultFullLifelineEditPart().getModel();
+		final Lifeline lifeline = (Lifeline)lifelineView.getElement();
 		final EAnnotation stateDefinitionsEAnnotation = StateDefinitionUtils.getStateDefinitionsEAnnotation(lifeline);
-		if (stateDefinitionsEAnnotation == null) {
+		if(stateDefinitionsEAnnotation == null) {
 			return;
 		}
 		// find the entry corresponding to the new StateDefinition
 		final EMap<String, String> details = stateDefinitionsEAnnotation.getDetails();
-		for (final Entry<String, String> entry : details) {
-			if (unexpectedName.equals(entry.getValue())) {
+		for(final Entry<String, String> entry : details) {
+			if(unexpectedName.equals(entry.getValue())) {
 				fail("A StateDefinition with the given name exists");
 			}
 		}
@@ -219,8 +217,7 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 	}
 
 	private static StateDefinitionLabelEditPart getStateDefinitionLabelEditPart(final EditPart stateDefinitionEditPart) {
-		final StateDefinitionLabelEditPart stateDefinitionLabelEditPart = (StateDefinitionLabelEditPart) EditPartUtils.findFirstChildEditPartWithId(
-				stateDefinitionEditPart, StateDefinitionLabelEditPart.VISUAL_ID);
+		final StateDefinitionLabelEditPart stateDefinitionLabelEditPart = (StateDefinitionLabelEditPart)EditPartUtils.findFirstChildEditPartWithId(stateDefinitionEditPart, StateDefinitionLabelEditPart.VISUAL_ID);
 		return stateDefinitionLabelEditPart;
 	}
 }

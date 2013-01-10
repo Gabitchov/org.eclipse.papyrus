@@ -28,16 +28,15 @@ public final class GateUtils {
 	 * Get all elements to delete when deleting a Gate.
 	 * 
 	 * @param gate
-	 *            the Gate being deleted
+	 *        the Gate being deleted
 	 * @return the elements (EObjects and Views) that should be deleted together with the Gate
 	 */
 	public static Collection<EObject> getElementsToDelete(final Gate gate) {
 		final Set<EObject> elementsToDestroy = new HashSet<EObject>();
 		final Collection<Setting> settings = EcoreUtil.UsageCrossReferencer.find(gate, gate.eResource().getResourceSet());
-		for (final Setting setting : settings) {
+		for(final Setting setting : settings) {
 			// delete messages originating from or going to that gate
-			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getMessage_SendEvent()
-					|| setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getMessage_ReceiveEvent()) {
+			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getMessage_SendEvent() || setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getMessage_ReceiveEvent()) {
 				elementsToDestroy.add(setting.getEObject());
 			}
 		}

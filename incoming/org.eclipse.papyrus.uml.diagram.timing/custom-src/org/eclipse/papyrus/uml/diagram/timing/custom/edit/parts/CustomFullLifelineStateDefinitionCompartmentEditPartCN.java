@@ -34,7 +34,7 @@ public class CustomFullLifelineStateDefinitionCompartmentEditPartCN extends Full
 
 	@Override
 	public IFigure createFigure() {
-		final ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		final ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setBorder(null);
 		result.getScrollPane().getContents().setBorder(null);
 
@@ -42,10 +42,11 @@ public class CustomFullLifelineStateDefinitionCompartmentEditPartCN extends Full
 
 		// layout StateDefinitions so that they are regularly spaced and fill the whole height
 		result.getContentPane().setLayoutManager(new XYLayout() {
+
 			@Override
 			public void layout(final IFigure container) {
 				// reset the layout so that the BorderItemsAwareFreeFormLayer fills its parent FreeformViewport
-				if (!(container.getParent().getLayoutManager() instanceof FillLayout)) {
+				if(!(container.getParent().getLayoutManager() instanceof FillLayout)) {
 					container.getParent().setLayoutManager(new FillLayout());
 				}
 
@@ -56,7 +57,7 @@ public class CustomFullLifelineStateDefinitionCompartmentEditPartCN extends Full
 				final int nChildren = container.getChildren().size();
 				final int margin;
 				final int spacing;
-				if (nChildren == 1) {
+				if(nChildren == 1) {
 					margin = clientArea.height / 2;
 					spacing = 0;
 				} else {
@@ -64,8 +65,8 @@ public class CustomFullLifelineStateDefinitionCompartmentEditPartCN extends Full
 					spacing = (clientArea.height - 2 * margin) / (nChildren - 1);
 				}
 
-				for (int i = 0; i < nChildren; i++) {
-					final IFigure child = (IFigure) container.getChildren().get(i);
+				for(int i = 0; i < nChildren; i++) {
+					final IFigure child = (IFigure)container.getChildren().get(i);
 					final Dimension ps = child.getPreferredSize();
 					final int w = ps.width;
 					// the height is twice as big as needed by default
@@ -94,7 +95,7 @@ public class CustomFullLifelineStateDefinitionCompartmentEditPartCN extends Full
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		((ResizableCompartmentFigure) getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+		((ResizableCompartmentFigure)getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
 		refreshBounds();
 	}
 

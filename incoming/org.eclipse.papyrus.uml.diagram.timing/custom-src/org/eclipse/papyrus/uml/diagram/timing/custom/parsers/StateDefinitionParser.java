@@ -35,10 +35,10 @@ import org.eclipse.uml2.uml.Lifeline;
 public class StateDefinitionParser implements IParser {
 
 	public String getEditString(final IAdaptable adaptable, final int flags) {
-		final View stateDefinitionLabelView = (View) adaptable.getAdapter(View.class);
-		final View stateDefinitionView = (View) stateDefinitionLabelView.eContainer();
+		final View stateDefinitionLabelView = (View)adaptable.getAdapter(View.class);
+		final View stateDefinitionView = (View)stateDefinitionLabelView.eContainer();
 		final String name = StateDefinitionUtils.getStateDefinitionName(stateDefinitionView);
-		if (name == null) {
+		if(name == null) {
 			return ""; //$NON-NLS-1$
 		}
 		return name;
@@ -49,16 +49,17 @@ public class StateDefinitionParser implements IParser {
 	}
 
 	public ICommand getParseCommand(final IAdaptable adaptable, final String newString, final int flags) {
-		final View stateDefinitionLabelView = (View) adaptable.getAdapter(View.class);
-		final View stateDefinitionView = (View) stateDefinitionLabelView.eContainer();
+		final View stateDefinitionLabelView = (View)adaptable.getAdapter(View.class);
+		final View stateDefinitionView = (View)stateDefinitionLabelView.eContainer();
 		final View lifelineView = ViewUtils.findSuperViewWithId(stateDefinitionView, FullLifelineEditPartCN.VISUAL_ID);
-		final Lifeline lifeline = (Lifeline) lifelineView.getElement();
+		final Lifeline lifeline = (Lifeline)lifelineView.getElement();
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(lifeline);
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		return new AbstractTransactionalCommand(editingDomain, Messages.StateDefinitionParser_SetStateDefinitionName, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				StateDefinitionUtils.setStateDefinitionName(stateDefinitionView, newString);
@@ -69,10 +70,10 @@ public class StateDefinitionParser implements IParser {
 	}
 
 	public String getPrintString(final IAdaptable adaptable, final int flags) {
-		final View stateDefinitionLabelView = (View) adaptable.getAdapter(View.class);
-		final View stateDefinitionView = (View) stateDefinitionLabelView.eContainer();
+		final View stateDefinitionLabelView = (View)adaptable.getAdapter(View.class);
+		final View stateDefinitionView = (View)stateDefinitionLabelView.eContainer();
 		final String name = StateDefinitionUtils.getStateDefinitionName(stateDefinitionView);
-		if (name == null || name.length() == 0) {
+		if(name == null || name.length() == 0) {
 			return Messages.StateDefinitionParser_Unnamed;
 		}
 		return name;

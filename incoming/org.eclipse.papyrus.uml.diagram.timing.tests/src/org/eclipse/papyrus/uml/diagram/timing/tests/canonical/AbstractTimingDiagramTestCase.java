@@ -54,11 +54,17 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 
 	private InteractionEditPartTN interactionEditPart;
+
 	private InteractionCompartmentEditPartTN interactionCompartment;
+
 	private FullLifelineEditPartCN fullLifelineEditPart;
+
 	private CompactLifelineEditPartCN compactLifelineEditPart;
+
 	private FullLifelineStateDefinitionCompartmentEditPartCN stateDefinitionCompartment;
+
 	private FullLifelineTimelineCompartmentEditPartCN fullLifelineTimelineCompartment;
+
 	private CompactLifelineCompartmentEditPartCN compactLifelineTimelineCompartment;
 
 	@Override
@@ -69,8 +75,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	/** Creates the default Interaction (use this when only one Interaction will be used in a test) */
 	protected void createDefaultInteraction(final Point position, final Dimension size) {
 		this.interactionEditPart = createInteraction(position, size);
-		this.interactionCompartment = (InteractionCompartmentEditPartTN) EditPartUtils.findFirstChildEditPartWithId(this.interactionEditPart,
-				InteractionCompartmentEditPartTN.VISUAL_ID);
+		this.interactionCompartment = (InteractionCompartmentEditPartTN)EditPartUtils.findFirstChildEditPartWithId(this.interactionEditPart, InteractionCompartmentEditPartTN.VISUAL_ID);
 		assertNotNull("The interaction compartment was not found", this.interactionCompartment);
 	}
 
@@ -85,11 +90,9 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 */
 	protected void createDefaultFullLifeline() {
 		this.fullLifelineEditPart = createFullLifeline(getDefaultInteractionEditPart());
-		this.stateDefinitionCompartment = (FullLifelineStateDefinitionCompartmentEditPartCN) EditPartUtils.findFirstChildEditPartWithId(
-				this.fullLifelineEditPart, FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID);
+		this.stateDefinitionCompartment = (FullLifelineStateDefinitionCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(this.fullLifelineEditPart, FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID);
 		assertNotNull("The StateDefinition compartment must exist", this.stateDefinitionCompartment);
-		this.fullLifelineTimelineCompartment = (FullLifelineTimelineCompartmentEditPartCN) EditPartUtils.findFirstChildEditPartWithId(
-				this.fullLifelineEditPart, FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID);
+		this.fullLifelineTimelineCompartment = (FullLifelineTimelineCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(this.fullLifelineEditPart, FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID);
 		assertNotNull("The timeline compartment must exist", this.fullLifelineTimelineCompartment);
 	}
 
@@ -99,8 +102,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 */
 	protected void createDefaultCompactLifeline() {
 		this.compactLifelineEditPart = createCompactLifeline(getDefaultInteractionEditPart());
-		this.compactLifelineTimelineCompartment = (CompactLifelineCompartmentEditPartCN) EditPartUtils.findFirstChildEditPartWithId(
-				this.compactLifelineEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
+		this.compactLifelineTimelineCompartment = (CompactLifelineCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(this.compactLifelineEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
 		assertNotNull("The timeline compartment must exist", this.compactLifelineTimelineCompartment);
 	}
 
@@ -126,11 +128,10 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * @return the created StateDefinition's EditPart
 	 */
 	protected StateDefinitionEditPart createStateDefinition(final FullLifelineEditPartCN parentLifelineEditPart) {
-		final FullLifelineStateDefinitionCompartmentEditPartCN compartment = (FullLifelineStateDefinitionCompartmentEditPartCN) EditPartUtils
-				.findFirstChildEditPartWithId(parentLifelineEditPart, FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID);
+		final FullLifelineStateDefinitionCompartmentEditPartCN compartment = (FullLifelineStateDefinitionCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(parentLifelineEditPart, FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID);
 		final View stateDefinitionView = createView(UMLElementTypes.Node_9, compartment);
 		assertNotNull("The StateDefinition View should be created", stateDefinitionView);
-		return (StateDefinitionEditPart) findChildEditPartAssociatedToView(compartment, stateDefinitionView);
+		return (StateDefinitionEditPart)findChildEditPartAssociatedToView(compartment, stateDefinitionView);
 	}
 
 	/**
@@ -152,7 +153,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		assertNotNull("The compartment must not be null", compartment);
 		final View view = createView(UMLElementTypes.Lifeline_19, compartment);
 		assertNotNull("The FullLifeline View should be created", view);
-		return (FullLifelineEditPartCN) findChildEditPartAssociatedToView(compartment, view);
+		return (FullLifelineEditPartCN)findChildEditPartAssociatedToView(compartment, view);
 	}
 
 	/**
@@ -174,25 +175,23 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		assertNotNull("The compartment must not be null", compartment);
 		final View view = createView(UMLElementTypes.Lifeline_20, compartment);
 		assertNotNull("The CompactLifeline View should be created", view);
-		return (CompactLifelineEditPartCN) findChildEditPartAssociatedToView(compartment, view);
+		return (CompactLifelineEditPartCN)findChildEditPartAssociatedToView(compartment, view);
 	}
 
 	/**
 	 * Create a new Interaction in the default diagram using a Request.
 	 * 
 	 * @param location
-	 *            the position for the new Interaction
+	 *        the position for the new Interaction
 	 * @param dimension
-	 *            the size of the new Interaction
+	 *        the size of the new Interaction
 	 * @return the created Interaction's EditPart
 	 */
 	protected InteractionEditPartTN createInteraction(final Point location, final Dimension dimension) {
 		createView(UMLElementTypes.Interaction_2, location, dimension, getDiagramEditPart());
-		final InteractionEditPartTN interactionEditPart = (InteractionEditPartTN) EditPartUtils.findFirstChildEditPartWithId(getDiagramEditPart(),
-				InteractionEditPartTN.VISUAL_ID);
+		final InteractionEditPartTN interactionEditPart = (InteractionEditPartTN)EditPartUtils.findFirstChildEditPartWithId(getDiagramEditPart(), InteractionEditPartTN.VISUAL_ID);
 		assertNotNull("The interaction EditPart was not found under the diagram EditPart", interactionEditPart);
-		final InteractionCompartmentEditPartTN interactionCompartment = (InteractionCompartmentEditPartTN) EditPartUtils.findFirstChildEditPartWithId(
-				interactionEditPart, InteractionCompartmentEditPartTN.VISUAL_ID);
+		final InteractionCompartmentEditPartTN interactionCompartment = (InteractionCompartmentEditPartTN)EditPartUtils.findFirstChildEditPartWithId(interactionEditPart, InteractionCompartmentEditPartTN.VISUAL_ID);
 		assertNotNull("The interaction compartment was not found", interactionCompartment);
 		return interactionEditPart;
 	}
@@ -242,9 +241,9 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * Create an OccurrenceSpecification on the last StateInvariant in the timeline of the default Lifeline
 	 * 
 	 * @param expectedNumberOfStateInvariants
-	 *            the number of state invariants that is expected (for checking)
+	 *        the number of state invariants that is expected (for checking)
 	 * @param xPos
-	 *            the position starting from the left of the StateInvariant
+	 *        the position starting from the left of the StateInvariant
 	 */
 	protected void createOccurrenceSpecificationInLastFullStateInvariantAtAbsolutePos(final int expectedNumberOfStateInvariants, final int xPos) {
 		// we need to wait for GMF to do its layout in order to have correct coordinates
@@ -259,9 +258,9 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * Create an OccurrenceSpecification on the last StateInvariant in the timeline of the default Lifeline
 	 * 
 	 * @param expectedNumberOfStateInvariants
-	 *            the number of state invariants that is expected (for checking)
+	 *        the number of state invariants that is expected (for checking)
 	 * @param xPos
-	 *            the position starting from the left of the StateInvariant
+	 *        the position starting from the left of the StateInvariant
 	 */
 	protected void createOccurrenceSpecificationInLastCompactStateInvariantAtAbsolutePos(final int expectedNumberOfStateInvariants, final int xPos) {
 		// we need to wait for GMF to do its layout in order to have correct coordinates
@@ -276,9 +275,9 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * Create an OccurrenceSpecification on the last StateInvariant in the timeline of the default full Lifeline
 	 * 
 	 * @param expectedNumberOfStateInvariants
-	 *            the number of state invariants that is expected (for checking)
+	 *        the number of state invariants that is expected (for checking)
 	 * @param ratio
-	 *            where to click in the StateInvariant (0.0 = beginning; 1.0 = end)
+	 *        where to click in the StateInvariant (0.0 = beginning; 1.0 = end)
 	 */
 	protected void createOccurrenceSpecificationInLastFullStateInvariantWithRatio(final int expectedNumberOfStateInvariants, final double ratio) {
 		assertTrue("invalid ratio", ratio >= 0.0 && ratio <= 1.0);
@@ -286,16 +285,16 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		flushEventLoop();
 		final FullStateInvariantEditPartCN lastStateInvariant = getAndAssertLastFullStateInvariant(expectedNumberOfStateInvariants);
 		final Rectangle bounds = getAbsoluteBounds(lastStateInvariant);
-		sendOpenSelectionRequest(lastStateInvariant, new Point(bounds.x + (int) (bounds.width * ratio), bounds.y));
+		sendOpenSelectionRequest(lastStateInvariant, new Point(bounds.x + (int)(bounds.width * ratio), bounds.y));
 	}
 
 	/**
 	 * Create an OccurrenceSpecification on the last StateInvariant in the timeline of the default compact Lifeline
 	 * 
 	 * @param expectedNumberOfStateInvariants
-	 *            the number of state invariants that is expected (for checking)
+	 *        the number of state invariants that is expected (for checking)
 	 * @param ratio
-	 *            where to click in the StateInvariant (0.0 = beginning; 1.0 = end)
+	 *        where to click in the StateInvariant (0.0 = beginning; 1.0 = end)
 	 */
 	protected void createOccurrenceSpecificationInLastCompactStateInvariantWithRatio(final int expectedNumberOfStateInvariants, final double ratio) {
 		assertTrue("invalid ratio", ratio >= 0.0 && ratio <= 1.0);
@@ -303,7 +302,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		flushEventLoop();
 		final CompactStateInvariantEditPartCN lastStateInvariant = getAndAssertLastCompactStateInvariant(expectedNumberOfStateInvariants);
 		final Rectangle bounds = getAbsoluteBounds(lastStateInvariant);
-		sendOpenSelectionRequest(lastStateInvariant, new Point(bounds.x + (int) (bounds.width * ratio), bounds.y));
+		sendOpenSelectionRequest(lastStateInvariant, new Point(bounds.x + (int)(bounds.width * ratio), bounds.y));
 	}
 
 	private FullStateInvariantEditPartCN getAndAssertLastFullStateInvariant(final int expectedNumberOfStateInvariants) {
@@ -323,42 +322,38 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	/** @return all OccurrenceSpecification EditParts found in the default Lifeline */
 	@SuppressWarnings("unchecked")
 	protected List<OccurrenceSpecificationEditPartCN> findOccurrenceSpecificationsInDefaultFullLifeline() {
-		return (List<OccurrenceSpecificationEditPartCN>) EditPartUtils.findChildEditPartsWithId(getDefaultFullLifelineEditPart(),
-				OccurrenceSpecificationEditPartCN.VISUAL_ID);
+		return (List<OccurrenceSpecificationEditPartCN>)EditPartUtils.findChildEditPartsWithId(getDefaultFullLifelineEditPart(), OccurrenceSpecificationEditPartCN.VISUAL_ID);
 	}
 
 	/** @return all OccurrenceSpecification EditParts found in the default Lifeline */
 	@SuppressWarnings("unchecked")
 	protected List<OccurrenceSpecificationEditPartCN> findOccurrenceSpecificationsInDefaultCompactLifeline() {
-		return (List<OccurrenceSpecificationEditPartCN>) EditPartUtils.findChildEditPartsWithId(getDefaultCompactLifelineEditPart(),
-				OccurrenceSpecificationEditPartCN.VISUAL_ID);
+		return (List<OccurrenceSpecificationEditPartCN>)EditPartUtils.findChildEditPartsWithId(getDefaultCompactLifelineEditPart(), OccurrenceSpecificationEditPartCN.VISUAL_ID);
 	}
 
 	/** @return all StateInvariant EditParts found in the default Lifeline */
 	@SuppressWarnings("unchecked")
 	protected List<FullStateInvariantEditPartCN> findStateInvariantsInDefaultFullLifeline() {
-		return (List<FullStateInvariantEditPartCN>) EditPartUtils.findChildEditPartsWithId(getDefaultFullLifelineEditPart(),
-				FullStateInvariantEditPartCN.VISUAL_ID);
+		return (List<FullStateInvariantEditPartCN>)EditPartUtils.findChildEditPartsWithId(getDefaultFullLifelineEditPart(), FullStateInvariantEditPartCN.VISUAL_ID);
 	}
 
 	/** @return all StateInvariant EditParts found in the default Lifeline */
 	@SuppressWarnings("unchecked")
 	protected List<CompactStateInvariantEditPartCN> findStateInvariantsInDefaultCompactLifeline() {
-		return (List<CompactStateInvariantEditPartCN>) EditPartUtils.findChildEditPartsWithId(getDefaultCompactLifelineEditPart(),
-				CompactStateInvariantEditPartCN.VISUAL_ID);
+		return (List<CompactStateInvariantEditPartCN>)EditPartUtils.findChildEditPartsWithId(getDefaultCompactLifelineEditPart(), CompactStateInvariantEditPartCN.VISUAL_ID);
 	}
 
 	/** @return all StateDefinition EditParts found in the default Lifeline */
 	@SuppressWarnings("unchecked")
 	protected List<StateDefinitionEditPart> findStateDefinitions() {
-		return (List<StateDefinitionEditPart>) EditPartUtils.findChildEditPartsWithId(getDefaultFullLifelineEditPart(), StateDefinitionEditPart.VISUAL_ID);
+		return (List<StateDefinitionEditPart>)EditPartUtils.findChildEditPartsWithId(getDefaultFullLifelineEditPart(), StateDefinitionEditPart.VISUAL_ID);
 	}
 
 	/**
 	 * Check that the fragments in the default interaction are ordered following the given pattern.
 	 * 
 	 * @param pattern
-	 *            the pattern, where "o" means OccurrenceSpecification, and "-" means StateInvariant
+	 *        the pattern, where "o" means OccurrenceSpecification, and "-" means StateInvariant
 	 */
 	protected void checkInteractionFragmentsWithPattern(final String expectedPattern) {
 		final String fragmentsStringPattern = computeInteractionFragmentsStringPattern();
@@ -367,16 +362,16 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 
 	protected String computeInteractionFragmentsStringPattern() {
 		final StringBuilder pattern = new StringBuilder();
-		final Interaction interaction = (Interaction) ((View) getDefaultInteractionEditPart().getModel()).getElement();
+		final Interaction interaction = (Interaction)((View)getDefaultInteractionEditPart().getModel()).getElement();
 		final EList<InteractionFragment> fragments = interaction.getFragments();
-		for (final InteractionFragment fragment : fragments) {
-			if (fragment instanceof StateInvariant) {
+		for(final InteractionFragment fragment : fragments) {
+			if(fragment instanceof StateInvariant) {
 				pattern.append("-");
-			} else if (fragment instanceof DestructionOccurrenceSpecification) {
+			} else if(fragment instanceof DestructionOccurrenceSpecification) {
 				pattern.append("x");
-			} else if (fragment instanceof MessageOccurrenceSpecification) {
+			} else if(fragment instanceof MessageOccurrenceSpecification) {
 				pattern.append("m");
-			} else if (fragment instanceof OccurrenceSpecification) {
+			} else if(fragment instanceof OccurrenceSpecification) {
 				pattern.append("o");
 			}
 		}
@@ -416,9 +411,9 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * an OccurrenceSpecification over it.
 	 * 
 	 * @param compactStateInvariant
-	 *            the StateInvariant on which to create an OccurrenceSpecification
+	 *        the StateInvariant on which to create an OccurrenceSpecification
 	 * @param bottom
-	 *            whether to click at the bottom of the StateInvariant, instead of at the top
+	 *        whether to click at the bottom of the StateInvariant, instead of at the top
 	 */
 	protected void createOccurrenceSpecificationOverCompactStateInvariant(final CompactStateInvariantEditPartCN compactStateInvariant, final boolean bottom) {
 		final Rectangle bounds = getBounds(compactStateInvariant);
@@ -438,12 +433,12 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		final FullLifelineTimelineCompartmentEditPartCN timelineCompartment = getDefaultFullLifelineTimelineCompartment();
 		@SuppressWarnings("unchecked")
 		final List<EditPart> children = timelineCompartment.getChildren();
-		for (final EditPart editPart : children) {
-			if (editPart instanceof FullStateInvariantEditPartCN) {
-				outputFullStateInvariantPattern((FullStateInvariantEditPartCN) editPart, pattern);
-			} else if (editPart instanceof OccurrenceSpecificationEditPartCN) {
-				outputFullOccurrenceSpecificationPattern((OccurrenceSpecificationEditPartCN) editPart, pattern);
-			} else if (editPart instanceof FullStateInvariantVerticalLineEditPart) {
+		for(final EditPart editPart : children) {
+			if(editPart instanceof FullStateInvariantEditPartCN) {
+				outputFullStateInvariantPattern((FullStateInvariantEditPartCN)editPart, pattern);
+			} else if(editPart instanceof OccurrenceSpecificationEditPartCN) {
+				outputFullOccurrenceSpecificationPattern((OccurrenceSpecificationEditPartCN)editPart, pattern);
+			} else if(editPart instanceof FullStateInvariantVerticalLineEditPart) {
 				pattern.append("VerticalLine;");
 			} else {
 				fail("unexpected element");
@@ -453,25 +448,25 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	}
 
 	private static void outputFullStateInvariantPattern(final FullStateInvariantEditPartCN editPart, final StringBuilder pattern) {
-		final View view = (View) editPart.getModel();
+		final View view = (View)editPart.getModel();
 		assertNotNull("The EditPart must have a View", view);
-		final StateInvariant stateInvariant = (StateInvariant) view.getElement();
+		final StateInvariant stateInvariant = (StateInvariant)view.getElement();
 		assertNotNull("The View must have a semantic element", view);
 		final Constraint constraint = stateInvariant.getInvariant();
 		assertNotNull("The StateInvariant must have a Constraint", constraint);
 		final ValueSpecification specification = constraint.getSpecification();
 		assertNotNull("The Constraint must have a ValueSpecification", specification);
 		assertTrue("The ValueSpecification must be an OpaqueExpression", specification instanceof OpaqueExpression);
-		final OpaqueExpression opaqueExpression = (OpaqueExpression) specification;
+		final OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
 		assertNotNull("The OpaqueExpression must not have a null list of bodies", opaqueExpression.getBodies());
 		assertEquals("The OpaqueExpression must have one Body", 1, opaqueExpression.getBodies().size());
 		pattern.append("StateInvariant(").append(opaqueExpression.getBodies().get(0)).append(");");
 	}
 
 	private static void outputFullOccurrenceSpecificationPattern(final OccurrenceSpecificationEditPartCN editPart, final StringBuilder pattern) {
-		final View view = (View) editPart.getModel();
+		final View view = (View)editPart.getModel();
 		assertNotNull("The EditPart must have a View", view);
-		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) view.getElement();
+		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)view.getElement();
 		assertNotNull("The View must have a semantic element", occurrenceSpecification);
 		final String name = occurrenceSpecification.getName();
 		pattern.append("OccurrenceSpecification(").append(name).append(");");
@@ -488,11 +483,11 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		final CompactLifelineCompartmentEditPartCN timelineCompartment = getDefaultCompactLifelineTimelineCompartment();
 		@SuppressWarnings("unchecked")
 		final List<EditPart> children = timelineCompartment.getChildren();
-		for (final EditPart editPart : children) {
-			if (editPart instanceof CompactStateInvariantEditPartCN) {
-				outputCompactStateInvariantPattern((CompactStateInvariantEditPartCN) editPart, pattern);
-			} else if (editPart instanceof OccurrenceSpecificationEditPartCN) {
-				outputCompactOccurrenceSpecificationPattern((OccurrenceSpecificationEditPartCN) editPart, pattern);
+		for(final EditPart editPart : children) {
+			if(editPart instanceof CompactStateInvariantEditPartCN) {
+				outputCompactStateInvariantPattern((CompactStateInvariantEditPartCN)editPart, pattern);
+			} else if(editPart instanceof OccurrenceSpecificationEditPartCN) {
+				outputCompactOccurrenceSpecificationPattern((OccurrenceSpecificationEditPartCN)editPart, pattern);
 			} else {
 				fail("unexpected element");
 			}
@@ -501,18 +496,18 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	}
 
 	private static void outputCompactStateInvariantPattern(final CompactStateInvariantEditPartCN editPart, final StringBuilder pattern) {
-		final View view = (View) editPart.getModel();
+		final View view = (View)editPart.getModel();
 		assertNotNull("The EditPart must have a View", view);
-		final StateInvariant stateInvariant = (StateInvariant) view.getElement();
+		final StateInvariant stateInvariant = (StateInvariant)view.getElement();
 		assertNotNull("The View must have a semantic element", view);
 		final Constraint constraint = stateInvariant.getInvariant();
 		assertNotNull("The StateInvariant must have a Constraint", constraint);
 		final ValueSpecification specification = constraint.getSpecification();
 		assertNotNull("The Constraint must have a ValueSpecification", specification);
 		assertTrue("The ValueSpecification must be an OpaqueExpression", specification instanceof OpaqueExpression);
-		final OpaqueExpression opaqueExpression = (OpaqueExpression) specification;
+		final OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
 		assertNotNull("The OpaqueExpression must not have a null list of bodies", opaqueExpression.getBodies());
-		if (opaqueExpression.getBodies().isEmpty()) {
+		if(opaqueExpression.getBodies().isEmpty()) {
 			pattern.append("StateInvariant(unnamed);");
 		} else {
 			pattern.append("StateInvariant(").append(opaqueExpression.getBodies().get(0)).append(");");
@@ -520,9 +515,9 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	}
 
 	private static void outputCompactOccurrenceSpecificationPattern(final OccurrenceSpecificationEditPartCN editPart, final StringBuilder pattern) {
-		final View view = (View) editPart.getModel();
+		final View view = (View)editPart.getModel();
 		assertNotNull("The EditPart must have a View", view);
-		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) view.getElement();
+		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)view.getElement();
 		assertNotNull("The View must have a semantic element", occurrenceSpecification);
 		final String name = occurrenceSpecification.getName();
 		pattern.append("OccurrenceSpecification(").append(name).append(");");
@@ -539,16 +534,16 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		final FullLifelineTimelineCompartmentEditPartCN timelineCompartment = getDefaultFullLifelineTimelineCompartment();
 		@SuppressWarnings("unchecked")
 		final List<EditPart> children = timelineCompartment.getChildren();
-		for (final EditPart editPart : children) {
-			if (editPart instanceof FullStateInvariantEditPartCN) {
+		for(final EditPart editPart : children) {
+			if(editPart instanceof FullStateInvariantEditPartCN) {
 				pattern.append("-");
-			} else if (editPart instanceof OccurrenceSpecificationEditPartCN) {
+			} else if(editPart instanceof OccurrenceSpecificationEditPartCN) {
 				pattern.append("o");
-			} else if (editPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+			} else if(editPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 				pattern.append("m");
-			} else if (editPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
+			} else if(editPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
 				pattern.append("x");
-			} else if (editPart instanceof FullStateInvariantVerticalLineEditPart) {
+			} else if(editPart instanceof FullStateInvariantVerticalLineEditPart) {
 				pattern.append("|");
 			} else {
 				fail("unexpected element");
@@ -561,11 +556,11 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * Check that the timeline contains the expected elements in the expected order.
 	 * 
 	 * @param expectedPattern
-	 *            a pattern where
-	 *            <ul>
-	 *            <li>"o" represents an OccurrenceSpecification
-	 *            <li>"-" represents a StateInvariant
-	 *            </ul>
+	 *        a pattern where
+	 *        <ul>
+	 *        <li>"o" represents an OccurrenceSpecification
+	 *        <li>"-" represents a StateInvariant
+	 *        </ul>
 	 */
 	protected void checkSimpleCompactTimelinePattern(final String expectedPattern) {
 		final String timelineStringPattern = computeSimpleCompactTimelineStringPattern();
@@ -578,14 +573,14 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		final CompactLifelineCompartmentEditPartCN timelineCompartment = getDefaultCompactLifelineTimelineCompartment();
 		@SuppressWarnings("unchecked")
 		final List<EditPart> children = timelineCompartment.getChildren();
-		for (final EditPart editPart : children) {
-			if (editPart instanceof CompactStateInvariantEditPartCN) {
+		for(final EditPart editPart : children) {
+			if(editPart instanceof CompactStateInvariantEditPartCN) {
 				pattern.append("-");
-			} else if (editPart instanceof OccurrenceSpecificationEditPartCN) {
+			} else if(editPart instanceof OccurrenceSpecificationEditPartCN) {
 				pattern.append("o");
-			} else if (editPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+			} else if(editPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 				pattern.append("m");
-			} else if (editPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
+			} else if(editPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
 				pattern.append("x");
 			} else {
 				fail("unexpected element");
@@ -599,20 +594,20 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * undo/redo operations.
 	 * 
 	 * @param nElementsToUndo
-	 *            the number of elements that should be undoable before reaching the non-dirty state
+	 *        the number of elements that should be undoable before reaching the non-dirty state
 	 */
 	protected void testDirtyStateForFullUndoRedo(final int nElementsToUndo) {
 		assertTrue("The editor should be dirty after all the modifications", this.diagramEditor.isDirty());
-		for (int i = 0; i < nElementsToUndo; i++) {
+		for(int i = 0; i < nElementsToUndo; i++) {
 			undoOnUIThread();
 			// editor should be dirty for all states except the initial state
-			if (i == nElementsToUndo - 1) {
+			if(i == nElementsToUndo - 1) {
 				assertFalse("The editor should not be dirty after we undid all previous modifications", this.diagramEditor.isDirty());
 			} else {
 				assertTrue("The editor should be dirty until we undo all previous modifications", this.diagramEditor.isDirty());
 			}
 		}
-		for (int i = 0; i < nElementsToUndo; i++) {
+		for(int i = 0; i < nElementsToUndo; i++) {
 			redoOnUIThread();
 			assertTrue("The editor should be dirty after we redo", this.diagramEditor.isDirty());
 		}

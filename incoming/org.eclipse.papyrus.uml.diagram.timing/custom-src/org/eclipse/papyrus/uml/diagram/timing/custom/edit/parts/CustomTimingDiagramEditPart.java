@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.parts.InteractionEditPartTN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 
 public class CustomTimingDiagramEditPart extends TimingDiagramEditPart {
+
 	public CustomTimingDiagramEditPart(final View view) {
 		super(view);
 	}
@@ -28,7 +29,7 @@ public class CustomTimingDiagramEditPart extends TimingDiagramEditPart {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType() == RequestConstants.REQ_DROP && !canBeDropped(((GroupRequest) request).getEditParts())) {
+		if(request.getType() == RequestConstants.REQ_DROP && !canBeDropped(((GroupRequest)request).getEditParts())) {
 			// this fixes the bug where an OccurrenceSpecification could be moved out of its timeline
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -36,8 +37,8 @@ public class CustomTimingDiagramEditPart extends TimingDiagramEditPart {
 	}
 
 	private static boolean canBeDropped(final List<EditPart> editParts) {
-		for (final EditPart editPart : editParts) {
-			if (!(editPart instanceof InteractionEditPartTN)) {
+		for(final EditPart editPart : editParts) {
+			if(!(editPart instanceof InteractionEditPartTN)) {
 				return false;
 			}
 		}

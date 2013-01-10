@@ -92,7 +92,7 @@ ShapeNodeEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(final EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -122,7 +122,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	public TimingRulerFigure getPrimaryShape() {
-		return (TimingRulerFigure) this.primaryShape;
+		return (TimingRulerFigure)this.primaryShape;
 	}
 
 	/**
@@ -130,10 +130,10 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(final EditPart childEditPart) {
 
-		if (childEditPart instanceof LinearTimeRulerCompartmentEditPart) {
+		if(childEditPart instanceof LinearTimeRulerCompartmentEditPart) {
 			final IFigure pane = getPrimaryShape().getLinearTimeRulerContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((LinearTimeRulerCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((LinearTimeRulerCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
@@ -144,9 +144,9 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(final EditPart childEditPart) {
-		if (childEditPart instanceof LinearTimeRulerCompartmentEditPart) {
+		if(childEditPart instanceof LinearTimeRulerCompartmentEditPart) {
 			final IFigure pane = getPrimaryShape().getLinearTimeRulerContainerFigure();
-			pane.remove(((LinearTimeRulerCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((LinearTimeRulerCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -157,7 +157,7 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	protected void addChildVisual(final EditPart childEditPart, final int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -168,7 +168,7 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(final EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -179,7 +179,7 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(final IGraphicalEditPart editPart) {
-		if (editPart instanceof LinearTimeRulerCompartmentEditPart) {
+		if(editPart instanceof LinearTimeRulerCompartmentEditPart) {
 			return getPrimaryShape().getLinearTimeRulerContainerFigure();
 		}
 		return getContentPane();
@@ -191,10 +191,8 @@ ShapeNodeEditPart {
 	protected NodeFigure createNodePlate() {
 		final String prefElementId = "LinearTimingRuler";
 		final IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.WIDTH);
-		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.HEIGHT);
+		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		final DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
@@ -223,11 +221,11 @@ ShapeNodeEditPart {
 	 * figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(final IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			final ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -240,7 +238,7 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (this.contentPane != null) {
+		if(this.contentPane != null) {
 			return this.contentPane;
 		}
 		return super.getContentPane();
@@ -251,7 +249,7 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(final Color color) {
-		if (this.primaryShape != null) {
+		if(this.primaryShape != null) {
 			this.primaryShape.setForegroundColor(color);
 		}
 	}
@@ -261,8 +259,8 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	protected void setLineWidth(final int width) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineWidth(width);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -271,8 +269,8 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	protected void setLineType(final int style) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineStyle(style);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -281,31 +279,30 @@ ShapeNodeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(final EStructuralFeature feature) {
-		final IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		final IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("LinearTimingRuler", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("LinearTimingRuler", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("LinearTimingRuler", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			final String prefGradient = PreferenceConstantHelper.getElementConstant("LinearTimingRuler", PreferenceConstantHelper.COLOR_GRADIENT);
 			final GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

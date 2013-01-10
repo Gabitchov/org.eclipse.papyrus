@@ -13,6 +13,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class TimeRulerFigure extends InvisibleRectangleFigure {
+
 	@Override
 	protected void outlineShape(final Graphics graphics) {
 		final Rectangle bounds = getBounds();

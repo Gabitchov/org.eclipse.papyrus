@@ -37,9 +37,9 @@ public abstract class AbstractChangeLifelineTypeCommand extends AbstractTransact
 	 * Constructor of this command
 	 * 
 	 * @param domain
-	 *            the transactional editing domain to execute the transaction
+	 *        the transactional editing domain to execute the transaction
 	 * @param lifelineEditPart
-	 *            the editpart that will be transformed
+	 *        the editpart that will be transformed
 	 * @param changeLifelineFromCompactToFull_commandLabel
 	 */
 	public AbstractChangeLifelineTypeCommand(final TransactionalEditingDomain domain, final IGraphicalEditPart lifelineEditPart, final String commandLabel) {
@@ -52,15 +52,15 @@ public abstract class AbstractChangeLifelineTypeCommand extends AbstractTransact
 		final EditPart parentEditPart = this.lifelineEditPart.getParent();
 		// creation of the node
 		final UMLViewProvider umlViewProvider = new UMLViewProvider();
-		final Lifeline lifeline = (Lifeline) this.lifelineEditPart.resolveSemanticElement();
+		final Lifeline lifeline = (Lifeline)this.lifelineEditPart.resolveSemanticElement();
 		final View view = this.lifelineEditPart.getNotationView();
-		final View containerView = (View) view.eContainer();
+		final View containerView = (View)view.eContainer();
 		final int index = containerView.getChildren().indexOf(view);
 		final Node lifelineNode = createTargetLifelineView(umlViewProvider, lifeline, containerView, index);
-		lifelineNode.setLayoutConstraint(((Node) this.lifelineEditPart.getNotationView()).getLayoutConstraint());
+		lifelineNode.setLayoutConstraint(((Node)this.lifelineEditPart.getNotationView()).getLayoutConstraint());
 		// copy all EAnnotations
 		final Iterator<EAnnotation> iter = this.lifelineEditPart.getNotationView().getEAnnotations().iterator();
-		while (iter.hasNext()) {
+		while(iter.hasNext()) {
 			final EAnnotation annotation = EcoreUtil.copy(iter.next());
 			lifelineNode.getEAnnotations().add(annotation);
 		}

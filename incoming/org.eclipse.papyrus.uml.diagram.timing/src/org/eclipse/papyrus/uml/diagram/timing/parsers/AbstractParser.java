@@ -69,7 +69,7 @@ public abstract class AbstractParser implements IParser {
 	 * @generated
 	 */
 	public AbstractParser(final EAttribute[] features) {
-		if (features == null || Arrays.asList(features).contains(null)) {
+		if(features == null || Arrays.asList(features).contains(null)) {
 			throw new IllegalArgumentException();
 		}
 		this.editableFeatures = this.features = features;
@@ -79,11 +79,11 @@ public abstract class AbstractParser implements IParser {
 	 * @generated
 	 */
 	public AbstractParser(final EAttribute[] features, final EAttribute[] editableFeatures) {
-		if (features == null || Arrays.asList(features).contains(null)) {
+		if(features == null || Arrays.asList(features).contains(null)) {
 			throw new IllegalArgumentException();
 		}
 		this.features = features;
-		if (editableFeatures == null || Arrays.asList(editableFeatures).contains(null)) {
+		if(editableFeatures == null || Arrays.asList(editableFeatures).contains(null)) {
 			throw new IllegalArgumentException();
 		}
 		this.editableFeatures = editableFeatures;
@@ -135,8 +135,8 @@ public abstract class AbstractParser implements IParser {
 	 * @generated
 	 */
 	public boolean isAffectingEvent(final Object event, final int flags) {
-		if (event instanceof Notification) {
-			return isAffectingFeature(((Notification) event).getFeature());
+		if(event instanceof Notification) {
+			return isAffectingFeature(((Notification)event).getFeature());
 		}
 		return false;
 	}
@@ -145,8 +145,8 @@ public abstract class AbstractParser implements IParser {
 	 * @generated
 	 */
 	protected boolean isAffectingFeature(final Object feature) {
-		for (final EAttribute feature2 : this.features) {
-			if (feature2 == feature) {
+		for(final EAttribute feature2 : this.features) {
+			if(feature2 == feature) {
 				return true;
 			}
 		}
@@ -165,7 +165,7 @@ public abstract class AbstractParser implements IParser {
 	 */
 	protected Object[] getValues(final EObject element) {
 		final Object[] values = new Object[this.features.length];
-		for (int i = 0; i < this.features.length; i++) {
+		for(int i = 0; i < this.features.length; i++) {
 			values[i] = getValue(element, this.features[i]);
 		}
 		return values;
@@ -176,7 +176,7 @@ public abstract class AbstractParser implements IParser {
 	 */
 	protected Object[] getEditableValues(final EObject element) {
 		final Object[] values = new Object[this.editableFeatures.length];
-		for (int i = 0; i < this.editableFeatures.length; i++) {
+		for(int i = 0; i < this.editableFeatures.length; i++) {
 			values[i] = getValue(element, this.editableFeatures[i]);
 		}
 		return values;
@@ -188,8 +188,8 @@ public abstract class AbstractParser implements IParser {
 	protected Object getValue(final EObject element, final EAttribute feature) {
 		Object value = element.eGet(feature);
 		final Class iClass = feature.getEAttributeType().getInstanceClass();
-		if (String.class.equals(iClass)) {
-			if (value == null) {
+		if(String.class.equals(iClass)) {
+			if(value == null) {
 				value = ""; //$NON-NLS-1$
 			}
 		}
@@ -200,16 +200,16 @@ public abstract class AbstractParser implements IParser {
 	 * @generated
 	 */
 	protected ICommand getParseCommand(final IAdaptable adapter, final Object[] values, final int flags) {
-		if (values == null || validateNewValues(values).getCode() != IParserEditStatus.EDITABLE) {
+		if(values == null || validateNewValues(values).getCode() != IParserEditStatus.EDITABLE) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		final EObject element = (EObject) adapter.getAdapter(EObject.class);
+		final EObject element = (EObject)adapter.getAdapter(EObject.class);
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Values"); //$NON-NLS-1$
-		for (int i = 0; i < values.length; i++) {
+		for(int i = 0; i < values.length; i++) {
 			command.compose(getModificationCommand(element, this.editableFeatures[i], values[i]));
 		}
 		return command;
@@ -220,7 +220,7 @@ public abstract class AbstractParser implements IParser {
 	 */
 	protected ICommand getModificationCommand(final EObject element, final EAttribute feature, Object value) {
 		value = getValidNewValue(feature, value);
-		if (value instanceof InvalidValue) {
+		if(value instanceof InvalidValue) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final SetRequest request = new SetRequest(element, feature, value);
@@ -231,12 +231,12 @@ public abstract class AbstractParser implements IParser {
 	 * @generated
 	 */
 	protected IParserEditStatus validateNewValues(final Object[] values) {
-		if (values.length != this.editableFeatures.length) {
+		if(values.length != this.editableFeatures.length) {
 			return ParserEditStatus.UNEDITABLE_STATUS;
 		}
-		for (int i = 0; i < values.length; i++) {
+		for(int i = 0; i < values.length; i++) {
 			final Object value = getValidNewValue(this.editableFeatures[i], values[i]);
-			if (value instanceof InvalidValue) {
+			if(value instanceof InvalidValue) {
 				return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.UNEDITABLE, value.toString());
 			}
 		}
@@ -248,22 +248,22 @@ public abstract class AbstractParser implements IParser {
 	 */
 	protected Object getValidNewValue(final EAttribute feature, Object value) {
 		final EClassifier type = feature.getEType();
-		if (type instanceof EDataType) {
+		if(type instanceof EDataType) {
 			final Class iClass = type.getInstanceClass();
-			if (Boolean.TYPE.equals(iClass)) {
-				if (value instanceof Boolean) {
+			if(Boolean.TYPE.equals(iClass)) {
+				if(value instanceof Boolean) {
 					// ok
-				} else if (value instanceof String) {
-					value = Boolean.valueOf((String) value);
+				} else if(value instanceof String) {
+					value = Boolean.valueOf((String)value);
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (Character.TYPE.equals(iClass)) {
-				if (value instanceof Character) {
+			} else if(Character.TYPE.equals(iClass)) {
+				if(value instanceof Character) {
 					// ok
-				} else if (value instanceof String) {
-					final String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof String) {
+					final String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						value = new Character(s.charAt(0));
@@ -271,14 +271,14 @@ public abstract class AbstractParser implements IParser {
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (Byte.TYPE.equals(iClass)) {
-				if (value instanceof Byte) {
+			} else if(Byte.TYPE.equals(iClass)) {
+				if(value instanceof Byte) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Byte(((Number) value).byteValue());
-				} else if (value instanceof String) {
-					final String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Byte(((Number)value).byteValue());
+				} else if(value instanceof String) {
+					final String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -290,14 +290,14 @@ public abstract class AbstractParser implements IParser {
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (Short.TYPE.equals(iClass)) {
-				if (value instanceof Short) {
+			} else if(Short.TYPE.equals(iClass)) {
+				if(value instanceof Short) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Short(((Number) value).shortValue());
-				} else if (value instanceof String) {
-					final String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Short(((Number)value).shortValue());
+				} else if(value instanceof String) {
+					final String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -309,14 +309,14 @@ public abstract class AbstractParser implements IParser {
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (Integer.TYPE.equals(iClass)) {
-				if (value instanceof Integer) {
+			} else if(Integer.TYPE.equals(iClass)) {
+				if(value instanceof Integer) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Integer(((Number) value).intValue());
-				} else if (value instanceof String) {
-					final String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Integer(((Number)value).intValue());
+				} else if(value instanceof String) {
+					final String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -328,14 +328,14 @@ public abstract class AbstractParser implements IParser {
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (Long.TYPE.equals(iClass)) {
-				if (value instanceof Long) {
+			} else if(Long.TYPE.equals(iClass)) {
+				if(value instanceof Long) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Long(((Number) value).longValue());
-				} else if (value instanceof String) {
-					final String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Long(((Number)value).longValue());
+				} else if(value instanceof String) {
+					final String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -347,14 +347,14 @@ public abstract class AbstractParser implements IParser {
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (Float.TYPE.equals(iClass)) {
-				if (value instanceof Float) {
+			} else if(Float.TYPE.equals(iClass)) {
+				if(value instanceof Float) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Float(((Number) value).floatValue());
-				} else if (value instanceof String) {
-					final String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Float(((Number)value).floatValue());
+				} else if(value instanceof String) {
+					final String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -366,14 +366,14 @@ public abstract class AbstractParser implements IParser {
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (Double.TYPE.equals(iClass)) {
-				if (value instanceof Double) {
+			} else if(Double.TYPE.equals(iClass)) {
+				if(value instanceof Double) {
 					// ok
-				} else if (value instanceof Number) {
-					value = new Double(((Number) value).doubleValue());
-				} else if (value instanceof String) {
-					final String s = (String) value;
-					if (s.length() == 0) {
+				} else if(value instanceof Number) {
+					value = new Double(((Number)value).doubleValue());
+				} else if(value instanceof String) {
+					final String s = (String)value;
+					if(s.length() == 0) {
 						value = null;
 					} else {
 						try {
@@ -385,10 +385,10 @@ public abstract class AbstractParser implements IParser {
 				} else {
 					value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnexpectedValueType, iClass.getName()));
 				}
-			} else if (type instanceof EEnum) {
-				if (value instanceof String) {
-					final EEnumLiteral literal = ((EEnum) type).getEEnumLiteralByLiteral((String) value);
-					if (literal == null) {
+			} else if(type instanceof EEnum) {
+				if(value instanceof String) {
+					final EEnumLiteral literal = ((EEnum)type).getEEnumLiteralByLiteral((String)value);
+					if(literal == null) {
 						value = new InvalidValue(NLS.bind(Messages.AbstractParser_UnknownLiteral, value));
 					} else {
 						value = literal.getInstance();

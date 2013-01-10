@@ -14,6 +14,7 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.parsers.OccurrenceSpecifica
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationLabelEditPart;
 
 public class CustomDestructionOccurrenceSpecificationLabelEditPart extends DestructionOccurrenceSpecificationLabelEditPart {
+
 	private IParser parser;
 
 	public CustomDestructionOccurrenceSpecificationLabelEditPart(final View view) {
@@ -22,7 +23,7 @@ public class CustomDestructionOccurrenceSpecificationLabelEditPart extends Destr
 
 	@Override
 	public IParser getParser() {
-		if (this.parser == null) {
+		if(this.parser == null) {
 			this.parser = new OccurrenceSpecificationNameParser();
 		}
 		return this.parser;

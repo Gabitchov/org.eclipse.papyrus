@@ -24,8 +24,9 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
+		final Class[] supportedTypes = new Class[]{ ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
+
 			public String getContributorId() {
 				return "org.eclipse.papyrus.uml.diagram.timing"; //$NON-NLS-1$
 			}
@@ -33,8 +34,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(final Object adaptableObject, final Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLAbstractNavigatorItem
-						&& adapterType == ITabbedPropertySheetPageContributor.class) {
+				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
 				}
 				return null;

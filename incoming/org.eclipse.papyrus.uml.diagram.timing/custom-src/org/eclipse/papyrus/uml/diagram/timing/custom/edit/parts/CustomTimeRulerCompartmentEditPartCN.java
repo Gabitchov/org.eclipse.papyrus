@@ -23,7 +23,7 @@ public class CustomTimeRulerCompartmentEditPartCN extends TimeRulerCompartmentEd
 
 	@Override
 	public IFigure createFigure() {
-		final ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		final ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		result.setLayoutManager(new FillLayout());
 		result.getContentPane().setLayoutManager(new TimeRulerLayout());
@@ -38,7 +38,7 @@ public class CustomTimeRulerCompartmentEditPartCN extends TimeRulerCompartmentEd
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		((ResizableCompartmentFigure) getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+		((ResizableCompartmentFigure)getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
 		refreshBounds();
 	}
 

@@ -49,7 +49,7 @@ public class TestTimingDiagramInteraction extends AbstractTimingDiagramTestCase 
 	public void testDropInteraction() {
 		// create an Interaction and hide its View, so as to be able to drop it after that
 		final InteractionEditPartTN interactionEditPart = createInteraction();
-		final Interaction interaction = (Interaction) ((View) interactionEditPart.getModel()).getElement();
+		final Interaction interaction = (Interaction)((View)interactionEditPart.getModel()).getElement();
 		assertNotNull("The interaction should not be null", interaction);
 		hide(interactionEditPart);
 
@@ -70,9 +70,8 @@ public class TestTimingDiagramInteraction extends AbstractTimingDiagramTestCase 
 	@Test
 	public void testEditInteractionName() {
 		final InteractionEditPartTN interactionEditPart = createInteraction();
-		final InteractionNameEditPart interactionNameEditPart = (InteractionNameEditPart) EditPartUtils.findFirstChildEditPartWithId(interactionEditPart,
-				InteractionNameEditPart.VISUAL_ID);
-		final NamedElement namedElement = (Interaction) ((View) interactionEditPart.getModel()).getElement();
+		final InteractionNameEditPart interactionNameEditPart = (InteractionNameEditPart)EditPartUtils.findFirstChildEditPartWithId(interactionEditPart, InteractionNameEditPart.VISUAL_ID);
+		final NamedElement namedElement = (Interaction)((View)interactionEditPart.getModel()).getElement();
 		testSetNameWithDirectEditRequest(interactionNameEditPart, namedElement);
 	}
 

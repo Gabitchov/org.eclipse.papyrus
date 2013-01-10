@@ -38,7 +38,9 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 public class CustomMessageReorientCommand extends EditElementCommand {
 
 	private final int reorientDirection;
+
 	private final EObject newEnd;
+
 	private final EditPartViewer viewer;
 
 	public CustomMessageReorientCommand(final ReorientRelationshipRequest request, final EditPartViewer viewer) {
@@ -50,14 +52,14 @@ public class CustomMessageReorientCommand extends EditElementCommand {
 
 	@Override
 	public boolean canExecute() {
-		if (!(getElementToEdit() instanceof Message)) {
+		if(!(getElementToEdit() instanceof Message)) {
 			return false;
 		}
-		final Message message = (Message) getElementToEdit();
+		final Message message = (Message)getElementToEdit();
 
 		final EObject source;
 		final EObject target;
-		if (this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if(this.reorientDirection == ReorientRequest.REORIENT_SOURCE) {
 			source = this.newEnd;
 			target = message.getReceiveEvent();
 		} else {
@@ -71,36 +73,36 @@ public class CustomMessageReorientCommand extends EditElementCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 
 		final boolean reorientSource = this.reorientDirection == ReorientRequest.REORIENT_SOURCE;
 		final boolean reorientTarget = this.reorientDirection == ReorientRequest.REORIENT_TARGET;
 
-		final Message message = (Message) getElementToEdit();
+		final Message message = (Message)getElementToEdit();
 		final boolean destruction = reorientTarget && message.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL;
 		final boolean creation = reorientTarget && message.getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL;
 
 		final MessageEnd newMessageEnd = MessageUtils.convertToMessageOccurrenceSpecification(this.newEnd, destruction);
-		if (reorientSource) {
+		if(reorientSource) {
 			message.setSendEvent(newMessageEnd);
-		} else if (reorientTarget) {
+		} else if(reorientTarget) {
 			message.setReceiveEvent(newMessageEnd);
 		}
 
-		if (destruction || creation) {
+		if(destruction || creation) {
 			// save the parent View while the message is still in it
 			final Set<View> parentInteractionViews = findParentInteractionViews(newMessageEnd);
 			// destroying the old target of the message will also delete the Message View
-			if (destruction) {
-				OccurrenceSpecificationUtils.deleteEverythingAfter((OccurrenceSpecification) newMessageEnd, null);
+			if(destruction) {
+				OccurrenceSpecificationUtils.deleteEverythingAfter((OccurrenceSpecification)newMessageEnd, null);
 			}
-			if (creation) {
-				OccurrenceSpecificationUtils.deleteEverythingBefore((OccurrenceSpecification) newMessageEnd, null);
+			if(creation) {
+				OccurrenceSpecificationUtils.deleteEverythingBefore((OccurrenceSpecification)newMessageEnd, null);
 			}
 			// re-create the Message View that was deleted by GMF
-			for (final View parentInteractionView : parentInteractionViews) {
+			for(final View parentInteractionView : parentInteractionViews) {
 				DropUtils.getDropMessageCommand(message, parentInteractionView, this.viewer).execute(new NullProgressMonitor(), null);
 			}
 		}
@@ -111,9 +113,9 @@ public class CustomMessageReorientCommand extends EditElementCommand {
 	private Set<View> findParentInteractionViews(final EObject eObject) {
 		final List<View> views = DiagramEditPartsUtil.findViews(eObject, this.viewer);
 		final Set<View> interactionViews = new HashSet<View>();
-		for (final View view : views) {
+		for(final View view : views) {
 			final View interactionView = ViewUtils.findSuperViewWithId(view, InteractionEditPartTN.VISUAL_ID);
-			if (interactionView != null) {
+			if(interactionView != null) {
 				interactionViews.add(interactionView);
 			}
 		}

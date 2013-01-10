@@ -42,28 +42,29 @@ public class CustomInteractionCompartmentEditPartTN extends InteractionCompartme
 
 	@Override
 	public IFigure createFigure() {
-		final ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		final ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		result.setBorder(null);
 
 		result.setLayoutManager(new FillLayout());
 		// each lifeline takes a height proportional to its number of states
 		result.getContentPane().setLayoutManager(new AbstractLayout() {
+
 			public void layout(final IFigure container) {
 				@SuppressWarnings("unchecked")
 				final List<IFigure> children = container.getChildren();
 				final Rectangle clientArea = container.getClientArea();
 				final Map<IFigure, Integer> numberOfStates = computeNumberOfStates(children);
 				double totalStates = 0;
-				for (final Integer nStates : numberOfStates.values()) {
+				for(final Integer nStates : numberOfStates.values()) {
 					totalStates += Math.max(nStates.intValue(), 1);
 				}
 				int y = clientArea.y;
 				final int totalHeight = clientArea.height - Constants.MARGIN_BETWEEN_LIFELINES * (children.size() - 1);
-				for (final IFigure child : children) {
+				for(final IFigure child : children) {
 					final Integer nStates = numberOfStates.get(child);
-					if (nStates != null) {
-						final int height = (int) (totalHeight * (Math.max(nStates.doubleValue(), 1) / totalStates));
+					if(nStates != null) {
+						final int height = (int)(totalHeight * (Math.max(nStates.doubleValue(), 1) / totalStates));
 						child.setBounds(new Rectangle(clientArea.x, y, clientArea.width, height));
 						y += height + Constants.MARGIN_BETWEEN_LIFELINES;
 					}
@@ -82,20 +83,19 @@ public class CustomInteractionCompartmentEditPartTN extends InteractionCompartme
 	protected Map<IFigure, Integer> computeNumberOfStates(final List<IFigure> children) {
 		final LinkedHashMap<IFigure, Integer> numberOfStatesPerLifeline = new LinkedHashMap<IFigure, Integer>();
 		final EditPartViewer viewer = CustomInteractionCompartmentEditPartTN.this.getRoot().getViewer();
-		for (int i = 0; i < children.size(); i++) {
+		for(int i = 0; i < children.size(); i++) {
 			final IFigure child = children.get(i);
-			if (FigureUtils.findChildFigureInstance(child, FullLifelineFigure.class) != null) {
+			if(FigureUtils.findChildFigureInstance(child, FullLifelineFigure.class) != null) {
 				@SuppressWarnings("unchecked")
 				final Map<IFigure, EditPart> visualPartMap = viewer.getVisualPartMap();
-				final FullLifelineEditPartCN lifelineEditPart = (FullLifelineEditPartCN) visualPartMap.get(child);
-				final View lifelineView = (View) lifelineEditPart.getModel();
+				final FullLifelineEditPartCN lifelineEditPart = (FullLifelineEditPartCN)visualPartMap.get(child);
+				final View lifelineView = (View)lifelineEditPart.getModel();
 				final int nStates = findNumberOfStatesDisplayedIn(lifelineView);
 				numberOfStatesPerLifeline.put(child, Integer.valueOf(nStates));
-			} else if (FigureUtils.findChildFigureInstance(child, CompactLifelineFigure.class) != null) {
+			} else if(FigureUtils.findChildFigureInstance(child, CompactLifelineFigure.class) != null) {
 				numberOfStatesPerLifeline.put(child, Integer.valueOf(1));
 			} else {
-				Activator.log
-						.warn("Only instances of " + FullLifelineFigure.class.getSimpleName() + " are expected in the compartment " + CustomInteractionCompartmentEditPartTN.class.getSimpleName()); //$NON-NLS-1$//$NON-NLS-2$
+				Activator.log.warn("Only instances of " + FullLifelineFigure.class.getSimpleName() + " are expected in the compartment " + CustomInteractionCompartmentEditPartTN.class.getSimpleName()); //$NON-NLS-1$//$NON-NLS-2$
 				continue;
 			}
 
@@ -109,8 +109,8 @@ public class CustomInteractionCompartmentEditPartTN extends InteractionCompartme
 		@SuppressWarnings("unchecked")
 		final EList<View> children = stateDefinitionCompartment.getChildren();
 		final String stateDefID = Integer.toString(StateDefinitionEditPart.VISUAL_ID);
-		for (final View view : children) {
-			if (stateDefID.equals(view.getType())) {
+		for(final View view : children) {
+			if(stateDefID.equals(view.getType())) {
 				n++;
 			}
 		}

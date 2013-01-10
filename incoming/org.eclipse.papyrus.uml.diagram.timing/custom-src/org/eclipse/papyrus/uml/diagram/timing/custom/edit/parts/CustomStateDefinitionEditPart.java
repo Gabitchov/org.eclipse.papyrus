@@ -59,15 +59,14 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType() == REQ_DELETE) {
-			final FullLifelineEditPartCN lifelineEditPart = (FullLifelineEditPartCN) EditPartUtils.findParentEditPartWithId(this,
-					FullLifelineEditPartCN.VISUAL_ID);
-			final Lifeline lifeline = (Lifeline) ((View) lifelineEditPart.getModel()).getElement();
-			final View view = (View) getModel();
+		if(request.getType() == REQ_DELETE) {
+			final FullLifelineEditPartCN lifelineEditPart = (FullLifelineEditPartCN)EditPartUtils.findParentEditPartWithId(this, FullLifelineEditPartCN.VISUAL_ID);
+			final Lifeline lifeline = (Lifeline)((View)lifelineEditPart.getModel()).getElement();
+			final View view = (View)getModel();
 			final String id = StateDefinitionUtils.getStateDefinitionViewID(view);
-			if (lifeline.getInteraction() != null) {
+			if(lifeline.getInteraction() != null) {
 				final List<StateInvariant> stateInvariants = StateInvariantUtils.findStateInvariantsWithId(id, lifeline.getInteraction());
-				if (stateInvariants.size() > 0) {
+				if(stateInvariants.size() > 0) {
 					// cannot delete a StateDefinition used in a StateInvariant
 					return UnexecutableCommand.INSTANCE;
 				}
@@ -81,7 +80,7 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 			return compoundCommand;
 		}
 
-		if (request.getType() == REQ_RECONNECT_TARGET) {
+		if(request.getType() == REQ_RECONNECT_TARGET) {
 			// don't let the user reconnect anything to a state definition
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -94,7 +93,7 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 		// There is no semantic element, so we return null in order for Papyrus to handle
 		// the delete menu action enablement correctly.
 		// XXX warning: this might cause unforeseen bugs somewhere else.
-		if (key == EObject.class) {
+		if(key == EObject.class) {
 			return null;
 		}
 		return super.getAdapter(key);
@@ -104,6 +103,7 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 	public DragTracker getDragTracker(final Request request) {
 		// lock the drag to the containing compartment
 		return new DragEditPartsTrackerEx(this) {
+
 			@Override
 			protected boolean handleDragStarted() {
 				lockTargetEditPart(CustomStateDefinitionEditPart.this.getParent());

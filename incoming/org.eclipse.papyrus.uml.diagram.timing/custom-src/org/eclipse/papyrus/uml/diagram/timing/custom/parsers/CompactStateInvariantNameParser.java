@@ -48,7 +48,7 @@ public class CompactStateInvariantNameParser implements ISemanticParser {
 	public String getEditString(final IAdaptable adaptable, final int flags) {
 		final StateInvariant stateInvariant = getStateInvariant(adaptable);
 		final String name = StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
-		if (name == null) {
+		if(name == null) {
 			return ""; //$NON-NLS-1$
 		}
 		return name;
@@ -61,17 +61,18 @@ public class CompactStateInvariantNameParser implements ISemanticParser {
 	public ICommand getParseCommand(final IAdaptable adaptable, final String newString, final int flags) {
 		final StateInvariant stateInvariant = getStateInvariant(adaptable);
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(stateInvariant);
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return new AbstractTransactionalCommand(editingDomain, Messages.CompactStateInvariantNameParser_SetStateInvariantName, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				// set the name on the Constraint and OpaqueExpression
 				StateInvariantUtils.setInnerStateInvariantName(stateInvariant, newString);
 				// set the name directly on the StateInvariant (note that this triggers a refresh of the label)
 				stateInvariant.setName(newString);
-				for (final Lifeline coveredLifeline : stateInvariant.getCovereds()) {
+				for(final Lifeline coveredLifeline : stateInvariant.getCovereds()) {
 					LifelineUtils.updateFragmentNames(coveredLifeline, null);
 					// XXX what if the StateInvariant appears both on a compact and on a full lifeline?
 					StateDefinitionUtils.updateStateDefinitionNamesForCompactLifeline(coveredLifeline);
@@ -82,13 +83,13 @@ public class CompactStateInvariantNameParser implements ISemanticParser {
 	}
 
 	private static StateInvariant getStateInvariant(final IAdaptable adaptable) {
-		return (StateInvariant) adaptable.getAdapter(EObject.class);
+		return (StateInvariant)adaptable.getAdapter(EObject.class);
 	}
 
 	public String getPrintString(final IAdaptable adaptable, final int flags) {
 		final StateInvariant stateInvariant = getStateInvariant(adaptable);
 		final String name = StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
-		if (name == null || name.length() == 0) {
+		if(name == null || name.length() == 0) {
 			return Messages.CompactStateInvariantNameParser_Unnamed;
 		}
 		return name;
@@ -104,12 +105,12 @@ public class CompactStateInvariantNameParser implements ISemanticParser {
 
 	public List<?> getSemanticElementsBeingParsed(final EObject element) {
 		final List<EObject> list = new ArrayList<EObject>();
-		if (element instanceof StateInvariant) {
-			final StateInvariant stateInvariant = (StateInvariant) element;
+		if(element instanceof StateInvariant) {
+			final StateInvariant stateInvariant = (StateInvariant)element;
 			final Constraint invariant = stateInvariant.getInvariant();
-			if (invariant != null) {
+			if(invariant != null) {
 				final ValueSpecification specification = invariant.getSpecification();
-				if (specification != null) {
+				if(specification != null) {
 					list.add(specification);
 				}
 			}
@@ -119,7 +120,6 @@ public class CompactStateInvariantNameParser implements ISemanticParser {
 
 	public boolean areSemanticElementsAffected(final EObject listener, final Object notification) {
 		final EStructuralFeature feature = EcoreUtils.getEStructuralFeature(notification);
-		return UMLPackage.eINSTANCE.getStateInvariant_Invariant().equals(feature) || UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature)
-				|| UMLPackage.eINSTANCE.getOpaqueExpression_Body().equals(feature);
+		return UMLPackage.eINSTANCE.getStateInvariant_Invariant().equals(feature) || UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature) || UMLPackage.eINSTANCE.getOpaqueExpression_Body().equals(feature);
 	}
 }

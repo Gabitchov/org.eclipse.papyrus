@@ -86,110 +86,137 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Package_1 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Package_1"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interaction_2 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Interaction_2"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_19 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Lifeline_19"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_20 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Lifeline_20"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType StateInvariant_11 = getElementType("org.eclipse.papyrus.uml.diagram.timing.FullStateInvariant_11"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType StateInvariant_28 = getElementType("org.eclipse.papyrus.uml.diagram.timing.CompactStateInvariant_28"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType OccurrenceSpecification_12 = getElementType("org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_12"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType MessageOccurrenceSpecification_13 = getElementType("org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_13"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_9 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Node_9"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_39 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Node_39"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeConstraint_15 = getElementType("org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_15"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeObservation_16 = getElementType("org.eclipse.papyrus.uml.diagram.timing.TimeObservation_16"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationConstraint_18 = getElementType("org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_18"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_17 = getElementType("org.eclipse.papyrus.uml.diagram.timing.DurationObservation_17"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType GeneralOrdering_67 = getElementType("org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_67"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_24 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Node_24"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_25 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Node_25"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_26 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Node_26"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType DestructionOccurrenceSpecification_27 = getElementType("org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_27"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_40 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Lifeline_40"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Gate_69 = getElementType("org.eclipse.papyrus.uml.diagram.timing.Gate_69"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_3 = getElementType("org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_4 = getElementType("org.eclipse.papyrus.uml.diagram.timing.MessageAsync_4"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_41 = getElementType("org.eclipse.papyrus.uml.diagram.timing.MessageReply_41"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_44 = getElementType("org.eclipse.papyrus.uml.diagram.timing.MessageCreate_44"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_47 = getElementType("org.eclipse.papyrus.uml.diagram.timing.MessageDelete_47"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_50 = getElementType("org.eclipse.papyrus.uml.diagram.timing.MessageLost_50"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -199,7 +226,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	private static ImageRegistry getImageRegistry() {
-		if (imageRegistry == null) {
+		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
 		}
 		return imageRegistry;
@@ -216,19 +243,19 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
-		if (element instanceof EStructuralFeature) {
-			final EStructuralFeature feature = ((EStructuralFeature) element);
+		if(element instanceof EStructuralFeature) {
+			final EStructuralFeature feature = ((EStructuralFeature)element);
 			final EClass eContainingClass = feature.getEContainingClass();
 			final EClassifier eType = feature.getEType();
-			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+			if(eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if(eType instanceof EClass && !((EClass)eType).isAbstract()) {
 				element = eType;
 			}
 		}
-		if (element instanceof EClass) {
-			final EClass eClass = (EClass) element;
-			if (!eClass.isAbstract()) {
+		if(element instanceof EClass) {
+			final EClass eClass = (EClass)element;
+			if(!eClass.isAbstract()) {
 				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
@@ -242,9 +269,9 @@ public class UMLElementTypes {
 	public static ImageDescriptor getImageDescriptor(final ENamedElement element) {
 		final String key = getImageRegistryKey(element);
 		ImageDescriptor imageDescriptor = getImageRegistry().getDescriptor(key);
-		if (imageDescriptor == null) {
+		if(imageDescriptor == null) {
 			imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -258,9 +285,9 @@ public class UMLElementTypes {
 	public static Image getImage(final ENamedElement element) {
 		final String key = getImageRegistryKey(element);
 		Image image = getImageRegistry().get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -274,7 +301,7 @@ public class UMLElementTypes {
 	 */
 	public static ImageDescriptor getImageDescriptor(final IAdaptable hint) {
 		final ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImageDescriptor(element);
@@ -285,7 +312,7 @@ public class UMLElementTypes {
 	 */
 	public static Image getImage(final IAdaptable hint) {
 		final ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImage(element);
@@ -298,7 +325,7 @@ public class UMLElementTypes {
 	 */
 	public static ENamedElement getElement(final IAdaptable hint) {
 		final Object type = hint.getAdapter(IElementType.class);
-		if (elements == null) {
+		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
 			elements.put(Package_1, UMLPackage.eINSTANCE.getPackage());
@@ -361,7 +388,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static boolean isKnownElementType(final IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
+		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1);
 			KNOWN_ELEMENT_TYPES.add(Interaction_2);
@@ -399,7 +426,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static IElementType getElementType(final int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case TimingDiagramEditPart.VISUAL_ID:
 			return Package_1;
 		case InteractionEditPartTN.VISUAL_ID:

@@ -62,7 +62,7 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 
 	@Override
 	protected Command getMoveChildrenCommand(final Request request) {
-		if (RequestUtils.isChangeBoundsRequestFor(request, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
+		if(RequestUtils.isChangeBoundsRequestFor(request, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
 			return getMoveOccurrenceSpecificationsCommand(request);
 		}
 		return super.getMoveChildrenCommand(request);
@@ -70,21 +70,20 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 
 	@Override
 	protected Command getResizeChildrenCommand(final ChangeBoundsRequest request) {
-		if (RequestUtils.isChangeBoundsRequestFor(request, UMLPackage.eINSTANCE.getStateInvariant())) {
+		if(RequestUtils.isChangeBoundsRequestFor(request, UMLPackage.eINSTANCE.getStateInvariant())) {
 			return getResizeStateInvariantsCommand(request);
 		}
 		return super.getResizeChildrenCommand(request);
 	}
 
 	private Command getResizeStateInvariantsCommand(final ChangeBoundsRequest request) {
-		if (request.getResizeDirection() != PositionConstants.EAST) {
+		if(request.getResizeDirection() != PositionConstants.EAST) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomCompactLifelineCompartmentLayoutEditPolicy_ResizeStateInvariant);
-		final CompactLifelineEditPartCN lifelineEditPart = (CompactLifelineEditPartCN) getHost().getParent();
+		final CompactLifelineEditPartCN lifelineEditPart = (CompactLifelineEditPartCN)getHost().getParent();
 		compoundCommand.add(new RefreshCommandForUndo(lifelineEditPart));
-		final CompactLifelineCompartmentEditPartCN compartmentEditPart = (CompactLifelineCompartmentEditPartCN) EditPartUtils.findFirstChildEditPartWithId(
-				lifelineEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
+		final CompactLifelineCompartmentEditPartCN compartmentEditPart = (CompactLifelineCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
 
 		final int widthDelta = FigureUtils.scaleByZoom(new Point(request.getSizeDelta().width, 0), lifelineEditPart.getFigure()).x;
 		@SuppressWarnings("unchecked")
@@ -93,33 +92,33 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 		final List<EditPart> children = compartmentEditPart.getChildren();
 		int deltaX = 0;
 		boolean moved = false;
-		for (int i = 0; i < children.size(); i++) {
+		for(int i = 0; i < children.size(); i++) {
 			final EditPart childEditPart = children.get(i);
 			EditPart nextChildEditPart = null;
-			if (i < children.size() - 1) {
+			if(i < children.size() - 1) {
 				nextChildEditPart = children.get(i + 1);
 			}
 
 			final Object model = childEditPart.getModel();
-			if (model instanceof Node) {
-				final Node childNode = (Node) model;
+			if(model instanceof Node) {
+				final Node childNode = (Node)model;
 				boolean move = deltaX != 0;
-				if (OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(childEditPart)) {
+				if(OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(childEditPart)) {
 					// only move OccurrenceSpecifications followed by a StateInvariant (state changes)
 					move = move && nextChildEditPart instanceof CompactStateInvariantEditPartCN;
 				}
 				// if the element needs to be moved, then create the move command
-				if (move && !TimeElementUtils.isTimeElementEditPart(childEditPart) && !GeneralOrderingUtils.isGeneralOrderingEditPart(childEditPart)) {
+				if(move && !TimeElementUtils.isTimeElementEditPart(childEditPart) && !GeneralOrderingUtils.isGeneralOrderingEditPart(childEditPart)) {
 					final LayoutConstraint layoutConstraint = childNode.getLayoutConstraint();
-					if (!(layoutConstraint instanceof Location)) {
+					if(!(layoutConstraint instanceof Location)) {
 						Activator.log.error("Expected a LayoutConstraint", new Exception()); //$NON-NLS-1$
 						continue;
 					}
-					final Location location = (Location) layoutConstraint;
+					final Location location = (Location)layoutConstraint;
 					final int newX = location.getX() + deltaX;
 					final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(childNode);
-					compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain,
-							Messages.CustomCompactLifelineCompartmentLayoutEditPolicy_MoveElement, null) {
+					compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.CustomCompactLifelineCompartmentLayoutEditPolicy_MoveElement, null) {
+
 						@Override
 						protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 							final Location loc = NotationFactory.eINSTANCE.createLocation();
@@ -130,13 +129,13 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 					}));
 					moved = true;
 				}
-				if (editPartsToResize.contains(childEditPart)) {
+				if(editPartsToResize.contains(childEditPart)) {
 					// resizing a StateInvariant moves all the elements after it
 					deltaX += widthDelta;
 				}
 			}
 		}
-		if (!moved) {
+		if(!moved) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		compoundCommand.add(new RefreshCommandForDo(lifelineEditPart));
@@ -146,12 +145,12 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 	/** returns a NonResizableEditPolicy instead of a ResizableEditPolicy for some children */
 	@Override
 	protected EditPolicy createChildEditPolicy(final EditPart child) {
-		final View childView = (View) child.getModel();
+		final View childView = (View)child.getModel();
 		final int visualID = UMLVisualIDRegistry.getVisualID(childView);
 		// make OccurrenceSpecifications, time and duration elements and general orderings non-resizable
-		if (OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) || TimeElementUtils.isTimeElementEditPart(visualID)
-				|| GeneralOrderingUtils.isGeneralOrderingEditPart(visualID)) {
+		if(OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) || TimeElementUtils.isTimeElementEditPart(visualID) || GeneralOrderingUtils.isGeneralOrderingEditPart(visualID)) {
 			return new NonResizableEditPolicyEx() {
+
 				/** Override the command in order to pass all the moved EditParts in the request */
 				@Override
 				protected Command getMoveCommand(final ChangeBoundsRequest request) {
@@ -167,6 +166,7 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 			};
 		}
 		return new ResizableShapeEditPolicy() {
+
 			/** Override the command in order to pass all the resized EditParts in the request */
 			@Override
 			protected Command getResizeCommand(final ChangeBoundsRequest request) {
@@ -189,35 +189,31 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 	}
 
 	private Command getMoveOccurrenceSpecificationsCommand(final Request request) {
-		final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
+		final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
 
 		final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomCompactLifelineCompartmentLayoutEditPolicy_MoveOccurrenceSpecification);
-		final CompactLifelineEditPartCN lifelineEditPart = (CompactLifelineEditPartCN) getHost().getParent();
+		final CompactLifelineEditPartCN lifelineEditPart = (CompactLifelineEditPartCN)getHost().getParent();
 		compoundCommand.add(new RefreshCommandForUndo(lifelineEditPart));
 
-		final CompactLifelineCompartmentEditPartCN timelineCompartmentEditPart = (CompactLifelineCompartmentEditPartCN) EditPartUtils
-				.findFirstChildEditPartWithId(lifelineEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
-		final View timelineCompartmentView = (View) timelineCompartmentEditPart.getModel();
+		final CompactLifelineCompartmentEditPartCN timelineCompartmentEditPart = (CompactLifelineCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
+		final View timelineCompartmentView = (View)timelineCompartmentEditPart.getModel();
 
 		@SuppressWarnings("unchecked")
 		final List<EditPart> editParts = changeBoundsRequest.getEditParts();
 		final List<Node> nodesToMove = new ArrayList<Node>();
-		for (final EditPart editPart : editParts) {
+		for(final EditPart editPart : editParts) {
 			final Object model = editPart.getModel();
-			if (model instanceof Node) {
-				final Node node = (Node) model;
-				if (node.getElement() instanceof OccurrenceSpecification) {
+			if(model instanceof Node) {
+				final Node node = (Node)model;
+				if(node.getElement() instanceof OccurrenceSpecification) {
 					nodesToMove.add(node);
 				}
 			}
 		}
-		for (final Node node : nodesToMove) {
+		for(final Node node : nodesToMove) {
 			final int index = timelineCompartmentView.getChildren().indexOf(node);
-			if (index >= 0) {
-				compoundCommand
-						.add(getMoveOccurrenceSpecificationCommand(node,
-								FigureUtils.scaleByZoom(changeBoundsRequest.getMoveDelta(), lifelineEditPart.getFigure()), timelineCompartmentView, index,
-								nodesToMove));
+			if(index >= 0) {
+				compoundCommand.add(getMoveOccurrenceSpecificationCommand(node, FigureUtils.scaleByZoom(changeBoundsRequest.getMoveDelta(), lifelineEditPart.getFigure()), timelineCompartmentView, index, nodesToMove));
 			}
 		}
 

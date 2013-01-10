@@ -47,13 +47,13 @@ public final class ModelValidationUtils {
 	 * </ul>
 	 * 
 	 * @param interaction
-	 *            the Interaction to validate
+	 *        the Interaction to validate
 	 * @param autoCorrection
-	 *            whether to fix the model if it is not considered valid for us
+	 *        whether to fix the model if it is not considered valid for us
 	 * @param interactive
-	 *            whether to display notifications to the user, and ask for confirmation using dialog boxes
-	 * @return whether the Interaction is valid for the Papyrus timing diagram, after potential fixes were applied (if
-	 *         <code>autoCorrection</code> is <code>true</code>)
+	 *        whether to display notifications to the user, and ask for confirmation using dialog boxes
+	 * @return whether the Interaction is valid for the Papyrus timing diagram, after potential fixes were applied (if <code>autoCorrection</code> is
+	 *         <code>true</code>)
 	 */
 	public static boolean validate(final Interaction interaction, final boolean autoCorrection, final boolean interactive) {
 		final StringBuilder messageBuilder = new StringBuilder();
@@ -64,7 +64,7 @@ public final class ModelValidationUtils {
 
 		boolean isDestructionOccurrenceOK = false;
 		boolean isOSbetweenSIOK = false;
-		for (final Lifeline lifeline : interaction.getLifelines()) {
+		for(final Lifeline lifeline : interaction.getLifelines()) {
 			// There must be no fragment after a DestructionOccurrence
 			isDestructionOccurrenceOK = validateDestructionOccurrence(lifeline, autoCorrection, messageBuilder);
 			// There must be an OccurrenceSpecification in between 2 StateInvariants
@@ -72,16 +72,16 @@ public final class ModelValidationUtils {
 		}
 
 		final Display display = Display.getCurrent();
-		if (display != null) {
+		if(display != null) {
 			final String popupMessage = messageBuilder.toString().trim();
-			if (popupMessage.length() > 0) {
+			if(popupMessage.length() > 0) {
 				// open a popup to notify the user about validation errors, and fixes that were applied
 				final PapyrusAsyncNotificationPopup popup = new PapyrusAsyncNotificationPopup(display, new FormToolkit(display));
 				popup.setTitle(Messages.ModelValidationUtils_ModelValidation);
 				popup.setText(popupMessage);
 				popup.open();
 			}
-		} else if (interactive) {
+		} else if(interactive) {
 			throw new IllegalStateException("This method must be called on the UI thread when executed interactively"); //$NON-NLS-1$
 		}
 
@@ -89,9 +89,9 @@ public final class ModelValidationUtils {
 	}
 
 	private static void appendMessage(final StringBuilder message, final String string) {
-		if (message.length() > 0) {
+		if(message.length() > 0) {
 			// start adding dashes if there is more than one message
-			if (message.charAt(0) != '-') {
+			if(message.charAt(0) != '-') {
 				final String msg = message.toString();
 				message.setLength(0);
 				message.append("- ").append(msg); //$NON-NLS-1$
@@ -106,20 +106,20 @@ public final class ModelValidationUtils {
 	 * in the same order as the fragments of the Interaction.
 	 * 
 	 * @param interaction
-	 *            the Interaction whose Lifelines to reorder
+	 *        the Interaction whose Lifelines to reorder
 	 * @param messageBuilder
-	 *            to build a validation message
+	 *        to build a validation message
 	 */
 	private static void reorderLifelineCoveredBy(final Interaction interaction, final StringBuilder messageBuilder) {
 		int reorderCount = 0;
-		for (final Lifeline lifeline : interaction.getLifelines()) {
+		for(final Lifeline lifeline : interaction.getLifelines()) {
 			final EList<InteractionFragment> coveredBy = lifeline.getCoveredBys();
-			if (!coveredBy.isEmpty()) {
+			if(!coveredBy.isEmpty()) {
 				final List<InteractionFragment> fragments = filterFragments(interaction.getFragments(), lifeline);
 				int indexInFragments = 0;
-				for (final InteractionFragment interactionFragment : fragments) {
+				for(final InteractionFragment interactionFragment : fragments) {
 					final int indexInLifeline = coveredBy.indexOf(interactionFragment);
-					if (indexInFragments != indexInLifeline) {
+					if(indexInFragments != indexInLifeline) {
 						coveredBy.move(indexInFragments, indexInLifeline);
 						reorderCount++;
 					}
@@ -127,7 +127,7 @@ public final class ModelValidationUtils {
 				}
 			}
 		}
-		if (reorderCount > 0) {
+		if(reorderCount > 0) {
 			appendMessage(messageBuilder, NLS.bind(Messages.ModelValidationUtils_CoveredByFragmentsWereReOrdered, Integer.toString(reorderCount)));
 		}
 	}
@@ -136,15 +136,15 @@ public final class ModelValidationUtils {
 	 * Return the sublist of the given fragments covered by the given Lifeline.
 	 * 
 	 * @param fragments
-	 *            the fragments list to filter
+	 *        the fragments list to filter
 	 * @param lifeline
-	 *            the Lifeline which must be covered by the returned fragments
+	 *        the Lifeline which must be covered by the returned fragments
 	 * @return the filtered list of fragments that cover the Lifeline
 	 */
 	private static List<InteractionFragment> filterFragments(final EList<InteractionFragment> fragments, final Lifeline lifeline) {
 		final List<InteractionFragment> result = new ArrayList<InteractionFragment>();
-		for (final InteractionFragment interactionFragment : fragments) {
-			if (interactionFragment.getCovereds().contains(lifeline)) {
+		for(final InteractionFragment interactionFragment : fragments) {
+			if(interactionFragment.getCovereds().contains(lifeline)) {
 				result.add(interactionFragment);
 			}
 		}
@@ -157,28 +157,26 @@ public final class ModelValidationUtils {
 
 		final ListIterator<InteractionFragment> listIterator = lifeline.getCoveredBys().listIterator();
 		boolean afterDestructionOccurrenceSpecification = false;
-		while (listIterator.hasNext()) {
+		while(listIterator.hasNext()) {
 			final InteractionFragment fragment = listIterator.next();
-			if (afterDestructionOccurrenceSpecification) {
-				if (autoCorrection) {
+			if(afterDestructionOccurrenceSpecification) {
+				if(autoCorrection) {
 					listIterator.remove();
 					wrongFragmentsRemoved++;
 				} else {
 					wrongFragmentsFound++;
 				}
 			}
-			if (fragment instanceof DestructionOccurrenceSpecification) {
+			if(fragment instanceof DestructionOccurrenceSpecification) {
 				afterDestructionOccurrenceSpecification = true;
 			}
 		}
 
-		if (wrongFragmentsFound > 0) {
-			appendMessage(messageBuilder,
-					NLS.bind(Messages.ModelValidationUtils_FragmentsFoundAfterDestructionOccurrenceSpecification, Integer.toString(wrongFragmentsFound)));
+		if(wrongFragmentsFound > 0) {
+			appendMessage(messageBuilder, NLS.bind(Messages.ModelValidationUtils_FragmentsFoundAfterDestructionOccurrenceSpecification, Integer.toString(wrongFragmentsFound)));
 		}
-		if (wrongFragmentsRemoved > 0) {
-			appendMessage(messageBuilder,
-					NLS.bind(Messages.ModelValidationUtils_FragmentsRemovedAfterDestructionOccurrenceSpecification, Integer.toString(wrongFragmentsRemoved)));
+		if(wrongFragmentsRemoved > 0) {
+			appendMessage(messageBuilder, NLS.bind(Messages.ModelValidationUtils_FragmentsRemovedAfterDestructionOccurrenceSpecification, Integer.toString(wrongFragmentsRemoved)));
 		}
 
 		return wrongFragmentsFound == 0;
@@ -191,9 +189,9 @@ public final class ModelValidationUtils {
 		final Map<OccurrenceSpecification, Integer> occurencesToBeAdded = new LinkedHashMap<OccurrenceSpecification, Integer>();
 		InteractionFragment previousElement = null;
 		int offset = 0;
-		for (final InteractionFragment interactionFragment : coveredBys) {
-			if (interactionFragment instanceof StateInvariant && previousElement instanceof StateInvariant) {
-				if (autoCorrection) {
+		for(final InteractionFragment interactionFragment : coveredBys) {
+			if(interactionFragment instanceof StateInvariant && previousElement instanceof StateInvariant) {
+				if(autoCorrection) {
 					final OccurrenceSpecification occurrence = UMLFactory.eINSTANCE.createOccurrenceSpecification();
 					OccurrenceSpecificationUtils.setAutogeneratedName(occurrence, true);
 					occurencesToBeAdded.put(occurrence, Integer.valueOf(coveredBys.indexOf(interactionFragment) + offset++));
@@ -203,12 +201,12 @@ public final class ModelValidationUtils {
 			}
 			previousElement = interactionFragment;
 		}
-		if (!occurencesToBeAdded.isEmpty()) {
-			for (final Entry<OccurrenceSpecification, Integer> entry : occurencesToBeAdded.entrySet()) {
+		if(!occurencesToBeAdded.isEmpty()) {
+			for(final Entry<OccurrenceSpecification, Integer> entry : occurencesToBeAdded.entrySet()) {
 				final OccurrenceSpecification occurrence = entry.getKey();
 				final int indexInCoveredBys = entry.getValue().intValue();
 				// Element must be a StateInvariant
-				final StateInvariant stateInvariant = (StateInvariant) lifeline.getCoveredBys().get(indexInCoveredBys);
+				final StateInvariant stateInvariant = (StateInvariant)lifeline.getCoveredBys().get(indexInCoveredBys);
 
 				// insert the OccurrenceSpecification before the StateInvariant in the Lifeline's coveredBys
 				lifeline.getCoveredBys().add(indexInCoveredBys, occurrence);
@@ -220,28 +218,27 @@ public final class ModelValidationUtils {
 				fragments.add(indexInFragments, occurrence);
 
 				String previousName = null;
-				if (indexInCoveredBys > 0) {
+				if(indexInCoveredBys > 0) {
 					final InteractionFragment previousFragment = lifeline.getCoveredBys().get(indexInCoveredBys - 1);
-					if (previousFragment instanceof StateInvariant) {
-						final StateInvariant previousStateInvariant = (StateInvariant) previousFragment;
+					if(previousFragment instanceof StateInvariant) {
+						final StateInvariant previousStateInvariant = (StateInvariant)previousFragment;
 						previousName = previousStateInvariant.getName();
 					}
 				}
 
 				String followingName = stateInvariant.getName();
-				if (previousName == null) {
+				if(previousName == null) {
 					previousName = "<unnamed>"; //$NON-NLS-1$
 				}
-				if (followingName == null) {
+				if(followingName == null) {
 					followingName = "<unnamed>"; //$NON-NLS-1$
 				}
 				occurrence.setName(previousName + "_To_" + followingName); //$NON-NLS-1$ 
 			}
-			appendMessage(messageBuilder,
-					NLS.bind(Messages.ModelValidationUtils_MissingOccurrenceSpecificationAdded, Integer.valueOf(occurencesToBeAdded.size())));
+			appendMessage(messageBuilder, NLS.bind(Messages.ModelValidationUtils_MissingOccurrenceSpecificationAdded, Integer.valueOf(occurencesToBeAdded.size())));
 		}
 
-		if (missingOccurrences > 0) {
+		if(missingOccurrences > 0) {
 			appendMessage(messageBuilder, NLS.bind(Messages.ModelValidationUtils_MissingOccurrenceSpecificationFound, Integer.valueOf(missingOccurrences)));
 		}
 		return missingOccurrences == 0;

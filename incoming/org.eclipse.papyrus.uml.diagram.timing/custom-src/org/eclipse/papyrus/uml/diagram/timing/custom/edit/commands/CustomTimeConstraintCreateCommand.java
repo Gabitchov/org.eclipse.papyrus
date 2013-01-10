@@ -41,18 +41,18 @@ public class CustomTimeConstraintCreateCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 		final TimeConstraint timeConstraint = UMLFactory.eINSTANCE.createTimeConstraint();
-		final CreateElementRequest request = (CreateElementRequest) getRequest();
-		final EditPart originalTarget = (EditPart) request.getParameter(CustomPaletteFactory.ORIGINAL_TARGET);
-		final NamedElement targetElement = (NamedElement) ((View) originalTarget.getModel()).getElement();
+		final CreateElementRequest request = (CreateElementRequest)getRequest();
+		final EditPart originalTarget = (EditPart)request.getParameter(CustomPaletteFactory.ORIGINAL_TARGET);
+		final NamedElement targetElement = (NamedElement)((View)originalTarget.getModel()).getElement();
 
 		// TODO: firstEvent depending on the click location relative to the originalTarget EditPart figure
 
 		final Package containingPackage = EcoreUtils.getContaining(request.getContainer(), Package.class);
-		if (containingPackage == null) {
+		if(containingPackage == null) {
 			return CommandResult.newErrorCommandResult("The container must be in a Package"); //$NON-NLS-1$
 		}
 		final Interaction containingInteraction = EcoreUtils.getContaining(request.getContainer(), Interaction.class);
-		if (containingInteraction == null) {
+		if(containingInteraction == null) {
 			return CommandResult.newErrorCommandResult("The container must be in an Interaction"); //$NON-NLS-1$
 		}
 
@@ -77,7 +77,7 @@ public class CustomTimeConstraintCreateCommand extends EditElementCommand {
 		minExpr.setValue("t1"); //$NON-NLS-1$
 		maxExpr.setValue("t2"); //$NON-NLS-1$
 
-		((CreateElementRequest) getRequest()).setNewElement(timeConstraint);
+		((CreateElementRequest)getRequest()).setNewElement(timeConstraint);
 		return CommandResult.newOKCommandResult(timeConstraint);
 
 	}

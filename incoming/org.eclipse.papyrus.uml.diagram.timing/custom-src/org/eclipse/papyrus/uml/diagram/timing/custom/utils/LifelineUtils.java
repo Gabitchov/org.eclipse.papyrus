@@ -39,7 +39,6 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineEditPartCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineTimelineCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.timing.providers.UMLViewProvider;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -54,6 +53,7 @@ public final class LifelineUtils {
 
 	/** The key for the EAnnotation on a Lifeline that indicates whether the Lifeline is a compact or full lifeline */
 	private static final String LIFELINE_ANNOTATION = "org.eclipse.papyrus.uml.diagram.timing.lifeline"; //$NON-NLS-1$
+
 	private static final String LIFELINE_TYPE = "type"; //$NON-NLS-1$
 
 	private LifelineUtils() {
@@ -64,14 +64,14 @@ public final class LifelineUtils {
 	 * Get the type of the given lifeline
 	 * 
 	 * @param lifeline
-	 *            the lifeline whose type to get
+	 *        the lifeline whose type to get
 	 * @return the type
 	 */
 	public static LifelineType getLifelineType(final Lifeline lifeline) {
 		final EAnnotation eAnnotation = lifeline.getEAnnotation(LIFELINE_ANNOTATION);
-		if (eAnnotation != null) {
+		if(eAnnotation != null) {
 			final String type = eAnnotation.getDetails().get(LIFELINE_TYPE);
-			if (type != null) {
+			if(type != null) {
 				return LifelineType.valueOf(type);
 			}
 		}
@@ -80,17 +80,17 @@ public final class LifelineUtils {
 	}
 
 	/**
-	 * Set the type of the given lifeline (between compact and full) using an annotation. This is needed in order to let
-	 * {@link UMLViewProvider} choose the right view depending on this annotation.
+	 * Set the type of the given lifeline (between compact and full) using an annotation. This is needed in order to let {@link UMLViewProvider}
+	 * choose the right view depending on this annotation.
 	 * 
 	 * @param lifeline
-	 *            the lifeline whose type to set
+	 *        the lifeline whose type to set
 	 * @param lifelineType
-	 *            the type to set
+	 *        the type to set
 	 */
 	public static void setLifelineType(final Lifeline lifeline, final LifelineType lifelineType) {
 		EAnnotation eAnnotation = lifeline.getEAnnotation(LIFELINE_ANNOTATION);
-		if (eAnnotation == null) {
+		if(eAnnotation == null) {
 			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eAnnotation.setSource(LIFELINE_ANNOTATION);
 			lifeline.getEAnnotations().add(eAnnotation);
@@ -104,14 +104,14 @@ public final class LifelineUtils {
 	 * indicate a state change have a name that indicates their incoming and outgoing state.
 	 * 
 	 * @param lifeline
-	 *            the Lifeline to update
+	 *        the Lifeline to update
 	 * @param lifelineView
-	 *            the Lifeline's view, containing the StateDefinitions (ignored for a Compact lifeline)
+	 *        the Lifeline's view, containing the StateDefinitions (ignored for a Compact lifeline)
 	 */
 	@SuppressWarnings("boxing")
 	public static void updateFragmentNames(final Lifeline lifeline, final View lifelineView) {
 		View fullLifelineView = lifelineView;
-		if (lifelineView != null && !Integer.toString(FullLifelineEditPartCN.VISUAL_ID).equals(lifelineView.getType())) {
+		if(lifelineView != null && !Integer.toString(FullLifelineEditPartCN.VISUAL_ID).equals(lifelineView.getType())) {
 			fullLifelineView = null;
 		}
 		final Map<String, Integer> stateInvariantCounts = new HashMap<String, Integer>();
@@ -119,13 +119,13 @@ public final class LifelineUtils {
 		final Map<StateInvariant, String> stateInvariantNames = new HashMap<StateInvariant, String>();
 
 		// first, handle StateInvariant names
-		for (int i = 0; i < fragments.size(); i++) {
+		for(int i = 0; i < fragments.size(); i++) {
 			final InteractionFragment interactionFragment = fragments.get(i);
-			if (interactionFragment instanceof StateInvariant) {
-				final StateInvariant stateInvariant = (StateInvariant) interactionFragment;
+			if(interactionFragment instanceof StateInvariant) {
+				final StateInvariant stateInvariant = (StateInvariant)interactionFragment;
 				final String stateInvariantId = StateInvariantUtils.getStateInvariantId(stateInvariant);
 				final String baseStateInvariantName;
-				if (stateInvariantId != null && fullLifelineView != null) {
+				if(stateInvariantId != null && fullLifelineView != null) {
 					// in a full lifeline,
 					final View stateDefinitionView = StateDefinitionUtils.getStateDefinitionViewWithId(stateInvariantId, fullLifelineView);
 					baseStateInvariantName = StateDefinitionUtils.getStateDefinitionName(stateDefinitionView);
@@ -135,11 +135,11 @@ public final class LifelineUtils {
 					baseStateInvariantName = StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
 				}
 
-				if (baseStateInvariantName == null) {
+				if(baseStateInvariantName == null) {
 					continue;
 				}
 				Integer count = stateInvariantCounts.get(baseStateInvariantName);
-				if (count == null) {
+				if(count == null) {
 					count = 0;
 				}
 				count++;
@@ -155,21 +155,21 @@ public final class LifelineUtils {
 		// start at 1 and end at (size - 1) since we only care about OccurrenceSpecifications that
 		// appear between StateInvariants
 		final int nFragments = fragments.size();
-		for (int i = 0; i < nFragments; i++) {
+		for(int i = 0; i < nFragments; i++) {
 			final InteractionFragment interactionFragment = fragments.get(i);
-			if (interactionFragment instanceof OccurrenceSpecification) {
-				final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) interactionFragment;
+			if(interactionFragment instanceof OccurrenceSpecification) {
+				final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)interactionFragment;
 				// don't override user modifications
-				if (!OccurrenceSpecificationUtils.isAutogeneratedName(occurrenceSpecification)) {
+				if(!OccurrenceSpecificationUtils.isAutogeneratedName(occurrenceSpecification)) {
 					continue;
 				}
 
-				if (i == 0) {
+				if(i == 0) {
 					// first fragment is an occurrence => creation
 					occurrenceSpecification.setName(Messages.LifelineUtils_CreationOccurrence);
 					continue;
 				}
-				if (i == nFragments - 1) {
+				if(i == nFragments - 1) {
 					// last fragment is an occurrence => destruction
 					occurrenceSpecification.setName(Messages.LifelineUtils_DestructionOccurrence);
 					continue;
@@ -177,17 +177,17 @@ public final class LifelineUtils {
 
 				final InteractionFragment previous = fragments.get(i - 1);
 				final InteractionFragment next = fragments.get(i + 1);
-				if (!(previous instanceof StateInvariant) || !(next instanceof StateInvariant)) {
+				if(!(previous instanceof StateInvariant) || !(next instanceof StateInvariant)) {
 					continue;
 				}
-				final StateInvariant precedingStateInvariant = (StateInvariant) previous;
-				final StateInvariant followingStateInvariant = (StateInvariant) next;
+				final StateInvariant precedingStateInvariant = (StateInvariant)previous;
+				final StateInvariant followingStateInvariant = (StateInvariant)next;
 				String previousName = stateInvariantNames.get(precedingStateInvariant);
 				String followingName = stateInvariantNames.get(followingStateInvariant);
-				if (previousName == null) {
+				if(previousName == null) {
 					previousName = "<unnamed>"; //$NON-NLS-1$
 				}
-				if (followingName == null) {
+				if(followingName == null) {
 					followingName = "<unnamed>"; //$NON-NLS-1$
 				}
 				occurrenceSpecification.setName(previousName + "_To_" + followingName); //$NON-NLS-1$ 
@@ -200,37 +200,38 @@ public final class LifelineUtils {
 	 * element.
 	 * 
 	 * @param element
-	 *            an element contained in a Lifeline
+	 *        an element contained in a Lifeline
 	 * @return a command to update the names of Lifeline fragments
 	 */
 	public static IUndoableOperation getUpdateFragmentNamesCommand(final EObject element) {
 		final Set<View> impactedLifelines = new HashSet<View>();
 		final Set<View> crossReferencingViews = CrossReferencerUtil.getCrossReferencingViews(element, TimingDiagramEditPart.MODEL_ID);
-		for (final View referencingView : crossReferencingViews) {
+		for(final View referencingView : crossReferencingViews) {
 			View lifeline = ViewUtils.findSuperViewWithId(referencingView, FullLifelineEditPartCN.VISUAL_ID);
-			if (lifeline == null) {
+			if(lifeline == null) {
 				lifeline = ViewUtils.findSuperViewWithId(referencingView, CompactLifelineEditPartCN.VISUAL_ID);
 			}
-			if (lifeline != null) {
+			if(lifeline != null) {
 				impactedLifelines.add(lifeline);
 			}
 		}
-		if (impactedLifelines.isEmpty()) {
+		if(impactedLifelines.isEmpty()) {
 			return null;
 		}
 
 		final CompositeCommand compositeCommand = new CompositeCommand(Messages.LifelineUtils_UpdateFragmentNames);
 		// update fragment names
-		for (final View lifelineView : impactedLifelines) {
+		for(final View lifelineView : impactedLifelines) {
 			Assert.isLegal(lifelineView.getElement() instanceof Lifeline);
 			final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(lifelineView);
 			compositeCommand.add(new AbstractTransactionalCommand(editingDomain, Messages.LifelineUtils_UpdateLifelineFragmentNames, null) {
+
 				@Override
 				protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 					final EObject element = lifelineView.getElement();
 					// note: the element becomes the Interaction when the Lifeline is deleted
-					if (element instanceof Lifeline) {
-						final Lifeline lifeline = (Lifeline) element;
+					if(element instanceof Lifeline) {
+						final Lifeline lifeline = (Lifeline)element;
 						updateFragmentNames(lifeline, lifelineView);
 					}
 					return CommandResult.newOKCommandResult();
@@ -255,12 +256,12 @@ public final class LifelineUtils {
 
 	public static EditPart getLifelineCompartment(final EditPart lifelineEditPart) {
 		EditPart compartment;
-		if (lifelineEditPart instanceof FullLifelineEditPartCN) {
+		if(lifelineEditPart instanceof FullLifelineEditPartCN) {
 			compartment = EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID);
 		} else {
 			compartment = EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
 		}
-		if (compartment == null) {
+		if(compartment == null) {
 			throw new IllegalStateException("No compartment in Lifeline"); //$NON-NLS-1$
 		}
 		return compartment;

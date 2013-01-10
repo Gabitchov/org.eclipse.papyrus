@@ -99,21 +99,21 @@ AbstractBorderedShapeEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(final EditPart child) {
-				final View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				final View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case TickNameEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						@Override
 						protected List createSelectionHandles() {
-							final MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+							final MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
 					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -143,7 +143,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public VerticalMarkFigure getPrimaryShape() {
-		return (VerticalMarkFigure) this.primaryShape;
+		return (VerticalMarkFigure)this.primaryShape;
 	}
 
 	/**
@@ -151,7 +151,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void addBorderItem(final IFigure borderItemContainer, final IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof TickNameEditPart) {
+		if(borderItemEditPart instanceof TickNameEditPart) {
 			final IBorderItemLocator locator = new LabelInCompartmentLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -165,10 +165,8 @@ AbstractBorderedShapeEditPart {
 	protected NodeFigure createNodePlate() {
 		final String prefElementId = "Tick";
 		final IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.WIDTH);
-		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.HEIGHT);
+		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		final DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
@@ -197,7 +195,7 @@ AbstractBorderedShapeEditPart {
 	 * figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(final IFigure nodeShape) {
@@ -209,7 +207,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (this.contentPane != null) {
+		if(this.contentPane != null) {
 			return this.contentPane;
 		}
 		return super.getContentPane();
@@ -220,7 +218,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(final Color color) {
-		if (this.primaryShape != null) {
+		if(this.primaryShape != null) {
 			this.primaryShape.setForegroundColor(color);
 		}
 	}
@@ -230,8 +228,8 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void setLineWidth(final int width) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineWidth(width);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -240,8 +238,8 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void setLineType(final int style) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineStyle(style);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -258,31 +256,30 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(final EStructuralFeature feature) {
-		final IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		final IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Tick", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Tick", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Tick", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			final String prefGradient = PreferenceConstantHelper.getElementConstant("Tick", PreferenceConstantHelper.COLOR_GRADIENT);
 			final GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

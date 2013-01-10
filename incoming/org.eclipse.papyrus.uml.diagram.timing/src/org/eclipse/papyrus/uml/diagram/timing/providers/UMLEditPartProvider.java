@@ -83,7 +83,7 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 */
 	protected synchronized void setAllowCaching(final boolean allowCaching) {
 		this.allowCaching = allowCaching;
-		if (!allowCaching) {
+		if(!allowCaching) {
 			this.cachedPart = null;
 			this.cachedView = null;
 		}
@@ -94,8 +94,8 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 */
 	protected IGraphicalEditPart createEditPart(final View view) {
 		final EditPart part = this.factory.createEditPart(null, view);
-		if (part instanceof IGraphicalEditPart) {
-			return (IGraphicalEditPart) part;
+		if(part instanceof IGraphicalEditPart) {
+			return (IGraphicalEditPart)part;
 		}
 		return null;
 	}
@@ -104,8 +104,8 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 * @generated
 	 */
 	protected IGraphicalEditPart getCachedPart(final View view) {
-		if (this.cachedView != null && this.cachedView.get() == view) {
-			return (IGraphicalEditPart) this.cachedPart.get();
+		if(this.cachedView != null && this.cachedView.get() == view) {
+			return (IGraphicalEditPart)this.cachedPart.get();
 		}
 		return null;
 	}
@@ -115,11 +115,11 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 */
 	@Override
 	public synchronized IGraphicalEditPart createGraphicEditPart(final View view) {
-		if (isAllowCaching()) {
+		if(isAllowCaching()) {
 			final IGraphicalEditPart part = getCachedPart(view);
 			this.cachedPart = null;
 			this.cachedView = null;
-			if (part != null) {
+			if(part != null) {
 				return part;
 			}
 		}
@@ -131,17 +131,17 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	 */
 	@Override
 	public synchronized boolean provides(final IOperation operation) {
-		if (operation instanceof CreateGraphicEditPartOperation) {
-			final View view = ((IEditPartOperation) operation).getView();
-			if (!TimingDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
+		if(operation instanceof CreateGraphicEditPartOperation) {
+			final View view = ((IEditPartOperation)operation).getView();
+			if(!TimingDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
 				return false;
 			}
-			if (isAllowCaching() && getCachedPart(view) != null) {
+			if(isAllowCaching() && getCachedPart(view) != null) {
 				return true;
 			}
 			final IGraphicalEditPart part = createEditPart(view);
-			if (part != null) {
-				if (isAllowCaching()) {
+			if(part != null) {
+				if(isAllowCaching()) {
 					this.cachedPart = new WeakReference(part);
 					this.cachedView = new WeakReference(view);
 				}

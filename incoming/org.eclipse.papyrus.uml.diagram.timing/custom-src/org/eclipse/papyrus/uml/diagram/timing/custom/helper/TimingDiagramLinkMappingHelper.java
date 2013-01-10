@@ -29,7 +29,7 @@ public class TimingDiagramLinkMappingHelper implements ILinkMappingHelper {
 	 * @return single instance of {@link TimingDiagramLinkMappingHelper}
 	 */
 	public static TimingDiagramLinkMappingHelper getInstance() {
-		if (INSTANCE == null) {
+		if(INSTANCE == null) {
 			INSTANCE = new TimingDiagramLinkMappingHelper();
 		}
 		return INSTANCE;

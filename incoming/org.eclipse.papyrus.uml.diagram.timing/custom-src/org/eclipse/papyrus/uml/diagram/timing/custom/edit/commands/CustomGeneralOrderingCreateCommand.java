@@ -34,13 +34,13 @@ public class CustomGeneralOrderingCreateCommand extends EditElementCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		final CreateElementRequest request = (CreateElementRequest) getRequest();
-		final EditPart firstTarget = (EditPart) request.getParameter(AbstractTwoPointCreationTool.FIRST_TARGET);
-		final EditPart secondTarget = (EditPart) request.getParameter(AbstractTwoPointCreationTool.SECOND_TARGET);
+		final CreateElementRequest request = (CreateElementRequest)getRequest();
+		final EditPart firstTarget = (EditPart)request.getParameter(AbstractTwoPointCreationTool.FIRST_TARGET);
+		final EditPart secondTarget = (EditPart)request.getParameter(AbstractTwoPointCreationTool.SECOND_TARGET);
 
 		final GeneralOrdering generalOrdering = UMLFactory.eINSTANCE.createGeneralOrdering();
-		final OccurrenceSpecification beforeOccurrence = (OccurrenceSpecification) ((View) firstTarget.getModel()).getElement();
-		final OccurrenceSpecification afterOccurrence = (OccurrenceSpecification) ((View) secondTarget.getModel()).getElement();
+		final OccurrenceSpecification beforeOccurrence = (OccurrenceSpecification)((View)firstTarget.getModel()).getElement();
+		final OccurrenceSpecification afterOccurrence = (OccurrenceSpecification)((View)secondTarget.getModel()).getElement();
 
 		beforeOccurrence.getGeneralOrderings().add(generalOrdering);
 		generalOrdering.setBefore(beforeOccurrence);

@@ -40,7 +40,7 @@ public class TimeRulerVisibilityRefreshEditPolicy extends GraphicalEditPolicy im
 	public void activate() {
 
 		this.timeRulerCompartmentView = getListenedView();
-		if (this.timeRulerCompartmentView == null) {
+		if(this.timeRulerCompartmentView == null) {
 			return;
 		}
 		// adds a listener on the View
@@ -51,7 +51,7 @@ public class TimeRulerVisibilityRefreshEditPolicy extends GraphicalEditPolicy im
 
 	@Override
 	public void deactivate() {
-		if (this.timeRulerCompartmentView == null) {
+		if(this.timeRulerCompartmentView == null) {
 			return;
 		}
 		// remove the listener from the View
@@ -64,8 +64,8 @@ public class TimeRulerVisibilityRefreshEditPolicy extends GraphicalEditPolicy im
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
-		final TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (editingDomain != null) {
+		final TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(editingDomain != null) {
 			return DiagramEventBroker.getInstance(editingDomain);
 		}
 		return null;
@@ -73,20 +73,20 @@ public class TimeRulerVisibilityRefreshEditPolicy extends GraphicalEditPolicy im
 
 	protected View getListenedView() {
 		final View view = getView();
-		if (view != null) {
+		if(view != null) {
 			return ViewUtils.findTimeRulerCompartmentView(view);
 		}
 		return null;
 	}
 
 	protected View getView() {
-		return (View) getHost().getModel();
+		return (View)getHost().getModel();
 	}
 
 	public void notifyChanged(final Notification notification) {
-		if (notification.getEventType() == Notification.SET) {
+		if(notification.getEventType() == Notification.SET) {
 			final Object feature = notification.getFeature();
-			if (feature == NotationPackage.eINSTANCE.getView_Visible()) {
+			if(feature == NotationPackage.eINSTANCE.getView_Visible()) {
 				refreshFigure();
 			}
 		}
@@ -98,7 +98,7 @@ public class TimeRulerVisibilityRefreshEditPolicy extends GraphicalEditPolicy im
 	 */
 	public void refreshFigure() {
 		final boolean visible = getListenedView().isVisible();
-		final IFigure figure = ((IGraphicalEditPart) getHost()).getFigure();
+		final IFigure figure = ((IGraphicalEditPart)getHost()).getFigure();
 		final LifelineFigure lifelineFigure = FigureUtils.findChildFigureInstance(figure, LifelineFigure.class);
 		lifelineFigure.setDisplayTimeRuler(visible);
 	}

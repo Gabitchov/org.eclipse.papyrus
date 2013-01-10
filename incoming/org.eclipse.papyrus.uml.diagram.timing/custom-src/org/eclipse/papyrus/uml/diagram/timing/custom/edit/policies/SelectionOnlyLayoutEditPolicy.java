@@ -17,6 +17,7 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy;
 
 public class SelectionOnlyLayoutEditPolicy extends LayoutEditPolicy {
+
 	@Override
 	protected Command getMoveChildrenCommand(final Request request) {
 		return null;

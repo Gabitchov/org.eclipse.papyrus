@@ -13,6 +13,7 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullStateInvariantEditP
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullStateInvariantVerticalLineEditPart;
 
 public final class Constants {
+
 	private Constants() {
 		// not instantiable
 	}
@@ -24,10 +25,14 @@ public final class Constants {
 	public static final int MINIMUM_DISTANCE_BETWEEN_OCCURRENCE_SPECIFICATIONS = 4;
 
 	public static final int MARGIN_BETWEEN_LIFELINES = 8;
+
 	public static final int TIME_RULER_HEIGHT = 30;
+
 	public static final int STATE_DEFINITIONS_WIDTH = 100;
 
 	public static final String fullStateInvariantId = Integer.toString(FullStateInvariantEditPartCN.VISUAL_ID);
+
 	public static final String compactStateInvariantId = Integer.toString(CompactStateInvariantEditPartCN.VISUAL_ID);
+
 	public static final String verticalLineId = Integer.toString(FullStateInvariantVerticalLineEditPart.VISUAL_ID);
 }

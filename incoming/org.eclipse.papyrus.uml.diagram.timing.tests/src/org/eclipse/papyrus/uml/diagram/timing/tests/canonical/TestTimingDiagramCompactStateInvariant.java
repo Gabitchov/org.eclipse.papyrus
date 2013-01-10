@@ -53,8 +53,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		createOccurrenceSpecificationInLastCompactStateInvariantWithRatio(2, 1.0 / 3.0);
 		createOccurrenceSpecificationInLastCompactStateInvariantWithRatio(3, 1.0 / 2.0);
 		checkSimpleCompactTimelinePattern("-o-o-o-");
-		checkCompactTimelinePattern("StateInvariant(unnamed);OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);"
-				+ "OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);");
+		checkCompactTimelinePattern("StateInvariant(unnamed);OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);" + "OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);OccurrenceSpecification(<unnamed>_To_<unnamed>);StateInvariant(unnamed);");
 	}
 
 	@Test
@@ -64,12 +63,12 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		final List<CompactStateInvariantEditPartCN> stateInvariantEditParts = findStateInvariantsInDefaultCompactLifeline();
 		assertEquals("We should have four StateInvariants", 4, stateInvariantEditParts.size());
 		int i = 1;
-		for (final CompactStateInvariantEditPartCN stateInvariantEditPart : stateInvariantEditParts) {
-			final CompactStateInvariantNameEditPart nameEditPart = (CompactStateInvariantNameEditPart) EditPartUtils.findFirstChildEditPartWithId(
-					stateInvariantEditPart, CompactStateInvariantNameEditPart.VISUAL_ID);
+		for(final CompactStateInvariantEditPartCN stateInvariantEditPart : stateInvariantEditParts) {
+			final CompactStateInvariantNameEditPart nameEditPart = (CompactStateInvariantNameEditPart)EditPartUtils.findFirstChildEditPartWithId(stateInvariantEditPart, CompactStateInvariantNameEditPart.VISUAL_ID);
 			assertNotNull("The name edit part must not be null", nameEditPart);
-			final StateInvariant stateInvariant = (StateInvariant) ((View) stateInvariantEditPart.getModel()).getElement();
+			final StateInvariant stateInvariant = (StateInvariant)((View)stateInvariantEditPart.getModel()).getElement();
 			testSetNameWithDirectEditRequest(nameEditPart, stateInvariant, new INameProvider<StateInvariant>() {
+
 				public String getName(final StateInvariant stateInvariant) {
 					return StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
 				}
@@ -77,8 +76,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 			setNameWithDirectEditRequest(nameEditPart, "state" + (i % 2 + 1));
 			i++;
 		}
-		checkCompactTimelinePattern("StateInvariant(state2);OccurrenceSpecification(state2_1_To_state1_1);StateInvariant(state1);"
-				+ "OccurrenceSpecification(state1_1_To_state2_2);StateInvariant(state2);OccurrenceSpecification(state2_2_To_state1_2);StateInvariant(state1);");
+		checkCompactTimelinePattern("StateInvariant(state2);OccurrenceSpecification(state2_1_To_state1_1);StateInvariant(state1);" + "OccurrenceSpecification(state1_1_To_state2_2);StateInvariant(state2);OccurrenceSpecification(state2_2_To_state1_2);StateInvariant(state1);");
 	}
 
 	@Test
@@ -205,9 +203,7 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 		testResizeCompactStateInvariant(s2, 42, o1, o2, o3, o4, o5, timelineCompartment);
 	}
 
-	private void testResizeCompactStateInvariant(final CompactStateInvariantEditPartCN s2, final int widthDelta, final OccurrenceSpecificationEditPartCN o1,
-			final OccurrenceSpecificationEditPartCN o2, final OccurrenceSpecificationEditPartCN o3, final OccurrenceSpecificationEditPartCN o4,
-			final OccurrenceSpecificationEditPartCN o5, final CompactLifelineCompartmentEditPartCN timelineCompartment) {
+	private void testResizeCompactStateInvariant(final CompactStateInvariantEditPartCN s2, final int widthDelta, final OccurrenceSpecificationEditPartCN o1, final OccurrenceSpecificationEditPartCN o2, final OccurrenceSpecificationEditPartCN o3, final OccurrenceSpecificationEditPartCN o4, final OccurrenceSpecificationEditPartCN o5, final CompactLifelineCompartmentEditPartCN timelineCompartment) {
 		final Rectangle o1Before = getBounds(o1);
 		final Rectangle o2Before = getBounds(o2);
 		final Rectangle o3Before = getBounds(o3);

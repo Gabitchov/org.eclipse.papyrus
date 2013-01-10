@@ -32,21 +32,21 @@ public class OccurrenceSpecificationHelperAdvice extends AbstractEditHelperAdvic
 	@Override
 	protected ICommand getAfterDestroyDependentsCommand(final DestroyDependentsRequest request) {
 		final EObject destructee = request.getElementToDestroy();
-		if (destructee instanceof OccurrenceSpecification) {
-			final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) destructee;
+		if(destructee instanceof OccurrenceSpecification) {
+			final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)destructee;
 			final Collection<EObject> elementsToDestroy = OccurrenceSpecificationUtils.getElementsToDelete(occurrenceSpecification);
-			if (!elementsToDestroy.isEmpty()) {
+			if(!elementsToDestroy.isEmpty()) {
 				final CompositeCommand compositeCommand = new CompositeCommand(Messages.OccurrenceSpecificationHelperAdvice_DestroyOccurrenceSpecification);
 				// destroy related elements
-				for (final EObject eObject : elementsToDestroy) {
+				for(final EObject eObject : elementsToDestroy) {
 					final DestroyElementRequest destroyElementRequest = new DestroyElementRequest(eObject, false);
 					final DestroyElementCommand destroyElementCommand = new DestroyElementCommand(destroyElementRequest);
-					if (destroyElementCommand.canExecute()) {
+					if(destroyElementCommand.canExecute()) {
 						compositeCommand.add(destroyElementCommand);
 					}
 				}
 				final IUndoableOperation updateFragmentNamesCommand = LifelineUtils.getUpdateFragmentNamesCommand(occurrenceSpecification);
-				if (updateFragmentNamesCommand != null) {
+				if(updateFragmentNamesCommand != null) {
 					compositeCommand.add(updateFragmentNamesCommand);
 				}
 				return compositeCommand;

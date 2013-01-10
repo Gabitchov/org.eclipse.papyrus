@@ -30,18 +30,19 @@ public class CustomFreeTimingRulerEditPart extends FreeTimingRulerEditPartCN {
 	protected IFigure createNodeShape() {
 		this.primaryShape = new TimingRulerFigure();
 		this.primaryShape.setLayoutManager(new FillLayout() {
+
 			@Override
 			public void layout(final IFigure container) {
-				for (final Object child : container.getChildren()) {
-					((IFigure) child).setBounds(container.getBounds());
+				for(final Object child : container.getChildren()) {
+					((IFigure)child).setBounds(container.getBounds());
 				}
 				final ShapeCompartmentFigure compartmentFigure = FigureUtils.findChildFigureInstance(container, ShapeCompartmentFigure.class);
-				if (compartmentFigure != null) {
-					for (final Object child : compartmentFigure.getChildren()) {
-						if (child instanceof ScrollPane) {
-							((ScrollPane) child).setBounds(container.getBounds());
+				if(compartmentFigure != null) {
+					for(final Object child : compartmentFigure.getChildren()) {
+						if(child instanceof ScrollPane) {
+							((ScrollPane)child).setBounds(container.getBounds());
 							// ((ScrollPane) child).setBorder(null);
-							((ScrollPane) child).setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+							((ScrollPane)child).setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
 							// ((ScrollPane) child).getViewport().setBounds(container.getBounds());
 						}
 					}
@@ -62,6 +63,7 @@ public class CustomFreeTimingRulerEditPart extends FreeTimingRulerEditPartCN {
 	public DragTracker getDragTracker(final Request request) {
 		// lock the drag to the containing compartment
 		return new DragEditPartsTrackerEx(this) {
+
 			@Override
 			protected boolean handleDragStarted() {
 				lockTargetEditPart(CustomFreeTimingRulerEditPart.this.getParent());

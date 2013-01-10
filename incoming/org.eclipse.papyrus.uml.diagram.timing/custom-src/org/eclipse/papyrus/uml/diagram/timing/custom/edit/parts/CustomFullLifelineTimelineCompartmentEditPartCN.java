@@ -50,20 +50,21 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 
 	@Override
 	public IFigure createFigure() {
-		final ResizableCompartmentFigure figure = (ResizableCompartmentFigure) super.createFigure();
+		final ResizableCompartmentFigure figure = (ResizableCompartmentFigure)super.createFigure();
 		figure.setBorder(null);
 		figure.getScrollPane().setBorder(null);
 		figure.setLayoutManager(new FillLayout());
 
 		figure.getContentPane().setLayoutManager(new FreeFormLayoutEx() {
+
 			@Override
 			public void layout(final IFigure container) {
 				final EditPartViewer viewer = CustomFullLifelineTimelineCompartmentEditPartCN.this.getRoot().getViewer();
 				// reset the layout so that the BorderItemsAwareFreeFormLayer fills its parent FreeformViewport
 				final IFigure parent = container.getParent();
-				if (parent instanceof FreeformViewport) {
-					final FreeformViewport freeformViewport = (FreeformViewport) parent;
-					if (!(freeformViewport.getLayoutManager() instanceof FillLayout)) {
+				if(parent instanceof FreeformViewport) {
+					final FreeformViewport freeformViewport = (FreeformViewport)parent;
+					if(!(freeformViewport.getLayoutManager() instanceof FillLayout)) {
 						freeformViewport.setLayoutManager(new FillLayout());
 					}
 					// reset the origin if it changed (for example, clicking on a label partly
@@ -78,8 +79,8 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 				@SuppressWarnings("unchecked")
 				final List<IFigure> children = container.getChildren();
 				final Rectangle[] constraints = new Rectangle[children.size()];
-				for (int i = 0; i < children.size(); i++) {
-					constraints[i] = (Rectangle) getConstraint(children.get(i));
+				for(int i = 0; i < children.size(); i++) {
+					constraints[i] = (Rectangle)getConstraint(children.get(i));
 				}
 
 				/*
@@ -108,7 +109,7 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		((ResizableCompartmentFigure) getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+		((ResizableCompartmentFigure)getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
 		refreshBounds();
 	}
 
@@ -122,15 +123,15 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 	@Override
 	public Command getCommand(final Request request) {
 		// redirect connection requests to the Lifeline (for MessageLost and MessageFound)
-		if (request instanceof CreateConnectionRequest) {
-			final CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest) request;
-			if (RequestConstants.REQ_CONNECTION_START.equals(request.getType())) {
-				if (createConnectionRequest.getTargetEditPart() instanceof FullLifelineTimelineCompartmentEditPartCN) {
+		if(request instanceof CreateConnectionRequest) {
+			final CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest)request;
+			if(RequestConstants.REQ_CONNECTION_START.equals(request.getType())) {
+				if(createConnectionRequest.getTargetEditPart() instanceof FullLifelineTimelineCompartmentEditPartCN) {
 					createConnectionRequest.setTargetEditPart(getParent());
 				}
 				return getParent().getCommand(request);
-			} else if (RequestConstants.REQ_CONNECTION_END.equals(request.getType())) {
-				if (createConnectionRequest.getSourceEditPart() instanceof FullLifelineTimelineCompartmentEditPartCN) {
+			} else if(RequestConstants.REQ_CONNECTION_END.equals(request.getType())) {
+				if(createConnectionRequest.getSourceEditPart() instanceof FullLifelineTimelineCompartmentEditPartCN) {
 					createConnectionRequest.setSourceEditPart(getParent());
 				}
 				return getParent().getCommand(request);
@@ -140,8 +141,7 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 	}
 
 	/** First pass of the layout */
-	protected static void layoutOccurrenceSpecificationsAndStateInvariants(final EditPartViewer viewer, final Rectangle clientArea,
-			final List<IFigure> figures, final Rectangle[] constraints) {
+	protected static void layoutOccurrenceSpecificationsAndStateInvariants(final EditPartViewer viewer, final Rectangle clientArea, final List<IFigure> figures, final Rectangle[] constraints) {
 
 		int x = clientArea.x;
 		int y = -1;
@@ -149,13 +149,13 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 		Rectangle nextConstraint = null;
 		IFigure nextFigure = null;
 		IFigure nextChildFigure = null;
-		for (int i = 0; i < figures.size(); i++) {
+		for(int i = 0; i < figures.size(); i++) {
 			final IFigure figure = figures.get(i);
 			final FullStateFigure stateInvariantFigure = FigureUtils.findChildFigureInstance(figure, FullStateFigure.class);
 			final SmallSquareFigure smallSquareFigure = FigureUtils.findChildFigureInstance(figure, SmallSquareFigure.class);
 			final CrossFigure crossFigure = FigureUtils.findChildFigureInstance(figure, CrossFigure.class);
 
-			if (stateInvariantFigure == null && smallSquareFigure == null && crossFigure == null) {
+			if(stateInvariantFigure == null && smallSquareFigure == null && crossFigure == null) {
 				continue;
 			}
 
@@ -164,16 +164,16 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 
 			nextConstraint = null;
 			nextFigure = null;
-			for (int j = i + 1; j < figures.size(); j++) {
+			for(int j = i + 1; j < figures.size(); j++) {
 				final IFigure f = figures.get(j);
 				nextChildFigure = FigureUtils.findChildFigureInstance(f, FullStateFigure.class);
-				if (nextChildFigure == null) {
+				if(nextChildFigure == null) {
 					nextChildFigure = FigureUtils.findChildFigureInstance(f, SmallSquareFigure.class);
 				}
-				if (nextChildFigure == null) {
+				if(nextChildFigure == null) {
 					nextChildFigure = FigureUtils.findChildFigureInstance(f, CrossFigure.class);
 				}
-				if (nextChildFigure != null) {
+				if(nextChildFigure != null) {
 					nextConstraint = constraints[j];
 					nextFigure = f;
 					break;
@@ -181,18 +181,18 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 			}
 
 			IFigure occurrenceFigure = null;
-			if (smallSquareFigure != null) {
+			if(smallSquareFigure != null) {
 				occurrenceFigure = smallSquareFigure;
-			} else if (crossFigure != null) {
+			} else if(crossFigure != null) {
 				occurrenceFigure = crossFigure;
 			}
 
 			// OccurrenceSpecification, MessageOccurrenceSpecification or DestructionOccurrenceSpecification
-			if (occurrenceFigure != null) {
+			if(occurrenceFigure != null) {
 				final int occurrenceY;
-				if (y == -1) {
+				if(y == -1) {
 					// the Lifeline starts by an OccurrenceSpecification => align it with the following StateInvariant
-					if (nextChildFigure instanceof FullStateFigure) {
+					if(nextChildFigure instanceof FullStateFigure) {
 						occurrenceY = computeVerticalPosition(nextFigure, viewer);
 					} else {
 						Activator.log.warn("The Lifeline starts by an OccurrenceSpecification not followed by a StateInvariant"); //$NON-NLS-1$
@@ -210,11 +210,11 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 			}
 
 			// StateInvariant
-			if (stateInvariantFigure != null) {
+			if(stateInvariantFigure != null) {
 				final int computedY = computeVerticalPosition(figure, viewer);
 				stateInvariantFigure.setPosY(computedY);
 
-				if (y == -1) {
+				if(y == -1) {
 					// first state invariant
 					prevY = computedY;
 				} else {
@@ -224,7 +224,7 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 				y = computedY;
 
 				final int width;
-				if (nextConstraint != null) {
+				if(nextConstraint != null) {
 					// the StateInvariant stops where the next occurrence begins
 					width = nextConstraint.x - x;
 				} else {
@@ -232,7 +232,7 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 					width = clientArea.width - x;
 				}
 
-				if (prevY == y) {
+				if(prevY == y) {
 					// a StateInvariant on the right of an OccurrenceSpecification (or at the beginning)
 					figure.setBounds(new Rectangle(x, y - 5, width, 10));
 				} else {
@@ -248,23 +248,23 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 	private static int computeVerticalPosition(final IFigure stateInvariantFigure, final EditPartViewer viewer) {
 		@SuppressWarnings("unchecked")
 		final Map<IFigure, EditPart> visualPartMap = viewer.getVisualPartMap();
-		final CustomFullStateInvariantEditPartCN stateInvariantEditPart = (CustomFullStateInvariantEditPartCN) visualPartMap.get(stateInvariantFigure);
-		final View stateInvariantView = (View) stateInvariantEditPart.getModel();
-		final StateInvariant stateInvariant = (StateInvariant) stateInvariantView.getElement();
+		final CustomFullStateInvariantEditPartCN stateInvariantEditPart = (CustomFullStateInvariantEditPartCN)visualPartMap.get(stateInvariantFigure);
+		final View stateInvariantView = (View)stateInvariantEditPart.getModel();
+		final StateInvariant stateInvariant = (StateInvariant)stateInvariantView.getElement();
 		final String id = StateInvariantUtils.getStateInvariantId(stateInvariant);
-		if (id == null) {
+		if(id == null) {
 			Activator.log.error("null id for a StateInvariant", new Exception()); //$NON-NLS-1$
 			return -1;
 		}
 
 		final View lifelineView = StateDefinitionUtils.getParentLifelineView(stateInvariantView);
 		final View stateDefinition = StateDefinitionUtils.getStateDefinitionViewWithId(id, lifelineView);
-		if (stateDefinition == null) {
+		if(stateDefinition == null) {
 			Activator.log.error("No StateDefinition found for the StateInvariant (id = " + id + ")", new Exception()); //$NON-NLS-1$//$NON-NLS-2$
 			return -1;
 		}
 
-		final StateDefinitionEditPart stateDefinitionEditPart = (StateDefinitionEditPart) viewer.getEditPartRegistry().get(stateDefinition);
+		final StateDefinitionEditPart stateDefinitionEditPart = (StateDefinitionEditPart)viewer.getEditPartRegistry().get(stateDefinition);
 		final IFigure stateDefinitionFigure = stateDefinitionEditPart.getFigure();
 		final Rectangle bounds = stateDefinitionFigure.getBounds();
 		final int parentY = stateDefinitionFigure.getParent().getClientArea().y;
@@ -280,17 +280,15 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 
 		IFigure previousFigure = null;
 		IFigure nextFigure = null;
-		for (int i = 0; i < figures.size(); i++) {
+		for(int i = 0; i < figures.size(); i++) {
 			final IFigure figure = figures.get(i);
-			final FullStateInvariantVerticalLineFigure verticalLineFigure = FigureUtils.findChildFigureInstance(figure,
-					FullStateInvariantVerticalLineFigure.class);
+			final FullStateInvariantVerticalLineFigure verticalLineFigure = FigureUtils.findChildFigureInstance(figure, FullStateInvariantVerticalLineFigure.class);
 			final VerticalMarkFigure verticalMarkFigure = FigureUtils.findChildFigureInstance(figure, VerticalMarkFigure.class);
 			final DimensioningArrowFigure dimensioningArrowFigure = FigureUtils.findChildFigureInstance(figure, DimensioningArrowFigure.class);
-			final GeneralOrderingHorizontalFigure generalOrderingHorizontalFigure = FigureUtils.findChildFigureInstance(figure,
-					GeneralOrderingHorizontalFigure.class);
+			final GeneralOrderingHorizontalFigure generalOrderingHorizontalFigure = FigureUtils.findChildFigureInstance(figure, GeneralOrderingHorizontalFigure.class);
 
 			nextFigure = null;
-			if (i < figures.size() - 1) {
+			if(i < figures.size() - 1) {
 				nextFigure = figures.get(i + 1);
 			}
 
@@ -298,19 +296,19 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 			final Rectangle constraint = constraints[i];
 
 			// VerticalLine
-			if (verticalLineFigure != null) {
+			if(verticalLineFigure != null) {
 				boolean showVerticalLine = false;
-				if (nextFigure != null && previousFigure != null) {
+				if(nextFigure != null && previousFigure != null) {
 					final Rectangle prev = previousFigure.getBounds();
 					final int y = prev.y + prev.height / 2;
 					final int x = prev.x + prev.width / 2;
 					final Rectangle next = nextFigure.getBounds();
 					final int y2 = next.y + next.height / 2;
 					int y1 = y;
-					final int sign = (int) Math.signum(y2 - y1);
+					final int sign = (int)Math.signum(y2 - y1);
 					// move the start of the line outside the OccurrenceSpecification
 					y1 += sign * (previousFigure.getBounds().height / 2);
-					if (y != y2) {
+					if(y != y2) {
 						showVerticalLine = true;
 					}
 					final int verticalLineBoxWidth = 10;
@@ -319,20 +317,20 @@ public class CustomFullLifelineTimelineCompartmentEditPartCN extends FullLifelin
 					Activator.log.warn("VerticalLine not between two Figures"); //$NON-NLS-1$
 				}
 				figure.setVisible(showVerticalLine);
-			} else if (verticalMarkFigure != null) {
+			} else if(verticalMarkFigure != null) {
 				// time observation or constraint
 				final Dimension size = verticalMarkFigure.getPreferredSize();
 				figure.setBounds(new Rectangle(constraint.x, constraint.y, size.width, size.height));
-			} else if (dimensioningArrowFigure != null) {
+			} else if(dimensioningArrowFigure != null) {
 				// duration observation or constraint
 				final Dimension size = dimensioningArrowFigure.getPreferredSize();
-				if (constraint.width == Integer.MAX_VALUE) {
+				if(constraint.width == Integer.MAX_VALUE) {
 					// it has no end => set the right side of the compartment as the end
 					figure.setBounds(new Rectangle(constraint.x, constraint.y, clientArea.width - constraint.x, size.height));
 				} else {
 					figure.setBounds(new Rectangle(constraint.x, constraint.y, constraint.width, size.height));
 				}
-			} else if (generalOrderingHorizontalFigure != null) {
+			} else if(generalOrderingHorizontalFigure != null) {
 				// general ordering
 				final Dimension size = generalOrderingHorizontalFigure.getPreferredSize();
 				figure.setBounds(new Rectangle(constraint.x, constraint.y, constraint.width, size.height));

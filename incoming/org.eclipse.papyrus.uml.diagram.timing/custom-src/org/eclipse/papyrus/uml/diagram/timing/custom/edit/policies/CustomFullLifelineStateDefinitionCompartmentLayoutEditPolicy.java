@@ -17,6 +17,6 @@ public class CustomFullLifelineStateDefinitionCompartmentLayoutEditPolicy extend
 
 	@Override
 	protected GraphicalEditPart getEditPartToRefresh() {
-		return (GraphicalEditPart) EditPartUtils.findParentEditPartWithId(getHost(), FullLifelineEditPartCN.VISUAL_ID);
+		return (GraphicalEditPart)EditPartUtils.findParentEditPartWithId(getHost(), FullLifelineEditPartCN.VISUAL_ID);
 	}
 }

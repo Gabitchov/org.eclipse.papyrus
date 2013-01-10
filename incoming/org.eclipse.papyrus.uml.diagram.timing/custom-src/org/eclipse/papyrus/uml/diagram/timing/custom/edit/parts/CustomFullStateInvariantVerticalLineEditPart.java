@@ -17,6 +17,7 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.parts.NoScrollNoBorderDragE
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullStateInvariantVerticalLineEditPart;
 
 public class CustomFullStateInvariantVerticalLineEditPart extends FullStateInvariantVerticalLineEditPart {
+
 	public CustomFullStateInvariantVerticalLineEditPart(final View view) {
 		super(view);
 	}
@@ -33,7 +34,7 @@ public class CustomFullStateInvariantVerticalLineEditPart extends FullStateInvar
 
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType() == REQ_DELETE || request.getType() == REQ_RECONNECT_TARGET) {
+		if(request.getType() == REQ_DELETE || request.getType() == REQ_RECONNECT_TARGET) {
 			// don't let the user remove vertical lines, or reconnect anything to a vertical line
 			return UnexecutableCommand.INSTANCE;
 		}

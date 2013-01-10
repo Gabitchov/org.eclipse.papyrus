@@ -45,13 +45,15 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.utils.ViewUtils;
 public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLayoutEditPolicy {
 
 	private static final int LAYOUT_FEEDBACK_HEIGHT = 4;
+
 	private static final int MARGIN_BEFORE_FIRST = 4;
+
 	private static final int MARGIN_AFTER_LAST = 4;
 
 	protected IFigure layoutFeedbackFigure = null;
 
 	protected GraphicalEditPart getEditPartToRefresh() {
-		return (GraphicalEditPart) getHost();
+		return (GraphicalEditPart)getHost();
 	}
 
 	protected int getLayoutFeedbackHeight() {
@@ -61,7 +63,7 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 	@Override
 	protected EditPolicy createChildEditPolicy(final EditPart child) {
 		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (result == null) {
+		if(result == null) {
 			// add an edit policy so that children can be moved
 			result = new NonResizableEditPolicyEx();
 		}
@@ -70,22 +72,22 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 
 	@Override
 	protected Command getMoveChildrenCommand(final Request request) {
-		if (request instanceof ChangeBoundsRequest) {
-			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
+		if(request instanceof ChangeBoundsRequest) {
+			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
 
 			final InsertionPoint insertionPoint = computeClosestInsertionPoint(changeBoundsRequest.getLocation().y);
-			if (insertionPoint == null) {
+			if(insertionPoint == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
 
-			final GraphicalEditPart hostEditPart = (GraphicalEditPart) getHost();
-			final View compartmentView = (View) hostEditPart.getModel();
+			final GraphicalEditPart hostEditPart = (GraphicalEditPart)getHost();
+			final View compartmentView = (View)hostEditPart.getModel();
 			@SuppressWarnings("unchecked")
 			final List<EditPart> editParts = changeBoundsRequest.getEditParts();
-			for (final EditPart editPart : editParts) {
-				if (editPart instanceof GraphicalEditPart) {
-					final GraphicalEditPart graphicalEditPart = (GraphicalEditPart) editPart;
-					final View view = (View) graphicalEditPart.getModel();
+			for(final EditPart editPart : editParts) {
+				if(editPart instanceof GraphicalEditPart) {
+					final GraphicalEditPart graphicalEditPart = (GraphicalEditPart)editPart;
+					final View view = (View)graphicalEditPart.getModel();
 
 					final GraphicalEditPart editPartToRefresh = getEditPartToRefresh();
 					final CompoundCommand compoundCommand = new CompoundCommand();
@@ -101,20 +103,19 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 
 	@Override
 	protected void showLayoutTargetFeedback(final Request request) {
-		if (request instanceof ChangeBoundsRequest) {
+		if(request instanceof ChangeBoundsRequest) {
 			eraseLayoutTargetFeedback();
-			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
+			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
 
 			final InsertionPoint insertionPoint = computeClosestInsertionPoint(changeBoundsRequest.getLocation().y);
-			if (insertionPoint == null) {
+			if(insertionPoint == null) {
 				return;
 			}
 
 			final Rectangle containerBounds = new Rectangle(getHostFigure().getBounds());
 			getHostFigure().translateToAbsolute(containerBounds);
 			final int layoutFeedbackHeight = getLayoutFeedbackHeight();
-			final Rectangle feedbackBounds = new Rectangle(containerBounds.x, insertionPoint.getLocation() - layoutFeedbackHeight / 2, containerBounds.width,
-					layoutFeedbackHeight);
+			final Rectangle feedbackBounds = new Rectangle(containerBounds.x, insertionPoint.getLocation() - layoutFeedbackHeight / 2, containerBounds.width, layoutFeedbackHeight);
 
 			final Point origin = FigureUtils.getLayeredPaneOrigin(getHostFigure());
 			feedbackBounds.translate(origin);
@@ -126,7 +127,9 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 	}
 
 	protected class InsertionPoint {
+
 		int index;
+
 		int location;
 
 		public InsertionPoint(final int index, final int location) {
@@ -146,13 +149,13 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 	protected InsertionPoint computeClosestInsertionPoint(final int offset) {
 		@SuppressWarnings("unchecked")
 		final List<GraphicalEditPart> children = getHost().getChildren();
-		if (children.isEmpty()) {
+		if(children.isEmpty()) {
 			return null;
 		}
 		final List<InsertionPoint> insertionPoints = computeInsertionPoints(children);
 
 		final TreeMap<Integer, InsertionPoint> distanceMap = new TreeMap<Integer, InsertionPoint>();
-		for (final InsertionPoint insertionPoint : insertionPoints) {
+		for(final InsertionPoint insertionPoint : insertionPoints) {
 			final int distance = Math.abs(offset - insertionPoint.getLocation());
 			distanceMap.put(Integer.valueOf(distance), insertionPoint);
 		}
@@ -172,19 +175,19 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 		final int size = children.size();
 		final List<InsertionPoint> insertionPoints = new ArrayList<GenericListCompartmentLayoutEditPolicy.InsertionPoint>();
 		Rectangle previousBounds = null;
-		for (int i = 0; i < size; i++) {
+		for(int i = 0; i < size; i++) {
 			final GraphicalEditPart childEditPart = children.get(i);
 			final Rectangle bounds = new Rectangle(childEditPart.getFigure().getBounds());
 			getHostFigure().translateToAbsolute(bounds);
 
-			if (previousBounds != null) {
+			if(previousBounds != null) {
 				// an insertion point between two figures
 				insertionPoints.add(new InsertionPoint(i, (previousBounds.y + previousBounds.height + bounds.y) / 2));
 			} else {
 				// an insertion point before the first figure
 				insertionPoints.add(new InsertionPoint(i, bounds.y - getMarginBeforeFirst()));
 			}
-			if (i == size - 1) {
+			if(i == size - 1) {
 				// last insertion point: after the last figure
 				insertionPoints.add(new InsertionPoint(i + 1, bounds.y + bounds.height + getMarginAfterLast()));
 			}
@@ -209,7 +212,7 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 	}
 
 	protected void eraseLayoutTargetFeedback() {
-		if (this.layoutFeedbackFigure != null) {
+		if(this.layoutFeedbackFigure != null) {
 			removeFeedback(this.layoutFeedbackFigure);
 			this.layoutFeedbackFigure = null;
 		}

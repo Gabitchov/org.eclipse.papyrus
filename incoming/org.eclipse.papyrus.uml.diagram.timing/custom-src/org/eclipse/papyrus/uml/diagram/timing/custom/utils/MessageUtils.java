@@ -69,8 +69,11 @@ import org.eclipse.uml2.uml.UMLPackage;
 public final class MessageUtils {
 
 	private static final String MESSAGE_CONNECTOR_LOCATION = "messageConnectorLocation"; //$NON-NLS-1$
+
 	private static final String START_LOCATION = "startLocation"; //$NON-NLS-1$
+
 	private static final String X = "x"; //$NON-NLS-1$
+
 	private static final String Y = "y"; //$NON-NLS-1$
 
 	/** Used for feedback when drawing a MessageFound */
@@ -81,50 +84,43 @@ public final class MessageUtils {
 	}
 
 	public static boolean isMessage(final IElementType requestElementType) {
-		return requestElementType == UMLElementTypes.Message_3 || requestElementType == UMLElementTypes.Message_4
-				|| requestElementType == UMLElementTypes.Message_41 || requestElementType == UMLElementTypes.Message_44
-				|| requestElementType == UMLElementTypes.Message_47 || requestElementType == UMLElementTypes.Message_50
-				|| requestElementType == UMLElementTypes.Message_53;
+		return requestElementType == UMLElementTypes.Message_3 || requestElementType == UMLElementTypes.Message_4 || requestElementType == UMLElementTypes.Message_41 || requestElementType == UMLElementTypes.Message_44 || requestElementType == UMLElementTypes.Message_47 || requestElementType == UMLElementTypes.Message_50 || requestElementType == UMLElementTypes.Message_53;
 	}
 
 	public static boolean isMessage(final int visualID) {
-		return visualID == MessageSyncEditPart.VISUAL_ID || visualID == MessageAsyncEditPart.VISUAL_ID || visualID == MessageReplyEditPart.VISUAL_ID
-				|| visualID == MessageCreateEditPart.VISUAL_ID || visualID == MessageDeleteEditPart.VISUAL_ID || visualID == MessageFoundEditPart.VISUAL_ID
-				|| visualID == MessageLostEditPart.VISUAL_ID;
+		return visualID == MessageSyncEditPart.VISUAL_ID || visualID == MessageAsyncEditPart.VISUAL_ID || visualID == MessageReplyEditPart.VISUAL_ID || visualID == MessageCreateEditPart.VISUAL_ID || visualID == MessageDeleteEditPart.VISUAL_ID || visualID == MessageFoundEditPart.VISUAL_ID || visualID == MessageLostEditPart.VISUAL_ID;
 	}
 
 	public static MessageKind getMessageKind(final IElementType requestElementType) {
-		if (requestElementType == UMLElementTypes.Message_3 || requestElementType == UMLElementTypes.Message_4
-				|| requestElementType == UMLElementTypes.Message_41 || requestElementType == UMLElementTypes.Message_44
-				|| requestElementType == UMLElementTypes.Message_47) {
+		if(requestElementType == UMLElementTypes.Message_3 || requestElementType == UMLElementTypes.Message_4 || requestElementType == UMLElementTypes.Message_41 || requestElementType == UMLElementTypes.Message_44 || requestElementType == UMLElementTypes.Message_47) {
 			return MessageKind.UNKNOWN_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_50) {
+		if(requestElementType == UMLElementTypes.Message_50) {
 			return MessageKind.LOST_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_53) {
+		if(requestElementType == UMLElementTypes.Message_53) {
 			return MessageKind.FOUND_LITERAL;
 		}
 		return null;
 	}
 
 	public static MessageSort getMessageSort(final IElementType requestElementType) {
-		if (requestElementType == UMLElementTypes.Message_3) {
+		if(requestElementType == UMLElementTypes.Message_3) {
 			return MessageSort.SYNCH_CALL_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_4) {
+		if(requestElementType == UMLElementTypes.Message_4) {
 			return MessageSort.ASYNCH_CALL_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_41) {
+		if(requestElementType == UMLElementTypes.Message_41) {
 			return MessageSort.REPLY_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_44) {
+		if(requestElementType == UMLElementTypes.Message_44) {
 			return MessageSort.CREATE_MESSAGE_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_47) {
+		if(requestElementType == UMLElementTypes.Message_47) {
 			return MessageSort.DELETE_MESSAGE_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_50 || requestElementType == UMLElementTypes.Message_53) {
+		if(requestElementType == UMLElementTypes.Message_50 || requestElementType == UMLElementTypes.Message_53) {
 			// lost or found message
 			return MessageSort.SYNCH_CALL_LITERAL;
 		}
@@ -132,7 +128,7 @@ public final class MessageUtils {
 	}
 
 	public static IElementType getElementType(final Message message) {
-		switch (message.getMessageKind()) {
+		switch(message.getMessageKind()) {
 		case LOST_LITERAL:
 			return UMLElementTypes.Message_50;
 		case FOUND_LITERAL:
@@ -140,7 +136,7 @@ public final class MessageUtils {
 		default:
 		}
 
-		switch (message.getMessageSort()) {
+		switch(message.getMessageSort()) {
 		case SYNCH_CALL_LITERAL:
 			return UMLElementTypes.Message_3;
 		case ASYNCH_CALL_LITERAL:
@@ -160,20 +156,19 @@ public final class MessageUtils {
 	 * Create a command to move a FloatingMessageAnchor, by changing the EAnnotation stored on the Connector.
 	 * 
 	 * @param request
-	 *            the request that contains the new Location
+	 *        the request that contains the new Location
 	 * @param connectionEditPart
-	 *            the EditPart for the connector
+	 *        the EditPart for the connector
 	 * @param referenceFigure
-	 *            the figure to which the anchor is relative
+	 *        the figure to which the anchor is relative
 	 * @param commandName
-	 *            a name for the command
+	 *        a name for the command
 	 * @param editingDomain
-	 *            the editing domain
+	 *        the editing domain
 	 * @return the command to move the anchor
 	 */
-	public static Command createMoveMessageAnchorCommand(final LocationRequest request, final ConnectionEditPart connectionEditPart,
-			final IFigure referenceFigure, final String commandName, final TransactionalEditingDomain editingDomain) {
-		final Connector connector = (Connector) connectionEditPart.getModel();
+	public static Command createMoveMessageAnchorCommand(final LocationRequest request, final ConnectionEditPart connectionEditPart, final IFigure referenceFigure, final String commandName, final TransactionalEditingDomain editingDomain) {
+		final Connector connector = (Connector)connectionEditPart.getModel();
 		final Point location = request.getLocation();
 		final Point figureLocation = new Point(referenceFigure.getBounds().getCenter());
 		referenceFigure.getParent().translateToAbsolute(figureLocation);
@@ -183,6 +178,7 @@ public final class MessageUtils {
 		final CompoundCommand compoundCommand = new CompoundCommand();
 		compoundCommand.add(new RefreshCommandForUndo(connectionEditPart));
 		compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain, commandName, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				setMessageConnectorLocation(connector, anchorLocation);
@@ -195,7 +191,7 @@ public final class MessageUtils {
 
 	public static void setMessageConnectorLocation(final Connector connector, final Point location) {
 		EAnnotation eAnnotation = connector.getEAnnotation(MESSAGE_CONNECTOR_LOCATION);
-		if (eAnnotation == null) {
+		if(eAnnotation == null) {
 			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eAnnotation.setSource(MESSAGE_CONNECTOR_LOCATION);
 			connector.getEAnnotations().add(eAnnotation);
@@ -206,9 +202,9 @@ public final class MessageUtils {
 
 	public static Point getMessageConnectorLocation(final ConnectionEditPart connectionEditPart) {
 		final double scale = FigureUtils.getScale(connectionEditPart.getFigure());
-		final Connector connector = (Connector) connectionEditPart.getModel();
+		final Connector connector = (Connector)connectionEditPart.getModel();
 		final EAnnotation eAnnotation = connector.getEAnnotation(MESSAGE_CONNECTOR_LOCATION);
-		if (eAnnotation != null) {
+		if(eAnnotation != null) {
 			return new Point(Integer.parseInt(eAnnotation.getDetails().get(X)), Integer.parseInt(eAnnotation.getDetails().get(Y))).scale(scale);
 		}
 		return null;
@@ -225,7 +221,7 @@ public final class MessageUtils {
 	public static Point retrieveRequestStartLocation(final CreateRequest request) {
 		@SuppressWarnings("unchecked")
 		final Map<Object, Object> extendedData = request.getExtendedData();
-		return (Point) extendedData.get(START_LOCATION);
+		return (Point)extendedData.get(START_LOCATION);
 	}
 
 	public static Point getLastStartLocation() {
@@ -236,16 +232,16 @@ public final class MessageUtils {
 	 * Find {@link Message}s linked to the given element.
 	 * 
 	 * @param element
-	 *            the element for which related {@link Message}s must be found
+	 *        the element for which related {@link Message}s must be found
 	 * @param hideOnly
-	 *            whether to only return Views
+	 *        whether to only return Views
 	 * @param expectedParentView
-	 *            if not <code>null</code>, then only return Views under this parent View
+	 *        if not <code>null</code>, then only return Views under this parent View
 	 * @return the list of linked {@link Message}s to remove
 	 */
 	public static Collection<? extends EObject> getReferencingMessagesToRemove(final EObject element, final boolean hideOnly, final View expectedParentView) {
-		final EReference[] references = new EReference[] { UMLPackage.eINSTANCE.getMessage_ReceiveEvent(), UMLPackage.eINSTANCE.getMessage_SendEvent() };
-		final Class<?>[] expectedClasses = new Class<?>[] { Message.class };
+		final EReference[] references = new EReference[]{ UMLPackage.eINSTANCE.getMessage_ReceiveEvent(), UMLPackage.eINSTANCE.getMessage_SendEvent() };
+		final Class<?>[] expectedClasses = new Class<?>[]{ Message.class };
 		return Utils.getReferencingElementsToRemove(element, references, hideOnly, expectedParentView, expectedClasses);
 	}
 
@@ -257,32 +253,30 @@ public final class MessageUtils {
 	 */
 	public static MessageEnd convertToMessageOccurrenceSpecification(final EObject element, final boolean destruction) {
 		// destruction => DestructionOccurrenceSpecification
-		if (element instanceof MessageEnd && !destruction || element instanceof DestructionOccurrenceSpecification) {
-			return (MessageEnd) element;
+		if(element instanceof MessageEnd && !destruction || element instanceof DestructionOccurrenceSpecification) {
+			return (MessageEnd)element;
 		}
 
-		if (element instanceof OccurrenceSpecification) {
+		if(element instanceof OccurrenceSpecification) {
 			// convert OccurrenceSpecification to MessageOccurrenceSpecification (or its subtype
 			// DestructionOccurrenceSpecification if destruction is true)
-			final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) element;
+			final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)element;
 			final boolean autogeneratedName = OccurrenceSpecificationUtils.isAutogeneratedName(occurrenceSpecification);
 			final Set<View> views = CrossReferencerUtil.getCrossReferencingViews(occurrenceSpecification, TimingDiagramEditPart.MODEL_ID);
 
-			final MessageOccurrenceSpecification messageOccurrenceSpecification = destruction ? UMLFactory.eINSTANCE.createDestructionOccurrenceSpecification()
-					: UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
+			final MessageOccurrenceSpecification messageOccurrenceSpecification = destruction ? UMLFactory.eINSTANCE.createDestructionOccurrenceSpecification() : UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
 			// "autogenerated" EAnnotation is transferred on "do", but is lost on "redo" unless we set it explicitly
 			OccurrenceSpecificationUtils.setAutogeneratedName(messageOccurrenceSpecification, autogeneratedName);
 			EcoreUtils.replaceEObjectInstance(occurrenceSpecification, messageOccurrenceSpecification);
 
 			// update the type of each View (the element has already been updated at this point)
-			for (final View view : views) {
+			for(final View view : views) {
 				final int type = UMLVisualIDRegistry.getVisualID(view);
-				if (!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(type)) {
+				if(!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(type)) {
 					continue;
 				}
 
-				view.setType(Integer.toString(destruction ? DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID
-						: MessageOccurrenceSpecificationEditPartCN.VISUAL_ID));
+				view.setType(Integer.toString(destruction ? DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID : MessageOccurrenceSpecificationEditPartCN.VISUAL_ID));
 				/*
 				 * The element must be updated manually here, because since BasicDecorationNodeImpl#getElement changes
 				 * the element without changing the "set" flag, the UsageCrossReferencer used above doesn't consider the
@@ -291,12 +285,11 @@ public final class MessageUtils {
 				 */
 				@SuppressWarnings("unchecked")
 				final List<View> children = new ArrayList<View>(view.getChildren());
-				for (final View childView : children) {
+				for(final View childView : children) {
 					final int childType = UMLVisualIDRegistry.getVisualID(childView);
-					if (OccurrenceSpecificationLabelEditPart.VISUAL_ID == childType || MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID == childType) {
+					if(OccurrenceSpecificationLabelEditPart.VISUAL_ID == childType || MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID == childType) {
 						childView.setElement(messageOccurrenceSpecification);
-						childView.setType(Integer.toString(destruction ? DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID
-								: MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID));
+						childView.setType(Integer.toString(destruction ? DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID : MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID));
 					}
 				}
 			}
@@ -306,9 +299,8 @@ public final class MessageUtils {
 	}
 
 	/**
-	 * Whether the given element is a {@link MessageEnd} ({@link MessageOccurrenceSpecification},
-	 * {@link DestructionOccurrenceSpecification} or {@link Gate}), or can be converted to one (
-	 * {@link OccurrenceSpecification}).
+	 * Whether the given element is a {@link MessageEnd} ({@link MessageOccurrenceSpecification}, {@link DestructionOccurrenceSpecification} or
+	 * {@link Gate}), or can be converted to one ( {@link OccurrenceSpecification}).
 	 */
 	public static boolean isPotentialMessageEnd(final EObject element) {
 		return element instanceof MessageEnd || element instanceof OccurrenceSpecification;
@@ -320,18 +312,18 @@ public final class MessageUtils {
 
 	public static boolean isValidMessage(final MessageSort messageSort, final MessageKind messageKind, final EObject source, final EObject target) {
 		// found message <=> source == null
-		if (source == null != (messageKind == MessageKind.FOUND_LITERAL)) {
+		if(source == null != (messageKind == MessageKind.FOUND_LITERAL)) {
 			return false;
 		}
 		// lost message <=> target == null
-		if (target == null != (messageKind == MessageKind.LOST_LITERAL)) {
+		if(target == null != (messageKind == MessageKind.LOST_LITERAL)) {
 			return false;
 		}
 
-		if ((messageSort == MessageSort.DELETE_MESSAGE_LITERAL || messageSort == MessageSort.CREATE_MESSAGE_LITERAL) && target instanceof Gate) {
+		if((messageSort == MessageSort.DELETE_MESSAGE_LITERAL || messageSort == MessageSort.CREATE_MESSAGE_LITERAL) && target instanceof Gate) {
 			return false;
 		}
-		if (messageSort == MessageSort.CREATE_MESSAGE_LITERAL && target instanceof DestructionOccurrenceSpecification) {
+		if(messageSort == MessageSort.CREATE_MESSAGE_LITERAL && target instanceof DestructionOccurrenceSpecification) {
 			return false;
 		}
 		return true;

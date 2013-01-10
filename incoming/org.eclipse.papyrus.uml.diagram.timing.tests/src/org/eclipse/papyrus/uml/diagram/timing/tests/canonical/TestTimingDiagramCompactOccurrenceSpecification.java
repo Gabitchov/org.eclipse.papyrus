@@ -47,8 +47,8 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 	@Test
 	public void testCreateThreeOccurrenceSpecifications() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
-		final View interactionView = (View) getDefaultInteractionEditPart().getModel();
-		final Interaction interaction = (Interaction) interactionView.getElement();
+		final View interactionView = (View)getDefaultInteractionEditPart().getModel();
+		final Interaction interaction = (Interaction)interactionView.getElement();
 		assertTrue("The interaction should be in a Model", isInModel(interaction));
 		// We created 3 OccurrenceSpecifications. The model starts and ends with a StateInvariant, and when creating an
 		// OccurrenceSpecification, we split a StateInvariant in two and insert the OccurrenceSpecification.
@@ -64,7 +64,7 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 		assertEquals("Wrong number of OccurrenceSpecifications", 3, occurrenceSpecifications.size());
 		final OccurrenceSpecificationEditPartCN middleOccurrence = occurrenceSpecifications.get(1);
 
-		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) ((View) middleOccurrence.getModel()).getElement();
+		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)((View)middleOccurrence.getModel()).getElement();
 		assertTrue("The OccurrenceSpecification should be in a Model", isInModel(occurrenceSpecification));
 		checkInteractionFragmentsWithPattern("-o-o-o-");
 		checkSimpleCompactTimelinePattern("-o-o-o-");
@@ -96,11 +96,10 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 
 	@Test
 	public void testCreateOccurrenceSpecificationWithDoubleClick() {
-		final CompactStateInvariantEditPartCN stateInvariantEditPart = (CompactStateInvariantEditPartCN) EditPartUtils.findFirstChildEditPartWithId(
-				getDefaultCompactLifelineEditPart(), CompactStateInvariantEditPartCN.VISUAL_ID);
+		final CompactStateInvariantEditPartCN stateInvariantEditPart = (CompactStateInvariantEditPartCN)EditPartUtils.findFirstChildEditPartWithId(getDefaultCompactLifelineEditPart(), CompactStateInvariantEditPartCN.VISUAL_ID);
 		assertNotNull("A StateInvariant must always exist", stateInvariantEditPart);
 		assertEquals("There must always be only one StateInvariant initially", 1, findStateInvariantsInDefaultCompactLifeline().size());
-		final StateInvariant stateInvariant = (StateInvariant) ((View) stateInvariantEditPart.getModel()).getElement();
+		final StateInvariant stateInvariant = (StateInvariant)((View)stateInvariantEditPart.getModel()).getElement();
 		assertNotNull("The StateInvariant must not be null", stateInvariant);
 
 		final IFigure figure = stateInvariantEditPart.getFigure();
@@ -267,32 +266,25 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 		checkOccurrenceIsMiddleXBottomYOfStateInvariant(o7, s4);
 	}
 
-	private static void checkOccurrenceIsMiddleXTopYOfStateInvariant(final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart,
-			final CompactStateInvariantEditPartCN stateInvariantEditPart) {
+	private static void checkOccurrenceIsMiddleXTopYOfStateInvariant(final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart, final CompactStateInvariantEditPartCN stateInvariantEditPart) {
 		final Rectangle oBounds = getBounds(occurrenceSpecificationEditPart);
 		final Rectangle sBounds = getBounds(stateInvariantEditPart);
 		assertTrue("The occurrence should be located vertically near the top of the state invariant", Math.abs(oBounds.y - sBounds.y) <= 5);
-		assertTrue("The occurrence should be located horizontally near the middle of the state invariant",
-				Math.abs(oBounds.x - (sBounds.x + sBounds.width / 2)) <= 5);
+		assertTrue("The occurrence should be located horizontally near the middle of the state invariant", Math.abs(oBounds.x - (sBounds.x + sBounds.width / 2)) <= 5);
 	}
 
-	private static void checkOccurrenceIsMiddleXBottomYOfStateInvariant(final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart,
-			final CompactStateInvariantEditPartCN stateInvariantEditPart) {
+	private static void checkOccurrenceIsMiddleXBottomYOfStateInvariant(final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart, final CompactStateInvariantEditPartCN stateInvariantEditPart) {
 		final Rectangle oBounds = getBounds(occurrenceSpecificationEditPart);
 		final Rectangle sBounds = getBounds(stateInvariantEditPart);
 		assertTrue("The occurrence should be located vertically near the top of the state invariant", Math.abs(oBounds.y - (sBounds.y + sBounds.height)) <= 5);
-		assertTrue("The occurrence should be located horizontally near the middle of the state invariant",
-				Math.abs(oBounds.x - (sBounds.x + sBounds.width / 2)) <= 5);
+		assertTrue("The occurrence should be located horizontally near the middle of the state invariant", Math.abs(oBounds.x - (sBounds.x + sBounds.width / 2)) <= 5);
 	}
 
-	private static void checkOccurrenceIsRightXMiddleYOfStateInvariant(final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart,
-			final CompactStateInvariantEditPartCN stateInvariantEditPart) {
+	private static void checkOccurrenceIsRightXMiddleYOfStateInvariant(final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart, final CompactStateInvariantEditPartCN stateInvariantEditPart) {
 		final Rectangle oBounds = getBounds(occurrenceSpecificationEditPart);
 		final Rectangle sBounds = getBounds(stateInvariantEditPart);
-		assertTrue("The occurrence should be located vertically near the middle of the state invariant",
-				Math.abs(oBounds.y - (sBounds.y + sBounds.height / 2)) <= 5);
-		assertTrue("The occurrence should be located horizontally near the right of the state invariant",
-				Math.abs(oBounds.x - (sBounds.x + sBounds.width)) <= 5);
+		assertTrue("The occurrence should be located vertically near the middle of the state invariant", Math.abs(oBounds.y - (sBounds.y + sBounds.height / 2)) <= 5);
+		assertTrue("The occurrence should be located horizontally near the right of the state invariant", Math.abs(oBounds.x - (sBounds.x + sBounds.width)) <= 5);
 	}
 
 	protected void checkCreatedStateInvariants() {
@@ -307,26 +299,26 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 		final List<OccurrenceSpecificationEditPartCN> occurrenceSpecificationEditParts = findOccurrenceSpecificationsInDefaultCompactLifeline();
 		assertEquals("There must be one OccurrenceSpecification", 1, occurrenceSpecificationEditParts.size());
 		final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart = occurrenceSpecificationEditParts.get(0);
-		final View occurrenceSpecificationView = (View) occurrenceSpecificationEditPart.getModel();
-		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) occurrenceSpecificationView.getElement();
+		final View occurrenceSpecificationView = (View)occurrenceSpecificationEditPart.getModel();
+		final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)occurrenceSpecificationView.getElement();
 		assertNotNull("The OccurrenceSpecification must not be null", occurrenceSpecification);
 		assertTrue("The OccurrenceSpecification must be in the model", isInModel(occurrenceSpecification));
 		assertEquals("The OccurrenceSpecification must cover one Lifeline", 1, occurrenceSpecification.getCovereds().size());
-		final Lifeline lifeline = (Lifeline) ((View) getDefaultCompactLifelineEditPart().getModel()).getElement();
+		final Lifeline lifeline = (Lifeline)((View)getDefaultCompactLifelineEditPart().getModel()).getElement();
 		assertEquals("The OccurrenceSpecification must cover the Lifeline", lifeline, occurrenceSpecification.getCovereds().get(0));
-		final Interaction interaction = (Interaction) ((View) getDefaultInteractionEditPart().getModel()).getElement();
+		final Interaction interaction = (Interaction)((View)getDefaultInteractionEditPart().getModel()).getElement();
 		assertTrue("The OccurrenceSpecification must be in the Interaction", interaction.getFragments().contains(occurrenceSpecification));
 	}
 
 	private void checkStateInvariant(final CompactStateInvariantEditPartCN stateInvariantEditPartCN) {
-		final View stateInvariantView = (View) stateInvariantEditPartCN.getModel();
-		final StateInvariant stateInvariant = (StateInvariant) stateInvariantView.getElement();
+		final View stateInvariantView = (View)stateInvariantEditPartCN.getModel();
+		final StateInvariant stateInvariant = (StateInvariant)stateInvariantView.getElement();
 		assertNotNull("The StateInvariant must not be null", stateInvariant);
 		assertTrue("The StateInvariant must be in the model", isInModel(stateInvariant));
 		assertEquals("The StateInvariant must cover one Lifeline", 1, stateInvariant.getCovereds().size());
-		final Lifeline lifeline = (Lifeline) ((View) getDefaultCompactLifelineEditPart().getModel()).getElement();
+		final Lifeline lifeline = (Lifeline)((View)getDefaultCompactLifelineEditPart().getModel()).getElement();
 		assertEquals("The StateInvariant must cover the Lifeline", lifeline, stateInvariant.getCovereds().get(0));
-		final Interaction interaction = (Interaction) ((View) getDefaultInteractionEditPart().getModel()).getElement();
+		final Interaction interaction = (Interaction)((View)getDefaultInteractionEditPart().getModel()).getElement();
 		assertTrue("The StateInvariant must be in the Interaction", interaction.getFragments().contains(stateInvariant));
 	}
 }

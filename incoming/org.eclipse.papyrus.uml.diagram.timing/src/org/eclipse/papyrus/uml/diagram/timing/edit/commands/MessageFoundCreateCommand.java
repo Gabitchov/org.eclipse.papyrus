@@ -62,20 +62,20 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (this.source == null && this.target == null) {
+		if(this.source == null && this.target == null) {
 			return false;
 		}
-		if (this.source != null && false == this.source instanceof Element) {
+		if(this.source != null && false == this.source instanceof Element) {
 			return false;
 		}
-		if (this.target != null && false == this.target instanceof MessageEnd) {
+		if(this.target != null && false == this.target instanceof MessageEnd) {
 			return false;
 		}
-		if (getSource() == null) {
+		if(getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
+		if(getContainer() == null) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_53(getContainer(), getSource(), getTarget());
@@ -86,7 +86,7 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
+		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
@@ -98,14 +98,14 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(final Message newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		final IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		final IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		final ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		final ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -122,14 +122,14 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Element getSource() {
-		return (Element) this.source;
+		return (Element)this.source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected MessageEnd getTarget() {
-		return (MessageEnd) this.target;
+		return (MessageEnd)this.target;
 	}
 
 	/**
@@ -149,9 +149,9 @@ public class MessageFoundCreateCommand extends EditElementCommand {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof Interaction) {
-				return (Interaction) element;
+		for(EObject element = source; element != null; element = element.eContainer()) {
+			if(element instanceof Interaction) {
+				return (Interaction)element;
 			}
 		}
 		return null;

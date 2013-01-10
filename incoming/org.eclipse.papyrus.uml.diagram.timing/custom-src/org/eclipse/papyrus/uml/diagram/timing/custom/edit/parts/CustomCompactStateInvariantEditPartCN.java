@@ -44,11 +44,11 @@ public class CustomCompactStateInvariantEditPartCN extends CompactStateInvariant
 	public void performRequest(final Request request) {
 		// allow creating an OccurrenceSpecification when double-clicking on a StateInvariant line
 		// (in addition to the OccurrenceSpecification creation tool from the palette)
-		if (request.getType() == REQ_OPEN && request instanceof LocationRequest) {
-			final StateInvariant stateInvariant = (StateInvariant) ((View) getModel()).getElement();
+		if(request.getType() == REQ_OPEN && request instanceof LocationRequest) {
+			final StateInvariant stateInvariant = (StateInvariant)((View)getModel()).getElement();
 			final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(stateInvariant);
 			// shift by 2 pixels to cut at the center of the OccurrenceSpecification
-			final Point loc = new Point(((LocationRequest) request).getLocation()).translate(-SmallSquareFigure.RADIUS, 0);
+			final Point loc = new Point(((LocationRequest)request).getLocation()).translate(-SmallSquareFigure.RADIUS, 0);
 			final CompositeCommand compositeCommand = new CompositeCommand(Messages.CustomCompactStateInvariantEditPartCN_CreateOccurrenceSpecification);
 			compositeCommand.add(new CutAndInsertOccurrenceSpecificationCompactLifelineCommand(this, loc, false));
 			final EditPart timeline = EditPartUtils.findParentEditPartWithId(this, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
@@ -62,8 +62,9 @@ public class CustomCompactStateInvariantEditPartCN extends CompactStateInvariant
 
 	@Override
 	protected void addBorderItem(final IFigure borderItemContainer, final IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof StateInvariantAppliedStereotypeEditPart) {
+		if(borderItemEditPart instanceof StateInvariantAppliedStereotypeEditPart) {
 			final BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH) {
+
 				@Override
 				public int getPreferredSideOfParent() {
 					/*

@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public final class GeneralOrderingUtils {
+
 	private GeneralOrderingUtils() {
 		// utility class
 	}
@@ -35,17 +36,16 @@ public final class GeneralOrderingUtils {
 	 * Find {@link GeneralOrdering}s linked to the given element.
 	 * 
 	 * @param element
-	 *            the element for which related {@link GeneralOrdering}s must be found
+	 *        the element for which related {@link GeneralOrdering}s must be found
 	 * @param hideOnly
-	 *            whether to only return Views
+	 *        whether to only return Views
 	 * @param expectedParentView
-	 *            if not <code>null</code>, then only return Views under this parent View
+	 *        if not <code>null</code>, then only return Views under this parent View
 	 * @return the list of linked {@link GeneralOrdering}s to remove
 	 */
-	public static Collection<? extends EObject> getReferencingGeneralOrderingsToRemove(final EObject element, final boolean hideOnly,
-			final View expectedParentView) {
-		final EReference[] references = new EReference[] { UMLPackage.eINSTANCE.getGeneralOrdering_Before(), UMLPackage.eINSTANCE.getGeneralOrdering_After() };
-		final Class<?>[] expectedClasses = new Class<?>[] { GeneralOrdering.class };
+	public static Collection<? extends EObject> getReferencingGeneralOrderingsToRemove(final EObject element, final boolean hideOnly, final View expectedParentView) {
+		final EReference[] references = new EReference[]{ UMLPackage.eINSTANCE.getGeneralOrdering_Before(), UMLPackage.eINSTANCE.getGeneralOrdering_After() };
+		final Class<?>[] expectedClasses = new Class<?>[]{ GeneralOrdering.class };
 		return Utils.getReferencingElementsToRemove(element, references, hideOnly, expectedParentView, expectedClasses);
 	}
 }

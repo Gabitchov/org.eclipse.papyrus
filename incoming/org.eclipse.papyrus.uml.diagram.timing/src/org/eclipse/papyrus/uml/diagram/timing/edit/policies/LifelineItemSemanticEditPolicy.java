@@ -50,11 +50,11 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	protected Command getDestroyElementCommand(final DestroyElementRequest req) {
 		final EObject selectedEObject = req.getElementToDestroy();
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
-		if (provider != null) {
+		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			final ICommand deleteCommand = provider.getEditCommand(req);
 
-			if (deleteCommand != null) {
+			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
@@ -75,28 +75,28 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 */
 	protected Command getStartCreateRelationshipCommand(final CreateRelationshipRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
+		if(requestElementType instanceof IExtendedHintedElementType) {
 			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
+			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
 				// no reference element type ID. using the closest super element type to give more opportunities, but
 				// can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_50 == baseElementType) {
+		if(UMLElementTypes.Message_50 == baseElementType) {
 			return null;
 		}
-		if (UMLElementTypes.Message_53 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.Message_53 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new MessageFoundCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -108,29 +108,29 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 */
 	protected Command getCompleteCreateRelationshipCommand(final CreateRelationshipRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
+		if(requestElementType instanceof IExtendedHintedElementType) {
 			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
+			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
 				// no reference element type ID. using the closest super element type to give more opportunities, but
 				// can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_50 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.Message_50 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new MessageLostCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_53 == baseElementType) {
+		if(UMLElementTypes.Message_53 == baseElementType) {
 			return null;
 		}
 		return null;
@@ -144,7 +144,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 */
 	@Override
 	protected Command getReorientRelationshipCommand(final ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
+		switch(getVisualID(req)) {
 		case MessageLostEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageLostReorientCommand(req));
 		case MessageFoundEditPart.VISUAL_ID:

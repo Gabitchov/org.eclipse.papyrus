@@ -38,6 +38,7 @@ public class CompactLifelineFigure extends LifelineFigure {
 	@Override
 	protected void createContents() {
 		this.nameLabelContainerFigure = new InvisibleRectangleFigure() {
+
 			@SuppressWarnings("unused")
 			String DEBUG_ID = "CompactLifelineFigure_nameLabelContainerFigure"; //$NON-NLS-1$
 		};
@@ -48,20 +49,21 @@ public class CompactLifelineFigure extends LifelineFigure {
 		this.nameLabelContainerFigure.setLayoutManager(new CenterLayout());
 
 		this.lifelineDataContainerFigure = new InvisibleRectangleFigure() {
+
 			@SuppressWarnings("unused")
 			String DEBUG_ID = "CompactLifelineFigure_lifelineDataContainerFigure"; //$NON-NLS-1$
 		};
 		this.lifelineDataContainerFigure.setLayoutManager(new AbstractLayout() {
+
 			public void layout(final IFigure container) {
 				final Rectangle clientArea = container.getClientArea();
 				final List<?> children = container.getChildren();
-				for (int i = 0; i < children.size(); i++) {
-					final IFigure child = (IFigure) children.get(i);
-					if (child == getTimelineContainerFigure()) {
+				for(int i = 0; i < children.size(); i++) {
+					final IFigure child = (IFigure)children.get(i);
+					if(child == getTimelineContainerFigure()) {
 						child.setBounds(new Rectangle(clientArea.x, clientArea.y, clientArea.width, clientArea.height - Constants.TIME_RULER_HEIGHT));
-					} else if (child == getTimeRulerContainerFigure()) {
-						child.setBounds(new Rectangle(clientArea.x, clientArea.y + clientArea.height - Constants.TIME_RULER_HEIGHT, clientArea.width,
-								Constants.TIME_RULER_HEIGHT));
+					} else if(child == getTimeRulerContainerFigure()) {
+						child.setBounds(new Rectangle(clientArea.x, clientArea.y + clientArea.height - Constants.TIME_RULER_HEIGHT, clientArea.width, Constants.TIME_RULER_HEIGHT));
 					}
 				}
 			}
@@ -78,12 +80,14 @@ public class CompactLifelineFigure extends LifelineFigure {
 
 	private void createDataContainerContents() {
 		this.timelineContainerFigure = new InvisibleRectangleFigure() {
+
 			@SuppressWarnings("unused")
 			String DEBUG_ID = "CompactLifelineFigure_compactTimelineContainerFigure"; //$NON-NLS-1$
 		};
 		this.lifelineDataContainerFigure.add(this.timelineContainerFigure);
 
 		this.timeRulerContainerFigure = new TimeRulerFigure() {
+
 			@SuppressWarnings("unused")
 			String DEBUG_ID = "CompactLifelineFigure_timeRulerContainerFigure"; //$NON-NLS-1$
 		};

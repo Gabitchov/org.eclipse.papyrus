@@ -33,8 +33,8 @@ public class UMLIconProvider extends AbstractProvider implements IIconProvider {
 	 * @generated
 	 */
 	public boolean provides(final IOperation operation) {
-		if (operation instanceof GetIconOperation) {
-			return ((GetIconOperation) operation).execute(this) != null;
+		if(operation instanceof GetIconOperation) {
+			return ((GetIconOperation)operation).execute(this) != null;
 		}
 		return false;
 	}

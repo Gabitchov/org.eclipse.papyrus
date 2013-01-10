@@ -32,12 +32,12 @@ public class LayoutEditPolicyForLabel extends LayoutEditPolicy {
 
 	@Override
 	protected EditPolicy createChildEditPolicy(final EditPart child) {
-		final View childView = (View) child.getModel();
-		if (UMLVisualIDRegistry.getVisualID(childView) == this.labelVisualId) {
+		final View childView = (View)child.getModel();
+		if(UMLVisualIDRegistry.getVisualID(childView) == this.labelVisualId) {
 			return new ExternalLabelPrimaryDragRoleEditPolicy();
 		}
 		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (result == null) {
+		if(result == null) {
 			result = new NonResizableEditPolicy();
 		}
 		return result;

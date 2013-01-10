@@ -36,20 +36,20 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	 */
 	@Override
 	public void createDecorators(final IDecoratorTarget decoratorTarget) {
-		final EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
-		if (editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
+		final EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
+		if(editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
 			final Object model = editPart.getModel();
-			if ((model instanceof View)) {
-				final View view = (View) model;
-				if (!(view instanceof Edge) && !view.isSetElement()) {
+			if((model instanceof View)) {
+				final View view = (View)model;
+				if(!(view instanceof Edge) && !view.isSetElement()) {
 					return;
 				}
 			}
 			final EditDomain ed = editPart.getViewer().getEditDomain();
-			if (!(ed instanceof DiagramEditDomain)) {
+			if(!(ed instanceof DiagramEditDomain)) {
 				return;
 			}
-			if (((DiagramEditDomain) ed).getEditorPart() instanceof UMLDiagramEditor) {
+			if(((DiagramEditDomain)ed).getEditorPart() instanceof UMLDiagramEditor) {
 				decoratorTarget.installDecorator(KEY, new StatusDecorator(decoratorTarget));
 			}
 		}
@@ -60,11 +60,11 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	 */
 	@Override
 	public boolean provides(final IOperation operation) {
-		if (!(operation instanceof CreateDecoratorsOperation)) {
+		if(!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
-		final IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		final View view = (View) decoratorTarget.getAdapter(View.class);
+		final IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation)operation).getDecoratorTarget();
+		final View view = (View)decoratorTarget.getAdapter(View.class);
 		return view != null && TimingDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 

@@ -54,12 +54,12 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(final EditPart childEditPart) {
-		if (childEditPart instanceof MessageCreateNameLabelEditPart) {
-			((MessageCreateNameLabelEditPart) childEditPart).setLabel(getPrimaryShape().getMessageLabel());
+		if(childEditPart instanceof MessageCreateNameLabelEditPart) {
+			((MessageCreateNameLabelEditPart)childEditPart).setLabel(getPrimaryShape().getMessageLabel());
 			return true;
 		}
-		if (childEditPart instanceof MessageCreateAppliedStereotypeEditPart) {
-			((MessageCreateAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof MessageCreateAppliedStereotypeEditPart) {
+			((MessageCreateAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -70,7 +70,7 @@ implements ITreeBranchEditPart {
 	 */
 	@Override
 	protected void addChildVisual(final EditPart childEditPart, final int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,10 +80,10 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(final EditPart childEditPart) {
-		if (childEditPart instanceof MessageCreateNameLabelEditPart) {
+		if(childEditPart instanceof MessageCreateNameLabelEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof MessageCreateAppliedStereotypeEditPart) {
+		if(childEditPart instanceof MessageCreateAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -94,7 +94,7 @@ implements ITreeBranchEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(final EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -117,7 +117,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public MessageCreateFigure getPrimaryShape() {
-		return (MessageCreateFigure) getFigure();
+		return (MessageCreateFigure)getFigure();
 	}
 
 }

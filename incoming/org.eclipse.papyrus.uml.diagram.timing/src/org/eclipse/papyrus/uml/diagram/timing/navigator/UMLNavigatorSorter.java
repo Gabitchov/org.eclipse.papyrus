@@ -28,8 +28,8 @@ public class UMLNavigatorSorter extends ViewerSorter {
 	 */
 	@Override
 	public int category(final Object element) {
-		if (element instanceof UMLNavigatorItem) {
-			final UMLNavigatorItem item = (UMLNavigatorItem) element;
+		if(element instanceof UMLNavigatorItem) {
+			final UMLNavigatorItem item = (UMLNavigatorItem)element;
 			return UMLVisualIDRegistry.getVisualID(item.getView());
 		}
 		return GROUP_CATEGORY;

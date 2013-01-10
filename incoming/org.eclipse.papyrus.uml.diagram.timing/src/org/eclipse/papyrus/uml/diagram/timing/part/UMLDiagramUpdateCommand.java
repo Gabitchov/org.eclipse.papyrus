@@ -47,16 +47,16 @@ public class UMLDiagramUpdateCommand implements IHandler {
 	 */
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if (selection instanceof IStructuredSelection) {
-			final IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.size() != 1) {
+		if(selection instanceof IStructuredSelection) {
+			final IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			if(structuredSelection.size() != 1) {
 				return null;
 			}
-			if (structuredSelection.getFirstElement() instanceof EditPart && ((EditPart) structuredSelection.getFirstElement()).getModel() instanceof View) {
-				final EObject modelElement = ((View) ((EditPart) structuredSelection.getFirstElement()).getModel()).getElement();
+			if(structuredSelection.getFirstElement() instanceof EditPart && ((EditPart)structuredSelection.getFirstElement()).getModel() instanceof View) {
+				final EObject modelElement = ((View)((EditPart)structuredSelection.getFirstElement()).getModel()).getElement();
 				final List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(modelElement);
-				for (final Iterator it = editPolicies.iterator(); it.hasNext();) {
-					final CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
+				for(final Iterator it = editPolicies.iterator(); it.hasNext();) {
+					final CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy)it.next();
 					nextEditPolicy.refresh();
 				}
 

@@ -14,6 +14,7 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.parsers.OccurrenceSpecifica
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.MessageOccurrenceSpecificationLabelEditPart;
 
 public class CustomMessageOccurrenceSpecificationLabelEditPart extends MessageOccurrenceSpecificationLabelEditPart {
+
 	private IParser parser;
 
 	public CustomMessageOccurrenceSpecificationLabelEditPart(final View view) {
@@ -22,7 +23,7 @@ public class CustomMessageOccurrenceSpecificationLabelEditPart extends MessageOc
 
 	@Override
 	public IParser getParser() {
-		if (this.parser == null) {
+		if(this.parser == null) {
 			this.parser = new OccurrenceSpecificationNameParser();
 		}
 		return this.parser;

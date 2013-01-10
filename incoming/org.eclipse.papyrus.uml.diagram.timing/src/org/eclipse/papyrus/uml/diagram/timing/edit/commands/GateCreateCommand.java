@@ -35,6 +35,7 @@ public class GateCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
@@ -71,11 +72,11 @@ public class GateCreateCommand extends EditElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return this.eObject;
@@ -99,12 +100,12 @@ public class GateCreateCommand extends EditElementCommand {
 
 		final Gate newElement = UMLFactory.eINSTANCE.createGate();
 
-		final Interaction owner = (Interaction) getElementToEdit();
+		final Interaction owner = (Interaction)getElementToEdit();
 		owner.getFormalGates().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -112,12 +113,12 @@ public class GateCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(final Gate newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		final IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		final IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		final ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		final ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

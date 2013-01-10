@@ -50,12 +50,13 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
 
 public class CustomUMLEditPartFactory extends UMLEditPartFactory {
+
 	@Override
 	public EditPart createEditPart(final EditPart context, final Object model) {
-		if (model instanceof View) {
-			final View view = (View) model;
+		if(model instanceof View) {
+			final View view = (View)model;
 			final int visualID = UMLVisualIDRegistry.getVisualID(view);
-			switch (visualID) {
+			switch(visualID) {
 			case TimingDiagramEditPart.VISUAL_ID:// 1
 				return new CustomTimingDiagramEditPart(view);
 			case InteractionEditPartTN.VISUAL_ID:// 2

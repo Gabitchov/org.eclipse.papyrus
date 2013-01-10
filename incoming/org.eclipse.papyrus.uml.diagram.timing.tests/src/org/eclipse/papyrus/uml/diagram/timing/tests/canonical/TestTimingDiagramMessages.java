@@ -27,8 +27,7 @@ public class TestTimingDiagramMessages extends AbstractTimingDiagramTestCase {
 
 	@Test
 	public void testCreateSyncMessage() {
-		clickTwiceWithTool("createMessageSyncCreationTool", findOccurrenceSpecificationsInDefaultFullLifeline().get(0),
-				findOccurrenceSpecificationsInDefaultCompactLifeline().get(1));
+		clickTwiceWithTool("createMessageSyncCreationTool", findOccurrenceSpecificationsInDefaultFullLifeline().get(0), findOccurrenceSpecificationsInDefaultCompactLifeline().get(1));
 		final Text text = findVisibleTextWidgetOnDiagram();
 		setText(text, "abc");
 
@@ -42,8 +41,7 @@ public class TestTimingDiagramMessages extends AbstractTimingDiagramTestCase {
 
 	@Test
 	public void testCreateAsyncMessage() {
-		clickTwiceWithTool("createMessageAsyncCreationTool", findOccurrenceSpecificationsInDefaultFullLifeline().get(0),
-				findOccurrenceSpecificationsInDefaultCompactLifeline().get(1));
+		clickTwiceWithTool("createMessageAsyncCreationTool", findOccurrenceSpecificationsInDefaultFullLifeline().get(0), findOccurrenceSpecificationsInDefaultCompactLifeline().get(1));
 		final Text text = findVisibleTextWidgetOnDiagram();
 		setText(text, "def");
 		// TODO: check async Message instance

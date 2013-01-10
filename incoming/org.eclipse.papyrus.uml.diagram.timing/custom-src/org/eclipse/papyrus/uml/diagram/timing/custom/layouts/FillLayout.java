@@ -19,14 +19,15 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class FillLayout extends AbstractLayout {
+
 	public void layout(final IFigure container) {
 		final Rectangle clientArea = container.getClientArea();
 		final List<?> children = container.getChildren();
-		for (int i = 0; i < children.size(); i++) {
-			final IFigure child = (IFigure) children.get(i);
+		for(int i = 0; i < children.size(); i++) {
+			final IFigure child = (IFigure)children.get(i);
 			child.setBounds(clientArea);
-			if (child instanceof FreeformLayer) {
-				final FreeformLayer freeformLayer = (FreeformLayer) child;
+			if(child instanceof FreeformLayer) {
+				final FreeformLayer freeformLayer = (FreeformLayer)child;
 				freeformLayer.setFreeformBounds(clientArea);
 			}
 		}

@@ -23,8 +23,7 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.policies.OccurrenceSpecificat
 /**
  * <ul>
  * <li>Handles hiding an OccurrenceSpecification and the associated VerticalLine and StateInvariant
- * <li>Handles destroying an OccurrenceSpecification and the associated elements, while renaming the
- * OccurrenceSpecifications and StateInvariants
+ * <li>Handles destroying an OccurrenceSpecification and the associated elements, while renaming the OccurrenceSpecifications and StateInvariants
  * <li>Creates the CustomMessageCreateCommand
  * </ul>
  */
@@ -33,7 +32,7 @@ public class CustomOccurrenceSpecificationItemSemanticEditPolicy extends Occurre
 	/** Handles the "Hide Element" (remove only the view, and keep the semantic element) */
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType() == REQ_DELETE) {
+		if(request.getType() == REQ_DELETE) {
 			final Command baseCommand = super.getCommand(request);
 			return OccurrenceSpecificationUtils.getHideOccurrenceSpecificationCommand(getHost(), baseCommand);
 		}
@@ -43,10 +42,10 @@ public class CustomOccurrenceSpecificationItemSemanticEditPolicy extends Occurre
 	@Override
 	protected Command getCreateRelationshipCommand(final CreateRelationshipRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return null;
 		}
-		if (MessageUtils.isMessage(requestElementType)) {
+		if(MessageUtils.isMessage(requestElementType)) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req));
 		}
 		return super.getCreateRelationshipCommand(req);

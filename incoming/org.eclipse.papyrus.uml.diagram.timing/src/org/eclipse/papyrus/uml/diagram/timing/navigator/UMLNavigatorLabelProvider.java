@@ -45,7 +45,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	public void updateLabel(final ViewerLabel label, final TreePath elementPath) {
 		final Object element = elementPath.getLastSegment();
-		if (element instanceof UMLNavigatorItem && !isOwnView(((UMLNavigatorItem) element).getView())) {
+		if(element instanceof UMLNavigatorItem && !isOwnView(((UMLNavigatorItem)element).getView())) {
 			return;
 		}
 		label.setText(getText(element));
@@ -57,14 +57,14 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	@Override
 	public Image getImage(final Object element) {
-		if (element instanceof UMLNavigatorGroup) {
-			final UMLNavigatorGroup group = (UMLNavigatorGroup) element;
+		if(element instanceof UMLNavigatorGroup) {
+			final UMLNavigatorGroup group = (UMLNavigatorGroup)element;
 			return UMLDiagramEditorPlugin.getInstance().getBundledImage(group.getIcon());
 		}
 
-		if (element instanceof UMLNavigatorItem) {
-			final UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
-			if (!isOwnView(navigatorItem.getView())) {
+		if(element instanceof UMLNavigatorItem) {
+			final UMLNavigatorItem navigatorItem = (UMLNavigatorItem)element;
+			if(!isOwnView(navigatorItem.getView())) {
 				return super.getImage(element);
 			}
 			return getImage(navigatorItem.getView());
@@ -86,12 +86,12 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private Image getImage(final String key, final IElementType elementType) {
 		final ImageRegistry imageRegistry = UMLDiagramEditorPlugin.getInstance().getImageRegistry();
 		Image image = imageRegistry.get(key);
-		if (image == null && elementType != null && UMLElementTypes.isKnownElementType(elementType)) {
+		if(image == null && elementType != null && UMLElementTypes.isKnownElementType(elementType)) {
 			image = UMLElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
 
-		if (image == null) {
+		if(image == null) {
 			image = imageRegistry.get("Navigator?ImageNotFound"); //$NON-NLS-1$
 			imageRegistry.put(key, image);
 		}
@@ -103,14 +103,14 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	@Override
 	public String getText(final Object element) {
-		if (element instanceof UMLNavigatorGroup) {
-			final UMLNavigatorGroup group = (UMLNavigatorGroup) element;
+		if(element instanceof UMLNavigatorGroup) {
+			final UMLNavigatorGroup group = (UMLNavigatorGroup)element;
 			return group.getGroupName();
 		}
 
-		if (element instanceof UMLNavigatorItem) {
-			final UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
-			if (!isOwnView(navigatorItem.getView())) {
+		if(element instanceof UMLNavigatorItem) {
+			final UMLNavigatorItem navigatorItem = (UMLNavigatorItem)element;
+			if(!isOwnView(navigatorItem.getView())) {
 				return null;
 			}
 			return getText(navigatorItem.getView());
@@ -123,7 +123,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	public String getText(final View view) {
-		if (view.getElement() != null && view.getElement().eIsProxy()) {
+		if(view.getElement() != null && view.getElement().eIsProxy()) {
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		return getUnknownElementText(view);

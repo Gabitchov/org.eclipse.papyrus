@@ -39,6 +39,7 @@ public class UMLValidationProvider {
 	public static void runWithConstraints(final TransactionalEditingDomain editingDomain, final Runnable operation) {
 		final Runnable op = operation;
 		final Runnable task = new Runnable() {
+
 			public void run() {
 				try {
 					constraintsActive = true;
@@ -48,7 +49,7 @@ public class UMLValidationProvider {
 				}
 			}
 		};
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (final Exception e) {
@@ -63,11 +64,11 @@ public class UMLValidationProvider {
 	 * @generated
 	 */
 	static boolean isInDefaultEditorContext(final Object object) {
-		if (shouldConstraintsBePrivate() && !constraintsActive) {
+		if(shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
-		if (object instanceof View) {
-			return constraintsActive && TimingDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+		if(object instanceof View) {
+			return constraintsActive && TimingDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View)object));
 		}
 		return true;
 	}

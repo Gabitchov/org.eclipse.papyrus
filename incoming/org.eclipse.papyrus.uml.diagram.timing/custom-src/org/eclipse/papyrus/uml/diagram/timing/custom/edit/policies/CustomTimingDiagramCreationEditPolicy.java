@@ -36,15 +36,15 @@ public class CustomTimingDiagramCreationEditPolicy extends PapyrusCreationEditPo
 	protected Command getCreateCommand(final CreateViewRequest request) {
 		final Command superCommand = super.getCreateCommand(request);
 		final List<? extends ViewDescriptor> viewDescriptors = request.getViewDescriptors();
-		if (request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
+		if(request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
-			if (Integer.toString(InteractionEditPartTN.VISUAL_ID).equals(semanticHint)) {
+			if(Integer.toString(InteractionEditPartTN.VISUAL_ID).equals(semanticHint)) {
 				final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(getHost().getModel());
 				final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomTimingDiagramCreationEditPolicy_CreateInteraction);
-				compoundCommand.add(new RefreshCommandForUndo((IGraphicalEditPart) getHost()));
+				compoundCommand.add(new RefreshCommandForUndo((IGraphicalEditPart)getHost()));
 				compoundCommand.add(superCommand);
 				compoundCommand.add(new ICommandProxy(TimeRulerUtils.getCreateFreeTimeRulerCommand(superCommand, editingDomain, true)));
-				compoundCommand.add(new RefreshCommandForDo((IGraphicalEditPart) getHost()));
+				compoundCommand.add(new RefreshCommandForDo((IGraphicalEditPart)getHost()));
 				return compoundCommand;
 			}
 		}

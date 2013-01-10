@@ -29,7 +29,7 @@ public class TimeRulerLayout extends AbstractLayout {
 		final Rectangle clientArea = container.getParent().getClientArea();
 		@SuppressWarnings("unchecked")
 		final List<IFigure> children = container.getChildren();
-		for (int i = 0; i < children.size(); i++) {
+		for(int i = 0; i < children.size(); i++) {
 			final IFigure child = children.get(i);
 			child.setBounds(clientArea);
 		}

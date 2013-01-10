@@ -14,22 +14,15 @@ import org.junit.runners.Suite.SuiteClasses;
 
 //@formatter:off
 @RunWith(Suite.class)
-@SuiteClasses({
-	TestTimingDiagramInteraction.class,
-	TestTimingDiagramFullLifeline.class,
-	TestTimingDiagramCompactLifeline.class,
+@SuiteClasses({ TestTimingDiagramInteraction.class, TestTimingDiagramFullLifeline.class, TestTimingDiagramCompactLifeline.class,
 
-	TestTimingDiagramFullStateInvariant.class,
-	TestTimingDiagramCompactStateInvariant.class,
-	
-	TestTimingDiagramFullOccurrenceSpecification.class,
-	TestTimingDiagramCompactOccurrenceSpecification.class,
-	
-	TestTimingDiagramStateDefinition.class,
-	TestTimingDiagramFullLifelineLayout.class,
-	
-	TestTimingDiagramMessages.class,
-})
+TestTimingDiagramFullStateInvariant.class, TestTimingDiagramCompactStateInvariant.class,
+
+TestTimingDiagramFullOccurrenceSpecification.class, TestTimingDiagramCompactOccurrenceSpecification.class,
+
+TestTimingDiagramStateDefinition.class, TestTimingDiagramFullLifelineLayout.class,
+
+TestTimingDiagramMessages.class, })
 //@formatter:on
 public class AllCanonicalTests {
 	// Junit 4 test case

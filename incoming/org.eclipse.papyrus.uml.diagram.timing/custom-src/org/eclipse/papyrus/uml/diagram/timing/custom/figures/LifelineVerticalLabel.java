@@ -21,11 +21,12 @@ import org.eclipse.swt.widgets.Display;
 public class LifelineVerticalLabel extends VerticalLabel implements ILabelFigure {
 
 	private boolean selected;
+
 	private boolean focus;
 
 	@Override
 	public Color getBackgroundColor() {
-		if (this.selected) {
+		if(this.selected) {
 			return Display.getDefault().getSystemColor(SWT.COLOR_LIST_SELECTION);
 		}
 		// the transparency color for the label
@@ -34,7 +35,7 @@ public class LifelineVerticalLabel extends VerticalLabel implements ILabelFigure
 
 	@Override
 	public Color getForegroundColor() {
-		if (this.selected) {
+		if(this.selected) {
 			return Display.getDefault().getSystemColor(SWT.COLOR_LIST_SELECTION_TEXT);
 		}
 		return super.getForegroundColor();
@@ -70,7 +71,7 @@ public class LifelineVerticalLabel extends VerticalLabel implements ILabelFigure
 	@Override
 	protected void paintFigure(final Graphics graphics) {
 		super.paintFigure(graphics);
-		if (this.focus) {
+		if(this.focus) {
 			graphics.drawFocus(getBounds().getResized(-1, -1));
 		}
 	}

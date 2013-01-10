@@ -46,11 +46,11 @@ public class CustomInteractionCreationEditPolicy extends PapyrusCreationEditPoli
 
 	@Override
 	protected Command getCreateCommand(final CreateViewRequest request) {
-		final ICommandProxy superCommand = (ICommandProxy) super.getCreateCommand(request);
+		final ICommandProxy superCommand = (ICommandProxy)super.getCreateCommand(request);
 		final List<? extends ViewDescriptor> viewDescriptors = request.getViewDescriptors();
-		if (request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
+		if(request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
-			if (Integer.toString(GateEditPart.VISUAL_ID).equals(semanticHint)) {
+			if(Integer.toString(GateEditPart.VISUAL_ID).equals(semanticHint)) {
 				return getCreateGateCommand(request, superCommand);
 			}
 		}
@@ -62,19 +62,20 @@ public class CustomInteractionCreationEditPolicy extends PapyrusCreationEditPoli
 		final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomInteractionCreationEditPolicy_CreateGate);
 		compoundCommand.add(superCommand);
 		final ICommand iCommand = superCommand.getICommand();
-		final TransactionalEditingDomain editingDomain = ((AbstractEMFOperation) iCommand).getEditingDomain();
+		final TransactionalEditingDomain editingDomain = ((AbstractEMFOperation)iCommand).getEditingDomain();
 		compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.CustomInteractionCreationEditPolicy_PositionGate, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				final CommandResult commandResult = iCommand.getCommandResult();
 				final Object returnValue = commandResult.getReturnValue();
-				final ViewAndElementDescriptor descriptor = (ViewAndElementDescriptor) returnValue;
-				final Node node = (Node) descriptor.getAdapter(Node.class);
+				final ViewAndElementDescriptor descriptor = (ViewAndElementDescriptor)returnValue;
+				final Node node = (Node)descriptor.getAdapter(Node.class);
 
-				final Node interactionView = (Node) ViewUtils.findSuperViewWithId(node, InteractionEditPartTN.VISUAL_ID);
-				final Location interactionLocation = (Location) interactionView.getLayoutConstraint();
+				final Node interactionView = (Node)ViewUtils.findSuperViewWithId(node, InteractionEditPartTN.VISUAL_ID);
+				final Location interactionLocation = (Location)interactionView.getLayoutConstraint();
 
-				final IFigure hostFigure = ((GraphicalEditPart) getHost()).getFigure();
+				final IFigure hostFigure = ((GraphicalEditPart)getHost()).getFigure();
 				final Point point = new Point(request.getLocation());
 				final Point origin = FigureUtils.getLayeredPaneOrigin(hostFigure);
 				point.translate(origin);
@@ -88,7 +89,7 @@ public class CustomInteractionCreationEditPolicy extends PapyrusCreationEditPoli
 				return CommandResult.newOKCommandResult();
 			}
 		}));
-		compoundCommand.add(new RefreshCommandForDo((GraphicalEditPart) getHost()));
+		compoundCommand.add(new RefreshCommandForDo((GraphicalEditPart)getHost()));
 		return compoundCommand;
 	}
 }

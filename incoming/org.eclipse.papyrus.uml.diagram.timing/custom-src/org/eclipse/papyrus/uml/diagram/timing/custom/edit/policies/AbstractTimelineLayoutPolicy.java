@@ -59,16 +59,16 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 
 	@Override
 	public Command getCommand(final Request request) {
-		if (request instanceof ChangeBoundsRequest && request.getType() == RequestConstants.REQ_ADD) {
+		if(request instanceof ChangeBoundsRequest && request.getType() == RequestConstants.REQ_ADD) {
 			// deny adding an element into another element (since this breaks everything)
 			request.setType(REQ_MOVE_CHILDREN);
 		}
-		if (request == UPDATE_LAYOUT_REQUEST) {
+		if(request == UPDATE_LAYOUT_REQUEST) {
 			return getUpdateTimeElementsCommand();
 		}
 		final Command superCommand = super.getCommand(request);
 		// update the locations of time elements each time an element is added or moved in the timeline
-		if (superCommand != null && (request instanceof ChangeBoundsRequest || request.getType() == RequestConstants.REQ_CREATE)) {
+		if(superCommand != null && (request instanceof ChangeBoundsRequest || request.getType() == RequestConstants.REQ_CREATE)) {
 			final CompoundCommand compoundCommand = new CompoundCommand();
 			compoundCommand.add(superCommand);
 			compoundCommand.add(getUpdateTimeElementsCommand());
@@ -78,33 +78,33 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	}
 
 	/**
-	 * Returns a command that moves the given node (that represents an OccurrenceSpecification) <code>moveDeltaX</code>
-	 * pixels to the right (or left if negative).
+	 * Returns a command that moves the given node (that represents an OccurrenceSpecification) <code>moveDeltaX</code> pixels to the right (or left
+	 * if negative).
 	 * 
 	 * @param occurrenceSpecificationNode
-	 *            the node to move
+	 *        the node to move
 	 * @param moveDelta
-	 *            how much to move
+	 *        how much to move
 	 * @param timelineCompartmentView
-	 *            the parent compartment
+	 *        the parent compartment
 	 * @param occurrenceSpecificationIndex
-	 *            the index of the OccurrenceSpecification Node in its parent compartment
+	 *        the index of the OccurrenceSpecification Node in its parent compartment
 	 * @param nodesToIgnore
-	 *            these nodes will not constrain the new position
+	 *        these nodes will not constrain the new position
 	 * @return the command
 	 */
-	protected static Command getMoveOccurrenceSpecificationCommand(final Node occurrenceSpecificationNode, final Point moveDelta,
-			final View timelineCompartmentView, final int occurrenceSpecificationIndex, final List<Node> nodesToIgnore) {
+	protected static Command getMoveOccurrenceSpecificationCommand(final Node occurrenceSpecificationNode, final Point moveDelta, final View timelineCompartmentView, final int occurrenceSpecificationIndex, final List<Node> nodesToIgnore) {
 		final LayoutConstraint layoutConstraint = occurrenceSpecificationNode.getLayoutConstraint();
-		if (layoutConstraint instanceof Location) {
-			final Location location = (Location) layoutConstraint;
+		if(layoutConstraint instanceof Location) {
+			final Location location = (Location)layoutConstraint;
 			final int posX = location.getX() + moveDelta.x;
 			final int posY = location.getY() + moveDelta.y;
 			final int min = findMin(timelineCompartmentView, occurrenceSpecificationIndex, nodesToIgnore);
 			final int max = findMax(timelineCompartmentView, occurrenceSpecificationIndex, nodesToIgnore);
-			final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) occurrenceSpecificationNode.getElement();
+			final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)occurrenceSpecificationNode.getElement();
 			final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(occurrenceSpecification);
 			return new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.AbstractTimelineLayoutPolicy_MoveOccurrenceSpecification, null) {
+
 				@Override
 				protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 					final Location loc = NotationFactory.eINSTANCE.createLocation();
@@ -124,23 +124,23 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	 * Find the maximum abscissa of the OccurrenceSpecification at the given index
 	 * 
 	 * @param timelineCompartmentView
-	 *            the parent timeline compartment view
+	 *        the parent timeline compartment view
 	 * @param index
-	 *            the index of the OccurrenceSpecification in the compartment view's children
+	 *        the index of the OccurrenceSpecification in the compartment view's children
 	 * @param nodesToIgnore
 	 * @param nodesToIgnore
-	 *            these nodes will be ignored when computing the maximum position
+	 *        these nodes will be ignored when computing the maximum position
 	 * @return the maximum abscissa
 	 */
 	protected static int findMax(final View timelineCompartmentView, final int index, final List<Node> nodesToIgnore) {
 		@SuppressWarnings("unchecked")
 		final EList<View> children = timelineCompartmentView.getChildren();
-		for (int i = index + 1; i < children.size(); i++) {
+		for(int i = index + 1; i < children.size(); i++) {
 			final View childView = children.get(i);
-			if (!nodesToIgnore.contains(childView) && childView.getElement() instanceof OccurrenceSpecification) {
-				final LayoutConstraint layoutConstraint = ((Node) childView).getLayoutConstraint();
-				if (layoutConstraint instanceof Location) {
-					final Location location = (Location) layoutConstraint;
+			if(!nodesToIgnore.contains(childView) && childView.getElement() instanceof OccurrenceSpecification) {
+				final LayoutConstraint layoutConstraint = ((Node)childView).getLayoutConstraint();
+				if(layoutConstraint instanceof Location) {
+					final Location location = (Location)layoutConstraint;
 					return location.getX() - Constants.MINIMUM_DISTANCE_BETWEEN_OCCURRENCE_SPECIFICATIONS;
 				}
 			}
@@ -152,22 +152,22 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	 * Find the minimum abscissa of the OccurrenceSpecification at the given index
 	 * 
 	 * @param timelineCompartmentView
-	 *            the parent timeline compartment view
+	 *        the parent timeline compartment view
 	 * @param index
-	 *            the index of the OccurrenceSpecification in the compartment view's children
+	 *        the index of the OccurrenceSpecification in the compartment view's children
 	 * @param nodesToIgnore
-	 *            these nodes will be ignored when computing the minimum position
+	 *        these nodes will be ignored when computing the minimum position
 	 * @return the minimum abscissa
 	 */
 	protected static int findMin(final View timelineCompartmentView, final int index, final List<Node> nodesToIgnore) {
 		@SuppressWarnings("unchecked")
 		final EList<View> children = timelineCompartmentView.getChildren();
-		for (int i = index - 1; i >= 0; i--) {
+		for(int i = index - 1; i >= 0; i--) {
 			final View childView = children.get(i);
-			if (!nodesToIgnore.contains(childView) && childView.getElement() instanceof OccurrenceSpecification) {
-				final LayoutConstraint layoutConstraint = ((Node) childView).getLayoutConstraint();
-				if (layoutConstraint instanceof Location) {
-					final Location location = (Location) layoutConstraint;
+			if(!nodesToIgnore.contains(childView) && childView.getElement() instanceof OccurrenceSpecification) {
+				final LayoutConstraint layoutConstraint = ((Node)childView).getLayoutConstraint();
+				if(layoutConstraint instanceof Location) {
+					final Location location = (Location)layoutConstraint;
 					return location.getX() + Constants.MINIMUM_DISTANCE_BETWEEN_OCCURRENCE_SPECIFICATIONS;
 				}
 			}
@@ -177,57 +177,58 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 
 	/** Returns a command that updates the positions of time elements, relative to the element they are attached to */
 	protected Command getUpdateTimeElementsCommand() {
-		final GraphicalEditPart timelineCompartmentEditPart = (GraphicalEditPart) getHost();
-		final Node compartmentView = (Node) timelineCompartmentEditPart.getModel();
+		final GraphicalEditPart timelineCompartmentEditPart = (GraphicalEditPart)getHost();
+		final Node compartmentView = (Node)timelineCompartmentEditPart.getModel();
 		final boolean compact = timelineCompartmentEditPart instanceof CompactLifelineCompartmentEditPartCN;
 		final int width = timelineCompartmentEditPart.getFigure().getSize().width;
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(compartmentView);
 		return new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.AbstractTimelineLayoutPolicy_UpdateLocationOfTimeElements, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				@SuppressWarnings("unchecked")
 				final EList<View> children = compartmentView.getChildren();
-				for (final View child : children) {
+				for(final View child : children) {
 					final EObject element = child.getElement();
-					if (element instanceof TimeObservation) {
-						final TimeObservation timeObservation = (TimeObservation) element;
-						final Node timeObservationNode = ((Node) child);
+					if(element instanceof TimeObservation) {
+						final TimeObservation timeObservation = (TimeObservation)element;
+						final Node timeObservationNode = ((Node)child);
 						updateTimeElementLocation(timeObservationNode, timeObservation.getEvent(), children, compact, width);
-					} else if (element instanceof TimeConstraint) {
-						final TimeConstraint timeConstraint = (TimeConstraint) element;
-						final Node timeConstraintNode = ((Node) child);
+					} else if(element instanceof TimeConstraint) {
+						final TimeConstraint timeConstraint = (TimeConstraint)element;
+						final Node timeConstraintNode = ((Node)child);
 						final EList<Element> constrainedElements = timeConstraint.getConstrainedElements();
-						if (constrainedElements.size() > 0) {
+						if(constrainedElements.size() > 0) {
 							final Element constrainedElement = constrainedElements.get(0);
 							updateTimeElementLocation(timeConstraintNode, constrainedElement, children, compact, width);
 						}
-					} else if (element instanceof DurationObservation) {
-						final DurationObservation durationObservation = (DurationObservation) element;
-						final Node durationObservationNode = ((Node) child);
+					} else if(element instanceof DurationObservation) {
+						final DurationObservation durationObservation = (DurationObservation)element;
+						final Node durationObservationNode = ((Node)child);
 						final EList<NamedElement> events = durationObservation.getEvents();
-						if (events.size() == 2) {
+						if(events.size() == 2) {
 							final Element startElement = events.get(0);
 							final Element endElement = events.get(1);
 							updateDurationElementLocation(durationObservationNode, startElement, endElement, children);
-						} else if (events.size() == 1) {
+						} else if(events.size() == 1) {
 							final Element startEndElement = events.get(0);
 							updateDurationElementLocation(durationObservationNode, startEndElement, startEndElement, children);
 						}
-					} else if (element instanceof DurationConstraint) {
-						final DurationConstraint durationConstraint = (DurationConstraint) element;
-						final Node durationConstraintNode = ((Node) child);
+					} else if(element instanceof DurationConstraint) {
+						final DurationConstraint durationConstraint = (DurationConstraint)element;
+						final Node durationConstraintNode = ((Node)child);
 						final EList<Element> elements = durationConstraint.getConstrainedElements();
-						if (elements.size() == 2) {
+						if(elements.size() == 2) {
 							final Element startElement = elements.get(0);
 							final Element endElement = elements.get(1);
 							updateDurationElementLocation(durationConstraintNode, startElement, endElement, children);
-						} else if (elements.size() == 1) {
+						} else if(elements.size() == 1) {
 							final Element startEndElement = elements.get(0);
 							updateDurationElementLocation(durationConstraintNode, startEndElement, startEndElement, children);
 						}
-					} else if (element instanceof GeneralOrdering) {
-						final GeneralOrdering generalOrdering = (GeneralOrdering) element;
-						final Node generalOrderingNode = ((Node) child);
+					} else if(element instanceof GeneralOrdering) {
+						final GeneralOrdering generalOrdering = (GeneralOrdering)element;
+						final Node generalOrderingNode = ((Node)child);
 
 						final OccurrenceSpecification before = generalOrdering.getBefore();
 						final OccurrenceSpecification after = generalOrdering.getAfter();
@@ -243,37 +244,36 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	 * Set the horizontal location of the given time element View, so that it is aligned with its associated element
 	 * 
 	 * @param timeElementNode
-	 *            the element to align
+	 *        the element to align
 	 * @param alignmentElement
-	 *            the element to align to
+	 *        the element to align to
 	 * @param timelineViews
-	 *            the views contained in the timeline
+	 *        the views contained in the timeline
 	 * @param compact
-	 *            whether this is a compact timeline
+	 *        whether this is a compact timeline
 	 * @param max
-	 *            the position to give the element if it has no end
+	 *        the position to give the element if it has no end
 	 */
-	protected static void updateTimeElementLocation(final Node timeElementNode, final EObject alignmentElement, final EList<View> timelineViews,
-			final boolean compact, final int max) {
+	protected static void updateTimeElementLocation(final Node timeElementNode, final EObject alignmentElement, final EList<View> timelineViews, final boolean compact, final int max) {
 		int occurrencePositionBefore = -1;
 		int occurrencePositionAfter = -1;
 		int lastOccurrencePosition = -1;
 		boolean after = false;
-		for (final View view : timelineViews) {
-			if (view instanceof Node && ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
-				final Node node = (Node) view;
+		for(final View view : timelineViews) {
+			if(view instanceof Node && ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
+				final Node node = (Node)view;
 				final LayoutConstraint layoutConstraint = node.getLayoutConstraint();
-				if (layoutConstraint instanceof Location) {
-					final Location location = (Location) layoutConstraint;
+				if(layoutConstraint instanceof Location) {
+					final Location location = (Location)layoutConstraint;
 					lastOccurrencePosition = location.getX();
 				}
 			}
-			if (after && view instanceof Node && ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getStateInvariant())) {
+			if(after && view instanceof Node && ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getStateInvariant())) {
 				// we found the first state change after the alignmentElement => memorize the occurrence position
 				occurrencePositionAfter = lastOccurrencePosition;
 				after = false;
 			}
-			if (view.getElement() == alignmentElement) {
+			if(view.getElement() == alignmentElement) {
 				// memorize the first occurrence position before the alignmentElement
 				occurrencePositionBefore = lastOccurrencePosition;
 				after = true;
@@ -282,26 +282,26 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 
 		boolean firstEvent = true;
 		final EObject element = timeElementNode.getElement();
-		if (element instanceof TimeObservation) {
-			final TimeObservation timeObservation = (TimeObservation) element;
+		if(element instanceof TimeObservation) {
+			final TimeObservation timeObservation = (TimeObservation)element;
 			firstEvent = timeObservation.isFirstEvent();
-		} else if (element instanceof TimeConstraint) {
-			final TimeConstraint timeConstraint = (TimeConstraint) element;
+		} else if(element instanceof TimeConstraint) {
+			final TimeConstraint timeConstraint = (TimeConstraint)element;
 			firstEvent = timeConstraint.isFirstEvent();
 		}
 
-		if (firstEvent) {
-			if (occurrencePositionBefore != -1) {
+		if(firstEvent) {
+			if(occurrencePositionBefore != -1) {
 				setTimeElementNodeLocation(timeElementNode, occurrencePositionBefore);
 			} else {
-				if (compact) {
+				if(compact) {
 					setTimeElementNodeLocation(timeElementNode, CustomCompactLifelineCompartmentEditPart.FIRST_STATE_OFFSET);
 				} else {
 					setTimeElementNodeLocation(timeElementNode, 0);
 				}
 			}
 		} else {
-			if (occurrencePositionAfter != -1) {
+			if(occurrencePositionAfter != -1) {
 				setTimeElementNodeLocation(timeElementNode, occurrencePositionAfter);
 			} else {
 				// the margin avoids the element pushing the rest outside
@@ -316,44 +316,43 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	 * and end elements
 	 * 
 	 * @param durationElementNode
-	 *            the element to align
+	 *        the element to align
 	 * @param startElement
-	 *            the start element of the duration
+	 *        the start element of the duration
 	 * @param endElement
-	 *            the end element of the duration
+	 *        the end element of the duration
 	 * @param timelineViews
-	 *            the views contained in the timeline
+	 *        the views contained in the timeline
 	 */
-	protected void updateDurationElementLocation(final Node durationElementNode, final Element startElement, final Element endElement,
-			final EList<View> timelineViews) {
+	protected void updateDurationElementLocation(final Node durationElementNode, final Element startElement, final Element endElement, final EList<View> timelineViews) {
 		int lastOccurrencePosition = getOriginX();
 		int startPos = getOriginX();
 		int endPos = -1;
 		boolean onEndElement = false;
-		for (final View view : timelineViews) {
-			if (view instanceof Node) {
-				final Node node = (Node) view;
+		for(final View view : timelineViews) {
+			if(view instanceof Node) {
+				final Node node = (Node)view;
 				final LayoutConstraint layoutConstraint = node.getLayoutConstraint();
-				final Location location = (Location) layoutConstraint;
-				if (onEndElement && ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification())) {
+				final Location location = (Location)layoutConstraint;
+				if(onEndElement && ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification())) {
 					// if there is a DestructionOccurrenceSpecification, then the duration must end on it
 					endPos = location.getX() + SmallSquareFigure.RADIUS + 1;
 					onEndElement = false;
 				}
-				if (ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
+				if(ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getOccurrenceSpecification())) {
 					lastOccurrencePosition = location.getX();
-				} else if (ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getStateInvariant())) {
-					if (onEndElement) {
+				} else if(ViewUtils.isViewFor(view, UMLPackage.eINSTANCE.getStateInvariant())) {
+					if(onEndElement) {
 						endPos = lastOccurrencePosition + SmallSquareFigure.RADIUS + 1;
 						onEndElement = false;
 					}
 				}
 			}
-			if (view.getElement() == startElement) {
+			if(view.getElement() == startElement) {
 				startPos = lastOccurrencePosition + SmallSquareFigure.RADIUS;
 			}
-			if (view.getElement() == endElement) {
-				if (endElement instanceof OccurrenceSpecification) {
+			if(view.getElement() == endElement) {
+				if(endElement instanceof OccurrenceSpecification) {
 					endPos = lastOccurrencePosition + SmallSquareFigure.RADIUS + 1;
 				} else {
 					// on a StateInvariant => the next state change (an OccurrenceSpecification followed by
@@ -363,7 +362,7 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 			}
 		}
 
-		if (endPos == -1) {
+		if(endPos == -1) {
 			// the endElement has no end
 			endPos = Integer.MAX_VALUE;
 		}
@@ -386,13 +385,13 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 		final Location timeElementLocation;
 		final int y;
 		// it is a Bounds element when created; we change it to a Location
-		if (layoutConstraint instanceof Bounds) {
-			final Bounds initialBounds = (Bounds) layoutConstraint;
+		if(layoutConstraint instanceof Bounds) {
+			final Bounds initialBounds = (Bounds)layoutConstraint;
 			timeElementLocation = NotationFactory.eINSTANCE.createLocation();
 			// place it above the location where the user clicked
 			y = initialBounds.getY() - VerticalMarkFigure.PREFERRED_HEIGHT - 5;
-		} else if (layoutConstraint instanceof Location) {
-			timeElementLocation = (Location) layoutConstraint;
+		} else if(layoutConstraint instanceof Location) {
+			timeElementLocation = (Location)layoutConstraint;
 			y = timeElementLocation.getY();
 		} else {
 			timeElementLocation = NotationFactory.eINSTANCE.createLocation();
@@ -408,24 +407,24 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	 * Set the location of the given duration node
 	 * 
 	 * @param durationElementNode
-	 *            the node to position
+	 *        the node to position
 	 * @param startPos
-	 *            the horizontal starting position
+	 *        the horizontal starting position
 	 * @param endPos
-	 *            the horizontal ending position
+	 *        the horizontal ending position
 	 */
 	private static void setDurationElementNodeLocation(final Node durationElementNode, final int startPos, final int endPos) {
 		final LayoutConstraint layoutConstraint = durationElementNode.getLayoutConstraint();
 
 		final Bounds bounds;
-		if (layoutConstraint instanceof Bounds) {
-			bounds = (Bounds) layoutConstraint;
+		if(layoutConstraint instanceof Bounds) {
+			bounds = (Bounds)layoutConstraint;
 		} else {
 			bounds = NotationFactory.eINSTANCE.createBounds();
 			durationElementNode.setLayoutConstraint(bounds);
 		}
 		bounds.setX(startPos);
-		if (endPos == Integer.MAX_VALUE) {
+		if(endPos == Integer.MAX_VALUE) {
 			bounds.setWidth(Integer.MAX_VALUE);
 		} else {
 			bounds.setWidth(endPos - startPos);
@@ -433,36 +432,34 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	}
 
 	/**
-	 * Set the location of the given GeneralOrdering node so that it is aligned with the given <code>before</code> and
-	 * <code>after</code> occurrences.
+	 * Set the location of the given GeneralOrdering node so that it is aligned with the given <code>before</code> and <code>after</code> occurrences.
 	 * 
 	 * @param generalOrderingNode
-	 *            the node to align
+	 *        the node to align
 	 * @param before
-	 *            the start element
+	 *        the start element
 	 * @param after
-	 *            the end element
+	 *        the end element
 	 * @param timelineViews
-	 *            all the Views in the timeline
+	 *        all the Views in the timeline
 	 */
-	protected static void updateGeneralOrderingLocation(final Node generalOrderingNode, final OccurrenceSpecification before,
-			final OccurrenceSpecification after, final EList<View> timelineViews) {
+	protected static void updateGeneralOrderingLocation(final Node generalOrderingNode, final OccurrenceSpecification before, final OccurrenceSpecification after, final EList<View> timelineViews) {
 		int startPos = -1;
 		int endPos = -1;
-		for (final View view : timelineViews) {
-			if (view instanceof Node) {
-				final Node node = (Node) view;
+		for(final View view : timelineViews) {
+			if(view instanceof Node) {
+				final Node node = (Node)view;
 				final LayoutConstraint layoutConstraint = node.getLayoutConstraint();
-				final Location location = (Location) layoutConstraint;
-				if (view.getElement() == before) {
+				final Location location = (Location)layoutConstraint;
+				if(view.getElement() == before) {
 					startPos = location.getX() + SmallSquareFigure.RADIUS;
 				}
-				if (view.getElement() == after) {
+				if(view.getElement() == after) {
 					endPos = location.getX() + SmallSquareFigure.RADIUS + 1;
 				}
 			}
 		}
-		if (startPos != -1 && endPos != -1) {
+		if(startPos != -1 && endPos != -1) {
 			setGeneralOrderingNodeLocation(generalOrderingNode, startPos, endPos);
 		}
 	}
@@ -471,17 +468,17 @@ public class AbstractTimelineLayoutPolicy extends XYLayoutEditPolicy {
 	 * Set the location of the given {@link GeneralOrdering} node
 	 * 
 	 * @param generalOrderingNode
-	 *            the node to position
+	 *        the node to position
 	 * @param startPos
-	 *            the horizontal starting position
+	 *        the horizontal starting position
 	 * @param endPos
-	 *            the horizontal ending position
+	 *        the horizontal ending position
 	 */
 	private static void setGeneralOrderingNodeLocation(final Node generalOrderingNode, final int startPos, final int endPos) {
 		final LayoutConstraint layoutConstraint = generalOrderingNode.getLayoutConstraint();
 		final Bounds bounds;
-		if (layoutConstraint instanceof Bounds) {
-			bounds = (Bounds) layoutConstraint;
+		if(layoutConstraint instanceof Bounds) {
+			bounds = (Bounds)layoutConstraint;
 		} else {
 			bounds = NotationFactory.eINSTANCE.createBounds();
 			generalOrderingNode.setLayoutConstraint(bounds);

@@ -19,6 +19,7 @@ import org.eclipse.swt.graphics.Image;
 public class SmallSquareFigure extends PapyrusNodeFigure implements IPapyrusUMLElementFigure {
 
 	public static final int SQUARE_SIZE = 5;
+
 	/** How many pixels the Figure must be moved upwards and leftwards in order to center it */
 	public static final int RADIUS = SQUARE_SIZE / 2;
 

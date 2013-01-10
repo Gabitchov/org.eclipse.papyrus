@@ -21,10 +21,10 @@ public class CustomCompactLifelineItemSemanticEditPolicyCN extends CompactLifeli
 	@Override
 	protected Command getCreateRelationshipCommand(final CreateRelationshipRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return null;
 		}
-		if (MessageUtils.isMessage(requestElementType)) {
+		if(MessageUtils.isMessage(requestElementType)) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req));
 		}
 		return super.getCreateRelationshipCommand(req);

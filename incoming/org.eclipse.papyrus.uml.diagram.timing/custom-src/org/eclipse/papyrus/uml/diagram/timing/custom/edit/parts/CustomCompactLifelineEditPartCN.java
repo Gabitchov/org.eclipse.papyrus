@@ -55,22 +55,23 @@ public class CustomCompactLifelineEditPartCN extends CompactLifelineEditPartCN {
 		final CompactLifelineFigure lifelineFigure = FigureUtils.findChildFigureInstance(nodeFigure, CompactLifelineFigure.class);
 		// collapses the time ruler rectangle if the time ruler is not used
 		lifelineFigure.getLifelineDataContainerFigure().setLayoutManager(new AbstractLayout() {
+
 			public void layout(final IFigure container) {
 				final int timeRulerHeight = Constants.TIME_RULER_HEIGHT;
 				final boolean displayTimeRuler = lifelineFigure.isDisplayTimeRuler();
 				final Rectangle clientArea = container.getClientArea();
 				@SuppressWarnings("unchecked")
 				final List<IFigure> children = container.getChildren();
-				for (int i = 0; i < children.size(); i++) {
+				for(int i = 0; i < children.size(); i++) {
 					final IFigure child = children.get(i);
-					if (child == lifelineFigure.getTimelineContainerFigure()) {
-						if (displayTimeRuler) {
+					if(child == lifelineFigure.getTimelineContainerFigure()) {
+						if(displayTimeRuler) {
 							child.setBounds(new Rectangle(clientArea).getResized(0, -timeRulerHeight));
 						} else {
 							child.setBounds(clientArea);
 						}
-					} else if (child == lifelineFigure.getTimeRulerContainerFigure()) {
-						if (displayTimeRuler) {
+					} else if(child == lifelineFigure.getTimeRulerContainerFigure()) {
+						if(displayTimeRuler) {
 							final Rectangle bounds = new Rectangle(clientArea);
 							bounds.height = timeRulerHeight;
 							bounds.y = clientArea.y + clientArea.height - timeRulerHeight;
@@ -94,6 +95,7 @@ public class CustomCompactLifelineEditPartCN extends CompactLifelineEditPartCN {
 	public DragTracker getDragTracker(final Request request) {
 		// lock the drag to the containing compartment
 		return new DragEditPartsTrackerEx(this) {
+
 			@Override
 			protected boolean handleDragStarted() {
 				lockTargetEditPart(CustomCompactLifelineEditPartCN.this.getParent());
@@ -115,7 +117,7 @@ public class CustomCompactLifelineEditPartCN extends CompactLifelineEditPartCN {
 	/** Display feedback at the start location (where the create request was started) */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(final Request request) {
-		if (request instanceof CreateRequest) {
+		if(request instanceof CreateRequest) {
 			return new XYAnchor(MessageUtils.getLastStartLocation());
 		}
 		return super.getTargetConnectionAnchor(request);
@@ -124,8 +126,8 @@ public class CustomCompactLifelineEditPartCN extends CompactLifelineEditPartCN {
 	/** Display feedback at the cursor location */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(final Request request) {
-		if (request instanceof LocationRequest) {
-			final LocationRequest locationRequest = (LocationRequest) request;
+		if(request instanceof LocationRequest) {
+			final LocationRequest locationRequest = (LocationRequest)request;
 			return new XYAnchor(locationRequest.getLocation());
 		}
 		return super.getTargetConnectionAnchor(request);

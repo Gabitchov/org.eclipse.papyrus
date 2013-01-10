@@ -57,7 +57,7 @@ public class TestTimingDiagramCompactLifeline extends AbstractTimingDiagramTestC
 	public void testDropLifeline() {
 		// create a compact Lifeline and hide its View, so as to be able to drop it after that
 		final CompactLifelineEditPartCN lifelineEditPart = createCompactLifelineInDefaultInteraction();
-		final Lifeline lifeline = (Lifeline) ((View) lifelineEditPart.getModel()).getElement();
+		final Lifeline lifeline = (Lifeline)((View)lifelineEditPart.getModel()).getElement();
 		assertNotNull("The lifeline should not be null", lifeline);
 		testHide(lifelineEditPart);
 		testDrop(getDefaultInteractionCompartment(), getDefaultInteractionCompartment(), lifeline);
@@ -66,20 +66,17 @@ public class TestTimingDiagramCompactLifeline extends AbstractTimingDiagramTestC
 	@Test
 	public void testCellEditorLocator() {
 		final CompactLifelineEditPartCN lifelineEditPart = createCompactLifelineInDefaultInteraction();
-		final CompactLifelineNameEditPart compactLifelineNameEditPart = (CompactLifelineNameEditPart) EditPartUtils.findFirstChildEditPartWithId(
-				lifelineEditPart, CompactLifelineNameEditPart.VISUAL_ID);
+		final CompactLifelineNameEditPart compactLifelineNameEditPart = (CompactLifelineNameEditPart)EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, CompactLifelineNameEditPart.VISUAL_ID);
 		assertNotNull("The CompactLifelineNameEditPart was not found", compactLifelineNameEditPart);
 		final CellEditorLocator textCellEditorLocator = UMLEditPartFactory.getTextCellEditorLocator(compactLifelineNameEditPart);
-		assertTrue("The cell editor locator must be the one specific to the vertical label",
-				textCellEditorLocator instanceof LifelineVerticalLabelCellEditorLocator);
+		assertTrue("The cell editor locator must be the one specific to the vertical label", textCellEditorLocator instanceof LifelineVerticalLabelCellEditorLocator);
 	}
 
 	@Test
 	public void testEditLifelineName() {
 		final CompactLifelineEditPartCN lifelineEditPart = createCompactLifelineInDefaultInteraction();
-		final CompactLifelineNameEditPart compactLifelineNameEditPart = (CompactLifelineNameEditPart) EditPartUtils.findFirstChildEditPartWithId(
-				lifelineEditPart, CompactLifelineNameEditPart.VISUAL_ID);
-		final NamedElement namedElement = (Lifeline) ((View) lifelineEditPart.getModel()).getElement();
+		final CompactLifelineNameEditPart compactLifelineNameEditPart = (CompactLifelineNameEditPart)EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, CompactLifelineNameEditPart.VISUAL_ID);
+		final NamedElement namedElement = (Lifeline)((View)lifelineEditPart.getModel()).getElement();
 		testSetNameWithDirectEditRequest(compactLifelineNameEditPart, namedElement);
 	}
 

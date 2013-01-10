@@ -17,6 +17,7 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterNodeDescriptor;
 @SuppressWarnings("all")
 // disable warnings on generated code
 public class UMLNodeDescriptor extends UpdaterNodeDescriptor {
+
 	/**
 	 * @generated
 	 */

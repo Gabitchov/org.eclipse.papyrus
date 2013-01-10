@@ -40,19 +40,19 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(final EditPart editPart) {
-		if (!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
 			// editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-			if (editPart instanceof IPrimaryEditPart) {
+			if(editPart instanceof IPrimaryEditPart) {
 				// if (EMFHelper.getEObject(editPart) != null) {
 				// editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT,
 				// new AppliedStereotypeCommentCreationEditPolicy());
 				// }
 
-				if (!(editPart instanceof ConnectionEditPart)) {
+				if(!(editPart instanceof ConnectionEditPart)) {
 					// editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 				}
 			}
-			if (editPart instanceof NamedElementEditPart) {
+			if(editPart instanceof NamedElementEditPart) {
 				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 			}
 		}
@@ -63,14 +63,14 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 	 * {@inheritDoc}
 	 */
 	public boolean provides(final IOperation operation) {
-		final CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
-		if (!(epOperation.getEditPart() instanceof GraphicalEditPart) && !(epOperation.getEditPart() instanceof ConnectionEditPart)) {
+		final CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart) && !(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}
 
 		final EditPart gep = epOperation.getEditPart();
-		final String diagramType = ((View) gep.getModel()).getDiagram().getType();
-		if (!TimingDiagramEditPart.MODEL_ID.equals(diagramType)) {
+		final String diagramType = ((View)gep.getModel()).getDiagram().getType();
+		if(!TimingDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return false;
 		}
 

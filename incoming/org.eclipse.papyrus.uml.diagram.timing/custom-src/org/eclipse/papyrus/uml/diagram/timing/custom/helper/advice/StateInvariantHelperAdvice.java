@@ -34,19 +34,19 @@ public class StateInvariantHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getAfterDestroyDependentsCommand(final DestroyDependentsRequest request) {
 		final EObject destructee = request.getElementToDestroy();
-		if (destructee instanceof StateInvariant) {
+		if(destructee instanceof StateInvariant) {
 			try {
-				final StateInvariant stateInvariant = (StateInvariant) destructee;
+				final StateInvariant stateInvariant = (StateInvariant)destructee;
 				final Collection<EObject> elementsToDestroy = StateInvariantUtils.getElementsToDelete(stateInvariant);
-				if (!elementsToDestroy.isEmpty()) {
+				if(!elementsToDestroy.isEmpty()) {
 					final CompositeCommand compositeCommand = new CompositeCommand(Messages.StateInvariantHelperAdvice_DestroyStateInvariant);
 
-					for (final EObject eObject : elementsToDestroy) {
+					for(final EObject eObject : elementsToDestroy) {
 						final DestroyElementRequest destroyElementRequest = new DestroyElementRequest(eObject, false);
 						compositeCommand.add(new DestroyElementCommand(destroyElementRequest));
 					}
 					final IUndoableOperation updateFragmentNamesCommand = LifelineUtils.getUpdateFragmentNamesCommand(stateInvariant);
-					if (updateFragmentNamesCommand != null) {
+					if(updateFragmentNamesCommand != null) {
 						compositeCommand.add(updateFragmentNamesCommand);
 					}
 					return compositeCommand;

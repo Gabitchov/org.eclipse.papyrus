@@ -22,10 +22,10 @@ public class UMLUriEditorInputTester extends PropertyTester {
 	 * @generated
 	 */
 	public boolean test(final Object receiver, final String method, final Object[] args, final Object expectedValue) {
-		if (false == receiver instanceof URIEditorInput) {
+		if(false == receiver instanceof URIEditorInput) {
 			return false;
 		}
-		final URIEditorInput editorInput = (URIEditorInput) receiver;
+		final URIEditorInput editorInput = (URIEditorInput)receiver;
 		return "PapyrusUMLTiming_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
 

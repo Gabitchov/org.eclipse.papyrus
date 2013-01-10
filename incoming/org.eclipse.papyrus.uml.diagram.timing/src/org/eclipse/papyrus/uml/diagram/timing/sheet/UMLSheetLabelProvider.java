@@ -31,8 +31,8 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 */
 	public String getText(Object element) {
 		element = unwrap(element);
-		if (element instanceof UMLNavigatorGroup) {
-			return ((UMLNavigatorGroup) element).getGroupName();
+		if(element instanceof UMLNavigatorGroup) {
+			return ((UMLNavigatorGroup)element).getGroupName();
 		}
 		final IElementType etype = getElementType(getView(element));
 		return etype == null ? "" : etype.getDisplayName();
@@ -50,8 +50,8 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private Object unwrap(final Object element) {
-		if (element instanceof IStructuredSelection) {
-			return ((IStructuredSelection) element).getFirstElement();
+		if(element instanceof IStructuredSelection) {
+			return ((IStructuredSelection)element).getFirstElement();
 		}
 		return element;
 	}
@@ -60,11 +60,11 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 * @generated
 	 */
 	private View getView(final Object element) {
-		if (element instanceof View) {
-			return (View) element;
+		if(element instanceof View) {
+			return (View)element;
 		}
-		if (element instanceof IAdaptable) {
-			return (View) ((IAdaptable) element).getAdapter(View.class);
+		if(element instanceof IAdaptable) {
+			return (View)((IAdaptable)element).getAdapter(View.class);
 		}
 		return null;
 	}
@@ -74,13 +74,13 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	 */
 	private IElementType getElementType(View view) {
 		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
-		while (view != null) {
+		while(view != null) {
 			final int vid = UMLVisualIDRegistry.getVisualID(view);
 			final IElementType etype = UMLElementTypes.getElementType(vid);
-			if (etype != null) {
+			if(etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer() : null;
+			view = view.eContainer() instanceof View ? (View)view.eContainer() : null;
 		}
 		return null;
 	}

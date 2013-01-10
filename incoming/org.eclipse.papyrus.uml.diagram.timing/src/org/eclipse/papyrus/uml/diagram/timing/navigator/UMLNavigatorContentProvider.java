@@ -36,22 +36,27 @@ import org.eclipse.ui.navigator.ICommonContentProvider;
 @SuppressWarnings("all")
 // disable warnings on generated code
 public class UMLNavigatorContentProvider implements ICommonContentProvider {
+
 	/**
 	 * @generated
 	 */
 	private static final Object[] EMPTY_ARRAY = new Object[0];
+
 	/**
 	 * @generated
 	 */
 	private Viewer myViewer;
+
 	/**
 	 * @generated
 	 */
 	private AdapterFactoryEditingDomain myEditingDomain;
+
 	/**
 	 * @generated
 	 */
 	private WorkspaceSynchronizer myWorkspaceSynchronizer;
+
 	/**
 	 * @generated
 	 */
@@ -63,55 +68,58 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public UMLNavigatorContentProvider() {
 		final TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
-		this.myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
+		this.myEditingDomain = (AdapterFactoryEditingDomain)editingDomain;
 		this.myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
+
 			@Override
 			public Object get(final Object key) {
-				if (!containsKey(key)) {
+				if(!containsKey(key)) {
 					put(key, Boolean.TRUE);
 				}
 				return super.get(key);
 			}
 		});
 		this.myViewerRefreshRunnable = new Runnable() {
+
 			public void run() {
-				if (UMLNavigatorContentProvider.this.myViewer != null) {
+				if(UMLNavigatorContentProvider.this.myViewer != null) {
 					UMLNavigatorContentProvider.this.myViewer.refresh();
 				}
 			}
 		};
 		this.myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain, new WorkspaceSynchronizer.Delegate() {
+
 			public void dispose() {
 			}
 
 			public boolean handleResourceChanged(final Resource resource) {
-				for (final Object element : UMLNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
-					final Resource nextResource = (Resource) element;
+				for(final Object element : UMLNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
+					final Resource nextResource = (Resource)element;
 					nextResource.unload();
 				}
-				if (UMLNavigatorContentProvider.this.myViewer != null) {
+				if(UMLNavigatorContentProvider.this.myViewer != null) {
 					UMLNavigatorContentProvider.this.myViewer.getControl().getDisplay().asyncExec(UMLNavigatorContentProvider.this.myViewerRefreshRunnable);
 				}
 				return true;
 			}
 
 			public boolean handleResourceDeleted(final Resource resource) {
-				for (final Object element : UMLNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
-					final Resource nextResource = (Resource) element;
+				for(final Object element : UMLNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
+					final Resource nextResource = (Resource)element;
 					nextResource.unload();
 				}
-				if (UMLNavigatorContentProvider.this.myViewer != null) {
+				if(UMLNavigatorContentProvider.this.myViewer != null) {
 					UMLNavigatorContentProvider.this.myViewer.getControl().getDisplay().asyncExec(UMLNavigatorContentProvider.this.myViewerRefreshRunnable);
 				}
 				return true;
 			}
 
 			public boolean handleResourceMoved(final Resource resource, final URI newURI) {
-				for (final Object element : UMLNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
-					final Resource nextResource = (Resource) element;
+				for(final Object element : UMLNavigatorContentProvider.this.myEditingDomain.getResourceSet().getResources()) {
+					final Resource nextResource = (Resource)element;
 					nextResource.unload();
 				}
-				if (UMLNavigatorContentProvider.this.myViewer != null) {
+				if(UMLNavigatorContentProvider.this.myViewer != null) {
 					UMLNavigatorContentProvider.this.myViewer.getControl().getDisplay().asyncExec(UMLNavigatorContentProvider.this.myViewerRefreshRunnable);
 				}
 				return true;
@@ -126,11 +134,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		this.myWorkspaceSynchronizer.dispose();
 		this.myWorkspaceSynchronizer = null;
 		this.myViewerRefreshRunnable = null;
-		for (final Object element : this.myEditingDomain.getResourceSet().getResources()) {
-			final Resource resource = (Resource) element;
+		for(final Object element : this.myEditingDomain.getResourceSet().getResources()) {
+			final Resource resource = (Resource)element;
 			resource.unload();
 		}
-		((TransactionalEditingDomain) this.myEditingDomain).dispose();
+		((TransactionalEditingDomain)this.myEditingDomain).dispose();
 		this.myEditingDomain = null;
 	}
 
@@ -170,22 +178,22 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	public Object[] getChildren(final Object parentElement) {
-		if (parentElement instanceof IFile) {
-			final IFile file = (IFile) parentElement;
+		if(parentElement instanceof IFile) {
+			final IFile file = (IFile)parentElement;
 			final URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			final Resource resource = this.myEditingDomain.getResourceSet().getResource(fileURI, true);
 			final Collection result = new ArrayList();
 			return result.toArray();
 		}
 
-		if (parentElement instanceof UMLNavigatorGroup) {
-			final UMLNavigatorGroup group = (UMLNavigatorGroup) parentElement;
+		if(parentElement instanceof UMLNavigatorGroup) {
+			final UMLNavigatorGroup group = (UMLNavigatorGroup)parentElement;
 			return group.getChildren();
 		}
 
-		if (parentElement instanceof UMLNavigatorItem) {
-			final UMLNavigatorItem navigatorItem = (UMLNavigatorItem) parentElement;
-			if (navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
+		if(parentElement instanceof UMLNavigatorItem) {
+			final UMLNavigatorItem navigatorItem = (UMLNavigatorItem)parentElement;
+			if(navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
 				return EMPTY_ARRAY;
 			}
 			return getViewChildren(navigatorItem.getView(), parentElement);
@@ -198,7 +206,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	private Object[] getViewChildren(final View view, final Object parentElement) {
-		switch (UMLVisualIDRegistry.getVisualID(view)) {
+		switch(UMLVisualIDRegistry.getVisualID(view)) {
 
 		}
 		return EMPTY_ARRAY;
@@ -209,10 +217,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getLinksSourceByType(final Collection edges, final String type) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = edges.iterator(); it.hasNext();) {
-			final Edge nextEdge = (Edge) it.next();
+		for(final Iterator it = edges.iterator(); it.hasNext();) {
+			final Edge nextEdge = (Edge)it.next();
 			final View nextEdgeSource = nextEdge.getSource();
-			if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
+			if(type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
 				result.add(nextEdgeSource);
 			}
 		}
@@ -224,10 +232,10 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getLinksTargetByType(final Collection edges, final String type) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = edges.iterator(); it.hasNext();) {
-			final Edge nextEdge = (Edge) it.next();
+		for(final Iterator it = edges.iterator(); it.hasNext();) {
+			final Edge nextEdge = (Edge)it.next();
 			final View nextEdgeTarget = nextEdge.getTarget();
-			if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
+			if(type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
 				result.add(nextEdgeTarget);
 			}
 		}
@@ -239,8 +247,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getOutgoingLinksByType(final Collection nodes, final String type) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = nodes.iterator(); it.hasNext();) {
-			final View nextNode = (View) it.next();
+		for(final Iterator it = nodes.iterator(); it.hasNext();) {
+			final View nextNode = (View)it.next();
 			result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
 		}
 		return result;
@@ -251,8 +259,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getIncomingLinksByType(final Collection nodes, final String type) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = nodes.iterator(); it.hasNext();) {
-			final View nextNode = (View) it.next();
+		for(final Iterator it = nodes.iterator(); it.hasNext();) {
+			final View nextNode = (View)it.next();
 			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
 		}
 		return result;
@@ -263,8 +271,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getChildrenByType(final Collection nodes, final String type) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = nodes.iterator(); it.hasNext();) {
-			final View nextNode = (View) it.next();
+		for(final Iterator it = nodes.iterator(); it.hasNext();) {
+			final View nextNode = (View)it.next();
 			result.addAll(selectViewsByType(nextNode.getChildren(), type));
 		}
 		return result;
@@ -275,8 +283,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getDiagramLinksByType(final Collection diagrams, final String type) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = diagrams.iterator(); it.hasNext();) {
-			final Diagram nextDiagram = (Diagram) it.next();
+		for(final Iterator it = diagrams.iterator(); it.hasNext();) {
+			final Diagram nextDiagram = (Diagram)it.next();
 			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
 		}
 		return result;
@@ -287,9 +295,9 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection selectViewsByType(final Collection views, final String type) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = views.iterator(); it.hasNext();) {
-			final View nextView = (View) it.next();
-			if (type.equals(nextView.getType()) && isOwnView(nextView)) {
+		for(final Iterator it = views.iterator(); it.hasNext();) {
+			final View nextView = (View)it.next();
+			if(type.equals(nextView.getType()) && isOwnView(nextView)) {
 				result.add(nextView);
 			}
 		}
@@ -308,8 +316,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection createNavigatorItems(final Collection views, final Object parent, final boolean isLeafs) {
 		final Collection result = new ArrayList();
-		for (final Iterator it = views.iterator(); it.hasNext();) {
-			result.add(new UMLNavigatorItem((View) it.next(), parent, isLeafs));
+		for(final Iterator it = views.iterator(); it.hasNext();) {
+			result.add(new UMLNavigatorItem((View)it.next(), parent, isLeafs));
 		}
 		return result;
 	}
@@ -318,8 +326,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	public Object getParent(final Object element) {
-		if (element instanceof UMLAbstractNavigatorItem) {
-			final UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) element;
+		if(element instanceof UMLAbstractNavigatorItem) {
+			final UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem)element;
 			return abstractNavigatorItem.getParent();
 		}
 		return null;

@@ -27,8 +27,9 @@ public class CustomInteractionCompartmentItemSemanticEditPolicy extends Interact
 	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType elementType = req.getElementType();
-		if (UMLElementTypes.Lifeline_19 == elementType) {
+		if(UMLElementTypes.Lifeline_19 == elementType) {
 			return getGEFWrapper(new FullLifelineCreateCommandCN(req) {
+
 				@Override
 				protected void doConfigure(final Lifeline newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 					super.doConfigure(newElement, monitor, info);
@@ -36,8 +37,9 @@ public class CustomInteractionCompartmentItemSemanticEditPolicy extends Interact
 				}
 			});
 		}
-		if (UMLElementTypes.Lifeline_20 == elementType) {
+		if(UMLElementTypes.Lifeline_20 == elementType) {
 			return getGEFWrapper(new CompactLifelineCreateCommandCN(req) {
+
 				@Override
 				protected void doConfigure(final Lifeline newElement, final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 					super.doConfigure(newElement, monitor, info);

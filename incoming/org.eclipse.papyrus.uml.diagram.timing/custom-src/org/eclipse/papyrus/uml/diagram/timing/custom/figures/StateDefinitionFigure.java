@@ -45,7 +45,7 @@ public class StateDefinitionFigure extends NodeNamedElementFigure {
 	}
 
 	private void paintFocusRectangle(final Graphics g) {
-		if (isSelected()) {
+		if(isSelected()) {
 			g.pushState();
 			g.setXORMode(true);
 			g.setForegroundColor(ColorConstants.menuBackgroundSelected);

@@ -50,55 +50,70 @@ import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class CustomPaletteFactory extends UMLPaletteFactory {
+
 	private final static String CREATEOCCURRENCESPECIFICATIONCREATIONTOOL = "createOccurrenceSpecificationCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEDESTRUCTIONOCCURRENCESPECIFICATIONCREATIONTOOL = "createDestructionOccurrenceSpecificationCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATESTATEDEFINITIONCREATIONTOOL = "createStateDefinitionCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEMESSAGESYNCCREATIONTOOL = "createMessageSyncCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEMESSAGEASYNCCREATIONTOOL = "createMessageAsyncCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEMESSAGEREPLYCREATIONTOOL = "createMessageReplyCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATECREATEMESSAGECREATIONTOOL = "createCreateMessageCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEDELETEMESSAGECREATIONTOOL = "createDeleteMessageCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATELOSTMESSAGECREATIONTOOL = "createLostMessageCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEFOUNDMESSAGECREATIONTOOL = "createFoundMessageCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATETIMEOBSERVATIONCREATIONTOOL = "createTimeObservationCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATETIMECONSTRAINTCREATIONTOOL = "createTimeConstraintCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEDURATIONOBSERVATIONCREATIONTOOL = "createDurationObservationCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEDURATIONCONSTRAINTCREATIONTOOL = "createDurationConstraintCreationTool"; //$NON-NLS-1$
+
 	private final static String CREATEGENERALORDERINGCREATIONTOOL = "createGeneralOrderingCreationTool"; //$NON-NLS-1$
 
 	public final static String ORIGINAL_TARGET = "ORIGINAL_TARGET"; //$NON-NLS-1$
 
 	@Override
 	public Tool createTool(final String toolId) {
-		if (toolId.equals(CREATEOCCURRENCESPECIFICATIONCREATIONTOOL)) {
+		if(toolId.equals(CREATEOCCURRENCESPECIFICATIONCREATIONTOOL)) {
 			return createOccurrenceSpecificationCreationTool();
-		} else if (toolId.equals(CREATEDESTRUCTIONOCCURRENCESPECIFICATIONCREATIONTOOL)) {
+		} else if(toolId.equals(CREATEDESTRUCTIONOCCURRENCESPECIFICATIONCREATIONTOOL)) {
 			return createDestructionOccurrenceSpecificationCreationTool();
-		} else if (toolId.equals(CREATESTATEDEFINITIONCREATIONTOOL)) {
+		} else if(toolId.equals(CREATESTATEDEFINITIONCREATIONTOOL)) {
 			return createStateDefinitionCreationTool();
-		} else if (toolId.equals(CREATEMESSAGESYNCCREATIONTOOL)) {
+		} else if(toolId.equals(CREATEMESSAGESYNCCREATIONTOOL)) {
 			return createSyncMessageCreationTool();
-		} else if (toolId.equals(CREATEMESSAGEASYNCCREATIONTOOL)) {
+		} else if(toolId.equals(CREATEMESSAGEASYNCCREATIONTOOL)) {
 			return createAsyncMessageCreationTool();
-		} else if (toolId.equals(CREATEMESSAGEREPLYCREATIONTOOL)) {
+		} else if(toolId.equals(CREATEMESSAGEREPLYCREATIONTOOL)) {
 			return createReplyMessageCreationTool();
-		} else if (toolId.equals(CREATECREATEMESSAGECREATIONTOOL)) {
+		} else if(toolId.equals(CREATECREATEMESSAGECREATIONTOOL)) {
 			return createCreateMessageCreationTool();
-		} else if (toolId.equals(CREATEDELETEMESSAGECREATIONTOOL)) {
+		} else if(toolId.equals(CREATEDELETEMESSAGECREATIONTOOL)) {
 			return createDeleteMessageCreationTool();
-		} else if (toolId.equals(CREATELOSTMESSAGECREATIONTOOL)) {
+		} else if(toolId.equals(CREATELOSTMESSAGECREATIONTOOL)) {
 			return createLostMessageCreationTool();
-		} else if (toolId.equals(CREATEFOUNDMESSAGECREATIONTOOL)) {
+		} else if(toolId.equals(CREATEFOUNDMESSAGECREATIONTOOL)) {
 			return createFoundMessageCreationTool();
-		} else if (toolId.equals(CREATETIMEOBSERVATIONCREATIONTOOL)) {
+		} else if(toolId.equals(CREATETIMEOBSERVATIONCREATIONTOOL)) {
 			return createTimeObservationCreationTool();
-		} else if (toolId.equals(CREATETIMECONSTRAINTCREATIONTOOL)) {
+		} else if(toolId.equals(CREATETIMECONSTRAINTCREATIONTOOL)) {
 			return createTimeConstraintCreationTool();
-		} else if (toolId.equals(CREATEDURATIONOBSERVATIONCREATIONTOOL)) {
+		} else if(toolId.equals(CREATEDURATIONOBSERVATIONCREATIONTOOL)) {
 			return createDurationObservationCreationTool();
-		} else if (toolId.equals(CREATEDURATIONCONSTRAINTCREATIONTOOL)) {
+		} else if(toolId.equals(CREATEDURATIONCONSTRAINTCREATIONTOOL)) {
 			return createDurationConstraintCreationTool();
-		} else if (toolId.equals(CREATEGENERALORDERINGCREATIONTOOL)) {
+		} else if(toolId.equals(CREATEGENERALORDERINGCREATIONTOOL)) {
 			return createNewGeneralOrderingCreationTool();
 		}
 		return super.createTool(toolId);
@@ -122,6 +137,7 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 
 	private static Tool createNewTimeTool(final IElementType elementType) {
 		return new AspectUnspecifiedTypeCreationTool(Collections.singletonList(elementType)) {
+
 			/**
 			 * Redirect the creation request to the parent (Lifeline compartment), but keep the original target in the
 			 * extended data for the creation command.
@@ -130,8 +146,7 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 			protected Command getCommand() {
 				EditPart target = getTargetEditPart();
 				final Request request = getTargetRequest();
-				if (target != null
-						&& EditPartUtils.isEditPartFor(target, UMLPackage.eINSTANCE.getOccurrenceSpecification(), UMLPackage.eINSTANCE.getStateInvariant())) {
+				if(target != null && EditPartUtils.isEditPartFor(target, UMLPackage.eINSTANCE.getOccurrenceSpecification(), UMLPackage.eINSTANCE.getStateInvariant())) {
 					@SuppressWarnings("unchecked")
 					final Map<Object, Object> extendedData = request.getExtendedData();
 					extendedData.put(ORIGINAL_TARGET, target);
@@ -165,9 +180,10 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 		types.add(UMLElementTypes.Node_9);
 
 		final Tool tool = new AspectUnspecifiedTypeCreationTool(types) {
+
 			@Override
 			protected Command getCommand() {
-				if (!(getTargetEditPart() instanceof FullLifelineStateDefinitionCompartmentEditPartCN)) {
+				if(!(getTargetEditPart() instanceof FullLifelineStateDefinitionCompartmentEditPartCN)) {
 					return UnexecutableCommand.INSTANCE;
 				}
 				return super.getCommand();
@@ -198,17 +214,18 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 
 	private static Tool createLostMessageCreationTool() {
 		return new AspectUnspecifiedTypeConnectionTool(Collections.singletonList(UMLElementTypes.Message_50)) {
+
 			@Override
 			protected Command getCommand() {
 				final Object type = getTargetRequest().getType();
-				if (RequestConstants.REQ_CONNECTION_END == type) {
-					final CreateAspectUnspecifiedTypeConnectionRequest request = (CreateAspectUnspecifiedTypeConnectionRequest) getTargetRequest();
+				if(RequestConstants.REQ_CONNECTION_END == type) {
+					final CreateAspectUnspecifiedTypeConnectionRequest request = (CreateAspectUnspecifiedTypeConnectionRequest)getTargetRequest();
 					final EditPart sourceEditPart = request.getSourceEditPart();
 
 					// Note: the bounds must be computed before executing the command because the source may be an
 					// OccurrenceSpecification that will get swapped to a MessageOccurrenceSpecification, thereby
 					// changing the Figure and EditPart.
-					final IFigure figure = ((GraphicalEditPart) sourceEditPart).getFigure();
+					final IFigure figure = ((GraphicalEditPart)sourceEditPart).getFigure();
 					final Point figureLocation = new Point(figure.getBounds().getCenter());
 					figure.getParent().translateToAbsolute(figureLocation);
 					final Point location = request.getLocation();
@@ -221,8 +238,8 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 					final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(sourceEditPart.getModel());
 
 					// add a command that sets the initial anchor position using an EAnnotation
-					compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.CustomPaletteFactory_SetLostMessageOrigin,
-							null) {
+					compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.CustomPaletteFactory_SetLostMessageOrigin, null) {
+
 						@Override
 						protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 							final Connector connector = findCreatedConnector(superCommand);
@@ -239,23 +256,24 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 
 	private static Tool createFoundMessageCreationTool() {
 		return new AspectUnspecifiedTypeConnectionTool(Collections.singletonList(UMLElementTypes.Message_53)) {
+
 			@Override
 			protected Command getCommand() {
-				final CreateAspectUnspecifiedTypeConnectionRequest request = (CreateAspectUnspecifiedTypeConnectionRequest) getTargetRequest();
+				final CreateAspectUnspecifiedTypeConnectionRequest request = (CreateAspectUnspecifiedTypeConnectionRequest)getTargetRequest();
 				final EditPart targetEditPart = request.getTargetEditPart();
 
 				final Object type = getTargetRequest().getType();
-				if (RequestConstants.REQ_CONNECTION_START == type) {
+				if(RequestConstants.REQ_CONNECTION_START == type) {
 					MessageUtils.saveRequestStartLocation(request);
 				}
 
-				if (RequestConstants.REQ_CONNECTION_END == type) {
+				if(RequestConstants.REQ_CONNECTION_END == type) {
 					final Point startLocation = MessageUtils.retrieveRequestStartLocation(request);
 
 					// Note: the bounds must be computed before executing the command because the source may be an
 					// OccurrenceSpecification that will get swapped to a MessageOccurrenceSpecification, thereby
 					// changing the Figure and EditPart.
-					final IFigure figure = ((GraphicalEditPart) targetEditPart).getFigure();
+					final IFigure figure = ((GraphicalEditPart)targetEditPart).getFigure();
 					final Point figureLocation = new Point(figure.getBounds().getCenter());
 					figure.getParent().translateToAbsolute(figureLocation);
 					final double scale = FigureUtils.getScale(figure);
@@ -267,8 +285,8 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 					final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(targetEditPart.getModel());
 
 					// add a command that sets the initial anchor position using an EAnnotation
-					compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.CustomPaletteFactory_SetFoundMessageTarget,
-							null) {
+					compoundCommand.add(new ICommandProxy(new AbstractTransactionalCommand(editingDomain, Messages.CustomPaletteFactory_SetFoundMessageTarget, null) {
+
 						@Override
 						protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 							final Connector connector = findCreatedConnector(superCommand);
@@ -285,19 +303,19 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 
 	/** Find the Connector in the haystack (buried deep in a CommandResult within the command). */
 	protected static Connector findCreatedConnector(final Command command) {
-		if (command instanceof ICommandProxy) {
-			final ICommandProxy commandProxy = (ICommandProxy) command;
+		if(command instanceof ICommandProxy) {
+			final ICommandProxy commandProxy = (ICommandProxy)command;
 			final ICommand iCommand = commandProxy.getICommand();
 			final CommandResult commandResult = iCommand.getCommandResult();
 			final Object returnValue = commandResult.getReturnValue();
-			if (returnValue instanceof List<?>) {
-				final List<?> resultList = (List<?>) returnValue;
-				for (final Object resultElement : resultList) {
-					if (resultElement instanceof ConnectionViewAndElementDescriptor) {
-						final ConnectionViewAndElementDescriptor connectionViewAndElementDescriptor = (ConnectionViewAndElementDescriptor) resultElement;
-						final View view = (View) connectionViewAndElementDescriptor.getAdapter(View.class);
-						if (view instanceof Connector) {
-							final Connector connector = (Connector) view;
+			if(returnValue instanceof List<?>) {
+				final List<?> resultList = (List<?>)returnValue;
+				for(final Object resultElement : resultList) {
+					if(resultElement instanceof ConnectionViewAndElementDescriptor) {
+						final ConnectionViewAndElementDescriptor connectionViewAndElementDescriptor = (ConnectionViewAndElementDescriptor)resultElement;
+						final View view = (View)connectionViewAndElementDescriptor.getAdapter(View.class);
+						if(view instanceof Connector) {
+							final Connector connector = (Connector)view;
 							return connector;
 						}
 					}

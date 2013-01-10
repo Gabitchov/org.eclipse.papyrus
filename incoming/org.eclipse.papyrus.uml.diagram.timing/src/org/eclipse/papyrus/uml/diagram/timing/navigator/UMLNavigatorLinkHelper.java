@@ -42,11 +42,11 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	 */
 	private static IEditorInput getEditorInput(final Diagram diagram) {
 		final Resource diagramResource = diagram.eResource();
-		for (final EObject nextEObject : diagramResource.getContents()) {
-			if (nextEObject == diagram) {
+		for(final EObject nextEObject : diagramResource.getContents()) {
+			if(nextEObject == diagram) {
 				return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
 			}
-			if (nextEObject instanceof Diagram) {
+			if(nextEObject instanceof Diagram) {
 				break;
 			}
 		}
@@ -68,42 +68,42 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	 * @generated
 	 */
 	public void activateEditor(final IWorkbenchPage aPage, final IStructuredSelection aSelection) {
-		if (aSelection == null || aSelection.isEmpty()) {
+		if(aSelection == null || aSelection.isEmpty()) {
 			return;
 		}
-		if (false == aSelection.getFirstElement() instanceof UMLAbstractNavigatorItem) {
+		if(false == aSelection.getFirstElement() instanceof UMLAbstractNavigatorItem) {
 			return;
 		}
 
-		final UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) aSelection.getFirstElement();
+		final UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem)aSelection.getFirstElement();
 		View navigatorView = null;
-		if (abstractNavigatorItem instanceof UMLNavigatorItem) {
-			navigatorView = ((UMLNavigatorItem) abstractNavigatorItem).getView();
-		} else if (abstractNavigatorItem instanceof UMLNavigatorGroup) {
-			final UMLNavigatorGroup navigatorGroup = (UMLNavigatorGroup) abstractNavigatorItem;
-			if (navigatorGroup.getParent() instanceof UMLNavigatorItem) {
-				navigatorView = ((UMLNavigatorItem) navigatorGroup.getParent()).getView();
+		if(abstractNavigatorItem instanceof UMLNavigatorItem) {
+			navigatorView = ((UMLNavigatorItem)abstractNavigatorItem).getView();
+		} else if(abstractNavigatorItem instanceof UMLNavigatorGroup) {
+			final UMLNavigatorGroup navigatorGroup = (UMLNavigatorGroup)abstractNavigatorItem;
+			if(navigatorGroup.getParent() instanceof UMLNavigatorItem) {
+				navigatorView = ((UMLNavigatorItem)navigatorGroup.getParent()).getView();
 			}
 		}
-		if (navigatorView == null) {
+		if(navigatorView == null) {
 			return;
 		}
 		final IEditorInput editorInput = getEditorInput(navigatorView.getDiagram());
 		final IEditorPart editor = aPage.findEditor(editorInput);
-		if (editor == null) {
+		if(editor == null) {
 			return;
 		}
 		aPage.bringToTop(editor);
-		if (editor instanceof DiagramEditor) {
-			final DiagramEditor diagramEditor = (DiagramEditor) editor;
+		if(editor instanceof DiagramEditor) {
+			final DiagramEditor diagramEditor = (DiagramEditor)editor;
 			final ResourceSet diagramEditorResourceSet = diagramEditor.getEditingDomain().getResourceSet();
 			final EObject selectedView = diagramEditorResourceSet.getEObject(EcoreUtil.getURI(navigatorView), true);
-			if (selectedView == null) {
+			if(selectedView == null) {
 				return;
 			}
-			final GraphicalViewer graphicalViewer = (GraphicalViewer) diagramEditor.getAdapter(GraphicalViewer.class);
-			final EditPart selectedEditPart = (EditPart) graphicalViewer.getEditPartRegistry().get(selectedView);
-			if (selectedEditPart != null) {
+			final GraphicalViewer graphicalViewer = (GraphicalViewer)diagramEditor.getAdapter(GraphicalViewer.class);
+			final EditPart selectedEditPart = (EditPart)graphicalViewer.getEditPartRegistry().get(selectedView);
+			if(selectedEditPart != null) {
 				graphicalViewer.select(selectedEditPart);
 			}
 		}

@@ -45,12 +45,11 @@ public class CreateTickCommand extends GraphicalCommandHandler {
 	protected Command getCommand() throws ExecutionException {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CreateTickCommand_attachTick);
 		final ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
-			final IStructuredSelection structSelection = (IStructuredSelection) selection;
-			for (final Object object : structSelection.toArray()) {
-				if (object instanceof OccurrenceSpecificationEditPartCN || object instanceof MessageOccurrenceSpecificationEditPartCN
-						|| object instanceof DestructionOccurrenceSpecificationEditPartCN) {
-					cmd.add(attachTick((GraphicalEditPart) object));
+		if(!selection.isEmpty() && selection instanceof IStructuredSelection) {
+			final IStructuredSelection structSelection = (IStructuredSelection)selection;
+			for(final Object object : structSelection.toArray()) {
+				if(object instanceof OccurrenceSpecificationEditPartCN || object instanceof MessageOccurrenceSpecificationEditPartCN || object instanceof DestructionOccurrenceSpecificationEditPartCN) {
+					cmd.add(attachTick((GraphicalEditPart)object));
 				}
 			}
 		}
@@ -59,21 +58,22 @@ public class CreateTickCommand extends GraphicalCommandHandler {
 
 	private static Command attachTick(final GraphicalEditPart osEditPart) {
 		final IGraphicalEditPart tickContainer = TimeRulerUtils.findClosestTimeRuler(osEditPart);
-		if (tickContainer == null) {
+		if(tickContainer == null) {
 			Activator.log.error("No tick container found", new Exception()); //$NON-NLS-1$
 			return UnexecutableCommand.INSTANCE;
 		}
-		final View tickContainerView = (View) tickContainer.getModel();
+		final View tickContainerView = (View)tickContainer.getModel();
 
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(osEditPart.getEditingDomain());
-		final Node osView = (Node) osEditPart.getModel();
-		final OccurrenceSpecification os = (OccurrenceSpecification) osView.getElement();
+		final Node osView = (Node)osEditPart.getModel();
+		final OccurrenceSpecification os = (OccurrenceSpecification)osView.getElement();
 		// if the Lifeline or Interaction compartment already contains a tick for this occurrence,
 		// then don't let a duplicate be created
-		if (TickUtils.containsTickFor(tickContainerView, os)) {
+		if(TickUtils.containsTickFor(tickContainerView, os)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final AbstractTransactionalCommand createTickCommand = new AbstractTransactionalCommand(editingDomain, Messages.CreateTickCommand_CreateTick, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				final UMLViewProvider umlViewProvider = new UMLViewProvider();

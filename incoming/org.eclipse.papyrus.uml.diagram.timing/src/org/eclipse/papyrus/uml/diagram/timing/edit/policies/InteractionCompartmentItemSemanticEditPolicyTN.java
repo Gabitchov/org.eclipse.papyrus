@@ -37,31 +37,31 @@ public class InteractionCompartmentItemSemanticEditPolicyTN extends UMLBaseItemS
 	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
+		if(requestElementType instanceof IExtendedHintedElementType) {
 			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
+			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
 				// no reference element type ID. using the closest super element type to give more opportunities, but
 				// can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Lifeline_19 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.Lifeline_19 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new FullLifelineCreateCommandCN(req));
 		}
-		if (UMLElementTypes.Lifeline_20 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.Lifeline_20 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new CompactLifelineCreateCommandCN(req));
 		}

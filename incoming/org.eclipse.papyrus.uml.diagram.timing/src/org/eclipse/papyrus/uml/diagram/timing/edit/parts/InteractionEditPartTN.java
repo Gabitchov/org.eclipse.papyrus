@@ -126,15 +126,15 @@ NodeEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(final EditPart child) {
-				final View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				final View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case GateEditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -165,35 +165,35 @@ NodeEditPart {
 	 */
 	@Override
 	public CustomInteractionRectangleFigure getPrimaryShape() {
-		return (CustomInteractionRectangleFigure) this.primaryShape;
+		return (CustomInteractionRectangleFigure)this.primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(final EditPart childEditPart) {
-		if (childEditPart instanceof InteractionNameEditPart) {
-			((InteractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
+		if(childEditPart instanceof InteractionNameEditPart) {
+			((InteractionNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
 
-		if (childEditPart instanceof InteractionCompartmentEditPartTN) {
+		if(childEditPart instanceof InteractionCompartmentEditPartTN) {
 			final IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((InteractionCompartmentEditPartTN) childEditPart).getFigure());
+			pane.add(((InteractionCompartmentEditPartTN)childEditPart).getFigure());
 			return true;
 		}
 
-		if (childEditPart instanceof TimeRulerCompartmentEditPartCN) {
+		if(childEditPart instanceof TimeRulerCompartmentEditPartCN) {
 			final IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((TimeRulerCompartmentEditPartCN) childEditPart).getFigure());
+			pane.add(((TimeRulerCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 
-		if (childEditPart instanceof GateEditPart) {
+		if(childEditPart instanceof GateEditPart) {
 			final BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
@@ -204,21 +204,21 @@ NodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(final EditPart childEditPart) {
-		if (childEditPart instanceof InteractionNameEditPart) {
+		if(childEditPart instanceof InteractionNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof InteractionCompartmentEditPartTN) {
+		if(childEditPart instanceof InteractionCompartmentEditPartTN) {
 			final IFigure pane = getPrimaryShape().getCompartmentFigure();
-			pane.remove(((InteractionCompartmentEditPartTN) childEditPart).getFigure());
+			pane.remove(((InteractionCompartmentEditPartTN)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof TimeRulerCompartmentEditPartCN) {
+		if(childEditPart instanceof TimeRulerCompartmentEditPartCN) {
 			final IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
-			pane.remove(((TimeRulerCompartmentEditPartCN) childEditPart).getFigure());
+			pane.remove(((TimeRulerCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -229,7 +229,7 @@ NodeEditPart {
 	 */
 	@Override
 	protected void addChildVisual(final EditPart childEditPart, final int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -240,7 +240,7 @@ NodeEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(final EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -251,13 +251,13 @@ NodeEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(final IGraphicalEditPart editPart) {
-		if (editPart instanceof InteractionCompartmentEditPartTN) {
+		if(editPart instanceof InteractionCompartmentEditPartTN) {
 			return getPrimaryShape().getCompartmentFigure();
 		}
-		if (editPart instanceof TimeRulerCompartmentEditPartCN) {
+		if(editPart instanceof TimeRulerCompartmentEditPartCN) {
 			return getPrimaryShape().getTimeRulerContainerFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -269,10 +269,8 @@ NodeEditPart {
 	protected NodeFigure createNodePlate() {
 		final String prefElementId = "Interaction";
 		final IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.WIDTH);
-		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.HEIGHT);
+		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		final DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
@@ -301,11 +299,11 @@ NodeEditPart {
 	 * figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(final IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			final ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -318,7 +316,7 @@ NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (this.contentPane != null) {
+		if(this.contentPane != null) {
 			return this.contentPane;
 		}
 		return super.getContentPane();
@@ -329,7 +327,7 @@ NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(final Color color) {
-		if (this.primaryShape != null) {
+		if(this.primaryShape != null) {
 			this.primaryShape.setForegroundColor(color);
 		}
 	}
@@ -339,8 +337,8 @@ NodeEditPart {
 	 */
 	@Override
 	protected void setLineWidth(final int width) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineWidth(width);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -349,8 +347,8 @@ NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(final int style) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineStyle(style);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -376,13 +374,13 @@ NodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(final IGraphicalEditPart targetEditPart) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_53);
 		}
-		if (targetEditPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_53);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_53);
 		}
 		return types;
@@ -393,7 +391,7 @@ NodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(final IElementType relationshipType) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Message_53) {
+		if(relationshipType == UMLElementTypes.Message_53) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
@@ -415,7 +413,7 @@ NodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(final IElementType relationshipType) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Message_50) {
+		if(relationshipType == UMLElementTypes.Message_50) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
@@ -428,19 +426,19 @@ NodeEditPart {
 	 */
 	@Override
 	public EditPart getTargetEditPart(final Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			final CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			final IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Lifeline_19) {
+		if(request instanceof CreateViewAndElementRequest) {
+			final CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			final IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(type == UMLElementTypes.Lifeline_19) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionCompartmentEditPartTN.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Lifeline_20) {
+			if(type == UMLElementTypes.Lifeline_20) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionCompartmentEditPartTN.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Node_24) {
+			if(type == UMLElementTypes.Node_24) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeRulerCompartmentEditPartCN.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Node_25) {
+			if(type == UMLElementTypes.Node_25) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeRulerCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
@@ -452,31 +450,30 @@ NodeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(final EStructuralFeature feature) {
-		final IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		final IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			final String prefGradient = PreferenceConstantHelper.getElementConstant("Interaction", PreferenceConstantHelper.COLOR_GRADIENT);
 			final GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

@@ -36,23 +36,23 @@ public class CustomDurationObservationCreateCommand extends EditElementCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		final CreateElementRequest request = (CreateElementRequest) getRequest();
-		final EditPart firstTarget = (EditPart) request.getParameter(AbstractTwoPointCreationTool.FIRST_TARGET);
-		final EditPart secondTarget = (EditPart) request.getParameter(AbstractTwoPointCreationTool.SECOND_TARGET);
+		final CreateElementRequest request = (CreateElementRequest)getRequest();
+		final EditPart firstTarget = (EditPart)request.getParameter(AbstractTwoPointCreationTool.FIRST_TARGET);
+		final EditPart secondTarget = (EditPart)request.getParameter(AbstractTwoPointCreationTool.SECOND_TARGET);
 
 		final DurationObservation durationObservation = UMLFactory.eINSTANCE.createDurationObservation();
-		final NamedElement firstTargetElement = (NamedElement) ((View) firstTarget.getModel()).getElement();
-		final NamedElement secondTargetElement = (NamedElement) ((View) secondTarget.getModel()).getElement();
+		final NamedElement firstTargetElement = (NamedElement)((View)firstTarget.getModel()).getElement();
+		final NamedElement secondTargetElement = (NamedElement)((View)secondTarget.getModel()).getElement();
 
 		final Package containingPackage = EcoreUtils.getContaining(request.getContainer(), Package.class);
-		if (containingPackage == null) {
+		if(containingPackage == null) {
 			return CommandResult.newErrorCommandResult("The container must be in a Package"); //$NON-NLS-1$
 		}
 
 		containingPackage.getPackagedElements().add(durationObservation);
 		durationObservation.getEvents().clear();
 		durationObservation.getFirstEvents().clear();
-		if (firstTargetElement == secondTargetElement) {
+		if(firstTargetElement == secondTargetElement) {
 			durationObservation.getEvents().add(firstTargetElement);
 		} else {
 			durationObservation.getEvents().add(firstTargetElement);

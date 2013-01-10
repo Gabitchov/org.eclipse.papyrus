@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Label;
 @SuppressWarnings("all")
 // disable warnings on generated code
 public class ModelElementSelectionPage extends WizardPage {
+
 	/**
 	 * @generated
 	 */
@@ -62,8 +63,8 @@ public class ModelElementSelectionPage extends WizardPage {
 	 */
 	public void setModelElement(final EObject modelElement) {
 		this.selectedModelElement = modelElement;
-		if (this.modelViewer != null) {
-			if (this.selectedModelElement != null) {
+		if(this.modelViewer != null) {
+			if(this.selectedModelElement != null) {
 				this.modelViewer.setInput(this.selectedModelElement.eResource());
 				this.modelViewer.setSelection(new StructuredSelection(this.selectedModelElement));
 			} else {
@@ -97,13 +98,14 @@ public class ModelElementSelectionPage extends WizardPage {
 		this.modelViewer.getTree().setLayoutData(layoutData);
 		this.modelViewer.setContentProvider(new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
 		this.modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()));
-		if (this.selectedModelElement != null) {
+		if(this.selectedModelElement != null) {
 			this.modelViewer.setInput(this.selectedModelElement.eResource());
 			this.modelViewer.setSelection(new StructuredSelection(this.selectedModelElement));
 		}
 		this.modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
 			public void selectionChanged(final SelectionChangedEvent event) {
-				ModelElementSelectionPage.this.updateSelection((IStructuredSelection) event.getSelection());
+				ModelElementSelectionPage.this.updateSelection((IStructuredSelection)event.getSelection());
 			}
 		});
 
@@ -124,16 +126,16 @@ public class ModelElementSelectionPage extends WizardPage {
 	 */
 	protected void updateSelection(final IStructuredSelection selection) {
 		this.selectedModelElement = null;
-		if (selection.size() == 1) {
+		if(selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
-			if (selectedElement instanceof IWrapperItemProvider) {
-				selectedElement = ((IWrapperItemProvider) selectedElement).getValue();
+			if(selectedElement instanceof IWrapperItemProvider) {
+				selectedElement = ((IWrapperItemProvider)selectedElement).getValue();
 			}
-			if (selectedElement instanceof FeatureMap.Entry) {
-				selectedElement = ((FeatureMap.Entry) selectedElement).getValue();
+			if(selectedElement instanceof FeatureMap.Entry) {
+				selectedElement = ((FeatureMap.Entry)selectedElement).getValue();
 			}
-			if (selectedElement instanceof EObject) {
-				this.selectedModelElement = (EObject) selectedElement;
+			if(selectedElement instanceof EObject) {
+				this.selectedModelElement = (EObject)selectedElement;
 			}
 		}
 		setPageComplete(validatePage());

@@ -19,7 +19,6 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessage
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.OccurrenceSpecificationUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.policies.DestructionOccurrenceSpecificationItemSemanticEditPolicyCN;
-import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 
 /** Semantic edit policy for {@link DestructionOccurrenceSpecification}s */
 public class CustomDestructionOccurrenceSpecificationItemSemanticEditPolicy extends DestructionOccurrenceSpecificationItemSemanticEditPolicyCN {
@@ -27,7 +26,7 @@ public class CustomDestructionOccurrenceSpecificationItemSemanticEditPolicy exte
 	/** Handles the "Hide Element" (remove only the view, and keep the semantic element) */
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType() == REQ_DELETE) {
+		if(request.getType() == REQ_DELETE) {
 			final Command baseCommand = super.getCommand(request);
 			return OccurrenceSpecificationUtils.getHideOccurrenceSpecificationCommand(getHost(), baseCommand);
 		}
@@ -37,10 +36,10 @@ public class CustomDestructionOccurrenceSpecificationItemSemanticEditPolicy exte
 	@Override
 	protected Command getCreateRelationshipCommand(final CreateRelationshipRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return null;
 		}
-		if (MessageUtils.isMessage(requestElementType)) {
+		if(MessageUtils.isMessage(requestElementType)) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req));
 		}
 		return super.getCreateRelationshipCommand(req);

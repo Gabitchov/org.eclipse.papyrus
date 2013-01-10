@@ -110,22 +110,22 @@ AbstractBorderedShapeEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(final EditPart child) {
-				final View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				final View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID:
 				case DestructionOccurrenceSpecificationAppliedStereotypeEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						@Override
 						protected List createSelectionHandles() {
-							final MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+							final MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
 					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -155,7 +155,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public CrossFigure getPrimaryShape() {
-		return (CrossFigure) this.primaryShape;
+		return (CrossFigure)this.primaryShape;
 	}
 
 	/**
@@ -163,11 +163,11 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void addBorderItem(final IFigure borderItemContainer, final IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof DestructionOccurrenceSpecificationAppliedStereotypeEditPart) {
+		if(borderItemEditPart instanceof DestructionOccurrenceSpecificationAppliedStereotypeEditPart) {
 			final BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof DestructionOccurrenceSpecificationLabelEditPart) {
+		} else if(borderItemEditPart instanceof DestructionOccurrenceSpecificationLabelEditPart) {
 			final IBorderItemLocator locator = new LabelInCompartmentLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -181,10 +181,8 @@ AbstractBorderedShapeEditPart {
 	protected NodeFigure createNodePlate() {
 		final String prefElementId = "DestructionOccurrenceSpecification";
 		final IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.WIDTH);
-		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.HEIGHT);
+		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		final DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
@@ -213,7 +211,7 @@ AbstractBorderedShapeEditPart {
 	 * figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(final IFigure nodeShape) {
@@ -225,7 +223,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (this.contentPane != null) {
+		if(this.contentPane != null) {
 			return this.contentPane;
 		}
 		return super.getContentPane();
@@ -236,7 +234,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(final Color color) {
-		if (this.primaryShape != null) {
+		if(this.primaryShape != null) {
 			this.primaryShape.setForegroundColor(color);
 		}
 	}
@@ -246,8 +244,8 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void setLineWidth(final int width) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineWidth(width);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -256,8 +254,8 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	protected void setLineType(final int style) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineStyle(style);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -289,103 +287,103 @@ AbstractBorderedShapeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(final IGraphicalEditPart targetEditPart) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_3);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_3);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_3);
 		}
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_4);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_4);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_4);
 		}
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_41);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_41);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_41);
 		}
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_44);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_44);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_44);
 		}
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_47);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_47);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_47);
 		}
-		if (targetEditPart instanceof InteractionEditPartTN) {
+		if(targetEditPart instanceof InteractionEditPartTN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof FullLifelineEditPartCN) {
+		if(targetEditPart instanceof FullLifelineEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof CompactLifelineEditPartCN) {
+		if(targetEditPart instanceof CompactLifelineEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof FullStateInvariantEditPartCN) {
+		if(targetEditPart instanceof FullStateInvariantEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof CompactStateInvariantEditPartCN) {
+		if(targetEditPart instanceof CompactStateInvariantEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof OccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof OccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof DurationConstraintEditPartCN) {
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof DurationObservationEditPartCN) {
+		if(targetEditPart instanceof DurationObservationEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof GeneralOrderingEditPart) {
+		if(targetEditPart instanceof GeneralOrderingEditPart) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof LifelineEditPart) {
+		if(targetEditPart instanceof LifelineEditPart) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_50);
 		}
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_53);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_53);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_53);
 		}
 		return types;
@@ -396,27 +394,27 @@ AbstractBorderedShapeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(final IElementType relationshipType) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Message_3) {
+		if(relationshipType == UMLElementTypes.Message_3) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_4) {
+		} else if(relationshipType == UMLElementTypes.Message_4) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_41) {
+		} else if(relationshipType == UMLElementTypes.Message_41) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_44) {
+		} else if(relationshipType == UMLElementTypes.Message_44) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_47) {
+		} else if(relationshipType == UMLElementTypes.Message_47) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_50) {
+		} else if(relationshipType == UMLElementTypes.Message_50) {
 			types.add(UMLElementTypes.Interaction_2);
 			types.add(UMLElementTypes.Lifeline_19);
 			types.add(UMLElementTypes.Lifeline_20);
@@ -432,7 +430,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Lifeline_40);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_53) {
+		} else if(relationshipType == UMLElementTypes.Message_53) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
@@ -460,31 +458,31 @@ AbstractBorderedShapeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(final IElementType relationshipType) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Message_3) {
+		if(relationshipType == UMLElementTypes.Message_3) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_4) {
+		} else if(relationshipType == UMLElementTypes.Message_4) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_41) {
+		} else if(relationshipType == UMLElementTypes.Message_41) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_44) {
+		} else if(relationshipType == UMLElementTypes.Message_44) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_47) {
+		} else if(relationshipType == UMLElementTypes.Message_47) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_50) {
+		} else if(relationshipType == UMLElementTypes.Message_50) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
-		} else if (relationshipType == UMLElementTypes.Message_53) {
+		} else if(relationshipType == UMLElementTypes.Message_53) {
 			types.add(UMLElementTypes.Interaction_2);
 			types.add(UMLElementTypes.Lifeline_19);
 			types.add(UMLElementTypes.Lifeline_20);
@@ -509,32 +507,30 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(final EStructuralFeature feature) {
-		final IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		final IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			final String prefGradient = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification",
-					PreferenceConstantHelper.COLOR_GRADIENT);
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			final String prefGradient = PreferenceConstantHelper.getElementConstant("DestructionOccurrenceSpecification", PreferenceConstantHelper.COLOR_GRADIENT);
 			final GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

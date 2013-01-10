@@ -80,16 +80,16 @@ public final class DropUtils {
 	}
 
 	public static ICommand getDropMessageCommand(final Message message, final View dropTarget, final EditPartViewer viewer) {
-		if (message.getMessageKind() == MessageKind.LOST_LITERAL) {
+		if(message.getMessageKind() == MessageKind.LOST_LITERAL) {
 			return getDropLostMessageCommand(message, dropTarget, viewer);
 		}
-		if (message.getMessageKind() == MessageKind.FOUND_LITERAL) {
+		if(message.getMessageKind() == MessageKind.FOUND_LITERAL) {
 			return getDropFoundMessageCommand(message, dropTarget, viewer);
 		}
 
 		final MessageEnd sendEvent = message.getSendEvent();
 		final MessageEnd receiveEvent = message.getReceiveEvent();
-		if (sendEvent == null || receiveEvent == null) {
+		if(sendEvent == null || receiveEvent == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
@@ -100,29 +100,29 @@ public final class DropUtils {
 		filterMessageSourceOrTargetViews(sourceViews);
 		filterMessageSourceOrTargetViews(targetViews);
 
-		if (sourceViews.size() != 1 || targetViews.size() != 1) {
+		if(sourceViews.size() != 1 || targetViews.size() != 1) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final View sourceView = sourceViews.get(0);
 		final View targetView = targetViews.get(0);
 
-		if (sourceView == null || sourceView.getDiagram() == null || targetView == null || targetView.getDiagram() == null) {
+		if(sourceView == null || sourceView.getDiagram() == null || targetView == null || targetView.getDiagram() == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		final View interactionView = ViewUtils.findSuperViewWithId(dropTarget, InteractionEditPartTN.VISUAL_ID);
 		// the drop must be targeted inside the interaction
-		if (interactionView == null) {
+		if(interactionView == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		// the source and target views must be inside the interaction view
-		if (!ViewUtils.isContained(sourceView, interactionView) || !ViewUtils.isContained(targetView, interactionView)) {
+		if(!ViewUtils.isContained(sourceView, interactionView) || !ViewUtils.isContained(targetView, interactionView)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		// don't allow multiple Views for the same Message in the same Diagram
-		if (ViewUtils.containsConnectorFor(dropTarget, message)) {
+		if(ViewUtils.containsConnectorFor(dropTarget, message)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// create the connection for the existing message, from the sourceView to the targetView
@@ -131,7 +131,7 @@ public final class DropUtils {
 
 	private static ICommand getDropLostMessageCommand(final Message message, final View dropTarget, final EditPartViewer viewer) {
 		final MessageEnd sendEvent = message.getSendEvent();
-		if (sendEvent == null) {
+		if(sendEvent == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return getDropLostOrFoundMessage(message, dropTarget, viewer, sendEvent);
@@ -139,7 +139,7 @@ public final class DropUtils {
 
 	private static ICommand getDropFoundMessageCommand(final Message message, final View dropTarget, final EditPartViewer viewer) {
 		final MessageEnd receiveEvent = message.getReceiveEvent();
-		if (receiveEvent == null) {
+		if(receiveEvent == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return getDropLostOrFoundMessage(message, dropTarget, viewer, receiveEvent);
@@ -148,27 +148,27 @@ public final class DropUtils {
 	private static ICommand getDropLostOrFoundMessage(final Message message, final View dropTarget, final EditPartViewer viewer, final MessageEnd endEvent) {
 		final List<View> endViews = DiagramEditPartsUtil.findViews(endEvent, viewer);
 		filterMessageSourceOrTargetViews(endViews);
-		if (endViews.size() != 1) {
+		if(endViews.size() != 1) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final View endView = endViews.get(0);
 		final View interactionView = ViewUtils.findSuperViewWithId(dropTarget, InteractionEditPartTN.VISUAL_ID);
 		View lifelineView = ViewUtils.findSuperViewWithId(endView, FullLifelineEditPartCN.VISUAL_ID);
-		if (lifelineView == null) {
+		if(lifelineView == null) {
 			lifelineView = ViewUtils.findSuperViewWithId(endView, CompactLifelineEditPartCN.VISUAL_ID);
 		}
-		if (interactionView == null || lifelineView == null) {
+		if(interactionView == null || lifelineView == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (!ViewUtils.isContained(endView, interactionView)) {
+		if(!ViewUtils.isContained(endView, interactionView)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (ViewUtils.containsConnectorFor(dropTarget, message)) {
+		if(ViewUtils.containsConnectorFor(dropTarget, message)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		// create the connection for the lost message, from the endView to the lifelineView
-		if (message.getMessageKind() == MessageKind.LOST_LITERAL) {
+		if(message.getMessageKind() == MessageKind.LOST_LITERAL) {
 			return createMessageConnectionView(message, viewer, endView, lifelineView);
 		}
 		// create the connection for the found message, from the lifelineView to the endView
@@ -177,50 +177,48 @@ public final class DropUtils {
 
 	private static ICommand createMessageConnectionView(final Message message, final EditPartViewer viewer, final View sourceView, final View targetView) {
 		final IElementType elementType = MessageUtils.getElementType(message);
-		final String semanticHint = ((IHintedType) elementType).getSemanticHint();
-		final ConnectionViewDescriptor connectionViewDescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(elementType, semanticHint,
-				ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+		final String semanticHint = ((IHintedType)elementType).getSemanticHint();
+		final ConnectionViewDescriptor connectionViewDescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(elementType, semanticHint, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 		final IAdaptable sourceViewAdapter = new EObjectAdapter(sourceView);
 		final IAdaptable targetViewAdapter = new EObjectAdapter(targetView);
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(message);
-		final CommonDeferredCreateConnectionViewCommand createConnectionViewCommand = new CommonDeferredCreateConnectionViewCommand(editingDomain,
-				semanticHint, sourceViewAdapter, targetViewAdapter, viewer, PreferencesHint.USE_DEFAULTS, connectionViewDescriptor, null);
+		final CommonDeferredCreateConnectionViewCommand createConnectionViewCommand = new CommonDeferredCreateConnectionViewCommand(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, PreferencesHint.USE_DEFAULTS, connectionViewDescriptor, null);
 		createConnectionViewCommand.setElement(message);
 		return createConnectionViewCommand;
 	}
 
 	private static void filterMessageSourceOrTargetViews(final List<View> views) {
 		final ListIterator<View> listIterator = views.listIterator();
-		while (listIterator.hasNext()) {
+		while(listIterator.hasNext()) {
 			final View view = listIterator.next();
 			final int visualID = UMLVisualIDRegistry.getVisualID(view);
-			if (!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) && visualID != GateEditPart.VISUAL_ID) {
+			if(!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) && visualID != GateEditPart.VISUAL_ID) {
 				listIterator.remove();
 			}
 		}
 	}
 
 	private interface IDropLinkedNodeInLifelineAction<T extends EObject> {
+
 		void drop(T element, View compartmentView);
 	}
 
-	public static ICommand getDropLinkedNodeInLifelineCommand(final EObject droppedElement, final Collection<EObject> linkedElements, final View dropTarget,
-			final EditPartViewer viewer, final IDropLinkedNodeInLifelineAction<? extends EObject> dropAction) {
+	public static ICommand getDropLinkedNodeInLifelineCommand(final EObject droppedElement, final Collection<EObject> linkedElements, final View dropTarget, final EditPartViewer viewer, final IDropLinkedNodeInLifelineAction<? extends EObject> dropAction) {
 		final View interactionView = ViewUtils.findSuperViewWithId(dropTarget, InteractionEditPartTN.VISUAL_ID);
 		// the drop must be targeted inside the interaction
-		if (interactionView == null || ViewUtils.containsViewFor(interactionView, droppedElement)) {
+		if(interactionView == null || ViewUtils.containsViewFor(interactionView, droppedElement)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
 		final Set<View> targetLifelines = new HashSet<View>();
-		for (final EObject eObject : linkedElements) {
-			if (eObject instanceof InteractionFragment) {
-				final InteractionFragment interactionFragment = (InteractionFragment) eObject;
+		for(final EObject eObject : linkedElements) {
+			if(eObject instanceof InteractionFragment) {
+				final InteractionFragment interactionFragment = (InteractionFragment)eObject;
 				final EList<Lifeline> covereds = interactionFragment.getCovereds();
-				for (final Lifeline lifeline : covereds) {
+				for(final Lifeline lifeline : covereds) {
 					final List<View> lifelineViews = DiagramEditPartsUtil.findViews(lifeline, viewer);
-					for (final View lifelineView : lifelineViews) {
-						if (LifelineUtils.isLifelineView(lifelineView) && ViewUtils.isContained(lifelineView, interactionView)) {
+					for(final View lifelineView : lifelineViews) {
+						if(LifelineUtils.isLifelineView(lifelineView) && ViewUtils.isContained(lifelineView, interactionView)) {
 							targetLifelines.add(lifelineView);
 						}
 					}
@@ -235,17 +233,17 @@ public final class DropUtils {
 			@SuppressWarnings("unchecked")
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				for (final View targetLifeline : targetLifelines) {
+				for(final View targetLifeline : targetLifelines) {
 					final View compartmentView = ViewUtils.findChildTimelineCompartmentView(targetLifeline);
-					((IDropLinkedNodeInLifelineAction<EObject>) dropAction).drop(droppedElement, compartmentView);
+					((IDropLinkedNodeInLifelineAction<EObject>)dropAction).drop(droppedElement, compartmentView);
 				}
 				return CommandResult.newOKCommandResult();
 			}
 		});
 
 		// add command to layout the new Node
-		for (final View targetLifeline : targetLifelines) {
-			final EditPart lifelineEditPart = (EditPart) viewer.getEditPartRegistry().get(targetLifeline);
+		for(final View targetLifeline : targetLifelines) {
+			final EditPart lifelineEditPart = (EditPart)viewer.getEditPartRegistry().get(targetLifeline);
 			final EditPart compartmentEditPart = LifelineUtils.getLifelineCompartment(lifelineEditPart);
 			compositeCommand.add(new CommandProxy(compartmentEditPart.getCommand(AbstractTimelineLayoutPolicy.UPDATE_LAYOUT_REQUEST)));
 		}
@@ -254,10 +252,10 @@ public final class DropUtils {
 	}
 
 	protected static class DropTimeObservationAction implements IDropLinkedNodeInLifelineAction<TimeObservation> {
+
 		public void drop(final TimeObservation timeObservation, final View compartmentView) {
-			final Node timeObservationNode = new UMLViewProvider().createTimeObservation_16(timeObservation, compartmentView, ViewUtil.APPEND, true,
-					PreferencesHint.USE_DEFAULTS);
-			if (timeObservationNode != null) {
+			final Node timeObservationNode = new UMLViewProvider().createTimeObservation_16(timeObservation, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			if(timeObservationNode != null) {
 				final Location loc = NotationFactory.eINSTANCE.createLocation();
 				loc.setX(0);
 				loc.setY(40);
@@ -268,15 +266,14 @@ public final class DropUtils {
 
 	public static ICommand getDropTimeObservationCommand(final TimeObservation timeObservation, final View dropTarget, final EditPartViewer viewer) {
 		final NamedElement event = timeObservation.getEvent();
-		return getDropLinkedNodeInLifelineCommand(timeObservation, Collections.<EObject> singletonList(event), dropTarget, viewer,
-				new DropTimeObservationAction());
+		return getDropLinkedNodeInLifelineCommand(timeObservation, Collections.<EObject> singletonList(event), dropTarget, viewer, new DropTimeObservationAction());
 	}
 
 	protected static class DropTimeConstraintAction implements IDropLinkedNodeInLifelineAction<TimeConstraint> {
+
 		public void drop(final TimeConstraint timeConstraint, final View compartmentView) {
-			final Node timeConstraintNode = new UMLViewProvider().createTimeConstraint_15(timeConstraint, compartmentView, ViewUtil.APPEND, true,
-					PreferencesHint.USE_DEFAULTS);
-			if (timeConstraintNode != null) {
+			final Node timeConstraintNode = new UMLViewProvider().createTimeConstraint_15(timeConstraint, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			if(timeConstraintNode != null) {
 				final Bounds bounds = NotationFactory.eINSTANCE.createBounds();
 				bounds.setY(40);
 				timeConstraintNode.setLayoutConstraint(bounds);
@@ -291,10 +288,10 @@ public final class DropUtils {
 	}
 
 	protected static class DropDurationObservationAction implements IDropLinkedNodeInLifelineAction<DurationObservation> {
+
 		public void drop(final DurationObservation durationObservation, final View compartmentView) {
-			final Node durationObservationNode = new UMLViewProvider().createDurationObservation_17(durationObservation, compartmentView, ViewUtil.APPEND,
-					true, PreferencesHint.USE_DEFAULTS);
-			if (durationObservationNode != null) {
+			final Node durationObservationNode = new UMLViewProvider().createDurationObservation_17(durationObservation, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			if(durationObservationNode != null) {
 				final Location loc = NotationFactory.eINSTANCE.createLocation();
 				loc.setX(0);
 				loc.setY(40);
@@ -310,10 +307,10 @@ public final class DropUtils {
 	}
 
 	protected static class DropDurationConstraintAction implements IDropLinkedNodeInLifelineAction<DurationConstraint> {
+
 		public void drop(final DurationConstraint durationConstraint, final View compartmentView) {
-			final Node durationConstraintNode = new UMLViewProvider().createDurationConstraint_18(durationConstraint, compartmentView, ViewUtil.APPEND, true,
-					PreferencesHint.USE_DEFAULTS);
-			if (durationConstraintNode != null) {
+			final Node durationConstraintNode = new UMLViewProvider().createDurationConstraint_18(durationConstraint, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			if(durationConstraintNode != null) {
 				final Bounds bounds = NotationFactory.eINSTANCE.createBounds();
 				bounds.setY(5);
 				durationConstraintNode.setLayoutConstraint(bounds);
@@ -328,10 +325,10 @@ public final class DropUtils {
 	}
 
 	protected static class DropGeneralOrderingAction implements IDropLinkedNodeInLifelineAction<GeneralOrdering> {
+
 		public void drop(final GeneralOrdering generalOrdering, final View compartmentView) {
-			final Node generalOrderingNode = new UMLViewProvider().createGeneralOrdering_67(generalOrdering, compartmentView, ViewUtil.APPEND, true,
-					PreferencesHint.USE_DEFAULTS);
-			if (generalOrderingNode != null) {
+			final Node generalOrderingNode = new UMLViewProvider().createGeneralOrdering_67(generalOrdering, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			if(generalOrderingNode != null) {
 				final Bounds bounds = NotationFactory.eINSTANCE.createBounds();
 				bounds.setY(30);
 				generalOrderingNode.setLayoutConstraint(bounds);
@@ -347,20 +344,21 @@ public final class DropUtils {
 	}
 
 	public static ICommand getDropGateCommand(final Gate gate, final View dropTarget, final EditPartViewer viewer) {
-		final Node interactionView = (Node) ViewUtils.findSuperViewWithId(dropTarget, InteractionEditPartTN.VISUAL_ID);
+		final Node interactionView = (Node)ViewUtils.findSuperViewWithId(dropTarget, InteractionEditPartTN.VISUAL_ID);
 		// the drop must be targeted on the interaction
-		if (interactionView == null || ViewUtils.containsViewFor(interactionView, gate)) {
+		if(interactionView == null || ViewUtils.containsViewFor(interactionView, gate)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(interactionView);
 		final CompositeCommand compositeCommand = new CompositeCommand(Messages.DropUtils_DropGate);
-		compositeCommand.add(new CommandProxy(new RefreshCommandForUndo((GraphicalEditPart) viewer.getRootEditPart())));
+		compositeCommand.add(new CommandProxy(new RefreshCommandForUndo((GraphicalEditPart)viewer.getRootEditPart())));
 		compositeCommand.add(new AbstractTransactionalCommand(editingDomain, Messages.DropUtils_DropGate, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				final Node gateNode = new UMLViewProvider().createGate_69(gate, interactionView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 				try {
-					final int index = ((Interaction) gate.eContainer()).getFormalGates().indexOf(gate);
+					final int index = ((Interaction)gate.eContainer()).getFormalGates().indexOf(gate);
 					final Location loc = NotationFactory.eINSTANCE.createLocation();
 					// space Gates regularly (useful when dropping several Gates)
 					loc.setX(-10);
@@ -372,7 +370,7 @@ public final class DropUtils {
 				return CommandResult.newOKCommandResult();
 			}
 		});
-		compositeCommand.add(new CommandProxy(new RefreshCommandForDo((GraphicalEditPart) viewer.getRootEditPart())));
+		compositeCommand.add(new CommandProxy(new RefreshCommandForDo((GraphicalEditPart)viewer.getRootEditPart())));
 
 		return compositeCommand;
 	}

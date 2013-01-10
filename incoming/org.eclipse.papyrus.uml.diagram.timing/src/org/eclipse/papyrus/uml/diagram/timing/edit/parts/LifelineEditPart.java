@@ -108,7 +108,7 @@ NodeEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(final EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -139,7 +139,7 @@ NodeEditPart {
 	 */
 	@Override
 	public LifelineFigure getPrimaryShape() {
-		return (LifelineFigure) this.primaryShape;
+		return (LifelineFigure)this.primaryShape;
 	}
 
 	/**
@@ -148,10 +148,8 @@ NodeEditPart {
 	protected NodeFigure createNodePlate() {
 		final String prefElementId = "Lifeline";
 		final IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.WIDTH);
-		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,
-				PreferenceConstantHelper.HEIGHT);
+		final String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		final String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		final DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
@@ -180,7 +178,7 @@ NodeEditPart {
 	 * figure.
 	 * 
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(final IFigure nodeShape) {
@@ -192,7 +190,7 @@ NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (this.contentPane != null) {
+		if(this.contentPane != null) {
 			return this.contentPane;
 		}
 		return super.getContentPane();
@@ -203,7 +201,7 @@ NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(final Color color) {
-		if (this.primaryShape != null) {
+		if(this.primaryShape != null) {
 			this.primaryShape.setForegroundColor(color);
 		}
 	}
@@ -213,8 +211,8 @@ NodeEditPart {
 	 */
 	@Override
 	protected void setLineWidth(final int width) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineWidth(width);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -223,8 +221,8 @@ NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(final int style) {
-		if (this.primaryShape instanceof Shape) {
-			((Shape) this.primaryShape).setLineStyle(style);
+		if(this.primaryShape instanceof Shape) {
+			((Shape)this.primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -242,13 +240,13 @@ NodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(final IGraphicalEditPart targetEditPart) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof MessageOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_53);
 		}
-		if (targetEditPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
+		if(targetEditPart instanceof DestructionOccurrenceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Message_53);
 		}
-		if (targetEditPart instanceof GateEditPart) {
+		if(targetEditPart instanceof GateEditPart) {
 			types.add(UMLElementTypes.Message_53);
 		}
 		return types;
@@ -259,7 +257,7 @@ NodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(final IElementType relationshipType) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Message_53) {
+		if(relationshipType == UMLElementTypes.Message_53) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
@@ -281,7 +279,7 @@ NodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(final IElementType relationshipType) {
 		final LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Message_50) {
+		if(relationshipType == UMLElementTypes.Message_50) {
 			types.add(UMLElementTypes.MessageOccurrenceSpecification_13);
 			types.add(UMLElementTypes.DestructionOccurrenceSpecification_27);
 			types.add(UMLElementTypes.Gate_69);
@@ -294,31 +292,30 @@ NodeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(final EStructuralFeature feature) {
-		final IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint().getPreferenceStore();
+		final IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			final String prefGradient = PreferenceConstantHelper.getElementConstant("Lifeline", PreferenceConstantHelper.COLOR_GRADIENT);
 			final GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

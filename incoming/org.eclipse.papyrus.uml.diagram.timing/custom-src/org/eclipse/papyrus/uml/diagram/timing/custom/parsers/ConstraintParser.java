@@ -32,10 +32,8 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.Messages;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EcoreUtils;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Duration;
-import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.LiteralString;
-import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -45,10 +43,13 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class ConstraintParser implements ISemanticParser {
 
 	private static final String ERROR = "<error>"; //$NON-NLS-1$
+
 	private static final Pattern pattern = Pattern.compile("\\{(.*?)\\.\\.(.*?)\\}"); //$NON-NLS-1$
 
 	private class MinMax {
+
 		LiteralString min;
+
 		LiteralString max;
 
 		public MinMax(final LiteralString min, final LiteralString max) {
@@ -72,7 +73,7 @@ public class ConstraintParser implements ISemanticParser {
 	public String getEditString(final IAdaptable element, final int flags) {
 		final Constraint constraint = doAdapt(element);
 		final MinMax minMax = getMinMax(constraint);
-		if (minMax == null) {
+		if(minMax == null) {
 			return ERROR;
 		}
 		return getMinMaxLabel(minMax);
@@ -85,11 +86,11 @@ public class ConstraintParser implements ISemanticParser {
 	public ICommand getParseCommand(final IAdaptable element, final String newString, final int flags) {
 		final Constraint constraint = doAdapt(element);
 		final MinMax minMax = getMinMax(constraint);
-		if (minMax == null) {
+		if(minMax == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		final Matcher matcher = ConstraintParser.pattern.matcher(newString);
-		if (matcher.matches()) {
+		if(matcher.matches()) {
 			final String min = matcher.group(1);
 			final String max = matcher.group(2);
 			final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(constraint);
@@ -99,14 +100,14 @@ public class ConstraintParser implements ISemanticParser {
 	}
 
 	private MinMax getMinMax(final Constraint constraint) {
-		if (constraint == null) {
+		if(constraint == null) {
 			return null;
 		}
 		final ValueSpecification specification = constraint.getSpecification();
-		if (specification instanceof TimeInterval) {
-			return getTimeIntervalMinMax((TimeInterval) specification);
-		} else if (specification instanceof DurationInterval) {
-			return getDurationIntervalMinMax((DurationInterval) specification);
+		if(specification instanceof TimeInterval) {
+			return getTimeIntervalMinMax((TimeInterval)specification);
+		} else if(specification instanceof DurationInterval) {
+			return getDurationIntervalMinMax((DurationInterval)specification);
 		}
 
 		return null;
@@ -116,21 +117,21 @@ public class ConstraintParser implements ISemanticParser {
 		final ValueSpecification min = timeInterval.getMin();
 		final ValueSpecification max = timeInterval.getMax();
 
-		if (!(min instanceof TimeExpression) || !(max instanceof TimeExpression)) {
+		if(!(min instanceof TimeExpression) || !(max instanceof TimeExpression)) {
 			return null;
 		}
 
-		final TimeExpression minTime = (TimeExpression) min;
-		final TimeExpression maxTime = (TimeExpression) max;
+		final TimeExpression minTime = (TimeExpression)min;
+		final TimeExpression maxTime = (TimeExpression)max;
 
 		final ValueSpecification minValue = minTime.getExpr();
 		final ValueSpecification maxValue = maxTime.getExpr();
-		if (!(minValue instanceof LiteralString) || !(maxValue instanceof LiteralString)) {
+		if(!(minValue instanceof LiteralString) || !(maxValue instanceof LiteralString)) {
 			return null;
 		}
 
-		final LiteralString minStr = (LiteralString) minValue;
-		final LiteralString maxStr = (LiteralString) maxValue;
+		final LiteralString minStr = (LiteralString)minValue;
+		final LiteralString maxStr = (LiteralString)maxValue;
 
 		return new MinMax(minStr, maxStr);
 	}
@@ -139,21 +140,21 @@ public class ConstraintParser implements ISemanticParser {
 		final ValueSpecification min = durationInterval.getMin();
 		final ValueSpecification max = durationInterval.getMax();
 
-		if (!(min instanceof Duration) || !(max instanceof Duration)) {
+		if(!(min instanceof Duration) || !(max instanceof Duration)) {
 			return null;
 		}
 
-		final Duration minDuration = (Duration) min;
-		final Duration maxDuration = (Duration) max;
+		final Duration minDuration = (Duration)min;
+		final Duration maxDuration = (Duration)max;
 
 		final ValueSpecification minValue = minDuration.getExpr();
 		final ValueSpecification maxValue = maxDuration.getExpr();
-		if (!(minValue instanceof LiteralString) || !(maxValue instanceof LiteralString)) {
+		if(!(minValue instanceof LiteralString) || !(maxValue instanceof LiteralString)) {
 			return null;
 		}
 
-		final LiteralString minStr = (LiteralString) minValue;
-		final LiteralString maxStr = (LiteralString) maxValue;
+		final LiteralString minStr = (LiteralString)minValue;
+		final LiteralString maxStr = (LiteralString)maxValue;
 
 		return new MinMax(minStr, maxStr);
 	}
@@ -162,12 +163,12 @@ public class ConstraintParser implements ISemanticParser {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
 
-	private static ICommand createSetMinMaxCommand(final Constraint constraint, final MinMax minMax, final String min, final String max,
-			final TransactionalEditingDomain editingDomain) {
-		if (editingDomain == null) {
+	private static ICommand createSetMinMaxCommand(final Constraint constraint, final MinMax minMax, final String min, final String max, final TransactionalEditingDomain editingDomain) {
+		if(editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return new AbstractTransactionalCommand(editingDomain, Messages.ConstraintParser_SetConstraint, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				minMax.getMin().setValue(min);
@@ -184,13 +185,13 @@ public class ConstraintParser implements ISemanticParser {
 	 * Obtain the constraint element from the adaptable.
 	 * 
 	 * @param element
-	 *            the given IAdaptable
+	 *        the given IAdaptable
 	 * @return the constraint or null if it can't be found.
 	 */
 	protected static Constraint doAdapt(final IAdaptable element) {
 		final Object obj = element.getAdapter(EObject.class);
-		if (obj instanceof Constraint) {
-			return (Constraint) obj;
+		if(obj instanceof Constraint) {
+			return (Constraint)obj;
 		}
 		return null;
 	}
@@ -205,10 +206,10 @@ public class ConstraintParser implements ISemanticParser {
 
 	public List<?> getSemanticElementsBeingParsed(final EObject element) {
 		final List<EObject> list = new ArrayList<EObject>();
-		if (element instanceof Constraint) {
-			final Constraint constraint = (Constraint) element;
+		if(element instanceof Constraint) {
+			final Constraint constraint = (Constraint)element;
 			final MinMax minMax = getMinMax(constraint);
-			if (minMax != null) {
+			if(minMax != null) {
 				list.add(minMax.getMin());
 				list.add(minMax.getMax());
 			}

@@ -10,6 +10,7 @@ package org.eclipse.papyrus.uml.diagram.timing.custom;
 
 /** An exception indicating that the operation that was asked should not be performed, as it is not allowed. */
 public class OperationForbiddenException extends Exception {
+
 	private static final long serialVersionUID = -4972361328078373414L;
 
 	public OperationForbiddenException() {

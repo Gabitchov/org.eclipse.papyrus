@@ -119,7 +119,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 
 			@Override
 			public void setVisible(final boolean visible) {
-				if (visible) {
+				if(visible) {
 					String fileName = UMLCreationWizard.this.diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length() - ".PapyrusUMLTiming_diagram".length()); //$NON-NLS-1$
 					setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "PapyrusUMLTiming")); //$NON-NLS-1$
@@ -141,9 +141,8 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 
 			@Override
 			protected void execute(final IProgressMonitor monitor) throws CoreException, InterruptedException {
-				UMLCreationWizard.this.diagram = UMLDiagramEditorUtil.createDiagram(UMLCreationWizard.this.diagramModelFilePage.getURI(),
-						UMLCreationWizard.this.domainModelFilePage.getURI(), monitor);
-				if (isOpenNewlyCreatedDiagramEditor() && UMLCreationWizard.this.diagram != null) {
+				UMLCreationWizard.this.diagram = UMLDiagramEditorUtil.createDiagram(UMLCreationWizard.this.diagramModelFilePage.getURI(), UMLCreationWizard.this.domainModelFilePage.getURI(), monitor);
+				if(isOpenNewlyCreatedDiagramEditor() && UMLCreationWizard.this.diagram != null) {
 					try {
 						UMLDiagramEditorUtil.openDiagram(UMLCreationWizard.this.diagram);
 					} catch (final PartInitException e) {
@@ -157,9 +156,8 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		} catch (final InterruptedException e) {
 			return false;
 		} catch (final InvocationTargetException e) {
-			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(), Messages.UMLCreationWizardCreationError, null,
-						((CoreException) e.getTargetException()).getStatus());
+			if(e.getTargetException() instanceof CoreException) {
+				ErrorDialog.openError(getContainer().getShell(), Messages.UMLCreationWizardCreationError, null, ((CoreException)e.getTargetException()).getStatus());
 			} else {
 				UMLDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}

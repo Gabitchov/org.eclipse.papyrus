@@ -24,12 +24,12 @@ public class DefaultTypeHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override
 	public boolean approveRequest(final IEditCommandRequest request) {
-		if (request instanceof DestroyElementRequest) {
-			final DestroyElementRequest destroyElementRequest = (DestroyElementRequest) request;
+		if(request instanceof DestroyElementRequest) {
+			final DestroyElementRequest destroyElementRequest = (DestroyElementRequest)request;
 			final EObject elementToDestroy = destroyElementRequest.getElementToDestroy();
-			if (elementToDestroy instanceof View) {
-				final View view = (View) elementToDestroy;
-				if (VERTICAL_LINE_ID.equals(view.getType()) && TimingDiagramEditPart.MODEL_ID == ViewUtils.getContainingDiagramType(view)) {
+			if(elementToDestroy instanceof View) {
+				final View view = (View)elementToDestroy;
+				if(VERTICAL_LINE_ID.equals(view.getType()) && TimingDiagramEditPart.MODEL_ID == ViewUtils.getContainingDiagramType(view)) {
 					return false;
 				}
 			}

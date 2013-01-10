@@ -29,7 +29,7 @@ public class CustomCompactLifelineCompartmentItemSemanticEditPolicyCN extends Co
 
 	@Override
 	protected Command getReorientRelationshipSourceCommand(final ReconnectRequest request) {
-		if (request.getConnectionEditPart() instanceof MessageFoundEditPart) {
+		if(request.getConnectionEditPart() instanceof MessageFoundEditPart) {
 			// don't let it return an unexecutable command, since it prevents the MessageFound anchor from being dragged
 			return null;
 		}
@@ -38,7 +38,7 @@ public class CustomCompactLifelineCompartmentItemSemanticEditPolicyCN extends Co
 
 	@Override
 	protected Command getReorientRelationshipTargetCommand(final ReconnectRequest request) {
-		if (request.getConnectionEditPart() instanceof MessageLostEditPart) {
+		if(request.getConnectionEditPart() instanceof MessageLostEditPart) {
 			// don't let it return an unexecutable command, since it prevents the MessageLost anchor from being dragged
 			return null;
 		}
@@ -49,7 +49,7 @@ public class CustomCompactLifelineCompartmentItemSemanticEditPolicyCN extends Co
 	@Override
 	protected Command getCreateRelationshipCommand(final CreateRelationshipRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (MessageUtils.isMessage(requestElementType)) {
+		if(MessageUtils.isMessage(requestElementType)) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req));
 		}
 		return super.getCreateRelationshipCommand(req);
@@ -59,15 +59,15 @@ public class CustomCompactLifelineCompartmentItemSemanticEditPolicyCN extends Co
 	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == UMLElementTypes.TimeObservation_16) {
+		if(requestElementType == UMLElementTypes.TimeObservation_16) {
 			return getGEFWrapper(new CustomTimeObservationCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.TimeConstraint_15) {
+		} else if(requestElementType == UMLElementTypes.TimeConstraint_15) {
 			return getGEFWrapper(new CustomTimeConstraintCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.DurationObservation_17) {
+		} else if(requestElementType == UMLElementTypes.DurationObservation_17) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.DurationConstraint_18) {
+		} else if(requestElementType == UMLElementTypes.DurationConstraint_18) {
 			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.GeneralOrdering_67) {
+		} else if(requestElementType == UMLElementTypes.GeneralOrdering_67) {
 			return getGEFWrapper(new CustomGeneralOrderingCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

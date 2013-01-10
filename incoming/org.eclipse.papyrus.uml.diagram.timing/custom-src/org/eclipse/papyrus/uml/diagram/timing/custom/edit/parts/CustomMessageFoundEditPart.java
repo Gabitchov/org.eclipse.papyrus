@@ -23,7 +23,7 @@ public class CustomMessageFoundEditPart extends MessageFoundEditPart {
 
 	@Override
 	public Command getCommand(final Request request) {
-		if (request instanceof BendpointRequest) {
+		if(request instanceof BendpointRequest) {
 			// disable bendpoints on MessageFound (to avoid a bug with anchor locations,
 			// and because they are not appropriate anyway)
 			return UnexecutableCommand.INSTANCE;

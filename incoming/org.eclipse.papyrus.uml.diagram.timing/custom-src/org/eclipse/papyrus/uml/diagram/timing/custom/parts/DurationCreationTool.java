@@ -24,14 +24,12 @@ public class DurationCreationTool extends AbstractTwoPointCreationTool {
 
 	@Override
 	protected boolean validateFirstTarget(final EditPart firstTarget) {
-		return firstTarget != null
-				&& EditPartUtils.isEditPartFor(firstTarget, UMLPackage.eINSTANCE.getOccurrenceSpecification(), UMLPackage.eINSTANCE.getStateInvariant());
+		return firstTarget != null && EditPartUtils.isEditPartFor(firstTarget, UMLPackage.eINSTANCE.getOccurrenceSpecification(), UMLPackage.eINSTANCE.getStateInvariant());
 	}
 
 	@Override
 	protected boolean validateSecondTarget(final EditPart firstTarget, final EditPart secondTarget) {
-		if (secondTarget == null
-				|| !EditPartUtils.isEditPartFor(secondTarget, UMLPackage.eINSTANCE.getOccurrenceSpecification(), UMLPackage.eINSTANCE.getStateInvariant())) {
+		if(secondTarget == null || !EditPartUtils.isEditPartFor(secondTarget, UMLPackage.eINSTANCE.getOccurrenceSpecification(), UMLPackage.eINSTANCE.getStateInvariant())) {
 			return false;
 		}
 		return ordered(firstTarget, secondTarget);

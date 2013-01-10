@@ -74,13 +74,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	@Override
 	protected ElementInfo createElementInfo(final Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
-					new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
-		final IEditorInput editorInput = (IEditorInput) element;
-		final IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
+		final IEditorInput editorInput = (IEditorInput)element;
+		final IDiagramDocument document = (IDiagramDocument)createDocument(editorInput);
 
 		final ResourceSetInfo info = new ResourceSetInfo(document, editorInput);
 		info.setModificationStamp(computeModificationStamp(info));
@@ -93,13 +92,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	@Override
 	protected IDocument createDocument(final Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
-					new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+		if(false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 		final IDocument document = createEmptyDocument();
-		setDocumentContent(document, (IEditorInput) element);
+		setDocumentContent(document, (IEditorInput)element);
 		setupDocument(element, document);
 		return document;
 	}
@@ -109,9 +107,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * changed. This default implementation is empty. Subclasses may reimplement.
 	 * 
 	 * @param element
-	 *            the blue-print element
+	 *        the blue-print element
 	 * @param document
-	 *            the document to set up
+	 *        the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(final Object element, final IDocument document) {
@@ -123,11 +121,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	private long computeModificationStamp(final ResourceSetInfo info) {
 		int result = 0;
-		for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+		for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 			final Resource nextResource = it.next();
 			final IFile file = WorkspaceSynchronizer.getFile(nextResource);
-			if (file != null) {
-				if (file.getLocation() != null) {
+			if(file != null) {
+				if(file.getLocation() != null) {
 					result += file.getLocation().toFile().lastModified();
 				} else {
 					result += file.getModificationStamp();
@@ -153,9 +151,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	private TransactionalEditingDomain createEditingDomain() {
 		final TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain();
 		editingDomain.setID("org.eclipse.papyrus.uml.diagram.timing.EditingDomain"); //$NON-NLS-1$
-		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(editingDomain.getResourceSet())
-				.and(NotificationFilter.createEventTypeFilter(Notification.ADD))
-				.and(NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
+		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
 		editingDomain.getResourceSet().eAdapters().add(new Adapter() {
 
 			private Notifier myTarger;
@@ -169,10 +165,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			}
 
 			public void notifyChanged(final Notification notification) {
-				if (diagramResourceModifiedFilter.matches(notification)) {
+				if(diagramResourceModifiedFilter.matches(notification)) {
 					final Object value = notification.getNewValue();
-					if (value instanceof Resource) {
-						((Resource) value).setTrackingModification(true);
+					if(value instanceof Resource) {
+						((Resource)value).setTrackingModification(true);
 					}
 				}
 			}
@@ -190,21 +186,21 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * @generated
 	 */
 	protected void setDocumentContent(final IDocument document, final IEditorInput element) throws CoreException {
-		final IDiagramDocument diagramDocument = (IDiagramDocument) document;
+		final IDiagramDocument diagramDocument = (IDiagramDocument)document;
 		final TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			final IStorage storage = ((FileEditorInput) element).getStorage();
+		if(element instanceof FileEditorInput) {
+			final IStorage storage = ((FileEditorInput)element).getStorage();
 			final Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
-			final URI uri = ((URIEditorInput) element).getURI();
+		} else if(element instanceof URIEditorInput) {
+			final URI uri = ((URIEditorInput)element).getURI();
 			Resource resource = null;
 			try {
 				resource = domain.getResourceSet().getResource(uri.trimFragment(), false);
-				if (resource == null) {
+				if(resource == null) {
 					resource = domain.getResourceSet().createResource(uri.trimFragment());
 				}
-				if (!resource.isLoaded()) {
+				if(!resource.isLoaded()) {
 					try {
 						final Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
 						// @see 171060
@@ -216,15 +212,15 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 						throw e;
 					}
 				}
-				if (uri.fragment() != null) {
+				if(uri.fragment() != null) {
 					final EObject rootElement = resource.getEObject(uri.fragment());
-					if (rootElement instanceof Diagram) {
+					if(rootElement instanceof Diagram) {
 						document.setContent(rootElement);
 						return;
 					}
 				} else {
-					for (final Object rootElement : resource.getContents()) {
-						if (rootElement instanceof Diagram) {
+					for(final Object rootElement : resource.getContents()) {
+						if(rootElement instanceof Diagram) {
 							document.setContent(rootElement);
 							return;
 						}
@@ -233,19 +229,17 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				throw new RuntimeException(Messages.UMLDocumentProvider_NoDiagramInResourceError);
 			} catch (final Exception e) {
 				CoreException thrownExcp = null;
-				if (e instanceof CoreException) {
-					thrownExcp = (CoreException) e;
+				if(e instanceof CoreException) {
+					thrownExcp = (CoreException)e;
 				} else {
 					final String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, msg != null ? msg
-							: Messages.UMLDocumentProvider_DiagramLoadingError, e));
+					thrownExcp = new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, msg != null ? msg : Messages.UMLDocumentProvider_DiagramLoadingError, e));
 				}
 				throw thrownExcp;
 			}
 		} else {
-			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
-					new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+			null));
 		}
 	}
 
@@ -255,7 +249,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	public long getModificationStamp(final Object element) {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return computeModificationStamp(info);
 		}
 		return super.getModificationStamp(element);
@@ -267,9 +261,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	public boolean isDeleted(final Object element) {
 		final IDiagramDocument document = getDiagramDocument(element);
-		if (document != null) {
+		if(document != null) {
 			final Resource diagramResource = document.getDiagram().eResource();
-			if (diagramResource != null) {
+			if(diagramResource != null) {
 				final IFile file = WorkspaceSynchronizer.getFile(diagramResource);
 				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
 			}
@@ -281,7 +275,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * @generated
 	 */
 	public ResourceSetInfo getResourceSetInfo(final Object editorInput) {
-		return (ResourceSetInfo) super.getElementInfo(editorInput);
+		return (ResourceSetInfo)super.getElementInfo(editorInput);
 	}
 
 	/**
@@ -289,8 +283,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	@Override
 	protected void disposeElementInfo(final Object element, final ElementInfo info) {
-		if (info instanceof ResourceSetInfo) {
-			final ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
+		if(info instanceof ResourceSetInfo) {
+			final ResourceSetInfo resourceSetInfo = (ResourceSetInfo)info;
 			resourceSetInfo.dispose();
 		}
 		super.disposeElementInfo(element, info);
@@ -302,12 +296,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected void doValidateState(final Object element, final Object computationContext) throws CoreException {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			final LinkedList<IFile> files2Validate = new LinkedList<IFile>();
-			for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+			for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource nextResource = it.next();
 				final IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					files2Validate.add(file);
 				}
 			}
@@ -323,8 +317,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	public boolean isReadOnly(final Object element) {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (final CoreException ex) {
@@ -343,14 +337,14 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	@Override
 	public boolean isModifiable(final Object element) {
-		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
+		if(!isStateValidated(element)) {
+			if(element instanceof FileEditorInput || element instanceof URIEditorInput) {
 				return true;
 			}
 		}
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (info.isUpdateCache()) {
+		if(info != null) {
+			if(info.isUpdateCache()) {
 				try {
 					updateCache(element);
 				} catch (final CoreException ex) {
@@ -369,11 +363,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	protected void updateCache(final Object element) throws CoreException {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+		if(info != null) {
+			for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource nextResource = it.next();
 				final IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null && file.isReadOnly()) {
+				if(file != null && file.isReadOnly()) {
 					info.setReadOnly(true);
 					info.setModifiable(false);
 					return;
@@ -391,7 +385,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected void doUpdateStateCache(final Object element) throws CoreException {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			info.setUpdateCache(true);
 		}
 		super.doUpdateStateCache(element);
@@ -403,7 +397,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	public boolean isSynchronized(final Object element) {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			return info.isSynchronized();
 		}
 		return super.isSynchronized(element);
@@ -415,12 +409,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected ISchedulingRule getResetRule(final Object element) {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			final LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
-			for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+			for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource nextResource = it.next();
 				final IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
 				}
 			}
@@ -435,12 +429,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected ISchedulingRule getSaveRule(final Object element) {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			final LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
-			for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+			for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource nextResource = it.next();
 				final IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
@@ -455,12 +449,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected ISchedulingRule getSynchronizeRule(final Object element) {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			final LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
-			for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+			for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource nextResource = it.next();
 				final IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
 				}
 			}
@@ -475,12 +469,12 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected ISchedulingRule getValidateStateRule(final Object element) {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
+		if(info != null) {
 			final LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
-			for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+			for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource nextResource = it.next();
 				final IFile file = WorkspaceSynchronizer.getFile(nextResource);
-				if (file != null) {
+				if(file != null) {
 					files.add(file);
 				}
 			}
@@ -493,7 +487,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * @generated
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
-		if (toCreateOrModify.exists()) {
+		if(toCreateOrModify.exists()) {
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
 		}
 
@@ -505,7 +499,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
-		} while (parent != null && !parent.exists());
+		} while(parent != null && !parent.exists());
 
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
@@ -516,8 +510,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected void doSynchronize(final Object element, final IProgressMonitor monitor) throws CoreException {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+		if(info != null) {
+			for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource nextResource = it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
@@ -532,25 +526,23 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	@Override
 	protected void doSaveDocument(final IProgressMonitor monitor, final Object element, final IDocument document, final boolean overwrite) throws CoreException {
 		final ResourceSetInfo info = getResourceSetInfo(element);
-		if (info != null) {
-			if (!overwrite && !info.isSynchronized()) {
-				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, IResourceStatus.OUT_OF_SYNC_LOCAL,
-						Messages.UMLDocumentProvider_UnsynchronizedFileSaveError, null));
+		if(info != null) {
+			if(!overwrite && !info.isSynchronized()) {
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.UMLDocumentProvider_UnsynchronizedFileSaveError, null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
 				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources().size() + 1); // "Saving diagram"
-				for (final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
+				for(final Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					final Resource nextResource = it.next();
 					monitor.setTaskName(NLS.bind(Messages.UMLDocumentProvider_SaveNextResourceTask, nextResource.getURI()));
-					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
+					if(nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
 							nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
 						} catch (final IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, EditorStatusCodes.RESOURCE_FAILURE,
-									e.getLocalizedMessage(), null));
+							throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -566,33 +558,27 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		} else {
 			URI newResoruceURI;
 			List<IFile> affectedFiles = null;
-			if (element instanceof FileEditorInput) {
-				final IFile newFile = ((FileEditorInput) element).getFile();
+			if(element instanceof FileEditorInput) {
+				final IFile newFile = ((FileEditorInput)element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
 				newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
-			} else if (element instanceof URIEditorInput) {
-				newResoruceURI = ((URIEditorInput) element).getURI();
+			} else if(element instanceof URIEditorInput) {
+				newResoruceURI = ((URIEditorInput)element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
-						new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-						null));
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError, new Object[]{ element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 			}
-			if (false == document instanceof IDiagramDocument) {
+			if(false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								0,
-								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, "Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
-			final IDiagramDocument diagramDocument = (IDiagramDocument) document;
+			final IDiagramDocument diagramDocument = (IDiagramDocument)document;
 			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(newResoruceURI);
 			final Diagram diagramCopy = EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(Messages.UMLDocumentProvider_SaveAsOperation,
-						diagramCopy.getName()), affectedFiles) {
+				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(Messages.UMLDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
+
 					@Override
 					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
@@ -616,7 +602,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	protected void handleElementChanged(final ResourceSetInfo info, final Resource changedResource, final IProgressMonitor monitor) {
 		final IFile file = WorkspaceSynchronizer.getFile(changedResource);
-		if (file != null) {
+		if(file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (final CoreException ex) {
@@ -635,7 +621,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		} catch (final CoreException e) {
 			info.fStatus = e.getStatus();
 		}
-		if (!info.fCanBeSaved) {
+		if(!info.fCanBeSaved) {
 			info.setModificationStamp(computeModificationStamp(info));
 		}
 		addUnchangedElementListeners(info.getEditorInput(), info);
@@ -646,7 +632,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * @generated
 	 */
 	protected void handleElementMoved(final IEditorInput input, final URI uri) {
-		if (input instanceof FileEditorInput) {
+		if(input instanceof FileEditorInput) {
 			final IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(URI.decode(uri.path())).removeFirstSegments(1));
 			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
 			return;
@@ -667,8 +653,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 */
 	public IDiagramDocument getDiagramDocument(final Object element) {
 		final IDocument doc = getDocument(element);
-		if (doc instanceof IDiagramDocument) {
-			return (IDiagramDocument) doc;
+		if(doc instanceof IDiagramDocument) {
+			return (IDiagramDocument)doc;
 		}
 		return null;
 	}
@@ -791,7 +777,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(this.myResourceSetListener);
-			for (final Iterator<Resource> it = getLoadedResourcesIterator(); it.hasNext();) {
+			for(final Iterator<Resource> it = getLoadedResourcesIterator(); it.hasNext();) {
 				final Resource resource = it.next();
 				resource.unload();
 			}
@@ -891,13 +877,14 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			 * @generated
 			 */
 			public boolean handleResourceChanged(final Resource resource) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						setUnSynchronized(resource);
 						return true;
 					}
 				}
 				Display.getDefault().asyncExec(new Runnable() {
+
 					public void run() {
 						handleElementChanged(ResourceSetInfo.this, resource, null);
 					}
@@ -909,13 +896,14 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			 * @generated
 			 */
 			public boolean handleResourceDeleted(final Resource resource) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						setUnSynchronized(resource);
 						return true;
 					}
 				}
 				Display.getDefault().asyncExec(new Runnable() {
+
 					public void run() {
 						fireElementDeleted(getEditorInput());
 					}
@@ -927,14 +915,15 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			 * @generated
 			 */
 			public boolean handleResourceMoved(final Resource resource, final URI newURI) {
-				synchronized (ResourceSetInfo.this) {
-					if (ResourceSetInfo.this.fCanBeSaved) {
+				synchronized(ResourceSetInfo.this) {
+					if(ResourceSetInfo.this.fCanBeSaved) {
 						setUnSynchronized(resource);
 						return true;
 					}
 				}
-				if (ResourceSetInfo.this.myDocument.getDiagram().eResource() == resource) {
+				if(ResourceSetInfo.this.myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
+
 						public void run() {
 							handleElementMoved(getEditorInput(), newURI);
 						}
@@ -969,8 +958,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		 */
 		public ResourceSetModificationListener(final ResourceSetInfo info) {
 			this.myInfo = info;
-			this.myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(NotificationFilter.createEventTypeFilter(Notification.UNSET))
-					.and(NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
+			this.myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		/**
@@ -978,35 +966,34 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		 */
 		@Override
 		public void notifyChanged(final Notification notification) {
-			if (notification.getNotifier() instanceof ResourceSet) {
+			if(notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch() && this.myModifiedFilter.matches(notification)) {
-				if (notification.getNotifier() instanceof Resource) {
-					final Resource resource = (Resource) notification.getNotifier();
-					if (resource.isLoaded()) {
+			if(!notification.isTouch() && this.myModifiedFilter.matches(notification)) {
+				if(notification.getNotifier() instanceof Resource) {
+					final Resource resource = (Resource)notification.getNotifier();
+					if(resource.isLoaded()) {
 						boolean modified = false;
-						for (final Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = this.myInfo.getLoadedResourcesIterator(); it.hasNext()
-								&& !modified;) {
-							final Resource nextResource = (Resource) it.next();
-							if (nextResource.isLoaded()) {
+						for(final Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = this.myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+							final Resource nextResource = (Resource)it.next();
+							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();
 							}
 						}
 						boolean dirtyStateChanged = false;
-						synchronized (this.myInfo) {
-							if (modified != this.myInfo.fCanBeSaved) {
+						synchronized(this.myInfo) {
+							if(modified != this.myInfo.fCanBeSaved) {
 								this.myInfo.fCanBeSaved = modified;
 								dirtyStateChanged = true;
 							}
-							if (!resource.isModified()) {
+							if(!resource.isModified()) {
 								this.myInfo.setSynchronized(resource);
 							}
 						}
-						if (dirtyStateChanged) {
+						if(dirtyStateChanged) {
 							fireElementDirtyStateChanged(this.myInfo.getEditorInput(), modified);
 
-							if (!modified) {
+							if(!modified) {
 								this.myInfo.setModificationStamp(computeModificationStamp(this.myInfo));
 							}
 						}

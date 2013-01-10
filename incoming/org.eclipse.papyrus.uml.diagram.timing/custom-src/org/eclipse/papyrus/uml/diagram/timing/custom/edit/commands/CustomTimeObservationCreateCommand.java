@@ -37,19 +37,19 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 		final TimeObservation timeObservation = UMLFactory.eINSTANCE.createTimeObservation();
-		final CreateElementRequest request = (CreateElementRequest) getRequest();
-		final EditPart originalTarget = (EditPart) request.getParameter(CustomPaletteFactory.ORIGINAL_TARGET);
-		final NamedElement targetElement = (NamedElement) ((View) originalTarget.getModel()).getElement();
+		final CreateElementRequest request = (CreateElementRequest)getRequest();
+		final EditPart originalTarget = (EditPart)request.getParameter(CustomPaletteFactory.ORIGINAL_TARGET);
+		final NamedElement targetElement = (NamedElement)((View)originalTarget.getModel()).getElement();
 
 		// TODO: firstEvent depending on the click location relative to the originalTarget EditPart figure
 
 		final Package containingPackage = EcoreUtils.getContaining(request.getContainer(), Package.class);
-		if (containingPackage == null) {
+		if(containingPackage == null) {
 			return CommandResult.newErrorCommandResult("The container must be in a Package"); //$NON-NLS-1$
 		}
 		containingPackage.getPackagedElements().add(timeObservation);
 		timeObservation.setEvent(targetElement);
-		((CreateElementRequest) getRequest()).setNewElement(timeObservation);
+		((CreateElementRequest)getRequest()).setNewElement(timeObservation);
 		return CommandResult.newOKCommandResult(timeObservation);
 	}
 }

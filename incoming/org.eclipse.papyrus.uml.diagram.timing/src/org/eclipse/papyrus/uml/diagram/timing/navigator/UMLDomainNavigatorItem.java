@@ -27,17 +27,17 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
+		final Class[] supportedTypes = new Class[]{ EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(final Object adaptableObject, final Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem) {
-					final org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem) adaptableObject;
+				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem) {
+					final org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem)adaptableObject;
 					final EObject eObject = domainNavigatorItem.getEObject();
-					if (adapterType == EObject.class) {
+					if(adapterType == EObject.class) {
 						return eObject;
 					}
-					if (adapterType == IPropertySource.class) {
+					if(adapterType == IPropertySource.class) {
 						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
@@ -101,9 +101,8 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 */
 	@Override
 	public boolean equals(final Object obj) {
-		if (obj instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(
-					EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem) obj).getEObject()));
+		if(obj instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem) {
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.timing.navigator.UMLDomainNavigatorItem)obj).getEObject()));
 		}
 		return super.equals(obj);
 	}

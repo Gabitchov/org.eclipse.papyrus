@@ -38,9 +38,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public EditPart createEditPart(final EditPart context, final Object model) {
-		if (model instanceof View) {
-			final View view = (View) model;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
+		if(model instanceof View) {
+			final View view = (View)model;
+			switch(UMLVisualIDRegistry.getVisualID(view)) {
 
 			case TimingDiagramEditPart.VISUAL_ID:
 				return new TimingDiagramEditPart(view);
@@ -278,14 +278,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated NOT
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(final ITextAwareEditPart source) {
-		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
-		} else if (source.getFigure() instanceof WrappingLabel) {
-			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
-		} else if (source.getFigure() instanceof LifelineVerticalLabel) {
-			return new LifelineVerticalLabelCellEditorLocator((LifelineVerticalLabel) source.getFigure());
+		if(source.getFigure() instanceof IMultilineEditableFigure) {
+			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
+		} else if(source.getFigure() instanceof WrappingLabel) {
+			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
+		} else if(source.getFigure() instanceof LifelineVerticalLabel) {
+			return new LifelineVerticalLabelCellEditorLocator((LifelineVerticalLabel)source.getFigure());
 		} else {
-			return new LabelCellEditorLocator((Label) source.getFigure());
+			return new LabelCellEditorLocator((Label)source.getFigure());
 		}
 	}
 
@@ -317,15 +317,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(final CellEditor celleditor) {
-			final Text text = (Text) celleditor.getControl();
+			final Text text = (Text)celleditor.getControl();
 			final Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
 			rect.x = getMultilineEditableFigure().getEditionLocation().x;
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
-			if (getMultilineEditableFigure().getText().length() > 0) {
+			if(getMultilineEditableFigure().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}

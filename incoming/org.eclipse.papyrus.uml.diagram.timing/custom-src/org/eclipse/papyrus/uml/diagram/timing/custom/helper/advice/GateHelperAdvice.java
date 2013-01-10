@@ -30,16 +30,16 @@ public class GateHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getAfterDestroyDependentsCommand(final DestroyDependentsRequest request) {
 		final EObject destructee = request.getElementToDestroy();
-		if (destructee instanceof Gate) {
-			final Gate gate = (Gate) destructee;
+		if(destructee instanceof Gate) {
+			final Gate gate = (Gate)destructee;
 			final Collection<EObject> elementsToDestroy = GateUtils.getElementsToDelete(gate);
-			if (!elementsToDestroy.isEmpty()) {
+			if(!elementsToDestroy.isEmpty()) {
 				final CompositeCommand compositeCommand = new CompositeCommand(Messages.GateHelperAdvice_DestroyGate);
 				// destroy related elements
-				for (final EObject eObject : elementsToDestroy) {
+				for(final EObject eObject : elementsToDestroy) {
 					final DestroyElementRequest destroyElementRequest = new DestroyElementRequest(eObject, false);
 					final DestroyElementCommand destroyElementCommand = new DestroyElementCommand(destroyElementRequest);
-					if (destroyElementCommand.canExecute()) {
+					if(destroyElementCommand.canExecute()) {
 						compositeCommand.add(destroyElementCommand);
 					}
 				}

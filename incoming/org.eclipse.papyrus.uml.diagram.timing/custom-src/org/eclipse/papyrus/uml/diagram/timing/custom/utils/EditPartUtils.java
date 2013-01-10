@@ -30,7 +30,7 @@ public class EditPartUtils {
 
 	public static EditPart findFirstChildEditPartWithId(final EditPart editPart, final int visualId) {
 		final List<? extends EditPart> result = findChildEditPartsWithId(editPart, visualId);
-		if (result.isEmpty()) {
+		if(result.isEmpty()) {
 			return null;
 		}
 		return result.get(0);
@@ -44,26 +44,26 @@ public class EditPartUtils {
 
 	private static void internalFindChildEditPartsWithId(final EditPart editPart, final int visualId, final List<EditPart> result) {
 		final Object model = editPart.getModel();
-		if (model instanceof View) {
-			final View view = (View) model;
-			if (UMLVisualIDRegistry.getVisualID(view) == visualId) {
+		if(model instanceof View) {
+			final View view = (View)model;
+			if(UMLVisualIDRegistry.getVisualID(view) == visualId) {
 				result.add(editPart);
 			}
 		}
 		@SuppressWarnings("unchecked")
 		final List<EditPart> children = editPart.getChildren();
-		for (final EditPart child : children) {
+		for(final EditPart child : children) {
 			internalFindChildEditPartsWithId(child, visualId, result);
 		}
 	}
 
 	public static EditPart findParentEditPartWithId(final EditPart editPart, final int visualId) {
 		EditPart parent = editPart;
-		while (parent != null) {
+		while(parent != null) {
 			final Object model = parent.getModel();
-			if (model instanceof View) {
-				final View parentView = (View) model;
-				if (UMLVisualIDRegistry.getVisualID(parentView) == visualId) {
+			if(model instanceof View) {
+				final View parentView = (View)model;
+				if(UMLVisualIDRegistry.getVisualID(parentView) == visualId) {
 					return parent;
 				}
 				parent = parent.getParent();
@@ -78,18 +78,18 @@ public class EditPartUtils {
 	 * Find the EditPart whose Figure is closest to the given y-coordinate.
 	 * 
 	 * @param ordinate
-	 *            the y-coordinate
+	 *        the y-coordinate
 	 * @param editParts
-	 *            the EditParts among which to choose
+	 *        the EditParts among which to choose
 	 * @return the EditPart closest to the given vertical coordinate
 	 */
 	public static GraphicalEditPart findEditPartClosestToOrdinate(final int ordinate, final List<? extends GraphicalEditPart> editParts) {
-		if (editParts.isEmpty()) {
+		if(editParts.isEmpty()) {
 			return null;
 		}
 
 		final TreeMap<Integer, GraphicalEditPart> distanceMap = new TreeMap<Integer, GraphicalEditPart>();
-		for (final GraphicalEditPart editPart : editParts) {
+		for(final GraphicalEditPart editPart : editParts) {
 			final IFigure figure = editPart.getFigure();
 			final Rectangle bounds = new Rectangle(figure.getBounds());
 			figure.getParent().translateToAbsolute(bounds);
@@ -103,26 +103,24 @@ public class EditPartUtils {
 
 	public static boolean isEditPartFor(final EditPart editPart, final EClass... eClasses) {
 		final Object model = editPart.getModel();
-		if (model instanceof View) {
-			final View view = (View) model;
+		if(model instanceof View) {
+			final View view = (View)model;
 			return ViewUtils.isViewFor(view, eClasses);
 		}
 		return false;
 	}
 
 	public static CompartmentEditPart findParentTimelineCompartment(final EditPart editPart) {
-		CompartmentEditPart compartmentEditPart = (FullLifelineTimelineCompartmentEditPartCN) EditPartUtils.findParentEditPartWithId(editPart,
-				FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID);
-		if (compartmentEditPart == null) {
-			compartmentEditPart = (CompactLifelineCompartmentEditPartCN) EditPartUtils.findParentEditPartWithId(editPart,
-					CompactLifelineCompartmentEditPartCN.VISUAL_ID);
+		CompartmentEditPart compartmentEditPart = (FullLifelineTimelineCompartmentEditPartCN)EditPartUtils.findParentEditPartWithId(editPart, FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID);
+		if(compartmentEditPart == null) {
+			compartmentEditPart = (CompactLifelineCompartmentEditPartCN)EditPartUtils.findParentEditPartWithId(editPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
 		}
 		return compartmentEditPart;
 	}
 
 	/** Reveals the given EditPart in its viewer */
 	public static void revealEditPart(final EditPart editPart) {
-		if (editPart != null && editPart.getViewer() != null) {
+		if(editPart != null && editPart.getViewer() != null) {
 			editPart.getViewer().reveal(editPart);
 		}
 	}

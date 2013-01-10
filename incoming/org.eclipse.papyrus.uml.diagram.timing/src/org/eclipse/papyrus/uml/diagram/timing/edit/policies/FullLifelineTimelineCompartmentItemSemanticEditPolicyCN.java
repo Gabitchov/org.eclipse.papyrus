@@ -44,73 +44,73 @@ public class FullLifelineTimelineCompartmentItemSemanticEditPolicyCN extends UML
 	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
+		if(requestElementType == null) {
 			return super.getCreateCommand(req);
 		}
 		IElementType baseElementType = requestElementType;
 		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
+		if(requestElementType instanceof IExtendedHintedElementType) {
 			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
+			if(baseElementType != null) {
 				isExtendedType = true;
 			} else {
 				// no reference element type ID. using the closest super element type to give more opportunities, but
 				// can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.StateInvariant_11 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.StateInvariant_11 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new FullStateInvariantCreateCommandCN(req));
 		}
-		if (UMLElementTypes.OccurrenceSpecification_12 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.OccurrenceSpecification_12 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new OccurrenceSpecificationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.MessageOccurrenceSpecification_13 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.MessageOccurrenceSpecification_13 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new MessageOccurrenceSpecificationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.DestructionOccurrenceSpecification_27 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.DestructionOccurrenceSpecification_27 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DestructionOccurrenceSpecificationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.DurationConstraint_18 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.DurationConstraint_18 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DurationConstraintCreateCommandCN(req));
 		}
-		if (UMLElementTypes.DurationObservation_17 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.DurationObservation_17 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new DurationObservationCreateCommandCN(req));
 		}
-		if (UMLElementTypes.TimeConstraint_15 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.TimeConstraint_15 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new TimeConstraintCreateCommand(req));
 		}
-		if (UMLElementTypes.TimeObservation_16 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.TimeObservation_16 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new TimeObservationCreateCommand(req));
 		}
-		if (UMLElementTypes.GeneralOrdering_67 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
+		if(UMLElementTypes.GeneralOrdering_67 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new GeneralOrderingCreateCommand(req));
 		}

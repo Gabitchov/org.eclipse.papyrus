@@ -46,12 +46,12 @@ public class OccurrenceSpecificationCreationTool extends CreationTool {
 		final EditPart targetEditPart = getTargetEditPart();
 		final CompositeCommand compositeCommand = new CompositeCommand(Messages.OccurrenceSpecificationCreationTool_CreateOccurrenceSpecification);
 		EditPart timeline;
-		if (targetEditPart instanceof FullStateInvariantEditPartCN) {
-			final FullStateInvariantEditPartCN fullStateInvariantEditPartCN = (FullStateInvariantEditPartCN) targetEditPart;
+		if(targetEditPart instanceof FullStateInvariantEditPartCN) {
+			final FullStateInvariantEditPartCN fullStateInvariantEditPartCN = (FullStateInvariantEditPartCN)targetEditPart;
 			timeline = EditPartUtils.findParentEditPartWithId(targetEditPart, FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID);
 			compositeCommand.add(new CutAndInsertOccurrenceSpecificationCommand(fullStateInvariantEditPartCN, getLocation(), false));
-		} else if (targetEditPart instanceof CompactStateInvariantEditPartCN) {
-			final CompactStateInvariantEditPartCN compactStateInvariantEditPartCN = (CompactStateInvariantEditPartCN) targetEditPart;
+		} else if(targetEditPart instanceof CompactStateInvariantEditPartCN) {
+			final CompactStateInvariantEditPartCN compactStateInvariantEditPartCN = (CompactStateInvariantEditPartCN)targetEditPart;
 			timeline = EditPartUtils.findParentEditPartWithId(targetEditPart, CompactLifelineCompartmentEditPartCN.VISUAL_ID);
 			compositeCommand.add(new AddOccurrenceSpecificationInCompactLifelineCommand(compactStateInvariantEditPartCN, getLocation()));
 		} else {

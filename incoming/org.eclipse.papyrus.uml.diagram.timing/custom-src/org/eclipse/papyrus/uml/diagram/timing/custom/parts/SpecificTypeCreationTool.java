@@ -21,16 +21,18 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConne
 
 /** A creation tool that only allows creating connections between specific types. */
 public class SpecificTypeCreationTool extends AspectUnspecifiedTypeConnectionTool {
+
 	private final Collection<EClass> sourceTypes;
+
 	private final Collection<EClass> targetTypes;
 
 	/**
 	 * @param connectionTypeToCreate
-	 *            the element type of the connection to create
+	 *        the element type of the connection to create
 	 * @param sourceTypes
-	 *            the connection will only be allowed if the source is of one of these types
+	 *        the connection will only be allowed if the source is of one of these types
 	 * @param targetTypes
-	 *            the connection will only be allowed if the target is of one of these types
+	 *        the connection will only be allowed if the target is of one of these types
 	 */
 	public SpecificTypeCreationTool(final IElementType connectionTypeToCreate, final Collection<EClass> sourceTypes, final Collection<EClass> targetTypes) {
 		super(Collections.singletonList(connectionTypeToCreate));
@@ -42,20 +44,20 @@ public class SpecificTypeCreationTool extends AspectUnspecifiedTypeConnectionToo
 	protected Command getCommand() {
 		final EditPart targetEditPart = getTargetEditPart();
 		EObject element = null;
-		if (targetEditPart != null && targetEditPart.getModel() instanceof View) {
-			element = ((View) targetEditPart.getModel()).getElement();
+		if(targetEditPart != null && targetEditPart.getModel() instanceof View) {
+			element = ((View)targetEditPart.getModel()).getElement();
 		}
 
 		// only allow creating a connection that starts from the sourceType
-		if (isInState(STATE_INITIAL)) {
-			if (!isOfType(element, this.sourceTypes)) {
+		if(isInState(STATE_INITIAL)) {
+			if(!isOfType(element, this.sourceTypes)) {
 				return null;
 			}
 		}
 
 		// only allow creating a connection that goes to the targetType
-		if (isInState(STATE_CONNECTION_STARTED) || isInState(STATE_TERMINAL)) {
-			if (!isOfType(element, this.targetTypes)) {
+		if(isInState(STATE_CONNECTION_STARTED) || isInState(STATE_TERMINAL)) {
+			if(!isOfType(element, this.targetTypes)) {
 				return null;
 			}
 		}
@@ -63,8 +65,8 @@ public class SpecificTypeCreationTool extends AspectUnspecifiedTypeConnectionToo
 	}
 
 	private static boolean isOfType(final EObject element, final Collection<EClass> types) {
-		for (final EClass eClass : types) {
-			if (eClass.isInstance(element)) {
+		for(final EClass eClass : types) {
+			if(eClass.isInstance(element)) {
 				return true;
 			}
 		}

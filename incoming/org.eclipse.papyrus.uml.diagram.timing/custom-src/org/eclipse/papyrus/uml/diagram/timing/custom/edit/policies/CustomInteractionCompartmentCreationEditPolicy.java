@@ -45,14 +45,14 @@ public class CustomInteractionCompartmentCreationEditPolicy extends PapyrusCreat
 
 	@Override
 	protected Command getCreateCommand(final CreateViewRequest request) {
-		final ICommandProxy superCommand = (ICommandProxy) super.getCreateCommand(request);
+		final ICommandProxy superCommand = (ICommandProxy)super.getCreateCommand(request);
 		final List<? extends ViewDescriptor> viewDescriptors = request.getViewDescriptors();
-		if (request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
+		if(request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
 			final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(getHost().getModel());
-			if (Integer.toString(CompactLifelineEditPartCN.VISUAL_ID).equals(semanticHint)) {
-				final View interactionView = (View) getHost().getParent().getModel();
-				final Interaction interaction = (Interaction) interactionView.getElement();
+			if(Integer.toString(CompactLifelineEditPartCN.VISUAL_ID).equals(semanticHint)) {
+				final View interactionView = (View)getHost().getParent().getModel();
+				final Interaction interaction = (Interaction)interactionView.getElement();
 				// note: only add a StateInvariant to the Lifeline if the request is a CreateViewAndElementRequest,
 				// and not merely a CreateViewRequest, because we don't want to create a new StateInvariant if this is
 				// only a drop for an existing Lifeline
@@ -64,7 +64,7 @@ public class CustomInteractionCompartmentCreationEditPolicy extends PapyrusCreat
 				compoundCommand.add(new RefreshCommandForDo(interactionEditPart));
 				return compoundCommand;
 			}
-			if (Integer.toString(FullLifelineEditPartCN.VISUAL_ID).equals(semanticHint)) {
+			if(Integer.toString(FullLifelineEditPartCN.VISUAL_ID).equals(semanticHint)) {
 				final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomInteractionCompartmentCreationEditPolicy_CreateFullLifeline);
 				final InteractionEditPartTN interactionEditPart = getInteractionEditPart();
 				compoundCommand.add(new RefreshCommandForUndo(interactionEditPart));
@@ -82,20 +82,20 @@ public class CustomInteractionCompartmentCreationEditPolicy extends PapyrusCreat
 		// creates the compact lifeline View
 		compoundCommand.add(superCommand);
 
-		final CommandResult superCommandResult = ((ICommandProxy) superCommand).getICommand().getCommandResult();
+		final CommandResult superCommandResult = ((ICommandProxy)superCommand).getICommand().getCommandResult();
 
 		final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(interaction);
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			throw new IllegalStateException("no editing domain"); //$NON-NLS-1$
 		}
 
-		final AbstractTransactionalCommand initStateDefinitionCommand = new AbstractTransactionalCommand(editingDomain,
-				Messages.CustomCompactLifelifeCompactStateInvariantCreationEditPolicy_InitializeStateInvariant, null) {
+		final AbstractTransactionalCommand initStateDefinitionCommand = new AbstractTransactionalCommand(editingDomain, Messages.CustomCompactLifelifeCompactStateInvariantCreationEditPolicy_InitializeStateInvariant, null) {
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				// the result from the super command that creates the view
-				final ViewDescriptor viewDescriptor = (ViewDescriptor) superCommandResult.getReturnValue();
-				final View compactLifelineView = (View) viewDescriptor.getAdapter(View.class);
+				final ViewDescriptor viewDescriptor = (ViewDescriptor)superCommandResult.getReturnValue();
+				final View compactLifelineView = (View)viewDescriptor.getAdapter(View.class);
 				final View compactLifelineCompartmentView = ViewUtils.findCompactTimelineCompartmentView(compactLifelineView);
 				StateInvariantUtils.createCompactStateInvariant(compactLifelineCompartmentView, -1, -1, -1);
 				return CommandResult.newOKCommandResult();
@@ -106,10 +106,10 @@ public class CustomInteractionCompartmentCreationEditPolicy extends PapyrusCreat
 	}
 
 	protected InteractionEditPartTN getInteractionEditPart() {
-		return (InteractionEditPartTN) EditPartUtils.findParentEditPartWithId(getHost(), InteractionEditPartTN.VISUAL_ID);
+		return (InteractionEditPartTN)EditPartUtils.findParentEditPartWithId(getHost(), InteractionEditPartTN.VISUAL_ID);
 	}
 
 	protected CompactLifelineCompartmentEditPartCN getCompactLifelineCompartmentEditPart() {
-		return (CompactLifelineCompartmentEditPartCN) EditPartUtils.findFirstChildEditPartWithId(getHost(), CompactLifelineCompartmentEditPartCN.VISUAL_ID);
+		return (CompactLifelineCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(getHost(), CompactLifelineCompartmentEditPartCN.VISUAL_ID);
 	}
 }

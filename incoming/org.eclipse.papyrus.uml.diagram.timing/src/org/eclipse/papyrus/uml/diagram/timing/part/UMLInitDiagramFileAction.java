@@ -57,10 +57,10 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	public void selectionChanged(final IAction action, final ISelection selection) {
 		this.domainModelURI = null;
 		action.setEnabled(false);
-		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
+		if(selection instanceof IStructuredSelection == false || selection.isEmpty()) {
 			return;
 		}
-		final IFile file = (IFile) ((IStructuredSelection) selection).getFirstElement();
+		final IFile file = (IFile)((IStructuredSelection)selection).getFirstElement();
 		this.domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 		action.setEnabled(true);
 	}
@@ -85,7 +85,7 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 		} catch (final WrappedException ex) {
 			UMLDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + this.domainModelURI, ex); //$NON-NLS-1$
 		}
-		if (diagramRoot == null) {
+		if(diagramRoot == null) {
 			MessageDialog.openError(getShell(), Messages.InitDiagramFile_ResourceErrorDialogTitle, Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}

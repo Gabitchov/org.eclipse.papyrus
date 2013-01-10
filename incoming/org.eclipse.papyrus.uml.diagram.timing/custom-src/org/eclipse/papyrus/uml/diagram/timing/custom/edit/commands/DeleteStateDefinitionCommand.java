@@ -26,15 +26,16 @@ import org.eclipse.uml2.uml.Lifeline;
 public class DeleteStateDefinitionCommand extends AbstractTransactionalCommand {
 
 	private final String id;
+
 	private final Lifeline lifeline;
 
 	/**
 	 * @param id
-	 *            the id of the state definition to delete
+	 *        the id of the state definition to delete
 	 * @param lifeline
-	 *            the lifeline
+	 *        the lifeline
 	 * @param domain
-	 *            the editing domain
+	 *        the editing domain
 	 */
 	public DeleteStateDefinitionCommand(final String id, final Lifeline lifeline, final TransactionalEditingDomain domain) {
 		super(domain, Messages.DeleteStateDefinitionCommand_DeleteStateDefinition, null);

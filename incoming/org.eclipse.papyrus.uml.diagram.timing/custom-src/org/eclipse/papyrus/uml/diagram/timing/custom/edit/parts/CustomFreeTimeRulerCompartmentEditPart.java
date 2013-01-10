@@ -47,7 +47,7 @@ public class CustomFreeTimeRulerCompartmentEditPart extends FreeTimeRulerCompart
 
 	@Override
 	public IFigure createFigure() {
-		final ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+		final ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		result.setBorder(null);
 		result.getScrollPane().setBorder(null);
@@ -73,7 +73,7 @@ public class CustomFreeTimeRulerCompartmentEditPart extends FreeTimeRulerCompart
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		((ResizableCompartmentFigure) getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
+		((ResizableCompartmentFigure)getFigure()).getScrollPane().setScrollBarVisibility(org.eclipse.draw2d.ScrollPane.NEVER);
 		refreshBounds();
 	}
 
@@ -95,21 +95,21 @@ public class CustomFreeTimeRulerCompartmentEditPart extends FreeTimeRulerCompart
 
 		final List<EditPart> osEditParts = new ArrayList<EditPart>();
 
-		for (final SmallSquareFigure figure : osFigures) {
+		for(final SmallSquareFigure figure : osFigures) {
 			final EditPart editPart = visualPartMap.get(FigureUtils.findParentFigureInstance(figure, BorderedNodeFigure.class));
-			if (editPart != null) {
+			if(editPart != null) {
 				osEditParts.add(editPart);
 			}
 		}
-		for (final CrossFigure figure : destructionOSFigures) {
+		for(final CrossFigure figure : destructionOSFigures) {
 			final EditPart editPart = visualPartMap.get(FigureUtils.findParentFigureInstance(figure, BorderedNodeFigure.class));
-			if (editPart != null) {
+			if(editPart != null) {
 				osEditParts.add(editPart);
 			}
 		}
 
 		// reset the layout so that the BorderItemsAwareFreeFormLayer fills its parent FreeformViewport
-		if (!(container.getParent().getLayoutManager() instanceof FillLayout)) {
+		if(!(container.getParent().getLayoutManager() instanceof FillLayout)) {
 			container.getParent().setLayoutManager(new FillLayout());
 		}
 
@@ -120,22 +120,21 @@ public class CustomFreeTimeRulerCompartmentEditPart extends FreeTimeRulerCompart
 		@SuppressWarnings("unchecked")
 		final List<IFigure> children = container.getChildren();
 
-		for (int i = 0; i < children.size(); i++) {
+		for(int i = 0; i < children.size(); i++) {
 			final IFigure child = children.get(i);
 			final List<BorderedNodeFigure> marks = FigureUtils.findChildFigureInstances(child, BorderedNodeFigure.class);
-			for (final BorderedNodeFigure verticalMarkFigure : marks) {
+			for(final BorderedNodeFigure verticalMarkFigure : marks) {
 				final boolean compactLifeline = FigureUtils.findParentFigureInstance(verticalMarkFigure, CompactLifelineFigure.class) != null;
 				final boolean fullLifeline = FigureUtils.findParentFigureInstance(verticalMarkFigure, FullLifelineFigure.class) != null;
-				final TickEditPart tickEditPart = (TickEditPart) visualPartMap.get(verticalMarkFigure);
+				final TickEditPart tickEditPart = (TickEditPart)visualPartMap.get(verticalMarkFigure);
 				final IGraphicalEditPart occurrenceSpecificationEditPart = TickUtils.findOccurrenceSpecificationEditPartFromTickEditPart(tickEditPart, viewer);
-				if (occurrenceSpecificationEditPart != null) {
+				if(occurrenceSpecificationEditPart != null) {
 					final CompartmentEditPart timelineCompartment = EditPartUtils.findParentTimelineCompartment(occurrenceSpecificationEditPart);
-					final GraphicalEditPart interactionEditPart = (InteractionEditPartTN) EditPartUtils.findParentEditPartWithId(timelineCompartment,
-							InteractionEditPartTN.VISUAL_ID);
+					final GraphicalEditPart interactionEditPart = (InteractionEditPartTN)EditPartUtils.findParentEditPartWithId(timelineCompartment, InteractionEditPartTN.VISUAL_ID);
 					final int startX;
-					if (fullLifeline) {
+					if(fullLifeline) {
 						startX = Constants.STATE_DEFINITIONS_WIDTH + 1;
-					} else if (compactLifeline) {
+					} else if(compactLifeline) {
 						startX = 1;
 					} else {
 						startX = timelineCompartment.getFigure().getBounds().x - interactionEditPart.getFigure().getBounds().x;

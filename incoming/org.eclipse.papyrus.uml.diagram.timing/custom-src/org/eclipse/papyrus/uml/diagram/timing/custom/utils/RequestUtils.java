@@ -19,14 +19,15 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
 public final class RequestUtils {
+
 	private RequestUtils() {
 		// utility class
 	}
 
 	/** Whether the given request is a ChangeBoundsRequest concerning instances of the given EClass only. */
 	public static boolean isChangeBoundsRequestFor(final Request request, final EClass eClass) {
-		if (request instanceof ChangeBoundsRequest) {
-			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
+		if(request instanceof ChangeBoundsRequest) {
+			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
 			return isGroupRequestFor(changeBoundsRequest, eClass);
 		}
 		return false;
@@ -34,8 +35,8 @@ public final class RequestUtils {
 
 	/** Whether the given request is a ChangeBoundsRequest concerning instances of the given EditPart only. */
 	public static boolean isChangeBoundsRequestFor(final Request request, final Class<? extends EditPart> editPartClass) {
-		if (request instanceof ChangeBoundsRequest) {
-			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
+		if(request instanceof ChangeBoundsRequest) {
+			final ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
 			return isGroupRequestFor(changeBoundsRequest, editPartClass);
 		}
 		return false;
@@ -45,15 +46,15 @@ public final class RequestUtils {
 	public static boolean isGroupRequestFor(final GroupRequest groupRequest, final EClass eClass) {
 		@SuppressWarnings("unchecked")
 		final List<EditPart> editParts = groupRequest.getEditParts();
-		if (editParts == null) {
+		if(editParts == null) {
 			return false;
 		}
-		for (final EditPart editPart : editParts) {
+		for(final EditPart editPart : editParts) {
 			final Object model = editPart.getModel();
-			if (model instanceof View) {
-				final View view = (View) model;
+			if(model instanceof View) {
+				final View view = (View)model;
 				final EObject element = view.getElement();
-				if (!eClass.isInstance(element)) {
+				if(!eClass.isInstance(element)) {
 					return false;
 				}
 			} else {
@@ -67,8 +68,8 @@ public final class RequestUtils {
 	public static boolean isGroupRequestFor(final GroupRequest groupRequest, final Class<? extends EditPart> editPartClass) {
 		@SuppressWarnings("unchecked")
 		final List<EditPart> editParts = groupRequest.getEditParts();
-		for (final EditPart editPart : editParts) {
-			if (!editPartClass.isInstance(editPart)) {
+		for(final EditPart editPart : editParts) {
+			if(!editPartClass.isInstance(editPart)) {
 				return false;
 			}
 		}

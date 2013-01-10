@@ -18,6 +18,7 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 @SuppressWarnings("all")
 // disable warnings on generated code
 public class UMLLinkDescriptor extends UpdaterLinkDescriptor {
+
 	/**
 	 * @generated
 	 */
