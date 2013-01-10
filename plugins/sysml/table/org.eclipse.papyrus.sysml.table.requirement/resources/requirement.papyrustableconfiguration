@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PapyrusTableConfiguration:PapyrusTableConfiguration
+	xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:PapyrusTableConfiguration="http://www.eclipse.org/PapyrusTableInstance/0.9.1/papyrustableconfiguration"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:profilefacet="http://www.eclipse.org/papyrus/0.9/profilefacet"
+	xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation"
+	pastedElementId="org.eclipse.papyrus.sysml.Requirement">
+	<pastedElementContainmentFeature
+		href="http://www.eclipse.org/uml2/4.0.0/UML#//Package/packagedElement" />
+	<TableConfiguration>
+		<canBePresentedInTheTable xsi:type="query:JavaModelQuery"
+			href="emffacet:/query/requirementsTable#IsRequirement" />
+		<instantiationMethod name="Create Requirement"
+			description="This method creates a new Class stereotyped with requirement">
+			<instantiationQuery xsi:type="query:JavaModelQuery"
+				href="emffacet:/query/requirementsTable#CreateRequirements" />
+		</instantiationMethod>
+		<defaultLocalCustomizations
+			href="emffacet:/customization/table_UML_Class_hideAllClassFeatures#/" />
+		<defaultLocalCustomizations
+			href="emffacet:/customization/table_Ecore_hideEAnnotationFeature#/" />
+	</TableConfiguration>
+	<defaultColumns xsi:type="ecore:EAttribute"
+		href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetAttribute"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/text" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetAttribute"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/id" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetReference"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/derived" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetAttribute"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/derivedFrom" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetReference"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/satisfiedBy" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetReference"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/refinedBy" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetReference"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/tracedTo" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetReference"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/verifiedBy" />
+	<defaultColumns xsi:type="profilefacet:StereotypePropertyFacetReference"
+		href="platform:/plugin/org.eclipse.papyrus.sysml.facets/resources/sysml_profilefacet.facetSet#//Requirements/Requirement/master" />
+</PapyrusTableConfiguration:PapyrusTableConfiguration>

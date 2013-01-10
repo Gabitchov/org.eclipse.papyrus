@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.facet.widgets.nattable.internal.Messages;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.papyrus.infra.table.common.handlers.AbstractCreateNattableEditorCommand;
+import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.PapyrusTableConfiguration;
 import org.eclipse.papyrus.sysml.table.requirement.editor.RequirementTableEditor;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Element;
@@ -48,23 +49,17 @@ public class CreateRequirementTableCommand extends AbstractCreateNattableEditorC
 		super(RequirementTableEditor.EDITOR_TYPE, RequirementTableEditor.DEFAULT_NAME);
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.table.common.handlers.AbstractCreateNattableEditorCommand#getTableConfiguration()
-	 * 
-	 * @return
-	 */
 	@Override
-	protected TableConfiguration2 getTableConfiguration2() {
+	protected PapyrusTableConfiguration getPapyrusTableConfiguration() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		String symbolicName = org.eclipse.papyrus.sysml.table.requirement.Activator.getDefault().getBundle().getSymbolicName();
-		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/requirements.tableconfiguration2", true); //$NON-NLS-1$
+		URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/requirement.papyrustableconfiguration", true); //$NON-NLS-1$
 		Resource resource = resourceSet.getResource(uri, true);
 
-		TableConfiguration2 tableConfiguration = null;
-		if(resource.getContents().get(0) instanceof TableConfiguration2) {
-			tableConfiguration = (TableConfiguration2)resource.getContents().get(0);
+		PapyrusTableConfiguration tableConfiguration = null;
+		if(resource.getContents().get(0) instanceof PapyrusTableConfiguration) {
+			tableConfiguration = (PapyrusTableConfiguration)resource.getContents().get(0);
 			return tableConfiguration;
 		}
 		return null; 
