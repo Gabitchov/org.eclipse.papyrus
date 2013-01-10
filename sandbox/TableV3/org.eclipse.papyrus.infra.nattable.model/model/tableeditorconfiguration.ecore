@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tableeditorconfiguration" nsURI="http://www.eclipse.org/papyrus/tableeditorconfiguration/model"
+    nsPrefix="tableeditorconfiguration">
+  <eClassifiers xsi:type="ecore:EClass" name="TableEditorConfiguration" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementTypeId" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pastedElementContainmentFeature"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalTableEditorConfiguration" eSuperTypes="#//TableEditorConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultTableEditorConfiguration"
+        eType="#//TableEditorConfiguration"/>
+  </eClassifiers>
+</ecore:EPackage>

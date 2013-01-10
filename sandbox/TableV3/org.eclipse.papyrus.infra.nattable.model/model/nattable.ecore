@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="nattable" nsURI="http://www.eclipse.org/papyrus/nattable/model"
+    nsPrefix="nattable">
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorConfiguration" eType="ecore:EClass tableeditorconfiguration.ecore#//LocalTableEditorConfiguration"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="verticalContentProvider"
+        lowerBound="1" eType="#//IAxisContentsProvider" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horizontalContentProvider"
+        lowerBound="1" eType="#//IAxisContentsProvider" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IAxisContentsProvider" abstract="true"
+      interface="true" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <eOperations name="getAxis" upperBound="-1" eType="#//IAxis"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserContentProvider" eSuperTypes="#//IAxisContentsProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//IAxis"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DynamicEMFFeatureContentsProvider" eSuperTypes="#//IAxisContentsProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"
+        volatile="true" transient="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EObjectAxis" eSuperTypes="#//IAxis">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eobject" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IAxis" abstract="true" interface="true"
+      eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <eOperations name="getElement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+</ecore:EPackage>
