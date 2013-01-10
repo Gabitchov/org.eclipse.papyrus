@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.papyrus.infra.ptable.metamodel
-Bundle-SymbolicName: org.eclipse.papyrus.infra.ptable.metamodel; singleton:=true
-Bundle-Version: 0.1.0
-Require-Bundle: org.eclipse.emf.ecore
