@@ -10,11 +10,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Refresh the {@link IFigure} of a given {@link GraphicalEditPart}.
@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 public abstract class AbstractRefreshCommand extends Command {
 
 	private final GraphicalEditPart editPartToRefresh;
+
 	private final RootEditPart rootEditPart;
 
 	public AbstractRefreshCommand(final GraphicalEditPart editPartToRefresh) {
@@ -34,17 +35,22 @@ public abstract class AbstractRefreshCommand extends Command {
 	}
 
 	protected void refresh() {
-		if (this.editPartToRefresh.isActive()) {
-			DiagramHelper.refresh(this.editPartToRefresh, true);
-			// this is needed in order to update the bounds of the Figures from their layout manager constraints
-			this.editPartToRefresh.getFigure().invalidateTree();
-		} else if (this.rootEditPart.isActive()) {
-			/*
-			 * If the EditPart we needed to refresh is not active anymore, then it probably means that we undid its
-			 * creation, and re-created the object as part of a redo, with a different EditPart. In this case, just
-			 * refresh everything.
-			 */
-			DiagramHelper.refresh(this.rootEditPart, true);
-		}
+		Display.getDefault().asyncExec(new Runnable() {
+
+			public void run() {
+				if(AbstractRefreshCommand.this.editPartToRefresh.isActive()) {
+					DiagramHelper.refresh(AbstractRefreshCommand.this.editPartToRefresh, true);
+					// this is needed in order to update the bounds of the Figures from their layout manager constraints
+					AbstractRefreshCommand.this.editPartToRefresh.getFigure().invalidateTree();
+				} else if(AbstractRefreshCommand.this.rootEditPart.isActive()) {
+					/*
+					 * If the EditPart we needed to refresh is not active anymore, then it probably means that we undid its
+					 * creation, and re-created the object as part of a redo, with a different EditPart. In this case, just
+					 * refresh everything.
+					 */
+					DiagramHelper.refresh(AbstractRefreshCommand.this.rootEditPart, true);
+				}
+			}
+		});
 	}
 }
