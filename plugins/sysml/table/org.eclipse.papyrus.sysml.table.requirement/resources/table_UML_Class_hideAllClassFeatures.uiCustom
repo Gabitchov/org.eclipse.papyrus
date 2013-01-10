@@ -18,11 +18,6 @@
     </references>
   </types>
   <types metaclassName="uml.NamedElement">
-    <attributes attributeName="name">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
-      </customizedFeatures>
-    </attributes>
     <attributes attributeName="visibility">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
