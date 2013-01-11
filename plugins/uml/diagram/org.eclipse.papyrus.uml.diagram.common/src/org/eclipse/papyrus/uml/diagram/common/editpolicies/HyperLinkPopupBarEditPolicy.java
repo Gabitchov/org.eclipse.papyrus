@@ -69,6 +69,17 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		}
 	}
 
+	@Override
+	protected boolean shouldShowDiagramAssistant() {
+		//Basic fix for Table Hyperlinks (0.9 only ; properly fixed in 0.10.X with Hyperlink refactoring)
+		try {
+			return super.shouldShowDiagramAssistant();
+		} catch (NullPointerException ex) {
+			//Ignore 
+			return false;
+		}
+	}
+
 	/**
 	 * Default tool placed on the popup bar.
 	 * 

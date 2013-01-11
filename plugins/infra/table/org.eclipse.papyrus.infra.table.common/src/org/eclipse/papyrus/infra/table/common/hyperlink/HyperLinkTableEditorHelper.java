@@ -57,6 +57,7 @@ public class HyperLinkTableEditorHelper extends AbstractHyperLinkEditorHelper {
 				if(eAnnotation.getReferences().get(0).eResource() != null) {
 					hyperLinkDiagram.setObject(eAnnotation.getReferences().get(0));
 					hyperLinkDiagram.setTooltipText(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT));
+					hyperLinkDiagram.setIsDefault(Boolean.parseBoolean(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION)));
 					return hyperLinkDiagram;
 				}
 			}
