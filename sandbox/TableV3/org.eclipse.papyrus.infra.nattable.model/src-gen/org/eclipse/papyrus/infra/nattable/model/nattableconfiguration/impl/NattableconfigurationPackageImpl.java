@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationFactory;
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEd
  * <!-- end-user-doc -->
  * @generated
  */
-public class TableEditorConfigurationPackageImpl extends EPackageImpl implements TableEditorConfigurationPackage {
+public class NattableconfigurationPackageImpl extends EPackageImpl implements NattableconfigurationPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,12 +57,12 @@ public class TableEditorConfigurationPackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage#eNS_URI
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private TableEditorConfigurationPackageImpl() {
-		super(eNS_URI, TableEditorConfigurationFactory.eINSTANCE);
+	private NattableconfigurationPackageImpl() {
+		super(eNS_URI, NattableconfigurationFactory.eINSTANCE);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class TableEditorConfigurationPackageImpl extends EPackageImpl implements
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link TableEditorConfigurationPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link NattableconfigurationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,11 +84,11 @@ public class TableEditorConfigurationPackageImpl extends EPackageImpl implements
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static TableEditorConfigurationPackage init() {
-		if (isInited) return (TableEditorConfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(TableEditorConfigurationPackage.eNS_URI);
+	public static NattableconfigurationPackage init() {
+		if (isInited) return (NattableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TableEditorConfigurationPackageImpl theTableEditorConfigurationPackage = (TableEditorConfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TableEditorConfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TableEditorConfigurationPackageImpl());
+		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableconfigurationPackageImpl());
 
 		isInited = true;
 
@@ -96,18 +96,18 @@ public class TableEditorConfigurationPackageImpl extends EPackageImpl implements
 		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theTableEditorConfigurationPackage.createPackageContents();
+		theNattableconfigurationPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theTableEditorConfigurationPackage.initializePackageContents();
+		theNattableconfigurationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theTableEditorConfigurationPackage.freeze();
+		theNattableconfigurationPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(TableEditorConfigurationPackage.eNS_URI, theTableEditorConfigurationPackage);
-		return theTableEditorConfigurationPackage;
+		EPackage.Registry.INSTANCE.put(NattableconfigurationPackage.eNS_URI, theNattableconfigurationPackage);
+		return theNattableconfigurationPackage;
 	}
 
 	/**
@@ -169,8 +169,8 @@ public class TableEditorConfigurationPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableEditorConfigurationFactory getTableEditorConfigurationFactory() {
-		return (TableEditorConfigurationFactory)getEFactoryInstance();
+	public NattableconfigurationFactory getNattableconfigurationFactory() {
+		return (NattableconfigurationFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -248,4 +248,4 @@ public class TableEditorConfigurationPackageImpl extends EPackageImpl implements
 		createResource(eNS_URI);
 	}
 
-} //TableEditorConfigurationPackageImpl
+} //NattableconfigurationPackageImpl

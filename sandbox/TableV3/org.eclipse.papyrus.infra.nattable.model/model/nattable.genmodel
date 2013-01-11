@@ -5,7 +5,7 @@
     editorDirectory="/org.eclipse.papyrus.infra.nattable.model.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.nattable.model"
     modelName="Nattable" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.nattable.model.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore tableeditorconfiguration.genmodel#//tableeditorconfiguration"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore nattableconfiguration.genmodel#//nattableconfiguration"
     operationReflection="true" importOrganizing="true">
   <foreignModel>nattable.ecore</foreignModel>
   <genPackages prefix="Nattable" basePackage="org.eclipse.papyrus.infra.nattable.model"

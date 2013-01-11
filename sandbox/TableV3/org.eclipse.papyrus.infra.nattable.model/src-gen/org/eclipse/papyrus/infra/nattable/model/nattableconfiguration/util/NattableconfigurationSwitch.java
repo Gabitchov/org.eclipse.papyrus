@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.util;
+package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.util;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.*;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,17 +30,17 @@ import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage
+ * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage
  * @generated
  */
-public class TableEditorConfigurationSwitch<T> extends Switch<T> {
+public class NattableconfigurationSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static TableEditorConfigurationPackage modelPackage;
+	protected static NattableconfigurationPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -48,9 +48,9 @@ public class TableEditorConfigurationSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableEditorConfigurationSwitch() {
+	public NattableconfigurationSwitch() {
 		if (modelPackage == null) {
-			modelPackage = TableEditorConfigurationPackage.eINSTANCE;
+			modelPackage = NattableconfigurationPackage.eINSTANCE;
 		}
 	}
 
@@ -77,14 +77,14 @@ public class TableEditorConfigurationSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION: {
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION: {
 				TableEditorConfiguration tableEditorConfiguration = (TableEditorConfiguration)theEObject;
 				T result = caseTableEditorConfiguration(tableEditorConfiguration);
 				if (result == null) result = caseEModelElement(tableEditorConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: {
+			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: {
 				LocalTableEditorConfiguration localTableEditorConfiguration = (LocalTableEditorConfiguration)theEObject;
 				T result = caseLocalTableEditorConfiguration(localTableEditorConfiguration);
 				if (result == null) result = caseTableEditorConfiguration(localTableEditorConfiguration);
@@ -157,4 +157,4 @@ public class TableEditorConfigurationSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //TableEditorConfigurationSwitch
+} //NattableconfigurationSwitch

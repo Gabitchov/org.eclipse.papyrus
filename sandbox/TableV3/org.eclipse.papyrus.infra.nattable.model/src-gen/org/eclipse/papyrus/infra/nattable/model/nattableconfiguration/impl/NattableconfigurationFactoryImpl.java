@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.*;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,24 +28,24 @@ import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TableEditorConfigurationFactoryImpl extends EFactoryImpl implements TableEditorConfigurationFactory {
+public class NattableconfigurationFactoryImpl extends EFactoryImpl implements NattableconfigurationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static TableEditorConfigurationFactory init() {
+	public static NattableconfigurationFactory init() {
 		try {
-			TableEditorConfigurationFactory theTableEditorConfigurationFactory = (TableEditorConfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/tableeditorconfiguration/model"); //$NON-NLS-1$ 
-			if (theTableEditorConfigurationFactory != null) {
-				return theTableEditorConfigurationFactory;
+			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/nattableconfiguration/model"); //$NON-NLS-1$ 
+			if (theNattableconfigurationFactory != null) {
+				return theNattableconfigurationFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new TableEditorConfigurationFactoryImpl();
+		return new NattableconfigurationFactoryImpl();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class TableEditorConfigurationFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableEditorConfigurationFactoryImpl() {
+	public NattableconfigurationFactoryImpl() {
 		super();
 	}
 
@@ -66,8 +66,8 @@ public class TableEditorConfigurationFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION: return createTableEditorConfiguration();
-			case TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: return createLocalTableEditorConfiguration();
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION: return createTableEditorConfiguration();
+			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: return createLocalTableEditorConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -98,8 +98,8 @@ public class TableEditorConfigurationFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableEditorConfigurationPackage getTableEditorConfigurationPackage() {
-		return (TableEditorConfigurationPackage)getEPackage();
+	public NattableconfigurationPackage getNattableconfigurationPackage() {
+		return (NattableconfigurationPackage)getEPackage();
 	}
 
 	/**
@@ -109,8 +109,8 @@ public class TableEditorConfigurationFactoryImpl extends EFactoryImpl implements
 	 * @generated
 	 */
 	@Deprecated
-	public static TableEditorConfigurationPackage getPackage() {
-		return TableEditorConfigurationPackage.eINSTANCE;
+	public static NattableconfigurationPackage getPackage() {
+		return NattableconfigurationPackage.eINSTANCE;
 	}
 
-} //TableEditorConfigurationFactoryImpl
+} //NattableconfigurationFactoryImpl

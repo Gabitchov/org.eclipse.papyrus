@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,9 +31,9 @@ import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEd
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationImpl#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.TableEditorConfigurationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.TableEditorConfigurationImpl#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.TableEditorConfigurationImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,7 +106,7 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return TableEditorConfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION;
+		return NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION;
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE, oldType, type));
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 		String oldPastedElementTypeId = pastedElementTypeId;
 		pastedElementTypeId = newPastedElementTypeId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID, oldPastedElementTypeId, pastedElementTypeId));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID, oldPastedElementTypeId, pastedElementTypeId));
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 			pastedElementContainmentFeature = (EReference)eResolveProxy(oldPastedElementContainmentFeature);
 			if (pastedElementContainmentFeature != oldPastedElementContainmentFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
 			}
 		}
 		return pastedElementContainmentFeature;
@@ -186,7 +186,7 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 		EReference oldPastedElementContainmentFeature = pastedElementContainmentFeature;
 		pastedElementContainmentFeature = newPastedElementContainmentFeature;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
 	}
 
 	/**
@@ -197,11 +197,11 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
 				return getType();
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
 				return getPastedElementTypeId();
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				if (resolve) return getPastedElementContainmentFeature();
 				return basicGetPastedElementContainmentFeature();
 		}
@@ -216,13 +216,13 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
 				setType((String)newValue);
 				return;
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
 				setPastedElementTypeId((String)newValue);
 				return;
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				setPastedElementContainmentFeature((EReference)newValue);
 				return;
 		}
@@ -237,13 +237,13 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
 				setPastedElementTypeId(PASTED_ELEMENT_TYPE_ID_EDEFAULT);
 				return;
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				setPastedElementContainmentFeature((EReference)null);
 				return;
 		}
@@ -258,11 +258,11 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
 				return PASTED_ELEMENT_TYPE_ID_EDEFAULT == null ? pastedElementTypeId != null : !PASTED_ELEMENT_TYPE_ID_EDEFAULT.equals(pastedElementTypeId);
-			case TableEditorConfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				return pastedElementContainmentFeature != null;
 		}
 		return super.eIsSet(featureID);

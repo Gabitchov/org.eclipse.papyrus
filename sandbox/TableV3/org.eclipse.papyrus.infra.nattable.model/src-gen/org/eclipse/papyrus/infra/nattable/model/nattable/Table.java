@@ -12,10 +12,10 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable;
 
+
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration;
 
 /**
  * <!-- begin-user-doc -->

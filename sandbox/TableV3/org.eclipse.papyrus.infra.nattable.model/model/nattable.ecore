@@ -7,7 +7,7 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="editorConfiguration" eType="ecore:EClass tableeditorconfiguration.ecore#//LocalTableEditorConfiguration"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorConfiguration" eType="ecore:EClass nattableconfiguration.ecore#//LocalTableEditorConfiguration"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="verticalContentProvider"
         lowerBound="1" eType="#//IAxisContentsProvider" containment="true"/>

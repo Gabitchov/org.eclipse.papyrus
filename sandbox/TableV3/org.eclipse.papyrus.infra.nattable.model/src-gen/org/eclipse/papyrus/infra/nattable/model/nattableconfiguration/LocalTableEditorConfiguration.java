@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration;
+package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration;
 
 
 /**
@@ -21,11 +21,11 @@ package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage#getLocalTableEditorConfiguration()
+ * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage#getLocalTableEditorConfiguration()
  * @model
  * @generated
  */
@@ -40,14 +40,14 @@ public interface LocalTableEditorConfiguration extends TableEditorConfiguration 
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Default Table Editor Configuration</em>' reference.
 	 * @see #setDefaultTableEditorConfiguration(TableEditorConfiguration)
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage#getLocalTableEditorConfiguration_DefaultTableEditorConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage#getLocalTableEditorConfiguration_DefaultTableEditorConfiguration()
 	 * @model
 	 * @generated
 	 */
 	TableEditorConfiguration getDefaultTableEditorConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Default Table Editor Configuration</em>' reference.

@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEd
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.LocalTableEditorConfigurationImpl#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.LocalTableEditorConfigurationImpl#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,7 +63,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return TableEditorConfigurationPackage.Literals.LOCAL_TABLE_EDITOR_CONFIGURATION;
+		return NattableconfigurationPackage.Literals.LOCAL_TABLE_EDITOR_CONFIGURATION;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 			defaultTableEditorConfiguration = (TableEditorConfiguration)eResolveProxy(oldDefaultTableEditorConfiguration);
 			if (defaultTableEditorConfiguration != oldDefaultTableEditorConfiguration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION, oldDefaultTableEditorConfiguration, defaultTableEditorConfiguration));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION, oldDefaultTableEditorConfiguration, defaultTableEditorConfiguration));
 			}
 		}
 		return defaultTableEditorConfiguration;
@@ -101,7 +101,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 		TableEditorConfiguration oldDefaultTableEditorConfiguration = defaultTableEditorConfiguration;
 		defaultTableEditorConfiguration = newDefaultTableEditorConfiguration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION, oldDefaultTableEditorConfiguration, defaultTableEditorConfiguration));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION, oldDefaultTableEditorConfiguration, defaultTableEditorConfiguration));
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
+			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
 				if (resolve) return getDefaultTableEditorConfiguration();
 				return basicGetDefaultTableEditorConfiguration();
 		}
@@ -127,7 +127,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
+			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
 				setDefaultTableEditorConfiguration((TableEditorConfiguration)newValue);
 				return;
 		}
@@ -142,7 +142,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
+			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
 				setDefaultTableEditorConfiguration((TableEditorConfiguration)null);
 				return;
 		}
@@ -157,7 +157,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TableEditorConfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
+			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION:
 				return defaultTableEditorConfiguration != null;
 		}
 		return super.eIsSet(featureID);

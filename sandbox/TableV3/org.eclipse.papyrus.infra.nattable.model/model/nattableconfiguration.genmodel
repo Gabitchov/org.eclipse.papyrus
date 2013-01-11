@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;&#x9;Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.infra.nattable.model/src-gen" editDirectory="/org.eclipse.papyrus.infra.nattable.model.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.infra.nattable.model.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.nattable.model"
+    modelName="Nattableconfiguration" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/org.eclipse.papyrus.infra.nattable.model.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>nattableconfiguration.ecore</foreignModel>
+  <genPackages prefix="Nattableconfiguration" basePackage="org.eclipse.papyrus.infra.nattable.model"
+      disposableProviderFactory="true" ecorePackage="nattableconfiguration.ecore#/">
+    <genClasses ecoreClass="nattableconfiguration.ecore#//TableEditorConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattableconfiguration.ecore#//TableEditorConfiguration/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattableconfiguration.ecore#//TableEditorConfiguration/pastedElementTypeId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nattableconfiguration.ecore#//TableEditorConfiguration/pastedElementContainmentFeature"/>
+    </genClasses>
+    <genClasses ecoreClass="nattableconfiguration.ecore#//LocalTableEditorConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nattableconfiguration.ecore#//LocalTableEditorConfiguration/defaultTableEditorConfiguration"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

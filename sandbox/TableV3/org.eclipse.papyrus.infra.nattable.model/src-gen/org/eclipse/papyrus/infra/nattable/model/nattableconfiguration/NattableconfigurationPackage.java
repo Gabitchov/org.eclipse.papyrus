@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration;
+package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -30,18 +30,18 @@ import org.eclipse.emf.ecore.EcorePackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationFactory
+ * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationFactory
  * @model kind="package"
  * @generated
  */
-public interface TableEditorConfigurationPackage extends EPackage {
+public interface NattableconfigurationPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "tableeditorconfiguration"; //$NON-NLS-1$
+	String eNAME = "nattableconfiguration"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -49,7 +49,7 @@ public interface TableEditorConfigurationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/tableeditorconfiguration/model"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/papyrus/nattableconfiguration/model"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -57,7 +57,7 @@ public interface TableEditorConfigurationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "tableeditorconfiguration"; //$NON-NLS-1$
+	String eNS_PREFIX = "nattableconfiguration"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
@@ -65,14 +65,14 @@ public interface TableEditorConfigurationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TableEditorConfigurationPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationPackageImpl.init();
+	NattableconfigurationPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.NattableconfigurationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationImpl <em>Table Editor Configuration</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.TableEditorConfigurationImpl <em>Table Editor Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationPackageImpl#getTableEditorConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.TableEditorConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableEditorConfiguration()
 	 * @generated
 	 */
 	int TABLE_EDITOR_CONFIGURATION = 0;
@@ -141,11 +141,11 @@ public interface TableEditorConfigurationPackage extends EPackage {
 	int TABLE_EDITOR_CONFIGURATION_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.LocalTableEditorConfigurationImpl <em>Local Table Editor Configuration</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.LocalTableEditorConfigurationImpl <em>Local Table Editor Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.LocalTableEditorConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationPackageImpl#getLocalTableEditorConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.LocalTableEditorConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.NattableconfigurationPackageImpl#getLocalTableEditorConfiguration()
 	 * @generated
 	 */
 	int LOCAL_TABLE_EDITOR_CONFIGURATION = 1;
@@ -224,64 +224,64 @@ public interface TableEditorConfigurationPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration <em>Table Editor Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration <em>Table Editor Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Table Editor Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration
 	 * @generated
 	 */
 	EClass getTableEditorConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration#getType()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getType()
 	 * @see #getTableEditorConfiguration()
 	 * @generated
 	 */
 	EAttribute getTableEditorConfiguration_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration#getPastedElementTypeId <em>Pasted Element Type Id</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId <em>Pasted Element Type Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Pasted Element Type Id</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration#getPastedElementTypeId()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId()
 	 * @see #getTableEditorConfiguration()
 	 * @generated
 	 */
 	EAttribute getTableEditorConfiguration_PastedElementTypeId();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Pasted Element Containment Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature()
 	 * @see #getTableEditorConfiguration()
 	 * @generated
 	 */
 	EReference getTableEditorConfiguration_PastedElementContainmentFeature();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration <em>Local Table Editor Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration <em>Local Table Editor Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Local Table Editor Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration
 	 * @generated
 	 */
 	EClass getLocalTableEditorConfiguration();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Default Table Editor Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration()
 	 * @see #getLocalTableEditorConfiguration()
 	 * @generated
 	 */
@@ -294,7 +294,7 @@ public interface TableEditorConfigurationPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	TableEditorConfigurationFactory getTableEditorConfigurationFactory();
+	NattableconfigurationFactory getNattableconfigurationFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -311,11 +311,11 @@ public interface TableEditorConfigurationPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationImpl <em>Table Editor Configuration</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.TableEditorConfigurationImpl <em>Table Editor Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationPackageImpl#getTableEditorConfiguration()
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.TableEditorConfigurationImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableEditorConfiguration()
 		 * @generated
 		 */
 		EClass TABLE_EDITOR_CONFIGURATION = eINSTANCE.getTableEditorConfiguration();
@@ -345,11 +345,11 @@ public interface TableEditorConfigurationPackage extends EPackage {
 		EReference TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = eINSTANCE.getTableEditorConfiguration_PastedElementContainmentFeature();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.LocalTableEditorConfigurationImpl <em>Local Table Editor Configuration</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.LocalTableEditorConfigurationImpl <em>Local Table Editor Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.LocalTableEditorConfigurationImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.impl.TableEditorConfigurationPackageImpl#getLocalTableEditorConfiguration()
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.LocalTableEditorConfigurationImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.NattableconfigurationPackageImpl#getLocalTableEditorConfiguration()
 		 * @generated
 		 */
 		EClass LOCAL_TABLE_EDITOR_CONFIGURATION = eINSTANCE.getLocalTableEditorConfiguration();
@@ -364,4 +364,4 @@ public interface TableEditorConfigurationPackage extends EPackage {
 
 	}
 
-} //TableEditorConfigurationPackage
+} //NattableconfigurationPackage

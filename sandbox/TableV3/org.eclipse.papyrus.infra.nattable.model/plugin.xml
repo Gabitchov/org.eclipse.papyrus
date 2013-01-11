@@ -25,13 +25,7 @@
 
 
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated tableeditorconfiguration -->
-      <package
-            uri="http://www.eclipse.org/papyrus/tableeditorconfiguration/model"
-            class="org.eclipse.papyrus.infra.nattable.model.tableeditorconfiguration.TableEditorConfigurationPackage"
-            genModel="model/tableeditorconfiguration.genmodel"/>
-   </extension>
+
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated nattable -->
@@ -39,6 +33,14 @@
             uri="http://www.eclipse.org/papyrus/nattable/model"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage"
             genModel="model/nattable.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattableconfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattableconfiguration/model"
+            class="org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage"
+            genModel="model/nattableconfiguration.genmodel"/>
    </extension>
 
 </plugin>
