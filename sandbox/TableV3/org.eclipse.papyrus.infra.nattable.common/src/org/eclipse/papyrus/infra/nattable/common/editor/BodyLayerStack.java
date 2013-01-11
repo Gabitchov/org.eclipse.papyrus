@@ -9,6 +9,7 @@ import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 
 
+
 public class BodyLayerStack extends AbstractLayerTransform {
 
 	private final SelectionLayer selectionLayer;

@@ -22,6 +22,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,5 +56,31 @@ public interface LocalTableEditorConfiguration extends TableEditorConfiguration 
 	 * @generated
 	 */
 	void setDefaultTableEditorConfiguration(TableEditorConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage#getLocalTableEditorConfiguration_Type()
+	 * @model id="true"
+	 * @generated
+	 */
+	String getType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(String value);
 
 } // LocalTableEditorConfiguration

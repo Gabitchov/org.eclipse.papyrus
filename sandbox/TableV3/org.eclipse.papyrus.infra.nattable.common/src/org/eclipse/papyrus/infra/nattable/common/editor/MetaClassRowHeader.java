@@ -1,10 +1,8 @@
 package org.eclipse.papyrus.infra.nattable.common.editor;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattablepackage.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+
 
 
 public class MetaClassRowHeader implements IDataProvider {

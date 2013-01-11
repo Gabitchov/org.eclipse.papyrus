@@ -14,7 +14,7 @@ package org.eclipse.papyrus.infra.nattable.common.utils;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.infra.nattable.model.nattablepackage.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 

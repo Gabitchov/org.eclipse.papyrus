@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.nattable.generic.handlers;
 
 import org.eclipse.papyrus.infra.nattable.common.editor.handlers.AbstractCreateNattableEditorHandler;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
 import org.eclipse.papyrus.uml.nattable.generic.editor.GenericUMLNattableEditor;
 
 /**
@@ -30,6 +31,11 @@ public class CreateNattableEditorCommand extends AbstractCreateNattableEditorHan
 	 */
 	public CreateNattableEditorCommand() {
 		super(GenericUMLNattableEditor.EDITOR_TYPE, GenericUMLNattableEditor.DEFAULT_NAME);
+	}
+
+	@Override
+	protected TableEditorConfiguration getDefaultTableEditorConfiguration() {
+		return null;
 	}
 
 }

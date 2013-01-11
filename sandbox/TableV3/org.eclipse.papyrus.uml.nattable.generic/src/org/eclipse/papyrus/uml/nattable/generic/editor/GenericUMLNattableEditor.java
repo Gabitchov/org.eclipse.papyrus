@@ -2,7 +2,7 @@ package org.eclipse.papyrus.uml.nattable.generic.editor;
 
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractPapyrusNattableEditor;
-import org.eclipse.papyrus.infra.nattable.model.nattablepackage.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 public class GenericUMLNattableEditor extends AbstractPapyrusNattableEditor {
 

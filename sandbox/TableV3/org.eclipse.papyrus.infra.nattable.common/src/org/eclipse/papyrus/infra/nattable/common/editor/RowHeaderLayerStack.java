@@ -10,7 +10,6 @@ import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.config.DefaultSelectionBindings;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
-import org.eclipse.papyrus.infra.nattable.common.editor.ColumnHeaderLayerStack.CustomConfig;
 import org.eclipse.swt.SWT;
 
 

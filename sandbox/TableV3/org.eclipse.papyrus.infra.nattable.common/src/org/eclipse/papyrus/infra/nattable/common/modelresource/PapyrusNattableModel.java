@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
-import org.eclipse.papyrus.infra.nattable.model.nattablepackage.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
 

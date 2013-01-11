@@ -87,22 +87,13 @@ public interface NattableconfigurationPackage extends EPackage {
 	int TABLE_EDITOR_CONFIGURATION__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__TYPE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Pasted Element Type Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
@@ -111,7 +102,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Table Editor Configuration</em>' class.
@@ -120,7 +111,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -160,15 +151,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	int LOCAL_TABLE_EDITOR_CONFIGURATION__EANNOTATIONS = TABLE_EDITOR_CONFIGURATION__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE = TABLE_EDITOR_CONFIGURATION__TYPE;
-
-	/**
 	 * The feature id for the '<em><b>Pasted Element Type Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,13 +178,22 @@ public interface NattableconfigurationPackage extends EPackage {
 	int LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION = TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE = TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Local Table Editor Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT + 1;
+	int LOCAL_TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -232,17 +223,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTableEditorConfiguration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getType()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EAttribute getTableEditorConfiguration_Type();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId <em>Pasted Element Type Id</em>}'.
@@ -288,6 +268,17 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getLocalTableEditorConfiguration_DefaultTableEditorConfiguration();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration#getType()
+	 * @see #getLocalTableEditorConfiguration()
+	 * @generated
+	 */
+	EAttribute getLocalTableEditorConfiguration_Type();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -319,14 +310,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TABLE_EDITOR_CONFIGURATION = eINSTANCE.getTableEditorConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE_EDITOR_CONFIGURATION__TYPE = eINSTANCE.getTableEditorConfiguration_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Pasted Element Type Id</b></em>' attribute feature.
@@ -361,6 +344,14 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION = eINSTANCE.getLocalTableEditorConfiguration_DefaultTableEditorConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE = eINSTANCE.getLocalTableEditorConfiguration_Type();
 
 	}
 

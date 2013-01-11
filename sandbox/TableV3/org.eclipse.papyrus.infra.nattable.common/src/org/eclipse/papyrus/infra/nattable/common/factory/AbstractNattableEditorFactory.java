@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
-import org.eclipse.papyrus.infra.nattable.model.nattablepackage.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -72,7 +72,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
 		if(pageIdentifier instanceof Table) {
-			return getExpectedType().equals(((Table)pageIdentifier).getType());
+			return getExpectedType().equals(((Table)pageIdentifier).getEditorConfiguration().getType());
 		}
 		return false;
 	}

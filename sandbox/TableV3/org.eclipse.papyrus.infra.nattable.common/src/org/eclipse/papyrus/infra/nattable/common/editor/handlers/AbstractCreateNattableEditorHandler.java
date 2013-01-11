@@ -39,11 +39,14 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.emf.utils.*;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
-import org.eclipse.papyrus.infra.nattable.model.nattablepackage.NattablePackageFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattablepackage.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -223,16 +226,24 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 *         The model where to save the TableInstance is not found.
 	 */
 	protected Object createEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
-		final Table table = NattablePackageFactory.eINSTANCE.createTable();
+		final Table table = NattableFactory.eINSTANCE.createTable();
+		final LocalTableEditorConfiguration config = NattableconfigurationFactory.eINSTANCE.createLocalTableEditorConfiguration();
+		config.setType(editorType);
+		final TableEditorConfiguration defaultConfig = getDefaultTableEditorConfiguration();
+		if(defaultConfig != null) {
+			config.setDefaultTableEditorConfiguration(defaultConfig);
+		}
+		table.setEditorConfiguration(config);
 		table.setDescription(description);
 		table.setName(name);
-		table.setType(editorType);
 		table.setContext(getTableContext());
 		// Save the model in the associated resource
 		PapyrusNattableModel model = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
 		model.addPapyrusTable(table);
 		return table;
 	}
+
+	protected abstract TableEditorConfiguration getDefaultTableEditorConfiguration();
 
 	/**
 	 * Get the current MultiDiagramEditor.
