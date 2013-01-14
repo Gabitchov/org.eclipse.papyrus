@@ -23,6 +23,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -44,6 +45,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.facet.infra.facet.Facet;
@@ -59,12 +61,16 @@ import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.AttributeColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.DefaultLabelColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.EContainerColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetAttributeColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FeatureColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.MetaClassColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.ReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstanceFactory;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
+import org.eclipse.emf.facet.widgets.nattable.internal.ColumnComparator;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -138,6 +144,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 	/** the map between existing columns (visible or not) and the feature */
 	final private Map<ETypedElement, Column> columnsFeatureMap = new HashMap<ETypedElement, Column>();
 
+	final private Map<Column, Boolean> defaultColumnsAndVisibility = new TreeMap<Column, Boolean>(new ColumnComparator());
 
 	/**
 	 * clear the fields
@@ -211,8 +218,17 @@ public class SelectColumnsHandler extends AbstractHandler {
 			} else if(current instanceof FacetReferenceColumn) {
 				this.initialAdditionalFeatureSelected.add(((FacetReferenceColumn)current).getReference());
 			}
-			//FIXME : others kinds of columns are not managed
+		}
 
+		//FIXME : query columns are not yet managed
+		for(final Column current : papyrusTable.getTable().getColumns()) {
+			if(current instanceof DefaultLabelColumn) {
+				this.defaultColumnsAndVisibility.put(current, !current.isIsHidden());
+			} else if(current instanceof MetaClassColumn) {
+				this.defaultColumnsAndVisibility.put(current, !current.isIsHidden());
+			} else if(current instanceof EContainerColumn) {
+				this.defaultColumnsAndVisibility.put(current, !current.isIsHidden());
+			}
 		}
 
 		for(final Column current : papyrusTable.getTable().getColumns()) {
@@ -277,11 +293,19 @@ public class SelectColumnsHandler extends AbstractHandler {
 
 			SortedFeaturesContentProvider contentProvider = new SortedFeaturesContentProvider();
 			//			contentProvider.setInitialSelection((Collection<?>)initialSelection);
-			final ColumnsToShowDialog dialog = new ColumnsToShowDialog(Display.getCurrent().getActiveShell(), this.allDirectFeatures, allFacetSets, initialSelection, getLabelProvider(), contentProvider);
+			final ColumnsToShowDialog dialog = new ColumnsToShowDialog(Display.getCurrent().getActiveShell(), defaultColumnsAndVisibility, this.allDirectFeatures, allFacetSets, initialSelection, getLabelProvider(), contentProvider);
 			if(dialog.open() == Window.OK) {
 				final Object[] result = dialog.getResult();
 				final Set<ETypedElement> directFeatures = (Set<ETypedElement>)result[0];
 				final Set<ETypedElement> additionalFeatures = (Set<ETypedElement>)result[1];
+
+				//0. update the visibility for the default columns
+				for(final Column col : this.defaultColumnsAndVisibility.keySet()) {
+					final Command cmd = SetCommand.create(getEditingDomain(), col, TableinstancePackage.eINSTANCE.getColumn_IsHidden(), !this.defaultColumnsAndVisibility.get(col));
+					compoundCmd.append(cmd);
+				}
+
+
 				if(!directFeatures.equals(this.initialDirectFeatureSelected)) {
 					//1. get command to show/hide direct features
 					final Command cmd = getShowHideDirectFeatureColumnsCommand(papyrusTable, (NatTableWidget)widget, directFeatures);

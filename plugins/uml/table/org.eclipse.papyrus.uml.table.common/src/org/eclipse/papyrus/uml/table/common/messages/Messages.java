@@ -25,6 +25,8 @@ public class Messages extends NLS {
 
 	public static String ColumnsToShowDialog_AdvancedMode;
 
+	public static String ColumnsToShowDialog_default_columns;
+
 	public static String ColumnsToShowDialog_DeselectAll;
 
 	public static String ColumnsToShowDialog_DeselectAllAvailableAdditionalFeatures;

@@ -14,8 +14,10 @@ package org.eclipse.papyrus.uml.table.common.dialog;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -25,6 +27,8 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.FacetSet;
 import org.eclipse.emf.facet.infra.facet.FacetStructuralFeature;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
+import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUtils;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -85,12 +89,17 @@ public class ColumnsToShowDialog extends SelectionDialog {
 	/** This filter is used to filter additional content */
 	private ViewerFilter additionalContentFilter;
 
+	/** this map provides all the default columns and their current visibility */
+	final private Map<Column, Boolean> defaultColumnsAndVisiblity;
+	
 	/**
 	 * 
 	 * Constructor.
 	 * 
 	 * @param parentShell
 	 *        the parent shell
+	 * @param defaultColumnsAndVisibility
+	 *        the visibility of the default columns
 	 * @param features
 	 *        the direct features
 	 * @param additionalFeatures
@@ -102,7 +111,7 @@ public class ColumnsToShowDialog extends SelectionDialog {
 	 * @param contentProvider
 	 *        the content provider used by the viewers
 	 */
-	public ColumnsToShowDialog(final Shell parentShell, final Collection<ETypedElement> features, final Collection<ENamedElement> additionalFeatures, final Collection<ETypedElement> initialSelection, final ILabelProvider labelProvider, final IContentProvider contentProvider) {
+	public ColumnsToShowDialog(final Shell parentShell, final Map<Column, Boolean> defaultColumnsAndVisibility, final Collection<ETypedElement> features, final Collection<ENamedElement> additionalFeatures, final Collection<ETypedElement> initialSelection, final ILabelProvider labelProvider, final IContentProvider contentProvider) {
 		super(parentShell);
 		setTitle(Messages.ColumnsToShowDialog_SelecColumnsToShow);
 		this.directFeatures = features;
@@ -111,6 +120,7 @@ public class ColumnsToShowDialog extends SelectionDialog {
 		this.contentProvider = (SortedFeaturesContentProvider)contentProvider;
 		this.initialSelection = initialSelection;
 		this.additionalContentFilter = new AdditionalContentsFilter(initialSelection);
+		this.defaultColumnsAndVisiblity = defaultColumnsAndVisibility;
 	}
 
 	@Override
@@ -122,6 +132,13 @@ public class ColumnsToShowDialog extends SelectionDialog {
 		layout.numColumns = 2;
 		layout.makeColumnsEqualWidth = true;
 
+		final Composite defaultColumnPane = new Composite(parent, SWT.NONE);
+		defaultColumnPane.setLayout(new GridLayout(3, false));
+		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		data.horizontalSpan = 2;
+		defaultColumnPane.setLayoutData(data);
+
+
 		final Composite selectorPane = new Composite(parent, SWT.NONE);
 		selectorPane.setLayout(new GridLayout(2, false));
 		selectorPane.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -130,14 +147,43 @@ public class ColumnsToShowDialog extends SelectionDialog {
 		selectedPane.setLayout(new GridLayout(2, false));
 		selectedPane.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
+		createDefaultColumnsSection(defaultColumnPane);
 		createDirectFeaturesSection(selectorPane);
 		createAdditionalFeaturesSection(selectedPane);
 
 		getShell().setSize(DIALOG_WIDTH, DIALOG_HEIGHT);
-		getShell().layout();
+		getShell().pack();
 
 		//TODO
 		//		super.getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
+	}
+
+
+	protected void createDefaultColumnsSection(final Composite selectorPane) {
+		final Composite featureComposite = new Composite(selectorPane, SWT.BORDER);
+		featureComposite.setLayout(new GridLayout(3, false));
+		featureComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		final Label label = new Label(featureComposite, SWT.NONE);
+		label.setText("Default Columns");
+		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		data.horizontalSpan = 3;
+		label.setLayoutData(data);
+
+		for(final Column current : defaultColumnsAndVisiblity.keySet()) {
+			Button button = new Button(featureComposite, SWT.CHECK);
+			button.setText( NatTableWidgetInternalUtils.getColumnName(current));
+			button.setSelection(defaultColumnsAndVisiblity.get(current));
+			button.addSelectionListener(new SelectionListener() {
+
+				public void widgetSelected(SelectionEvent e) {
+					ColumnsToShowDialog.this.defaultColumnsAndVisiblity.put(current, !ColumnsToShowDialog.this.defaultColumnsAndVisiblity.get(current));
+				}
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					//nothing to do				
+				}
+			});
+		}
 	}
 
 	/**
@@ -233,7 +279,7 @@ public class ColumnsToShowDialog extends SelectionDialog {
 
 		//3. create the tree for this section
 		this.additionnalFeaturesTree = new FilteredCheckboxTree(facetComposite, SWT.BORDER | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CHECK, new PatternFilter());//, true);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(this.additionnalFeaturesTree);
+		//		GridDataFactory.fillDefaults().grab(true, true).applyTo(this.additionnalFeaturesTree);
 		this.additionnalFeaturesTree.getViewer().expandAll();
 		this.additionnalFeaturesTree.getViewer().addFilter(this.additionalContentFilter);
 		this.additionnalFeaturesTree.getViewer().setLabelProvider(this.labelProvider);
