@@ -156,6 +156,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 		this.facetSetsUsedInTheTable.clear();
 		this.columnsFeatureMap.clear();
 		this.allAdditionalContents.clear();
+		this.defaultColumnsAndVisibility.clear();
 		//		this.additionalContentProviders.clear();
 	}
 
