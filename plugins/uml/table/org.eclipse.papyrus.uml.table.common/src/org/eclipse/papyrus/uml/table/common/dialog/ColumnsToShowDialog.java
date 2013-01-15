@@ -14,7 +14,6 @@ package org.eclipse.papyrus.uml.table.common.dialog;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +90,7 @@ public class ColumnsToShowDialog extends SelectionDialog {
 
 	/** this map provides all the default columns and their current visibility */
 	final private Map<Column, Boolean> defaultColumnsAndVisiblity;
-	
+
 	/**
 	 * 
 	 * Constructor.
@@ -127,17 +126,16 @@ public class ColumnsToShowDialog extends SelectionDialog {
 	public void create() {
 		super.create();
 
-		final Composite parent = (Composite)getDialogArea();
-		final GridLayout layout = (GridLayout)parent.getLayout();
-		layout.numColumns = 2;
-		layout.makeColumnsEqualWidth = true;
+		final Composite parent = new Composite((Composite)getDialogArea(), SWT.NONE);
+		final GridLayout layout = new GridLayout(2, true);
+		parent.setLayout(layout);
+		parent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		final Composite defaultColumnPane = new Composite(parent, SWT.NONE);
-		defaultColumnPane.setLayout(new GridLayout(3, false));
-		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		defaultColumnPane.setLayout(new GridLayout(1, false));
+		final GridData data = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
 		data.horizontalSpan = 2;
 		defaultColumnPane.setLayoutData(data);
-
 
 		final Composite selectorPane = new Composite(parent, SWT.NONE);
 		selectorPane.setLayout(new GridLayout(2, false));
@@ -151,7 +149,6 @@ public class ColumnsToShowDialog extends SelectionDialog {
 		createDirectFeaturesSection(selectorPane);
 		createAdditionalFeaturesSection(selectedPane);
 
-		getShell().setSize(DIALOG_WIDTH, DIALOG_HEIGHT);
 		getShell().pack();
 
 		//TODO
@@ -171,7 +168,7 @@ public class ColumnsToShowDialog extends SelectionDialog {
 
 		for(final Column current : defaultColumnsAndVisiblity.keySet()) {
 			Button button = new Button(featureComposite, SWT.CHECK);
-			button.setText( NatTableWidgetInternalUtils.getColumnName(current));
+			button.setText(NatTableWidgetInternalUtils.getColumnName(current));
 			button.setSelection(defaultColumnsAndVisiblity.get(current));
 			button.addSelectionListener(new SelectionListener() {
 
@@ -510,7 +507,7 @@ public class ColumnsToShowDialog extends SelectionDialog {
 		 */
 		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
-			if(element instanceof StereotypeFacet){
+			if(element instanceof StereotypeFacet) {
 				final StereotypeFacet facet = (StereotypeFacet)element;
 				for(final StereotypePropertyElement el : facet.getStereotypePropertyElements()) {
 					if(initialSelection.contains(el)) {
@@ -518,13 +515,13 @@ public class ColumnsToShowDialog extends SelectionDialog {
 					}
 				}
 			}
-			
-			if(element instanceof StereotypePropertyElement){
+
+			if(element instanceof StereotypePropertyElement) {
 				if(initialSelection.contains(element)) {
 					return true;
 				}
 			}
-			
+
 			if(element instanceof FacetSet || element instanceof Facet || element instanceof FacetStructuralFeature) {
 				if(element instanceof FacetSet) {
 					FacetSet set = (FacetSet)element;

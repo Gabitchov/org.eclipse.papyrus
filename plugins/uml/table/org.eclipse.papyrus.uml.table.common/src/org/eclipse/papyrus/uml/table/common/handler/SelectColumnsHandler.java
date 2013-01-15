@@ -156,6 +156,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 		this.facetSetsUsedInTheTable.clear();
 		this.columnsFeatureMap.clear();
 		this.allAdditionalContents.clear();
+		this.defaultColumnsAndVisibility.clear();
 		//		this.additionalContentProviders.clear();
 	}
 
@@ -308,7 +309,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 
 				if(!directFeatures.equals(this.initialDirectFeatureSelected)) {
 					//1. get command to show/hide direct features
-					final Command cmd = getShowHideDirectFeatureColumnsCommand(papyrusTable, (NatTableWidget)widget, directFeatures);
+					final Command cmd = getShowHideDirectFeatureColumnsCommand(papyrusTable, widget, directFeatures);
 					if(cmd != null) {
 						compoundCmd.append(cmd);
 					}
@@ -316,7 +317,7 @@ public class SelectColumnsHandler extends AbstractHandler {
 
 				if(!additionalFeatures.equals(this.initialAdditionalFeatureSelected)) {
 					// 2. get the command to show/hide additional contents
-					final Command cmd2 = getCreateDestroyAdditonalFeatureColumnsCommand(papyrusTable, (NatTableWidget)widget, additionalFeatures);
+					final Command cmd2 = getCreateDestroyAdditonalFeatureColumnsCommand(papyrusTable, widget, additionalFeatures);
 					if(cmd2 != null) {
 						compoundCmd.append(cmd2);
 					}
