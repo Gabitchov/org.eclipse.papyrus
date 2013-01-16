@@ -45,7 +45,10 @@ public class BundlesTests {
 	 */
 	@Test
 	public void versionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.1\\..*", false, false); //$NON-NLS-1$
+		//		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.1\\..*", false, false); //$NON-NLS-1$
+		//Replace . with \. (Converts the version number to regex format)
+		String regex = BundleTestsUtils.PAPYRUS_VERSION.replaceAll("\\.", "\\.") + ".*"; //$NON-NLS-1$ //$NON-NLS-2$
+		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, regex, false, false);
 	}
 
 	/**
