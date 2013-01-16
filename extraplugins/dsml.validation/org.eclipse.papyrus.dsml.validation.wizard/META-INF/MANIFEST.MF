@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.eclipse.project.editors;bundle-version="0.9.2",
  org.eclipse.papyrus.dsml.validation.model;bundle-version="0.9.2",
  org.eclipse.uml2.uml;bundle-version="3.2.100",
- org.eclipse.papyrus.dsml.validation.generator;bundle-version="0.9.2",
+ org.eclipse.papyrus.dsml.validation.generator;bundle-version="0.9.1",
  org.eclipse.acceleo.engine;bundle-version="3.1.1"
 Export-Package: org.eclipse.papyrus.dsml.validation.generation.wizard
 Bundle-Vendor: %pluginProvider
