@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.qompass.designer.feature.tracing"
+      label="Qompass Feature: Tracing"
+      version="0.8.0.qualifier"
+      provider-name="CEA LIST">
+
+   <description>
+      This is an add-on for the Qompass tool suite supporting model based tracing, in particular
+  with LTTng
+   </description>
+
+   <copyright>
+      (c) CEA LISE 2013
+   </copyright>
+
+   <license>
+      This program is provided by the CEA LIST in the context of the projects VERDE, SIRSEC, RT-DESCRIBE and RT-SIMEX. It can be used free of charge until the end of the respective projects. Further use or exploitation requires a new agreement with the CEA
+   </license>
+
+   <requires>
+      <import feature="org.eclipse.papyrus.qompass.designer.feature.basic" version="0.8.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.papyrus.qompass.modellibs.tracing"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.services.tracepoints"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.views.tracepoints"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
