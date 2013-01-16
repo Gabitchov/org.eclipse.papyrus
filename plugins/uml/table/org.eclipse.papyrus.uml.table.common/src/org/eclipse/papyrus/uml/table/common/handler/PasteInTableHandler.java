@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.table.common.handler;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,6 +24,7 @@ import java.util.Collection;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
@@ -29,29 +32,27 @@ import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.dialog.CommandCreationProgressMonitorDialog;
 import org.eclipse.papyrus.infra.table.common.editor.AbstractNattableEditor;
-
 import org.eclipse.papyrus.infra.table.common.exceptions.ErrorInPastePreparationException;
-
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.table.common.Activator;
+import org.eclipse.papyrus.uml.table.common.messages.Messages;
 import org.eclipse.papyrus.uml.table.common.provider.IPasteInTableCommandProvider;
 import org.eclipse.papyrus.uml.table.common.provider.PasteInPapyrusTableCommandProvider;
-import org.eclipse.papyrus.uml.table.common.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 
 public class PasteInTableHandler extends AbstractHandler {
 
@@ -63,7 +64,8 @@ public class PasteInTableHandler extends AbstractHandler {
 
 	private final IPasteInTableCommandProvider provider = new PasteInPapyrusTableCommandProvider();
 
-private NatTableWidget widget = null;
+	private NatTableWidget widget = null;
+
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -158,35 +160,55 @@ private NatTableWidget widget = null;
 	/**
 	 * 
 	 * @return
-	 *         the PapyrusTable for the current nested active editor or <code>null</code> if not found
+	 *         the current table editor, or <code>null</code> if not found
 	 */
-	private PapyrusTableInstance getPapyrusTable() {
-		ISashWindowsContainer container = null;
-		try {
-			container = ServiceUtilsForActionHandlers.getInstance().getISashWindowsContainer();
-		} catch (final ServiceException e) {
-			Activator.log.error(e);
-		}
-		if(container != null) {
-			final IEditorPart activeEditor = container.getActiveEditor();
-			if(activeEditor instanceof AbstractNattableEditor) {
-				return (PapyrusTableInstance)activeEditor.getAdapter(PapyrusTableInstance.class);
+	private AbstractNattableEditor getCurrentTableEditor() {
+		/*
+		final IStructuredSelection selection = (IStructuredSelection)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		final Object current = selection.getFirstElement();
+		if (current instanceof EObject) {
+
+			IEditorPart part = null;
+			try {
+				part = ServiceUtilsForResource.getInstance().getNestedActiveIEditorPart(((EObject)current).eResource());
+			} catch (final ServiceException e) {
+				Activator.log.error(e);
+			}
+			if(part instanceof AbstractNattableEditor) {
+				return (AbstractNattableEditor)part;
+			}
+
+		} else*/ {//there is not select when click on a gray part of the table
+			IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+			if (part instanceof IMultiDiagramEditor) {
+				part = ((IMultiDiagramEditor)part).getActiveEditor();
+			}
+			if (part instanceof AbstractNattableEditor) {
+				return (AbstractNattableEditor)part;
 			}
 		}
 		return null;
 	}
 
-	private INatTableWidget getITableWidget() {
-		ISashWindowsContainer container = null;
-		try {
-			container = ServiceUtilsForActionHandlers.getInstance().getISashWindowsContainer();
-		} catch (final ServiceException e) {
-			Activator.log.error(e);
+	/**
+	 * 
+	 * @return
+	 *         the papyrus table
+	 */
+	protected PapyrusTableInstance getPapyrusTable() {
+		final IEditorPart part = getCurrentTableEditor();
+		if(part != null) {
+			return (PapyrusTableInstance)part.getAdapter(PapyrusTableInstance.class);
 		}
-		if(container != null) {
-			final IEditorPart activeEditor = container.getActiveEditor();
-			if(activeEditor instanceof AbstractNattableEditor) {
-				return ((INatTableWidgetProvider)activeEditor.getAdapter(INatTableWidgetProvider.class)).getNatTableWidget();
+		return null;
+	}
+
+	private INatTableWidget getITableWidget() {
+		final IAdaptable editor = getCurrentTableEditor();
+		if(editor != null) {
+			final INatTableWidgetProvider provider = (INatTableWidgetProvider)editor.getAdapter(INatTableWidgetProvider.class);
+			if(provider != null) {
+				return provider.getNatTableWidget();
 			}
 		}
 		return null;
@@ -202,6 +224,7 @@ private NatTableWidget widget = null;
 		String bufferSystem = null;
 
 		//using AWT
+		/*
 		final DataFlavor[] dataFlavors = Toolkit.getDefaultToolkit().getSystemClipboard().getAvailableDataFlavors();
 		for(final DataFlavor dataFlavor : dataFlavors) {
 			try {
@@ -209,6 +232,17 @@ private NatTableWidget widget = null;
 					bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavor).toString();
 				}
 			} catch (final Exception e) {
+				Activator.log.error(e);
+			}
+		}
+		*/
+		java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+			try {
+				bufferSystem = clipboard.getData(DataFlavor.stringFlavor).toString();
+			} catch (UnsupportedFlavorException e) {
+				Activator.log.error(e);
+			} catch (IOException e) {
 				Activator.log.error(e);
 			}
 		}

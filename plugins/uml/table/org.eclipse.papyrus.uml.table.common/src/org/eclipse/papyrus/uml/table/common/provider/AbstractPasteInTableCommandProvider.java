@@ -13,15 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.table.common.provider;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FeatureColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -32,7 +29,6 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.uml.table.common.Activator;
-import org.eclipse.uml2.uml.UMLPackage;
 
 
 
@@ -44,7 +40,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public abstract class AbstractPasteInTableCommandProvider implements IPasteInTableCommandProvider {
 
 	//FIXME : we can't get the visible command when a dialog is open during the command creation
-	protected Collection<Column> managedColumns;
+	protected List<Column> visibleColumns;
 
 	/**
 	 * the error message for the command
@@ -116,7 +112,7 @@ public abstract class AbstractPasteInTableCommandProvider implements IPasteInTab
 				 * - the correct number of cells according to the number of managed columns for the paste
 				 * - we don't do other test, because we need to provide error message to the user when the paste is not possible
 				 */
-				if((getIElementTypeToCreateElement(papyrusTable) != null) && (getContainementFeature(papyrusTable) != null) && (cells.length == getManagedColumns(iTableWidget).size())) {
+				if((getIElementTypeToCreateElement(papyrusTable) != null) && (getContainementFeature(papyrusTable) != null) && (cells.length == getVisibleColumns(iTableWidget).size())) {
 					return true;
 				}
 			}
@@ -165,8 +161,8 @@ public abstract class AbstractPasteInTableCommandProvider implements IPasteInTab
 	 * @return
 	 *         the visible columns for the widget
 	 */
-	protected Collection<Column> getVisibleColumns(final INatTableWidget widget) {
-		return new ArrayList<Column>(((NatTableWidget)widget).getVisibleColumns(false));//FIXME false or true ?
+	protected List<Column> getVisibleColumns(final INatTableWidget widget) {
+		return ((NatTableWidget)widget).getVisibleColumnsUsingCustomizationEngine((TableInstance2)widget.getTableInstance());
 	}
 
 	/**
@@ -176,15 +172,16 @@ public abstract class AbstractPasteInTableCommandProvider implements IPasteInTab
 	 * @return
 	 *         the list of the managed features
 	 */
+	/*
 	protected List<EStructuralFeature> getManagedFeatures(final INatTableWidget iTableWidget) {
 		final List<EStructuralFeature> features = new ArrayList<EStructuralFeature>();
 		//		for(final Column col : getManagedColumns(iTableWidget)) {
-		for(final Column col : managedColumns) {
+		for(final Column col : visibleColumns) {
 			features.add((EStructuralFeature)((FeatureColumn)col).getFeature());
 		}
 		return features;
 	}
 
 	protected abstract Collection<Column> getManagedColumns(INatTableWidget iTableWidget);
-
+	*/
 }
