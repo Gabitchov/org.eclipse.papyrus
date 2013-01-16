@@ -5,26 +5,29 @@
       version="0.8.0.qualifier"
       provider-name="CEA LIST">
 
-   <description url="http://www.example.com/description">
-      The Qompass tool suite is a component based design methodology based
+   <description>
+      The Qompass tool suite is a component based design methodology
+based
 on
 - A profile derived from a flexible component model (FCM) with
- - extensible port definitions (kind)
- - extensible set of connector types and implementations
- - extensible set of container services
+- extensible port definitions (kind)
+- extensible set of connector types and implementations
+- extensible set of container services
 - A library of predefined port kinds
 - A library of connector types along with their implementations
-- The tool chain supporting a set of model-to-model transformation (connector and container expansion)
+- The tool chain supporting a set of model-to-model transformation
+(connector and container expansion)
 - A C++ code generator
-- CDT support, i.e. the generation of a CDT project from the model
+- CDT support, i.e. the generation of a CDT project from the
+model
    </description>
 
    <copyright>
-      (c) CEA LISE 2012
+      (c) CEA LISE 2013
    </copyright>
 
-   <license>
-      This program is provided by the CEA LIST in the context of the projects VERDE, SIRSEC, RT-DESCRIBE and RT-SIMEX. It can be used free of charge until the end of the respective projects. Further use or exploitation requires a new agreement with the CEA
+   <license url="www.eclipse.org/legal/epl-v10.html">
+      EPL-v1.0
    </license>
 
    <includes
