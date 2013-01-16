@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -137,7 +136,7 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 		final Collection<Stereotype> stereotypeToApply = getStereotypesToApply(papyrusTable, iTableWidget);
 
 		//3. we get the managed features
-		final List<EStructuralFeature> features = getManagedFeatures(iTableWidget);
+		//final List<EStructuralFeature> features = getManagedFeatures(iTableWidget);
 
 		//4. we determine if we should add a command to add the pasted elements in the table
 		//		final boolean addToTable = FillMode.USER == papyrusTable.getFillMode();
@@ -236,8 +235,10 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 			}
 
 			//8.7 we set these properties values
-			for(int i = 0; i < cells.length; i++) {
-				final EStructuralFeature feature = features.get(i);
+			for(int i = 0; i < java.lang.Math.min(cells.length, visibleColumns.size()); i++) {
+				Column column = visibleColumns.get(i);
+				if (!(column instanceof FeatureColumn)) continue;
+				final EStructuralFeature feature = ((FeatureColumn)column).getFeature();
 				if(feature.isChangeable()) {
 					final String valueAsString = cells[i];
 
@@ -366,9 +367,10 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	 * @return
 	 *         the list of the managed columns. Managed columns are : <li>direct feature columns</li> <li>StereotypeFacetElement columns</li>
 	 */
+	/*
 	protected Collection<Column> getManagedColumns(final INatTableWidget iTableWidget) {
-		final List<Column> managedColumns = (List<Column>)getVisibleColumns(iTableWidget);
-		final ListIterator<Column> iter = managedColumns.listIterator();
+		final List<Column> visibleColumns = (List<Column>)getVisibleColumns(iTableWidget);
+		final ListIterator<Column> iter = visibleColumns.listIterator();
 		while(iter.hasNext()) {
 			final Column current = iter.next();
 			if(!(current instanceof FeatureColumn)) {
@@ -384,9 +386,9 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 //				}
 			}
 		}
-		return managedColumns;
+		return visibleColumns;
 	}
-
+	*/
 
 
 
@@ -405,7 +407,7 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 	protected Collection<Stereotype> getStereotypesToApply(final PapyrusTableInstance pTable, final INatTableWidget iTableWidget) throws ErrorInPastePreparationException {
 		final Collection<String> stereotypeQualifiedName = new ArrayList<String>();
 		//for(final Column col : getManagedColumns(iTableWidget)) {
-		for(final Column col : this.managedColumns) {
+		for(final Column col : this.visibleColumns) {
 			if(col instanceof FeatureColumn) {
 				final ETypedElement feature = ((FeatureColumn)col).getFeature();
 				if(feature instanceof StereotypePropertyElement) {
@@ -711,7 +713,7 @@ public class PasteInPapyrusTableCommandProvider extends AbstractPasteInTableComm
 
 	@Override
 	public boolean isPasteEnabled(PapyrusTableInstance papyrusTable, String clipboardContents, INatTableWidget iTableWidget) {
-		this.managedColumns = getManagedColumns(iTableWidget);
+		this.visibleColumns = getVisibleColumns(iTableWidget);
 		return super.isPasteEnabled(papyrusTable, clipboardContents, iTableWidget);
 	}
 }

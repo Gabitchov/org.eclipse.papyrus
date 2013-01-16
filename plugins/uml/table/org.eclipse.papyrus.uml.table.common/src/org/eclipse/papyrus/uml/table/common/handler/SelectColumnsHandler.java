@@ -80,24 +80,19 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ENamedElementComparator;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.table.common.editor.AbstractNattableEditor;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.ProfileFacetSet;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypeFacet;
 import org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.StereotypePropertyElement;
 import org.eclipse.papyrus.uml.profilefacet.utils.AdditionalContentsUtils;
-import org.eclipse.papyrus.uml.table.common.Activator;
 import org.eclipse.papyrus.uml.table.common.dialog.ColumnsToShowDialog;
 import org.eclipse.papyrus.uml.table.common.editor.AbstractUMLTableEditor;
 import org.eclipse.papyrus.uml.table.common.provider.AbstractAdditionalContentsProvider;
@@ -106,6 +101,7 @@ import org.eclipse.papyrus.uml.table.common.provider.ProfileFacetSetProvider;
 import org.eclipse.papyrus.uml.table.common.provider.SortedFeaturesContentProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -628,32 +624,13 @@ public class SelectColumnsHandler extends AbstractHandler {
 	 *         the current table editor, or <code>null</code> if not found
 	 */
 	private AbstractNattableEditor getCurrentTableEditor() {
-		ISelection platformSelection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if (platformSelection instanceof IStructuredSelection){
-			final IStructuredSelection selection = (IStructuredSelection)platformSelection;
-			final Object current = selection.getFirstElement();
-			if(current instanceof EObject) {
-				
-				IEditorPart part = null;
-				try {
-					part = ServiceUtilsForResource.getInstance().getNestedActiveIEditorPart(((EObject)current).eResource());
-				} catch (final ServiceException e) {
-					Activator.log.error(e);
-				}
-				if(part instanceof AbstractNattableEditor) {
-					return (AbstractNattableEditor)part;
-				}
-				
-			} else {//there is not select when click on a gray part of the table
-				final IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-				if(part instanceof AbstractMultiPageSashEditor) {
-					final IEditorPart editorPart = ((AbstractMultiPageSashEditor)part).getActiveEditor();
-					if(editorPart instanceof AbstractNattableEditor) {
-						return (AbstractNattableEditor)editorPart;
-					}
-				}
+			IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+			if (part instanceof IMultiDiagramEditor) {
+				part = ((IMultiDiagramEditor)part).getActiveEditor();
 			}
-		}
+			if (part instanceof AbstractNattableEditor) {
+				return (AbstractNattableEditor)part;
+			}
 		return null;
 	}
 
