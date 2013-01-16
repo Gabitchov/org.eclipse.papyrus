@@ -158,7 +158,7 @@ public abstract class MultipleChoiceFieldEditor extends FieldEditor {
 		return checkBoxBox;
 	}
 
-	private String gatherSettings() {
+	protected String gatherSettings() {
 		String[][] settings = new String[checkBoxButtons.length][3];
 		for(int i = 0; i < checkBoxButtons.length; i++) {
 			Button currentCheckBox = checkBoxButtons[i];

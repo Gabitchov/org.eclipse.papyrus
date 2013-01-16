@@ -59,8 +59,6 @@ import org.eclipse.uml2.uml.State;
 
 public class TraceActionSelection extends SelectionStatusDialog {
 
-	protected CheckboxTableViewer fTraceActions;
-
 	protected CheckboxTableViewer fTraceImplementations;
 
 	protected Text fDescription;
@@ -92,11 +90,22 @@ public class TraceActionSelection extends SelectionStatusDialog {
 	 */
 	protected void computeResult() {
 		// nothing to do
-		int traceActionValue = 0;
-		for(Object tableElement : fTraceActions.getCheckedElements()) {
-			int index = ((Enum<?>)tableElement).ordinal();
-			traceActionValue += 1 << index;
-		};
+		String traceActionValue = null;
+		if(m_me instanceof State) {
+			traceActionValue = stateOptions.getResult();
+		}
+		else if(m_me instanceof Class) {
+			traceActionValue = TraceActions.compositeClassOption(
+				classOptions.getIntResult(),
+				stateOptions.getIntResult(),
+				operationOptions.getIntResult());
+		}
+		else if(m_me instanceof State) {
+			traceActionValue = stateOptions.getResult();
+		}
+		else if(m_me instanceof Operation) {
+			traceActionValue = operationOptions.getResult();
+		}
 		String traceMechanism = "";
 		for(Object tableElement : fTraceImplementations.getCheckedElements()) {
 			traceMechanism = (String)tableElement;
@@ -171,17 +180,17 @@ public class TraceActionSelection extends SelectionStatusDialog {
 		String actionString = m_marker.getAttribute(TracepointConstants.traceAction, "");
 		String mechanismID = m_marker.getAttribute(TracepointConstants.traceMechanism, "");
 
-		if(m_me instanceof Class) {
+		if(m_me instanceof State) {
+			stateOptions = new BinaryEncodedMChoiceFieldEditor("State options", 3, taStateOptions, contents, true);
+			stateOptions.setupViaString(actionString);
+		}
+		else if(m_me instanceof Class) {
 			classOptions = new BinaryEncodedMChoiceFieldEditor("Class options", 3, taClassOptions, contents, true);
 			stateOptions = new BinaryEncodedMChoiceFieldEditor("State options", 3, taStateOptions, contents, true);
 			operationOptions = new BinaryEncodedMChoiceFieldEditor("Operation options", 3, taOperationOptions, contents, true);
 			classOptions.setupViaString(TraceActions.getOptions(actionString, TraceFeature.Class));
 			stateOptions.setupViaString(TraceActions.getOptions(actionString, TraceFeature.State));
 			operationOptions.setupViaString(TraceActions.getOptions(actionString, TraceFeature.Operation));
-		}
-		else if(m_me instanceof State) {
-			stateOptions = new BinaryEncodedMChoiceFieldEditor("State options", 3, taOperationOptions, contents, true);
-			stateOptions.setupViaString(actionString);
 		}
 		else if(m_me instanceof Operation) {
 			operationOptions = new BinaryEncodedMChoiceFieldEditor("Operation options", 3, taOperationOptions, contents, true);

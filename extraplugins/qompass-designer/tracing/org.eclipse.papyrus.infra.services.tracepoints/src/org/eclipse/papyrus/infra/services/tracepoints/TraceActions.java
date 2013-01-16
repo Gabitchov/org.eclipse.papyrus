@@ -117,7 +117,8 @@ public class TraceActions {
 			return null;
 		else {
 			// comma is used as separation character.
-			int endPos = traceAction.indexOf(',', pos + 1);
+			pos += prefix.length();
+			int endPos = traceAction.indexOf(',', pos);
 			if(endPos == -1) {
 				return traceAction.substring(pos);
 			}
@@ -149,38 +150,44 @@ public class TraceActions {
 	}
 
 	/**
-	 * Initialize an action string that will be stored in the trace marker from the default actions in the
-	 * preferences. In case of a class, the value is a combination of different options
+	 * Initialize an action string that will be stored in the trace marker from the configured actions
+	 * in the preferences. In case of a class, the value is a combination of different options
 	 * that are prefixed to enable a unique classification
 	 * 
 	 * @param feature
 	 *        The trace feature for which we set an action
 	 * @return
 	 */
-	public static String defaultAction(TraceFeature feature) {
+	public static String actionFromPreferences(TraceFeature feature) {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		if(feature == TraceFeature.Class) {
-			return getStringPrefix(TraceFeature.Class) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_OPTION_CLASS) + "," +
-				getStringPrefix(TraceFeature.State) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_OPTION_STATE) + "," +
-				getStringPrefix(TraceFeature.Operation) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_OPTION_OP);
+			return compositeClassOption(store.getInt(TPPreferenceConstants.P_TRACE_OPTION_CLASS),
+				store.getInt(TPPreferenceConstants.P_TRACE_OPTION_STATE),
+				store.getInt(TPPreferenceConstants.P_TRACE_OPTION_OP));
 		}
 		else if(feature == TraceFeature.State) {
-			return store.getDefaultString(TPPreferenceConstants.P_TRACE_OPTION_STATE);
+			return store.getString(TPPreferenceConstants.P_TRACE_OPTION_STATE);
 		}
 		else if(feature == TraceFeature.Operation) {
-			return store.getDefaultString(TPPreferenceConstants.P_TRACE_OPTION_OP);
+			return store.getString(TPPreferenceConstants.P_TRACE_OPTION_OP);
 		}
 		return "";
 	}
 
+	public static String compositeClassOption(int classOption, int stateOption, int operationOption) {
+		return getStringPrefix(TraceFeature.Class) + classOption + "," +
+			getStringPrefix(TraceFeature.State) + stateOption + "," +
+			getStringPrefix(TraceFeature.Operation) + operationOption;
+	}
+
 	/**
-	 * Convenience function, return the default action in function of the model element
+	 * Convenience function, return the action defined in the preferences in function of the model element
 	 * 
 	 * @param element
 	 * @return
 	 */
-	public static String defaultAction(EObject element) {
-		return defaultAction(getTraceFeature(element));
+	public static String actionFromPreferences(EObject element) {
+		return actionFromPreferences(getTraceFeature(element));
 	}
 
 

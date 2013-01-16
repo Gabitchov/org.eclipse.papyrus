@@ -27,25 +27,38 @@ public class TraceFunctions implements IDecorationSpecificFunctions {
 
 	public static final String inActiveBreakpoint16 = "icons/etool16/brkpd_16x16.gif";
 
+	public static final String activeTracepoint16 = "icons/etool16/trcp_16x16.gif";
+
+	public static final String inActiveTracepoint16 = "icons/etool16/trcpd_16x16.gif";
+
 	public static final String activeBreakpoint9 = "icons/etool16/brkp_9x9.gif";
 
 	public static final String inActiveBreakpoint9 = "icons/etool16/brkpd_9x9.gif";
 
+	public static final String activeTracepoint11 = "icons/etool16/trcp_11x12.gif";
+
+	public static final String inActiveTracepoint11 = "icons/etool16/trcp_11x12.gif";
 
 	/**
 	 * Return the image descriptor associated with a trace or breakpoint marker
 	 */
 	public ImageDescriptor getImageDescriptorForGE(IMarker marker) {
 
+
 		org.eclipse.papyrus.infra.widgets.Activator widgetsActivator =
 			org.eclipse.papyrus.infra.widgets.Activator.getDefault();
 		ImageDescriptor overlay = null;
 		boolean isActive = marker.getAttribute(TracepointConstants.isActive, false);
-		if(isActive) {
-			overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, activeBreakpoint16);
+		boolean isTracepoint = marker.getAttribute(TracepointConstants.isTracepoint, false);
+		if(isTracepoint) {
+			overlay = isActive ?
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, activeTracepoint16) :
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, inActiveTracepoint16);
 		}
 		else {
-			overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, inActiveBreakpoint16);
+			overlay = isActive ?
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, activeBreakpoint16) :
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, inActiveBreakpoint16);
 		}
 
 		return overlay;
@@ -59,11 +72,16 @@ public class TraceFunctions implements IDecorationSpecificFunctions {
 			org.eclipse.papyrus.infra.widgets.Activator.getDefault();
 		ImageDescriptor overlay = null;
 		boolean isActive = marker.getAttribute(TracepointConstants.isActive, false);
-		if(isActive) {
-			overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, activeBreakpoint9);
+		boolean isTracepoint = marker.getAttribute(TracepointConstants.isTracepoint, false);
+		if(isTracepoint) {
+			overlay = isActive ?
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, activeTracepoint11) :
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, inActiveTracepoint11);
 		}
 		else {
-			overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, inActiveBreakpoint9);
+			overlay = isActive ?
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, activeBreakpoint9) :
+				widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, inActiveBreakpoint9);
 		}
 
 		return overlay;

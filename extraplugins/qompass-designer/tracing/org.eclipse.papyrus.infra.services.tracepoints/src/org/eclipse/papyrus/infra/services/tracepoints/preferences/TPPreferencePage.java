@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
+import org.eclipse.papyrus.infra.services.tracepoints.Activator;
 import org.eclipse.papyrus.infra.services.tracepoints.ITraceMechanism;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAClass;
@@ -39,7 +40,7 @@ public class TPPreferencePage
 
 	public TPPreferencePage() {
 		super(GRID);
-		setPreferenceStore(org.eclipse.papyrus.infra.services.tracepoints.Activator.getDefault().getPreferenceStore());
+		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		setDescription("Trace options");
 	}
 
@@ -52,7 +53,6 @@ public class TPPreferencePage
 	public void createFieldEditors() {
 		EList<ITraceMechanism> mechanisms = TraceMechanism.getTraceMechanisms();
 		int elements = 0;
-		int i;
 		for(ITraceMechanism mechanism : mechanisms) {
 			// TODO: function need to support null object
 			EList<String> mechanismIDs = mechanism.getTraceMechanismIDs(null);

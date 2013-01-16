@@ -48,20 +48,34 @@ public class TracepointPropertiesCommand extends AbstractTracepointCommand {
 
 	protected void selectTraceActions() {
 		IMarker marker = findMarker(TracepointConstants.tpOrbpMarker);
-		if(marker == null) {
-			marker = toggleMarker();
-		}
-		TraceActionSelection tad = new TraceActionSelection(new Shell(), marker, (Element)selectedElement);
-		tad.open();
-		if(tad.getReturnCode() == IDialogConstants.OK_ID) {
-			Object[] result = tad.getResult();
-			int traceAction = (Integer)result[0];
-			String traceMechanism = (String)result[1];
-			try {
-				marker.setAttribute(TracepointConstants.traceAction, traceAction);
-				marker.setAttribute(TracepointConstants.traceMechanism, traceMechanism);
-			} catch (CoreException e) {
+		if(marker != null) {
+			// should normally always hold, since this is checked in canExecute
+			TraceActionSelection tad = new TraceActionSelection(new Shell(), marker, (Element)selectedElement);
+			tad.open();
+			if(tad.getReturnCode() == IDialogConstants.OK_ID) {
+				Object[] result = tad.getResult();
+				String traceAction = (String)result[0];
+				String traceMechanism = (String)result[1];
+				try {
+					marker.setAttribute(TracepointConstants.traceAction, traceAction);
+					marker.setAttribute(TracepointConstants.traceMechanism, traceMechanism);
+				} catch (CoreException e) {
+				}
 			}
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canExecute() {
+		if(selectedElement != null) {
+			updateResourceAndURI();
+			IMarker marker = findMarker(TracepointConstants.tpOrbpMarker);
+			System.err.println("Hallo: " + marker);
+			return marker.getAttribute(TracepointConstants.isTracepoint, false);
+		}
+		return false;
 	}
 }

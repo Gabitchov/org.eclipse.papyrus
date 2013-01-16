@@ -58,19 +58,19 @@ public class TraceMechanism {
 	 * 
 	 * @return
 	 */
-	public static String getDefaultMechanism(TraceFeature feature) {
+	public static String getMechanismFromPreferences(TraceFeature feature) {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		if(store != null) {
 			if(feature == TraceFeature.Class) {
-				return TraceActions.getStringPrefix(TraceFeature.Port) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT) + "," +
-					TraceActions.getStringPrefix(TraceFeature.State) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM) + "," +
-					TraceActions.getStringPrefix(TraceFeature.Operation) + store.getDefaultInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
+				return TraceActions.getStringPrefix(TraceFeature.Port) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT) + "," +
+					TraceActions.getStringPrefix(TraceFeature.State) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM) + "," +
+					TraceActions.getStringPrefix(TraceFeature.Operation) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
 			}
 			else if(feature == TraceFeature.State) {
-				return store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM);
+				return store.getString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM);
 			}
 			else if(feature == TraceFeature.Operation) {
-				return store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
+				return store.getString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
 			}
 		}
 		return "";
@@ -83,6 +83,6 @@ public class TraceMechanism {
 	 * @return
 	 */
 	public static String getDefaultMechanism(EObject element) {
-		return getDefaultMechanism(TraceActions.getTraceFeature(element));
+		return getMechanismFromPreferences(TraceActions.getTraceFeature(element));
 	}
 }

@@ -28,7 +28,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.markers.MarkerConstants;
 import org.eclipse.papyrus.infra.services.tracepoints.Activator;
 import org.eclipse.papyrus.infra.services.tracepoints.ITraceMechanism;
-import org.eclipse.papyrus.infra.services.tracepoints.TraceActions;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceMechanism;
 import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 import org.eclipse.papyrus.infra.services.tracepoints.preferences.TPPreferenceConstants;
@@ -97,9 +96,6 @@ abstract public class AbstractTracepointCommand extends AbstractTransactionalCom
 					marker = iresource.createMarker(TracepointConstants.tpOrbpMarker);
 					marker.setAttribute(MarkerConstants.uri, uri);
 					marker.setAttribute(TracepointConstants.isActive, true);
-					// set default options from preferences
-					marker.setAttribute(TracepointConstants.traceAction, TraceActions.defaultAction(selectedElement));
-					marker.setAttribute(TracepointConstants.traceMechanism, TraceMechanism.getDefaultMechanism(selectedElement));
 					return marker;
 				}
 				else {

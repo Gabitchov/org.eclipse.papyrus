@@ -15,11 +15,16 @@
 package org.eclipse.papyrus.infra.services.tracepoints.commands;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.papyrus.infra.services.tracepoints.TraceActions;
+import org.eclipse.papyrus.infra.services.tracepoints.TraceMechanism;
+import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 
 
 public class ToggleTracepointCommand extends AbstractTracepointCommand {
@@ -35,7 +40,15 @@ public class ToggleTracepointCommand extends AbstractTracepointCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException
 	{
 		updateResourceAndURI();
-		toggleMarker();
+		try {
+			IMarker marker = toggleMarker();
+			marker.setAttribute(TracepointConstants.isTracepoint, true);
+			// set default options from preferences
+			marker.setAttribute(TracepointConstants.traceAction, TraceActions.actionFromPreferences(selectedElement));
+			marker.setAttribute(TracepointConstants.traceMechanism, TraceMechanism.getDefaultMechanism(selectedElement));
+		} catch (CoreException e) {
+
+		}
 		return null;
 	}
 }

@@ -74,6 +74,31 @@ public class BinaryEncodedMChoiceFieldEditor extends MultipleChoiceFieldEditor {
 		setupControls(currentValue);
 	}
 
+	/**
+	 * Use this function to get the results,
+	 * if you use the dialog outside a preference page
+	 * 
+	 * @return the result
+	 */
+	public String getResult() {
+		result = gatherSettings();
+		return result;
+	}
+
+	/**
+	 * Convenience function returning an integer result instead of a String result
+	 * (requires double conversion that is difficult to avoid, since calculateResults needs to return
+	 * a string);
+	 * 
+	 * @return
+	 */
+	public int getIntResult() {
+		if(getResult() == null) {
+			return 0;
+		}
+		return Integer.parseInt(getResult());
+	}
+
 	@Override
 	protected String calculateResult(String[][] settings) {
 		int traceActionValue = 0;

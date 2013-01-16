@@ -32,7 +32,8 @@ public class ToggleBreakpointCommand extends AbstractTracepointCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException
+	{
 		updateResourceAndURI();
 		toggleMarker();
 		return null;
