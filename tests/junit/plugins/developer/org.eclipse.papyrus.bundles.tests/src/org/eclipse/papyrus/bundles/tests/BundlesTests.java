@@ -197,7 +197,7 @@ public class BundlesTests {
 			String localMessage = null;
 			for(final String bundle : bundles) {
 				if(bundle.contains("org.eclipse.papyrus")) { //$NON-NLS-1$
-					if(!bundle.contains("bundle-version=" + '"' + "0.9.1" + '"')) { //$NON-NLS-1$ //$NON-NLS-2$
+					if(!bundle.contains("bundle-version=" + '"' + BundleTestsUtils.PAPYRUS_VERSION + '"')) { //$NON-NLS-1$ 
 						nb++;
 						if(localMessage == null) {
 							localMessage = NLS.bind("{0} incorrect required bundle-version:", current.getSymbolicName()); //$NON-NLS-1$
