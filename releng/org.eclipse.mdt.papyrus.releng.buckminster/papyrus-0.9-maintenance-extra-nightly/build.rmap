@@ -217,7 +217,7 @@
     <!-- EMF Facet -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF Facet",0) -->
-      <rm:uri format="{0}/facet/updates/milestones/0.2/SR1_RC3">
+      <rm:uri format="{0}/facet/updates/milestones/0.2/SR2_RC1">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -225,7 +225,7 @@
     <!-- MoDisco -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MoDisco",0) -->
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.10/SR1_RC4">
+      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.10/SR2_RC1/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -233,7 +233,7 @@
     <!-- MDT UML2 -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT UML2",0) -->
-      <rm:uri format="{0}/modeling/mdt/uml2/updates/4.0/">
+      <rm:uri format="{0}/modeling/mdt/uml2/updates/4.0.x/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -327,7 +327,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.4.1/R-3.4.1-20120917174803/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.4.2/M-3.4.2RC1-20130111064234/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -335,7 +335,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.2/R-4.2.1-201209141800/">
+		<rm:uri format="{0}/eclipse/updates/4.2-M-builds/M20130109-1200/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
