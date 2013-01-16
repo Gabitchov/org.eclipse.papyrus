@@ -134,13 +134,6 @@ model
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.qompass.designer.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.qompass.designer.vsl"
          download-size="0"
          install-size="0"
