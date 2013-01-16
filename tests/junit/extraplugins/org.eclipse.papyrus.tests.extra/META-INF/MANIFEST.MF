@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
-Bundle-Name: Extra plugins Tests (Incubation)
-Bundle-Activator: org.eclipse.papyrus.tests.extra.Activator
-Bundle-ManifestVersion: 2
-Bundle-Vendor: Eclipse Modeling Project
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.tests.extra
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit;bundle-version="4.8.2",
- org.eclipse.papyrus.infra.gmfdiag.css.tests;bundle-version="0.9.1",
- org.eclipse.papyrus.bundles.tests;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.compare.file.tests;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.compare.tests;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.compare.diff.tests;bundle-version="0.9.1"
-Bundle-Version: 0.9.1.qualifier
+ org.eclipse.papyrus.infra.gmfdiag.css.tests;bundle-version="0.9.2",
+ org.eclipse.papyrus.bundles.tests;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.compare.file.tests;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.compare.tests;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.compare.diff.tests;bundle-version="0.9.2"
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: Extra plugins Tests (Incubation)
+Bundle-Activator: org.eclipse.papyrus.tests.extra.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.tests.extra
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

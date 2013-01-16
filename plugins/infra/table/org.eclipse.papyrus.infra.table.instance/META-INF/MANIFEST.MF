@@ -1,7 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Activator: org.eclipse.papyrus.infra.table.instance.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.table.instance,
  org.eclipse.papyrus.infra.table.instance.papyrustableinstance;uses:="org.eclipse.emf.ecore,org.eclipse.emf.facet.widgets.nattable.instance.tableinstance",
  org.eclipse.papyrus.infra.table.instance.papyrustableinstance.util;
@@ -10,16 +7,19 @@ Export-Package: org.eclipse.papyrus.infra.table.instance,
    org.eclipse.emf.common.notify.impl,
    org.eclipse.emf.common.notify",
  org.eclipse.papyrus.infra.table.instance.util
-Bundle-Version: 0.9.1.qualifier
-Bundle-Name: %pluginName
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.instance;singleto
- n:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0",
  org.eclipse.ui.workbench
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.2.qualifier
+Bundle-Activator: org.eclipse.papyrus.infra.table.instance.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.instance;singleto
+ n:=true
 

@@ -1,22 +1,15 @@
 Manifest-Version: 1.0
-Bundle-Activator: org.eclipse.papyrus.infra.emf.newchild.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Eclipse-BuddyPolicy: dependent
 Export-Package: org.eclipse.papyrus.infra.emf.newchild,
  org.eclipse.papyrus.infra.emf.newchild.impl,
  org.eclipse.papyrus.infra.emf.newchild.menu,
  org.eclipse.papyrus.infra.emf.newchild.ncpolicy,
  org.eclipse.papyrus.infra.emf.newchild.runtime,
  org.eclipse.papyrus.infra.emf.newchild.util
-Bundle-Version: 0.9.1.qualifier
-Bundle-Name: %pluginName
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.newchild;singleton:
- =true
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
@@ -24,12 +17,19 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.ui;bundle-version="3.7.0",
  org.eclipse.emf.edit.ui;bundle-version="2.7.0",
- org.eclipse.papyrus.infra.constraints;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.tools;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.constraints;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.9.2"
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.2.qualifier
+Eclipse-BuddyPolicy: dependent
+Bundle-Activator: org.eclipse.papyrus.infra.emf.newchild.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.newchild;singleton:
+ =true
 

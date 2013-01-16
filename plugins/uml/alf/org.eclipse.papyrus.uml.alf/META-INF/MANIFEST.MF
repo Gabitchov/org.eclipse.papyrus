@@ -1,11 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.uml.alf;singleton:=true
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -20,10 +13,10 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.2",
  org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1"
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.2"
 Export-Package: org.eclipse.papyrus.uml.alf,
  org.eclipse.papyrus.uml.alf.alf,
  org.eclipse.papyrus.uml.alf.alf.impl,
@@ -37,6 +30,14 @@ Export-Package: org.eclipse.papyrus.uml.alf,
  org.eclipse.papyrus.uml.alf.services,
  org.eclipse.papyrus.uml.alf.validation,
  org.eclipse.papyrus.uml.alf.validation.typing
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.alf;singleton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

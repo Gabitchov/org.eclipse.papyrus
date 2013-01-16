@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.oclconstraintevaluation.Acti
- vator
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.eclipse.papyrus.uml.oclconstraintevaluation;s
- ingleton:=true
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.commands;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.commands;bundle-version="0.9.2",
  org.eclipse.ui.console;bundle-version="3.5.100",
  org.eclipse.ocl.examples.pivot;bundle-version="3.2.0",
  org.eclipse.ocl.examples.xtext.base;bundle-version="3.2.0"
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.uml.oclconstraintevaluation.Acti
+ vator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.oclconstraintevaluation;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

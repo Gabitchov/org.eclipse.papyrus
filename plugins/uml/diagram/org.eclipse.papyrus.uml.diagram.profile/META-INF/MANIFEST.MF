@@ -1,8 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.part.UMLDiag
- ramEditorPlugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.diagram.profile,
  org.eclipse.papyrus.uml.diagram.profile.custom.commands,
  org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts,
@@ -27,15 +23,11 @@ Export-Package: org.eclipse.papyrus.uml.diagram.profile,
  org.eclipse.papyrus.uml.diagram.profile.providers,
  org.eclipse.papyrus.uml.diagram.profile.service,
  org.eclipse.papyrus.uml.diagram.profile.sheet
-Bundle-Version: 0.9.1.qualifier
-Eclipse-LazyStart: true
-Bundle-Name: %pluginName
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile;singleton
- :=true
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -59,24 +51,32 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.gef,
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.1",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.2",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.2",
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.eclipse.papyrus.uml.profile;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.profile;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.2",
  org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
- org.eclipse.papyrus.editor;bundle-version="0.9.1",
+ org.eclipse.papyrus.editor;bundle-version="0.9.2",
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.appearance;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.services.validation;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.appearance;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="0.9.2"
+Bundle-Vendor: %providerName
+Eclipse-LazyStart: true
+Bundle-Version: 0.9.2.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.part.UMLDiag
+ ramEditorPlugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile;singleton
+ :=true
 

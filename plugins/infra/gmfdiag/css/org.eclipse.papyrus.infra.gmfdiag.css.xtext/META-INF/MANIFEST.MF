@@ -1,11 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Name: CSS Editor (Incubation)
-Bundle-ManifestVersion: 2
-Bundle-Vendor: Eclipse Modeling Project
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext;singl
- eton:=true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.xtext.xbase;bundle-version="2.1.0";resolution:=optional;visibility:=reexport,
  org.apache.log4j;bundle-version="1.2.15",
@@ -32,5 +25,12 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag,
  org.eclipse.papyrus.infra.gmfdiag.serializer,
  org.eclipse.papyrus.infra.gmfdiag.services,
  org.eclipse.papyrus.infra.gmfdiag.validation
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: CSS Editor (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext;singl
+ eton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

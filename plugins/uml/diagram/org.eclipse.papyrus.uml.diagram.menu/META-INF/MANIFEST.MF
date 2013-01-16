@@ -1,16 +1,7 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.menu.Activator
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.menu;singleton:=t
- rue
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.2",
  org.eclipse.gmf.runtime.diagram.ui.actions,
  org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.4.0",
  org.eclipse.core.expressions,
@@ -19,13 +10,22 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.2.0",
  org.eclipse.gmf.runtime.diagram.ui.actions,
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.2",
  org.eclipse.ui.views.log,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.9.2"
 Export-Package: org.eclipse.papyrus.uml.diagram.menu,
  org.eclipse.papyrus.uml.diagram.menu.actions,
  org.eclipse.papyrus.uml.diagram.menu.actions.handlers
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.menu.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.menu;singleton:=t
+ rue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

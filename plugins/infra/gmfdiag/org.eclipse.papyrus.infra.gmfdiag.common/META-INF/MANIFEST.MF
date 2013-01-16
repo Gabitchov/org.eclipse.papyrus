@@ -1,7 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.advice,
  org.eclipse.papyrus.infra.gmfdiag.common.commands,
@@ -15,28 +12,31 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.providers,
  org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
  org.eclipse.papyrus.infra.gmfdiag.common.utils
-Bundle-Version: 0.9.1.qualifier
-Bundle-Name: %pluginName
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleto
- n:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.emf.ecore.edit;bundle-version="2.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.2",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
  org.eclipse.gef;bundle-version="3.7.1",
  org.eclipse.emf.workspace;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.2",
  org.eclipse.core.databinding;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.4.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.tools;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.9.2",
  org.eclipse.emf.databinding;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2",
  org.eclipse.core.databinding.property;bundle-version="1.4.100"
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.2.qualifier
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleto
+ n:=true
 

@@ -1,12 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext;
- singleton:=true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -21,7 +13,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.2",
  org.eclipse.xtext.gmf.glue,
  org.apache.log4j;bundle-version="1.2.15"
 Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext,
@@ -36,5 +28,13 @@ Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext,
  org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.impl,
  org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.util,
  org.eclipse.papyrus.uml.textedit.parameter.xtext.validation
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext;
+ singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

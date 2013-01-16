@@ -1,27 +1,27 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.widgets.Acti
- vator
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.widgets;s
- ingleton:=true
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1";visibility:=reexport,
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.2";visibility:=reexport,
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.2";visibility:=reexport,
  org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0";visibility:=reexport,
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0";visibility:=reexport,
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2",
  org.eclipse.emf.facet.infra.facet;bundle-version="0.1.0",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
  org.eclipse.gmf.runtime.emf.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.2"
 Export-Package: org.eclipse.papyrus.views.modelexplorer.widgets
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.widgets.Acti
+ vator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.widgets;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

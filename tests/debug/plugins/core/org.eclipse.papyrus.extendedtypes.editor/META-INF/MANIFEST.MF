@@ -1,25 +1,25 @@
 Manifest-Version: 1.0
-Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.presentation
- .ExtendedTypesEditorPlugin$Implementation
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.extendedtypes.presentation
-Bundle-Version: 0.9.1.qualifier
-Bundle-Name: %pluginName
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.extendedtypes.editor;si
- ngleton:=true
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
  org.eclipse.core.resources;bundle-version="3.7.0";visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="0.9.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="0.9.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.6.0";visibility:=reexport,
  org.eclipse.emf.edit.ui;bundle-version="2.7.0";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="3.7.0";visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.2";visibility:=reexport,
  org.eclipse.emf.ecore.edit;bundle-version="2.7.0";visibility:=reexport,
  org.eclipse.emf.facet.infra.query.edit;bundle-version="0.1.0";visibility:=reexport,
  org.eclipse.uml2.uml.edit;bundle-version="3.1.0";visibility:=reexport
+Bundle-Vendor: %providerName
+Bundle-Version: 0.9.2.qualifier
+Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.presentation
+ .ExtendedTypesEditorPlugin$Implementation
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.extendedtypes.editor;si
+ ngleton:=true
 

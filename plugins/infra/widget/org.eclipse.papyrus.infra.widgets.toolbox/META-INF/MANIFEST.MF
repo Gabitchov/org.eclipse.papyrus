@@ -1,14 +1,5 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.widgets.toolbox.Activator
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets.toolbox;singlet
- on:=true
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.2",
  org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.gef;bundle-version="3.7.1",
@@ -24,5 +15,14 @@ Export-Package: org.eclipse.papyrus.infra.widgets.toolbox,
  org.eclipse.papyrus.infra.widgets.toolbox.notification.utils,
  org.eclipse.papyrus.infra.widgets.toolbox.notification.view,
  org.eclipse.papyrus.infra.widgets.toolbox.utils
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.infra.widgets.toolbox.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets.toolbox;singlet
+ on:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

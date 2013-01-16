@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.widgets.Activa
- tor
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.widgets
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.views.modelexplorer.widgets;bundle-version="0.9.1";visibility:=reexport,
+ org.eclipse.papyrus.views.modelexplorer.widgets;bundle-version="0.9.2";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2"
 Export-Package: org.eclipse.papyrus.uml.modelexplorer.widgets
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.widgets.Activa
+ tor
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.widgets
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
-Bundle-Name: Papyrus Tools (Incubation)
-Bundle-Activator: org.eclipse.papyrus.infra.tools.Activator
-Bundle-ManifestVersion: 2
-Bundle-Vendor: Eclipse Modeling Project
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.infra.tools
-Bundle-ActivationPolicy: lazy
-Eclipse-BuddyPolicy: dependent
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.2",
  org.eclipse.core.databinding;bundle-version="1.4.1"
 Export-Package: org.eclipse.papyrus.infra.tools.databinding,
  org.eclipse.papyrus.infra.tools.util
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Eclipse-BuddyPolicy: dependent
+Bundle-Name: Papyrus Tools (Incubation)
+Bundle-Activator: org.eclipse.papyrus.infra.tools.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.tools
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

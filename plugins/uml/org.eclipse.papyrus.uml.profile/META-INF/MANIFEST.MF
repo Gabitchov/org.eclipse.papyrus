@@ -1,24 +1,16 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.profile.Activator
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.profile;singleton:=true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.uml2.uml.editor,
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.2",
  org.eclipse.core.runtime;bundle-version="3.8.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.2",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.emf.readonly;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.services.validation;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.emf.readonly;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="0.9.2"
 Export-Package: org.eclipse.papyrus.uml.profile,
  org.eclipse.papyrus.uml.profile.constraints,
  org.eclipse.papyrus.uml.profile.definition,
@@ -31,5 +23,13 @@ Export-Package: org.eclipse.papyrus.uml.profile,
  org.eclipse.papyrus.uml.profile.ui.items,
  org.eclipse.papyrus.uml.profile.utils,
  org.eclipse.papyrus.uml.profile.wizard
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.uml.profile.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.profile;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

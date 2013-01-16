@@ -1,19 +1,10 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.service.types.Activator
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.service.types;singleton:=
- true
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
  org.eclipse.gmf.runtime.diagram.core;bundle-version="1.4.1",
  org.eclipse.uml2.uml.profile.l2;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.2",
  com.google.guava;bundle-version="10.0.1"
 Export-Package: org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.uml.service.types.command,
@@ -21,5 +12,14 @@ Export-Package: org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.uml.service.types.helper,
  org.eclipse.papyrus.uml.service.types.helper.advice,
  org.eclipse.papyrus.uml.service.types.utils
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.uml.service.types.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.service.types;singleton:=
+ true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

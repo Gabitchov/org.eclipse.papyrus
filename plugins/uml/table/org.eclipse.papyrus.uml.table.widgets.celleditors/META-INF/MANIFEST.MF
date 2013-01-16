@@ -1,29 +1,29 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.table.widget.celleditors.Act
- ivator
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.table.widgets.celleditors
- ;singleton:=true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.facet.widgets.celleditors,
  org.eclipse.emf.facet.widgets.celleditors.ecore;bundle-version="0.1.0",
  org.eclipse.emf.facet.util.core,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.2",
  org.eclipse.uml2.uml,
  org.eclipse.emf.facet.widgets,
  org.eclipse.emf.facet.infra.common.core,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.profilefacet.metamodel;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.profilefacet;bundle-version="0.9.1"
-Bundle-Version: 0.9.1.qualifier
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.profilefacet.metamodel;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.profilefacet;bundle-version="0.9.2"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.uml.table.widget.celleditors.Act
+ ivator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.table.widgets.celleditors
+ ;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -1,25 +1,25 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.hyperlink.Activator
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.hyperlink;singleton:=tr
- ue
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.transaction,
- org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.2",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.2",
  org.eclipse.ui.navigator;bundle-version="3.5.100",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1"
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.2"
 Export-Package: org.eclipse.papyrus.infra.hyperlink,
  org.eclipse.papyrus.infra.hyperlink.commands,
  org.eclipse.papyrus.infra.hyperlink.helper,
  org.eclipse.papyrus.infra.hyperlink.object,
  org.eclipse.papyrus.infra.hyperlink.ui,
  org.eclipse.papyrus.infra.hyperlink.util
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.infra.hyperlink.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.hyperlink;singleton:=tr
+ ue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

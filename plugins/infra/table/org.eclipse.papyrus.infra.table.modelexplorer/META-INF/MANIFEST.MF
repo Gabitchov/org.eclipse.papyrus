@@ -1,20 +1,10 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.table.modelexplorer.Activa
- tor
-Bundle-Vendor: %pluginProvider
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.modelexplorer;sin
- gleton:=true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core,
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.2",
  org.eclipse.core.expressions,
  org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.2",
  org.eclipse.uml2.uml,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.core.runtime;bundle-version="3.7.0",
@@ -27,5 +17,15 @@ Export-Package: org.eclipse.papyrus.infra.table.modelexplorer,
  org.eclipse.papyrus.infra.table.modelexplorer.handlers,
  org.eclipse.papyrus.infra.table.modelexplorer.messages,
  org.eclipse.papyrus.infra.table.modelexplorer.providers
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %pluginProvider
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.infra.table.modelexplorer.Activa
+ tor
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.modelexplorer;sin
+ gleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

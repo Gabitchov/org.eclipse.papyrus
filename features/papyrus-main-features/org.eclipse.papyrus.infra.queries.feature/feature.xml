@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.papyrus.infra.queries.feature" label="Papyrus queries core (Incubation)" provider-name="Eclipse Modeling Project" version="0.9.1.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.infra.queries.feature" label="Papyrus queries core (Incubation)" provider-name="Eclipse Modeling Project" version="0.9.2.qualifier">
 
 <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST

@@ -1,12 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-ClassPath: .
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.gmfgenextension;singleton:=tr
- ue
-Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.papyrusgmfgenextension,
  org.eclipse.papyrus.papyrusgmfgenextension.impl,
  org.eclipse.papyrus.papyrusgmfgenextension.popupaction,
@@ -17,5 +9,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="3.0.0",
  org.eclipse.uml2.uml.edit;bundle-version="3.0.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0"
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ClassPath: .
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.gmfgenextension;singleton:=tr
+ ue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

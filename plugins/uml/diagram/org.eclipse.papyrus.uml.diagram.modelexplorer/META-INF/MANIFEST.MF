@@ -1,27 +1,27 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.modelexplorer.Activa
- tor
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.modelexplorer;sin
- gleton:=true
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.navigator;bundle-version="3.4.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.uml2.uml.editor;bundle-version="3.1.0",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2",
  org.eclipse.emf.facet.infra.facet;bundle-version="0.1.0",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.2",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.emf.ecore,
  org.eclipse.gmf.runtime.notation,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.1"
-Bundle-Version: 0.9.1.qualifier
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.2"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.modelexplorer.Activa
+ tor
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.modelexplorer;sin
+ gleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

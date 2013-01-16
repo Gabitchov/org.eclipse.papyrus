@@ -1,11 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;singleton:=true
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.xtext.xbase;bundle-version="2.1.0";resolution:=optional;visibility:=reexport,
  org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
@@ -23,11 +16,11 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.jface,
  org.eclipse.ui.ide,
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.profile;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.alf;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.1"
+ org.eclipse.papyrus.uml.profile;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.alf;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.2"
 Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl,
@@ -40,6 +33,15 @@ Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.serializer,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproper
+ ty.xtext;singleton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

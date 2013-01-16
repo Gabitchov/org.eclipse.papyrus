@@ -1,20 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginNam
-Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.tests
-Bundle-Version: 0.9.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.tests.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit,
- org.eclipse.papyrus.views.modelexplorer.tests;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1",
+ org.eclipse.papyrus.views.modelexplorer.tests;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.2",
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.ui.navigator,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.uml.modelexplorer.tests
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginNam
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.tests.Activato
+ r
+Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

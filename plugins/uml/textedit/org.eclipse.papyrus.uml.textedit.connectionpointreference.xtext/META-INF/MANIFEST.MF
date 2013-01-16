@@ -1,12 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointr
- eference.xtext;singleton:=true
-Bundle-Localization: plugin
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.formatting,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.generator,
@@ -35,5 +27,13 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0",
  org.apache.log4j;bundle-version="1.2.15"
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointr
+ eference.xtext;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

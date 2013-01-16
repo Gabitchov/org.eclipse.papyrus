@@ -1,14 +1,5 @@
 Manifest-Version: 1.0
-Bundle-Name: CSS Editor UI (Incubation)
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSAct
- ivator
-Bundle-ManifestVersion: 2
-Bundle-Vendor: Eclipse Modeling Project
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;si
- ngleton:=true
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.9.1",
+Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.9.2",
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -24,5 +15,14 @@ Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.9.
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.ui.contentassist,
  org.eclipse.papyrus.infra.gmfdiag.ui.contentassist.antlr,
  org.eclipse.papyrus.infra.gmfdiag.ui.internal
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: CSS Editor UI (Incubation)
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSAct
+ ivator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;si
+ ngleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

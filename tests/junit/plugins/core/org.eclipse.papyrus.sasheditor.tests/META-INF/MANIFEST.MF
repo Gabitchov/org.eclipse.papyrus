@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor;bundle-versio
- n="0.9.1"
-Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.tests;s
- ingleton:=true
-Bundle-Localization: fragment
 Require-Bundle: org.eclipse.ui.editors;bundle-version="3.8.0",
  org.eclipse.jface.text;bundle-version="3.8.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.core.resources;bundle-version="3.8.0"
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor;bundle-versio
+ n="0.9.1"
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: fragment
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.tests;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

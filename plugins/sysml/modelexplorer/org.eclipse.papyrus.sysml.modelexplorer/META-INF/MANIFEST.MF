@@ -1,29 +1,29 @@
 Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-ClassPath: .,
- bin
-Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
-Bundle-Vendor: %providerName
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.modelexplorer;singleton
- :=true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.common.core,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.sysml;bundle-version="0.9.1",
+ org.eclipse.papyrus.sysml;bundle-version="0.9.2",
  org.eclipse.swt,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
- org.eclipse.papyrus.sysml.service.types;bundle-version="0.9.1",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.9.1",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.2",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.9.2",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.9.2",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.2",
  org.eclipse.ui.navigator;bundle-version="3.5.0",
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.2",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200"
-Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ bin
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.modelexplorer;singleton
+ :=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
