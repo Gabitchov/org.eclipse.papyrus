@@ -24,14 +24,20 @@
 		timeout = [getDurationFromVSL(trigger.event.oclAsType(TimeEvent).when.expr.oclAsType(OpaqueExpression)._body->asSequence()->first())/]/1000;
 	[/if]
 [/for]
+		// upcoming support for nested state machines
+		// timeout = setTimeoutInSubState (timeout);
+
 		// get an event from the pool.
 		event = ep->readEvent(timeout);
 	
+		// process event in sub-state
+		// processEventInSubState (event);
+
 [for (transition : Transition | state.outgoing)]
 	[comment big restriction: will only analyse first of possibly multiple triggers/]
 	[if (transition.trigger->asSequence()->first().event.oclIsKindOf(TimeEvent))]
 		// transition [transition.name/] - trigger: TimeEvent (there should be at most one outgoing timed transition per state).
-		if (event.operationID == BasicCalls::ContainerServices::EventPool::ID_TIMEOUT) {
+		if (event.operationID == core::ContainerServices::EventPool::ID_TIMEOUT) {
 			newState = STATE_[transition.target.name/];
 [if not (transition.effect = null)]			executor->[state.containingStateMachine().name/]_[transition.name/]_[transition.effect.name/]();
 [/if]

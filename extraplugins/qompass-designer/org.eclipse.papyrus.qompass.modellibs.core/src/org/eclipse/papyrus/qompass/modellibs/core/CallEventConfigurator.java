@@ -1,17 +1,16 @@
 package org.eclipse.papyrus.qompass.modellibs.core;
 
-import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.Property;
-
 import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * Configurator of a call event (for a state machine): it sets the
- * portIndex attribute of the call event interceptor. The interceptor uses this
- * attribute to initialize the portIndex attribute within the produced CallEvent
+ * portID attribute of the call event interceptor. The interceptor uses this
+ * attribute to initialize the portID attribute within the produced CallEvent
  * data structure.
  * 
  * @author ansgar
@@ -19,7 +18,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContex
  */
 public class CallEventConfigurator implements IInstanceConfigurator {
 
-	public final static String portAttribute = "portIndex";
+	public final static String portAttribute = "portID";
 
 	/**
 	 * Configure the instance of a CallEvent interceptor. The configuration parameter is the
@@ -40,6 +39,7 @@ public class CallEventConfigurator implements IInstanceConfigurator {
 		if(context != null) {
 			// make sure that there is an enum par port
 			String literalName = "port_" + UMLTool.varName(context.port);
+			literalName = "0";
 			// the associated enumeration is declared by the statemachine (which is included by the bootloader as well)
 
 			DepPlanUtils.configureProperty(instance, portAttribute, literalName);

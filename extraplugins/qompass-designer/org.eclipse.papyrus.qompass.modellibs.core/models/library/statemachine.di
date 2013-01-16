@@ -48,9 +48,6 @@
           <emfPageIdentifier href="statemachine.notation#_IOfaAF8wEeGerN33d-RdRg"/>
         </children>
         <children>
-          <emfPageIdentifier href="statemachine.notation#_KwHpQF8wEeGerN33d-RdRg"/>
-        </children>
-        <children>
           <emfPageIdentifier href="statemachine.notation#_Ogua0F81EeGbQoflzrdx0g"/>
         </children>
       </children>

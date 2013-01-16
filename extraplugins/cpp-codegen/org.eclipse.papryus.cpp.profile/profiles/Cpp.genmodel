@@ -99,5 +99,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cpp.ecore#//CppTemplateParameter/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cpp.ecore#//CppTemplateParameter/base_templateparameter"/>
     </genClasses>
+    <genClasses ecoreClass="Cpp.ecore#//Union">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cpp.ecore#//Union/base_DataType"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

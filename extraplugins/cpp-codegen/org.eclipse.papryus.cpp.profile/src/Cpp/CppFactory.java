@@ -212,6 +212,15 @@ public interface CppFactory extends EFactory {
 	CppTemplateParameter createCppTemplateParameter();
 
 	/**
+	 * Returns a new object of class '<em>Union</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Union</em>'.
+	 * @generated
+	 */
+	Union createUnion();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

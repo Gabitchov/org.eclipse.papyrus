@@ -14,7 +14,7 @@ TRACEpr (AO);
 PR ("IN [clazz.name/]::checkPreCond()" << showI);
 	
 [for (sm : StateMachine | ownedBehavior->select(oclIsKindOf(StateMachine)))]
-BasicCalls::ContainerServices::CallEvent_ event;
+core::ContainerServices::CallEvent_ event;
 int timeout;
 int newState;
 

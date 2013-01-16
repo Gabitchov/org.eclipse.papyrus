@@ -471,12 +471,9 @@ Call operations of buffer component?
               <value xsi:nil="true"/>
             </defaultValue>
           </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Port" xmi:id="_MhH6cENxEeGoAtSeIK7WLg" name="in" visibility="public" aggregation="composite">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_MhH6cENxEeGoAtSeIK7WLg" name="in" visibility="public" type="_WkkjoPNUEeCovO8AYZymZQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QR4PQENxEeGoAtSeIK7WLg" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QR5dYENxEeGoAtSeIK7WLg" value="1"/>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_QR8gsENxEeGoAtSeIK7WLg">
-              <value xsi:nil="true"/>
-            </defaultValue>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_fmF6MAzyEd6it_RkGhz_AA" name="Unmarshall" isAbstract="true">
@@ -488,12 +485,9 @@ Call operations of buffer component?
               <value xsi:nil="true"/>
             </defaultValue>
           </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Port" xmi:id="_Zd558ENxEeGoAtSeIK7WLg" name="out" visibility="public" aggregation="composite">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_Zd558ENxEeGoAtSeIK7WLg" name="out" visibility="public" type="_WkkjoPNUEeCovO8AYZymZQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aPDDAENxEeGoAtSeIK7WLg" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aPERIENxEeGoAtSeIK7WLg" value="1"/>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_aPGtYENxEeGoAtSeIK7WLg">
-              <value xsi:nil="true"/>
-            </defaultValue>
           </ownedAttribute>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_fPpr0K-jEd6DndT7kDY1-A" name="b:dispatch">
             <specification xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#__aGzICUUEd6YR-YzyVnLng"/>
@@ -532,22 +526,16 @@ out->dispatch(event);</body>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_1xGG8ENqEeGoAtSeIK7WLg" name="FromCallEventWP">
           <generalization xmi:id="_M09FgF_rEd6RvK-1A151zQ" general="_mIpj8Ns8Ed2eM5kqcby5ZA"/>
-          <ownedAttribute xmi:type="uml:Port" xmi:id="_9gIc8ENvEeGoAtSeIK7WLg" name="in" visibility="public" aggregation="composite">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_9gIc8ENvEeGoAtSeIK7WLg" name="in" visibility="public" type="_WkkjoPNUEeCovO8AYZymZQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9uDkMENvEeGoAtSeIK7WLg" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9uEyUENvEeGoAtSeIK7WLg" value="1"/>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_9uH1oENvEeGoAtSeIK7WLg">
-              <value xsi:nil="true"/>
-            </defaultValue>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_H7IOcENrEeGoAtSeIK7WLg" name="ToCallEventWP">
           <generalization xmi:id="_KHmGAENrEeGoAtSeIK7WLg" general="_j29X4NttEd2eM5kqcby5ZA"/>
-          <ownedAttribute xmi:type="uml:Port" xmi:id="_i5SOQEN8EeGfhclnRyNzoA" name="out" visibility="public" aggregation="composite">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_i5SOQEN8EeGfhclnRyNzoA" name="out" visibility="public" type="_WkkjoPNUEeCovO8AYZymZQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jRB_4EN8EeGfhclnRyNzoA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jRtVUEN8EeGfhclnRyNzoA" value="1"/>
-            <defaultValue xmi:type="uml:LiteralString" xmi:id="_jRw_sEN8EeGfhclnRyNzoA">
-              <value xsi:nil="true"/>
-            </defaultValue>
           </ownedAttribute>
         </packagedElement>
       </packagedElement>
@@ -597,7 +585,7 @@ cout &lt;&lt; &quot;this is a sample post-call interception&quot; &lt;&lt; endl;
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_aQ7goChYEd-eoo60eNyGlg" name="CallActivation">
         <ownedComment xmi:id="_aAH58D8CEeGJ6KSvhYhYuQ">
-          <body>A set of Leader followers is instantiated. Each has its own thread and a semaphore. The LV instance waits on its semaphore. When selectLeader is called, a follower is signaled (semaphore is posted) and will become leader. The leader waits for a resource (e.g. a socket) and becomes executor.
+          <body>A set of Leader followers is instantiated. Each has its own thread and a semaphore. The LF instance waits on its semaphore. When selectLeader is called, a follower is signaled (semaphore is posted) and will become leader. The leader waits for a resource (e.g. a socket) and becomes executor.
 </body>
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_e6Y_EChYEd-eoo60eNyGlg" name="Activator">
@@ -875,8 +863,13 @@ m_state = FOLLOWER;</body>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_ZjdOAP-EEd6628OhKk_dpg" name="rLC" aggregation="composite">
           <type xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_rVfYoMGJEd-Mveea1W_olA" name="priority">
+        <ownedAttribute xmi:id="_rVfYoMGJEd-Mveea1W_olA" name="priority" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e6XsEFjmEeKaM_PspnG53g" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e6ckkFjmEeKaM_PspnG53g" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_e6njsFjmEeKaM_PspnG53g">
+            <value xsi:nil="true"/>
+          </defaultValue>
         </ownedAttribute>
         <interfaceRealization xmi:id="_lrFSQDz9Ed-v9PxuTj6Elw" name="derived realization of ILifeCycle" client="_SiY_AP-EEd6628OhKk_dpg">
           <supplier xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
@@ -918,7 +911,7 @@ pthread_setschedparam (pt, SCHED_RR, &amp;schedParam);
         <ownedOperation xmi:id="_JqB6gD16Ed-Bk-AHd6yyoA" name="deactivate"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_wCkVcNYGEd-CgJIavLpOxQ" name="ImplRequirement" client="_SiY_AP-EEd6628OhKk_dpg" supplier="_ea234NYGEd-CgJIavLpOxQ"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_WkkjoPNUEeCovO8AYZymZQ" name="CallEvent">
+      <packagedElement xmi:type="uml:Class" xmi:id="_WkkjoPNUEeCovO8AYZymZQ" name="CallEvent_">
         <ownedAttribute xmi:id="_YKtbAPNUEeCovO8AYZymZQ" name="operationID" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aDHHEPNUEeCovO8AYZymZQ" value="1"/>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Connector and container pattern</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+
+<body>
+<img src="../img/qompass-0.33.jpg" alt="Qompass logo">
+<h1>Connector and container pattern</h1>
+
+<P>
+The connector pattern is based on the idea of Garlan and Shaw that a realization of an interaction must be
+a first class citizen of the application model. It must be possible that an interaction - like an
+application component - has multiple realizations and can be configured. The idea of connectors has been
+formalized in the context of UML in [<A
+ HREF="bibliography.html#Robert:05a">4</A>] and [<A
+ HREF="bibliography.html#Robert:05b">5</A>]: a UML connector - a "line" within a composite class - is replaced by an
+ interaction component as shown in the left part of Fig. <A HREF="#fig:cont-conn">3</A>.
+
+<P>
+The interaction component is typically defined in a model library in form of a <I>template</I>. This is required,
+since the interaction component must be able to adapt to the context in which it is used. For instance, in case of
+an operation call of a component, the interaction component must provide the same operation as the component.
+In most cases, the formal parameter of the template is either an interface or a data-type. The implementation of
+the interaction component must be adapted as well, in order to correspond to the interface. The implementation body
+is thus provided in a form a a template of a typical model-to-text (M2T) language, in our case Acceleo.
+
+<P>
+The container pattern may be used to modify the way a component interacts with its environment. This pattern has been
+identified by existing middleware solutions, such as
+CCM[<A HREF="bibliography.html#OMG:CCM:08">2</A>] and
+Fractal[<A HREF="bibliography.html#Fractal:04">1</A>].
+The container encapsulates an object (component) and can provide additional service and observer or manipulate the
+interactions with the component. In order to enhance flexibility (and readability) of the application model, it is
+preferable to add information about the container (in form of rules) to the model, but not the container itself.
+Thus, a transformation step adds the container to the model.
+
+<P>
+
+<center>
+<a name="fig:cont-conn">
+<img src="../img/container-connector.png"><br>
+Connector reification and container expansion
+</center>
+ 
+<P>
+The right side of Figure <A HREF="#fig:cont-conn">3</A> shows this principle: a component "C" is enriched with rules
+to apply. This information is evaluated by a transformation that creates the container and adds the elements that are
+associated with the rule. The component becomes an <I>executor</I>, i.e the business code behind a component. It is possible
+to distinguish two different types of elements within the container: the <I>interceptor</I> and the <I>extensions</I>. The
+interceptor is placed on a delegation connection between a port of the container and the executor. The extension is
+an additional element which can be connected with external ports of the container. 
+<P>
+
+<center>
+<a name="figSMrule">
+<img src="../img/statemachine-rule.png"><br>
+Container rule for a state machine
+</center>
+
+<P>
+The current container libraries offer for instance the production of execution traces or the realization of mutual access.
+An interesting feature is the support for state-machines. Its realization requires three elements within the container:
+the state-machine itself, an event pool and an interceptor which feeds the pool (e.g. each time an operation is called, 
+an associated call event is produced). These elements are captured by the rule shown in Figure <A HREF="#figSMrule">4</A>.
+
+<P>
+In a similar way as the FIFO interaction component, the state machine and the interceptor are defined in a package template.
+The model of the state machine is defined for a component (class). The implementation of the state machines depends on the
+formal parameter which is instantiated with a class. The message interceptor is typed with an interface, since it primarily
+captures call-events.
+
+<P>
+The following code fragment describes the template of an operation which manages the execution of a state-machine.
+The code, here using the C++ language, is modeled by an UML opaque behavior. The access to the model element is embedded
+between <TT>[</TT> and <TT>/]</TT>, i.e. <TT>[name/]</TT> allows to access the name of a UML element. This excerpt shows
+the power to adapt the behavior of embedded components via the container to add new functionality that is well separated
+of the business code.
+
+<P>
+<PRE>
+[for (sm : StateMachine | ownedBehavior-&gt;select(oclIsKindOf(StateMachine)))]
+switch(m_currentState)
+{
+    [for (state : State | sm.region.subvertex-&gt;select(oclIsKindOf(State)))]
+    case [clazz.name/]_[state.name/]:
+    ...
+    [/for] ...
+</PRE>
+
+<P>
+The instantiation of the template with a fictive class "A" is shown in the next code fragment. This class contains a
+state machine with the state "state1", which appears in the code's "switch" statement. In each state, the events defined
+as triggers for transitions are compared with the event read from the pool (in which a timer or interceptor write).
+
+<P>
+<PRE>
+switch(m_currentState) 
+{
+    case A_state1:
+    ...
+</PRE>
+
+<P>
+
+<P>
+<HR>
+
+</BODY>
+</HTML>

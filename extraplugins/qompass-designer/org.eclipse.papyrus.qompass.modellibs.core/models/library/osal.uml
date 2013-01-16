@@ -8385,28 +8385,28 @@ inserts a default copy constructor.</body>
       <packagedElement xmi:type="uml:Class" xmi:id="_sQ1JADO0EdyG-pUz-bb-Lg" name="BString50">
         <templateBinding xmi:id="_K4hEADO1EdyG-pUz-bb-Lg" signature="_gkCKsDO0EdyG-pUz-bb-Lg">
           <parameterSubstitution xmi:id="_Ol57wDO1EdyG-pUz-bb-Lg" actual="_Ol57wTO1EdyG-pUz-bb-Lg" formal="_iWLdwDO0EdyG-pUz-bb-Lg">
-            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_Ol57wTO1EdyG-pUz-bb-Lg" name="maxSize" value="50"/>
+            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_Ol57wTO1EdyG-pUz-bb-Lg" name="50" value="50"/>
           </parameterSubstitution>
         </templateBinding>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_0AwCEDO0EdyG-pUz-bb-Lg" name="BString200">
         <templateBinding xmi:id="_Lb-9cDO1EdyG-pUz-bb-Lg" signature="_gkCKsDO0EdyG-pUz-bb-Lg">
           <parameterSubstitution xmi:id="_TPCDADO1EdyG-pUz-bb-Lg" actual="_TPL0ADO1EdyG-pUz-bb-Lg" formal="_iWLdwDO0EdyG-pUz-bb-Lg">
-            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_TPL0ADO1EdyG-pUz-bb-Lg" name="maxSize" value="200"/>
+            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_TPL0ADO1EdyG-pUz-bb-Lg" name="200" value="200"/>
           </parameterSubstitution>
         </templateBinding>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_1vnXoDO0EdyG-pUz-bb-Lg" name="BString500">
         <templateBinding xmi:id="_L8BvcDO1EdyG-pUz-bb-Lg" signature="_gkCKsDO0EdyG-pUz-bb-Lg">
           <parameterSubstitution xmi:id="_eSja0DO1EdyG-pUz-bb-Lg" actual="_eStL0DO1EdyG-pUz-bb-Lg" formal="_iWLdwDO0EdyG-pUz-bb-Lg">
-            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_eStL0DO1EdyG-pUz-bb-Lg" name="maxSize" value="500"/>
+            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_eStL0DO1EdyG-pUz-bb-Lg" name="500" value="500"/>
           </parameterSubstitution>
         </templateBinding>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_3W43cDO0EdyG-pUz-bb-Lg" name="BString2000">
         <templateBinding xmi:id="_MbeEgDO1EdyG-pUz-bb-Lg" signature="_gkCKsDO0EdyG-pUz-bb-Lg">
           <parameterSubstitution xmi:id="_jJ_q4DO1EdyG-pUz-bb-Lg" actual="_jJ_q4TO1EdyG-pUz-bb-Lg" formal="_iWLdwDO0EdyG-pUz-bb-Lg">
-            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_jJ_q4TO1EdyG-pUz-bb-Lg" name="maxSize" value="2000"/>
+            <ownedActual xmi:type="uml:LiteralInteger" xmi:id="_jJ_q4TO1EdyG-pUz-bb-Lg" name="2000" value="2000"/>
           </parameterSubstitution>
         </templateBinding>
       </packagedElement>

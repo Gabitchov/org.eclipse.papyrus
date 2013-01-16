@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Profile xmi:id="_j9REUByGEduN1bTiWJ0lyw" name="Cpp" metaclassReference="_TRvswByHEduN1bTiWJ0lyw _gphJsByIEduN1bTiWJ0lyw _Gt0nQByJEduN1bTiWJ0lyw _GuFF8ByJEduN1bTiWJ0lyw _G0LmkByMEdu0tMSz-ceC5A _G0XMwByMEdu0tMSz-ceC5A _G0a3IByMEdu0tMSz-ceC5A _jBetUByNEdu0tMSz-ceC5A _jB15sByNEdu0tMSz-ceC5A _jB_qsByNEdu0tMSz-ceC5A _jCCuAByNEdu0tMSz-ceC5A _jCGYYByNEdu0tMSz-ceC5A _jCJbsByNEdu0tMSz-ceC5A _X7dJsDlPEd2mO4M0idYmag">
+  <uml:Profile xmi:id="_j9REUByGEduN1bTiWJ0lyw" name="Cpp" metaclassReference="_TRvswByHEduN1bTiWJ0lyw _gphJsByIEduN1bTiWJ0lyw _Gt0nQByJEduN1bTiWJ0lyw _GuFF8ByJEduN1bTiWJ0lyw _G0LmkByMEdu0tMSz-ceC5A _G0XMwByMEdu0tMSz-ceC5A _G0a3IByMEdu0tMSz-ceC5A _jBetUByNEdu0tMSz-ceC5A _jB15sByNEdu0tMSz-ceC5A _jB_qsByNEdu0tMSz-ceC5A _jCCuAByNEdu0tMSz-ceC5A _jCGYYByNEdu0tMSz-ceC5A _jCJbsByNEdu0tMSz-ceC5A _X7dJsDlPEd2mO4M0idYmag _OiGWgF5fEeKpvPHLdOdp2Q">
     <ownedComment xmi:id="_KaTwkNY9EeGH9LIP6-_nLw" annotatedElement="_19ZzgByHEduN1bTiWJ0lyw">
       <body>&quot;declaration&quot; attribute should only be used, if more than one indirections of pointers (often &quot;**&quot;)</body>
     </ownedComment>
@@ -51,6 +51,9 @@
     </elementImport>
     <elementImport xmi:id="_X7dJsDlPEd2mO4M0idYmag" alias="PackageImport">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#PackageImport"/>
+    </elementImport>
+    <elementImport xmi:id="_OiGWgF5fEeKpvPHLdOdp2Q" alias="DataType">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
     </elementImport>
     <packageImport xmi:id="_6G_4UP2HEeGbWP4cpLE0gg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -353,6 +356,14 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_KEps4CYOEeKe9vxHwEdBmA" name="E_ManualGeneration_Class1" memberEnd="_KEps4SYOEeKe9vxHwEdBmA _KEpF0CYOEeKe9vxHwEdBmA">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_KEps4SYOEeKe9vxHwEdBmA" name="extension_ManualGeneration" type="_A3_lgCYNEeKe9vxHwEdBmA" aggregation="composite" association="_KEps4CYOEeKe9vxHwEdBmA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_QCUzIF5fEeKpvPHLdOdp2Q" name="Union">
+      <ownedAttribute xmi:id="_R-F8QF5fEeKpvPHLdOdp2Q" name="base_DataType" association="_R-F8QV5fEeKpvPHLdOdp2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_R-F8QV5fEeKpvPHLdOdp2Q" name="E_Union_DataType1" memberEnd="_R-F8Ql5fEeKpvPHLdOdp2Q _R-F8QF5fEeKpvPHLdOdp2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_R-F8Ql5fEeKpvPHLdOdp2Q" name="extension_Union" type="_QCUzIF5fEeKpvPHLdOdp2Q" aggregation="composite" association="_R-F8QV5fEeKpvPHLdOdp2Q"/>
     </packagedElement>
     <profileApplication xmi:id="_QS19UMogEeGKstsYRuxdvw">
       <eAnnotations xmi:id="_QUmQ0MogEeGKstsYRuxdvw" source="http://www.eclipse.org/uml2/2.0.0/UML">

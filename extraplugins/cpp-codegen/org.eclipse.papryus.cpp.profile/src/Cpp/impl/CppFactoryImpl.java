@@ -100,6 +100,7 @@ public class CppFactoryImpl extends EFactoryImpl implements CppFactory {
 			case CppPackage.CPP_TEMPLATE: return createCppTemplate();
 			case CppPackage.CPP_TEMPLATE_BINDING: return createCppTemplateBinding();
 			case CppPackage.CPP_TEMPLATE_PARAMETER: return createCppTemplateParameter();
+			case CppPackage.UNION: return createUnion();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -343,6 +344,16 @@ public class CppFactoryImpl extends EFactoryImpl implements CppFactory {
 	public CppTemplateParameter createCppTemplateParameter() {
 		CppTemplateParameterImpl cppTemplateParameter = new CppTemplateParameterImpl();
 		return cppTemplateParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Union createUnion() {
+		UnionImpl union = new UnionImpl();
+		return union;
 	}
 
 	/**

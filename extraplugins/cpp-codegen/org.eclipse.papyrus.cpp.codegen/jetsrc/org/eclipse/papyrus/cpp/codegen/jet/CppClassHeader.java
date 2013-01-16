@@ -12,6 +12,7 @@ package org.eclipse.papyrus.cpp.codegen.jet;
 
 import org.eclipse.papyrus.cpp.codegen.utils.GenUtils;
 import Cpp.CppInclude;
+import Cpp.Union;
 import org.eclipse.papyrus.cpp.codegen.StdStereo;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.*;
@@ -83,7 +84,8 @@ public class CppClassHeader
 	String openNS			= GenUtils.openNS (currentClass); 
 	String closeNS			= GenUtils.closeNS (currentClass); 
 	String classDoc			= "";
-	String classOrStruct    = (currentClass instanceof DataType) ? "struct" : "class";
+	String classOrStruct    = GenUtils.hasStereotype(currentClass, Union.class) ? "union" :
+								((currentClass instanceof DataType) ? "struct" : "class");
 	
 	// Doc for the class
 	CppElementDoc jDoc		= new CppElementDoc();

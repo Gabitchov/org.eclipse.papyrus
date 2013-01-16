@@ -1,6 +1,6 @@
 <%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet" 
 	skeleton        =   "generator.skeleton" 
-	imports			=	"org.eclipse.papyrus.cpp.codegen.utils.GenUtils Cpp.CppInclude org.eclipse.papyrus.cpp.codegen.StdStereo org.eclipse.uml2.uml.Package org.eclipse.uml2.uml.* org.eclipse.papyrus.cpp.codegen.jet.util.* org.eclipse.papyrus.cpp.codegen.jet.doc.*" 
+	imports			=	"org.eclipse.papyrus.cpp.codegen.utils.GenUtils Cpp.CppInclude Cpp.Union org.eclipse.papyrus.cpp.codegen.StdStereo org.eclipse.uml2.uml.Package org.eclipse.uml2.uml.* org.eclipse.papyrus.cpp.codegen.jet.util.* org.eclipse.papyrus.cpp.codegen.jet.doc.*" 
  	class			=	"CppClassHeader" 
  %>
 <%
@@ -18,7 +18,8 @@
 	String openNS			= GenUtils.openNS (currentClass); 
 	String closeNS			= GenUtils.closeNS (currentClass); 
 	String classDoc			= "";
-	String classOrStruct    = (currentClass instanceof DataType) ? "struct" : "class";
+	String classOrStruct    = GenUtils.hasStereotype(currentClass, Union.class) ? "union" :
+								((currentClass instanceof DataType) ? "struct" : "class");
 	
 	// Doc for the class
 	CppElementDoc jDoc		= new CppElementDoc();

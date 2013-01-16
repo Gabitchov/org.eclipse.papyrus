@@ -879,6 +879,34 @@ public interface CppPackage extends EPackage {
 	int CPP_TEMPLATE_PARAMETER_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link Cpp.impl.UnionImpl <em>Union</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Cpp.impl.UnionImpl
+	 * @see Cpp.impl.CppPackageImpl#getUnion()
+	 * @generated
+	 */
+	int UNION = 21;
+
+	/**
+	 * The feature id for the '<em><b>Base Data Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION__BASE_DATA_TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Union</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link Cpp.CppVisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -886,7 +914,7 @@ public interface CppPackage extends EPackage {
 	 * @see Cpp.impl.CppPackageImpl#getCppVisibilityKind()
 	 * @generated
 	 */
-	int CPP_VISIBILITY_KIND = 21;
+	int CPP_VISIBILITY_KIND = 22;
 
 
 	/**
@@ -1617,6 +1645,27 @@ public interface CppPackage extends EPackage {
 	EReference getCppTemplateParameter_Base_templateparameter();
 
 	/**
+	 * Returns the meta object for class '{@link Cpp.Union <em>Union</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Union</em>'.
+	 * @see Cpp.Union
+	 * @generated
+	 */
+	EClass getUnion();
+
+	/**
+	 * Returns the meta object for the reference '{@link Cpp.Union#getBase_DataType <em>Base Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Data Type</em>'.
+	 * @see Cpp.Union#getBase_DataType()
+	 * @see #getUnion()
+	 * @generated
+	 */
+	EReference getUnion_Base_DataType();
+
+	/**
 	 * Returns the meta object for enum '{@link Cpp.CppVisibilityKind <em>Visibility Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2233,6 +2282,24 @@ public interface CppPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CPP_TEMPLATE_PARAMETER__BASE_TEMPLATEPARAMETER = eINSTANCE.getCppTemplateParameter_Base_templateparameter();
+
+		/**
+		 * The meta object literal for the '{@link Cpp.impl.UnionImpl <em>Union</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Cpp.impl.UnionImpl
+		 * @see Cpp.impl.CppPackageImpl#getUnion()
+		 * @generated
+		 */
+		EClass UNION = eINSTANCE.getUnion();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Data Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNION__BASE_DATA_TYPE = eINSTANCE.getUnion_Base_DataType();
 
 		/**
 		 * The meta object literal for the '{@link Cpp.CppVisibilityKind <em>Visibility Kind</em>}' enum.

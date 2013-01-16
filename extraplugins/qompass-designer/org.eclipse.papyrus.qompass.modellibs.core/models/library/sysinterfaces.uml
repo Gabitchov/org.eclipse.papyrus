@@ -5,7 +5,7 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
     <packageImport xmi:id="_3gokYF_LEd6vU6EJjexEKQ">
-      <importedPackage xmi:type="uml:Model" href="CORBA.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
+      <importedPackage xmi:type="uml:Model" href="corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
     <packageImport xmi:id="_TUuxcPN-EeCovO8AYZymZQ">
       <importedPackage xmi:type="uml:Model" href="pathmap://Papyrus_Alf_LIBRARIES/alflibrary.uml#_0bBI4Hy5EeCKy5kSqd4eVw"/>
@@ -16,7 +16,7 @@
     <packagedElement xmi:type="uml:Interface" xmi:id="_7TuzoCUUEd6YR-YzyVnLng" name="Dispatch">
       <ownedOperation xmi:id="__aGzICUUEd6YR-YzyVnLng" name="dispatch" isAbstract="true">
         <ownedParameter xmi:id="_y4XwwC3vEd6OqY3qskOtLQ" name="buffer">
-          <type xmi:type="uml:PrimitiveType" href="CORBA.uml#_IYEXcB-VEd6nGq8wpI2tjg"/>
+          <type xmi:type="uml:PrimitiveType" href="corba.uml#_IYEXcB-VEd6nGq8wpI2tjg"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>

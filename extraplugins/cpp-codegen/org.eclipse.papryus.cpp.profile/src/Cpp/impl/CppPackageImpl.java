@@ -35,12 +35,12 @@ import Cpp.CppVirtual;
 import Cpp.CppVisibility;
 import Cpp.CppVisibilityKind;
 import Cpp.ManualGeneration;
+import Cpp.Union;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class CppPackageImpl extends EPackageImpl implements CppPackage {
@@ -48,7 +48,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppArrayEClass = null;
@@ -56,7 +55,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppConstEClass = null;
@@ -64,7 +62,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppDefaultEClass = null;
@@ -72,7 +69,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppPtrEClass = null;
@@ -80,7 +76,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppRefEClass = null;
@@ -88,7 +83,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppExternClassEClass = null;
@@ -96,7 +90,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppExternLibraryEClass = null;
@@ -104,7 +97,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppIncludeEClass = null;
@@ -112,7 +104,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass manualGenerationEClass = null;
@@ -120,7 +111,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppRootEClass = null;
@@ -128,7 +118,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppNoCodeGenEClass = null;
@@ -136,7 +125,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppConstInitEClass = null;
@@ -144,7 +132,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppFriendEClass = null;
@@ -152,7 +139,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppInlineEClass = null;
@@ -160,7 +146,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppVirtualEClass = null;
@@ -168,7 +153,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppTypeEClass = null;
@@ -176,7 +160,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppVisibilityEClass = null;
@@ -184,7 +167,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppInitEClass = null;
@@ -192,7 +174,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppTemplateEClass = null;
@@ -200,7 +181,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppTemplateBindingEClass = null;
@@ -208,7 +188,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass cppTemplateParameterEClass = null;
@@ -216,19 +195,26 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	private EClass unionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum cppVisibilityKindEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see Cpp.CppPackage#eNS_URI
 	 * @see #init()
@@ -241,7 +227,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -249,18 +234,16 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>
-	 * This method is used to initialize {@link CppPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead,
-	 * they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>This method is used to initialize {@link CppPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static CppPackage init() {
-		if(isInited)
-			return (CppPackage)EPackage.Registry.INSTANCE.getEPackage(CppPackage.eNS_URI);
+		if (isInited) return (CppPackage)EPackage.Registry.INSTANCE.getEPackage(CppPackage.eNS_URI);
 
 		// Obtain or create and register package
 		CppPackageImpl theCppPackage = (CppPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CppPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CppPackageImpl());
@@ -279,7 +262,7 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 		// Mark meta-data to indicate it can't be changed
 		theCppPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(CppPackage.eNS_URI, theCppPackage);
 		return theCppPackage;
@@ -288,7 +271,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppArray() {
@@ -298,7 +280,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppArray_Base_parameter() {
@@ -308,7 +289,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppArray_Definition() {
@@ -318,7 +298,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppArray_Base_property() {
@@ -328,7 +307,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppArray_Base_association() {
@@ -338,7 +316,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppConst() {
@@ -348,7 +325,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppConst_Base_parameter() {
@@ -358,7 +334,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppConst_Base_property() {
@@ -368,7 +343,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppConst_Base_operation() {
@@ -378,7 +352,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppDefault() {
@@ -388,7 +361,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppDefault_Value() {
@@ -398,7 +370,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppDefault_Base_parameter() {
@@ -408,7 +379,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppDefault_Base_property() {
@@ -418,7 +388,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppPtr() {
@@ -428,7 +397,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppPtr_Base_parameter() {
@@ -438,7 +406,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppPtr_Base_property() {
@@ -448,7 +415,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppPtr_Declaration() {
@@ -458,7 +424,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppRef() {
@@ -468,7 +433,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppRef_Base_parameter() {
@@ -478,7 +442,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppRef_Base_property() {
@@ -488,7 +451,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppExternClass() {
@@ -498,7 +460,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppExternClass_Name() {
@@ -508,7 +469,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppExternClass_Base_class() {
@@ -518,7 +478,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppExternLibrary() {
@@ -528,7 +487,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppExternLibrary_Name() {
@@ -538,7 +496,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppExternLibrary_Base_package() {
@@ -548,7 +505,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppInclude() {
@@ -558,7 +514,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppInclude_Body() {
@@ -568,7 +523,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppInclude_Header() {
@@ -578,7 +532,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppInclude_Base_package() {
@@ -588,7 +541,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppInclude_Base_class() {
@@ -598,7 +550,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppInclude_Base_PackageImport() {
@@ -608,7 +559,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppInclude_PreBody() {
@@ -618,7 +568,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getManualGeneration() {
@@ -628,7 +577,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getManualGeneration_ExtensionBody() {
@@ -638,7 +586,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getManualGeneration_Base_Class() {
@@ -648,7 +595,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppRoot() {
@@ -658,7 +604,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppRoot_Base_package() {
@@ -668,7 +613,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppNoCodeGen() {
@@ -678,7 +622,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppNoCodeGen_Base_element() {
@@ -688,7 +631,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppConstInit() {
@@ -698,7 +640,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppConstInit_Initialisation() {
@@ -708,7 +649,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppConstInit_Base_operation() {
@@ -718,7 +658,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppFriend() {
@@ -728,7 +667,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppFriend_Base_dependency() {
@@ -738,7 +676,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppFriend_Base_operation() {
@@ -748,7 +685,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppInline() {
@@ -758,7 +694,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppInline_Base_operation() {
@@ -768,7 +703,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppVirtual() {
@@ -778,7 +712,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppVirtual_Base_operation() {
@@ -788,7 +721,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppType() {
@@ -798,7 +730,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppType_Definition() {
@@ -808,7 +739,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppType_Base_primitivetype() {
@@ -818,7 +748,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppVisibility() {
@@ -828,7 +757,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppVisibility_Value() {
@@ -838,7 +766,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppVisibility_Base_generalization() {
@@ -848,7 +775,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppInit() {
@@ -858,7 +784,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppInit_Value() {
@@ -868,7 +793,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppInit_Base_enumerationliteral() {
@@ -878,7 +802,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppTemplate() {
@@ -888,7 +811,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppTemplate_Declaration() {
@@ -898,7 +820,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppTemplate_Base_class() {
@@ -908,7 +829,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppTemplateBinding() {
@@ -918,7 +838,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppTemplateBinding_Binding() {
@@ -928,7 +847,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppTemplateBinding_Base_templatebinding() {
@@ -938,7 +856,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCppTemplateParameter() {
@@ -948,7 +865,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getCppTemplateParameter_Name() {
@@ -958,7 +874,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCppTemplateParameter_Base_templateparameter() {
@@ -968,7 +883,24 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EClass getUnion() {
+		return unionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnion_Base_DataType() {
+		return (EReference)unionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getCppVisibilityKind() {
@@ -978,7 +910,6 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CppFactory getCppFactory() {
@@ -988,22 +919,19 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -1096,6 +1024,9 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 		createEAttribute(cppTemplateParameterEClass, CPP_TEMPLATE_PARAMETER__NAME);
 		createEReference(cppTemplateParameterEClass, CPP_TEMPLATE_PARAMETER__BASE_TEMPLATEPARAMETER);
 
+		unionEClass = createEClass(UNION);
+		createEReference(unionEClass, UNION__BASE_DATA_TYPE);
+
 		// Create enums
 		cppVisibilityKindEEnum = createEEnum(CPP_VISIBILITY_KIND);
 	}
@@ -1103,22 +1034,19 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -1225,6 +1153,9 @@ public class CppPackageImpl extends EPackageImpl implements CppPackage {
 		initEClass(cppTemplateParameterEClass, CppTemplateParameter.class, "CppTemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCppTemplateParameter_Name(), theTypesPackage.getString(), "name", null, 1, 1, CppTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCppTemplateParameter_Base_templateparameter(), theUMLPackage.getTemplateParameter(), null, "base_templateparameter", null, 1, 1, CppTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(unionEClass, Union.class, "Union", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUnion_Base_DataType(), theUMLPackage.getDataType(), null, "base_DataType", null, 1, 1, Union.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(cppVisibilityKindEEnum, CppVisibilityKind.class, "CppVisibilityKind");

@@ -153,4 +153,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_templateparameter"
         ordered="false" unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameter"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Union">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_DataType" ordered="false"
+        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+  </eClassifiers>
 </ecore:EPackage>

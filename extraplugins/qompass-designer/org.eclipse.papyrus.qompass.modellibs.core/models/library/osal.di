@@ -33,9 +33,6 @@
         <emfPageIdentifier href="osal.notation#_3L_KOB6SEeCkz5PP4vZT5g"/>
       </availablePage>
       <availablePage>
-        <emfPageIdentifier href="osal.notation#_3MSFMh6SEeCkz5PP4vZT5g"/>
-      </availablePage>
-      <availablePage>
         <emfPageIdentifier href="osal.notation#_3L0yCB6SEeCkz5PP4vZT5g"/>
       </availablePage>
       <availablePage>
@@ -76,16 +73,10 @@
       <windows>
         <children xsi:type="di:TabFolder">
           <children>
-            <emfPageIdentifier href="osal.notation#_3LurYB6SEeCkz5PP4vZT5g"/>
-          </children>
-          <children>
             <emfPageIdentifier href="osal.notation#_3LurYh6SEeCkz5PP4vZT5g"/>
           </children>
           <children>
             <emfPageIdentifier href="osal.notation#_3L0yCB6SEeCkz5PP4vZT5g"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="osal.notation#_3L7fyB6SEeCkz5PP4vZT5g"/>
           </children>
           <children>
             <emfPageIdentifier href="osal.notation#_3L8t3R6SEeCkz5PP4vZT5g"/>
@@ -100,9 +91,6 @@
             <emfPageIdentifier href="osal.notation#_3MEpwh6SEeCkz5PP4vZT5g"/>
           </children>
           <children>
-            <emfPageIdentifier href="osal.notation#_3MFQ7R6SEeCkz5PP4vZT5g"/>
-          </children>
-          <children>
             <emfPageIdentifier href="osal.notation#_3MHtCR6SEeCkz5PP4vZT5g"/>
           </children>
           <children>
@@ -113,15 +101,6 @@
           </children>
           <children>
             <emfPageIdentifier href="osal.notation#_3MReFh6SEeCkz5PP4vZT5g"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="osal.notation#_3MSFMh6SEeCkz5PP4vZT5g"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="osal.notation#_3MVvex6SEeCkz5PP4vZT5g"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="osal.notation#_3MaA5h6SEeCkz5PP4vZT5g"/>
           </children>
           <children>
             <emfPageIdentifier href="osal.notation#_3Mb2Ih6SEeCkz5PP4vZT5g"/>
@@ -140,6 +119,18 @@
           </children>
           <children>
             <emfPageIdentifier href="osal.notation#_3MlnKx6SEeCkz5PP4vZT5g"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="osal.notation#_3MVvex6SEeCkz5PP4vZT5g"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="osal.notation#_3MFQ7R6SEeCkz5PP4vZT5g"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="osal.notation#_3MaA5h6SEeCkz5PP4vZT5g"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="osal.notation#_3LurYB6SEeCkz5PP4vZT5g"/>
           </children>
         </children>
       </windows>

@@ -11,7 +11,7 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/core.uml#_O6TiIDLUEd26WNosUASSSw"/>
     </packageImport>
     <packageImport xmi:id="_76Rc8OuMEeCTfOY57pgE3w">
-      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/CORBA.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
+      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
     <packageImport xmi:id="_guUMgOuNEeCTfOY57pgE3w">
       <importedPackage xmi:type="uml:Model" href="pathmap://Papyrus_Alf_LIBRARIES/alflibrary.uml#_0bBI4Hy5EeCKy5kSqd4eVw"/>
@@ -39,7 +39,7 @@
           </defaultValue>
         </ownedAttribute>
         <ownedAttribute xmi:id="_bL0sACVvEeGaL60JjVj19Q" name="portID">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bMjEwCVvEeGaL60JjVj19Q" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bMjr0CVvEeGaL60JjVj19Q" value="1"/>
         </ownedAttribute>
@@ -54,7 +54,7 @@
 [template public multiply(operation : Operation)]
 
 // create event with operationID/portID and pass call
-BasicCalls::ContainerServices::CallEvent_ event;
+core::ContainerServices::CallEvent_ event;
 event.operationID = ID_[operation.name/];
 event.portID = portID;
 out->writeEvent (event);
@@ -76,7 +76,7 @@ out->writeEvent (event);
           <general xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_-WNegNtxEd6nqsBVkgJEEA"/>
         </generalization>
         <ownedAttribute xmi:id="_dFBg4OupEeCTfOY57pgE3w" name="m_currentState" visibility="public">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dFurgOupEeCTfOY57pgE3w" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dFurgeupEeCTfOY57pgE3w" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_jeMpcOupEeCTfOY57pgE3w">
@@ -109,7 +109,7 @@ out->writeEvent (event);
         </interfaceRealization>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rglykOupEeCTfOY57pgE3w" name="processEvents" visibility="package" specification="_b5mYgCaiEeGRo-gX9igNzw">
           <language>C/C++</language>
-          <body>[import com::cea::ec3m::modellibs::core::acceleo::StateMachine/]
+          <body>[import org::eclipse::papyrus::qompass::modellibs::core::acceleo::StateMachine/]
 
 [template public stateMachineD(clazz : Class)]
 [clazz.StateMachine()/]
@@ -139,7 +139,7 @@ out->writeEvent (event);
         <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_WkkjoPNUEeCovO8AYZymZQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Usage" xmi:id="_F3inwCT7EeGXBt65HZzY7g" name="Usage1" client="_ens7QOUTEd-P08Bciq_LqQ">
-        <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/OS-AL-core.uml#_oSgIME_BEdy2tpS719xBwQ"/>
+        <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_oSgIME_BEdy2tpS719xBwQ"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_CV_x4O68EeCZ9MjsZTV1zw" name="CallEvents"/>
@@ -156,7 +156,7 @@ out->writeEvent (event);
         <interfaceRealization xmi:id="_bmInQF_4EeGbQoflzrdx0g" name="derived realization of IAnimation" client="_xELAwF81EeGbQoflzrdx0g" supplier="_L-I7kF8wEeGerN33d-RdRg" contract="_L-I7kF8wEeGerN33d-RdRg"/>
         <ownedOperation xmi:id="_bmbiMF_4EeGbQoflzrdx0g" name="enterState">
           <ownedParameter xmi:id="_OJXykGEpEeGzd_21sXyuog" name="stateEnum">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OJZAsGEpEeGzd_21sXyuog" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OJZAsWEpEeGzd_21sXyuog" value="1"/>
           </ownedParameter>
@@ -168,7 +168,7 @@ out->writeEvent (event);
         </ownedOperation>
         <ownedOperation xmi:id="_bmo9kF_4EeGbQoflzrdx0g" name="leaveState">
           <ownedParameter xmi:id="_OKJOoGEpEeGzd_21sXyuog" name="eState">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OKKcwGEpEeGzd_21sXyuog" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OKLD0GEpEeGzd_21sXyuog" value="1"/>
           </ownedParameter>
@@ -185,7 +185,7 @@ out->writeEvent (event);
             <body>&lt;&lt;TextualRepresentation>>public abstract enterState (in stateEnum : StateMachine::Short, in eInstance : String) ;</body>
           </ownedComment>
           <ownedParameter xmi:id="_NbPhQGEpEeGzd_21sXyuog" name="stateEnum">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NbYEIGEpEeGzd_21sXyuog" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NbbHcGEpEeGzd_21sXyuog" value="1"/>
           </ownedParameter>
@@ -200,7 +200,7 @@ out->writeEvent (event);
             <body>&lt;&lt;TextualRepresentation>>public abstract leaveState(in eState : StateMachine::Short, in eInstance : String) ;</body>
           </ownedComment>
           <ownedParameter xmi:id="_OJfHUGEpEeGzd_21sXyuog" name="eState">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OJr7oGEpEeGzd_21sXyuog" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OJwNEGEpEeGzd_21sXyuog" value="1"/>
           </ownedParameter>
