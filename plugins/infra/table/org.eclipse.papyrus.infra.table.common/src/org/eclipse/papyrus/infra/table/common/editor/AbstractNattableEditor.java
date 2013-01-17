@@ -161,6 +161,7 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 	public void dispose() {
 		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.modelTriggerListener);
 		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.tableTriggerListener);
+		synchronizer.dispose();
 		super.dispose();
 	}
 
@@ -316,6 +317,10 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 		 */
 		public PartNameSynchronizer(final PapyrusTableInstance papyrusTable) {
 			setTable(papyrusTable);
+		}
+
+		public void dispose() {
+			this.papyrusTable.eAdapters().remove(tableNameListener);
 		}
 
 		/**
