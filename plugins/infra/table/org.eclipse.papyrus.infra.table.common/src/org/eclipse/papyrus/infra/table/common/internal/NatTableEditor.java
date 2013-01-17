@@ -332,6 +332,7 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		if(this.natTableWidget.getTableInstance().getContext() != null) {//can be null when we are destroying the context (and the table!)
 			this.natTableWidget.getTableInstance().getContext().eAdapters().remove(this.contextListener);
 		}
+		editingDomain.getCommandStack().removeCommandStackListener(commandListener);
 		super.dispose();
 	}
 
@@ -412,11 +413,8 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 
 	/**
 	 * This ocnverter is used by the LabelEditor (used to display the context)
-	 * 
-	 * 
-	 * 
 	 */
-	private class ContextLabelConverter implements IConverter {
+	private static class ContextLabelConverter implements IConverter {
 
 		/**
 		 * 

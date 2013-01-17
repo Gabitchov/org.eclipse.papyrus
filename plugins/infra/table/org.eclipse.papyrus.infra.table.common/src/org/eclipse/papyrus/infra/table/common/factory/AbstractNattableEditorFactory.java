@@ -92,11 +92,6 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		private ServicesRegistry servicesRegistry;
 
 		/**
-		 * The created editor.
-		 */
-		private IEditorPart editor;
-
-		/**
 		 * The raw model stored in the SashProvider.
 		 */
 		private PapyrusTableInstance rawModel;
@@ -124,9 +119,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, PapyrusTableInstance.class);
 				IEditorPart newEditor = (IEditorPart)c.newInstance(servicesRegistry, rawModel);
 				//	IEditorPart newEditor = new DefaultNattableEditor(getServiceRegistry(), rawModel);
-				editor = newEditor;
-				return editor;
-
+				return newEditor;
 			} catch (Exception e) {
 				// Lets propagate. This is an implementation problem that should be solved by
 				// programmer.
@@ -193,8 +186,9 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 */
 		public Image getTabIcon() {
 			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
-			if(imageDescriptor == null)
+			if(imageDescriptor == null) {
 				return null;
+			}
 
 			return imageDescriptor.createImage();
 		}
