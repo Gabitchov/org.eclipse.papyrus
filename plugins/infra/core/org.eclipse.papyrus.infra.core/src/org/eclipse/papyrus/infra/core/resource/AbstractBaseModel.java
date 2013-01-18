@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 
 /**
  * An abstract implmeentation of model. This class should be subclassed to fit
@@ -165,6 +166,10 @@ public abstract class AbstractBaseModel implements IModel {
 				resource = modelSet.getResource(resourceURI, false);
 			}
 			error = e ;
+		}
+		//see bug 397987: [Core][Save] The referenced plugin models are saved using relative path
+		if(resource instanceof XMIResource){
+			((XMIResource) resource).getDefaultSaveOptions().put(XMIResource.OPTION_URI_HANDLER, new org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware());
 		}
 		// call registered snippets
 		snippets.performStart(this);
