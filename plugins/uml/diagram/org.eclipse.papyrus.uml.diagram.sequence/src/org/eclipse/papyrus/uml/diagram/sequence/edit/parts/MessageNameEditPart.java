@@ -69,6 +69,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEd
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -717,6 +718,16 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+	
+	@Override
+	public void refreshBounds() {
+		super.refreshBounds();
+		MessageEditPart parent = (MessageEditPart)getParent();
+		//Update location of label for self linked message.
+		if(SelfMessageHelper.isSelfLink(parent)) {
+		SelfMessageHelper.	updateLabelLocation(this);
+		}
 	}
 
 }

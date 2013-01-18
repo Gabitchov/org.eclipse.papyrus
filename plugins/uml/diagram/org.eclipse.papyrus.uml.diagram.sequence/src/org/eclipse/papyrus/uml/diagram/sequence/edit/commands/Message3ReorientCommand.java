@@ -22,8 +22,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ReconnectMessageHelper;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 
@@ -128,7 +130,11 @@ public class Message3ReorientCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
+		Element newSource = getNewSource();
 		ReconnectMessageHelper.updateMessageEnd(getLink().getSendEvent(), getOldSource(), getNewSource());
+		if (newSource instanceof ExecutionSpecification){
+			OccurrenceSpecificationHelper.repairExecutionSpecificationEnds(getLink(), (ExecutionSpecification)newSource);
+		}
 		return CommandResult.newOKCommandResult(getLink());
 	}
 

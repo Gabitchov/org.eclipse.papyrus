@@ -4,18 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionLocator;
-import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Cursors;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.draw2d.ui.geometry.LineSeg;
+import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -25,17 +29,96 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPar
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
+import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.uml2.uml.Message;
 
 public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart {
 	
 	private List messageEventParts;
 	
+	/**
+	 * Handle mouse move event to update cursors.
+	 */
+	private MouseMoveListener mouseMoveListener;
+
+	private Cursor myCursor;
+
+	private Cursor defaultCursor;
+	
 	public AbstractMessageEditPart(View view) {
 		super(view);
 	}
 	
+	@Override
+	public void activate() {
+		super.activate();
+		if(SelfMessageHelper.isSelfLink(this)) {
+			getViewer().getControl().addMouseMoveListener(mouseMoveListener = new MouseMoveListener() {
+
+				public void mouseMove(org.eclipse.swt.events.MouseEvent e) {
+					handleMouseMoved(e.x, e.y);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Update cursor for self message.
+	 */
+	protected void handleMouseMoved(int x, int y) {
+		myCursor = null;
+		if(defaultCursor != null) {
+			getViewer().setCursor(Cursors.ARROW);
+			defaultCursor = null;
+		}
+		if(!SelfMessageHelper.isSelfLink(this)) {
+			return;
+		}
+		UMLEdgeFigure primaryShape = getPrimaryShape();
+		Point p = new Point(x, y);
+		primaryShape.translateToRelative(p);
+		if(!primaryShape.containsPoint(p.x, p.y)) {
+			return;
+		}
+		PointList points = primaryShape.getPoints();
+		List lineSegments = PointListUtilities.getLineSegments(points);
+		LineSeg nearestSegment = PointListUtilities.getNearestSegment(lineSegments, p.x, p.y);
+		if(nearestSegment.isHorizontal()) {
+			myCursor = Cursors.SIZENS;
+		} else {
+			myCursor = Cursors.SIZEWE;
+		}
+		defaultCursor = getViewer().getControl().getCursor();
+		getViewer().setCursor(myCursor);
+	}
+
+	@Override
+	public void deactivate() {
+		if(mouseMoveListener != null) {
+			getViewer().getControl().removeMouseMoveListener(mouseMoveListener);
+		}
+		super.deactivate();
+	}
+
+	private Cursor getCustomCursor() {
+		if(!SelfMessageHelper.isSelfLink(this)) {
+			return null;
+		}
+		return myCursor;
+	}
+
+	protected void fireSelectionChanged() {
+		super.fireSelectionChanged();
+		if(SelfMessageHelper.isSelfLink(this)) {
+			UMLEdgeFigure primaryShape = getPrimaryShape();
+			if (primaryShape instanceof MessageFigure){
+				((MessageFigure)primaryShape).setSelection(getSelected() != SELECTED_NONE);
+			}
+		}
+	}
 	public View findChildByModel(EObject model) {
 		List list = getModelChildren();
 		if(list != null && list.size() > 0) {
@@ -139,7 +222,10 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		}
 	}
 	
-	public static class MessageFigure extends UMLEdgeFigure{
+	public class MessageFigure extends UMLEdgeFigure{
+		
+		private boolean selection;
+		
 		@Override
 		public void setLineWidth(int w) {
 			super.setLineWidth(w);
@@ -163,6 +249,42 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 				((Shape)getTargetDecoration()).setBackgroundColor(c);
 			}
 		}
+		
+		@Override
+		public Cursor getCursor() {
+			Cursor customCursor = getCustomCursor();
+			if(customCursor != null) {
+				return customCursor;
+			}
+			return super.getCursor();
+		}
+
+		@Override
+		protected void outlineShape(Graphics g) {
+			if(getSelection()) {
+				g.setLineWidth(AbstractMessageEditPart.this.getLineWidth() * 2);
+				g.setForegroundColor(getForegroundColor());
+			}
+			super.outlineShape(g);
+			g.setLineWidth(getLineWidth());
+		}
+
+		/**
+		 * @return the selection
+		 */
+		public boolean getSelection() {
+			return selection;
+		}
+
+		/**
+		 * @param selection
+		 *        the selection to set
+		 */
+		public void setSelection(boolean selection) {
+			this.selection = selection;
+			repaint();
+		}
+		
 	}
 	
 	static abstract class MessageLabelEditPart extends LabelEditPart {

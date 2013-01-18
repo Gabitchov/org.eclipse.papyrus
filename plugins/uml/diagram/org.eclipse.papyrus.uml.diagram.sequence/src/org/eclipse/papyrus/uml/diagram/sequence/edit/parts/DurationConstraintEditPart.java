@@ -46,6 +46,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -1227,6 +1228,19 @@ BorderedBorderItemEditPart {
 
 		}
 
+		@Override
+		public boolean containsPoint(int x, int y) {
+			boolean containsPoint = super.containsPoint(x, y);
+			if (!containsPoint){
+				return false;
+			}
+			if (fDurationArrow != null){
+				return PointListUtilities.containsPoint(fDurationArrow.getPoints(), new Point(x, y));
+//				return fDurationArrow.containsPoint(x, y);
+			}
+			return containsPoint;
+		}
+		
 		/**
 		 * @generated
 		 */

@@ -28,15 +28,19 @@ import org.eclipse.gef.requests.SimpleFactory;
 import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gef.tools.ConnectionCreationTool;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ObservationLinkPolicy.ObservationLink;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.service.DurationCreationTool;
@@ -45,7 +49,7 @@ import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.Observation;
 
 /**
  * @generated
@@ -285,7 +289,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 			return createObservationLinkCreationTool();
 		}
 		if (toolId.equals(CREATELINKCREATIONTOOL)) {
-			return createLinkCreationTool();
+			return createAnnotatedLinkCreationTool();
 		}
 
 		// default return: null
@@ -637,6 +641,38 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 	
+	private Tool createAnnotatedLinkCreationTool() {
+		AspectUnspecifiedTypeConnectionToolEx tool = new AspectUnspecifiedTypeConnectionToolEx(null) {
+			@Override
+			protected CreateConnectionRequest createTargetRequest() {
+				IHintedType type = (IHintedType)UMLElementTypes.CommentAnnotatedElement_4010;
+				return new CreateConnectionViewRequest(new ConnectionViewDescriptor(type, type.getSemanticHint(), getPreferencesHint()));
+			}
+			
+			protected String getCommandName() {
+				if (isInState(STATE_CONNECTION_STARTED
+						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
+					return AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END;
+				} else {
+					return AnnotatedLinkStartEditPolicy.REQ_ANNOTATED_LINK_START;
+				}
+			}
+			
+			@Override
+			protected boolean handleCreateConnection() {
+				boolean handled = super.handleCreateConnection();
+				//Make sure to erase source feedback whatever the connection created or not.
+				setAvoidDeactivation(false);
+				eraseSourceFeedback();
+				deactivate();
+				return handled;
+			}
+			
+		};
+		tool.setUnloadWhenFinished(true);
+		return tool;
+	}
+	
 	private Tool createLinkCreationTool() {
 		final List<IElementType> elementTypes = new ArrayList<IElementType>();
 		return new AspectUnspecifiedTypeConnectionToolEx(elementTypes) {
@@ -670,15 +706,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 				}
 				if (isRequestInvalid()){
 					return false;
-				}
-				if (isInState(STATE_CONNECTION_STARTED | STATE_INITIAL
-						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
-					updateTargetRequest();
-					updateTargetUnderMouse();
-					EditPart targetEditPart = getTargetEditPart();
-					if (!(targetEditPart instanceof INodeEditPart)) {
-						return false;
-					}
 				}
 				return super.handleMove();
 			}
@@ -773,7 +800,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 					return super.createTargetRequest();
 				}
 				CreateConnectionRequest request = new CreateConnectionRequest();
-				if (!(elementUnderMouse instanceof TimeObservation)) {
+				// Make sure to support all Observations.
+				if (!(elementUnderMouse instanceof Observation)) {
 					request.getExtendedData().put(INVALID_REQUEST_DATA, true);
 				} else {
 					request.setFactory(new SimpleFactory(ObservationLink.class));

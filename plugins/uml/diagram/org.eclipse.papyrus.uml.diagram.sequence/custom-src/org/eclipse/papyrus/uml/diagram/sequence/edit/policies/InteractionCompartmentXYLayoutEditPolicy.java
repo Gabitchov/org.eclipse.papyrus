@@ -285,6 +285,11 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	private static void addUpdateInteractionFragmentsLocationCommand(
 			CompoundCommand compoundCmd, ChangeBoundsRequest request,
 			LifelineEditPart lifelineEditPart) {
+		// Fixed bug about resize lifeline corvered by some combined fragments. If the moveDelta is empty, ignore this? otherwise the children of lifeline would be moved again to wrong place.
+		Point moveDelta = request.getMoveDelta();
+		if(moveDelta.x == 0 && moveDelta.y == 0) {
+			return;
+		}
 		View shape = (View) lifelineEditPart.getModel();
 		Lifeline element = (Lifeline) shape.getElement();
 		EList<InteractionFragment> covereds = element.getCoveredBys();
@@ -298,7 +303,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			}
 			ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_MOVE);
 			req.setEditParts(et);
-			req.setMoveDelta(request.getMoveDelta());
+			req.setMoveDelta(moveDelta);
 			Command command = et.getCommand(req);
 			if (command != null && command.canExecute()) {
 				compoundCmd.add(command);
@@ -595,31 +600,32 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		child.getFigure().translateToRelative(rect);
 		rect.translate(getLayoutOrigin().getNegated());
 
-		if(request.getSizeDelta().width == 0 && request.getSizeDelta().height == 0) {
+		Dimension sizeDelta = request.getSizeDelta();
+		if(sizeDelta.width == 0 && sizeDelta.height == 0) {
 			Rectangle cons = getCurrentConstraintFor(child);
 			if(cons != null) {
 				rect.setSize(cons.width, cons.height);
 			}
 		} else { // resize editpart
-			boolean skipMinSize = false;
-			if(child instanceof LifelineEditPart)// && LifelineResizeHelper.isManualSize((LifelineEditPart)child))
-				skipMinSize = true;
-				
+//			boolean skipMinSize = false;
+//			if(child instanceof LifelineEditPart)// && LifelineResizeHelper.isManualSize((LifelineEditPart)child))
+//				skipMinSize = true;
+			//We introduce a MIN_WIDTH for Lifeline now.
 			Dimension minSize = getMinimumSizeFor(child);
-			if(rect.width < minSize.width && !skipMinSize) { // In manual mode, there is no minimal width
+			if(sizeDelta.width != 0 && rect.width < minSize.width ) { // In manual mode, there is no minimal width
 				return null;
 			}
-			if(rect.height < minSize.height ) {
+			if(sizeDelta.height !=0 && rect.height < minSize.height ) {
 				return null;
 			}
 		}
 		rect = (Rectangle)getConstraintFor(rect);
 
 		Rectangle cons = getCurrentConstraintFor(child);
-		if(request.getSizeDelta().width == 0) {
+		if(sizeDelta.width == 0) {
 			rect.width = cons.width;
 		}
-		if(request.getSizeDelta().height == 0) {
+		if(sizeDelta.height == 0) {
 			rect.height = cons.height;
 		}
 

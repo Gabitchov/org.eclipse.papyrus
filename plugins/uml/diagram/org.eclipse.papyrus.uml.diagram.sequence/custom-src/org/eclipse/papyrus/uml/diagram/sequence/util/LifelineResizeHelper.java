@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -25,19 +26,27 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
 
 
 public class LifelineResizeHelper {
 
 	private static final String MANUAL_LABEL_SIZE = "manual.label.size";
 	private static final String CUSTOM_EXTENSION_INFO = "CustomExtensionInfo";
-
+	
 	public static boolean isManualSize(LifelineEditPart lp){
 		View view = lp.getNotationView();
 		EAnnotation oldAnnotation = view.getEAnnotation(CUSTOM_EXTENSION_INFO);
 		if(oldAnnotation != null) {			
 			String val = oldAnnotation.getDetails().get(MANUAL_LABEL_SIZE);
 			return "true".equalsIgnoreCase(val);
+		}
+		LifelineFigure primaryShape = lp.getPrimaryShape();
+		Dimension namePreSize = primaryShape.getFigureLifelineNameContainerFigure().getPreferredSize();
+		Dimension preferredSize = primaryShape.getFigureExecutionsContainerFigure().getPreferredSize();
+		//This will disable the auto expanding of Lifeline Bordered Figure.
+		if (namePreSize.width < preferredSize.width){
+			return true;
 		}
 		return false;
 	}

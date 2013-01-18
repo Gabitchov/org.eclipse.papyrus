@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -26,6 +27,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -33,12 +35,17 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.editpolicies.FeedbackHelper;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
@@ -46,6 +53,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -97,7 +105,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		// record the nearest event if necessary
 		String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
-		if(isCreatedNearOccurrenceSpecification(requestHint)) {
+		if(isCreatedNearOccurrenceSpecification(requestHint) || isOnOccerrenceSpecification(request.getLocation())) {
 			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
 			if(lifelinePart != null) {
 				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), lifelinePart);
@@ -118,6 +126,18 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return super.getConnectionAndRelationshipCreateCommand(request);
 	}
 
+	private boolean isOnOccerrenceSpecification(Point location){
+		EditPart editPart = getHost().getViewer().findObjectAt(location);
+		if (editPart == null){
+			return false;
+		}
+		Object model = editPart.getModel();
+		if (model instanceof View){
+			return (ViewUtil.resolveSemanticElement((View)model) instanceof OccurrenceSpecification);
+		}
+		return false;
+	}
+	
 	/**
 	 * Gets the command to complete the creation of a new connection and relationship. Also completes the request with nearby occurrence specification
 	 * information.
@@ -132,7 +152,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		// record the nearest event if necessary
 		String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
-		if(isCreatedNearOccurrenceSpecification(requestHint)) {
+		if(isCreatedNearOccurrenceSpecification(requestHint) || isOnOccerrenceSpecification(request.getLocation())) {
 			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
 			if(lifelinePart != null) {
 				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), lifelinePart);
@@ -320,6 +340,11 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CombinedFragment2EditPart)targetEditPart).getAttachedLifeline());
 		}
 		
+		//update bendpoints for self link message.
+		if(connectionFeedback != null) {
+			updateConnectionBendpoints(request, command);
+		}
+		
 		// change constraint of the target lifeline after added a Create Message
 		if (request.getTargetEditPart() instanceof LifelineEditPart
 				&& !(request.getSourceEditPart().equals(request
@@ -332,6 +357,66 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 
 		return command;
+	}
+
+	/**
+	 * Update bendpoints when creating self message with the feedback, so that, the message can be created like feedback,
+	 */
+	private void updateConnectionBendpoints(CreateConnectionRequest request, Command command) {
+		if(connectionFeedback == null || connectionFeedback.getPoints().size() < 4) {
+			return;
+		}
+		if(!(command instanceof ICommandProxy)) {
+			return;
+		}
+		ICommand iCommand = ((ICommandProxy)command).getICommand();
+		if(!(iCommand instanceof CompositeCommand)) {
+			return;
+		}
+		INodeEditPart targetEP = getConnectionCompleteEditPart(request);
+		if(targetEP == null) {
+			return;
+		}
+		LifelineEditPart sourceLifeline = getLifeline(request.getSourceEditPart());
+		LifelineEditPart targetLifeline = getLifeline(request.getTargetEditPart());
+		boolean isSelfLink = sourceLifeline != null && sourceLifeline.equals(targetLifeline);
+		if(!isSelfLink) {
+			return;
+		}
+		CompositeCommand cc = (CompositeCommand)iCommand;
+		SetConnectionAnchorsCommand scaCommand = null;
+		SetConnectionBendpointsCommand sbbCommand = null;
+		Iterator it = cc.iterator();
+		while(it.hasNext()) {
+			Object next = it.next();
+			if(next instanceof SetConnectionBendpointsCommand) {
+				sbbCommand = (SetConnectionBendpointsCommand)next;
+			} else if(next instanceof SetConnectionAnchorsCommand) {
+				scaCommand = (SetConnectionAnchorsCommand)next;
+			}
+			if(sbbCommand != null && scaCommand != null) {
+				break;
+			}
+		}
+		if(sbbCommand == null || scaCommand == null) {
+			return;
+		}
+		ConnectionAnchor targetAnchor = targetEP.getTargetConnectionAnchor(request);
+		INodeEditPart sourceEditPart = (INodeEditPart)request.getSourceEditPart();
+		ConnectionAnchor sourceAnchor = sourceEditPart.mapTerminalToConnectionAnchor(scaCommand.getNewSourceTerminal());
+		PointList pointList = connectionFeedback.getPoints().getCopy();
+		connectionFeedback.translateToAbsolute(pointList);
+		sbbCommand.setNewPointList(pointList, sourceAnchor.getReferencePoint(), targetAnchor.getReferencePoint());
+	}
+	
+	private LifelineEditPart getLifeline(EditPart editPart) {
+		if(editPart == null) {
+			return null;
+		}
+		if(editPart instanceof LifelineEditPart) {
+			return (LifelineEditPart)editPart;
+		}
+		return getLifeline(editPart.getParent());
 	}
 	
 	/**
@@ -378,18 +463,6 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return super.getReconnectTargetCommand(request);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#showCreationFeedback(org.eclipse.gef.requests.CreateConnectionRequest)
-	 */
-	@Override
-	protected void showCreationFeedback(CreateConnectionRequest request) {
-		FeedbackHelper helper = getFeedbackHelper(request);
-		Point p = new Point(request.getLocation());
-		ConnectionAnchor targetConnectionAnchor = getTargetConnectionAnchor(request);
-		helper.update(targetConnectionAnchor, p);
-		System.out.println(targetConnectionAnchor);
-	}
-	
 	/**
 	 * Check that a message doesn't have its target point above its source point
 	 * 
@@ -502,52 +575,84 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	}
 
 	public EditPart getTargetEditPart(Request request) {
-		if (REQ_CONNECTION_START.equals(request.getType())
-				|| REQ_CONNECTION_END.equals(request.getType())
-				|| REQ_RECONNECT_SOURCE.equals(request.getType())
-				|| REQ_RECONNECT_TARGET.equals(request.getType())){
-			
+		if(REQ_CONNECTION_START.equals(request.getType()) || REQ_CONNECTION_END.equals(request.getType()) || REQ_RECONNECT_SOURCE.equals(request.getType()) || REQ_RECONNECT_TARGET.equals(request.getType())) {
+
 			EditPart host = getHost();
-			if(request instanceof CreateConnectionRequest){
-				if(host instanceof InteractionEditPart){
-					if(REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4008 )){
-						return host;
-					}				
-					if(REQ_CONNECTION_START.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4009 )){
+			if(request instanceof CreateConnectionRequest) {
+				if(host instanceof InteractionEditPart) {
+					if(REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4008)) {
 						return host;
 					}
-					
+					if(REQ_CONNECTION_START.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4009)) {
+						return host;
+					}
+
 					InteractionEditPart interactionPart = (InteractionEditPart)host;
-					CreateConnectionRequest req = (CreateConnectionRequest)request;
-					IFigure figure = interactionPart.getFigure();
-					Point location = req.getLocation().getCopy();
-					figure.translateToRelative(location);
-					
-					// if mouse location is far from border, do not handle connection event 
-					Rectangle innerRetangle = figure.getBounds().getCopy().shrink(20, 20);
-					if(innerRetangle.contains(location)){
+					if(!touchesInteractionBounds(interactionPart, ((CreateConnectionRequest)request).getLocation())) {
 						return null;
 					}
-				}else if(host instanceof InteractionOperandEditPart){
+				} else if(host instanceof InteractionOperandEditPart) {
 					return null;
-				}else if(host instanceof CombinedFragmentEditPart){
+				} else if(host instanceof CombinedFragmentEditPart) {
 					CreateConnectionRequest req = (CreateConnectionRequest)request;
 					IFigure figure = ((GraphicalEditPart)host).getFigure();
 					Point location = req.getLocation().getCopy();
 					figure.translateToRelative(location);
-					
+
 					// if mouse location is far from border, do not handle connection event 
 					Rectangle innerRetangle = figure.getBounds().getCopy().shrink(10, 10);
-					if(innerRetangle.contains(location)){
+					if(innerRetangle.contains(location)) {
 						return null;
 					}
 				}
-			}	
+			} else if(request instanceof ReconnectRequest) {
+				if(host instanceof InteractionEditPart) {
+					ConnectionEditPart conn = ((ReconnectRequest)request).getConnectionEditPart();
+					Object model = conn.getModel();
+					if(model instanceof View) {
+						if(REQ_RECONNECT_TARGET.equals(request.getType()) && 4008 == UMLVisualIDRegistry.getVisualID((View)model)) {
+							return host;
+						}
+						if(REQ_RECONNECT_SOURCE.equals(request.getType()) && 4009 == UMLVisualIDRegistry.getVisualID((View)model)) {
+							return host;
+						}
+					}
+					InteractionEditPart interactionEditPart = (InteractionEditPart)getHost();
+					if(!touchesInteractionBounds(interactionEditPart, ((ReconnectRequest)request).getLocation())) {
+						return null;
+					}
+				} else if(host instanceof InteractionOperandEditPart) {
+					return null;
+				} else if(host instanceof CombinedFragmentEditPart) {
+					IFigure figure = ((GraphicalEditPart)host).getFigure();
+					Point location = ((ReconnectRequest)request).getLocation().getCopy();
+					figure.translateToRelative(location);
+
+					// if mouse location is far from border, do not handle connection event 
+					Rectangle innerRetangle = figure.getBounds().getCopy().shrink(10, 10);
+					if(innerRetangle.contains(location)) {
+						return null;
+					}
+				}
+			}
 			return host;
 		}
 		return null;
 	}
 
+	private boolean touchesInteractionBounds(InteractionEditPart interaction, Point location){
+		Point p = location.getCopy();
+		IFigure figure = interaction.getFigure();
+		figure.translateToRelative(p);
+		
+		// if mouse location is far from border, do not handle connection event 
+		Rectangle innerRetangle = figure.getBounds().getCopy().shrink(20, 20);
+		if(innerRetangle.contains(p)){
+			return false;
+		}
+		return true;
+	}
+	
 	protected boolean isCreateConnectionRequest(Request request, IElementType type) {
 		if( request instanceof CreateAspectUnspecifiedTypeConnectionRequest){
 			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();

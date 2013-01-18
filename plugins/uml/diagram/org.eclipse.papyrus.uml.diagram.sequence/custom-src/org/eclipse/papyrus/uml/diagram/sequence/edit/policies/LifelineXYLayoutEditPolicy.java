@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
@@ -48,7 +47,6 @@ import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCo
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomZOrderCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -59,7 +57,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart.StateInvariantResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -83,6 +80,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/** The default spacing used between Execution Specification */
 	private final static int SPACING_HEIGHT = 5;
+	
+//	private final static int MAX_CHILD_EXECUTION_DEPTH = 4;
 
 	// force location of time/duration elements and ES
 	private static final String TIME_CONSTRAINT_HINT = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
@@ -96,6 +95,12 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	private static final String BEHAVIOR_EXECUTION_SPECIFICATION_HINT = ((IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003).getSemanticHint();
 
 	private static final String CO_REGION_HINT = ((IHintedType)UMLElementTypes.CombinedFragment_3018).getSemanticHint();
+
+	@Override
+	protected Command getOrphanChildrenCommand(Request request) {
+		//Don't support, this will disable the createAddCommand(), too.
+		return UnexecutableCommand.INSTANCE;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -136,40 +141,6 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 
 		return super.getCreateCommand(request);
-	}
-	
-	@Override
-	protected void showLayoutTargetFeedback(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			CreateUnspecifiedTypeRequest cvr = (CreateUnspecifiedTypeRequest)request;
-			if(!cvr.getElementTypes().isEmpty()) {
-				IHintedType elementType = (IHintedType)cvr.getElementTypes().iterator().next();
-				String semanticHint = elementType.getSemanticHint();
-				EditPart editPartForHighlight = getHost();
-				if(ACTION_EXECUTION_SPECIFICATION_HINT.equals(semanticHint) || BEHAVIOR_EXECUTION_SPECIFICATION_HINT.equals(semanticHint)) {
-					ShapeNodeEditPart parentExecuteSpecification = getParentWhenCreationExecuteSpecification(cvr.getLocation(), cvr.getSize(), semanticHint);
-					if(parentExecuteSpecification != null) {
-						editPartForHighlight = parentExecuteSpecification;
-					}
-				}
-				if(editPartForHighlight != null) {
-//					HighlightUtil.highlight(editPartForHighlight);
-				}
-			}
-		}
-		super.showLayoutTargetFeedback(request);
-	}
-
-	@Override
-	protected void showSizeOnDropFeedback(CreateRequest request) {
-		// TODO Auto-generated method stub
-//		super.showSizeOnDropFeedback(request);
-	}
-	
-	@Override
-	protected void eraseLayoutTargetFeedback(Request request) {
-		super.eraseLayoutTargetFeedback(request);
-		HighlightUtil.unhighlight();
 	}
 
 	@Override
@@ -313,6 +284,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		// Define the bounds of the new Execution specification
 		Rectangle newBounds = getCreateExecuteSpecificationBounds(location, size, semanticHint);
 		ShapeNodeEditPart parent = getParentWhenCreationExecuteSpecification(location, size, semanticHint);
+		
 		newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0), false);
 		if(newBounds == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -331,23 +303,28 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		
 		childBounds.x = bounds.x;
 		childBounds.width = bounds.width;
-		//Fixed bug about resize parent of ES, keep 16pixel margin both at top and bottom.
-		int margin = AbstractExecutionSpecificationEditPart.MARGIN_HEIGHT;
 		Rectangle rect = bounds.getCopy();
-		rect.shrink(0, margin);
-		if(rect.contains(childBounds))
-			return null; 
-		rect.union(childBounds);
-		rect.expand(0, margin);
-		bounds = rect.getCopy();
-		Command c = new ICommandProxy(new SetBoundsCommand(part.getEditingDomain(), "Resize of Parent Bar", part, bounds.getCopy()));
-		
+		if (childBounds.y > rect.y)
+			return null;
+		rect.height += rect.y - childBounds.y;
+		rect.y = childBounds.y;
+		Rectangle newBounds = rect.getCopy();
+		CompoundCommand command = new CompoundCommand();
+		Command c = new ICommandProxy(new SetBoundsCommand(part.getEditingDomain(), "Resize of Parent Bar", part, newBounds.getCopy()));
+		command.add(c);
+		Point moveDelta = new Point(newBounds.x - bounds.x, newBounds.y - bounds.y);
+		if (moveDelta.y != 0){
+			ChangeBoundsRequest request = new ChangeBoundsRequest();
+			request.setEditParts(part);
+			request.setMoveDelta(moveDelta);
+			command = OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(command, part, newBounds.getCopy(), request);
+		}
 		list.remove(part);
 		ShapeNodeEditPart parent = getParent(lifelinePart, part.getFigure().getBounds(), list);
-		if(parent == null)
-			return c;
-		
-		return c.chain(resizeParentExecutionSpecification(lifelinePart, parent, bounds.getCopy(), list));
+		if (parent == null)
+			return command.unwrap();
+
+		return command.unwrap().chain(resizeParentExecutionSpecification(lifelinePart, parent, newBounds.getCopy(), list));
 	}
 
 	/**
@@ -586,9 +563,9 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 					if(isMove) {
 						// Move also children
-						compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(executionSpecificationEP, realMoveDelta, newBounds));
+						compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(executionSpecificationEP, realMoveDelta, newBounds.getCopy()));
 
-						compoundCmd.add(createZOrderCommand(lifelineEP, executionSpecificationEP, newBounds, notToCheckExecutionSpecificationList));
+						compoundCmd.add(createZOrderCommand(lifelineEP, executionSpecificationEP, newBounds.getCopy(), notToCheckExecutionSpecificationList));
 					}
 
 					// Move also linked Time elements

@@ -69,6 +69,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Comment;
@@ -154,7 +155,7 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy(){
 			protected void addSelectionHandles() {  // remove handles
 			}
-		});		
+		});	
 	}
 	
 	public void rebuildLinks(Diagram diagram) {
@@ -488,18 +489,22 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 	
 	@Override
 	public EditPart getTargetEditPart(Request request) {
+		EditPart targetEditPart = super.getTargetEditPart(request);
+		if(AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END.equals(request.getType()) || AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_REORIENT_END.equals(request.getType())) {
+			return targetEditPart;
+		}
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest){
 			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
 			if(types.contains(UMLElementTypes.CommentAnnotatedElement_4010) || types.contains(UMLElementTypes.ConstraintConstrainedElement_4011)){
-				return super.getTargetEditPart(request);
+				return targetEditPart;
 			}
 		}else if(request instanceof ReconnectRequest){
 			ConnectionEditPart con = ((ReconnectRequest)request).getConnectionEditPart();
 			if(con instanceof CommentAnnotatedElementEditPart || con instanceof ConstraintConstrainedElementEditPart){
-				return super.getTargetEditPart(request);
+				return targetEditPart;
 			}
 		}
-		return null;
+		return getParent().getTargetEditPart(request);
 	}
 	 
 	static class ExecutionSpecificationEndAnchor extends SlidableOvalAnchor {

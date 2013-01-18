@@ -56,19 +56,19 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
-import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.GeneralOrdering;
-import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -716,15 +716,30 @@ public class OccurrenceSpecificationMoveHelper {
 			if(newBounds != null) {
 				// adjust bounds for execution specification
 				newBounds.height -= heighDelta;
-				TransactionalEditingDomain editingDomain = executionSpecificationPart.getEditingDomain();
 				// return the resize command
-				ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)executionSpecificationPart.getModel()), newBounds));
-				return resize;
+				return getChangeBoundsCommand((AbstractExecutionSpecificationEditPart)executionSpecificationPart, newBounds);
 			}
 		}
 		return null;
 	}
 
+	/**
+	 * Fixed bug about moving Duration Constraint, make sure the child Execution Specifications also be moved.
+	 */
+	private static Command getChangeBoundsCommand(AbstractExecutionSpecificationEditPart editPart, Rectangle newBounds) {
+		Rectangle oldBounds = SequenceUtil.getAbsoluteBounds(editPart);
+		Point location = oldBounds.getLocation();
+		makeRelativeToLifeline(location, (LifelineEditPart)editPart.getParent(), true);
+		oldBounds.setLocation(location);
+		Point moveDelta = new Point(newBounds.x - oldBounds.x, newBounds.y - oldBounds.y);
+		ChangeBoundsRequest req = new ChangeBoundsRequest();
+		req.setMoveDelta(moveDelta);
+		req.setEditParts(editPart);
+		//Make sure do not coming again to update duration constraints...
+		req.getExtendedData().put(SequenceRequestConstant.DO_NOT_MOVE_EDIT_PARTS, true);
+		return  LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)editPart.getParent(), req, true, false, true);
+	}
+	
 	/**
 	 * Get the reference point to reconnect or resize edit parts at the given y location
 	 * 
@@ -829,26 +844,52 @@ public class OccurrenceSpecificationMoveHelper {
 			int finishY = newBounds.getBottom().y;
 			List<EditPart> notToMoveEditParts = new ArrayList<EditPart>(1);
 			notToMoveEditParts.add(executionSpecificationEP);
+			if(start instanceof MessageOccurrenceSpecification) {
+				Message message = ((MessageOccurrenceSpecification)start).getMessage();
+				Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(message);
+				for(Setting ref : settings) {
+					if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+						View view = (View)ref.getEObject();
+						EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
+						if(part != null) {
+							notToMoveEditParts.add(part);
+						}
+					}
+				}
+			}
+			if(finish instanceof MessageOccurrenceSpecification) {
+				Message message = ((MessageOccurrenceSpecification)finish).getMessage();
+				Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(message);
+				for(Setting ref : settings) {
+					if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+						View view = (View)ref.getEObject();
+						EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
+						if(part != null) {
+							notToMoveEditParts.add(part);
+						}
+					}
+				}
+			}
 			Command cmd = getMoveOccurrenceSpecificationsCommand(start, finish, startY, finishY, lifelinePart, notToMoveEditParts);
 			if(cmd != null) {
 				compoundCmd.add(cmd);
 			}
 
-			if(request.getSizeDelta().height == 0) {
-				// move time elements for events between start and finish
-				InteractionFragment nextOccSpec = InteractionFragmentHelper.findNextFragment(start, start.eContainer());
-				while(nextOccSpec != null && nextOccSpec != finish) {
-					Point occSpecLocation = SequenceUtil.findLocationOfEvent(lifelinePart, nextOccSpec);
-					if(nextOccSpec instanceof OccurrenceSpecification && occSpecLocation != null) {
-						int occSpecY = occSpecLocation.y + request.getMoveDelta().y;
-						cmd = getMoveTimeElementsCommand((OccurrenceSpecification)nextOccSpec, null, occSpecY, -1, lifelinePart, notToMoveEditParts);
-						if(cmd != null) {
-							compoundCmd.add(cmd);
-						}
-					}
-					nextOccSpec = InteractionFragmentHelper.findNextFragment(nextOccSpec, start.eContainer());
-				}
-			}
+//			if(request.getSizeDelta().height == 0) {
+//				// move time elements for events between start and finish
+//				InteractionFragment nextOccSpec = InteractionFragmentHelper.findNextFragment(start, start.eContainer());
+//				while(nextOccSpec != null && nextOccSpec != finish) {
+//					Point occSpecLocation = SequenceUtil.findLocationOfEvent(lifelinePart, nextOccSpec);
+//					if(nextOccSpec instanceof OccurrenceSpecification && occSpecLocation != null) {
+//						int occSpecY = occSpecLocation.y + request.getMoveDelta().y;
+//						cmd = getMoveTimeElementsCommand((OccurrenceSpecification)nextOccSpec, null, occSpecY, -1, lifelinePart, notToMoveEditParts);
+//						if(cmd != null) {
+//							compoundCmd.add(cmd);
+//						}
+//					}
+//					nextOccSpec = InteractionFragmentHelper.findNextFragment(nextOccSpec, start.eContainer());
+//				}
+//			}
 		}
 		return compoundCmd;
 	}
@@ -866,6 +907,14 @@ public class OccurrenceSpecificationMoveHelper {
 		// Erase the y move if element can not be moved on y axe
 		if(!canTimeElementPartBeYMoved(movedTimePart)) {
 			request.getMoveDelta().y = 0;
+		}else{
+			//move to one direction at once.
+			Point moveDelta = request.getMoveDelta();
+			if(Math.abs(moveDelta.x) > Math.abs(moveDelta.y)) {
+				moveDelta.y = 0;
+			} else {
+				moveDelta.x = 0;
+			}
 		}
 	}
 

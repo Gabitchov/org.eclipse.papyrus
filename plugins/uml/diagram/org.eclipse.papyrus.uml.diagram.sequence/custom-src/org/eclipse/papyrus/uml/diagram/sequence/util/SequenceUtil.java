@@ -38,6 +38,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -71,6 +72,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -78,6 +80,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -92,6 +95,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncAppliedSt
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName2EditPart;
@@ -330,7 +334,7 @@ public class SequenceUtil {
 								return bounds.getTop();
 							}
 						}
-					} else if(fragment instanceof ExecutionOccurrenceSpecification) {
+					} else if(fragment instanceof OccurrenceSpecification) {
 						// check start and finish events of the execution
 						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 						if(element instanceof ExecutionSpecification) {
@@ -612,6 +616,36 @@ public class SequenceUtil {
 		}
 		// Map referencing children occurrences by their location on the lifeline.
 		Map<Point, List<OccurrenceSpecification>> occurrences = new HashMap<Point, List<OccurrenceSpecification>>();
+		
+		//Find message end directly.
+		EditPart editPart = lifelineEditPart.getViewer().findObjectAt(location);
+		if (editPart instanceof MessageEndEditPart){
+			MessageEndEditPart messageEnd = (MessageEndEditPart)editPart;
+			IFigure figure = messageEnd.getFigure();
+			Rectangle bounds = figure.getBounds().getCopy();
+			figure.translateToAbsolute(bounds);
+			EObject element = messageEnd.resolveSemanticElement();
+			if (element instanceof MessageOccurrenceSpecification){
+				ArrayList<OccurrenceSpecification> arrayList = new ArrayList<OccurrenceSpecification>();
+				arrayList.add((MessageOccurrenceSpecification)element);
+				occurrences.put(bounds.getCenter(), arrayList);
+				return occurrences.entrySet().iterator().next();
+			}
+		} else if(editPart instanceof ExecutionSpecificationEndEditPart) {
+			ExecutionSpecificationEndEditPart end = (ExecutionSpecificationEndEditPart)editPart;
+			OccurrenceSpecification event = (OccurrenceSpecification)end.resolveSemanticElement();
+			AbstractExecutionSpecificationEditPart parent = (AbstractExecutionSpecificationEditPart)end.getParent();
+			ExecutionSpecification es = (ExecutionSpecification)parent.resolveSemanticElement();
+			Rectangle bounds = getAbsoluteBounds(parent);
+			ArrayList<OccurrenceSpecification> arrayList = new ArrayList<OccurrenceSpecification>();
+			arrayList.add((OccurrenceSpecification)event);
+			if(event == es.getStart()) {
+				occurrences.put(bounds.getTop(), arrayList);
+			} else {
+				occurrences.put(bounds.getBottom(), arrayList);
+			}
+			return occurrences.entrySet().iterator().next();
+		}
 		// graphical children of the lifeline
 		List<?> children = lifelineEditPart.getChildren();
 		for(Object child : children) {
@@ -692,7 +726,7 @@ public class SequenceUtil {
 		for(Object conn : targetConnections) {
 			if(conn instanceof ConnectionNodeEditPart) {
 				EObject element = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
-				if(element instanceof Message && ((Message)element).getReceiveEvent() instanceof MessageOccurrenceSpecification) {
+				if(element instanceof Message &&  ((Message)element).getReceiveEvent() instanceof MessageOccurrenceSpecification) {
 					// finish events of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
@@ -700,7 +734,11 @@ public class SequenceUtil {
 						if(!occurrencesMap.containsKey(end)) {
 							occurrencesMap.put(end, new ArrayList<OccurrenceSpecification>(1));
 						}
-						occurrencesMap.get(end).add((MessageOccurrenceSpecification)((Message)element).getReceiveEvent());
+						List<OccurrenceSpecification> occurrences = occurrencesMap.get(end);
+						MessageEnd receiveEvent = ((Message)element).getReceiveEvent();
+						if(!occurrences.contains(receiveEvent)) {
+							occurrences.add((MessageOccurrenceSpecification)receiveEvent);
+						}
 					}
 				}
 			}
@@ -718,7 +756,11 @@ public class SequenceUtil {
 						if(!occurrencesMap.containsKey(start)) {
 							occurrencesMap.put(start, new ArrayList<OccurrenceSpecification>(1));
 						}
-						occurrencesMap.get(start).add((MessageOccurrenceSpecification)((Message)element).getSendEvent());
+						MessageEnd sendEvent = ((Message)element).getSendEvent();
+						List<OccurrenceSpecification> occurrences = occurrencesMap.get(start);
+						if(!occurrences.contains(sendEvent)) {
+							occurrences.add((MessageOccurrenceSpecification)sendEvent);
+						}
 					}
 				}
 			}
@@ -928,6 +970,46 @@ public class SequenceUtil {
 				if(DurationConstraintHelper.coversSameLifeline(occ1, occ2)) {
 					// we must link occurrences on a same lifeline
 					return new OccurrenceSpecification[]{ occ1, occ2 };
+				}
+			}
+		}
+		
+		//Fixed bug about ExecutionSpecification ends with MessageOccurrenceSpecifications.
+		for(OccurrenceSpecification start : occ1List) {
+			ExecutionSpecification startES = getExecutionSpecification(start);
+			if(startES == null) {
+				continue;
+			}
+			for(OccurrenceSpecification finish : occ2List) {
+				ExecutionSpecification finishES = getExecutionSpecification(finish);
+				if(startES.equals(finishES)) {
+					return new OccurrenceSpecification[]{ start, finish };
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static ExecutionSpecification getExecutionSpecification(OccurrenceSpecification occurrence){
+		if (occurrence == null){
+			return null;
+		}
+		if (occurrence instanceof ExecutionOccurrenceSpecification){
+			ExecutionSpecification execution = ((ExecutionOccurrenceSpecification)occurrence).getExecution();
+			if (execution != null){
+				return execution;
+			}
+		}
+		EList<Lifeline> covereds = occurrence.getCovereds();
+		for(Lifeline lifeline : covereds) {
+			EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
+			for(InteractionFragment event : coveredBys) {
+				if (!(event instanceof ExecutionSpecification)){
+					continue;
+				}
+				ExecutionSpecification es = ((ExecutionSpecification)event);
+				if (occurrence == es.getFinish() || occurrence == es.getStart()){
+					return es;
 				}
 			}
 		}

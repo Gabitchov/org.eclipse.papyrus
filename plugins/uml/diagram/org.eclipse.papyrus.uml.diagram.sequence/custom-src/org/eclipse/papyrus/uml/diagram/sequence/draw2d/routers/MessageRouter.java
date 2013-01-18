@@ -152,6 +152,8 @@ public class MessageRouter extends ObliqueRouter {
 
 	@Override
 	protected void getSelfRelVertices(Connection conn, PointList newLine) {
+		//Copy the points calculated from Bendpoints.
+		PointList oldLine = newLine.getCopy();
 
 		rectilinearResetEndPointsToEdge(conn, newLine);
 
@@ -180,24 +182,33 @@ public class MessageRouter extends ObliqueRouter {
 		newLine.removeAllPoints();
 		newLine.addPoint(ptS1);
 
-		// insert two points
-		Point extraPoint1 = ptS2.getTranslated(ptE2).scale(0.5);
-		if(isOnRightHand(conn, owner, middle)){
-			extraPoint1.translate(SELFRELSIZEINIT, 0);
+		// Fixed bug about custom self message. If there are 4 points, insert middle two ones for supporting bendpoints.
+		if(oldLine.size() == 4) {
+			Point p2 = oldLine.getPoint(1);
+			Point p3 = oldLine.getPoint(2);
+			int x = Math.min(p2.x, p3.x);
+			newLine.addPoint(x, ptS1.y);
+			newLine.addPoint(x, ptE1.y);
 		} else {
-			extraPoint1.translate(-SELFRELSIZEINIT, 0);
-		}
-		Point extraPoint2 = extraPoint1.getCopy();
+			// insert two points
+			Point extraPoint1 = ptS2.getTranslated(ptE2).scale(0.5);
+			if(isOnRightHand(conn, owner, middle)) {
+				extraPoint1.translate(SELFRELSIZEINIT, 0);
+			} else {
+				extraPoint1.translate(-SELFRELSIZEINIT, 0);
+			}
+			Point extraPoint2 = extraPoint1.getCopy();
 
-		if(isFeedback(conn)) {
-			extraPoint1.y = ptS2.y;
-			extraPoint2.y = ptE2.y;
-		} else {
-			extraPoint1.y = ptS1.y;
-			extraPoint2.y = ptE1.y;
+			if(isFeedback(conn)) {
+				extraPoint1.y = ptS2.y;
+				extraPoint2.y = ptE2.y;
+			} else {
+				extraPoint1.y = ptS1.y;
+				extraPoint2.y = ptE1.y;
+			}
+			newLine.addPoint(extraPoint1);
+			newLine.addPoint(extraPoint2);
 		}
-		newLine.addPoint(extraPoint1);
-		newLine.addPoint(extraPoint2);
 
 		newLine.addPoint(ptE1);
 	}

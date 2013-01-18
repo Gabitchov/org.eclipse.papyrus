@@ -51,6 +51,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
@@ -72,6 +73,7 @@ import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -639,6 +641,10 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			if(con instanceof CommentAnnotatedElementEditPart || con instanceof ConstraintConstrainedElementEditPart || con instanceof GeneralOrderingEditPart){
 				return super.getTargetEditPart(request);
 			}
+		} else if(AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END.equals(request.getType()) || AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_REORIENT_END.equals(request.getType())) {
+			return super.getTargetEditPart(request);
+		} else if(request instanceof CreateUnspecifiedTypeRequest && ((CreateUnspecifiedTypeRequest)request).getElementTypes().contains(UMLElementTypes.TimeConstraint_3019)) {
+			return super.getTargetEditPart(request);
 		}
 		return null;
 	}

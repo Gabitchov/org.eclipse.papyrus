@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.PromptCreateElementAndNodeCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.RepairExecutionSpecificationEndCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -61,9 +62,9 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 				EObject source = ViewUtil.resolveSemanticElement((View)sourceEP.getModel());
 
 				if(getSyncMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint()) || getReplyMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
-					if(target instanceof Lifeline ||
+					if(target instanceof Lifeline /*||
 					// handle reflexive synch message by creating a new ES
-					(target instanceof ExecutionSpecification && target.equals(source))) {
+					(target instanceof ExecutionSpecification && target.equals(source))*/) {
 						InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(viewRequest.getLocation(), getHost());
 
 						// retrieve the good execution specification type using the source of the message
@@ -74,7 +75,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 						}
 						EditPart sourceEditPart = request.getSourceEditPart();
 						if (sourceEditPart instanceof ActionExecutionSpecificationEditPart || sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
-							return new ICommandProxy(new PromptCreateElementAndNodeCommand(command, getEditingDomain(),viewRequest.getConnectionViewDescriptor(),(ShapeNodeEditPart) targetEP, target,sourceEP,request, ift));
+							command = new ICommandProxy(new PromptCreateElementAndNodeCommand(command, getEditingDomain(),viewRequest.getConnectionViewDescriptor(),(ShapeNodeEditPart) targetEP, target,sourceEP,request, ift));
 						}
 //						IHintedType elementType = null;
 //						if(sourceEditPart instanceof ActionExecutionSpecificationEditPart) {
@@ -95,6 +96,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 //						}
 					}
 				}
+				command = command.chain(new ICommandProxy(new RepairExecutionSpecificationEndCommand(getEditingDomain(), viewRequest)));
 			}
 		}
 

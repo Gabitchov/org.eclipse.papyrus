@@ -123,7 +123,19 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(e == null || e.getSignature() == null) {
 			return;
 		}
-		NamedElement sig = e.getSignature();
+		hookMessageSignature(e.getSignature());
+		
+		EList<ValueSpecification> argments = e.getArguments();
+		for(ValueSpecification v : argments)
+			if(v instanceof EObject) {
+				getDiagramEventBroker().addNotificationListener((EObject)v, this);
+			}
+	}
+
+	private void hookMessageSignature(NamedElement sig) {
+		if (sig == null){
+			return;
+		}
 		if(sig instanceof Operation){
 			Operation operation = (Operation)sig;	
 			getDiagramEventBroker().addNotificationListener(operation, this);
@@ -146,12 +158,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				getDiagramEventBroker().addNotificationListener(property.getType(), this);
 			}
 		}
-		
-		EList<ValueSpecification> argments = e.getArguments();
-		for(ValueSpecification v : argments)
-			if(v instanceof EObject) {
-				getDiagramEventBroker().addNotificationListener((EObject)v, this);
-			}
 	}
 	
 	@Override
@@ -162,7 +168,19 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(e == null || e.getSignature() == null) {
 			return;
 		}
-		NamedElement sig = e.getSignature();
+		unhookMessageSignature(e.getSignature());
+		
+		EList<ValueSpecification> argments = e.getArguments();
+		for(ValueSpecification v : argments)
+			if(v instanceof EObject) {
+				getDiagramEventBroker().removeNotificationListener((EObject)v, this);
+			}
+	}
+
+	private void unhookMessageSignature(NamedElement sig) {
+		if (sig == null){
+			return;
+		}
 		if(sig instanceof Operation){
 			Operation operation = (Operation)sig;	
 			getDiagramEventBroker().removeNotificationListener(operation, this);
@@ -184,12 +202,6 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				getDiagramEventBroker().removeNotificationListener(property.getType(), this);
 			}
 		}
-		
-		EList<ValueSpecification> argments = e.getArguments();
-		for(ValueSpecification v : argments)
-			if(v instanceof EObject) {
-				getDiagramEventBroker().removeNotificationListener((EObject)v, this);
-			}
 	}
 	
 	@Override
@@ -241,6 +253,18 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}else if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}else if(sig == null && object instanceof Message && notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())){
+			refreshDisplay();
+		}
+		//Try to update label when signature of message changed.
+		else if (UMLPackage.eINSTANCE.getMessage_Signature() == notification.getFeature()){
+			Object oldValue = notification.getOldValue();
+			if(oldValue instanceof NamedElement) {
+				unhookMessageSignature((NamedElement)oldValue);
+			}
+			Object newValue = notification.getNewValue();
+			if(newValue instanceof NamedElement) {
+				hookMessageSignature((NamedElement)newValue);
+			}
 			refreshDisplay();
 		}
 	}
@@ -751,8 +775,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			boolean firstProperty = true;
 			for(Property property : signal.getOwnedAttributes()) {
 				// get the label for this property
-				String propertyString = getCustomPropertyLabel(e, property, style);
-				if(!propertyString.trim().equals("")) {
+				String propertyString = getCustomPropertyLabel(e, property, style).trim();
+				if(!propertyString.equals("")) {
 					if(!firstProperty) {
 						propertiesString.append(", ");
 					}
@@ -1018,9 +1042,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				// Do not include return parameters
 				if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 					// get the label for this parameter
-					String parameterString = getCustomLabel(e, paramIndex, parameter, style);
+					String parameterString = getCustomLabel(e, paramIndex, parameter, style).trim();
 					paramIndex ++;
-					if (!parameterString.trim().equals("")) {
+					if (!parameterString.equals("")) {
 						if (!firstParameter) {
 							paramString.append(", ");
 						}

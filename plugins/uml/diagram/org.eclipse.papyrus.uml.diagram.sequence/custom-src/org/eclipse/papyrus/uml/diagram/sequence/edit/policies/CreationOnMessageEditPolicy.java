@@ -20,6 +20,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -78,6 +79,20 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 				} else {
 					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, location);
 				}
+				
+				if(location != null) {
+					//Let the hosted lifeline to do it.
+					EditPart object = getHost().getViewer().findObjectAtExcluding(location, Collections.emptyList(), new EditPartViewer.Conditional() {
+
+						public boolean evaluate(EditPart editpart) {
+							return editpart instanceof LifelineEditPart;
+						}
+					});
+					if(object instanceof LifelineEditPart) {
+						return ((LifelineEditPart)object).getCommand(request);
+					}
+				}
+					
 			}
 		}
 		return super.getCreateElementAndViewCommand(request);

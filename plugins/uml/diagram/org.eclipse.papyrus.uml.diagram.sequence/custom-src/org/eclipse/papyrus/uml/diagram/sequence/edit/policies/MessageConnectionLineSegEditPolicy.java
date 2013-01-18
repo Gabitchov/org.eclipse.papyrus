@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,19 +22,19 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Handle;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.BendpointRequest;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -46,10 +47,12 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart.MessageCreate;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
@@ -68,14 +71,36 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 @SuppressWarnings("restriction")
 public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditPolicy {
 
+	/**
+	 * Set up moving LineSeg data for self linked message, the value should be one of MOVED_UP, MOVED_DOWN and MOVED_HORIAONTZL.
+	 * See showMoveLineSegFeedback() for self linked message for details.
+	 */
+	private static final String MOVE_LINE_ORIENTATION_DATA = "Move line orientation";
+
+	private static final String MOVED_UP = "Moved Up";
+
+	private static final String MOVED_DOWN = "Moved Down";
+
+	private static final String MOVED_HORIZONTAL = "Moved Horizontal";
+
 	public MessageConnectionLineSegEditPolicy() {
 		super(LineMode.ORTHOGONAL_FREE);
 	}
 
 	@Override
-	public Command getCommand(Request request) {		
+	protected List createManualHandles() {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate){
+		if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
+			//Removed the handles for self message.
+			return Collections.emptyList();
+		}
+		return super.createManualHandles();
+	}
+	
+	@Override
+	public Command getCommand(Request request) {
+		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
+		if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
 			return super.getCommand(request);
 		}
 		return null;
@@ -102,30 +127,30 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
 				if(send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && srcLifelinePart != null && tgtLifelinePart != null) {
 					RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-					if(getHost() instanceof Message2EditPart && kind == RouterKind.SELF){	
+					if((getHost() instanceof MessageEditPart || getHost() instanceof Message2EditPart) && kind == RouterKind.SELF) {
 						return getSelfLinkMoveCommand(request, connectionPart, send, rcv, srcLifelinePart);
-					}else if(getHost() instanceof Message4EditPart){
+					} else if(getHost() instanceof Message4EditPart) {
 						IFigure fig = tgtLifelinePart.getPrimaryShape().getFigureLifelineNameContainerFigure();
 						Rectangle bounds = fig.getBounds().getCopy();
 						fig.translateToAbsolute(bounds);
-						
+
 						PointList points = getConnection().getPoints();
 						Point sourceRefPoint = points.getFirstPoint().getCopy();;
 						getConnection().translateToAbsolute(sourceRefPoint);
-						
+
 						int dy = sourceRefPoint.y - bounds.getCenter().y;
 						Point location = tgtLifelinePart.getFigure().getBounds().getLocation().getCopy().translate(0, dy);
-						Command moveCmd = new ICommandProxy(new SetBoundsCommand(tgtLifelinePart.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(tgtLifelinePart.getNotationView()), location));		
-						
+						Command moveCmd = new ICommandProxy(new SetBoundsCommand(tgtLifelinePart.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(tgtLifelinePart.getNotationView()), location));
+
 						// Take care of the order of commands, to make sure target is always bellow the source.
-						if(dy < 0){ // move up
-							return LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart,moveCmd,dy);
-						}else{  // move down
-							Command cmd = LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart,null,dy);
-							cmd = cmd == null? moveCmd: cmd.chain(moveCmd);
+						if(dy < 0) { // move up
+							return LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart, moveCmd, dy);
+						} else { // move down
+							Command cmd = LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart, null, dy);
+							cmd = cmd == null ? moveCmd : cmd.chain(moveCmd);
 							return cmd;
 						}
-					}else{
+					} else {
 						int y = request.getLocation().y;
 						List<EditPart> empty = Collections.emptyList();
 						Command srcCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)send, null, y, -1, srcLifelinePart, empty);
@@ -155,42 +180,60 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	}
 
 	protected Command getSelfLinkMoveCommand(BendpointRequest request, ConnectionNodeEditPart connectionPart, MessageEnd send, MessageEnd rcv, LifelineEditPart srcLifelinePart) {
+		//Just do it, checking was finished by showing feedback.
+		Object moveData = request.getExtendedData().get(MOVE_LINE_ORIENTATION_DATA);
 		CompoundCommand compoudCmd = new CompoundCommand(Messages.MoveMessageCommand_Label);
+		//And make sure the self linked message can be customized by using bendpoints.
+		compoudCmd.add(super.getBendpointsChangedCommand(request));
 		PointList points = getConnection().getPoints();
-		Point sourceRefPoint = points.getFirstPoint();;
-		Point targetRefPoint = points.getLastPoint();;
-		getConnection().translateToAbsolute(sourceRefPoint);
-		getConnection().translateToAbsolute(targetRefPoint);
-		
-		Point oldSourcePoint = SequenceUtil.findLocationOfEvent(srcLifelinePart, (OccurrenceSpecification)send);
-		int dy = sourceRefPoint.y - oldSourcePoint.y;
-		int dx = request.getLocation().x > sourceRefPoint.x ? 3 : -3;
-		
-		// check bounds
-		NodeFigure fig = srcLifelinePart.getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
-		Rectangle bounds = fig.getBounds().getCopy();
-		fig.translateToAbsolute(bounds);
-		
-		bounds.expand(6, 0);
-		if(!bounds.contains(sourceRefPoint) || !bounds.contains(targetRefPoint)){
-			return UnexecutableCommand.INSTANCE; // cannot move outside lifeline part
-		}
-		sourceRefPoint = sourceRefPoint.translate(dx, 0);
-		targetRefPoint = targetRefPoint.translate(dx, 0);
-		Command srcCmd = getReconnectCommand(connectionPart, srcLifelinePart, sourceRefPoint, RequestConstants.REQ_RECONNECT_SOURCE);
-		Command tgtCmd = getReconnectCommand(connectionPart, srcLifelinePart, targetRefPoint, RequestConstants.REQ_RECONNECT_TARGET);
-		
-		if(dy < 0){  // move up
+		if(MOVED_UP.equals(moveData)) {
+			Point sourceRefPoint = points.getFirstPoint();;
+			getConnection().translateToAbsolute(sourceRefPoint);
+			Command srcCmd = getReconnectCommand(connectionPart, connectionPart.getSource(), sourceRefPoint, RequestConstants.REQ_RECONNECT_SOURCE);
 			compoudCmd.add(srcCmd);
+		} else if(MOVED_DOWN.equals(moveData)) {
+			Point targetRefPoint = points.getLastPoint();;
+			getConnection().translateToAbsolute(targetRefPoint);
+			Command tgtCmd = getReconnectCommand(connectionPart, connectionPart.getSource(), targetRefPoint, RequestConstants.REQ_RECONNECT_TARGET);
 			compoudCmd.add(tgtCmd);
-		}else{      // move down
-			compoudCmd.add(tgtCmd);
-			compoudCmd.add(srcCmd);
 		}
-		return compoudCmd;
+		return compoudCmd.unwrap();
+		//		CompoundCommand compoudCmd = new CompoundCommand(Messages.MoveMessageCommand_Label);
+		//		PointList points = getConnection().getPoints();
+		//		Point sourceRefPoint = points.getFirstPoint();;
+		//		Point targetRefPoint = points.getLastPoint();;
+		//		getConnection().translateToAbsolute(sourceRefPoint);
+		//		getConnection().translateToAbsolute(targetRefPoint);
+		//		
+		//		Point oldSourcePoint = SequenceUtil.findLocationOfEvent(srcLifelinePart, (OccurrenceSpecification)send);
+		//		int dy = sourceRefPoint.y - oldSourcePoint.y;
+		//		int dx = request.getLocation().x > sourceRefPoint.x ? 3 : -3;
+		//		
+		//		// check bounds
+		//		NodeFigure fig = srcLifelinePart.getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
+		//		Rectangle bounds = fig.getBounds().getCopy();
+		//		fig.translateToAbsolute(bounds);
+		//		
+		//		bounds.expand(6, 0);
+		//		if(!bounds.contains(sourceRefPoint) || !bounds.contains(targetRefPoint)){
+		//			return UnexecutableCommand.INSTANCE; // cannot move outside lifeline part
+		//		}
+		//		sourceRefPoint = sourceRefPoint.translate(dx, 0);
+		//		targetRefPoint = targetRefPoint.translate(dx, 0);
+		//		Command srcCmd = getReconnectCommand(connectionPart, srcLifelinePart, sourceRefPoint, RequestConstants.REQ_RECONNECT_SOURCE);
+		//		Command tgtCmd = getReconnectCommand(connectionPart, srcLifelinePart, targetRefPoint, RequestConstants.REQ_RECONNECT_TARGET);
+		//		
+		//		if(dy < 0){  // move up
+		//			compoudCmd.add(srcCmd);
+		//			compoudCmd.add(tgtCmd);
+		//		}else{      // move down
+		//			compoudCmd.add(tgtCmd);
+		//			compoudCmd.add(srcCmd);
+		//		}
+		//		return compoudCmd;
 	}
 
-	protected Command getReconnectCommand(ConnectionNodeEditPart connectionPart, LifelineEditPart targetPart, Point location, String requestType) {
+	protected Command getReconnectCommand(ConnectionNodeEditPart connectionPart, EditPart targetPart, Point location, String requestType) {
 		// Create and set the properties of the request
 		ReconnectRequest reconnReq = new ReconnectRequest();
 		reconnReq.setConnectionEditPart(connectionPart);
@@ -207,72 +250,93 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 * don't show feedback if the drag is forbidden (message not horizontal).
 	 */
 	@Override
-	public void showSourceFeedback(Request request) {		
+	public void showSourceFeedback(Request request) {
 		if(request instanceof BendpointRequest) {
 			RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-			if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate){
+			if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
 				super.showSourceFeedback(request);
+				if(getLineSegMode() != LineMode.OBLIQUE && REQ_MOVE_BENDPOINT.equals(request.getType())) {
+					showMoveLineSegFeedback((BendpointRequest)request);
+				}
 			}
-		}		
+		}
 	}
 
 	private ConnectionRouter router;
-	
+
 	static class DummyRouter extends AbstractRouter {
 
 		public void route(Connection conn) {
 		}
 	}
-	
-	protected void showMoveLineSegFeedback(BendpointRequest request) {				
+
+	@SuppressWarnings("unchecked")
+	protected void showMoveLineSegFeedback(BendpointRequest request) {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if(getHost() instanceof Message2EditPart && kind == RouterKind.SELF ){
-			if(router == null){
+		if((getHost() instanceof MessageEditPart || getHost() instanceof Message2EditPart) && kind == RouterKind.SELF) {
+			if(router == null) {
 				router = getConnection().getConnectionRouter();
-				getConnection().setConnectionRouter( new DummyRouter()); 
+				getConnection().setConnectionRouter(new DummyRouter());
 			}
 			PointList linkPoints = getConnection().getPoints().getCopy();
-	
+
 			Point ptLoc = new Point(request.getLocation());
 			getConnection().translateToRelative(ptLoc);
 			int dy = 0;
-			if(request.getIndex() == 0)
-				dy =  ptLoc.y - linkPoints.getFirstPoint().y;
-			else if(request.getIndex() == 2)
-				dy =  ptLoc.y - linkPoints.getLastPoint().y;
-			
-			// move each point on link
+			int dx = 0;
+			int from = 0, to = 0;
+			int index = request.getIndex();
+			if(index == 0) {
+				dy = ptLoc.y - linkPoints.getFirstPoint().y;
+				from = 0;
+				to = 1;
+				request.getExtendedData().put(MOVE_LINE_ORIENTATION_DATA, MOVED_UP);
+			} else if(index == 1) {
+				dx = ptLoc.x - linkPoints.getMidpoint().x;
+				from = 1;
+				to = 2;
+				request.getExtendedData().put(MOVE_LINE_ORIENTATION_DATA, MOVED_HORIZONTAL);
+			} else if(index == 2) {
+				dy = ptLoc.y - linkPoints.getLastPoint().y;
+				from = 2;
+				to = 3;
+				request.getExtendedData().put(MOVE_LINE_ORIENTATION_DATA, MOVED_DOWN);
+			}
+			// move points on link
 			int size = linkPoints.size();
-			for(int i = 0; i < size; i ++){
-				Point p = linkPoints.getPoint(i).translate(0, dy);
-				linkPoints.setPoint(p, i);
-			}						
-			
+			if(from >= 0 && from < size && to >= 0 && to < size && from <= to) {
+				for(int i = from; i <= to; i++) {
+					Point p = linkPoints.getPoint(i);
+					p.translate(dx, dy);
+					linkPoints.setPoint(p, i);
+				}
+			}
+
 			// link should not exceed lifeline bounds  
-			if(checkBounds(linkPoints)){
+			if(checkBounds(linkPoints)) {
 				getConnection().setPoints(linkPoints);
 				getConnection().getLayoutManager().layout(getConnection());
 			}
 			return;
 		}
-		if(getHost() instanceof Message4EditPart){
-			if(router == null){
+		if(getHost() instanceof Message4EditPart) {
+			if(router == null) {
 				router = getConnection().getConnectionRouter();
-				getConnection().setConnectionRouter( new DummyRouter()); 
+				getConnection().setConnectionRouter(new DummyRouter());
 			}
 			PointList linkPoints = getConnection().getPoints().getCopy();
-	
+
 			Point ptLoc = new Point(request.getLocation());
 			getConnection().translateToRelative(ptLoc);
 			int dy = ptLoc.y - linkPoints.getFirstPoint().y;
 			int size = linkPoints.size();
-			for(int i = 0; i < size; i ++){
+			for(int i = 0; i < size; i++) {
 				Point p = linkPoints.getPoint(i).translate(0, dy);
 				linkPoints.setPoint(p, i);
-			}						
-			if(checkBounds(linkPoints)){
+			}
+			if(checkBounds(linkPoints)) {
 				getConnection().setPoints(linkPoints);
-				getConnection().getLayoutManager().layout(getConnection());		
+				getConnection().getLayoutManager().layout(getConnection());
 			}
 			return;
 		}
@@ -280,22 +344,42 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	}
 
 	protected boolean checkBounds(PointList linkPoints) {
+		if(linkPoints.getFirstPoint().y > linkPoints.getLastPoint().y) {
+			return false;
+		}
 		EditPart sourcePart = ((ConnectionNodeEditPart)getHost()).getSource();
-		if(sourcePart instanceof LifelineEditPart){
+		if(sourcePart instanceof LifelineEditPart) {
 			LifelineEditPart lep = (LifelineEditPart)sourcePart;
 			NodeFigure fig = lep.getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
 			Rectangle bounds = fig.getBounds().getCopy();
 			fig.translateToAbsolute(bounds);
-			
+
 			Rectangle conBounds = linkPoints.getBounds();
 			getConnection().translateToAbsolute(conBounds);
 			// check top and bottom y limit
 			if(conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y)
 				return false;
 		}
+		//It seems the self message can be created on ES, too
+		else if(sourcePart instanceof AbstractExecutionSpecificationEditPart) {
+			AbstractExecutionSpecificationEditPart esep = (AbstractExecutionSpecificationEditPart)sourcePart;
+			IFigure fig = esep.getFigure();
+			Rectangle bounds = fig.getBounds().getCopy();
+			fig.translateToAbsolute(bounds);
+			Rectangle conBounds = linkPoints.getBounds().getCopy();
+			getConnection().translateToAbsolute(conBounds);
+			if( //Don't change the orientation of self message.
+			bounds.intersects(conBounds.getShrinked(1, 1))
+			//make sure the line is not closest.
+			|| conBounds.width < 2 || conBounds.height < 2
+			// check top and bottom y limit
+			|| conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y) {
+				return false;
+			}
+		}
 		return true;
 	}
-	
+
 	@Override
 	protected void eraseConnectionFeedback(BendpointRequest request, boolean removeFeedbackFigure) {
 		getConnection().setVisible(true);
@@ -303,32 +387,32 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 		if(router != null)
 			getConnection().setConnectionRouter(router);
-		router = null;		
+		router = null;
 	}
 
-//	private boolean isHorizontal() {
-//		Connection connection = getConnection();
-//		RouterKind kind = RouterKind.getKind(connection, connection.getPoints());
-//
-//		if(kind.equals(RouterKind.HORIZONTAL)) {
-//			return true;
-//		}
-//		return false;
-//	}
-//
-//	final private static char TERMINAL_START_CHAR = '(';
-//
-//	final private static char TERMINAL_DELIMITER_CHAR = ',';
-//
-//	final private static char TERMINAL_END_CHAR = ')';
-//
-//	private static String composeTerminalString(PrecisionPoint p) {
-//		StringBuffer s = new StringBuffer(24);
-//		s.append(TERMINAL_START_CHAR); // 1 char
-//		s.append(p.preciseX); // 10 chars
-//		s.append(TERMINAL_DELIMITER_CHAR); // 1 char
-//		s.append(p.preciseY); // 10 chars
-//		s.append(TERMINAL_END_CHAR); // 1 char
-//		return s.toString(); // 24 chars max (+1 for safety, i.e. for string termination)
-//	}
+	//	private boolean isHorizontal() {
+	//		Connection connection = getConnection();
+	//		RouterKind kind = RouterKind.getKind(connection, connection.getPoints());
+	//
+	//		if(kind.equals(RouterKind.HORIZONTAL)) {
+	//			return true;
+	//		}
+	//		return false;
+	//	}
+	//
+	//	final private static char TERMINAL_START_CHAR = '(';
+	//
+	//	final private static char TERMINAL_DELIMITER_CHAR = ',';
+	//
+	//	final private static char TERMINAL_END_CHAR = ')';
+	//
+	//	private static String composeTerminalString(PrecisionPoint p) {
+	//		StringBuffer s = new StringBuffer(24);
+	//		s.append(TERMINAL_START_CHAR); // 1 char
+	//		s.append(p.preciseX); // 10 chars
+	//		s.append(TERMINAL_DELIMITER_CHAR); // 1 char
+	//		s.append(p.preciseY); // 10 chars
+	//		s.append(TERMINAL_END_CHAR); // 1 char
+	//		return s.toString(); // 24 chars max (+1 for safety, i.e. for string termination)
+	//	}
 }

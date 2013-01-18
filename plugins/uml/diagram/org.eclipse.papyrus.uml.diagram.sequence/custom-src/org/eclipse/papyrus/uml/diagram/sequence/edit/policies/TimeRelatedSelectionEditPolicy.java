@@ -36,4 +36,12 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 		}
 		return command;
 	}
+
+	@Override
+	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
+		if(getHost() instanceof IBorderItemEditPart) {
+			OccurrenceSpecificationMoveHelper.prepareTimeRelatedElementMoveRequest(request, (IBorderItemEditPart)getHost());
+		}
+		super.showChangeBoundsFeedback(request);
+	}
 }

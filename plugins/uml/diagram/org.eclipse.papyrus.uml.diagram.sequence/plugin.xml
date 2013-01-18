@@ -1215,8 +1215,8 @@
         id="createLinkCreationTool"
         kind="tool"
         label="Link"
-        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
-        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
+        large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif"
+        small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif">
   </entry>
 
 			</contribution>

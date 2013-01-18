@@ -14,6 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -148,7 +151,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 3001;
-
+	
 	/**
 	 * @generated
 	 */
@@ -354,6 +357,27 @@ public class LifelineEditPart extends NamedElementEditPart {
 					dashLineRectangle.setOpaque(opaque);
 				}
 			}
+			
+			/**
+			 * Reverse the find order from super, otherwise the child executions would hard to select.
+			 */
+			public IFigure findFigureAt(int x, int y, TreeSearch search) {
+				if (search.prune(this))
+					return null;
+				IFigure mainFigure = getMainFigure().findFigureAt(x, y, search);
+				if (mainFigure != null){
+					return mainFigure; 
+				}
+				return getBorderItemContainer().findFigureAt(x, y, search);
+			}
+			
+			@Override
+			public boolean containsPoint(int x, int y) {
+				if (getBounds().contains(x, y)){
+					return true;
+				}
+				return super.containsPoint(x, y);
+			}
 		};
 	}	
 	
@@ -362,6 +386,16 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	protected IFigure createNodeShape() {
 		return primaryShape = new LifelineFigure();
+	}
+	
+	@Override
+	protected void refreshBounds() {
+		super.refreshBounds();
+		if (LifelineResizeHelper.isManualSize(this)) {
+			LifelineFigure primaryShape = getPrimaryShape();
+			//Once the minimum size is set, the main figure will not be expanded by itself.
+			primaryShape.setMinimumSize( new Dimension(1, 1));
+		}
 	}
 
 	/**
@@ -1611,8 +1645,17 @@ public class LifelineEditPart extends NamedElementEditPart {
 			// 1. First check if the location is enter the Title.
 			if (fFigureLifelineNameContainerFigure != null
 					&& fFigureLifelineNameContainerFigure.containsPoint(x, y)) {
-				return this;
-			} 
+				// Return label figure for supporting direct edit.
+				EditPart editPart = (EditPart)getViewer().getVisualPartMap().get(figure);
+				while(editPart == null) {
+					figure = figure.getParent();
+					if(figure == null) {
+						break;
+					}
+					editPart = (EditPart)getViewer().getVisualPartMap().get(figure);
+				}
+				return figure == null ? this : figure;
+			}
 			//2. Check children, maybe contain the Label figure, but we process it before.
 			IFigure child = findChildFigure(this, x, y);
 			if (child != null) {
@@ -1979,13 +2022,13 @@ public class LifelineEditPart extends NamedElementEditPart {
 			}
 			*/
 			Dimension size = getPrimaryShape().getFigureLifelineNameContainerFigure().getPreferredSize(-1, oldNameContainerHeight);
-			if(!LifelineResizeHelper.isManualSize(this)){
-				if(size.width != rect.width){ 
-					moveExecutionParts(new Dimension(size.width - rect.width, 0)); 
+			if(!LifelineResizeHelper.isManualSize(this)) {
+				if(size.width != rect.width) {
+					moveExecutionParts(new Dimension(size.width - rect.width, 0));
 					rect.width = size.width;
 					updateLifelineBounds(rect);
 				}
-			}					
+			}			
 		}
 	}
 	
@@ -2251,9 +2294,53 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * Configure inline mode
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected void refreshChildren() {
-		super.refreshChildren();
+
+		List children = new ArrayList(getChildren());
+		int size = children.size();
+		Map modelToEditPart = Collections.EMPTY_MAP;
+		if (size > 0) {
+			modelToEditPart = new HashMap(size);
+			for (int i = 0; i < size; i++) {
+				EditPart editPart = (EditPart) children.get(i);
+				modelToEditPart.put(editPart.getModel(), editPart);
+			}
+		}
+
+		List modelObjects = getModelChildren();
+		for (int i = 0; i < modelObjects.size(); i++) {
+			Object model = modelObjects.get(i);
+
+			// Do a quick check to see if editPart[i] == model[i]
+			if (i < children.size()
+					&& ((EditPart) children.get(i)).getModel() == model){
+				modelToEditPart.remove(model);				
+				continue;
+			}
+
+			// Look to see if the EditPart is already around but in the
+			// wrong location
+			EditPart editPart = (EditPart) modelToEditPart.remove(model);
+
+			if (editPart != null)
+				reorderChild(editPart, i);
+			else {
+				// An EditPart for this model doesn't exist yet. Create and
+				// insert one.
+				editPart = createChild(model);
+				addChild(editPart, i);
+			}
+		}
+
+		// remove the remaining EditParts
+		if (!modelToEditPart.isEmpty()) {
+			Collection values = modelToEditPart.values();
+			for(Object object : values) {
+				removeChild((EditPart)object);
+			}
+		}
 		configure(isInlineMode(), true);
 	}
 
@@ -2293,7 +2380,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		//				return true;
 		//			}
 		//		}
-		List models = getModelChildren();
+		List models = super.getModelChildren();
 		for (Object o : models)
 			if(o instanceof View) {
 				View view = (View) o;
