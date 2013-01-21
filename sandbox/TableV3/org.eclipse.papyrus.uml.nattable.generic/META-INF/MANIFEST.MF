@@ -4,13 +4,14 @@ Bundle-Name: Generic Table for UML (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.generic;singleton:=true
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.generic.Activator
-Bundle-Vendor: Eclispe Modeling Tools
+Bundle-Vendor: Eclipse Modeling Tools
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.nattable.common;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.core,
- org.eclipse.papyrus.infra.nattable.model
+ org.eclipse.papyrus.infra.nattable.model,
+ org.eclipse.papyrus.uml.nattable.common;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

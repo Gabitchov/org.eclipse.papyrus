@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.common.axismanager">
+      <axisManager
+            id="org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider"
+            manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLStereotypePropertyManager">
+      </axisManager>
+   </extension>
+
+</plugin>
