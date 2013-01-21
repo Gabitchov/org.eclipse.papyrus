@@ -13,13 +13,26 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.transaction,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf,
- org.eclipse.papyrus.infra.nattable.model,
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0",
+ org.eclipse.swt,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.emf.ecore,
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
  org.eclipse.nebula.widgets.nattable.core,
- org.eclipse.nebula.widgets.nattable.core,
- org.eclipse.nebula.widgets.nattable.core
+ org.eclipse.uml2.uml;bundle-version="4.0.100",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
+ org.eclipse.uml2.uml
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Eclipse Modeling Project
-Export-Package: org.eclipse.papyrus.infra.nattable.common.editor,
- org.eclipse.papyrus.infra.nattable.common.editor.handlers,
- org.eclipse.papyrus.infra.nattable.common.factory
+Export-Package: org.eclipse.papyrus.infra.nattable.common,
+ org.eclipse.papyrus.infra.nattable.common.configuration,
+ org.eclipse.papyrus.infra.nattable.common.dataprovider,
+ org.eclipse.papyrus.infra.nattable.common.editor,
+ org.eclipse.papyrus.infra.nattable.common.editor.handler,
+ org.eclipse.papyrus.infra.nattable.common.factory,
+ org.eclipse.papyrus.infra.nattable.common.layerstack,
+ org.eclipse.papyrus.infra.nattable.common.listener,
+ org.eclipse.papyrus.infra.nattable.common.manager,
+ org.eclipse.papyrus.infra.nattable.common.modelresource,
+ org.eclipse.papyrus.infra.nattable.common.utils

@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.editor;
 
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractUiBindingConfiguration;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
@@ -24,7 +26,6 @@ import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
-import org.eclipse.nebula.widgets.nattable.layer.config.DefaultColumnHeaderStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.print.command.PrintCommand;
 import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOffCommand;
 import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOnCommand;
@@ -36,8 +37,20 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
+import org.eclipse.papyrus.infra.nattable.common.dataprovider.BodyDataProvider;
+import org.eclipse.papyrus.infra.nattable.common.dataprovider.ColumnHeaderDataProvider;
+import org.eclipse.papyrus.infra.nattable.common.dataprovider.RowHeaderDataProvider;
+import org.eclipse.papyrus.infra.nattable.common.layerstack.BodyLayerStack;
+import org.eclipse.papyrus.infra.nattable.common.layerstack.ColumnHeaderLayerStack;
+import org.eclipse.papyrus.infra.nattable.common.layerstack.RowHeaderLayerStack;
+import org.eclipse.papyrus.infra.nattable.common.listener.NatTableDropListener;
+import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.common.manager.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DropTarget;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
@@ -47,11 +60,11 @@ import org.eclipse.ui.part.EditorPart;
 
 /**
  * Abstract class for TableEditor
- * 
- * 
- * 
+ *
+ *
+ *
  */
-public abstract class AbstractPapyrusNattableEditor extends EditorPart {
+public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	/** the service registry */
 	protected ServicesRegistry servicesRegistry;
@@ -59,81 +72,93 @@ public abstract class AbstractPapyrusNattableEditor extends EditorPart {
 	/** the table instance */
 	protected Table rawModel;
 
+	protected INattableModelManager tableManager;
+
+	private NatTable natTable;
+
 	/**
 	 * @param servicesRegistry
 	 * @param rawModel
-	 * 
+	 *
 	 */
-	public AbstractPapyrusNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
+	public AbstractEMFNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
 		this.servicesRegistry = servicesRegistry;
 		this.rawModel = rawModel;
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#init(org.eclipse.ui.IEditorSite, org.eclipse.ui.IEditorInput)
-	 * 
+	 *
 	 * @param site
 	 * @param input
 	 * @throws PartInitException
 	 */
 	@Override
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
-		TableEditorInput tableEditorInput = new TableEditorInput(this.rawModel, getEditingDomain());
+		final TableEditorInput tableEditorInput = new TableEditorInput(this.rawModel, getEditingDomain());
 
 		setSite(site);
 		setInput(tableEditorInput);
 		setPartName(this.rawModel.getName());
 		// addListeners();
+		//FIXME : super is required?
 		//		super.init(site, tableEditorInput);
 	}
 
-	/**
-	 * {@inheritDoc} + update the content of the table if the table is
-	 * synchronized
-	 */
+
 	@Override
 	public void createPartControl(final Composite parent) {
+		this.tableManager = new NattableModelManager(this.rawModel);
 
-		//		
+		final BodyDataProvider fBodyDataProvider = new BodyDataProvider(this.tableManager);
+		final BodyLayerStack fBodyLayer = new BodyLayerStack(fBodyDataProvider);;
 
+		final IDataProvider colHeaderDataProvider = new ColumnHeaderDataProvider(this.tableManager);
+		final ILayer columnHeaderLayer = new ColumnHeaderLayerStack(colHeaderDataProvider, fBodyLayer, fBodyDataProvider);
 
-		BodyDataProvider fBodyDataProvider = new BodyDataProvider(this.rawModel);
-		BodyLayerStack fBodyLayer = new BodyLayerStack(fBodyDataProvider);;
-		String[] columnNames = new String[2];
-		columnNames[0] = "toto";
-		columnNames[1] = "titi";
-		IDataProvider colHeaderDataProvider = new PapyrusFeatureColumnHeaderDataProvider(this.rawModel);
-		ILayer columnHeaderLayer = new ColumnHeaderLayerStack(colHeaderDataProvider, fBodyLayer, fBodyDataProvider);
-
-		IDataProvider rowHeaderDataProvider = new PapyrusDefaultRowHeaderDataProvider(this.rawModel, fBodyDataProvider);
+		final IDataProvider rowHeaderDataProvider = new RowHeaderDataProvider(this.tableManager);
 
 
-		RowHeaderLayerStack rowHeaderLayer = new RowHeaderLayerStack(rowHeaderDataProvider, fBodyLayer);
+		final RowHeaderLayerStack rowHeaderLayer = new RowHeaderLayerStack(rowHeaderDataProvider, fBodyLayer);
 
 
-		//rowHeaderLayer.addConfiguration(new DefaultRowHeaderStyleConfiguration());
-		rowHeaderLayer.addConfiguration(new DefaultColumnHeaderStyleConfiguration());
 
 
-		IDataProvider cornerDataProvider = new DefaultCornerDataProvider(colHeaderDataProvider, rowHeaderDataProvider);;
-		CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), rowHeaderLayer, columnHeaderLayer);
-		GridLayer gridLayer = new GridLayer(fBodyLayer, columnHeaderLayer, rowHeaderLayer, cornerLayer);
+
+		final IDataProvider cornerDataProvider = new DefaultCornerDataProvider(colHeaderDataProvider, rowHeaderDataProvider) {
+
+			@Override
+			public Object getDataValue(final int columnIndex, final int rowIndex) {
+				return "toto" + " " + columnIndex + " " + rowIndex;
+			}
+			@Override
+			public int getColumnCount() {
+				return 2;
+			}
+
+			@Override
+			public int getRowCount() {
+				return 2;
+			}
+		};
+		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), rowHeaderLayer, columnHeaderLayer);
+		final GridLayer gridLayer = new GridLayer(fBodyLayer, columnHeaderLayer, rowHeaderLayer, cornerLayer);
 
 
 		//add action on the left corner
 		cornerLayer.addConfiguration(new AbstractUiBindingConfiguration() {
 
-			public void configureUiBindings(UiBindingRegistry uiBindingRegistry) {
+			public void configureUiBindings(final UiBindingRegistry uiBindingRegistry) {
 				uiBindingRegistry.registerSingleClickBinding(new MouseEventMatcher(GridRegion.CORNER), new IMouseAction() {
 
-					public void run(NatTable natTable, MouseEvent event) {
+					public void run(final NatTable natTable, final MouseEvent event) {
 						// TODO Auto-generated method stub
 						//FIXME : exchange lines and rows
 						natTable.doCommand(new TurnViewportOffCommand());
-						
+
 						natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
-						
+
 						natTable.doCommand(new TurnViewportOnCommand());
 						System.out.println("something to do");
 					}
@@ -143,47 +168,47 @@ public abstract class AbstractPapyrusNattableEditor extends EditorPart {
 		});
 
 		gridLayer.addConfiguration(new DefaultPrintBindings());
-		NatTable natTable = new NatTable(parent, gridLayer);
-		//		natTable.addConfiguration(new DefaultRowHeaderStyleConfiguration());
-		//		ILayer layer = table.getLayer();
-		// super.createPartControl(parent);
-		// // we update the table
-		// if(rawModel.isIsSynchronized()) {
-		// Notification impl = new ENotificationImpl((InternalEObject)rawModel,
-		// FillingQueriesUtil.OPEN_TABLE, null, null, null);
-		// List<Notification> notifications = Collections.singletonList(impl);
-		// ResourceSetChangeEvent event = new
-		// ResourceSetChangeEvent((TransactionalEditingDomain)getEditingDomain(),
-		// null, notifications);
-		// Command cmd = null;
-		// try {
-		// cmd = this.modelTriggerListener.transactionAboutToCommit(event);
-		// if(cmd != null && cmd.canExecute()) {
-		// cmd.execute();
-		// }
-		// } catch (Exception e) {
-		//				Activator.log.error("I can't update the opened table", e); //$NON-NLS-1$
-		// }
-		// }
+		//		gridLayer.addConfiguration(new StyleConfiguration());
+		//		fBodyLayer.getBodyDataLayer().addConfiguration(new StyleConfiguration());
+		//		fBodyLayer.addConfiguration(new StyleConfiguration());
+		this.natTable = new NatTable(parent, gridLayer, false);
+		this.natTable.configure();
+		addDragAndDropSupport(this.natTable);
+
+	}
+
+
+
+	/**
+	 * Enable the table to receive dropped elements
+	 */
+	private void addDragAndDropSupport(final NatTable nattable) {
+		final int operations = DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_DEFAULT;
+		final DropTarget target = new DropTarget(nattable, operations);
+		final LocalTransfer localTransfer = LocalTransfer.getInstance();
+		final Transfer[] types = new Transfer[]{ localTransfer };
+		target.setTransfer(types);
+		final NatTableDropListener dropListener = new NatTableDropListener(nattable, this.tableManager, this.rawModel);
+		target.addDropListener(dropListener);
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#getEditingDomain()
-	 * 
+	 *
 	 * @return
 	 */
 	public EditingDomain getEditingDomain() {
 		try {
 			return ServiceUtils.getInstance().getTransactionalEditingDomain(this.servicesRegistry);
-		} catch (ServiceException e) {
+		} catch (final ServiceException e) {
 			Activator.log.error(e);
 		}
 		return null;
 	}
 
 	@Override
-	public void doSave(IProgressMonitor monitor) {
+	public void doSave(final IProgressMonitor monitor) {
 		// TODO Auto-generated method stub
 
 	}
@@ -210,5 +235,13 @@ public abstract class AbstractPapyrusNattableEditor extends EditorPart {
 	public void setFocus() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Object getAdapter(final Class adapter) {
+		if(adapter == NatTable.class) {
+			return this.natTable;
+		}
+		return super.getAdapter(adapter);
 	}
 }

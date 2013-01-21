@@ -1,42 +1,55 @@
-package org.eclipse.papyrus.infra.nattable.common.editor;
+package org.eclipse.papyrus.infra.nattable.common.layerstack;
 
+import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IConfiguration;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.action.MouseEditAction;
-import org.eclipse.nebula.widgets.nattable.grid.layer.RowHeaderLayer;
+import org.eclipse.nebula.widgets.nattable.grid.layer.ColumnHeaderLayer;
 import org.eclipse.nebula.widgets.nattable.layer.AbstractLayerTransform;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.config.DefaultSelectionBindings;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
+import org.eclipse.papyrus.infra.nattable.common.configuration.PapyrusDefaultColumnStyleStyleConfiguration;
+import org.eclipse.papyrus.infra.nattable.common.dataprovider.BodyDataProvider;
 import org.eclipse.swt.SWT;
 
 
-public class RowHeaderLayerStack extends AbstractLayerTransform {
+public class ColumnHeaderLayerStack extends AbstractLayerTransform {
 
-	private static final int DEFAULT_COLUMN_WIDTH = 50;
+	private final DataLayer dataLayer;
 
-	private static final int DEFAULT_ROW_HEIGHT = 20;
+	public ColumnHeaderLayerStack(final IDataProvider dataProvider, final BodyLayerStack bodyLayer, final BodyDataProvider bodyDataProvider) {
+		this.dataLayer = new DataLayer(dataProvider);
+		//FIXME : changes the data layer
+		final ColumnHeaderLayer colHeaderLayer = new ColumnHeaderLayer(this.dataLayer, bodyLayer, new SelectionLayer(this.dataLayer));
 
-	public RowHeaderLayerStack(final IDataProvider dataProvider, final BodyLayerStack bodyLayer) {
-		DataLayer dataLayer = new DataLayer(dataProvider, RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
-		//I know that selection layer is probably false
-		RowHeaderLayer rowHeaderLayer = new RowHeaderLayer(dataLayer, bodyLayer, /* bodyLayer.getSelectionLayer() */new SelectionLayer(dataLayer));
 
-		IConfiguration configuration = new CustomConfig();
+
+		final IConfiguration configuration = new CustomConfig();
 		//		setUnderlyingLayer(sortHeaderLayer);
-		rowHeaderLayer.addConfiguration(configuration);
-
-		setUnderlyingLayer(rowHeaderLayer);
+		colHeaderLayer.addConfiguration(new PapyrusDefaultColumnStyleStyleConfiguration());
+		setUnderlyingLayer(colHeaderLayer);
 	}
 
+	public DataLayer getDataLayer() {
+		return this.dataLayer;
+	}
+
+	@Override
+	public void configure(final ConfigRegistry configRegistry, final UiBindingRegistry uiBindingRegistry) {
+		super.configure(configRegistry, uiBindingRegistry);
+	}
 	public class CustomConfig extends DefaultSelectionBindings {
 
-		protected void configureRowHeaderMouseClickBindings(UiBindingRegistry uiBindingRegistry) {
+		@Override
+		protected void configureColumnHeaderMouseClickBindings(final UiBindingRegistry uiBindingRegistry) {
+			//edit sur double click
+			uiBindingRegistry.registerDoubleClickBinding(MouseEventMatcher.columnHeaderLeftClick(SWT.NONE), new MouseEditAction());
 
 			//			uiBindingRegistry.registerDoubleClickBinding(MouseEventMatcher.columnHeaderLeftClick(SWT.NONE), new SelectCellAction());
-			uiBindingRegistry.registerDoubleClickBinding(MouseEventMatcher.columnHeaderLeftClick(SWT.NONE), new MouseEditAction());
+
 			//			new BodyCellEditorMouseEventMatcher(TextCellEditor.class),
 			//			new MouseEditAction());
 			//			uiBindingRegistry.registerSingleClickBinding(MouseEventMatcher.columnHeaderLeftClick(SWT.NONE), new ViewportSelectColumnAction(false, false));

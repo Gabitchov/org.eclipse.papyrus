@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 LIFL & CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.nattable.common.editor.handlers;
+package org.eclipse.papyrus.infra.nattable.common.editor.handler;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,8 +23,11 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
@@ -44,16 +47,18 @@ import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderFactory;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
  * @author dumoulin
- * 
+ *
  */
 public abstract class AbstractCreateNattableEditorHandler extends AbstractHandler {
 
@@ -73,9 +78,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	private final String editorType;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param editorType
 	 *        the type of the editor
 	 * @param defaultName
@@ -89,9 +94,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * Should be overridden in order to restrict creation
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -103,7 +108,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 * 
+	 *
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
@@ -111,7 +116,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		try {
 			runAsTransaction(event);
-		} catch (ServiceException e) {
+		} catch (final ServiceException e) {
 			throw new ExecutionException("Can't create TableEditor", e); //$NON-NLS-1$
 		}
 		return null;
@@ -120,17 +125,17 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	/**
 	 * Run the command as a transaction. Create a Transaction and delegate the
 	 * command to {@link #doExecute(ServicesRegistry)}.
-	 * 
+	 *
 	 * @throws ServiceException
-	 * 
+	 *
 	 */
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// default Value
-		name = defaultName;
-		description = defaultDescription;
-		InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), "Papyrus Table Creation", "Enter the name for the new table", defaultName, null);
+		this.name = this.defaultName;
+		this.description = this.defaultDescription;
+		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), "Papyrus Table Creation", "Enter the name for the new table", this.defaultName, null);
 		if(dialog.open() == Dialog.OK) {
-			name = dialog.getValue();
+			this.name = dialog.getValue();
 			final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
 			final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -139,9 +144,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 				protected void doExecute() {
 					try {
 						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry);
-					} catch (NotFoundException e) {
+					} catch (final NotFoundException e) {
 						Activator.log.error(e);
-					} catch (ServiceException e) {
+					} catch (final ServiceException e) {
 						Activator.log.error(e);
 					}
 
@@ -201,16 +206,16 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * Do the execution of the command.
-	 * 
+	 *
 	 * @param serviceRegistry
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 */
 	public void doExecute(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
 
-		Object editorModel = createEditorModel(serviceRegistry);
+		final Object editorModel = createEditorModel(serviceRegistry);
 		// Get the mngr allowing to add/open new editor.
-		IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+		final IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
 		// add the new editor model to the sash.
 		pageMngr.openPage(editorModel);
 
@@ -219,35 +224,79 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	/**
 	 * Create a model identifying the editor. This model will be saved with the
 	 * sash
-	 * 
+	 *
 	 * @return
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 *         The model where to save the TableInstance is not found.
 	 */
 	protected Object createEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+
 		final Table table = NattableFactory.eINSTANCE.createTable();
-		final LocalTableEditorConfiguration config = NattableconfigurationFactory.eINSTANCE.createLocalTableEditorConfiguration();
-		config.setType(editorType);
+		final LocalTableEditorConfiguration localConfig = NattableconfigurationFactory.eINSTANCE.createLocalTableEditorConfiguration();
+		localConfig.setType(this.editorType);
 		final TableEditorConfiguration defaultConfig = getDefaultTableEditorConfiguration();
-		if(defaultConfig != null) {
-			config.setDefaultTableEditorConfiguration(defaultConfig);
-		}
-		table.setEditorConfiguration(config);
-		table.setDescription(description);
-		table.setName(name);
+		assert defaultConfig != null;
+
+		localConfig.setDefaultTableEditorConfiguration(defaultConfig);
+
+		table.setEditorConfiguration(localConfig);
+		table.setDescription(this.description);
+		table.setName(this.name);
 		table.setContext(getTableContext());
+
+
+		IAxisContentsProvider rowProvider = defaultConfig.getDefaultHorizontalContentProvider();
+		if(rowProvider == null) {
+			rowProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
+		} else {
+			final IAxisContentsProvider copy = EcoreUtil.copy(rowProvider);
+			//FIXME : shoulw we clean the axis for default config?
+			int i = 0;
+			i++;
+			rowProvider = copy;
+		}
+
+		IAxisContentsProvider columnProvider = defaultConfig.getDefaultVerticalContentProvider();
+		if(columnProvider == null) {
+			columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
+		} else {
+			final IAxisContentsProvider copy = EcoreUtil.copy(columnProvider);
+			//FIXME : shoulw we clean the axis for default config?
+			int i = 0;
+			i++;
+			columnProvider = copy;
+		}
+
+		//		final IAxisContentsProvider columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
+
+		table.setHorizontalContentProvider(rowProvider);
+		table.setVerticalContentProvider(columnProvider);
+
 		// Save the model in the associated resource
-		PapyrusNattableModel model = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
+		final PapyrusNattableModel model = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
 		model.addPapyrusTable(table);
 		return table;
 	}
 
-	protected abstract TableEditorConfiguration getDefaultTableEditorConfiguration();
+
+	protected TableEditorConfiguration getDefaultTableEditorConfiguration() {
+		final EObject current = getSelection().get(0);
+		final ResourceSet resourceSet = current.eResource().getResourceSet();
+		final Resource resource = resourceSet.getResource(getTableEditorConfigurationURI(), true);
+		TableEditorConfiguration tableConfiguration = null;
+		if(resource.getContents().get(0) instanceof TableEditorConfiguration) {
+			tableConfiguration = (TableEditorConfiguration)resource.getContents().get(0);
+		}
+		return tableConfiguration;
+	}
+
+
+	protected abstract URI getTableEditorConfigurationURI();
 
 	/**
 	 * Get the current MultiDiagramEditor.
-	 * 
+	 *
 	 * @return
 	 * @throws BackboneException
 	 */
@@ -257,14 +306,14 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * Returns the context used to create the table
-	 * 
+	 *
 	 * @return
 	 *         the context used to create the table or <code>null</code> if not found
 	 * @throws ServiceException
 	 */
 	//FIXME: This method introduces a dependency to UML. Use the semantic service instead.
 	protected EObject getTableContext() {
-		List<EObject> selection = getSelection();
+		final List<EObject> selection = getSelection();
 
 		if(!selection.isEmpty()) {
 			return selection.get(0);
@@ -295,23 +344,23 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	protected List<EObject> getSelection() {
-		List<EObject> selectedElements = new ArrayList<EObject>();
+		final List<EObject> selectedElements = new ArrayList<EObject>();
 		final IWorkbenchWindow ww = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if(ww != null) {
-			ISelection selection = ww.getSelectionService().getSelection();
+			final ISelection selection = ww.getSelectionService().getSelection();
 			if(selection instanceof IStructuredSelection) {
 
-				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+				final IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 
-				Iterator<?> it = structuredSelection.iterator();
+				final Iterator<?> it = structuredSelection.iterator();
 				while(it.hasNext()) {
-					Object object = it.next();
+					final Object object = it.next();
 					if(object instanceof IAdaptable) {
-						EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+						final EObject currentEObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
 
 						if(currentEObject != null) {
 							selectedElements.add(currentEObject);
@@ -330,7 +379,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	protected EObject getRootElement(final Resource modelResource) {
 		EObject rootElement = null;
 		if(modelResource != null && modelResource.getContents() != null && modelResource.getContents().size() > 0) {
-			Object root = modelResource.getContents().get(0);
+			final Object root = modelResource.getContents().get(0);
 			if(root instanceof EObject) {
 				rootElement = (EObject)root;
 			}

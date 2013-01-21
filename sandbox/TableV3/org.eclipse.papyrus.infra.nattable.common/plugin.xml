@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.common.axismanager" name="Axis Manager" schema="schema/org.eclipse.papyrus.infra.nattable.common.axismanager.exsd"/>
 
 <!--We declare the model used for the Papyrus Table Editor  -->
    <extension point="org.eclipse.papyrus.infra.core.model">
@@ -26,5 +27,16 @@
          </toolbar>
       </menuContribution>
    </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.nattable.common.axismanager">
+    <axisManager
+          id="org.eclipse.papyrus.infra.nattable.emf.user.provider"
+          manager="org.eclipse.papyrus.infra.nattable.common.manager.EObjectManager">
+    </axisManager>
+    <axisManager
+          id="org.eclipse.papyrus.infra.nattable.emf.feature.provider"
+          manager="org.eclipse.papyrus.infra.nattable.common.manager.FeatureManager">
+    </axisManager>
+ </extension>
 </plugin>
 

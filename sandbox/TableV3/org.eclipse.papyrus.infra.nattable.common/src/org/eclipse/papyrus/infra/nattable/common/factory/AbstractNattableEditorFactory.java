@@ -130,7 +130,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 			} catch (Exception e) {
 				// Lets propagate. This is an implementation problem that should be solved by
 				// programmer.
-				throw new PartInitException("Can't create TextEditor", e); //$NON-NLS-1$
+				throw new PartInitException("Can't create Nattable", e); //$NON-NLS-1$
 			}
 
 		}
