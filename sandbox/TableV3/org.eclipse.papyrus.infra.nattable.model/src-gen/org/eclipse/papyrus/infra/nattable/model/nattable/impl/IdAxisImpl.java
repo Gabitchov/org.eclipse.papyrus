@@ -12,48 +12,58 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.impl;
 
+
 import org.eclipse.emf.common.notify.Notification;
 
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EObject Axis</b></em>'.
+ * An implementation of the model object '<em><b>Id Axis</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.IdAxisImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
+public class IdAxisImpl extends EModelElementImpl implements IdAxis {
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
+	 * The default value of the '{@link #getElement() <em>Element</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject element;
+	protected static final String ELEMENT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getElement() <em>Element</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected String element = ELEMENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EObjectAxisImpl() {
+	protected IdAxisImpl() {
 		super();
 	}
 
@@ -64,7 +74,7 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattablePackage.Literals.EOBJECT_AXIS;
+		return NattablePackage.Literals.ID_AXIS;
 	}
 
 	/**
@@ -72,15 +82,7 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getElement() {
-		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject)element;
-			element = eResolveProxy(oldElement);
-			if (element != oldElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.EOBJECT_AXIS__ELEMENT, oldElement, element));
-			}
-		}
+	public String getElement() {
 		return element;
 	}
 
@@ -89,20 +91,11 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetElement() {
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElement(EObject newElement) {
-		EObject oldElement = element;
+	public void setElement(String newElement) {
+		String oldElement = element;
 		element = newElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.EOBJECT_AXIS__ELEMENT, oldElement, element));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.ID_AXIS__ELEMENT, oldElement, element));
 	}
 
 	/**
@@ -113,9 +106,8 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
+			case NattablePackage.ID_AXIS__ELEMENT:
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -128,8 +120,8 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				setElement((EObject)newValue);
+			case NattablePackage.ID_AXIS__ELEMENT:
+				setElement((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,8 +135,8 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				setElement((EObject)null);
+			case NattablePackage.ID_AXIS__ELEMENT:
+				setElement(ELEMENT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,10 +150,26 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				return element != null;
+			case NattablePackage.ID_AXIS__ELEMENT:
+				return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //EObjectAxisImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (element: "); //$NON-NLS-1$
+		result.append(element);
+		result.append(')');
+		return result.toString();
+	}
+
+} //IdAxisImpl

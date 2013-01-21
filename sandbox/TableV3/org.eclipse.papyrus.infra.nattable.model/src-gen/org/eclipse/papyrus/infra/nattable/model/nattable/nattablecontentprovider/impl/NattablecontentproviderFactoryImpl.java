@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.*;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,24 +28,24 @@ import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NattableconfigurationFactoryImpl extends EFactoryImpl implements NattableconfigurationFactory {
+public class NattablecontentproviderFactoryImpl extends EFactoryImpl implements NattablecontentproviderFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NattableconfigurationFactory init() {
+	public static NattablecontentproviderFactory init() {
 		try {
-			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/nattableconfiguration/model"); //$NON-NLS-1$ 
-			if (theNattableconfigurationFactory != null) {
-				return theNattableconfigurationFactory;
+			NattablecontentproviderFactory theNattablecontentproviderFactory = (NattablecontentproviderFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"); //$NON-NLS-1$ 
+			if (theNattablecontentproviderFactory != null) {
+				return theNattablecontentproviderFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new NattableconfigurationFactoryImpl();
+		return new NattablecontentproviderFactoryImpl();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NattableconfigurationFactoryImpl() {
+	public NattablecontentproviderFactoryImpl() {
 		super();
 	}
 
@@ -66,8 +66,8 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION: return createTableEditorConfiguration();
-			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: return createLocalTableEditorConfiguration();
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER: return createDefaultContentProvider();
+			case NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER: return createEMFFeatureContentProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -78,9 +78,9 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableEditorConfiguration createTableEditorConfiguration() {
-		TableEditorConfigurationImpl tableEditorConfiguration = new TableEditorConfigurationImpl();
-		return tableEditorConfiguration;
+	public DefaultContentProvider createDefaultContentProvider() {
+		DefaultContentProviderImpl defaultContentProvider = new DefaultContentProviderImpl();
+		return defaultContentProvider;
 	}
 
 	/**
@@ -88,9 +88,9 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LocalTableEditorConfiguration createLocalTableEditorConfiguration() {
-		LocalTableEditorConfigurationImpl localTableEditorConfiguration = new LocalTableEditorConfigurationImpl();
-		return localTableEditorConfiguration;
+	public EMFFeatureContentProvider createEMFFeatureContentProvider() {
+		EMFFeatureContentProviderImpl emfFeatureContentProvider = new EMFFeatureContentProviderImpl();
+		return emfFeatureContentProvider;
 	}
 
 	/**
@@ -98,8 +98,8 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NattableconfigurationPackage getNattableconfigurationPackage() {
-		return (NattableconfigurationPackage)getEPackage();
+	public NattablecontentproviderPackage getNattablecontentproviderPackage() {
+		return (NattablecontentproviderPackage)getEPackage();
 	}
 
 	/**
@@ -109,8 +109,8 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 * @generated
 	 */
 	@Deprecated
-	public static NattableconfigurationPackage getPackage() {
-		return NattableconfigurationPackage.eINSTANCE;
+	public static NattablecontentproviderPackage getPackage() {
+		return NattablecontentproviderPackage.eINSTANCE;
 	}
 
-} //NattableconfigurationFactoryImpl
+} //NattablecontentproviderFactoryImpl

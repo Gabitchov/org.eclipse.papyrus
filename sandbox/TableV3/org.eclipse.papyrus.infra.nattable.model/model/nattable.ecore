@@ -7,31 +7,62 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="editorConfiguration" eType="ecore:EClass nattableconfiguration.ecore#//LocalTableEditorConfiguration"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editorConfiguration" eType="#//nattableconfiguration/LocalTableEditorConfiguration"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="verticalContentProvider"
-        lowerBound="1" eType="#//IAxisContentsProvider" containment="true"/>
+        lowerBound="1" eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="horizontalContentProvider"
-        lowerBound="1" eType="#//IAxisContentsProvider" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IAxisContentsProvider" abstract="true"
-      interface="true" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
-    <eOperations name="getAxis" upperBound="-1" eType="#//IAxis"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserContentProvider" eSuperTypes="#//IAxisContentsProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//IAxis"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DynamicEMFFeatureContentsProvider" eSuperTypes="#//IAxisContentsProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"
-        volatile="true" transient="true"/>
+        lowerBound="1" eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EObjectAxis" eSuperTypes="#//IAxis">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="eobject" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IAxis" abstract="true" interface="true"
       eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
     <eOperations name="getElement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IdAxis" eSuperTypes="#//IAxis">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="element" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eSubpackages name="nattableconfiguration" nsURI="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"
+      nsPrefix="nattableconfiguration">
+    <eClassifiers xsi:type="ecore:EClass" name="TableEditorConfiguration" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementTypeId"
+          eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pastedElementContainmentFeature"
+          eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaVerticalContentProviderIds"
+          lowerBound="1" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaHorizontalContentProviderIds"
+          lowerBound="1" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultVerticalContentProvider"
+          eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultHorizontalContentProvider"
+          eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LocalTableEditorConfiguration" eSuperTypes="#//nattableconfiguration/TableEditorConfiguration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultTableEditorConfiguration"
+          eType="#//nattableconfiguration/TableEditorConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          iD="true"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="nattablecontentprovider" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"
+      nsPrefix="nattablecontentprovider">
+    <eClassifiers xsi:type="ecore:EClass" name="IAxisContentsProvider" abstract="true"
+        interface="true" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+      <eOperations name="getAxis" upperBound="-1" eType="#//IAxis"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DefaultContentProvider" eSuperTypes="#//nattablecontentprovider/IAxisContentsProvider">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="axis" upperBound="-1"
+          eType="#//IAxis" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EMFFeatureContentProvider" eSuperTypes="#//nattablecontentprovider/DefaultContentProvider #//nattablecontentprovider/ISynchronizedAxisContentProvider">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+          eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ISynchronizedAxisContentProvider"
+        abstract="true" interface="true" eSuperTypes="#//nattablecontentprovider/IAxisContentsProvider"/>
+  </eSubpackages>
 </ecore:EPackage>

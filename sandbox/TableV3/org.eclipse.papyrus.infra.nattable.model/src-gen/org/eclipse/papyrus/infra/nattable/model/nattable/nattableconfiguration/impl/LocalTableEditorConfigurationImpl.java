@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,8 +30,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEdito
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.LocalTableEditorConfigurationImpl#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.LocalTableEditorConfigurationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.LocalTableEditorConfigurationImpl#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.LocalTableEditorConfigurationImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +57,7 @@ public class LocalTableEditorConfigurationImpl extends TableEditorConfigurationI
 	 * @ordered
 	 */
 	protected static final String TYPE_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->

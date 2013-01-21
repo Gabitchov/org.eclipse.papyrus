@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -19,44 +19,35 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage
  * @generated
  */
-public interface NattableFactory extends EFactory {
+public interface NattableconfigurationFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	NattableFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattableFactoryImpl.init();
+	NattableconfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Table</em>'.
+	 * Returns a new object of class '<em>Table Editor Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Table</em>'.
+	 * @return a new object of class '<em>Table Editor Configuration</em>'.
 	 * @generated
 	 */
-	Table createTable();
+	TableEditorConfiguration createTableEditorConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>EObject Axis</em>'.
+	 * Returns a new object of class '<em>Local Table Editor Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>EObject Axis</em>'.
+	 * @return a new object of class '<em>Local Table Editor Configuration</em>'.
 	 * @generated
 	 */
-	EObjectAxis createEObjectAxis();
-
-	/**
-	 * Returns a new object of class '<em>Id Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Id Axis</em>'.
-	 * @generated
-	 */
-	IdAxis createIdAxis();
+	LocalTableEditorConfiguration createLocalTableEditorConfiguration();
 
 	/**
 	 * Returns the package supported by this factory.
@@ -65,6 +56,6 @@ public interface NattableFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	NattablePackage getNattablePackage();
+	NattableconfigurationPackage getNattableconfigurationPackage();
 
-} //NattableFactory
+} //NattableconfigurationFactory

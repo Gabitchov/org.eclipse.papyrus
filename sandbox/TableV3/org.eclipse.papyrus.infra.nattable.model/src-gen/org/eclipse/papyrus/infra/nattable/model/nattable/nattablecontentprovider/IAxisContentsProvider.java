@@ -10,11 +10,13 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EModelElement;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +24,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getIAxisContentsProvider()
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage#getIAxisContentsProvider()
  * @model interface="true" abstract="true"
  * @generated
  */

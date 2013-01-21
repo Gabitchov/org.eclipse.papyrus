@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getEobject <em>Eobject</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,29 +32,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EObjectAxis extends IAxis {
 	/**
-	 * Returns the value of the '<em><b>Eobject</b></em>' reference.
+	 * Returns the value of the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Eobject</em>' reference isn't clear,
+	 * If the meaning of the '<em>Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Eobject</em>' reference.
-	 * @see #setEobject(EObject)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getEObjectAxis_Eobject()
+	 * @return the value of the '<em>Element</em>' reference.
+	 * @see #setElement(EObject)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getEObjectAxis_Element()
 	 * @model
 	 * @generated
 	 */
-	EObject getEobject();
+	EObject getElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getEobject <em>Eobject</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Eobject</em>' reference.
-	 * @see #getEobject()
+	 * @param value the new value of the '<em>Element</em>' reference.
+	 * @see #getElement()
 	 * @generated
 	 */
-	void setEobject(EObject value);
+	void setElement(EObject value);
 
 } // EObjectAxis

@@ -10,50 +10,53 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl;
+
 
 import org.eclipse.emf.common.notify.Notification;
 
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.EMFFeatureContentProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EObject Axis</b></em>'.
+ * An implementation of the model object '<em><b>EMF Feature Content Provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.EMFFeatureContentProviderImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
+public class EMFFeatureContentProviderImpl extends 
+DefaultContentProviderImpl implements EMFFeatureContentProvider {
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElement()
+	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject element;
+	protected EReference feature;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EObjectAxisImpl() {
+	protected EMFFeatureContentProviderImpl() {
 		super();
 	}
 
@@ -64,7 +67,7 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattablePackage.Literals.EOBJECT_AXIS;
+		return NattablecontentproviderPackage.Literals.EMF_FEATURE_CONTENT_PROVIDER;
 	}
 
 	/**
@@ -72,16 +75,16 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getElement() {
-		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject)element;
-			element = eResolveProxy(oldElement);
-			if (element != oldElement) {
+	public EReference getFeature() {
+		if (feature != null && feature.eIsProxy()) {
+			InternalEObject oldFeature = (InternalEObject)feature;
+			feature = (EReference)eResolveProxy(oldFeature);
+			if (feature != oldFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.EOBJECT_AXIS__ELEMENT, oldElement, element));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER__FEATURE, oldFeature, feature));
 			}
 		}
-		return element;
+		return feature;
 	}
 
 	/**
@@ -89,8 +92,8 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetElement() {
-		return element;
+	public EReference basicGetFeature() {
+		return feature;
 	}
 
 	/**
@@ -98,11 +101,11 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElement(EObject newElement) {
-		EObject oldElement = element;
-		element = newElement;
+	public void setFeature(EReference newFeature) {
+		EReference oldFeature = feature;
+		feature = newFeature;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.EOBJECT_AXIS__ELEMENT, oldElement, element));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER__FEATURE, oldFeature, feature));
 	}
 
 	/**
@@ -113,9 +116,9 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
+			case NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER__FEATURE:
+				if (resolve) return getFeature();
+				return basicGetFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -128,8 +131,8 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				setElement((EObject)newValue);
+			case NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER__FEATURE:
+				setFeature((EReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,8 +146,8 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				setElement((EObject)null);
+			case NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER__FEATURE:
+				setFeature((EReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,10 +161,10 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattablePackage.EOBJECT_AXIS__ELEMENT:
-				return element != null;
+			case NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER__FEATURE:
+				return feature != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //EObjectAxisImpl
+} //EMFFeatureContentProviderImpl

@@ -14,8 +14,11 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable,
  org.eclipse.papyrus.infra.nattable.model.nattable.impl,
- org.eclipse.papyrus.infra.nattable.model.nattable.util,
- org.eclipse.papyrus.infra.nattable.model.nattableconfiguration,
- org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl,
- org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.util
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.util,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.util,
+ org.eclipse.papyrus.infra.nattable.model.nattable.util
 Bundle-ActivationPolicy: lazy

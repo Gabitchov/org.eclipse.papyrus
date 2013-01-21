@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.util;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.util;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.*;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,17 +30,17 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage
  * @generated
  */
-public class NattableSwitch<T> extends Switch<T> {
+public class NattablecontentproviderSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static NattablePackage modelPackage;
+	protected static NattablecontentproviderPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -48,9 +48,9 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NattableSwitch() {
+	public NattablecontentproviderSwitch() {
 		if (modelPackage == null) {
-			modelPackage = NattablePackage.eINSTANCE;
+			modelPackage = NattablecontentproviderPackage.eINSTANCE;
 		}
 	}
 
@@ -77,33 +77,36 @@ public class NattableSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case NattablePackage.TABLE: {
-				Table table = (Table)theEObject;
-				T result = caseTable(table);
-				if (result == null) result = caseEModelElement(table);
+			case NattablecontentproviderPackage.IAXIS_CONTENTS_PROVIDER: {
+				IAxisContentsProvider iAxisContentsProvider = (IAxisContentsProvider)theEObject;
+				T result = caseIAxisContentsProvider(iAxisContentsProvider);
+				if (result == null) result = caseEModelElement(iAxisContentsProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NattablePackage.EOBJECT_AXIS: {
-				EObjectAxis eObjectAxis = (EObjectAxis)theEObject;
-				T result = caseEObjectAxis(eObjectAxis);
-				if (result == null) result = caseIAxis(eObjectAxis);
-				if (result == null) result = caseEModelElement(eObjectAxis);
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER: {
+				DefaultContentProvider defaultContentProvider = (DefaultContentProvider)theEObject;
+				T result = caseDefaultContentProvider(defaultContentProvider);
+				if (result == null) result = caseIAxisContentsProvider(defaultContentProvider);
+				if (result == null) result = caseEModelElement(defaultContentProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NattablePackage.IAXIS: {
-				IAxis iAxis = (IAxis)theEObject;
-				T result = caseIAxis(iAxis);
-				if (result == null) result = caseEModelElement(iAxis);
+			case NattablecontentproviderPackage.EMF_FEATURE_CONTENT_PROVIDER: {
+				EMFFeatureContentProvider emfFeatureContentProvider = (EMFFeatureContentProvider)theEObject;
+				T result = caseEMFFeatureContentProvider(emfFeatureContentProvider);
+				if (result == null) result = caseDefaultContentProvider(emfFeatureContentProvider);
+				if (result == null) result = caseISynchronizedAxisContentProvider(emfFeatureContentProvider);
+				if (result == null) result = caseIAxisContentsProvider(emfFeatureContentProvider);
+				if (result == null) result = caseEModelElement(emfFeatureContentProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NattablePackage.ID_AXIS: {
-				IdAxis idAxis = (IdAxis)theEObject;
-				T result = caseIdAxis(idAxis);
-				if (result == null) result = caseIAxis(idAxis);
-				if (result == null) result = caseEModelElement(idAxis);
+			case NattablecontentproviderPackage.ISYNCHRONIZED_AXIS_CONTENT_PROVIDER: {
+				ISynchronizedAxisContentProvider iSynchronizedAxisContentProvider = (ISynchronizedAxisContentProvider)theEObject;
+				T result = caseISynchronizedAxisContentProvider(iSynchronizedAxisContentProvider);
+				if (result == null) result = caseIAxisContentsProvider(iSynchronizedAxisContentProvider);
+				if (result == null) result = caseEModelElement(iSynchronizedAxisContentProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,62 +115,62 @@ public class NattableSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IAxis Contents Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IAxis Contents Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTable(Table object) {
+	public T caseIAxisContentsProvider(IAxisContentsProvider object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject Axis</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Default Content Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject Axis</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Default Content Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEObjectAxis(EObjectAxis object) {
+	public T caseDefaultContentProvider(DefaultContentProvider object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IAxis</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EMF Feature Content Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IAxis</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EMF Feature Content Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIAxis(IAxis object) {
+	public T caseEMFFeatureContentProvider(EMFFeatureContentProvider object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Id Axis</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ISynchronized Axis Content Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Id Axis</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ISynchronized Axis Content Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIdAxis(IdAxis object) {
+	public T caseISynchronizedAxisContentProvider(ISynchronizedAxisContentProvider object) {
 		return null;
 	}
 
@@ -202,4 +205,4 @@ public class NattableSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //NattableSwitch
+} //NattablecontentproviderSwitch

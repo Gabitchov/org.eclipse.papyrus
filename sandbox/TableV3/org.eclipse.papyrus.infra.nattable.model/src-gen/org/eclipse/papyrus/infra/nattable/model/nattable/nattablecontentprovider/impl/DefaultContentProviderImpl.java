@@ -10,54 +10,57 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.impl;
-
-import java.lang.reflect.InvocationTargetException;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl;
 
 import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.UserContentProvider;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.DefaultContentProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>User Content Provider</b></em>'.
+ * An implementation of the model object '<em><b>Default Content Provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.UserContentProviderImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.DefaultContentProviderImpl#getAxis <em>Axis</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class UserContentProviderImpl extends EModelElementImpl implements UserContentProvider {
+public class DefaultContentProviderImpl extends EModelElementImpl implements DefaultContentProvider {
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
+	 * The cached value of the '{@link #getAxis() <em>Axis</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElements()
+	 * @see #getAxis()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IAxis> elements;
+	protected EList<IAxis> axis;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UserContentProviderImpl() {
+	protected DefaultContentProviderImpl() {
 		super();
 	}
 
@@ -68,19 +71,7 @@ public class UserContentProviderImpl extends EModelElementImpl implements UserCo
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattablePackage.Literals.USER_CONTENT_PROVIDER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<IAxis> getElements() {
-		if (elements == null) {
-			elements = new EObjectResolvingEList<IAxis>(IAxis.class, this, NattablePackage.USER_CONTENT_PROVIDER__ELEMENTS);
-		}
-		return elements;
+		return NattablecontentproviderPackage.Literals.DEFAULT_CONTENT_PROVIDER;
 	}
 
 	/**
@@ -89,9 +80,24 @@ public class UserContentProviderImpl extends EModelElementImpl implements UserCo
 	 * @generated
 	 */
 	public EList<IAxis> getAxis() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (axis == null) {
+			axis = new EObjectContainmentEList<IAxis>(IAxis.class, this, NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS);
+		}
+		return axis;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
+				return ((InternalEList<?>)getAxis()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -102,8 +108,8 @@ public class UserContentProviderImpl extends EModelElementImpl implements UserCo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattablePackage.USER_CONTENT_PROVIDER__ELEMENTS:
-				return getElements();
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
+				return getAxis();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,9 +123,9 @@ public class UserContentProviderImpl extends EModelElementImpl implements UserCo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattablePackage.USER_CONTENT_PROVIDER__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends IAxis>)newValue);
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
+				getAxis().clear();
+				getAxis().addAll((Collection<? extends IAxis>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +139,8 @@ public class UserContentProviderImpl extends EModelElementImpl implements UserCo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattablePackage.USER_CONTENT_PROVIDER__ELEMENTS:
-				getElements().clear();
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
+				getAxis().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,24 +154,10 @@ public class UserContentProviderImpl extends EModelElementImpl implements UserCo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattablePackage.USER_CONTENT_PROVIDER__ELEMENTS:
-				return elements != null && !elements.isEmpty();
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
+				return axis != null && !axis.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case NattablePackage.USER_CONTENT_PROVIDER___GET_AXIS:
-				return getAxis();
-		}
-		return super.eInvoke(operationID, arguments);
-	}
-
-} //UserContentProviderImpl
+} //DefaultContentProviderImpl

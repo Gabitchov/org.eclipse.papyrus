@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -19,35 +19,35 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage
  * @generated
  */
-public interface NattableconfigurationFactory extends EFactory {
+public interface NattablecontentproviderFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	NattableconfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl.NattableconfigurationFactoryImpl.init();
+	NattablecontentproviderFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.NattablecontentproviderFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Table Editor Configuration</em>'.
+	 * Returns a new object of class '<em>Default Content Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Table Editor Configuration</em>'.
+	 * @return a new object of class '<em>Default Content Provider</em>'.
 	 * @generated
 	 */
-	TableEditorConfiguration createTableEditorConfiguration();
+	DefaultContentProvider createDefaultContentProvider();
 
 	/**
-	 * Returns a new object of class '<em>Local Table Editor Configuration</em>'.
+	 * Returns a new object of class '<em>EMF Feature Content Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Local Table Editor Configuration</em>'.
+	 * @return a new object of class '<em>EMF Feature Content Provider</em>'.
 	 * @generated
 	 */
-	LocalTableEditorConfiguration createLocalTableEditorConfiguration();
+	EMFFeatureContentProvider createEMFFeatureContentProvider();
 
 	/**
 	 * Returns the package supported by this factory.
@@ -56,6 +56,6 @@ public interface NattableconfigurationFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	NattableconfigurationPackage getNattableconfigurationPackage();
+	NattablecontentproviderPackage getNattablecontentproviderPackage();
 
-} //NattableconfigurationFactory
+} //NattablecontentproviderFactory

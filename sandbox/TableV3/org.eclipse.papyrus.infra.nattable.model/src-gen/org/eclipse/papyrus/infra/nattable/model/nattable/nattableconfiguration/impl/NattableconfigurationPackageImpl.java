@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,10 +20,18 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.LocalTableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.NattablecontentproviderPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +65,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage#eNS_URI
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
@@ -95,11 +103,19 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
+		NattablecontentproviderPackageImpl theNattablecontentproviderPackage = (NattablecontentproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecontentproviderPackage.eNS_URI) instanceof NattablecontentproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecontentproviderPackage.eNS_URI) : NattablecontentproviderPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theNattableconfigurationPackage.createPackageContents();
+		theNattablePackage.createPackageContents();
+		theNattablecontentproviderPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattableconfigurationPackage.initializePackageContents();
+		theNattablePackage.initializePackageContents();
+		theNattablecontentproviderPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattableconfigurationPackage.freeze();
@@ -135,6 +151,42 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	public EReference getTableEditorConfiguration_PastedElementContainmentFeature() {
 		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableEditorConfiguration_JavaVerticalContentProviderIds() {
+		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableEditorConfiguration_JavaHorizontalContentProviderIds() {
+		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTableEditorConfiguration_DefaultVerticalContentProvider() {
+		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTableEditorConfiguration_DefaultHorizontalContentProvider() {
+		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -195,6 +247,10 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		tableEditorConfigurationEClass = createEClass(TABLE_EDITOR_CONFIGURATION);
 		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID);
 		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE);
+		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS);
+		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS);
+		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER);
+		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER);
 
 		localTableEditorConfigurationEClass = createEClass(LOCAL_TABLE_EDITOR_CONFIGURATION);
 		createEReference(localTableEditorConfigurationEClass, LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION);
@@ -226,6 +282,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		NattablecontentproviderPackage theNattablecontentproviderPackage = (NattablecontentproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablecontentproviderPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -239,13 +296,14 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		initEClass(tableEditorConfigurationEClass, TableEditorConfiguration.class, "TableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableEditorConfiguration_PastedElementTypeId(), theEcorePackage.getEString(), "pastedElementTypeId", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTableEditorConfiguration_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableEditorConfiguration_JavaVerticalContentProviderIds(), theEcorePackage.getEString(), "javaVerticalContentProviderIds", null, 1, -1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableEditorConfiguration_JavaHorizontalContentProviderIds(), theEcorePackage.getEString(), "javaHorizontalContentProviderIds", null, 1, -1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableEditorConfiguration_DefaultVerticalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultVerticalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableEditorConfiguration_DefaultHorizontalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultHorizontalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(localTableEditorConfigurationEClass, LocalTableEditorConfiguration.class, "LocalTableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getLocalTableEditorConfiguration_DefaultTableEditorConfiguration(), this.getTableEditorConfiguration(), null, "defaultTableEditorConfiguration", null, 0, 1, LocalTableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getLocalTableEditorConfiguration_Type(), ecorePackage.getEString(), "type", null, 0, 1, LocalTableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		// Create resource
-		createResource(eNS_URI);
 	}
 
 } //NattableconfigurationPackageImpl

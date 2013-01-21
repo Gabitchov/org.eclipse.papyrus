@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.*;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,24 +28,24 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory {
+public class NattableconfigurationFactoryImpl extends EFactoryImpl implements NattableconfigurationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NattableFactory init() {
+	public static NattableconfigurationFactory init() {
 		try {
-			NattableFactory theNattableFactory = (NattableFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/nattable/model"); //$NON-NLS-1$ 
-			if (theNattableFactory != null) {
-				return theNattableFactory;
+			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"); //$NON-NLS-1$ 
+			if (theNattableconfigurationFactory != null) {
+				return theNattableconfigurationFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new NattableFactoryImpl();
+		return new NattableconfigurationFactoryImpl();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NattableFactoryImpl() {
+	public NattableconfigurationFactoryImpl() {
 		super();
 	}
 
@@ -66,9 +66,8 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case NattablePackage.TABLE: return createTable();
-			case NattablePackage.EOBJECT_AXIS: return createEObjectAxis();
-			case NattablePackage.ID_AXIS: return createIdAxis();
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION: return createTableEditorConfiguration();
+			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: return createLocalTableEditorConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -79,9 +78,9 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Table createTable() {
-		TableImpl table = new TableImpl();
-		return table;
+	public TableEditorConfiguration createTableEditorConfiguration() {
+		TableEditorConfigurationImpl tableEditorConfiguration = new TableEditorConfigurationImpl();
+		return tableEditorConfiguration;
 	}
 
 	/**
@@ -89,9 +88,9 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObjectAxis createEObjectAxis() {
-		EObjectAxisImpl eObjectAxis = new EObjectAxisImpl();
-		return eObjectAxis;
+	public LocalTableEditorConfiguration createLocalTableEditorConfiguration() {
+		LocalTableEditorConfigurationImpl localTableEditorConfiguration = new LocalTableEditorConfigurationImpl();
+		return localTableEditorConfiguration;
 	}
 
 	/**
@@ -99,18 +98,8 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IdAxis createIdAxis() {
-		IdAxisImpl idAxis = new IdAxisImpl();
-		return idAxis;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NattablePackage getNattablePackage() {
-		return (NattablePackage)getEPackage();
+	public NattableconfigurationPackage getNattableconfigurationPackage() {
+		return (NattableconfigurationPackage)getEPackage();
 	}
 
 	/**
@@ -120,8 +109,8 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 * @generated
 	 */
 	@Deprecated
-	public static NattablePackage getPackage() {
-		return NattablePackage.eINSTANCE;
+	public static NattableconfigurationPackage getPackage() {
+		return NattableconfigurationPackage.eINSTANCE;
 	}
 
-} //NattableFactoryImpl
+} //NattableconfigurationFactoryImpl

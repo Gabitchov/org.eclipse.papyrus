@@ -28,6 +28,14 @@
 
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattableconfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattableconfiguration/model"
+            class="org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage"
+            genModel="model/nattableconfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated nattable -->
       <package
             uri="http://www.eclipse.org/papyrus/nattable/model"
@@ -36,11 +44,18 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated nattableconfiguration -->
+      <!-- @generated nattable -->
       <package
-            uri="http://www.eclipse.org/papyrus/nattableconfiguration/model"
-            class="org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage"
-            genModel="model/nattableconfiguration.genmodel"/>
+            uri="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage"
+            genModel="model/nattable.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
 </plugin>

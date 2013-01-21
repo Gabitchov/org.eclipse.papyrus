@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.util;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.util;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.*;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage
  * @generated
  */
 public class NattableconfigurationSwitch<T> extends Switch<T> {
