@@ -32,10 +32,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
 
@@ -58,7 +58,7 @@ public class ResetStyleHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection;
 		try {
-			selection = ServiceUtilsForActionHandlers.getInstance().getNestedActiveIEditorPart().getSite().getSelectionProvider().getSelection();
+			selection = ServiceUtilsForHandlers.getInstance().getNestedActiveIEditorPart(event).getSite().getSelectionProvider().getSelection();
 			if(selection.isEmpty()) {
 				return null;
 			}

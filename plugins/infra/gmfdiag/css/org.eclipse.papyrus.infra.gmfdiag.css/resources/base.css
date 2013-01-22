@@ -39,3 +39,7 @@ ActivityDiagram Activity * {
 UseCaseDiagram Actor {
 	elementIcon:false;
 }
+
+TimingDiagram * {
+	gradient:none;
+}

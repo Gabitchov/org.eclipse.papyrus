@@ -40,8 +40,9 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.ATTRIBUTE_OP;
 import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
@@ -55,7 +56,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.SelectorCondition;
 import org.eclipse.papyrus.infra.gmfdiag.css.SimpleSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css.Stylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSRefreshHandler;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.BaseCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.provider.CustomStyle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -68,13 +69,12 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) {
 		ISelection selection;
 		try {
-			selection = ServiceUtilsForActionHandlers.getInstance().getNestedActiveIEditorPart().getSite().getSelectionProvider().getSelection();
+			selection = ServiceUtilsForHandlers.getInstance().getNestedActiveIEditorPart(event).getSite().getSelectionProvider().getSelection();
 			if(selection.isEmpty()) {
 				return null;
 			}
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
 			return null;
 		}
 
@@ -165,7 +165,8 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 
 		try {
 			resource.save(new HashMap<Object, Object>());
-			(new CSSRefreshHandler()).execute(null); //FIXME: NPE on ExecutionEvent
+			BaseCSSEngine.instance.reset();
+			DiagramHelper.refreshDiagrams();
 		} catch (IOException ex) {
 			Activator.log.error(ex);
 			MessageDialog.open(MessageDialog.ERROR, parentShell, "Style error", "An unexpected error occured while trying to save the Stylesheet", SWT.NONE);

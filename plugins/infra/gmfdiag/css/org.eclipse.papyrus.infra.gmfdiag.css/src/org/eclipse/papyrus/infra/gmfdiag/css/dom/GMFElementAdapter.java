@@ -75,6 +75,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		diagramNameMappings.put("PapyrusUMLSequenceDiagram", "SequenceDiagram");
 		diagramNameMappings.put("PapyrusUMLStateMachineDiagram", "StateMachineDiagram");
 		diagramNameMappings.put("UseCase", "UseCaseDiagram");
+		diagramNameMappings.put("PapyrusUMLTimingDiagram", "TimingDiagram");
 
 		//SysML
 		diagramNameMappings.put("BlockDefinition", "BlockDiagram");
