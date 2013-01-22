@@ -27,7 +27,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
@@ -66,9 +66,9 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
+		ServiceUtilsForEditPart util = ServiceUtilsForEditPart.getInstance();
 		try {
-			transactionalEditingDomain = util.getTransactionalEditingDomain();
+			transactionalEditingDomain = util.getTransactionalEditingDomain(editPart);
 		} catch (Exception e) {
 			System.err.println("impossible to get the Transactional Editing Domain " + e);
 		}

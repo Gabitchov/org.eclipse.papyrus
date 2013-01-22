@@ -65,16 +65,6 @@
          class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.ConnectionToolPreferenceInitializer">
    </initializer>
 </extension>
-<extension
-      point="org.eclipse.core.runtime.adapters">
-   <factory
-         adaptableType="org.eclipse.gef.EditPart"
-         class="org.eclipse.papyrus.infra.gmfdiag.common.adapter.EditPartAdapterFactory">
-      <adapter
-            type="org.eclipse.emf.ecore.EObject">
-      </adapter>
-   </factory>
-</extension>
    <extension
          point="org.eclipse.papyrus.infra.core.model">
       <model
