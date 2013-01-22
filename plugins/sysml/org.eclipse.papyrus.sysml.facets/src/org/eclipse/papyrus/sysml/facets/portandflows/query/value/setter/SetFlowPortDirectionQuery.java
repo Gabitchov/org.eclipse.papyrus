@@ -21,7 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.gmf.diagram.common.commands.IdentityCommandWithNotification;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.NAFlowPortDirection;
 import org.eclipse.papyrus.sysml.facets.messages.Messages;
@@ -52,7 +52,7 @@ public class SetFlowPortDirectionQuery implements IJavaModelQueryWithEditingDoma
 				if(!(newValue instanceof NAFlowPortDirection)) {//we do nothing in this case
 					if(newValue != flowPort.getDirection()) {
 						try {
-							TransactionalEditingDomain domain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+							TransactionalEditingDomain domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(flowPort);
 							SetCommand command = new SetCommand(domain, flowPort, PortandflowsPackage.eINSTANCE.getFlowPort_Direction(), newValue);
 							if(command.canExecute()) {
 								domain.getCommandStack().execute(command);
