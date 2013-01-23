@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.cpp.feature"
-      label="C++ profile, view and code generation"
-      version="0.8.0.qualifier">
+      label="%featureName"
+      version="0.9.2.qualifier"
+      provider-name="%provderName">
 
    <description url="http://www.example.com/description">
       C++ code generation from Papyrus. The feature includes

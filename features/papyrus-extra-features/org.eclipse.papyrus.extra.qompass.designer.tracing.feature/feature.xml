@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.qompass.designer.feature.tracing"
-      label="Qompass Feature: Tracing"
+      label="%featureName"
       version="0.9.2.qualifier"
-      provider-name="CEA LIST">
+      provider-name="%providerName">
 
    <description>
       This is an add-on for the Qompass tool suite supporting model based tracing, in particular
