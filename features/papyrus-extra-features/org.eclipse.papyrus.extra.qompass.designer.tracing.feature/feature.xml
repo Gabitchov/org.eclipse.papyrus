@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.qompass.designer.feature.tracing"
       label="Qompass Feature: Tracing"
-      version="0.8.0.qualifier"
+      version="0.9.2.qualifier"
       provider-name="CEA LIST">
 
    <description>
