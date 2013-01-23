@@ -13,6 +13,9 @@
     <packageImport xmi:id="_R8d6YP93Ed6628OhKk_dpg">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/fifo.uml#_ePwqkHLmEd6R5tffIPrlPg"/>
     </packageImport>
+    <packageImport xmi:id="_8KelgCgjEeC5Ga5kAgjl0g">
+      <importedPackage xmi:type="uml:Model" href="pathmap://QML_TRACE/tracing.uml#_H-ZqYDKeEd-WprEKTCaiMA"/>
+    </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_LOqIEDLaEd2qeKRLMdIx_A" name="ComponentModel">
       <packagedElement xmi:type="uml:Package" xmi:id="_tyiqsM__Ed-TP80eVS-2Rg" name="PullConsumer">
         <ownedComment xmi:id="_-Hd2MDecEeGPyrZ5I3hMlA" annotatedElement="_tyiqsc__Ed-TP80eVS-2Rg">
@@ -211,12 +214,13 @@ Use the context menu on a selected connector to specify the interaction componen
       </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_234GEDLiEd2RVeNawwNNzg" name="DeploymentPlans">
-      <ownedComment xmi:id="_VMRFgDOJEeC7y-fR3OSnFw">
+      <ownedComment xmi:id="_VMRFgDOJEeC7y-fR3OSnFw" annotatedElement="_qP52UCgjEeC5Ga5kAgjl0g">
         <body>This configuration requires the installation of the OTF trace library.&lt;br /></body>
       </ownedComment>
       <ownedComment xmi:id="_gdeyMDefEeGPyrZ5I3hMlA">
         <body>Cross references to diagrams</body>
       </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qP52UCgjEeC5Ga5kAgjl0g" name="withTracePush"/>
       <packagedElement xmi:type="uml:Package" xmi:id="_xBxwoDOFEeCldqx_51Yicg" name="monoPush">
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_xB3QMDOFEeCldqx_51Yicg" clientDependency="_cmk8EKwIEeCza-cLDL1uzQ _oZjTgE0tEeG4IqgA7gSE6w _wqyJ4E0tEeG4IqgA7gSE6w" name="mainInstance" classifier="_iP8c4NCREd-hqYHBJe17_Q">
           <slot xmi:id="_xB6TgDOFEeCldqx_51Yicg" definingFeature="_iP8c4dCREd-hqYHBJe17_Q">
@@ -232,6 +236,7 @@ Use the context menu on a selected connector to specify the interaction componen
         <packagedElement xmi:type="uml:Abstraction" xmi:id="_oZjTgE0tEeG4IqgA7gSE6w" name="allocate to monoNode" client="_xB3QMDOFEeCldqx_51Yicg" supplier="_GQ1ekKwHEeCQX8uv_p0Q4A"/>
         <packagedElement xmi:type="uml:Abstraction" xmi:id="_wqyJ4E0tEeG4IqgA7gSE6w" name="allocate to monoNode" client="_xB3QMDOFEeCldqx_51Yicg" supplier="_GQ1ekKwHEeCQX8uv_p0Q4A"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xekRQD5wEeC-VMxjm_qUAg" name="withTracePull"/>
       <packagedElement xmi:type="uml:Package" xmi:id="_zwMLcLF4EeC9yscvWqW-eg" name="monoPull">
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_zwQc4bF4EeC9yscvWqW-eg" clientDependency="_DQUvILGSEeCfWNndpgPDWA _vcX2AE0tEeG4IqgA7gSE6w" name="mainInstance" classifier="_bYJagDLiEd2RVeNawwNNzg">
           <slot xmi:id="_zwY_wLF4EeC9yscvWqW-eg" definingFeature="_gV1cgDLiEd2RVeNawwNNzg">
@@ -413,11 +418,17 @@ Use the context menu on a selected connector to specify the interaction componen
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
   <Cpp:CppInclude xmi:id="_11OtwPcaEd-KM6l7lmIPkw" body="#include &lt;unistd.h>&#xA;#include &lt;iostream>&#xA;using namespace std;" base_class="_tyiqsc__Ed-TP80eVS-2Rg"/>
+  <FCM:Configuration xmi:id="_qQdP8CgjEeC5Ga5kAgjl0g" base_Class="_qP52UCgjEeC5Ga5kAgjl0g" deploymentPlan="_xB2CEDOFEeCldqx_51Yicg">
+    <configOptions href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+  </FCM:Configuration>
   <FCM:Target xmi:id="_LD_uICr7EeCfcI_SvPT4lw" base_Node="_zY9vMDLiEd2RVeNawwNNzg">
     <targetArch href="pathmap://QML_CORE/core.uml#_FYOqwF0OEd-12d_h0i1xhQ"/>
     <usedOS href="pathmap://QML_CORE/core.uml#_1eULwF0NEd-12d_h0i1xhQ"/>
   </FCM:Target>
   <FCM:DeploymentPlan xmi:id="_xB2CEDOFEeCldqx_51Yicg" mainInstance="_xB3QMDOFEeCldqx_51Yicg" base_Package="_xBxwoDOFEeCldqx_51Yicg"/>
+  <FCM:Configuration xmi:id="_zNf4QD5wEeC-VMxjm_qUAg" base_Class="_xekRQD5wEeC-VMxjm_qUAg" deploymentPlan="_zwQc4LF4EeC9yscvWqW-eg">
+    <configOptions href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+  </FCM:Configuration>
   <GCM:FlowPort xmi:id="_DwpFMJZ7EeCiU5xXzp1cKQ" direction="in" base_Port="_4KiE8DLbEd2qeKRLMdIx_A"/>
   <GCM:FlowPort xmi:id="_NWXCQJZ7EeCiU5xXzp1cKQ" direction="in" base_Port="_tyiqs8__Ed-TP80eVS-2Rg"/>
   <FCM:Port xmi:id="_tyjRzc__Ed-TP80eVS-2Rg" base_Port="_tyiqs8__Ed-TP80eVS-2Rg">
@@ -435,5 +446,12 @@ Use the context menu on a selected connector to specify the interaction componen
   </FCM:Connector>
   <FCM:RuleApplication xmi:id="_FeS3AF7zEeGA7qTe7UD05A" base_Class="_tyiqsc__Ed-TP80eVS-2Rg">
     <containerRule href="pathmap://QML_CORE/core.uml#_3Jq5MARLEd-OidZzGKCpzg"/>
+    <containerRule href="pathmap://QML_TRACE/tracing.uml#_ISo6gLdwEd-CtfrGQre34Q"/>
+    <propagateRule>false</propagateRule>
+    <propagateRule>false</propagateRule>
+  </FCM:RuleApplication>
+  <FCM:RuleApplication xmi:id="_vu8KkG6IEeGqWMX2LwdLDw" base_Class="_oqZNUDLaEd2qeKRLMdIx_A">
+    <containerRule href="pathmap://QML_TRACE/tracing.uml#_ISo6gLdwEd-CtfrGQre34Q"/>
+    <propagateRule>false</propagateRule>
   </FCM:RuleApplication>
 </xmi:XMI>

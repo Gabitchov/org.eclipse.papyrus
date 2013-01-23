@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link FCM.RuleApplication#getBase_Class <em>Base Class</em>}</li>
  *   <li>{@link FCM.RuleApplication#getContainerRule <em>Container Rule</em>}</li>
- *   <li>{@link FCM.RuleApplication#getPropagateRule <em>Propagate Rule</em>}</li>
  *   <li>{@link FCM.RuleApplication#getBase_Package <em>Base Package</em>}</li>
  * </ul>
  * </p>
@@ -71,22 +70,6 @@ public interface RuleApplication extends EObject {
 	 * @generated
 	 */
 	EList<ContainerRule> getContainerRule();
-
-	/**
-	 * Returns the value of the '<em><b>Propagate Rule</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Boolean}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Propagate Rule</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Propagate Rule</em>' attribute list.
-	 * @see FCM.FCMPackage#getRuleApplication_PropagateRule()
-	 * @model unique="false" dataType="org.eclipse.uml2.types.Boolean" ordered="false"
-	 * @generated
-	 */
-	EList<Boolean> getPropagateRule();
 
 	/**
 	 * Returns the value of the '<em><b>Base Package</b></em>' reference.

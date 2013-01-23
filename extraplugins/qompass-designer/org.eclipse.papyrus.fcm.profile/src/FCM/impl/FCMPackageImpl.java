@@ -910,17 +910,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRuleApplication_PropagateRule() {
-		return (EAttribute)ruleApplicationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getRuleApplication_Base_Package() {
-		return (EReference)ruleApplicationEClass.getEStructuralFeatures().get(3);
+		return (EReference)ruleApplicationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1488,7 +1479,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		ruleApplicationEClass = createEClass(RULE_APPLICATION);
 		createEReference(ruleApplicationEClass, RULE_APPLICATION__BASE_CLASS);
 		createEReference(ruleApplicationEClass, RULE_APPLICATION__CONTAINER_RULE);
-		createEAttribute(ruleApplicationEClass, RULE_APPLICATION__PROPAGATE_RULE);
 		createEReference(ruleApplicationEClass, RULE_APPLICATION__BASE_PACKAGE);
 
 		containerRuleEClass = createEClass(CONTAINER_RULE);
@@ -1682,7 +1672,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEClass(ruleApplicationEClass, RuleApplication.class, "RuleApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRuleApplication_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, RuleApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRuleApplication_ContainerRule(), this.getContainerRule(), null, "containerRule", null, 0, -1, RuleApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRuleApplication_PropagateRule(), theTypesPackage.getBoolean(), "propagateRule", null, 0, -1, RuleApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRuleApplication_Base_Package(), theUMLPackage.getPackage(), null, "base_Package", null, 1, 1, RuleApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(containerRuleEClass, ContainerRule.class, "ContainerRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

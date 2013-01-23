@@ -400,22 +400,13 @@ public interface FCMPackage extends EPackage {
 	int RULE_APPLICATION__CONTAINER_RULE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Propagate Rule</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RULE_APPLICATION__PROPAGATE_RULE = 2;
-
-	/**
 	 * The feature id for the '<em><b>Base Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_APPLICATION__BASE_PACKAGE = 3;
+	int RULE_APPLICATION__BASE_PACKAGE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Rule Application</em>' class.
@@ -424,7 +415,7 @@ public interface FCMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_APPLICATION_FEATURE_COUNT = 4;
+	int RULE_APPLICATION_FEATURE_COUNT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2167,17 +2158,6 @@ public interface FCMPackage extends EPackage {
 	EReference getRuleApplication_ContainerRule();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link FCM.RuleApplication#getPropagateRule <em>Propagate Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Propagate Rule</em>'.
-	 * @see FCM.RuleApplication#getPropagateRule()
-	 * @see #getRuleApplication()
-	 * @generated
-	 */
-	EAttribute getRuleApplication_PropagateRule();
-
-	/**
 	 * Returns the meta object for the reference '{@link FCM.RuleApplication#getBase_Package <em>Base Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3316,14 +3296,6 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RULE_APPLICATION__CONTAINER_RULE = eINSTANCE.getRuleApplication_ContainerRule();
-
-		/**
-		 * The meta object literal for the '<em><b>Propagate Rule</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RULE_APPLICATION__PROPAGATE_RULE = eINSTANCE.getRuleApplication_PropagateRule();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.

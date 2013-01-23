@@ -9,15 +9,18 @@
 </head>
 <body>
 <img src="../img/qompass-0.33.jpg" alt="Qompass logo">
+<a href="http://www.eclipse.org/modeling/mdt/papyrus/" target="_parent"><img src="../img/logo-papyrus.png" border="0"></a>
+<a href="http://www.omgmarte.org" target="_parent"><img src="../img/logo-marte.png" alt="OMG MARTE" border="0"></a>
+
 <h1>Overview</h1>
 
-Embedded and real-time systems are characterized by timing and resource constraints - sometimes also
+Qompass Designer is a component based modeling approach that supports the code generation from embedded
+systems. Theses systems are characterized by timing and resource constraints - sometimes also
 denoted as non-functional properties. Since these systems get more and more complex, it is important
 that the non-functional properties are not just specified in the documentation and respected by the
 implemented system, but that these are explicitly modeled and suitable code is derived from the model.
 
-Qompass Designer is a component based modeling approach that supports the code generation from embedded
-systems. It is part of the Qompass tool-suite integrated into Papyrus. The separation of concerns between
+Qompass Designer is part of the Qompass tool-suite integrated into Papyrus. The separation of concerns between
 the two tools is that
 <ul>
 <li>Qompass analyzer analyzes a system, in particular with respect to schedulability
@@ -33,36 +36,20 @@ the two tools is that
 </center>
 <p>
 
-Application modeling is based on the <a href="http://www.flex-eware.org" target="_parent">Flex-eWare</a>
-component model (FCM). This component model is aligned with the OMG standard
-(<a href="http://www.omg.org/technology/documents/formal/deployment.htm" target="_parent">D&amp;C</a>), click <a href="component-model.html">here</a> for more
-information on the component model.<br>
+Qompass is integrated into the open source UML editor <a href="http://www.eclipse.org/modeling/mdt/papyrus/">Papyrus</a>,
+The UML profile <a href="http://www.omgmarte.org" target="_parent">MARTE</a> is used for non-functional properties.
+Parts of the component model were developed in the context of the French national project <a href="http://www.flex-eware.org">Flex-eWare</a>. 
 
-<h2>From model towards executable code</h2>
+In the sequel, you find information about the
+<ul>
+<li><a href="input-models.html">input models for code generation"</a>
+<li><a href="connector-container.html">The idea of using dedicated interaction components and realizing cross-cutting concerns via the container</a>
+<li><a href="input-models.html">The code generation</a>
+</ul>
 
-Technically, the application model is a UML model with the profiles
-FCM and <a href="http://www.omgmarte.org" target="_parent">MARTE</a> (we recommend to use the open
-source UML editor <a href="http://www.eclipse.org/modeling/mdt/papyrus/">Papyrus</a>). The latter is the OMG standard for embedded and real-time systems.
-The
-transition from the model towards executable code is done by a sequence
-of model transformations. These transformations include the template
-instantiation of connectors from a model library. This instantiation
-includes not only model elements, but also code by means
-of Acceleo templates. The final code generation uses standard code generation
-facilities of Papyrus. An overview of the approach is shown in the figure
-below.
+We also recommend the examples section in the documentation index as a starting point for using Qompass.
 
 <p>
-
-<h2>References</h2>
-
-<a href="http://www.eclipse.org/modeling/mdt/papyrus/" target="_parent">
-	<img src="../img/logo-papyrus.png" border="0"></a>
-<a href="http://www.omgmarte.org" target="_parent">
-	<img src="../img/logo-marte.png" alt="OMG MARTE" border="0"></a>
-<a href="http://www.flex-eware.org" target="_parent">
-	<img src="../img/logo-flex-eWare-small.png" border="0"></a>
-
 
 </BODY>
 </HTML>

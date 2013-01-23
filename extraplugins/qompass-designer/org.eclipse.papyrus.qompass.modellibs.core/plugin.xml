@@ -96,6 +96,15 @@
 		</category>
 		<wizard
 			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
+			class="org.eclipse.papyrus.qompass.modellibs.core.HelloWorldModelWizard"
+			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+			id="org.eclipse.papyrus.qompass.modellibs.core.new.HelloWorld"
+			name="Qompass hello world example">
+			<selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+		<wizard
+			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
 			class="org.eclipse.papyrus.qompass.modellibs.core.ProducerConsumerModelWizard"
 			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
 			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"

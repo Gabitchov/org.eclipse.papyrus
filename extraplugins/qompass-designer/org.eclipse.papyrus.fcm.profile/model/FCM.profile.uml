@@ -88,11 +88,6 @@ of a particular PortKind). Further experiments are still needed to confirm that 
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_JN_7ULSvEeCkWIpjYqarzg" name="propagateRule" visibility="public" isUnique="false">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ltn_cLSvEeCkWIpjYqarzg"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LvxUgLSvEeCkWIpjYqarzg" value="*"/>
-      </ownedAttribute>
       <ownedAttribute xmi:id="_DZQuYCNaEeKGuM7MKNu-KA" name="base_Package" association="_DaA8UCNaEeKGuM7MKNu-KA">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
       </ownedAttribute>

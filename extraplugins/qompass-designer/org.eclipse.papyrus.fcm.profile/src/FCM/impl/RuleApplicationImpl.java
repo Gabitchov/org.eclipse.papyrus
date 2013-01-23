@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <ul>
  *   <li>{@link FCM.impl.RuleApplicationImpl#getBase_Class <em>Base Class</em>}</li>
  *   <li>{@link FCM.impl.RuleApplicationImpl#getContainerRule <em>Container Rule</em>}</li>
- *   <li>{@link FCM.impl.RuleApplicationImpl#getPropagateRule <em>Propagate Rule</em>}</li>
  *   <li>{@link FCM.impl.RuleApplicationImpl#getBase_Package <em>Base Package</em>}</li>
  * </ul>
  * </p>
@@ -61,16 +60,6 @@ public class RuleApplicationImpl extends EObjectImpl implements RuleApplication 
 	 * @ordered
 	 */
 	protected EList<ContainerRule> containerRule;
-
-	/**
-	 * The cached value of the '{@link #getPropagateRule() <em>Propagate Rule</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPropagateRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Boolean> propagateRule;
 
 	/**
 	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference.
@@ -156,18 +145,6 @@ public class RuleApplicationImpl extends EObjectImpl implements RuleApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Boolean> getPropagateRule() {
-		if (propagateRule == null) {
-			propagateRule = new EDataTypeEList<Boolean>(Boolean.class, this, FCMPackage.RULE_APPLICATION__PROPAGATE_RULE);
-		}
-		return propagateRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public org.eclipse.uml2.uml.Package getBase_Package() {
 		if (base_Package != null && base_Package.eIsProxy()) {
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
@@ -214,8 +191,6 @@ public class RuleApplicationImpl extends EObjectImpl implements RuleApplication 
 				return basicGetBase_Class();
 			case FCMPackage.RULE_APPLICATION__CONTAINER_RULE:
 				return getContainerRule();
-			case FCMPackage.RULE_APPLICATION__PROPAGATE_RULE:
-				return getPropagateRule();
 			case FCMPackage.RULE_APPLICATION__BASE_PACKAGE:
 				if (resolve) return getBase_Package();
 				return basicGetBase_Package();
@@ -239,10 +214,6 @@ public class RuleApplicationImpl extends EObjectImpl implements RuleApplication 
 				getContainerRule().clear();
 				getContainerRule().addAll((Collection<? extends ContainerRule>)newValue);
 				return;
-			case FCMPackage.RULE_APPLICATION__PROPAGATE_RULE:
-				getPropagateRule().clear();
-				getPropagateRule().addAll((Collection<? extends Boolean>)newValue);
-				return;
 			case FCMPackage.RULE_APPLICATION__BASE_PACKAGE:
 				setBase_Package((org.eclipse.uml2.uml.Package)newValue);
 				return;
@@ -264,9 +235,6 @@ public class RuleApplicationImpl extends EObjectImpl implements RuleApplication 
 			case FCMPackage.RULE_APPLICATION__CONTAINER_RULE:
 				getContainerRule().clear();
 				return;
-			case FCMPackage.RULE_APPLICATION__PROPAGATE_RULE:
-				getPropagateRule().clear();
-				return;
 			case FCMPackage.RULE_APPLICATION__BASE_PACKAGE:
 				setBase_Package((org.eclipse.uml2.uml.Package)null);
 				return;
@@ -286,28 +254,10 @@ public class RuleApplicationImpl extends EObjectImpl implements RuleApplication 
 				return base_Class != null;
 			case FCMPackage.RULE_APPLICATION__CONTAINER_RULE:
 				return containerRule != null && !containerRule.isEmpty();
-			case FCMPackage.RULE_APPLICATION__PROPAGATE_RULE:
-				return propagateRule != null && !propagateRule.isEmpty();
 			case FCMPackage.RULE_APPLICATION__BASE_PACKAGE:
 				return base_Package != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (propagateRule: ");
-		result.append(propagateRule);
-		result.append(')');
-		return result.toString();
 	}
 
 } //RuleApplicationImpl

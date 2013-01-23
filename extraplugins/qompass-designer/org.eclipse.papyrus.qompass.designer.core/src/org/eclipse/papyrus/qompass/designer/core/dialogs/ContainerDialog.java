@@ -1,30 +1,24 @@
 package org.eclipse.papyrus.qompass.designer.core.dialogs;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.papyrus.qompass.designer.core.Description;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionStatusDialog;
 import org.eclipse.uml2.uml.Class;
@@ -34,10 +28,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 import FCM.ContainerRule;
 import FCM.RuleApplication;
-
-import org.eclipse.papyrus.qompass.designer.core.Description;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 /**
  * Select container rules, either from a list of globally defined rules
@@ -64,8 +54,6 @@ public class ContainerDialog extends SelectionStatusDialog {
 
 	// protected Label fPortLabel;
 	// protected Text fRuleName;
-	protected Button fPropagate;
-
 	// protected Button fOptionButton;
 
 	// protected Button fPortButton;
@@ -104,33 +92,9 @@ public class ContainerDialog extends SelectionStatusDialog {
 			selectRule(m_currentRule);
 		} else {
 			createRuleSelectionGroup(contents);
-			createRuleApplicationGroup(contents);
 			createRuleInfoGroup(contents);
 		}
 		return contents;
-	}
-
-	protected void createRuleApplicationGroup(Composite parent) {
-		GridData groupGridData = DialogUtils.createFillGridData();
-
-		// ruleGroup.setLayout(new RowLayout (SWT.VERTICAL));
-		Group ruleAppGroup = new Group(parent, SWT.BORDER);
-		ruleAppGroup.setText(" rule application ");
-		ruleAppGroup.setLayout(new GridLayout(1, false));
-		ruleAppGroup.setLayoutData(groupGridData);
-
-		fPropagate = new Button(ruleAppGroup, SWT.CHECK);
-		fPropagate.setText("Propagate");
-		fPropagate.setToolTipText("propagate rule to contained parts (sub-instances)");
-		fPropagate.addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent event) {
-				updateConfigFromPropagateButton(m_currentRule);
-			}
-
-			public void widgetDefaultSelected(SelectionEvent event) {
-			}
-		});
 	}
 
 	protected void createRuleSelectionGroup(Composite parent) {
@@ -185,33 +149,6 @@ public class ContainerDialog extends SelectionStatusDialog {
 		fRules = CheckboxTableViewer.newCheckList(gRuleSelGroup, SWT.BORDER);
 		//		fRules = new CheckboxTableViewer(table);
 
-		// Add a column for propagate checkbox
-		TableViewerColumn c1Viewer = new TableViewerColumn(fRules, SWT.CHECK, 0);
-		TableColumn column1 = c1Viewer.getColumn();
-		column1.setText("Propagate");
-		column1.setWidth(50);
-		c1Viewer.setLabelProvider(new ColumnLabelProvider() {
-
-			@Override
-			public String getText(Object element) {
-				return null;
-			}
-
-			@Override
-			public Image getImage(Object element) {
-				// if(true) {
-				return JFaceResources.getImage(Dialog.DLG_IMG_MESSAGE_ERROR);
-				//} else {
-				//	return JFaceResources.getImage(Dialog.DLG_IMG_MESSAGE_INFO);
-				// }
-			}
-		});
-
-		// TableViewerColumn c2Viewer = new TableViewerColumn(fRules, SWT.CHECK);
-		// TableColumn column2 = c2Viewer.getColumn();
-		// column2.setText("Propagate2");
-		// column2.setWidth(50);
-
 
 		GridData data2 = new GridData(GridData.FILL_BOTH);
 		data2.heightHint = 200;
@@ -235,7 +172,6 @@ public class ContainerDialog extends SelectionStatusDialog {
 					if((selected.length == 1) && (selected[0] instanceof ContainerRule)) {
 						if(m_currentRule != selected[0]) {
 							selectRule((ContainerRule)selected[0]);
-							updatePropagateButtonFromConfig(m_currentRule);
 						}
 					}
 				}
@@ -271,8 +207,6 @@ public class ContainerDialog extends SelectionStatusDialog {
 		// fPortLabel = new Label (ruleInfoGroup, SWT.NONE);
 		// fPortLabel.setText ("for Ports");
 		// fPortLabel.setEnabled (false);
-
-		fPropagate.setEnabled(false);
 	}
 
 	/**
@@ -282,7 +216,6 @@ public class ContainerDialog extends SelectionStatusDialog {
 	 */
 	protected void selectRule(ContainerRule rule) {
 		m_currentRule = rule;
-		fPropagate.setEnabled(true);
 		fDescription.setText(Description.getDescription(rule.getBase_Class()));
 	}
 
@@ -323,26 +256,7 @@ public class ContainerDialog extends SelectionStatusDialog {
 		}
 		RuleApplication containerConfig =
 			StUtils.getApplication(m_component, RuleApplication.class);
-		syncPropagateRuleSize(containerConfig);
 		containerConfig.getContainerRule().add(rule);
-		containerConfig.getPropagateRule().add(fPropagate.getSelection());
-	}
-
-	/**
-	 * synchronize size of ContainerRule and PropagateRule lists (they can get out of
-	 * sync due to manual manipulation via generic profile view or broken models)
-	 * 
-	 * @param containerConfig
-	 *        container configuration for current element
-	 */
-	void syncPropagateRuleSize(RuleApplication containerConfig) {
-		int size = containerConfig.getContainerRule().size();
-		while(containerConfig.getPropagateRule().size() < size) {
-			containerConfig.getPropagateRule().add(false);
-		}
-		while(containerConfig.getPropagateRule().size() > size) {
-			containerConfig.getPropagateRule().remove(size);
-		}
 	}
 
 	/**
@@ -356,9 +270,6 @@ public class ContainerDialog extends SelectionStatusDialog {
 		int index = containerConfig.getContainerRule().indexOf(rule);
 		if((index >= 0) && (index < containerConfig.getContainerRule().size())) {
 			containerConfig.getContainerRule().remove(index);
-		}
-		if((index >= 0) && (index < containerConfig.getPropagateRule().size())) {
-			containerConfig.getPropagateRule().remove(index);
 		}
 	}
 
@@ -376,45 +287,4 @@ public class ContainerDialog extends SelectionStatusDialog {
 		}
 		return false;
 	}
-
-	/**
-	 * Update the propagation button from the container config (for a specific rule)
-	 * 
-	 * @param rule
-	 */
-	void updatePropagateButtonFromConfig(ContainerRule rule) {
-		RuleApplication containerConfig =
-			StUtils.getApplication(m_component, RuleApplication.class);
-		// update propagation status
-		if(containerConfig == null) {
-			fPropagate.setSelection(false);
-		}
-		else {
-			int index = containerConfig.getContainerRule().indexOf(rule);
-			if(index >= 0 && index < containerConfig.getPropagateRule().size()) {
-				fPropagate.setSelection(containerConfig.getPropagateRule().get(index));
-			}
-			else {
-				// rule is not applied
-				fPropagate.setSelection(false);
-			}
-		}
-	}
-
-	/**
-	 * Update the container info from propagate button (for a specific rule)
-	 * 
-	 * @param rule
-	 */
-	void updateConfigFromPropagateButton(ContainerRule rule) {
-		RuleApplication containerConfig =
-			StUtils.getApplication(m_component, RuleApplication.class);
-		// update propagation status
-		syncPropagateRuleSize(containerConfig);
-		int index = containerConfig.getContainerRule().indexOf(rule);
-		if(index >= 0 && index < containerConfig.getPropagateRule().size()) {
-			containerConfig.getPropagateRule().set(index, fPropagate.getSelection());
-		}
-	}
-
 }
