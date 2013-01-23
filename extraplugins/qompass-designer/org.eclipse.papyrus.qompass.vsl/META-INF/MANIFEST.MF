@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Vsl
+Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.vsl
+Bundle-Version: 0.8.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.qompass.designer.vsl.Activator
+Bundle-Vendor: CEA
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.marte.vsl;bundle-version="0.7.1",
+ org.eclipse.xtext;bundle-version="1.0.1",
+ org.eclipse.papyrus.marte.static.profile;bundle-version="0.8.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.qompass.designer.vsl
