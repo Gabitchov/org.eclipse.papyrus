@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.views.cpp;singleton:=true
 Bundle-Version: 0.9.2.vqualifier
 Bundle-Activator: org.eclipse.papyrus.views.cpp.Activator
-Bundle-Vendor: %pluginProvider
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
