@@ -17,6 +17,7 @@ PR ("IN [clazz.name/]::checkPreCond()" << showI);
 core::ContainerServices::CallEvent_ event;
 int timeout;
 int newState;
+int newSubSate;
 
 switch(m_currentState)
 {
