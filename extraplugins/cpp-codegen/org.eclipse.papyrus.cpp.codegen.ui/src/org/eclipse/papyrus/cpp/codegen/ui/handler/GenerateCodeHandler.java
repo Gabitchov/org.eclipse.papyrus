@@ -71,7 +71,6 @@ public class GenerateCodeHandler extends AbstractHandler {
 		return super.isEnabled();
 	}
 
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		if(selectedEObj instanceof Classifier) {

@@ -60,8 +60,7 @@ import Cpp.ManualGeneration;
 /**
  * Main class of code generator
  */
-public class ModelElementsCreator
-{
+public class ModelElementsCreator {
 
 	/**
 	 * 
@@ -100,9 +99,7 @@ public class ModelElementsCreator
 	 *        the element for which code should be generated
 	 * @throws CoreException
 	 */
-	public void createPackageableElement(IProgressMonitor monitor, PackageableElement element)
-		throws CoreException
-	{
+	public void createPackageableElement(IProgressMonitor monitor, PackageableElement element) throws CoreException {
 		IContainer packageContainer = getContainer(element);
 		createPackageableElement(packageContainer, monitor, element);
 	}
@@ -119,44 +116,31 @@ public class ModelElementsCreator
 	 *        the element for which code should be generated
 	 * @throws CoreException
 	 */
-	public void createPackageableElement(IContainer packageContainer, IProgressMonitor monitor, PackageableElement element)
-		throws CoreException
-	{
+	public void createPackageableElement(IContainer packageContainer, IProgressMonitor monitor, PackageableElement element) throws CoreException {
 		if(element instanceof Package) {
 			createPackage(packageContainer, monitor, (Package)element);
-		}
-		else if(element instanceof Class) {
+		} else if(element instanceof Class) {
 			createClassFiles(packageContainer, (Class)element);
-		}
-		else if(element instanceof Interface) {
+		} else if(element instanceof Interface) {
 			createInterfaceFile(packageContainer, (Interface)element);
-		}
-		else if((element instanceof PrimitiveType) ||
-			(element instanceof Enumeration) ||
-			(element instanceof Usage)) {
+		} else if((element instanceof PrimitiveType) || (element instanceof Enumeration) || (element instanceof Usage)) {
 			// do nothing, included in package
-		}
-		else if(element instanceof DataType) {
+		} else if(element instanceof DataType) {
 			createDataTypeFiles(packageContainer, (DataType)element);
-		}
-		else if(element instanceof Relationship) {
+		} else if(element instanceof Relationship) {
 			// no code generation for relationships
-		}
-		else {
+		} else {
 			System.err.println("C++ code generator: unsupported model element " + element);
 		}
 	}
 
-	public void removePackageableElement(IProgressMonitor monitor, PackageableElement element)
-		throws CoreException
-	{
+	public void removePackageableElement(IProgressMonitor monitor, PackageableElement element) throws CoreException {
 		IContainer packageContainer = getContainer(element);
 		if(packageContainer instanceof IFolder) {
 			if(element instanceof Package) {
 				IFolder folder = ((IFolder)packageContainer).getFolder(element.getName());
 				folder.delete(true, null);
-			}
-			else if(element instanceof Classifier) {
+			} else if(element instanceof Classifier) {
 				IFile file = ((IFolder)packageContainer).getFile(element.getName());
 				file.delete(true, null);
 			}
@@ -173,78 +157,58 @@ public class ModelElementsCreator
 	 * @param classObject
 	 * @throws CoreException
 	 */
-	protected void createClassFiles(IContainer container,
-		Class classObject) throws CoreException {
+	protected void createClassFiles(IContainer container, Class classObject) throws CoreException {
 
 		// treat case of manual code generation
 		if(GenUtils.hasStereotype(classObject, ManualGeneration.class)) {
 			ManualGeneration mg = StUtils.getApplication(classObject, ManualGeneration.class);
 			CppInclude cppInclude = StUtils.getApplication(classObject, CppInclude.class);
 			String fileContent = headerComment + cppInclude.getHeader();
-			createFile(container, classObject.getName() + "." + hppExt,
-				fileContent, true);
+			createFile(container, classObject.getName() + "." + hppExt, fileContent, true);
 
 			CppClassIncludeDeclaration jetIDecl = new CppClassIncludeDeclaration();
 			String include = jetIDecl.generate(classObject);
 
-			fileContent = headerComment + cppInclude.getPreBody() + GenUtils.NL +
-				include + GenUtils.NL +
-				cppInclude.getBody();
+			fileContent = headerComment + cppInclude.getPreBody() + GenUtils.NL + include + GenUtils.NL + cppInclude.getBody();
 			String ext = GenUtils.maskNull(mg.getExtensionBody());
 			if(ext.length() == 0) {
 				ext = cppExt;
 			}
-			createFile(container, classObject.getName() + "." + ext,
-				fileContent, true);
+			createFile(container, classObject.getName() + "." + ext, fileContent, true);
 		}
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class
-		else if((!GenUtils.hasStereotype(classObject, CppNoCodeGen.class))
-			&& (!GenUtils.hasStereotype(classObject, CppExternClass.class))
-			&& (!GenUtils.hasStereotype(classObject, CppTemplate.class))) {
+		else if((!GenUtils.hasStereotype(classObject, CppNoCodeGen.class)) && (!GenUtils.hasStereotype(classObject, CppExternClass.class)) && (!GenUtils.hasStereotype(classObject, CppTemplate.class))) {
 
 			CppClassHeader headerGenerator = new CppClassHeader();
 			CppClassBody bodyGenerator = new CppClassBody();
 
 			// Template Bound Class
-			if(GenUtils.isTemplateBoundElement(classObject))
-			{
+			if(GenUtils.isTemplateBoundElement(classObject)) {
 				CppBindHeader templateBindingGenerator = new CppBindHeader();
 				CppBindBody bodyBindingGenerator = new CppBindBody();
-				String fileContent = headerComment
-					+ templateBindingGenerator.generate(classObject);
-				createFile(container, classObject.getName() + "." + hppExt,
-					fileContent, true);
+				String fileContent = headerComment + templateBindingGenerator.generate(classObject);
+				createFile(container, classObject.getName() + "." + hppExt, fileContent, true);
 
-				fileContent = headerComment
-					+ bodyBindingGenerator.generate(classObject);
-				createFile(container, classObject.getName() + "." + cppExt,
-					fileContent, true);
-			}
-			else {
+				fileContent = headerComment + bodyBindingGenerator.generate(classObject);
+				createFile(container, classObject.getName() + "." + cppExt, fileContent, true);
+			} else {
 				if(classObject.isTemplate()) {
 					CppTemplateHeader templateGenerator = new CppTemplateHeader();
-					String fileContent = headerComment
-						+ templateGenerator.generate(classObject);
-					createFile(container, classObject.getName() + "." + hppExt,
-						fileContent, true);
-				}
-				else {
+					String fileContent = headerComment + templateGenerator.generate(classObject);
+					createFile(container, classObject.getName() + "." + hppExt, fileContent, true);
+				} else {
 
 					// The class is actually a class.
 
 					// Header file generation
-					String fileContent = headerComment
-						+ headerGenerator.generate(classObject);
-					createFile(container, classObject.getName() + "." + hppExt,
-						fileContent, true);
+					String fileContent = headerComment + headerGenerator.generate(classObject);
+					createFile(container, classObject.getName() + "." + hppExt, fileContent, true);
 
 					// "Traditional" code generation : one body file for all
 					// operations.
-					fileContent = headerComment
-						+ bodyGenerator.generate(classObject);
-					createFile(container, classObject.getName() + "." + cppExt,
-						fileContent, true);
+					fileContent = headerComment + bodyGenerator.generate(classObject);
+					createFile(container, classObject.getName() + "." + cppExt, fileContent, true);
 				}
 			}
 		}
@@ -257,8 +221,7 @@ public class ModelElementsCreator
 	 * @param dataTypeObject
 	 * @throws CoreException
 	 */
-	protected void createDataTypeFiles(IContainer container,
-		DataType dataTypeObject) throws CoreException {
+	protected void createDataTypeFiles(IContainer container, DataType dataTypeObject) throws CoreException {
 
 		CppClassHeader headerGenerator = new CppClassHeader();
 		CppClassBody bodyGenerator = new CppClassBody();
@@ -266,9 +229,7 @@ public class ModelElementsCreator
 		String fileContent = "";
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class
-		if((!GenUtils.hasStereotype(dataTypeObject, CppNoCodeGen.class))
-			&& (!GenUtils.hasStereotype(dataTypeObject, CppExternClass.class))
-			&& (!GenUtils.hasStereotype(dataTypeObject, CppTemplate.class))) {
+		if((!GenUtils.hasStereotype(dataTypeObject, CppNoCodeGen.class)) && (!GenUtils.hasStereotype(dataTypeObject, CppExternClass.class)) && (!GenUtils.hasStereotype(dataTypeObject, CppTemplate.class))) {
 
 			// Template Bound Class
 			// templates for data types currently not supported
@@ -290,14 +251,12 @@ public class ModelElementsCreator
 			 */
 
 			// Header file generation
-			fileContent = headerComment
-				+ headerGenerator.generate(dataTypeObject);
+			fileContent = headerComment + headerGenerator.generate(dataTypeObject);
 			createFile(container, dataTypeObject.getName() + "." + hppExt, fileContent, true);
 
 			// "Traditional" code generation : one body file for all
 			// operations.
-			fileContent = headerComment
-				+ bodyGenerator.generate(dataTypeObject);
+			fileContent = headerComment + bodyGenerator.generate(dataTypeObject);
 			createFile(container, dataTypeObject.getName() + "." + cppExt, fileContent, true);
 		}
 	}
@@ -314,8 +273,7 @@ public class ModelElementsCreator
 	 *        Te text content of the file.
 	 * @throws CoreException
 	 */
-	protected void createFile(IContainer owner, String filename,
-		String content, boolean force) throws CoreException {
+	protected void createFile(IContainer owner, String filename, String content, boolean force) throws CoreException {
 		IFile file = null;
 		if(owner instanceof IProject) {
 			file = ((IProject)owner).getFile(filename);
@@ -361,8 +319,7 @@ public class ModelElementsCreator
 			// the file is not updated
 		} else {
 			// the file does not exists
-			file.create(new ByteArrayInputStream(content.getBytes()), true,
-				null);
+			file.create(new ByteArrayInputStream(content.getBytes()), true, null);
 		}
 	}
 
@@ -373,18 +330,14 @@ public class ModelElementsCreator
 	 * @param interfaceObject
 	 * @throws CoreException
 	 */
-	protected void createInterfaceFile(IContainer container, Interface interfaceObject)
-		throws CoreException
-	{
+	protected void createInterfaceFile(IContainer container, Interface interfaceObject) throws CoreException {
 		if(!GenUtils.hasStereotype(interfaceObject, CppNoCodeGen.class)) {
 
 			CppInterfaceHeader headerGenerator = new CppInterfaceHeader();
 			String fileContent = "";
 
-			fileContent = headerComment
-				+ headerGenerator.generate(interfaceObject);
-			createFile(container, interfaceObject.getName() + "." + hppExt,
-				fileContent, true);
+			fileContent = headerComment + headerGenerator.generate(interfaceObject);
+			createFile(container, interfaceObject.getName() + "." + hppExt, fileContent, true);
 		}
 	}
 
@@ -400,19 +353,14 @@ public class ModelElementsCreator
 	 *        the package for which code should be created
 	 * @throws CoreException
 	 */
-	protected void createPackage(IContainer packageContainer, IProgressMonitor monitor, Package pkg)
-		throws CoreException
-	{
+	protected void createPackage(IContainer packageContainer, IProgressMonitor monitor, Package pkg) throws CoreException {
 		monitor.subTask("generate package " + pkg.getQualifiedName());
 
-		if(!GenUtils.hasStereotype(pkg, CppRoot.class)
-			&& !GenUtils.hasStereotype(pkg, CppNoCodeGen.class)) {
+		if(!GenUtils.hasStereotype(pkg, CppRoot.class) && !GenUtils.hasStereotype(pkg, CppNoCodeGen.class)) {
 
 			String fileContent = "";
 
-			packageContainer = (packageContainer instanceof IProject) ?
-				((IProject)packageContainer).getFolder(pkg.getName()) :
-				((IFolder)packageContainer).getFolder(pkg.getName());
+			packageContainer = (packageContainer instanceof IProject) ? ((IProject)packageContainer).getFolder(pkg.getName()) : ((IFolder)packageContainer).getFolder(pkg.getName());
 
 			// Create a new folder corresponding to the package if it does not exist
 			if(!packageContainer.exists()) {
@@ -424,8 +372,7 @@ public class ModelElementsCreator
 			CppPackageHeader pkgHeaderGenerator = new CppPackageHeader();
 			fileContent = "";
 			fileContent = headerComment + pkgHeaderGenerator.generate(pkg);
-			createFile(packageContainer, "Pkg_" + pkg.getName() + "." + hppExt,
-				fileContent, true);
+			createFile(packageContainer, "Pkg_" + pkg.getName() + "." + hppExt, fileContent, true);
 
 			// Continue generation parsing package content
 			// If CppNoCodeGen on package, it applies to its content
@@ -445,8 +392,7 @@ public class ModelElementsCreator
 	 *        a named element
 	 * @return folder for this element
 	 */
-	public IContainer getContainer(NamedElement element)
-	{
+	public IContainer getContainer(NamedElement element) {
 		try {
 			IContainer packageContainer = project;
 			EList<Namespace> namespaces = element.allNamespaces();
@@ -455,11 +401,9 @@ public class ModelElementsCreator
 				if(GenUtils.hasStereotype(ns, CppRoot.class)) {
 					// TODO: not very clean. Is this stereotype still used?
 					packageContainer = project;
-				}
-				else if(packageContainer instanceof IFolder) {
+				} else if(packageContainer instanceof IFolder) {
 					packageContainer = ((IFolder)packageContainer).getFolder(ns.getName());
-				}
-				else if(packageContainer instanceof IProject) {
+				} else if(packageContainer instanceof IProject) {
 					packageContainer = ((IProject)packageContainer).getFolder(ns.getName());
 				}
 				if(!packageContainer.exists()) {

@@ -23,9 +23,7 @@ public class StdStereo {
 	/**
 	 * In the UML 2.4 plugin, the Standard profile is split into an L2 and an L3 profile
 	 */
-	public final static String[] namespaces = {
-		"Standard", "StandardProfileL2"
-	};
+	public final static String[] namespaces = { "Standard", "StandardProfileL2" };
 
 	/**
 	 * Check whether a stereotype of the standard profile is applied

@@ -11,7 +11,6 @@
  *  Ansgar Radermacher (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.infra.services.tracepoints.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -37,8 +36,7 @@ public class ToggleTracepointCommand extends AbstractTracepointCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException
-	{
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		updateResourceAndURI();
 		try {
 			IMarker marker = toggleMarker();

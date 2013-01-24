@@ -124,14 +124,11 @@ public class QompassTraceMechanism implements ITraceMechanism {
 	public Class getClassContext(EObject eObj) {
 		if(eObj instanceof Class) {
 			return (Class)eObj;
-		}
-		else if(eObj instanceof Operation) {
+		} else if(eObj instanceof Operation) {
 			return ((Operation)eObj).getClass_();
-		}
-		else if(eObj instanceof Property) {
+		} else if(eObj instanceof Property) {
 			return ((Property)eObj).getClass_();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -150,14 +147,12 @@ public class QompassTraceMechanism implements ITraceMechanism {
 				System.err.println(e);
 			}
 			return new BasicEList<ContainerRule>();
-		}
-		else {
+		} else {
 			Package top = Utils.getTop((Element)eObj);
 			return Utils.getAllRules(top);
 		}
 	}
 
-	@Override
 	public boolean configureTraceMechanisms() {
 		String config = "";
 		try {

@@ -1,16 +1,16 @@
 /*****************************************************************************
-* Copyright (c) 2012 CEA LIST.
-*
-*    
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
-* are made available under the terms of the Eclipse Public License v1.0
-* which accompanies this distribution, and is available at
-* http://www.eclipse.org/legal/epl-v10.html
-*
-* Contributors:
-*  Ansgar Radermacher (CEA LIST) - Initial API and implementation
-*
-*****************************************************************************/
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Ansgar Radermacher (CEA LIST) - Initial API and implementation
+ *
+ *****************************************************************************/
 
 package org.eclipse.papyrus.views.tracepoints.views;
 
@@ -161,8 +161,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 				EObject eobj = MarkerUtils.getEObjectOfMarker((IMarker)obj);
 				if(eobj instanceof NamedElement) {
 					return ((NamedElement)eobj).getQualifiedName();
-				}
-				else if(eobj != null) {
+				} else if(eobj != null) {
 					return eobj.toString();
 				}
 			}
@@ -201,18 +200,17 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 	 * This is a callback that will allow us
 	 * to create the viewer and initialize it.
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 		viewer = CheckboxTableViewer.newCheckList(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setCheckStateProvider(new ICheckStateProvider() {
 
-			@Override
 			public boolean isGrayed(Object element) {
 				return false;
 			}
 
-			@Override
 			public boolean isChecked(Object element) {
 				if(element instanceof IMarker) {
 					IMarker marker = (IMarker)element;
@@ -244,8 +242,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 					try {
 						marker.setAttribute(TracepointConstants.isActive, isChecked);
 						switchUI();
-					}
-					catch (CoreException e) {
+					} catch (CoreException e) {
 					}
 				}
 			}
@@ -253,35 +250,28 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 
 		fileObserver = new IFileObserver() {
 
-			@Override
 			public void handleMarkerDeleted(IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
 				switchUI();
 			}
 
-			@Override
 			public void handleMarkerChanged(IMarker marker) {
 				switchUI();
 			}
 
-			@Override
 			public void handleMarkerAdded(IMarker marker) {
 				switchUI();
 			}
 
 			// TODO need to handle?
-			@Override
 			public void handleFileRenamed(IFile oldFile, IFile file) {
 			}
 
-			@Override
 			public void handleFileMoved(IFile oldFile, IFile file) {
 			}
 
-			@Override
 			public void handleFileDeleted(IFile file) {
 			}
 
-			@Override
 			public void handleFileChanged(IFile file) {
 			}
 		};
@@ -351,6 +341,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 	protected void makeActions() {
 		actionSkip = new Action("Skip all", Action.AS_CHECK_BOX) {
 
+			@Override
 			public void run() {
 				TraceState.skipAllTracepoints = !TraceState.skipAllTracepoints;
 				switchUI();
@@ -363,6 +354,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 
 		actionDelete = new Action("Delete") {
 
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection)selection).getFirstElement();
@@ -370,18 +362,17 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 					IMarker marker = (IMarker)obj;
 					try {
 						marker.delete();
-					}
-					catch (CoreException e) {
+					} catch (CoreException e) {
 					}
 				}
 			}
 		};
 		actionDelete.setToolTipText("Delete trace/breakpoint");
-		actionDelete.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-			getImageDescriptor(ISharedImages.IMG_ELCL_REMOVE));
+		actionDelete.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ELCL_REMOVE));
 
 		actionDeleteAll = new Action() {
 
+			@Override
 			public void run() {
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -395,11 +386,11 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 		};
 		actionDeleteAll.setText("Delete all");
 		actionDeleteAll.setToolTipText("Delete all trace/breakpoint");
-		actionDeleteAll.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-			getImageDescriptor(ISharedImages.IMG_ELCL_REMOVEALL));
+		actionDeleteAll.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ELCL_REMOVEALL));
 
 		actionGoto = new Action() {
 
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection)selection).getFirstElement();
@@ -412,12 +403,10 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 						if(part instanceof IGotoMarker) {
 							((IGotoMarker)part).gotoMarker(marker);
 						}
-					}
-					else {
+					} else {
 						try {
 							IDE.openEditor(activePage, marker, OpenStrategy.activateOnOpen());
-						}
-						catch (PartInitException e) {
+						} catch (PartInitException e) {
 
 						}
 					}
@@ -431,6 +420,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 
 		actionTraceSelect = new Action() {
 
+			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection)selection).getFirstElement();
@@ -448,8 +438,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 							try {
 								marker.setAttribute(TracepointConstants.traceAction, traceAction);
 								marker.setAttribute(TracepointConstants.traceMechanism, traceMechanism);
-							}
-							catch (CoreException e) {
+							} catch (CoreException e) {
 							}
 						}
 					}
@@ -459,8 +448,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 		};
 		actionTraceSelect.setText("trace action");
 		actionTraceSelect.setToolTipText("Select trace action");
-		actionTraceSelect.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-			getImageDescriptor(ISharedImages.IMG_TOOL_NEW_WIZARD));
+		actionTraceSelect.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_TOOL_NEW_WIZARD));
 	}
 
 	protected void hookDoubleClickAction() {
@@ -475,6 +463,7 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
+	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
 	}
@@ -514,11 +503,10 @@ public class TracepointView extends ViewPart implements ISelectionListener {
 			if(editPart.getModel() instanceof View) {
 				View view = (View)editPart.getModel();
 				if(view.getElement() instanceof Element) {
-					currentObject = (Element)view.getElement();
+					currentObject = view.getElement();
 				}
 			}
-		}
-		else if(currentObject instanceof IAdaptable) {
+		} else if(currentObject instanceof IAdaptable) {
 			// modisco ModelElementItem supports IAdaptable (cleaner than cast / dependency with modisco)
 			currentObject = ((IAdaptable)currentObject).getAdapter(EObject.class);
 		}

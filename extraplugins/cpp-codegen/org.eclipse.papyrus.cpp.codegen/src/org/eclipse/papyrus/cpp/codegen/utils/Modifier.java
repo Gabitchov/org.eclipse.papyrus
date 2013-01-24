@@ -52,33 +52,23 @@ public class Modifier {
 		// Pointer
 		CppPtr cppPtr = GenUtils.getApplication(currentParameter, CppPtr.class);
 		if(cppPtr != null) {
-			ptr = (cppPtr.getDeclaration() != null) ?
-				cppPtr.getDeclaration() :
-				"*";
-		}
-		else {
+			ptr = (cppPtr.getDeclaration() != null) ? cppPtr.getDeclaration() : "*";
+		} else {
 			ptr = "";
 		}
 
 		// Ref
-		ref = GenUtils.hasStereotype(currentParameter, CppRef.class) ?
-			"&" :
-			"";
+		ref = GenUtils.hasStereotype(currentParameter, CppRef.class) ? "&" : "";
 
 		// Array
 		CppArray cppArray = GenUtils.getApplication(currentParameter, CppArray.class);
 		if(cppArray != null) {
-			array = (cppArray.getDefinition() != null) ?
-				cppArray.getDefinition() :
-				"[]";
-		}
-		else {
+			array = (cppArray.getDefinition() != null) ? cppArray.getDefinition() : "[]";
+		} else {
 			array = "";
 		}
 
 		// Const
-		isConst = GenUtils.hasStereotype(currentParameter, CppConst.class) ?
-			"const " :
-			"";
+		isConst = GenUtils.hasStereotype(currentParameter, CppConst.class) ? "const " : "";
 	}
 }

@@ -77,8 +77,7 @@ public class ClassUtils {
 		return createIncludeDecl(depClassifiers, currentCl);
 	}
 
-	public static String createIncludeDecl(EList<Classifier> usedClassifiers, Classifier currentCl)
-	{
+	public static String createIncludeDecl(EList<Classifier> usedClassifiers, Classifier currentCl) {
 		String includes = "";
 		String forwardDecls = Constants.forwardDecl;
 
@@ -91,12 +90,10 @@ public class ClassUtils {
 			if(!currentCl.equals(cl)) {
 				// ... and if it does not have the stereotype "CppNoCodeGen", unless
 				// it has stereotype "CppExternalClass"
-				if((!GenUtils.hasStereotype(cl, CppNoCodeGen.class)) ||
-					GenUtils.hasStereotype(cl, CppExternClass.class)) {
+				if((!GenUtils.hasStereotype(cl, CppNoCodeGen.class)) || GenUtils.hasStereotype(cl, CppExternClass.class)) {
 					String newInclude = "";
 
-					if((cl instanceof Enumeration) || (cl instanceof PrimitiveType))
-					{
+					if((cl instanceof Enumeration) || (cl instanceof PrimitiveType)) {
 						// Enumeration is not defined in a separate file, but in the
 						// package that owns it => include the owning package (might be a duplicate input, if owning
 						// package is also the owner of current class)
@@ -108,8 +105,7 @@ public class ClassUtils {
 								newInclude = jetIDecl.generate(owner);
 							}
 						}
-					}
-					else {
+					} else {
 						// include the file associated with the classifier 
 						CppClassIncludeDeclaration jetIDecl = new CppClassIncludeDeclaration();
 						newInclude = jetIDecl.generate(cl);

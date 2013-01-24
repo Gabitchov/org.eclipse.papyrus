@@ -77,8 +77,7 @@ public class GenUtils {
 	 *        Class on which the template binding is searched
 	 * @return the template binding of current Class
 	 */
-	public static TemplateBinding getTemplateBindings(Class current)
-	{
+	public static TemplateBinding getTemplateBindings(Class current) {
 		TemplateBinding binding = null;
 		if(current.getTemplateBindings().size() == 1) {
 			binding = current.getTemplateBindings().get(0);
@@ -100,9 +99,7 @@ public class GenUtils {
 		return result;
 	}
 
-	public static Collection<TemplateParameter> getTemplateParameters(
-		Classifier classifier)
-	{
+	public static Collection<TemplateParameter> getTemplateParameters(Classifier classifier) {
 
 		Collection<TemplateParameter> params = new ArrayList<TemplateParameter>();
 		TemplateSignature ts = classifier.getOwnedTemplateSignature();
@@ -113,9 +110,7 @@ public class GenUtils {
 		return params;
 	}
 
-	public static Collection<ParameterableElement> getTemplateParameteredElements(
-		Classifier classifier)
-	{
+	public static Collection<ParameterableElement> getTemplateParameteredElements(Classifier classifier) {
 
 		Collection<ParameterableElement> params = new ArrayList<ParameterableElement>();
 		TemplateSignature ts = classifier.getOwnedTemplateSignature();
@@ -136,12 +131,10 @@ public class GenUtils {
 	 * @param classifier
 	 * @return
 	 */
-	public static String getTemplateParametersWoType(Classifier classifier)
-	{
+	public static String getTemplateParametersWoType(Classifier classifier) {
 		String tparamWoType = "";
 
-		Iterator<TemplateParameter> it = GenUtils.getTemplateParameters(
-			classifier).iterator();
+		Iterator<TemplateParameter> it = GenUtils.getTemplateParameters(classifier).iterator();
 
 		while(it.hasNext()) {
 			TemplateParameter currentTParam = it.next();
@@ -175,14 +168,11 @@ public class GenUtils {
 
 			if(name.equals("Boolean")) {
 				td = "bool";
-			}
-			else if(name.equals("Integer")) {
+			} else if(name.equals("Integer")) {
 				td = "int";
-			}
-			else if(name.equals("String")) {
+			} else if(name.equals("String")) {
 				td = "const char *";
-			}
-			else if(name.equals("Unlimited Natural")) {
+			} else if(name.equals("Unlimited Natural")) {
 				td = "unsigned long";
 			}
 			if(td != null) {
@@ -201,8 +191,7 @@ public class GenUtils {
 	 * 
 	 * @return the template type formated as string
 	 */
-	public static String getType(TemplateParameter templateParam)
-	{
+	public static String getType(TemplateParameter templateParam) {
 		String type = "", name = "";
 
 		// Retrieve name of the ParameteredElement (when possible = it is a NamedElement
@@ -211,18 +200,14 @@ public class GenUtils {
 			name = ((NamedElement)pElt).getName();
 			if(templateParam instanceof ClassifierTemplateParameter) {
 				type = "class";
-			}
-			else if(templateParam instanceof OperationTemplateParameter) {
+			} else if(templateParam instanceof OperationTemplateParameter) {
 				type = "";
-			}
-			else if(templateParam instanceof ConnectableElementTemplateParameter) {
+			} else if(templateParam instanceof ConnectableElementTemplateParameter) {
 				type = "";
-			}
-			else {// uml2TemplateParameter instanceof TemplateParameter
+			} else {// uml2TemplateParameter instanceof TemplateParameter
 				if(pElt instanceof LiteralInteger) {
 					type = "int";
-				}
-				else if(pElt instanceof LiteralString) {
+				} else if(pElt instanceof LiteralString) {
 					type = "String";
 				} else if(pElt instanceof LiteralBoolean) {
 					type = "Boolean";
@@ -232,8 +217,7 @@ public class GenUtils {
 					type = pElt.eClass().getName();
 				}
 			}
-		}
-		else {
+		} else {
 			name = "undefined";
 		}
 
@@ -255,8 +239,7 @@ public class GenUtils {
 		return (type + " " + name);
 	}
 
-	public static String getName(TemplateParameter templateParam)
-	{
+	public static String getName(TemplateParameter templateParam) {
 		String name = "";
 		ParameterableElement pElt = templateParam.getParameteredElement();
 		if((pElt != null) && (pElt instanceof NamedElement)) {
@@ -275,8 +258,7 @@ public class GenUtils {
 	 *        Class on which the attributes are searched
 	 * @return collection of classes which are the type of the attributes
 	 */
-	public static EList<Classifier> getOwnedAttributeTypes(Classifier current)
-	{
+	public static EList<Classifier> getOwnedAttributeTypes(Classifier current) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
 
 		Iterator<Property> attributes;
@@ -300,8 +282,7 @@ public class GenUtils {
 	 *        Class on which the attributes are searched
 	 * @return collection of classes which are the types of the operations parameters
 	 */
-	public static EList<Classifier> getIncludesFromOperations(Classifier current)
-	{
+	public static EList<Classifier> getIncludesFromOperations(Classifier current) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
 		Iterator<Operation> operations = current.getOperations().iterator();
 		while(operations.hasNext()) {
@@ -319,8 +300,7 @@ public class GenUtils {
 		return result;
 	}
 
-	public static EList<Interface> getImplementedInterfaces(Class current)
-	{
+	public static EList<Interface> getImplementedInterfaces(Class current) {
 		EList<Interface> interfaces = new UniqueEList<Interface>();
 		Iterator<Interface> interfacesIt = current.getImplementedInterfaces().iterator();
 		Interface currentInterface;
@@ -338,8 +318,7 @@ public class GenUtils {
 	 * @param current
 	 * @return
 	 */
-	public static EList<Classifier> getRelationships(Classifier current)
-	{
+	public static EList<Classifier> getRelationships(Classifier current) {
 		EList<Classifier> classifiers = new UniqueEList<Classifier>();
 
 		for(DirectedRelationship relationship : current.getSourceDirectedRelationships()) {
@@ -362,8 +341,7 @@ public class GenUtils {
 	 * @param current
 	 * @return
 	 */
-	public static EList<Classifier> getDependencies(Classifier current)
-	{
+	public static EList<Classifier> getDependencies(Classifier current) {
 		EList<Classifier> classifiers = new UniqueEList<Classifier>();
 
 		for(DirectedRelationship relationship : current.getSourceDirectedRelationships()) {
@@ -388,8 +366,7 @@ public class GenUtils {
 	 * @param current
 	 * @return
 	 */
-	public static EList<Classifier> getRelationshipsNoDeps(Classifier current)
-	{
+	public static EList<Classifier> getRelationshipsNoDeps(Classifier current) {
 		EList<Classifier> classifiers = new UniqueEList<Classifier>();
 
 		for(DirectedRelationship relationship : current.getSourceDirectedRelationships()) {
@@ -447,8 +424,7 @@ public class GenUtils {
 			}
 		}
 		if(!namespace.equals("")) {
-			namespace = "\n" +
-				"using namespace " + namespace + ";\n";
+			namespace = "\n" + "using namespace " + namespace + ";\n";
 		}
 		return namespace;
 	}
@@ -496,8 +472,7 @@ public class GenUtils {
 		}
 		if((hasStereotype(ne, CppExternClass.class)) || (hasStereotype(ne, CppNoCodeGen.class))) {
 			return ne.getName();
-		}
-		else if(owningPkgName.equals("AnsiCLibrary")) {
+		} else if(owningPkgName.equals("AnsiCLibrary")) {
 			// always use the short name for types within the ANSI C library
 			return ne.getName();
 		}
@@ -524,8 +499,7 @@ public class GenUtils {
 		if(qName.contains("::")) {
 			// is a qualified name => make path absolute
 			return "::" + qName;
-		}
-		else {
+		} else {
 			return qName;
 		}
 	}
@@ -648,8 +622,7 @@ public class GenUtils {
 				if(!element.isStereotypeApplied(stereotype)) {
 					element.applyStereotype(stereotype);
 				}
-			}
-			else {
+			} else {
 				if(element.isStereotypeApplied(stereotype)) {
 					element.unapplyStereotype(stereotype);
 				}
@@ -663,8 +636,7 @@ public class GenUtils {
 	 * This function is quite similar to getAppliedStereotype, the difference is that it
 	 * is not based on fully qualified name.
 	 */
-	public static String getTaggedValue(Element element, String stereo_name, String attrib_name)
-	{
+	public static String getTaggedValue(Element element, String stereo_name, String attrib_name) {
 		Stereotype stereotype = element.getAppliedStereotype(stereo_name);
 		if(stereotype == null) {
 			return "";
@@ -689,8 +661,7 @@ public class GenUtils {
 	 * This function is quite similar to getAppliedStereotype, the difference is that it
 	 * is not based on fully qualified name.
 	 */
-	public static void setTaggedValue(Element element, String stereo_name, String attrib_name, Object value)
-	{
+	public static void setTaggedValue(Element element, String stereo_name, String attrib_name, Object value) {
 		Stereotype stereotype = element.getAppliedStereotype(stereo_name);
 		if(stereotype != null) {
 			element.setValue(stereotype, attrib_name, value);
@@ -785,8 +756,7 @@ public class GenUtils {
 		}
 		if(str.endsWith(NL)) {
 			return str;
-		}
-		else {
+		} else {
 			return str + NL;
 		}
 	}

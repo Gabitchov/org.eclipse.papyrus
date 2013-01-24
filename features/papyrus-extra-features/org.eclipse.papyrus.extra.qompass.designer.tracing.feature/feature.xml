@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.qompass.designer.feature.tracing"
+      id="org.eclipse.papyrus.extra.qompass.designer.tracing.feature"
       label="%featureName"
       version="0.9.2.qualifier"
       provider-name="%providerName">
