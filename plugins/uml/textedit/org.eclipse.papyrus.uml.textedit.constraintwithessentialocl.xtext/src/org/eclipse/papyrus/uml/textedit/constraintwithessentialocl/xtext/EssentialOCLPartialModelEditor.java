@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011,2012 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  E.D.Willink - Initial API and implementation
  *  CEA LIST - Architecture refactoring
+ *  E.D.Willink - Bug 388529
  *
  *****************************************************************************/
 
@@ -19,7 +20,6 @@ import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.gmf.glue.partialEditing.ISyntheticResourceProvider;
 import org.eclipse.xtext.gmf.glue.partialEditing.PartialModelEditor;
@@ -27,12 +27,10 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.StringInputStream;
 
 /**
- * this partila editoir is used to launch a OCL xtext interpretor 
- *
+ * This partial editor is used to launch an OCL expression Xtext editor 
  */
 public class EssentialOCLPartialModelEditor extends PartialModelEditor {
 
-	protected Constraint oclContainer=null;
 	/**
 	 * 
 	 * Constructor.
@@ -50,10 +48,6 @@ public class EssentialOCLPartialModelEditor extends PartialModelEditor {
 			IXtextEMFReconciler modelReconciler) {
 		
 		super(viewer, resourceProvider, insertLineBreaks, semanticElement, modelReconciler);
-		if( semanticElement instanceof Constraint){
-			this.oclContainer=((Constraint)semanticElement);
-			this.semanticElement=oclContainer.getContext();
-		}
 	}
 
 	@Override
