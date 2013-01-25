@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Original authors and others - initial API and implementation
  ******************************************************************************/
@@ -15,26 +15,30 @@ import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
 
 public class RowHeaderDataProvider implements IDataProvider {
 
-	private INattableModelManager manager;
+	private final INattableModelManager manager;
 
 	public RowHeaderDataProvider(final INattableModelManager manager) {
 		this.manager = manager;
 	}
 
 	public int getColumnCount() {
-		return 1;
+		return 2;
 	}
 
 	public int getRowCount() {
-		return manager.getRowCount();
+		return this.manager.getRowCount();
 	}
 
-	public Object getDataValue(int columnIndex, int rowIndex) {
-		//FIXME : it should different in case of inversion line column		
-		return rowIndex;
+	public Object getDataValue(final int columnIndex, final int rowIndex) {
+		if(columnIndex == 0) {
+			//FIXME : it should different in case of inversion line column
+			return rowIndex;
+		} else {
+			return this.manager.getLineDataProvider().getAllExistingAxis().get(rowIndex);
+		}
 	}
 
-	public void setDataValue(int columnIndex, int rowIndex, Object newValue) {
+	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		throw new UnsupportedOperationException();
 	}
 

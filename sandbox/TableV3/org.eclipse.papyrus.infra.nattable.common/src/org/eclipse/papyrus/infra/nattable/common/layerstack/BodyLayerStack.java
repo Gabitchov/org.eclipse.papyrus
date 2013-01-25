@@ -22,6 +22,8 @@ public class BodyLayerStack extends AbstractLayerTransform {
 	public BodyLayerStack(final IDataProvider dataProvider) {
 		this.bodyDataLayer = new DataLayer(dataProvider);
 		this.bodyDataLayer.addConfiguration(new StyleConfiguration());
+		this.bodyDataLayer.setDefaultColumnWidth(200);
+
 		this.columnReorderLayer = new ColumnReorderLayer(this.bodyDataLayer);
 		this.columnHideShowLayer = new ColumnHideShowLayer(this.columnReorderLayer);
 		this.selectionLayer = new SelectionLayer(this.columnHideShowLayer);

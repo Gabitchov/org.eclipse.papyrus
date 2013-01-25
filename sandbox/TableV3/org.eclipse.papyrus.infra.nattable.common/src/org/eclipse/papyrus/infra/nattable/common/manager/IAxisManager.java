@@ -56,5 +56,9 @@ public interface IAxisManager extends IDataProvider, IDisposable {
 	//
 	//	public IContentProvider getHierarchicalContentProvider();
 
+	public boolean isUsedVertically();
+
+	public boolean isUsedHorizontally();
+
 
 }

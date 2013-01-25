@@ -19,9 +19,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
  org.eclipse.nebula.widgets.nattable.core,
- org.eclipse.uml2.uml;bundle-version="4.0.100",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
- org.eclipse.uml2.uml
+ org.eclipse.core.expressions
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Eclipse Modeling Project
@@ -35,4 +33,5 @@ Export-Package: org.eclipse.papyrus.infra.nattable.common,
  org.eclipse.papyrus.infra.nattable.common.listener,
  org.eclipse.papyrus.infra.nattable.common.manager,
  org.eclipse.papyrus.infra.nattable.common.modelresource,
+ org.eclipse.papyrus.infra.nattable.common.solver,
  org.eclipse.papyrus.infra.nattable.common.utils

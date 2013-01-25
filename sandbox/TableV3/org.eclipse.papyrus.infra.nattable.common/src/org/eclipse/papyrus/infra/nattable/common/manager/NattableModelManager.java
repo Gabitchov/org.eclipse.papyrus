@@ -16,9 +16,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.factory.AxisManagerFactory;
-import org.eclipse.papyrus.infra.nattable.common.solver.FeatureValueResolver;
-import org.eclipse.papyrus.infra.nattable.common.solver.ICrossValueSolver;
-import org.eclipse.papyrus.infra.nattable.common.solver.StereotypePropertyValueSolver;
+import org.eclipse.papyrus.infra.nattable.common.solver.CrossValueSolverFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
@@ -32,7 +30,7 @@ public class NattableModelManager implements INattableModelManager {
 
 	private IAxisManager lineManager;
 
-	final Table pTable;
+	private final Table pTable;
 
 	public NattableModelManager(final Table rawModel) {
 		this.pTable = rawModel;
@@ -95,14 +93,16 @@ public class NattableModelManager implements INattableModelManager {
 	}
 
 	public int getColumnCount() {
-		return this.columnManager.getColumnCount();
+		return getColumnDataProvider().getColumnCount();
+		//		return this.columnManager.getColumnCount();
 		// TODO Auto-generated method stub
 		//		return 0;
 	}
 
 	public int getRowCount() {
+		return getLineDataProvider().getRowCount();
 		//FIXME : we should use the horizontal manager
-		return this.pTable.getHorizontalContentProvider().getAxis().size();
+		//		return this.pTable.getHorizontalContentProvider().getAxis().size();
 	}
 
 	public void addRows(final Collection<Object> objectToAdd) {
@@ -156,21 +156,26 @@ public class NattableModelManager implements INattableModelManager {
 
 	//FIXME : on devrait avoir un service de résolution de valeur
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
-		final Object obj1 = this.columnManager.getAllExistingAxis().get(columnIndex);
-		final Object obj2 = this.lineManager.getAllExistingAxis().get(rowIndex);
+		//		final Object obj1 = this.columnManager.getAllExistingAxis().get(columnIndex);
+		//		final Object obj2 = this.lineManager.getAllExistingAxis().get(rowIndex);
 
 
-		final ICrossValueSolver featureSolver = new FeatureValueResolver();
-		if(featureSolver.handles(obj1, obj2)) {
-			return featureSolver.getValue(obj1, obj2);
-		}
+		final Object obj1 = getColumnDataProvider().getAllExistingAxis().get(columnIndex);
+		final Object obj2 = getLineDataProvider().getAllExistingAxis().get(rowIndex);
 
+		return CrossValueSolverFactory.INSTANCE.getCrossValue(obj1, obj2);
 
-
-		final ICrossValueSolver stereotypeSolver = new StereotypePropertyValueSolver();
-		if(stereotypeSolver.handles(obj1, obj2)) {
-			return stereotypeSolver.getValue(obj1, obj2);
-		}
+		//		final ICrossValueSolver featureSolver = new FeatureValueResolver();
+		//		if(featureSolver.handles(obj1, obj2)) {
+		//			return featureSolver.getValue(obj1, obj2);
+		//		}
+		//
+		//
+		//
+		//		final ICrossValueSolver stereotypeSolver = new StereotypePropertyValueSolver();
+		//		if(stereotypeSolver.handles(obj1, obj2)) {
+		//			return stereotypeSolver.getValue(obj1, obj2);
+		//		}
 
 		//		//FIXME : we should use the horizontal manager
 		//		final IAxis axis = this.pTable.getHorizontalContentProvider().getAxis().get(rowIndex);
@@ -215,7 +220,7 @@ public class NattableModelManager implements INattableModelManager {
 
 
 
-		return "N/A";
+		//		return "N/A";
 	}
 
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
@@ -224,12 +229,24 @@ public class NattableModelManager implements INattableModelManager {
 	}
 
 	public IAxisManager getColumnDataProvider() {
-		//FIXME : should be calculated
-		return this.columnManager;
+		final IAxisContentsProvider representedAxis = this.columnManager.getRepresentedContentProvider();
+		if(this.pTable.getVerticalContentProvider() == representedAxis) {
+			return this.columnManager;
+		} else if(this.pTable.getHorizontalContentProvider() == representedAxis) {
+			return this.lineManager;
+		}
+		return null;
 	}
 
 	public IAxisManager getLineDataProvider() {
-		//FIXME : should be calculated!
-		return this.lineManager;
+		final IAxisContentsProvider representedAxis = this.lineManager.getRepresentedContentProvider();
+		if(this.pTable.getHorizontalContentProvider() == representedAxis) {
+			return this.lineManager;
+		} else if(this.pTable.getVerticalContentProvider() == representedAxis) {
+			return this.columnManager;
+		}
+		return null;
 	}
+
+
 }

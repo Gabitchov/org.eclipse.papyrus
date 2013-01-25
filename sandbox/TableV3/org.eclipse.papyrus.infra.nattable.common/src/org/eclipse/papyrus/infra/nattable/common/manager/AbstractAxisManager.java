@@ -72,4 +72,13 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return this.tableManager;
 	}
 
+	public final boolean isUsedVertically() {
+		return getTable().getVerticalContentProvider() == getRepresentedContentProvider();
+	}
+
+
+	public final boolean isUsedHorizontally() {
+		return getTable().getHorizontalContentProvider() == getRepresentedContentProvider();
+	}
+
 }

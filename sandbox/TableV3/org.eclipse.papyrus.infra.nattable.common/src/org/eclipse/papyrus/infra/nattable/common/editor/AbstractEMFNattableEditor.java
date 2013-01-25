@@ -15,21 +15,31 @@ package org.eclipse.papyrus.infra.nattable.common.editor;
 
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.jface.action.GroupMarker;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractUiBindingConfiguration;
+import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
-import org.eclipse.nebula.widgets.nattable.layer.ILayer;
-import org.eclipse.nebula.widgets.nattable.print.command.PrintCommand;
-import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOffCommand;
-import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOnCommand;
+import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.print.config.DefaultPrintBindings;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.action.IMouseAction;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
@@ -47,14 +57,18 @@ import org.eclipse.papyrus.infra.nattable.common.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.common.manager.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
@@ -75,6 +89,8 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	protected INattableModelManager tableManager;
 
 	private NatTable natTable;
+
+	private MenuManager menuMgr;
 
 	/**
 	 * @param servicesRegistry
@@ -109,13 +125,14 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	@Override
 	public void createPartControl(final Composite parent) {
+
 		this.tableManager = new NattableModelManager(this.rawModel);
 
 		final BodyDataProvider fBodyDataProvider = new BodyDataProvider(this.tableManager);
 		final BodyLayerStack fBodyLayer = new BodyLayerStack(fBodyDataProvider);;
 
 		final IDataProvider colHeaderDataProvider = new ColumnHeaderDataProvider(this.tableManager);
-		final ILayer columnHeaderLayer = new ColumnHeaderLayerStack(colHeaderDataProvider, fBodyLayer, fBodyDataProvider);
+		final ColumnHeaderLayerStack columnHeaderLayer = new ColumnHeaderLayerStack(colHeaderDataProvider, fBodyLayer, fBodyDataProvider);
 
 		final IDataProvider rowHeaderDataProvider = new RowHeaderDataProvider(this.tableManager);
 
@@ -130,16 +147,17 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 			@Override
 			public Object getDataValue(final int columnIndex, final int rowIndex) {
-				return "toto" + " " + columnIndex + " " + rowIndex;
+				return "Invert Axis";
 			}
+
 			@Override
 			public int getColumnCount() {
-				return 2;
+				return 1;
 			}
 
 			@Override
 			public int getRowCount() {
-				return 2;
+				return 1;
 			}
 		};
 		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), rowHeaderLayer, columnHeaderLayer);
@@ -153,14 +171,30 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 				uiBindingRegistry.registerSingleClickBinding(new MouseEventMatcher(GridRegion.CORNER), new IMouseAction() {
 
 					public void run(final NatTable natTable, final MouseEvent event) {
+						final CompoundCommand cmd = new CompoundCommand("Switch Lines and Columns");
+						final IAxisContentsProvider vertical = AbstractEMFNattableEditor.this.rawModel.getVerticalContentProvider();
+						final IAxisContentsProvider horizontal = AbstractEMFNattableEditor.this.rawModel.getHorizontalContentProvider();
+						final EditingDomain domain = getEditingDomain();
+						//FIXME verify that we can exchanges the axis
+						Command tmp = new SetCommand(domain, AbstractEMFNattableEditor.this.rawModel, NattablePackage.eINSTANCE.getTable_HorizontalContentProvider(), vertical);
+						cmd.append(tmp);
+
+						tmp = new SetCommand(domain, AbstractEMFNattableEditor.this.rawModel, NattablePackage.eINSTANCE.getTable_VerticalContentProvider(), horizontal);
+						cmd.append(tmp);
+						domain.getCommandStack().execute(cmd);
+						natTable.refresh();
+
+
+
 						// TODO Auto-generated method stub
 						//FIXME : exchange lines and rows
-						natTable.doCommand(new TurnViewportOffCommand());
+						//						natTable.doCommand(new TurnViewportOffCommand());
+						//
+						//						natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
+						//
+						//						natTable.doCommand(new TurnViewportOnCommand());
+						//						System.out.println("something to do");
 
-						natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
-
-						natTable.doCommand(new TurnViewportOnCommand());
-						System.out.println("something to do");
 					}
 				});
 
@@ -172,10 +206,83 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		//		fBodyLayer.getBodyDataLayer().addConfiguration(new StyleConfiguration());
 		//		fBodyLayer.addConfiguration(new StyleConfiguration());
 		this.natTable = new NatTable(parent, gridLayer, false);
-		this.natTable.configure();
-		addDragAndDropSupport(this.natTable);
 
+		this.natTable.configure();
+
+
+
+
+		addDragAndDropSupport(this.natTable);
+		//we create a menu manager
+		this.menuMgr = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.common.editor") {
+
+			@Override
+			public void add(final IAction action) {
+				//				System.out.println(action);
+				super.add(action);
+			}
+
+			@Override
+			public void add(final IContributionItem item) {
+				// TODO Auto-generated method stub
+				//				System.out.println(item);
+				super.add(item);
+			}
+		}; //$NON-NLS-1$
+		this.menuMgr.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		this.menuMgr.setRemoveAllWhenShown(true);
+
+		final Menu menu = this.menuMgr.createContextMenu(this.natTable);
+		this.natTable.setMenu(menu);
+
+		getSite().registerContextMenu(this.menuMgr, new ISelectionProvider() {
+
+			public void setSelection(final ISelection selection) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public void removeSelectionChangedListener(final ISelectionChangedListener listener) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public ISelection getSelection() {
+
+				final SelectionLayer sel = columnHeaderLayer.getSelectionLayer();
+				//sel.getLastS
+
+				//				final SelectionLayer sel = columnHeaderLayer.getSelectionLayer();
+				//				PositionCoordinate[] cellPos = sel.getSelectedCellPositions();
+				//				if(cellPos.length >= 1) {
+				//					System.out.println("pos1=" + cellPos[0].columnPosition + " " + cellPos[0].getColumnPosition());
+				//				}
+				//				//				sel.s
+				//				int i = 0;
+				//				i++;
+				final SelectionLayer sel2 = fBodyLayer.getSelectionLayer();
+				final PositionCoordinate[] cellPos = sel2.getSelectedCellPositions();
+				if(cellPos.length >= 1) {
+					System.out.println("pos2=" + cellPos[0].columnPosition + " " + cellPos[0].getColumnPosition());
+
+					final boolean fully = sel.isColumnPositionFullySelected(cellPos[0].columnPosition);
+					final ILayerCell cell = columnHeaderLayer.getCellByPosition(cellPos[0].columnPosition, 1);
+					return new StructuredSelection(cell.getDataValue());
+					//					System.out.println(fully);
+				}
+				//				sel.getS
+				// TODO Auto-generated method stub
+				return new StructuredSelection(AbstractEMFNattableEditor.this.rawModel.getContext());
+			}
+
+			public void addSelectionChangedListener(final ISelectionChangedListener listener) {
+				// TODO Auto-generated method stub
+				int i = 0;
+				i++;
+			}
+		});
 	}
+
 
 
 
@@ -242,6 +349,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		if(adapter == NatTable.class) {
 			return this.natTable;
 		}
+		//		System.out.println(adapter);
 		return super.getAdapter(adapter);
 	}
 }

@@ -11,7 +11,6 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.swt.graphics.GC;
@@ -69,7 +68,7 @@ public class CustomizedCellPainter extends TextPainter {
 			}
 			//			//stereotype management
 			//			else if(value instanceof String){
-			//				
+			//
 			//			}
 
 
@@ -109,7 +108,7 @@ public class CustomizedCellPainter extends TextPainter {
 		try {
 			return ServiceUtilsForResource.getInstance().getServiceRegistry(object.eResource());
 		} catch (final ServiceException e) {
-			Activator.log.error("ServiceRegistry not found", e);
+			//			Activator.log.error("ServiceRegistry not found", e);
 		}
 		return null;
 	}

@@ -10,9 +10,9 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 
-public class CompositeAxisManager extends AbstractAxisManager{
+public class CompositeAxisManager extends AbstractAxisManager {
 
-//	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.common.composite.axis.manager";
+	//	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.common.composite.axis.manager";
 	/**
 	 * the managed managers
 	 */
@@ -40,15 +40,25 @@ public class CompositeAxisManager extends AbstractAxisManager{
 	}
 
 	public int getColumnCount() {
-		int nbColumns=0;
-		for(final IAxisManager current : this.managers){
-			nbColumns+=current.getColumnCount();
+		if(isUsedVertically()) {
+			int nbColumns = 0;
+			for(final IAxisManager current : this.managers) {
+				nbColumns += current.getColumnCount();
+			}
+			return nbColumns;
+		} else {
+			return 0;
 		}
-		return nbColumns;
 	}
 
 	public int getRowCount() {
-		// TODO Auto-generated method stub
+		if(isUsedHorizontally()){
+				int nbColumns = 0;
+				for(final IAxisManager current : this.managers) {
+				nbColumns += current.getRowCount();
+				}
+				return nbColumns;
+			}
 		return 0;
 	}
 
@@ -89,13 +99,13 @@ public class CompositeAxisManager extends AbstractAxisManager{
 	@Override
 	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand("Add Axis Command");
-		for(final IAxisManager current : this.managers){
+		for(final IAxisManager current : this.managers) {
 			final Command tmp = current.getAddAxisCommand(domain, objectToAdd);
-			if(tmp!=null){
+			if(tmp != null) {
 				cmd.append(tmp);
 			}
 		}
-		if(cmd.isEmpty()){
+		if(cmd.isEmpty()) {
 			return null;
 		}
 		return cmd;
@@ -104,13 +114,13 @@ public class CompositeAxisManager extends AbstractAxisManager{
 	@Override
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand("Add Axis Command");
-		for(final IAxisManager current : this.managers){
+		for(final IAxisManager current : this.managers) {
 			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd);
-			if(tmp!=null){
+			if(tmp != null) {
 				cmd.append(tmp);
 			}
 		}
-		if(cmd.isEmpty()){
+		if(cmd.isEmpty()) {
 			return null;
 		}
 		return cmd;
@@ -159,5 +169,9 @@ public class CompositeAxisManager extends AbstractAxisManager{
 		}
 		return values;
 	}
+
+
+
+
 
 }

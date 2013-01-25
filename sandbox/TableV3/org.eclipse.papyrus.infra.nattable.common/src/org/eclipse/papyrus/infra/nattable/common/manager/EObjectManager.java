@@ -59,6 +59,7 @@ public class EObjectManager extends AbstractAxisManager{
 	}
 
 	public Object getHeaderDataValue(final int columnIndex, final int rowIndex) {
+
 		return null;
 
 	}
@@ -96,5 +97,12 @@ public class EObjectManager extends AbstractAxisManager{
 		}
 		return elements;
 	}
+
+	public List<String> getEncapsulatedAxisManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }
