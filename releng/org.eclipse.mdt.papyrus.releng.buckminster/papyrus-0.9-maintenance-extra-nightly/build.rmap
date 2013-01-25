@@ -340,6 +340,15 @@
       </rm:uri>
     </rm:provider>
 
+
+    <!-- CDT -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}//tools/cdt/releases/juno">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+   
+
     <!-- Subversive -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("Subversive",0) -->
