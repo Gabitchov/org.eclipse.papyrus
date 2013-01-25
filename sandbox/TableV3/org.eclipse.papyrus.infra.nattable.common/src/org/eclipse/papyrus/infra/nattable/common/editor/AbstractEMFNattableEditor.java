@@ -24,22 +24,15 @@ import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractUiBindingConfiguration;
-import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.print.config.DefaultPrintBindings;
-import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.action.IMouseAction;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
@@ -56,6 +49,7 @@ import org.eclipse.papyrus.infra.nattable.common.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.common.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.common.manager.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.common.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -91,6 +85,8 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	private NatTable natTable;
 
 	private MenuManager menuMgr;
+
+	private TableSelectionProvider selectionProvider;
 
 	/**
 	 * @param servicesRegistry
@@ -147,7 +143,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 			@Override
 			public Object getDataValue(final int columnIndex, final int rowIndex) {
-				return "Invert Axis";
+				return "Invert Axis \n (Long)" + columnIndex;
 			}
 
 			@Override
@@ -235,56 +231,11 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		final Menu menu = this.menuMgr.createContextMenu(this.natTable);
 		this.natTable.setMenu(menu);
 
-		getSite().registerContextMenu(this.menuMgr, new ISelectionProvider() {
+		this.selectionProvider = new TableSelectionProvider(fBodyLayer.getSelectionLayer());
+		getSite().registerContextMenu(this.menuMgr, this.selectionProvider);
+		getSite().setSelectionProvider(this.selectionProvider);
 
-			public void setSelection(final ISelection selection) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void removeSelectionChangedListener(final ISelectionChangedListener listener) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public ISelection getSelection() {
-
-				final SelectionLayer sel = columnHeaderLayer.getSelectionLayer();
-				//sel.getLastS
-
-				//				final SelectionLayer sel = columnHeaderLayer.getSelectionLayer();
-				//				PositionCoordinate[] cellPos = sel.getSelectedCellPositions();
-				//				if(cellPos.length >= 1) {
-				//					System.out.println("pos1=" + cellPos[0].columnPosition + " " + cellPos[0].getColumnPosition());
-				//				}
-				//				//				sel.s
-				//				int i = 0;
-				//				i++;
-				final SelectionLayer sel2 = fBodyLayer.getSelectionLayer();
-				final PositionCoordinate[] cellPos = sel2.getSelectedCellPositions();
-				if(cellPos.length >= 1) {
-					System.out.println("pos2=" + cellPos[0].columnPosition + " " + cellPos[0].getColumnPosition());
-
-					final boolean fully = sel.isColumnPositionFullySelected(cellPos[0].columnPosition);
-					final ILayerCell cell = columnHeaderLayer.getCellByPosition(cellPos[0].columnPosition, 1);
-					return new StructuredSelection(cell.getDataValue());
-					//					System.out.println(fully);
-				}
-				//				sel.getS
-				// TODO Auto-generated method stub
-				return new StructuredSelection(AbstractEMFNattableEditor.this.rawModel.getContext());
-			}
-
-			public void addSelectionChangedListener(final ISelectionChangedListener listener) {
-				// TODO Auto-generated method stub
-				int i = 0;
-				i++;
-			}
-		});
 	}
-
-
-
 
 	/**
 	 * Enable the table to receive dropped elements
@@ -352,4 +303,11 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		//		System.out.println(adapter);
 		return super.getAdapter(adapter);
 	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		this.selectionProvider.dispose();
+	}
+
 }
