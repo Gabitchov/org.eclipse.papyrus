@@ -709,7 +709,7 @@ public class MultiPageEditorSite4x implements IMultiPageEditorSite, INestable {
 			try {
 				//4.2.2
 				PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, part, context, menuExtenders);
-			} catch (Exception ex) {
+			} catch (NoSuchMethodError ex) {
 				//Method not found (4.2.1)
 				try {
 					Constructor<PopupMenuExtender> constructor = PopupMenuExtender.class.getConstructor(String.class, MenuManager.class, ISelectionProvider.class, IWorkbenchPart.class, boolean.class);
