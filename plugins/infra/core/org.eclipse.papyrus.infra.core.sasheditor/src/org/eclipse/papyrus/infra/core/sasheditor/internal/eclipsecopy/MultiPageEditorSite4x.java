@@ -10,7 +10,10 @@
  *******************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.e4.core.contexts.ContextFunction;
@@ -22,6 +25,7 @@ import org.eclipse.jface.viewers.IPostSelectionProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
@@ -621,14 +625,14 @@ public class MultiPageEditorSite4x implements IMultiPageEditorSite, INestable {
 		if(menuExtenders == null) {
 			menuExtenders = new ArrayList(1);
 		}
-		PartSite.registerContextMenu(menuID, menuMgr, selProvider, true, editor, context, menuExtenders);
+		registerContextMenu(menuID, menuMgr, selProvider, true, editor, context, menuExtenders);
 	}
 
 	public final void registerContextMenu(final String menuId, final MenuManager menuManager, final ISelectionProvider selectionProvider, final boolean includeEditorInput) {
 		if(menuExtenders == null) {
 			menuExtenders = new ArrayList(1);
 		}
-		PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, editor, context, menuExtenders);
+		registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, editor, context, menuExtenders);
 	}
 
 	/**
@@ -660,6 +664,60 @@ public class MultiPageEditorSite4x implements IMultiPageEditorSite, INestable {
 			} else {
 				selectionProvider.addSelectionChangedListener(getPostSelectionChangedListener());
 
+			}
+		}
+	}
+
+	/**
+	 * This is a helper method for the register context menu functionality. It
+	 * is provided so that different implementations of the <code>IWorkbenchPartSite</code> interface don't have to worry about how
+	 * context menus should work.
+	 * 
+	 * @param menuId
+	 *        the menu id
+	 * @param menuManager
+	 *        the menu manager
+	 * @param selectionProvider
+	 *        the selection provider
+	 * @param includeEditorInput
+	 *        whether editor inputs should be included in the structured
+	 *        selection when calculating contributions
+	 * @param part
+	 *        the part for this site
+	 * @param menuExtenders
+	 *        the collection of menu extenders for this site
+	 * @see IWorkbenchPartSite#registerContextMenu(MenuManager, ISelectionProvider)
+	 */
+	public static final void registerContextMenu(final String menuId, final MenuManager menuManager, final ISelectionProvider selectionProvider, final boolean includeEditorInput, final IWorkbenchPart part, final IEclipseContext context, final Collection menuExtenders) {
+		/*
+		 * Check to see if the same menu manager and selection provider have
+		 * already been used. If they have, then we can just add another menu
+		 * identifier to the existing PopupMenuExtender.
+		 */
+		final Iterator extenderItr = menuExtenders.iterator();
+		boolean foundMatch = false;
+		while(extenderItr.hasNext()) {
+			final PopupMenuExtender existingExtender = (PopupMenuExtender)extenderItr.next();
+			if(existingExtender.matches(menuManager, selectionProvider, part)) {
+				existingExtender.addMenuId(menuId);
+				foundMatch = true;
+				break;
+			}
+		}
+
+		if(!foundMatch) {
+			try {
+				//4.2.2
+				PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, part, context, menuExtenders);
+			} catch (Exception ex) {
+				//Method not found (4.2.1)
+				try {
+					Constructor<PopupMenuExtender> constructor = PopupMenuExtender.class.getConstructor(String.class, MenuManager.class, ISelectionProvider.class, IWorkbenchPart.class, boolean.class);
+					PopupMenuExtender extender = constructor.newInstance(menuId, menuManager, selectionProvider, part, includeEditorInput);
+					menuExtenders.add(extender);
+				} catch (Exception ex2) {
+					Activator.log.error(ex2);
+				}
 			}
 		}
 	}
