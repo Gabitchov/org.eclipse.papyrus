@@ -10,12 +10,17 @@
   with LTTng
    </description>
 
-   <copyright>
-      (c) CEA LISE 2013
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2012 CEA LIST
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
-   <license>
-      This program is provided by the CEA LIST in the context of the projects VERDE, SIRSEC, RT-DESCRIBE and RT-SIMEX. It can be used free of charge until the end of the respective projects. Further use or exploitation requires a new agreement with the CEA
+   <license url="%licenseURL">
+      %license
    </license>
 
    <plugin
