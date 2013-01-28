@@ -59,6 +59,7 @@ public class DeleteTableHandler extends AbstractTableModelExplorerHandler {
 						if(pageMngr.isOpen(table)) {
 							pageMngr.closePage(table);
 						}
+						pageMngr.removePage(table);
 					}
 				};
 				// the destroy element command is a good way to destroy the cross reference
