@@ -21,12 +21,14 @@ import java.util.Set;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
+import org.eclipse.papyrus.infra.widgets.strategy.StrategyBasedContentProvider;
+import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -216,7 +218,7 @@ public class ReferenceSelector implements IElementSelector {
 	private void addSelectedElements(Object[] semanticElements) {
 		if(semanticElements.length > 0) {
 			selectedElements.addAll(Arrays.asList(semanticElements));
-			fTree.getViewer().refresh();
+			refresh();
 		}
 	}
 
@@ -276,7 +278,7 @@ public class ReferenceSelector implements IElementSelector {
 	public void setSelectedElements(Object[] semanticElements) {
 		selectedElements.clear();
 		selectedElements.addAll(Arrays.asList(semanticElements));
-		fTree.getViewer().refresh();
+		refresh();
 	}
 
 	public void newObjectCreated(Object newObject) {
@@ -292,6 +294,7 @@ public class ReferenceSelector implements IElementSelector {
 	 * Refreshes this selector's {@link org.eclipse.swt.widgets.List}
 	 */
 	public void refresh() {
+		((SelectionFilteredBrowseStrategy)contentProvider.getBrowseStrategy()).refresh();
 		fTree.getViewer().refresh();
 	}
 
@@ -315,10 +318,50 @@ public class ReferenceSelector implements IElementSelector {
 	 * @param staticContentProvider
 	 */
 	public void setContentProvider(IStaticContentProvider staticContentProvider) {
-		this.contentProvider = new EncapsulatedContentProvider(staticContentProvider);
+
+		ITreeContentProvider provider = new EncapsulatedContentProvider(staticContentProvider);
+
+		TreeBrowseStrategy filteredBrowseStrategy = new SelectionFilteredBrowseStrategy(provider);
+
+		TreeBrowseStrategy revealBrowseStrategy = new ProviderBasedBrowseStrategy(provider);
+
+		this.contentProvider = new StrategyBasedContentProvider(filteredBrowseStrategy, revealBrowseStrategy);
+
 		if(fTree != null) {
 			fTree.getViewer().setContentProvider(contentProvider);
 			fTree.getViewer().setInput(""); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * Strategy to hide tree elements which are already selected, when the selector is defined as unique
+	 * 
+	 * @author Camille Letavernier
+	 * 
+	 */
+	private class SelectionFilteredBrowseStrategy extends ProviderBasedBrowseStrategy {
+
+		public SelectionFilteredBrowseStrategy(ITreeContentProvider provider) {
+			super(provider);
+		}
+
+		@Override
+		public boolean isValidValue(Object element) {
+			if(!unique) {
+				return super.isValidValue(element);
+			}
+
+			if(!super.isValidValue(element)) {
+				return false;
+			}
+
+			return !selectedElements.contains(getAdaptedValue(element));
+		}
+
+		public void refresh() {
+			if(unique) {
+				clearCache();
+			}
 		}
 	}
 
@@ -354,18 +397,18 @@ public class ReferenceSelector implements IElementSelector {
 		//			}
 		//		});
 
-		fTree.getViewer().addFilter(new ViewerFilter() {
-
-			@Override
-			public boolean select(Viewer viewer, Object parentElement, Object containerElement) {
-				if(unique) {
-					//TODO : check if the selected element has selectable children
-					return !selectedElements.contains(contentProvider.getAdaptedValue(containerElement));
-				} else {
-					return true;
-				}
-			}
-		});
+		//		fTree.getViewer().addFilter(new ViewerFilter() {
+		//
+		//			@Override
+		//			public boolean select(Viewer viewer, Object parentElement, Object containerElement) {
+		//				if(unique) {
+		//					//TODO : check if the selected element has selectable children
+		//					return !selectedElements.contains(contentProvider.getAdaptedValue(containerElement));
+		//				} else {
+		//					return true;
+		//				}
+		//			}
+		//		});
 
 		//Adds double-click support
 		fTree.getViewer().getTree().addSelectionListener(new SelectionListener() {

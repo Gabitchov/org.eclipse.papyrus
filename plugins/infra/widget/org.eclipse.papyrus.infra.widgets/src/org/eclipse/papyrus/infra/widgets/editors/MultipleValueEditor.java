@@ -95,11 +95,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	protected Button edit;
 
 	/**
-	 * The Dialog displayed when adding new elements
-	 */
-	protected MultipleValueSelectorDialog dialog;
-
-	/**
 	 * The element selector for this editor's dialog
 	 */
 	protected IElementSelector selector;
@@ -197,10 +192,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		createListControls();
 
 		this.selector = selector;
-		dialog = createMultipleValueSelectorDialog(parent, selector, ordered, unique, label);
-		if(label != null) {
-			dialog.setTitle(label);
-		}
 
 		setLabelProvider(new LabelProvider());
 		setUpperBound(upperBound);
@@ -236,7 +227,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 	public void setSelector(IElementSelector selector) {
 		this.selector = selector;
-		this.dialog.setSelector(selector);
 	}
 
 	protected void updateControls() {
@@ -319,7 +309,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 *        The label provider for this editor
 	 */
 	public void setLabelProvider(ILabelProvider labelProvider) {
-		dialog.setLabelProvider(labelProvider);
 		treeViewer.setLabelProvider(labelProvider);
 	}
 
@@ -339,7 +328,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	public void setOrdered(boolean ordered) {
 		this.ordered = ordered;
-		this.dialog.setOrdered(ordered);
 
 		updateControls();
 	}
@@ -349,7 +337,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	public void setUnique(boolean unique) {
 		this.unique = unique;
-		this.dialog.setUnique(unique);
 
 		updateControls();
 	}
@@ -424,6 +411,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 			return;
 		}
+
+		String dialogLabel = label == null ? null : label.getText();
+		MultipleValueSelectorDialog dialog = createMultipleValueSelectorDialog(getParent(), selector, ordered, unique, dialogLabel);
+		dialog.setLabelProvider((ILabelProvider)treeViewer.getLabelProvider());
+		dialog.setFactory(referenceFactory);
+		dialog.setUpperBound(upperBound);
 
 		if(modelProperty != null) {
 			dialog.setInitialSelections(modelProperty.toArray());
@@ -545,7 +538,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	public void setFactory(ReferenceValueFactory factory) {
 		this.referenceFactory = factory;
-		dialog.setFactory(factory);
 		updateControls();
 	}
 
@@ -615,7 +607,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			setLayout(new GridLayout(2, false));
 		}
 		super.setLabel(label);
-		dialog.setTitle(label);
 	}
 
 	@Override
@@ -673,7 +664,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	public void setUpperBound(int upperBound) {
 		this.upperBound = upperBound;
-		dialog.setUpperBound(upperBound);
 	}
 
 	public void updateBoutons() {

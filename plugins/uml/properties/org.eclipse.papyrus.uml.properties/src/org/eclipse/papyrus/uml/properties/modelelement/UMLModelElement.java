@@ -49,6 +49,7 @@ import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.ProvidedInterfaceObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.RequiredInterfaceObservableList;
+import org.eclipse.papyrus.uml.tools.providers.ConstrainedElementContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContainerContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider;
@@ -153,6 +154,12 @@ public class UMLModelElement extends EMFModelElement {
 
 		if(feature == null) {
 			return EmptyContentProvider.instance;
+		}
+
+		//Workaround: the standard ContentProvider does not correctly hide the selected elements in ReferenceSelector. 
+		//With a ContainmentBasedBrowseStrategy, it works better (But we don't have the infinite tree in the selection dialog).
+		if(feature == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
+			return new ConstrainedElementContentProvider(source, feature);
 		}
 
 		return new UMLContentProvider(source, feature);

@@ -36,6 +36,4 @@ public interface TreeBrowseStrategy extends ITreeContentProvider, IRevealSemanti
 	@Deprecated
 	public TreePath findPath(Object semanticElement, Object[] roots);
 
-
-
 }
