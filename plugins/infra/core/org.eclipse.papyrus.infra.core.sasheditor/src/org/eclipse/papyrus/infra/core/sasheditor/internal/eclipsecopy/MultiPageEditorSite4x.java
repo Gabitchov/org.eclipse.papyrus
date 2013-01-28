@@ -689,28 +689,29 @@ public class MultiPageEditorSite4x implements IMultiPageEditorSite, INestable {
 	 * @see IWorkbenchPartSite#registerContextMenu(MenuManager, ISelectionProvider)
 	 */
 	public static final void registerContextMenu(final String menuId, final MenuManager menuManager, final ISelectionProvider selectionProvider, final boolean includeEditorInput, final IWorkbenchPart part, final IEclipseContext context, final Collection menuExtenders) {
-		/*
-		 * Check to see if the same menu manager and selection provider have
-		 * already been used. If they have, then we can just add another menu
-		 * identifier to the existing PopupMenuExtender.
-		 */
-		final Iterator extenderItr = menuExtenders.iterator();
-		boolean foundMatch = false;
-		while(extenderItr.hasNext()) {
-			final PopupMenuExtender existingExtender = (PopupMenuExtender)extenderItr.next();
-			if(existingExtender.matches(menuManager, selectionProvider, part)) {
-				existingExtender.addMenuId(menuId);
-				foundMatch = true;
-				break;
-			}
-		}
+		try {
+			//4.2.2
+			PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, part, context, menuExtenders);
+		} catch (NoSuchMethodError ex) {
+			//Method not found (4.2.0, 4.2.1)
 
-		if(!foundMatch) {
-			try {
-				//4.2.2
-				PartSite.registerContextMenu(menuId, menuManager, selectionProvider, includeEditorInput, part, context, menuExtenders);
-			} catch (NoSuchMethodError ex) {
-				//Method not found (4.2.1)
+			/*
+			 * Check to see if the same menu manager and selection provider have
+			 * already been used. If they have, then we can just add another menu
+			 * identifier to the existing PopupMenuExtender.
+			 */
+			final Iterator extenderItr = menuExtenders.iterator();
+			boolean foundMatch = false;
+			while(extenderItr.hasNext()) {
+				final PopupMenuExtender existingExtender = (PopupMenuExtender)extenderItr.next();
+				if(existingExtender.matches(menuManager, selectionProvider, part)) {
+					existingExtender.addMenuId(menuId);
+					foundMatch = true;
+					break;
+				}
+			}
+
+			if(!foundMatch) {
 				try {
 					Constructor<PopupMenuExtender> constructor = PopupMenuExtender.class.getConstructor(String.class, MenuManager.class, ISelectionProvider.class, IWorkbenchPart.class, boolean.class);
 					PopupMenuExtender extender = constructor.newInstance(menuId, menuManager, selectionProvider, part, includeEditorInput);
