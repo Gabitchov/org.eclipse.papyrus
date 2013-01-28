@@ -343,7 +343,8 @@
 
     <!-- CDT -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <rm:uri format="{0}/tools/cdt/releases/juno">
+      <!-- updateFrom("CDT",0) -->
+      <rm:uri format="{0}/tools/cdt/builds/juno/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
