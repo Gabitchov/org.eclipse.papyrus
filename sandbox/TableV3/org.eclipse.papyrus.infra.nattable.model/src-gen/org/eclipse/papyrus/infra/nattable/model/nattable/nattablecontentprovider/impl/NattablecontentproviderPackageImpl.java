@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -156,6 +157,15 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getIAxisContentsProvider_JavaContentProviderIds() {
+		return (EAttribute)iAxisContentsProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getIAxisContentsProvider__GetAxis() {
 		return iAxisContentsProviderEClass.getEOperations().get(0);
 	}
@@ -234,6 +244,7 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 
 		// Create classes and their features
 		iAxisContentsProviderEClass = createEClass(IAXIS_CONTENTS_PROVIDER);
+		createEAttribute(iAxisContentsProviderEClass, IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS);
 		createEOperation(iAxisContentsProviderEClass, IAXIS_CONTENTS_PROVIDER___GET_AXIS);
 
 		defaultContentProviderEClass = createEClass(DEFAULT_CONTENT_PROVIDER);
@@ -285,6 +296,7 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iAxisContentsProviderEClass, IAxisContentsProvider.class, "IAxisContentsProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIAxisContentsProvider_JavaContentProviderIds(), ecorePackage.getEString(), "javaContentProviderIds", null, 1, -1, IAxisContentsProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getIAxisContentsProvider__GetAxis(), theNattablePackage.getIAxis(), "getAxis", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 

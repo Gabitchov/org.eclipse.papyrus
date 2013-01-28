@@ -32,10 +32,6 @@
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="pastedElementContainmentFeature"
           eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaVerticalContentProviderIds"
-          lowerBound="1" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaHorizontalContentProviderIds"
-          lowerBound="1" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultVerticalContentProvider"
           eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultHorizontalContentProvider"
@@ -53,6 +49,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="IAxisContentsProvider" abstract="true"
         interface="true" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eOperations name="getAxis" upperBound="-1" eType="#//IAxis"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaContentProviderIds"
+          lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DefaultContentProvider" eSuperTypes="#//nattablecontentprovider/IAxisContentsProvider">
       <eStructuralFeatures xsi:type="ecore:EReference" name="axis" upperBound="-1"

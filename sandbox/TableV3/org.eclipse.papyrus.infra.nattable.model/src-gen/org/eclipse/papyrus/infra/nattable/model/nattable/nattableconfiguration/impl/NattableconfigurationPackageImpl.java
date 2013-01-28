@@ -158,26 +158,8 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTableEditorConfiguration_JavaVerticalContentProviderIds() {
-		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTableEditorConfiguration_JavaHorizontalContentProviderIds() {
-		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTableEditorConfiguration_DefaultVerticalContentProvider() {
-		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(4);
+		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -186,7 +168,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	public EReference getTableEditorConfiguration_DefaultHorizontalContentProvider() {
-		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(5);
+		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -247,8 +229,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		tableEditorConfigurationEClass = createEClass(TABLE_EDITOR_CONFIGURATION);
 		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID);
 		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE);
-		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS);
-		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS);
 		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER);
 		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER);
 
@@ -296,8 +276,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		initEClass(tableEditorConfigurationEClass, TableEditorConfiguration.class, "TableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableEditorConfiguration_PastedElementTypeId(), theEcorePackage.getEString(), "pastedElementTypeId", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTableEditorConfiguration_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTableEditorConfiguration_JavaVerticalContentProviderIds(), theEcorePackage.getEString(), "javaVerticalContentProviderIds", null, 1, -1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTableEditorConfiguration_JavaHorizontalContentProviderIds(), theEcorePackage.getEString(), "javaHorizontalContentProviderIds", null, 1, -1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTableEditorConfiguration_DefaultVerticalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultVerticalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTableEditorConfiguration_DefaultHorizontalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultHorizontalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

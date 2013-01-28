@@ -12,12 +12,10 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
 
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -26,7 +24,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
@@ -42,8 +39,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getJavaVerticalContentProviderIds <em>Java Vertical Content Provider Ids</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getJavaHorizontalContentProviderIds <em>Java Horizontal Content Provider Ids</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}</li>
  * </ul>
@@ -81,26 +76,6 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * @ordered
 	 */
 	protected EReference pastedElementContainmentFeature;
-
-	/**
-	 * The cached value of the '{@link #getJavaVerticalContentProviderIds() <em>Java Vertical Content Provider Ids</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getJavaVerticalContentProviderIds()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> javaVerticalContentProviderIds;
-
-	/**
-	 * The cached value of the '{@link #getJavaHorizontalContentProviderIds() <em>Java Horizontal Content Provider Ids</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getJavaHorizontalContentProviderIds()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> javaHorizontalContentProviderIds;
 
 	/**
 	 * The cached value of the '{@link #getDefaultVerticalContentProvider() <em>Default Vertical Content Provider</em>}' containment reference.
@@ -198,30 +173,6 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 		pastedElementContainmentFeature = newPastedElementContainmentFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<String> getJavaVerticalContentProviderIds() {
-		if (javaVerticalContentProviderIds == null) {
-			javaVerticalContentProviderIds = new EDataTypeUniqueEList<String>(String.class, this, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS);
-		}
-		return javaVerticalContentProviderIds;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<String> getJavaHorizontalContentProviderIds() {
-		if (javaHorizontalContentProviderIds == null) {
-			javaHorizontalContentProviderIds = new EDataTypeUniqueEList<String>(String.class, this, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS);
-		}
-		return javaHorizontalContentProviderIds;
 	}
 
 	/**
@@ -339,10 +290,6 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				if (resolve) return getPastedElementContainmentFeature();
 				return basicGetPastedElementContainmentFeature();
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS:
-				return getJavaVerticalContentProviderIds();
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS:
-				return getJavaHorizontalContentProviderIds();
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
 				return getDefaultVerticalContentProvider();
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
@@ -365,14 +312,6 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 				return;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				setPastedElementContainmentFeature((EReference)newValue);
-				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS:
-				getJavaVerticalContentProviderIds().clear();
-				getJavaVerticalContentProviderIds().addAll((Collection<? extends String>)newValue);
-				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS:
-				getJavaHorizontalContentProviderIds().clear();
-				getJavaHorizontalContentProviderIds().addAll((Collection<? extends String>)newValue);
 				return;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
 				setDefaultVerticalContentProvider((IAxisContentsProvider)newValue);
@@ -398,12 +337,6 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				setPastedElementContainmentFeature((EReference)null);
 				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS:
-				getJavaVerticalContentProviderIds().clear();
-				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS:
-				getJavaHorizontalContentProviderIds().clear();
-				return;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
 				setDefaultVerticalContentProvider((IAxisContentsProvider)null);
 				return;
@@ -426,10 +359,6 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 				return PASTED_ELEMENT_TYPE_ID_EDEFAULT == null ? pastedElementTypeId != null : !PASTED_ELEMENT_TYPE_ID_EDEFAULT.equals(pastedElementTypeId);
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
 				return pastedElementContainmentFeature != null;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS:
-				return javaVerticalContentProviderIds != null && !javaVerticalContentProviderIds.isEmpty();
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS:
-				return javaHorizontalContentProviderIds != null && !javaHorizontalContentProviderIds.isEmpty();
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
 				return defaultVerticalContentProvider != null;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
@@ -450,10 +379,6 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pastedElementTypeId: "); //$NON-NLS-1$
 		result.append(pastedElementTypeId);
-		result.append(", javaVerticalContentProviderIds: "); //$NON-NLS-1$
-		result.append(javaVerticalContentProviderIds);
-		result.append(", javaHorizontalContentProviderIds: "); //$NON-NLS-1$
-		result.append(javaHorizontalContentProviderIds);
 		result.append(')');
 		return result.toString();
 	}

@@ -18,7 +18,6 @@ import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.factory.AxisManagerFactory;
 import org.eclipse.papyrus.infra.nattable.common.solver.CrossValueSolverFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -67,24 +66,13 @@ public class NattableModelManager implements INattableModelManager {
 	}
 
 
-	//FIXME : pourrait être fait directement dans LocalTableEditorConfiguration en custom code
 	protected List<String> getVerticalContentProviderIds() {
-		final LocalTableEditorConfiguration localConfig = this.pTable.getEditorConfiguration();
-		List<String> ids = localConfig.getJavaVerticalContentProviderIds();
-		if(ids.isEmpty()) {
-			ids = localConfig.getDefaultTableEditorConfiguration().getJavaVerticalContentProviderIds();
-		}
-		return ids;
+		return this.pTable.getVerticalContentProvider().getJavaContentProviderIds();
 	}
 
-	//FIXME : pourrait être fait directement dans LocalTableEditorConfiguration en custom code
+
 	protected List<String> getHorizontalContentProviderIds() {
-		final LocalTableEditorConfiguration localConfig = this.pTable.getEditorConfiguration();
-		List<String> ids = localConfig.getJavaHorizontalContentProviderIds();
-		if(ids.isEmpty()) {
-			ids = localConfig.getDefaultTableEditorConfiguration().getJavaHorizontalContentProviderIds();
-		}
-		return ids;
+		return this.pTable.getHorizontalContentProvider().getJavaContentProviderIds();
 	}
 
 	public void dispose() {

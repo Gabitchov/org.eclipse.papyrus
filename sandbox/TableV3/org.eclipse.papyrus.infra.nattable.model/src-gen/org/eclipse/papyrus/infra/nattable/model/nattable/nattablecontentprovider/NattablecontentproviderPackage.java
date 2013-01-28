@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -87,13 +88,22 @@ public interface NattablecontentproviderPackage extends EPackage {
 	int IAXIS_CONTENTS_PROVIDER__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>IAxis Contents Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IAXIS_CONTENTS_PROVIDER_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+	int IAXIS_CONTENTS_PROVIDER_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -140,6 +150,15 @@ public interface NattablecontentproviderPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFAULT_CONTENT_PROVIDER__EANNOTATIONS = IAXIS_CONTENTS_PROVIDER__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
 
 	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
@@ -216,6 +235,15 @@ public interface NattablecontentproviderPackage extends EPackage {
 	int EMF_FEATURE_CONTENT_PROVIDER__EANNOTATIONS = DEFAULT_CONTENT_PROVIDER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_FEATURE_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
+
+	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,6 +307,15 @@ public interface NattablecontentproviderPackage extends EPackage {
 	int ISYNCHRONIZED_AXIS_CONTENT_PROVIDER__EANNOTATIONS = IAXIS_CONTENTS_PROVIDER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISYNCHRONIZED_AXIS_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
+
+	/**
 	 * The number of structural features of the '<em>ISynchronized Axis Content Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,6 +361,17 @@ public interface NattablecontentproviderPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIAxisContentsProvider();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getJavaContentProviderIds <em>Java Content Provider Ids</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Java Content Provider Ids</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getJavaContentProviderIds()
+	 * @see #getIAxisContentsProvider()
+	 * @generated
+	 */
+	EAttribute getIAxisContentsProvider_JavaContentProviderIds();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getAxis() <em>Get Axis</em>}' operation.
@@ -419,6 +467,14 @@ public interface NattablecontentproviderPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IAXIS_CONTENTS_PROVIDER = eINSTANCE.getIAxisContentsProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Content Provider Ids</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = eINSTANCE.getIAxisContentsProvider_JavaContentProviderIds();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Axis</b></em>' operation.

@@ -105,31 +105,13 @@ public interface NattableconfigurationPackage extends EPackage {
 	int TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Java Vertical Content Provider Ids</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Java Horizontal Content Provider Ids</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Default Vertical Content Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Default Horizontal Content Provider</b></em>' containment reference.
@@ -138,7 +120,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Table Editor Configuration</em>' class.
@@ -147,7 +129,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -203,24 +185,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCAL_TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Java Vertical Content Provider Ids</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS = TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS;
-
-	/**
-	 * The feature id for the '<em><b>Java Horizontal Content Provider Ids</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS = TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS;
 
 	/**
 	 * The feature id for the '<em><b>Default Vertical Content Provider</b></em>' containment reference.
@@ -317,28 +281,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTableEditorConfiguration_PastedElementContainmentFeature();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getJavaVerticalContentProviderIds <em>Java Vertical Content Provider Ids</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Java Vertical Content Provider Ids</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getJavaVerticalContentProviderIds()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EAttribute getTableEditorConfiguration_JavaVerticalContentProviderIds();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getJavaHorizontalContentProviderIds <em>Java Horizontal Content Provider Ids</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Java Horizontal Content Provider Ids</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getJavaHorizontalContentProviderIds()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EAttribute getTableEditorConfiguration_JavaHorizontalContentProviderIds();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}'.
@@ -442,22 +384,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = eINSTANCE.getTableEditorConfiguration_PastedElementContainmentFeature();
-
-		/**
-		 * The meta object literal for the '<em><b>Java Vertical Content Provider Ids</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE_EDITOR_CONFIGURATION__JAVA_VERTICAL_CONTENT_PROVIDER_IDS = eINSTANCE.getTableEditorConfiguration_JavaVerticalContentProviderIds();
-
-		/**
-		 * The meta object literal for the '<em><b>Java Horizontal Content Provider Ids</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE_EDITOR_CONFIGURATION__JAVA_HORIZONTAL_CONTENT_PROVIDER_IDS = eINSTANCE.getTableEditorConfiguration_JavaHorizontalContentProviderIds();
 
 		/**
 		 * The meta object literal for the '<em><b>Default Vertical Content Provider</b></em>' containment reference feature.

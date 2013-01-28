@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EReference;
@@ -29,8 +28,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getJavaVerticalContentProviderIds <em>Java Vertical Content Provider Ids</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getJavaHorizontalContentProviderIds <em>Java Horizontal Content Provider Ids</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}</li>
  * </ul>
@@ -92,38 +89,6 @@ public interface TableEditorConfiguration extends EModelElement {
 	 * @generated
 	 */
 	void setPastedElementContainmentFeature(EReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Java Vertical Content Provider Ids</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Java Vertical Content Provider Ids</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Java Vertical Content Provider Ids</em>' attribute list.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_JavaVerticalContentProviderIds()
-	 * @model required="true"
-	 * @generated
-	 */
-	EList<String> getJavaVerticalContentProviderIds();
-
-	/**
-	 * Returns the value of the '<em><b>Java Horizontal Content Provider Ids</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Java Horizontal Content Provider Ids</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Java Horizontal Content Provider Ids</em>' attribute list.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_JavaHorizontalContentProviderIds()
-	 * @model required="true"
-	 * @generated
-	 */
-	EList<String> getJavaHorizontalContentProviderIds();
 
 	/**
 	 * Returns the value of the '<em><b>Default Vertical Content Provider</b></em>' containment reference.
