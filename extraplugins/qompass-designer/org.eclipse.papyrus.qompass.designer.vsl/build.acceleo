@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.papyrus.marte.vsl;${target.folder}/../../org.eclipse.uml2.uml;"
+            dependencies="${target.folder}/../../org.eclipse.swt.gtk.linux.x86_64;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

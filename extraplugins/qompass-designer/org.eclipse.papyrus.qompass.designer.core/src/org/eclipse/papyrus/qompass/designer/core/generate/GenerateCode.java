@@ -10,6 +10,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+// deactivated differential code generation for the moment.
+/*
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
@@ -21,6 +23,7 @@ import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.util.ModelUtils;
+*/
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -48,12 +51,13 @@ public class GenerateCode {
 		Package genModel = genMM.getModel();
 		EObject oldGenModel = null;
 		if(differential) {
+			/*
 			try {
 				oldGenModel = ModelUtils.load(URI.createURI(path), ModelManagement.getResourceSet());
 			} catch (IOException io) {
 				System.err.println(io);
-
 			}
+			*/
 		}
 		genMM.saveModel(path);
 
@@ -65,6 +69,7 @@ public class GenerateCode {
 
 		if(oldGenModel != null) {
 			// Matching model elements
+			/*
 			Map<String, Object> options = new HashMap<String, Object>();
 			options.put(MatchOptions.OPTION_IGNORE_XMI_ID, true);
 			monitor.setTaskName("generating " + targetLanguage + " code for node " + node.getName());
@@ -109,6 +114,7 @@ public class GenerateCode {
 					}
 				}
 			}
+			*/
 		}
 		else {
 			monitor.setTaskName("generating " + targetLanguage + " code for node " + node.getName());
@@ -143,6 +149,7 @@ public class GenerateCode {
 		return null;
 	}
 
+	/*
 	public void deleteRemovedClasses(EObject diffModelOrElement) throws TransformationException {
 		EList<DiffElement> diffs;
 		if(diffModelOrElement instanceof DiffModel) {
@@ -178,6 +185,7 @@ public class GenerateCode {
 			// deleteRemovedClasses(diff);
 		}
 	}
+	*/
 
 	private ModelManagement genMM;
 
