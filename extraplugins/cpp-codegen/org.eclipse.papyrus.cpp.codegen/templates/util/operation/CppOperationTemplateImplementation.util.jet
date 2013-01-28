@@ -1,0 +1,90 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.* org.eclipse.uml2.uml.Class Cpp.* org.eclipse.papyrus.cpp.codegen.StdStereo org.eclipse.papyrus.cpp.codegen.utils.GenUtils" 
+	class			=	"CppOperationTemplateImplementation" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+		// Retrieve the Operation
+		Operation currentOperation	= (Operation) argument;
+
+		String operationName		= currentOperation.getName();
+		String opParameters			= "";
+		String returnTypeName		= "void";
+		String isConst				= "";
+		String isInline				= "";
+
+		// Retrieve class & class name
+		Class currentClass = currentOperation.getClass_ ();
+		String className 		= currentClass.getName();
+		
+		// Retrieve body content
+		String body = GenUtils.getBody (currentOperation, "C/C++");
+
+		// Prepare return type
+		CppOperationReturnType jetRT = new CppOperationReturnType();
+		returnTypeName	= jetRT.generate(currentOperation);	
+		if (! "".equals(returnTypeName)) {
+			returnTypeName = returnTypeName + " ";
+		}
+
+		// Creator / Destructor: use function within StdStereo
+		if (StdStereo.isApplied(currentOperation, StdStereo.create)) {
+			returnTypeName		= "";
+		}
+		if (StdStereo.isApplied(currentOperation, StdStereo.destroy)) {
+			returnTypeName		= "";
+			operationName		= "~"+operationName;
+		}
+	
+		// If inline operation
+		if (GenUtils.hasStereotype(currentOperation, CppInline.class)) {
+			isInline = "inline ";
+		}
+	
+		// Const op
+		if (GenUtils.hasStereotype(currentOperation, CppConst.class)) {
+			isConst	= " const";
+		}
+
+		// Prepare parameters
+		CppOperationParametersWithoutDefaultValue jetParams	
+			= new CppOperationParametersWithoutDefaultValue();
+		opParameters = jetParams.generate(currentOperation);
+
+
+		// Prepare template parameter declaration without type
+		String tparamWoType	= "";
+
+		if (currentClass != null) {
+			tparamWoType = GenUtils.getTemplateParametersWoType(currentClass);
+		}
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////
+// Package visibility 
+	if (currentOperation.getVisibility() == VisibilityKind.PACKAGE_LITERAL) {
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+
+%><%= isInline %><%= returnTypeName %><%= operationName %>(<%= opParameters %>)<%= isConst %> {
+<%= body %>
+}<%
+
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	} else { // Default case
+
+//////////////////////////////////////////////////////////////////////////////////////////	
+
+%><%= isInline %><%= returnTypeName %><%= className %><<%= tparamWoType %>>::<%= operationName %>(<%= opParameters %>)<%= isConst %> {
+<%= body %>
+}<%
+
+//////////////////////////////////////////////////////////////////////////////////////////
+	}
+//////////////////////////////////////////////////////////////////////////////////////////%>

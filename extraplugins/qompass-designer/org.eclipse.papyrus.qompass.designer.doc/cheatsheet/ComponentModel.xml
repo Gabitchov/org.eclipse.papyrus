@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Creation of component model">
+   <intro>
+      <description>
+      	A component model consists of a set of component definitions. Each component may be either a
+      	primitive (or monolithic) component or a composite component. Whereas the latter contains one
+      	or more <i>parts</i> typed with other components, the former does not contain other components.
+      	Typically, a composite component delegates services provided by some of its ports to inner
+      	components while a primitive component implements the services itself.
+      	There are different strategies, in which order components are implemented, e.g. starting
+      	with the composite components and then defining the sub-components (top-down) or vice-versa
+      	(bottom-up). Both strategies could be mixed.
+      	 </description>
+   </intro>
+   <item
+         title="(Top-down) Step1: Create your system">
+      <description>
+         <b>In this step, you  start by modeling your system in a composite diagram.</b>
+         <br> </br>Start modeling the system type and implementation.
+			<br> </br>A component defines a type when it has more that one implementation,
+ 			or  when the evolution of the component envisions to group a set of implementations using a type definition.
+			Optionally, a component may be abstract, i.e. does not provide an implementation.
+			<br> </br>As a good practice, we recommend to define component type only when necessary. 
+			<br> </br>In the following, we will define a component type for the components that we will create.
+      </description>
+	  <subitem 
+	  	label="Open the &quot;Model explorer&quot; view: Window &gt; Show View &gt; Papyrus &gt; Model Explorer (alternative: select Papyrus perspective): The explorer shows a tree-view of your model." skip="true">
+         <command
+ 			required="false"
+          	 serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.papyrus.modelexplorer.modelexplorer)"/>
+      </subitem>
+      <subitem
+            label="Expand your model, you will find under it three packages from the template: &quot;ComponentModel&quot;, &quot;Platform&quot;, and &quot;DeploymentPlans&quot;. To organize you models, each package will include the appropriate diagrams." 
+            skip="true">
+      </subitem>
+      <subitem
+            label="As a good practice, we recommend to create a package for each component (monolithic or composite)  under the package &quot;ComponentModel&quot;. The package will group all the component-related elements (i.e., type, implementation(s), port(s)). Nevertheless, you can model all your components in the same diagram. This may only affect  the clarity of your model. Under  &quot;ComponentModel&quot;, you  create a package related to each monolithic component your system will include, as well as a package for modeling your system: Outline &gt; Right-click on your &quot;ComponentModel&quot; package &gt; Add an element &gt; Package. Select your package and name it according to your application needs from the &quot;Properties&quot; view. In the following, we will use the name &quot;System&quot; to denote  the component that models your system."
+            skip="true">
+      </subitem>
+      <subitem
+            label="If the &quot;Properties&quot; view is not shown: Window &gt; Show Perspective &gt; Select Properties"
+            skip="true">
+      <command   
+           required="false"
+           serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.ui.views.PropertySheet)"/>
+      </subitem>
+      <subitem
+           label="In your package &quot;System&quot;, create a composite diagram and open it. Outline &gt; Right-click on your package &gt; Add a diagram &gt; Create a new Composite Diagram. Double click on your newly created composite diagram to open it." skip="true">
+      </subitem>      
+     <subitem
+           label="From the &quot;Palette&quot; view, under &quot;Qompass&quot;, drag-and-drop a new component type (ComponentType), and name it according to your application needs. Herein, we will  call it &quot;System&quot;. In addition, drag and drop a new component implementation (ComponentImpl), and name it. In this tutorial, we will call it &quot;System_Impl&quot;."
+           skip="true" > 
+      </subitem>     
+      <subitem       
+           label="The component implementation(s) inherit(s) from the component type. The inheritance relation is useful in order to remove redundancy when generating the code from the model. Drag and drop a &quot;Generalization&quot; link from the &quot;Palette&quot;, under &quot;UML Links&quot;. 
+           The link has as origin the component implementation (i.e., &quot;System_Impl&quot;) and, the component type (i.e.  &quot;System&quot;) as destination." skip="true">
+     </subitem>
+     <subitem
+           label="In your &quot;System_Impl&quot;, add as many properties as parts you require in your system. The properties represent the instances of the primitive components you will create in the next step. To this aim: From the &quot;Palette&quot; view, drag-and-drop &quot;Property&quot; provided under &quot;UML Elements&quot;. Name  each property: Select the property in your composite diagram then, from the &quot;Properties&quot; view, under &quot;General&quot;, you can give a name  to your part (property). Later on, you will  select the type of your part. Furthermore, in the &quot;Properties&quot; view, under &quot;General&quot;, you can select the &quot;aggregation kind&quot;: &quot;Aggregation&quot; when the part is shared by more than one subcomponent, or  &quot;Composition&quot; when the property is not shared. &quot;Composition&quot; is the most commonly used &quot;aggregation kind&quot;."
+            > 
+       <command
+               required="false"
+               serialization="org.eclipse.team.svn.ui.command.EditPropertiesCommand"/>
+       </subitem>
+     
+   </item>
+   <item
+         title="Enter component modeling">
+      <description>
+        <b>In this step,  you  model the monolithic components that your system includes (i.e., the internal parts of your system). </b>
+		<br> </br>Start by modeling the components type, implementation, and their ports in a &quot;component diagram&quot; then model their interfaces in &quot;class diagrams&quot;. 
+	  </description>
+   </item>
+</cheatsheet>

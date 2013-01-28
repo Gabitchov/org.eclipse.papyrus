@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet title="Add GCM components to your model">
+<intro>
+	<description>
+		In this step, you model the application components as forseen by MARTE GCM &amp; HLAM. 
+			</description>
+</intro>
+
+<item title="Create a new composite diagram">
+	<description>
+		Use the model explorer to create a new composite diagram within the "ComponentModel" package
+	</description>
+</item>	
+<item title="Select a MARTE component in the palette and add it to your model" dialog="true" skip="true">
+	<description>
+		Select an element from the MARTE/HLAM palette, i.e. a RtUnit or a PpUnit. These are available,
+		if the MARTE profile is applied (which should be the case, if you have chosen the Qompass for MARTE template
+		during model creation).
+		Now create the GCM component in the diagram. Mapping rules in Qompass will automatically add the FCM implementation
+		stereotype and set its container rule attribute appropriately to support the two component variants.<br/>
+		Verify stereotype application/attribute values in the properties/profile view. Alternatively, right click on
+		the created component and call the "Qompass show/choose container rules" dialog. 
+	</description>
+</item> 
+<item href="/org.eclipse.papyrus.qompass.designer.doc/html/reference/marte.html" title="More information about the Qompass MARTE integration" skip="true">
+	<description>
+		Click on the "?" on right to open the online html help
+	</description>
+</item>
+</cheatsheet>

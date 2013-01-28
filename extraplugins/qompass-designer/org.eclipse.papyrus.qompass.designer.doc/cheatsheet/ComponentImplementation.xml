@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Component implementation">
+<intro>
+	<description>
+		A component implementation has to realize the operations of interfaces that are provided by
+		its ports. For each port, there are two options: either the component implements the interface
+		itself, or it delegates the port to a part which has to implement the interface.
+		If a component does not have any parts, we call it primitive (or monolithic).
+	</description>
+</intro>
+
+<item title="Synchronize derived elements">
+	<description>
+		If order to implement the operations of a provided interface, these operations have to be
+		added to the component first. Since it would be tedious to copy an operation signature manually
+		and keep it synchronized, Qompass offers an operation "Synchronize derived elements" in the
+		context menu of a component. It will automatically add an "interface realization"
+		relationship and the operations of the provided interfaces - as long as there is no delegation
+		to an internal component. These relationships carry the FCM stereotype "DerivedElement"
+		in order to indicate that these have been added automatically.
+	</description>
+</item>
+	
+<item title="Implement an operation of a provided port">
+   	<description>
+   		The implementation could use either the UML action language or a programming language specific
+   		implementation in form of an opaque behavior definition (not yet supported). Here, we will cover
+   		the case of C++<br/>
+   		Activate the C/C++ view (Views > Papyrus > C/C++). Then, select the operation in the
+   		model explorer or diagram. Enter your code. Note that you can call operations of required ports
+   		by using the port name as a property, i.e. in case of C++ use "portName" -> "operation name"
+	</description>
+	<subitem label="If the &quot;Properties&quot; view is not shown: Window > Show View > Select Properties (or click on perform within this sheet)"
+			skip="true">
+  		<command required="false"
+		serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.ui.views.PropertySheet)"/>
+	</subitem>
+	<subitem label="If the &quot;C/C++&quot; view is not shown: Window > Show View > Other > Select Papyrus C/C++ (or click on perform within this sheet)"
+			skip="true">
+  		<command required="false"
+		serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=com.cea.papyrus.views.cpp)"/>
+	</subitem>
+</item>
+  
+<item title="Create inner parts">
+	<description>
+		An component implementation may have an internal structure, i.e. if may contain other components
+		via composition. Please note that the containment does not mean that a new component is defined
+		in an existing one, but that the composite component contains an attribute typed with another
+		component. If this attribute has the "composition" aggregation style, the creation of
+		an instance of the composite component implies creating an instance of the contained component.<br/>
+		<br/>
+		The "System" component is a specific composite implementation of your system.
+		It does not have any implementation of its own but is a kind of aggregation container of your
+		application components and defines how these are connected (see next step).
+	</description>
+	<subitem
+		label="You can drag and drop an existing component type into the composite. A property will
+			automatically be created for you">
+	</subitem>
+	<subitem
+		label="If the component does not exist yet, you can create a new property within the composite
+			and type it later with the appropriate component">
+	</subitem>
+</item>
+
+<item title="Connect inner parts (assembly)">
+	<description>
+		Once the inner parts have been added, the may be connected. Connectors may either delegate
+		from the composite towards an inner part or connect (assemble) two (or more) internal parts.
+		A connector may connect either the	ports of internal parts or directly an internal part. For the
+		moment, Qompass supports only the first option. It may be required to drag and drop ports first from
+		the model explorer to a part (whose type owns the port).<br/>
+		<br/>
+		A major concept in Qompass is that of a connector. Instead of simply being a "line" between
+		parts, a connector may be realized a specific interaction component. Which interaction component
+		is used, is defined by an FCM stereotype attribute owned by the connector. The Qompass palette allows
+		you to add a connector with the appropriate FCM stereotype directly to your component.<br/>
+		<br/>
+		In addition, Qompass provides a specific dialog for the selection of an interaction component.
+		(open the context menu, once a connector is selected).
+	</description>
+</item>
+</cheatsheet>

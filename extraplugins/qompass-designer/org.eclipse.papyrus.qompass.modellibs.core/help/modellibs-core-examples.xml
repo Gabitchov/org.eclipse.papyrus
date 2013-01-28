@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="modellibs.core.examples" link_to="../org.eclipse.papyrus.qompass.designer.doc/toc.xml#samples"> 
+	<topic
+		label="Getting started: a hello world example"
+		href="html/examples/hello-world.html"> 
+	</topic>
+	<topic
+		label="A simple producer consumer example"
+		href="html/examples/producer-consumer.html"> 
+	</topic>
+</toc>

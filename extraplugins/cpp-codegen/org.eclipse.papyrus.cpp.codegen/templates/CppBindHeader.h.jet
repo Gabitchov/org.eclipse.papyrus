@@ -1,0 +1,115 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet" 
+	skeleton        =   "generator.skeleton" 
+	imports			=	"org.eclipse.papyrus.cpp.codegen.utils.GenUtils Cpp.CppInclude org.eclipse.uml2.uml.Class org.eclipse.emf.common.util.EList org.eclipse.uml2.uml.Package org.eclipse.uml2.uml.TemplateSignature org.eclipse.uml2.uml.TemplateParameterSubstitution org.eclipse.papyrus.cpp.codegen.jet.util.* java.util.* org.eclipse.papyrus.cpp.codegen.Activator" 
+ 	class			=	"CppBindHeader" 
+ %>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+		// Retrieve the class
+		Class currentClass		= (Class) argument;
+
+		// Get the package name
+		String className		= currentClass.getName();
+		String classFullName	= GenUtils.getFullName (currentClass);
+		String classFULLNAME	= classFullName.toUpperCase(); 
+		String classparent      = "";
+		String openNS			= GenUtils.openNS (currentClass); 
+		String closeNS			= GenUtils.closeNS (currentClass);
+		 
+		// Include declaration "CppInclude"
+		String headerDecl		= "";
+		CppInclude cppInclude =  GenUtils.getApplication(currentClass, CppInclude.class);
+		if (cppInclude != null) {
+			headerDecl =  "// Include from CppInclude declaration" + NL + cppInclude.getHeader() + NL;
+		}
+
+		// Prepare owner package header include
+		Package ownerPackage	= currentClass.getPackage();
+		String ownerInclude		= "";
+		if (ownerPackage != null) {
+			// Create an util template to prepare the declaration
+			CppOwnerPackageIncludeDeclaration jetOwnerInclude		
+			= new CppOwnerPackageIncludeDeclaration();
+			// Execute the util template
+			ownerInclude		= jetOwnerInclude.generate(ownerPackage);
+		}
+
+		// Retrieve header file suffix
+		String headerFileSuffix = Activator.getDefault().getPluginPreferences().getString("headSuffix");
+
+		//find path for the package owning current class
+		String  fullPath	= "";
+		String  separ		= "";
+
+		if (ownerPackage != null) {
+			fullPath		= GenUtils.getFullPath (ownerPackage);
+			separ			= "/";
+		} // else fullPath == ""
+
+		org.eclipse.uml2.uml.TemplateBinding tb = GenUtils.getTemplateBindings(currentClass);
+
+		// prepare parent class declaration
+		EList<org.eclipse.uml2.uml.Element> templates = tb.getTargets();
+		Class templateClass = (Class) ((TemplateSignature)templates.get(0)).getOwner();	
+		classparent		= templateClass.getName();               	
+
+		// Prepare bindings parameter declaration
+
+		String tParamDecl="";
+		TemplateParameterSubstitution paramsub;
+		Iterator<TemplateParameterSubstitution> tps = tb.getParameterSubstitutions().iterator();
+		while(tps.hasNext()) {
+			paramsub	=	(TemplateParameterSubstitution)tps.next();
+
+			CppTemplateBindingParameter	jetTParam	
+			=	new CppTemplateBindingParameter();
+			tParamDecl			= tParamDecl+jetTParam.generate(paramsub);
+
+			if (tps.hasNext()) {
+				tParamDecl			= tParamDecl+", ";
+			}
+		}
+
+
+		// Prepare dependency includes
+		CppClassAllIncludesDeclaration jetClassIncludes
+		= new CppClassAllIncludesDeclaration();
+		String classIncludes			= jetClassIncludes.generate(argument);
+		if (!classIncludes.equals("")) {
+			classIncludes	= "/* Structural includes (inheritance, dependencies...       */"+NL+classIncludes;
+		}
+	
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+#ifndef <%= classFULLNAME %>_H
+#define <%= classFULLNAME %>_H
+
+/************************************************************
+              <%= className %> template binding header
+ ************************************************************/
+
+<%= ownerInclude %>
+
+<%= classIncludes %>
+
+<%= headerDecl %>
+
+#include <<%= fullPath %><%= separ %><%= classparent %>.<%= headerFileSuffix %>>
+
+<%= openNS %> 
+/************************************************************/
+typedef <%= classparent %> <<%= tParamDecl %>> <%= className %>;
+
+<%= closeNS %>
+
+/************************************************************
+              End of <%= className %> template binding header
+ ************************************************************/
+
+#endif

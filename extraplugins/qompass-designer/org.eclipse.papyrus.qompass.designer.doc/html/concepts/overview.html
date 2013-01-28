@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<img src="../img/qompass-0.33.jpg" alt="Qompass logo">
+<a href="http://www.eclipse.org/modeling/mdt/papyrus/" target="_parent"><img src="../img/logo-papyrus.png" border="0"></a>
+<a href="http://www.omgmarte.org" target="_parent"><img src="../img/logo-marte.png" alt="OMG MARTE" border="0"></a>
+
+<h1>Overview</h1>
+
+Qompass Designer is a component based modeling approach that supports the code generation from embedded
+systems. Theses systems are characterized by timing and resource constraints - sometimes also
+denoted as non-functional properties. Since these systems get more and more complex, it is important
+that the non-functional properties are not just specified in the documentation and respected by the
+implemented system, but that these are explicitly modeled and suitable code is derived from the model.
+
+Qompass Designer is part of the Qompass tool-suite integrated into Papyrus. The separation of concerns between
+the two tools is that
+<ul>
+<li>Qompass analyzer analyzes a system, in particular with respect to schedulability
+	analysis. It enables the validation of several variants to allocate software components to execution
+	resources and thus provides an architectural exploration
+<li>Qompass designer supports the code generation for a specified architecture. It enables this code
+	generation by means of a sequence of transformations steps and a final code generation step as
+	shown in the figure below.   
+</ul>
+
+<center>	
+<img src="../img/overview-eng.png" alt="Tool Chain overview">
+</center>
+<p>
+
+Qompass is integrated into the open source UML editor <a href="http://www.eclipse.org/modeling/mdt/papyrus/">Papyrus</a>,
+The UML profile <a href="http://www.omgmarte.org" target="_parent">MARTE</a> is used for non-functional properties.
+Parts of the component model were developed in the context of the French national project <a href="http://www.flex-eware.org">Flex-eWare</a>. 
+
+In the sequel, you find information about the
+<ul>
+<li><a href="input-models.html">input models for code generation"</a>
+<li><a href="connector-container.html">The idea of using dedicated interaction components and realizing cross-cutting concerns via the container</a>
+<li><a href="input-models.html">The code generation</a>
+</ul>
+
+We also recommend the examples section in the documentation index as a starting point for using Qompass.
+
+<p>
+
+</BODY>
+</HTML>

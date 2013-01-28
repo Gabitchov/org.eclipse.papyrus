@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Developer guide" link_to="toc.xml#devguide"> 
+	<topic
+		label="Plugin overview"
+		href="html/developer-guide/developer.html"> 
+	</topic>
+	<topic
+		label="Create a new Qompass interaction component"
+		href="html/developer-guide/createInteractionComponents.html">
+	</topic>
+	<topic
+		label="Create a new Qompass container extension"
+		href="html/developer-guide/createContainers.html">
+	</topic>
+	<topic
+		label="Create a new Qompass port kind"
+		href="html/developer-guide/DefineNewPortKinds.html">
+	</topic> 
+</toc>

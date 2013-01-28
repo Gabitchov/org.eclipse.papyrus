@@ -1,0 +1,87 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet" 
+	skeleton        =   "generator.skeleton" 
+	imports			=	"org.eclipse.papyrus.cpp.codegen.Constants org.eclipse.papyrus.cpp.codegen.utils.* Cpp.CppInclude org.eclipse.uml2.uml.Class org.eclipse.uml2.uml.Package org.eclipse.uml2.uml.* org.eclipse.emf.common.util.EList org.eclipse.papyrus.cpp.codegen.jet.util.* java.util.* org.eclipse.papyrus.cpp.codegen.Activator" 
+ 	class			=	"CppBindBody" 
+ %>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Retrieve the class
+	Class currentClass		= (Class) argument;
+
+	// Get the package name
+	String className		= currentClass.getName();
+	String classFullName	= GenUtils.getFullName (currentClass); 
+	String classFULLNAME	= classFullName.toUpperCase(); 
+	String parentClass      = "";
+	String namespace = GenUtils.getNamespace (currentClass);
+
+	// Retrieve header file suffix
+	String headerFileSuffix = Activator.getDefault().getPluginPreferences().getString("headSuffix");
+
+	// Retrieve owner Package
+	Package owner = currentClass.getPackage();
+	String fullPath	= "";
+	
+	if (owner != null) {
+		fullPath = GenUtils.getFullPath(owner) + "/";
+	} // else fullPath == ""
+
+	TemplateBinding tb = GenUtils.getTemplateBindings(currentClass);;
+
+	// prepare parent class declaration
+	EList<org.eclipse.uml2.uml.Element> templates = tb.getTargets();
+	Class templateClass = (Class) ((TemplateSignature) templates.get(0)).getOwner();	
+	parentClass	= GenUtils.qualifiedName (templateClass);
+
+	// Prepare bindings parameter declaration
+
+	String tParamDecl = "";
+	Iterator<TemplateParameterSubstitution> tps = tb.getParameterSubstitutions().iterator();
+	while(tps.hasNext()) {
+		TemplateParameterSubstitution paramSub = tps.next();
+
+		CppTemplateBindingParameter	jetTParam = new CppTemplateBindingParameter();
+		tParamDecl = tParamDecl+jetTParam.generate (paramSub);
+
+		if (tps.hasNext()) {
+			tParamDecl = tParamDecl + ", ";
+		}
+	}
+
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+#define <%= classFULLNAME %>_BODY
+
+/************************************************************
+              <%= className %> template binding body
+ ************************************************************/
+
+<%= Constants.cppIncPreBodyStart %>
+<%= ClassUtils.getCppIncludePreBody(currentClass) %>
+<%= Constants.cppIncPreBodyEnd %>
+
+<%= Constants.includeHFile %>
+#include <<%= fullPath %><%= className %>.<%= headerFileSuffix %>>
+
+<%= Constants.cppIncBodyStart %>
+<%= ClassUtils.getCppIncludeBody(currentClass) %>
+<%= Constants.cppIncBodyEnd %>
+
+<%= GenUtils.openNS(currentClass) %>
+
+<%= Constants.derivedIncludes %>
+<%= ClassUtils.createIncludeDecl(currentClass) %>
+
+/************************************************************/
+template class <%= parentClass %> <<%= tParamDecl %>>;
+
+<%= GenUtils.closeNS(currentClass) %>
+
+/************************************************************
+              End of <%= className %> template binding body
+ ************************************************************/

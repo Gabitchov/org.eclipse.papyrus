@@ -1,0 +1,19 @@
+/*******************************************************************************
+ * Copyright (c) 2006 CEA List.
+ * All rights reserved. This program and the accompanying materials
+ * are property of the CEA, their use is subject to specific agreement 
+ * with the CEA.
+ * 
+ * Contributors:
+ *    CEA List - initial API and implementation
+ *******************************************************************************/
+
+package PACKAGE;
+
+public class CLASS
+{
+  public String generate(Object argument)
+  {
+    return "";
+  }
+}

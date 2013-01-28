@@ -1,0 +1,56 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.Parameter org.eclipse.uml2.uml.Classifier Cpp.* org.eclipse.papyrus.cpp.codegen.utils.Modifier org.eclipse.papyrus.cpp.codegen.utils.GenUtils" 
+	class			=	"CppParameterWithoutDefaultValue" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	// Retrieve the Parameter
+	Parameter currentParameter	= (Parameter) argument;
+
+	String parameterName		= currentParameter.getName();
+
+	String typeName			= "";
+	Modifier modifier = new Modifier(currentParameter);
+	
+	// Prepare template parameter declaration without type
+	String tparamWoType		= "";
+	
+	if (currentParameter.getType() == null) {
+		typeName = "undefined";
+	}
+	else if (currentParameter.getType() instanceof Classifier) {
+		Classifier classifier  = (Classifier) currentParameter.getType();
+		tparamWoType = GenUtils.getTemplateParametersWoType(classifier);
+
+		typeName = GenUtils.qualifiedName (currentParameter.getType());
+	}
+	else {
+		typeName = GenUtils.qualifiedName (currentParameter.getType());
+	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////
+// Package visibility 
+	if (!"".equals(tparamWoType)) {
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+
+%><%= modifier.isConst %><%= typeName %><<%= tparamWoType %>><%= modifier.ptr %><%= modifier.ref %> <%= parameterName %><%= modifier.array %><%
+
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	} else { // Default case
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+%><%= modifier.isConst %><%= typeName %><%= modifier.ptr %><%= modifier.ref %> <%= parameterName %><%= modifier.array %><%
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+	}
+//////////////////////////////////////////////////////////////////////////////////////////%>

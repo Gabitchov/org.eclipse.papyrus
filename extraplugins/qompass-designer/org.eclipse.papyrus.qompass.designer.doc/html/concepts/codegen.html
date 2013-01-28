@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Code generation</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<BODY >
+<img src="../img/qompass-0.33.jpg" alt="Qompass logo">
+
+<H1>Code generation</H1>
+
+The result of the previous phase is a component model of the application, enriched with reified connectors and expanded containers.
+The code generation starting from this model requires two actions: (1) the realization of the component deployment consisting of a
+splitting the global model into sub models for each execution node and (2) the transformation of ports and connectors that do not have
+a direct equivalent concepts in object-oriented programming languages.
+
+<P>
+The former is not as trivial as it may seem since dependencies have to be taken into account and composites may have to be
+deployed on multiple nodes due to allocations of theirs parts. This imposes constraints such as only read-only attributes in
+these composites to ensure consistency. We do not discuss this issue further in the context of this paper and focus on the
+second aspect, the transformation of ports and connectors.
+
+<P>
+<A NAME="trafo_OO"></A>Ports and connectors do not possess a direct equivalent in an object-oriented programming language.
+Thus, it is necessary to relate component-oriented concepts to object-oriented concepts, i.e. classes, interfaces, attributes
+and operations.
+We distinguish ports with provided interfaces and ports with required interfaces (a port might also have both).
+A port providing an interface is an access point to a service and a caller needs to obtain a reference to this service, in
+our implementation pattern via a specific operation. For instance, if a component owns a port "p" providing interface "I",
+the realization of a component needs an operation "get_p" returning a reference to the service. The implementation of this
+operation is determined automatically: in case of a delegation connector between the port and an internal part of a component,
+this reference is returned, otherwise a reference to the component reference itself is returned.
+
+<P>
+A port with a required interface is an interaction point which requires a reference of another component that provides the
+interface. Thus, the component needs to store this reference and provide an operation to initialize the reference in the moment
+of instantiation. For instance, a port "q" with an required interface is transformed into an attribute which stores a reference
+to a port providing the interface and an operation "connect_q" which initializes this reference.
+
+<P>
+Connectors within a composite are transformed into a realization of a specific operation that creates the connections between
+parts, i.e. contains suitable combinations of <I>some-part</I>.connect_<I>some-port</I> <I>other-part</I>.get_<I>other-port</I>.
+
+<P>
+Once the transformation of component-based models to object-oriented models is done, a "classical" code generator taking an
+object-oriented UML model as input is sufficient for the code generation (in our case C++).
+For each class or interface, a C++ class is generated. The UML packages are transformed into C++ name spaces. The organization
+of the files follows the same as in Java. A name space corresponds to a directory and thus reflects the package structure in UML.
+
+<P>
+The dependencies to the external packages are translated into <I>include</I> directives to libraries. The generated code can now
+be compiled, for instance in the context of the Eclipse CDT environment.
+
+<P>
+
+</BODY>
+</HTML>

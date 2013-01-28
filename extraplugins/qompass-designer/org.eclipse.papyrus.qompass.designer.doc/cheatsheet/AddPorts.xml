@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet title="Component development">
+<intro>
+	<description>
+		Model the ports of a component
+	</description>
+</intro>
+
+
+	
+<item title="Model the ports of your components" skip="true">
+	<description> 
+		Select a port from the &quot;Palette&quot;, under &quot;Nodes&quot;, and create a new
+		port on a component type or implementation.<br/>
+		<br/>
+		Note: a port of a component type is implicitly included in all
+			component implementations inheriting from it<br/> 
+		Note: inherited ports are not shown by default. In order to visualize these, do
+			not create a new port, but drag and drop the inherited port from the
+			model explorer on the component that inherits the port.
+	</description>
+</item>
+
+<item title="Choose a port kind" skip="true">
+	<description> 
+		Your ports need to be named and a <i>port kind</i> (see below) needs to be chosen.
+		There are several ways to change a port name: either via the
+		&quot;Properties&quot; view or via a textual dialog that is shown once F2 is pressed.
+		
+		An Qompass (FCM) port has an additional parameter: it is characterized by a
+		port kind. The latter defines for instance if the port
+		provides or requires an	interface or consumes a data-type.<br/>
+		A port kind may require a certain variant of a type: data-flow oriented kinds
+		require a datatype, client/server port kinds require an interface as port type. The user can
+		verify the suitability of the port type by observing the derived attributes provided and
+		required interface. If both are not set, the port is wrongly typed. This rule is part of
+		a set of Qompass related constraints that can be validated at any time.
+		<br/>	
+		<br/>	
+		Assign the port kind attribute: 
+		&quot;Properties&quot; view &gt; Profile &gt; under &quot;Port&quot; and &quot;kind&quot;.
+		Select the value of the port kind. The shown list is a collection of all PortKinds that are
+		defined in the model itself or one of the libraries it imports. For example, if the ports
+			requires an interface, the value of the port kind is &quot;BasicCalls::PortKind::UseInterface&quot;<br/>
+		Note that the stereotype &quot;Port&quot; from the profile FCM is applied automatically
+		on all the ports you add to your model.
+	</description>
+</item>
+	
+<item title="Type your ports">
+	<description>
+		As for the name, this can be either be done via the &quot;Properties&quot; view or via
+		a textual dialog that is shown once F2 is pressed. But before a type can be selected, it may have to
+		be created first. 
+		In our example we want to type the port with an interface which is stored in an additional
+		package called &quot;interfaces&quot;.
+		 
+		As a good practice, you can group interfaces that are referenced by multiple components in a
+		package called &quot;interfaces&quot;
+			&quot;model explorer&quot; view &gt;  Right-click on
+			&quot;ComponentModel&quot; package &gt; New child &gt; Package &gt; Name it &quot;interfaces&quot;<br/>
+		<br/>
+		Then, under &quot;interfaces&quot; package, create a new class diagram: 
+		&quot;model explorer&quot; view &gt;  Right-click on
+			&quot;interfaces&quot; package  &gt; New diagram &gt; Create a new Class Diagram.<br/>
+		<br/>
+		Open your class diagram and add an interface and operation in standard Papyrus way. 
+	</description>
+</item>
+	
+<item title="(Optional) Define an entry point" skip="true">
+	<description>
+		The component that is executed at system startup has to be clearly defined.
+		Such a component has to inherit from the component type &quot;Cstart&quot; that is defined
+		in the  &quot;BasicCalls&quot; library in the package &quot;StdPorts&quot;. It has the port &quot;start&quot; with the provided interface
+			&quot;IStart&quot;, containing the operation run. This operation is called at application start.<p/>
+		The addition of Cstart to your composite diagram is performed in 5 steps:<br/>
+		1 - Expand the imports in the &quot;Outline&quot; view &gt; Expand the library
+			&quot;BasicCalls&quot; &gt; &quot;StdPorts&quot; &gt;. Select &quot;Cstart&quot; component type.<br/>
+		2 - Drag and drop the component type &quot;Cstart&quot; in your composite diagram.<br/>
+		3 - (Optionally) If you want to visualize the port in the diagram, drag and drop the port
+			&quot;start&quot; on the newly added  &quot;Cstart&quot; component.<br/>
+		4 - Add a &quot;Generalization&quot; link that points from your component (type/implementation),
+			to &quot;Cstart&quot;.<br/>
+		5 - (Optionally) If you want to visualize the port in the diagram, drag and drop the port
+			&quot;start&quot; to the application component
+	</description>
+</item>
+	
+<item title="(Optional) Support life cycle events" skip="true">
+	<description>
+		A component may want to perform actions directly after instantiation and before destruction.
+		Such a component has to inherit from the component type &quot;LifeCycle&quot; that is defined
+		in the  &quot;BasicCalls&quot; library in the package &quot;StdPorts&quot;. It has the port
+		&quot;lc&quot; with the provided interface &quot;ILifeCycle&quot;, containing the operations
+		activate and deactivate.
+		The addition of LifeCycle to your composite diagram is performed in 5 steps:<br/>
+		1 - Expand the imports in the &quot;Outline&quot; view &gt; Expand the library
+			&quot;BasicCalls&quot; &gt; &quot;StdPorts&quot; &gt;. Select &quot;LifeCylce&quot; component type.<br/>
+		2 - Drag and drop the component type &quot;LifeCycle&quot; in your composite diagram.<br/>
+		3 - (Optionally) If you want to visualize the port in the diagram, drag and drop the port
+			&quot;lc&quot; on the newly added  &quot;LifeCylce&quot; component.<br/>
+		4 - Add a &quot;Generalization&quot; link that points from your component (type/implementation),
+			to &quot;Cstart&quot;.<br/>
+		5 - (Optionally) If you want to visualize the port in the diagram, drag and drop the port
+			&quot;lc&quot; to the application component
+	</description>
+</item>
+</cheatsheet>

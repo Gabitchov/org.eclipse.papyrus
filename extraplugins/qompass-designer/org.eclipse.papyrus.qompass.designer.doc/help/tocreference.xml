@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Reference" link_to="toc.xml#reference"> 
+	<topic
+		label="Components"
+		href="html/reference/component.html"> 
+	</topic>
+	<topic
+		label="Interaction Components"
+		href="html/reference/interactionComponent.html">
+	</topic>
+	<topic
+		label="Containers"
+		href="html/reference/container.html">
+	</topic>
+	<topic
+		label="Port kinds"
+		href="html/reference/portKind.html">
+	</topic>
+	<topic
+		label="Port"
+		href="html/reference/port.html">
+	</topic>
+</toc>

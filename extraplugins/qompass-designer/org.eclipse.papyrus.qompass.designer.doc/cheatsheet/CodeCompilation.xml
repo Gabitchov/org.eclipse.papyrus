@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Title">
+   <intro>
+      <description>
+         Finally, compile the generated code on each node. 
+      </description>     
+   </intro>
+   
+    <item
+         title="Code Compilation" skip="true">
+      <description>
+    
+      </description>
+      <subitem
+          label="It is proposed to use the eclipse internal built mechanisms, e.g. CDT builder in case of C/C++.
+          &#x0A;&#x0A; Libraries and include pathes required by the runtime mechanisms of used connector libraries are automatically taken into account."
+          skip="true">
+     </subitem>
+   </item>
+
+</cheatsheet>

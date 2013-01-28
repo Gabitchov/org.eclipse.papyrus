@@ -1,0 +1,34 @@
+<%@ jet package		=	"org.eclipse.papyrus.cpp.codegen.jet.util" 
+	skeleton        =   "../../generator.skeleton" 
+	imports			=	"org.eclipse.uml2.uml.Interface org.eclipse.uml2.uml.Operation org.eclipse.uml2.uml.VisibilityKind java.util.* Cpp.* org.eclipse.papyrus.cpp.codegen.utils.GenUtils" 
+	class			=	"CppInterfacePublicOperationsDeclaration" 
+%>
+<%
+//////////////////////////////////////////////////////////////////////////////////////////
+// Java preparation
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	// Retrieve the class
+	Interface currentInterface = (Interface) argument;
+	String opDecl	= "";
+	
+	// Retrieve operations
+	Iterator<Operation> operations = currentInterface.getOwnedOperations().iterator();
+	while (operations.hasNext()) {
+		Operation currentOperation = operations.next();
+		if ((currentOperation.getVisibility() == VisibilityKind.PUBLIC_LITERAL) &&
+			!GenUtils.hasStereotype (currentOperation, CppNoCodeGen.class)) {
+			CppOperationDeclaration jetOpDecl = new CppOperationDeclaration();
+			String cOpDecl = jetOpDecl.generate(currentOperation);
+		
+			// if main cOpDecl = "";
+			if (!cOpDecl.equals("")) {
+				opDecl = opDecl+"\t"+cOpDecl+";";		
+			}
+		}
+	}
+		
+//////////////////////////////////////////////////////////////////////////////////////////
+// The following part contains the template
+//////////////////////////////////////////////////////////////////////////////////////////%>
+<%= opDecl %>

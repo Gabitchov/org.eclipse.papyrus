@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet title="Component development">
+<intro>
+	<description>
+		<b>In this step, you model a component within a composite diagram.</b>
+	</description>
+</intro>
+
+<item title="Step1: Create a new component" skip="true">
+	<description>
+		The first decision is whether you want to define a component type or a component implementation.
+		A component type is useful, if you anticipate that more than one implementation are required sooner or later.
+		The decision is comparable to the decision whether interfaces should be used in an object-oriented
+		approach: it is more flexible, but requires an additional definition (beside this reflection, there is nothing to do
+		in this step).
+	</description>
+</item>
+	
+<item title="(Optional) Create a package for your component" skip="true">
+	<description>
+		As a good practice, we recommend to create a package for each component which will group all
+		component-related elements e.g. type, implementation(s) and associated diagrams.<br/>
+		ModelExplorer > Right-click on your "ComponentModel" package > Add child > Package.
+		Name the created package according to your application needs. A convention (not enforced) used in Qompass is
+		to use the same name for the package and component type, add the post-fix "Impl" in case of a
+		component implementation.
+		<subitem label=
+			"Show model explorer: Window > Show View > Papyrus > Model Explorer (or select Papyrus perspective)" skip="true">
+		<command required="false"
+			serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.papyrus.modelexplorer.modelexplorer)"/>
+	</subitem>
+	</description>
+</item>
+	
+<item title="Create a composite diagram" skip="true">
+	<description>
+		Select the package created in the previous step (or the top-level package). Create a composite diagram and open it. Right-click on your package in the
+		model explorer > new diagram > Create a new Composite Diagram.
+	</description>
+</item>
+	      
+<item title="Create a new component (type or implementation)" skip="true"> 
+	<description>
+		Create a class. Make it abstract (via the properties view) if it is a component type.
+		Choose a name which suits your application needs. If you created a type, you
+		might also want to add an implementation. Convention (not compulsory): use the same name as for the type
+		and add the postfix "Impl". The link between component type and implementation is manifested by means
+		of generalization relationship. Use the standard Papyrus mechanisms to create this relationship.
+		(The realization of an implementation is described in more detail in step 4).
+	</description> 
+</item>
+
+<item title="Select container properties">
+	<description>
+		A component is optionally enclosed by a so-called container which can perform additional processing.
+		So called container extensions either intercept incoming port request or perform additional processing.
+		For further information, consult the Qompass online help. From a user perspective, the choice of a
+		certain container option is controlled by the application of an ordered set of <i>container rules</i>.
+		which select the extension or interceptor to use and optionally restrict the use of the rule to
+		a specific configuration (see deployment)<br></br> 
+		
+		Qompass provides a specific dialog to selected a container extension. This can be found in the context
+		menu of a component. 
+	</description>
+</item>
+
+<item title="Create the system component">
+	<description>
+		A specific component is typically called "System". It is the main component that will be instantiated
+		later on. This component is the root of the composition hierarchy, your application components are
+		parts within it - it is a composite or assembly implementation and further information is therefore
+		available in the next section. It must not have any ports.
+	</description>
+</item>
+   
+</cheatsheet>

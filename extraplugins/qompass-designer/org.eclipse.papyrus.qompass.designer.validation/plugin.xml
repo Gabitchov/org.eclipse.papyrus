@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.eclipse.papyrus.qompass.designer.validation.constraints"
+            name="Qompass rules">
+      </category>
+      <constraintProvider
+            mode="Batch">
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML">
+         </package>
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+         </package>     
+         <constraints
+               categories="org.eclipse.papyrus.qompass.designer.validation.constraints">
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.SystemHasNoPorts"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.SystemHasNoPorts_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.SystemHasNoPorts"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  The system component (main instance within deployment plan) may not have ports.
+               </description>
+               <target
+                     class="Package">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.InstanceSpecificationSlotForAllProperties"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.InstanceSpecificationSlotForAllProperties_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.InstanceSpecificationSlotForAllProperties"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Is there a slot for all properties of a component within an instance specification?
+               </description>
+               <target
+                     class="InstanceSpecification">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.ConnectorCallMultiplicity"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.ConnectorCallMultiplicity_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.ConnectorCallMultiplicity"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Verify that a connection does not originate from a caller with to a server with the server multiplicity > 1
+               </description>
+               <target
+                     class="Property">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.InitialEntryPoints"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.InitialEntryPoints_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.InitialEntryPoints"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Verify that at exactly one blocking start routine is defined.
+               </description>
+               <target
+                     class="Package">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedProvPorts"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedProvPorts_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedProvPorts"
+                  severity="INFO"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  unconnected provided port
+               </description>
+               <target
+                     class="Property">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedReqPorts"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedReqPorts_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedReqPorts"
+                  severity="INFO"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  unconnected provided port
+               </description>
+               <target
+                     class="Property">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.OperationsAreImplemented"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.OperationsAreImplemented_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.OperationsAreImplemented"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Operation is not implemented
+               </description>
+               <target
+                     class="Class">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.PortIsCorrectlyTyped"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.PortIsCorrectlyTyped_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.PortIsCorrectlyTyped"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Port is not correctly typed
+               </description>
+               <target
+                     class="Port">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.BehaviorsWithoutSpecification"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.BehaviorsWithoutSpecification_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.BehaviorsWithoutSpecification"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Behavior without specification
+               </description>
+               <target
+                     class="OpaqueBehavior">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.ConnectorConnectable"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.ConnectorConnectable_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.ConnectorConnectable"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Verify that a connector can be instantiated, i.e. a consistent connector binding can be found.
+               </description>
+               <target
+                     class="Connector">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.AggregationKindValid"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.AggregationKindValid_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.AggregationKindValid"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  &quot;Qompass: {0}&quot;
+               </message>
+               <description>
+                  Check whether aggregation kind is consistent with singleton information
+               </description>
+               <target
+                     class="Property">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.ConfigurationAttributeNotSet"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.ConfigurationAttributeNotSet_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.ConfigurationAttributeNotSet"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  "Qompass: {0}"
+               </message>
+               <description>
+                  Check whether configuration attributes have a value in the deployment plans
+               </description>
+               <target
+                     class="Slot">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.qompass.designer.validation.constraints.OperationsWithTwoReturnValues"
+                  id="org.eclipse.papyrus.qompass.designer.validation.constraints.OperationsWithTwoReturnValues_ID"
+                  lang="Java"
+                  mode="Batch"
+                  name="org.eclipse.papyrus.qompass.designer.validation.constraints.OperationsWithTwoReturnValues"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  "Qompass: {0}"
+               </message>
+               <description>
+                  Check whether an operation contains more than one return parameter
+               </description>
+               <target
+                     class="Operation">
+               </target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+      </extension>
+      <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+   		<clientContext
+            default="false"
+            id="org.eclipse.papyrus.qompass.designer.validation.context">
+         	<selector class="org.eclipse.papyrus.qompass.designer.validation.ValidationDelegateClientSelector"/>
+      	</clientContext>
+      	<binding
+            context="org.eclipse.papyrus.qompass.designer.validation.context">
+           <category
+               ref="org.eclipse.papyrus.qompass.designer.validation.constraints">
+           </category>
+        </binding>
+      </extension>
+</plugin>

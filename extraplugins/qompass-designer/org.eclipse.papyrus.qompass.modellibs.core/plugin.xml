@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension id="ProvideInterface" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.ProvideInterface" portKindName="ProvideInterface">
+            class=&quot;org.eclipse.papyrus.qompass.designer.gentools.cpp.CppLanguageSupport&quot;
+		</client>
+	</extension>
+	<extension id="UseInterface" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+ 		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.UseInterface" portKindName="UseInterface">
+		</client>
+	</extension>
+	<extension id="PullConsumer" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.PullConsumer" portKindName="PullConsumer">
+		</client>
+	</extension>
+	<extension id="PushConsumer" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.PushConsumer" portKindName="PushConsumer">
+		</client>
+	</extension>
+	<extension id="PushProducer" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.PushProducer" portKindName="PushProducer">
+		</client>
+	</extension>
+	<extension id="ExtendedPort" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.ExtendedPort" portKindName="ExtendedPort">
+		</client>
+	</extension>
+	<extension id="ExtendedPort2" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.ExtendedPort2" portKindName="ExtendedPort2">
+		</client>
+	</extension>
+	<extension id="UseConjIntf" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.UseConjIntf" portKindName="UseConjIntf">
+		</client>
+	</extension>
+   <extension id="PushProdPullCons" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+      <client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.PushProdPullCons" portKindName="PushProdPullCons">
+      </client>
+   </extension>
+   <extension point="org.eclipse.papyrus.fcm.profile.fcmEmbeddingRule">
+      <client class="org.eclipse.papyrus.qompass.modellibs.core.embeddingrules.AccordCall" portKindName="AccordCall">
+      </client>
+   </extension>
+   <extension id="QML_CORE" point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping source="pathmap://QML_CORE/" target="platform:/plugin/org.eclipse.papyrus.qompass.modellibs.core/models/library/">
+      </mapping>
+   </extension>
+   <extension name="CORBA basic types" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library description="Qompass: CORBA basic types (long, wchar, ...)" iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: CORBA basic types" path="pathmap://QML_CORE/corba.uml" provider="CEA LIST">
+      </library>
+   </extension>
+   <extension name="Qompass core library" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library description="Qompass core library" iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: basic" path="pathmap://QML_CORE/core.uml" provider="CEA LIST">
+      </library>
+   </extension>
+   <extension name="FIFO" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: FIFO" path="pathmap://QML_CORE/fifo.uml" provider="CEA LIST">
+      </library>
+	</extension>
+	<extension name="OS-AL" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+		<library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: OS abstraction layer (OS-AL)" path="pathmap://QML_CORE/osal.uml" provider="CEA LIST">
+		</library>
+	</extension>
+	<extension name="StateMachine" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+		<library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: State-machines" path="pathmap://QML_CORE/statemachine.uml" provider="CEA LIST">
+		</library>
+	</extension>
+	<extension point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+		<template
+			id="org.eclipse.papyrus.qompass.designer.modelibs.core.wizardTemplates.QompassForMARTE"
+			language="uml"
+			name="Qompass for MARTE"
+			file="models/wizardTemplates/QompassModel.uml"
+			di_file="models/wizardTemplates/QompassModel.di"
+			notation_file="models/wizardTemplates/QompassModel.notation">
+		</template>
+		<template
+			id="org.eclipse.papyrus.qompass.designer.modelibs.core.wizardTemplates.QompassSimple"
+			language="uml"
+			name="Qompass without MARTE"
+			file="models/wizardTemplates/QompassSimple.uml"
+			di_file="models/wizardTemplates/QompassSimple.di"
+			notation_file="models/wizardTemplates/QompassSimple.notation">
+		</template>
+	</extension>
+	<extension point="org.eclipse.papyrus.qompass.designer.core.instanceConfig">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.CallEventConfigurator" configuratorID="CallEventConfigurator">
+		</client>
+	</extension>
+	<extension point="org.eclipse.ui.newWizards">
+		<category
+			id = "org.eclipse.papyrus.qompass.designer.examples"
+			parentCategory="org.eclipse.ui.Examples"
+			name="Qompass examples">
+		</category>
+		<wizard
+			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
+			class="org.eclipse.papyrus.qompass.modellibs.core.HelloWorldModelWizard"
+			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+			id="org.eclipse.papyrus.qompass.modellibs.core.new.HelloWorld"
+			name="Qompass hello world example">
+			<selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+		<wizard
+			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
+			class="org.eclipse.papyrus.qompass.modellibs.core.ProducerConsumerModelWizard"
+			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+			id="org.eclipse.papyrus.qompass.modellibs.core.new.ProducerConsumer"
+			name="Qompass producer/comsumer example">
+			<selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+	</extension>
+	<extension point="org.eclipse.help.toc">
+		<toc file="help/modellibs-core-examples.xml"/>
+		<toc file="help/modellibs-core-library.xml"/>
+	</extension>
+</plugin>

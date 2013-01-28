@@ -1,0 +1,13 @@
+BODY { font-family: "Helvetica", sans-serif;
+	background-color: white
+}
+
+A:link { color: #4040c0 }
+A:active { color: #909090 }
+A:visited { color: #9090f0 }
+
+TT {
+	background-color: #d0f8f0;
+	/* font-family: monospace; */
+	/* font-size: 100% */
+}

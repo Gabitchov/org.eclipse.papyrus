@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<h1>Components</h1>
+
+An Qompass component is a UML class (you might also use a UML component), since classes
+contain essential properties we require of a component:
+<ul>
+<li>they own a set of ports and may interact through these ports. On the port level, a component needs to declare explicitly,
+	which services it offers and which it requires from other others. It is important that a component does not know which
+	other component will provide a required service, it only states the required services (interfaces or data-types). Thus, compared
+	to an element of a classical library, dependencies on other elements are limited and the components are loosely coupled with
+	their environment
+<li>A class may have an explicit internal structure: a set of <i>parts</i> that are typed with other components (UML classes).
+	The ports of the parts may be connected (assembly), a port of the component itself might delegate to a port of a part.
+	These components are also called assembly components.
+</ul>
+
+A component might either be a type or an implementation. The former is mainly an abstract class with a set of ports
+and no internal structure. It may inherit from other component types, but not from implementations.
+The latter has to realize at least a subset of the services that are provided at its ports (if it does not define all, it
+needs to be declared as abstract). The realization could be either done by an implementation written in a specific programming
+language or the UML action language or by a delegation to an inner part.
+
+</body>
+</html>

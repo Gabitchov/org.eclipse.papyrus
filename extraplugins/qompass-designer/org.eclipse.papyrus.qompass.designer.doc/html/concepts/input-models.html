@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+	<title>Qompass</title>
+	<link rel="StyleSheet"
+        href="../sitestyle.css"
+        type="text/css">
+</head>
+<body>
+<img src="../img/qompass-0.33.jpg" alt="Qompass logo">
+<h1>Input models</h1>
+
+The set of input models contains three sub-models that are shortly described in the sequel:
+<ol>
+<li> the software component model,
+<li> the hardware platform and
+<li> the deployment model.
+</ol>
+
+In the context of this page, the input models are discussed without referring to a specific example. Sample models are available via the Qompass
+online help or via the "create-new example" dialog of Eclipse.
+
+<h2>Component model</h2>
+
+We use the UML MARTE component model that describes components (with their internal behavior), and the interaction points (ports)
+characterized by the transferred data or by the provided/required services. Interactions are realized by the design patterns described
+in section <a href="connector-container.html">Connector/Container</a>.
+The concurrent behavior is specified via the  HLAM (High Level Application Modeling) sub-profile of MARTE. This concurrency model
+identifies the components that possesses execution resources (RtUnit) and the shared ones (PpUnit) which do not have execution resources,
+but resources that manage the concurrent access.
+
+<h2>Platform model</h2>
+
+A hardware architecture is described in a similar way as the logical architecture by composition of elements. A class called
+"HWArchitecture" represents the complete platform. The attributes of this class represent nodes. Each node is typed with a class
+that captures the properties of this node. Each node can have a further internal structure, a hierarchical structure
+can thus be modeled.
+<p>
+
+
+<h2>Deployment model</h2>
+
+The deployment of an application consists to define the component instance, their configuration and their allocation to an
+execution node. The UML composite structure defines the roles that are played by each component of the system. The deployed
+component is always an instance of a component that has a specfied allocation to an execution resource (node or thread) and
+a specific configuration. In UML, an instance is defined by an "InstanceSpecification", the values of properties are given via
+"slots". In case that the property represents a sub-component, the associated value is a further instance specification. The
+resulting hierarchical structure is quite difficult to maintain and is automatically generated and maintained by tools.
+
+A component-based system requires a configuration. The configuration attribute of a timer for instance define its frequency. The
+values of this configuration attribute can be defined at two different levels.
+<ul>
+<li> on declaration level by associating a default value with an attribute
+<li> on instance level, by specify a corresponding slot value
+</ul>
+Once all component are instantiated and configured, they can be allocated.
+
+The allocation phase consists of defining the relation between the the instances of software components and those of the platform elements.
+The Figure below describes the deployment of the component DeviceControlMonitor and PGController on the hardware platform. The MARTE
+"Allocate" relationship is used to describe the allocation model.
+
+The allocation can be refined by introducing local resources of the platform between the application the hardware platforms -- in
+MARTE via the concept of a  "SwSchedulableResource".
+
+</body>
+</html>

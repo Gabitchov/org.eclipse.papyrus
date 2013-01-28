@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+  <notation:Diagram xmi:id="__buPcGmXEd-z7r5RKMpEpA" type="PapyrusUMLClassDiagram" name="Class diagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_z01l4GnZEd-Ptdbbm65sVA" type="2005" fontName="Sans Serif" fontHeight="10" lineColor="0">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z02M8GnZEd-Ptdbbm65sVA" source="ShadowFigure">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z02M8WnZEd-Ptdbbm65sVA" key="ShadowFigure_Value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z020AGnZEd-Ptdbbm65sVA" source="displayNameLabelIcon">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z020AWnZEd-Ptdbbm65sVA" key="displayNameLabelIcon_value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z020AmnZEd-Ptdbbm65sVA" source="QualifiedName">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z020A2nZEd-Ptdbbm65sVA" key="QualifiedNameDepth" value="1000"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_z020BGnZEd-Ptdbbm65sVA" type="5020"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_z020BWnZEd-Ptdbbm65sVA" type="7009">
+        <children xmi:type="notation:Shape" xmi:id="_Fd1c4GnaEd-Ptdbbm65sVA" type="3009" fontName="Sans Serif" fontHeight="10" lineColor="0">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Fd2D8GnaEd-Ptdbbm65sVA" source="ShadowFigure">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fd2D8WnaEd-Ptdbbm65sVA" key="ShadowFigure_Value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Fd2D8mnaEd-Ptdbbm65sVA" source="displayNameLabelIcon">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fd2D82naEd-Ptdbbm65sVA" key="displayNameLabelIcon_value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Fd2D9GnaEd-Ptdbbm65sVA" source="QualifiedName">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fd2D9WnaEd-Ptdbbm65sVA" key="QualifiedNameDepth" value="1000"/>
+          </eAnnotations>
+          <children xmi:type="notation:DecorationNode" xmi:id="_Fd2D9mnaEd-Ptdbbm65sVA" type="5017"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_Fd2D92naEd-Ptdbbm65sVA" type="7010">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Fd2D-GnaEd-Ptdbbm65sVA"/>
+          </children>
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Fd1c4WnaEd-Ptdbbm65sVA"/>
+          <element xmi:type="uml:Package" href="QompassModel.uml#_FdsS8GnaEd-Ptdbbm65sVA"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Fd1c4mnaEd-Ptdbbm65sVA" x="44" y="17"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_JQ2bgGnaEd-Ptdbbm65sVA" type="3009" fontName="Sans Serif" fontHeight="10" lineColor="0">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JQ3CkGnaEd-Ptdbbm65sVA" source="ShadowFigure">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JQ3CkWnaEd-Ptdbbm65sVA" key="ShadowFigure_Value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JQ3CkmnaEd-Ptdbbm65sVA" source="displayNameLabelIcon">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JQ3Ck2naEd-Ptdbbm65sVA" key="displayNameLabelIcon_value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JQ3ClGnaEd-Ptdbbm65sVA" source="QualifiedName">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JQ3ClWnaEd-Ptdbbm65sVA" key="QualifiedNameDepth" value="1000"/>
+          </eAnnotations>
+          <children xmi:type="notation:DecorationNode" xmi:id="_JQ3ClmnaEd-Ptdbbm65sVA" type="5017"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_JQ3Cl2naEd-Ptdbbm65sVA" type="7010">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JQ3CmGnaEd-Ptdbbm65sVA"/>
+          </children>
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_JQ2bgWnaEd-Ptdbbm65sVA"/>
+          <element xmi:type="uml:Package" href="QompassModel.uml#_JQvt0GnaEd-Ptdbbm65sVA"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JQ2bgmnaEd-Ptdbbm65sVA" x="44" y="130"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_P1qMUGnaEd-Ptdbbm65sVA" type="3009" fontName="Sans Serif" fontHeight="10" lineColor="0">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P1qzYGnaEd-Ptdbbm65sVA" source="ShadowFigure">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P1qzYWnaEd-Ptdbbm65sVA" key="ShadowFigure_Value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P1qzYmnaEd-Ptdbbm65sVA" source="displayNameLabelIcon">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P1qzY2naEd-Ptdbbm65sVA" key="displayNameLabelIcon_value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P1racGnaEd-Ptdbbm65sVA" source="QualifiedName">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P1racWnaEd-Ptdbbm65sVA" key="QualifiedNameDepth" value="1000"/>
+          </eAnnotations>
+          <children xmi:type="notation:DecorationNode" xmi:id="_P1racmnaEd-Ptdbbm65sVA" type="5017"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_P1rac2naEd-Ptdbbm65sVA" type="7010">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P1radGnaEd-Ptdbbm65sVA"/>
+          </children>
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_P1qMUWnaEd-Ptdbbm65sVA"/>
+          <element xmi:type="uml:Package" href="QompassModel.uml#_P1nJAGnaEd-Ptdbbm65sVA"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P1qMUmnaEd-Ptdbbm65sVA" x="44" y="247"/>
+        </children>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z020BmnZEd-Ptdbbm65sVA" x="-23" y="20" width="412" height="373"/>
+      </children>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_z01l4WnZEd-Ptdbbm65sVA"/>
+      <element xmi:type="uml:Model" href="QompassModel.uml#__brzMGmXEd-z7r5RKMpEpA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z01l4mnZEd-Ptdbbm65sVA" x="118" y="98" width="359" height="396"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="__buPcWmXEd-z7r5RKMpEpA"/>
+    <element xmi:type="uml:Model" href="QompassModel.uml#__brzMGmXEd-z7r5RKMpEpA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_nAvkcFM2EeGB_eR1RCgBpw" type="CompositeStructure" name="Platform" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_nkwQcFM2EeGB_eR1RCgBpw" type="2073" fontName="" fontHeight="10" lineColor="0">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nkw3gFM2EeGB_eR1RCgBpw" source="ShadowFigure">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nkw3gVM2EeGB_eR1RCgBpw" key="ShadowFigure_Value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nkw3glM2EeGB_eR1RCgBpw" source="displayNameLabelIcon">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nkw3g1M2EeGB_eR1RCgBpw" key="displayNameLabelIcon_value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nkw3hFM2EeGB_eR1RCgBpw" source="QualifiedName">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nkw3hVM2EeGB_eR1RCgBpw" key="QualifiedNameDepth" value="1000"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_nkw3hlM2EeGB_eR1RCgBpw" type="5156"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_nkw3h1M2EeGB_eR1RCgBpw" type="7073">
+        <children xmi:type="notation:Shape" xmi:id="_pkGSAFM2EeGB_eR1RCgBpw" type="3070" fontName="" fontHeight="10" lineColor="0">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pkG5EFM2EeGB_eR1RCgBpw" source="ShadowFigure">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pkG5EVM2EeGB_eR1RCgBpw" key="ShadowFigure_Value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pkG5ElM2EeGB_eR1RCgBpw" source="displayNameLabelIcon">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pkG5E1M2EeGB_eR1RCgBpw" key="displayNameLabelIcon_value" value="false"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pkG5FFM2EeGB_eR1RCgBpw" source="QualifiedName">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pkG5FVM2EeGB_eR1RCgBpw" key="QualifiedNameDepth" value="1000"/>
+          </eAnnotations>
+          <children xmi:type="notation:DecorationNode" xmi:id="_pkG5FlM2EeGB_eR1RCgBpw" type="5126"/>
+          <children xmi:type="notation:BasicCompartment" xmi:id="_pkG5F1M2EeGB_eR1RCgBpw" visible="false" type="7077">
+            <styles xmi:type="notation:TitleStyle" xmi:id="_pkG5GFM2EeGB_eR1RCgBpw" showTitle="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pkG5GVM2EeGB_eR1RCgBpw"/>
+          </children>
+          <element xmi:type="uml:Property" href="QompassModel.uml#_pkDOsFM2EeGB_eR1RCgBpw"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pkGSAVM2EeGB_eR1RCgBpw" x="26" y="9" width="125"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_nkw3iFM2EeGB_eR1RCgBpw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nkw3iVM2EeGB_eR1RCgBpw"/>
+      </children>
+      <element xmi:type="uml:Class" href="QompassModel.uml#_l0_jAFM2EeGB_eR1RCgBpw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nkwQcVM2EeGB_eR1RCgBpw" x="97" y="92" width="273" height="143"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_nAvkcVM2EeGB_eR1RCgBpw"/>
+    <element xmi:type="uml:Package" href="QompassModel.uml#_JQvt0GnaEd-Ptdbbm65sVA"/>
+  </notation:Diagram>
+</xmi:XMI>
