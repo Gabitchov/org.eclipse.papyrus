@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2013 CEA LIST.
+ 
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+ 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableModelWizardID"
+            name="%_UI_NattableModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattableModelFile.gif">
+         <description>%_UI_NattableModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorID"
+            name="%_UI_NattableEditor_label"
+            icon="icons/full/obj16/NattableModelFile.gif"
+            extensions="nattable"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationModelWizardID"
+            name="%_UI_NattableconfigurationModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattableconfigurationModelFile.gif">
+         <description>%_UI_NattableconfigurationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationEditorID"
+            name="%_UI_NattableconfigurationEditor_label"
+            icon="icons/full/obj16/NattableconfigurationModelFile.gif"
+            extensions="nattableconfiguration"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderModelWizardID"
+            name="%_UI_NattablecontentproviderModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattablecontentproviderModelFile.gif">
+         <description>%_UI_NattablecontentproviderModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderEditorID"
+            name="%_UI_NattablecontentproviderEditor_label"
+            icon="icons/full/obj16/NattablecontentproviderModelFile.gif"
+            extensions="nattablecontentprovider"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
