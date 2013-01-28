@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<nattableconfiguration:TableEditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration">
-   <javaVerticalContentProviderIds>org.eclipse.papyrus.infra.nattable.emf.feature.provider</javaVerticalContentProviderIds>
-  <javaVerticalContentProviderIds>org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider</javaVerticalContentProviderIds>
-  <javaHorizontalContentProviderIds>org.eclipse.papyrus.infra.nattable.emf.user.provider</javaHorizontalContentProviderIds>
+<nattableconfiguration:TableEditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration" xmlns:nattablecontentprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider">
+  <defaultVerticalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider">
+    <javaContentProviderIds>org.eclipse.papyrus.infra.nattable.emf.feature.provider</javaContentProviderIds>
+    <javaContentProviderIds>org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider</javaContentProviderIds>
+  </defaultVerticalContentProvider>
+  <defaultHorizontalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider">
+    <javaContentProviderIds>org.eclipse.papyrus.infra.nattable.emf.user.provider</javaContentProviderIds>
+  </defaultHorizontalContentProvider>
 </nattableconfiguration:TableEditorConfiguration>
