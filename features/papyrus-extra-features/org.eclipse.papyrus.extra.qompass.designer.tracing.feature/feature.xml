@@ -18,10 +18,6 @@
       This program is provided by the CEA LIST in the context of the projects VERDE, SIRSEC, RT-DESCRIBE and RT-SIMEX. It can be used free of charge until the end of the respective projects. Further use or exploitation requires a new agreement with the CEA
    </license>
 
-   <requires>
-      <import feature="org.eclipse.papyrus.qompass.designer.feature.basic" version="0.8.0.qualifier"/>
-   </requires>
-
    <plugin
          id="org.eclipse.papyrus.qompass.modellibs.tracing"
          download-size="0"
