@@ -66,6 +66,7 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
+
 /**
  * Abstract class for TableEditor
  *
@@ -134,9 +135,6 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 
 		final RowHeaderLayerStack rowHeaderLayer = new RowHeaderLayerStack(rowHeaderDataProvider, fBodyLayer);
-
-
-
 
 
 		final IDataProvider cornerDataProvider = new DefaultCornerDataProvider(colHeaderDataProvider, rowHeaderDataProvider) {
