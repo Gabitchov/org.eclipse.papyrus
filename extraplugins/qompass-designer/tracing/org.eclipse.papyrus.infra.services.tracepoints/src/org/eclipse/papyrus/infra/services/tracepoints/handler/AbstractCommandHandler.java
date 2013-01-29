@@ -26,8 +26,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.services.tracepoints.Activator;
 import org.eclipse.ui.PlatformUI;
 
@@ -136,8 +136,8 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		try {
-			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
-			util.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
+			ServiceUtilsForHandlers util = ServiceUtilsForHandlers.getInstance();
+			util.getTransactionalEditingDomain(event).getCommandStack().execute(getCommand());
 		} catch (ServiceException e) {
 			Activator.log.error("Unexpected error while executing command.", e); //$NON-NLS-1$
 		}

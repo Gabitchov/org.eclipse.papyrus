@@ -40,10 +40,12 @@ public class ToggleTracepointCommand extends AbstractTracepointCommand {
 		updateResourceAndURI();
 		try {
 			IMarker marker = toggleMarker();
-			marker.setAttribute(TracepointConstants.isTracepoint, true);
-			// set default options from preferences
-			marker.setAttribute(TracepointConstants.traceAction, TraceActions.actionFromPreferences(selectedElement));
-			marker.setAttribute(TracepointConstants.traceMechanism, TraceMechanism.getDefaultMechanism(selectedElement));
+			if (marker != null) {
+				marker.setAttribute(TracepointConstants.isTracepoint, true);
+				// set default options from preferences
+				marker.setAttribute(TracepointConstants.traceAction, TraceActions.actionFromPreferences(selectedElement));
+				marker.setAttribute(TracepointConstants.traceMechanism, TraceMechanism.getDefaultMechanism(selectedElement));
+			}
 		} catch (CoreException e) {
 
 		}
