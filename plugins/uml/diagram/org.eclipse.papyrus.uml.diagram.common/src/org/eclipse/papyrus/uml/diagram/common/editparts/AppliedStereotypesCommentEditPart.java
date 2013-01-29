@@ -21,21 +21,24 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentForCommentShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommentShapeForAppliedStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
-import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
-import org.eclipse.uml2.uml.Element;
 
 /**
- *The Applied StereotypeCommentEdipart and the appliedStereotypeCommentLinkEditPart are connected to the semantic element. 
- *Thanks to this, if the semantic element is deleted the comment will be also deleted.
- *The Applied StereotypeCommentEdipart will be contains eannotation about stereotype application exactly as the editpart
+ * The Applied StereotypeCommentEdipart and the appliedStereotypeCommentLinkEditPart are connected to the semantic element.
+ * Thanks to this, if the semantic element is deleted the comment will be also deleted.
+ * The Applied StereotypeCommentEdipart will be contains eannotation about stereotype application exactly as the editpart
  * that represents the semantic element. In this manner, it is possible to reuse mechanism of stereotype edition.
  * To ensure the creation of the comment and the synchronization of eannotation information from the Semantic editpart
- *  an editpolicy will be added: the AppliedStereotypeCommentEditPolicy.
- *
+ * an editpolicy will be added: the AppliedStereotypeCommentEditPolicy.
+ * 
  */
 
 public class AppliedStereotypesCommentEditPart extends NodeEditPart implements IGraphicalEditPart, IPrimaryEditPart {
@@ -53,10 +56,10 @@ public class AppliedStereotypesCommentEditPart extends NodeEditPart implements I
 	protected void createDefaultEditPolicies() {
 		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
-		installEditPolicy( "AppliedStereotypeCompartment",new  AppliedStereotypeCompartmentForCommentShapeEditPolicy());
+		installEditPolicy("AppliedStereotypeCompartment", new AppliedStereotypeCompartmentForCommentShapeEditPolicy());
 		installEditPolicy("AutomaticDeletionIfEmpty", new CommentShapeForAppliedStereotypeEditPolicy());
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -70,6 +73,7 @@ public class AppliedStereotypesCommentEditPart extends NodeEditPart implements I
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -82,15 +86,21 @@ public class AppliedStereotypesCommentEditPart extends NodeEditPart implements I
 	@Override
 	public String toString() {
 		//return super.toString();
-		UMLLabelProvider labelProvider= new UMLLabelProvider();
-		return "Applied Stereotypes Set of "+ labelProvider.getText(((Element)resolveSemanticElement()));
+		ILabelProvider labelProvider;
+		try {
+			labelProvider = ServiceUtilsForEditPart.getInstance().getService(LabelProviderService.class, this).getLabelProvider();
+		} catch (ServiceException ex) {
+			labelProvider = new LabelProvider();
+		}
+		return "Applied Stereotypes Set of " + labelProvider.getText((resolveSemanticElement()));
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -102,9 +112,11 @@ public class AppliedStereotypesCommentEditPart extends NodeEditPart implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
+
 	/**
 	 * @generated
 	 */
@@ -146,6 +158,7 @@ public class AppliedStereotypesCommentEditPart extends NodeEditPart implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public CornerBentFigure getPrimaryShape() {
 		return (CornerBentFigure)primaryShape;
 	}
