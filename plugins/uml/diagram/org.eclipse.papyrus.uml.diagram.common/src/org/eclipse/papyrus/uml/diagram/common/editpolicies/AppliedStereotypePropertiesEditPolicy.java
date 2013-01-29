@@ -13,12 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.impl.InternalTransaction;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -109,9 +114,17 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 										i++;
 									}
 									if( sterotypePropertyNode==null){
-										//System.err.println("+ add "+stereotypeProperty );
+										//use to avoid to put it in the command stack
 										CreateAppliedStereotypePropertyViewCommand command= new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotypeProperty);
-										editPart.getEditingDomain().getCommandStack().execute(command);
+										 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+										options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+									try{
+										InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+										command.execute();
+										it.commit();
+									}catch(Exception e){
+										System.err.println(e);
+									}
 									}
 								}
 							}
@@ -200,7 +213,17 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 							Display.getCurrent().asyncExec(new Runnable() {
 								public void run() {
 									DeleteCommand command= new DeleteCommand((View)getHost().getModel());
-									editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+									//use to avoid to put it in the command stack
+									 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+										options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+									try{
+										InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+										GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+										warpperCmd.execute();
+										it.commit();
+									}catch(Exception e){
+										System.err.println(e);
+									}
 								}
 
 							});
@@ -239,9 +262,19 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 									Display.getCurrent().asyncExec(new Runnable() {
 										public void run() {
 											if( currentNode.eContainer()!=null){
-												//System.err.println("- remove "+propertyQN );
+												
 												DeleteCommand command= new DeleteCommand(currentNode);
-												editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+												//use to avoid to put it in the command stack
+												 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+													options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+												try{
+													InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+													GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+													warpperCmd.execute();
+													it.commit();
+												}catch(Exception e){
+													System.err.println(e);
+												}
 											}
 
 										}

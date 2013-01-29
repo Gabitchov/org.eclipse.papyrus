@@ -43,7 +43,7 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 	 * @param displayit
 	 */
 	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain,View owner, EObject StereotypeApplication, boolean displayit) {
-		super(domain);
+		super(domain,"CreateStereotypeCompartment");
 		this.owner = owner;
 		this.StereotypeApplication=StereotypeApplication;
 		this.displayit=displayit;

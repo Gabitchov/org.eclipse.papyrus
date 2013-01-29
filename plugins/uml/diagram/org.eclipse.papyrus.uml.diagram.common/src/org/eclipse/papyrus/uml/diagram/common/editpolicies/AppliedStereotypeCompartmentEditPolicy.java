@@ -14,27 +14,30 @@
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.impl.InternalTransaction;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateAppliedStereotypeViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SetNodeVisibilityCommand;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeConpartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
@@ -130,8 +133,19 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
+							
 							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), appliedstereotype, hasToDisplayCompartment(appliedstereotype));
-							editPart.getEditingDomain().getCommandStack().execute(command);
+							//use to avoid to put it in the command stack
+							 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+							try{
+								InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+								command.execute();
+								it.commit();
+							}catch(Exception e){
+								System.err.println(e);
+							}
+							
 						}
 					});
 				}
@@ -170,6 +184,13 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		if(notification.getNotifier() instanceof Node && (notification.getEventType() == Notification.ADD) && (notification.getNewValue() instanceof EAnnotation)) {
 			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNewValue()).getSource()) {
 				// stereotype annotation has changed => refresh label display
+				refreshDisplay();
+			}
+		}
+		// if element that has changed is a stereotype => refresh the label.
+		if(notification.getNotifier()  instanceof EAnnotation && (notification.getEventType() == Notification.ADD)) {
+			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
+						// stereotype annotation has changed => refresh label display
 				refreshDisplay();
 			}
 		}
@@ -212,7 +233,16 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 						public void run() {
 							SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
-							editPart.getEditingDomain().getCommandStack().execute(setCommand);
+							//use to avoid to put it in the command stack
+							 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+							try{
+								InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+								setCommand.execute();
+								it.commit();
+							}catch(Exception e){
+								System.err.println(e);
+							}
 						}
 					});
 				}
@@ -275,7 +305,17 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 									public void run() {
 										DeleteCommand command = new DeleteCommand(currentNode);
-										editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+										//use to avoid to put it in the command stack
+										 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+											options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+										try{
+											InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+											GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+											warpperCmd.execute();
+											it.commit();
+										}catch(Exception e){
+											System.err.println(e);
+										}
 									}
 								});
 							}
@@ -292,7 +332,17 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 									public void run() {
 										if(currentNode!=null&&editPart.getEditingDomain()!=null){
 											DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(),currentNode);
-											editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+											//use to avoid to put it in the command stack
+											 Map<String,Boolean> options = new HashMap<String,Boolean>();  
+												options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+											try{
+												InternalTransaction it=((InternalTransactionalEditingDomain) editPart.getEditingDomain()).startTransaction(false, options);
+												GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
+												warpperCmd.execute();
+												it.commit();
+											}catch(Exception e){
+												System.err.println(e);
+											}
 										}
 									}
 								});
