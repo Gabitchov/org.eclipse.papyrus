@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:testProfile="http:///schemas/testProfile/_rNfDMHc8EeGEMdTf3PnPPg/0" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/testProfile/_rNfDMHc8EeGEMdTf3PnPPg/0 pathmap://Test_PROFILES/testProfile.profile.uml#_sVoXAHc8EeGEMdTf3PnPPg">
+  <uml:Model xmi:id="_6wmGEBwfEeKYb8ts8yUAsw" name="model">
+    <ownedComment xmi:id="_Mfd7kBwgEeKYb8ts8yUAsw">
+      <body>Unapply Stereotype. The comments have to disappear.</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_BPjGgBwgEeKYb8ts8yUAsw" name="StereotypedClass"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EmOucBwgEeKYb8ts8yUAsw" clientDependency="_FcrOQBwgEeKYb8ts8yUAsw" name="Class1"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_FcrOQBwgEeKYb8ts8yUAsw" name="StereotypedLink" client="_EmOucBwgEeKYb8ts8yUAsw" supplier="_BPjGgBwgEeKYb8ts8yUAsw"/>
+    <profileApplication xmi:id="_ARp64BwgEeKYb8ts8yUAsw">
+      <eAnnotations xmi:id="_AR810BwgEeKYb8ts8yUAsw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://Test_PROFILES/testProfile.profile.uml#_sVoXAHc8EeGEMdTf3PnPPg"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://Test_PROFILES/testProfile.profile.uml#_UVrRoGkdEeGGJOTenKBKAg"/>
+    </profileApplication>
+  </uml:Model>
+  <testProfile:Stereotype1 xmi:id="_J8_-0BwgEeKYb8ts8yUAsw" base_Element="_BPjGgBwgEeKYb8ts8yUAsw"/>
+  <testProfile:Stereotype1 xmi:id="_K9t08BwgEeKYb8ts8yUAsw" base_Element="_FcrOQBwgEeKYb8ts8yUAsw"/>
+</xmi:XMI>

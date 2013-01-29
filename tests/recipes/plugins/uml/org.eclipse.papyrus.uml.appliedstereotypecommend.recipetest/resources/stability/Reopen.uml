@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:testProfile="http:///schemas/testProfile/_rNfDMHc8EeGEMdTf3PnPPg/0" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/testProfile/_rNfDMHc8EeGEMdTf3PnPPg/0 pathmap://Test_PROFILES/testProfile.profile.uml#_sVoXAHc8EeGEMdTf3PnPPg">
+  <uml:Model xmi:id="_SmYkkDluEeKTMrwDeceu8w" name="model">
+    <ownedComment xmi:id="_w8C7cDluEeKTMrwDeceu8w" annotatedElement="_U8p4YDluEeKTMrwDeceu8w">
+      <body>The display should not change when the editor is reopened. Steps to reproduce: double-click the diagram shortcut, or double-click the diagram in the ModelExplorer</body>
+    </ownedComment>
+    <ownedComment xmi:id="_9IhC4DlvEeKTMrwDeceu8w" annotatedElement="_w8C7cDluEeKTMrwDeceu8w">
+      <body>Camille on 2012/11/28: This currently does not work. When reopening the diagram, the Stereotype are displayed with braces. The stereotype comments do not disappear. When clicking the &quot;Refresh diagram&quot; button, the &quot;Stereotype with braces&quot; disappear.</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_U8p4YDluEeKTMrwDeceu8w" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VWPdEDluEeKTMrwDeceu8w" clientDependency="_kd4KkDluEeKTMrwDeceu8w" name="StereotypedClass"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_kd4KkDluEeKTMrwDeceu8w" name="StereotypedLink" client="_VWPdEDluEeKTMrwDeceu8w" supplier="_U8p4YDluEeKTMrwDeceu8w"/>
+    <profileApplication xmi:id="_Upd2oDluEeKTMrwDeceu8w">
+      <eAnnotations xmi:id="_UpwxkDluEeKTMrwDeceu8w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://Test_PROFILES/testProfile.profile.uml#_sVoXAHc8EeGEMdTf3PnPPg"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://Test_PROFILES/testProfile.profile.uml#_UVrRoGkdEeGGJOTenKBKAg"/>
+    </profileApplication>
+  </uml:Model>
+  <testProfile:Stereotype1 xmi:id="_aZPc4DluEeKTMrwDeceu8w" base_Element="_VWPdEDluEeKTMrwDeceu8w"/>
+  <testProfile:Stereotype1 xmi:id="_ofZfQDluEeKTMrwDeceu8w" base_Element="_kd4KkDluEeKTMrwDeceu8w"/>
+</xmi:XMI>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_6wmGEBwfEeKYb8ts8yUAsw" name="model">
+  <ownedComment xmi:id="_Mfd7kBwgEeKYb8ts8yUAsw">
+    <body>The profile has been unapplied with the UML editor. The comments have to disappear.</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_BPjGgBwgEeKYb8ts8yUAsw" name="StereotypedClass"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EmOucBwgEeKYb8ts8yUAsw" clientDependency="_FcrOQBwgEeKYb8ts8yUAsw" name="Class1"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_FcrOQBwgEeKYb8ts8yUAsw" name="StereotypedLink" client="_EmOucBwgEeKYb8ts8yUAsw" supplier="_BPjGgBwgEeKYb8ts8yUAsw"/>
+</uml:Model>
