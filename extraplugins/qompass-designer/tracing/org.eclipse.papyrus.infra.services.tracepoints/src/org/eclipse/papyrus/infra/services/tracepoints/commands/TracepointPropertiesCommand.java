@@ -73,7 +73,9 @@ public class TracepointPropertiesCommand extends AbstractTracepointCommand {
 		if(selectedElement != null) {
 			updateResourceAndURI();
 			IMarker marker = findMarker(TracepointConstants.tpOrbpMarker);
-			System.err.println("Hallo: " + marker);
+			if(marker == null) {
+				return false;
+			}
 			return marker.getAttribute(TracepointConstants.isTracepoint, false);
 		}
 		return false;
