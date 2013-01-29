@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.marte.vsl.vSL.impl;
 
@@ -121,7 +117,7 @@ public class ExpressionImpl extends ValueSpecificationImpl implements Expression
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getFilteredParentRule(EClass filter)
+  public EObject getFilteredParentRule(final EClass filter)
   {
     return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getFilteredParentRule(this, filter) ;
   }

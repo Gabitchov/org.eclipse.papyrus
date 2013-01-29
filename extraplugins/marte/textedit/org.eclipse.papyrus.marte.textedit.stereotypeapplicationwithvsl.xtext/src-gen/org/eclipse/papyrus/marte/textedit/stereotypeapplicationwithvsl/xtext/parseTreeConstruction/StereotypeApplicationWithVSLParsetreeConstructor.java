@@ -83,6 +83,7 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule StereotypeApplicationsRule ****************
  *
  * StereotypeApplicationsRule:
+ * 
  * 	stereotypeApplications+=StereotypeApplicationRule*;
  *
  **/
@@ -139,12 +140,15 @@ protected class StereotypeApplicationsRule_StereotypeApplicationsAssignment exte
 /************ begin Rule StereotypeApplicationRule ****************
  *
  * StereotypeApplicationRule:
+ * 
  * 	"<<" stereotype=[uml::Stereotype] ">>" (tagSpecification+=TagSpecificationRule (","
+ * 
  * 	tagSpecification+=TagSpecificationRule)*)?;
  *
  **/
 
 // "<<" stereotype=[uml::Stereotype] ">>" (tagSpecification+=TagSpecificationRule (","
+// 
 // tagSpecification+=TagSpecificationRule)*)?
 protected class StereotypeApplicationRule_Group extends GroupToken {
 	
@@ -424,6 +428,7 @@ protected class StereotypeApplicationRule_TagSpecificationAssignment_3_1_1 exten
 /************ begin Rule TagSpecificationRule ****************
  *
  * TagSpecificationRule:
+ * 
  * 	property=[uml::Property] value=ExpressionValueRule;
  *
  **/
@@ -546,6 +551,7 @@ protected class TagSpecificationRule_ValueAssignment_1 extends AssignmentToken  
 /************ begin Rule ExpressionValueRule ****************
  *
  * ExpressionValueRule:
+ * 
  * 	"=" expression=Expression;
  *
  **/
@@ -653,6 +659,7 @@ protected class ExpressionValueRule_ExpressionAssignment_1 extends AssignmentTok
 /************ begin Rule Expression ****************
  *
  * Expression:
+ * 
  * 	exp=AndOrXorExpression;
  *
  **/
@@ -710,6 +717,7 @@ protected class Expression_ExpAssignment extends AssignmentToken  {
 /************ begin Rule AndOrXorExpression ****************
  *
  * AndOrXorExpression:
+ * 
  * 	exp+=EqualityExpression (op+=("and" | "or" | "xor") exp+=EqualityExpression)*;
  *
  **/
@@ -910,6 +918,7 @@ protected class AndOrXorExpression_ExpAssignment_1_1 extends AssignmentToken  {
 /************ begin Rule EqualityExpression ****************
  *
  * EqualityExpression:
+ * 
  * 	exp+=RelationalExpression (op+=("==" | "<>") exp+=RelationalExpression)*;
  *
  **/
@@ -1105,6 +1114,7 @@ protected class EqualityExpression_ExpAssignment_1_1 extends AssignmentToken  {
 /************ begin Rule RelationalExpression ****************
  *
  * RelationalExpression:
+ * 
  * 	exp+=ConditionalExpression (op+=("<" | ">" | "<=" | ">=") exp+=ConditionalExpression)*;
  *
  **/
@@ -1310,6 +1320,7 @@ protected class RelationalExpression_ExpAssignment_1_1 extends AssignmentToken  
 /************ begin Rule ConditionalExpression ****************
  *
  * ConditionalExpression:
+ * 
  * 	exp+=AdditiveExpression (op+="?" exp+=AdditiveExpression ":" exp+=AdditiveExpression)?;
  *
  **/
@@ -1567,6 +1578,7 @@ protected class ConditionalExpression_ExpAssignment_1_3 extends AssignmentToken 
 /************ begin Rule AdditiveExpression ****************
  *
  * AdditiveExpression:
+ * 
  * 	exp+=MultiplicativeExpression (op+=("+" | "-") exp+=MultiplicativeExpression)*;
  *
  **/
@@ -1762,6 +1774,7 @@ protected class AdditiveExpression_ExpAssignment_1_1 extends AssignmentToken  {
 /************ begin Rule MultiplicativeExpression ****************
  *
  * MultiplicativeExpression:
+ * 
  * 	exp+=UnaryExpression (op+=("*" | "/" | "mod") exp+=UnaryExpression)*;
  *
  **/
@@ -1962,6 +1975,7 @@ protected class MultiplicativeExpression_ExpAssignment_1_1 extends AssignmentTok
 /************ begin Rule UnaryExpression ****************
  *
  * UnaryExpression:
+ * 
  * 	op=("not" | "-" | "+") unary=UnaryExpression | exp=PrimaryExpression;
  *
  **/
@@ -2160,6 +2174,7 @@ protected class UnaryExpression_ExpAssignment_1 extends AssignmentToken  {
 /************ begin Rule PrimaryExpression ****************
  *
  * PrimaryExpression:
+ * 
  * 	prefix=ValueSpecification ("." suffix=SuffixExpression)?;
  *
  **/
@@ -2337,12 +2352,15 @@ protected class PrimaryExpression_SuffixAssignment_1_1 extends AssignmentToken  
 /************ begin Rule ValueSpecification ****************
  *
  * ValueSpecification:
+ * 
  * 	Literal | NameOrChoiceOrBehaviorCall | Interval | CollectionOrTuple | Tuple | TimeExpression | VariableDeclaration |
+ * 
  * 	"(" Expression ")";
  *
  **/
 
 // Literal | NameOrChoiceOrBehaviorCall | Interval | CollectionOrTuple | Tuple | TimeExpression | VariableDeclaration | "("
+// 
 // Expression ")"
 protected class ValueSpecification_Alternatives extends AlternativesToken {
 
@@ -2771,6 +2789,7 @@ protected class ValueSpecification_RightParenthesisKeyword_7_2 extends KeywordTo
 /************ begin Rule SuffixExpression ****************
  *
  * SuffixExpression:
+ * 
  * 	PropertyCallExpression | OperationCallExpression;
  *
  **/
@@ -2885,6 +2904,7 @@ protected class SuffixExpression_OperationCallExpressionParserRuleCall_1 extends
 /************ begin Rule PropertyCallExpression ****************
  *
  * PropertyCallExpression:
+ * 
  * 	property=[uml::Property] ("." suffix=SuffixExpression)?;
  *
  **/
@@ -3053,6 +3073,7 @@ protected class PropertyCallExpression_SuffixAssignment_1_1 extends AssignmentTo
 /************ begin Rule OperationCallExpression ****************
  *
  * OperationCallExpression:
+ * 
  * 	operation=[uml::Operation] "(" arguments=ListOfValues? ")" ("." suffix=SuffixExpression)?;
  *
  **/
@@ -3312,7 +3333,9 @@ protected class OperationCallExpression_SuffixAssignment_4_1 extends AssignmentT
 /************ begin Rule Literal ****************
  *
  * Literal:
+ * 
  * 	NumberLiteralRule | DateTimeLiteralRule | BooleanLiteralRule | NullLiteralRule | DefaultLiteralRule |
+ * 
  * 	StringLiteralRule;
  *
  **/
@@ -3583,21 +3606,26 @@ protected class Literal_StringLiteralRuleParserRuleCall_5 extends RuleCallToken 
 /************ begin Rule NameOrChoiceOrBehaviorCall ****************
  *
  * NameOrChoiceOrBehaviorCall:
+ * 
  * 	path=QualifiedName? // can resolve to :
- * 	// - EnumSpecification,
- * 	// - VariableCallExpression
+ *  // - EnumSpecification,
+ *  // - VariableCallExpression
+ * 
+ * 
  * 	// - PropertyCallExpression
- * 	// - ChoiceExpression
- * 	id=[uml::NamedElement] ("(" arguments=ListOfValues? ")")?;
+ *  // - ChoiceExpression
+ *  id=[uml::NamedElement] ("(" arguments=ListOfValues? ")")?;
  *
  **/
 
 // path=QualifiedName? // can resolve to :
-// // - EnumSpecification,
-// // - VariableCallExpression
+//  // - EnumSpecification,
+//  // - VariableCallExpression
+// 
+// 
 // // - PropertyCallExpression
-// // - ChoiceExpression
-// id=[uml::NamedElement] ("(" arguments=ListOfValues? ")")?
+//  // - ChoiceExpression
+//  id=[uml::NamedElement] ("(" arguments=ListOfValues? ")")?
 protected class NameOrChoiceOrBehaviorCall_Group extends GroupToken {
 	
 	public NameOrChoiceOrBehaviorCall_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3829,6 +3857,7 @@ protected class NameOrChoiceOrBehaviorCall_RightParenthesisKeyword_2_2 extends K
 /************ begin Rule QualifiedName ****************
  *
  * QualifiedName:
+ * 
  * 	path=[uml::Namespace] "::" remaining=QualifiedName?;
  *
  **/
@@ -3974,6 +4003,7 @@ protected class QualifiedName_RemainingAssignment_2 extends AssignmentToken  {
 /************ begin Rule Interval ****************
  *
  * Interval:
+ * 
  * 	("]" | isLowerIncluded="[") lower=Expression ".." upper=Expression (isUpperIncluded="]" | "[");
  *
  **/
@@ -4286,6 +4316,7 @@ protected class Interval_LeftSquareBracketKeyword_4_1 extends KeywordToken  {
 /************ begin Rule CollectionOrTuple ****************
  *
  * CollectionOrTuple:
+ * 
  * 	"{" listOfValues=ListOfValues "}";
  *
  **/
@@ -4415,6 +4446,7 @@ protected class CollectionOrTuple_RightCurlyBracketKeyword_2 extends KeywordToke
 /************ begin Rule Tuple ****************
  *
  * Tuple:
+ * 
  * 	"{" listOfValueNamePairs=ListOfValueNamePairs "}";
  *
  **/
@@ -4544,6 +4576,7 @@ protected class Tuple_RightCurlyBracketKeyword_2 extends KeywordToken  {
 /************ begin Rule ListOfValues ****************
  *
  * ListOfValues:
+ * 
  * 	values+=Expression ("," values+=Expression)*;
  *
  **/
@@ -4722,6 +4755,7 @@ protected class ListOfValues_ValuesAssignment_1_1 extends AssignmentToken  {
 /************ begin Rule ListOfValueNamePairs ****************
  *
  * ListOfValueNamePairs:
+ * 
  * 	valueNamePairs+=ValueNamePair ("," valueNamePairs+=ValueNamePair)*;
  *
  **/
@@ -4900,6 +4934,7 @@ protected class ListOfValueNamePairs_ValueNamePairsAssignment_1_1 extends Assign
 /************ begin Rule ValueNamePair ****************
  *
  * ValueNamePair:
+ * 
  * 	property=[uml::Property] "=" value=Expression;
  *
  **/
@@ -5044,6 +5079,7 @@ protected class ValueNamePair_ValueAssignment_2 extends AssignmentToken  {
 /************ begin Rule TimeExpression ****************
  *
  * TimeExpression:
+ * 
  * 	InstantObsExpression | DurationObsExpression | JitterExp;
  *
  **/
@@ -5196,6 +5232,7 @@ protected class TimeExpression_JitterExpParserRuleCall_2 extends RuleCallToken {
 /************ begin Rule InstantObsExpression ****************
  *
  * InstantObsExpression:
+ * 
  * 	"@" id=InstantObsName ("(" index=Expression ")")? ("when" "(" condition=Expression ")")?;
  *
  **/
@@ -5554,6 +5591,7 @@ protected class InstantObsExpression_RightParenthesisKeyword_3_3 extends Keyword
 /************ begin Rule InstantObsName ****************
  *
  * InstantObsName:
+ * 
  * 	path=QualifiedName? instantId=[uml::TimeObservation];
  *
  **/
@@ -5676,6 +5714,7 @@ protected class InstantObsName_InstantIdAssignment_1 extends AssignmentToken  {
 /************ begin Rule DurationObsExpression ****************
  *
  * DurationObsExpression:
+ * 
  * 	"&" id=DurationObsName ("(" index=Expression ")")? ("when" "(" condition=Expression ")")?;
  *
  **/
@@ -6034,6 +6073,7 @@ protected class DurationObsExpression_RightParenthesisKeyword_3_3 extends Keywor
 /************ begin Rule DurationObsName ****************
  *
  * DurationObsName:
+ * 
  * 	path=QualifiedName? durationId=[uml::DurationObservation];
  *
  **/
@@ -6156,6 +6196,7 @@ protected class DurationObsName_DurationIdAssignment_1 extends AssignmentToken  
 /************ begin Rule JitterExp ****************
  *
  * JitterExp:
+ * 
  * 	"jitter(" firstInstant=InstantObsExpression ("-" secondInstant=InstantObsExpression)? ")";
  *
  **/
@@ -6377,12 +6418,15 @@ protected class JitterExp_RightParenthesisKeyword_3 extends KeywordToken  {
 /************ begin Rule VariableDeclaration ****************
  *
  * VariableDeclaration:
+ * 
  * 	variableDeclaration=VariableDirectionKind? "$" name=ID (":" type=DataTypeName ("=" "(" initValue=Expression ")")? |
+ * 
  * 	"=" "(" initValue=Expression ")");
  *
  **/
 
 // variableDeclaration=VariableDirectionKind? "$" name=ID (":" type=DataTypeName ("=" "(" initValue=Expression ")")? | "="
+// 
 // "(" initValue=Expression ")")
 protected class VariableDeclaration_Group extends GroupToken {
 	
@@ -6895,6 +6939,7 @@ protected class VariableDeclaration_RightParenthesisKeyword_3_1_3 extends Keywor
 /************ begin Rule DataTypeName ****************
  *
  * DataTypeName:
+ * 
  * 	path=QualifiedName? type=[uml::DataType];
  *
  **/
@@ -7017,9 +7062,14 @@ protected class DataTypeName_TypeAssignment_1 extends AssignmentToken  {
 /************ begin Rule NumberLiteralRule ****************
  *
  * //////////////////////////////////////////////////////////////////////////////////////////////////////
- * //LITERAL
+ *  //LITERAL
+ * 
+ * 
  * //////////////////////////////////////////////////////////////////////////////////////////////////////
+ * 
+ * 
  * NumberLiteralRule:
+ * 
  * 	IntegerLiteralRule | UnlimitedLiteralRule | RealLiteralRule;
  *
  **/
@@ -7172,6 +7222,7 @@ protected class NumberLiteralRule_RealLiteralRuleParserRuleCall_2 extends RuleCa
 /************ begin Rule IntegerLiteralRule ****************
  *
  * IntegerLiteralRule:
+ * 
  * 	value=IntegerLiteral;
  *
  **/
@@ -7217,10 +7268,11 @@ protected class IntegerLiteralRule_ValueAssignment extends AssignmentToken  {
 /************ begin Rule UnlimitedLiteralRule ****************
  *
  * //UnlimitedLiteralRule :
- * //	value = UnlimitedLiteral ;
- * //terminal UnlimitedLiteral :
- * //	'*' ;
- * UnlimitedLiteralRule:
+ *  //	value = UnlimitedLiteral ;
+ *  //terminal UnlimitedLiteral :
+ *  //	'*' ;
+ *  UnlimitedLiteralRule:
+ * 
  * 	value="*";
  *
  **/
@@ -7266,6 +7318,7 @@ protected class UnlimitedLiteralRule_ValueAssignment extends AssignmentToken  {
 /************ begin Rule RealLiteralRule ****************
  *
  * RealLiteralRule:
+ * 
  * 	value=RealLiteral;
  *
  **/
@@ -7311,16 +7364,27 @@ protected class RealLiteralRule_ValueAssignment extends AssignmentToken  {
 /************ begin Rule DateTimeLiteralRule ****************
  *
  * //DateTimeLiteral:
- * //	TimeString (DateString)? (DayString)? |
- * //	DateString (DayString)? |
- * //	DayString ;
+ *  //	TimeString (DateString)? (DayString)? |
+ *  //	DateString (DayString)? |
+ *  //	DayString ;
+ * 
+ * 
  * //terminal DateString :
+ * 
+ * 
  * //	('0'..'9')('0'..'9')('0'..'9')('0'..'9')'/'('0'('0'..'9')|'1'('0'..'2'))'/'(('0'..'2')('0'..'9')|'3' ('0'|'1')) ;
+ * 
+ * 
  * //terminal TimeString :
+ * 
+ * 
  * //	(('0'..'1')('0'..'9')|'2'('0'..'3'))':'('0'..'5')('0'..'9')(':'('0'..'5')('0'..'9')(':'('0'..'9')('0'..'9'))?)? ;	
+ * 
+ * 
  * //terminal DayString :
- * //	"Mon" | "Tue" | "Wed" | "Thr" | "Fri" | "Sat" | "Sun" ;
- * DateTimeLiteralRule:
+ *  //	"Mon" | "Tue" | "Wed" | "Thr" | "Fri" | "Sat" | "Sun" ;
+ *  DateTimeLiteralRule:
+ * 
  * 	value=DateTimeLiteral;
  *
  **/
@@ -7366,6 +7430,7 @@ protected class DateTimeLiteralRule_ValueAssignment extends AssignmentToken  {
 /************ begin Rule BooleanLiteralRule ****************
  *
  * BooleanLiteralRule:
+ * 
  * 	value=BooleanLiteral;
  *
  **/
@@ -7411,6 +7476,7 @@ protected class BooleanLiteralRule_ValueAssignment extends AssignmentToken  {
 /************ begin Rule NullLiteralRule ****************
  *
  * NullLiteralRule:
+ * 
  * 	value=NullLiteral;
  *
  **/
@@ -7456,10 +7522,11 @@ protected class NullLiteralRule_ValueAssignment extends AssignmentToken  {
 /************ begin Rule DefaultLiteralRule ****************
  *
  * //DefaultLiteralRule :
- * //	value = DefaultLiteral ;
- * //terminal DefaultLiteral : 
- * //	'/' ;
- * DefaultLiteralRule:
+ *  //	value = DefaultLiteral ;
+ *  //terminal DefaultLiteral : 
+ *  //	'/' ;
+ *  DefaultLiteralRule:
+ * 
  * 	value="/";
  *
  **/
@@ -7505,6 +7572,7 @@ protected class DefaultLiteralRule_ValueAssignment extends AssignmentToken  {
 /************ begin Rule StringLiteralRule ****************
  *
  * StringLiteralRule:
+ * 
  * 	value=STRING;
  *
  **/

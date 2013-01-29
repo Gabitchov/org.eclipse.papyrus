@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.papyrus.marte.vsl.ui.internal.VSLActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class VSLExecutableExtensionFactory extends AbstractGuiceAwareExecutableE
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.marte.vsl.ui.internal.VSLActivator.getInstance().getBundle();
+		return VSLActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.papyrus.marte.vsl.ui.internal.VSLActivator.getInstance().getInjector("org.eclipse.papyrus.marte.vsl.VSL");
+		return VSLActivator.getInstance().getInjector(VSLActivator.ORG_ECLIPSE_PAPYRUS_MARTE_VSL_VSL);
 	}
 	
 }

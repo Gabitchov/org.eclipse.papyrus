@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.marte.vsl.vSL.impl;
 
@@ -240,7 +236,7 @@ public class InstantObsExpressionImpl extends TimeExpressionImpl implements Inst
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getFilteredParentRule(EClass filter)
+  public EObject getFilteredParentRule(final EClass filter)
   {
     return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getFilteredParentRule(this, filter) ;
   }

@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.impl;
 
@@ -18,8 +14,8 @@ import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ste
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.StereotypeApplicationWithVSLPackage;
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.StereotypeApplicationsRule;
 import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.TagSpecificationRule;
-import org.eclipse.papyrus.marte.vsl.vSL.VSLPackage;
 
+import org.eclipse.papyrus.marte.vsl.vSL.VSLPackage;
 
 import org.eclipse.uml2.uml.UMLPackage;
 

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.marte.textedit.stereotypeapplicati
- onwithvsl.xtext.ui.contentassist.antlr
+Export-Package: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.contentassist
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -24,9 +24,6 @@ Require-Bundle: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.marte.textedit.stereotypeapplica
- tionwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator
-Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeappl
- icationwithvsl.xtext.ui;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator
+Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j
-

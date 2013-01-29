@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.eclipse.papyrus.marte.vsl;bundle-version="0.10.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
@@ -24,15 +24,14 @@ Export-Package: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.
  org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL,
  org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.impl,
  org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.util,
- org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.validation
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.validation,
+ org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.formatting
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeappl
- icationwithvsl.xtext;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext;singleton:=true
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

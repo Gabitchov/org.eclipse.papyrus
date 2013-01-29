@@ -1,342 +1,340 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.marte.vsl/src-gen"
-    editDirectory="/org.eclipse.papyrus.marte.vsl.edit/src" editorDirectory="/org.eclipse.papyrus.marte.vsl.editor/src"
-    modelPluginID="org.eclipse.papyrus.marte.vsl" forceOverwrite="true" modelName="VSL"
-    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.marte.vsl/src-gen" editDirectory="/org.eclipse.papyrus.marte.vsl.edit/src"
+    editorDirectory="/org.eclipse.papyrus.marte.vsl.editor/src" modelPluginID="org.eclipse.papyrus.marte.vsl"
+    forceOverwrite="true" modelName="VSL" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.marte.vsl.edit"
-    editorPluginID="org.eclipse.papyrus.marte.vsl.editor" usedGenPackages="platform:/resource/org.eclipse.papyrus.marte.vsl/model/UML.genmodel#//uml">
+    editorPluginID="org.eclipse.papyrus.marte.vsl.editor" runtimeVersion="2.9" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../model/UML.genmodel#//uml">
   <genPackages prefix="VSL" basePackage="org.eclipse.papyrus.marte.vsl" resource="XML"
-      disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#/">
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Expression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Expression/exp"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Expression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Expression/getFilteredParentRule/filter"/>
+      disposableProviderFactory="true" ecorePackage="VSL.ecore#/">
+    <genClasses ecoreClass="VSL.ecore#//Expression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Expression/exp"/>
+      <genOperations ecoreOperation="VSL.ecore#//Expression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//Expression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Expression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Expression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//Expression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//Expression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AndOrXorExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AndOrXorExpression/exp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AndOrXorExpression/op"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AndOrXorExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AndOrXorExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//AndOrXorExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//AndOrXorExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//AndOrXorExpression/op"/>
+      <genOperations ecoreOperation="VSL.ecore#//AndOrXorExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//AndOrXorExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AndOrXorExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AndOrXorExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//AndOrXorExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//AndOrXorExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//EqualityExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//EqualityExpression/exp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//EqualityExpression/op"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//EqualityExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//EqualityExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//EqualityExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//EqualityExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//EqualityExpression/op"/>
+      <genOperations ecoreOperation="VSL.ecore#//EqualityExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//EqualityExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//EqualityExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//EqualityExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//EqualityExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//EqualityExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RelationalExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RelationalExpression/exp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RelationalExpression/op"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RelationalExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RelationalExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//RelationalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//RelationalExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//RelationalExpression/op"/>
+      <genOperations ecoreOperation="VSL.ecore#//RelationalExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//RelationalExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RelationalExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RelationalExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//RelationalExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//RelationalExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ConditionalExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ConditionalExpression/exp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ConditionalExpression/op"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ConditionalExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ConditionalExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//ConditionalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ConditionalExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//ConditionalExpression/op"/>
+      <genOperations ecoreOperation="VSL.ecore#//ConditionalExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//ConditionalExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ConditionalExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ConditionalExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//ConditionalExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//ConditionalExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AdditiveExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AdditiveExpression/exp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AdditiveExpression/op"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AdditiveExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AdditiveExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//AdditiveExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//AdditiveExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//AdditiveExpression/op"/>
+      <genOperations ecoreOperation="VSL.ecore#//AdditiveExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//AdditiveExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AdditiveExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//AdditiveExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//AdditiveExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//AdditiveExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//MultiplicativeExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//MultiplicativeExpression/exp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//MultiplicativeExpression/op"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//MultiplicativeExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//MultiplicativeExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//MultiplicativeExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//MultiplicativeExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//MultiplicativeExpression/op"/>
+      <genOperations ecoreOperation="VSL.ecore#//MultiplicativeExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//MultiplicativeExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//MultiplicativeExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//MultiplicativeExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//MultiplicativeExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//MultiplicativeExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression/op"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression/unary"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression/exp"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//UnaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//UnaryExpression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//UnaryExpression/unary"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//UnaryExpression/exp"/>
+      <genOperations ecoreOperation="VSL.ecore#//UnaryExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//UnaryExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnaryExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//UnaryExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//UnaryExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PrimaryExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PrimaryExpression/prefix"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PrimaryExpression/suffix"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PrimaryExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PrimaryExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//PrimaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//PrimaryExpression/prefix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//PrimaryExpression/suffix"/>
+      <genOperations ecoreOperation="VSL.ecore#//PrimaryExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//PrimaryExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PrimaryExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PrimaryExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//PrimaryExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//PrimaryExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueSpecification">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueSpecification/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueSpecification/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//ValueSpecification">
+      <genOperations ecoreOperation="VSL.ecore#//ValueSpecification/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//ValueSpecification/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueSpecification/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueSpecification/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//ValueSpecification/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//ValueSpecification/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//SuffixExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//SuffixExpression/suffix"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//SuffixExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//SuffixExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//SuffixExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//SuffixExpression/suffix"/>
+      <genOperations ecoreOperation="VSL.ecore#//SuffixExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//SuffixExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//SuffixExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//SuffixExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//SuffixExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//SuffixExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PropertyCallExpression">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PropertyCallExpression/property"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PropertyCallExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PropertyCallExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//PropertyCallExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//PropertyCallExpression/property"/>
+      <genOperations ecoreOperation="VSL.ecore#//PropertyCallExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//PropertyCallExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PropertyCallExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//PropertyCallExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//PropertyCallExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//PropertyCallExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//OperationCallExpression">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//OperationCallExpression/operation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//OperationCallExpression/arguments"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//OperationCallExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//OperationCallExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//OperationCallExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//OperationCallExpression/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//OperationCallExpression/arguments"/>
+      <genOperations ecoreOperation="VSL.ecore#//OperationCallExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//OperationCallExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//OperationCallExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//OperationCallExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//OperationCallExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//OperationCallExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Literal">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Literal/value"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Literal/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Literal/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//Literal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Literal/value"/>
+      <genOperations ecoreOperation="VSL.ecore#//Literal/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//Literal/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Literal/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Literal/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//Literal/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//Literal/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall/path"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall/arguments"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//NameOrChoiceOrBehaviorCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//NameOrChoiceOrBehaviorCall/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//NameOrChoiceOrBehaviorCall/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//NameOrChoiceOrBehaviorCall/arguments"/>
+      <genOperations ecoreOperation="VSL.ecore#//NameOrChoiceOrBehaviorCall/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//NameOrChoiceOrBehaviorCall/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NameOrChoiceOrBehaviorCall/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//NameOrChoiceOrBehaviorCall/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//NameOrChoiceOrBehaviorCall/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//QualifiedName">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//QualifiedName/path"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//QualifiedName/remaining"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//QualifiedName/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//QualifiedName/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//QualifiedName">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//QualifiedName/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//QualifiedName/remaining"/>
+      <genOperations ecoreOperation="VSL.ecore#//QualifiedName/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//QualifiedName/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//QualifiedName/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//QualifiedName/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//QualifiedName/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//QualifiedName/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/isLowerIncluded"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/lower"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/upper"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/isUpperIncluded"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//Interval">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Interval/isLowerIncluded"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Interval/lower"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Interval/upper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Interval/isUpperIncluded"/>
+      <genOperations ecoreOperation="VSL.ecore#//Interval/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//Interval/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Interval/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//Interval/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//Interval/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//CollectionOrTuple">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//CollectionOrTuple/listOfValues"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//CollectionOrTuple/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//CollectionOrTuple/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//CollectionOrTuple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//CollectionOrTuple/listOfValues"/>
+      <genOperations ecoreOperation="VSL.ecore#//CollectionOrTuple/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//CollectionOrTuple/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//CollectionOrTuple/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//CollectionOrTuple/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//CollectionOrTuple/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//CollectionOrTuple/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Tuple">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Tuple/listOfValueNamePairs"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Tuple/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Tuple/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//Tuple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Tuple/listOfValueNamePairs"/>
+      <genOperations ecoreOperation="VSL.ecore#//Tuple/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//Tuple/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Tuple/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//Tuple/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//Tuple/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//Tuple/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValues">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValues/values"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValues/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValues/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//ListOfValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ListOfValues/values"/>
+      <genOperations ecoreOperation="VSL.ecore#//ListOfValues/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//ListOfValues/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValues/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValues/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//ListOfValues/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//ListOfValues/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValueNamePairs">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValueNamePairs/valueNamePairs"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValueNamePairs/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValueNamePairs/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//ListOfValueNamePairs">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ListOfValueNamePairs/valueNamePairs"/>
+      <genOperations ecoreOperation="VSL.ecore#//ListOfValueNamePairs/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//ListOfValueNamePairs/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValueNamePairs/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ListOfValueNamePairs/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//ListOfValueNamePairs/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//ListOfValueNamePairs/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueNamePair">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueNamePair/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueNamePair/value"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueNamePair/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueNamePair/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//ValueNamePair">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//ValueNamePair/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ValueNamePair/value"/>
+      <genOperations ecoreOperation="VSL.ecore#//ValueNamePair/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//ValueNamePair/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueNamePair/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//ValueNamePair/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//ValueNamePair/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//ValueNamePair/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//TimeExpression">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//TimeExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//TimeExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//TimeExpression">
+      <genOperations ecoreOperation="VSL.ecore#//TimeExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//TimeExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//TimeExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//TimeExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//TimeExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//TimeExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression/index"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression/condition"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//InstantObsExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsExpression/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsExpression/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsExpression/condition"/>
+      <genOperations ecoreOperation="VSL.ecore#//InstantObsExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//InstantObsExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//InstantObsExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//InstantObsExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsName">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsName/path"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsName/instantId"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsName/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsName/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//InstantObsName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsName/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsName/instantId"/>
+      <genOperations ecoreOperation="VSL.ecore#//InstantObsName/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//InstantObsName/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsName/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//InstantObsName/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//InstantObsName/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//InstantObsName/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression/index"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression/condition"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//DurationObsExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsExpression/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsExpression/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsExpression/condition"/>
+      <genOperations ecoreOperation="VSL.ecore#//DurationObsExpression/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//DurationObsExpression/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsExpression/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//DurationObsExpression/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//DurationObsExpression/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsName">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsName/path"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsName/durationId"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsName/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsName/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//DurationObsName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsName/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsName/durationId"/>
+      <genOperations ecoreOperation="VSL.ecore#//DurationObsName/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//DurationObsName/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsName/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DurationObsName/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//DurationObsName/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//DurationObsName/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//JitterExp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//JitterExp/firstInstant"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//JitterExp/secondInstant"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//JitterExp/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//JitterExp/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//JitterExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//JitterExp/firstInstant"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//JitterExp/secondInstant"/>
+      <genOperations ecoreOperation="VSL.ecore#//JitterExp/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//JitterExp/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//JitterExp/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//JitterExp/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//JitterExp/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//JitterExp/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/variableDeclaration"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/initValue"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//VariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//VariableDeclaration/variableDeclaration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//VariableDeclaration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//VariableDeclaration/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//VariableDeclaration/initValue"/>
+      <genOperations ecoreOperation="VSL.ecore#//VariableDeclaration/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//VariableDeclaration/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//VariableDeclaration/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//VariableDeclaration/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//VariableDeclaration/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DataTypeName">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DataTypeName/path"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DataTypeName/type"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DataTypeName/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DataTypeName/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//DataTypeName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DataTypeName/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//DataTypeName/type"/>
+      <genOperations ecoreOperation="VSL.ecore#//DataTypeName/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//DataTypeName/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DataTypeName/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DataTypeName/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//DataTypeName/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//DataTypeName/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NumberLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NumberLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NumberLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//NumberLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//NumberLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//NumberLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NumberLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NumberLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//NumberLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//NumberLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//IntegerLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//IntegerLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//IntegerLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//IntegerLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//IntegerLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//IntegerLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//IntegerLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//IntegerLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//IntegerLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//IntegerLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnlimitedLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnlimitedLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnlimitedLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//UnlimitedLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//UnlimitedLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//UnlimitedLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnlimitedLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//UnlimitedLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//UnlimitedLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//UnlimitedLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RealLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RealLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RealLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//RealLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//RealLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//RealLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RealLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//RealLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//RealLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//RealLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DateTimeLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DateTimeLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DateTimeLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//DateTimeLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//DateTimeLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//DateTimeLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DateTimeLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DateTimeLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//DateTimeLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//DateTimeLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//BooleanLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//BooleanLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//BooleanLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//BooleanLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//BooleanLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//BooleanLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//BooleanLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//BooleanLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//BooleanLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//BooleanLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NullLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NullLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NullLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//NullLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//NullLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//NullLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NullLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//NullLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//NullLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//NullLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DefaultLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DefaultLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DefaultLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//DefaultLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//DefaultLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//DefaultLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DefaultLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//DefaultLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//DefaultLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//DefaultLiteralRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//StringLiteralRule">
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//StringLiteralRule/getFilteredParentRule">
-        <genParameters ecoreParameter="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//StringLiteralRule/getFilteredParentRule/filter"/>
+    <genClasses ecoreClass="VSL.ecore#//StringLiteralRule">
+      <genOperations ecoreOperation="VSL.ecore#//StringLiteralRule/getFilteredParentRule">
+        <genParameters ecoreParameter="VSL.ecore#//StringLiteralRule/getFilteredParentRule/filter"/>
       </genOperations>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//StringLiteralRule/getExpectedType"/>
-      <genOperations ecoreOperation="platform:/resource/org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.ecore#//StringLiteralRule/getContextElement"/>
+      <genOperations ecoreOperation="VSL.ecore#//StringLiteralRule/getExpectedType"/>
+      <genOperations ecoreOperation="VSL.ecore#//StringLiteralRule/getContextElement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class StereotypeApplicationWithVSLExecutableExtensionFactory extends Abst
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator.getInstance().getBundle();
+		return StereotypeApplicationWithVSLActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator.getInstance().getInjector("org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.StereotypeApplicationWithVSL");
+		return StereotypeApplicationWithVSLActivator.getInstance().getInjector(StereotypeApplicationWithVSLActivator.ORG_ECLIPSE_PAPYRUS_MARTE_TEXTEDIT_STEREOTYPEAPPLICATIONWITHVSL_XTEXT_STEREOTYPEAPPLICATIONWITHVSL);
 	}
 	
 }

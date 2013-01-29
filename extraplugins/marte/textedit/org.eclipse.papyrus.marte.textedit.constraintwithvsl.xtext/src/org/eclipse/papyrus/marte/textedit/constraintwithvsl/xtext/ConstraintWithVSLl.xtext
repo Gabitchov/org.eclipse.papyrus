@@ -16,7 +16,7 @@ grammar org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ConstraintWit
 //with org.eclipse.xtext.common.Terminals
 with org.eclipse.papyrus.marte.vsl.VSL
 
-import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
+import "http://www.eclipse.org/uml2/4.0.0/UML" as uml
 
 generate constraintWithVSLl "http://www.eclipse.org/papyrus/marte/textedit/constraintwithvsl/xtext/ConstraintWithVSLl"
 

@@ -860,10 +860,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_INTEGERLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:21: ( ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ ) )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:23: ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:21: ( ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ ) )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:23: ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:23: ( '+' | '-' )?
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:23: ( '+' | '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -889,7 +889,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
             int alt5=3;
             int LA5_0 = input.LA(1);
 
@@ -920,9 +920,9 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:35: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:35: ( '0' .. '9' )+
                     {
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:35: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:35: ( '0' .. '9' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -936,7 +936,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:36: '0' .. '9'
+                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:36: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -956,11 +956,11 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:47: '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:47: '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
                     {
                     match("0x"); 
 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:52: ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:52: ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -1002,11 +1002,11 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:82: '0b' ( '0' .. '1' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:82: '0b' ( '0' .. '1' )+
                     {
                     match("0b"); 
 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:87: ( '0' .. '1' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:87: ( '0' .. '1' )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -1020,7 +1020,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7421:88: '0' .. '1'
+                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7420:88: '0' .. '1'
                     	    {
                     	    matchRange('0','1'); 
 
@@ -1058,10 +1058,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_REALLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:18: ( ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )? )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:20: ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:18: ( ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )? )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:20: ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:20: ( '+' | '-' )?
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:20: ( '+' | '-' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1087,7 +1087,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:31: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:31: ( '0' .. '9' )+
             int cnt7=0;
             loop7:
             do {
@@ -1101,7 +1101,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:32: '0' .. '9'
+            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:32: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1118,7 +1118,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:47: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:47: ( '0' .. '9' )+
             int cnt8=0;
             loop8:
             do {
@@ -1132,7 +1132,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:48: '0' .. '9'
+            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:48: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1148,7 +1148,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                 cnt8++;
             } while (true);
 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:59: ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:59: ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1157,10 +1157,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:60: 'E' ( '+' | '-' )? ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:60: 'E' ( '+' | '-' )? ( '0' .. '9' )+
                     {
                     match('E'); 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:64: ( '+' | '-' )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:64: ( '+' | '-' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1186,7 +1186,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:75: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:75: ( '0' .. '9' )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1200,7 +1200,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7423:76: '0' .. '9'
+                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7422:76: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1238,10 +1238,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_DATETIMELITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:22: ( ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) ) )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:22: ( ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) ) )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
             int alt25=3;
             switch ( input.LA(1) ) {
             case '0':
@@ -1333,9 +1333,9 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
             switch (alt25) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     {
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1353,7 +1353,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:26: '0' .. '1' '0' .. '9'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:26: '0' .. '1' '0' .. '9'
                             {
                             matchRange('0','1'); 
                             matchRange('0','9'); 
@@ -1361,7 +1361,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:44: '2' '0' .. '3'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:44: '2' '0' .. '3'
                             {
                             match('2'); 
                             matchRange('0','3'); 
@@ -1374,7 +1374,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     match(':'); 
                     matchRange('0','5'); 
                     matchRange('0','9'); 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:80: ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:80: ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1383,12 +1383,12 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:81: ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )?
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:81: ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )?
                             {
                             match(':'); 
                             matchRange('0','5'); 
                             matchRange('0','9'); 
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:103: ( ':' '0' .. '9' '0' .. '9' )?
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:103: ( ':' '0' .. '9' '0' .. '9' )?
                             int alt13=2;
                             int LA13_0 = input.LA(1);
 
@@ -1397,7 +1397,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             switch (alt13) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:104: ':' '0' .. '9' '0' .. '9'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:104: ':' '0' .. '9' '0' .. '9'
                                     {
                                     match(':'); 
                                     matchRange('0','9'); 
@@ -1414,7 +1414,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:130: ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:130: ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1427,7 +1427,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt17) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:131: ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:131: ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                             {
                             match(' '); 
                             matchRange('0','9'); 
@@ -1435,7 +1435,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             matchRange('0','9'); 
                             matchRange('0','9'); 
                             match('/'); 
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:175: ( '0' '0' .. '9' | '1' '0' .. '2' )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:175: ( '0' '0' .. '9' | '1' '0' .. '2' )
                             int alt15=2;
                             int LA15_0 = input.LA(1);
 
@@ -1453,7 +1453,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             switch (alt15) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:176: '0' '0' .. '9'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:176: '0' '0' .. '9'
                                     {
                                     match('0'); 
                                     matchRange('0','9'); 
@@ -1461,7 +1461,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:189: '1' '0' .. '2'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:189: '1' '0' .. '2'
                                     {
                                     match('1'); 
                                     matchRange('0','2'); 
@@ -1472,7 +1472,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
 
                             match('/'); 
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                             int alt16=2;
                             int LA16_0 = input.LA(1);
 
@@ -1490,7 +1490,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             switch (alt16) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:208: '0' .. '2' '0' .. '9'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:208: '0' .. '2' '0' .. '9'
                                     {
                                     matchRange('0','2'); 
                                     matchRange('0','9'); 
@@ -1498,7 +1498,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:226: '3' ( '0' | '1' )
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:226: '3' ( '0' | '1' )
                                     {
                                     match('3'); 
                                     if ( (input.LA(1)>='0' && input.LA(1)<='1') ) {
@@ -1522,7 +1522,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:243: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:243: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1531,15 +1531,15 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt19) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:244: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:244: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             {
                             match(' '); 
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             int alt18=7;
                             alt18 = dfa18.predict(input);
                             switch (alt18) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:249: 'Mon'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:249: 'Mon'
                                     {
                                     match("Mon"); 
 
@@ -1547,7 +1547,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:255: 'Tue'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:255: 'Tue'
                                     {
                                     match("Tue"); 
 
@@ -1555,7 +1555,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 3 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:261: 'Wed'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:261: 'Wed'
                                     {
                                     match("Wed"); 
 
@@ -1563,7 +1563,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 4 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:267: 'Thr'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:267: 'Thr'
                                     {
                                     match("Thr"); 
 
@@ -1571,7 +1571,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 5 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:273: 'Fri'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:273: 'Fri'
                                     {
                                     match("Fri"); 
 
@@ -1579,7 +1579,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 6 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:279: 'Sat'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:279: 'Sat'
                                     {
                                     match("Sat"); 
 
@@ -1587,7 +1587,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 7 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:285: 'Sun'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:285: 'Sun'
                                     {
                                     match("Sun"); 
 
@@ -1607,14 +1607,14 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:294: '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:294: '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     {
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     match('/'); 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:334: ( '0' '0' .. '9' | '1' '0' .. '2' )
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:334: ( '0' '0' .. '9' | '1' '0' .. '2' )
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -1632,7 +1632,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt20) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:335: '0' '0' .. '9'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:335: '0' '0' .. '9'
                             {
                             match('0'); 
                             matchRange('0','9'); 
@@ -1640,7 +1640,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:348: '1' '0' .. '2'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:348: '1' '0' .. '2'
                             {
                             match('1'); 
                             matchRange('0','2'); 
@@ -1651,7 +1651,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
 
                     match('/'); 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
@@ -1669,7 +1669,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt21) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:367: '0' .. '2' '0' .. '9'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:367: '0' .. '2' '0' .. '9'
                             {
                             matchRange('0','2'); 
                             matchRange('0','9'); 
@@ -1677,7 +1677,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:385: '3' ( '0' | '1' )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:385: '3' ( '0' | '1' )
                             {
                             match('3'); 
                             if ( (input.LA(1)>='0' && input.LA(1)<='1') ) {
@@ -1695,7 +1695,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:400: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:400: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -1704,15 +1704,15 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt23) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:401: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:401: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             {
                             match(' '); 
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             int alt22=7;
                             alt22 = dfa22.predict(input);
                             switch (alt22) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:406: 'Mon'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:406: 'Mon'
                                     {
                                     match("Mon"); 
 
@@ -1720,7 +1720,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:412: 'Tue'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:412: 'Tue'
                                     {
                                     match("Tue"); 
 
@@ -1728,7 +1728,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 3 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:418: 'Wed'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:418: 'Wed'
                                     {
                                     match("Wed"); 
 
@@ -1736,7 +1736,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 4 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:424: 'Thr'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:424: 'Thr'
                                     {
                                     match("Thr"); 
 
@@ -1744,7 +1744,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 5 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:430: 'Fri'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:430: 'Fri'
                                     {
                                     match("Fri"); 
 
@@ -1752,7 +1752,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 6 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:436: 'Sat'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:436: 'Sat'
                                     {
                                     match("Sat"); 
 
@@ -1760,7 +1760,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 7 :
-                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:442: 'Sun'
+                                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:442: 'Sun'
                                     {
                                     match("Sun"); 
 
@@ -1780,14 +1780,14 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                     {
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                     int alt24=7;
                     alt24 = dfa24.predict(input);
                     switch (alt24) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:452: 'Mon'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:452: 'Mon'
                             {
                             match("Mon"); 
 
@@ -1795,7 +1795,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:458: 'Tue'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:458: 'Tue'
                             {
                             match("Tue"); 
 
@@ -1803,7 +1803,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 3 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:464: 'Wed'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:464: 'Wed'
                             {
                             match("Wed"); 
 
@@ -1811,7 +1811,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 4 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:470: 'Thr'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:470: 'Thr'
                             {
                             match("Thr"); 
 
@@ -1819,7 +1819,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 5 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:476: 'Fri'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:476: 'Fri'
                             {
                             match("Fri"); 
 
@@ -1827,7 +1827,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 6 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:482: 'Sat'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:482: 'Sat'
                             {
                             match("Sat"); 
 
@@ -1835,7 +1835,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                             }
                             break;
                         case 7 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7425:488: 'Sun'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7424:488: 'Sun'
                             {
                             match("Sun"); 
 
@@ -1867,10 +1867,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_BOOLEANLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7427:21: ( ( 'true' | 'false' ) )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7427:23: ( 'true' | 'false' )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7426:21: ( ( 'true' | 'false' ) )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7426:23: ( 'true' | 'false' )
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7427:23: ( 'true' | 'false' )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7426:23: ( 'true' | 'false' )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -1888,7 +1888,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             }
             switch (alt26) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7427:24: 'true'
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7426:24: 'true'
                     {
                     match("true"); 
 
@@ -1896,7 +1896,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7427:31: 'false'
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7426:31: 'false'
                     {
                     match("false"); 
 
@@ -1922,8 +1922,8 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_NULLLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7429:18: ( 'null' )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7429:20: 'null'
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7428:18: ( 'null' )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7428:20: 'null'
             {
             match("null"); 
 
@@ -1943,10 +1943,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7431:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7431:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7430:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7430:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7431:11: ( '^' )?
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7430:11: ( '^' )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -1955,7 +1955,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             }
             switch (alt27) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7431:11: '^'
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7430:11: '^'
                     {
                     match('^'); 
 
@@ -1973,7 +1973,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7431:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7430:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop28:
             do {
                 int alt28=2;
@@ -2022,10 +2022,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7433:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7433:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7432:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7432:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7433:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7432:12: ( '0' .. '9' )+
             int cnt29=0;
             loop29:
             do {
@@ -2039,7 +2039,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                 switch (alt29) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7433:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7432:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2071,10 +2071,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -2092,10 +2092,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             }
             switch (alt32) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop30:
                     do {
                         int alt30=3;
@@ -2111,7 +2111,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                         switch (alt30) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -2127,7 +2127,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2152,10 +2152,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop31:
                     do {
                         int alt31=3;
@@ -2171,7 +2171,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                         switch (alt31) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -2187,7 +2187,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7435:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7434:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2230,12 +2230,12 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7437:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7437:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7436:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7436:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7437:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7436:24: ( options {greedy=false; } : . )*
             loop33:
             do {
                 int alt33=2;
@@ -2260,7 +2260,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                 switch (alt33) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7437:52: .
+            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7436:52: .
             	    {
             	    matchAny(); 
 
@@ -2290,12 +2290,12 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop34:
             do {
                 int alt34=2;
@@ -2308,7 +2308,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
 
                 switch (alt34) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2328,7 +2328,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:40: ( ( '\\r' )? '\\n' )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -2337,9 +2337,9 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             }
             switch (alt36) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:41: ( '\\r' )?
+                    // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:41: ( '\\r' )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
 
@@ -2348,7 +2348,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
                     }
                     switch (alt35) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7439:41: '\\r'
+                            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7438:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2380,10 +2380,10 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7441:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7441:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7440:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7440:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7441:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7440:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt37=0;
             loop37:
             do {
@@ -2437,8 +2437,8 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7443:16: ( . )
-            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7443:18: .
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7442:16: ( . )
+            // ../org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui/src-gen/org/eclipse/papyrus/marte/textedit/stereotypeapplicationwithvsl/xtext/ui/contentassist/antlr/internal/InternalStereotypeApplicationWithVSL.g:7442:18: .
             {
             matchAny(); 
 
@@ -2872,7 +2872,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "7425:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )";
+            return "7424:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )";
         }
     }
     static final String DFA22_eotS =
@@ -2930,7 +2930,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             this.transition = DFA22_transition;
         }
         public String getDescription() {
-            return "7425:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )";
+            return "7424:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )";
         }
     }
     static final String DFA24_eotS =
@@ -2988,7 +2988,7 @@ public class InternalStereotypeApplicationWithVSLLexer extends Lexer {
             this.transition = DFA24_transition;
         }
         public String getDescription() {
-            return "7425:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )";
+            return "7424:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )";
         }
     }
     static final String DFA38_eotS =

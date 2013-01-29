@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.marte.vsl.vSL.impl;
 
@@ -269,7 +265,7 @@ public class VariableDeclarationImpl extends ValueSpecificationImpl implements V
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getFilteredParentRule(EClass filter)
+  public EObject getFilteredParentRule(final EClass filter)
   {
     return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getFilteredParentRule(this, filter) ;
   }

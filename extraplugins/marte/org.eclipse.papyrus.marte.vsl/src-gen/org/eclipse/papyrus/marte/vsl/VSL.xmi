@@ -2,13 +2,16 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
   <xtext:Grammar name="org.eclipse.papyrus.marte.vsl.VSL" usedGrammars="/1">
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="uml">
-      <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
+      <ePackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+    </metamodelDeclarations>
+    <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+      <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="vSL">
       <ePackage href="http://www.eclipse.org/papyrus/marte/vsl/VSL#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="Expression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//Expression"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="exp" operator="=">
@@ -16,7 +19,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="AndOrXorExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//AndOrXorExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -38,7 +41,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="EqualityExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//EqualityExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -59,7 +62,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="RelationalExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//RelationalExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -82,7 +85,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ConditionalExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//ConditionalExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -104,7 +107,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="AdditiveExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//AdditiveExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -125,7 +128,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="MultiplicativeExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//MultiplicativeExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -147,7 +150,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="UnaryExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//UnaryExpression"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -169,7 +172,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="PrimaryExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//PrimaryExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -185,7 +188,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ValueSpecification">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//ValueSpecification"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -204,7 +207,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="SuffixExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//SuffixExpression"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -213,14 +216,14 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="PropertyCallExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//PropertyCallExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="property" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -234,14 +237,14 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="OperationCallExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//OperationCallExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="operation" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Operation"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -260,7 +263,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Literal">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//Literal"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -273,7 +276,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="NameOrChoiceOrBehaviorCall">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//NameOrChoiceOrBehaviorCall"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -283,7 +286,7 @@
         <elements xsi:type="xtext:Assignment" feature="id" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -298,14 +301,14 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="QualifiedName">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//QualifiedName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="path" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Namespace"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -317,7 +320,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Interval">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//Interval"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -343,7 +346,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="CollectionOrTuple">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//CollectionOrTuple"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -355,7 +358,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Tuple">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//Tuple"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -367,7 +370,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ListOfValues">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//ListOfValues"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -383,7 +386,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ListOfValueNamePairs">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//ListOfValueNamePairs"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -399,14 +402,14 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ValueNamePair">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//ValueNamePair"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="property" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -418,7 +421,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="TimeExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//TimeExpression"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -428,7 +431,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="InstantObsExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//InstantObsExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -454,7 +457,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="InstantObsName">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//InstantObsName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -464,7 +467,7 @@
         <elements xsi:type="xtext:Assignment" feature="instantId" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//TimeObservation"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TimeObservation"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -472,7 +475,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DurationObsExpression">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//DurationObsExpression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -498,7 +501,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DurationObsName">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//DurationObsName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -508,7 +511,7 @@
         <elements xsi:type="xtext:Assignment" feature="durationId" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//DurationObservation"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//DurationObservation"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -516,7 +519,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="JitterExp">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//JitterExp"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -534,7 +537,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="VariableDeclaration">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//VariableDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -572,7 +575,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="VariableDirectionKind">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -582,7 +585,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DataTypeName">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//DataTypeName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -592,7 +595,7 @@
         <elements xsi:type="xtext:Assignment" feature="type" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//DataType"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//DataType"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -600,7 +603,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="NumberLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//NumberLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -610,7 +613,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="IntegerLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//IntegerLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -618,7 +621,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="IntegerLiteral">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -659,7 +662,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="UnlimitedLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//UnlimitedLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -667,7 +670,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="RealLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//RealLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -675,7 +678,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="RealLiteral">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -706,7 +709,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DateTimeLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//DateTimeLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -714,7 +717,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="DateTimeLiteral">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -921,7 +924,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="BooleanLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//BooleanLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -929,7 +932,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="BooleanLiteral">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -938,7 +941,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="NullLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//NullLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -946,13 +949,13 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="NullLiteral">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Keyword" value="null"/>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="DefaultLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//DefaultLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
@@ -960,7 +963,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="StringLiteralRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/marte/vsl/VSL#//StringLiteralRule"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
