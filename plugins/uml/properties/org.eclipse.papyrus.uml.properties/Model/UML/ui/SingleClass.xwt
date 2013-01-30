@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:creation="clr-namespace:org.eclipse.papyrus.views.properties.creation"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:umlXtext="clr-namespace:org.eclipse.papyrus.uml.properties.xtext"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:creation="clr-namespace:org.eclipse.papyrus.views.properties.creation"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:umlXtext="clr-namespace:org.eclipse.papyrus.uml.properties.xtext"
-	xmlns:xtext="clr-namespace:org.eclipse.papyrus.infra.widgets.xtext.creation"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
+	xmlns:xtext="clr-namespace:org.eclipse.papyrus.infra.widgets.xtext.creation">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -30,6 +30,7 @@
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
-		<ppe:MultiReference input="{Binding}" property="UML:Classifier:useCase"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="UML:StructuredClassifier:ownedAttribute"></ppe:MultiReference>
 	</Composite>
 </Composite>

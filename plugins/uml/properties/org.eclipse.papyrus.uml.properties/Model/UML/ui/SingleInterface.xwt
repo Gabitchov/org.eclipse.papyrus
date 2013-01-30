@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang"
+	xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
@@ -36,6 +37,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:MultiReference input="{Binding}" property="UML:Classifier:useCase"></ppe:MultiReference>
+		<ppe:MultiReference property="UML:Interface:ownedAttribute"
+			input="{Binding}"></ppe:MultiReference>
 	</Composite>
 </Composite>
