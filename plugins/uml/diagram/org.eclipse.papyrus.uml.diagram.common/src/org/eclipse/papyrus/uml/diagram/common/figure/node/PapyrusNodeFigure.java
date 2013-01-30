@@ -210,7 +210,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 			graphics.setBackgroundColor(getBackgroundColor());
 			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillRectangle(rectangle);
-			graphics.setAlpha(0);
+			//graphics.setAlpha(0); // causes bug 398278
 		}
 	}
 
