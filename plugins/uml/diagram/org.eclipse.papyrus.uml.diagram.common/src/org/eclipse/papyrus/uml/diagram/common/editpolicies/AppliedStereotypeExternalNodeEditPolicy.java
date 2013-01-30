@@ -86,9 +86,11 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 		}
 
 		// try to display stereotype properties
+		String stereotypespresentationLocation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(parentView);
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(parentView);
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(parentView);
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(parentView);
+
 
 		// now check presentation.
 		// if horizontal => equivalent to the inBrace visualization in nodes
@@ -103,22 +105,24 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 		if(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
 			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
 		}
-
-		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(parentView);
 		String display = "";
-		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
-		} else {
-			final String st = stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
-			if(st != null && !st.equals("")) {
-				display += Activator.ST_LEFT + st + Activator.ST_RIGHT;
-			}
-			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
-			if(propSt != null && !propSt.equals("")) {
+		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION.equals(stereotypespresentationLocation)) {
+			String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(parentView);
+
+			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
+				display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
+			} else {
+				final String st = stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
 				if(st != null && !st.equals("")) {
-					display += "\n";
+					display += Activator.ST_LEFT + st + Activator.ST_RIGHT;
 				}
-				display += "{" + propSt + "}";
+				final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
+				if(propSt != null && !propSt.equals("")) {
+					if(st != null && !st.equals("")) {
+						display += "\n";
+					}
+					display += "{" + propSt + "}";
+				}
 			}
 		}
 		return display;
@@ -133,8 +137,8 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 			IFigure figure = ((IPapyrusEditPart)getHost()).getPrimaryShape();
 
 			if(figure instanceof IPapyrusUMLElementFigure) {// calculate text
-															// and icon to
-															// display
+				// and icon to
+				// display
 				final String stereotypesToDisplay = stereotypesToDisplay();
 				((IPapyrusUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
 			}
