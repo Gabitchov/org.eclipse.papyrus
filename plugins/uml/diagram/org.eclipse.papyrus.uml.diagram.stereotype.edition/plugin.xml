@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.stereotype.edition.provider.CustomEditPolicyProvider">
+      <Priority
+            name="Low">
+      </Priority>
+   </editpolicyProvider>
+</extension>
+<extension
+       id="stereotype-ep-provider"
+       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+       <editpartProvider
+            class="org.eclipse.papyrus.uml.diagram.stereotype.edition.provider.StereotypePropertiesEditPartProvider">
+            <Priority name="Low"/>
+	
+			<object
+	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+		    	id="StereotypePropertiesEditPartProvider">
+			    <method name="getType()" value="AppliedStereotypeContainer,AppliedStereotypeProperty,AppliedStereotypesComment,AppliedStereotypesCommentLink"/>
+		   </object>
+	   </editpartProvider>
+   </extension>
+</plugin>
