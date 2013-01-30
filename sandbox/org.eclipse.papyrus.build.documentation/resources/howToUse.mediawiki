@@ -147,7 +147,7 @@ Add a new update site with the new build to the composite:
 
 === Simultaneous Release ===
 If the build must be part of the simultaneous release, you must also:
-* Use the [http://wiki.eclipse.org/Eclipse_b3/aggregator/manual B3 Aggregator] (or a text editor if the modification is trivial) to [http://wiki.eclipse.org/Juno/Contributing_to_Juno_Build update the build model for the aggregator] ([http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.juno.build/?root=Callisto after checking it out from CVS])
+* Use the [http://wiki.eclipse.org/Eclipse_b3/aggregator/manual B3 Aggregator] (or a text editor if the modification is trivial) to [http://wiki.eclipse.org/Juno/Contributing_to_Juno_Build update the build model for the aggregator] ([http://wiki.eclipse.org/Git after checking it out from git] the path is : ssh://username@git.eclipse.org/gitroot/simrel/org.eclipse.simrel.build.git)
 Usually, the only thing to change is the location (for example "milestones/0.9/M5/main"):
  <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/milestones/0.9/M5/main" description="Papyrus">
 
