@@ -4131,15 +4131,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		</paletteProvider>	
 			
 	</extension>
-<extension
-      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-   <editpolicyProvider
-         class="org.eclipse.papyrus.uml.diagram.activity.providers.CustomEditPolicyProvider">
-      <Priority
-            name="Lowest">
-      </Priority>
-   </editpolicyProvider>
-</extension>
 
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
@@ -4358,18 +4349,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             label="Appearance">
       </propertyTab>
    </propertyTabs>
-</extension>
-<extension
-      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-   <editpartProvider
-         class="org.eclipse.papyrus.uml.diagram.activity.providers.StereotypePropertiesEditPartProvider">
-      <Priority name="Medium"/>
-			<object
-	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-		    	id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
-			    <method name="getType()" value="AppliedStereotypeContainer,AppliedStereotypeProperty"/>
-		   </object>
-	   </editpartProvider>
 </extension>
 
 	
