@@ -191,6 +191,9 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		while(currentView!=null) {
 			currentView=(View)currentView.eContainer();
 			if(currentView!=null){
+				if(!( currentView instanceof BasicCompartment)){
+					parents.addAll(currentView.getChildren());
+				}
 				parents.add(currentView);
 			}
 
