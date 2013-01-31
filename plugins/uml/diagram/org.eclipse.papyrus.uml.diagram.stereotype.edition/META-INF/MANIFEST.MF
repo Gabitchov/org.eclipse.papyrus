@@ -27,3 +27,5 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.command,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies
+Bundle-Localization: plugin
+ 
