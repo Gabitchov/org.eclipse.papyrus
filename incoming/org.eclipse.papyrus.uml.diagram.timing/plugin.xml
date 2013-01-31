@@ -1449,6 +1449,54 @@
 
 
   <!-- custom editpart provider (see also org.eclipse.papyrus.uml.diagram.timing.custom.edit.parts.CustomUMLEditPartFactory#createEditPart) -->
+  <extension
+       id="custom-ep-provider"
+       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+       <editpartProvider
+            class="org.eclipse.papyrus.uml.diagram.timing.custom.providers.CustomUMLEditPartProvider">
+            <Priority name="Medium"/>
+			<object
+	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+		    	id="customized-edit-parts">
+		    	<!-- 1 = TimingDiagramEditPart -->
+		    	<!-- 2 = InteractionEditPartTN -->
+		    	<!-- 5 = InteractionCompartmentEditPartTN -->
+		    	<!-- 7 = FullLifelineStateDefinitionCompartmentEditPartCN -->
+		    	<!-- 8 = FullLifelineTimelineCompartmentEditPartCN -->
+		    	<!-- 9 = StateDefinitionEditPart -->
+		    	<!-- 10 = OccurrenceSpecificationLabelEditPart -->
+		    	<!-- 11 = FullStateInvariantEditPartCN -->
+		    	<!-- 12 = OccurrenceSpecificationEditPartCN -->
+		    	<!-- 13 = MessageOccurrenceSpecificationEditPartCN -->
+		    	<!-- 14 = MessageOccurrenceSpecificationLabelEditPart -->
+		    	<!-- 15 = TimeConstraintEditPart -->
+		    	<!-- 16 = TimeObservationEditPart -->
+		    	<!-- 17 = DurationObservationEditPartCN -->
+		    	<!-- 18 = DurationConstraintEditPartCN -->
+		    	<!-- 19 = FullLifelineEditPartCN -->
+		    	<!-- 20 = CompactLifelineEditPartCN -->
+		    	<!-- 23 = CompactLifelineCompartmentEditPartCN -->
+		    	<!-- 24 = FreeTimingRulerEditPartCN -->
+		    	<!-- 26 = TickEditPart -->
+		    	<!-- 27 = DestructionOccurrenceSpecificationEditPartCN -->
+		    	<!-- 28 = CompactStateInvariantEditPartCN -->
+		    	<!-- 29 = TimeRulerCompartmentEditPartCN -->
+		    	<!-- 31 = CompactStateInvariantNameEditPart -->
+		    	<!-- 32 = DestructionOccurrenceSpecificationLabelEditPart -->
+		    	<!-- 38 = StateDefinitionLabelEditPart -->
+		    	<!-- 39 = FullStateInvariantVerticalLineEditPart -->
+		    	<!-- 50 = MessageLostEditPart -->
+		    	<!-- 53 = MessageFoundEditPart -->
+		    	<!-- 67 = GeneralOrderingEditPart -->
+		    	<!-- 69 = GateEditPart -->
+		    	<!-- 80 = FreeTimeRulerCompartmentEditPart -->
+		    	<!-- 82 = FullLifelineTimeRulerCompartmentEditPartCN -->
+		    	<!-- 83 = CompactLifelineTimeRulerCompartmentEditPartCN -->
+			    <method name="getType()" value="1,2,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20,23,24,26,27,28,29,31,32,38,39,50,53,67,69,80,82,83"/>
+		   </object>
+		   <context views="customized-edit-parts"/>
+	   </editpartProvider>
+   </extension>
 
  
 </plugin>
