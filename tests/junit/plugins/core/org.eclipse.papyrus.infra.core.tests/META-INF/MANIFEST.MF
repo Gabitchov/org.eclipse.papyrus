@@ -1,10 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit4;bundle-version="4.0.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.diagram.profile;bundle-version="0.10.0",
- org.eclipse.papyrus.sysml.diagram.ui;bundle-version="0.10.0",
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.10.0"
+ org.eclipse.papyrus.uml.diagram.profile;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.core.lifecycleevents,
  org.eclipse.papyrus.infra.core.resource,
  org.eclipse.papyrus.infra.core.services,
