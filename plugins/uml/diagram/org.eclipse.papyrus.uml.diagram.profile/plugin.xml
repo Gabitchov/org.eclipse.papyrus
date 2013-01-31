@@ -1488,33 +1488,6 @@
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
-               <extension
-                     point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-                  <editpolicyProvider
-                        class="org.eclipse.papyrus.uml.diagram.profile.custom.providers.CustomEditPolicyProvider">
-                     <Priority
-                           name="Lowest">
-                     </Priority>
-                  </editpolicyProvider>
-               </extension>
-               <extension
-                     id="stereotype-ep-provider"
-                     point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-                  <editpartProvider
-                        class="org.eclipse.papyrus.uml.diagram.profile.custom.providers.StereotypePropertiesEditPartProvider">
-                     <Priority
-                           name="Medium">
-                     </Priority>
-                     <object
-                           class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-                           id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
-                        <method
-                              name="getType()"
-                              value="AppliedStereotypeContainer,AppliedStereotypeProperty">
-                        </method>
-                     </object>
-                  </editpartProvider>
-               </extension>
 
 
 
