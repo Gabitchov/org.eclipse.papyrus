@@ -272,22 +272,6 @@
    </editpolicyProvider>
 </extension>
 
-<!-- Custom extension point editpart provider for editing properties of stereotype-->
-  
-  
-  <extension
-       id="stereotype-ep-provider"
-       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-       <editpartProvider
-            class="org.eclipse.papyrus.sysml.diagram.requirement.provider.StereotypePropertiesEditPartProvider">
-            <Priority name="Medium"/>
-	
-			<object
-	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-		    	id="org.eclipse.papyrus.sysml.diagram.requirement.editpart.AppliedStereotypeContainer">
-			    <method name="getType()" value="AppliedStereotypeContainer,AppliedStereotypeProperty"/>
-		   </object>
-	   </editpartProvider>
-   </extension>
+
 
 </plugin>
