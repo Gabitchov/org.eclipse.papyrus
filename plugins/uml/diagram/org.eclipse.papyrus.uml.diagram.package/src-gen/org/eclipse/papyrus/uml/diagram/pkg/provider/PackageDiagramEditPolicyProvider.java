@@ -20,9 +20,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.policy.CustomDragDropEditPolicy;
 
 public class PackageDiagramEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
@@ -63,9 +60,6 @@ public class PackageDiagramEditPolicyProvider extends AbstractProvider implement
 
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
-		if(editPart instanceof NamedElementEditPart ){
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
-		}
 	}
 
 }
