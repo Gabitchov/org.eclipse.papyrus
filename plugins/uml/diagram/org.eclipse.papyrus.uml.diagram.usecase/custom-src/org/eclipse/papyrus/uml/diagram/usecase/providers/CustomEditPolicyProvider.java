@@ -46,9 +46,6 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
 
-		if(editPart instanceof NamedElementEditPart) {
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
-		}
 	}
 
 	/**
