@@ -264,12 +264,6 @@
 
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-   <editpolicyProvider
-         class="org.eclipse.papyrus.sysml.diagram.requirement.provider.CustomEditPolicyProvider">
-      <Priority
-            name="Lowest">
-      </Priority>
-   </editpolicyProvider>
 </extension>
 
 
