@@ -169,9 +169,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		if(editPart instanceof ConnectorEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		if(editPart instanceof NamedElementEditPart) {
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
-		}
+		
 
 	}
 
