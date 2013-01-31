@@ -54,7 +54,8 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 			if(UMLElementTypes.InteractionOperand_3005.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0))) {
 				return combinedFragmentCompartment.getCommand(request);
 			} else if(UMLElementTypes.CombinedFragment_3004.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0))) {
-				return interactionCompartment.getCommand(request);
+				//Fixed bug about creating on InteractionOperand. (executed Twice).
+				//return interactionCompartment.getCommand(request);
 			} else if(UMLElementTypes.Lifeline_3001.equals(((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0))) {
 				return interactionCompartment.getCommand(request);
 			}

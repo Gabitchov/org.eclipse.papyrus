@@ -16,13 +16,12 @@ package org.eclipse.papyrus.uml.diagram.sequence.part;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.Cursors;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.Tool;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.SimpleFactory;
 import org.eclipse.gef.requests.TargetRequest;
@@ -38,7 +37,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ObservationLinkPolicy.ObservationLink;
@@ -406,19 +406,20 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Comment_3009);
 
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
-			protected Command getCommand() {
-				if (!antiScroll){
-					if(getTargetEditPart() instanceof LifelineEditPart){
-						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
-						if(parent != null)
-							return parent.getCommand( getTargetRequest() );
-					}
-					return super.getCommand();
-				}
-				return null;
-			}
-		};
+//		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
+//			protected Command getCommand() {
+//				if (!antiScroll){
+//					if(getTargetEditPart() instanceof LifelineEditPart){
+//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+//						if(parent != null)
+//							return parent.getCommand( getTargetRequest() );
+//					}
+//					return super.getCommand();
+//				}
+//				return null;
+//			}
+//		};
+		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
 		return tool;
 	}
 
@@ -429,19 +430,20 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Constraint_3008);
 
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
-			protected Command getCommand() {
-				if (!antiScroll){
-					if(getTargetEditPart() instanceof LifelineEditPart){
-						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
-						if(parent != null)
-							return parent.getCommand( getTargetRequest() );
-					}
-					return super.getCommand();
-				}
-				return null;
-			}
-		};
+//		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
+//			protected Command getCommand() {
+//				if (!antiScroll){
+//					if(getTargetEditPart() instanceof LifelineEditPart){
+//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+//						if(parent != null)
+//							return parent.getCommand( getTargetRequest() );
+//					}
+//					return super.getCommand();
+//				}
+//				return null;
+//			}
+//		};
+		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
 		return tool;
 	}
 
@@ -465,9 +467,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
 		// use DurationCreationTool
 		//Tool tool = new DurationCreationTool(types);
-		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
-		tool.setDefaultCursor(SharedCursors.HAND);
-		tool.setDisabledCursor(SharedCursors.NO);
+//		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
+		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
+//		tool.setDefaultCursor(SharedCursors.HAND);
+//		tool.setDisabledCursor(SharedCursors.NO);
 		return tool;
 	}
 
@@ -489,21 +492,22 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TimeObservation_3020);
 
-		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types){
-			protected Command getCommand() {
-				if (!antiScroll){
-					if(getTargetEditPart() instanceof LifelineEditPart){
-						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
-						if(parent != null)
-							return parent.getCommand( getTargetRequest() );
-					}
-					return super.getCommand();
-				}
-				return null;
-			}
-		};
-		tool.setDefaultCursor(SharedCursors.HAND);
-		tool.setDisabledCursor(SharedCursors.NO);
+//		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types){
+//			protected Command getCommand() {
+//				if (!antiScroll){
+//					if(getTargetEditPart() instanceof LifelineEditPart){
+//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+//						if(parent != null)
+//							return parent.getCommand( getTargetRequest() );
+//					}
+//					return super.getCommand();
+//				}
+//				return null;
+//			}
+//		};
+		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
+//		tool.setDefaultCursor(SharedCursors.HAND);
+//		tool.setDisabledCursor(SharedCursors.NO);
 		return tool;
 	}
 
@@ -865,6 +869,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		
 		public AspectUnspecifiedTypeConnectionToolEx(List<IElementType> elementTypes) {
 			super(elementTypes);
+			setDisabledCursor(Cursors.NO);
 		}
 
 		@Override
@@ -883,4 +888,51 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 			}
 		}
 	}
+	
+	/**
+	 * Try to create child in Interaction directly.
+	 * @author Jin Liu (jin.liu@soyatec.com)
+	 */
+	public static class InteractionChildCreationTool extends AspectUnspecifiedTypeCreationTool {
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param elementTypes
+		 */
+		public InteractionChildCreationTool(List<IElementType> elementTypes) {
+			super(elementTypes);
+		}
+		
+		@Override
+		protected boolean updateTargetUnderMouse() {
+			if (antiScroll){
+				return super.updateTargetUnderMouse();
+			}
+			if (!isTargetLocked()) {
+				EditPart editPart = null;
+				if (getCurrentViewer() != null)
+					editPart = getCurrentViewer().findObjectAtExcluding(
+							getLocation(), getExclusionSet(),
+							getTargetingConditional());
+				if (editPart != null)
+					editPart = getInteractionEditPart(editPart);
+				boolean changed = getTargetEditPart() != editPart;
+				setTargetEditPart(editPart);
+				return changed;
+			} else
+				return false;
+		}
+
+		private EditPart getInteractionEditPart(EditPart editPart) {
+			if (editPart == null){
+				return null;
+			}
+			if (editPart instanceof InteractionInteractionCompartmentEditPart){
+				return editPart;
+			}
+			return getInteractionEditPart(editPart.getParent());
+		}
+	}
+
 }

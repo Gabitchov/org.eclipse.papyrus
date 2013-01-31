@@ -30,6 +30,7 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
@@ -74,6 +75,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedEl
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -180,6 +182,16 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageEndSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new MessageEndGraphicalNodeEditPolicy());
+		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy(){
+			@Override
+			protected void highlight(EditPart object) {
+				super.highlight(getParent());
+				IFigure feedback = getTargetIndicator();
+				Rectangle rect = getFigure().getBounds().getCopy();
+				getFigure().translateToAbsolute(rect);
+				setFeedbackLocation(feedback, rect.getCenter());
+			}
+		});
 	}
 	
 	protected IFigure createFigure() {
@@ -645,6 +657,9 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			return super.getTargetEditPart(request);
 		} else if(request instanceof CreateUnspecifiedTypeRequest && ((CreateUnspecifiedTypeRequest)request).getElementTypes().contains(UMLElementTypes.TimeConstraint_3019)) {
 			return super.getTargetEditPart(request);
+		}
+		if (RequestConstants.REQ_SELECTION == request.getType() && isSelectable()){
+			return this;
 		}
 		return null;
 	}

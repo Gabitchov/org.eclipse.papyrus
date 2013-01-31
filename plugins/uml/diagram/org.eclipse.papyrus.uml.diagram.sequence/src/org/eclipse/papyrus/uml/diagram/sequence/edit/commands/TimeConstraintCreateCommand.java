@@ -103,7 +103,7 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 			for(OccurrenceSpecification occurrence : occList) {
 				if(occurrence instanceof MessageOccurrenceSpecification) {
 					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-					if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+					if(mess != null && occurrence.equals(mess.getReceiveEvent()) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
 						// filter receive event, we prefer the corresponding start event at the same location
 						continue;
 					}
@@ -134,7 +134,7 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 			for(OccurrenceSpecification occurrence : occList) {
 				if(occurrence instanceof MessageOccurrenceSpecification) {
 					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
-					if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+					if(mess != null && occurrence.equals(mess.getReceiveEvent()) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
 						// filter receive event, we prefer the corresponding start event at the same location
 						continue;
 					}

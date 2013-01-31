@@ -28,6 +28,7 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
@@ -70,6 +71,7 @@ import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Comment;
@@ -156,6 +158,16 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			protected void addSelectionHandles() {  // remove handles
 			}
 		});	
+		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy(){
+			@Override
+			protected void highlight(EditPart object) {
+				super.highlight(getParent());
+				IFigure feedback = getTargetIndicator();
+				Rectangle rect = getFigure().getBounds().getCopy();
+				getFigure().translateToAbsolute(rect);
+				setFeedbackLocation(feedback, rect.getCenter());
+			}
+		});
 	}
 	
 	public void rebuildLinks(Diagram diagram) {
@@ -504,9 +516,12 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 				return targetEditPart;
 			}
 		}
+		if (RequestConstants.REQ_SELECTION == request.getType() && isSelectable()){
+			return this;
+		}
 		return getParent().getTargetEditPart(request);
 	}
-	 
+	
 	static class ExecutionSpecificationEndAnchor extends SlidableOvalAnchor {
 
 		public ExecutionSpecificationEndAnchor(CircleFigure circleFigure, PrecisionPoint p) {

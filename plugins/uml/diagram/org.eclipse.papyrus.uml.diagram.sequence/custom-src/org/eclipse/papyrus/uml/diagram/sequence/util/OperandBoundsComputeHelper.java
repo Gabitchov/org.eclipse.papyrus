@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -10,6 +11,8 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -30,16 +33,21 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.Lifeline;
 
 public class OperandBoundsComputeHelper {
 
@@ -529,6 +537,10 @@ public class OperandBoundsComputeHelper {
 						height = height + heightDelta;
 						Rectangle containerRect = new Rectangle(containerBounds.getX(),containerBounds.getY(),width,height);
 						compositeCommand.add(OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(parent, containerRect));
+						ICommand expandCoveredsCommand = getExpandCoveredsCommand((CombinedFragmentEditPart)compartEP.getParent(), containerRect);
+						if (expandCoveredsCommand != null){
+							compositeCommand.add(expandCoveredsCommand);
+						}
 					}
 				}
 			}
@@ -744,10 +756,18 @@ public class OperandBoundsComputeHelper {
 								int height = containerBounds.getHeight()!=-1? containerBounds.getHeight() :  preferredSize.height();
 								height = height + OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT;
 								View shapeView = (View) parent.getModel();
+								Rectangle newBounds = new Rectangle(containerBounds.getX(),containerBounds.getY(),width,height);
 								ICommand setParentBoundsCmd = new SetBoundsCommand(compartment.getEditingDomain(),
 							            DiagramUIMessages.SetLocationCommand_Label_Resize,
-							            new EObjectAdapter(shapeView), new Rectangle(containerBounds.getX(),containerBounds.getY(),width,height));
+							            new EObjectAdapter(shapeView), newBounds);
 								command.add(setParentBoundsCmd);
+								CombinedFragment combinedFragment = (CombinedFragment)parent.resolveSemanticElement();
+								if(!combinedFragment.getCovereds().isEmpty()) {
+									ICommand cmd = getExpandCoveredsCommand(parent, newBounds);
+									if(cmd != null) {
+										command.add(cmd);
+									}
+								}
 							}
 						}
 					}
@@ -772,6 +792,40 @@ public class OperandBoundsComputeHelper {
 			}
 		}
 	}
+	
+	/**
+	 * Expand Lifelines to new Bounds when adding InteractionOperands.
+	 * 
+	 * @param parent
+	 * @param newBounds
+	 * @return
+	 */
+	private static ICommand getExpandCoveredsCommand(CombinedFragmentEditPart parent, Rectangle newBounds) {
+		CombinedFragment combinedFragment = (CombinedFragment)parent.resolveSemanticElement();
+		CompositeCommand command = new CompositeCommand("Expand covered Lifeline by CombinedFragment");
+		EList<Lifeline> covereds = combinedFragment.getCovereds();
+		for(Lifeline lifeline : covereds) {
+			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(lifeline);
+			for(Setting ref : settings) {
+				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+					View view = (View)ref.getEObject();
+					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, parent);
+					if(view instanceof Node && part instanceof LifelineEditPart) {
+						Bounds bounds = (Bounds)((Node)view).getLayoutConstraint();
+						Rectangle rect = new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
+						int height = newBounds.bottom() - rect.y;
+						if (height > rect.height){
+							rect.height = height;
+						}
+						command.add(new SetBoundsCommand(parent.getEditingDomain(), "Expand covered Lifeline by CombinedFragment", new EObjectAdapter(view), rect));
+						break;
+					}
+				}
+			}
+		}
+		return command;
+	}
+
 	
 	/**
 	 * Check if it is a combined fragment.

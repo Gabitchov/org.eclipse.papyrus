@@ -844,32 +844,6 @@ public class OccurrenceSpecificationMoveHelper {
 			int finishY = newBounds.getBottom().y;
 			List<EditPart> notToMoveEditParts = new ArrayList<EditPart>(1);
 			notToMoveEditParts.add(executionSpecificationEP);
-			if(start instanceof MessageOccurrenceSpecification) {
-				Message message = ((MessageOccurrenceSpecification)start).getMessage();
-				Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(message);
-				for(Setting ref : settings) {
-					if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-						View view = (View)ref.getEObject();
-						EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
-						if(part != null) {
-							notToMoveEditParts.add(part);
-						}
-					}
-				}
-			}
-			if(finish instanceof MessageOccurrenceSpecification) {
-				Message message = ((MessageOccurrenceSpecification)finish).getMessage();
-				Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(message);
-				for(Setting ref : settings) {
-					if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-						View view = (View)ref.getEObject();
-						EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
-						if(part != null) {
-							notToMoveEditParts.add(part);
-						}
-					}
-				}
-			}
 			Command cmd = getMoveOccurrenceSpecificationsCommand(start, finish, startY, finishY, lifelinePart, notToMoveEditParts);
 			if(cmd != null) {
 				compoundCmd.add(cmd);

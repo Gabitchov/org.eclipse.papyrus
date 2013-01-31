@@ -44,11 +44,15 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -104,6 +108,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RectangularShadowBorder;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
+import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart.StateInvariantLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -127,13 +132,16 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.MessageAnchorRepairer;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
@@ -394,7 +402,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if (LifelineResizeHelper.isManualSize(this)) {
 			LifelineFigure primaryShape = getPrimaryShape();
 			//Once the minimum size is set, the main figure will not be expanded by itself.
-			primaryShape.setMinimumSize( new Dimension(1, 1));
+			primaryShape.setMinimumSize( new Dimension(1, -1));
 		}
 	}
 
@@ -1698,8 +1706,56 @@ public class LifelineEditPart extends NamedElementEditPart {
 				fFigureLifelineNameContainerFigure.setBorder(b);
 			}
 		}
+		
+		@Override
+		public Dimension getMinimumSize(int wHint, int hHint) {
+			if(minSize != null && minSize.height < 0) {
+				//Make sure Lifeline can be expanded vertically by itself.
+				int height = minSize.height;
+				if(getLayoutManager() != null) {
+					Dimension d = getLayoutManager().getMinimumSize(this, wHint, hHint);
+					if(d != null) {
+						height = Math.max(height, d.height);
+					}
+				} else {
+					Dimension d = getPreferredSize(wHint, hHint);
+					if(d != null) {
+						height = Math.max(height, d.height);
+					}
+				}
+				return new Dimension(minSize.width, getMinimumHeight(height));
+			}
+			Dimension minimumSize = super.getMinimumSize(wHint, hHint);
+			return new Dimension(minimumSize.width, getMinimumHeight(minimumSize.height));
+		}
 	}
 
+	private int getMinimumHeight(int heightHint) {
+		Rectangle rect = getFigure().getBounds().getCopy();
+		getFigure().translateToAbsolute(rect);
+		Lifeline lifeline = (Lifeline)resolveSemanticElement();
+		EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
+		int bottom = 0;
+		for(InteractionFragment interactionFragment : coveredBys) {
+			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(interactionFragment);
+			for(Setting ref : settings) {
+				if(!NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+					continue;
+				}
+				View view = (View)ref.getEObject();
+				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, this);
+				if (!(part instanceof GraphicalEditPart)){
+					continue;
+				}
+				GraphicalEditPart ep = (GraphicalEditPart)part;
+				Rectangle r = ep.getFigure().getBounds().getCopy();
+				getFigure().translateToAbsolute(r);
+				bottom = Math.max(bottom, r.bottom());
+			}
+		}
+		return Math.max(heightHint, bottom - rect.y);
+	}
+	
 	/**
 	 * Check if the IFigure contains point, only check visible figures.
 	 * 
@@ -1848,7 +1904,10 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(ElementIconUtil.isIconNotification(notification)){
 			updateLifelinePosition();
 		}
-
+		//Update message anchors when height changes.
+		if(NotationPackage.eINSTANCE.getSize_Height().equals(feature)) {
+			MessageAnchorRepairer.repair(this, notification.getOldIntValue(), notification.getNewIntValue());
+		}
 
 		if(UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(feature)) {
 			// Handle coveredBy attribute

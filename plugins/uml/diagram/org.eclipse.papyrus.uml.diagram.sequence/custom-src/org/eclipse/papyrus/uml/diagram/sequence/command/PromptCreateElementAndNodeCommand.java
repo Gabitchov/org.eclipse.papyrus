@@ -88,7 +88,7 @@ public class PromptCreateElementAndNodeCommand extends
 		// put the anchor at the top of the figure
 		ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(
 				editingDomain, createExecutionSpecificationCommand, descriptor,
-				"(0.5, 0.0)");
+				"(1.0, 0.0)");
 		command.add(new ICommandProxy(changeTargetCommand));
 
 		command.execute();

@@ -415,9 +415,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 			for(Object obj : relationshipTypes) {
 				if(UMLElementTypes.Message_4003.equals(obj)) {
 					// Sync Message
-//					if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
-						return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
-//					}
+					if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
+						return new AnchorHelper.FixedAnchorEx(getFigure(),  PositionConstants.TOP);
+					}
 					// otherwise, this is a recursive call, let destination free
 				}
 			}
@@ -443,10 +443,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
 		if(connEditPart instanceof MessageEditPart) {
-			// Sync Message, except self call.
-//			if (connEditPart.getSource() != connEditPart.getTarget()){
-				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
-//			}
+			// Sync Message
+			return new AnchorHelper.FixedAnchorEx(getFigure(),  PositionConstants.TOP);
 		}
 		return super.getTargetConnectionAnchor(connEditPart);
 	}

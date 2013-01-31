@@ -30,6 +30,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -86,8 +87,11 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
+import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
@@ -119,6 +123,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperatorKindCompatibleMapping;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
+import org.eclipse.papyrus.uml.diagram.sequence.util.MessageAnchorRepairer;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -1311,6 +1316,11 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 		
 		if(ElementIconUtil.isIconNotification(notification))
 			refreshLabelIcon();
+		
+		//Update message anchors when height changes.
+		if (NotationPackage.eINSTANCE.getSize_Height().equals(feature)){
+			MessageAnchorRepairer.repair(this, notification.getOldIntValue(), notification.getNewIntValue());
+		}
 	}
 
 	protected void refreshShadow() {

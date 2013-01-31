@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -176,6 +177,10 @@ public class MessageConnectionHelper {
 
 	public static boolean canExistAsynchMessage(Element source, Element target) {
 		if(target instanceof Message) {
+			return false;
+		}
+		//Only available for ExecutionSpecification and Lifeline.
+		if(target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline || target instanceof InteractionFragment)) {
 			return false;
 		}
 		return true;

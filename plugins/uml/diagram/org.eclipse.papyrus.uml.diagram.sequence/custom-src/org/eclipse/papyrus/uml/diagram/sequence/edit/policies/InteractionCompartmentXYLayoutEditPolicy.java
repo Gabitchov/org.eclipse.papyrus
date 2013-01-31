@@ -290,24 +290,47 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		if(moveDelta.x == 0 && moveDelta.y == 0) {
 			return;
 		}
-		View shape = (View) lifelineEditPart.getModel();
-		Lifeline element = (Lifeline) shape.getElement();
+		//There are some bugs about moving InteractionFragment when moving Lifelines.
+		Rectangle rect = lifelineEditPart.getFigure().getBounds().getCopy();
+		lifelineEditPart.getFigure().translateToAbsolute(rect);
+		rect = request.getTransformedRectangle(rect);
+		View shape = (View)lifelineEditPart.getModel();
+		Lifeline element = (Lifeline)shape.getElement();
 		EList<InteractionFragment> covereds = element.getCoveredBys();
 		EditPart parent = lifelineEditPart.getParent();
 		List<?> children = parent.getChildren();
-		for (Object obj : children) {
-			EditPart et = (EditPart) obj;
-			View sp = (View) et.getModel();
-			if (!covereds.contains(sp.getElement())) {
+		for(Object obj : children) {
+			EditPart et = (EditPart)obj;
+			View sp = (View)et.getModel();
+			if(!covereds.contains(sp.getElement())) {
 				continue;
 			}
-			ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_MOVE);
-			req.setEditParts(et);
-			req.setMoveDelta(moveDelta);
-			Command command = et.getCommand(req);
-			if (command != null && command.canExecute()) {
-				compoundCmd.add(command);
-			} 
+			Rectangle bounds = ((GraphicalEditPart)et).getFigure().getBounds().getCopy();
+			((GraphicalEditPart)et).getFigure().translateToAbsolute(bounds);
+			if(bounds.x + 20 < rect.x && bounds.right() - 20 > rect.right()) {
+				continue;
+			} else {
+				Dimension resizeInfo = new Dimension(0, 0);
+				Point moveInfo = new Point();
+				if(bounds.x + 20 > rect.x) {
+					moveInfo.x = rect.x - 20 - bounds.x;
+					resizeInfo.width = -moveInfo.x;
+				} else if(bounds.right() - 20 < rect.right()) {
+					resizeInfo.width = rect.right() + 20 - bounds.right();
+				}
+				if(resizeInfo.width == 0 && moveInfo.x == 0) {
+					continue;
+				}
+				ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_RESIZE);
+				req.setEditParts(et);
+				req.setResizeDirection(PositionConstants.EAST);
+				req.setSizeDelta(resizeInfo);
+				req.setMoveDelta(moveInfo);
+				Command command = et.getCommand(req);
+				if(command != null && command.canExecute()) {
+					compoundCmd.add(command);
+				}
+			}
 		}
 	}
 	

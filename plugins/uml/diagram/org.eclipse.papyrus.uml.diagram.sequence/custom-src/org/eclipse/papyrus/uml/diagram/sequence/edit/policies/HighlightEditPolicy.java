@@ -47,12 +47,12 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 	public static final String HIGHLIGHT_ROLE = "Highlight Edit Policy";
 
 	private static final String DURATION_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
-	
+
 	private static final String TIME_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
 
-	protected IFigure sourceIndicator;
+	protected Indicator sourceIndicator;
 
-	protected IFigure targetIndicator;
+	protected Indicator targetIndicator;
 
 	public void showSourceFeedback(Request request) {
 		EditPolicy editPolicy = null;
@@ -164,7 +164,7 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 		// for Duration Constraint and Time Constraint.
 		if(isCreating(request, DURATION_CONSTRAINT_ON_LIFELINE_HINT) || isCreating(request, TIME_CONSTRAINT_ON_LIFELINE_HINT)) {
 			Command command = getHost().getCommand(request);
-			if (command != null && command.canExecute()){
+			if(command != null && command.canExecute()) {
 				highlightEventsAboutConstraints(request);
 			}
 		}
@@ -298,7 +298,7 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 			return location;
 		}
 		Point loc = SequenceUtil.findLocationOfEvent((LifelineEditPart)lifeline, event);
-		if (loc != null){
+		if(loc != null) {
 			return loc;
 		}
 		EditPart linkedEditPart = SequenceUtil.getLinkedEditPart(lifeline, event);
@@ -369,30 +369,27 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 		return null;
 	}
 
-	protected IFigure getSourceIndicator() {
+	protected Indicator getSourceIndicator() {
 		if(sourceIndicator == null || sourceIndicator.getParent() == null) {
 			sourceIndicator = createCircleFeedback();
 		}
 		return sourceIndicator;
 	}
 
-	protected IFigure getTargetIndicator() {
+	protected Indicator getTargetIndicator() {
 		if(targetIndicator == null || targetIndicator.getParent() == null) {
 			targetIndicator = createCircleFeedback();
 		}
 		return targetIndicator;
 	}
 
-	private IFigure createCircleFeedback() {
-		Ellipse feedback = new Ellipse();
-		feedback.setLineWidth(2);
-		feedback.setAntialias(SWT.ON);
-		feedback.setSize(10, 10);
+	private Indicator createCircleFeedback() {
+		Indicator feedback = new Indicator();
 		getFeedbackLayer().add(feedback);
 		return feedback;
 	}
 
-	private void setFeedbackLocation(IFigure feedback, Point location) {
+	protected void setFeedbackLocation(IFigure feedback, Point location) {
 		if(feedback == null || location == null) {
 			return;
 		}
@@ -427,5 +424,19 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 		sourceIndicator = null;
 		safeRemoveFeedback(targetIndicator);
 		targetIndicator = null;
+	}
+
+	private static class Indicator extends Ellipse {
+
+		/**
+		 * Constructor.
+		 * 
+		 */
+		public Indicator() {
+			setLineWidth(2);
+			setAntialias(SWT.ON);
+			setSize(10, 10);
+		}
+
 	}
 }

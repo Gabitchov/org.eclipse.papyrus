@@ -1184,9 +1184,9 @@
        id="createMessageLost6CreationTool"
        kind="tool"
        label="Message Lost"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+       large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageLost.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
+       small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageLost.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -1194,9 +1194,9 @@
        id="createMessageFound7CreationTool"
        kind="tool"
        label="Message Found"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+       large_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageFound.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
+       small_icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/MessageFound.gif">
  	</entry>
 	<entry
        defineOnly="true"

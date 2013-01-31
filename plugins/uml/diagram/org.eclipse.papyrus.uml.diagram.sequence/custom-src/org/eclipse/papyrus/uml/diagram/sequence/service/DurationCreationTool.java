@@ -105,7 +105,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	public DurationCreationTool(List<IElementType> elementTypes) {
 		super(elementTypes);
 		setDefaultCursor(SharedCursors.CURSOR_PLUG);
-		setDisabledCursor(SharedCursors.CURSOR_PLUG_NOT);
+		setDisabledCursor(SharedCursors.NO);
 	}
 
 	/**

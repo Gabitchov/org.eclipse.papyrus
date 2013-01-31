@@ -858,6 +858,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				// change the enclosing interaction of the moved affixed child if necessary
 				compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(childExecutionSpecificationEP, moveDelta.getLocation(), moveDelta.getSize()));
 
+				ChangeBoundsRequest request = new ChangeBoundsRequest();
+				request.setMoveDelta(new Point(0, moveDelta.y));
+				OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(compoundCmd, childExecutionSpecificationEP, childBounds.getCopy(), request);
+				
 				// Move it's children as well
 				if(!getAffixedExecutionSpecificationEditParts(childExecutionSpecificationEP).isEmpty()) {
 					compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(childExecutionSpecificationEP, moveDelta, childBounds));

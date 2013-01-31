@@ -341,7 +341,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 		
 		//update bendpoints for self link message.
-		if(connectionFeedback != null) {
+		if(connectionFeedback != null && ((IHintedType)UMLElementTypes.Message_4004).getSemanticHint().equals(requestHint)) {
 			updateConnectionBendpoints(request, command);
 		}
 		
