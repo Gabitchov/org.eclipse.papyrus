@@ -222,7 +222,6 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 
 	private void debug(List<Object> supportedElements) {
 		if(supportedElements.isEmpty()) {
-			System.out.println("Ignored");
 			return; //Do not change the state of the debug view if the selection isn't interesting
 		}
 
@@ -466,11 +465,19 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 			if(feature.getName().endsWith("Color") && value instanceof Integer) {
 				Color color = FigureUtilities.integerToColor((Integer)value);
 				cell.setBackground(color);
-				if(((Integer)value) == 0) {
-					//Use a white font when the color is black. TODO: Do the same for all dark colors...
-					cell.setForeground(Display.getDefault().getSystemColor(SWT.COLOR_WHITE));
-				}
+				int lightness = getLightness(color);
+				//Use a white font when the color is dark
+				int systemColor = lightness < 130 ? systemColor = SWT.COLOR_WHITE : SWT.COLOR_BLACK;
+				cell.setForeground(Display.getDefault().getSystemColor(systemColor));
 			}
+		}
+
+		private int getLightness(Color color) {
+			//Computes the lightness of the color
+			int M = Math.max(color.getGreen(), Math.max(color.getRed(), color.getBlue()));
+			int m = Math.min(color.getGreen(), Math.min(color.getRed(), color.getBlue()));
+			int L = (M + m) / 2;
+			return L;
 		}
 
 		private String getValueAsText(EStructuralFeature feature, Object value) {
@@ -573,7 +580,8 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 		}
 
 		private void updateValue(ViewerCell cell, EStructuralFeature feature) {
-			cell.setText(cssElement.getSemanticElement().eGet(feature).toString());
+			Object value = cssElement.getSemanticElement().eGet(feature);
+			cell.setText(value == null ? "" : value.toString());
 		}
 
 	}
