@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.metamodel.jdt.edit;singleton:=true
-Bundle-Version: 0.8.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.provider.JdtmmEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.provider
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.java.generator.metamodel.jdt;visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- org.eclipse.uml2.common.edit;visibility:=reexport
+ org.eclipse.uml2.common.edit;visibility:=reexport,
+ org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy

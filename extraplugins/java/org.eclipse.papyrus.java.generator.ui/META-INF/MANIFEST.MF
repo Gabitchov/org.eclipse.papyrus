@@ -2,19 +2,19 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.ui;singleton:=true
-Bundle-Version: 0.8.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml,
  org.eclipse.ui.ide,
  org.eclipse.core.resources;bundle-version="3.6.0",
- org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="0.8.0",
+ org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="0.10.0",
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
- org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="0.8.0"
+ org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="0.10.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Activator: org.eclipse.papyrus.java.generator.ui.Activator
 Export-Package: org.eclipse.papyrus.java.generator.ui

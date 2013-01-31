@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.java.profile.feature"
-      label="Java Profile for UML"
-      version="0.8.0.qualifier">
+      label="%featureName"
+      version="0.10.0.qualifier"
+      provider-name="%providerName">
 
    <description url="http://www.example.com/description">
       Profile for the Java language.
@@ -10,7 +11,7 @@ This profile allows to add properties regarding Java classes,
 packages and project to a UML model.
    </description>
 
-   <copyright>
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       #################################################################################
 # Copyright (c) 2011 Nicolas Deblock &amp; Manuel Giles.
 #
@@ -21,17 +22,17 @@ v1.0
 # http://www.eclipse.org/legal/epl-v10.html
 #
 # Contributors:
-#	Nicolas Deblock  nico.deblock@gmail.com  - Initial API and
+# Nicolas Deblock  nico.deblock@gmail.com  - Initial API and
 implementation
-# 	Manuel Giles	 giles.manu@live.fr		 - Initial API and implementation
-# 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Idea of the java
+#  Manuel Giles  giles.manu@live.fr   - Initial API and implementation
+#  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Idea of the java
 generator project &amp; help for the conception 
 #
 #################################################################################
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="%licenseURL">
+      %license
    </license>
 
    <requires>
@@ -52,21 +53,21 @@ generator project &amp; help for the conception
          id="org.eclipse.papyrus.java.profile"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.10.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.java.profile.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.10.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.java.profile.editor"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="0.10.0.qualifier"
          unpack="false"/>
 
 </feature>

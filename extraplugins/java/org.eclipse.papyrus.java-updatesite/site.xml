@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.papyrus.java.generator.feature_0.8.0.201109060101.jar" id="org.eclipse.papyrus.java.generator.feature" version="0.8.0.201109060101">
-      <category name="org.eclipse.papyrus.java.generator"/>
+   <feature url="features/org.eclipse.papyrus.java.reverse.feature_0.10.0.201301311719.jar" id="org.eclipse.papyrus.java.reverse.feature" version="0.10.0.201301311719">
       <category name="org.eclipse.papyrus.java"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.java.profile.feature_0.8.0.201109060101.jar" id="org.eclipse.papyrus.java.profile.feature" version="0.8.0.201109060101">
-      <category name="org.eclipse.papyrus.java.profile"/>
+   <feature url="features/org.eclipse.papyrus.java.profile.feature_0.10.0.201301311719.jar" id="org.eclipse.papyrus.java.profile.feature" version="0.10.0.201301311719">
       <category name="org.eclipse.papyrus.java"/>
+      <category name="org.eclipse.papyrus.java.profile"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.java.generator.feature_0.10.0.201301311719.jar" id="org.eclipse.papyrus.java.generator.feature" version="0.10.0.201301311719">
+      <category name="org.eclipse.papyrus.java"/>
+      <category name="org.eclipse.papyrus.java.generator"/>
    </feature>
    <category-def name="org.eclipse.papyrus.java.generator" label="Java Generator">
       <description>

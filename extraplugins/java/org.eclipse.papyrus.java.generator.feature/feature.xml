@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.java.generator.feature"
-      label="Java classes Generator for Papyrus"
-      version="0.8.0.qualifier">
+      label="%featureName"
+      version="0.10.0.qualifier"
+      provider-name="%providerName">
 
    <description url="http://www.example.com/description">
       This feature allows to generate Java classes and packages from
@@ -11,7 +12,7 @@ It also allows to generate projects, with the help of the Java
 profile.
    </description>
 
-   <copyright>
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       #################################################################################
 # Copyright (c) 2011 Nicolas Deblock &amp; Manuel Giles.
 #
@@ -22,17 +23,17 @@ v1.0
 # http://www.eclipse.org/legal/epl-v10.html
 #
 # Contributors:
-#	Nicolas Deblock  nico.deblock@gmail.com  - Initial API and
+# Nicolas Deblock  nico.deblock@gmail.com  - Initial API and
 implementation
-# 	Manuel Giles	 giles.manu@live.fr		 - Initial API and implementation
-# 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Idea of the java
+#  Manuel Giles  giles.manu@live.fr   - Initial API and implementation
+#  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Idea of the java
 generator project &amp; help for the conception 
 #
 #################################################################################
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="%licenseURL">
+      %license
    </license>
 
    <requires>

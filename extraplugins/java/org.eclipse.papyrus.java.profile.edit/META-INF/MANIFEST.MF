@@ -2,19 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.java.profile.edit;singleton:=true
-Bundle-Version: 0.8.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.java.profile.java.provider.JavaEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.java.profile.java.provider
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.java.profile;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.uml2.uml;visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.java.profile;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport,
- org.eclipse.uml2.common.edit;visibility:=reexport
+ org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
