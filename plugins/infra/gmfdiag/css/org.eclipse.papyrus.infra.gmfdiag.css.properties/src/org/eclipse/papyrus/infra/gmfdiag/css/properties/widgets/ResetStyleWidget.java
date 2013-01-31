@@ -42,6 +42,7 @@ public class ResetStyleWidget implements SelectionListener {
 
 		ResetStyleHandler handler = new ResetStyleHandler();
 		try {
+			//FIXME: The ExecutionEvent needs the EclipseContext
 			handler.execute(new ExecutionEvent(null, new HashMap<String, String>(), event, null));
 		} catch (ExecutionException ex) {
 			Activator.log.error(ex);
