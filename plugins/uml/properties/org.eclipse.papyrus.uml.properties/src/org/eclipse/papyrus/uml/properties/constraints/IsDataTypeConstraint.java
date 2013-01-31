@@ -39,6 +39,7 @@ public class IsDataTypeConstraint extends AbstractConstraint {
 		dataType = ClassLoaderHelper.newInstance(dataTypeClassName, EDataType.class);
 	}
 
+	@Override
 	public boolean match(Object selection) {
 		if(dataType == null) {
 			return false;

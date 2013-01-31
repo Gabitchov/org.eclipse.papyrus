@@ -34,6 +34,7 @@ public class UmlInstanceOfConstraint extends AbstractConstraint {
 		umlClassName = getValue("umlClassName"); //$NON-NLS-1$
 	}
 
+	@Override
 	public boolean match(Object selection) {
 		Element umlSemantic = UMLUtil.resolveUMLElement(selection);
 		if(umlSemantic != null) {

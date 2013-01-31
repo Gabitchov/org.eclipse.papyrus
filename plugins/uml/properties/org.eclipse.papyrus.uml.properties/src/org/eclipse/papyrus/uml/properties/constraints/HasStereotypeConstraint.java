@@ -36,6 +36,7 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 	 */
 	protected Element umlElement;
 
+	@Override
 	public boolean match(Object selection) {
 		umlElement = UMLUtil.resolveUMLElement(selection);
 		if(umlElement == null) {

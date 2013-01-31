@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+<Composite
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets">
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
-	<ppe:StringEditor property="CustomImage:Image:name"
-		input="{Binding}"></ppe:StringEditor>
+	<ppe:StringEditor input="{Binding}" property="CustomImage:Image:name"></ppe:StringEditor>
 	<ppe:EnumCombo input="{Binding}" property="CustomImage:Image:kind"></ppe:EnumCombo>
 	<ppe:StringMultiline input="{Binding}"
 		property="CustomImage:Image:expression"></ppe:StringMultiline>
+	<ppe:StringEditor property="UML:Image:location" input="{Binding}"></ppe:StringEditor>
+	<ppe:StringEditor property="UML:Image:format" input="{Binding}"></ppe:StringEditor>
 	<uml:StereotypeImageEditor input="{Binding}"
 		property="UML:Image:content"></uml:StereotypeImageEditor>
 </Composite>

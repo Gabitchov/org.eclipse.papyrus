@@ -20,9 +20,7 @@ import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisp
 import org.eclipse.papyrus.infra.emf.appearance.commands.SetNameLabelIconCommand;
 import org.eclipse.papyrus.infra.emf.appearance.commands.SetQualifiedNameDepthCommand;
 import org.eclipse.papyrus.infra.emf.appearance.commands.SetShadowFigureCommand;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
@@ -94,11 +92,11 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 		case LABEL_CUSTOMIZATION:
 			return getEditPolicy().getCurrentDisplayValue();
 		case ELEMENT_ICON:
-			return NameLabelIconHelper.showLabelIcon(notationElement);
+			return AppearanceHelper.showElementIcon(notationElement);
 		case SHADOW:
-			return ShadowFigureHelper.getShadowFigureValue(notationElement);
+			return AppearanceHelper.showShadow(notationElement);
 		case QUALIFIED_NAME:
-			return QualifiedNameHelper.getQualifiedNameDepth(notationElement);
+			return AppearanceHelper.getQualifiedNameDepth(notationElement);
 		}
 
 		return null;
