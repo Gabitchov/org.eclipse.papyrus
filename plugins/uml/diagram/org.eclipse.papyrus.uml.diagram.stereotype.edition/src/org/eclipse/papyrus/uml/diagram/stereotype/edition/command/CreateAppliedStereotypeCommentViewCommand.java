@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
@@ -191,8 +192,8 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		while(currentView!=null) {
 			currentView=(View)currentView.eContainer();
 			if(currentView!=null){
-				if(!( currentView instanceof BasicCompartment)){
-					parents.addAll(currentView.getChildren());
+				if(!( currentView instanceof DecorationNode)&&!( currentView instanceof BasicCompartment)){
+					//parents.addAll(currentView.getChildren());
 				}
 				parents.add(currentView);
 			}
