@@ -59,6 +59,7 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConne
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
@@ -593,15 +594,12 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 					}
 				} else if(host instanceof InteractionOperandEditPart) {
 					return null;
-				} else if(host instanceof CombinedFragmentEditPart) {
+				} else if(host instanceof InteractionFragmentEditPart) {
 					CreateConnectionRequest req = (CreateConnectionRequest)request;
-					IFigure figure = ((GraphicalEditPart)host).getFigure();
 					Point location = req.getLocation().getCopy();
-					figure.translateToRelative(location);
 
 					// if mouse location is far from border, do not handle connection event 
-					Rectangle innerRetangle = figure.getBounds().getCopy().shrink(10, 10);
-					if(innerRetangle.contains(location)) {
+					if(!touchesInteractionBounds((GraphicalEditPart)host, location)) {
 						return null;
 					}
 				}
@@ -623,14 +621,11 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 					}
 				} else if(host instanceof InteractionOperandEditPart) {
 					return null;
-				} else if(host instanceof CombinedFragmentEditPart) {
-					IFigure figure = ((GraphicalEditPart)host).getFigure();
+				} else if(host instanceof InteractionFragmentEditPart) {
 					Point location = ((ReconnectRequest)request).getLocation().getCopy();
-					figure.translateToRelative(location);
 
 					// if mouse location is far from border, do not handle connection event 
-					Rectangle innerRetangle = figure.getBounds().getCopy().shrink(10, 10);
-					if(innerRetangle.contains(location)) {
+					if(!touchesInteractionBounds((GraphicalEditPart)host, location)) {
 						return null;
 					}
 				}
@@ -640,17 +635,18 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return null;
 	}
 
-	private boolean touchesInteractionBounds(InteractionEditPart interaction, Point location){
+	private boolean touchesInteractionBounds(GraphicalEditPart interaction, Point location){
 		Point p = location.getCopy();
 		IFigure figure = interaction.getFigure();
 		figure.translateToRelative(p);
 		
 		// if mouse location is far from border, do not handle connection event 
-		Rectangle innerRetangle = figure.getBounds().getCopy().shrink(20, 20);
+		Rectangle r = figure.getBounds().getCopy();
+		Rectangle innerRetangle = r.getShrinked(20, 20);
 		if(innerRetangle.contains(p)){
 			return false;
 		}
-		return true;
+		return r.getExpanded(1, 1).contains(p);
 	}
 	
 	protected boolean isCreateConnectionRequest(Request request, IElementType type) {

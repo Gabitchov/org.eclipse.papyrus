@@ -900,6 +900,8 @@ public class CommandHelper {
 				}
 			}
 		} else if(element instanceof InteractionUse) {
+			// remove connection feedbacks before opening dialog
+			clearConnectionFeedback();
 			Shell shell = Display.getCurrent().getActiveShell();
 			InteractionUse interactionUse = (InteractionUse)element;
 

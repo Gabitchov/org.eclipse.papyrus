@@ -121,6 +121,10 @@ public class Message2CreateCommand extends EditElementCommand {
 
 		Map<Object, Object> parameters = getRequest().getParameters();
 		Message message = CommandHelper.doCreateMessage(container, null, getSource(), getTarget(), parameters);
+		//Fixed bug about creating message, if created failed, return error result.
+		if (message == null || message.getSendEvent() == null || message.getReceiveEvent() == null){
+			return CommandResult.newErrorCommandResult("Failed to create message");
+		}
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);

@@ -154,14 +154,10 @@ public class MessageRouter extends ObliqueRouter {
 	protected void getSelfRelVertices(Connection conn, PointList newLine) {
 		//Copy the points calculated from Bendpoints.
 		PointList oldLine = newLine.getCopy();
-		if(oldLine.size() == 2 && !oldLine.getFirstPoint().equals(oldLine.getLastPoint())){
-			System.out.println();
-		}
 
 		rectilinearResetEndPointsToEdge(conn, newLine);
 
 		IFigure owner = conn.getSourceAnchor().getOwner();
-		IFigure owner2 = conn.getTargetAnchor().getOwner();
 		Point middle = owner.getBounds().getCenter();
 
 		// ensure that the end points are anchored properly to the shape.
