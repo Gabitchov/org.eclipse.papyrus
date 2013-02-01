@@ -136,7 +136,7 @@ public class PapyrusCompareEObjectCopier extends EMFCompareEObjectCopier {
 					copyResource.setID(copy, originResource.getID(original));
 					final TreeIterator<EObject> originalIterator = original.eAllContents();
 					final TreeIterator<EObject> copyIterator = copy.eAllContents();
-					while(originalIterator.hasNext()) {
+					while(originalIterator.hasNext() && copyIterator.hasNext()) {
 						final EObject nextOriginalChild = originalIterator.next();
 						final EObject nextCopyChild = copyIterator.next();
 						if(nextOriginalChild.eResource() == nextCopyChild.eResource()) {
