@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.subelement.handler;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -46,8 +46,8 @@ public class CompareTwoModelElementsHandler extends CompareTwoElementsHandler {
 	 * @return
 	 *         the selected elements
 	 */
-	protected Map<EObject, IEditorPart> getSelection() {
-		final Map<EObject, IEditorPart> editorsAndEObject = new HashMap<EObject, IEditorPart>();
+	protected List<EObject> getSelection() {
+		final List<EObject> selection = new ArrayList<EObject>();
 		final IWorkbenchWindow ww = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		IWorkbenchPart activePart = ww.getActivePage().getActivePart();
 		if(activePart instanceof IEditorPart) {//if not we forbid to launch a comparison
@@ -63,9 +63,9 @@ public class CompareTwoModelElementsHandler extends CompareTwoElementsHandler {
 						if(currentSelection instanceof IStructuredSelection && ((IStructuredSelection)currentSelection).size() == 1) {
 							final Object object = ((IStructuredSelection)currentSelection).getFirstElement();
 							if(object instanceof IAdaptable) {
-								final Object res = ((IAdaptable)object).getAdapter(EObject.class);
-								if(res instanceof Element) {
-									editorsAndEObject.put((EObject)res, (IEditorPart)part);
+								final EObject res = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+								if(res != null && res instanceof Element) {
+									selection.add(res);
 								}
 							}
 						}
@@ -73,9 +73,9 @@ public class CompareTwoModelElementsHandler extends CompareTwoElementsHandler {
 				}
 			}
 			if(nbPapyrus != 2) {
-				return Collections.emptyMap();
+				return Collections.emptyList();
 			}
 		}
-		return editorsAndEObject;
+		return selection;
 	}
 }
