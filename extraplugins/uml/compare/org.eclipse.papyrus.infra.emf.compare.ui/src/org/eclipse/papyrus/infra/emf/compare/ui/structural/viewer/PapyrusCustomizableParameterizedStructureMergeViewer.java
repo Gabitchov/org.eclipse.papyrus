@@ -160,8 +160,31 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 		final ParameterizedStructureContentProvider contentProvider = new ParameterizedStructureContentProvider(compareConfiguration, getDefaultOrdering(), getDefaultFilters()) {
 
 			@Override
+			public Object[] getElements(Object inputElement) {
+				if(inputElement instanceof ModelCompareInput) {
+					return super.getElements(((ModelCompareInput)inputElement).getDiff());
+				}
+				return super.getElements(inputElement);
+			}
+
+			@Override
 			public boolean hasChildren(Object element) {
-				return super.getChildren(element).length != 0;
+				if(element != null) {
+					Object[] children = getChildren(element);
+					if(children != null) {
+						return children.length != 0;
+					}
+				}
+				return false;
+			}
+
+			@Override
+			public Object[] getChildren(Object parentElement) {
+				Object[] child = super.getChildren(parentElement);
+				if(child != null) {
+					return child;
+				}
+				return new Object[0];
 			}
 		};
 		return contentProvider;

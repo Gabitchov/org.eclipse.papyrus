@@ -22,6 +22,7 @@ import org.eclipse.emf.compare.ui.internal.ModelComparator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
@@ -81,23 +82,8 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 	@Override
 	protected void createToolItems(final ToolBarManager tbm) {
 		super.createToolItems(tbm);
-		final UndoActionWrapper undoAction = new UndoActionWrapper();
-		final RedoActionWrapper redoAction = new RedoActionWrapper();
-
-		//we need that the editor will be created to get it and initialize the actions
-		Display.getCurrent().asyncExec(new Runnable() {
-
-			public void run() {
-				IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-				undoAction.setActiveWorkbenchPart(editorPart);
-				redoAction.setActiveWorkbenchPart(editorPart);
-			}
-		});
-
-		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		undoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
-		redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
-
+		final Action undoAction = getUndoAction();
+		final Action redoAction = getRedoAction();
 		tbm.insert(0, new ActionContributionItem(undoAction));
 		tbm.insert(1, new ActionContributionItem(redoAction));
 
@@ -106,6 +92,41 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 		initializeIActionField(tbm);
 	}
 
+	protected Action getUndoAction() {
+		final UndoActionWrapper undoAction = new UndoActionWrapper();
+
+		//we need that the editor will be created to get it and initialize the actions
+		Display.getCurrent().asyncExec(new Runnable() {
+
+			public void run() {
+				IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+				undoAction.setActiveWorkbenchPart(editorPart);
+
+			}
+		});
+
+		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
+		undoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
+
+		return undoAction;
+	}
+
+	protected Action getRedoAction() {
+		final RedoActionWrapper redoAction = new RedoActionWrapper();
+
+		//we need that the editor will be created to get it and initialize the actions
+		Display.getCurrent().asyncExec(new Runnable() {
+
+			public void run() {
+				IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+				redoAction.setActiveWorkbenchPart(editorPart);
+			}
+		});
+
+		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
+		redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
+		return redoAction;
+	}
 
 
 
