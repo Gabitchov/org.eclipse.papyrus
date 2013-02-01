@@ -26,7 +26,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.compare.diff;bundle-version="0.9.2",
  org.eclipse.papyrus.infra.emf.compare.diff;bundle-version="0.9.2",
  org.eclipse.core.expressions
-Export-Package: org.eclipse.papyrus.uml.compare.editor,
- org.eclipse.papyrus.uml.compare.internal.handler
+Export-Package: org.eclipse.papyrus.uml.compare.content.viewer,
+ org.eclipse.papyrus.uml.compare.editor,
+ org.eclipse.papyrus.uml.compare.internal.handler,
+ org.eclipse.papyrus.uml.compare.utils
 Bundle-Version: 0.9.2.qualifier
 
