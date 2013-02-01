@@ -29,7 +29,6 @@ import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
-import org.eclipse.emf.compare.match.engine.IMatchScopeProvider;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
@@ -262,7 +261,7 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 				 */
 				public void historyNotification(final OperationHistoryEvent event) {
 					int eventType = event.getEventType();
-					if(eventType == 10 || eventType == 9) {
+					if(eventType == OperationHistoryEvent.UNDONE || eventType == OperationHistoryEvent.REDONE) {
 						if(this.lastEvent != event) {
 							this.lastEvent = event;
 							if(!event.getOperation().getLabel().equals("Create CompareEditor")) {//TODO improve it!
@@ -270,6 +269,8 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 							}
 						}
 					}
+					//after each action, the status could have change
+					firePropertyChange(PROP_DIRTY);
 				}
 
 				private void resetInput() {
