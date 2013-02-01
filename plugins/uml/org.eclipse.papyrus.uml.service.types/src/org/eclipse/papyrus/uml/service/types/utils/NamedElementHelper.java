@@ -76,29 +76,29 @@ public class NamedElementHelper {
 	@Deprecated
 	public String getNewUMLElementName(Element umlParent, String baseString) {
 		return getDefaultNameWithIncrementFromBase(baseString, umlParent.eContents());
-//		this.setBaseString(baseString);
-//		String name = ""; //$NON-NLS-1$
-//
-//		boolean found = false;
-//		// i <10000: avoid infinite loops
-//		for(int i = 1; i < 5; i++) {
-//			found = false;
-//			name = getBaseString() + i;
-//			
-//			Iterator<?> it = umlParent.getOwnedElements().iterator();
-//			while(it.hasNext() && !found) {
-//				Object o = it.next();
-//				if(o instanceof NamedElement) {
-//					if(name.equals(((NamedElement)o).getName())) {
-//						found = true;
-//					}
-//				}
-//			}
-//			if(!found) {
-//				return name;
-//			}
-//		}
-//		return getBaseString() + "X"; //$NON-NLS-1$
+		//		this.setBaseString(baseString);
+		//		String name = ""; //$NON-NLS-1$
+		//
+		//		boolean found = false;
+		//		// i <10000: avoid infinite loops
+		//		for(int i = 1; i < 5; i++) {
+		//			found = false;
+		//			name = getBaseString() + i;
+		//			
+		//			Iterator<?> it = umlParent.getOwnedElements().iterator();
+		//			while(it.hasNext() && !found) {
+		//				Object o = it.next();
+		//				if(o instanceof NamedElement) {
+		//					if(name.equals(((NamedElement)o).getName())) {
+		//						found = true;
+		//					}
+		//				}
+		//			}
+		//			if(!found) {
+		//				return name;
+		//			}
+		//		}
+		//		return getBaseString() + "X"; //$NON-NLS-1$
 	}
 
 	/**
@@ -112,9 +112,12 @@ public class NamedElementHelper {
 	public void setBaseString(String baseString) {
 		this.baseString = baseString;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents) {
+		if("property".equalsIgnoreCase(base)) {
+			base = "Attribute";
+		}
 		int nextNumber = 1;
 
 		for(Object o : contents) {

@@ -83,15 +83,18 @@ public class NamedElementUtil {
 
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrement(String prefix, EObject newElement, Collection contents) {
-		if (prefix == null) {
+		if(prefix == null) {
 			prefix = "";
 		}
 
 		return getDefaultNameWithIncrementFromBase(prefix + newElement.eClass().getName(), contents);
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents) {
+		if(base.equalsIgnoreCase("property")) {
+			base = "Attribute";
+		}
 		int nextNumber = 1;
 
 		for(Object o : contents) {
