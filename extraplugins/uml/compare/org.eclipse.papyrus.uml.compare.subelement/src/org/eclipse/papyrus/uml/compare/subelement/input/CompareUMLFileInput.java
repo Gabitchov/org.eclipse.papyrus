@@ -34,20 +34,14 @@ public class CompareUMLFileInput implements ICompareUMLFileInput {
 	private final List<EObject> comparedElements;
 
 	/**
-	 * This map stores the selected elements and their associated editor
-	 */
-	private final Map<EObject, IEditorPart> elementsAndEditors;
-
-	/**
 	 * 
 	 * Constructor.
 	 * 
 	 * @param selection
 	 *        the files to compare
 	 */
-	public CompareUMLFileInput(final List<EObject> selection, final Map<EObject, IEditorPart> elementsAndEditors) {
+	public CompareUMLFileInput(final List<EObject> selection) {
 		this.comparedElements = selection;
-		this.elementsAndEditors = elementsAndEditors;
 	}
 
 	/**
@@ -77,7 +71,7 @@ public class CompareUMLFileInput implements ICompareUMLFileInput {
 	 * @return
 	 */
 	public String getName() {
-		return "Papyrus Compare UML Element Editor Input";
+		return "Papyrus Compare UML Element Editor Input"; //$NON-NLS-1$
 	}
 
 	/**
@@ -119,15 +113,5 @@ public class CompareUMLFileInput implements ICompareUMLFileInput {
 	 */
 	public List<EObject> getComparedElements() {
 		return this.comparedElements;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.compare.subelement.input.ICompareUMLFileInput#getElementsAndEditors()
-	 * 
-	 * @return
-	 */
-	public Map<EObject, IEditorPart> getElementsAndEditors() {
-		return this.elementsAndEditors;
 	}
 }

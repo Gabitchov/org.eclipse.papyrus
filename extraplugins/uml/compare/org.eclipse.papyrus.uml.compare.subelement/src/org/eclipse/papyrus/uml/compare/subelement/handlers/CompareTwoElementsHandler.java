@@ -52,9 +52,8 @@ import org.eclipse.uml2.uml.Element;
 public class CompareTwoElementsHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final List<EObject> selection = new ArrayList<EObject>(getSelection().keySet());
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorInput input = new CompareUMLFileInput(selection, getSelection());
+		IEditorInput input = new CompareUMLFileInput(getSelection());
 		try {
 			//we open the compare editor
 			page.openEditor(input, CompareUMLModelElementEditor.EDITOR_TYPE, true);
@@ -69,37 +68,8 @@ public class CompareTwoElementsHandler extends AbstractHandler {
 	 * @return
 	 *         the selected elements
 	 */
-	protected Map<EObject, IEditorPart> getSelection() {
-		final Map<EObject, IEditorPart> editorsAndEObject = new HashMap<EObject, IEditorPart>();
-//		final IWorkbenchWindow ww = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-//		IWorkbenchPart activePart = ww.getActivePage().getActivePart();
-//		if(activePart instanceof IEditorPart) {//if not we forbid to launch a comparison
-//			int nbPapyrus = 0;
-//			if(ww != null) {
-//				final IWorkbenchPage[] pages = ww.getPages();
-//				final IEditorReference[] refs = pages[0].getEditorReferences();
-//				for(IEditorReference iEditorReference : refs) {
-//					final IWorkbenchPart part = iEditorReference.getPart(false);
-//					if(part != null && part instanceof IMultiDiagramEditor) {
-//						nbPapyrus++;
-//						final ISelection currentSelection = part.getSite().getSelectionProvider().getSelection();
-//						if(currentSelection instanceof IStructuredSelection && ((IStructuredSelection)currentSelection).size() == 1) {
-//							final Object object = ((IStructuredSelection)currentSelection).getFirstElement();
-//							if(object instanceof IAdaptable) {
-//								final Object res = ((IAdaptable)object).getAdapter(EObject.class);
-//								if(res instanceof Element) {
-//									editorsAndEObject.put((EObject)res, (IEditorPart)part);
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//			if(nbPapyrus != 2) {
-//				return Collections.emptyMap();
-//			}
-//		}
-		return editorsAndEObject;
+	protected List<EObject> getSelection() {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -110,7 +80,7 @@ public class CompareTwoElementsHandler extends AbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		final List<EObject> selection = new ArrayList<EObject>(getSelection().keySet());
+		final List<EObject> selection = getSelection();
 		if(selection.size() == 2) {
 			final EObject obj1 = selection.get(0);
 			final EObject obj2 = selection.get(1);

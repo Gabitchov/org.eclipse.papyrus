@@ -65,6 +65,7 @@ public class UMLTransactionalModelContentMergeViewerWithTwoEditingDomain extends
 	 */
 	private UndoAction undoAction;
 
+
 	/**
 	 * 
 	 * Constructor.
@@ -80,7 +81,6 @@ public class UMLTransactionalModelContentMergeViewerWithTwoEditingDomain extends
 		final Object left = configuration.getProperty(RootObject.LEFT_OBJECT_KEY);
 		assert left instanceof EObject;
 		leftStack = TransactionUtil.getEditingDomain((EObject)left).getCommandStack();
-
 
 		final Object right = configuration.getProperty(RootObject.RIGHT_OBJECT_KEY);
 		assert right instanceof EObject;

@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.subelement.editor.input;
+package org.eclipse.papyrus.uml.compare.subelement.editor.input.copy;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareViewerPane;
@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.uml.compare.subelement.messages.Messages;
 import org.eclipse.papyrus.uml.compare.subelement.viewer.UMLTransactionalModelContentMergeViewerWithTwoEditingDomain;
 import org.eclipse.papyrus.uml.compare.utils.RootObject;
 import org.eclipse.papyrus.uml.compare.utils.UMLModelCompareEditorInput;

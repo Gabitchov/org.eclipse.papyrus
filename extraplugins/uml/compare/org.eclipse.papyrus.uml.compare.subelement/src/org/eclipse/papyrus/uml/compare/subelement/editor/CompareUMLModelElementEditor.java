@@ -37,7 +37,6 @@ import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMatchService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
 import org.eclipse.papyrus.uml.compare.subelement.editor.input.UMLModelCompareEditorInputWithTwoEditingDomain;
 import org.eclipse.papyrus.uml.compare.subelement.input.CompareUMLFileInput;
-import org.eclipse.papyrus.uml.compare.subelement.utils.CompareConfigurationUtils;
 import org.eclipse.papyrus.uml.compare.utils.RootObject;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -120,18 +119,14 @@ public class CompareUMLModelElementEditor extends AbstractPapyrusCompareEditor {
 			rightQName = ((NamedElement)right).getQualifiedName();
 		}
 
-		String leftFile = left.eResource().getURI().toString() + ":/";
-		String rightFile = right.eResource().getURI().toString() + ":/";
+		String leftFile = left.eResource().getURI().toString() + ":/"; //$NON-NLS-1$
+		String rightFile = right.eResource().getURI().toString() + ":/"; //$NON-NLS-1$
 		cc.setLeftLabel(leftFile + leftQName);
 		cc.setRightLabel(rightFile + rightQName);
 		cc.setLeftImage(prov.getImage(left));
 		cc.setRightImage(prov.getImage(right));
 		cc.setProperty(RootObject.LEFT_OBJECT_KEY, left);
 		cc.setProperty(RootObject.RIGHT_OBJECT_KEY, right);
-		IEditorPart rightEditor = tmpInput.getElementsAndEditors().get(right);
-		IEditorPart leftEditor = tmpInput.getElementsAndEditors().get(left);
-		cc.setProperty(CompareConfigurationUtils.LEFT_EDITOR, leftEditor);
-		cc.setProperty(CompareConfigurationUtils.RIGHT_EDITOR, rightEditor);
 
 		//configure the merge options
 		final Map<String, Object> options = getCompareOptions(null, left, right);//we are looking for the merge options
@@ -167,12 +162,9 @@ public class CompareUMLModelElementEditor extends AbstractPapyrusCompareEditor {
 	@Override
 	public void dispose() {
 		super.dispose();
-		tmpInput.getElementsAndEditors().clear();
 		tmpInput.getComparedElements().clear();
 		CompareEditorInput input = (CompareEditorInput)getEditorInput();
 		CompareConfiguration conf = input.getCompareConfiguration();
-		conf.setProperty(CompareConfigurationUtils.LEFT_EDITOR, null);
-		conf.setProperty(CompareConfigurationUtils.RIGHT_EDITOR, null);
 		conf.setProperty(RootObject.LEFT_OBJECT_KEY, null);
 		conf.setProperty(RootObject.LEFT_OBJECT_KEY, null);
 		roots = null;

@@ -14,11 +14,9 @@
 package org.eclipse.papyrus.uml.compare.subelement.input;
 
 import java.util.Collection;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 
 
 public interface ICompareUMLFileInput extends IEditorInput {
@@ -29,11 +27,4 @@ public interface ICompareUMLFileInput extends IEditorInput {
 	 *         the compared elements
 	 */
 	public Collection<EObject> getComparedElements();
-
-	/**
-	 * 
-	 * @return
-	 *         the compared elements and their editor
-	 */
-	public Map<EObject, IEditorPart> getElementsAndEditors();
 }
