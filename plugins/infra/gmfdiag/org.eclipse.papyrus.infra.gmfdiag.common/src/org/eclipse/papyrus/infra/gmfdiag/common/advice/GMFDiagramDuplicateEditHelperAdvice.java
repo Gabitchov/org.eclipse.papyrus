@@ -40,7 +40,12 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.commands.IPapyrusDuplicateCommandConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
@@ -225,18 +230,31 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 			copier.copy(diagramToDuplicate);
 			copier.copyReferences();
 
-			EObject duplicate = copier.get(diagramToDuplicate);
-			Resource targetResource = getNotationResourceForDiagram(duplicate, getEditingDomain());
-			EObject object = ((Diagram)duplicate).getElement();
-			System.err.println(object);
+			EObject duplicateDiagram = copier.get(diagramToDuplicate);
+			Resource targetResource = getNotationResourceForDiagram(((Diagram)duplicateDiagram).getElement(), getEditingDomain());
+			Resource diTargetResource = getDiResourceForDiagram(((Diagram)duplicateDiagram).getElement(), getEditingDomain());
 				
 			if(targetResource != null) {
-				targetResource.getContents().add(duplicate);
+				targetResource.getContents().add(duplicateDiagram);
+				
+				if(diTargetResource !=null) {
+					IPageMngr pageMngr = EditorUtils.getIPageMngr(diTargetResource);	
+					pageMngr.addPage(duplicateDiagram);
+				} else {
+					Activator.log.error("It was not possible to find the di resource where to add the diagram page", null);
+				}
 			} else {
+				Activator.log.warn("It was not possible to find the Resource with the target EObject");
 				targetResource = diagramToDuplicate.eResource();
 				if(targetResource != null) {
-					Activator.log.warn("It was not possible to find the Resource with the target EObject");
-					targetResource.getContents().add(duplicate);
+					Activator.log.error("It was not possible to find the Resource with the source diagram", null);
+					targetResource.getContents().add(duplicateDiagram);
+					if(diTargetResource !=null) {
+						IPageMngr pageMngr = EditorUtils.getIPageMngr(diTargetResource);	
+						pageMngr.addPage(duplicateDiagram);
+					} else {
+						Activator.log.error("It was not possible to find the di resource where to add the diagram page", null);
+					}
 				}
 			}
 			return CommandResult.newOKCommandResult(getAllDuplicatedObjectsMap());
@@ -256,39 +274,65 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 	 *        the semantic object linked to the diagram or the diagram itself.
 	 * @param domain
 	 *        the editing domain
-	 * @return the resource where the diagram should be added.
+	 * @return the resource where the diagram should be added or <code>null</code> if no resource was found
 	 *         TODO this method should be handled by the resource plugin.
 	 */
 	public Resource getNotationResourceForDiagram(EObject eObject, TransactionalEditingDomain domain) {
-		EObject semanticObject = eObject;
-		if(eObject instanceof Diagram) {
-			semanticObject = ((Diagram)eObject).getElement();
+		Object object = BusinessModelResolver.getInstance().getBusinessModel(eObject);
+		EObject semanticObject;
+		if(!(object instanceof EObject)) {
+			semanticObject = eObject;
+		} else {
+			semanticObject = (EObject)object;
 		}
-		if(semanticObject == null) {
+		
+		Resource containerResource = semanticObject.eResource();
+		if(containerResource == null) { 
 			return null;
 		}
-
-		Resource containerResource = semanticObject.eResource();
-
-		if(containerResource != null) {
-			URI semanticURI = containerResource.getURI();
-			URI trimmedURI = semanticURI.trimFileExtension();
-			URI notationURI = trimmedURI.appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
-
-			// ALG Bug 354826 : 354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
-			//Resource resource = domain.getResourceSet().getResource(notationURI, true);
-			ResourceSet resourceSet = containerResource.getResourceSet();
-			if(resourceSet == null) {
-				resourceSet = domain.getResourceSet(); // ALG: Is this case actually possible? If not, we could simply remove the domain parameter.
-			}
-			// END ALG Bug 354826 : 354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
-			Resource resource = resourceSet.getResource(notationURI, true);
-
-			return resource;
-		}
-		return null;
+		// retrieve the model set from the container resource
+		ResourceSet resourceSet = containerResource.getResourceSet();
+		
+		if(resourceSet instanceof ModelSet) {
+			ModelSet modelSet = (ModelSet)resourceSet;
+			Resource destinationResource = modelSet.getAssociatedResource(semanticObject, NotationModel.NOTATION_FILE_EXTENSION);
+			return destinationResource;
+		} else throw new RuntimeException("Resource Set is not a ModelSet or is null");
 	}
+	
 
+	/**
+	 * Returns the di resource where to add the new diagram
+	 * 
+	 * @param eObject
+	 *        the semantic object linked to the diagram or the diagram itself.
+	 * @param domain
+	 *        the editing domain
+	 * @return the resource where the diagram should be added or <code>null</code> if no resource was found
+	 */
+	public Resource getDiResourceForDiagram(EObject eObject, TransactionalEditingDomain domain) {
+		Object object = BusinessModelResolver.getInstance().getBusinessModel(eObject);
+		EObject semanticObject;
+		if(!(object instanceof EObject)) {
+			semanticObject = eObject;
+		} else {
+			semanticObject = (EObject)object;
+		}
+		
+		Resource containerResource = semanticObject.eResource();
+		if(containerResource == null) { 
+			return null;
+		}
+		// retrieve the model set from the container resource
+		ResourceSet resourceSet = containerResource.getResourceSet();
+		
+		if(resourceSet instanceof ModelSet) {
+			ModelSet modelSet = (ModelSet)resourceSet;
+			Resource destinationResource = modelSet.getAssociatedResource(semanticObject, DiModel.DI_FILE_EXTENSION);
+			return destinationResource;
+		} else throw new RuntimeException("Resource Set is not a ModelSet or is null");
+	}
+	
 	/**
 	 * Copier for diagrams, where only views and internal references are duplicated, not the semantic elements themselves.
 	 */

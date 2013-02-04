@@ -20,4 +20,27 @@
             uncontrolCommand="org.eclipse.papyrus.uml.profilefacet.controlmode.ProfileFacetSetUncontrolCommand">
       </customUncontrolCommand>
    </extension>
+   
+     <!-- ElementType bindings for diagram duplication with paste command -->
+ <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <adviceBinding
+               class="org.eclipse.papyrus.uml.profilefacet.advice.ProfileFacetDuplicateEditHelperAdvice"
+               id="org.eclipse.papyrus.uml.profilefacet.advice.ProfileFacetDuplicateEditHelperAdvice"
+               inheritance="all"
+               typeId="org.eclipse.papyrus.uml.Element">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+	
+		<!--<elementType pattern="org\.eclipse\.papyrus\.uml\..*" />-->
+		<advice ref="org.eclipse.papyrus.uml.profilefacet.advice.ProfileFacetDuplicateEditHelperAdvice" />
+	</binding>
+</extension>
 </plugin>

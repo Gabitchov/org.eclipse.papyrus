@@ -23,11 +23,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="0.9.2",
  org.eclipse.emf.facet.widgets.nattable.instance,
  com.google.guava,
+ org.eclipse.papyrus.infra.table.common;bundle-version="0.9.1",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.papyrus.infra.services.controlmode;bundle-version="0.9.2",
  org.eclipse.papyrus.infra.table.controlmode;bundle-version="0.9.2"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.profilefacet.queries.getter,
+Export-Package: org.eclipse.papyrus.uml.profilefacet.advice,
+ org.eclipse.papyrus.uml.profilefacet.queries.getter,
  org.eclipse.papyrus.uml.profilefacet.queries.registry,
  org.eclipse.papyrus.uml.profilefacet.queries.setter,
  org.eclipse.papyrus.uml.profilefacet.queries.tester,

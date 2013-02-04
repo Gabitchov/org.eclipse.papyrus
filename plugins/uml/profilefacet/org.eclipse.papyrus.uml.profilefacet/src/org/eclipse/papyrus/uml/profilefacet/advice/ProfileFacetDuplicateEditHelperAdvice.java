@@ -10,10 +10,9 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.table.common.advice;
+package org.eclipse.papyrus.uml.profilefacet.advice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
@@ -49,18 +49,21 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.table.common.Activator;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
+import org.eclipse.papyrus.uml.profilefacet.utils.ProfileFacetSetMoveHelper.MergeFacetSetsCommand;
+
+import com.google.common.base.Predicates;
 
 
 /**
  * Edit Helper advice to add Table duplication when duplicating
  */
-public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
+public class ProfileFacetDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ICommand getBeforeDuplicateCommand(DuplicateElementsRequest request) {
+	protected ICommand getAfterDuplicateCommand(DuplicateElementsRequest request) {
 		Object additional = request.getParameter(IPapyrusDuplicateCommandConstants.ADDITIONAL_DUPLICATED_ELEMENTS); // Taken from uml.pastemanager
 
 		// additional element should be a set of elements that will be duplicated. If this is null, the request will be ignored.
@@ -69,40 +72,35 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		Set<Object> duplicatedObjects = ((Set<Object>)additional);
-		EObject object = getDuplicatedEObject(request);
-		if(object == null) {
-			return super.getBeforeDuplicateCommand(request);
+		
+		// for each uml table, merge profile facet sets if necessary
+		Collection<Object> duplicatedTables = com.google.common.collect.Collections2.filter(duplicatedObjects, Predicates.instanceOf(PapyrusTableInstance.class));
+		
+		if(duplicatedTables.size()<1) {
+			return super.getAfterDuplicateCommand(request);
 		}
-
-		// retrieve the tables linked to the object
-		List<PapyrusTableInstance> tablesToDuplicate = getRelatedTables(object, true);
-
-		if(!tablesToDuplicate.isEmpty()) {
-			CompositeCommand command = null;
-			// create the command for all the tables that have no command ready
-			for(PapyrusTableInstance tableToDuplicate : tablesToDuplicate) {
-				if(!duplicatedObjects.contains(tableToDuplicate)) {
-					if(command == null) {
-						command = new CompositeCommand("", Arrays.asList(new DuplicatePapyrusTableCommand(request.getEditingDomain(), "Duplicate Table", tableToDuplicate, request.getAllDuplicatedElementsMap())));
-					} else {
-						command.add(new DuplicatePapyrusTableCommand(request.getEditingDomain(), "Duplicate Table", tableToDuplicate, request.getAllDuplicatedElementsMap()));
-					}
-					duplicatedObjects.add(tableToDuplicate);
-				}
+		
+		CompositeCommand command = null;
+		for(Object duplicatedObject : duplicatedTables) {
+			// no need to check for cast, as the collection is already filtered...
+			PapyrusTableInstance originalPapyrusTableInstance = (PapyrusTableInstance)duplicatedObject;
+			Resource sourceResource = originalPapyrusTableInstance.eResource();
+			
+			Object copyPapyrusTableInstance = request.getAllDuplicatedElementsMap().get(originalPapyrusTableInstance);
+			Resource targetResource = null;
+			if(copyPapyrusTableInstance instanceof EObject) {
+				targetResource = ((EObject)copyPapyrusTableInstance).eResource();	
 			}
-
-			if(command != null) {
-				if(super.getBeforeDuplicateCommand(request) != null) {
-					command.add(super.getBeforeDuplicateCommand(request));
-					return command.reduce();
-				} else {
-					return command.reduce();
-
-				}
+			
+			
+			if(originalPapyrusTableInstance !=null && copyPapyrusTableInstance instanceof PapyrusTableInstance && sourceResource instanceof XMIResource && targetResource instanceof XMIResource) {
+				MergeFacetSetsCommand mergeCommand = new MergeFacetSetsCommand(request.getEditingDomain(), (PapyrusTableInstance)copyPapyrusTableInstance, (XMIResource)sourceResource, (XMIResource)targetResource);
+				CompositeCommand.compose(command, mergeCommand);		
 			}
+			
 		}
-
-		return super.getBeforeDuplicateCommand(request);
+		
+		return command;
 	}
 
 	/**
@@ -396,47 +394,5 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 			return destinationResource;
 		} else throw new RuntimeException("Resource Set is not a ModelSet or is null");
 	}
-	
-//	/**
-//	 * Returns the notation resource where to add the new diagram
-//	 * 
-//	 * @param eObject
-//	 *        the semantic object linked to the diagram or the diagram itself.
-//	 * @param domain
-//	 *        the editing domain
-//	 * @return the resource where the diagram should be added.
-//	 *         TODO this method should be handled by the resource plugin.
-//	 */
-//	public Resource getNewResourceForTable(EObject eObject, TransactionalEditingDomain domain) {
-//		EObject semanticObject = eObject;
-//		if(eObject instanceof PapyrusTableInstance) {
-//			TableInstance2 tableInstance = ((PapyrusTableInstance)eObject).getTable();
-//			if(tableInstance != null) {
-//				semanticObject = tableInstance.getContext();
-//			}
-//		} else if(eObject instanceof TableInstance2) {
-//			semanticObject = ((TableInstance2)eObject).getContext();
-//		}
-//		if(semanticObject == null) {
-//			return null;
-//		}
-//
-//		Resource containerResource = semanticObject.eResource();
-//
-//		if(containerResource != null) {
-//			URI semanticURI = containerResource.getURI();
-//			URI trimmedURI = semanticURI.trimFileExtension();
-//			URI diURI = trimmedURI.appendFileExtension(DiModel.DI_FILE_EXTENSION);
-//			// ALG Bug 354826:  354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
-//			//Resource resource = domain.getResourceSet().getResource(diURI, true);
-//			ResourceSet resourceSet = containerResource.getResourceSet();
-//			if(resourceSet == null) {
-//				resourceSet = domain.getResourceSet(); // ALG: Is this case actually possible? If not, we could simply remove the domain parameter.
-//			}
-//			// END ALG Bug 354826 : 354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
-//			Resource resource = resourceSet.getResource(diURI, true);
-//			return resource;
-//		}
-//		return null;
-//	}
+
 }
