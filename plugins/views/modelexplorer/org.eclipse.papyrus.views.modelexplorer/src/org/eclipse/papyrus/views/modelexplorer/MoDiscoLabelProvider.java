@@ -89,7 +89,11 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 		if(element instanceof Diagram) {
 			adapter.setDecoratorTarget(getEditorRegistry().getEditorIcon(element));
 		} else {
-			adapter.setDecoratorTarget(super.getImage(element));
+			Image superImage = super.getImage(element);
+			if(superImage == null) {
+				return null; //decorations are not supported on null images
+			}
+			adapter.setDecoratorTarget(superImage);
 		}
 
 		//Set the adapter decoration with position as indicated by decoration (from decoration service)
