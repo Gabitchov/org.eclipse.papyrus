@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<facet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:facet="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="PapyrusTablesFacet" nsURI="http://org.eclipse.org/papyrus/tables/modelExplorer/Facet" nsPrefix="PapyrusTablesFacet">
+  <eClassifiers xsi:type="facet:Facet" name="TableContainer" abstract="true">
+    <eSuperTypes href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="tables" upperBound="-1" volatile="true" unsettable="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/nattable/model#//Table"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusTablesFacet#GetContainedTables"></valueQuery>
+    </eStructuralFeatures>
+    <conditionQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusTablesFacet#IsTableContainer"/>
+  </eClassifiers>
+  <extendedPackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+</facet:FacetSet>
