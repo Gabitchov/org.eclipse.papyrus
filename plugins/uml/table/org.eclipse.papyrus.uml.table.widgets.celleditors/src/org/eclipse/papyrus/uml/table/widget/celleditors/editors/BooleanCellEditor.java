@@ -44,7 +44,6 @@ public class BooleanCellEditor implements IModelCellEditor {
 	 *      {@inheritDoc}
 	 */
 	public Control activateCell(final Composite parent, final Object originalValue, final IModelCellEditHandler editHandler, final EStructuralFeature feature, final EObject source) {
-		if(this.composite == null) {
 			ICompositeEditorFactory<Boolean> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(Boolean.class);
 			this.composite = compositeEditorFactory.createCompositeEditor(parent, SWT.NONE);
 			if(originalValue != null) {
@@ -60,7 +59,6 @@ public class BooleanCellEditor implements IModelCellEditor {
 					editHandler.commit();
 				}
 			});
-		}
 		return this.composite;
 	}
 

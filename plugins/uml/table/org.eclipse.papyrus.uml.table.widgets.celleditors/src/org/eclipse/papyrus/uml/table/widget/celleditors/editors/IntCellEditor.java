@@ -30,23 +30,21 @@ public class IntCellEditor implements IModelCellEditor {
 	 *      {@inheritDoc}
 	 */
 	public Control activateCell(final Composite parent, final Object originalValue, final IModelCellEditHandler editHandler, final EStructuralFeature feature, final EObject source) {
-		if(this.composite == null) {
-			ICompositeEditorFactory<Integer> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(Integer.class);
-			this.composite = compositeEditorFactory.createCompositeEditor(parent, SWT.NONE);
-			if(originalValue != null) {
-				if(originalValue instanceof Integer) {
-					this.composite.setValue((Integer)originalValue);
-				} else {
-					Activator.log.info("An instance of Integer was expected"); //$NON-NLS-1$
-				}
+		ICompositeEditorFactory<Integer> compositeEditorFactory = ICompositeEditorFactoriesRegistry.INSTANCE.getCompositeEditorFactory(Integer.class);
+		this.composite = compositeEditorFactory.createCompositeEditor(parent, SWT.NONE);
+		if(originalValue != null) {
+			if(originalValue instanceof Integer) {
+				this.composite.setValue((Integer)originalValue);
+			} else {
+				Activator.log.info("An instance of Integer was expected"); //$NON-NLS-1$
 			}
-			this.composite.addCommitListener(new IListener() {
-
-				public void handleEvent() {
-					editHandler.commit();
-				}
-			});
 		}
+		this.composite.addCommitListener(new IListener() {
+
+			public void handleEvent() {
+				editHandler.commit();
+			}
+		});
 		return this.composite;
 	}
 
