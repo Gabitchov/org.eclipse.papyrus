@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -79,6 +80,53 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	public final boolean isUsedHorizontally() {
 		return getTable().getHorizontalContentProvider() == getRepresentedContentProvider();
+	}
+
+	public List<?> getAllExistingAxis() {
+		return null;
+	}
+
+	public Object getDataValue(final int columnIndex, final int rowIndex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+	public Object getHeaderDataValue(final int columnIndex, final int rowIndex) {
+
+		return null;
+
+	}
+
+	public int getHeaderColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getHeaderRowCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void setHeaderDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public List<?> getAllVisibleAxis() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<?> getAllCurrentPossibleAxis() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

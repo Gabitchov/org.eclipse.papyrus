@@ -80,21 +80,25 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 			int i = 0;
 			i++;
 			final ILayerCell cell = this.selectionLayer.getCellByPosition(colPos, rowPos);
-			final Object value = cell.getDataValue();
+			if(cell != null) {
+				final Object value = cell.getDataValue();
 
-			if(value != null) {
-				if(value instanceof Collection<?>) {
-					final List<Object> selection = new ArrayList<Object>();
-					final Iterator<?> iter = ((Collection<?>)value).iterator();
-					while(iter.hasNext()) {
-						final Object current = iter.next();
-						selection.add(current);
-						setSelection(new StructuredSelection(selection));
+				if(value != null) {
+					if(value instanceof Collection<?>) {
+						final List<Object> selection = new ArrayList<Object>();
+						final Iterator<?> iter = ((Collection<?>)value).iterator();
+						while(iter.hasNext()) {
+							final Object current = iter.next();
+							selection.add(current);
+							setSelection(new StructuredSelection(selection));
+						}
+					} else {
+						setSelection(new StructuredSelection(value));
 					}
-				} else {
-					setSelection(new StructuredSelection(value));
-				}
 
+				} else {
+					setSelection(new StructuredSelection());
+				}
 			} else {
 				setSelection(new StructuredSelection());
 			}

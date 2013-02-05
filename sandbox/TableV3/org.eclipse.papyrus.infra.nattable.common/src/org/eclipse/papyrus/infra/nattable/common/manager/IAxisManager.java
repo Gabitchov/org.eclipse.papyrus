@@ -13,14 +13,47 @@ import org.eclipse.ui.services.IDisposable;
 //FIXME : should we implements IDataProvider
 public interface IAxisManager extends IDataProvider, IDisposable {
 
+	/**
+	 *
+	 * @return
+	 *         the id of the manager
+	 */
 	public String getManagerId();
 
+	/**
+	 *
+	 * @return
+	 *         <code>true</code> if the manager can be used horizontally
+	 */
 	public boolean canBeUsedHorizontally();
 
+	/**
+	 *
+	 * @return
+	 *         <code>true</code> if the manager can be used vertically
+	 */
 	public boolean canBeUsedVertically();
 
+	/**
+	 *
+	 * @param domain
+	 *        the editing domain
+	 * @param objectToAdd
+	 *        the object to add
+	 * @return
+	 *         the command to add an axis to the emf model
+	 */
 	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
 
+	/**
+	 *
+	 * @param domain
+	 *        the editing domain
+	 * @param objectToAdd
+	 *        the object to add
+	 * @return
+	 *         the complementary command, which is called by the master on the slave to add required axis
+	 */
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
 
 	public void init(final INattableModelManager manager, String managerId, final Table table, final IAxisContentsProvider provider);
@@ -59,6 +92,8 @@ public interface IAxisManager extends IDataProvider, IDisposable {
 	public boolean isUsedVertically();
 
 	public boolean isUsedHorizontally();
+
+	//	public boolean isMaster();
 
 
 }

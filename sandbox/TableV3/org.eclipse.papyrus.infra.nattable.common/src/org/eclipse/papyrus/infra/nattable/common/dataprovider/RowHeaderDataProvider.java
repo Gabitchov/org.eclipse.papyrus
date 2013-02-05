@@ -10,36 +10,56 @@
  ******************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.dataprovider;
 
-import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
 
-public class RowHeaderDataProvider implements IDataProvider {
+/**
+ *
+ * this manager allows to manage the rows of the table. It provides
+ * a row header in 2 columns : number on first columns and call the row manager to display a text in the second column
+ *
+ */
+public class RowHeaderDataProvider extends AbstractDataProvider {
 
-	private final INattableModelManager manager;
-
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param manager
+	 *        the table manager
+	 */
 	public RowHeaderDataProvider(final INattableModelManager manager) {
-		this.manager = manager;
+		super(manager);
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.nebula.widgets.nattable.data.IDataProvider#getColumnCount()
+	 *
+	 * @return
+	 *         2
+	 */
+	@Override
 	public int getColumnCount() {
 		return 2;
 	}
 
-	public int getRowCount() {
-		return this.manager.getRowCount();
-	}
-
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
 		if(columnIndex == 0) {
-			//FIXME : it should different in case of inversion line column
 			return rowIndex;
 		} else {
 			return this.manager.getLineDataProvider().getAllExistingAxis().get(rowIndex);
 		}
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.nebula.widgets.nattable.data.IDataProvider#setDataValue(int, int, java.lang.Object)
+	 *
+	 * @param columnIndex
+	 * @param rowIndex
+	 * @param newValue
+	 */
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		throw new UnsupportedOperationException();
 	}
-
 }

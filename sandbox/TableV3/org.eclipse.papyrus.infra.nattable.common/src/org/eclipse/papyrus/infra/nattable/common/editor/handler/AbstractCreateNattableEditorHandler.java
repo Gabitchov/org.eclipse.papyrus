@@ -251,9 +251,6 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 			rowProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
 		} else {
 			final IAxisContentsProvider copy = EcoreUtil.copy(rowProvider);
-			//FIXME : shoulw we clean the axis for default config?
-			int i = 0;
-			i++;
 			rowProvider = copy;
 		}
 
@@ -262,9 +259,6 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 			columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
 		} else {
 			final IAxisContentsProvider copy = EcoreUtil.copy(columnProvider);
-			//FIXME : shoulw we clean the axis for default config?
-			int i = 0;
-			i++;
 			columnProvider = copy;
 		}
 

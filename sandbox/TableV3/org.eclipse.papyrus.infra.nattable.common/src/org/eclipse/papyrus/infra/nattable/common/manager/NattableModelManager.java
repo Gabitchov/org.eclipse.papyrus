@@ -25,17 +25,37 @@ import org.eclipse.ui.PlatformUI;
 
 public class NattableModelManager implements INattableModelManager {
 
+	/**
+	 * the column manager
+	 */
 	private IAxisManager columnManager;
 
-	private IAxisManager lineManager;
+	/**
+	 * the line manager
+	 */
+	private IAxisManager rowManager;
 
+	/**
+	 * the model of the table on which we are working
+	 */
 	private final Table pTable;
 
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param rawModel
+	 *
+	 *        the model of the managed table
+	 */
 	public NattableModelManager(final Table rawModel) {
 		this.pTable = rawModel;
 		init();
 	}
 
+	/**
+	 * create the line and the columns managers
+	 */
 	protected void init() {
 		final List<String> verticalContentProviderIds = getVerticalContentProviderIds();
 		assert !verticalContentProviderIds.isEmpty();
@@ -43,10 +63,18 @@ public class NattableModelManager implements INattableModelManager {
 
 		final List<String> horizontalContentProviderIds = getHorizontalContentProviderIds();
 		assert !horizontalContentProviderIds.isEmpty();
-		this.lineManager = createAxisManager(horizontalContentProviderIds, this.pTable.getHorizontalContentProvider());
+		this.rowManager = createAxisManager(horizontalContentProviderIds, this.pTable.getHorizontalContentProvider());
 	}
 
-
+	/**
+	 *
+	 * @param ids
+	 *        the ids of the axis manager to use
+	 * @param contentProvider
+	 *        the content provider in the model
+	 * @return
+	 *         the created axis manager to use to manage the {@link IAxisContentsProvider}
+	 */
 	protected IAxisManager createAxisManager(final List<String> ids, final IAxisContentsProvider contentProvider) {
 		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
 		for(final String id : ids) {
@@ -65,40 +93,47 @@ public class NattableModelManager implements INattableModelManager {
 		return manager;
 	}
 
-
+	/**
+	 *
+	 * @return
+	 *         the list of the ids of the axis manager to use for the vertical axis
+	 */
 	protected List<String> getVerticalContentProviderIds() {
 		return this.pTable.getVerticalContentProvider().getJavaContentProviderIds();
 	}
 
+	/**
+	 *
+	 * @return
+	 *         the list of the ids of the axis manager to use for the horizontal axis
+	 */
 
 	protected List<String> getHorizontalContentProviderIds() {
 		return this.pTable.getHorizontalContentProvider().getJavaContentProviderIds();
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.ui.services.IDisposable#dispose()
+	 *
+	 */
 	public void dispose() {
 		this.columnManager.dispose();
-		this.lineManager.dispose();
+		this.rowManager.dispose();
 	}
 
-	public int getColumnCount() {
-		return getColumnDataProvider().getColumnCount();
-		//		return this.columnManager.getColumnCount();
-		// TODO Auto-generated method stub
-		//		return 0;
-	}
-
-	public int getRowCount() {
-		return getLineDataProvider().getRowCount();
-		//FIXME : we should use the horizontal manager
-		//		return this.pTable.getHorizontalContentProvider().getAxis().size();
-	}
-
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#addRows(java.util.Collection)
+	 *
+	 * @param objectToAdd
+	 *        the list of the objects to add in rows
+	 */
 	public void addRows(final Collection<Object> objectToAdd) {
-
 		//FIXME this code should work even if we inverse rows and lines
 		final EditingDomain domain = getEditingDomain(this.pTable);
 		final CompoundCommand cmd = new CompoundCommand("Add rows command");
-		Command tmp = this.lineManager.getAddAxisCommand(domain, objectToAdd);
+		Command tmp = this.rowManager.getAddAxisCommand(domain, objectToAdd);
 		if(tmp != null) {
 			cmd.append(tmp);
 		}
@@ -107,9 +142,6 @@ public class NattableModelManager implements INattableModelManager {
 			cmd.append(tmp);
 		}
 		domain.getCommandStack().execute(cmd);
-
-		//FIXME : we should found another way to do the refresh
-		getNatTable().refresh();
 	}
 
 	//FIXME : this method should never be called, we should find another way to do the refresh
@@ -118,11 +150,44 @@ public class NattableModelManager implements INattableModelManager {
 		return (NatTable)part.getAdapter(NatTable.class);
 	}
 
-	public void addColumns(final Collection<Object> objectToAdd) {
-		// TODO Auto-generated method stub
-
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#getColumnCount()
+	 *
+	 * @return
+	 */
+	public int getColumnCount() {
+		return getColumnDataProvider().getColumnCount();
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#getRowCount()
+	 *
+	 * @return
+	 */
+	public int getRowCount() {
+		return getLineDataProvider().getRowCount();
+	}
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#addColumns(java.util.Collection)
+	 *
+	 * @param objectToAdd
+	 *        the list of the objects to add in columns
+	 */
+	public void addColumns(final Collection<Object> objectToAdd) {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 *
+	 * @param obj
+	 *        an eobject linked to the model
+	 * @return
+	 *         the editing domain to use
+	 */
 	private EditingDomain getEditingDomain(final EObject obj) {
 		ServicesRegistry registry = null;
 		try {
@@ -138,103 +203,80 @@ public class NattableModelManager implements INattableModelManager {
 		return null;
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#getBodyDataProvider()
+	 *
+	 * @return
+	 *         the data provider for the body of the table
+	 */
 	public IDataProvider getBodyDataProvider() {
 		return this;
 	}
 
-	//FIXME : on devrait avoir un service de résolution de valeur
+	/**
+	 *
+	 * @see org.eclipse.nebula.widgets.nattable.data.IDataProvider#getDataValue(int, int)
+	 *
+	 * @param columnIndex
+	 *        the index of the column
+	 * @param rowIndex
+	 *        the index of the row
+	 * @return
+	 *         the contents to display in the cell localted to columnIndex and rowIndex
+	 */
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
-		//		final Object obj1 = this.columnManager.getAllExistingAxis().get(columnIndex);
-		//		final Object obj2 = this.lineManager.getAllExistingAxis().get(rowIndex);
-
-
 		final Object obj1 = getColumnDataProvider().getAllExistingAxis().get(columnIndex);
 		final Object obj2 = getLineDataProvider().getAllExistingAxis().get(rowIndex);
-
 		return CrossValueSolverFactory.INSTANCE.getCrossValue(obj1, obj2);
-
-		//		final ICrossValueSolver featureSolver = new FeatureValueResolver();
-		//		if(featureSolver.handles(obj1, obj2)) {
-		//			return featureSolver.getValue(obj1, obj2);
-		//		}
-		//
-		//
-		//
-		//		final ICrossValueSolver stereotypeSolver = new StereotypePropertyValueSolver();
-		//		if(stereotypeSolver.handles(obj1, obj2)) {
-		//			return stereotypeSolver.getValue(obj1, obj2);
-		//		}
-
-		//		//FIXME : we should use the horizontal manager
-		//		final IAxis axis = this.pTable.getHorizontalContentProvider().getAxis().get(rowIndex);
-		//		EObject current = null;
-		//
-		//		if(axis instanceof EObjectAxis) {
-		//			current = (EObject)axis.getElement();
-		//		}
-		//
-		//		//FIXME : we should use the vertical provider
-		//		final IAxisContentsProvider verticalContentProvider = this.pTable.getVerticalContentProvider();
-		//		Object feature = this.columnManager.getDataValue(columnIndex, rowIndex);
-		//		if(obj1 instanceof EStructuralFeature) {
-		//			feature = obj1;
-		//		}
-		//		if(obj2 instanceof EObject) {
-		//			current = (EObject)obj2;
-		//		}
-		//
-		//
-		//		if(feature instanceof EStructuralFeature) {
-		//			//			if(current.eClass().getEAllStructuralFeatures().contains(feature)) {
-		//			try {
-		//				return current.eGet((EStructuralFeature)feature);
-		//			} catch (final Exception e) {
-		//				// TODO: handle exception
-		//				int i = 0;
-		//				i++;
-		//			}
-		//
-		//			//			}
-		//		}
-		//		//				if(verticalContentProvider instanceof TransientContentProvider) {
-		//		//					IAxis featureAxis = ((TransientContentProvider)verticalContentProvider).getTransientAxis().get(columnIndex);
-		//		//					if(featureAxis instanceof EObjectAxis) {
-		//		//						final EObject el = (EObject)featureAxis.getElement();
-		//		//						if(el instanceof EStructuralFeature) {
-		//		//							feature = (EStructuralFeature)el;
-		//		//						}
-		//		//					}
-		//		//				}
-
-
-
-		//		return "N/A";
 	}
 
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * this method returns the column data provider and is able to manage inversion in the axis
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#getColumnDataProvider()
+	 *
+	 * @return
+	 *         the column data provider
+	 */
 	public IAxisManager getColumnDataProvider() {
 		final IAxisContentsProvider representedAxis = this.columnManager.getRepresentedContentProvider();
 		if(this.pTable.getVerticalContentProvider() == representedAxis) {
 			return this.columnManager;
 		} else if(this.pTable.getHorizontalContentProvider() == representedAxis) {
-			return this.lineManager;
+			return this.rowManager;
 		}
 		return null;
 	}
 
+	/**
+	 * this method returns the row data provider and is able to manage inversion in the axis
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#getLineDataProvider()
+	 *
+	 * @return
+	 *         the row data provider
+	 */
 	public IAxisManager getLineDataProvider() {
-		final IAxisContentsProvider representedAxis = this.lineManager.getRepresentedContentProvider();
+		final IAxisContentsProvider representedAxis = this.rowManager.getRepresentedContentProvider();
 		if(this.pTable.getHorizontalContentProvider() == representedAxis) {
-			return this.lineManager;
+			return this.rowManager;
 		} else if(this.pTable.getVerticalContentProvider() == representedAxis) {
 			return this.columnManager;
 		}
 		return null;
 	}
 
+	/**
+	 * FIXME : must be useless when we will use GlazedList
+	 * must not be used by other other project than Papyrus
+	 */
+	public void refreshNattable() {
+		getNatTable().refresh();
+	}
 
 }

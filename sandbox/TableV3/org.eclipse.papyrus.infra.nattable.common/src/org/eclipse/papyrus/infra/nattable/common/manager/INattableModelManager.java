@@ -24,4 +24,5 @@ public interface INattableModelManager extends IDisposable, IDataProvider {
 	public IAxisManager getLineDataProvider();
 
 
+
 }
