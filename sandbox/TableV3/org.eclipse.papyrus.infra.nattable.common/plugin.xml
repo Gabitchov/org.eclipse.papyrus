@@ -136,9 +136,15 @@
        point="org.eclipse.papyrus.infra.nattable.common.crossvaluesolver">
     <crossvalueSolver
           id="org.eclipse.papyrus.infra.nattable.common.emf.feature.solver"
-          manager="org.eclipse.papyrus.infra.nattable.common.CrossValueSolver1"
           solver="org.eclipse.papyrus.infra.nattable.common.solver.FeatureValueResolver">
     </crossvalueSolver>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+    <labelProvider
+          priority="10"
+          provider="org.eclipse.papyrus.infra.nattable.common.provider.TableLabelProvider">
+    </labelProvider>
  </extension>
 </plugin>
 
