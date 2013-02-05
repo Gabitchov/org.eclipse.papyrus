@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Adapt to EMF codegen changes for bug 331055
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.emftree;
 
 import java.util.EventObject;
+import java.util.Iterator;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
@@ -37,6 +39,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+import org.eclipse.ui.views.properties.PropertySheetPage;
 
 /**
  * This is an example of a EMF UML model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -95,8 +98,19 @@ public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEdito
 						if(mostRecentCommand != null) {
 							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
-						if(propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
-							propertySheetPage.refresh();
+						
+						for (Iterator<PropertySheetPage> i = propertySheetPages
+							.iterator(); i.hasNext();) {
+
+							PropertySheetPage propertySheetPage = i.next();
+
+							if ((propertySheetPage.getControl() == null)
+								|| propertySheetPage.getControl().isDisposed()) {
+								
+								i.remove();
+							} else {
+								propertySheetPage.refresh();
+							}
 						}
 					}
 				});
