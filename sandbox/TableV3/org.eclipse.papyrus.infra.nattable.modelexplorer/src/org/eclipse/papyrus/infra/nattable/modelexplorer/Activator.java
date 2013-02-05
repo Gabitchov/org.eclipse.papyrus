@@ -26,6 +26,7 @@ public class Activator extends Plugin {
 		Activator.plugin = this;
 	}
 
+
 	@Override
 	public void stop(final BundleContext context) throws Exception {
 		Activator.plugin = null;

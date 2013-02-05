@@ -55,26 +55,6 @@ public class TablePropertyTester extends PropertyTester {
 
 
 
-	//	/**
-	//	 * Tests the selection in order to know if it contains only {@link TableInstance}
-	//	 * 
-	//	 * @param selection
-	//	 * @return
-	//	 *         <code>true</code> if the selection is composed by {@link TableInstance}
-	//	 */
-	//	private boolean isTable(final IStructuredSelection selection) {
-	//		if(!selection.isEmpty()) {
-	//			Iterator<?> iter = selection.iterator();
-	//			while(iter.hasNext()) {
-	//				if(!(iter.next() instanceof Table)) {
-	//					return false;
-	//				}
-	//			}
-	//			return true;
-	//		}
-	//		return false;
-	//	}
-	//	
 	/**
 	 * Tests the selection in order to know if it contains only {@link Table}
 	 * 
