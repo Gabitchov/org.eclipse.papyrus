@@ -276,11 +276,12 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 		listener.resetChangeCount();
 		listener.resetTraces();
 
-		// Activate page 1
-		IPage page1 = lookupTabFolderPart(container, pageModel1);
+		// Activate page 2 (1 is already active, and activate it
+		// do not throw events)
+		IPage page1 = lookupTabFolderPart(container, pageModel2);
 		container.selectPage(page1);
 
-		// check events (there is more than the 2 expected)
+		// check events (1 expected)
 		assertEquals("event fired", 1, listener.getEventCount());
 		int i=0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
@@ -291,15 +292,27 @@ public class PageLifeCycleEventsThrownFromContainerTest {
 		listener.resetTraces();
 
 		ITabFolderModel folderModel = contentProvider.getCurrentTabFolder();
-		contentProvider.createFolder(folderModel, 1, folderModel, SWT.TOP);
+		contentProvider.createFolder(folderModel, 0, folderModel, SWT.TOP);
 
 		// Do refresh. This fire events
 		container.refreshTabs();
+		// check events (there is none, as active page does not change)
+//		assertEquals("event fired", 3, listener.getEventCount());
+//		i=0;
+//		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
+
+		// Create a new page
+		IPageModel pageModel3 = new MessagePartModel("newPage3");
+		contentProvider.addPage(pageModel3);
+		// Do refresh. This fire events
+		container.refreshTabs();
+		
 		// check events (there is more than the 2 expected)
 		assertEquals("event fired", 3, listener.getEventCount());
 		i=0;
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_OPENED, listener.getTraces().get(i++));
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
-
 
 	}
 
