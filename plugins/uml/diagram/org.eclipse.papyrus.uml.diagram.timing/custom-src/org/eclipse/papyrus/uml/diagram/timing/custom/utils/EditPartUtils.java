@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.timing.custom.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import org.eclipse.draw2d.IFigure;
@@ -97,8 +96,7 @@ public class EditPartUtils {
 			final int distance = Math.abs(posY - ordinate);
 			distanceMap.put(Integer.valueOf(distance), editPart);
 		}
-		final Entry<Integer, GraphicalEditPart> firstEntry = distanceMap.firstEntry();
-		return firstEntry.getValue();
+		return distanceMap.values().iterator().next();
 	}
 
 	public static boolean isEditPartFor(final EditPart editPart, final EClass... eClasses) {

@@ -10,7 +10,6 @@ package org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -159,8 +158,7 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 			final int distance = Math.abs(offset - insertionPoint.getLocation());
 			distanceMap.put(Integer.valueOf(distance), insertionPoint);
 		}
-		final Entry<Integer, InsertionPoint> firstEntry = distanceMap.firstEntry();
-		return firstEntry.getValue();
+		return distanceMap.values().iterator().next();
 	}
 
 	protected int getMarginBeforeFirst() {
