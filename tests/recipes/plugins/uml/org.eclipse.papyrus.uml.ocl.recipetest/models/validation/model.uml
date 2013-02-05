@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:EditConstraintOnPropertyOfStereotype="http:///schemas/EditConstraintOnPropertyOfStereotype/_-67nAG-6EeK5cr7NUZ6onQ/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/EditConstraintOnPropertyOfStereotype/_-67nAG-6EeK5cr7NUZ6onQ/0 ../profileEdition/EditConstraintOnPropertyofSterotype.profile.uml#_-67nAm-6EeK5cr7NUZ6onQ">
+  <uml:Model xmi:id="_Inyb8G-9EeKko_sFXbAb-Q" name="model">
+    <ownedComment xmi:id="_kt05kG-9EeKko_sFXbAb-Q">
+      <body>Normally this model is not valid, beacause the property of applied sterotype is lower than 10 (constraint defined in the applied profile)</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OrBJsG-9EeKko_sFXbAb-Q" name="Class1"/>
+    <profileApplication xmi:id="_NITZwG-9EeKko_sFXbAb-Q">
+      <eAnnotations xmi:id="_NIV2AG-9EeKko_sFXbAb-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profileEdition/EditConstraintOnPropertyofSterotype.profile.uml#_-67nAm-6EeK5cr7NUZ6onQ"/>
+      </eAnnotations>
+      <appliedProfile href="../profileEdition/EditConstraintOnPropertyofSterotype.profile.uml#_929swG-zEeK5cr7NUZ6onQ"/>
+    </profileApplication>
+  </uml:Model>
+  <EditConstraintOnPropertyOfStereotype:Stereotype1 xmi:id="_P4UqUG-9EeKko_sFXbAb-Q" Property1="5" base_NamedElement="_OrBJsG-9EeKko_sFXbAb-Q"/>
+</xmi:XMI>
