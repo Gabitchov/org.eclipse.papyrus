@@ -14,8 +14,11 @@
 package org.eclipse.papyrus.infra.core.sasheditor.di.tests;
 
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngrTest;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProvider2Test;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProviderTest;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImplTest;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TransactionalDiContentProvider2Test;
+import org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query.SashModelQueryTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -28,8 +31,12 @@ import org.junit.runners.Suite.SuiteClasses;
 	// package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider
 	DiSashModelMngrTest.class,
 	// package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal
-	DiContentProviderTest.class,
-	PageMngrImplTest.class
+	DiContentProviderTest.class, 
+	DiContentProvider2Test.class, 
+	TransactionalDiContentProvider2Test.class,
+	PageMngrImplTest.class,
+	// package org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query
+	SashModelQueryTest.class
 })
 public class AllTests {
 
