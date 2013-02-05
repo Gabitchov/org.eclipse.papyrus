@@ -33,13 +33,12 @@ import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompar
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptions;
 import org.eclipse.papyrus.uml.compare.diff.services.UMLDiffService;
-import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMatchService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
 import org.eclipse.papyrus.uml.compare.subelement.editor.input.UMLModelCompareEditorInputWithTwoEditingDomain;
 import org.eclipse.papyrus.uml.compare.subelement.input.CompareUMLFileInput;
+import org.eclipse.papyrus.uml.compare.subelement.services.SubElementMatchService;
 import org.eclipse.papyrus.uml.compare.utils.RootObject;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.uml2.uml.NamedElement;
@@ -77,7 +76,7 @@ public class CompareUMLModelElementEditor extends AbstractPapyrusCompareEditor {
 
 	@Override
 	protected MatchModel doMatch(IProgressMonitor monitor, final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
-		return NestedMatchService.doContentMatch(left, right, options);
+		return SubElementMatchService.doContentMatch(left, right, options);
 	}
 
 	/**
