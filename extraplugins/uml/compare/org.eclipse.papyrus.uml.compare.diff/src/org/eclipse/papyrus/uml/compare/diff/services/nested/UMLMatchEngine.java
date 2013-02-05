@@ -41,10 +41,10 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class UMLMatchEngine extends UMLStandaloneMatchEngine {//GenericMatchEngine {
 
 	/** the left object to compare */
-	private EObject leftObject;
+	protected EObject leftObject;
 
 	/** the right object to compare */
-	private EObject rightObject;
+	protected EObject rightObject;
 
 	/**
 	 * 

@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.compare.diff.queries;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
@@ -31,6 +32,7 @@ import org.eclipse.emf.compare.diff.metamodel.UpdateContainmentFeature;
 import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.compare.diff.provider.DiffElementItemProvider;
+import org.eclipse.emf.compare.uml2diff.UMLStereotypeApplicationAddition;
 import org.eclipse.emf.compare.uml2diff.UMLStereotypeUpdateAttribute;
 import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
@@ -45,6 +47,7 @@ import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.CustomizationAndViewerActionDispatcher;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.uml.compare.diff.messages.Messages;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -196,7 +199,13 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 			//TODO : not tested
 			//TODO : useful ?
 			UpdateModelElement updateModelElement = (UpdateModelElement)context;
-			diffLabel = itemProvider.getString("_UI_UpdateModelElement_type") + " " + updateModelElement.isConflicting(); //$NON-NLS-1$ //$NON-NLS-2$
+			diffLabel = ""; //$NON-NLS-1$
+			if(updateModelElement instanceof UMLStereotypeApplicationAddition){
+				diffLabel = NLS.bind(Messages.GetDiffElementLabel_StereotypeAppliedOnAnElement,labelProvider.getText(((UMLStereotypeApplicationAddition)updateModelElement).getStereotype())); 
+			}
+			else{
+				diffLabel = itemProvider.getString("_UI_UpdateModelElement_type") + " " + updateModelElement.isConflicting(); //$NON-NLS-1$ //$NON-NLS-2$
+			}
 		} else if(context instanceof ModelElementChangeLeftTarget) { //comes from ModelElementChangeLeftTargetItemProvider
 			//TODO : not tested
 			final ModelElementChangeLeftTarget operation = (ModelElementChangeLeftTarget)context;

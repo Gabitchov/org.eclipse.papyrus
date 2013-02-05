@@ -17,7 +17,10 @@ import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.match.engine.internal.DistinctEcoreSimilarityChecker;
 import org.eclipse.emf.compare.match.engine.internal.GenericMatchEngineToCheckerBridge;
 import org.eclipse.emf.compare.match.statistic.MetamodelFilter;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 //TODO : verify the upper class for UML
 /**
@@ -70,6 +73,16 @@ public class UMLSimilarityChecker extends DistinctEcoreSimilarityChecker {
 		if(obj1 == rootLeft || obj1 == rootRight) {
 			if(obj2 == rootLeft || obj2 == rootRight) {
 				return true;
+			}
+		}
+		//if the 2 elements are stereotypes applications, they are similar if the elements on which they are applied are similar
+		final Element base1 = UMLUtil.getBaseElement(obj1);
+		final Element base2 = UMLUtil.getBaseElement(obj2);
+		if(base1 != null && base2 != null) {
+			final EClass eClass1 = obj1.eClass();
+			final EClass eClass2 = obj2.eClass();
+			if(eClass1 == eClass2) {
+				return isSimilar(base1, base2);
 			}
 		}
 		return super.isSimilar(obj1, obj2);
