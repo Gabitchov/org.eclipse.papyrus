@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_wuzDAG-7EeKko_sFXbAb-Q" name="stateMachine">
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_2cm6YG-7EeKko_sFXbAb-Q" name="StateMachine1">
+    <region xmi:id="_2s3j8G-7EeKko_sFXbAb-Q" name="Region1">
+      <transition xmi:id="_6aUGEG-7EeKko_sFXbAb-Q" name="Transition0" guard="_7H-dUG-7EeKko_sFXbAb-Q" source="_4fDTQG-7EeKko_sFXbAb-Q" target="_5ViPUG-7EeKko_sFXbAb-Q">
+        <ownedRule xmi:id="_7H-dUG-7EeKko_sFXbAb-Q" name="Constraint1" constrainedElement="_6aUGEG-7EeKko_sFXbAb-Q">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_AvxzUG-8EeKko_sFXbAb-Q">
+            <language>OCL</language>
+            <body>self.name='toto'</body>
+          </specification>
+        </ownedRule>
+      </transition>
+      <subvertex xmi:type="uml:State" xmi:id="_4fDTQG-7EeKko_sFXbAb-Q" name="State0"/>
+      <subvertex xmi:type="uml:State" xmi:id="_5ViPUG-7EeKko_sFXbAb-Q" name="State1"/>
+    </region>
+  </packagedElement>
+</uml:Model>
