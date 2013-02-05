@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_8eDhcG-lEeKfG-vGEZugxw" name="editPropertyConstraint">
+  <ownedComment xmi:id="_C3M00G-mEeKfG-vGEZugxw">
+    <body>edit constraint on property&#xD;
+self.myProperty1.oclAsType(Property).name='Toto'</body>
+  </ownedComment>
+  <packageImport xmi:id="_9PUCcG-pEeKVHZQA5NPj5A">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_BFrM0G-mEeKfG-vGEZugxw" name="Class1">
+    <ownedRule xmi:id="_CUiP0G-qEeKVHZQA5NPj5A" name="Constraint1" constrainedElement="_BFrM0G-mEeKfG-vGEZugxw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_VYr2MG-qEeKVHZQA5NPj5A">
+        <language>OCL</language>
+        <body>self.myProperty1.oclAsType(Property).name='Toto'</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_CEwEMG-mEeKfG-vGEZugxw" name="myProperty1">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Model>

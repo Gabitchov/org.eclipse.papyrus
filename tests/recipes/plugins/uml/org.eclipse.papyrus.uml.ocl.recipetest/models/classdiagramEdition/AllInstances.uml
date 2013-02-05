@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ub1qQG-tEeKVHZQA5NPj5A" name="allInstances">
+  <ownedComment xmi:id="_I_CcIG-uEeKVHZQA5NPj5A">
+    <body>try to write:&#xD;
+InstanceSpecification.allInstances()</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_zhqUkG-tEeKVHZQA5NPj5A" name="Class1">
+    <ownedRule xmi:id="__QX-cG-tEeKVHZQA5NPj5A" name="Constraint1" constrainedElement="_zhqUkG-tEeKVHZQA5NPj5A">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_EjdosG-uEeKVHZQA5NPj5A">
+        <language>OCL</language>
+        <body>self</body>
+      </specification>
+    </ownedRule>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_1mXXQG-tEeKVHZQA5NPj5A" name="a" classifier="_zhqUkG-tEeKVHZQA5NPj5A"/>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_26IFMG-tEeKVHZQA5NPj5A" name="b" classifier="_zhqUkG-tEeKVHZQA5NPj5A"/>
+</uml:Model>

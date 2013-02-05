@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_9o4KQG-vEeKVHZQA5NPj5A" type="PapyrusUMLClassDiagram" name="ClassDiagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_-ArmQW-vEeKVHZQA5NPj5A" type="2008">
+    <children xmi:type="notation:DecorationNode" xmi:id="_-ArmQ2-vEeKVHZQA5NPj5A" type="5029"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_-ArmRG-vEeKVHZQA5NPj5A" type="7017">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-ArmU2-vEeKVHZQA5NPj5A" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-ArmVG-vEeKVHZQA5NPj5A" key="showTitle" value="true"/>
+      </eAnnotations>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_-ArmRW-vEeKVHZQA5NPj5A"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_-ArmRm-vEeKVHZQA5NPj5A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_-ArmR2-vEeKVHZQA5NPj5A"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-ArmSG-vEeKVHZQA5NPj5A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_-ArmSW-vEeKVHZQA5NPj5A" type="7018">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-A0wMG-vEeKVHZQA5NPj5A" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-A0wMW-vEeKVHZQA5NPj5A" key="showTitle" value="true"/>
+      </eAnnotations>
+      <children xmi:type="notation:Shape" xmi:id="_-stl0W-vEeKVHZQA5NPj5A" type="3013">
+        <element xmi:type="uml:Operation" href="EditPostConditionOperation.uml#_-stl0G-vEeKVHZQA5NPj5A"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_-stl0m-vEeKVHZQA5NPj5A"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_-ArmSm-vEeKVHZQA5NPj5A"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_-ArmS2-vEeKVHZQA5NPj5A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_-ArmTG-vEeKVHZQA5NPj5A"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-ArmTW-vEeKVHZQA5NPj5A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_-ArmTm-vEeKVHZQA5NPj5A" type="7019">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-A0wMm-vEeKVHZQA5NPj5A" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-A0wM2-vEeKVHZQA5NPj5A" key="showTitle" value="true"/>
+      </eAnnotations>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_-ArmT2-vEeKVHZQA5NPj5A"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_-ArmUG-vEeKVHZQA5NPj5A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_-ArmUW-vEeKVHZQA5NPj5A"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-ArmUm-vEeKVHZQA5NPj5A"/>
+    </children>
+    <element xmi:type="uml:Class" href="EditPostConditionOperation.uml#_-ArmQG-vEeKVHZQA5NPj5A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-ArmQm-vEeKVHZQA5NPj5A" x="490" y="58"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="__UcUMm-vEeKVHZQA5NPj5A" type="2011">
+    <children xmi:type="notation:DecorationNode" xmi:id="__UcUNG-vEeKVHZQA5NPj5A" type="5037"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="__UcUNW-vEeKVHZQA5NPj5A" type="5159"/>
+    <element xmi:type="uml:Constraint" href="EditPostConditionOperation.uml#__UcUMG-vEeKVHZQA5NPj5A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__UcUM2-vEeKVHZQA5NPj5A" x="775" y="65" width="216"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SCnDgG-wEeKVHZQA5NPj5A" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SCnDgm-wEeKVHZQA5NPj5A" type="5038"/>
+    <element xmi:type="uml:Comment" href="EditPostConditionOperation.uml#_SCdSgG-wEeKVHZQA5NPj5A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SCnDgW-wEeKVHZQA5NPj5A" x="485" y="200" width="476" height="121"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_9o4KQW-vEeKVHZQA5NPj5A"/>
+  <element xmi:type="uml:Model" href="EditPostConditionOperation.uml#_Js46QG-mEeKfG-vGEZugxw"/>
+</notation:Diagram>

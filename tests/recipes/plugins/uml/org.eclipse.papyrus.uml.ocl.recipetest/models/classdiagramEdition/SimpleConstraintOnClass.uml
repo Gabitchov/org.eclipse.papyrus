@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_iEwH4G-kEeKfG-vGEZugxw" name="model">
+  <ownedComment xmi:id="_4OZfkG-kEeKfG-vGEZugxw">
+    <body>self.oclAsType(Class).name='Toto'</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_jqzfsG-kEeKfG-vGEZugxw" name="Class1">
+    <ownedRule xmi:id="_kr-BwG-kEeKfG-vGEZugxw" name="Constraint1" constrainedElement="_jqzfsG-kEeKfG-vGEZugxw">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_7SfQwG-mEeKVHZQA5NPj5A">
+        <language>OCL</language>
+        <body>self.oclAsType(Class).name='Toto'</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_GUtLkG-oEeKVHZQA5NPj5A" name="Property1"/>
+  </packagedElement>
+</uml:Model>

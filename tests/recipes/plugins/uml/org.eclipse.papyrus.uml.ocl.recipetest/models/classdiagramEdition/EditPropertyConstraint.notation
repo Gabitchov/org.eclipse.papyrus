@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_AzX74G-mEeKfG-vGEZugxw" type="PapyrusUMLClassDiagram" name="ClassDiagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_BF0WwG-mEeKfG-vGEZugxw" type="2008">
+    <children xmi:type="notation:DecorationNode" xmi:id="_BF0Wwm-mEeKfG-vGEZugxw" type="5029"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_BF0Ww2-mEeKfG-vGEZugxw" type="7017">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BF0W0m-mEeKfG-vGEZugxw" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BF0W02-mEeKfG-vGEZugxw" key="showTitle" value="true"/>
+      </eAnnotations>
+      <children xmi:type="notation:Shape" xmi:id="_CEwEMW-mEeKfG-vGEZugxw" type="3012">
+        <element xmi:type="uml:Property" href="EditPropertyConstraint.uml#_CEwEMG-mEeKfG-vGEZugxw"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_CEwEMm-mEeKfG-vGEZugxw"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_BF0WxG-mEeKfG-vGEZugxw"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_BF0WxW-mEeKfG-vGEZugxw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_BF0Wxm-mEeKfG-vGEZugxw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BF0Wx2-mEeKfG-vGEZugxw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_BF0WyG-mEeKfG-vGEZugxw" type="7018">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BF0W1G-mEeKfG-vGEZugxw" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BF0W1W-mEeKfG-vGEZugxw" key="showTitle" value="true"/>
+      </eAnnotations>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_BF0WyW-mEeKfG-vGEZugxw"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_BF0Wym-mEeKfG-vGEZugxw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_BF0Wy2-mEeKfG-vGEZugxw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BF0WzG-mEeKfG-vGEZugxw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_BF0WzW-mEeKfG-vGEZugxw" type="7019">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BF0W1m-mEeKfG-vGEZugxw" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BF0W12-mEeKfG-vGEZugxw" key="showTitle" value="true"/>
+      </eAnnotations>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_BF0Wzm-mEeKfG-vGEZugxw"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_BF0Wz2-mEeKfG-vGEZugxw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_BF0W0G-mEeKfG-vGEZugxw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BF0W0W-mEeKfG-vGEZugxw"/>
+    </children>
+    <element xmi:type="uml:Class" href="EditPropertyConstraint.uml#_BFrM0G-mEeKfG-vGEZugxw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BF0WwW-mEeKfG-vGEZugxw" x="338" y="184"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_C3M00W-mEeKfG-vGEZugxw" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_C3M002-mEeKfG-vGEZugxw" type="5038"/>
+    <element xmi:type="uml:Comment" href="EditPropertyConstraint.uml#_C3M00G-mEeKfG-vGEZugxw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_C3M00m-mEeKfG-vGEZugxw" x="335" y="45" width="311" height="101"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_CUsA0G-qEeKVHZQA5NPj5A" type="2011">
+    <children xmi:type="notation:DecorationNode" xmi:id="_CUsA0m-qEeKVHZQA5NPj5A" type="5037"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_CUsA02-qEeKVHZQA5NPj5A" type="5159"/>
+    <element xmi:type="uml:Constraint" href="EditPropertyConstraint.uml#_CUiP0G-qEeKVHZQA5NPj5A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CUsA0W-qEeKVHZQA5NPj5A" x="650" y="200" width="396"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_AzX74W-mEeKfG-vGEZugxw"/>
+  <element xmi:type="uml:Model" href="EditPropertyConstraint.uml#_8eDhcG-lEeKfG-vGEZugxw"/>
+</notation:Diagram>

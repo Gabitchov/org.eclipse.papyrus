@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ceSZMG-lEeKfG-vGEZugxw" name="EditOperationPreCondition">
+  <ownedComment xmi:id="_1QGtAG-lEeKfG-vGEZugxw">
+    <body>edit precondition of an operation:&#xD;
+self.oclType().name='toto'</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_tS17gG-lEeKfG-vGEZugxw" name="Class1">
+    <ownedOperation xmi:id="_xXW50G-lEeKfG-vGEZugxw" name="Operation1" precondition="_sL1EkG-vEeKVHZQA5NPj5A">
+      <ownedRule xmi:id="_sL1EkG-vEeKVHZQA5NPj5A" name="Constraint1" constrainedElement="_tS17gG-lEeKfG-vGEZugxw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_ytLRsG-vEeKVHZQA5NPj5A">
+          <language>OCL</language>
+          <body>self.oclType().name='toto'</body>
+        </specification>
+      </ownedRule>
+    </ownedOperation>
+  </packagedElement>
+</uml:Model>
