@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_929swG-zEeK5cr7NUZ6onQ" name="EditConstraintOnPropertyOfStereotype" metaclassReference="_ERI64G-0EeK5cr7NUZ6onQ">
+  <eAnnotations xmi:id="_-67nAW-6EeK5cr7NUZ6onQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_-67nAm-6EeK5cr7NUZ6onQ" name="EditConstraintOnPropertyOfStereotype" nsURI="http:///schemas/EditConstraintOnPropertyOfStereotype/_-67nAG-6EeK5cr7NUZ6onQ/0" nsPrefix="EditConstraintOnPropertyOfStereotype">
+      <eAnnotations xmi:id="_-68OEW-6EeK5cr7NUZ6onQ" source="PapyrusVersion">
+        <details xmi:id="_-68OEm-6EeK5cr7NUZ6onQ" key="Version" value="0.0.1"/>
+        <details xmi:id="_-68OE2-6EeK5cr7NUZ6onQ" key="Comment" value=""/>
+        <details xmi:id="_-68OFG-6EeK5cr7NUZ6onQ" key="Copyright" value=""/>
+        <details xmi:id="_-68OFW-6EeK5cr7NUZ6onQ" key="Date" value="2013-02-05"/>
+        <details xmi:id="_-68OFm-6EeK5cr7NUZ6onQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-67nA2-6EeK5cr7NUZ6onQ" name="Stereotype1">
+        <eAnnotations xmi:id="_-67nBG-6EeK5cr7NUZ6onQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ElEjgG-0EeK5cr7NUZ6onQ"/>
+        <eAnnotations xmi:id="_-67nBW-6EeK5cr7NUZ6onQ" source="http://www.eclipse.org/emf/2002/GenModel">
+          <details xmi:id="_-67nBm-6EeK5cr7NUZ6onQ" key="documentation" value="self.Property1.oclAsType(Integer)>10"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_-67nB2-6EeK5cr7NUZ6onQ" name="Property1" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_-67nCW-6EeK5cr7NUZ6onQ" name="base_NamedElement" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_ERI64G-0EeK5cr7NUZ6onQ" alias="NamedElement">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+  </elementImport>
+  <packageImport xmi:id="_HJVQAG-0EeK5cr7NUZ6onQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_ElEjgG-0EeK5cr7NUZ6onQ" name="Stereotype1">
+    <ownedRule xmi:id="_LXqRoG-0EeK5cr7NUZ6onQ" name="Constraint1" constrainedElement="_H5h94G-0EeK5cr7NUZ6onQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_RHneEG-0EeK5cr7NUZ6onQ">
+        <language>OCL</language>
+        <body>self.Property1.oclAsType(Integer)>10</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_H5h94G-0EeK5cr7NUZ6onQ" name="Property1">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_KfukEG-0EeK5cr7NUZ6onQ" name="base_NamedElement" association="_KfukEW-0EeK5cr7NUZ6onQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_KfukEW-0EeK5cr7NUZ6onQ" name="E_Stereotype1_NamedElement1" memberEnd="_KfukEm-0EeK5cr7NUZ6onQ _KfukEG-0EeK5cr7NUZ6onQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_KfukEm-0EeK5cr7NUZ6onQ" name="extension_Stereotype1" type="_ElEjgG-0EeK5cr7NUZ6onQ" aggregation="composite" association="_KfukEW-0EeK5cr7NUZ6onQ"/>
+  </packagedElement>
+</uml:Profile>

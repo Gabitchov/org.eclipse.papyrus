@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Z9oR8G-zEeK5cr7NUZ6onQ" name="Profile" metaclassReference="_dXTjgG-zEeK5cr7NUZ6onQ" metamodelReference="_Z9oR8W-zEeK5cr7NUZ6onQ">
+  <eAnnotations xmi:id="_4eZsoW-zEeK5cr7NUZ6onQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_4eZsom-zEeK5cr7NUZ6onQ" name="Profile" nsURI="http:///schemas/Profile/_4eZsoG-zEeK5cr7NUZ6onQ/0" nsPrefix="Profile">
+      <eAnnotations xmi:id="_4esnkW-zEeK5cr7NUZ6onQ" source="PapyrusVersion">
+        <details xmi:id="_4esnkm-zEeK5cr7NUZ6onQ" key="Version" value="0.0.1"/>
+        <details xmi:id="_4esnk2-zEeK5cr7NUZ6onQ" key="Comment" value=""/>
+        <details xmi:id="_4esnlG-zEeK5cr7NUZ6onQ" key="Copyright" value=""/>
+        <details xmi:id="_4esnlW-zEeK5cr7NUZ6onQ" key="Date" value="2013-02-05"/>
+        <details xmi:id="_4esnlm-zEeK5cr7NUZ6onQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_4ejdoG-zEeK5cr7NUZ6onQ" name="Stereotype1">
+        <eAnnotations xmi:id="_4ejdoW-zEeK5cr7NUZ6onQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bVHpUG-zEeK5cr7NUZ6onQ"/>
+        <eAnnotations xmi:id="_4ejdom-zEeK5cr7NUZ6onQ" source="http://www.eclipse.org/emf/2002/GenModel">
+          <details xmi:id="_4ejdo2-zEeK5cr7NUZ6onQ" key="documentation" value="self.oclType().name='Toto'"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_4ejdpG-zEeK5cr7NUZ6onQ" name="base_NamedElement" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_4ejdpm-zEeK5cr7NUZ6onQ" name="Property1" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <ownedComment xmi:id="_jk_00G-zEeK5cr7NUZ6onQ">
+    <body>write a constraint on stereotype:&#xD;
+self.oclType().name='Toto'</body>
+  </ownedComment>
+  <elementImport xmi:id="_dXTjgG-zEeK5cr7NUZ6onQ" alias="NamedElement">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+  </elementImport>
+  <packageImport xmi:id="_Z9oR8W-zEeK5cr7NUZ6onQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_Z9oR8m-zEeK5cr7NUZ6onQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_bVHpUG-zEeK5cr7NUZ6onQ" name="Stereotype1">
+    <ownedRule xmi:id="_kgpkwG-zEeK5cr7NUZ6onQ" name="Constraint1" constrainedElement="_bVHpUG-zEeK5cr7NUZ6onQ">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_pwBMoG-zEeK5cr7NUZ6onQ">
+        <language>OCL</language>
+        <body>self.oclType().name='Toto'</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_d9sOEG-zEeK5cr7NUZ6onQ" name="base_NamedElement" association="_d9sOEW-zEeK5cr7NUZ6onQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_e0JU8G-zEeK5cr7NUZ6onQ" name="Property1">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_d9sOEW-zEeK5cr7NUZ6onQ" name="E_Stereotype1_NamedElement1" memberEnd="_d9sOEm-zEeK5cr7NUZ6onQ _d9sOEG-zEeK5cr7NUZ6onQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_d9sOEm-zEeK5cr7NUZ6onQ" name="extension_Stereotype1" type="_bVHpUG-zEeK5cr7NUZ6onQ" aggregation="composite" association="_d9sOEW-zEeK5cr7NUZ6onQ"/>
+  </packagedElement>
+</uml:Profile>
