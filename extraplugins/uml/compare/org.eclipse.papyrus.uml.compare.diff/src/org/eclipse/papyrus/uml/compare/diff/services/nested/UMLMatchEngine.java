@@ -31,6 +31,7 @@ import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.metamodel.Side;
 import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
+import org.eclipse.emf.compare.match.metamodel.provider.MatchEditPlugin;
 import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.compare.diff.Activator;
@@ -99,22 +100,40 @@ public class UMLMatchEngine extends UMLStandaloneMatchEngine {//GenericMatchEngi
 		}
 
 		//we check the stereotype application for all others matching children
-		for(final MatchElement current : matchModel.getMatchedElements().get(0).getSubMatchElements()) {
+		//for(final MatchElement current : matchModel.getMatchedElements().get(0).getSubMatchElements()) {
+		for(final MatchElement current : matchModel.getMatchedElements()){
 			if(current instanceof Match2Elements) {
-				final EObject left = ((Match2Elements)current).getLeftElement();
-				final EObject right = ((Match2Elements)current).getRightElement();
-				if(left instanceof Element && right instanceof Element) {
-					List[] newValue = getAdditionalStereotypeApplicationModelElement(checker, (Element)left, (Element)right);
-					supplementaryMatchElement.addAll(newValue[0]);
-					supplementaryUnmatchedElement.addAll(newValue[1]);
-				}
+				List[] newValue =crossMatchingElement(checker, current);
+				supplementaryMatchElement.addAll(newValue[0]);
+				supplementaryUnmatchedElement.addAll(newValue[1]);
 			}
 		}
 		matchModel.getMatchedElements().get(0).getSubMatchElements().addAll(supplementaryMatchElement);
 		matchModel.getUnmatchedElements().addAll(supplementaryUnmatchedElement);
-
 	}
 
+	protected List<?>[] crossMatchingElement(final AbstractSimilarityChecker checker, final MatchElement el){
+		final List<MatchElement> supplementaryMatchedElementElement = new ArrayList<MatchElement>();
+		final List<UnmatchElement> supplementaryUnmatchedElement = new ArrayList<UnmatchElement>();
+		if(el instanceof Match2Elements) {
+			final EObject left = ((Match2Elements)el).getLeftElement();
+			final EObject right = ((Match2Elements)el).getRightElement();
+			if(left instanceof Element && right instanceof Element) {
+				List[] newValue = getAdditionalStereotypeApplicationModelElement(checker, (Element)left, (Element)right);
+				supplementaryMatchedElementElement.addAll(newValue[0]);
+				supplementaryUnmatchedElement.addAll(newValue[1]);
+			}
+			for(final MatchElement current : el.getSubMatchElements()){
+				List[] newValue = crossMatchingElement(checker, current);
+				supplementaryMatchedElementElement.addAll(newValue[0]);
+				supplementaryUnmatchedElement.addAll(newValue[1]);
+			}
+		}
+		List<?>[] value = new List<?>[2];
+		value[0] = supplementaryMatchedElementElement;
+		value[1] = supplementaryUnmatchedElement;
+		return value;
+	}
 
 	/**
 	 * 
