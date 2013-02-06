@@ -14,8 +14,10 @@
 package org.eclipse.papyrus.uml.compare.diff.services.nested;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.compare.FactoryException;
@@ -23,12 +25,18 @@ import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.engine.AbstractSimilarityChecker;
 import org.eclipse.emf.compare.match.engine.internal.GenericMatchEngineToCheckerBridge;
 import org.eclipse.emf.compare.match.internal.statistic.NameSimilarity;
+import org.eclipse.emf.compare.match.metamodel.Match2Elements;
+import org.eclipse.emf.compare.match.metamodel.MatchElement;
+import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
+import org.eclipse.emf.compare.match.metamodel.Side;
 import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
 import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.compare.diff.Activator;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 //TODO verify the super class for UML models
@@ -63,8 +71,101 @@ public class UMLMatchEngine extends UMLStandaloneMatchEngine {//GenericMatchEngi
 		final MatchModel matchModel = super.contentMatch(leftObject, rightObject, optionMap);
 		if(this.leftObject.eResource() != null && this.rightObject.eResource() != null) {
 			completeMatchModelWithUMLDifferences(matchModel, leftObject, rightObject, optionMap);
+			completeMatchWithStereotypeApplications(matchModel, leftObject, rightObject);
 		}
 		return matchModel;
+	}
+
+	/**
+	 * 
+	 * @param matchModel
+	 *        the match model
+	 * @param leftObject
+	 *        the initial left element used for the comparison
+	 * @param rightObject
+	 *        the initial right element used for the comparison
+	 * 
+	 */
+	protected void completeMatchWithStereotypeApplications(MatchModel matchModel, EObject leftObject, EObject rightObject) {
+		//we check the stereotype application on the compared elements
+		AbstractSimilarityChecker checker = prepareChecker();
+		final List<MatchElement> supplementaryMatchElement = new ArrayList<MatchElement>();
+		final List<UnmatchElement> supplementaryUnmatchedElement = new ArrayList<UnmatchElement>();
+
+		if(leftObject instanceof Element && rightObject instanceof Element) {
+			List[] newValue = getAdditionalStereotypeApplicationModelElement(checker, (Element)leftObject, (Element)rightObject);
+			supplementaryMatchElement.addAll(newValue[0]);
+			supplementaryUnmatchedElement.addAll(newValue[1]);
+		}
+
+		//we check the stereotype application for all others matching children
+		for(final MatchElement current : matchModel.getMatchedElements().get(0).getSubMatchElements()) {
+			if(current instanceof Match2Elements) {
+				final EObject left = ((Match2Elements)current).getLeftElement();
+				final EObject right = ((Match2Elements)current).getRightElement();
+				if(left instanceof Element && right instanceof Element) {
+					List[] newValue = getAdditionalStereotypeApplicationModelElement(checker, (Element)left, (Element)right);
+					supplementaryMatchElement.addAll(newValue[0]);
+					supplementaryUnmatchedElement.addAll(newValue[1]);
+				}
+			}
+		}
+		matchModel.getMatchedElements().get(0).getSubMatchElements().addAll(supplementaryMatchElement);
+		matchModel.getUnmatchedElements().addAll(supplementaryUnmatchedElement);
+
+	}
+
+
+	/**
+	 * 
+	 * @param checker
+	 *        the checker
+	 * @param left
+	 *        the left element
+	 * @param right
+	 *        the right element
+	 * @return
+	 *         an array with 2 list : the first one contains the matchedelements to add and the 2nd one contains the unmatched elements to add
+	 */
+	protected List<?>[] getAdditionalStereotypeApplicationModelElement(final AbstractSimilarityChecker checker, final Element left, final Element right) {
+		final List<MatchElement> supplementaryMatchedElementElement = new ArrayList<MatchElement>();
+		final List<UnmatchElement> supplementaryUnmatchedElement = new ArrayList<UnmatchElement>();
+		final Set<Stereotype> allAppliedStereotypes = new HashSet<Stereotype>();
+		allAppliedStereotypes.addAll(left.getAppliedStereotypes());
+		allAppliedStereotypes.addAll(right.getAppliedStereotypes());
+		for(final Stereotype ste : allAppliedStereotypes) {
+			final EObject rightApplication = ((Element)right).getStereotypeApplication(ste);
+			final EObject leftApplication = ((Element)left).getStereotypeApplication(ste);
+			if(rightApplication != null && leftApplication != null) {
+				Match2Elements newMatch = MatchFactory.eINSTANCE.createMatch2Elements();
+				newMatch.setLeftElement(leftApplication);
+				newMatch.setRightElement(rightApplication);
+				double metric = 0.0;
+				try {
+					metric = checker.absoluteMetric(leftApplication, rightApplication);
+				} catch (FactoryException e) {
+					Activator.log.error(e);
+				}
+				newMatch.setSimilarity(metric);
+				supplementaryMatchedElementElement.add(newMatch);
+			} else if(leftApplication == null) {
+				UnmatchElement unmatch = MatchFactory.eINSTANCE.createUnmatchElement();
+				unmatch.setConflicting(false);
+				unmatch.setElement(rightApplication);
+				unmatch.setSide(Side.RIGHT);
+				supplementaryUnmatchedElement.add(unmatch);
+			} else if(rightApplication == null) {
+				UnmatchElement unmatch = MatchFactory.eINSTANCE.createUnmatchElement();
+				unmatch.setConflicting(false);
+				unmatch.setElement(leftApplication);
+				unmatch.setSide(Side.LEFT);
+				supplementaryUnmatchedElement.add(unmatch);
+			}
+		}
+		List<?>[] value = new List<?>[2];
+		value[0] = supplementaryMatchedElementElement;
+		value[1] = supplementaryUnmatchedElement;
+		return value;
 	}
 
 	/**
@@ -114,6 +215,26 @@ public class UMLMatchEngine extends UMLStandaloneMatchEngine {//GenericMatchEngi
 				matchModel.getUnmatchedElements().addAll(unmatchedElementToAdd);
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * @param sourceElement
+	 *        a uml element
+	 * @param stereotypedElement
+	 *        a stereotyped element
+	 * @return
+	 *         <code>true</code> if the stereotyped element is a subelement of the uml element
+	 */
+	protected boolean isRequiredByTheDiff(final Element sourceElement, Element stereotypedElement) {
+		EObject container = stereotypedElement;
+		while(container != null) {
+			if(container == sourceElement) {
+				return true;
+			}
+			container = container.eContainer();
+		}
+		return false;
 	}
 
 	/**
