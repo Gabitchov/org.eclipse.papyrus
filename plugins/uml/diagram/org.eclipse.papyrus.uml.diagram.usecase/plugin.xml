@@ -1274,33 +1274,8 @@
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
-   
-   
-  <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-         <editpolicyProvider
-               class="org.eclipse.papyrus.uml.diagram.usecase.providers.CustomEditPolicyProvider">
-               <Priority
-                     name="Lowest">
-               </Priority>
-          </editpolicyProvider>
-  </extension>
   
   <!-- Custom extension point-->
-  <extension
-       id="ep-provider"
-       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-       <editpartProvider
-            class="org.eclipse.papyrus.uml.diagram.usecase.providers.CustomEditPartProvider">
-            <Priority name="Medium"/>
-	
-			<object
-	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-		    	id="org.eclipse.papyrus.uml.diagram.usecase.editpart.AppliedStereotypeContainer">
-			    <method name="getType()" value="AppliedStereotypeContainer,AppliedStereotypeProperty"/>
-		   </object>
-	   </editpartProvider>
-   </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
       <?gmfgen generated="true"?>
        <propertyTester

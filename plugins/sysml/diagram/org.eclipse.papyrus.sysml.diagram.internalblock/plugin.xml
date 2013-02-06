@@ -554,24 +554,6 @@
 		<context decoratorTargets="PRIMARY_VIEW"></context>
 	</decoratorProvider>
 </extension>
-<extension
-      id="stereotype-ep-provider"
-      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-   <editpartProvider
-         class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.StereotypePropertiesEditPartProvider">
-      <Priority
-            name="Medium">
-      </Priority>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-            id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
-         <method
-               name="getType()"
-               value="AppliedStereotypeContainer,AppliedStereotypeProperty">
-         </method>
-      </object>
-   </editpartProvider>
-</extension>
 
 <!-- // End of user code 
   -->
