@@ -21,10 +21,6 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <includes
-         id="org.eclipse.papyrus.extra.compare.report.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.extra.layout.feature"
          version="0.0.0"/>
 
