@@ -16,6 +16,8 @@ import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.Diagram
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.e4.ui.css.core.css2.CSS2ColorHelper;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -32,6 +34,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.SelectorCondition;
 import org.eclipse.papyrus.infra.gmfdiag.css.StringValue;
 import org.eclipse.papyrus.infra.gmfdiag.css.Subterm;
 import org.eclipse.papyrus.infra.gmfdiag.css.Term;
+import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.util.CssSwitch;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.BooleanCheckbox;
@@ -43,11 +46,17 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.w3c.dom.css.RGBColor;
 
 
 public abstract class AbstractStyleDialog extends TrayDialog {
@@ -298,8 +307,37 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		declarationsLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
 
 		for(Declaration declaration : declarations.keySet()) {
+			//Separate checkbox and label (Checkbox - Label) - (Checkbox - Label) - (Checkbox - Label)
+			//This is required to paint a custom foreground color on non-classic windows Theme 
+			//Checkboxes do not support foreground color on Windows, except for the Classic theme
+			Composite propertyComposite = new Composite(parent, SWT.NONE);
+			GridLayout compositeLayout = new GridLayout(2, false);
+			compositeLayout.marginWidth = 0;
+			compositeLayout.marginHeight = 0;
+			propertyComposite.setLayout(compositeLayout);
+			propertyComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+
 			String label = declaration.getProperty() + ": " + getLabel(declaration.getExpression());
-			BooleanCheckbox checkbox = new BooleanCheckbox(parent, SWT.NONE, label);
+			final BooleanCheckbox checkbox = new BooleanCheckbox(propertyComposite, SWT.NONE);
+			checkbox.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+
+			Label labelWidget = new Label(propertyComposite, SWT.NONE);
+			labelWidget.setText(label);
+
+			MouseListener listener = new MouseAdapter() {
+
+				@Override
+				public void mouseUp(MouseEvent e) {
+					checkbox.setValue(!checkbox.getValue());
+				}
+			};
+
+			propertyComposite.addMouseListener(listener);
+			labelWidget.addMouseListener(listener);
+
+			Color[] colors = getColors(declaration.getExpression());
+			propertyComposite.setBackground(colors[0]);
+			labelWidget.setForeground(colors[1]);
 
 			final Declaration currentDeclaration = declaration;
 
@@ -316,6 +354,49 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 
 			checkbox.setValue(declarations.get(declaration));
 		}
+	}
+
+	protected Color[] getColors(Expression expression) {
+		Term term = expression.getTerms();
+		if(term instanceof HexColor) {
+			HexColor hexColor = (HexColor)term;
+			return getColors(hexColor);
+		}
+
+		for(Subterm subterm : expression.getSubterms()) {
+			if(subterm.getTerm() instanceof HexColor) {
+				return getColors((HexColor)subterm.getTerm());
+			}
+		}
+
+		return new Color[]{ Display.getDefault().getSystemColor(SWT.COLOR_WHITE), Display.getDefault().getSystemColor(SWT.COLOR_BLACK), };
+	}
+
+	protected Color[] getColors(HexColor hexColor) {
+		Color[] colors = new Color[]{ Display.getDefault().getSystemColor(SWT.COLOR_WHITE), Display.getDefault().getSystemColor(SWT.COLOR_BLACK), };
+
+		Color color = getColor(hexColor);
+		colors[0] = color;
+
+		if(getLightness(color) < 130) {
+			colors[1] = Display.getDefault().getSystemColor(SWT.COLOR_WHITE);
+		}
+
+		return colors;
+	}
+
+	private int getLightness(Color color) {
+		//Computes the lightness of the color
+		int M = Math.max(color.getGreen(), Math.max(color.getRed(), color.getBlue()));
+		int m = Math.min(color.getGreen(), Math.min(color.getRed(), color.getBlue()));
+		int L = (M + m) / 2;
+		return L;
+	}
+
+	protected Color getColor(HexColor color) {
+		RGBColor rgbColor = CSS2ColorHelper.getRGBColor("#" + color.getValue());
+		int intColor = ColorToGMFConverter.getIntColor(rgbColor);
+		return FigureUtilities.integerToColor(intColor);
 	}
 
 	public String getCSSClass() {

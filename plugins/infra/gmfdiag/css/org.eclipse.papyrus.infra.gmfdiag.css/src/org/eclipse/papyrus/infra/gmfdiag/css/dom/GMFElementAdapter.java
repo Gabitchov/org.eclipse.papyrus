@@ -20,9 +20,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -39,10 +41,11 @@ import org.eclipse.gmf.runtime.notation.StringListValueStyle;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.listener.CustomStyleListener;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.helper.SemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -53,7 +56,7 @@ import org.w3c.dom.NodeList;
  * @author Camille Letavernier
  */
 @SuppressWarnings("restriction")
-public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener {
+public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener, StatefulView {
 
 	/**
 	 * The map of Papyrus Diagram ids to human-readable and consistent diagram IDs
@@ -532,4 +535,48 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		getEngine().handleDispose(notationElement);
 	}
 
+	private final Set<String> pseudoInstances = new HashSet<String>();
+
+	@Override
+	public boolean isPseudoInstanceOf(String pseudo) {
+		return pseudoInstances.contains(pseudo);
+	}
+
+
+	//The following methods (Static pseudo instances) are not supported.
+
+	@Override
+	public void addStaticPseudoInstance(String pseudo) {
+		//Disable the super implementation. Static pseudo instances are not supported.
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String[] getStaticPseudoInstances() {
+		return new String[0];
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#addStates(java.util.Set)
+	 */
+	public void addStates(Set<String> states) {
+		this.pseudoInstances.addAll(states);
+		getEngine().notifyChange(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#removeStates(java.util.Set)
+	 */
+	public void removeStates(Set<String> states) {
+		this.pseudoInstances.removeAll(states);
+		getEngine().notifyChange(this);
+	}
+
+	public Set<String> getStates() {
+		return this.pseudoInstances;
+	}
 }

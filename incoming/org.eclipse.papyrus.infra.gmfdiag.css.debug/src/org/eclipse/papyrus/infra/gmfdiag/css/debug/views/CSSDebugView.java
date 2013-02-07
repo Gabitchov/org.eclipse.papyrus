@@ -312,7 +312,7 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 
 	private void fillProperties(View view, GMFElementAdapter cssElement) {
 		setProperty(viewPropertiesComposite, "Classes", cssElement.getCSSClass().replaceAll("\\s+", ", "));
-		setProperty(viewPropertiesComposite, "Events", "<Not yet implemented>");
+		setProperty(viewPropertiesComposite, "Events", cssElement.getStates().toString());
 	}
 
 	private void setProperty(Composite parent, String label, String value) {

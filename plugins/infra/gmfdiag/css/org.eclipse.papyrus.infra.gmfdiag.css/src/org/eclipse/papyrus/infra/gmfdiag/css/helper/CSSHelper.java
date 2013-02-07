@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResourceFactory;
 
 /**
@@ -31,6 +32,18 @@ public class CSSHelper {
 	 */
 	public static void installCSSSupport(ResourceSet resourceSet) {
 		CSSNotationResourceFactory factory = new CSSNotationResourceFactory();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("notation", factory); //$NON-NLS-1$
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(NotationModel.NOTATION_FILE_EXTENSION, factory);
+	}
+
+	/**
+	 * Tests whether the given resourceSet supports the CSS Styling
+	 * 
+	 * @param resourceSet
+	 * @return
+	 * 
+	 * @see #installCSSSupport(ResourceSet)
+	 */
+	public static boolean isCSSSupported(ResourceSet resourceSet) {
+		return resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().get(NotationModel.NOTATION_FILE_EXTENSION) instanceof CSSNotationResourceFactory;
 	}
 }
