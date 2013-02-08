@@ -49,7 +49,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 
 	private boolean validateOnDelay = false;
 
-	private final Timer timer;
+	private Timer timer;
 
 	private TimerTask currentValidateTask;
 
@@ -138,8 +138,6 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 		text.addKeyListener(this);
 
 		setCommitOnFocusLost(text);
-
-		timer = new Timer(true);
 	}
 
 	@Override
@@ -286,6 +284,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	private void cancelCurrentTask() {
 		if(currentValidateTask != null) {
 			currentValidateTask.cancel();
+			currentValidateTask = null;
 		}
 	}
 
@@ -300,6 +299,10 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 				return;
 			}
 			cancelCurrentTask();
+
+			if(timer == null) {
+				timer = new Timer(true);
+			}
 
 			currentValidateTask = new TimerTask() {
 
@@ -322,7 +325,10 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	@Override
 	public void dispose() {
 		cancelCurrentTask();
-		timer.cancel();
+		if(timer != null) {
+			timer.cancel();
+			timer = null;
+		}
 		super.dispose();
 	}
 }
