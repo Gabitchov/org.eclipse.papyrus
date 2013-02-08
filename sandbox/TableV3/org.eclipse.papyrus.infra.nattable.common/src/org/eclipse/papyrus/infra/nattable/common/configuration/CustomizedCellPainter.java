@@ -48,6 +48,9 @@ public class CustomizedCellPainter extends TextPainter {
 	@Override
 	protected String convertDataType(final ILayerCell cell, final IConfigRegistry configRegistry) {
 		final Object value = cell.getDataValue();
+		if(value instanceof String) {
+			//maybe it a path
+		}
 		if(value != null) {
 			if(value instanceof EObject) {
 				return getLabelForEObject((EObject)value);

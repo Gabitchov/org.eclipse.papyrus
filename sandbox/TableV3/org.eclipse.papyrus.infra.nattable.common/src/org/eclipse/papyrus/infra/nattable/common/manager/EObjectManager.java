@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -34,11 +33,6 @@ public class EObjectManager extends AbstractAxisManager {
 	private Adapter listener;
 
 	/**
-	 * the list of the elements represented by this axis
-	 */
-	private List<EObject> elements;
-
-	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
@@ -68,7 +62,6 @@ public class EObjectManager extends AbstractAxisManager {
 	@Override
 	public void init(final INattableModelManager manager, final String managerId, final Table table, final IAxisContentsProvider provider) {
 		super.init(manager, managerId, table, provider);
-		this.elements = new ArrayList<EObject>();
 		contentsCalculus();
 		//we add a listener to be notified when there is changes in the axis provider
 		this.listener = new AdapterImpl() {
@@ -88,16 +81,21 @@ public class EObjectManager extends AbstractAxisManager {
 	 * calculus of the contents of the axis
 	 */
 	protected synchronized void contentsCalculus() {
-		final List<EObject> newContents = new ArrayList<EObject>();
-		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
+		final List<Object> axisContents = getTableManager().getRowElementsList();
+		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
+		for(int i = 0; i < axis.size(); i++) {
+			IAxis current = axis.get(i);
 			if(current instanceof EObjectAxis) {
 				final EObject element = (EObject)current.getElement();
-				newContents.add(element);
+				int currentIndex = axisContents.indexOf(element);
+				if(currentIndex == -1) {
+					axisContents.add(element);
+				} else if(currentIndex != i) {
+					axisContents.remove(currentIndex);
+					axisContents.add(i, element);
+				}
 			}
 		}
-		//FIXME, with Glazed List, maybe we should update the list instead of erase all values;
-		this.elements.clear();
-		this.elements.addAll(newContents);
 	}
 
 	/**
@@ -134,7 +132,7 @@ public class EObjectManager extends AbstractAxisManager {
 	 * called when the manager is used vertically
 	 */
 	public int getColumnCount() {
-		return this.elements.size();
+		return getTableManager().getRowElementsList().size();
 	}
 
 	/**
@@ -142,7 +140,7 @@ public class EObjectManager extends AbstractAxisManager {
 	 */
 
 	public int getRowCount() {
-		return this.elements.size();
+		return getTableManager().getRowElementsList().size();
 	}
 
 	/**
@@ -153,7 +151,7 @@ public class EObjectManager extends AbstractAxisManager {
 	 */
 	@Override
 	public List<?> getAllExistingAxis() {
-		return this.elements;
+		return getTableManager().getRowElementsList();
 	}
 
 

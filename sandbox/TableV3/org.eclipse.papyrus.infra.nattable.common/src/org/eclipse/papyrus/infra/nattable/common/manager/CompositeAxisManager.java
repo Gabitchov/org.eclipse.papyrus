@@ -12,6 +12,9 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 public class CompositeAxisManager extends AbstractAxisManager {
 
+
+
+
 	//	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.common.composite.axis.manager";
 	/**
 	 * the managed managers
@@ -29,37 +32,41 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 
+	@Override
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		// TODO Auto-generated method stub
 
 	}
 
 	public int getColumnCount() {
-		if(isUsedVertically()) {
-			int nbColumns = 0;
-			for(final IAxisManager current : this.managers) {
-				nbColumns += current.getColumnCount();
-			}
-			return nbColumns;
-		} else {
-			return 0;
-		}
+		return getTableManager().getColumnElementsList().size();
+		//		if(isUsedVertically()) {
+		//			int nbColumns = 0;
+		//			for(final IAxisManager current : this.managers) {
+		//				nbColumns += current.getColumnCount();
+		//			}
+		//			return nbColumns;
+		//		} else {
+		//			return 0;
+		//		}
 	}
 
 	public int getRowCount() {
-		if(isUsedHorizontally()){
-				int nbColumns = 0;
-				for(final IAxisManager current : this.managers) {
-				nbColumns += current.getRowCount();
-				}
-				return nbColumns;
-			}
-		return 0;
+		//		if(isUsedHorizontally()){
+		//				int nbColumns = 0;
+		//				for(final IAxisManager current : this.managers) {
+		//				nbColumns += current.getRowCount();
+		//				}
+		//				return nbColumns;
+		//			}
+		//		return 0;
+		return getTableManager().getColumnElementsList().size();
 	}
 
 	@Override
@@ -127,10 +134,12 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 
+	@Override
 	public Object getHeaderDataValue(final int columnIndex, final int rowIndex) {
 		return getAllExistingAxis().get(columnIndex);
 	}
 
+	@Override
 	public int getHeaderColumnCount() {
 		int i = 0;
 		for(final IAxisManager current : this.managers) {
@@ -139,29 +148,34 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		return i;
 	}
 
+	@Override
 	public int getHeaderRowCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public void setHeaderDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		// TODO Auto-generated method stub
 
 	}
 
 
+	@Override
 	public List<?> getAllVisibleAxis() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
+	@Override
 	public List<?> getAllCurrentPossibleAxis() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
+	@Override
 	public List<?> getAllExistingAxis() {
 		final List<Object> values = new ArrayList<Object>();
 		for(final IAxisManager manager : this.managers) {
@@ -169,7 +183,6 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		}
 		return values;
 	}
-
 
 
 

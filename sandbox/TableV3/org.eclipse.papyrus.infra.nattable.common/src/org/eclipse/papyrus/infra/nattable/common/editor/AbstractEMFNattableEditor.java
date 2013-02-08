@@ -141,7 +141,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 			@Override
 			public Object getDataValue(final int columnIndex, final int rowIndex) {
-				return "Invert Axis \n (Long)" + columnIndex;
+				return "Invert Axis";
 			}
 
 			@Override
@@ -176,7 +176,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 						tmp = new SetCommand(domain, AbstractEMFNattableEditor.this.rawModel, NattablePackage.eINSTANCE.getTable_VerticalContentProvider(), horizontal);
 						cmd.append(tmp);
 						domain.getCommandStack().execute(cmd);
-						natTable.refresh();
+						//						natTable.refresh();
 
 
 
@@ -304,8 +304,10 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	@Override
 	public void dispose() {
-		super.dispose();
 		this.selectionProvider.dispose();
+		this.tableManager.dispose();
+		super.dispose();
+
 	}
 
 }

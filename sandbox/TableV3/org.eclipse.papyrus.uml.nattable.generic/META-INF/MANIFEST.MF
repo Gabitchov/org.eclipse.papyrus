@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Generic Table for UML (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.generic;singleton:=true
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.generic.Activator
-Bundle-Vendor: Eclipse Modeling Tools
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.nattable.common;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core,
- org.eclipse.papyrus.infra.nattable.model,
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0",
  org.eclipse.papyrus.uml.nattable.common;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

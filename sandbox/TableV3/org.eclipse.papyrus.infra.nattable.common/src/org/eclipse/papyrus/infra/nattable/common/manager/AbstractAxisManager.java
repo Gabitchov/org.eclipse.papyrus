@@ -4,8 +4,11 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 
 
@@ -19,7 +22,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	private IAxisContentsProvider representedContentProvider;
 
 	private INattableModelManager tableManager;
-
 
 	public void dispose() {
 		this.pTable = null;
@@ -127,6 +129,40 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public List<?> getAllCurrentPossibleAxis() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	protected boolean hasDefaultConfiguration() {
+		final TableEditorConfiguration configuration = getTable().getEditorConfiguration().getDefaultTableEditorConfiguration();
+		return hasAxisConfiguration(configuration);
+	}
+
+	protected boolean hasLocalConfiguration() {
+		final LocalTableEditorConfiguration configuration = getTable().getEditorConfiguration();
+		return hasAxisConfiguration(configuration);
+	}
+
+	protected boolean hasAxisConfiguration(final TableEditorConfiguration configuration) {
+		final IAxisContentsProvider verticalContentProvider = configuration.getDefaultVerticalContentProvider();
+		final IAxisContentsProvider horizontalContentProvider = configuration.getDefaultHorizontalContentProvider();
+
+		//we need to find the axis in the configuration which is represented by the current managed axis
+		EList<String> currentProvider = getRepresentedContentProvider().getJavaContentProviderIds();
+
+
+		//FIXME : if the vertical content provider and the horizontal contents provider have the same java provider -> Big pb
+		//FIXME : if we propose to the user to changes the java provider used for a table -> big big pb
+		if(verticalContentProvider.getJavaContentProviderIds().equals(currentProvider)) {
+			//the current managed axis was declared vertically
+			return !verticalContentProvider.getAxis().isEmpty();
+		} else if(horizontalContentProvider.getJavaContentProviderIds().equals(currentProvider)) {
+			//the current managed axis was declared vertically
+			return !horizontalContentProvider.getAxis().isEmpty();
+		}
+		return false;
+	}
+
+	protected boolean hasConfiguration() {
+		return hasDefaultConfiguration() || hasLocalConfiguration();
 	}
 
 }

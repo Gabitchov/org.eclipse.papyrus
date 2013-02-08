@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.edit;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -12,8 +12,8 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfig
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.nattable.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy

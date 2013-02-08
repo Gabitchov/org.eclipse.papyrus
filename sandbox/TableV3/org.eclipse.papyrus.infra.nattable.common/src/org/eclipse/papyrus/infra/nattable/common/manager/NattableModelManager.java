@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -17,6 +20,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.factory.AxisManagerFactory;
 import org.eclipse.papyrus.infra.nattable.common.solver.CrossValueSolverFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.ui.IEditorPart;
@@ -40,6 +44,16 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	private final Table pTable;
 
+	private List<Object> verticalElements;
+
+	private List<Object> horizontalElements;
+
+	private Adapter axisListener;
+
+	private IAxisContentsProvider rowProvider;
+
+	private IAxisContentsProvider columnProvier;
+
 	/**
 	 *
 	 * Constructor.
@@ -50,6 +64,46 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	public NattableModelManager(final Table rawModel) {
 		this.pTable = rawModel;
+		this.rowProvider = rawModel.getHorizontalContentProvider();
+		this.columnProvier = rawModel.getVerticalContentProvider();
+		this.verticalElements = new ArrayList<Object>();
+		this.horizontalElements = new ArrayList<Object>();
+		this.axisListener = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if(msg.getEventType() == Notification.SET) {
+					final Object oldValue = msg.getOldValue();
+					final Object newValue = msg.getNewValue();
+					if(oldValue != null && newValue != null) {
+						if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_HorizontalContentProvider()) {//do command and redo command
+							if(oldValue == NattableModelManager.this.rowProvider && newValue == NattableModelManager.this.columnProvier) {
+								NattableModelManager.this.columnProvier = NattableModelManager.this.rowProvider;
+								NattableModelManager.this.rowProvider = (IAxisContentsProvider)newValue;
+								List<Object> oldVertcialElement = NattableModelManager.this.verticalElements;
+								NattableModelManager.this.verticalElements = NattableModelManager.this.horizontalElements;
+								NattableModelManager.this.horizontalElements = oldVertcialElement;
+								getNatTable().refresh();
+							}
+						} else if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_VerticalContentProvider()) {//undo command
+							if(oldValue == NattableModelManager.this.columnProvier && newValue == NattableModelManager.this.rowProvider) {
+								NattableModelManager.this.columnProvier = NattableModelManager.this.rowProvider;
+								NattableModelManager.this.rowProvider = (IAxisContentsProvider)oldValue;
+								List<Object> oldVertcialElement = NattableModelManager.this.verticalElements;
+								NattableModelManager.this.verticalElements = NattableModelManager.this.horizontalElements;
+								NattableModelManager.this.horizontalElements = oldVertcialElement;
+								getNatTable().refresh();
+							}
+						}
+					}
+					int i = 0;
+					i++;
+				}
+				int j = 0;
+				j++;
+			}
+		};
+		rawModel.eAdapters().add(this.axisListener);
 		init();
 	}
 
@@ -244,13 +298,14 @@ public class NattableModelManager implements INattableModelManager {
 	 *         the column data provider
 	 */
 	public IAxisManager getColumnDataProvider() {
-		final IAxisContentsProvider representedAxis = this.columnManager.getRepresentedContentProvider();
-		if(this.pTable.getVerticalContentProvider() == representedAxis) {
-			return this.columnManager;
-		} else if(this.pTable.getHorizontalContentProvider() == representedAxis) {
-			return this.rowManager;
-		}
-		return null;
+//		final IAxisContentsProvider representedAxis = this.columnManager.getRepresentedContentProvider();
+//		if(this.pTable.getVerticalContentProvider() == representedAxis) {
+//			return this.columnManager;
+//		} else if(this.pTable.getHorizontalContentProvider() == representedAxis) {
+//			return this.rowManager;
+//		}
+//		return null;
+		return this.columnManager;
 	}
 
 	/**
@@ -262,13 +317,14 @@ public class NattableModelManager implements INattableModelManager {
 	 *         the row data provider
 	 */
 	public IAxisManager getLineDataProvider() {
-		final IAxisContentsProvider representedAxis = this.rowManager.getRepresentedContentProvider();
-		if(this.pTable.getHorizontalContentProvider() == representedAxis) {
-			return this.rowManager;
-		} else if(this.pTable.getVerticalContentProvider() == representedAxis) {
-			return this.columnManager;
-		}
-		return null;
+		return this.rowManager;
+//		final IAxisContentsProvider representedAxis = this.rowManager.getRepresentedContentProvider();
+//		if(this.pTable.getHorizontalContentProvider() == representedAxis) {
+//			return this.rowManager;
+//		} else if(this.pTable.getVerticalContentProvider() == representedAxis) {
+//			return this.columnManager;
+//		}
+//		return null;
 	}
 
 	/**
@@ -277,6 +333,16 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	public void refreshNattable() {
 		getNatTable().refresh();
+	}
+
+	public List<Object> getColumnElementsList() {
+		//FIXME doesn't manage the invert axis
+		return this.verticalElements;
+	}
+
+	public List<Object> getRowElementsList() {
+		//FIXME doesn't manage the invert axis
+		return this.horizontalElements;
 	}
 
 }

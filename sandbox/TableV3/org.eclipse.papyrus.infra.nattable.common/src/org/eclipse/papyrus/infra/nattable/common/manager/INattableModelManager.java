@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.ui.services.IDisposable;
@@ -23,6 +24,9 @@ public interface INattableModelManager extends IDisposable, IDataProvider {
 
 	public IAxisManager getLineDataProvider();
 
+	public List<Object> getColumnElementsList();
+
+	public List<Object> getRowElementsList();
 
 
 }
