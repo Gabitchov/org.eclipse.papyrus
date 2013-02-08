@@ -320,7 +320,6 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		//We don't do a real Databinding in this case
 		treeViewer.setInput(modelProperty);
 		modelProperty.addChangeListener(this);
-		getParent().addDisposeListener(this);
 	}
 
 	/**
@@ -572,12 +571,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		treeViewer.refresh();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void widgetDisposed(org.eclipse.swt.events.DisposeEvent e) {
-		dispose();
-		modelProperty.removeChangeListener(this);
+	@Override
+	public void dispose() {
+		if(modelProperty != null) {
+			modelProperty.removeChangeListener(this);
+		}
+		super.dispose();
 	}
 
 	/**

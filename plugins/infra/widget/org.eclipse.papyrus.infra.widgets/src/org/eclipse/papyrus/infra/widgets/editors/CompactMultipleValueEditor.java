@@ -162,7 +162,6 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	protected void doBinding() {
 		// We don't do a real Databinding in this case
 		modelProperty.addChangeListener(this);
-		getParent().addDisposeListener(this);
 		handleChange(null);
 	}
 
@@ -218,9 +217,12 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	/**
 	 * {@inheritDoc}
 	 */
-	public void widgetDisposed(org.eclipse.swt.events.DisposeEvent e) {
-		dispose();
-		modelProperty.removeChangeListener(this);
+	@Override
+	public void dispose() {
+		if(modelProperty != null) {
+			modelProperty.removeChangeListener(this);
+		}
+		super.dispose();
 	}
 
 	/**

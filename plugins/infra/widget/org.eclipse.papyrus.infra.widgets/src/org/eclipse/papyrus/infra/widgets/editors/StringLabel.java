@@ -17,8 +17,6 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
@@ -81,13 +79,7 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	public void doBinding() {
 		//We don't do a real databinding here
 		this.modelProperty.addChangeListener(this);
-		valueLabel.addDisposeListener(new DisposeListener() {
-
-			public void widgetDisposed(DisposeEvent e) {
-				dispose();
-			}
-
-		});
+		valueLabel.addDisposeListener(this);
 		updateLabel();
 	}
 

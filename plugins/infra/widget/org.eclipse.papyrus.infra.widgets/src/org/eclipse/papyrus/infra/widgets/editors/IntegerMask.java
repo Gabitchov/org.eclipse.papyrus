@@ -20,7 +20,6 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -207,10 +206,6 @@ public class IntegerMask extends AbstractValueEditor implements SelectionListene
 
 	public void handleChange(final ChangeEvent event) {
 		refreshCheckboxes();
-	}
-
-	public void widgetDisposed(final DisposeEvent e) {
-		dispose();
 	}
 
 }

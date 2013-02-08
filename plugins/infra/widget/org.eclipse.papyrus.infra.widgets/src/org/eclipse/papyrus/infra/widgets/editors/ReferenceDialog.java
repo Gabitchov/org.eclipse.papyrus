@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -343,10 +342,6 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 
 	protected void setInitialSelection(List<?> initialValues) {
 		dialog.setInitialElementSelections(initialValues);
-	}
-
-	public void widgetDisposed(DisposeEvent e) {
-		dispose();
 	}
 
 	@Override

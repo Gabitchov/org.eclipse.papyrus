@@ -18,6 +18,8 @@ import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.layout.GridData;
@@ -40,7 +42,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 //Thus, it is not possible to add custom listeners on the editors
 //We should forward the listeners to the encapsulated (this.addListener(int, Listener) -> getMainWidget().addListener(int, Listener))
 //Problem: some widgets have more than one "main widget" (e.g. EnumRadio).
-public abstract class AbstractEditor extends Composite {
+public abstract class AbstractEditor extends Composite implements DisposeListener {
 
 	/**
 	 * The label for this editor. May be null.
@@ -134,6 +136,7 @@ public abstract class AbstractEditor extends Composite {
 		if(label != null) {
 			createLabel(label);
 		}
+		parent.addDisposeListener(this);
 	}
 
 	/**
@@ -355,4 +358,9 @@ public abstract class AbstractEditor extends Composite {
 
 	@Override
 	public abstract void setToolTipText(String text);
+
+	public void widgetDisposed(DisposeEvent e) {
+		dispose();
+	}
+
 }
