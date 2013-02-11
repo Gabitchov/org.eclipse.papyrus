@@ -9,17 +9,23 @@
  *
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *  Arnaud Cuccuru (CEA LIST) - arnaud.cuccuru@cea.fr
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.markerlistener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -32,9 +38,7 @@ import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
-
 
 // TODO: Auto-generated Javadoc
 /**
@@ -45,9 +49,11 @@ public class MarkersMonitorService implements IService {
 	/** The services registry. */
 	private ServicesRegistry servicesRegistry;
 
-	/** The decoration service. */
-	private DecorationService decorationService;
-
+	/**
+	 * The list of registered Marker Event Listeners
+	 */
+	protected List<IMarkerEventListener> registeredMarkerEventListeners ;
+		
 	/**
 	 * Gets the services registry.
 	 * 
@@ -87,15 +93,30 @@ public class MarkersMonitorService implements IService {
 
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		this.servicesRegistry = servicesRegistry;
-		this.fileObserver = new MarkerObserver(ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
-		try {
-			decorationService = servicesRegistry.getService(DecorationService.class);
-			checkMarkers();
-		} catch (ServiceException e) {
-			Activator.log.error(e.getMessage(), e);
-		}
+		this.registeredMarkerEventListeners = this.getRegisteredMarkerEventListeners() ;
+		this.fileObserver = new MarkerObserver(ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain(), registeredMarkerEventListeners);
+		this.checkMarkers() ;
 	}
 
+	protected List<IMarkerEventListener> getRegisteredMarkerEventListeners() {
+		IExtensionRegistry registry = Platform.getExtensionRegistry();
+		IConfigurationElement[] config = registry.getConfigurationElementsFor(IMarkerEventListener.MARKER_EVENT_LISTENER_EXTENSION_POINT_ID) ;
+		this.registeredMarkerEventListeners = new ArrayList<IMarkerEventListener>() ;
+		try {
+			for (int i = 0 ; i < config.length ; i++) {
+				Object o = config[i].createExecutableExtension("class") ;
+				try {
+					this.registeredMarkerEventListeners.add((IMarkerEventListener)servicesRegistry.getService(o.getClass())) ;
+				} catch (ServiceException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}  
+		return this.registeredMarkerEventListeners ;
+	}
+	
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
 	 * 
@@ -136,11 +157,14 @@ public class MarkersMonitorService implements IService {
 				if(file != null) {
 					try {
 						markers = file.findMarkers(null /* all markers */, true, 0);
-
 						for(int i = 0; i < markers.length; i++) {
 							EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(markers[i], null, ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
-							if(eObjectFromMarker != null) {
-								decorationService.addDecoration(markers[i], eObjectFromMarker);
+							if(eObjectFromMarker != null && this.registeredMarkerEventListeners != null) {
+								for (IMarkerEventListener listener : this.registeredMarkerEventListeners) {
+									if (listener.isNotifiedOnInitialMarkerCheck()) {
+										listener.notifyMarkerChange(eObjectFromMarker, markers[i], IMarkerEventListener.MARKER_ADDED) ;
+									}
+								}
 							}
 						}
 					} catch (CoreException e) {
@@ -164,9 +188,10 @@ public class MarkersMonitorService implements IService {
 	 */
 	class MarkerObserver implements IFileObserver {
 
-
 		/** The domain. */
 		private final TransactionalEditingDomain domain;
+		
+		protected List<IMarkerEventListener> markerEventListeners ;
 
 		/**
 		 * This method is called when information about an Marker
@@ -176,8 +201,9 @@ public class MarkersMonitorService implements IService {
 		 * @param domain
 		 *        the domain
 		 */
-		public MarkerObserver(TransactionalEditingDomain domain) {
+		public MarkerObserver(TransactionalEditingDomain domain, List<IMarkerEventListener> markerEventListeners) {
 			this.domain = domain;
+			this.markerEventListeners = markerEventListeners ;
 		}
 
 		/**
@@ -241,8 +267,10 @@ public class MarkersMonitorService implements IService {
 		 */
 		public void handleMarkerDeleted(IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
 			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(null, attributes, domain);
-			if(eObjectFromMarker != null) {
-				decorationService.removeDecoration(marker.toString());
+			if(eObjectFromMarker != null && this.markerEventListeners != null) {
+				for (IMarkerEventListener listener : this.markerEventListeners) {
+					listener.notifyMarkerChange(eObjectFromMarker, marker, IMarkerEventListener.MARKER_REMOVED) ;
+				}
 			}
 		}
 
@@ -254,8 +282,10 @@ public class MarkersMonitorService implements IService {
 		 */
 		public void handleMarkerChanged(IMarker marker) {
 			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(marker, null, domain);
-			if(eObjectFromMarker != null) {
-				decorationService.addDecoration(marker, eObjectFromMarker);
+			if(eObjectFromMarker != null && this.markerEventListeners != null) {
+				for (IMarkerEventListener listener : this.markerEventListeners) {
+					listener.notifyMarkerChange(eObjectFromMarker, marker, IMarkerEventListener.MARKER_ADDED) ;
+				}
 			}
 		}
 	}

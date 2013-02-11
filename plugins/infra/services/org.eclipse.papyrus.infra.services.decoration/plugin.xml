@@ -11,4 +11,10 @@
       </service>
    </extension>
    <extension-point id="decorationSpecificFunctions" name="decorationSpecificFunctions" schema="schema/decorationSpecificFunctions.exsd"/>
+   <extension
+         point="org.eclipse.papyrus.infra.services.markerlistener.markereventlistener">
+      <listener
+            class="org.eclipse.papyrus.infra.services.decoration.DecorationService">
+      </listener>
+   </extension>
 </plugin>

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *  Arnaud Cuccuru (CEA LIST) - arnaud.cuccuru@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration;
 
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPos
 import org.eclipse.papyrus.infra.services.decoration.util.DecorationSpecificFunctions;
 import org.eclipse.papyrus.infra.services.decoration.util.DecorationUtils;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
+import org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener;
 
 /**
  * The Class DecorationService.
@@ -256,6 +258,25 @@ public class DecorationService extends Observable implements IDecorationService 
 			return tool.getDecorations(this, navigateToParents);
 		}
 		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#notifyMarkerChange(org.eclipse.emf.ecore.EObject, org.eclipse.core.resources.IMarker, int)
+	 */
+	public void notifyMarkerChange(EObject eObjectOfMarker, IMarker marker, int addedOrRemoved) {
+		if (addedOrRemoved == IMarkerEventListener.MARKER_ADDED) {
+			this.addDecoration(marker, eObjectOfMarker) ;
+		}
+		else { // IMarkerEventListener.MARKER_REMOVED
+			this.removeDecoration(marker.toString()) ;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#isNotifiedOnInitialMarkerCheck()
+	 */
+	public boolean isNotifiedOnInitialMarkerCheck() {
+		return true;
 	}
 
 

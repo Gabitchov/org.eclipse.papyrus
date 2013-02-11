@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration;
 
@@ -17,16 +17,16 @@ import java.util.Observer;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
+import org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener;
 
 
 /**
  * The Interface IDecorationService.
  */
-public interface IDecorationService extends IService {
+public interface IDecorationService extends IMarkerEventListener {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
