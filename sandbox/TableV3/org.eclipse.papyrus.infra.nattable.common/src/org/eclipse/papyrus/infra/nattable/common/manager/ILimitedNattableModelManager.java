@@ -11,20 +11,15 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.common.messages;
+package org.eclipse.papyrus.infra.nattable.common.manager;
 
-import org.eclipse.osgi.util.NLS;
+import java.util.List;
 
-public class Messages extends NLS {
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.nattable.common.messages.messages"; //$NON-NLS-1$
 
-	public static String TableLabelProvider_ErrorGettingIconForTable;
-	static {
-		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-	}
+public interface ILimitedNattableModelManager {
 
-	private Messages() {
-	}
+	public List<Object> getElementsList(final IAxisContentsProvider axisProvider);
+
 }

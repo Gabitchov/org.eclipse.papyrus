@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import java.util.ArrayList;
@@ -48,7 +61,7 @@ public class NattableModelManager implements INattableModelManager {
 
 	private List<Object> horizontalElements;
 
-	private Adapter axisListener;
+	private Adapter invertAxisListener;
 
 	private IAxisContentsProvider rowProvider;
 
@@ -68,7 +81,7 @@ public class NattableModelManager implements INattableModelManager {
 		this.columnProvier = rawModel.getVerticalContentProvider();
 		this.verticalElements = new ArrayList<Object>();
 		this.horizontalElements = new ArrayList<Object>();
-		this.axisListener = new AdapterImpl() {
+		this.invertAxisListener = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -83,6 +96,9 @@ public class NattableModelManager implements INattableModelManager {
 								List<Object> oldVertcialElement = NattableModelManager.this.verticalElements;
 								NattableModelManager.this.verticalElements = NattableModelManager.this.horizontalElements;
 								NattableModelManager.this.horizontalElements = oldVertcialElement;
+								IAxisManager oldRowManager = NattableModelManager.this.rowManager;
+								NattableModelManager.this.rowManager = NattableModelManager.this.columnManager;
+								NattableModelManager.this.columnManager = oldRowManager;
 								getNatTable().refresh();
 							}
 						} else if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_VerticalContentProvider()) {//undo command
@@ -92,18 +108,17 @@ public class NattableModelManager implements INattableModelManager {
 								List<Object> oldVertcialElement = NattableModelManager.this.verticalElements;
 								NattableModelManager.this.verticalElements = NattableModelManager.this.horizontalElements;
 								NattableModelManager.this.horizontalElements = oldVertcialElement;
+								IAxisManager oldRowManager = NattableModelManager.this.rowManager;
+								NattableModelManager.this.rowManager = NattableModelManager.this.columnManager;
+								NattableModelManager.this.columnManager = oldRowManager;
 								getNatTable().refresh();
 							}
 						}
 					}
-					int i = 0;
-					i++;
 				}
-				int j = 0;
-				j++;
 			}
 		};
-		rawModel.eAdapters().add(this.axisListener);
+		rawModel.eAdapters().add(this.invertAxisListener);
 		init();
 	}
 
@@ -132,14 +147,14 @@ public class NattableModelManager implements INattableModelManager {
 	protected IAxisManager createAxisManager(final List<String> ids, final IAxisContentsProvider contentProvider) {
 		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
 		for(final String id : ids) {
-			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(this, id, this.pTable, contentProvider);
+			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(this, id, this.pTable, contentProvider, ids.size() == 1);
 			assert manager != null;
 			managers.add(manager);
 		}
 		IAxisManager manager = null;
 		if(managers.size() > 1) {
 			manager = new CompositeAxisManager();
-			manager.init(this, "", this.pTable, contentProvider);
+			manager.init(this, "", this.pTable, contentProvider, true);
 			((CompositeAxisManager)manager).setAxisManager(managers);
 		} else {
 			manager = managers.get(0);
@@ -184,7 +199,6 @@ public class NattableModelManager implements INattableModelManager {
 	 *        the list of the objects to add in rows
 	 */
 	public void addRows(final Collection<Object> objectToAdd) {
-		//FIXME this code should work even if we inverse rows and lines
 		final EditingDomain domain = getEditingDomain(this.pTable);
 		final CompoundCommand cmd = new CompoundCommand("Add rows command");
 		Command tmp = this.rowManager.getAddAxisCommand(domain, objectToAdd);
@@ -195,7 +209,9 @@ public class NattableModelManager implements INattableModelManager {
 		if(tmp != null) {
 			cmd.append(tmp);
 		}
-		domain.getCommandStack().execute(cmd);
+		if(!cmd.isEmpty()) {
+			domain.getCommandStack().execute(cmd);
+		}
 	}
 
 	//FIXME : this method should never be called, we should find another way to do the refresh
@@ -205,23 +221,18 @@ public class NattableModelManager implements INattableModelManager {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#getColumnCount()
-	 *
-	 * @return
+	 * called when the manager is used vertically
 	 */
 	public int getColumnCount() {
-		return getColumnDataProvider().getColumnCount();
+		return this.getColumnElementsList().size();
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager#getRowCount()
-	 *
-	 * @return
+	 * called when the manager is used horizontally
 	 */
+
 	public int getRowCount() {
-		return getLineDataProvider().getRowCount();
+		return this.getRowElementsList().size();
 	}
 
 	/**
@@ -232,7 +243,19 @@ public class NattableModelManager implements INattableModelManager {
 	 *        the list of the objects to add in columns
 	 */
 	public void addColumns(final Collection<Object> objectToAdd) {
-		// TODO Auto-generated method stub
+		final EditingDomain domain = getEditingDomain(this.pTable);
+		final CompoundCommand cmd = new CompoundCommand("Add rows command");
+		Command tmp = this.columnManager.getAddAxisCommand(domain, objectToAdd);
+		if(tmp != null) {
+			cmd.append(tmp);
+		}
+		tmp = this.rowManager.getComplementaryAddAxisCommand(domain, objectToAdd);
+		if(tmp != null) {
+			cmd.append(tmp);
+		}
+		if(!cmd.isEmpty()) {
+			domain.getCommandStack().execute(cmd);
+		}
 	}
 
 	/**
@@ -280,8 +303,8 @@ public class NattableModelManager implements INattableModelManager {
 	 *         the contents to display in the cell localted to columnIndex and rowIndex
 	 */
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
-		final Object obj1 = getColumnDataProvider().getAllExistingAxis().get(columnIndex);
-		final Object obj2 = getLineDataProvider().getAllExistingAxis().get(rowIndex);
+		final Object obj1 = this.verticalElements.get(columnIndex);
+		final Object obj2 = this.horizontalElements.get(rowIndex);
 		return CrossValueSolverFactory.INSTANCE.getCrossValue(obj1, obj2);
 	}
 
@@ -298,13 +321,6 @@ public class NattableModelManager implements INattableModelManager {
 	 *         the column data provider
 	 */
 	public IAxisManager getColumnDataProvider() {
-//		final IAxisContentsProvider representedAxis = this.columnManager.getRepresentedContentProvider();
-//		if(this.pTable.getVerticalContentProvider() == representedAxis) {
-//			return this.columnManager;
-//		} else if(this.pTable.getHorizontalContentProvider() == representedAxis) {
-//			return this.rowManager;
-//		}
-//		return null;
 		return this.columnManager;
 	}
 
@@ -318,31 +334,61 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	public IAxisManager getLineDataProvider() {
 		return this.rowManager;
-//		final IAxisContentsProvider representedAxis = this.rowManager.getRepresentedContentProvider();
-//		if(this.pTable.getHorizontalContentProvider() == representedAxis) {
-//			return this.rowManager;
-//		} else if(this.pTable.getVerticalContentProvider() == representedAxis) {
-//			return this.columnManager;
-//		}
-//		return null;
 	}
 
-	/**
-	 * FIXME : must be useless when we will use GlazedList
-	 * must not be used by other other project than Papyrus
-	 */
+
 	public void refreshNattable() {
 		getNatTable().refresh();
 	}
 
 	public List<Object> getColumnElementsList() {
-		//FIXME doesn't manage the invert axis
 		return this.verticalElements;
 	}
 
 	public List<Object> getRowElementsList() {
-		//FIXME doesn't manage the invert axis
 		return this.horizontalElements;
+	}
+
+	public boolean canInsertRow(Collection<Object> objectsToAdd, int index) {
+		return this.rowManager.canInsertAxis(objectsToAdd, index);
+	}
+
+	public boolean canInsertColumns(Collection<Object> objectsToAdd, int index) {
+		return this.columnManager.canInsertAxis(objectsToAdd, index);
+	}
+
+	public boolean canDropColumnsElement(Collection<Object> objectsToAdd) {
+		return this.columnManager.canDropAxisElement(objectsToAdd);
+	}
+
+	public boolean canDropRowElement(Collection<Object> objectsToAdd) {
+		return this.rowManager.canDropAxisElement(objectsToAdd);
+	}
+
+	public void insertRows(Collection<Object> objectsToAdd, int index) {
+		this.rowManager.getInsertAxisCommand(objectsToAdd, index);
+
+	}
+
+	public void insertColumns(Collection<Object> objectsToAdd, int index) {
+		this.columnManager.getInsertAxisCommand(objectsToAdd, index);
+	}
+
+	public Object getColumnElement(int index) {
+		return this.verticalElements.get(index);
+	}
+
+	public Object getRowElemen(int index) {
+		return this.horizontalElements.get(index);
+	}
+
+	public List<Object> getElementsList(IAxisContentsProvider axisProvider) {
+		if(axisProvider == this.columnProvier) {
+			return this.verticalElements;
+		} else if(axisProvider == this.rowProvider) {
+			return this.horizontalElements;
+		}
+		return null;
 	}
 
 }

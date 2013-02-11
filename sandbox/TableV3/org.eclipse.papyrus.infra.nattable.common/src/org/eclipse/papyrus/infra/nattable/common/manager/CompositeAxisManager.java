@@ -1,6 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -12,10 +24,11 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 public class CompositeAxisManager extends AbstractAxisManager {
 
+	/**
+	 * the id of this manager
+	 */
+	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.common.composite.axis.manager";
 
-
-
-	//	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.common.composite.axis.manager";
 	/**
 	 * the managed managers
 	 */
@@ -29,46 +42,14 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	 */
 	public void setAxisManager(final List<IAxisManager> managers) {
 		this.managers = managers;
+		updateAxisContents();
 	}
 
-
-	@Override
-	public Object getDataValue(final int columnIndex, final int rowIndex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public int getColumnCount() {
-		return getTableManager().getColumnElementsList().size();
-		//		if(isUsedVertically()) {
-		//			int nbColumns = 0;
-		//			for(final IAxisManager current : this.managers) {
-		//				nbColumns += current.getColumnCount();
-		//			}
-		//			return nbColumns;
-		//		} else {
-		//			return 0;
-		//		}
-	}
-
-	public int getRowCount() {
-		//		if(isUsedHorizontally()){
-		//				int nbColumns = 0;
-		//				for(final IAxisManager current : this.managers) {
-		//				nbColumns += current.getRowCount();
-		//				}
-		//				return nbColumns;
-		//			}
-		//		return 0;
-		return getTableManager().getColumnElementsList().size();
-	}
-
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#dispose()
+	 *
+	 */
 	@Override
 	public void dispose() {
 		for(final IAxisManager current : this.managers) {
@@ -77,12 +58,23 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		this.managers.clear();
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#getManagerId()
+	 *
+	 * @return
+	 */
 	@Override
 	public String getManagerId() {
-		// TODO Auto-generated method stub
-		return null;
+		return MANAGER_ID;
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canBeUsedHorizontally()
+	 *
+	 * @return
+	 */
 	@Override
 	public boolean canBeUsedHorizontally() {
 		boolean answer = true;
@@ -93,6 +85,12 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		return answer;
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canBeUsedVertically()
+	 *
+	 * @return
+	 */
 	@Override
 	public boolean canBeUsedVertically() {
 		boolean answer = true;
@@ -103,6 +101,15 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		return answer;
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @return
+	 */
 	@Override
 	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand("Add Axis Command");
@@ -118,6 +125,15 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		return cmd;
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @return
+	 */
 	@Override
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
 		final CompoundCommand cmd = new CompoundCommand("Add Axis Command");
@@ -133,58 +149,34 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		return cmd;
 	}
 
-
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#updateAxisContents()
+	 *
+	 */
 	@Override
-	public Object getHeaderDataValue(final int columnIndex, final int rowIndex) {
-		return getAllExistingAxis().get(columnIndex);
+	public synchronized void updateAxisContents() {
+		if(this.managers != null) {
+			for(final IAxisManager current : this.managers) {
+				current.updateAxisContents();
+			}
+		}
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#isAllowedContents(java.lang.Object)
+	 *
+	 * @param object
+	 * @return
+	 */
 	@Override
-	public int getHeaderColumnCount() {
-		int i = 0;
+	public boolean isAllowedContents(Object object) {
 		for(final IAxisManager current : this.managers) {
-			i += current.getHeaderColumnCount();
+			if(current.isAllowedContents(object)) {
+				return true;
+			}
 		}
-		return i;
+		return false;
 	}
-
-	@Override
-	public int getHeaderRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setHeaderDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	@Override
-	public List<?> getAllVisibleAxis() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<?> getAllCurrentPossibleAxis() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<?> getAllExistingAxis() {
-		final List<Object> values = new ArrayList<Object>();
-		for(final IAxisManager manager : this.managers) {
-			values.addAll(manager.getAllExistingAxis());
-		}
-		return values;
-	}
-
-
-
-
 }

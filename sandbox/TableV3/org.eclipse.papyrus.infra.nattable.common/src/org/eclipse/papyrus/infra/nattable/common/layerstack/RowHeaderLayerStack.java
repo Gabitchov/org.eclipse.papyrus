@@ -1,8 +1,22 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.layerstack;
 
 import org.eclipse.nebula.widgets.nattable.config.AbstractUiBindingConfiguration;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.action.MouseEditAction;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.layer.RowHeaderLayer;
 import org.eclipse.nebula.widgets.nattable.layer.AbstractLayerTransform;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
@@ -35,6 +49,7 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 		//		rowHeaderLayer.addConfiguration(configuration);
 		//		rowHeaderLayer.addConfiguration(new RowOnlySelectionBindings());
 		setUnderlyingLayer(rowHeaderLayer);
+		setRegionName(GridRegion.ROW_HEADER);
 	}
 
 	public class CustomConfig extends DefaultSelectionBindings {

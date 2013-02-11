@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import java.util.Collection;
@@ -7,16 +20,28 @@ import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.ui.services.IDisposable;
 
 
-public interface INattableModelManager extends IDisposable, IDataProvider {
+public interface INattableModelManager extends ILimitedNattableModelManager, IDisposable, IDataProvider {
 
-	//maybe we should implements IDataProvider
+
 	public int getColumnCount();
 
 	public int getRowCount();
 
-	public void addRows(final Collection<Object> objectToAdd);
+	public void addRows(final Collection<Object> objectsToAdd);
 
-	public void addColumns(final Collection<Object> objectToAdd);
+	public void addColumns(final Collection<Object> objectsToAdd);
+
+	public boolean canInsertRow(final Collection<Object> objectsToAdd, int index);
+
+	public boolean canInsertColumns(final Collection<Object> objectsToAdd, int index);
+
+	public boolean canDropColumnsElement(final Collection<Object> objectsToAdd);
+
+	public boolean canDropRowElement(final Collection<Object> objectsToAdd);
+
+	public void insertRows(final Collection<Object> objectsToAdd, int index);
+
+	public void insertColumns(final Collection<Object> objectsToAdd, int index);
 
 	public IDataProvider getBodyDataProvider();
 
@@ -27,6 +52,10 @@ public interface INattableModelManager extends IDisposable, IDataProvider {
 	public List<Object> getColumnElementsList();
 
 	public List<Object> getRowElementsList();
+
+	public Object getColumnElement(int index);
+
+	public Object getRowElemen(int index);
 
 
 }

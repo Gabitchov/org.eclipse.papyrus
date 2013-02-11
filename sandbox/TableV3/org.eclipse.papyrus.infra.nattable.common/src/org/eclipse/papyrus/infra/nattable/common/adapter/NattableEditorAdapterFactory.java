@@ -27,25 +27,25 @@ public class NattableEditorAdapterFactory implements IAdapterFactory {
 				System.out.println("adapted");
 				return nestedEditor;
 			}
-		//
-		//			//The nestedEditor may or may not handle these cases.
-		//			if(nestedEditor != null && nestedEditor instanceof IAdaptable) {
-		//				if(adapterType == IDiagramGraphicalViewer.class) {
-		//					return ((IAdaptable)nestedEditor).getAdapter(IDiagramGraphicalViewer.class);
-		//				}
-		//
-		//				if(adapterType == Diagram.class) {
-		//					return ((IAdaptable)nestedEditor).getAdapter(Diagram.class);
-		//				}
-		//
-		//				if(adapterType == DiagramEditPart.class) {
-		//					return ((IAdaptable)nestedEditor).getAdapter(DiagramEditPart.class);
-		//				}
-		//
-		//				if(adapterType == IDiagramWorkbenchPart.class) {
-		//					return ((IAdaptable)nestedEditor).getAdapter(IDiagramWorkbenchPart.class);
-		//				}
-		//			}
+			//
+			//			//The nestedEditor may or may not handle these cases.
+			//			if(nestedEditor != null && nestedEditor instanceof IAdaptable) {
+			//				if(adapterType == IDiagramGraphicalViewer.class) {
+			//					return ((IAdaptable)nestedEditor).getAdapter(IDiagramGraphicalViewer.class);
+			//				}
+			//
+			//				if(adapterType == Diagram.class) {
+			//					return ((IAdaptable)nestedEditor).getAdapter(Diagram.class);
+			//				}
+			//
+			//				if(adapterType == DiagramEditPart.class) {
+			//					return ((IAdaptable)nestedEditor).getAdapter(DiagramEditPart.class);
+			//				}
+			//
+			//				if(adapterType == IDiagramWorkbenchPart.class) {
+			//					return ((IAdaptable)nestedEditor).getAdapter(IDiagramWorkbenchPart.class);
+			//				}
+			//			}
 		}
 		System.out.println("cant be adapted");
 		return null;

@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import java.util.ArrayList;
@@ -7,9 +20,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -24,25 +34,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
 
 public class FeatureManager extends AbstractAxisManager {
 
-	private Adapter listener;
-
 	@Override
-	public void init(INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider) {
-		super.init(manager, managerId, table, provider);
-		if(hasConfiguration()) {
-			contentsCalculus();
-		}
-		this.listener = new AdapterImpl() {
-
-			@Override
-			public void notifyChanged(final Notification msg) {
-				if(NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis() == msg.getFeature()) {
-					contentsCalculus();
-					((NattableModelManager)getTableManager()).refreshNattable();
-				}
-			}
-		};
-		provider.eAdapters().add(this.listener);
+	public void init(INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges) {
+		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
 	}
 
 
@@ -56,7 +50,7 @@ public class FeatureManager extends AbstractAxisManager {
 					features.addAll(((EObject)current).eClass().getEAllStructuralFeatures());
 				}
 			}
-			features.removeAll(getTableManager().getColumnElementsList());
+			features.removeAll(getTableManager().getElementsList(getRepresentedContentProvider()));
 			if(!features.isEmpty()) {
 				Collection<IAxis> toAdd = new ArrayList<IAxis>();
 				for(final EStructuralFeature feature : features) {
@@ -71,25 +65,53 @@ public class FeatureManager extends AbstractAxisManager {
 		return null;
 	}
 
-	private Collection<EStructuralFeature> getAllFeatures(final Collection<Object> objects) {
-		final Collection<EStructuralFeature> features = new HashSet<EStructuralFeature>();
-		for(final Object current : objects) {
-			if(current instanceof EObject) {
-				features.addAll(((EObject)current).eClass().getEAllStructuralFeatures());
+	@Override
+	public Command getAddAxisCommand(EditingDomain domain, Collection<Object> objectToAdd) {
+		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
+		for(final Object current : objectToAdd) {
+			if(isAllowedContents(current)) {
+				final EObjectAxis newAxis = NattableFactory.eINSTANCE.createEObjectAxis();
+				newAxis.setElement((EObject)current);
+				toAdd.add(newAxis);
 			}
 		}
-		return features;
+		if(!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), toAdd);
+		}
+		return null;
 	}
 
+	@Override
+	public boolean isAllowedContents(Object object) {
+		boolean isAllowed = super.isAllowedContents(object);
+		if(isAllowed) {
+			return object instanceof EStructuralFeature;
+		}
+		return false;
+	}
 
+	@Override
+	public boolean canInsertAxis(Collection<Object> objectsToAdd, int index) {
+		return false;//FIXME
+	}
 
+	@Override
+	public boolean canDropAxisElement(Collection<Object> objectsToAdd) {
+		for(Object object : objectsToAdd) {
+			if(isAllowedContents(object)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * calculus of the contents of the axis
 	 */
-	protected synchronized void contentsCalculus() {
+	@Override
+	public synchronized void updateAxisContents() {
 		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
-		final List<Object> axisElements = getTableManager().getColumnElementsList();
+		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
 		for(int i = 0; i < axis.size(); i++) {
 			IAxis current = axis.get(i);
 			if(current instanceof EObjectAxis) {
@@ -106,47 +128,4 @@ public class FeatureManager extends AbstractAxisManager {
 			}
 		}
 	}
-
-
-
-	@Override
-	public Object getDataValue(final int columnIndex, final int rowIndex) {
-		final List<Object> list = new ArrayList<Object>(getAllExistingAxis());
-		return list.get(columnIndex);
-	}
-
-
-
-	public int getColumnCount() {
-		return getAllExistingAxis().size();
-	}
-
-
-	public int getRowCount() {
-		return getAllExistingAxis().size();
-	}
-
-
-	@Override
-	public Object getHeaderDataValue(final int columnIndex, final int rowIndex) {
-		final List<Object> list = new ArrayList<Object>(getAllExistingAxis());
-		final Object current = list.get(columnIndex);
-		if(current instanceof EStructuralFeature) {
-			return ((EStructuralFeature)current).getName();
-		}
-		return null;
-	}
-
-
-
-
-
-	@Override
-	public List<?> getAllExistingAxis() {
-		return getTableManager().getColumnElementsList();
-	}
-
-
-
-
 }

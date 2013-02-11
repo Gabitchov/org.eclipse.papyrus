@@ -13,17 +13,17 @@ package org.eclipse.papyrus.infra.nattable.common.dataprovider;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
 
 /**
- *
+ * 
  * this manager allows to manage the rows of the table. It provides
  * a row header in 2 columns : number on first columns and call the row manager to display a text in the second column
- *
+ * 
  */
 public class RowHeaderDataProvider extends AbstractDataProvider {
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param manager
 	 *        the table manager
 	 */
@@ -32,9 +32,9 @@ public class RowHeaderDataProvider extends AbstractDataProvider {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.data.IDataProvider#getColumnCount()
-	 *
+	 * 
 	 * @return
 	 *         2
 	 */
@@ -47,14 +47,14 @@ public class RowHeaderDataProvider extends AbstractDataProvider {
 		if(columnIndex == 0) {
 			return rowIndex;
 		} else {
-			return this.manager.getLineDataProvider().getAllExistingAxis().get(rowIndex);
+			return this.manager.getRowElemen(rowIndex);
 		}
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.data.IDataProvider#setDataValue(int, int, java.lang.Object)
-	 *
+	 * 
 	 * @param columnIndex
 	 * @param rowIndex
 	 * @param newValue

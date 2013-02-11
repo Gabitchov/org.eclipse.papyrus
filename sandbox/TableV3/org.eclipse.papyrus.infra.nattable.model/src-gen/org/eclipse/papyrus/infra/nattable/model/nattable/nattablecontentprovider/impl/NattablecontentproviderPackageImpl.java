@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovide
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.N
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.DefaultContentProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.EMFFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
@@ -70,6 +72,13 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 	 * @generated
 	 */
 	private EClass iSynchronizedAxisContentProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum axisDirectionEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -166,6 +175,15 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getIAxisContentsProvider_InitialDirection() {
+		return (EAttribute)iAxisContentsProviderEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getIAxisContentsProvider__GetAxis() {
 		return iAxisContentsProviderEClass.getEOperations().get(0);
 	}
@@ -220,6 +238,15 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getAxisDirection() {
+		return axisDirectionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NattablecontentproviderFactory getNattablecontentproviderFactory() {
 		return (NattablecontentproviderFactory)getEFactoryInstance();
 	}
@@ -245,6 +272,7 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 		// Create classes and their features
 		iAxisContentsProviderEClass = createEClass(IAXIS_CONTENTS_PROVIDER);
 		createEAttribute(iAxisContentsProviderEClass, IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS);
+		createEAttribute(iAxisContentsProviderEClass, IAXIS_CONTENTS_PROVIDER__INITIAL_DIRECTION);
 		createEOperation(iAxisContentsProviderEClass, IAXIS_CONTENTS_PROVIDER___GET_AXIS);
 
 		defaultContentProviderEClass = createEClass(DEFAULT_CONTENT_PROVIDER);
@@ -254,6 +282,9 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 		createEReference(emfFeatureContentProviderEClass, EMF_FEATURE_CONTENT_PROVIDER__FEATURE);
 
 		iSynchronizedAxisContentProviderEClass = createEClass(ISYNCHRONIZED_AXIS_CONTENT_PROVIDER);
+
+		// Create enums
+		axisDirectionEEnum = createEEnum(AXIS_DIRECTION);
 	}
 
 	/**
@@ -297,6 +328,7 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iAxisContentsProviderEClass, IAxisContentsProvider.class, "IAxisContentsProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIAxisContentsProvider_JavaContentProviderIds(), ecorePackage.getEString(), "javaContentProviderIds", null, 1, -1, IAxisContentsProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIAxisContentsProvider_InitialDirection(), this.getAxisDirection(), "initialDirection", "", 0, 1, IAxisContentsProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEOperation(getIAxisContentsProvider__GetAxis(), theNattablePackage.getIAxis(), "getAxis", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
@@ -307,6 +339,11 @@ public class NattablecontentproviderPackageImpl extends EPackageImpl implements 
 		initEReference(getEMFFeatureContentProvider_Feature(), theEcorePackage.getEReference(), null, "feature", null, 1, 1, EMFFeatureContentProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iSynchronizedAxisContentProviderEClass, ISynchronizedAxisContentProvider.class, "ISynchronizedAxisContentProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		// Initialize enums and add enum literals
+		initEEnum(axisDirectionEEnum, AxisDirection.class, "AxisDirection"); //$NON-NLS-1$
+		addEEnumLiteral(axisDirectionEEnum, AxisDirection.VERTICAL);
+		addEEnumLiteral(axisDirectionEEnum, AxisDirection.HORIZONTAL);
 	}
 
 } //NattablecontentproviderPackageImpl

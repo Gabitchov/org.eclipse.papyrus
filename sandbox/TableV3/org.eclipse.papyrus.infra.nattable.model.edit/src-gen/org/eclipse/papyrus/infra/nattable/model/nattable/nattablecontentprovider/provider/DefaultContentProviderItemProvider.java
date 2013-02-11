@@ -37,6 +37,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.DefaultContentProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
 
@@ -78,6 +79,7 @@ public class DefaultContentProviderItemProvider
 			super.getPropertyDescriptors(object);
 
 			addJavaContentProviderIdsPropertyDescriptor(object);
+			addInitialDirectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,6 +99,28 @@ public class DefaultContentProviderItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_IAxisContentsProvider_javaContentProviderIds_feature", "_UI_IAxisContentsProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 NattablecontentproviderPackage.Literals.IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS,
 				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Initial Direction feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInitialDirectionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IAxisContentsProvider_initialDirection_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IAxisContentsProvider_initialDirection_feature", "_UI_IAxisContentsProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablecontentproviderPackage.Literals.IAXIS_CONTENTS_PROVIDER__INITIAL_DIRECTION,
+				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -153,7 +177,11 @@ public class DefaultContentProviderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DefaultContentProvider_type"); //$NON-NLS-1$
+		AxisDirection labelValue = ((DefaultContentProvider)object).getInitialDirection();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DefaultContentProvider_type") : //$NON-NLS-1$
+			getString("_UI_DefaultContentProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -169,6 +197,7 @@ public class DefaultContentProviderItemProvider
 
 		switch (notification.getFeatureID(DefaultContentProvider.class)) {
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
+			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:

@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.common.manager;
 
 import java.util.ArrayList;
@@ -7,14 +20,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.common.manager.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
@@ -30,25 +39,25 @@ import org.eclipse.uml2.uml.Stereotype;
 
 public class UMLStereotypePropertyManager extends AbstractAxisManager {
 
-	private Adapter listener;
+	//	private Adapter listener;
 
 	@Override
-	public void init(INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider) {
-		super.init(manager, managerId, table, provider);
-		if(hasConfiguration()) {
-			contentsCalculus();
-		}
-		this.listener = new AdapterImpl() {
-
-			@Override
-			public void notifyChanged(final Notification msg) {
-				if(NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis() == msg.getFeature()) {
-					contentsCalculus();
-					((NattableModelManager)getTableManager()).refreshNattable();
-				}
-			}
-		};
-		provider.eAdapters().add(this.listener);
+	public void init(INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges) {
+		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
+		//		if(hasConfiguration()) {
+		//			updateAxisContents();
+		//		}
+		//		this.listener = new AdapterImpl() {
+		//
+		//			@Override
+		//			public void notifyChanged(final Notification msg) {
+		//				if(NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis() == msg.getFeature()) {
+		//					updateAxisContents();
+		//					((NattableModelManager)getTableManager()).refreshNattable();
+		//				}
+		//			}
+		//		};
+		//		provider.eAdapters().add(this.listener);
 	}
 
 	@Override
@@ -71,7 +80,7 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 			allPropertyQN.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + property.getQualifiedName());
 		}
 
-		allPropertyQN.removeAll(getTableManager().getColumnElementsList());
+		allPropertyQN.removeAll(getTableManager().getElementsList(getRepresentedContentProvider()));
 		if(!allPropertyQN.isEmpty()) {
 			final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 			for(String propQN : allPropertyQN) {
@@ -89,9 +98,10 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 	/**
 	 * calculus of the contents of the axis
 	 */
-	protected synchronized void contentsCalculus() {
+	@Override
+	public synchronized void updateAxisContents() {
 		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
-		final List<Object> axisElements = getTableManager().getColumnElementsList();
+		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
 		for(int i = 0; i < axis.size(); i++) {
 			IAxis current = axis.get(i);
 			if(current instanceof IdAxis) {
@@ -109,27 +119,29 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 		}
 	}
 
-
-	public int getColumnCount() {
-		if(isUsedVertically()) {
-			return getAllExistingAxis().size();
-		}
-		return 0;
-	}
-
-	public int getRowCount() {
-		if(isUsedHorizontally()) {
-			return getAllExistingAxis().size();
-		}
-		return 0;
-
-	}
-
-
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canDropAxisElement(java.util.Collection)
+	 * 
+	 * @param objectsToAdd
+	 * @return
+	 */
 	@Override
-	public List<?> getAllExistingAxis() {
-		return getTableManager().getColumnElementsList();
+	public boolean canDropAxisElement(Collection<Object> objectsToAdd) {
+		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canInsertAxis(java.util.Collection, int)
+	 * 
+	 * @param objectsToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public boolean canInsertAxis(Collection<Object> objectsToAdd, int index) {
+		return false;
 	}
 
 

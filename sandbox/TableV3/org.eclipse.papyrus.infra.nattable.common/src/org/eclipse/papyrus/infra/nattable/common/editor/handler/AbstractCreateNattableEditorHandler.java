@@ -50,6 +50,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderFactory;
 import org.eclipse.swt.widgets.Display;
@@ -58,7 +59,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * @author dumoulin
- *
+ * 
  */
 public abstract class AbstractCreateNattableEditorHandler extends AbstractHandler {
 
@@ -78,9 +79,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	private final String editorType;
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param editorType
 	 *        the type of the editor
 	 * @param defaultName
@@ -94,9 +95,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * Should be overridden in order to restrict creation
-	 *
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -108,7 +109,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 *
+	 * 
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
@@ -125,9 +126,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	/**
 	 * Run the command as a transaction. Create a Transaction and delegate the
 	 * command to {@link #doExecute(ServicesRegistry)}.
-	 *
+	 * 
 	 * @throws ServiceException
-	 *
+	 * 
 	 */
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// default Value
@@ -206,7 +207,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * Do the execution of the command.
-	 *
+	 * 
 	 * @param serviceRegistry
 	 * @throws ServiceException
 	 * @throws NotFoundException
@@ -224,7 +225,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	/**
 	 * Create a model identifying the editor. This model will be saved with the
 	 * sash
-	 *
+	 * 
 	 * @return
 	 * @throws ServiceException
 	 * @throws NotFoundException
@@ -253,7 +254,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 			final IAxisContentsProvider copy = EcoreUtil.copy(rowProvider);
 			rowProvider = copy;
 		}
-
+		rowProvider.setInitialDirection(AxisDirection.HORIZONTAL);
 		IAxisContentsProvider columnProvider = defaultConfig.getDefaultVerticalContentProvider();
 		if(columnProvider == null) {
 			columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
@@ -261,6 +262,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 			final IAxisContentsProvider copy = EcoreUtil.copy(columnProvider);
 			columnProvider = copy;
 		}
+		columnProvider.setInitialDirection(AxisDirection.VERTICAL);
 
 		//		final IAxisContentsProvider columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
 
@@ -290,7 +292,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * Get the current MultiDiagramEditor.
-	 *
+	 * 
 	 * @return
 	 * @throws BackboneException
 	 */
@@ -300,7 +302,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 	/**
 	 * Returns the context used to create the table
-	 *
+	 * 
 	 * @return
 	 *         the context used to create the table or <code>null</code> if not found
 	 * @throws ServiceException
@@ -338,7 +340,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 */
 	protected List<EObject> getSelection() {

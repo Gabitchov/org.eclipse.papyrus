@@ -4,7 +4,7 @@
     <javaContentProviderIds>org.eclipse.papyrus.infra.nattable.emf.feature.provider</javaContentProviderIds>
     <javaContentProviderIds>org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider</javaContentProviderIds>
   </defaultVerticalContentProvider>
-  <defaultHorizontalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider">
+  <defaultHorizontalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider" initialDirection="HORIZONTAL">
     <javaContentProviderIds>org.eclipse.papyrus.infra.nattable.emf.user.provider</javaContentProviderIds>
   </defaultHorizontalContentProvider>
 </nattableconfiguration:TableEditorConfiguration>

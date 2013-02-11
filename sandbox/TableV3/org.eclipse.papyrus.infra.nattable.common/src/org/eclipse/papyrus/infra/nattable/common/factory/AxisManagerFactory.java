@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.factory;
 
 import java.util.HashMap;
@@ -43,8 +56,9 @@ public class AxisManagerFactory {
 			}
 		}
 	}
-//	INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider
-	public IAxisManager getAxisManager(final INattableModelManager nattableManager, final String id, final Table table, final IAxisContentsProvider contentProvider) {
+
+	//	INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider
+	public IAxisManager getAxisManager(final INattableModelManager nattableManager, final String id, final Table table, final IAxisContentsProvider contentProvider, boolean mustRefreshContentsOnAxisChanges) {
 		final Class<IAxisManager> managerClass = this.map.get(id);
 		IAxisManager axisManager = null;
 		if(managerClass != null) {
@@ -56,8 +70,8 @@ public class AxisManagerFactory {
 				Activator.log.error(e);
 			}
 		}
-		if(axisManager!=null){
-			axisManager.init(nattableManager, id, table, contentProvider);
+		if(axisManager != null) {
+			axisManager.init(nattableManager, id, table, contentProvider, mustRefreshContentsOnAxisChanges);//FIXME
 		}
 		return axisManager;
 	}

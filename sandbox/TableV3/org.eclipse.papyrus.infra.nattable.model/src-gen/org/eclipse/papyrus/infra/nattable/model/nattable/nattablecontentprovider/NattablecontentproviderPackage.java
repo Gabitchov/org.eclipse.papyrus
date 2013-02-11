@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovide
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -97,13 +98,22 @@ public interface NattablecontentproviderPackage extends EPackage {
 	int IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Initial Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IAXIS_CONTENTS_PROVIDER__INITIAL_DIRECTION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>IAxis Contents Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IAXIS_CONTENTS_PROVIDER_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
+	int IAXIS_CONTENTS_PROVIDER_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -159,6 +169,15 @@ public interface NattablecontentproviderPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
+
+	/**
+	 * The feature id for the '<em><b>Initial Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION = IAXIS_CONTENTS_PROVIDER__INITIAL_DIRECTION;
 
 	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
@@ -244,6 +263,15 @@ public interface NattablecontentproviderPackage extends EPackage {
 	int EMF_FEATURE_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
 
 	/**
+	 * The feature id for the '<em><b>Initial Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_FEATURE_CONTENT_PROVIDER__INITIAL_DIRECTION = DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION;
+
+	/**
 	 * The feature id for the '<em><b>Axis</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,6 +344,15 @@ public interface NattablecontentproviderPackage extends EPackage {
 	int ISYNCHRONIZED_AXIS_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
 
 	/**
+	 * The feature id for the '<em><b>Initial Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISYNCHRONIZED_AXIS_CONTENT_PROVIDER__INITIAL_DIRECTION = IAXIS_CONTENTS_PROVIDER__INITIAL_DIRECTION;
+
+	/**
 	 * The number of structural features of the '<em>ISynchronized Axis Content Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -353,6 +390,17 @@ public interface NattablecontentproviderPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection <em>Axis Direction</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.NattablecontentproviderPackageImpl#getAxisDirection()
+	 * @generated
+	 */
+	int AXIS_DIRECTION = 4;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider <em>IAxis Contents Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -372,6 +420,17 @@ public interface NattablecontentproviderPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIAxisContentsProvider_JavaContentProviderIds();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getInitialDirection <em>Initial Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Initial Direction</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getInitialDirection()
+	 * @see #getIAxisContentsProvider()
+	 * @generated
+	 */
+	EAttribute getIAxisContentsProvider_InitialDirection();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getAxis() <em>Get Axis</em>}' operation.
@@ -436,6 +495,16 @@ public interface NattablecontentproviderPackage extends EPackage {
 	EClass getISynchronizedAxisContentProvider();
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection <em>Axis Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Axis Direction</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection
+	 * @generated
+	 */
+	EEnum getAxisDirection();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -475,6 +544,14 @@ public interface NattablecontentproviderPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IAXIS_CONTENTS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = eINSTANCE.getIAxisContentsProvider_JavaContentProviderIds();
+
+		/**
+		 * The meta object literal for the '<em><b>Initial Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IAXIS_CONTENTS_PROVIDER__INITIAL_DIRECTION = eINSTANCE.getIAxisContentsProvider_InitialDirection();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Axis</b></em>' operation.
@@ -529,6 +606,16 @@ public interface NattablecontentproviderPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ISYNCHRONIZED_AXIS_CONTENT_PROVIDER = eINSTANCE.getISynchronizedAxisContentProvider();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection <em>Axis Direction</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.NattablecontentproviderPackageImpl#getAxisDirection()
+		 * @generated
+		 */
+		EEnum AXIS_DIRECTION = eINSTANCE.getAxisDirection();
 
 	}
 

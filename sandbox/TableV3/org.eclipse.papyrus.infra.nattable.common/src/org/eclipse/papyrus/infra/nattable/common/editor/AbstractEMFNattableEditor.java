@@ -69,9 +69,9 @@ import org.eclipse.ui.part.EditorPart;
 
 /**
  * Abstract class for TableEditor
- *
- *
- *
+ * 
+ * 
+ * 
  */
 public abstract class AbstractEMFNattableEditor extends EditorPart {
 
@@ -92,7 +92,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	/**
 	 * @param servicesRegistry
 	 * @param rawModel
-	 *
+	 * 
 	 */
 	public AbstractEMFNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
 		this.servicesRegistry = servicesRegistry;
@@ -100,9 +100,9 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#init(org.eclipse.ui.IEditorSite, org.eclipse.ui.IEditorInput)
-	 *
+	 * 
 	 * @param site
 	 * @param input
 	 * @throws PartInitException
@@ -167,6 +167,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 					public void run(final NatTable natTable, final MouseEvent event) {
 						final CompoundCommand cmd = new CompoundCommand("Switch Lines and Columns");
 						final IAxisContentsProvider vertical = AbstractEMFNattableEditor.this.rawModel.getVerticalContentProvider();
+
 						final IAxisContentsProvider horizontal = AbstractEMFNattableEditor.this.rawModel.getHorizontalContentProvider();
 						final EditingDomain domain = getEditingDomain();
 						//FIXME verify that we can exchanges the axis
@@ -206,7 +207,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 
 
-		addDragAndDropSupport(this.natTable);
+		addDragAndDropSupport(this.natTable, gridLayer, fBodyLayer);
 		//we create a menu manager
 		this.menuMgr = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.common.editor") {
 
@@ -237,21 +238,24 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	/**
 	 * Enable the table to receive dropped elements
+	 * 
+	 * @param fBodyLayer
+	 * @param gridLayer
 	 */
-	private void addDragAndDropSupport(final NatTable nattable) {
+	private void addDragAndDropSupport(final NatTable nattable, GridLayer gridLayer, BodyLayerStack fBodyLayer) {
 		final int operations = DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_DEFAULT;
 		final DropTarget target = new DropTarget(nattable, operations);
 		final LocalTransfer localTransfer = LocalTransfer.getInstance();
 		final Transfer[] types = new Transfer[]{ localTransfer };
 		target.setTransfer(types);
-		final NatTableDropListener dropListener = new NatTableDropListener(nattable, this.tableManager, this.rawModel);
+		final NatTableDropListener dropListener = new NatTableDropListener(nattable, this.tableManager, this.rawModel, gridLayer, fBodyLayer);
 		target.addDropListener(dropListener);
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#getEditingDomain()
-	 *
+	 * 
 	 * @return
 	 */
 	public EditingDomain getEditingDomain() {

@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.IElementComparer;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 /**
- *
+ * 
  * This class
  * 
  */

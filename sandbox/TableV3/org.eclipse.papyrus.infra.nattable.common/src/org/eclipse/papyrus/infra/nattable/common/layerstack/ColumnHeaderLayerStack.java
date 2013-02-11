@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.layerstack;
 
 import org.eclipse.nebula.widgets.nattable.NatTable;
@@ -5,6 +18,7 @@ import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IConfiguration;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.action.MouseEditAction;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.layer.ColumnHeaderLayer;
 import org.eclipse.nebula.widgets.nattable.layer.AbstractLayerTransform;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
@@ -51,6 +65,7 @@ public class ColumnHeaderLayerStack extends AbstractLayerTransform {
 		this.colHeaderLayer.addConfiguration(new PapyrusDefaultColumnStyleStyleConfiguration());
 		//		this.colHeaderLayer.addConfiguration(configuration);
 		setUnderlyingLayer(this.colHeaderLayer);
+		setRegionName(GridRegion.COLUMN_HEADER);
 	}
 
 	public DataLayer getDataLayer() {
