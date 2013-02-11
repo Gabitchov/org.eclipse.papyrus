@@ -33,6 +33,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -81,8 +83,16 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.StateMachineL
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.locators.CustomEntryExitPointPositionLocator;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateForkEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateInitialEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJoinEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJunctionEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
@@ -202,7 +212,19 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 
 		}
 		if(graphicalParentObject instanceof State) {
-			if((droppedElement instanceof Pseudostate) && (((State)graphicalParentObject).getConnectionPoints().contains((Pseudostate)droppedElement)) || (droppedElement instanceof ConnectionPointReference) && (((State)graphicalParentObject).getConnections().contains((ConnectionPointReference)droppedElement))) {
+			State state = (State)graphicalParentObject;
+			State redefinedState = state.getRedefinedState();
+			// also take redefined states into account, see Bug 366415
+			EList<Pseudostate> connectionPoints;
+			if(redefinedState != null) {
+				connectionPoints = new BasicEList<Pseudostate>(state.getConnectionPoints());
+				connectionPoints.addAll(redefinedState.getConnectionPoints());
+			}
+			else {
+				connectionPoints = state.getConnectionPoints();
+			}
+
+			if((droppedElement instanceof Pseudostate) && (connectionPoints.contains((Pseudostate)droppedElement)) || (droppedElement instanceof ConnectionPointReference) && (((State)graphicalParentObject).getConnections().contains((ConnectionPointReference)droppedElement))) {
 				// Drop Pseudostate or ConnectionPointReference on State
 				if(isCompartmentTarget) {
 					return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
@@ -211,6 +233,46 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			}
 		}
 
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * <pre>
+	 * Returns the drop command for pseudo states, e.g. initial, choice etc.
+	 * Specific command is required in order to handle redefined pseudo states (Bug 366415)
+	 * </pre>
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param location
+	 *        the location to drop the element
+	 * @param droppedElement
+	 *        the element to drop
+	 * @param nodeVISUALID
+	 *        the visual identifier of the EditPart of the dropped element
+	 * @return the drop command
+	 */
+	protected Command dropPseudostate(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		EObject droppedElemContainer = droppedElement.eContainer();
+		Region extendedRegion = null;
+		if(graphicalParentObject instanceof org.eclipse.uml2.uml.Region) {
+			extendedRegion = ((org.eclipse.uml2.uml.Region)graphicalParentObject).getExtendedRegion();
+		}
+		if((graphicalParentObject instanceof org.eclipse.uml2.uml.Region) && (droppedElemContainer == graphicalParentObject || droppedElemContainer == extendedRegion)) {
+			Point location = getTranslatedLocation(dropRequest);
+			CompositeCommand cc = new CompositeCommand("Drop pseudo state");
+
+			if(graphicalParentEditPart.getParent() instanceof RegionEditPart) {
+				RegionFigure regionFigure = ((RegionEditPart)graphicalParentEditPart.getParent()).getPrimaryShape();
+				regionFigure.translateToAbsolute(location);
+				location.translate(regionFigure.getLocation());
+			}
+			cc.compose(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement, dropRequest));
+
+			return new ICommandProxy(cc.reduce());
+		}
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -367,8 +429,12 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-
-		if((graphicalParentObject instanceof org.eclipse.uml2.uml.Region) && droppedElement.eContainer().equals(graphicalParentObject)) {
+		EObject droppedElemContainer = droppedElement.eContainer();
+		Region extendedRegion = null;
+		if(graphicalParentObject instanceof org.eclipse.uml2.uml.Region) {
+			extendedRegion = ((org.eclipse.uml2.uml.Region)graphicalParentObject).getExtendedRegion();
+		}
+		if((graphicalParentObject instanceof org.eclipse.uml2.uml.Region) && (droppedElemContainer == graphicalParentObject || droppedElemContainer == extendedRegion)) {
 			CompositeCommand cc = new CompositeCommand("Drop");
 			IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
 
@@ -428,7 +494,18 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		//we restrict drop to be over the owning region
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		if(!(graphicalParentObject instanceof Region) || !((Region)graphicalParentObject).getTransitions().contains(droppedElement)) {
+		Region region = (Region)graphicalParentObject;
+		Region extendedRegion = region.getExtendedRegion();
+		// also take redefined (extended) regions into account, see Bug 366415
+		EList<Transition> transitions;
+		if(extendedRegion != null) {
+			transitions = new BasicEList<Transition>(region.getTransitions());
+			transitions.addAll(extendedRegion.getTransitions());
+		}
+		else {
+			transitions = region.getTransitions();
+		}
+		if(!(graphicalParentObject instanceof Region) || !transitions.contains(droppedElement)) {
 			// if it's not over the owing region then the transition might be a internal transition in dropping in the Internal compartment region
 			if(TransitionKind.INTERNAL == droppedElement.getKind().getValue()) {
 				return dropInternalTransition(dropRequest, droppedElement, getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedElement));
@@ -613,6 +690,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 	 * @return a CompositeCommand for Drop
 	 */
 	protected CompoundCommand getDropAffixedNodeInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
@@ -646,7 +724,17 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		droppableElementsVisualId.add(PseudostateExitPointEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(ConnectionPointReferenceEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(TransitionEditPart.VISUAL_ID);
-		//		droppableElementsVisualId.add(EntryStateBehaviorEditPart.VISUAL_ID);
+		// add the following pseudo states to manage addition of redefined elements (Bug 366415)
+		droppableElementsVisualId.add(PseudostateInitialEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PseudostateTerminateEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PseudostateChoiceEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PseudostateDeepHistoryEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PseudostateShallowHistoryEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PseudostateForkEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PseudostateJoinEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PseudostateJunctionEditPart.VISUAL_ID);
+
+		// droppableElementsVisualId.add(EntryStateBehaviorEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
 	}
 
@@ -697,6 +785,15 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			case PseudostateExitPointEditPart.VISUAL_ID:
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
 				return dropAffixedNode(dropRequest, semanticElement, nodeVISUALID);
+			case PseudostateInitialEditPart.VISUAL_ID:
+			case PseudostateTerminateEditPart.VISUAL_ID:
+			case PseudostateChoiceEditPart.VISUAL_ID:
+			case PseudostateDeepHistoryEditPart.VISUAL_ID:
+			case PseudostateShallowHistoryEditPart.VISUAL_ID:
+			case PseudostateForkEditPart.VISUAL_ID:
+			case PseudostateJoinEditPart.VISUAL_ID:
+			case PseudostateJunctionEditPart.VISUAL_ID:
+				return dropPseudostate(dropRequest, semanticElement, nodeVISUALID);
 
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
