@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="theme" name="CSS Theme" schema="schema/theme.exsd"/>
+   <extension-point id="markertopseudoselectormappingprovider" name="MarkerToPseudoSelectorMappingProvider" schema="schema/markertopseudoselectormappingprovider.exsd"/>
 	<extension point="org.eclipse.emf.ecore.factory_override">
 		<factory
 			class="org.eclipse.papyrus.infra.gmfdiag.css.factory.CSSNotationFactory"
@@ -70,5 +71,35 @@
           classname="org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationModel"
           description="A model for Notation resources with CSS support">
     </model>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.services.markerlistener.markereventlistener">
+    <listener
+          class="org.eclipse.papyrus.infra.gmfdiag.css.service.CssMarkerEventManagerService"></listener>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.core.service">
+    <service
+          classname="org.eclipse.papyrus.infra.gmfdiag.css.service.CssMarkerEventManagerService"
+          priority="1"
+          startKind="lazy">
+    </service>
+ </extension>
+ <extension
+       point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+    <editpolicyProvider
+          class="org.eclipse.papyrus.infra.gmfdiag.css.editpolicies.MarkerEventListenerEditPolicyProvider">
+       <Priority
+             name="Lowest">
+       </Priority>
+    </editpolicyProvider>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.core.service">
+    <service
+          classname="org.eclipse.papyrus.infra.gmfdiag.css.service.MarkerToPseudoSelectorMappingService"
+          priority="1"
+          startKind="lazy">
+    </service>
  </extension>
 </plugin>
