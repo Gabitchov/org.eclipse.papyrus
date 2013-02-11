@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Acquire;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ClockResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.CommunicationEndPoint;

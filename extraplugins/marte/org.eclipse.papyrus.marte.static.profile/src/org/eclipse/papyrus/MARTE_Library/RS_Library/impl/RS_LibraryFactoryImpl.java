@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE_Library.RS_Library.*;
 import org.eclipse.papyrus.MARTE_Library.RS_Library.RS_LibraryFactory;
 import org.eclipse.papyrus.MARTE_Library.RS_Library.RS_LibraryPackage;
 
@@ -37,7 +38,7 @@ public class RS_LibraryFactoryImpl extends EFactoryImpl implements RS_LibraryFac
 	 */
 	public static RS_LibraryFactory init() {
 		try {
-			RS_LibraryFactory theRS_LibraryFactory = (RS_LibraryFactory)EPackage.Registry.INSTANCE.getEFactory("http:///MARTE_Library/RS_Library.ecore"); 
+			RS_LibraryFactory theRS_LibraryFactory = (RS_LibraryFactory)EPackage.Registry.INSTANCE.getEFactory(RS_LibraryPackage.eNS_URI);
 			if (theRS_LibraryFactory != null) {
 				return theRS_LibraryFactory;
 			}

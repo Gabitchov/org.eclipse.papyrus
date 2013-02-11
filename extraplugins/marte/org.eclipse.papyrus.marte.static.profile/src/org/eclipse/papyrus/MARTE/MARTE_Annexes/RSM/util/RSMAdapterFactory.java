@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.*;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.DefaultLink;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Distribute;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.InterRepetition;

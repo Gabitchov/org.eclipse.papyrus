@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SW_ResourceCoreFactory;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SW_ResourceCorePackage;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SwAccessService;
@@ -37,7 +38,7 @@ public class SW_ResourceCoreFactoryImpl extends EFactoryImpl implements SW_Resou
 	 */
 	public static SW_ResourceCoreFactory init() {
 		try {
-			SW_ResourceCoreFactory theSW_ResourceCoreFactory = (SW_ResourceCoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/SW_ResourceCore/1"); 
+			SW_ResourceCoreFactory theSW_ResourceCoreFactory = (SW_ResourceCoreFactory)EPackage.Registry.INSTANCE.getEFactory(SW_ResourceCorePackage.eNS_URI);
 			if (theSW_ResourceCoreFactory != null) {
 				return theSW_ResourceCoreFactory;
 			}

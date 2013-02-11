@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.*;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMFactory;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaCommStep;
@@ -42,7 +43,7 @@ public class PAMFactoryImpl extends EFactoryImpl implements PAMFactory {
 	 */
 	public static PAMFactory init() {
 		try {
-			PAMFactory thePAMFactory = (PAMFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/PAM/1"); 
+			PAMFactory thePAMFactory = (PAMFactory)EPackage.Registry.INSTANCE.getEFactory(PAMPackage.eNS_URI);
 			if (thePAMFactory != null) {
 				return thePAMFactory;
 			}

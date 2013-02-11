@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.Alarm;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.EntryPoint;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.InterruptKind;
@@ -44,7 +45,7 @@ public class SW_ConcurrencyFactoryImpl extends EFactoryImpl implements SW_Concur
 	 */
 	public static SW_ConcurrencyFactory init() {
 		try {
-			SW_ConcurrencyFactory theSW_ConcurrencyFactory = (SW_ConcurrencyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/SW_Concurrency/1"); 
+			SW_ConcurrencyFactory theSW_ConcurrencyFactory = (SW_ConcurrencyFactory)EPackage.Registry.INSTANCE.getEFactory(SW_ConcurrencyPackage.eNS_URI);
 			if (theSW_ConcurrencyFactory != null) {
 				return theSW_ConcurrencyFactory;
 			}

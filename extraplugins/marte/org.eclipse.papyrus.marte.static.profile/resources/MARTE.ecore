@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MARTE"
-    nsURI="http://www.eclipse.org/papyrus/MARTE/1" nsPrefix="MARTE">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MARTE" nsURI="http://www.eclipse.org/papyrus/MARTE/1" nsPrefix="MARTE">
   <eClassifiers xsi:type="ecore:EEnum" name="dummy"/>
   <eSubpackages name="MARTE_Foundations" nsURI="http:///MARTE/MARTE_Foundations.ecore"
       nsPrefix="MARTE.MARTE_Foundations">
@@ -457,6 +455,7 @@
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="VSL" nsURI="http://www.eclipse.org/papyrus/VSL/1" nsPrefix="VSL">
+      <eClassifiers xsi:type="ecore:EEnum" name="dummy"/>
       <eSubpackages name="Variables" nsURI="http://www.eclipse.org/papyrus/Variables/1"
           nsPrefix="Variables">
         <eClassifiers xsi:type="ecore:EEnum" name="VariableDirectionKind">
@@ -670,8 +669,10 @@
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="HRM" nsURI="http://www.eclipse.org/papyrus/HRM/1" nsPrefix="HRM">
+      <eClassifiers xsi:type="ecore:EEnum" name="dummy"/>
       <eSubpackages name="HwLogical" nsURI="http://www.eclipse.org/papyrus/HwLogical/1"
           nsPrefix="HwLogical">
+        <eClassifiers xsi:type="ecore:EEnum" name="dummy"/>
         <eSubpackages name="HwComputing" nsURI="http://www.eclipse.org/papyrus/HwComputing/1"
             nsPrefix="HwComputing">
           <eClassifiers xsi:type="ecore:EEnum" name="ISA_Type">
@@ -805,6 +806,7 @@
         </eSubpackages>
         <eSubpackages name="HwStorage" nsURI="http://www.eclipse.org/papyrus/HwStorage/1"
             nsPrefix="HwStorage">
+          <eClassifiers xsi:type="ecore:EEnum" name="dummy"/>
           <eSubpackages name="HwStorageManager" nsURI="http://www.eclipse.org/papyrus/HwStorageManager/1"
               nsPrefix="HwStorageManager">
             <eClassifiers xsi:type="ecore:EClass" name="HwStorageManager" eSuperTypes="#//MARTE_DesignModel/HRM/HwGeneral/HwResource #//MARTE_Foundations/GRM/StorageResource">
@@ -973,6 +975,7 @@
       </eSubpackages>
       <eSubpackages name="HwPhysical" nsURI="http://www.eclipse.org/papyrus/HwPhysical/1"
           nsPrefix="HwPhysical">
+        <eClassifiers xsi:type="ecore:EEnum" name="dummy"/>
         <eSubpackages name="HwLayout" nsURI="http://www.eclipse.org/papyrus/HwLayout/1"
             nsPrefix="HwLayout">
           <eClassifiers xsi:type="ecore:EClass" name="HwComponent" eSuperTypes="#//MARTE_DesignModel/HRM/HwGeneral/HwResource">
@@ -1051,6 +1054,7 @@
       </eSubpackages>
     </eSubpackages>
     <eSubpackages name="SRM" nsURI="http://www.eclipse.org/papyrus/SRM/1" nsPrefix="SRM">
+      <eClassifiers xsi:type="ecore:EEnum" name="dummy"/>
       <eSubpackages name="SW_ResourceCore" nsURI="http://www.eclipse.org/papyrus/SW_ResourceCore/1"
           nsPrefix="SW_ResourceCore">
         <eClassifiers xsi:type="ecore:EClass" name="SwResource" abstract="true" eSuperTypes="#//MARTE_Foundations/GRM/Resource">

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.*;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.DefaultLink;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Distribute;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.InterRepetition;
@@ -42,7 +43,7 @@ public class RSMFactoryImpl extends EFactoryImpl implements RSMFactory {
 	 */
 	public static RSMFactory init() {
 		try {
-			RSMFactory theRSMFactory = (RSMFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/RSM/1"); 
+			RSMFactory theRSMFactory = (RSMFactory)EPackage.Registry.INSTANCE.getEFactory(RSMPackage.eNS_URI);
 			if (theRSMFactory != null) {
 				return theRSMFactory;
 			}

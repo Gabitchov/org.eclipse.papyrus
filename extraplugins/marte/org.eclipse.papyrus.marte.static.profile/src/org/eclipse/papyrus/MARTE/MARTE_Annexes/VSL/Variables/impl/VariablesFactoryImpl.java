@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.*;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.ExpressionContext;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.Var;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariableDirectionKind;
@@ -40,7 +41,7 @@ public class VariablesFactoryImpl extends EFactoryImpl implements VariablesFacto
 	 */
 	public static VariablesFactory init() {
 		try {
-			VariablesFactory theVariablesFactory = (VariablesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/Variables/1"); 
+			VariablesFactory theVariablesFactory = (VariablesFactory)EPackage.Registry.INSTANCE.getEFactory(VariablesPackage.eNS_URI);
 			if (theVariablesFactory != null) {
 				return theVariablesFactory;
 			}

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.ConcurrentAccessProtocolKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.MessageComResource;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.MessageResourceKind;
@@ -47,7 +48,7 @@ public class SW_InteractionFactoryImpl extends EFactoryImpl implements SW_Intera
 	 */
 	public static SW_InteractionFactory init() {
 		try {
-			SW_InteractionFactory theSW_InteractionFactory = (SW_InteractionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/SW_Interaction/1"); 
+			SW_InteractionFactory theSW_InteractionFactory = (SW_InteractionFactory)EPackage.Registry.INSTANCE.getEFactory(SW_InteractionPackage.eNS_URI);
 			if (theSW_InteractionFactory != null) {
 				return theSW_InteractionFactory;
 			}

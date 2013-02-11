@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.*;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.BoundedSubtype;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.ChoiceType;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.CollectionType;
@@ -41,7 +42,7 @@ public class DataTypesFactoryImpl extends EFactoryImpl implements DataTypesFacto
 	 */
 	public static DataTypesFactory init() {
 		try {
-			DataTypesFactory theDataTypesFactory = (DataTypesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/DataTypes/1"); 
+			DataTypesFactory theDataTypesFactory = (DataTypesFactory)EPackage.Registry.INSTANCE.getEFactory(DataTypesPackage.eNS_URI);
 			if (theDataTypesFactory != null) {
 				return theDataTypesFactory;
 			}

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE_Library.MARTE_PrimitivesTypes.*;
 import org.eclipse.papyrus.MARTE_Library.MARTE_PrimitivesTypes.MARTE_PrimitivesTypesFactory;
 import org.eclipse.papyrus.MARTE_Library.MARTE_PrimitivesTypes.MARTE_PrimitivesTypesPackage;
 
@@ -37,7 +38,7 @@ public class MARTE_PrimitivesTypesFactoryImpl extends EFactoryImpl implements MA
 	 */
 	public static MARTE_PrimitivesTypesFactory init() {
 		try {
-			MARTE_PrimitivesTypesFactory theMARTE_PrimitivesTypesFactory = (MARTE_PrimitivesTypesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///MARTE_Library/MARTE_PrimitivesTypes.ecore"); 
+			MARTE_PrimitivesTypesFactory theMARTE_PrimitivesTypesFactory = (MARTE_PrimitivesTypesFactory)EPackage.Registry.INSTANCE.getEFactory(MARTE_PrimitivesTypesPackage.eNS_URI);
 			if (theMARTE_PrimitivesTypesFactory != null) {
 				return theMARTE_PrimitivesTypesFactory;
 			}

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.CacheType;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.HwCache;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.HwDrive;
@@ -46,7 +47,7 @@ public class HwMemoryFactoryImpl extends EFactoryImpl implements HwMemoryFactory
 	 */
 	public static HwMemoryFactory init() {
 		try {
-			HwMemoryFactory theHwMemoryFactory = (HwMemoryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwMemory/1"); 
+			HwMemoryFactory theHwMemoryFactory = (HwMemoryFactory)EPackage.Registry.INSTANCE.getEFactory(HwMemoryPackage.eNS_URI);
 			if (theHwMemoryFactory != null) {
 				return theHwMemoryFactory;
 			}

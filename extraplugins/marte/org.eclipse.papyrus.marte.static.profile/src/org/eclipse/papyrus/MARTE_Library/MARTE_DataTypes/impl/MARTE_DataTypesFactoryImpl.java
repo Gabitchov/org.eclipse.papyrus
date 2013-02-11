@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.*;
 import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.MARTE_DataTypesFactory;
 import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.MARTE_DataTypesPackage;
 import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.TransmModeKind;
@@ -38,7 +39,7 @@ public class MARTE_DataTypesFactoryImpl extends EFactoryImpl implements MARTE_Da
 	 */
 	public static MARTE_DataTypesFactory init() {
 		try {
-			MARTE_DataTypesFactory theMARTE_DataTypesFactory = (MARTE_DataTypesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///MARTE_Library/MARTE_DataTypes.ecore"); 
+			MARTE_DataTypesFactory theMARTE_DataTypesFactory = (MARTE_DataTypesFactory)EPackage.Registry.INSTANCE.getEFactory(MARTE_DataTypesPackage.eNS_URI);
 			if (theMARTE_DataTypesFactory != null) {
 				return theMARTE_DataTypesFactory;
 			}

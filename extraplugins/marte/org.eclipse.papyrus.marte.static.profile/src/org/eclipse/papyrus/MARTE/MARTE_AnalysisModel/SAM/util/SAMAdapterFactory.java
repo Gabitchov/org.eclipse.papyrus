@@ -24,6 +24,7 @@ import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaExecHost;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaScenario;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaStep;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaTimedObs;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.*;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaAnalysisContext;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaCommHost;

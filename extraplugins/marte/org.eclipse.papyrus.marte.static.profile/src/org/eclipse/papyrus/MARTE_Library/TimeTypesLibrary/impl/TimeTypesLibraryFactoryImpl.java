@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.*;
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.EventKind;
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeInterpretationKind;
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeNatureKind;
@@ -41,7 +42,7 @@ public class TimeTypesLibraryFactoryImpl extends EFactoryImpl implements TimeTyp
 	 */
 	public static TimeTypesLibraryFactory init() {
 		try {
-			TimeTypesLibraryFactory theTimeTypesLibraryFactory = (TimeTypesLibraryFactory)EPackage.Registry.INSTANCE.getEFactory("http:///MARTE_Library/TimeTypesLibrary.ecore"); 
+			TimeTypesLibraryFactory theTimeTypesLibraryFactory = (TimeTypesLibraryFactory)EPackage.Registry.INSTANCE.getEFactory(TimeTypesLibraryPackage.eNS_URI);
 			if (theTimeTypesLibraryFactory != null) {
 				return theTimeTypesLibraryFactory;
 			}

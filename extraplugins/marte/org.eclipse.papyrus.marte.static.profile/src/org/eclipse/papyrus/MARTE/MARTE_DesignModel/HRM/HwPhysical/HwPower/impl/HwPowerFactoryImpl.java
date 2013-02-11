@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.HwCoolingSupply;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.HwPowerFactory;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.HwPowerPackage;
@@ -38,7 +39,7 @@ public class HwPowerFactoryImpl extends EFactoryImpl implements HwPowerFactory {
 	 */
 	public static HwPowerFactory init() {
 		try {
-			HwPowerFactory theHwPowerFactory = (HwPowerFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwPower/1"); 
+			HwPowerFactory theHwPowerFactory = (HwPowerFactory)EPackage.Registry.INSTANCE.getEFactory(HwPowerPackage.eNS_URI);
 			if (theHwPowerFactory != null) {
 				return theHwPowerFactory;
 			}

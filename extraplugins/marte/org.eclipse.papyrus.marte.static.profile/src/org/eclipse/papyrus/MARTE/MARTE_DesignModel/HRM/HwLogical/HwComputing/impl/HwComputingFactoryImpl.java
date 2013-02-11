@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.HwASIC;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.HwBranchPredictor;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.HwComputingFactory;
@@ -46,7 +47,7 @@ public class HwComputingFactoryImpl extends EFactoryImpl implements HwComputingF
 	 */
 	public static HwComputingFactory init() {
 		try {
-			HwComputingFactory theHwComputingFactory = (HwComputingFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwComputing/1"); 
+			HwComputingFactory theHwComputingFactory = (HwComputingFactory)EPackage.Registry.INSTANCE.getEFactory(HwComputingPackage.eNS_URI);
 			if (theHwComputingFactory != null) {
 				return theHwComputingFactory;
 			}

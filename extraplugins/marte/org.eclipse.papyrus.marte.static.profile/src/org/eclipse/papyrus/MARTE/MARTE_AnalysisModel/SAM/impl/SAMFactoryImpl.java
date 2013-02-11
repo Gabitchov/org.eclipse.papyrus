@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.*;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.OptimallityCriterionKind;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMFactory;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMPackage;
@@ -46,7 +47,7 @@ public class SAMFactoryImpl extends EFactoryImpl implements SAMFactory {
 	 */
 	public static SAMFactory init() {
 		try {
-			SAMFactory theSAMFactory = (SAMFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/SAM/1"); 
+			SAMFactory theSAMFactory = (SAMFactory)EPackage.Registry.INSTANCE.getEFactory(SAMPackage.eNS_URI);
 			if (theSAMFactory != null) {
 				return theSAMFactory;
 			}

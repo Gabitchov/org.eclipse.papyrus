@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerFeature;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerPort;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerSpecification;

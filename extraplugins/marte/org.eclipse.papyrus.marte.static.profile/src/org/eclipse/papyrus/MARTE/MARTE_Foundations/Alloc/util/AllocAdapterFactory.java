@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocateActivityGroup;

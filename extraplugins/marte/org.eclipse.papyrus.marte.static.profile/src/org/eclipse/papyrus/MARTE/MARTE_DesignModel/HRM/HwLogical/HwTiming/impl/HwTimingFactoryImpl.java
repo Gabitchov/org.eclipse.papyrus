@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.HwClock;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.HwTimer;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.HwTimingFactory;
@@ -39,7 +40,7 @@ public class HwTimingFactoryImpl extends EFactoryImpl implements HwTimingFactory
 	 */
 	public static HwTimingFactory init() {
 		try {
-			HwTimingFactory theHwTimingFactory = (HwTimingFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwTiming/1"); 
+			HwTimingFactory theHwTimingFactory = (HwTimingFactory)EPackage.Registry.INSTANCE.getEFactory(HwTimingPackage.eNS_URI);
 			if (theHwTimingFactory != null) {
 				return theHwTimingFactory;
 			}

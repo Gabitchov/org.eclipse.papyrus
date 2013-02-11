@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.*;
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.GRM_BasicTypesFactory;
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.GRM_BasicTypesPackage;
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.PeriodicServerKind;
@@ -40,7 +41,7 @@ public class GRM_BasicTypesFactoryImpl extends EFactoryImpl implements GRM_Basic
 	 */
 	public static GRM_BasicTypesFactory init() {
 		try {
-			GRM_BasicTypesFactory theGRM_BasicTypesFactory = (GRM_BasicTypesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///MARTE_Library/GRM_BasicTypes.ecore"); 
+			GRM_BasicTypesFactory theGRM_BasicTypesFactory = (GRM_BasicTypesFactory)EPackage.Registry.INSTANCE.getEFactory(GRM_BasicTypesPackage.eNS_URI);
 			if (theGRM_BasicTypesFactory != null) {
 				return theGRM_BasicTypesFactory;
 			}

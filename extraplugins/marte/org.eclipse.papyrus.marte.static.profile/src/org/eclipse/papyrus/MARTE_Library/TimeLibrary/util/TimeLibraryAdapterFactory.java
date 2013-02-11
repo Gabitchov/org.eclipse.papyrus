@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.MARTE_Library.TimeLibrary.*;
 import org.eclipse.papyrus.MARTE_Library.TimeLibrary.IdealClock;
 import org.eclipse.papyrus.MARTE_Library.TimeLibrary.TimeLibraryPackage;
 

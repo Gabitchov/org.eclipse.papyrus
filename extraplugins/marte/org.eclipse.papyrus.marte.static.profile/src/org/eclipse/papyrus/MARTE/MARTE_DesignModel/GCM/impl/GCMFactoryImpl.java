@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerFeature;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerPort;
@@ -52,7 +53,7 @@ public class GCMFactoryImpl extends EFactoryImpl implements GCMFactory {
 	 */
 	public static GCMFactory init() {
 		try {
-			GCMFactory theGCMFactory = (GCMFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/GCM/1"); 
+			GCMFactory theGCMFactory = (GCMFactory)EPackage.Registry.INSTANCE.getEFactory(GCMPackage.eNS_URI);
 			if (theGCMFactory != null) {
 				return theGCMFactory;
 			}

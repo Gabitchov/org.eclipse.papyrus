@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpConstraint;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.Clock;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.ClockConstraint;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.ClockType;

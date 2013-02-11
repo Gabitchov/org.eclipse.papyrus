@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwGeneralFactory;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwGeneralPackage;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResource;
@@ -38,7 +39,7 @@ public class HwGeneralFactoryImpl extends EFactoryImpl implements HwGeneralFacto
 	 */
 	public static HwGeneralFactory init() {
 		try {
-			HwGeneralFactory theHwGeneralFactory = (HwGeneralFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwGeneral/1"); 
+			HwGeneralFactory theHwGeneralFactory = (HwGeneralFactory)EPackage.Registry.INSTANCE.getEFactory(HwGeneralPackage.eNS_URI);
 			if (theHwGeneralFactory != null) {
 				return theHwGeneralFactory;
 			}

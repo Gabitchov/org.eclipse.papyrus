@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.HWActuator;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.HWSensor;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.HwDevice;
@@ -41,7 +42,7 @@ public class HwDeviceFactoryImpl extends EFactoryImpl implements HwDeviceFactory
 	 */
 	public static HwDeviceFactory init() {
 		try {
-			HwDeviceFactory theHwDeviceFactory = (HwDeviceFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwDevice/1"); 
+			HwDeviceFactory theHwDeviceFactory = (HwDeviceFactory)EPackage.Registry.INSTANCE.getEFactory(HwDevicePackage.eNS_URI);
 			if (theHwDeviceFactory != null) {
 				return theHwDeviceFactory;
 			}

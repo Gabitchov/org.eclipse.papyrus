@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.AccessPolicyKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.DeviceBroker;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.MemoryBroker;
@@ -40,7 +41,7 @@ public class SW_BrokeringFactoryImpl extends EFactoryImpl implements SW_Brokerin
 	 */
 	public static SW_BrokeringFactory init() {
 		try {
-			SW_BrokeringFactory theSW_BrokeringFactory = (SW_BrokeringFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/SW_Brokering/1"); 
+			SW_BrokeringFactory theSW_BrokeringFactory = (SW_BrokeringFactory)EPackage.Registry.INSTANCE.getEFactory(SW_BrokeringPackage.eNS_URI);
 			if (theSW_BrokeringFactory != null) {
 				return theSW_BrokeringFactory;
 			}

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.CallConcurrencyKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.ConcurrencyKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.ExecutionKind;
@@ -48,7 +49,7 @@ public class HLAMFactoryImpl extends EFactoryImpl implements HLAMFactory {
 	 */
 	public static HLAMFactory init() {
 		try {
-			HLAMFactory theHLAMFactory = (HLAMFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HLAM/1"); 
+			HLAMFactory theHLAMFactory = (HLAMFactory)EPackage.Registry.INSTANCE.getEFactory(HLAMPackage.eNS_URI);
 			if (theHLAMFactory != null) {
 				return theHLAMFactory;
 			}

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.HwDMA;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.HwMMU;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.HwStorageManager;
@@ -39,7 +40,7 @@ public class HwStorageManagerFactoryImpl extends EFactoryImpl implements HwStora
 	 */
 	public static HwStorageManagerFactory init() {
 		try {
-			HwStorageManagerFactory theHwStorageManagerFactory = (HwStorageManagerFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwStorageManager/1"); 
+			HwStorageManagerFactory theHwStorageManagerFactory = (HwStorageManagerFactory)EPackage.Registry.INSTANCE.getEFactory(HwStorageManagerPackage.eNS_URI);
 			if (theHwStorageManagerFactory != null) {
 				return theHwStorageManagerFactory;
 			}

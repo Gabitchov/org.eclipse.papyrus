@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.*;
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.AreaUnitKind;
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.DataSizeUnitKind;
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.DataTxRateUnitKind;
@@ -46,7 +47,7 @@ public class MeasurementUnitsFactoryImpl extends EFactoryImpl implements Measure
 	 */
 	public static MeasurementUnitsFactory init() {
 		try {
-			MeasurementUnitsFactory theMeasurementUnitsFactory = (MeasurementUnitsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///MARTE_Library/MeasurementUnits.ecore"); 
+			MeasurementUnitsFactory theMeasurementUnitsFactory = (MeasurementUnitsFactory)EPackage.Registry.INSTANCE.getEFactory(MeasurementUnitsPackage.eNS_URI);
 			if (theMeasurementUnitsFactory != null) {
 				return theMeasurementUnitsFactory;
 			}

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.Clock;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.ClockConstraint;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.ClockType;
@@ -46,7 +47,7 @@ public class TimeFactoryImpl extends EFactoryImpl implements TimeFactory {
 	 */
 	public static TimeFactory init() {
 		try {
-			TimeFactory theTimeFactory = (TimeFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/Time/1"); 
+			TimeFactory theTimeFactory = (TimeFactory)EPackage.Registry.INSTANCE.getEFactory(TimePackage.eNS_URI);
 			if (theTimeFactory != null) {
 				return theTimeFactory;
 			}

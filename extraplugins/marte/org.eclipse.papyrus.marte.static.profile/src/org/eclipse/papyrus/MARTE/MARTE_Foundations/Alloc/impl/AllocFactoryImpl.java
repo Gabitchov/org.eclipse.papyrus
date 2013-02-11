@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocFactory;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
@@ -47,7 +48,7 @@ public class AllocFactoryImpl extends EFactoryImpl implements AllocFactory {
 	 */
 	public static AllocFactory init() {
 		try {
-			AllocFactory theAllocFactory = (AllocFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/Alloc/1"); 
+			AllocFactory theAllocFactory = (AllocFactory)EPackage.Registry.INSTANCE.getEFactory(AllocPackage.eNS_URI);
 			if (theAllocFactory != null) {
 				return theAllocFactory;
 			}

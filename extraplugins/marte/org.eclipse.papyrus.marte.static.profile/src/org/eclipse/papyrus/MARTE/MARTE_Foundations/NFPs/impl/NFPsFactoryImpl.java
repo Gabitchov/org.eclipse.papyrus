@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.ConstraintKind;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Dimension;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsFactory;
@@ -43,7 +44,7 @@ public class NFPsFactoryImpl extends EFactoryImpl implements NFPsFactory {
 	 */
 	public static NFPsFactory init() {
 		try {
-			NFPsFactory theNFPsFactory = (NFPsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/NFPs/1"); 
+			NFPsFactory theNFPsFactory = (NFPsFactory)EPackage.Registry.INSTANCE.getEFactory(NFPsPackage.eNS_URI);
 			if (theNFPsFactory != null) {
 				return theNFPsFactory;
 			}

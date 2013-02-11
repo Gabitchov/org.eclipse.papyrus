@@ -34,7 +34,7 @@
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
-            location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_0lmpIpi4Ed-m0Oaexd_lJA"
+            location="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_zaC5cAPHEdyeNfbOYuD9pg"
             uri="http://www.eclipse.org/papyrus/MARTE/1">
       </profile>
    </extension>
@@ -936,6 +936,47 @@
             class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/Operators/1">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStoragePackage"
+            genModel="MARTE.genmodel"
+            uri="http://www.eclipse.org/papyrus/HwStorage/1">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.VSLPackage"
+            genModel="MARTE.genmodel"
+            uri="http://www.eclipse.org/papyrus/VSL/1">
+      </package>
+      <package
+            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwLogicalPackage"
+            genModel="MARTE.genmodel"
+            uri="http://www.eclipse.org/papyrus/HwLogical/1">
+      </package>
+      <package
+            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPhysicalPackage"
+            genModel="MARTE.genmodel"
+            uri="http://www.eclipse.org/papyrus/HwPhysical/1">
+      </package>
+      <package
+            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SRMPackage"
+            genModel="MARTE.genmodel"
+            uri="http://www.eclipse.org/papyrus/SRM/1">
+      </package>
+      <package
+            class="org.eclipse.papyrus.MARTE.MARTEPackage"
+            genModel="MARTE.genmodel"
+            uri="http://www.eclipse.org/papyrus/MARTE/1">
+      </package>
+      <package
+            class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HRMPackage"
+            genModel="MARTE.genmodel"
+            uri="http://www.eclipse.org/papyrus/HRM/1">
       </package>
    </extension>
 

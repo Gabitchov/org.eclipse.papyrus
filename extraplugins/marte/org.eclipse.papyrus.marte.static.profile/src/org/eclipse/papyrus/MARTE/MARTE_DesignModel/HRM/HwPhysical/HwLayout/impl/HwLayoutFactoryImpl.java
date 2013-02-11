@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.ComponentKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.ComponentState;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.ConditionType;
@@ -41,7 +42,7 @@ public class HwLayoutFactoryImpl extends EFactoryImpl implements HwLayoutFactory
 	 */
 	public static HwLayoutFactory init() {
 		try {
-			HwLayoutFactory theHwLayoutFactory = (HwLayoutFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwLayout/1"); 
+			HwLayoutFactory theHwLayoutFactory = (HwLayoutFactory)EPackage.Registry.INSTANCE.getEFactory(HwLayoutPackage.eNS_URI);
 			if (theHwLayoutFactory != null) {
 				return theHwLayoutFactory;
 			}

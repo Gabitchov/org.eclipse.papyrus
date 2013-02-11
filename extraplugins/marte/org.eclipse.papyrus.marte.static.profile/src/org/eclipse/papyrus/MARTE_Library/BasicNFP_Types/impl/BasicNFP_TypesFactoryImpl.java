@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.*;
 import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.BasicNFP_TypesFactory;
 import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.BasicNFP_TypesPackage;
 import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.DirectionKind;
@@ -40,7 +41,7 @@ public class BasicNFP_TypesFactoryImpl extends EFactoryImpl implements BasicNFP_
 	 */
 	public static BasicNFP_TypesFactory init() {
 		try {
-			BasicNFP_TypesFactory theBasicNFP_TypesFactory = (BasicNFP_TypesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///MARTE_Library/BasicNFP_Types.ecore"); 
+			BasicNFP_TypesFactory theBasicNFP_TypesFactory = (BasicNFP_TypesFactory)EPackage.Registry.INSTANCE.getEFactory(BasicNFP_TypesPackage.eNS_URI);
 			if (theBasicNFP_TypesFactory != null) {
 				return theBasicNFP_TypesFactory;
 			}

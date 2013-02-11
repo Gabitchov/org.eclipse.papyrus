@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Acquire;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ClockResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.CommunicationEndPoint;
@@ -56,7 +57,7 @@ public class GRMFactoryImpl extends EFactoryImpl implements GRMFactory {
 	 */
 	public static GRMFactory init() {
 		try {
-			GRMFactory theGRMFactory = (GRMFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/GRM/1"); 
+			GRMFactory theGRMFactory = (GRMFactory)EPackage.Registry.INSTANCE.getEFactory(GRMPackage.eNS_URI);
 			if (theGRMFactory != null) {
 				return theGRMFactory;
 			}

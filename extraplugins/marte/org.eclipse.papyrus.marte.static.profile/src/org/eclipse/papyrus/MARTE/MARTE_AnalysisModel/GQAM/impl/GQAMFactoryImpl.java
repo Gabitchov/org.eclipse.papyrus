@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.*;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GQAMFactory;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GQAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaAcqStep;
@@ -55,7 +56,7 @@ public class GQAMFactoryImpl extends EFactoryImpl implements GQAMFactory {
 	 */
 	public static GQAMFactory init() {
 		try {
-			GQAMFactory theGQAMFactory = (GQAMFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/GQAM/1"); 
+			GQAMFactory theGQAMFactory = (GQAMFactory)EPackage.Registry.INSTANCE.getEFactory(GQAMPackage.eNS_URI);
 			if (theGQAMFactory != null) {
 				return theGQAMFactory;
 			}

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.*;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.Operator;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsFactory;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage;
@@ -30,7 +31,7 @@ public class OperatorsFactoryImpl extends EFactoryImpl implements OperatorsFacto
 	 */
 	public static OperatorsFactory init() {
 		try {
-			OperatorsFactory theOperatorsFactory = (OperatorsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/Operators/1"); 
+			OperatorsFactory theOperatorsFactory = (OperatorsFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorsPackage.eNS_URI);
 			if (theOperatorsFactory != null) {
 				return theOperatorsFactory;
 			}

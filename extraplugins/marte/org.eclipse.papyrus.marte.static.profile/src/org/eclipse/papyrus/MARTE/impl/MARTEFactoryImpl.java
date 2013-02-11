@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.*;
 import org.eclipse.papyrus.MARTE.MARTEFactory;
 import org.eclipse.papyrus.MARTE.MARTEPackage;
 import org.eclipse.papyrus.MARTE.dummy;
@@ -38,7 +39,7 @@ public class MARTEFactoryImpl extends EFactoryImpl implements MARTEFactory {
 	 */
 	public static MARTEFactory init() {
 		try {
-			MARTEFactory theMARTEFactory = (MARTEFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/MARTE/1"); 
+			MARTEFactory theMARTEFactory = (MARTEFactory)EPackage.Registry.INSTANCE.getEFactory(MARTEPackage.eNS_URI);
 			if (theMARTEFactory != null) {
 				return theMARTEFactory;
 			}

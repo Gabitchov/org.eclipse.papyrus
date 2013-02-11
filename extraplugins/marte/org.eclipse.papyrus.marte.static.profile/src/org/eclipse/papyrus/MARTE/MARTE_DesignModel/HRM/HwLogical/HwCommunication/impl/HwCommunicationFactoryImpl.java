@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.*;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.HwArbiter;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.HwBridge;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.HwBus;
@@ -42,7 +43,7 @@ public class HwCommunicationFactoryImpl extends EFactoryImpl implements HwCommun
 	 */
 	public static HwCommunicationFactory init() {
 		try {
-			HwCommunicationFactory theHwCommunicationFactory = (HwCommunicationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/HwCommunication/1"); 
+			HwCommunicationFactory theHwCommunicationFactory = (HwCommunicationFactory)EPackage.Registry.INSTANCE.getEFactory(HwCommunicationPackage.eNS_URI);
 			if (theHwCommunicationFactory != null) {
 				return theHwCommunicationFactory;
 			}

@@ -21,6 +21,7 @@ import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommStep;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaRequestedService;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaScenario;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.*;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaCommStep;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaLogicalResource;

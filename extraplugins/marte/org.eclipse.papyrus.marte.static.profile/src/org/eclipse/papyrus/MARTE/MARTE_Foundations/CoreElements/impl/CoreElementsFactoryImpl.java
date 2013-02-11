@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.*;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Configuration;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.CoreElementsFactory;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.CoreElementsPackage;
@@ -40,7 +41,7 @@ public class CoreElementsFactoryImpl extends EFactoryImpl implements CoreElement
 	 */
 	public static CoreElementsFactory init() {
 		try {
-			CoreElementsFactory theCoreElementsFactory = (CoreElementsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/CoreElements/1"); 
+			CoreElementsFactory theCoreElementsFactory = (CoreElementsFactory)EPackage.Registry.INSTANCE.getEFactory(CoreElementsPackage.eNS_URI);
 			if (theCoreElementsFactory != null) {
 				return theCoreElementsFactory;
 			}

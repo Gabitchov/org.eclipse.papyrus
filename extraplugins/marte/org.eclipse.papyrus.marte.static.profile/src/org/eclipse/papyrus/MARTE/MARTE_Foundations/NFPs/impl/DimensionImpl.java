@@ -153,7 +153,7 @@ public class DimensionImpl extends EObjectImpl implements Dimension {
 	 */
 	public EList<Integer> getBaseExponent() {
 		if (baseExponent == null) {
-			baseExponent = new EDataTypeEList<Integer>(Integer.class, this, NFPsPackage.DIMENSION__BASE_EXPONENT);
+			baseExponent = new EDataTypeEList<Integer>(int.class, this, NFPsPackage.DIMENSION__BASE_EXPONENT);
 		}
 		return baseExponent;
 	}
