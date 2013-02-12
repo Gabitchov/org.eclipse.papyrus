@@ -44,7 +44,7 @@ public class FeatureManager extends AbstractAxisManager {
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
 		//if a configuration is declared we doesn't add columns when a new element is added to the table
 		if(!hasConfiguration()) {
-			final Set<EStructuralFeature> features = new HashSet<EStructuralFeature>();
+			final Set<Object> features = new HashSet<Object>();
 			for(final Object current : objectToAdd) {
 				if(current instanceof EObject) {
 					features.addAll(((EObject)current).eClass().getEAllStructuralFeatures());
@@ -52,14 +52,16 @@ public class FeatureManager extends AbstractAxisManager {
 			}
 			features.removeAll(getTableManager().getElementsList(getRepresentedContentProvider()));
 			if(!features.isEmpty()) {
-				Collection<IAxis> toAdd = new ArrayList<IAxis>();
-				for(final EStructuralFeature feature : features) {
-					final EObjectAxis newAxis = NattableFactory.eINSTANCE.createEObjectAxis();
-					newAxis.setElement(feature);
-					toAdd.add(newAxis);
-				}
+				return getAddAxisCommand(domain, features);
+				//				Collection<IAxis> toAdd = new ArrayList<IAxis>();
+				//				for(final EStructuralFeature feature : features) {
+				//					if(isAllowedContents(feature)){
+				//					final EObjectAxis newAxis = NattableFactory.eINSTANCE.createEObjectAxis();
+				//					newAxis.setElement(feature);
+				//					toAdd.add(newAxis);
+				//				}
 				//FIXME : we must use a factory and use the service edit
-				return AddCommand.create(domain, getRepresentedContentProvider(), NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), toAdd);
+				//				return AddCommand.create(domain, getRepresentedContentProvider(), NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), toAdd);
 			}
 		}
 		return null;

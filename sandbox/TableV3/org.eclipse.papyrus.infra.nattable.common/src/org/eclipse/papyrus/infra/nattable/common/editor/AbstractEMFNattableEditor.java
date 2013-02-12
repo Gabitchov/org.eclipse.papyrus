@@ -17,6 +17,9 @@ package org.eclipse.papyrus.infra.nattable.common.editor;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -69,9 +72,9 @@ import org.eclipse.ui.part.EditorPart;
 
 /**
  * Abstract class for TableEditor
- * 
- * 
- * 
+ *
+ *
+ *
  */
 public abstract class AbstractEMFNattableEditor extends EditorPart {
 
@@ -89,20 +92,23 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	private TableSelectionProvider selectionProvider;
 
+	private PartNameSynchronizer synchronizer;
+
 	/**
 	 * @param servicesRegistry
 	 * @param rawModel
-	 * 
+	 *
 	 */
 	public AbstractEMFNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
 		this.servicesRegistry = servicesRegistry;
 		this.rawModel = rawModel;
+		this.synchronizer = new PartNameSynchronizer(rawModel);
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#init(org.eclipse.ui.IEditorSite, org.eclipse.ui.IEditorInput)
-	 * 
+	 *
 	 * @param site
 	 * @param input
 	 * @throws PartInitException
@@ -238,7 +244,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	/**
 	 * Enable the table to receive dropped elements
-	 * 
+	 *
 	 * @param fBodyLayer
 	 * @param gridLayer
 	 */
@@ -253,9 +259,9 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#getEditingDomain()
-	 * 
+	 *
 	 * @return
 	 */
 	public EditingDomain getEditingDomain() {
@@ -310,8 +316,72 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	public void dispose() {
 		this.selectionProvider.dispose();
 		this.tableManager.dispose();
+		this.synchronizer.dispose();
 		super.dispose();
 
 	}
 
+	/**
+	 * A class taking in charge the synchronization of the partName and the table name.
+	 * When table name change, the other is automatically updated.
+	 *
+	 *
+	 */
+	public class PartNameSynchronizer {
+
+		/** the papyrus table */
+		private Table papyrusTable;
+
+		/**
+		 * Listener on diagram name change.
+		 */
+		private final Adapter tableNameListener = new AdapterImpl() {
+
+			/**
+			 *
+			 * @see org.eclipse.emf.common.notify.Adapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
+			 *
+			 * @param notification
+			 */
+			@Override
+			public void notifyChanged(final Notification notification) {
+				if(notification.getFeature() == NattablePackage.eINSTANCE.getTable_Name()) {
+					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
+				}
+			}
+		};
+
+		/**
+		 *
+		 * Constructor.
+		 *
+		 * @param diagram
+		 */
+		public PartNameSynchronizer(final Table papyrusTable) {
+			setTable(papyrusTable);
+		}
+
+		public void dispose() {
+			this.papyrusTable.eAdapters().remove(this.tableNameListener);
+			this.papyrusTable = null;
+		}
+
+		/**
+		 * Change the associated diagram.
+		 *
+		 * @param papyrusTable
+		 */
+		public void setTable(final Table papyrusTable) {
+			// Remove from old table, if any
+			if(this.papyrusTable != null) {
+				papyrusTable.eAdapters().remove(this.tableNameListener);
+			}
+			// Set new table
+			this.papyrusTable = papyrusTable;
+			// Set editor name
+			setPartName(papyrusTable.getName());
+			// Listen to name change
+			papyrusTable.eAdapters().add(this.tableNameListener);
+		}
+	}
 }

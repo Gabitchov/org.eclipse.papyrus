@@ -7,6 +7,14 @@
             id="org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider"
             manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLStereotypePropertyManager">
       </axisManager>
+      <axisManager
+            id="org.eclipse.papyrus.uml.nattable.common.uml.element.provider"
+            manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLElementAxisManager">
+      </axisManager>
+      <axisManager
+            id="org.eclipse.papyrus.uml.nattable.common.uml.feature.provider"
+            manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLFeatureAxisManager">
+      </axisManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.common.crossvaluesolver">
