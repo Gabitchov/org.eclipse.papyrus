@@ -240,9 +240,9 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		// First retrieve the Diagrams that match with the model object to Uncontrol
 		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(controlledNotation, eObject);
 
+		Resource notationResource = NotationUtils.getNotationModel(modelSet).getResource();
 		if(!controlledDiagrams.isEmpty()) {
 			// PRE uncontrol operation
-			Resource notationResource = NotationUtils.getNotationModel(modelSet).getResource();
 
 			for(Diagram diag : controlledDiagrams) {
 				uncontrol(getEditingDomain(), diag, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.PRE_NOTATION);
@@ -263,9 +263,9 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 				uncontrol(getEditingDomain(), diag, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.POST_NOTATION);
 			}
 
-			//uncontrol for PapyrusTable
-			uncontrol(getEditingDomain(), eObject, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.POST_NOTATION);
 		}
+		//uncontrol for PapyrusTable
+		uncontrol(getEditingDomain(), eObject, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.POST_NOTATION);
 	}
 
 	/**

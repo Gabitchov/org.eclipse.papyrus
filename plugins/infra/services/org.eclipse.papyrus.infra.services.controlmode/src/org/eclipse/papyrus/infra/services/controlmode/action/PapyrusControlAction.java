@@ -22,14 +22,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
@@ -38,7 +36,6 @@ import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.infra.services.controlmode.util.ControlModeUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
@@ -72,32 +69,6 @@ public class PapyrusControlAction extends ControlAction {
 	@Override
 	public boolean isEnabled() {
 		return ControlModeUtil.canControl(eObject);
-	}
-
-	/**
-	 * Checks if a specified element gets a diagram
-	 * 
-	 * @param eObject
-	 * @return true if a diagram exists
-	 */
-	//FIXME: Refactoring: Why is there this test? It introduces a dependency to GMF Diagram, and doesn't seem useful.
-	private boolean getDiagram(EObject eObject) {
-		Resource modelResource = eObject.eResource();
-		if(modelResource != null) {
-			// only check for diagrams in the relative notation resource (same name as the opened resource)
-			Resource notationResource = modelResource.getResourceSet().getResource(modelResource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
-			if(notationResource != null) {
-				for(EObject o : notationResource.getContents()) {
-					if(o instanceof Diagram) {
-						EObject element = ((Diagram)o).getElement();
-						if(element != null && (element.equals(eObject) || EcoreUtil.isAncestor(this.eObject, element))) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -145,10 +116,10 @@ public class PapyrusControlAction extends ControlAction {
 			}
 
 			//FIXME: Refactoring: Why is there this test? It introduces a dependency to GMF Diagram, and doesn't seem useful.
-			if(!getDiagram(eObject)) {
-				NotificationBuilder.createAsyncPopup("The selected package must contain a diagram to perform control action").setType(Type.INFO).run();
-				return;
-			}
+			//			if(!getDiagram(eObject)) {
+			//				NotificationBuilder.createAsyncPopup("The selected package must contain a diagram to perform control action").setType(Type.INFO).run();
+			//				return;
+			//			}
 
 			Resource controlledModel = getControlledResource();
 			if(controlledModel == null) {
