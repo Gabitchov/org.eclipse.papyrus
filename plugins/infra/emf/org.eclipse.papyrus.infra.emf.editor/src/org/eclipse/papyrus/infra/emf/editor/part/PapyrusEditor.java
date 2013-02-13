@@ -2,6 +2,7 @@ package org.eclipse.papyrus.infra.emf.editor.part;
 
 import java.util.EventObject;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -53,6 +54,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
@@ -222,8 +224,15 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 						if(mostRecentCommand != null) {
 							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
-						if(propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
-							propertySheetPage.refresh();
+
+						Iterator<PropertySheetPage> propertySheetPagesIterator = propertySheetPages.iterator();
+						while(propertySheetPagesIterator.hasNext()) {
+							PropertySheetPage propertySheetPage = propertySheetPagesIterator.next();
+							if(propertySheetPage.getControl().isDisposed()) {
+								propertySheetPagesIterator.remove();
+							} else {
+								propertySheetPage.refresh();
+							}
 						}
 					}
 				});
