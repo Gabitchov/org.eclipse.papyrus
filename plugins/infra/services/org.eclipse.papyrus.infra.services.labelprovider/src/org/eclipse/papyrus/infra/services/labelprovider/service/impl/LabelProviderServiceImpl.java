@@ -40,6 +40,13 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 
 	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".labelProvider";
 
+	public LabelProviderServiceImpl() {
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+
+		readContexts(config);
+		readLabelProviders(config);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -51,10 +58,7 @@ public class LabelProviderServiceImpl implements LabelProviderService {
 	 * {@inheritDoc}
 	 */
 	public void startService() throws ServiceException {
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
-
-		readContexts(config);
-		readLabelProviders(config);
+		//Nothing
 	}
 
 	/**
