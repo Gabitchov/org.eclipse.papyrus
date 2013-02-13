@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.common.cellmanager">
+      <cellManager
+            id="org.eclipse.papyrus.sysml.nattable.common.stereotype.property.cell.manager"
+            manager="org.eclipse.papyrus.sysml.nattable.common.manager.SysMLStereotypePropertyCellManager"
+            order="30">
+      </cellManager>
+   </extension>
+
+</plugin>
