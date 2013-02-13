@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="di"
-    nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" nsPrefix="di">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="di" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" nsPrefix="di">
   <eAnnotations source="resource=XMI"/>
   <eClassifiers xsi:type="ecore:EClass" name="SashModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -24,12 +22,12 @@
       <eParameters name="srcParentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
       <eParameters name="srcIndex" ordered="false" lowerBound="1" eType="#//int"/>
       <eParameters name="targetParentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
-      <eParameters name="targetIndex" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="targetIndex" ordered="false" lowerBound="1" eType="#//int"/>
     </eOperations>
     <eOperations name="insertFolder" ordered="false" lowerBound="1">
       <eParameters name="folderToInsert" ordered="false" lowerBound="1" eType="#//TabFolder"/>
       <eParameters name="refFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
-      <eParameters name="refFolderSide" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="refFolderSide" ordered="false" lowerBound="1" eType="#//int"/>
     </eOperations>
     <eOperations name="movePage" ordered="false" lowerBound="1">
       <eParameters name="srcParentFolder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
@@ -59,6 +57,12 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Lookup the first available folder."/>
       </eAnnotations>
+    </eOperations>
+    <eOperations name="removePageAndEmptyFolder" ordered="false" lowerBound="1">
+      <eParameters name="pageIdentifier" ordered="false" lowerBound="1" eType="#//JavaObject"/>
+    </eOperations>
+    <eOperations name="setCurrentSelectionSilently" ordered="false" lowerBound="1">
+      <eParameters name="selection" ordered="false" lowerBound="1" eType="#//TabFolder"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="windows" ordered="false"
         upperBound="-1" eType="#//Window" containment="true"/>
@@ -96,7 +100,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Position">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" ordered="false" unique="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        lowerBound="1" eType="#//int"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" ordered="false" unique="false"
         lowerBound="1" eType="#//int"/>
   </eClassifiers>
@@ -109,7 +113,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TabFolder" eSuperTypes="#//AbstractPanel">
     <eOperations name="movePage" ordered="false" lowerBound="1">
-      <eParameters name="oldIndex" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eParameters name="oldIndex" ordered="false" lowerBound="1" eType="#//int"/>
       <eParameters name="newIndex" ordered="false" lowerBound="1" eType="#//int"/>
     </eOperations>
     <eOperations name="addPage" ordered="false" lowerBound="1">
@@ -122,7 +126,7 @@
         upperBound="-1" eType="#//PageRef" containment="true" eOpposite="#//PageRef/parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PageRef">
-    <eOperations name="isForIdentifier" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="isForIdentifier" ordered="false" lowerBound="1" eType="#//boolean">
       <eParameters name="pageIdentifier" ordered="false" lowerBound="1" eType="#//JavaObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="emfPageIdentifier" ordered="false"
@@ -141,9 +145,10 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
-        unique="false" lowerBound="1" eType="#//TabFolder" eOpposite="#//TabFolder/children"/>
+        unique="false" eType="#//TabFolder" eOpposite="#//TabFolder/children"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="JavaObject" instanceClassName="java.lang.Object"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="boolean" instanceClassName="boolean"/>
   <eClassifiers xsi:type="ecore:EClass" name="SashPanel" eSuperTypes="#//AbstractPanel #//PanelParent">
     <eOperations name="setChildren" ordered="false" lowerBound="1">
       <eParameters name="leftChild" ordered="false" lowerBound="1" eType="#//AbstractPanel"/>
@@ -160,7 +165,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        unique="false" lowerBound="1" eType="#//int"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Float" instanceClassName="float"/>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractPage">
@@ -183,5 +188,4 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sashModel" ordered="false"
         unique="false" lowerBound="1" eType="#//SashModel" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="boolean" instanceClassName="boolean"/>
 </ecore:EPackage>

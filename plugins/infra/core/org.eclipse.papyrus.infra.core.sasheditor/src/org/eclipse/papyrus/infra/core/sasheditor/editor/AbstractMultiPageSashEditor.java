@@ -147,6 +147,11 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 */
 	protected void deactivate() {
 
+		// Could be deactivated by a call from dispose().
+		// In this case, the tabsSynchronizer can already be null, because no activation was done.
+		if(tabsSynchronizer == null) {
+			return;
+		}
 		tabsSynchronizer.dispose();
 		tabsSynchronizer = null;
 	}
@@ -162,9 +167,10 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		deactivate();
 		//The selection provider keeps a reference to "this". It is not disposed.
 		getSite().setSelectionProvider(null);
-		sashContainer.dispose();
-		sashContainer = null;
-
+		if(sashContainer!=null) {
+			sashContainer.dispose();
+			sashContainer = null;
+		}
 		pageProvider = null;
 
 		super.dispose();

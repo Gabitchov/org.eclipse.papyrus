@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
@@ -44,6 +45,8 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 
 	/**
 	 * Create a ContentProvider
+	 * 
+	 * Constructor only used in tests.
 	 * 
 	 * @param diSashModel
 	 * @param pageModelFactory The factory that will be used when a page will be created.
@@ -96,6 +99,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 * TabFolder.
 	 * 
 	 * @param pageIdentifier
+	 * @deprecated Not used by SashContainer. Use {@link IPageMngr#addPage(Object)} instead
 	 */
 	public void addPage(Object pageIdentifier) {
 		diSashModel.addPage(pageIdentifier);
@@ -142,7 +146,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 		diSashModel.movePage(pageSrcFolder, tabIndex, newFolder);
 		// Remove unused folder if necessary
 		diSashModel.removeEmptyFolder(pageSrcFolder);
-		diSashModel.setCurrentSelection(newFolder);
+		diSashModel.setCurrentSelectionSilently(newFolder);
 
 		// Reenable events, and fire the last one
 		contentChangedEventProvider.setDeliver(true);
@@ -154,15 +158,18 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
 	 * 
+	 * @deprecated Current folder is now managed by the sashContainer only.
+	 * 
 	 * @param rawModel
 	 *        The object identifying the folder.
+	 *        
 	 */
 	public void setCurrentFolder(Object rawModel) {
 
-		if(!(rawModel instanceof TabFolder)) {
-			return;
-		}
-		diSashModel.setCurrentSelection((TabFolder)rawModel);
+//		if(!(rawModel instanceof TabFolder)) {
+//			return;
+//		}
+//		diSashModel.setCurrentSelectionSilently((TabFolder)rawModel);
 	}
 
 	/**
@@ -210,7 +217,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 
 		contentChangedEventProvider.setDeliver(false);
 		folder.movePage(oldIndex, newIndex);
-		diSashModel.setCurrentSelection(folder);
+		diSashModel.setCurrentSelectionSilently(folder);
 		contentChangedEventProvider.setDeliver(true);
 	}
 
@@ -231,7 +238,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.movePage(srcFolder, sourceIndex, targetFolder, targetIndex);
 		diSashModel.removeEmptyFolder(srcFolder);
-		diSashModel.setCurrentSelection(targetFolder);
+		diSashModel.setCurrentSelectionSilently(targetFolder);
 		contentChangedEventProvider.setDeliver(true);
 
 	}

@@ -3,6 +3,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.editor;
 import java.util.List;
 
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.ui.IEditorPart;
 
 public interface ISashWindowsContainer {
@@ -21,6 +22,13 @@ public interface ISashWindowsContainer {
 	 * @return An {@link IPage} allowing to access current page data.
 	 */
 	public abstract IPage getActiveSashWindowsPage();
+
+	/**
+	 * Get the {@link ITabFolderModel} of the currently selected folder.
+	 * 
+	 * @return
+	 */
+	public ITabFolderModel getSelectedTabFolderModel();
 
 	/**
 	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
@@ -91,4 +99,10 @@ public interface ISashWindowsContainer {
 	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.
 	 */
 	public abstract void setFolderTabMenuManager( MenuManager menuManager );
+
+	public abstract IPage lookupIPageByIEditorPart(IEditorPart editor);
+
+	public abstract IPage lookupModelPage(Object rawModel);
+
+	public abstract void selectPage(IPage page);
 }

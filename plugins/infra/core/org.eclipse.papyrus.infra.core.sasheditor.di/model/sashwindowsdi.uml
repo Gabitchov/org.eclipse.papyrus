@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_NuHhwEJVEd6kIY39uis5Uw" name="di" URI="http://www.eclipse.org/papyrus/0.7.0/sashdi">
-    <packageImport xmi:id="_NuHhwUJVEd6kIY39uis5Uw">
-      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
-    </packageImport>
     <packageImport xmi:id="_F0PskN5qEd2dfviKlv9PXw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#_0"/>
     </packageImport>
@@ -52,7 +49,7 @@ Lookup in the entire SashModel structure.</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedParameter>
-        <ownedParameter xmi:id="_UTCMcEbYEd6g-YgfS2DHrA" name="null" type="_h_HVwEJVEd6kIY39uis5Uw" direction="return">
+        <ownedParameter xmi:id="_UTCMcEbYEd6g-YgfS2DHrA" name="return" type="_h_HVwEJVEd6kIY39uis5Uw" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WgwBMEbYEd6g-YgfS2DHrA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Wg5LIEbYEd6g-YgfS2DHrA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Wg5LIUbYEd6g-YgfS2DHrA">
@@ -82,8 +79,7 @@ Lookup in the entire SashModel structure.</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedParameter>
-        <ownedParameter xmi:id="_q8zelUbsEd6g-YgfS2DHrA" name="targetIndex">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <ownedParameter xmi:id="_q8zelUbsEd6g-YgfS2DHrA" name="targetIndex" type="_Hkk78EVbEd6g-YgfS2DHrA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q8zel0bsEd6g-YgfS2DHrA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q8zelkbsEd6g-YgfS2DHrA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_q8zemEbsEd6g-YgfS2DHrA">
@@ -106,8 +102,7 @@ Lookup in the entire SashModel structure.</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedParameter>
-        <ownedParameter xmi:id="_vnqNfUoIEd6ussMWxXGeXg" name="refFolderSide">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <ownedParameter xmi:id="_vnqNfUoIEd6ussMWxXGeXg" name="refFolderSide" type="_Hkk78EVbEd6g-YgfS2DHrA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vnqNf0oIEd6ussMWxXGeXg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vnqNfkoIEd6ussMWxXGeXg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_vnqNgEoIEd6ussMWxXGeXg">
@@ -197,6 +192,12 @@ Lookup in the entire SashModel structure.</body>
           </defaultValue>
         </ownedParameter>
       </ownedOperation>
+      <ownedOperation xmi:id="_zdr0wGySEeKx9Kegn5X27A" name="setCurrentSelectionSilently">
+        <ownedComment xmi:id="_CMVagGyTEeKx9Kegn5X27A">
+          <body>Set the current selection without firing a changedEvent.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_5Z9l8GySEeKx9Kegn5X27A" name="selection" type="_fbWYgEJVEd6kIY39uis5Uw"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_Xa5wIEJVEd6kIY39uis5Uw" name="Window">
       <generalization xmi:id="_95DboEJWEd6kIY39uis5Uw" general="_86BAgEJWEd6kIY39uis5Uw"/>
@@ -241,8 +242,7 @@ Lookup in the entire SashModel structure.</body>
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_1nx64EbpEd6g-YgfS2DHrA" name="direction" visibility="public" isUnique="false">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <ownedAttribute xmi:id="_1nx64EbpEd6g-YgfS2DHrA" name="direction" visibility="public" type="_Hkk78EVbEd6g-YgfS2DHrA" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4GxF0EbpEd6g-YgfS2DHrA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4G620EbpEd6g-YgfS2DHrA" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_4G620UbpEd6g-YgfS2DHrA">
@@ -289,8 +289,7 @@ Lookup in the entire SashModel structure.</body>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ANIzkkJWEd6kIY39uis5Uw" value="*"/>
       </ownedAttribute>
       <ownedOperation xmi:id="_Cqh_oEViEd6g-YgfS2DHrA" name="movePage">
-        <ownedParameter xmi:id="_ETI8MEViEd6g-YgfS2DHrA" name="oldIndex">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <ownedParameter xmi:id="_ETI8MEViEd6g-YgfS2DHrA" name="oldIndex" type="_Hkk78EVbEd6g-YgfS2DHrA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G2wIcEViEd6g-YgfS2DHrA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G2wIcUViEd6g-YgfS2DHrA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_G2wIckViEd6g-YgfS2DHrA">
@@ -326,7 +325,7 @@ Lookup in the entire SashModel structure.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_h_HVwEJVEd6kIY39uis5Uw" name="PageRef">
       <ownedAttribute xmi:id="_ANIzk0JWEd6kIY39uis5Uw" name="parent" type="_fbWYgEJVEd6kIY39uis5Uw" isUnique="false" association="_AM_CkEJWEd6kIY39uis5Uw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ANIzlUJWEd6kIY39uis5Uw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ANIzlUJWEd6kIY39uis5Uw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ANIzlEJWEd6kIY39uis5Uw" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_b94xUEnjEd6ussMWxXGeXg" name="emfPageIdentifier" visibility="private" isUnique="false" association="_b3enUEnjEd6ussMWxXGeXg">
@@ -363,8 +362,7 @@ They are not stored in the same place.</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedParameter>
-        <ownedParameter xmi:id="_D0_awEbaEd6g-YgfS2DHrA" name="null" direction="return">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <ownedParameter xmi:id="_D0_awEbaEd6g-YgfS2DHrA" name="return" type="_SNSWAEbaEd6g-YgfS2DHrA" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GFO_EEbaEd6g-YgfS2DHrA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GFO_EUbaEd6g-YgfS2DHrA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_GFO_EkbaEd6g-YgfS2DHrA">
@@ -476,8 +474,7 @@ Used to insert a new SashPanel.</body>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_jc9vQESDEd6kIY39uis5Uw" name="Position">
-      <ownedAttribute xmi:id="_m9q14ESDEd6kIY39uis5Uw" name="x" visibility="public" isUnique="false">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <ownedAttribute xmi:id="_m9q14ESDEd6kIY39uis5Uw" name="x" visibility="public" type="_Hkk78EVbEd6g-YgfS2DHrA" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pZ1WUESDEd6kIY39uis5Uw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pZ1WUUSDEd6kIY39uis5Uw" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_paIRQESDEd6kIY39uis5Uw">
@@ -543,17 +540,13 @@ Used to insert a new SashPanel.</body>
       <appliedProfile href="pathmap://UML_PROFILES/StandardL3.profile.uml#_0"/>
     </profileApplication>
   </uml:Model>
-  <Ecore:EPackage xmi:id="_zLIxUEJfEd6kIY39uis5Uw" nsPrefix="di2" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.infra.core.sashwindows.di"/>
-  <Ecore_1:EPackage xmi:id="_mo48QEJgEd6kIY39uis5Uw" base_Package="_NuHhwEJVEd6kIY39uis5Uw" nsPrefix="di" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows" prefix="Di">
+  <Ecore:EPackage xmi:id="_mo48QEJgEd6kIY39uis5Uw" base_Package="_NuHhwEJVEd6kIY39uis5Uw" nsPrefix="di" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.infra.core.sashwindows" prefix="Di">
     <annotation>resource=XMI</annotation>
-  </Ecore_1:EPackage>
-  <Ecore:EClass xmi:id="_XL4scES1Ed6g-YgfS2DHrA" instanceClassName="java.lang.Integer"/>
-  <Ecore:EAttribute xmi:id="_7fEJYEVfEd6g-YgfS2DHrA"/>
-  <Ecore:EClass xmi:id="_NUMKIEVbEd6g-YgfS2DHrA" instanceClassName="java.lang.Object"/>
-  <Ecore_1:EDataType xmi:id="_6EWpcEVgEd6g-YgfS2DHrA" instanceClassName="int" base_PrimitiveType="_Hkk78EVbEd6g-YgfS2DHrA" dataTypeName="int"/>
-  <Ecore_1:EDataType xmi:id="_DLSYwEVhEd6g-YgfS2DHrA" instanceClassName="java.lang.Object" base_PrimitiveType="_A-BP8EVhEd6g-YgfS2DHrA"/>
-  <Ecore_1:EDataType xmi:id="_MeaSgEV4Ed6g-YgfS2DHrA" instanceClassName="float" base_PrimitiveType="_IEBx4EV4Ed6g-YgfS2DHrA"/>
-  <Ecore_1:EDataType xmi:id="_UtLf4EbaEd6g-YgfS2DHrA" instanceClassName="boolean" base_PrimitiveType="_SNSWAEbaEd6g-YgfS2DHrA"/>
-  <Ecore_1:EAttribute xmi:id="_UVaAMEnnEd6ussMWxXGeXg" isTransient="true" base_Property="_GrqUYEnkEd6ussMWxXGeXg"/>
-  <Ecore_1:EReference xmi:id="_uX7T8EsFEd6MxdnlcgT3eA" isTransient="true" isVolatile="true" base_Property="_lnNFMEsFEd6MxdnlcgT3eA"/>
+  </Ecore:EPackage>
+  <Ecore:EDataType xmi:id="_6EWpcEVgEd6g-YgfS2DHrA" instanceClassName="int" base_PrimitiveType="_Hkk78EVbEd6g-YgfS2DHrA" dataTypeName="int"/>
+  <Ecore:EDataType xmi:id="_DLSYwEVhEd6g-YgfS2DHrA" instanceClassName="java.lang.Object" base_PrimitiveType="_A-BP8EVhEd6g-YgfS2DHrA"/>
+  <Ecore:EDataType xmi:id="_MeaSgEV4Ed6g-YgfS2DHrA" instanceClassName="float" base_PrimitiveType="_IEBx4EV4Ed6g-YgfS2DHrA"/>
+  <Ecore:EDataType xmi:id="_UtLf4EbaEd6g-YgfS2DHrA" instanceClassName="boolean" base_PrimitiveType="_SNSWAEbaEd6g-YgfS2DHrA"/>
+  <Ecore:EAttribute xmi:id="_UVaAMEnnEd6ussMWxXGeXg" isTransient="true" base_Property="_GrqUYEnkEd6ussMWxXGeXg"/>
+  <Ecore:EReference xmi:id="_uX7T8EsFEd6MxdnlcgT3eA" isTransient="true" isVolatile="true" base_Property="_lnNFMEsFEd6MxdnlcgT3eA"/>
 </xmi:XMI>

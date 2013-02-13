@@ -50,7 +50,7 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	/**
 	 * 
 	 */
-	public List<?> getChildren() {
+	public List<IPageModel> getChildren() {
 		return children;
 	}
 

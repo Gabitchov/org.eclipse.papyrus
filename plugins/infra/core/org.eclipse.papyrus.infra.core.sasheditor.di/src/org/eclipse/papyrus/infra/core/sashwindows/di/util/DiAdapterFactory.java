@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.core.sashwindows.di.*;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;

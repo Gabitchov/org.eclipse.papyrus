@@ -51,7 +51,7 @@ public class DiUtils {
 		TabFolder folder = DiFactory.eINSTANCE.createTabFolder();
 		window.setPanel(folder);
 		// Default folder
-		sashModel.setCurrentSelection(folder);
+		sashModel.setCurrentSelectionSilently(folder);
 
 		return sashModel;
 	}
@@ -104,6 +104,8 @@ public class DiUtils {
 	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
 	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
 	 *         instead ?
+	 *         
+	 * @deprecated Should use IPageMngr instead.
 	 */
 	static public PageRef getPageRef(Resource diResource, EObject eObject) {
 		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
@@ -129,6 +131,7 @@ public class DiUtils {
 	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
 	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
 	 *         instead ?
+	 * @deprecated Should use IPageMngr instead.
 	 */
 	static public void addPageToPageList(Resource diResource, PageRef pageRef) throws SashEditorException {
 		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
@@ -144,6 +147,8 @@ public class DiUtils {
 	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
 	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
 	 *         instead ?
+	 *         
+	 * @deprecated Should use IPageMngr instead.
 	 */
 	static public void addPageToPageList(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
 		if(windowsMngr != null && windowsMngr.getPageList() != null) {
@@ -162,6 +167,8 @@ public class DiUtils {
 	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
 	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
 	 *         instead ?
+	 *         
+	 * @deprecated Should use IPageMngr instead.
 	 */
 	static public void addPageToTabFolder(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
 

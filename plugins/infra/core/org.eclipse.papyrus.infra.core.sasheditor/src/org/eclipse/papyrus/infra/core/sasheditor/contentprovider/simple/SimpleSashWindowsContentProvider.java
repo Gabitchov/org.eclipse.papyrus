@@ -220,6 +220,13 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	private void doMoveTab(TabFolderModel srcFolderModel, int sourceIndex, TabFolderModel targetFolderModel) {
 
+		// Move all
+		if( sourceIndex < 0) {
+			targetFolderModel.getChildren().addAll(srcFolderModel.getChildren());
+			srcFolderModel.getChildren().clear();
+			return;
+		}
+		
 		IPageModel tab = srcFolderModel.doRemoveTab(sourceIndex);
 		targetFolderModel.doAddItem(tab);
 	}

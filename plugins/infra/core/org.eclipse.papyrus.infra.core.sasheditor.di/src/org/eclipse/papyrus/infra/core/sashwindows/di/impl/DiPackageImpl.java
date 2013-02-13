@@ -630,8 +630,8 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		// Create data types
 		intEDataType = createEDataType(INT);
 		javaObjectEDataType = createEDataType(JAVA_OBJECT);
-		floatEDataType = createEDataType(FLOAT);
 		booleanEDataType = createEDataType(BOOLEAN);
+		floatEDataType = createEDataType(FLOAT);
 	}
 
 	/**
@@ -688,12 +688,12 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		addEParameter(op, this.getTabFolder(), "srcParentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getint(), "srcIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getTabFolder(), "targetParentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "targetIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getint(), "targetIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(sashModelEClass, null, "insertFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getTabFolder(), "folderToInsert", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getTabFolder(), "refFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "refFolderSide", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getint(), "refFolderSide", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(sashModelEClass, null, "movePage", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getTabFolder(), "srcParentFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -712,6 +712,12 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 
 		addEOperation(sashModelEClass, this.getTabFolder(), "lookupFirstFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
+		op = addEOperation(sashModelEClass, null, "removePageAndEmptyFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(sashModelEClass, null, "setCurrentSelectionSilently", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTabFolder(), "selection", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(windowEClass, Window.class, "Window", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWindow_Position(), this.getPosition(), null, "position", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getWindow_Size(), this.getSize(), null, "size", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -728,7 +734,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		initEReference(getAbstractPanel_Parent(), this.getPanelParent(), this.getPanelParent_Children(), "parent", null, 1, 1, AbstractPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(positionEClass, Position.class, "Position", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPosition_X(), ecorePackage.getEInt(), "x", null, 1, 1, Position.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPosition_X(), this.getint(), "x", null, 1, 1, Position.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPosition_Y(), this.getint(), "y", null, 1, 1, Position.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(sizeEClass, Size.class, "Size", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -739,7 +745,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		initEReference(getTabFolder_Children(), this.getPageRef(), this.getPageRef_Parent(), "children", null, 0, -1, TabFolder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = addEOperation(tabFolderEClass, null, "movePage", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "oldIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getint(), "oldIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getint(), "newIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(tabFolderEClass, null, "addPage", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -752,14 +758,14 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		initEReference(getPageRef_EmfPageIdentifier(), theEcorePackage.getEObject(), null, "emfPageIdentifier", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPageRef_PageIdentifier(), this.getJavaObject(), "pageIdentifier", null, 1, 1, PageRef.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPageRef_ObjectPageIdentifier(), this.getJavaObject(), "objectPageIdentifier", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPageRef_Parent(), this.getTabFolder(), this.getTabFolder_Children(), "parent", null, 1, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getPageRef_Parent(), this.getTabFolder(), this.getTabFolder_Children(), "parent", null, 0, 1, PageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(pageRefEClass, ecorePackage.getEBoolean(), "isForIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(pageRefEClass, this.getboolean(), "isForIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(sashPanelEClass, SashPanel.class, "SashPanel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSashPanel_SashPosition(), this.getFloat(), "sashPosition", null, 1, 1, SashPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSashPanel_Direction(), ecorePackage.getEInt(), "direction", null, 1, 1, SashPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSashPanel_Direction(), this.getint(), "direction", null, 1, 1, SashPanel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = addEOperation(sashPanelEClass, null, "setChildren", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getAbstractPanel(), "leftChild", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -788,8 +794,8 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		// Initialize data types
 		initEDataType(intEDataType, int.class, "int", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(javaObjectEDataType, Object.class, "JavaObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(floatEDataType, float.class, "Float", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(booleanEDataType, boolean.class, "boolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(floatEDataType, float.class, "Float", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

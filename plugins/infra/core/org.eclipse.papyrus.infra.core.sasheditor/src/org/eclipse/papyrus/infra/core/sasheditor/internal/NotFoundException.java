@@ -17,7 +17,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 /**
  * Exception thrown when a search or lookup fails.
  * 
- * @author dumoulin
+ * @author cedric dumoulin
  */
 public class NotFoundException extends SashWindowsException {
 

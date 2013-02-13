@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.infra.core.sashwindows.di.*;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
@@ -97,10 +98,10 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 				return createintFromString(eDataType, initialValue);
 			case DiPackage.JAVA_OBJECT:
 				return createJavaObjectFromString(eDataType, initialValue);
-			case DiPackage.FLOAT:
-				return createFloatFromString(eDataType, initialValue);
 			case DiPackage.BOOLEAN:
 				return createbooleanFromString(eDataType, initialValue);
+			case DiPackage.FLOAT:
+				return createFloatFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -118,10 +119,10 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 				return convertintToString(eDataType, instanceValue);
 			case DiPackage.JAVA_OBJECT:
 				return convertJavaObjectToString(eDataType, instanceValue);
-			case DiPackage.FLOAT:
-				return convertFloatToString(eDataType, instanceValue);
 			case DiPackage.BOOLEAN:
 				return convertbooleanToString(eDataType, instanceValue);
+			case DiPackage.FLOAT:
+				return convertFloatToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}

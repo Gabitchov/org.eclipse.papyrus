@@ -79,9 +79,18 @@ public interface SashModel extends EObject {
 	 * <!-- end-user-doc -->
 	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
 	 * @generated
+	 * @deprecated use {@link #addPage(TabFolder, Object)}
 	 */
 	void addPage(Object pageIdentifier);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
+	 * @generated
+	 */
+	void addPage(TabFolder folder, Object pageIdentifier);
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +105,15 @@ public interface SashModel extends EObject {
 	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
 	 * @generated
 	 */
-	public void removePageAndEmptyFolder(Object pageIdentifier);
+	void removePageAndEmptyFolder(Object pageIdentifier);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model selectionRequired="true" selectionOrdered="false"
+	 * @generated
+	 */
+	void setCurrentSelectionSilently(TabFolder selection);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,7 +131,7 @@ public interface SashModel extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model srcParentFolderRequired="true" srcParentFolderOrdered="false" srcIndexDataType="org.eclipse.papyrus.infra.core.sashwindows.di.int" srcIndexRequired="true" srcIndexOrdered="false" targetParentFolderRequired="true" targetParentFolderOrdered="false" targetIndexRequired="true" targetIndexOrdered="false"
+	 * @model srcParentFolderRequired="true" srcParentFolderOrdered="false" srcIndexDataType="org.eclipse.papyrus.infra.core.sashwindows.di.int" srcIndexRequired="true" srcIndexOrdered="false" targetParentFolderRequired="true" targetParentFolderOrdered="false" targetIndexDataType="org.eclipse.papyrus.infra.core.sashwindows.di.int" targetIndexRequired="true" targetIndexOrdered="false"
 	 * @generated
 	 */
 	void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder, int targetIndex);
@@ -122,7 +139,7 @@ public interface SashModel extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model folderToInsertRequired="true" folderToInsertOrdered="false" refFolderRequired="true" refFolderOrdered="false" refFolderSideRequired="true" refFolderSideOrdered="false"
+	 * @model folderToInsertRequired="true" folderToInsertOrdered="false" refFolderRequired="true" refFolderOrdered="false" refFolderSideDataType="org.eclipse.papyrus.infra.core.sashwindows.di.int" refFolderSideRequired="true" refFolderSideOrdered="false"
 	 * @generated
 	 */
 	void insertFolder(TabFolder folderToInsert, TabFolder refFolder, int refFolderSide);

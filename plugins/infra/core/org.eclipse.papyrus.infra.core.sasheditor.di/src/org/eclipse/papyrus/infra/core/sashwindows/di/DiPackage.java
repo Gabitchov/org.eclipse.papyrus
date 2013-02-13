@@ -549,7 +549,7 @@ public interface DiPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.impl.DiPackageImpl#getFloat()
 	 * @generated
 	 */
-	int FLOAT = 14;
+	int FLOAT = 15;
 
 	/**
 	 * The meta object id for the '<em>boolean</em>' data type.
@@ -558,7 +558,7 @@ public interface DiPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.impl.DiPackageImpl#getboolean()
 	 * @generated
 	 */
-	int BOOLEAN = 15;
+	int BOOLEAN = 14;
 
 
 	/**

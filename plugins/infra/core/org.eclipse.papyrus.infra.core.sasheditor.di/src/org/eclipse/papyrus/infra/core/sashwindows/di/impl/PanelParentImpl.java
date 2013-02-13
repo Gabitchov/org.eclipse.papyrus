@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PanelParent;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PanelParentImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PanelParentImpl#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class PanelParentImpl extends EObjectImpl implements PanelParent {
@@ -38,7 +38,6 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getChildren()
 	 * @generated
 	 * @ordered
@@ -48,7 +47,6 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PanelParentImpl() {
@@ -58,7 +56,6 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,11 +66,10 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractPanel> getChildren() {
-		if(children == null) {
+		if (children == null) {
 			children = new EObjectContainmentWithInverseEList<AbstractPanel>(AbstractPanel.class, this, DiPackage.PANEL_PARENT__CHILDREN, DiPackage.ABSTRACT_PANEL__PARENT);
 		}
 		return children;
@@ -82,7 +78,6 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void replaceChild(AbstractPanel oldChild, AbstractPanel newChild) {
@@ -94,15 +89,14 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case DiPackage.PANEL_PARENT__CHILDREN:
-			return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
+		switch (featureID) {
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -110,14 +104,13 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case DiPackage.PANEL_PARENT__CHILDREN:
-			return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -125,14 +118,13 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case DiPackage.PANEL_PARENT__CHILDREN:
-			return getChildren();
+		switch (featureID) {
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return getChildren();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -140,17 +132,16 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case DiPackage.PANEL_PARENT__CHILDREN:
-			getChildren().clear();
-			getChildren().addAll((Collection<? extends AbstractPanel>)newValue);
-			return;
+		switch (featureID) {
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				getChildren().clear();
+				getChildren().addAll((Collection<? extends AbstractPanel>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -158,15 +149,14 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case DiPackage.PANEL_PARENT__CHILDREN:
-			getChildren().clear();
-			return;
+		switch (featureID) {
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				getChildren().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -174,14 +164,13 @@ public abstract class PanelParentImpl extends EObjectImpl implements PanelParent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case DiPackage.PANEL_PARENT__CHILDREN:
-			return children != null && !children.isEmpty();
+		switch (featureID) {
+			case DiPackage.PANEL_PARENT__CHILDREN:
+				return children != null && !children.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

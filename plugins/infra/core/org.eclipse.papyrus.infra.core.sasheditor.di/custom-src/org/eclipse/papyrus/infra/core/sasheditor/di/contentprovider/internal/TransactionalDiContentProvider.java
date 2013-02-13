@@ -132,16 +132,17 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void setCurrentFolder(final Object rawModel) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+//		RecordingCommand command = new RecordingCommand(editingDomain) {
+//
+//			@Override
+//			protected void doExecute() {
+//				diContentProvider.setCurrentFolder(rawModel);
+//
+//			}
+//		};
 
-			@Override
-			protected void doExecute() {
-				diContentProvider.setCurrentFolder(rawModel);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+//		editingDomain.getCommandStack().execute(command);
+		diContentProvider.setCurrentFolder(rawModel);
 	}
 
 	/**

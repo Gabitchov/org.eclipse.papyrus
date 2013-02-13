@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 
 
 /**
@@ -35,11 +36,26 @@ public class PageMngrImpl implements IPageMngr {
 	/** Internal EMF model */
 	private SashWindowsMngr diSashModel;
 	
-	ContentChangedEventProvider contentChangedEventProvider;
+	/**
+	 * An object used to get the current folder, or to ask to set the 
+	 * active page.
+	 * This is usually backuped by the SashWindowContainer.
+	 * <br>
+	 */
+	protected ICurrentFolderAndPageMngr folderAndPageMngr;
+
+	private ContentChangedEventProvider contentChangedEventProvider;
 
 	public PageMngrImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
 		this.diSashModel = diSashModel;
 		this.contentChangedEventProvider = contentChangedEventProvider;
+		folderAndPageMngr = new DefaultCurrentFolderAndPageMngr(diSashModel);
+	}
+
+	public PageMngrImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider, ICurrentFolderAndPageMngr folderAndPageMngr) {
+		this.diSashModel = diSashModel;
+		this.contentChangedEventProvider = contentChangedEventProvider;
+		this.folderAndPageMngr = folderAndPageMngr;
 	}
 
 	/**
@@ -54,7 +70,17 @@ public class PageMngrImpl implements IPageMngr {
 
 		// We do not need to disable event delivering, 
 		// as addition to pageList doesn't fire events.
+		
 		diSashModel.getPageList().addPage(pageIdentifier);
+	}
+
+	/**
+	 * Get the folder model {@link TabFolder} of the current folder.
+	 * 
+	 * @return
+	 */
+	private TabFolder getCurrentFolder() {
+		return folderAndPageMngr.getCurrentFolder();
 	}
 
 	/**
@@ -138,7 +164,7 @@ public class PageMngrImpl implements IPageMngr {
 		if(!found) {
 			diSashModel.getPageList().addPage(pageIdentifier);
 		}
-		diSashModel.getSashModel().addPage(pageIdentifier);
+		diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
 	}
 
 	/**

@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -50,9 +49,8 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
@@ -114,7 +112,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	private ActionBarContributorRegistry actionBarContributorRegistry;
 
 	/** SashModelMngr to add pages */
-	protected DiSashModelMngr sashModelMngr;
+	protected DiSashModelManager sashModelMngr;
 
 	/**
 	 * Service used to maintain the dirty state and to perform save and saveAs.
@@ -158,6 +156,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			editor.getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
 				public void run() {
+					// editor can be null if this object has been finalized, but
+					// still queued in the asyncExec queue. 
+					// This can happen if the editor is disposed, but some run still in 
+					// the exec queue.
+					// When the method is executed asynchronously, the object is already finalized, and so
+					// editor is null.
+					if(editor==null)
+						return;
 					editor.firePropertyChange(IEditorPart.PROP_DIRTY);
 				}
 			});
@@ -306,18 +312,22 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/**
 	 * Create the pageContentProvider.
 	 * 
+	 * Removed since 0.10.0
+	 * 
 	 * @param pageFactory
 	 * @param diResource
 	 *        Resource used to load/save the SashModel.
+	 *        
+	 *        
 	 */
-	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource, TransactionalEditingDomain editingDomain) {
-
-		sashModelMngr = new TransactionalDiSashModelMngr(pageFactory, diResource, editingDomain);
-
-		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
-
-		return pageProvider;
-	}
+//	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource, TransactionalEditingDomain editingDomain) {
+//
+//		sashModelMngr = new TransactionalDiSashModelMngr(pageFactory, diResource, editingDomain);
+//
+//		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
+//
+//		return pageProvider;
+//	}
 
 	/**
 	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in
@@ -579,7 +589,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		ISashWindowsContentProvider contentProvider = null;
 		try {
 			transactionalEditingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
-			sashModelMngr = servicesRegistry.getService(DiSashModelMngr.class);
+			sashModelMngr = servicesRegistry.getService(DiSashModelManager.class);
 			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
 			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 			undoContext = servicesRegistry.getService(IUndoContext.class);
@@ -644,9 +654,15 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			// Should be done only once the container is ready.
 			getServicesRegistry().add(ISashWindowsContainer.class, 1, getISashWindowsContainer());
 			getServicesRegistry().startServicesByClassKeys(ISashWindowsContainer.class);
+			// Let the IPageMngr use the ISashWindowsContainer to discover current folder
+			// This should be done after SashWindowContainer initialization.
+//			DiSashModelManager sashModelManager = getServicesRegistry().getService(DiSashModelManager.class);
+			sashModelMngr.setCurrentFolderAndPageMngr(getISashWindowsContainer());
+			
 		} catch (ServiceException e) {
 			log.error(e);
 		}
+		
 	}
 
 	/**

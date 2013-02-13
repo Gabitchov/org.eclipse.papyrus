@@ -206,6 +206,19 @@
             startKind="startup">
       </serviceFactory>
       <serviceFactory
+            classname="org.eclipse.papyrus.infra.core.editor.DiSashModelManagerServiceFactory"
+            description="The concrete implementation of SashContentProviderr and IPageMngr"
+            id="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+         </dependsOn>
+      </serviceFactory>
+      <serviceFactory
             classname="org.eclipse.papyrus.infra.core.editor.DiSashModelMngrServiceFactory"
             description="The concrete implementation of SashContentProviderr and IPageMngr"
             id="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr"
@@ -225,7 +238,7 @@
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager">
          </dependsOn>
       </serviceFactory>
       <serviceFactory
@@ -235,7 +248,7 @@
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager">
          </dependsOn>
       </serviceFactory>
       <service

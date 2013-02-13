@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.infra.core.editor;
 
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -20,7 +21,7 @@ public class ContentProviderServiceFactory implements IServiceFactory {
 	/**
 	 * The sashModelMangr.
 	 */
-	private DiSashModelMngr sashModelMngr;
+	private DiSashModelManager sashModelMngr;
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#init(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
@@ -30,7 +31,7 @@ public class ContentProviderServiceFactory implements IServiceFactory {
 	 */
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		// Get required services
-		sashModelMngr = servicesRegistry.getService(DiSashModelMngr.class);
+		sashModelMngr = servicesRegistry.getService(DiSashModelManager.class);
 
 	}
 

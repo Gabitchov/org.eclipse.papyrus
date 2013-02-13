@@ -24,7 +24,9 @@ import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
@@ -173,7 +175,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 *        the contentProvider to set
 	 */
 	public void setContentProvider(ISashWindowsContentProvider contentProvider) {
-		this.contentProvider = contentProvider;
+		// Use a delegate
+		// The delegate is used as a central point performing calls to the 
+		// external implementation.
+		this.contentProvider = new DelegateContentProvider(contentProvider);
 	}
 
 	/**
@@ -189,9 +194,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		rootPart = createRootPart();
 		// Create the tree of tile part.
 		rootPart.createPartControl(container);
+		// TODO 20130205
+		// Read lastActivePart from ContentProvider, and set it 
+		// before refresh. Like this, sash will select the last save page
+		
 		// Create children
 		refreshTabs();
 		// Set selection
+		// TODO 20130205 remove next, because refresh already do it
 		selectPage(lookupFirstValidPage());
 
 		// postCreatePartControl();
@@ -288,44 +298,112 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * It does not change the selected page in the Part.
 	 * 
 	 * Propagate the event to activePageTracker.
+	 * Removed since 0.10
 	 * 
 	 * @param childPart
 	 */
-	protected void pageChanged(PagePart childPart) {
-		activePageTracker.setActiveEditor(childPart);
-		lifeCycleEventProvider.firePageActivatedEvent(childPart);
-	}
+//	protected void pageChanged(PagePart childPart) {
+//		activePageTracker.setActiveEditor(childPart);
+//		lifeCycleEventProvider.firePageActivatedEvent(childPart);
+//	}
 
 	/**
 	 * Notifies this page container that a pageChanged event has been fired by one swt Control.
 	 * This method is usually called after the user selects a different tab.
 	 * 
-	 * The method record the new active folder in the ContentProvider, and calls {@link #pageChanged(PagePart)}.
+	 * The method notify the ContentProvider, and calls {@link #pageChanged(PagePart)}.
+	 * Removed since 0.10
 	 * 
 	 * @param childPart
 	 */
-	protected void pageChangedEvent(PagePart childPart) {
-
-		// Check if it is really a change before changing the model (which can throw change event)
-		// The folder model change is done before the tracker fires the listeners, like this
-		// listeners can check the model.
-		if(getActivePage() == childPart)
-			return;
-
-		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
-		pageChanged(childPart);
-	}
+//	protected void pageChangedEvent(PagePart childPart) {
+//
+//		// Check if it is really a change before changing the model (which can throw change event)
+//		// The folder model change is done before the tracker fires the listeners, like this
+//		// listeners can check the model.
+//		if(getActivePage() == childPart)
+//			return;
+//
+//		pageChanged(childPart);
+//	}
 
 	/**
-	 * Set the active page. The current active page will be the specified page.
-	 * Do not record the new active folder in the ContentProvider
+	 * Set the active page. The current active page will be the specified page. Throw events indicating that
+	 * the current ActivePage has changed.
+	 * <br>
+	 * Do not set the activeSelection.
 	 * 
-	 * The method record the new CurrentFolder, and calls {@link #pageChanged(PagePart)}.
 	 * 
 	 * @param childPart
 	 */
 	protected void setActivePage(PagePart childPart) {
-		pageChanged(childPart);
+
+		// Do nothing if the activePage has not changed
+		if(childPart == null || getActivePage() == childPart)
+			return;
+
+		// TODO 20130205 remove next
+		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
+		
+		activePageTracker.setActiveEditor(childPart);
+		lifeCycleEventProvider.firePageActivatedEvent(childPart);
+	}
+
+	/**
+	 * This method allow to change current activePage. It set the activePage, and select it in 
+	 * the folder.
+	 * <br>
+	 * This method fires notifications (activePageChanged).
+	 * 
+	 * @param newActivePage The page that should become the active one.
+	 */
+	protected void setActivePageAndSelection( PagePart newActivePage ) {
+		
+		PagePart oldSelection = getActivePage();
+		// First, set the selection, like this the observers will see the correct selection.
+		synchronizeActiveSelection(newActivePage);
+		try {
+			// Set the active page
+			setActivePage(newActivePage);
+			
+		} catch (RuntimeException e) {
+			// Restore selection in case of exception
+			synchronizeActiveSelection(oldSelection);			
+			// lets propagate
+			throw e;
+		} 
+	}
+	
+	/**
+	 * Synchronize the active selection to be the page of the activePage.
+	 * This should be called when the activePage is set, but the selection is not 
+	 * yet set.
+	 * <br>
+	 * This should not throw events (neither selctionChanged or pageChanged event).
+	 * 
+	 */
+	protected void synchronizeActiveSelection( ) {
+		PagePart activePage = getActivePage();
+		
+		synchronizeActiveSelection(activePage);
+	}
+
+	/**
+	 * Synchronize the active selection to be the specified page. Do not synchronize with the activePage.
+	 * <br>
+	 * This should not throw events (neither selctionChanged or pageChanged event).
+	 * @param page
+	 */
+	private void synchronizeActiveSelection(PagePart page) {
+		if(page == null)
+			return;
+		TabFolderPart folder = page.getParent();
+		
+		// Folder can be null in case of tests
+		if(folder!= null) {
+			folder.setSelection(page);
+		}
+
 	}
 
 	/**
@@ -365,6 +443,36 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// TODO return a default part showing an error instead.
 		throw new IllegalArgumentException("No Part found for the model '" + rawModel + "'");
+	}
+
+	/**
+	 * Get the {@link ITabFolderModel} of the currently selected folder.
+	 * 
+	 * @return
+	 */
+	public ITabFolderModel getSelectedTabFolderModel() {
+				
+		// Get the activePage. The seleted folder is its parent.
+		PagePart activePage = activePageTracker.getActiveEditor();
+		if ( activePage != null) {
+			return activePage.getParent().getPartModel();
+		}
+		// No active page exist, but their should be a folder
+		TabFolderPart folder = lookupFirstValidFolder();
+		return folder.getPartModel();
+	}
+	
+	/**
+	 * Lookup the first valid folder in this sash system.
+	 * There is always a valid folder.
+	 * 
+	 * @return The first valid folder.
+	 */
+	private TabFolderPart lookupFirstValidFolder() {
+		
+		LookupFirstFolderVisitor visitor = new LookupFirstFolderVisitor();
+		rootPart.visit(visitor);
+		return visitor.result();
 	}
 
 	/**
@@ -527,7 +635,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		garbageMaps.garbage();
 
 		// set active page if needed
-		setActivePage(checkAndGetActivePage(oldActivePage, garbageMaps));
+		setActivePageAndSelection(checkAndGetActivePage(oldActivePage, garbageMaps));
 
 		// Reenable SWT and force layout
 		container.setRedraw(true);
@@ -541,26 +649,27 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Appropriate events are fired.
 	 * This is the programatic counterpart of selecting a page in the UI.
 	 * If the provided page is null, do nothing.
-	 * 
+	 * Removed since 0.10
 	 * @param page
 	 *        The page to select or null.
 	 */
-	protected void selectPage(PagePart page) {
-		if(page == null)
-			return;
-		TabFolderPart folder = page.getParent();
-		folder.setActiveEditor(page);
-	}
+//	protected void selectPage(PagePart page) {
+//		if(page == null)
+//			return;
+//		TabFolderPart folder = page.getParent();
+//		folder.setActiveEditor(page);
+//	}
 
 	/**
 	 * Select the specified page in the Parts. The specified page will becomes the active one.
-	 * Appropriate events are fired.
-	 * This is the programatic counterpart of selecting a page in the UI.
+	 * Appropriate events are fired if needed.
+	 * This is the programmatic counterpart of selecting a page in the UI.
 	 * If the provided page is null, do nothing.
 	 * 
 	 * @param page
 	 *        The page to select or null. The IPage should
 	 *        be an instance previously returned by the SashContainer.
+	 *        
 	 */
 	public void selectPage(IPage page) {
 		if(page == null)
@@ -570,7 +679,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		if(!(page instanceof PagePart))
 			return;
 
-		selectPage((PagePart)page);
+		setActivePageAndSelection((PagePart)page);
 	}
 
 	/**
@@ -620,12 +729,15 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// Check if there is a created page
 		PagePart activePage = partLists.getFirstCreatedPage();
-		if(activePage != null)
+		if(activePage != null) {
+			// There is a created page. Set it as the selected and active one
 			return activePage;
+		}
 
 		// Check oldActivePage validity (in case it has been deleted)
-		if(oldActivePage != null && !(oldActivePage.isOrphaned() || oldActivePage.isUnchecked()))
+		if(oldActivePage != null && !(oldActivePage.isOrphaned() || oldActivePage.isUnchecked())) {
 			return oldActivePage;
+		}
 
 		// Get an active page if any
 		return lookupFirstValidPage();

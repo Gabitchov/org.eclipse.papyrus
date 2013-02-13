@@ -132,7 +132,8 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 * @param newPageIndex
 		 */
 		public void pageChangeEvent(int newPageIndex) {
-			pageChangedEvent(newPageIndex);
+			// User has change the page. Inform the TabFolderPart
+			pageChange(newPageIndex);
 		}
 
 	};
@@ -260,7 +261,12 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 
 	/**
-	 * The page has change. Propagate the event to the container.
+	 * Called by any widget that has detected that the page has changed.
+	 * <br>
+	 * As the selected page has been changed by a user ui interaction, we now need
+	 * to synchronize the ActivePage. 
+	 * Inform the {@link SashWindowsContainer} to set the active page accordingly to
+	 * the new selection.
 	 * 
 	 * @param newPageIndex
 	 */
@@ -272,23 +278,58 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
 			return;
 
-		getSashWindowContainer().pageChanged(currentTabItems.get(newPageIndex).childPart);
+		getSashWindowContainer().setActivePage(currentTabItems.get(newPageIndex).childPart);
 	}
 
 	/**
 	 * An event signaling that the selected page is changed has been caught. Propagate the event to
 	 * the container.
-	 * 
+	 * Removed since 0.10
 	 * @param newPageIndex
 	 */
-	protected void pageChangedEvent(int newPageIndex) {
+//	protected void pageChangedEvent(int newPageIndex) {
+//
+//		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
+//		// Do nothing if out of range.
+//		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
+//			return;
+//
+//		getSashWindowContainer().pageChangedEvent(currentTabItems.get(newPageIndex).childPart);
+//	}
 
-		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
-		// Do nothing if out of range.
-		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
+	/**
+	 * Select the specified page.
+	 * Do nothing if the index is out of range.
+	 * 
+	 * @param pageIndex
+	 */
+	protected void setSelection(int pageIndex) {
+		//		Assert.isTrue(pageIndex >= 0 && pageIndex < getPageCount());
+		if(!isValidPageIndex(pageIndex))
 			return;
 
-		getSashWindowContainer().pageChangedEvent(currentTabItems.get(newPageIndex).childPart);
+		getTabFolder().setSelection(pageIndex);
+	}
+
+	/**
+	 * Set the current selection of this folder. This do not fire events.
+	 * This does not set the ActivePage.
+	 * 
+	 * @param page
+	 *        the page that should be selected 
+	 * @since 3.3
+	 */
+	public final void setSelection(PagePart requestedPage) {
+		// TODO There should be another way to get the index of the corresponding
+		// PagePArt
+		int count = getPageCount();
+		for(int i = 0; i < count; i++) {
+			PagePart page = getPagePart(i);
+			if(page == requestedPage) {
+				setSelection(i);
+				break;
+			}
+		}
 	}
 
 	/**
@@ -378,25 +419,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			return;
 		}
 		getPagePart(pageIndex).setFocus();
-	}
-
-	/**
-	 * Set the active page of this multi-page editor to the page that contains the given editor part. This method has no effect of the given editor
-	 * part is not contained in this multi-page editor.
-	 * 
-	 * @param editorPart
-	 *        the editor part
-	 * @since 3.3
-	 */
-	public final void setActiveEditor(PagePart editorPart) {
-		int count = getPageCount();
-		for(int i = 0; i < count; i++) {
-			PagePart editor = getPagePart(i);
-			if(editor == editorPart) {
-				setActivePage(i);
-				break;
-			}
-		}
 	}
 
 	/**
@@ -814,7 +836,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			// Do it here because otherwise the active tab could be not visible.
 			// This come from an undefined bug setting the tab.isVisible(false) in some case.
 			folder.getItem(activePageIndex).getControl().setVisible(true);
-			setActivePage(activePageIndex);
+			setSelection(activePageIndex);
 		} else {
 			// Check if there is item in the CTabFolder.
 			// If true, we have a trouble
@@ -823,7 +845,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				// We have items, but none is selected.
 				// Select the first one.
 				if(getTabFolder().getSelectionIndex() < 0) {
-					setActivePage(0);
+					setSelection(0);
 				}
 			}
 		}

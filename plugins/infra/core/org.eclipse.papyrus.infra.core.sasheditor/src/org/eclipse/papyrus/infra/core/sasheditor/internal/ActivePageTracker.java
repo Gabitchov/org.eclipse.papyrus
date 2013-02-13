@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
  * <li>- fire events to all registered listeners.</li>
  * </ul>
  * 
- * This class allows tow kind of listeners:
+ * This class allows two kind of listeners:
  * 
  * <ul>
  * <li> {@link IActiveEditorChangedListener} for internal use (ex: {@link ActiveEditorServicesSwitcher})</li>

@@ -151,6 +151,29 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * 
 	 * @generated NOT
 	 */
+	public void addPage(TabFolder folder, Object pageIdentifier) {
+//		if(folder==null) {
+//			// Use first folder
+//			folder = getFirstFolder();
+//		}
+		folder.addPage(pageIdentifier);
+	}
+
+	/**
+	 * Get the first folder in the model.
+	 * Return null if no folder exist.
+	 * @return
+	 */
+//	public TabFolder getFirstFolder() {
+//		
+//	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
 	public void removePage(Object pageIdentifier) {
 		PageRef pageRef = lookupPage(pageIdentifier);
 		if(pageRef == null)
@@ -179,6 +202,15 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		folder.getChildren().remove(pageRef);
 		// Remove parent if empty
 		removeEmptyFolder(folder);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setCurrentSelectionSilently(TabFolder selection) {
+		currentSelection = selection;
 	}
 
 	/**
@@ -403,9 +435,18 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			// move all
 			List<PageRef> srcChildrens = srcParentFolder.getChildren();
 			List<PageRef> targetChildrens = targetParentFolder.getChildren();
-			while(srcChildrens.size() > 0) {
-				PageRef pageRef = srcChildrens.remove(0);
-				targetChildrens.add(pageRef);
+//			while(srcChildrens.size() > 0) {
+//				PageRef pageRef = srcChildrens.remove(0);
+//				targetChildrens.add(pageRef);
+//			}
+			
+			if(targetIndex < 0 || targetIndex >= targetChildrens.size()) {
+				// Index is out of bounds. Move at the end.
+				targetChildrens.addAll(srcChildrens);
+			}
+			else {
+				// index is in bounds. Move at index.
+				targetChildrens.addAll(targetIndex, srcChildrens);
 			}
 			return;
 		}
@@ -462,8 +503,20 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 */
 	public void movePage(TabFolder srcParentFolder, int srcIndex, TabFolder targetParentFolder) {
 
+		// Check if we move all pages of srcFolder
+		if(srcIndex == -1) {
+			// move all
+			List<PageRef> srcChildrens = srcParentFolder.getChildren();
+			List<PageRef> targetChildrens = targetParentFolder.getChildren();
+			while(srcChildrens.size() > 0) {
+				PageRef pageRef = srcChildrens.remove(0);
+				targetChildrens.add(pageRef);
+			}
+			return;
+		}
+		
+		// Move only one page
 		PageRef pageRef = srcParentFolder.getChildren().remove(srcIndex);
-
 		List<PageRef> targetChildrens = targetParentFolder.getChildren();
 		// Check if out of target range.
 		targetChildrens.add(pageRef);
@@ -492,7 +545,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		((SashPanel)parent).delete(folder);
 		// adjust current selection if the old folder was the currentSelection
 		if(getCurrentSelection() == folder) {
-			setCurrentSelection(lookupFirstFolder());
+			setCurrentSelectionSilently(lookupFirstFolder());
 		}
 	}
 

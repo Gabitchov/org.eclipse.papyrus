@@ -19,7 +19,7 @@ public interface ITabFolderModel extends IAbstractPanelModel {
 	 * 
 	 * @return
 	 */
-	public List<?> getChildren();
+	public List</*Page*/?> getChildren();
 
 	/**
 	 * Create the Interface used to access the real model.
@@ -30,5 +30,5 @@ public interface ITabFolderModel extends IAbstractPanelModel {
 	 *        A child returned by getChildren().
 	 * @return
 	 */
-	public IPageModel createChildSashModel(Object child);
+	public IPageModel createChildSashModel(/*Page*/Object child);
 }

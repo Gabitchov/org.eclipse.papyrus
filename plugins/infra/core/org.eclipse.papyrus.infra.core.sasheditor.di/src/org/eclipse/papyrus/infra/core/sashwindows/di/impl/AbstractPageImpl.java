@@ -20,10 +20,10 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.AbstractPageImpl#getPageIdentifier <em>Page Identifier</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.AbstractPageImpl#getPageIdentifier <em>Page Identifier</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
@@ -32,7 +32,6 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	 * The default value of the '{@link #getPageIdentifier() <em>Page Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPageIdentifier()
 	 * @generated
 	 * @ordered
@@ -43,7 +42,6 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	 * The cached value of the '{@link #getPageIdentifier() <em>Page Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPageIdentifier()
 	 * @generated
 	 * @ordered
@@ -53,7 +51,6 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AbstractPageImpl() {
@@ -63,7 +60,6 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,7 +70,6 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Object getPageIdentifier() {
@@ -84,27 +79,25 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPageIdentifier(Object newPageIdentifier) {
 		Object oldPageIdentifier = pageIdentifier;
 		pageIdentifier = newPageIdentifier;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER, oldPageIdentifier, pageIdentifier));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
-			return getPageIdentifier();
+		switch (featureID) {
+			case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
+				return getPageIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,15 +105,14 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
-			setPageIdentifier(newValue);
-			return;
+		switch (featureID) {
+			case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
+				setPageIdentifier(newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -128,15 +120,14 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
-			setPageIdentifier(PAGE_IDENTIFIER_EDEFAULT);
-			return;
+		switch (featureID) {
+			case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
+				setPageIdentifier(PAGE_IDENTIFIER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -144,14 +135,13 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
-			return PAGE_IDENTIFIER_EDEFAULT == null ? pageIdentifier != null : !PAGE_IDENTIFIER_EDEFAULT.equals(pageIdentifier);
+		switch (featureID) {
+			case DiPackage.ABSTRACT_PAGE__PAGE_IDENTIFIER:
+				return PAGE_IDENTIFIER_EDEFAULT == null ? pageIdentifier != null : !PAGE_IDENTIFIER_EDEFAULT.equals(pageIdentifier);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -159,13 +149,11 @@ public class AbstractPageImpl extends EObjectImpl implements AbstractPage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pageIdentifier: ");

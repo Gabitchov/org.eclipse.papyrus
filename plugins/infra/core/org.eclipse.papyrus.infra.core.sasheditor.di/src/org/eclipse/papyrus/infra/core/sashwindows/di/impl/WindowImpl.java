@@ -24,12 +24,12 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPosition <em>Position</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getSize <em>Size</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPanel <em>Panel</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPosition <em>Position</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPanel <em>Panel</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class WindowImpl extends PanelParentImpl implements Window {
@@ -38,7 +38,6 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	 * The cached value of the '{@link #getPosition() <em>Position</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPosition()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	 * The cached value of the '{@link #getSize() <em>Size</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSize()
 	 * @generated
 	 * @ordered
@@ -59,7 +57,6 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WindowImpl() {
@@ -69,7 +66,6 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,15 +76,14 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Position getPosition() {
-		if(position != null && position.eIsProxy()) {
+		if (position != null && position.eIsProxy()) {
 			InternalEObject oldPosition = (InternalEObject)position;
 			position = (Position)eResolveProxy(oldPosition);
-			if(position != oldPosition) {
-				if(eNotificationRequired())
+			if (position != oldPosition) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.WINDOW__POSITION, oldPosition, position));
 			}
 		}
@@ -98,7 +93,6 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Position basicGetPosition() {
@@ -108,28 +102,26 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPosition(Position newPosition) {
 		Position oldPosition = position;
 		position = newPosition;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.WINDOW__POSITION, oldPosition, position));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Size getSize() {
-		if(size != null && size.eIsProxy()) {
+		if (size != null && size.eIsProxy()) {
 			InternalEObject oldSize = (InternalEObject)size;
 			size = (Size)eResolveProxy(oldSize);
-			if(size != oldSize) {
-				if(eNotificationRequired())
+			if (size != oldSize) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.WINDOW__SIZE, oldSize, size));
 			}
 		}
@@ -139,7 +131,6 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Size basicGetSize() {
@@ -149,20 +140,18 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSize(Size newSize) {
 		Size oldSize = size;
 		size = newSize;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.WINDOW__SIZE, oldSize, size));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractPanel getPanel() {
@@ -201,24 +190,20 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case DiPackage.WINDOW__POSITION:
-			if(resolve)
-				return getPosition();
-			return basicGetPosition();
-		case DiPackage.WINDOW__SIZE:
-			if(resolve)
-				return getSize();
-			return basicGetSize();
-		case DiPackage.WINDOW__PANEL:
-			if(resolve)
-				return getPanel();
-			return basicGetPanel();
+		switch (featureID) {
+			case DiPackage.WINDOW__POSITION:
+				if (resolve) return getPosition();
+				return basicGetPosition();
+			case DiPackage.WINDOW__SIZE:
+				if (resolve) return getSize();
+				return basicGetSize();
+			case DiPackage.WINDOW__PANEL:
+				if (resolve) return getPanel();
+				return basicGetPanel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -226,21 +211,20 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case DiPackage.WINDOW__POSITION:
-			setPosition((Position)newValue);
-			return;
-		case DiPackage.WINDOW__SIZE:
-			setSize((Size)newValue);
-			return;
-		case DiPackage.WINDOW__PANEL:
-			setPanel((AbstractPanel)newValue);
-			return;
+		switch (featureID) {
+			case DiPackage.WINDOW__POSITION:
+				setPosition((Position)newValue);
+				return;
+			case DiPackage.WINDOW__SIZE:
+				setSize((Size)newValue);
+				return;
+			case DiPackage.WINDOW__PANEL:
+				setPanel((AbstractPanel)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -248,21 +232,20 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case DiPackage.WINDOW__POSITION:
-			setPosition((Position)null);
-			return;
-		case DiPackage.WINDOW__SIZE:
-			setSize((Size)null);
-			return;
-		case DiPackage.WINDOW__PANEL:
-			setPanel((AbstractPanel)null);
-			return;
+		switch (featureID) {
+			case DiPackage.WINDOW__POSITION:
+				setPosition((Position)null);
+				return;
+			case DiPackage.WINDOW__SIZE:
+				setSize((Size)null);
+				return;
+			case DiPackage.WINDOW__PANEL:
+				setPanel((AbstractPanel)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -270,18 +253,17 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case DiPackage.WINDOW__POSITION:
-			return position != null;
-		case DiPackage.WINDOW__SIZE:
-			return size != null;
-		case DiPackage.WINDOW__PANEL:
-			return basicGetPanel() != null;
+		switch (featureID) {
+			case DiPackage.WINDOW__POSITION:
+				return position != null;
+			case DiPackage.WINDOW__SIZE:
+				return size != null;
+			case DiPackage.WINDOW__PANEL:
+				return basicGetPanel() != null;
 		}
 		return super.eIsSet(featureID);
 	}

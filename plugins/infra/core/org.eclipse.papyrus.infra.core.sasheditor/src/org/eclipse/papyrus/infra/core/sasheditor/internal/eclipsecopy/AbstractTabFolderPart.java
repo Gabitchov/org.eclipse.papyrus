@@ -408,18 +408,19 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 
 	/**
 	 * Sets the currently active page for this folder.
+	 * Removed since 0.10.0
 	 * 
 	 * @param pageIndex
 	 *        the index of the page to be activated; the index must be valid
 	 */
-	public void setActivePage(int pageIndex) {
-		//		Assert.isTrue(pageIndex >= 0 && pageIndex < getPageCount());
-		if(!isValidPageIndex(pageIndex))
-			return;
-
-		getTabFolder().setSelection(pageIndex);
-		pageChange(pageIndex);
-	}
+//	public void setActivePage(int pageIndex) {
+//		//		Assert.isTrue(pageIndex >= 0 && pageIndex < getPageCount());
+//		if(!isValidPageIndex(pageIndex))
+//			return;
+//
+//		getTabFolder().setSelection(pageIndex);
+//		pageChange(pageIndex);
+//	}
 
 	/**
 	 * Return true if the specified index is valid.
@@ -429,7 +430,7 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 * @param pageIndex
 	 * @return
 	 */
-	private boolean isValidPageIndex(int pageIndex) {
+	protected boolean isValidPageIndex(int pageIndex) {
 
 		return pageIndex >= 0 && pageIndex < getPageCount();
 	}

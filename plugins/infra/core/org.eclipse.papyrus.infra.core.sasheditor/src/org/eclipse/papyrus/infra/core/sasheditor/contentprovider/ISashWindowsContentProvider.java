@@ -7,6 +7,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
  * {@link IPageModel}.
  * The interface is also used by the sashsystem to communicate, by sending event, with the
  * effective implementation or upper level.
+ * <br>
  * 
  * @author dumoulin
  * 
@@ -14,28 +15,31 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 public interface ISashWindowsContentProvider {
 
 	/**
-	 * Get the root object shown in the sashes window.
+	 * Get the root object shown in the {@link SashWindowsContainer}.
 	 * The type of the returned object is left to the implementation.
-	 * The sashes window will ask for an interface used to interact with the object.
-	 * In normal implementation, this method should return the model used by the implementation.
+	 * The {@link SashWindowsContainer} will ask for an interface used to interact with the object.
+	 * In normal implementation, this method should return the model used by the real implementation.
+	 * The root object should correspond to a Panel (Folder or Sash).
 	 * 
-	 * @return The object representing the root of the sashes window.
+	 * @return The object representing the root of the implementation.
 	 */
-	public Object getRootModel();
+	public /*Panel*/Object getRootModel();
 
 	/**
-	 * create the interface used by the sashes window to access the root model.
-	 * This method is called by the sashes window to get the interface.
+	 * Create the interface used by the {@link SashWindowsContainer} to access the root model.
+	 * This method is called by the {@link SashWindowsContainer} to get the interface.
 	 * The method is called only once for a given object.
 	 * 
-	 * @param root
-	 * @return The SashModel corresponding to the specified root object.
+	 * @param root An object representing a Panel
+	 * @return The SashModel corresponding to the specified panel object.
 	 */
-	public IAbstractPanelModel createChildSashModel(Object root);
+	public IAbstractPanelModel createChildSashModel(/*Panel*/Object root);
 
 	/**
 	 * Add a page to the current TabFolder.
 	 * The Page is added at the end of the tab list.
+	 * <br>
+	 * This method is not used by the {@link ISashWindowsContainer}.
 	 * 
 	 * @param page
 	 *        An object identifying the page to add. The object could be anything. It will be
@@ -45,6 +49,8 @@ public interface ISashWindowsContentProvider {
 
 	/**
 	 * Add a page at the specified index of TabFolder.
+	 * <br>
+	 * This method is not used by the {@link ISashWindowsContainer}.
 	 * 
 	 * @param page
 	 *        An object identifying the page to add. The object could be anything. It will be
@@ -126,6 +132,6 @@ public interface ISashWindowsContentProvider {
 	 *        The Raw model identifying the folder. This is the same object as the one
 	 *        returned by {@link ISashPanelModel#getChildren()} when the child denote a folder.
 	 */
-	public void setCurrentFolder(Object rawModel);
+	public void setCurrentFolder(/*Folder*/Object rawModel);
 
 }
