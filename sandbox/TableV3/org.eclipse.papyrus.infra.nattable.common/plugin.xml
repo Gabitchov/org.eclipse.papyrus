@@ -3,7 +3,7 @@
 <plugin>
    <extension-point id="org.eclipse.papyrus.infra.nattable.common.axismanager" name="Axis Manager" schema="schema/org.eclipse.papyrus.infra.nattable.common.axismanager.exsd"/>
    <extension-point id="org.eclipse.papyrus.infra.nattable.common.pathresolver" name="Path Resolver" schema="schema/org.eclipse.papyrus.infra.nattable.common.pathresolver.exsd"/>
-    <extension-point id="org.eclipse.papyrus.infra.nattable.common.crossvaluesolver" name="Cross Value Solver" schema="schema/org.eclipse.papyrus.infra.nattable.common.crossvaluesolver.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.common.cellmanager" name="Cell Manager" schema="schema/org.eclipse.papyrus.infra.nattable.common.cellmanager.exsd"/>
 
 <!--We declare the model used for the Papyrus Table Editor  -->
    <extension point="org.eclipse.papyrus.infra.core.model">
@@ -133,11 +133,12 @@
     </factory>
  </extension>
  <extension
-       point="org.eclipse.papyrus.infra.nattable.common.crossvaluesolver">
-    <crossvalueSolver
-          id="org.eclipse.papyrus.infra.nattable.common.emf.feature.solver"
-          solver="org.eclipse.papyrus.infra.nattable.common.solver.FeatureValueResolver">
-    </crossvalueSolver>
+       point="org.eclipse.papyrus.infra.nattable.common.cellmanager">
+    <cellManager
+          id="org.eclipse.papyrus.infra.nattable.common.emf.feature.cell.manager"
+          manager="org.eclipse.papyrus.infra.nattable.common.solver.CellFeatureValueManager"
+          order="40">
+    </cellManager>
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">

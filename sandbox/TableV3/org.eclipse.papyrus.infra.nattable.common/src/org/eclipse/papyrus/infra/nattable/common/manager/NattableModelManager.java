@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.factory.AxisManagerFactory;
-import org.eclipse.papyrus.infra.nattable.common.solver.CrossValueSolverFactory;
+import org.eclipse.papyrus.infra.nattable.common.solver.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
@@ -305,7 +305,7 @@ public class NattableModelManager implements INattableModelManager {
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
-		return CrossValueSolverFactory.INSTANCE.getCrossValue(obj1, obj2);
+		return CellManagerFactory.INSTANCE.getCrossValue(obj1, obj2);
 	}
 
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
@@ -338,7 +338,10 @@ public class NattableModelManager implements INattableModelManager {
 
 
 	public void refreshNattable() {
-		getNatTable().refresh();
+		NatTable table = getNatTable();
+		if(table != null && !table.isDisposed()) {
+			table.refresh();
+		}
 	}
 
 	public List<Object> getColumnElementsList() {

@@ -175,7 +175,7 @@ public class NatTableDropListener implements DropTargetListener {
 	private DropKindValue getDropKind(final DropTargetEvent event) {
 		final Point point = this.natTable.toControl(event.x, event.y);
 		DropKind kind = DropKind.UNKNOWN;
-		final ILayer currentLayer = this.gridLayer.getChildLayerByXY(point.x, point.y);
+		final ILayer currentLayer = this.gridLayer.getChildLayerByLayoutCoordinate(point.x, point.y);
 		int column = this.natTable.getColumnPositionByX(point.x);
 		int row = this.natTable.getRowPositionByY(point.y);
 		int index = -1;

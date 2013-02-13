@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,19 +11,21 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.common.solver;
+package org.eclipse.papyrus.uml.nattable.common.manager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.nattable.common.solver.ICrossValueSolver;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.nattable.common.manager.ICellManager;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 //FIXME : move this class to remove UML dependency
-public class StereotypePropertyValueSolver implements ICrossValueSolver {
+public class StereotypePropertyCellManager implements ICellManager {
 
 	//FIXME : remove me!
 	public static final String STEREOTYPE_PREFIX = "property_of_stereotype:/";
@@ -53,7 +55,7 @@ public class StereotypePropertyValueSolver implements ICrossValueSolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param obj1
 	 * @param obj2
 	 * @return
@@ -68,5 +70,20 @@ public class StereotypePropertyValueSolver implements ICrossValueSolver {
 			objects.add(obj2);
 		}
 		return objects;
+	}
+
+	public void setValue(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean isCellEditable(Object obj1, Object obj2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Command getSetValueCommand(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

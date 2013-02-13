@@ -22,7 +22,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 
 
-public abstract class AbstractFeatureAxisManager extends AbstractAxisManager {
+public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractAxisManager {
 
 	@Override
 	public void init(final INattableModelManager manager, final String managerId, final Table table, final IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges) {

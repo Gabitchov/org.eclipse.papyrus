@@ -17,11 +17,12 @@
       </axisManager>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.nattable.common.crossvaluesolver">
-      <crossvalueSolver
-            id="org.eclipse.papyrus.uml.nattable.common.stereotype.property.solver"
-            solver="org.eclipse.papyrus.uml.nattable.common.solver.StereotypePropertyValueSolver">
-      </crossvalueSolver>
+         point="org.eclipse.papyrus.infra.nattable.common.cellmanager">
+      <cellManager
+            id="org.eclipse.papyrus.uml.nattable.common.stereotype.property.cell.manager"
+            manager="org.eclipse.papyrus.uml.nattable.common.manager.StereotypePropertyCellManager"
+            order="50">
+      </cellManager>
    </extension>
 
 </plugin>
