@@ -57,8 +57,10 @@ public class ReadOnlyManager {
 					handlerPriorityPair.priority = Integer.parseInt(elem.getAttribute("priority"));
 
 					handlerPriorityPairs.add(handlerPriorityPair);
-				} catch (Exception e) {
-					Activator.log.error(e);
+				} catch (Throwable t) {
+					//FIXME: We need to catch Throwables because we rely on external contributions. It is required to also catch Errors (such as compilation errors).
+					//Move this code to an initialization method, because if a throwable is not caught, this will prevent the whole class initialization
+					Activator.log.error(t);
 				}
 			}
 		}
