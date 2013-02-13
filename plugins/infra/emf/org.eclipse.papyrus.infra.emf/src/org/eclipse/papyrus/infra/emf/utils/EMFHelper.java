@@ -161,6 +161,7 @@ public class EMFHelper {
 	public static EObject getEObject(final Object source) {
 
 		//Support for EMF 0.2 CustomizedTree: The TreeElements are EObjects, and do not implement IAdatapble.
+		//FIXME: Use an AdapterFactory instead, to remove the dependency to EMF Facet 0.2
 		Object resolved = CustomizedContentProviderUtils.resolve(source);
 		if(resolved != source && resolved instanceof EObject) {
 			return (EObject)resolved;
