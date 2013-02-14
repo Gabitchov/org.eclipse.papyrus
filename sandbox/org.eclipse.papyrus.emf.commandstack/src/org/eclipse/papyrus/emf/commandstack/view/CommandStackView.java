@@ -41,6 +41,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 
 public class CommandStackView extends AbstractTreeView {
 
@@ -213,6 +214,8 @@ public class CommandStackView extends AbstractTreeView {
 					final List<Object> children = new ArrayList<Object>();
 					children.add(((EMFCommandOperation)parentElement).getCommand());
 					return children.toArray();
+				} else if(parentElement instanceof GMFtoEMFCommandWrapper) {
+					return new Object[]{ ((GMFtoEMFCommandWrapper)parentElement).getGMFCommand() };
 				}
 				return new Object[0];
 			}
