@@ -136,7 +136,7 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 			editingDomain = serviceUtils.getTransactionalEditingDomain();
 
 		} catch (ServiceException e) {
-			Activator.log.error(e);
+			//Ignore and return null
 		}
 
 		return editingDomain;
