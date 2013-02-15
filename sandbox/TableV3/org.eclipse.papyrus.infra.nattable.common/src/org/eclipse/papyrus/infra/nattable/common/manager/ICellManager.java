@@ -15,13 +15,16 @@ package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 
-//FIXME : rename the extension point in CellManager ?
-//FIXME : rename this interface
+
 //FIXME : the extension point should be declared on an Abstract class instead an Interface (to add method easily?)=
 public interface ICellManager {
 
-	public static final String NOT_AVALAIBLE = "N/A";
+	/**
+	 * The string displayed for Not_AVAILABLE
+	 */
+	public static final String NOT_AVALAIBLE = Messages.ICellManager_NotAvailable;
 
 	public boolean handles(final Object obj1, final Object obj2);
 

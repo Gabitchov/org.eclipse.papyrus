@@ -23,7 +23,7 @@ import org.eclipse.ui.PlatformUI;
 
 public class NattableInstancePropertyTester extends PropertyTester {
 
-	private static final String IS_EMF_NATTABLE_EDITOR = "isEMFNattableEditor";
+	private static final String IS_EMF_NATTABLE_EDITOR = "isEMFNattableEditor"; //$NON-NLS-1$
 
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		if(IS_EMF_NATTABLE_EDITOR.equals(property) && expectedValue instanceof Boolean) {

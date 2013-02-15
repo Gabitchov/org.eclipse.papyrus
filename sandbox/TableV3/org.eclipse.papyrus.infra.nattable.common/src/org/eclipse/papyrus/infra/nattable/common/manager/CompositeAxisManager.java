@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 
 
 public class CompositeAxisManager extends AbstractAxisManager {
@@ -27,7 +28,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	/**
 	 * the id of this manager
 	 */
-	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.common.composite.axis.manager";
+	public static final String MANAGER_ID = "org.eclipse.papyrus.infra.nattable.common.composite.axis.manager"; //$NON-NLS-1$
 
 	/**
 	 * the managed managers
@@ -36,7 +37,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * Setter for {@link #managers}
-	 *
+	 * 
 	 * @param managers
 	 *        the managers managed by this one
 	 */
@@ -46,9 +47,9 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#dispose()
-	 *
+	 * 
 	 */
 	@Override
 	public void dispose() {
@@ -59,9 +60,9 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#getManagerId()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -70,49 +71,49 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canBeUsedHorizontally()
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canBeUsedAsRowManager()
+	 * 
 	 * @return
 	 */
 	@Override
-	public boolean canBeUsedHorizontally() {
+	public boolean canBeUsedAsRowManager() {
 		boolean answer = true;
 		final Iterator<IAxisManager> iter = this.managers.iterator();
 		while(iter.hasNext() && answer) {
-			answer = iter.next().canBeUsedHorizontally();
+			answer = iter.next().canBeUsedAsRowManager();
 		}
 		return answer;
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canBeUsedVertically()
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canBeUsedAsColumnManager()
+	 * 
 	 * @return
 	 */
 	@Override
-	public boolean canBeUsedVertically() {
+	public boolean canBeUsedAsColumnManager() {
 		boolean answer = true;
 		final Iterator<IAxisManager> iter = this.managers.iterator();
 		while(iter.hasNext() && answer) {
-			answer = iter.next().canBeUsedVertically();
+			answer = iter.next().canBeUsedAsColumnManager();
 		}
 		return answer;
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
-	 *
+	 * 
 	 * @param domain
 	 * @param objectToAdd
 	 * @return
 	 */
 	@Override
 	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
-		final CompoundCommand cmd = new CompoundCommand("Add Axis Command");
+		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
 		for(final IAxisManager current : this.managers) {
 			final Command tmp = current.getAddAxisCommand(domain, objectToAdd);
 			if(tmp != null) {
@@ -126,17 +127,17 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
-	 *
+	 * 
 	 * @param domain
 	 * @param objectToAdd
 	 * @return
 	 */
 	@Override
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
-		final CompoundCommand cmd = new CompoundCommand("Add Axis Command");
+		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
 		for(final IAxisManager current : this.managers) {
 			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd);
 			if(tmp != null) {
@@ -150,9 +151,9 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#updateAxisContents()
-	 *
+	 * 
 	 */
 	@Override
 	public synchronized void updateAxisContents() {
@@ -164,9 +165,9 @@ public class CompositeAxisManager extends AbstractAxisManager {
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#isAllowedContents(java.lang.Object)
-	 *
+	 * 
 	 * @param object
 	 * @return
 	 */
@@ -178,5 +179,15 @@ public class CompositeAxisManager extends AbstractAxisManager {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean canReoderElements() {
+		for(final IAxisManager current : this.managers) {
+			if(!current.canReoderElements()) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

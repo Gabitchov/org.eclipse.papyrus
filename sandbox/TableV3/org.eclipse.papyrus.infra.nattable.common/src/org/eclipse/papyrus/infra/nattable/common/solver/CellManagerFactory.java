@@ -26,11 +26,11 @@ import org.eclipse.papyrus.infra.nattable.common.manager.ICellManager;
 //FIXME : should implements ICrossValueSolver?
 public class CellManagerFactory {
 
-	public static final String CLASS_MANAGER = "manager";
+	public static final String CLASS_MANAGER = "manager"; //$NON-NLS-1$
 
-	public static final String ORDER = "order";
+	public static final String ORDER = "order"; //$NON-NLS-1$
 
-	public static final String SOLVER_ID = "id";
+	public static final String SOLVER_ID = "id"; //$NON-NLS-1$
 
 	//	private final Map<String, Class<IAxisManager>> map;
 
@@ -38,7 +38,7 @@ public class CellManagerFactory {
 
 	private final Map<Integer, ICellManager> managersMap;
 
-	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.common.cellmanager";
+	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.common.cellmanager"; //$NON-NLS-1$
 
 	public static final CellManagerFactory INSTANCE = new CellManagerFactory();
 

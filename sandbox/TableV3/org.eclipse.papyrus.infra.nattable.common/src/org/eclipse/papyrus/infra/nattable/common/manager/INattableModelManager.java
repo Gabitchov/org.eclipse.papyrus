@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.ui.services.IDisposable;
 
 
@@ -57,5 +58,15 @@ public interface INattableModelManager extends ILimitedNattableModelManager, IDi
 
 	public Object getRowElemen(int index);
 
+	public boolean canReorderColumns();
 
+	public boolean canReoderRows();
+
+	public void reorderColumnsElements(final IAxis axisToMove, final int newIndex);
+
+	public void reorderRowElements(final IAxis axisToMove, final int newIndex);
+
+	public void invertAxis();
+	
+	public boolean canInvertAxis();
 }

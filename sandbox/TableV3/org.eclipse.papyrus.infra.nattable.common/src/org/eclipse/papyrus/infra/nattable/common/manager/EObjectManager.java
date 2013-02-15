@@ -22,6 +22,7 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
@@ -49,7 +50,7 @@ public class EObjectManager extends AbstractAxisManager {
 	 */
 	@Override
 	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd) {
-		final CompoundCommand cmd = new CompoundCommand("Add Axis Element");
+		final CompoundCommand cmd = new CompoundCommand(Messages.EObjectManager_AddAxisElement);
 		for(final Object object : objectToAdd) {
 			if(isAllowedContents(object)) {
 				final EObjectAxis horizontalAxis = NattableFactory.eINSTANCE.createEObjectAxis();

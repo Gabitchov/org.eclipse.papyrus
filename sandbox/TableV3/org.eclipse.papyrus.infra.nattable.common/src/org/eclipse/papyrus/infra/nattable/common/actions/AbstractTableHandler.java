@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.ui.IEditorPart;
 
 
@@ -29,7 +30,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		try {
 			return ServiceUtilsForHandlers.getInstance().getNestedActiveIEditorPart(event);
 		} catch (final ServiceException e) {
-			Activator.log.error("Current Editor can't be found", e);
+			Activator.log.error(Messages.AbstractTableHandler_CurrentEditorCantBeFound, e);
 		}
 		return null;
 	}

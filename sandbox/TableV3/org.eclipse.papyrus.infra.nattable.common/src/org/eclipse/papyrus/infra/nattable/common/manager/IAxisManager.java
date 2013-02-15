@@ -36,14 +36,14 @@ public interface IAxisManager extends IDisposable {
 	 * @return
 	 *         <code>true</code> if the manager can be used horizontally
 	 */
-	public boolean canBeUsedHorizontally();
+	public boolean canBeUsedAsRowManager();
 
 	/**
 	 * 
 	 * @return
 	 *         <code>true</code> if the manager can be used vertically
 	 */
-	public boolean canBeUsedVertically();
+	public boolean canBeUsedAsColumnManager();
 
 	/**
 	 * 
@@ -138,4 +138,11 @@ public interface IAxisManager extends IDisposable {
 	//	}
 
 	public boolean isAllowedContents(final Object object);
+
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if we can reorder the elements on the axis
+	 */
+	public boolean canReoderElements();
 }

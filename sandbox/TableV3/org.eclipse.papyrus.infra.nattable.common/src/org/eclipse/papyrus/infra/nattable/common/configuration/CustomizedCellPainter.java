@@ -31,11 +31,11 @@ import org.eclipse.swt.graphics.GC;
 
 public class CustomizedCellPainter extends TextPainter {
 
-	private static final String BEGIN_OF_LIST = "[";
+	private static final String BEGIN_OF_LIST = "["; //$NON-NLS-1$
 
-	private static final String END_OF_LIST = "]";
+	private static final String END_OF_LIST = "]"; //$NON-NLS-1$
 
-	private static final String VALUE_SEPARATOR = ", ";
+	private static final String VALUE_SEPARATOR = ", "; //$NON-NLS-1$
 
 	//FIXME currently the service registry can't be obtained for features, because their resources are not included in the resourceSet
 	private static LabelProviderService serv;
@@ -104,7 +104,7 @@ public class CustomizedCellPainter extends TextPainter {
 			final ILabelProvider provider = service.getLabelProvider();
 			return provider.getText(object);
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	private LabelProviderService getLabelProviderService(final EObject eobject) {

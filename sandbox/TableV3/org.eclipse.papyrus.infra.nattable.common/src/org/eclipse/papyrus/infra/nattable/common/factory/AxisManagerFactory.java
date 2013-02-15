@@ -22,26 +22,27 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.manager.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 
 
 public class AxisManagerFactory {
 
-	public static final String CLASS_MANAGER = "manager";
+	public static final String CLASS_MANAGER = "manager"; //$NON-NLS-1$
 
-	public static final String CLASS_ID = "id";
+	public static final String CLASS_ID = "id"; //$NON-NLS-1$
 
 	private final Map<String, Class<IAxisManager>> map;
 
-	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.common.axismanager";
+	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.common.axismanager"; //$NON-NLS-1$
 
 	public static final AxisManagerFactory INSTANCE = new AxisManagerFactory();
 
 	private AxisManagerFactory() {
 		this.map = new HashMap<String, Class<IAxisManager>>();
 
-		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.infra.nattable.common.axismanager");
+		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.infra.nattable.common.axismanager"); //$NON-NLS-1$
 
 		for(final IConfigurationElement iConfigurationElement : configElements) {
 			final String id = iConfigurationElement.getAttribute(CLASS_ID);
@@ -65,7 +66,7 @@ public class AxisManagerFactory {
 			try {
 				axisManager = managerClass.newInstance();
 			} catch (final InstantiationException e) {
-				Activator.log.error("The class {0} can't be instanciated", e);
+				Activator.log.error(Messages.AxisManagerFactory_TheClassCantBeInstanciated, e);
 			} catch (final IllegalAccessException e) {
 				Activator.log.error(e);
 			}

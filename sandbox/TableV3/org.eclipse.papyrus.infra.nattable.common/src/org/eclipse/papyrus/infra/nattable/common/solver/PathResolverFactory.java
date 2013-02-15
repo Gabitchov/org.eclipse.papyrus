@@ -24,15 +24,15 @@ import org.eclipse.emf.ecore.EObject;
 
 public class PathResolverFactory {
 
-	public static final String CLASS_MANAGER = "resolver";
+	public static final String CLASS_MANAGER = "resolver"; //$NON-NLS-1$
 
-	public static final String SOLVER_ID = "id";
+	public static final String SOLVER_ID = "id"; //$NON-NLS-1$
 
 	//	private final Map<String, Class<IAxisManager>> map;
 
 	private final Collection<IPathResolver> resolvers;
 
-	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.common.pathresolver";
+	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.common.pathresolver"; //$NON-NLS-1$
 
 	public static final PathResolverFactory INSTANCE = new PathResolverFactory();
 

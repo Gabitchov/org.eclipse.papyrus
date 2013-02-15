@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -134,7 +135,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 		// default Value
 		this.name = this.defaultName;
 		this.description = this.defaultDescription;
-		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), "Papyrus Table Creation", "Enter the name for the new table", this.defaultName, null);
+		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, this.defaultName, null);
 		if(dialog.open() == Dialog.OK) {
 			this.name = dialog.getValue();
 			final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);

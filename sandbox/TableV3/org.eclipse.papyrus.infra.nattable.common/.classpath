@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="org/eclipse/papyrus/infra/nattable/common/row/reorder/DefaultReorderBindings.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/DefaultRowReorderLayerConfiguration.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/MultiRowReorderCommand.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/MultiRowReorderCommandHandler.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderCommand.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderCommandHandler.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderDragMode.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderEndCommand.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderEndCommandHandler.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderEvent.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderLayer.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderStartCommand.java|org/eclipse/papyrus/infra/nattable/common/row/reorder/RowReorderStartCommandHandler.java" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

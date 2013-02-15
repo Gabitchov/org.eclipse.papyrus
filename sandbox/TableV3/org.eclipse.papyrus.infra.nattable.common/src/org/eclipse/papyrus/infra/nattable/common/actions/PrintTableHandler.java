@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
@@ -53,7 +54,7 @@ public class PrintTableHandler extends AbstractHandler {
 				natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
 				natTable.doCommand(new TurnViewportOnCommand());
 			} else {
-				MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Table Print", "Print can't be done");
+				MessageDialog.openInformation(Display.getDefault().getActiveShell(), Messages.PrintTableHandler_TablePrint, Messages.PrintTableHandler_PrintCantBeDone);
 			}
 		} catch (final ServiceException e) {
 			Activator.log.error(e);

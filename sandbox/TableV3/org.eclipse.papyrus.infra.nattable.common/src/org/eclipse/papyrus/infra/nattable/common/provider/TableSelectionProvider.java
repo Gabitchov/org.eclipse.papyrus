@@ -81,7 +81,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable {
 		if(event instanceof ColumnSelectionEvent) {
 			final ColumnSelectionEvent e = (ColumnSelectionEvent)event;
 			final int[] positions = this.selectionLayer.getSelectedColumnPositions();
-			System.out.println(positions);
+//			System.out.println(positions);
 			//			this.selectionLayer.
 
 		} else if(event instanceof CellSelectionEvent) {

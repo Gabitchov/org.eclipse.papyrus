@@ -26,6 +26,8 @@ import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.KeyEventMatcher;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.papyrus.infra.nattable.common.configuration.StyleConfiguration;
+import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.common.reorder.CustomDefaultColumnReorderBindings;
 import org.eclipse.swt.SWT;
 
 
@@ -42,13 +44,28 @@ public class BodyLayerStack extends AbstractLayerTransform {
 
 	private final ColumnReorderLayer columnReorderLayer;
 
-	public BodyLayerStack(final IDataProvider dataProvider) {
+//	private final RowReorderLayer rowReoderLayer;
+
+	public BodyLayerStack(final IDataProvider dataProvider, final INattableModelManager manager) {
 		this.bodyDataLayer = new DataLayer(dataProvider);
 		this.bodyDataLayer.addConfiguration(new StyleConfiguration());
 		this.bodyDataLayer.setDefaultColumnWidth(200);
 
-		this.columnReorderLayer = new ColumnReorderLayer(this.bodyDataLayer);
+		this.columnReorderLayer = new ColumnReorderLayer(this.bodyDataLayer, false);
+
+		//we register a custom configuration to manage the case where the reorder is forbidden
+		this.columnReorderLayer.addConfiguration(new CustomDefaultColumnReorderBindings(manager));
+
+
+		//to allow the reorder on the lines
+//		this.rowReoderLayer = null;
+		//		this.rowReoderLayer = new RowReorderLayer(columnReorderLayer);
+		//		this.columnHideShowLayer = new ColumnHideShowLayer(this.rowReoderLayer);
+
 		this.columnHideShowLayer = new ColumnHideShowLayer(this.columnReorderLayer);
+
+
+
 		this.selectionLayer = new SelectionLayer(this.columnHideShowLayer);
 		this.viewportLayer = new ViewportLayer(this.selectionLayer);
 		setUnderlyingLayer(this.viewportLayer);
@@ -85,4 +102,9 @@ public class BodyLayerStack extends AbstractLayerTransform {
 		//		uiBindingRegistry.
 		//		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new CustomizedCellPainter(), DisplayMode.NORMAL, GridRegion.BODY);
 	}
+
+
+//	public RowReorderLayer getRowReoderLayer() {
+//		return this.rowReoderLayer;
+//	}
 }
