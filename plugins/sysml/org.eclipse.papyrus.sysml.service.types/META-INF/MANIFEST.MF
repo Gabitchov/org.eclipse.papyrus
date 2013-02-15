@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.sysml.service.types,
  org.eclipse.papyrus.sysml.service.types.element,
  org.eclipse.papyrus.sysml.service.types.helper,
- org.eclipse.papyrus.sysml.service.types.matcher
+ org.eclipse.papyrus.sysml.service.types.matcher,
+ org.eclipse.papyrus.sysml.service.types.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier
