@@ -26,17 +26,21 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
+import org.eclipse.emf.facet.infra.facet.validation.EValidatorAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
+import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
@@ -77,7 +81,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	{
 	    // Do not show a dialog, as in the original version since the user sees the result directly
 		// in the model explorer
-		Resource resource = getResource();
+		Resource resource = getValidationResource();
 		if (resource != null) {
 			if (selectedElement != null) {
 				ValidationTool vt = new ValidationTool(selectedElement);
@@ -96,9 +100,11 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		}
 	}
 
-	protected Resource getResource() {
-		Resource resource = eclipseResourcesUtil != null ? domain.getResourceSet().getResources().get(0) : null;
-		return resource;
+	/**
+	 * @return The resource on which markers should be applied.
+	 */
+	protected Resource getValidationResource() {
+		return ValidationUtils.getValidationResource(selectedElement);
 	}
 	
 	protected void runValidation (final EObject validateElement) {
@@ -142,7 +148,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	}
 
 	/**
-	 * This simply execute the command.
+	 * This simply executes the command.
 	 */
 	protected Diagnostic validate(IProgressMonitor progressMonitor, EObject validateElement)
 	{
@@ -184,8 +190,23 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			@Override
 			public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 				progressMonitor.worked(1);
-				return super.validate(eClass, eObject, diagnostics, context);
+				
+				// copied from superclass, difference: use EValidatorAdapter instead of first value from eValidatorRegistry
+				// fix of bug 397518
+				Object eValidator = validatorAdapter;
+
+				boolean circular = context.get(EObjectValidator.ROOT_OBJECT) == eObject;
+				boolean result = ((EValidator)eValidator).validate(eClass, eObject, diagnostics, context);
+				if((result || diagnostics != null) && !circular)
+				{
+					result &= doValidateContents(eObject, diagnostics, context);
+				}
+				return result;
 			}
+			
+			// TODO: avoid discouraged access
+			@SuppressWarnings("restriction")
+			protected EValidatorAdapter validatorAdapter = new EValidatorAdapter();
 		};
 	}
 	

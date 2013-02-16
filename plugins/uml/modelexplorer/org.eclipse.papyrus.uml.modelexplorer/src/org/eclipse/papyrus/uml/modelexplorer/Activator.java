@@ -40,9 +40,6 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
-		// register EValidatorAdapter for selected elements
-		// TODO: discouraged access
-		EValidator.Registry.INSTANCE.put(UMLPackage.eINSTANCE, new EValidatorAdapter());
 	}
 
 	/*
