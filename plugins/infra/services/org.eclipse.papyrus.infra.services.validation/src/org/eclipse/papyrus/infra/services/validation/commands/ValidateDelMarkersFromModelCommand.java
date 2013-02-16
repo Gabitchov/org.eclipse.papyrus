@@ -34,9 +34,9 @@ public class ValidateDelMarkersFromModelCommand extends AbstractValidateCommand 
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Resource resource = getResource();
+		Resource resource = getValidationResource();
 		if ((resource != null) && (eclipseResourcesUtil != null)) {
-			eclipseResourcesUtil.deleteMarkers(getResource());
+			eclipseResourcesUtil.deleteMarkers(resource);
 		}
 		return null;
 	}		
