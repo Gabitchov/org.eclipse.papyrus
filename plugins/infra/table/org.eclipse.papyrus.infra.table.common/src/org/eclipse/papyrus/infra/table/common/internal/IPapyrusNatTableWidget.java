@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
+import org.eclipse.ui.services.IDisposable;
 
 /**
  * 
@@ -31,7 +32,7 @@ import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
  * @author VL222926
  *
  */
-public interface IPapyrusNatTableWidget extends INatTableWidget {
+public interface IPapyrusNatTableWidget extends INatTableWidget , IDisposable{
 
 	/**
 	 * This method allow to add elements in the table without execute the command in the command stack

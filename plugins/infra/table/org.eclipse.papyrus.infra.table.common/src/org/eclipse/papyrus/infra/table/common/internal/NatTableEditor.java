@@ -334,6 +334,11 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		}
 		editingDomain.getCommandStack().removeCommandStackListener(commandListener);
 		super.dispose();
+		for(final ISelectionChangedListener listener : this.natTableWidget.getSelectionChangedListeners()) {
+			this.natTableWidget.removeSelectionChangedListener(listener);
+		}
+		((IPapyrusNatTableWidget)this.natTableWidget).dispose();
+		this.natTableWidget = null;
 	}
 
 	@Override

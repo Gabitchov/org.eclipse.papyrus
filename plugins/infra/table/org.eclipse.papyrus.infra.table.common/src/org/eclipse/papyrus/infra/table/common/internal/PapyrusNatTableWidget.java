@@ -254,5 +254,10 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 		}
 		getEditingDomain().getCommandStack().execute(addRowCommand);
 	}
+	
+	@Override
+	public void dispose() {
+		getCustomizationEngine().clear();
+	}
 }
 
