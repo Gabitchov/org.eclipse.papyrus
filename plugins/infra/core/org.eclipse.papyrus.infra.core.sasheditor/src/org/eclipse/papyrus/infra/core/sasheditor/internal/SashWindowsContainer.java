@@ -24,7 +24,6 @@ import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
@@ -79,7 +78,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * when appropriate.
 	 */
 	private SashContainerEventsProvider lifeCycleEventProvider;
-	
+
 	/**
 	 * The part used as root. We use an extra class as root in order to separate the code dedicated to
 	 * ITilePart.
@@ -109,11 +108,12 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Listener on widget diposed event.
 	 */
 	private DisposeListener widgetDisposedListener = new DisposeListener() {
-		
+
 		/**
-		 * Called  when the widget is disposed.
+		 * Called when the widget is disposed.
+		 * 
 		 * @see org.eclipse.swt.events.DisposeListener#widgetDisposed(org.eclipse.swt.events.DisposeEvent)
-		 *
+		 * 
 		 * @param e
 		 */
 		public void widgetDisposed(DisposeEvent e) {
@@ -121,7 +121,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			dispose();
 		}
 	};
-	
+
 	/**
 	 * Constructor.
 	 * Build a Container without IEditor management. Trying to add a EditorPart will result in an Exception.
@@ -150,7 +150,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			// This listener will take in charge editor services switching.
 			activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager.getEditorSite()));
 		}
-		
+
 		// Life cycle event provider
 		lifeCycleEventProvider = new SashContainerEventsProvider();
 	}
@@ -162,8 +162,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// Content provider should have been set.
 		assert (contentProvider != null);
 		// Double check for developement
-		if(contentProvider == null)
+		if(contentProvider == null) {
 			throw new IllegalStateException("ContentProvider should be set before calling any method requiring it.");
+		}
 
 		return contentProvider;
 	}
@@ -197,7 +198,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// TODO 20130205
 		// Read lastActivePart from ContentProvider, and set it 
 		// before refresh. Like this, sash will select the last save page
-		
+
 		// Create children
 		refreshTabs();
 		// Set selection
@@ -208,9 +209,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// TODO reactivate next
 		initDrag(container);
 		// activate();
-		
+
 		// Listen for disposale
-		container.addDisposeListener(widgetDisposedListener );
+		container.addDisposeListener(widgetDisposedListener);
 	}
 
 	/**
@@ -224,51 +225,42 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/**
 	 * Dispose the Container. All referenced resources will be disposed.
 	 * The container should not be used anymore once disposed.
-	 * The result of calling a method after a dispose() is unpredictable.
-	 * <br> 
-	 * This method can be called several times.
-	 * <br>
+	 * The result of calling a method after a dispose() is unpredictable. <br>
+	 * This method can be called several times. <br>
 	 * <br>
 	 * How the method works:
 	 * <ul>
 	 * <li>The {@link SashWindowsContainer} has two trees, the SWT tree and a Part tree ({@link #rootPart}).</li>
-	 * <li>The SWT tree is disposed first. </li>
-	 *   <ul>
-	 *     <li>This prevent events fired from user interaction or from Widget modifiaction</li>
-	 *     <li>The SWT disposal stop before nested editors SWT (thanks to the DISPOSE event in {@link EditorPart}). 
-	 *     At this point, the nested editor dispose() method is called. 
-	 *     </li>
-	 *     <li>This allow to let the nested editor receive one single dispose call.</li>
-	 *     <li></li>
-	 *   </ul>
-	 * <li>The Part tree is disposed second (by calling rootPart.disposeThisAndChildren() )</li>
-	 *   <ul>
-	 *     <li>properties are cleaned in order to help the GC</li>
-	 *     <li>swt controls are not disposed again</li>
-	 *   </ul>
-	 * <li></li>
-	 * <li></li>
-	 * <li></li>
-	 * <li></li>
+	 * <li>The SWT tree is disposed first.</li>
+	 * <ul>
+	 * <li>This prevent events fired from user interaction or from Widget modifiaction</li>
+	 * <li>The SWT disposal stop before nested editors SWT (thanks to the DISPOSE event in {@link EditorPart}). At this point, the nested editor
+	 * dispose() method is called.</li>
+	 * <li>This allow to let the nested editor receive one single dispose call.</li>
 	 * <li></li>
 	 * </ul>
+	 * <li>The Part tree is disposed second (by calling rootPart.disposeThisAndChildren() )</li>
+	 * <ul>
+	 * <li>properties are cleaned in order to help the GC</li>
+	 * <li>swt controls are not disposed again</li>
+	 * </ul>
+	 * <li></li> <li></li> <li></li> <li></li> <li></li> </ul>
 	 * 
-
 	 */
 	public void dispose() {
 		// Check if already disposed
-		if( isDisposed() ) {
+		if(isDisposed()) {
 			return;
 		}
-			
+
 		// End disposing children's SWT controls.
 		// It is possible to recall the dispose() method on a Widget, even if we are called by the dispose event.
 		// Recalling the dispose method will continue disposing SWT children's.
 		container.dispose();
-		
+
 		// dispose part children
 		rootPart.disposeThisAndChildren();
-		
+
 		// clean up properties to help GC
 		activePageTracker = null;
 		container = null;
@@ -279,7 +271,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		multiEditorManager = null;
 		rootPart = null;
 	}
-	
+
 	/**
 	 * Return true if the container is disposed, false otherwise.
 	 * 
@@ -302,10 +294,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * 
 	 * @param childPart
 	 */
-//	protected void pageChanged(PagePart childPart) {
-//		activePageTracker.setActiveEditor(childPart);
-//		lifeCycleEventProvider.firePageActivatedEvent(childPart);
-//	}
+	//	protected void pageChanged(PagePart childPart) {
+	//		activePageTracker.setActiveEditor(childPart);
+	//		lifeCycleEventProvider.firePageActivatedEvent(childPart);
+	//	}
 
 	/**
 	 * Notifies this page container that a pageChanged event has been fired by one swt Control.
@@ -316,21 +308,20 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * 
 	 * @param childPart
 	 */
-//	protected void pageChangedEvent(PagePart childPart) {
-//
-//		// Check if it is really a change before changing the model (which can throw change event)
-//		// The folder model change is done before the tracker fires the listeners, like this
-//		// listeners can check the model.
-//		if(getActivePage() == childPart)
-//			return;
-//
-//		pageChanged(childPart);
-//	}
+	//	protected void pageChangedEvent(PagePart childPart) {
+	//
+	//		// Check if it is really a change before changing the model (which can throw change event)
+	//		// The folder model change is done before the tracker fires the listeners, like this
+	//		// listeners can check the model.
+	//		if(getActivePage() == childPart)
+	//			return;
+	//
+	//		pageChanged(childPart);
+	//	}
 
 	/**
 	 * Set the active page. The current active page will be the specified page. Throw events indicating that
-	 * the current ActivePage has changed.
-	 * <br>
+	 * the current ActivePage has changed. <br>
 	 * Do not set the activeSelection.
 	 * 
 	 * 
@@ -339,68 +330,69 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	protected void setActivePage(PagePart childPart) {
 
 		// Do nothing if the activePage has not changed
-		if(childPart == null || getActivePage() == childPart)
+		if(childPart == null || getActivePage() == childPart) {
 			return;
+		}
 
 		// TODO 20130205 remove next
 		contentProvider.setCurrentFolder(childPart.getParent().getRawModel());
-		
+
 		activePageTracker.setActiveEditor(childPart);
 		lifeCycleEventProvider.firePageActivatedEvent(childPart);
 	}
 
 	/**
-	 * This method allow to change current activePage. It set the activePage, and select it in 
-	 * the folder.
-	 * <br>
+	 * This method allow to change current activePage. It set the activePage, and select it in
+	 * the folder. <br>
 	 * This method fires notifications (activePageChanged).
 	 * 
-	 * @param newActivePage The page that should become the active one.
+	 * @param newActivePage
+	 *        The page that should become the active one.
 	 */
-	protected void setActivePageAndSelection( PagePart newActivePage ) {
-		
+	protected void setActivePageAndSelection(PagePart newActivePage) {
+
 		PagePart oldSelection = getActivePage();
 		// First, set the selection, like this the observers will see the correct selection.
 		synchronizeActiveSelection(newActivePage);
 		try {
 			// Set the active page
 			setActivePage(newActivePage);
-			
+
 		} catch (RuntimeException e) {
 			// Restore selection in case of exception
-			synchronizeActiveSelection(oldSelection);			
+			synchronizeActiveSelection(oldSelection);
 			// lets propagate
 			throw e;
-		} 
+		}
 	}
-	
+
 	/**
 	 * Synchronize the active selection to be the page of the activePage.
-	 * This should be called when the activePage is set, but the selection is not 
-	 * yet set.
-	 * <br>
+	 * This should be called when the activePage is set, but the selection is not
+	 * yet set. <br>
 	 * This should not throw events (neither selctionChanged or pageChanged event).
 	 * 
 	 */
-	protected void synchronizeActiveSelection( ) {
+	protected void synchronizeActiveSelection() {
 		PagePart activePage = getActivePage();
-		
+
 		synchronizeActiveSelection(activePage);
 	}
 
 	/**
-	 * Synchronize the active selection to be the specified page. Do not synchronize with the activePage.
-	 * <br>
+	 * Synchronize the active selection to be the specified page. Do not synchronize with the activePage. <br>
 	 * This should not throw events (neither selctionChanged or pageChanged event).
+	 * 
 	 * @param page
 	 */
 	private void synchronizeActiveSelection(PagePart page) {
-		if(page == null)
+		if(page == null) {
 			return;
+		}
 		TabFolderPart folder = page.getParent();
-		
+
 		// Folder can be null in case of tests
-		if(folder!= null) {
+		if(folder != null) {
 			folder.setSelection(page);
 		}
 
@@ -431,8 +423,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		if(partModel instanceof IEditorModel) {
 			// Check if we can use IEditorModel
-			if(multiEditorManager == null)
+			if(multiEditorManager == null) {
 				throw new IllegalArgumentException("Container can't accept IEditorModel as no IMultiEditorManager is set. Please set a IMultiEditorManager.");
+			}
 
 			return new EditorPart(parent, (IEditorModel)partModel, rawModel, multiEditorManager);
 		} else if(partModel instanceof IComponentModel) {
@@ -451,17 +444,17 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @return
 	 */
 	public ITabFolderModel getSelectedTabFolderModel() {
-				
+
 		// Get the activePage. The seleted folder is its parent.
 		PagePart activePage = activePageTracker.getActiveEditor();
-		if ( activePage != null) {
+		if(activePage != null && activePage.getParent() != null) {
 			return activePage.getParent().getPartModel();
 		}
 		// No active page exist, but their should be a folder
 		TabFolderPart folder = lookupFirstValidFolder();
 		return folder.getPartModel();
 	}
-	
+
 	/**
 	 * Lookup the first valid folder in this sash system.
 	 * There is always a valid folder.
@@ -469,7 +462,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @return The first valid folder.
 	 */
 	private TabFolderPart lookupFirstValidFolder() {
-		
+
 		LookupFirstFolderVisitor visitor = new LookupFirstFolderVisitor();
 		rootPart.visit(visitor);
 		return visitor.result();
@@ -491,10 +484,11 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	public IEditorPart getActiveEditor() {
 		PagePart pagePart = getActivePage();
-		if(pagePart instanceof EditorPart)
+		if(pagePart instanceof EditorPart) {
 			return ((EditorPart)pagePart).getIEditorPart();
-		else
+		} else {
 			return null;
+		}
 	}
 
 	/**
@@ -507,35 +501,35 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area
 	 * visible.
 	 * 
 	 * @return
 	 */
 	public List<IPage> getVisiblePages() {
 		CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor();
-		
+
 		rootPart.visit(visitor);
-		
+
 		return visitor.getVisiblePages();
 	}
 
 	/**
-	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area
 	 * visible.
 	 * 
 	 * @return
 	 */
-//	public List<IEditorPage> getVisibleIEditorPages() {
-//		CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor( IEditorPage.class);
-//		
-//		rootPart.visit(visitor);
-//		
-//		return visitor.getVisiblePages();
-//	}
+	//	public List<IEditorPage> getVisibleIEditorPages() {
+	//		CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor( IEditorPage.class);
+	//		
+	//		rootPart.visit(visitor);
+	//		
+	//		return visitor.getVisiblePages();
+	//	}
 
 	/**
-	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area
 	 * visible.
 	 * 
 	 * @return
@@ -543,7 +537,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	public List<IEditorPart> getVisibleIEditorParts() {
 		CollectVisibleIEditorPart visitor = new CollectVisibleIEditorPart();
 		rootPart.visit(visitor);
-		
+
 		return visitor.getVisiblePages();
 	}
 
@@ -564,8 +558,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 *        the index of the page
 	 */
 	private void setFocus(PagePart part) {
-		if(part != null)
+		if(part != null) {
 			part.setFocus();
+		}
 	}
 
 
@@ -594,19 +589,18 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	/**
 	 * Refresh the tab of the page, (i.e the name and icon in the page's tab).
 	 * 
-	 * @param page The page for which the name and icon should be refreshed.
+	 * @param page
+	 *        The page for which the name and icon should be refreshed.
 	 */
 	public void refreshPageTab(IPage page) {
-		if( page instanceof PagePart)
-		{
+		if(page instanceof PagePart) {
 			((PagePart)page).refreshTab();
-		}
-		else
-		{
+		} else {
 			// TODO : lookup for the corresponding PagePart, and call refresh.
-			
+
 		}
 	}
+
 	/**
 	 * Real implementation of refreshTab.
 	 * 
@@ -650,15 +644,16 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * This is the programatic counterpart of selecting a page in the UI.
 	 * If the provided page is null, do nothing.
 	 * Removed since 0.10
+	 * 
 	 * @param page
 	 *        The page to select or null.
 	 */
-//	protected void selectPage(PagePart page) {
-//		if(page == null)
-//			return;
-//		TabFolderPart folder = page.getParent();
-//		folder.setActiveEditor(page);
-//	}
+	//	protected void selectPage(PagePart page) {
+	//		if(page == null)
+	//			return;
+	//		TabFolderPart folder = page.getParent();
+	//		folder.setActiveEditor(page);
+	//	}
 
 	/**
 	 * Select the specified page in the Parts. The specified page will becomes the active one.
@@ -669,15 +664,17 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param page
 	 *        The page to select or null. The IPage should
 	 *        be an instance previously returned by the SashContainer.
-	 *        
+	 * 
 	 */
 	public void selectPage(IPage page) {
-		if(page == null)
+		if(page == null) {
 			return;
+		}
 
 		// check if we are a correct instance.
-		if(!(page instanceof PagePart))
+		if(!(page instanceof PagePart)) {
 			return;
+		}
 
 		setActivePageAndSelection((PagePart)page);
 	}
@@ -830,7 +827,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			// TODO move that and previous in the sender of drag event. Use a class containing both as draggedObject.
 			final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 
-//			System.out.println("drag to position=" + position);
+			//			System.out.println("drag to position=" + position);
 			Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
 			AbstractPanelPart targetPart = null;
 
@@ -857,14 +854,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 					if(distance >= 5) {
 						// Otherwise, ask the part if it has any special meaning for this drop location
 						// TODO remove cast; change return type of findPart()
-						IDropTarget target = targetPart.getDropTarget(draggedObject, (TabFolderPart)sourcePart, position);
+						IDropTarget target = targetPart.getDropTarget(draggedObject, sourcePart, position);
 						if(target != null) {
 							return target;
 						}
 					} else {
 						// We are on the boarder, try to drop on the parent 
 						// Warning : the parent could be the rootPart
-//						System.out.println("DropTarget near the border");
+						//						System.out.println("DropTarget near the border");
 					}
 					//                     
 					if(distance > 30) {
@@ -888,7 +885,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				}
 			} else {
 				// Cursor is outside the container
-//				System.out.println("Outside container bounds");
+				//				System.out.println("Outside container bounds");
 				// This will be used to create a new Window.
 				// We only allow dropping into a stack, not creating one
 				// if (differentWindows)
@@ -978,13 +975,13 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#getCursor()
 		 */
 		public Cursor getCursor() {
-//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getCursor()-" + count++);
+			//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getCursor()-" + count++);
 			return DragCursors.getCursor(DragCursors.positionToDragCursor(cursor));
 
 		}
 
 		public Rectangle getSnapRectangle() {
-//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getSnapRectangle(" + "sourcePart=" + sourcePart + ", targetPart=" + targetPart + ", side=" + side);
+			//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getSnapRectangle(" + "sourcePart=" + sourcePart + ", targetPart=" + targetPart + ", side=" + side);
 			Rectangle targetDisplayBounds;
 
 			if(targetPart != null) {
@@ -1009,7 +1006,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	}
 
-	
+
 	/**
 	 * @return the lifeCycleEventProvider
 	 */
@@ -1102,19 +1099,19 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * A visitor used to collect all visible page in the sashcontainer.
 	 * A visible page is a page whose the diagram area is visible.
 	 */
-	private class CollectVisiblePageVisitor  extends PartVisitor {
-		
+	private class CollectVisiblePageVisitor extends PartVisitor {
+
 		private List<IPage> visiblePages = new ArrayList<IPage>();
 
 		private Class<? extends IPage> expectedClass;
-		
+
 		/**
 		 * Constructor.
 		 * 
 		 * @param menuManager
 		 */
 		public CollectVisiblePageVisitor() {
-			
+
 		}
 
 		/**
@@ -1129,6 +1126,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		/**
 		 * Get the result list.
+		 * 
 		 * @param <T>
 		 * @return
 		 */
@@ -1142,18 +1140,17 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 */
 		@Override
 		public boolean accept(TabFolderPart part) {
-			
+
 			IPage page = part.getVisiblePagePart();
-			if( part != null) {
-				if( expectedClass != null && expectedClass.isInstance(page)) {
+			if(part != null) {
+				if(expectedClass != null && expectedClass.isInstance(page)) {
+					visiblePages.add(page);
+				} else {
 					visiblePages.add(page);
 				}
-				else {
-					visiblePages.add(page);
-				}
-					
+
 			}
-			
+
 			return true;
 		}
 
@@ -1164,20 +1161,22 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * A visitor used to collect all visible page in the sashcontainer.
 	 * A visible page is a page whose the diagram area is visible.
 	 */
-	private class AbstractCollectIEditorPart  extends PartVisitor {
-		
+	private class AbstractCollectIEditorPart extends PartVisitor {
+
 		protected List<IEditorPart> editorParts = new ArrayList<IEditorPart>();
+
 		/**
 		 * Constructor.
 		 * 
 		 * @param menuManager
 		 */
 		public AbstractCollectIEditorPart() {
-			
+
 		}
 
 		/**
 		 * Get the result list.
+		 * 
 		 * @param <T>
 		 * @return
 		 */
@@ -1186,25 +1185,25 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		}
 
 	}
-	
+
 	/**
 	 * Inner class.
 	 * A visitor used to collect all visible page in the sashcontainer.
 	 * A visible page is a page whose the diagram area is visible.
 	 */
-	private class CollectVisibleIEditorPart  extends AbstractCollectIEditorPart {
+	private class CollectVisibleIEditorPart extends AbstractCollectIEditorPart {
 
 		/**
 		 * Set the menu if the visited node is a folder.
 		 */
 		@Override
 		public boolean accept(TabFolderPart part) {
-			
+
 			IPage page = part.getVisiblePagePart();
-			if( page != null && page instanceof IEditorPage ) {
-				IEditorPage editorPage = (IEditorPage) page;
-					editorParts.add(editorPage.getIEditorPart());
-					
+			if(page != null && page instanceof IEditorPage) {
+				IEditorPage editorPage = (IEditorPage)page;
+				editorParts.add(editorPage.getIEditorPart());
+
 			}
 			// continue searching
 			return true;
@@ -1218,24 +1217,24 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * A visible page is a page whose the diagram area is visible.
 	 */
 	@SuppressWarnings("unused")
-	private class CollectIEditorParts  extends AbstractCollectIEditorPart {
+	private class CollectIEditorParts extends AbstractCollectIEditorPart {
 
 		/**
 		 * Add the part to thecollection.
 		 */
 		@Override
-		public boolean accept( EditorPart part) {
-			
+		public boolean accept(EditorPart part) {
+
 			IEditorPart editorPart = part.getIEditorPart();
-			if( editorPart != null ) {
-              editorParts.add(editorPart);
+			if(editorPart != null) {
+				editorParts.add(editorPart);
 			}
-					
+
 			// continue searching
 			return true;
 		}
 
 	}
 
-	
+
 }

@@ -27,7 +27,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -126,7 +125,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		CompositeCommand cmd = new CompositeCommand("Create diagram");
 		ICommand createCmd = getCreateDiagramCommand(modelSet, container, name);
 		cmd.add(createCmd);
-		cmd.add(new OpenDiagramCommand(createCmd));
+		cmd.add(new OpenDiagramCommand(dom, createCmd));
 
 		dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
@@ -274,15 +273,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * {@inheritDoc}
 	 */
 	public void createDiagram(final ModelSet modelSet, final EObject container, final String diagramName) {
-		TransactionalEditingDomain transactionalEditingDomain = modelSet.getTransactionalEditingDomain();
-		RecordingCommand command = new RecordingCommand(transactionalEditingDomain) {
-
-			@Override
-			protected void doExecute() {
-				runAsTransaction(modelSet, container, diagramName);
-			}
-		};
-		transactionalEditingDomain.getCommandStack().execute(command);
+		runAsTransaction(modelSet, container, diagramName);
 	}
 
 	/**
@@ -348,9 +339,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 				modelElement = diagram.getElement();
 				diagram.setElement(null);
-				//				if(depc != null) {
-				//					depc.execute(monitor, info);
-				//				}
 				return status;
 			}
 
@@ -359,20 +347,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				diagram.setElement(modelElement);
 				IStatus status = super.doRedo(monitor, info);
 				return status;
-			}
-
-			@Override
-			public boolean canUndo() {
-				boolean result = super.canUndo();
-				System.out.println("CanUndo = " + result);
-				return result;
-			}
-
-			@Override
-			public boolean canRedo() {
-				boolean result = super.canRedo();
-				System.out.println("CanRedo = " + result);
-				return result;
 			}
 		};
 	}

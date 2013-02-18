@@ -33,7 +33,6 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.swt.widgets.Display;
@@ -233,7 +232,6 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				} catch (ServiceException ex) {
 					//Ignore exceptions
 				}
-				registry.getService(ServiceUtilsForResourceInitializerService.class);
 				// diResourceSet.createsModels(file);
 				ICreationCommand command = getDiagramCommandCreation();
 				command.createDiagram(diResourceSet, null, "DiagramToTest");

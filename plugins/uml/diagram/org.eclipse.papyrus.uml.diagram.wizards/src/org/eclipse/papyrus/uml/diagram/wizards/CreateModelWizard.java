@@ -37,6 +37,10 @@ import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
@@ -149,12 +153,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			return false;
 		}
 		String diagramCategoryId = diagramCategoryIds[0];
-
 		final IFile newFile = createNewModelFile(diagramCategoryId);
+
 		createAndOpenPapyrusModel(modelSet, newFile, diagramCategoryId);
 
 		saveDiagramCategorySettings();
 		saveDiagramKindSettings();
+
 		return true;
 	}
 
@@ -175,13 +180,49 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 		createPapyrusModels(modelSet, newFile);
 
+		ServicesRegistry registry = initServicesRegistry(modelSet);
+		if(registry == null) {
+			return false;
+		}
+
 		initDomainModel(modelSet, newFile, diagramCategoryId);
 
 		initDiagramModel(modelSet, diagramCategoryId);
 
 		openDiagram(newFile);
 
+		try {
+			registry.disposeRegistry();
+		} catch (ServiceException ex) {
+			//Ignore
+		}
+
 		return true;
+	}
+
+	protected ServicesRegistry initServicesRegistry(ModelSet modelSet) {
+		final ServicesRegistry registry;
+		try {
+			registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+			registry.add(ModelSet.class, Integer.MAX_VALUE, modelSet);
+			try {
+				registry.startRegistry();
+			} catch (ServiceException ex) {
+				//Ignore this exception: some services may not have been loaded, which is probably normal at this point
+			}
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
+
+		try {
+			registry.getService(IPageManager.class);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
+
+		return registry;
 	}
 
 	/**
