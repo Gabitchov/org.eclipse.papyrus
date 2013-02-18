@@ -20,8 +20,7 @@ import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.Activator;
 
@@ -37,7 +36,7 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	protected ModelSet modelSet;
 
 	/** The list of open pages (diagrams) */
-	protected IPageMngr pageMngr;
+	protected IPageManager pageMngr;
 
 	/**
 	 * Creates a new MoDiscoContentProvider.
@@ -80,7 +79,7 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 			ServicesRegistry servicesRegistry = (ServicesRegistry)inputElement;
 
 			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
-			pageMngr = servicesRegistry.getService(DiSashModelMngr.class).getIPageMngr();
+			pageMngr = servicesRegistry.getService(IPageManager.class);
 
 			return getRootElements(modelSet);
 		} catch (Exception e) {

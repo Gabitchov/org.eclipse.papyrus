@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForWorkbenchPage;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.ui.IEditorInput;
@@ -88,8 +89,10 @@ public class LinkHelper implements ILinkHelper {
 						}
 					}
 				}
-			} catch (Exception e) {
-				Activator.log.error("Impossible to acces to windows Container", e);
+			} catch (ServiceException ex) {
+				//We cannot access the service registry. The PapyrusEditor is probably closed.
+			} catch (Exception ex) {
+				Activator.log.error("Impossible to acces to windows Container", ex);
 			}
 		}
 	}

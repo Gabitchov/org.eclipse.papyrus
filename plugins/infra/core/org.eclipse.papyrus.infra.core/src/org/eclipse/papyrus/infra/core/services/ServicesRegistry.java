@@ -851,11 +851,8 @@ public class ServicesRegistry {
 
 		// Clean up properties to help GC
 		addedServices.clear();
-		addedServices = null;
 		anonymousServices.clear();
-		anonymousServices = null;
 		namedServices.clear();
-		namedServices = null;
 
 		// Report errors if any
 		if(errors.getExceptions().size() > 0) {
@@ -988,9 +985,9 @@ public class ServicesRegistry {
 		for(ServiceStartupEntry serviceEntry : services) {
 			try {
 				serviceEntry.disposeService();
-			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't dispose service '" + serviceEntry.getDescriptor().getKey() + "'", e);
-				errors.addException(serviceEntry.getDescriptor(), e);
+			} catch (Exception ex) {
+				log.log(Level.SEVERE, "Can't dispose service'" + serviceEntry.getDescriptor().getKey() + "'", ex);
+				errors.addException(serviceEntry.getDescriptor(), ex);
 			}
 		}
 	}

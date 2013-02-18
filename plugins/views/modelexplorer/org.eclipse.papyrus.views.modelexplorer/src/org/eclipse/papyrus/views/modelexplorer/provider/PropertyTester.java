@@ -18,7 +18,7 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
@@ -78,7 +78,7 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	 *         <code>true</code> if all selected elements are pages
 	 */
 	private boolean isPage(IStructuredSelection selection) {
-		IPageMngr pageMngr = getPageManager();
+		IPageManager pageMngr = getPageManager();
 		if(pageMngr != null) {
 			if(!selection.isEmpty()) {
 				Iterator<?> iter = selection.iterator();
@@ -105,12 +105,12 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	 * @return
 	 *         the page manager
 	 */
-	protected IPageMngr getPageManager() {
-		IPageMngr pageMngr = null;
+	protected IPageManager getPageManager() {
+		IPageManager pageMngr = null;
 		try {
 			ServiceUtilsForActionHandlers instance = org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance();
 			if(instance != null) {
-				pageMngr = instance.getIPageMngr();
+				pageMngr = instance.getIPageManager();
 			}
 		} catch (NullPointerException npe) {
 			//NPE

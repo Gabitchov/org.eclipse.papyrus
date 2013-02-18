@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.commands.Activator;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -85,7 +85,7 @@ public class HyperlinkDropStrategy extends TransactionalDropStrategy {
 			final ServicesRegistry registry;
 			try {
 				registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(mainView);
-				IPageMngr pageManager = ServiceUtils.getInstance().getIPageMngr(registry);
+				IPageManager pageManager = ServiceUtils.getInstance().getIPageManager(registry);
 
 				for(Object droppedObject : dropRequest.getObjects()) {
 					if(!(droppedObject instanceof EObject && pageManager.allPages().contains(droppedObject))) {

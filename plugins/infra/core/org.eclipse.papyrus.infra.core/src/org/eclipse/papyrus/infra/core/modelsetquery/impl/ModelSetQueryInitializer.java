@@ -32,7 +32,7 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	private IModelSetQueryAdapter modelQueryAdapter;
 
 	/**
-	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#start(org.eclipse.papyrus.resource.ModelSet)
+	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#start(org.eclipse.papyrus.infra.core.resource.ModelSet)
 	 * 
 	 * @param modelsManager
 	 */
@@ -47,8 +47,8 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 		}
 		if(!found) {
 			modelQueryAdapter = createDefaultIModelSetQueryAdapter();
-			if (modelQueryAdapter instanceof Adapter) {
-				eAdapters.add((Adapter) modelQueryAdapter);
+			if(modelQueryAdapter instanceof Adapter) {
+				eAdapters.add((Adapter)modelQueryAdapter);
 			}
 		}
 
@@ -60,7 +60,7 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#dispose(org.eclipse.papyrus.resource.ModelSet)
+	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#dispose(org.eclipse.papyrus.infra.core.resource.ModelSet)
 	 * 
 	 * @param modelsManager
 	 */

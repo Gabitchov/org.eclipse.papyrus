@@ -17,12 +17,14 @@ package org.eclipse.papyrus.infra.core.editor;
 import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -31,6 +33,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.action.MenuManager;
@@ -47,10 +50,10 @@ import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.CoreComp
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
@@ -162,8 +165,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 					// the exec queue.
 					// When the method is executed asynchronously, the object is already finalized, and so
 					// editor is null.
-					if(editor==null)
+					if(editor == null) {
 						return;
+					}
 					editor.firePropertyChange(IEditorPart.PROP_DIRTY);
 				}
 			});
@@ -215,30 +219,35 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	private EditingDomainProvider domainProvider = new EditingDomainProvider(this);
 
-	private static class ContentChangedListener implements IContentChangedListener {
+	private boolean needsRefresh;
 
-		private CoreMultiDiagramEditor editor;
-
-		public ContentChangedListener(CoreMultiDiagramEditor editor) {
-			this.editor = editor;
-		}
+	private class ContentChangedListener implements IContentChangedListener {
 
 		/**
 		 * Called when the content is changed. RefreshTabs.
 		 */
 		public void contentChanged(ContentEvent event) {
-			editor.refreshTabs();
+			needsRefresh = true;
+		}
+	}
+
+	private class RefreshTabsCommandStackListener implements CommandStackListener {
+
+		public void commandStackChanged(EventObject event) {
+			if(needsRefresh) {
+				needsRefresh = false;
+				refreshTabs();
+			}
 		}
 
-		public void dispose() {
-			this.editor = null;
-		}
 	}
 
 	/**
 	 * A listener on model change events.
 	 */
-	private ContentChangedListener contentChangedListener = new ContentChangedListener(this);
+	private ContentChangedListener contentChangedListener = new ContentChangedListener();
+
+	private RefreshTabsCommandStackListener refreshTabsCommandStackListener = new RefreshTabsCommandStackListener();
 
 	/**
 	 * Undo context used to have the same undo context in all Papyrus related
@@ -317,17 +326,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @param pageFactory
 	 * @param diResource
 	 *        Resource used to load/save the SashModel.
-	 *        
-	 *        
+	 * 
+	 * 
 	 */
-//	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource, TransactionalEditingDomain editingDomain) {
-//
-//		sashModelMngr = new TransactionalDiSashModelMngr(pageFactory, diResource, editingDomain);
-//
-//		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
-//
-//		return pageProvider;
-//	}
+	//	protected ISashWindowsContentProvider createPageProvider(IPageModelFactory pageFactory, Resource diResource, TransactionalEditingDomain editingDomain) {
+	//
+	//		sashModelMngr = new TransactionalDiSashModelMngr(pageFactory, diResource, editingDomain);
+	//
+	//		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
+	//
+	//		return pageProvider;
+	//	}
 
 	/**
 	 * Get The {@link IPageMngr} used to add, open, remove or close a diagram in
@@ -336,9 +345,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @return
 	 */
-	protected IPageMngr getIPageMngr() throws IllegalStateException {
+	protected IPageManager getIPageManager() throws IllegalStateException {
 		try {
-			return sashModelMngr.getIPageMngr();
+			return sashModelMngr.getIPageManager();
 		} catch (Exception e) {
 			throw new IllegalStateException("Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called");
 		}
@@ -393,8 +402,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			return getServicesRegistry();
 		}
 
-		if(IPageMngr.class == adapter) {
-			return getIPageMngr();
+		if(IPageMngr.class == adapter || IPageManager.class == adapter) {
+			return getIPageManager();
 		}
 
 		if(IPropertySheetPage.class == adapter) {
@@ -608,13 +617,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Listen on contentProvider changes
 		sashModelMngr.getSashModelContentChangedProvider().addListener(contentChangedListener);
+		((TransactionalCommandStack)transactionalEditingDomain.getCommandStack()).addCommandStackListener(refreshTabsCommandStackListener);
 
 		// Listen on input changed from the ISaveAndDirtyService
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 
 		if(input instanceof IPapyrusPageInput) {
 			IPapyrusPageInput papyrusPageInput = (IPapyrusPageInput)input;
-			IPageMngr pageMngr = getIPageMngr();
+			IPageManager pageMngr = getIPageManager();
 
 			if(papyrusPageInput.closeOtherPages()) {
 				pageMngr.closeAllOpenedPages();
@@ -628,10 +638,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				}
 
 				if(pageMngr.isOpen(pageIdentifier)) {
-					pageMngr.closePage(pageIdentifier);
+					pageMngr.selectPage(pageIdentifier);
+				} else {
+					pageMngr.openPage(pageIdentifier);
 				}
-
-				pageMngr.openPage(pageIdentifier);
 			}
 		}
 	}
@@ -656,13 +666,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			getServicesRegistry().startServicesByClassKeys(ISashWindowsContainer.class);
 			// Let the IPageMngr use the ISashWindowsContainer to discover current folder
 			// This should be done after SashWindowContainer initialization.
-//			DiSashModelManager sashModelManager = getServicesRegistry().getService(DiSashModelManager.class);
+			//			DiSashModelManager sashModelManager = getServicesRegistry().getService(DiSashModelManager.class);
 			sashModelMngr.setCurrentFolderAndPageMngr(getISashWindowsContainer());
-			
+
 		} catch (ServiceException e) {
 			log.error(e);
 		}
-		
+
 	}
 
 	/**
@@ -707,6 +717,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	public void dispose() {
 		if(sashModelMngr != null) {
 			sashModelMngr.getSashModelContentChangedProvider().removeListener(contentChangedListener);
+			transactionalEditingDomain.getCommandStack().removeCommandStackListener(refreshTabsCommandStackListener);
 		}
 
 		// Avoid memory leak
@@ -732,8 +743,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 
 		if(contentChangedListener != null) {
-			this.contentChangedListener.dispose();
 			this.contentChangedListener = null;
+		}
+
+		if(refreshTabsCommandStackListener != null) {
+			refreshTabsCommandStackListener = null;
 		}
 
 		if(editorInputChangedListener != null) {
@@ -937,6 +951,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	@Override
 	public IEditorPart getActiveEditor() {
+		if(needsRefresh) {
+			needsRefresh = false;
+			refreshTabs();
+		}
 		return super.getActiveEditor();
 	}
 }

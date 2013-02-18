@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
@@ -74,7 +74,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider {
 			ServicesRegistry servicesRegistry = (ServicesRegistry)inputElement;
 
 			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
-			pageMngr = servicesRegistry.getService(DiSashModelMngr.class).getIPageMngr();
+			pageMngr = servicesRegistry.getService(IPageManager.class);
 
 			ArrayList<EObject> result = new ArrayList<EObject>();
 			for(int i = 0; i < pageMngr.allPages().size(); i++) {

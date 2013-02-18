@@ -30,6 +30,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
@@ -57,12 +59,11 @@ import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryRegistry;
@@ -71,7 +72,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -524,7 +524,7 @@ public class DiagramTemplateLauncher {
 
 											} catch (BackboneException e) {
 												// TODO Auto-generated catch block
-												e.printStackTrace();
+												e.printStackTrace(System.out);
 											}
 										}
 									} else {
@@ -551,7 +551,7 @@ public class DiagramTemplateLauncher {
 
 											} catch (BackboneException e) {
 												// TODO Auto-generated catch block
-												e.printStackTrace();
+												e.printStackTrace(System.out);
 											}
 										}
 									}
@@ -585,7 +585,7 @@ public class DiagramTemplateLauncher {
 								}
 							} catch (BackboneException e) {
 								// TODO Auto-generated catch block
-								e.printStackTrace();
+								e.printStackTrace(System.out);
 							}
 						}
 					}
@@ -639,7 +639,7 @@ public class DiagramTemplateLauncher {
 				String targetModelLocation = template.getTargetRoot().eResource().getURI().toPlatformString(false);
 				IFile targetModelfile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(targetModelLocation));
 
-				IFile file = IDEWorkbenchPlugin.getPluginWorkspace().getRoot().getFile(new Path(targetModelfile.getFullPath().removeFileExtension().toString() + ".di")); //$NON-NLS-1$
+				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(targetModelfile.getFullPath().removeFileExtension().toString() + ".di")); //$NON-NLS-1$
 
 				if(file.exists()) {
 
@@ -649,90 +649,122 @@ public class DiagramTemplateLauncher {
 						ex.printStackTrace(System.out);
 					}
 
-					//Identify already available diagrams
-					TreeIterator<EObject> it = NotationUtils.getNotationResource(modelSet).getAllContents();
-					while(it.hasNext()) {
-						EObject diagram = it.next();
-						if(diagram instanceof Diagram) {
-							diagramsInResource.add(diagram.eResource().getURIFragment(diagram));
-						}
-					}
-
-					// Create diagrams
-					if(!template.getDiagramDefinitions().isEmpty()) {
-						for(DiagramDefinition diagramDefinition : template.getDiagramDefinitions()) {
-							createDiagramFor(diagramDefinition.getSelection(), diagramDefinition, modelSet);
-						}
-					} else {
-						// Create empty diagrams
-						EditorUtils.getTransactionalIPageMngr(DiModelUtils.getDiResource(modelSet), modelSet.getTransactionalEditingDomain());
-					}
-
-					// Save the resource
 					try {
-						modelSet.save(new NullProgressMonitor());
-					} catch (IOException e) {
-						e.printStackTrace();
-						// return false;
-					}
+						ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+						registry.add(ModelSet.class, Integer.MAX_VALUE, modelSet);
+						try {
+							registry.startRegistry();
+						} catch (ServiceException ex) {
+							//Ignore
+						}
 
+						//Identify already available diagrams
+						TreeIterator<EObject> it = NotationUtils.getNotationResource(modelSet).getAllContents();
+						while(it.hasNext()) {
+							EObject diagram = it.next();
+							if(diagram instanceof Diagram) {
+								diagramsInResource.add(diagram.eResource().getURIFragment(diagram));
+							}
+						}
+
+						// Create diagrams
+						if(!template.getDiagramDefinitions().isEmpty()) {
+							for(DiagramDefinition diagramDefinition : template.getDiagramDefinitions()) {
+								createDiagramFor(diagramDefinition.getSelection(), diagramDefinition, modelSet);
+							}
+						} else {
+							// Create empty diagrams
+							//EditorUtils.getTransactionalIPageMngr(DiModelUtils.getDiResource(modelSet), modelSet.getTransactionalEditingDomain());
+						}
+
+						// Save the resource
+						try {
+							modelSet.save(new NullProgressMonitor());
+						} catch (IOException e) {
+							e.printStackTrace(System.out);
+							// return false;
+						}
+
+						try {
+							registry.disposeRegistry();
+						} catch (ServiceException ex) {
+							//Ignore
+						}
+
+					} catch (ServiceException ex) {
+						ex.printStackTrace(System.out);
+					}
 
 					// Open the editor
 					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 
 					if(page != null) {
 						try {
-							IEditorPart editor = IDE.openEditor(page, file, true);
+							final IEditorPart editor = IDE.openEditor(page, file, true);
 
 							if(editor instanceof IMultiDiagramEditor) {
-								ServicesRegistry services = ((IMultiDiagramEditor)editor).getServicesRegistry();
-								IPageMngr pageMngr = services.getService(IPageMngr.class);
+								final ServicesRegistry services = ((IMultiDiagramEditor)editor).getServicesRegistry();
+								TransactionalEditingDomain editingDomain = services.getService(TransactionalEditingDomain.class);
+								org.eclipse.emf.common.command.Command openPagesCommand = new RecordingCommand(editingDomain, "Open created pages") {
 
-								pageMngr.closeAllOpenedPages();
+									@Override
+									protected void doExecute() {
+										try {
+											System.out.println("Executing");
+											IPageManager pageManager = services.getService(IPageManager.class);
 
-								// Go through the diagrams available in the resource
-								for(Object pageDiagram : pageMngr.allPages()) {
+											System.out.println("Close all pages");
+											pageManager.closeAllOpenedPages();
 
-									if(pageDiagram instanceof Diagram) {
-										String pageID = ((Diagram)pageDiagram).eResource().getURIFragment((Diagram)pageDiagram);
+											// Go through the diagrams available in the resource
+											for(Object pageDiagram : pageManager.allPages()) {
 
-										if(diagramsCreated.containsKey(pageID)) {
-											pageMngr.openPage(pageDiagram);
-											IEditorPart activeEditor = ((PapyrusMultiDiagramEditor)editor).getActiveEditor();
+												if(pageDiagram instanceof Diagram) {
+													String pageID = ((Diagram)pageDiagram).eResource().getURIFragment((Diagram)pageDiagram);
 
-											if(activeEditor instanceof DiagramEditor) {
-												// Get the GraphicalViewer for this diagram
-												Object result = activeEditor.getAdapter(GraphicalViewer.class);
-												if(result != null && result instanceof GraphicalViewer) {
-													DiagramEditPart diagramEditPart = (DiagramEditPart)((GraphicalViewer)result).getEditPartRegistry().get(pageDiagram);
+													if(diagramsCreated.containsKey(pageID)) {
+														System.out.println("Open page");
+														pageManager.openPage(pageDiagram);
+														IEditorPart activeEditor = ((PapyrusMultiDiagramEditor)editor).getActiveEditor();
 
-													// Retrieve the selection to show for this diagram
-													AbstractSelection selection = diagramsCreated.get(pageID);
+														if(activeEditor instanceof DiagramEditor) {
+															// Get the GraphicalViewer for this diagram
+															Object result = activeEditor.getAdapter(GraphicalViewer.class);
+															if(result != null && result instanceof GraphicalViewer) {
+																DiagramEditPart diagramEditPart = (DiagramEditPart)((GraphicalViewer)result).getEditPartRegistry().get(pageDiagram);
 
-													addElementsFor(selection.getSelectionRef(), ((Diagram)pageDiagram).getElement(), (DiagramEditor)activeEditor, diagramEditPart);
+																// Retrieve the selection to show for this diagram
+																AbstractSelection selection = diagramsCreated.get(pageID);
+																addElementsFor(selection.getSelectionRef(), ((Diagram)pageDiagram).getElement(), (DiagramEditor)activeEditor, diagramEditPart);
 
-													//Arrange all recursively
-													arrangeRecursively(diagramEditPart);
+																//Arrange all recursively
+																arrangeRecursively(diagramEditPart);
+															}
+
+															// This page is processed now (may be not necessary)
+															diagramsCreated.remove(pageID);
+														}
+													}
 												}
-
-												// This page is processed now (may be not necessary)
-												diagramsCreated.remove(pageID);
 											}
+										} catch (ServiceException ex) {
+											ex.printStackTrace(System.out);
 										}
 									}
-								}
+								};
+
+								editingDomain.getCommandStack().execute(openPagesCommand);
 							}
 
 							//Report
 							DiagramTemplateLauncherReport.getInstance().showReport(creationReport);
 
 						} catch (PartInitException e) {
-							e.printStackTrace();
+							e.printStackTrace(System.out);
 						} catch (ServiceException e) {
-							e.printStackTrace();
+							e.printStackTrace(System.out);
 						}
 					}
-
 				} else {
 					MessageDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(), Messages.DiagramTemplateLauncher_6, Messages.DiagramTemplateLauncher_7);
 				}

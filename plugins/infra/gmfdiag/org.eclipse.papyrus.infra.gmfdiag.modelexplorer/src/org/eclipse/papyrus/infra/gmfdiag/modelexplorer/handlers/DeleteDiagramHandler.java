@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 
 /**
  * Handler for the delete Diagram action
@@ -44,23 +44,22 @@ public class DeleteDiagramHandler extends AbstractDiagramCommandHandler {
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		final IPageMngr pageMngr = getPageManager();
+		final IPageManager pageManager = getPageManager();
 
 		List<Diagram> diagrams = getSelectedDiagrams();
 
-		if(editingDomain != null && pageMngr != null && !diagrams.isEmpty()) {
+		if(editingDomain != null && pageManager != null && !diagrams.isEmpty()) {
 			CompoundCommand command = new CompoundCommand();
 
 			for(final Diagram diagram : diagrams) {
-				Command sashRemoveComd = new RecordingCommand(editingDomain) {
+
+				Command sashRemoveComd = new RecordingCommand(editingDomain, "Remove page") {
 
 					@Override
 					protected void doExecute() {
-						if(pageMngr.isOpen(diagram)) {
-							pageMngr.closePage(diagram);
-						}
-						pageMngr.removePage(diagram);
+						pageManager.removePage(diagram);
 					}
+
 				};
 				// the destroy element command is a good way to destroy the cross reference
 				command.append(sashRemoveComd);

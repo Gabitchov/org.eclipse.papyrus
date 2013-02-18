@@ -17,8 +17,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
@@ -33,12 +34,18 @@ public class HyperLinkEditor extends HyperLinkObject {
 	 * 
 	 */
 	@Override
-	public void executeSelectPressed() {
+	public void openLink() {
 		EObject context = EMFHelper.getEObject(getObject());
 		if(context != null) {
 			try {
-				IPageMngr pageMngr = ServiceUtilsForEObject.getInstance().getIPageMngr(context);
-				pageMngr.openPage(getObject());
+				final IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(context);
+				Object objectToOpen = getObject();
+				if(pageManager.isOpen(objectToOpen)) {
+					pageManager.selectPage(objectToOpen);
+				} else {
+					pageManager.openPage(objectToOpen);
+				}
+
 			} catch (Exception ex) {
 				Activator.log.error(ex);
 			}
@@ -69,6 +76,24 @@ public class HyperLinkEditor extends HyperLinkObject {
 			int index = list.indexOf(this);
 			list.remove(this);
 			list.add(index, editor.getHyperLinkEditor());
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * This HyperLink needs an executable EMF command when the page is not yet opened
+	 * Otherwise, openLink() can be called directly
+	 */
+	@Override
+	public boolean needsOpenCommand() {
+		EObject context = EMFHelper.getEObject(getObject());
+		try {
+			ServicesRegistry registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(context);
+			final IPageManager pageManager = registry.getService(IPageManager.class);
+			return !pageManager.isOpen(context);
+		} catch (ServiceException ex) {
+			return false;
 		}
 	}
 }

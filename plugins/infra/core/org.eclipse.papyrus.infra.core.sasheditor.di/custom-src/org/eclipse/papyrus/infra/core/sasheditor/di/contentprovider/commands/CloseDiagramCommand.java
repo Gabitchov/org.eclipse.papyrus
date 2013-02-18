@@ -1,12 +1,11 @@
-/**
- * 
- */
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.ui.IEditorPart;
@@ -18,7 +17,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * This command allows to close the currently openened diagram.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class CloseDiagramCommand extends AbstractHandler {
 
@@ -29,45 +28,51 @@ public class CloseDiagramCommand extends AbstractHandler {
 	public void setEnabled(Object evaluationContext) {
 		//		System.out.println("call to CloseDiagramCommand.setEnable(" + evaluationContext + ")");
 	}
-	
+
 	/**
 	 * Execute the command. This method is called when the action is triggered.
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+
 		try {
 			IEditorPart part = HandlerUtil.getActiveEditor(event);
-			IPageMngr pageMngr = (IPageMngr)part.getAdapter(IPageMngr.class);
+			IPageManager pageMngr = (IPageManager)part.getAdapter(IPageManager.class);
+			TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)part.getAdapter(TransactionalEditingDomain.class);
 			ISashWindowsContainer container = (ISashWindowsContainer)part.getAdapter(ISashWindowsContainer.class);
 			Object pageIdentifier = container.getActiveSashWindowsPage().getRawModel();
-			// Bug from sash Di to be corrected
-			if(pageIdentifier instanceof PageRef)
-			{
+			//FIXME Bug from sash Di to be corrected
+			if(pageIdentifier instanceof PageRef) {
 				pageIdentifier = ((PageRef)pageIdentifier).getPageIdentifier();
 			}
-			
-			execute(pageMngr, pageIdentifier);
+
+			execute(pageMngr, editingDomain, pageIdentifier);
 
 		} catch (NullPointerException e) {
 			// PageMngr can't be found
 			return null;
 		}
-		
-		
-		
+
+
+
 		return null;
 	}
-	
+
 	/**
 	 * Close selected page.
+	 * 
 	 * @param pageMngr
 	 */
-	public void execute(IPageMngr pageMngr, Object pageIdentifier) {
-		
-			if(pageMngr.isOpen(pageIdentifier)) {
-				pageMngr.closePage(pageIdentifier);
-			}
+	public void execute(final IPageManager pageMngr, TransactionalEditingDomain editingDomain, final Object pageIdentifier) {
+		if(pageMngr.isOpen(pageIdentifier)) {
+			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Close page") {
+
+				@Override
+				protected void doExecute() {
+					pageMngr.closePage(pageIdentifier);
+				}
+			});
+		}
 	}
 
 }

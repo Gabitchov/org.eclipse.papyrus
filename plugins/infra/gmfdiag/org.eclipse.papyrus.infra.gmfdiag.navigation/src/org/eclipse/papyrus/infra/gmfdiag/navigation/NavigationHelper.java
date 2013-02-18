@@ -147,7 +147,7 @@ public class NavigationHelper {
 
 		ICommand createDiagCommand = creationCommandInterface.getCreateDiagramCommand(modelSet, navElement.getElement(), diagramName);
 		compositeCommand.add(createDiagCommand);
-		compositeCommand.add(new OpenDiagramCommand(modelSet.getTransactionalEditingDomain(), createDiagCommand));
+		compositeCommand.add(new OpenDiagramCommand(createDiagCommand));
 
 		return compositeCommand;
 	}

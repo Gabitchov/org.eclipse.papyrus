@@ -14,10 +14,14 @@
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -31,10 +35,10 @@ import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
@@ -123,7 +127,16 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			try {
-				EObject elt = (EObject)((IStructuredSelection)treeViewer.getSelection()).getFirstElement();
+				if(treeViewer.getSelection().isEmpty()) {
+					return;
+				}
+
+				IStructuredSelection selection = (IStructuredSelection)treeViewer.getSelection();
+
+				EObject elt = EMFHelper.getEObject(selection.getFirstElement());
+				if(elt == null) {
+					return;
+				}
 
 				setContainer(elt);
 				ModelSet modelSet = ServiceUtilsForEObject.getInstance().getModelSet(elt);
@@ -132,10 +145,8 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				creationCommand.createDiagram(modelSet, container, null);
 
 				// refresh several filtered tree
-				getDiagramfilteredTree().getViewer().setInput(null);
-				getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
-				getModeFilteredTree().getViewer().setInput(null);
-				getModeFilteredTree().getViewer().setInput(model.eResource());
+				getDiagramfilteredTree().getViewer().refresh();
+				getModeFilteredTree().getViewer().refresh();
 			} catch (NotFoundException ex) {
 				Activator.log.error(ex);
 			} catch (ServiceException ex) {
@@ -221,9 +232,9 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		}
 
 		treeViewer.setLabelProvider(labelProvider);
-		//treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
-		treeViewer.setContentProvider(new SemanticEMFContentProvider(new EObject[]{ amodel }));
-		//		treeViewer.setContentProvider(new CustomizableModelContentProvider());
+		//		treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
+		//		treeViewer.setContentProvider(new SemanticEMFContentProvider(amodel)); //This content provider will only display the selected element, instead of the root element
+		treeViewer.setContentProvider(new MoDiscoContentProvider()); //FIXME: Use a standard, non-deprecated content provider.
 		//treeViewer.setInput(model.eResource());
 		treeViewer.setInput(registry);
 
@@ -240,7 +251,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 
 		diagramListTreeViewer.setContentProvider(new EditorListContentProvider(model));
-		diagramListTreeViewer.setInput(" "); //$NON-NLS-1$
+		diagramListTreeViewer.setInput(""); //$NON-NLS-1$
 
 		// add listner on the new button to display menu for each diagram
 		diagramMenuButton = new Menu(getNewDiagrambutton());
@@ -267,21 +278,40 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				IStructuredSelection iSelection = (IStructuredSelection)getModeFilteredTree().getViewer().getSelection();
 				Iterator<?> iterator = iSelection.iterator();
 
-				IPageMngr pageManager;
+				final IPageManager pageManager;
+				TransactionalEditingDomain editingDomain;
 				try {
-					pageManager = ServiceUtilsForEObject.getInstance().getIPageMngr(model);
+					pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(model);
+					editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(model);
 				} catch (ServiceException ex) {
 					Activator.log.error(ex);
 					return;
 				}
 
+				final List<Object> pagesToDelete = new LinkedList<Object>();
 				while(iterator.hasNext()) {
-					pageManager.removePage(iterator.next());
+					EObject selectedElement = EMFHelper.getEObject(iterator.next());
+					if(pageManager.allPages().contains(selectedElement)) {
+						pagesToDelete.add(selectedElement);
+					}
 				}
-				getDiagramfilteredTree().getViewer().setInput(null);
-				getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
-				getModeFilteredTree().getViewer().setInput(null);
-				getModeFilteredTree().getViewer().setInput(model.eResource());
+
+				if(pagesToDelete.isEmpty()) {
+					return;
+				}
+
+				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Delete diagrams") {
+
+					@Override
+					protected void doExecute() {
+						for(Object page : pagesToDelete) {
+							pageManager.removePage(page);
+						}
+					}
+				});
+
+				//getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
+				getModeFilteredTree().getViewer().refresh();
 			}
 		});
 

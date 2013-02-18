@@ -29,7 +29,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.swt.widgets.Display;
@@ -188,6 +192,8 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		if(clazzdiagrameditPart == null) {
 			diagramEditor = (UmlGmfDiagramEditor)papyrusEditor.getActiveEditor();
 			clazzdiagrameditPart = (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
+			Assert.assertNotNull("Cannot find the diagram editor", diagramEditor);
+			Assert.assertNotNull("Cannot find the Diagram edit part", clazzdiagrameditPart);
 		}
 		return clazzdiagrameditPart;
 	}
@@ -220,6 +226,14 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
 				new CreateUMLModelCommand().createModel(this.diResourceSet);
+				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+				try {
+					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); //High priority to override all contributions
+					registry.startRegistry();
+				} catch (ServiceException ex) {
+					//Ignore exceptions
+				}
+				registry.getService(ServiceUtilsForResourceInitializerService.class);
 				// diResourceSet.createsModels(file);
 				ICreationCommand command = getDiagramCommandCreation();
 				command.createDiagram(diResourceSet, null, "DiagramToTest");

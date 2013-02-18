@@ -196,7 +196,7 @@
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
          <action
                class="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.contributions.OpenTextualEditorForStereotypeApplications"
-               definitionId="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.contributions.OpenTextualEditorForStereotypeApplications"
+               definitionId="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.OpenTextualEditorForStereotypeApplicationsCommand"
                id="org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.openStereotypeApplicationsEditor"
                label="Open textual editor for stereotype applications"
                menubarPath="editMenu">

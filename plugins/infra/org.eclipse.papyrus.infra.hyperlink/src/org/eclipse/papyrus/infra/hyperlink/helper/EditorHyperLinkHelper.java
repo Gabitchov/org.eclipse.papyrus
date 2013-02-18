@@ -144,11 +144,13 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper {
 	public HyperLinkEditor getHyperLinkObjectFor(final EAnnotation eAnnotation) {
 		for(String source : HyperLinkConstants.validHyperLinkPageSources) {
 			if(source.equals(eAnnotation.getSource())) {
-				HyperLinkEditor editor = new HyperLinkEditor();
-				editor.setObject(eAnnotation.getReferences().get(0));
-				editor.setIsDefault(Boolean.parseBoolean(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION)));
-				editor.setTooltipText(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT));
-				return editor;
+				if(!eAnnotation.getReferences().isEmpty()) {
+					HyperLinkEditor editor = new HyperLinkEditor();
+					editor.setObject(eAnnotation.getReferences().get(0));
+					editor.setIsDefault(Boolean.parseBoolean(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION)));
+					editor.setTooltipText(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT));
+					return editor;
+				}
 			}
 		}
 

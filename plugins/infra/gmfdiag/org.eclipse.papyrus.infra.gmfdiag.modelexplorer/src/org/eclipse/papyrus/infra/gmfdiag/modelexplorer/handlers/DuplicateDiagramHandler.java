@@ -24,7 +24,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.gmfdiag.modelexplorer.messages.Messages;
 
 /**
@@ -44,7 +44,7 @@ public class DuplicateDiagramHandler extends AbstractDiagramCommandHandler {
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		final IPageMngr pageManager = getPageManager();
+		final IPageManager pageManager = getPageManager();
 		List<Diagram> diagrams = getSelectedDiagrams();
 
 		if(editingDomain != null && pageManager != null && !diagrams.isEmpty()) {

@@ -55,7 +55,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void addPage(final Object page) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Open page") {
 
 			@Override
 			protected void doExecute() {
@@ -76,7 +76,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void addPage(final Object page, final int index) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Open page") {
 
 			@Override
 			protected void doExecute() {
@@ -110,7 +110,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void createFolder(final ITabFolderModel tabFolder, final int tabIndex, final ITabFolderModel targetFolder, final int side) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Create folder") {
 
 			@Override
 			protected void doExecute() {
@@ -130,18 +130,18 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param rawModel
 	 */
 	public void setCurrentFolder(final Object rawModel) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		//		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-//		RecordingCommand command = new RecordingCommand(editingDomain) {
-//
-//			@Override
-//			protected void doExecute() {
-//				diContentProvider.setCurrentFolder(rawModel);
-//
-//			}
-//		};
+		//		RecordingCommand command = new RecordingCommand(editingDomain) {
+		//
+		//			@Override
+		//			protected void doExecute() {
+		//				diContentProvider.setCurrentFolder(rawModel);
+		//
+		//			}
+		//		};
 
-//		editingDomain.getCommandStack().execute(command);
+		//		editingDomain.getCommandStack().execute(command);
 		diContentProvider.setCurrentFolder(rawModel);
 	}
 
@@ -165,7 +165,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void movePage(final ITabFolderModel folderModel, final int oldIndex, final int newIndex) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Move page") {
 
 			@Override
 			protected void doExecute() {
@@ -189,7 +189,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void movePage(final ITabFolderModel srcFolderModel, final int sourceIndex, final ITabFolderModel targetFolderModel, final int targetIndex) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Move page") {
 
 			@Override
 			protected void doExecute() {
@@ -209,7 +209,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void removePage(final int index) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Close page") {
 
 			@Override
 			protected void doExecute() {
@@ -229,7 +229,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void removePage(final Object page) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Close page") {
 
 			@Override
 			protected void doExecute() {
@@ -251,7 +251,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	public void removePage(final ITabFolderModel parentFolder, final int tabIndex) {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
-		RecordingCommand command = new RecordingCommand(editingDomain) {
+		RecordingCommand command = new RecordingCommand(editingDomain, "Close page") {
 
 			@Override
 			protected void doExecute() {

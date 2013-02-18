@@ -18,7 +18,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query;
  * Root Exception of the query package
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class QueryException extends Exception {
 
@@ -29,14 +29,14 @@ public class QueryException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public QueryException() {
 	}
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param arg0
 	 */
 	public QueryException(String arg0) {
@@ -45,7 +45,7 @@ public class QueryException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param arg0
 	 */
 	public QueryException(Throwable arg0) {
@@ -54,7 +54,7 @@ public class QueryException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param arg0
 	 * @param arg1
 	 */
@@ -64,14 +64,14 @@ public class QueryException extends Exception {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param arg0
 	 * @param arg1
 	 * @param arg2
 	 * @param arg3
 	 */
 	public QueryException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
-		super(arg0, arg1, arg2, arg3);
+		super(arg0, arg1);//, arg2, arg3);
 	}
 
 }

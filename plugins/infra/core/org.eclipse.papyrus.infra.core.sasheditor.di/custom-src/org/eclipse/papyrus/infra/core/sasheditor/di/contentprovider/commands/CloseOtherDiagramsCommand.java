@@ -1,12 +1,11 @@
-/**
- * 
- */
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.ui.IEditorPart;
@@ -38,15 +37,15 @@ public class CloseOtherDiagramsCommand extends AbstractHandler {
 
 		try {
 			IEditorPart part = HandlerUtil.getActiveEditor(event);
-			IPageMngr pageMngr = (IPageMngr)part.getAdapter(IPageMngr.class);
+			IPageManager pageMngr = (IPageManager)part.getAdapter(IPageManager.class);
+			TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)part.getAdapter(TransactionalEditingDomain.class);
 			ISashWindowsContainer container = (ISashWindowsContainer)part.getAdapter(ISashWindowsContainer.class);
 			Object pageIdentifier = container.getActiveSashWindowsPage().getRawModel();
-			// Bug from sash Di to be corrected
-			if(pageIdentifier instanceof PageRef)
-			{
+			//FIXME Bug from sash Di to be corrected
+			if(pageIdentifier instanceof PageRef) {
 				pageIdentifier = ((PageRef)pageIdentifier).getPageIdentifier();
 			}
-			execute(pageMngr, pageIdentifier);
+			execute(pageMngr, editingDomain, pageIdentifier);
 
 		} catch (NullPointerException e) {
 			// PageMngr can't be found
@@ -63,9 +62,27 @@ public class CloseOtherDiagramsCommand extends AbstractHandler {
 	 * 
 	 * @param pageMngr
 	 */
-	public void execute(IPageMngr pageMngr, Object pageIdentifier) {
+	public void execute(final IPageManager pageMngr, TransactionalEditingDomain editingDomain, final Object pageIdentifier) {
+		boolean atLeastOneDifferentPageOpen = false;
+		for(Object page : pageMngr.allPages()) {
+			if(page != pageIdentifier && pageMngr.isOpen(page)) {
+				atLeastOneDifferentPageOpen = true;
+				break;
+			}
+		}
 
-		pageMngr.closeOtherPages(pageIdentifier);
+		if(!atLeastOneDifferentPageOpen) {
+			return; //Nothing to do
+		}
+
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Close other pages") {
+
+			@Override
+			protected void doExecute() {
+				pageMngr.closeOtherPages(pageIdentifier);
+			}
+		});
+
 	}
 
 }

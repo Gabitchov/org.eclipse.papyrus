@@ -97,7 +97,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 */
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
 			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drag()");
-//			System.out.println(this + ".drag()");
+			//			System.out.println(this + ".drag()");
 			return null;
 		}
 	};
@@ -108,14 +108,14 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	private PTabFolder.IPTabFolderListener cTabFolderEventListener = new PTabFolder.IPTabFolderListener() {
 
 		public void contextMenuDetectEvent(CTabItem tab, Event event) {
-//			System.out.println("contextMenuDetect()");
+			//			System.out.println("contextMenuDetect()");
 		}
 
 		/**
 		 * The close cross has been pressed. Remove the corresponding tab. {@inheritDoc}
 		 */
 		public void itemClosedEvent(CTabFolderEvent event, int pageIndex) {
-//			System.out.println("itemClosedEvent()");
+			//			System.out.println("itemClosedEvent()");
 			// TODO: call appropriate method (to be determine)
 			//			model.removeTab(pageIndex);
 			//			getSashWindowContainer().getContentProvider().removeTab(model, pageIndex);
@@ -123,7 +123,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		}
 
 		public void menuDetectEvent(CTabItem tab, MenuDetectEvent event) {
-//			System.out.println("menuDetectEvent()");
+			//			System.out.println("menuDetectEvent()");
 		}
 
 		/**
@@ -184,6 +184,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @param partMap
 	 */
+	@Override
 	public void fillPartMap(PartLists partMap) {
 		partMap.addPart(this);
 		garbageState = GarbageState.UNVISITED;
@@ -242,16 +243,17 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 */
 	private void initMenuManager() {
 		MenuManager menuManager = getSashWindowContainer().getFolderTabMenuManager();
-		if(menuManager != null)
-		{
+		if(menuManager != null) {
 			setFolderTabMenuManager(menuManager);
 		}
-		
+
 	}
 
 	/**
 	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of this folder.
-	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.
+	 * 
+	 * @param menuManager
+	 *        The {@link MenuManager} used to create the menu on the tab area.
 	 */
 	public void setFolderTabMenuManager(MenuManager menuManager) {
 		Composite folderControl = getControl();
@@ -261,10 +263,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 
 	/**
-	 * Called by any widget that has detected that the page has changed.
-	 * <br>
+	 * Called by any widget that has detected that the page has changed. <br>
 	 * As the selected page has been changed by a user ui interaction, we now need
-	 * to synchronize the ActivePage. 
+	 * to synchronize the ActivePage.
 	 * Inform the {@link SashWindowsContainer} to set the active page accordingly to
 	 * the new selection.
 	 * 
@@ -275,8 +276,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
 		// Do nothing if out of range.
-		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
+		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1) {
 			return;
+		}
 
 		getSashWindowContainer().setActivePage(currentTabItems.get(newPageIndex).childPart);
 	}
@@ -285,17 +287,18 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * An event signaling that the selected page is changed has been caught. Propagate the event to
 	 * the container.
 	 * Removed since 0.10
+	 * 
 	 * @param newPageIndex
 	 */
-//	protected void pageChangedEvent(int newPageIndex) {
-//
-//		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
-//		// Do nothing if out of range.
-//		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
-//			return;
-//
-//		getSashWindowContainer().pageChangedEvent(currentTabItems.get(newPageIndex).childPart);
-//	}
+	//	protected void pageChangedEvent(int newPageIndex) {
+	//
+	//		//		System.out.println(this.getClass().getSimpleName() + ".pageChange("+ newPageIndex +")");
+	//		// Do nothing if out of range.
+	//		if(newPageIndex < 0 || newPageIndex > currentTabItems.size() - 1)
+	//			return;
+	//
+	//		getSashWindowContainer().pageChangedEvent(currentTabItems.get(newPageIndex).childPart);
+	//	}
 
 	/**
 	 * Select the specified page.
@@ -305,8 +308,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 */
 	protected void setSelection(int pageIndex) {
 		//		Assert.isTrue(pageIndex >= 0 && pageIndex < getPageCount());
-		if(!isValidPageIndex(pageIndex))
+		if(!isValidPageIndex(pageIndex)) {
 			return;
+		}
 
 		getTabFolder().setSelection(pageIndex);
 	}
@@ -316,7 +320,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * This does not set the ActivePage.
 	 * 
 	 * @param page
-	 *        the page that should be selected 
+	 *        the page that should be selected
 	 * @since 3.3
 	 */
 	public final void setSelection(PagePart requestedPage) {
@@ -337,14 +341,15 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.eclipsecopy.MultiPageEditorTile#dispose()
 	 */
+	@Override
 	public void dispose() {
 		// detach menu as it is shared between folders.
 		getControl().setMenu(null);
 
 		deactivate();
-		
-		
-//		getControl().dispose();
+
+
+		//		getControl().dispose();
 		pTabFolder.dispose();
 	}
 
@@ -355,21 +360,21 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 */
 	@Override
 	public void disposeThisAndChildren() {
-		
+
 		// Dispose children if any
-		for( TabItemPart child : currentTabItems) {
+		for(TabItemPart child : currentTabItems) {
 			if(child != null) {
 				child.disposeThisAndChildren();
 			}
 		}
-			
+
 		// clean up properties to help GC
 		partModel = null;
 		rawModel = null;
 		currentTabItems.clear();
 		currentTabItems = null;
 		dragOverListener = null;
-		
+
 	}
 
 	/**
@@ -391,6 +396,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	/**
 	 * Return the swt Control associated to this part.
 	 */
+	@Override
 	public Composite getControl() {
 		return getTabFolder();
 	}
@@ -440,13 +446,15 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	@Override
 	public AbstractPart findPartAt(Point toFind, Class<?> expectedTileType) {
 
-		if(expectedTileType == this.getClass())
+		if(expectedTileType == this.getClass()) {
 			return this;
+		}
 
 		// ask current active tab
 		TabItemPart activeTabPart = getActiveTab();
-		if(activeTabPart == null)
+		if(activeTabPart == null) {
 			return null;
+		}
 
 		return getActiveTab().findPartAt(toFind, expectedTileType);
 	}
@@ -476,9 +484,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Get the visible PagePart (from the Container point of view). 
+	 * Get the visible PagePart (from the Container point of view).
 	 * The visible PagePart is the one that has its diagram area visible.
 	 * From the folder point of view, this is the active PagePart.
+	 * 
 	 * @return
 	 */
 	public PagePart getVisiblePagePart() {
@@ -488,19 +497,21 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Find the part associated to the provided control.
 	 * 
 	 */
 	@Override
 	public AbstractPanelPart findPart(Object control) {
-		if(getControl() == control)
+		if(getControl() == control) {
 			return this;
+		}
 
 		// Check if it is one of the Item
-		if(control instanceof CTabItem && ((CTabItem)control).getParent() == getControl())
+		if(control instanceof CTabItem && ((CTabItem)control).getParent() == getControl()) {
 			return this;
+		}
 
 		// Ask childs TODO
 		return null;
@@ -517,6 +528,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param position
 	 * @return
 	 */
+	@Override
 	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position) {
 		// see org.eclipse.ui.internal.presentations.util.ReplaceDragHandler
 		// Determine which tab we're currently dragging over
@@ -685,6 +697,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @see
 	 * @return the parent
 	 */
+	@Override
 	public void orphan() {
 		// orphan only if we are in UNCHANGED state
 		if(garbageState == GarbageState.UNVISITED) {
@@ -700,6 +713,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @return
 	 */
+	@Override
 	public GarbageState getGarbageState() {
 		return garbageState;
 	}
@@ -709,6 +723,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.sash.ITilePart#reparent(org.eclipse.papyrus.infra.core.sasheditor.sash.ITilePart)
 	 */
+	@Override
 	public void reparent(IPanelParent newParent, Composite swtParent) {
 		parent = newParent;
 		// Create control if needed
@@ -732,6 +747,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 *        The raw model to check
 	 * @return
 	 */
+	@Override
 	public boolean isPartFor(Object realModel) {
 		return getRawModel() == realModel;
 	}
@@ -748,16 +764,18 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	/**
 	 * Refresh the tab of this page (I.e the name and icon in the tab).
 	 * 
-	 * @param page The page to be refreshed
+	 * @param page
+	 *        The page to be refreshed
 	 */
-	public void refreshPageTab( PagePart page) {
+	public void refreshPageTab(PagePart page) {
 		TabItemPart itemPart = currentTabItems.getByPagePart(page);
-		if(itemPart==null)
+		if(itemPart == null) {
 			return;
-		
+		}
+
 		itemPart.refreshTabDecorations();
 	}
-	
+
 	/**
 	 * Synchronize the TabFolder with the models.
 	 * The Tabs order is fixed and can't be moved. So, we move the associated ITilepart if needed.
@@ -767,6 +785,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * 
 	 * @param partLists
 	 */
+	@Override
 	public void synchronize2(PartLists partLists) {
 
 		// get list of model to be displayed. This is a list of Object.
@@ -821,8 +840,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				// end
 			}
 			// Set the active page as the last part if needed
-			if(activePageIndex >= currentTabItems.size())
+			if(activePageIndex >= currentTabItems.size()) {
 				activePageIndex = currentTabItems.size() - 1;
+			}
 		}
 
 
@@ -888,15 +908,15 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			// No part found, create one
 			modelPart = createChildPart(newModel);
 			if(modelPart != null) {
-			existingParts.addCreatedPage(modelPart);
-			// Attach it to the tabItem
-			newTab = new TabItemPart(this, modelPart, index);
-		}
+				existingParts.addCreatedPage(modelPart);
+				// Attach it to the tabItem
+				newTab = new TabItemPart(this, modelPart, index);
+			}
 		}
 
 		// Add to the list of items.
 		if(newTab != null) {
-		currentTabItems.add(index, newTab);
+			currentTabItems.add(index, newTab);
 		}
 	}
 
@@ -938,6 +958,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		} else {
 			// No part found, create one
 			modelPart = createChildPart(newModel);
+			if(modelPart == null) {
+				System.out.println("break");
+			}
 			existingParts.addCreatedPage(modelPart);
 			// Attach it to the tabItem
 			tabItem.resetChild(modelPart);
@@ -959,19 +982,19 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		IPageModel partModel = getPartModel().createChildSashModel(newModel);
 
 		if(partModel != null) {
-		// Delegate part creation to the container. This allow the container to provide appropriate 
-		// objects not available from the part.
-		PagePart newPart = getSashWindowContainer().createPagePart(this, partModel, newModel);
-		// Create control.
-		// Fire events before and after
-		getSashWindowContainer().getLifeCycleEventProvider().firePageAboutToBeOpenedEvent(newPart);
-		newPart.createPartControl(getControl());
-		getSashWindowContainer().getLifeCycleEventProvider().firePageOpenedEvent(newPart);
+			// Delegate part creation to the container. This allow the container to provide appropriate 
+			// objects not available from the part.
+			PagePart newPart = getSashWindowContainer().createPagePart(this, partModel, newModel);
+			// Create control.
+			// Fire events before and after
+			getSashWindowContainer().getLifeCycleEventProvider().firePageAboutToBeOpenedEvent(newPart);
+			newPart.createPartControl(getControl());
+			getSashWindowContainer().getLifeCycleEventProvider().firePageOpenedEvent(newPart);
 
-		return newPart;
-               }
-            // Use exception ?
-            return null;
+			return newPart;
+		}
+		// Use exception ?
+		return null;
 	}
 
 	/**
@@ -1047,8 +1070,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		//				+ ", " + this);
 
 		CTabFolder ctrl = getTabFolder();
-		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n"
-				, currentTabItems.size(), ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()), garbageState, this);
+		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n", currentTabItems.size(), ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()), garbageState, this);
 	}
 
 	/**
@@ -1058,6 +1080,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @param visitor
 	 * @return
 	 */
+	@Override
 	public boolean visit(IPartVisitor visitor) {
 		return visitor.accept(this);
 	}
@@ -1070,8 +1093,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	public boolean visitChildren(IPartVisitor visitor) {
 
 		for(TabItemPart child : currentTabItems) {
-			if(!child.visit(visitor))
+			if(!child.visit(visitor)) {
 				return false;
+			}
 		}
 		// All children have accepter the visit, continue visiting.
 		return true;
@@ -1106,13 +1130,17 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 */
 		public int indexOfModel(Object o) {
 			if(o == null) {
-				for(int i = 0; i < size(); i++)
-					if(get(i) == null)
+				for(int i = 0; i < size(); i++) {
+					if(get(i) == null) {
 						return i;
+					}
+				}
 			} else {
-				for(int i = 0; i < size(); i++)
-					if(o.equals(get(i).getChildPart().getRawModel()))
+				for(int i = 0; i < size(); i++) {
+					if(o.equals(get(i).getChildPart().getRawModel())) {
 						return i;
+					}
+				}
 			}
 			return -1;
 		}
@@ -1180,22 +1208,21 @@ public class TabFolderPart extends AbstractTabFolderPart {
 				Point pt = new Point(e.x, e.y);
 				CTabItem item = folder.getItem(pt);
 				int index = pTabFolder.getItemIndex(pt);
-				if(index == -1)
-				{
+				if(index == -1) {
 					toolTipManager.closeToolTip();
 					return;
 				}
 
 				PagePart part = currentTabItems.get(index).getChildPart();
-//								System.out.println("MouseHover(" + e.widget 
-//										+ ", part=" + part.getPageTitle()
-//										+ ", item=" + item
-//										+ ") - " + count++);
+				//								System.out.println("MouseHover(" + e.widget 
+				//										+ ", part=" + part.getPageTitle()
+				//										+ ", item=" + item
+				//										+ ") - " + count++);
 				// TODO move it away 
 				//toolTipManager.showToolTip(item.getBounds(), part.getControl(), pt);
 				toolTipManager.showToolTip(part, item.getBounds(), pt);
 			}
-			
+
 
 		};
 
@@ -1210,7 +1237,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			public void handleEvent(Event event) {
 				switch(event.type) {
 				case SWT.MouseUp:
-//					System.out.println("MouseUp()" + count++);
+					//					System.out.println("MouseUp()" + count++);
 					toolTipManager.disableToolTip();
 					break;
 				}
@@ -1239,7 +1266,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			control.removeListener(SWT.MouseUp, mouseClickedListener);
 			toolTipManager.dispose();
 		}
-		
+
 
 	}
 

@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
 /**
@@ -62,11 +62,12 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
-				IPageMngr pageMngr = ServiceUtilsForEObject.getInstance().getIPageMngr(diagramToOpen);
+				IPageManager pageMngr = ServiceUtilsForEObject.getInstance().getIPageManager(diagramToOpen);
 				if(pageMngr.isOpen(diagramToOpen)) {
-					pageMngr.closePage(diagramToOpen);
+					pageMngr.selectPage(diagramToOpen);
+				} else {
+					pageMngr.openPage(diagramToOpen);
 				}
-				pageMngr.openPage(diagramToOpen);
 				return CommandResult.newOKCommandResult();
 			} catch (Exception e) {
 				throw new ExecutionException("Can't open diagram", e);

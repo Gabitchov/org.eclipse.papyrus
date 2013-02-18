@@ -23,7 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
@@ -44,7 +44,7 @@ public class DeleteTableHandler extends AbstractTableModelExplorerHandler {
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		final IPageMngr pageMngr = getPageManager();
+		final IPageManager pageMngr = getPageManager();
 
 		List<PapyrusTableInstance> tables = getSelectedTables();
 
@@ -56,9 +56,6 @@ public class DeleteTableHandler extends AbstractTableModelExplorerHandler {
 
 					@Override
 					protected void doExecute() {
-						if(pageMngr.isOpen(table)) {
-							pageMngr.closePage(table);
-						}
 						pageMngr.removePage(table);
 					}
 				};

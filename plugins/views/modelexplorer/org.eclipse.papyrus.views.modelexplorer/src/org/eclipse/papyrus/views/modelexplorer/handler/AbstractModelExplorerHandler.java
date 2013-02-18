@@ -26,7 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -62,15 +62,15 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	 * @return
 	 *         the page manager
 	 */
-	protected IPageMngr getPageManager() {
-		IPageMngr pageMngr = null;
+	protected IPageManager getPageManager() {
+		IPageManager pageManager = null;
 		try {
-			pageMngr = ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
+			pageManager = ServiceUtilsForActionHandlers.getInstance().getIPageManager();
 		} catch (ServiceException e) {
 			//we are closing the editor, so the model explorer has nothing to display
 			//			e.printStackTrace();
 		}
-		return pageMngr;
+		return pageManager;
 	}
 
 	/**
@@ -82,24 +82,24 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	 * @return The adapted object, or null.
 	 */
 	@SuppressWarnings("unchecked")
-	private <T> T adapt( Object object, Class<T> expectedClassType) {
-		
-		if( object instanceof IAdaptable ) {
+	private <T> T adapt(Object object, Class<T> expectedClassType) {
+
+		if(object instanceof IAdaptable) {
 			T ele = (T)((IAdaptable)object).getAdapter(expectedClassType);
 			if(ele != null) {
-			  return ele;
+				return ele;
 			}
 			// Try as EObject if the expectedClasType is sub-type of EObject.
-			if( EObject.class.isAssignableFrom( expectedClassType) ) {
+			if(EObject.class.isAssignableFrom(expectedClassType)) {
 				// to EObject
 				EObject eobject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
-				
+
 				if(eobject != null && expectedClassType.isInstance(eobject)) {
-				  return (T)eobject;
+					return (T)eobject;
 				}
 			}
 		}
-			
+
 		// Try global mechanism
 		{
 			T ele = (T)Platform.getAdapterManager().getAdapter(object, expectedClassType);
@@ -107,36 +107,38 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 				return ele;
 			}
 			// Try as EObject if the expectedClasType is sub-type of EObject.
-			if( EObject.class.isAssignableFrom( expectedClassType) ) {
+			if(EObject.class.isAssignableFrom(expectedClassType)) {
 				// to EObject
 				EObject eobject = (EObject)Platform.getAdapterManager().getAdapter(object, EObject.class);
-				
+
 				if(eobject != null && expectedClassType.isInstance(eobject)) {
-				 
-				  return (T)eobject;
+
+					return (T)eobject;
 				}
 			}
 		}
 		// Can't be adapted
 		return null;
-	
+
 	}
 
 	/**
 	 * Filter the list, and only retain objects that can be adapted to the specified type
+	 * 
 	 * @param objects
 	 * @param class1
 	 * @return
 	 */
 	private <T> List<T> getAllElementAdaptedToType(List<Object> list, Class<T> expectedClassType) {
-		
+
 		List<T> res = new ArrayList<T>();
-		
-		for( Object cur : list) {
-			
-			T adapted = adapt( cur, expectedClassType);
-			if( adapted != null)
+
+		for(Object cur : list) {
+
+			T adapted = adapt(cur, expectedClassType);
+			if(adapted != null) {
 				res.add(adapted);
+			}
 		}
 		return res;
 	}
@@ -146,24 +148,22 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	 * 
 	 * @param expectedType
 	 * @return
-	 * @throws ExecutionException 
+	 * @throws ExecutionException
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T> List<T> getCurrentSelectionAdaptedToType(ExecutionEvent event, Class<T> expectedType) throws ExecutionException {
-		
+
 		// Get selection from the workbench
 		ISelection selection = HandlerUtil.getCurrentSelectionChecked(event);
-	
+
 		// Get the selected objects according to the type of the selected
-		if(selection instanceof IStructuredSelection)
-		{
+		if(selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			return getAllElementAdaptedToType( structuredSelection.toList(), expectedType);
-		}
-		else if( selection instanceof TreeSelection) {
+			return getAllElementAdaptedToType(structuredSelection.toList(), expectedType);
+		} else if(selection instanceof TreeSelection) {
 			TreeSelection treeSelection = (TreeSelection)selection;
-			return getAllElementAdaptedToType( treeSelection.toList(), expectedType );
-	
+			return getAllElementAdaptedToType(treeSelection.toList(), expectedType);
+
 		}
 		return null;
 	}

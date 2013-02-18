@@ -89,17 +89,6 @@ public abstract class AbstractHyperLinkHelper {
 	}
 
 	/**
-	 * this method is called when the element is selected an clicked in order to
-	 * open a diagram in the case of hyperlink diagram
-	 * 
-	 * @param HyperLinkObject
-	 *        the hyperlink object that is selected
-	 */
-	public void executeSelectPressed(HyperLinkObject HyperLinkObject) {
-		HyperLinkObject.executeSelectPressed();
-	}
-
-	/**
 	 * from a list of hyperlinks, it return a list of hyperlink with the same
 	 * kind. for example return a list of diagramhyperlink
 	 * 

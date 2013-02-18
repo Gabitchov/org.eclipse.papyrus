@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -167,9 +168,8 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		deactivate();
 		//The selection provider keeps a reference to "this". It is not disposed.
 		getSite().setSelectionProvider(null);
-		if(sashContainer!=null) {
+		if(sashContainer != null) {
 			sashContainer.dispose();
-			sashContainer = null;
 		}
 		pageProvider = null;
 
@@ -180,10 +180,18 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Refresh the sash windows system
 	 */
 	protected void refreshTabs() {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				doRefreshTabs();
+			}
+		});
+	}
+
+	private void doRefreshTabs() {
 		if(sashContainer != null) {
 			sashContainer.refreshTabs();
 		}
-
 	}
 
 	/**

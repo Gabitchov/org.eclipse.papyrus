@@ -542,7 +542,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.papyrus.resource.ModelSet#setFilenameWithoutExtension(org.eclipse.core.runtime.IPath)
+		 * @see org.eclipse.papyrus.infra.core.resource.ModelSet#setFilenameWithoutExtension(org.eclipse.core.runtime.IPath)
 		 */
 		@Override
 		public void setFilenameWithoutExtension(IPath filenameWithoutExtension) {

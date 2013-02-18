@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.gef.EditPart;
@@ -35,10 +36,12 @@ public class DiagramHelper {
 	public static void refresh(DiagramEditPart diagramEditPart, boolean recursive) {
 		diagramEditPart.refresh();
 		if(recursive) {
-			for(EditPart childEditPart : (List<EditPart>)diagramEditPart.getChildren()) {
+			List<EditPart> childrenToRefresh = new LinkedList<EditPart>(diagramEditPart.getChildren());
+			for(EditPart childEditPart : childrenToRefresh) {
 				refresh(childEditPart, true);
 			}
-			for(EditPart childEditPart : (List<EditPart>)diagramEditPart.getConnections()) {
+			List<EditPart> connectionsToRefresh = new LinkedList<EditPart>(diagramEditPart.getConnections());
+			for(EditPart childEditPart : connectionsToRefresh) {
 				refresh(childEditPart, true);
 			}
 		}

@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.common.part;
 
+import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -73,6 +74,19 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 	 */
 	@Override
 	public void dispose() {
+		this.setUndoContext(new IUndoContext() {
+
+			public String getLabel() {
+				return "Disposed undo context";
+			}
+
+			public boolean matches(IUndoContext context) {
+				return false;
+			}
+
+		}); //Avoid disposing the shared UndoContext when this nestedEditor is dispose
+		//Super.dispose() will try to dispose the IUndoContext
+
 		super.dispose();
 
 		ISaveAndDirtyService saveAndDirtyService;
@@ -88,6 +102,11 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		partNameSynchronizer = null;
 		diagram = null;
 		servicesRegistry = null;
+	}
+
+	@Override
+	protected void stopListening() {
+		super.stopListening();
 	}
 
 	/**

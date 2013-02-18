@@ -14,17 +14,23 @@
 package org.eclipse.papyrus.views.modelexplorer.listener;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.Messages;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 
 /**
  * this class is a listener in charge to manage double on element of the model explorer
@@ -39,32 +45,52 @@ public class DoubleClickListener implements IDoubleClickListener {
 	 */
 	public void doubleClick(DoubleClickEvent event) {
 		ISelection selection = event.getSelection();
-		IPageMngr pageMngr = null;
+		final IPageManager pageManager;
 		//get the page Manager
 		try {
-			pageMngr = ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
+			pageManager = ServiceUtilsForActionHandlers.getInstance().getIPageManager();
 		} catch (Exception e) {
 			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
+			return;
 		}
-		if(pageMngr != null) {
+		if(pageManager != null) {
 			if(selection instanceof IStructuredSelection) {
 				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
+				final List<EObject> pagesToOpen = new LinkedList<EObject>();
+				EObject pageToSelect = null;
 				while(iter.hasNext()) {
 					Object currentObject = iter.next();
-					EObject diag = NavigatorUtils.getElement(currentObject, EObject.class);
-					if(pageMngr.allPages().contains(diag)) {
-						/**
-						 * Close the diagram if it was already open
-						 */
-						if(pageMngr.isOpen(diag)) {
-							pageMngr.closePage(diag);
+					EObject diag = EMFHelper.getEObject(currentObject);
+
+					if(pageManager.allPages().contains(diag)) {
+						if(pageManager.isOpen(diag)) {
+							pageToSelect = diag;
+						} else {
+							pagesToOpen.add(diag);
 						}
-						pageMngr.openPage(diag);
 					}
+				}
+
+				if(!pagesToOpen.isEmpty()) {
+					try {
+						TransactionalEditingDomain editingDomain = ServiceUtilsForSelection.getInstance().getTransactionalEditingDomain(selection);
+						editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Open pages") {
+
+							@Override
+							protected void doExecute() {
+								for(EObject page : pagesToOpen) {
+									pageManager.openPage(page);
+								}
+							}
+						});
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+					}
+				} else if(pageToSelect != null) {
+					pageManager.selectPage(pageToSelect);
 				}
 			}
 
 		}
 	}
-
 }

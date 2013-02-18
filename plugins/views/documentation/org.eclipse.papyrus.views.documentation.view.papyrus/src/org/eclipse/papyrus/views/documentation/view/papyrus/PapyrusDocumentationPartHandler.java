@@ -22,6 +22,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -29,7 +30,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -93,22 +94,33 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 				EditingDomain ed = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
 				if(ed != null) {
 					EObject eObject = ed.getResourceSet().getEObject(elementUri, false);
-					Diagram diagram = null;
+					final Diagram diagram;
 					if(eObject instanceof Diagram) {
 						diagram = (Diagram)eObject;
 					} else {
 						List<Diagram> diagrams = DiagramsUtil.getAssociatedDiagrams(eObject, null);
-						if(!diagrams.isEmpty()) {
+						if(diagrams.isEmpty()) {
+							return;
+						} else {
 							diagram = diagrams.get(0);
 						}
 					}
+
 					if(diagram != null) {
-						IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(registry);
+						final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(registry);
 						if(pageMngr != null) {
 							if(pageMngr.isOpen(diagram)) {
-								pageMngr.closePage(diagram);
+								pageMngr.selectPage(diagram);
+							} else {
+								TransactionalEditingDomain editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
+								editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Open diagram") {
+
+									@Override
+									public void doExecute() {
+										pageMngr.openPage(diagram);
+									}
+								});
 							}
-							pageMngr.openPage(diagram);
 						}
 					}
 				}

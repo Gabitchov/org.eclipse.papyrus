@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -22,7 +23,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 
 /**
  * This handler allows to Close Diagrams and Tables
@@ -58,32 +64,71 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
-		IPageMngr pageMngr = getPageManager();
-		if(pageMngr == null) {
-			return null;
+
+		final IPageManager pageMngr;
+		TransactionalEditingDomain editingDomain;
+
+		try {
+			ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+			pageMngr = registry.getService(IPageManager.class);
+			editingDomain = registry.getService(TransactionalEditingDomain.class);
+		} catch (ServiceException ex) {
+			throw new ExecutionException(ex.getMessage(), ex);
 		}
-		
+
 		// What kind of command ?
 		if(PARAMETER_ALL.equals(parameter)) {
-			pageMngr.closeAllOpenedPages();
+			boolean atLeastOneOpenedPage = false;
+			for(Object page : pageMngr.allPages()) {
+				if(pageMngr.isOpen(page)) {
+					atLeastOneOpenedPage = true;
+					break;
+				}
+			}
+			if(atLeastOneOpenedPage) {
+				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Close all pages") {
+
+					@Override
+					protected void doExecute() {
+						pageMngr.closeAllOpenedPages();
+					}
+				});
+			}
+
+			return null;
 		}
-		
+
 		// Try to close each selected editor.
 		// There is no common type for object representing an editor. So,
 		// We try to get the EObject, and try to close it as an Editor.
-		List<EObject> selectedProperties = getCurrentSelectionAdaptedToType( event, EObject.class );
-		if( selectedProperties == null) {
+		List<EObject> selectedProperties = getCurrentSelectionAdaptedToType(event, EObject.class);
+		if(selectedProperties == null) {
 			// nothing to do
 			return null;
 		}
-		
-		
+
+
+		final List<EObject> pagesToClose = new LinkedList<EObject>();
 		// Check each selected object
-		for( EObject selected : selectedProperties) {
-			
-				pageMngr.closePage(selected);
+		for(EObject selected : selectedProperties) {
+			if(pageMngr.isOpen(selected)) {
+				pagesToClose.add(selected);
+			}
 		}
+
+		if(pagesToClose.isEmpty()) {
+			return null;
+		}
+
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Close pages") {
+
+			@Override
+			protected void doExecute() {
+				for(EObject page : pagesToClose) {
+					pageMngr.closePage(page);
+				}
+			}
+		});
 
 		return null;
 	}

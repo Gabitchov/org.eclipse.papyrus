@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.ContentChangedEventProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.CurrentFolderAndPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DefaultCurrentFolderAndPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.ICurrentFolderAndPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
@@ -37,9 +37,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
  * This class allows to get facade objects on the diSashModel.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
-public class DiSashModelManager  {
+public class DiSashModelManager {
 
 	/** The EMF model used to store the sash windows structure and pages */
 	protected SashWindowsMngr sashWindowMngr;
@@ -53,8 +53,9 @@ public class DiSashModelManager  {
 	 * Instance of the DiContentProvider used to manipulate SashModel.
 	 */
 	private DiContentProvider contentProvider;
+
 	private TransactionalDiContentProvider transDiContentProvider;
-	
+
 	/**
 	 * Object used externally listen to model changes.
 	 * The object is also used internally to control how events are fired (limit multiple events).
@@ -62,7 +63,7 @@ public class DiSashModelManager  {
 	protected ContentChangedEventProvider contentChangedEventProvider;
 
 	/** The factory used to create IPageModel */
-//	private IPageModelFactory pageModelFactory;
+	//	private IPageModelFactory pageModelFactory;
 
 
 	/**
@@ -71,33 +72,33 @@ public class DiSashModelManager  {
 	 * 
 	 * @param pageModelFactory
 	 * @param diResource
-	 * @param currentFolderAndPageMngr 
+	 * @param currentFolderAndPageMngr
 	 */
 	public DiSashModelManager(IPageModelFactory pageModelFactory, final Resource diResource, TransactionalEditingDomain editingDomain, ICurrentFolderAndPageMngr currentFolderAndPageMngr) {
-//		this.pageModelFactory = pageModelFactory;
-	
+		//		this.pageModelFactory = pageModelFactory;
+
 		// lookup the SashModel
 		sashWindowMngr = lookupSashWindowMngr(diResource);
 		// If no SashWindow structure is found, create a new one using a transaction.
 		if(sashWindowMngr == null) {
-					// Create a default model and attach it to resource.
-					sashWindowMngr = createDefaultSashModel();
-					// Create a command
-					RecordingCommand cmd = new RecordingCommand(editingDomain) {
-						
-						@Override
-						protected void doExecute() {
-							diResource.getContents().add(sashWindowMngr);
-						}
-					};
-					// Execute command
-					editingDomain.getCommandStack().execute(cmd);
+			// Create a default model and attach it to resource.
+			sashWindowMngr = createDefaultSashModel();
+			// Create a command
+			RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
+				@Override
+				protected void doExecute() {
+					diResource.getContents().add(sashWindowMngr);
+				}
+			};
+			// Execute command
+			editingDomain.getCommandStack().execute(cmd);
 		}
-	
+
 		contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory, contentChangedEventProvider);
 		// Create the TransactionalDiContentProvider
 		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
-	
+
 		// Create the TransactionalPageMngrImpl
 		pageMngr = new PageManagerImpl(sashWindowMngr, contentChangedEventProvider, currentFolderAndPageMngr);
 	}
@@ -108,7 +109,7 @@ public class DiSashModelManager  {
 	 * 
 	 * @param pageModelFactory
 	 * @param diResource
-	 * @param currentFolderAndPageMngr 
+	 * @param currentFolderAndPageMngr
 	 */
 	public DiSashModelManager(IPageModelFactory pageModelFactory, final Resource diResource, TransactionalEditingDomain editingDomain) {
 
@@ -116,31 +117,31 @@ public class DiSashModelManager  {
 		sashWindowMngr = lookupSashWindowMngr(diResource);
 		// If no SashWindow structure is found, create a new one using a transaction.
 		if(sashWindowMngr == null) {
-					// Create a default model and attach it to resource.
-					sashWindowMngr = createDefaultSashModel();
-					
-					// Create a command
-					RecordingCommand cmd = new RecordingCommand(editingDomain) {
-						
-						@Override
-						protected void doExecute() {
-							diResource.getContents().add(sashWindowMngr);
-						}
-					};
-					// Execute command
-					editingDomain.getCommandStack().execute(cmd);
-					
+			// Create a default model and attach it to resource.
+			sashWindowMngr = createDefaultSashModel();
+
+			// Create a command
+			RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
+				@Override
+				protected void doExecute() {
+					diResource.getContents().add(sashWindowMngr);
+				}
+			};
+			// Execute command
+			editingDomain.getCommandStack().execute(cmd);
+
 		}
-	
-		contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory, contentChangedEventProvider);
+
+		contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory, getContentChangedEventProvider());
 		// Create the TransactionalDiContentProvider
 		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
-	
+
 		// Create the TransactionalPageMngrImpl
-		pageMngr = new PageManagerImpl(sashWindowMngr, contentChangedEventProvider);
-		
+		pageMngr = new PageManagerImpl(sashWindowMngr, getContentChangedEventProvider());
+
 	}
-	
+
 	/**
 	 * 
 	 * @param currentFolderAndPageMngr
@@ -148,9 +149,10 @@ public class DiSashModelManager  {
 	public void setCurrentFolderAndPageMngr(ICurrentFolderAndPageMngr currentFolderAndPageMngr) {
 		pageMngr.setCurrentFolderAndPageMngr(currentFolderAndPageMngr);
 	}
-	
+
 	/**
 	 * Set the CurrentFolderAndPageManager as an instance of {@link CurrentFolderAndPageManager}
+	 * 
 	 * @param currentFolderAndPageMngr
 	 */
 	public void setCurrentFolderAndPageMngr(ISashWindowsContainer sashWindowsContainer) {
@@ -166,10 +168,10 @@ public class DiSashModelManager  {
 	 * @param pageModelFactory
 	 * @param diResource
 	 */
-//	private DiSashModelManager(final Resource diResource, TransactionalEditingDomain editingDomain, ICurrentFolderAndPageMngr currentFolderAndPageMngr) {
-//		this(null, diResource, editingDomain, currentFolderAndPageMngr);
-//	
-//	}
+	//	private DiSashModelManager(final Resource diResource, TransactionalEditingDomain editingDomain, ICurrentFolderAndPageMngr currentFolderAndPageMngr) {
+	//		this(null, diResource, editingDomain, currentFolderAndPageMngr);
+	//	
+	//	}
 
 
 	/**
@@ -237,6 +239,15 @@ public class DiSashModelManager  {
 	 * @return
 	 */
 	public IPageMngr getIPageMngr() {
+		return getIPageManager();
+	}
+
+	/**
+	 * Get the IPageManager providing basic methods to manage Pages in the sash model.
+	 * 
+	 * @return
+	 */
+	public IPageManager getIPageManager() {
 		return getPageManagerImpl();
 	}
 
@@ -289,12 +300,12 @@ public class DiSashModelManager  {
 	 * @param diResource
 	 * @return The non transactional version of the IPageMngr
 	 */
-//	public static IPageMngr createIPageMngr(Resource diResource) {
-//
-//		// Create an instance of the DiSashModelMngr with no factory.
-//		// The factory is not needed since we don't get the ISashWindowsContentProvider.
-//		return new DiSashModelManager(null, diResource).getIPageMngr();
-//
-//	}
+	//	public static IPageMngr createIPageMngr(Resource diResource) {
+	//
+	//		// Create an instance of the DiSashModelMngr with no factory.
+	//		// The factory is not needed since we don't get the ISashWindowsContentProvider.
+	//		return new DiSashModelManager(null, diResource).getIPageMngr();
+	//
+	//	}
 
 }

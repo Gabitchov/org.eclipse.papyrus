@@ -130,7 +130,11 @@ public class EditorUtils {
 	 * @param editingDomain
 	 * 
 	 * @return The transactional implementation of IPageMngr
+	 * 
+	 * @deprecated The TransactionalIPageMngr is deprecated. You should use IPageManager instead.
+	 *             Transactions should be started by the IPageManager user when necessary.
 	 */
+	@Deprecated
 	public static IPageMngr getTransactionalIPageMngr(Resource diResource, TransactionalEditingDomain editingDomain) {
 		return TransactionalDiSashModelMngr.createIPageMngr(diResource, editingDomain);
 	}

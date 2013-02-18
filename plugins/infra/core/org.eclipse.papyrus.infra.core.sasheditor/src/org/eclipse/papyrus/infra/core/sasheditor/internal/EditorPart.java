@@ -623,7 +623,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		editorControl.setParent(newParent.getControl());
 
 		// Change state
-		if(garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED) {
+		if(garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED || garbageState == GarbageState.CREATED) {
 			garbageState = GarbageState.REPARENTED;
 		} else {
 			// Bad state, this is an internal error
@@ -640,7 +640,9 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 */
 	@Override
 	public void setFocus() {
-		editorPart.setFocus();
+		if(editorPart != null) {
+			editorPart.setFocus();
+		}
 	}
 
 

@@ -25,8 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.resourceloading.ILoadingStrategy;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.INotification;
@@ -323,7 +322,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 							}
 						}
 						new RefreshRunnable(modelSet, null, getInitialURI(), true, true).run(editor);
-					};
+					}
 				};
 
 			}
@@ -738,9 +737,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 	 */
 	public class RefreshRunnable {
 
-		protected DiSashModelMngr sashModelMngr;
-
-		protected IPageMngr pageMngr;
+		protected IPageManager pageMngr;
 
 		protected URI uri;
 
@@ -763,9 +760,8 @@ public class AskUserStrategy implements ILoadingStrategy {
 		public void run(CoreMultiDiagramEditor editor) {
 			final Set<URI> alreadyLoaded = new HashSet<URI>();
 			try {
-				sashModelMngr = editor.getServicesRegistry().getService(DiSashModelMngr.class);
-				pageMngr = sashModelMngr.getIPageMngr();
-				List<Object> allPages = sashModelMngr.getIPageMngr().allPages();
+				pageMngr = editor.getServicesRegistry().getService(IPageManager.class);
+				List<Object> allPages = pageMngr.allPages();
 				// the uri is added after getting all the pages. If it is done
 				// before, the eobjects are resolved
 				NotificationBuilder error = NotificationBuilder.createAsyncPopup(Messages.AskUserStrategy_ERROR, String.format(Messages.AskUserStrategy_UNABLE_TO_LOAD, uri != null ? uri.toString() : Messages.AskUserStrategy_12)).setType(Type.ERROR).setDelay(2000);
@@ -802,8 +798,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 						URI eobjectURI = EcoreUtil.getURI(eobject);
 						if(refreshAll || (refreshTab && eobjectURI.trimFileExtension().trimFragment().equals(uri))) {
 							// TODO improve this when an update is created
-							pageMngr.closePage(o);
-							pageMngr.openPage(eobject);
+							pageMngr.selectPage(eobject);
 						}
 					}
 				}

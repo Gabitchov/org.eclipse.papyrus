@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * This is the Object use to manipulate into hyperlinks
- *
+ * 
  */
 public abstract class HyperLinkObject {
 
@@ -29,13 +29,13 @@ public abstract class HyperLinkObject {
 	 */
 	protected String tooltipText;
 
-	/** the object that is the target of the hyperlink**/
+	/** the object that is the target of the hyperlink **/
 	protected Object object;
 
 	/**
 	 * boolean to known if this hyperlink is a default hyperlink
 	 */
-	protected boolean isDefault=false;
+	protected boolean isDefault = false;
 
 	/**
 	 * @return the associated tooltip
@@ -46,13 +46,14 @@ public abstract class HyperLinkObject {
 
 	/**
 	 * set a string that is the associated tool tup
+	 * 
 	 * @param tooltipText
 	 */
 	public void setTooltipText(String tooltipText) {
 		this.tooltipText = tooltipText;
 	}
 
-	/** 
+	/**
 	 * 
 	 * @return the object that is the target of the hyperlink
 	 */
@@ -62,7 +63,9 @@ public abstract class HyperLinkObject {
 
 	/**
 	 * set the object that will be the target of the hyperlink
-	 * @param object the targeted object
+	 * 
+	 * @param object
+	 *        the targeted object
 	 */
 	public void setObject(Object object) {
 		this.object = object;
@@ -70,30 +73,42 @@ public abstract class HyperLinkObject {
 
 	/**
 	 * set a boolean in order to make this hyperlink as default
-	 * @param isDefault true or false
+	 * 
+	 * @param isDefault
+	 *        true or false
 	 */
-	public void setIsDefault(boolean isDefault){
-		this.isDefault= isDefault;
+	public void setIsDefault(boolean isDefault) {
+		this.isDefault = isDefault;
 	}
+
 	/**
 	 * 
 	 * @return true is the hyperlink is default
 	 */
-	public boolean getIsDefault(){
+	public boolean getIsDefault() {
 		return this.isDefault;
 	}
-	
-	/**
-	 * Used to execute an action when the hyperlink object is selected and clicked 
-	 * for example can open a new editor or a diagram...
-	 */
-	public abstract void executeSelectPressed();
-	
+
 	/**
 	 * Used to execute an action when the hyperlink object is selected and clicked to be edited
- 
-	 * @param list of hyperlink that are containted by a graphical element
-	 * @param amodel the top package root element
+	 * 
+	 * @param list
+	 *        of hyperlink that are containted by a graphical element
+	 * @param amodel
+	 *        the top package root element
 	 */
 	public abstract void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel);
+
+	/**
+	 * Tells whether openLink() should be called within an EMF command
+	 * 
+	 * @return
+	 */
+	public abstract boolean needsOpenCommand();
+
+	/**
+	 * Opens the current hyperlink.
+	 */
+	public abstract void openLink();
+
 }

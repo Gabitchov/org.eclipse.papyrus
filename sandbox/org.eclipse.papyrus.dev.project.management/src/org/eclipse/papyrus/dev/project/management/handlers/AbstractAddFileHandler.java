@@ -70,9 +70,7 @@ public abstract class AbstractAddFileHandler extends AbstractHandler {
 		for(final IProject current : projects) {
 			if(current.isOpen() && isValidProject(current)) {
 				try {
-					if(isValidProject(current)) {
-						addFile(current, sourceURL, targetPath);
-					}
+					addFile(current, sourceURL, targetPath);
 				} catch (final CoreException e) {
 					Activator.log.error(e);
 				} catch (final MalformedURLException e) {

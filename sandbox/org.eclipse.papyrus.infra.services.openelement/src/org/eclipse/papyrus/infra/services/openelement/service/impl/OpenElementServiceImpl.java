@@ -29,12 +29,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.PapyrusPageInput;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -109,22 +111,39 @@ public class OpenElementServiceImpl implements OpenElementService {
 
 			editor = runnable.getResult();
 		} else {
-			final IPageMngr pageMngr = registry.getService(IPageMngr.class);
+			final IPageManager pageMngr = registry.getService(IPageManager.class);
 			ModelSet modelSet = registry.getService(ModelSet.class);
+			final List<EObject> pagesToOpen = new LinkedList<EObject>();
+			final List<EObject> pagesToSelect = new LinkedList<EObject>();
+
 			for(URI pageURI : pages) {
 				final EObject page = modelSet.getEObject(pageURI, true);
-				if(pageMngr.allPages().contains(page)) {
-					Display.getDefault().syncExec(new Runnable() {
 
-						public void run() {
-							if(pageMngr.isOpen(page)) {
-								pageMngr.closePage(page);
-							}
+				if(pageMngr.allPages().contains(page)) {
+					if(pageMngr.isOpen(page)) {
+						pagesToSelect.add(page);
+					} else {
+						pagesToOpen.add(page);
+					}
+				}
+			}
+
+			if(!pagesToOpen.isEmpty()) {
+				TransactionalEditingDomain editingDomain = registry.getService(TransactionalEditingDomain.class);
+				RecordingCommand command = new RecordingCommand(editingDomain, "Open pages") {
+
+					@Override
+					protected void doExecute() {
+						for(EObject page : pagesToOpen) {
 							pageMngr.openPage(page);
 						}
-					});
+					}
+				};
+				editingDomain.getCommandStack().execute(command);
+			}
 
-				}
+			for(EObject page : pagesToSelect) {
+				pageMngr.selectPage(page);
 			}
 		}
 
@@ -144,7 +163,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 
 	private URI[] getPages(EObject element) {
 		try {
-			IPageMngr pageMngr = registry.getService(IPageMngr.class);
+			IPageManager pageMngr = registry.getService(IPageManager.class);
 
 			Collection<EStructuralFeature.Setting> usages = EMFHelper.getUsages(element);
 			List<URI> result = new LinkedList<URI>();

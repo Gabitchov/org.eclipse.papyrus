@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -29,29 +30,31 @@ import org.junit.Test;
  * The Class Load100ClassTest.
  */
 public class Load100ClassTest extends AbstractPapyrusTestCase {
-	
+
 	/**
 	 * Test to create a node.
 	 * 
-	 * @param type the type
+	 * @param type
+	 *        the type
 	 */
 	public void testToCreateANode(IElementType type) {
-		CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
-		Command command=getDiagramEditPart().getCommand(requestcreation);
-		assertNotNull("CREATION: creation command null",command);
-		assertTrue("CREATION: test if the command is created",command!=UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: test if the command can be executed",command.canExecute()==true);
+		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
+		Command command = getDiagramEditPart().getCommand(requestcreation);
+		assertNotNull("CREATION: creation command null", command);
+		assertTrue("CREATION: test if the command is created", command != UnexecutableCommand.INSTANCE);
+		assertTrue("CREATION: test if the command can be executed", command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-			
+
 	}
-	
+
 	/**
 	 * Test load100 class.
 	 */
+	@Ignore
 	@Test
 	public void testLoad100Class() {
-		for( int i=0; i<100;i++){
-		testToCreateANode(UMLElementTypes.Class_2008);
+		for(int i = 0; i < 100; i++) {
+			testToCreateANode(UMLElementTypes.Class_2008);
 		}
 	}
 }

@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
  * 
  * @author cedric dumoulin
  */
+@Deprecated
 public class TransactionalPageMngrImpl implements IPageMngr {
 
 	/**

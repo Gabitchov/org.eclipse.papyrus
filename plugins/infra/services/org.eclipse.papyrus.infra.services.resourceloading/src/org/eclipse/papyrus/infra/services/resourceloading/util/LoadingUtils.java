@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -79,8 +80,7 @@ public class LoadingUtils {
 		if(editor instanceof CoreMultiDiagramEditor) {
 			CoreMultiDiagramEditor core = (CoreMultiDiagramEditor)editor;
 			try {
-				DiSashModelMngr sashModelMngr = core.getServicesRegistry().getService(DiSashModelMngr.class);
-				IPageMngr pageMngr = sashModelMngr.getIPageMngr();
+				IPageManager pageMngr = core.getServicesRegistry().getService(IPageManager.class);
 				List<Object> allPages = pageMngr.allPages();
 				// mark progress
 				monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
@@ -100,8 +100,7 @@ public class LoadingUtils {
 									if(r != null) {
 										EObject newEObject = r.getEObject(uriProxy.fragment());
 										if(pageMngr.isOpen(newEObject)) {
-											pageMngr.closePage(newEObject);
-											pageMngr.openPage(newEObject);
+											pageMngr.selectPage(newEObject);
 										}
 									} else {
 										error.run();
@@ -174,8 +173,7 @@ public class LoadingUtils {
 		if(editor instanceof IMultiDiagramEditor) {
 			IMultiDiagramEditor core = (IMultiDiagramEditor)editor;
 			try {
-				DiSashModelMngr sashModelMngr = core.getServicesRegistry().getService(DiSashModelMngr.class);
-				IPageMngr pageMngr = sashModelMngr.getIPageMngr();
+				IPageManager pageMngr = core.getServicesRegistry().getService(IPageManager.class);
 				List<Object> allPages = pageMngr.allPages();
 				List<URI> pagesURIToOpen = new ArrayList<URI>(allPages.size());
 				List<URI> pagesURIToRefresh = new ArrayList<URI>(allPages.size());

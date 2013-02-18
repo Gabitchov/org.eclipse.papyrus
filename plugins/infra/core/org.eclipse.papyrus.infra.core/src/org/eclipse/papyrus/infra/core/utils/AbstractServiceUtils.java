@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.core.utils;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -66,9 +67,24 @@ public abstract class AbstractServiceUtils<T> {
 	 * @return
 	 * @throws ServiceException
 	 *         If an error occurs while getting the requested service.
+	 * 
+	 * @deprecated Use {@link #getIPageManager(Object)} instead
 	 */
+	@Deprecated
 	public IPageMngr getIPageMngr(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(IPageMngr.class);
+	}
+
+	/**
+	 * Gets the {@link IPageManager} registered in the {@link ServicesRegistry}.
+	 * 
+	 * @param from
+	 * @return
+	 * @throws ServiceException
+	 *         If an error occurs while getting the requested service.
+	 */
+	public IPageManager getIPageManager(T from) throws ServiceException {
+		return getServiceRegistry(from).getService(IPageManager.class);
 	}
 
 	/**

@@ -35,12 +35,11 @@ public class PageMngrImpl implements IPageMngr {
 
 	/** Internal EMF model */
 	private SashWindowsMngr diSashModel;
-	
+
 	/**
-	 * An object used to get the current folder, or to ask to set the 
+	 * An object used to get the current folder, or to ask to set the
 	 * active page.
-	 * This is usually backuped by the SashWindowContainer.
-	 * <br>
+	 * This is usually backuped by the SashWindowContainer. <br>
 	 */
 	protected ICurrentFolderAndPageMngr folderAndPageMngr;
 
@@ -70,7 +69,7 @@ public class PageMngrImpl implements IPageMngr {
 
 		// We do not need to disable event delivering, 
 		// as addition to pageList doesn't fire events.
-		
+
 		diSashModel.getPageList().addPage(pageIdentifier);
 	}
 
@@ -108,7 +107,7 @@ public class PageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void closePage(Object pageIdentifier) {
-		
+
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removePageAndEmptyFolder(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);
@@ -122,7 +121,7 @@ public class PageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void closeAllOpenedPages() {
-		
+
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removeAllPages();
 		contentChangedEventProvider.setDeliver(true);
@@ -150,7 +149,7 @@ public class PageMngrImpl implements IPageMngr {
 	public void openPage(Object pageIdentifier) {
 		// Add the page to the SashModel and to the PageList
 
-        // We do not need to disable event delivering as the operation already fired
+		// We do not need to disable event delivering as the operation already fired
 		// one single event.
 
 		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
@@ -175,7 +174,7 @@ public class PageMngrImpl implements IPageMngr {
 	public void removePage(Object pageIdentifier) {
 		// remove from pageList and from SashModel
 		diSashModel.getPageList().removePage(pageIdentifier);
-		
+
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removePageAndEmptyFolder(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);

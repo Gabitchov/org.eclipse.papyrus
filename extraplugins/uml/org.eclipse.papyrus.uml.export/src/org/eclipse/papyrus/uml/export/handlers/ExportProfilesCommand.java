@@ -45,7 +45,6 @@ import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.papyrus.uml.export.dialog.ExportProfilesParametersDialog;
@@ -141,13 +140,10 @@ public class ExportProfilesCommand extends AbstractTransactionalCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
-
-
-		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 		UmlModel openedModel;
 
 		try {
-			openedModel = (UmlModel)serviceUtils.getModelSet().getModel(UmlModel.MODEL_ID);
+			openedModel = (UmlModel)((ModelSet)getEditingDomain().getResourceSet()).getModel(UmlModel.MODEL_ID);
 			if(openedModel != null) {
 
 				EObject root = openedModel.lookupRoot();
@@ -192,9 +188,6 @@ public class ExportProfilesCommand extends AbstractTransactionalCommand {
 			} else {
 				return CommandResult.newErrorCommandResult(Messages.ExportProfilesCommand_7);
 			}
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

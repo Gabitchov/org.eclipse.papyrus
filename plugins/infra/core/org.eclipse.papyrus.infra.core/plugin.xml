@@ -175,7 +175,7 @@
       <serviceFactory
             classname="org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory"
             description="The service loading Models"
-            id="org.eclipse.papyrus.resource.ModelSet"
+            id="org.eclipse.papyrus.infra.core.resource.ModelSet"
             priority="1"
             startKind="startup">
       </serviceFactory>
@@ -186,7 +186,7 @@
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
       </serviceFactory>
       <serviceFactory
@@ -196,7 +196,17 @@
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory"
+            description="Editing Domain"
+            id="org.eclipse.emf.edit.domain.EditingDomain"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
       </serviceFactory>
       <serviceFactory
@@ -215,7 +225,7 @@
                serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
          </dependsOn>
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
       </serviceFactory>
       <serviceFactory
@@ -228,7 +238,7 @@
                serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
          </dependsOn>
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
       </serviceFactory>
       <serviceFactory
@@ -261,7 +271,7 @@
                serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
          </dependsOn>
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
       </service>
       <serviceFactory
@@ -272,6 +282,16 @@
             startKind="startup">
          <dependsOn
                serviceKeyRef=" org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService">
+         </dependsOn>
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.core.editor.PageMngrServiceFactory"
+            description="IPageManager allows to add and remove pages to the editor."
+            id="org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager">
          </dependsOn>
       </serviceFactory>
    </extension>

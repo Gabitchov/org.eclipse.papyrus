@@ -1,17 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
- *
- *    
+ * Copyright (c) 2013 CEA LIST.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *
+ * 	Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *****************************************************************************/
-
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
 import java.util.List;
@@ -27,11 +25,8 @@ import java.util.List;
  * 
  * 
  * @author dumoulin
- * 
- * @deprecated Use IPageManager instead
  */
-@Deprecated
-public interface IPageMngr {
+public interface IPageManager extends IPageMngr {
 
 	/**
 	 * Add a Page identifier to the list of pages, do not open it.
@@ -56,8 +51,14 @@ public interface IPageMngr {
 	 * Close the page corresponding to the identifier.
 	 * The identifier is removed from the Sash Windows, but not from the list of pages.
 	 * 
+	 * If the page is open more than once on the current Sash windows, only
+	 * one instance will be closed.
+	 * 
 	 * @param pageIdentifier
 	 *        The object identifying the page
+	 * 
+	 * 
+	 * @see {@link #closeAllOpenedPages(Object)}
 	 */
 	public void closePage(Object pageIdentifier);
 
@@ -103,5 +104,22 @@ public interface IPageMngr {
 	 * @return
 	 */
 	public boolean isOpen(Object pageIdentifier);
+
+	/**
+	 * Remove all pages used to render the specified pageIndentifier.
+	 * If the pageIdentifier has more than one page rendering it, each of these
+	 * pages are closed.
+	 * 
+	 * @param pageIdentifier
+	 */
+	public void closeAllOpenedPages(Object pageIdentifier);
+
+	/**
+	 * Select the first page used to render the specified pageIdentifier.
+	 * Do nothing if this page identifier is not rendered.
+	 * 
+	 * @param pageIdentifier
+	 */
+	public void selectPage(Object pageIdentifier);
 
 }

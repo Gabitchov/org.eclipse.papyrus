@@ -52,7 +52,7 @@ public class HyperLinkDocument extends HyperLinkObject {
 	}
 
 	@Override
-	public void executeSelectPressed() {
+	public void openLink() {
 		try {
 			// this is a file try to open it
 			String fileName = getHyperlinkDocument();
@@ -79,5 +79,10 @@ public class HyperLinkDocument extends HyperLinkObject {
 		list.remove(this);
 		list.add(index, editor.getHyperlinkDocument());
 
+	}
+
+	@Override
+	public boolean needsOpenCommand() {
+		return false;
 	}
 }

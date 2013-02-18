@@ -65,7 +65,7 @@ import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -211,7 +211,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 
 		Object editorModel = createEditorModel(serviceRegistry);
 		// Get the mngr allowing to add/open new editor.
-		IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 		// add the new editor model to the sash.
 		pageMngr.openPage(editorModel);
 

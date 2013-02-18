@@ -10,7 +10,7 @@
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
       </service>
    </extension>

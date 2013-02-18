@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.modelexplorer.messages.Messages;
 
@@ -43,7 +43,7 @@ public class DuplicateTableHandler extends AbstractTableModelExplorerHandler {
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		final IPageMngr pageManager = getPageManager();
+		final IPageManager pageManager = getPageManager();
 		List<PapyrusTableInstance> tables = getSelectedTables();
 
 		if(editingDomain != null && pageManager != null && !tables.isEmpty()) {
@@ -62,7 +62,7 @@ public class DuplicateTableHandler extends AbstractTableModelExplorerHandler {
 				Command addGmfDiagramCmd = new AddCommand(editingDomain, table.eResource().getContents(), newTable);
 				//				EMFCommandOperation operation = new EMFCommandOperation(editingDomain, addGmfDiagramCmd);
 
-				Command sashOpenCmd = new RecordingCommand(editingDomain) {
+				Command sashOpenCmd = new RecordingCommand(editingDomain, "Open duplicated table") {
 
 					@Override
 					protected void doExecute() {

@@ -35,26 +35,24 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
@@ -128,7 +126,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		CompositeCommand cmd = new CompositeCommand("Create diagram");
 		ICommand createCmd = getCreateDiagramCommand(modelSet, container, name);
 		cmd.add(createCmd);
-		cmd.add(new OpenDiagramCommand(dom, createCmd));
+		cmd.add(new OpenDiagramCommand(createCmd));
 
 		dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 	}
@@ -303,7 +301,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 		return new AbstractTransactionalCommand(modelSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {
 
-			protected Diagram diagram = null;
+			protected Diagram diagram;
+
+			protected EObject modelElement;
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -326,9 +326,14 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				diagram = createDiagram(notationResource, model, name);
 
 				if(diagram != null) {
-					IPageMngr pageMngr = EditorUtils.getIPageMngr(diResource);
-					pageMngr.addPage(diagram);
-					return CommandResult.newOKCommandResult(diagram);
+					try {
+						IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diResource);
+						pageManager.addPage(diagram);
+						return CommandResult.newOKCommandResult(diagram);
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+						return CommandResult.newErrorCommandResult(ex);
+					}
 				}
 				return CommandResult.newErrorCommandResult("Error during diagram creation");
 			}
@@ -338,12 +343,36 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				// the undo corresponds to a destroy diagram command
 				// during diagram creation no adapters are set to the diagram so the setElement is not registered
 				// to remove the cross reference using the element reference it is better to use the destroy element command
-				DestroyElementPapyrusCommand depc = (diagram != null) ? new DestroyElementPapyrusCommand(new DestroyElementRequest(diagram, false)) : null;
+				//				DestroyElementPapyrusCommand depc = (diagram != null) ? new DestroyElementPapyrusCommand(new DestroyElementRequest(diagram, false)) : null;
 				IStatus status = super.doUndo(monitor, info);
-				if(depc != null) {
-					depc.execute(null, null);
-				}
+
+				modelElement = diagram.getElement();
+				diagram.setElement(null);
+				//				if(depc != null) {
+				//					depc.execute(monitor, info);
+				//				}
 				return status;
+			}
+
+			@Override
+			protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				diagram.setElement(modelElement);
+				IStatus status = super.doRedo(monitor, info);
+				return status;
+			}
+
+			@Override
+			public boolean canUndo() {
+				boolean result = super.canUndo();
+				System.out.println("CanUndo = " + result);
+				return result;
+			}
+
+			@Override
+			public boolean canRedo() {
+				boolean result = super.canRedo();
+				System.out.println("CanRedo = " + result);
+				return result;
 			}
 		};
 	}

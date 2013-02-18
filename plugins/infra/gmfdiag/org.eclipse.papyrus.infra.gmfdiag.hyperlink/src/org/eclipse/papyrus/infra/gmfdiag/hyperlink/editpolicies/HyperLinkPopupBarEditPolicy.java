@@ -31,6 +31,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Handle;
@@ -294,8 +296,23 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 				} else if(me.getSource() instanceof PopupBarLabelHandle) {
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkObject) {
-						HyperLinkObject hyperLinkObject = (HyperLinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
-						hyperLinkObject.executeSelectPressed();
+						final HyperLinkObject hyperLinkObject = (HyperLinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
+						if(hyperLinkObject.needsOpenCommand()) {
+							try {
+								TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
+								editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Open hyperlink") {
+
+									@Override
+									protected void doExecute() {
+										hyperLinkObject.openLink();
+									}
+								});
+							} catch (ServiceException ex) {
+
+							}
+						} else {
+							hyperLinkObject.openLink();
+						}
 					}
 				}
 

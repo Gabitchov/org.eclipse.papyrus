@@ -48,7 +48,7 @@ import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListene
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -254,9 +254,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		List<Object> path = new ArrayList<Object>();
 		ITreeContentProvider contentProvider = (ITreeContentProvider)getCommonViewer().getContentProvider();
 		//		IPageMngr iPageMngr = EditorUtils.getIPageMngr();
-		IPageMngr iPageMngr;
+		IPageManager iPageMngr;
 		try {
-			iPageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+			iPageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 		} catch (ServiceException e) {
 			// This shouldn't happen.
 			return Collections.emptyList();

@@ -40,7 +40,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -261,9 +261,9 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		 * we look for the current editors, because their are represented in the model explorer
 		 * using specific facet and uiCustom. (see bug 359692)
 		 */
-		IPageMngr pageMngr = null;
+		IPageManager pageMngr = null;
 		try {
-			pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+			pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 			List<Object> pages = pageMngr.allPages();
 			for(int i = 0; i < pages.size(); i++) {
 				if(pages.get(i) instanceof EObject) {

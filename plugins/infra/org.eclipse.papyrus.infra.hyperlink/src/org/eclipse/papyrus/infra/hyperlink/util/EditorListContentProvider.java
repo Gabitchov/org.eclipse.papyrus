@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 
@@ -63,7 +63,7 @@ public class EditorListContentProvider implements ITreeContentProvider {
 	 */
 	public Object[] getElements(Object inputElement) {
 		try {
-			IPageMngr iPageMngr = ServiceUtilsForEObject.getInstance().getIPageMngr(model);
+			IPageManager iPageMngr = ServiceUtilsForEObject.getInstance().getIPageManager(model);
 			Object[] result = iPageMngr.allPages().toArray();
 
 			List<Object> res = new ArrayList<Object>();

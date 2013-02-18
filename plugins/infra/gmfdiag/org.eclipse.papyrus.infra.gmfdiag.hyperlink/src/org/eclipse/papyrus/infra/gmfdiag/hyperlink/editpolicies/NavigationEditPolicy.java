@@ -19,14 +19,23 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
@@ -168,7 +177,8 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 					}
 				}
 			}
-			if(defaultHyperLinkObject.size() == 0) {
+
+			if(defaultHyperLinkObject.isEmpty()) {
 				Command command = new Command() {
 
 					@Override
@@ -183,39 +193,136 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				};
 				return command;
 			}
+
 			if(defaultHyperLinkObject.size() == 1) {
 				// open the diagram
-				Command command = new Command() {
+				final HyperLinkObject hyperlinkObject = defaultHyperLinkObject.get(0);
+				Command command = new Command("Navigate hyperlink") {
+
+					private ICommand openLinkCommand;
 
 					@Override
 					public void execute() {
-						super.execute();
-						defaultHyperLinkObject.get(0).executeSelectPressed();
+
+						if(hyperlinkObject.needsOpenCommand()) {
+							try {
+								TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
+								openLinkCommand = new AbstractTransactionalCommand(editingDomain, "Navigate hyperlink", null) {
+
+									@Override
+									protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+										hyperlinkObject.openLink();
+										return CommandResult.newOKCommandResult();
+									}
+								};
+
+								openLinkCommand.execute(new NullProgressMonitor(), null);
+							} catch (ServiceException ex) {
+								Activator.log.error(ex);
+							} catch (ExecutionException ex) {
+								Activator.log.error(ex);
+							}
+						} else {
+							hyperlinkObject.openLink();
+						}
+					}
+
+					@Override
+					public void undo() {
+						if(openLinkCommand != null && openLinkCommand.canUndo()) {
+							try {
+								openLinkCommand.undo(new NullProgressMonitor(), null);
+							} catch (ExecutionException ex) {
+								Activator.log.error(ex);
+							}
+						}
+					}
+
+					@Override
+					public void redo() {
+						if(openLinkCommand != null && openLinkCommand.canRedo()) {
+							try {
+								openLinkCommand.redo(new NullProgressMonitor(), null);
+							} catch (ExecutionException ex) {
+								Activator.log.error(ex);
+							}
+						}
 					}
 				};
 				return command;
-
 			}
+
 			if(defaultHyperLinkObject.size() > 1) {
 				// open a dialog to choose a diagram
 				EditorNavigationDialog diagramNavigationDialog = new EditorNavigationDialog(getHost().getViewer().getControl().getShell(), defaultHyperLinkObject, semanticElement);
 				diagramNavigationDialog.open();
 				final List<HyperLinkObject> hList = diagramNavigationDialog.getSelectedHyperlinks();
-				Command command = new Command() {
+
+				Command command = new Command("Navigate hyperlinks") {
+
+					private CompositeCommand openLinksCommand;
 
 					@Override
 					public void execute() {
-						super.execute();
-
 						Iterator<HyperLinkObject> iter = hList.iterator();
-						while(iter.hasNext()) {
-							HyperLinkObject hyperlinkObject = iter.next();
-							hyperlinkObject.executeSelectPressed();
+						openLinksCommand = new CompositeCommand("Navigate hyperlinks");
+
+						try {
+							TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
+							while(iter.hasNext()) {
+								final HyperLinkObject hyperlinkObject = iter.next();
+								if(hyperlinkObject.needsOpenCommand()) {
+									ICommand navigateCommand = new AbstractTransactionalCommand(editingDomain, "Navigate hyperlink", null) {
+
+										@Override
+										protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+											hyperlinkObject.openLink();
+											return CommandResult.newOKCommandResult();
+										}
+
+									};
+									openLinksCommand.add(navigateCommand);
+								} else {
+									hyperlinkObject.openLink();
+								}
+							}
+
+							if(openLinksCommand.isEmpty()) {
+								return;
+							}
+
+							openLinksCommand.execute(new NullProgressMonitor(), null);
+						} catch (ServiceException ex) {
+							Activator.log.error(ex);
+						} catch (ExecutionException ex) {
+							Activator.log.error(ex);
+						}
+					}
+
+					@Override
+					public void undo() {
+						if(openLinksCommand != null && openLinksCommand.canUndo()) {
+							try {
+								openLinksCommand.undo(new NullProgressMonitor(), null);
+							} catch (ExecutionException ex) {
+								Activator.log.error(ex);
+							}
+						}
+					}
+
+					@Override
+					public void redo() {
+						if(openLinksCommand != null && openLinksCommand.canRedo()) {
+							try {
+								openLinksCommand.redo(new NullProgressMonitor(), null);
+							} catch (ExecutionException ex) {
+								Activator.log.error(ex);
+							}
 						}
 					}
 				};
-				return command;
 
+				return command;
 			}
 
 		} catch (Exception e) {
