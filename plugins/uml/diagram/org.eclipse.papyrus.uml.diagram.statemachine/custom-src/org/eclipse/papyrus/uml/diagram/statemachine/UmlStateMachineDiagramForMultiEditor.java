@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.util.FixNestedStateOnOpening;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.dnd.TransferData;
@@ -66,6 +67,9 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 */
 	public UmlStateMachineDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
+		
+		// see bug 401059: remove obsolete compartments from states
+		new FixNestedStateOnOpening().fix(diagram);
 	}
 
 	/**
