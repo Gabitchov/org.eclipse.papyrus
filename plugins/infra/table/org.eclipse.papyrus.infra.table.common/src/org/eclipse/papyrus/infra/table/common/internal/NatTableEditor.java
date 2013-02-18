@@ -392,7 +392,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	}
 
 	public void removeSelectionChangedListener(final ISelectionChangedListener listener) {
-		this.natTableWidget.removeSelectionChangedListener(listener);
+		if(this.natTableWidget != null) {
+			this.natTableWidget.removeSelectionChangedListener(listener);
+		}
 	}
 
 	public void setSelection(final ISelection selection) {
