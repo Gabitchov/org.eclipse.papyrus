@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -147,8 +148,8 @@ public class DiagramDecorationAdapter {
 			percentageFromSource = percentageMin;
 		}
 		for(IPapyrusDecoration pDecoration : pDecorations) {
-			// TODO: createImage each time leaks!
-			Image image = pDecoration.getDecorationImageForGE().createImage();
+			// use image registry, see bug 401056
+			Image image = Activator.getPluginIconImage(Activator.ID, pDecoration.getDecorationImageForGE());
 			IDecoration decoration = setDecoration(decoratorTarget, image, percentageFromSource, margin, isVolatile);
 			decorations.add(decoration);
 			String message = pDecoration.getMessage();
