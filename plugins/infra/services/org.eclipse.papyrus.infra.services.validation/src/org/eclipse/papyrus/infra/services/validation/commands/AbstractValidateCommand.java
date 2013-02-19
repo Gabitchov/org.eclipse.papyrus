@@ -19,7 +19,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -33,7 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
-import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.emf.facet.infra.facet.validation.EValidatorAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -45,19 +43,21 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Action used for pasting either a model element or a shape (i.e. the model element represented
- * by the shape). Delegates to PasteShapeOrElementCommand
+ * Abstract validation command
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
 abstract public class AbstractValidateCommand extends AbstractTransactionalCommand {
 
-	protected EclipseResourcesUtil eclipseResourcesUtil =
-		EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
-
 	protected TransactionalEditingDomain domain;
+
 	protected EObject selectedElement;
-	
+
+	/**
+	 * Current diagnostic within a validation run
+	 */
+	protected Diagnostic diagnostic;
+
 	/**
 	 * Creates a new ImportLibraryFromRepositoryCommand
 	 * 
@@ -70,34 +70,11 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 * @param description
 	 *        description of the command
 	 */
-	
+
 	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement) {
-		super (domain, label, Collections.EMPTY_LIST);
+		super(domain, label, Collections.EMPTY_LIST);
 		this.domain = domain;
 		this.selectedElement = selectedElement;
-	}
-	
-	protected void handleDiagnostic(Diagnostic diagnostic)
-	{
-	    // Do not show a dialog, as in the original version since the user sees the result directly
-		// in the model explorer
-		Resource resource = getValidationResource();
-		if (resource != null) {
-			if (selectedElement != null) {
-				ValidationTool vt = new ValidationTool(selectedElement);
-				vt.deleteSubMarkers();
-			}
-			
-			// IPath path = new Path(resource.getURI().toPlatformString (false));
-			// IWorkspaceRoot wsRoot = ResourcesPlugin.getWorkspace().getRoot();
-			// IFile file = wsRoot.getFile(path);
-			// eclipseResourcesUtil.deleteMarkers (file);
-
-			for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
-				eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
-				// createMarkersOnDi (file, childDiagnostic);
-			}
-		}
 	}
 
 	/**
@@ -106,45 +83,54 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	protected Resource getValidationResource() {
 		return ValidationUtils.getValidationResource(selectedElement);
 	}
-	
-	protected void runValidation (final EObject validateElement) {
-		 final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		 IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress()
-		 {
-			 public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
-		     {
-				 try {
-					 final Diagnostic diagnostic = validate(progressMonitor, validateElement);
-					 shell.getDisplay().asyncExec (new Runnable() {
-						 public void run()
-						 {
-							 if (progressMonitor.isCanceled()) {
-								 handleDiagnostic(Diagnostic.CANCEL_INSTANCE);
-							 }
-							 else {
-								 handleDiagnostic(diagnostic);
-							 }
-						 }
-					 });
-				 }
-				 finally {
-					 progressMonitor.done();
-				 }    
-		      }
-		 };
-		    
-		 if (eclipseResourcesUtil != null) {
-			 runnableWithProgress = eclipseResourcesUtil.getWorkspaceModifyOperation(runnableWithProgress);
-		 }
 
-		 try {
-		     // This runs the operation, and shows progress.
-		     // (It appears to be a bad thing to fork this onto another thread.)
-		     new ProgressMonitorDialog(shell).run(true, true, runnableWithProgress);
-		 }
-		 catch (Exception exception) {
-		      EMFEditUIPlugin.INSTANCE.log(exception);
-		 }
+	protected void runValidation(final EObject validateElement) {
+		final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+
+		IRunnableWithProgress runValidationWithProgress = new IRunnableWithProgress()
+		{
+
+			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
+			{
+				try {
+					diagnostic = validate(progressMonitor, validateElement);
+				}
+				finally {
+					progressMonitor.done();
+				}
+			}
+		};
+
+		IRunnableWithProgress createMarkersWithProgress = new IRunnableWithProgress()
+		{
+
+			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException
+			{
+				try {
+					handleDiagnostic(progressMonitor, diagnostic, validateElement, shell);
+				}
+				finally {
+					progressMonitor.done();
+				}
+			}
+		};
+
+		if(ValidationUtils.eclipseResourcesUtil != null) {
+			createMarkersWithProgress = ValidationUtils.eclipseResourcesUtil.getWorkspaceModifyOperation(createMarkersWithProgress);
+		}
+
+		try {
+			// runs the operation, and shows progress.
+			diagnostic = null;
+			new ProgressMonitorDialog(shell).run(true, true, runValidationWithProgress);
+			if(diagnostic != null) {
+				// don't fork this dialog, i.e. run it in the UI thread. This avoids that the diagrams are constantly refreshing *while*
+				// markers/decorations are changing. This greatly enhances update performance. See also bug 400593
+				new ProgressMonitorDialog(shell).run(false, true, createMarkersWithProgress);
+			}
+		} catch (Exception exception) {
+			EMFEditUIPlugin.INSTANCE.log(exception);
+		}
 	}
 
 	/**
@@ -152,47 +138,51 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 */
 	protected Diagnostic validate(IProgressMonitor progressMonitor, EObject validateElement)
 	{
-		int count = 0;
-		for (Iterator<?> i = validateElement.eAllContents(); i.hasNext(); i.next()) {
-			++count;
+		int validationSteps = 0;
+		for(Iterator<?> i = validateElement.eAllContents(); i.hasNext(); i.next()) {
+			++validationSteps;
 		}
 
-		progressMonitor.beginTask("", count);
-
-		AdapterFactory adapterFactory = 
+		progressMonitor.beginTask("", validationSteps);
+		AdapterFactory adapterFactory =
 			domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain)domain).getAdapterFactory() : null;
 		Diagnostician diagnostician = createDiagnostician(adapterFactory, progressMonitor);
-	    
+
 		BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(validateElement);
 		Map<Object, Object> context = diagnostician.createDefaultContext();
-		
-		progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object [] {diagnostician.getObjectLabel(validateElement)}));
+
+		progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[]{ diagnostician.getObjectLabel(validateElement) }));
 		diagnostician.validate(validateElement, diagnostic, context);
-	 
+
+		if(progressMonitor.isCanceled()) {
+			return null;
+		}
 		return diagnostic;
 	}
-	
+
 	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor)
 	{
 		return new Diagnostician() {
+
 			@Override
-	        public String getObjectLabel(EObject eObject) {
-				if (adapterFactory != null && !eObject.eIsProxy())
+			public String getObjectLabel(EObject eObject) {
+				if(adapterFactory != null && !eObject.eIsProxy())
 				{
 					IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
-					if (itemLabelProvider != null) {
+					if(itemLabelProvider != null) {
 						return itemLabelProvider.getText(eObject);
 					}
 				}
 				return super.getObjectLabel(eObject);
 			}
-	  
+
 			@Override
 			public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 				progressMonitor.worked(1);
-				
+
 				// copied from superclass, difference: use EValidatorAdapter instead of first value from eValidatorRegistry
 				// fix of bug 397518
+
 				Object eValidator = validatorAdapter;
 
 				boolean circular = context.get(EObjectValidator.ROOT_OBJECT) == eObject;
@@ -203,13 +193,57 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 				}
 				return result;
 			}
-			
+
 			// TODO: avoid discouraged access
 			@SuppressWarnings("restriction")
 			protected EValidatorAdapter validatorAdapter = new EValidatorAdapter();
 		};
+
 	}
-	
+
+	protected void handleDiagnostic(IProgressMonitor monitor, Diagnostic diagnostic, final EObject validateElement, final Shell shell)
+	{
+		// Do not show a dialog, as in the original version since the user sees the result directly
+		// in the model explorer
+		Resource resource = getValidationResource();
+		// final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		if(resource != null) {
+			if(validateElement != null) {
+				ValidationTool vt = new ValidationTool(validateElement, resource);
+				int monitorDeletionSteps = vt.getMarkers().length / ValidationTool.DELETE_PMARKER_RATIO;
+				int markersToCreate = diagnostic.getChildren().size();
+				int monitorCreationSteps = markersToCreate / ValidationTool.CREATE_PMARKER_RATIO;
+
+				monitor.beginTask("delete existing markers", monitorDeletionSteps + monitorCreationSteps); //$NON-NLS-1$
+				shell.getDisplay().readAndDispatch();
+
+				vt.deleteSubMarkers(monitor);
+
+				// IFile file = WorkspaceSynchronizer.getFile(resource);
+				// eclipseResourcesUtil.deleteMarkers (file);
+
+				int i = 0;
+				monitor.setTaskName("Create markers (total: " + markersToCreate + " markers) and refresh diagrams"); //$NON-NLS-1$
+				shell.getDisplay().readAndDispatch();
+
+				for(Diagnostic childDiagnostic : diagnostic.getChildren()) {
+
+					if(monitor.isCanceled()) {
+						break;
+					}
+					ValidationUtils.eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
+					if(i++ > ValidationTool.CREATE_PMARKER_RATIO) {
+						i = 0;
+						monitor.worked(1);
+						// let other threads work, in particular the marker update thread
+						Thread.yield();
+						shell.getDisplay().readAndDispatch();
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

@@ -61,15 +61,6 @@ public interface IDecorationService extends IMarkerEventListener {
 	void deleteListener(Observer o);
 
 	/**
-	 * Notify listeners.
-	 * 
-	 * @param decorationService
-	 *        the decoration service
-	 */
-	void notifyListeners(DecorationService decorationService);
-
-
-	/**
 	 * Adds the decoration. If a decoration with the same ID already exists, do not add, but update
 	 * the decoration.
 	 * 

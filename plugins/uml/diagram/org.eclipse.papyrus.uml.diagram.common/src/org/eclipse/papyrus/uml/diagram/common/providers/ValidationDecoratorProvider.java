@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
@@ -34,10 +35,11 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.AbstractDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.services.decoration.DecorationChange;
+import org.eclipse.papyrus.infra.services.decoration.DecorationChange.DecorationChangeKind;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF;
@@ -118,9 +120,11 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		private TransactionalEditingDomain editingDomain;
 
 		/**
-		 * Decoration Service
+		 * Decoration Service (there is a unique instance of this service, use static variable)
 		 */
-		private DecorationService decorationService;
+		private static DecorationService decorationService;
+
+		private Object element;
 
 		/**
 		 * Diagram Decorator
@@ -135,6 +139,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			diagramDecorationAdapter = new DiagramDecorationAdapter(decoratorTarget);
 			try {
 				final View view = (View)getDecoratorTarget().getAdapter(View.class);
+				element = view.getElement();
 				EditPart editPart = (EditPart)getDecoratorTarget().getAdapter(EditPart.class);
 				IDiagramEditDomain domain = (IDiagramEditDomain)editPart.getViewer().getEditDomain();
 				ServicesRegistry serviceRegistry = ServiceUtilsForGMF.getInstance().getServiceRegistry(domain);
@@ -154,37 +159,55 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		}
 
 		/**
-		 * Refresh the decorators of a view
+		 * Completely refresh the decorators of a view
 		 * 
 		 * @see org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator#refresh()
 		 */
 		public void refresh() {
-
-			diagramDecorationAdapter.removeDecorations();
 			View view = (View)getDecoratorTarget().getAdapter(View.class);
 			if(view == null || view.eResource() == null) {
 				return;
 			}
-			EditPart editPart = (EditPart)getDecoratorTarget().getAdapter(EditPart.class);
-			if(editPart == null || editPart.getViewer() == null) {
+			if(view.getElement() != null) {
+				diagramDecorationAdapter.removeDecorations();
+				List<IPapyrusDecoration> decorations = decorationService.getDecorations(view.getElement(), false);
+				if(view instanceof Edge) {
+					diagramDecorationAdapter.setDecorationsEdge(decorations, 50, true);
+				}
+				else {
+					diagramDecorationAdapter.setDecorationsNode(decorations, 0, true);
+				}
+			}
+		}
+
+		/**
+		 * Refresh the decorators of a view when given a DecorationChange information.
+		 * 
+		 * @param change
+		 *        A decoration change, e.g. addition or removal
+		 */
+		public void refresh(DecorationChange change) {
+
+			if(change.getChangeKind() == DecorationChangeKind.DecorationRemoved ||
+				change.getChangeKind() == DecorationChangeKind.RefreshAll) {
+				// always recreate all decorations, in case of a deletion (would require recalculation of positions) or
+				// if all decorations should be refreshed
+				refresh();
+				return;
+			}
+			View view = (View)getDecoratorTarget().getAdapter(View.class);
+			if(view == null || view.eResource() == null) {
+				return;
+			}
+			if(view instanceof Edge) {
+				// always recreate all decorations for an edge (since the position of all changes, if one is added or removed)
+				refresh();
 				return;
 			}
 			// add decoration
-			if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-				if(view.getElement() != null) {
-					List<IPapyrusDecoration> decorations = decorationService.getDecorations(view.getElement(), false);
-					if((decorations != null) && (decorations.size() > 0)) {
-
-						if(view instanceof Edge) {
-							diagramDecorationAdapter.setDecorations(decorations, 50, 0, true);
-						} else {
-							int margin = -1;
-							if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-								margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)editPart).getFigure()).DPtoLP(margin);
-							}
-							diagramDecorationAdapter.setDecorations(decorations, 0, margin, true);
-						}
-					}
+			if(view.getElement() != null) {
+				if(change.getChangeKind() == DecorationChangeKind.DecorationAdded) {
+					diagramDecorationAdapter.addDecorationNode(change.getDecoration(), -1, true);
 				}
 			}
 		}
@@ -230,7 +253,14 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 		//Refresh when the decoration service add a decoration
 		public void update(Observable o, Object arg) {
-			refresh();
+			// check whether update is for this view
+			if(arg instanceof DecorationChange) {
+				DecorationChange change = (DecorationChange)arg;
+				if((change.getChangeKind() == DecorationChangeKind.RefreshAll) ||
+					(change.getDecoration().getElement() == element)) {
+					refresh(change);
+				}
+			}
 		}
 	}
 

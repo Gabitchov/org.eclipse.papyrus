@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
+ *  Ansgar Radermacher (CEA LIST) - ansgar.radermacher@cea.fr (major revision in context of bug 400593)
+ *   
  *  Arnaud Cuccuru (CEA LIST) - arnaud.cuccuru@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration;
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.services.decoration.DecorationChange.DecorationChangeKind;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
 import org.eclipse.papyrus.infra.services.decoration.util.DecorationSpecificFunctions;
@@ -42,7 +45,6 @@ public class DecorationService extends Observable implements IDecorationService 
 
 	/** The decorations. */
 	private final Map<String, Decoration> decorations = new HashMap<String, Decoration>();
-
 
 	/**
 	 * Inits the.
@@ -84,20 +86,6 @@ public class DecorationService extends Observable implements IDecorationService 
 	 */
 
 	public void disposeService() throws ServiceException {
-	}
-
-	//Notify all Listeners when a marker has been added or removed
-	/**
-	 * Notify listeners.
-	 * 
-	 * @param decorationService
-	 *        the decoration service
-	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#notifyListeners(org.eclipse.papyrus.infra.services.decoration.DecorationService)
-	 */
-
-	public void notifyListeners(DecorationService decorationService) {
-		setChanged();
-		notifyObservers(decorationService);
 	}
 
 	/**
@@ -162,12 +150,15 @@ public class DecorationService extends Observable implements IDecorationService 
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#removeDecoration(java.lang.String)
 	 */
 
-	public void removeDecoration(String id) {
+	public synchronized void removeDecoration(String id) {
 
-		if(decorations.get(id) != null) {
+		Decoration decoration = decorations.get(id);
+		if(decoration != null) {
+
 			decorations.remove(id);
+			setChanged();
+			notifyObservers(new DecorationChange(DecorationChangeKind.DecorationRemoved, decoration));
 		}
-		notifyListeners(this);
 	}
 
 	/**
@@ -184,7 +175,7 @@ public class DecorationService extends Observable implements IDecorationService 
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#addDecoration(java.lang.String, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.jface.resource.ImageDescriptor, java.lang.String)
 	 */
-	public IPapyrusDecoration addDecoration(IMarker marker, EObject element) {
+	public synchronized IPapyrusDecoration addDecoration(IMarker marker, EObject element) {
 
 		try {
 			// obtain marker type specific function
@@ -223,7 +214,7 @@ public class DecorationService extends Observable implements IDecorationService 
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#addDecoration(java.lang.String, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.jface.resource.ImageDescriptor, java.lang.String)
 	 */
-	public IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, PreferedPosition position, String message, int priority) {
+	public synchronized IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, PreferedPosition position, String message, int priority) {
 
 		Decoration decoration = decorations.get(id);
 		if(decoration == null) {
@@ -237,12 +228,16 @@ public class DecorationService extends Observable implements IDecorationService 
 		}
 		decoration.setPosition(position);
 
-		notifyListeners(this);
+		// notifyListeners(this);
+		setChanged();
+		notifyObservers(new DecorationChange(DecorationChangeKind.DecorationAdded, decoration));
 		return decoration;
 	}
 
 	/**
 	 * Gets the decoration.
+	 * use "synchronized" to assure that no decoration modifications are done while this operation is running
+	 * (which would result in a concurrent modification operation)
 	 * 
 	 * @param element
 	 *        the element

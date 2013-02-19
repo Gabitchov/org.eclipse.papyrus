@@ -38,7 +38,6 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DiagramDecorationAdapter.
  */
@@ -47,16 +46,8 @@ public class DiagramDecorationAdapter {
 	/** The decorator target. */
 	protected IDecoratorTarget decoratorTarget;
 
-
 	/** The decoration. */
 	protected List<IDecoration> decorations;
-
-	protected List<IPapyrusDecoration> pDecorations;
-
-	/** The decoration image. */
-	protected Image decorationImage;
-
-
 
 	/**
 	 * Instantiates a new diagram decoration adapter.
@@ -101,40 +92,54 @@ public class DiagramDecorationAdapter {
 	}
 
 	/**
-	 * Gets the decoration image.
-	 * 
-	 * @return the decoration image
-	 */
-	public Image getDecorationImage() {
-		return decorationImage;
-	}
-
-	/**
 	 * Gets the tool tip.
 	 * 
 	 * @param message
 	 *        the message
 	 * @return the tool tip
 	 */
-	public Label getToolTip(String message) {
-		return new Label(message, getDecorationImage());
+	final public Label getToolTip(String message) {
+		return new Label(message);
 	}
 
 	/**
-	 * Sets the decoration.
+	 * Sets the decorations for a node.
 	 * 
 	 * @param pDecoration
-	 *        A set of papyrus decorations
-	 * @param percentageFromSource
-	 *        the distance in percent from source node (only used for decorations on an edge). 50 indicates in the middle
-	 *        between source and target
+	 *        A set of Papyrus decorations
 	 * @param margin
-	 *        the margin from right corner (only used for decorations on a node)
+	 *        the margin from the right corner
 	 * @param isVolatile
 	 *        the is volatile
 	 * @return the set of JFace decorations
 	 */
-	public List<IDecoration> setDecorations(List<IPapyrusDecoration> pDecorations, int percentageFromSource, int margin, boolean isVolatile) {
+	final public List<IDecoration> setDecorationsNode(List<IPapyrusDecoration> pDecorations, int margin, boolean isVolatile) {
+
+		decorations = new BasicEList<IDecoration>();
+		for(IPapyrusDecoration pDecoration : pDecorations) {
+			Image image = addDecorationNode(pDecoration, margin, isVolatile);
+			if(image != null) {
+				margin += image.getBounds().width;
+			}
+		}
+		// this.pDecorations = pDecorations;
+
+		return decorations;
+	}
+
+	/**
+	 * Sets the decorations on an edge.
+	 * 
+	 * @param pDecoration
+	 *        A set of Papyrus decorations
+	 * @param percentageFromSource
+	 *        the distance in percent from source node. 50 indicates in the middle
+	 *        between source and target
+	 * @param isVolatile
+	 *        the is volatile
+	 * @return the set of JFace decorations
+	 */
+	final public List<IDecoration> setDecorationsEdge(List<IPapyrusDecoration> pDecorations, int percentageFromSource, boolean isVolatile) {
 
 		final int distBetweenIconsPercent = 20;
 		final int percentageMin = 10;
@@ -148,35 +153,70 @@ public class DiagramDecorationAdapter {
 			percentageFromSource = percentageMin;
 		}
 		for(IPapyrusDecoration pDecoration : pDecorations) {
-			// use image registry, see bug 401056
-			Image image = Activator.getPluginIconImage(Activator.ID, pDecoration.getDecorationImageForGE());
-			IDecoration decoration = setDecoration(decoratorTarget, image, percentageFromSource, margin, isVolatile);
+			addDecoration(pDecoration, percentageFromSource, 0, isVolatile);
+			percentageFromSource += distBetweenIconsPercent;
+			if(percentageFromSource > percentageMax) {
+				percentageFromSource = percentageMax;
+			}
+		}
+		// this.pDecorations = pDecorations;
+
+		return decorations;
+	}
+
+	/**
+	 * Add a decoration to a node. This function can also be used to add decorations incrementally (see bug 400593)
+	 * 
+	 * @param pDecoration
+	 *        the Papyrus decoration
+	 * @param margin
+	 *        The margin from the right corner. If -1, the proper position left of other icons is calculated
+	 * @param isVolatile
+	 *        whether volatile (typically true)
+	 * @return
+	 */
+	final public Image addDecorationNode(IPapyrusDecoration pDecoration, int margin, boolean isVolatile) {
+
+		if(margin == -1) {
+			margin = 0;
+			// calc distance from right margin, if not given.
+			for(IDecoration decoration : decorations) {
+				if(decoration instanceof Decoration) {
+					margin += ((Decoration)decoration).getBounds().width;
+				}
+			}
+		}
+		return addDecoration(pDecoration, 0, margin, true);
+	}
+
+	final public Image addDecoration(IPapyrusDecoration pDecoration, int percentageFromSource, int margin, boolean isVolatile) {
+		// use image registry, see bug 401056
+		Image image = Activator.getPluginIconImage(Activator.ID, pDecoration.getDecorationImageForGE());
+		IDecoration decoration = createDecorationImage(decoratorTarget, image, percentageFromSource, margin, isVolatile);
+		if(decoration != null) {
 			decorations.add(decoration);
 			String message = pDecoration.getMessage();
 			Label toolTip = getToolTip(message);
 			if(decoration instanceof Decoration) {
 				((Decoration)decoration).setToolTip(toolTip);
 			}
-			percentageFromSource += distBetweenIconsPercent;
-			if(percentageFromSource > percentageMax) {
-				percentageFromSource = percentageMax;
-			}
-			margin += image.getBounds().width;
+			return image;
 		}
-		this.pDecorations = pDecorations;
-
-		return decorations;
+		else {
+			return null;
+		}
 	}
 
+
 	/**
-	 * Removes the decoration.
+	 * Removes a decoration.
 	 * 
 	 * @param decoratorTarget
 	 *        the decorator target
 	 * @param Decoration
 	 *        the decoration
 	 */
-	public void removeDecoration(IDecoration decoration) {
+	final public void removeDecoration(IDecoration decoration) {
 		if((decoration == null) || (decoratorTarget == null)) {
 			return;
 		}
@@ -195,8 +235,7 @@ public class DiagramDecorationAdapter {
 	}
 
 	/**
-	 * Gets the decoration.
-	 * TODO: has side effect, rename?
+	 * Create a decoration based on an image
 	 * 
 	 * @param decoratorTarget
 	 *        the decorator target
@@ -217,7 +256,7 @@ public class DiagramDecorationAdapter {
 	 *        the is volatile
 	 * @return the decoration
 	 */
-	public IDecoration setDecoration(IDecoratorTarget decoratorTarget, Image image, int percentageFromSource, int margin, boolean isVolatile) {
+	final public IDecoration createDecorationImage(IDecoratorTarget decoratorTarget, Image image, int percentageFromSource, int margin, boolean isVolatile) {
 		final View view = (View)decoratorTarget.getAdapter(View.class);
 		org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration decoration = null;
 		if(view == null || view.eResource() == null || image == null) {
@@ -233,24 +272,16 @@ public class DiagramDecorationAdapter {
 				decoration = decoratorTarget.addConnectionDecoration(image, percentageFromSource, isVolatile);
 			} else {
 				IFigure parentFig = gEditPart.getFigure();
-				margin = MapModeUtil.getMapMode(parentFig).DPtoLP(margin);
-				Locator locator = new MultiIconTopRightLocator(parentFig, margin);
+				if(parentFig instanceof HandleBounds) {
+					// only support figures with handle bounds
+					Locator locator = new MultiIconTopRightLocator(parentFig, margin);
 
-				// test to create fig from image in order to use addDecorator directly with a locator
-
-				// ImageFigure fig = new ImageFigure(image);
-				// fig.setParent(parentFig);
-				// fig.setVisible(true);
-				// BorderLayout layout = new BorderLayout();
-				// layout.setConstraint(fig, BorderLayout.CENTER);
-				// Rectangle r = fig.getBounds();
-
-				// Direction NORTH_EAST will be ignored, since we impose "our" locator below
-				decoration = decoratorTarget.addShapeDecoration(image, IDecoratorTarget.Direction.NORTH_EAST, margin, isVolatile);
-				if(decoration instanceof Decoration) {
-					((Decoration)decoration).setLocator(locator);
+					// Direction NORTH_EAST will be ignored, since we impose "our" locator below
+					decoration = decoratorTarget.addShapeDecoration(image, IDecoratorTarget.Direction.NORTH_EAST, margin, isVolatile);
+					if(decoration instanceof Decoration) {
+						((Decoration)decoration).setLocator(locator);
+					}
 				}
-				// decoration = decoratorTarget.addDecoration(fig, locator, isVolatile);
 			}
 
 		}
@@ -258,7 +289,7 @@ public class DiagramDecorationAdapter {
 	}
 
 	/**
-	 * Gets the decoration.
+	 * Create a decoration based on a figure
 	 * 
 	 * @param decoratorTarget
 	 *        the decorator target
@@ -274,7 +305,7 @@ public class DiagramDecorationAdapter {
 	 *        the is volatile
 	 * @return the decoration
 	 */
-	public IDecoration setDecoration(IDecoratorTarget decoratorTarget, IFigure figure, int percentageFromSource, int margin, boolean isVolatile) {
+	final public IDecoration createDecorationFigure(IDecoratorTarget decoratorTarget, IFigure figure, int percentageFromSource, int margin, boolean isVolatile) {
 
 		final View view = (View)decoratorTarget.getAdapter(View.class);
 		org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration decoration = null;
@@ -323,7 +354,19 @@ public class DiagramDecorationAdapter {
 		}
 
 		public void relocate(IFigure target) {
-			Rectangle bounds = reference instanceof HandleBounds ? new PrecisionRectangle(((HandleBounds)reference).getHandleBounds()) : new PrecisionRectangle(reference.getBounds());
+			Rectangle bounds;
+			if(reference instanceof HandleBounds) {
+				bounds = new PrecisionRectangle(((HandleBounds)reference).getHandleBounds());
+			}
+			else {
+				bounds = new PrecisionRectangle(reference.getBounds());
+				// authorized rectangle without handle bounds is smaller: if the icon would be exactly on one of the corners,
+				// it would trigger an enlargement of the figure, followed by a reposition, i.e. an endless loop.
+				bounds.x++;
+				bounds.y++;
+				bounds.width -= 2;
+				bounds.height -= 2;
+			}
 
 			reference.translateToAbsolute(bounds);
 			target.translateToRelative(bounds);
@@ -336,7 +379,8 @@ public class DiagramDecorationAdapter {
 			if(decorationX > pTL.x) {
 				// only set position, if it is inside the figure, i.e. bigger than left margin
 				pDecoration.setX(decorationX);
-			} else {
+			}
+			else {
 				pDecoration.setX(pTL.x);
 			}
 			target.setLocation(pDecoration);
@@ -383,6 +427,4 @@ public class DiagramDecorationAdapter {
 
 		}
 	}
-
-
 }

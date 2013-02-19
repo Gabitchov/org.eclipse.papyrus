@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -43,6 +44,16 @@ public class ValidationTool {
 	private EditingDomain domain;
 
 	protected Resource resource;
+
+	/**
+	 * show progress all n marker deletions
+	 */
+	public static int DELETE_PMARKER_RATIO = 50;
+
+	/**
+	 * show progress all n marker creations
+	 */
+	public static int CREATE_PMARKER_RATIO = 20;
 
 	/**
 	 * Constructor:
@@ -145,14 +156,20 @@ public class ValidationTool {
 	/**
 	 * Delete all markers that refer to eObjects owned by the passed parentEObj
 	 */
-	public void deleteSubMarkers() {
+	public void deleteSubMarkers(IProgressMonitor monitor) {
+		int i = 0;
 		for(IMarker marker : getMarkers()) {
 			EObject eObjOfMarker = eObjectOfMarker(marker);
 			if(isContainedBy(eObjOfMarker, getEObject())) {
 				try {
 					marker.delete();
+
 				} catch (CoreException e) {
 				}
+			}
+			if(i++ > DELETE_PMARKER_RATIO) {
+				i = 0;
+				monitor.worked(1);
 			}
 		}
 	}
