@@ -26,7 +26,6 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEd
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ShapeCompartmentEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDefaultSemanticEditPolicy;
@@ -73,14 +72,9 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
@@ -137,13 +131,11 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		}
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-		editPart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
 
 		// Legacy management of new Nodes / Edges with nodes from Class Diagram and navigation support (installed by edit policy provider in Class Diagram)
 		if((editPart instanceof PackagePackageableElementCompartmentEditPartCN) || (editPart instanceof PackagePackageableElementCompartmentEditPart)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 
@@ -152,7 +144,6 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		if((editPart instanceof ModelPackageableElementCompartmentEditPartCN) || (editPart instanceof ModelPackageableElementCompartmentEditPartTN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 
@@ -162,41 +153,35 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
 
 		if((editPart instanceof ModelEditPartTN) || (editPart instanceof ModelEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
 
 		if((editPart instanceof InstanceSpecificationEditPart) || (editPart instanceof InstanceSpecificationEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
 
 		if((editPart instanceof InstanceSpecificationSlotCompartmentEditPart) || (editPart instanceof InstanceSpecificationSlotCompartmentEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
 
 		if((editPart instanceof ConstraintEditPart) || (editPart instanceof ConstraintEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
 
 		if((editPart instanceof CommentEditPart) || (editPart instanceof CommentEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
 
 		// Legacy management of Comment / Constraint links
@@ -273,28 +258,13 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		}
 
 		if(editPart instanceof FlowPortAffixedNodeEditPart || editPart instanceof PortAffixedNodeEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
 		if(editPart instanceof AbstractElementChildLabelEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
-
-			if(editPart instanceof IPrimaryEditPart) {
-
-
-				editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
-			}
-
-			if(editPart instanceof NamedElementEditPart) {
-				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
-				editPart.installEditPolicy(ShapeCompartmentEditPolicy.SHAPE_COMPARTMENT_EDIT_POLICY, new ShapeCompartmentEditPolicy());
-			}
-		}
 
 	}
 }
