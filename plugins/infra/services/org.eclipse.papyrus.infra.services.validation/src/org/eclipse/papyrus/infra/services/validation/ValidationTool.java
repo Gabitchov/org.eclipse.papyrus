@@ -21,6 +21,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -154,7 +155,17 @@ public class ValidationTool {
 	}
 
 	/**
-	 * Delete all markers that refer to eObjects owned by the passed parentEObj
+	 * Delete all markers that refer to eObjects owned by the parentEObj (passed in the constructor)
+	 * 
+	 * Convenience function for code that does not use a progress monitor
+	 */
+	public void deleteSubMarkers() {
+		deleteSubMarkers(new NullProgressMonitor());
+	}
+	
+	/**
+	 * Delete all markers that refer to eObjects owned by the parentEObj (passed in the constructor)
+	 * @param monitor A progress monitor
 	 */
 	public void deleteSubMarkers(IProgressMonitor monitor) {
 		int i = 0;
