@@ -22,6 +22,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPol
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.DiagramSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.PackageCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 
 public class BlockDefinitionDiagramEditPart extends DiagramEditPart {
@@ -33,7 +34,7 @@ public class BlockDefinitionDiagramEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DiagramSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultContainerNodeEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());

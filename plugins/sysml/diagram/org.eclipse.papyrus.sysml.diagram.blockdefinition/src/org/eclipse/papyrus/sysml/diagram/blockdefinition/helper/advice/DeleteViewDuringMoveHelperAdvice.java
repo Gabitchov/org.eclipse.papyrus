@@ -22,9 +22,9 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.command.CustomDeleteCommand;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 
@@ -32,12 +32,14 @@ import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
  * <pre>
  * Edit helper advice that delete views from diagram when an element is
  * moved in a new container (in the model explorer).
+ * this is a post advice
  * </pre>
  */
 public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 
+	
 	@Override
-	protected ICommand getBeforeMoveCommand(MoveRequest request) {
+	protected ICommand getAfterMoveCommand(MoveRequest request) {
 
 		ICommand moveCommand = super.getBeforeMoveCommand(request);
 
@@ -49,10 +51,10 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 			EObject eObject = it.next();
 			viewsToDestroy.addAll(getViewsToDestroy(eObject));
 		}
-
-		if(!viewsToDestroy.isEmpty()) {
-			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getTargetContainer(), false);
-			ICommand destroyViewsCommand = ddr.getDestroyDependentsCommand(viewsToDestroy);
+		Iterator<View> viewToDestroyIterator= viewsToDestroy.iterator();
+		while(viewToDestroyIterator.hasNext()) {
+			View view = viewToDestroyIterator.next();
+			CustomDeleteCommand destroyViewsCommand = new CustomDeleteCommand(request.getEditingDomain(),view);
 			moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
 		}
 
