@@ -26,6 +26,7 @@ import java.util.Map;
 import org.eclipse.core.commands.operations.AbstractOperation;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistoryListener;
+import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -35,6 +36,8 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.facet.common.ui.internal.views.AbstractTreeView;
 import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -62,18 +65,28 @@ public class CommandStackView extends AbstractTreeView {
 			public void historyNotification(final OperationHistoryEvent event) {
 				if(!CommandStackView.this.commandList.contains(event.getOperation())) {
 					if(CommandStackView.this.commandList.size() == CommandStackView.this.maxSize) {
-						CommandStackView.this.commandList.remove(CommandStackView.this.maxSize - 1);
+						IUndoableOperation removedOperation = CommandStackView.this.commandList.remove(CommandStackView.this.maxSize - 1);
+						dates.remove(removedOperation);
 					}
+
 					CommandStackView.this.commandList.add(0, event.getOperation());
 					final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 					final Calendar cal = Calendar.getInstance();
 					CommandStackView.this.dates.put(event.getOperation(), dateFormat.format(cal.getTime()));
 					refresh(true);
 				}
-
 			}
 		});
-	};
+	}
+
+	private boolean isValidUndoContext(IUndoableOperation operation) {
+		for(IUndoContext undoContext : operation.getContexts()) {
+			if(undoContext instanceof EditingDomainUndoContext) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	protected void createColumns() {
@@ -81,7 +94,7 @@ public class CommandStackView extends AbstractTreeView {
 		createDescriptionColumn();
 		createCommandTypeColumn();
 		createTimeColumn();
-
+		createUndoContextColumn();
 	}
 
 	@Override
@@ -122,7 +135,7 @@ public class CommandStackView extends AbstractTreeView {
 				return element.getClass().getName();
 			}
 		};
-		createColumn("Type", "TYPE_COLUMN_ID", 400, columnLabelProvider);
+		createColumn("Type", "TYPE_COLUMN_ID", 200, columnLabelProvider);
 	}
 
 	protected void createNameColumn() {
@@ -134,6 +147,8 @@ public class CommandStackView extends AbstractTreeView {
 					return ((AbstractOperation)element).getLabel();
 				} else if(element instanceof AbstractCommand) {
 					return ((AbstractCommand)element).getLabel();
+				} else if(element instanceof org.eclipse.gef.commands.Command) {
+					return ((org.eclipse.gef.commands.Command)element).getLabel();
 				}
 				return "no managed";
 			}
@@ -141,6 +156,19 @@ public class CommandStackView extends AbstractTreeView {
 		createColumn("Name", "NAME_COLUMN_ID", 200, columnLabelProvider);
 	}
 
+	protected void createUndoContextColumn() {
+		final ColumnLabelProvider columnLabelProvider = new ColumnLabelProvider() {
+
+			@Override
+			public String getText(final Object element) {
+				if(element instanceof IUndoableOperation) {
+					return Boolean.toString(isValidUndoContext((IUndoableOperation)element));
+				}
+				return "?";
+			}
+		};
+		createColumn("EMF Command Stack", "UNDO_CONTEXT_COLUMN_ID", 100, columnLabelProvider);
+	}
 
 	protected void createDescriptionColumn() {
 		final ColumnLabelProvider columnLabelProvider = new ColumnLabelProvider() {
@@ -153,7 +181,7 @@ public class CommandStackView extends AbstractTreeView {
 				return "no description";
 			}
 		};
-		createColumn("Description", "DESCRIPTION_COLUMN_ID", 200, columnLabelProvider);
+		createColumn("Description", "DESCRIPTION_COLUMN_ID", 150, columnLabelProvider);
 	}
 
 	protected void createTimeColumn() {
@@ -216,6 +244,8 @@ public class CommandStackView extends AbstractTreeView {
 					return children.toArray();
 				} else if(parentElement instanceof GMFtoEMFCommandWrapper) {
 					return new Object[]{ ((GMFtoEMFCommandWrapper)parentElement).getGMFCommand() };
+				} else if(parentElement instanceof CommandProxy) {
+					return new Object[]{ ((CommandProxy)parentElement).getCommand() };
 				}
 				return new Object[0];
 			}
