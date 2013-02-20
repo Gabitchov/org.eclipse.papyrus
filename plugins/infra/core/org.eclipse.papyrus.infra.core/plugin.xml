@@ -273,6 +273,9 @@
          <dependsOn
                serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
          </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor">
+         </dependsOn>
       </service>
       <serviceFactory
             classname="org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProviderServiceFactory"

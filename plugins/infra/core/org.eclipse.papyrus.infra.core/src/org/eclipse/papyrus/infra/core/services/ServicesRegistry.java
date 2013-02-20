@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.papyrus.infra.core.Activator;
@@ -77,7 +76,13 @@ import org.eclipse.papyrus.infra.core.services.internal.StartStartupEntry;
  */
 public class ServicesRegistry {
 
-	/** Log object */
+	/**
+	 * Log object
+	 * 
+	 * @deprecated Use {@link Activator#log} instead
+	 */
+	//@unused
+	@Deprecated
 	protected Logger log = Logger.getLogger(getClass().getName());
 
 	/**
@@ -123,7 +128,7 @@ public class ServicesRegistry {
 			if(service.getDescriptor().getPriority() > serviceDescriptor.getPriority()) {
 				return;
 			} else if(service.getDescriptor().getPriority() == serviceDescriptor.getPriority()) {
-				log.warning("Two services with same priority (" + serviceDescriptor.getPriority() + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only. (bundles: " + service.getDescriptor().getClassBundleID() + ", " + serviceDescriptor.getClassBundleID() + ")");
+				Activator.log.warn("Two services with same priority (" + serviceDescriptor.getPriority() + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only. (bundles: " + service.getDescriptor().getClassBundleID() + ", " + serviceDescriptor.getClassBundleID() + ")");
 			}
 		}
 
@@ -194,7 +199,7 @@ public class ServicesRegistry {
 			if(service.getDescriptor().getPriority() > priority) {
 				return;
 			} else if(service.getDescriptor().getPriority() == priority) {
-				log.warning("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+				Activator.log.warn("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
 			}
 		}
 
@@ -260,7 +265,7 @@ public class ServicesRegistry {
 			if(service.getDescriptor().getPriority() > priority) {
 				return;
 			} else if(service.getDescriptor().getPriority() == priority) {
-				log.warning("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+				Activator.log.warn("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
 			}
 		}
 
@@ -874,7 +879,7 @@ public class ServicesRegistry {
 	 * @throws ServiceException
 	 *         If a service can't be started.
 	 */
-	private void createServices(List<ServiceStartupEntry> toStart, ServiceMultiException errors) throws ServiceMultiException {
+	private void createServices(List<ServiceStartupEntry> toStart, ServiceMultiException errors) {
 
 		// Loop on all services
 		for(ServiceStartupEntry serviceEntry : toStart) {
@@ -882,8 +887,8 @@ public class ServicesRegistry {
 
 				serviceEntry.createService();
 			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't create service '" + serviceEntry + "'", e);
-
+				//Do not log the exception, as it is thrown. It may already be caught and logged by the caller.
+				//log.log(Level.SEVERE, "Can't create service '" + serviceEntry + "'", e);
 				errors.addException(serviceEntry.getDescriptor().getKey(), e);
 			}
 		}
@@ -926,7 +931,7 @@ public class ServicesRegistry {
 	 * @throws ServiceException
 	 *         If a service can't be started.
 	 */
-	private void initServices(List<ServiceStartupEntry> toStart, ServiceMultiException errors) throws ServiceMultiException {
+	private void initServices(List<ServiceStartupEntry> toStart, ServiceMultiException errors) {
 
 		// Loop on all services
 		for(ServiceStartupEntry serviceEntry : toStart) {
@@ -934,7 +939,8 @@ public class ServicesRegistry {
 
 				serviceEntry.initService(this);
 			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't initialize service '" + serviceEntry + "'", e);
+				//Do not log the exception, as it is thrown. It may already be caught and logged by the caller.
+				//log.log(Level.SEVERE, "Can't initialize service '" + serviceEntry + "'", e);
 				errors.addException(serviceEntry.getDescriptor().getKey(), e);
 			}
 		}
@@ -954,7 +960,7 @@ public class ServicesRegistry {
 	 * @throws ServiceException
 	 *         If a service can't be started.
 	 */
-	private void startServices(List<ServiceStartupEntry> toStart, ServiceMultiException errors) throws ServiceMultiException {
+	private void startServices(List<ServiceStartupEntry> toStart, ServiceMultiException errors) {
 
 		// Loop on all services
 		for(ServiceStartupEntry serviceEntry : toStart) {
@@ -962,8 +968,8 @@ public class ServicesRegistry {
 
 				serviceEntry.startService();
 			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't start service '" + serviceEntry + "'", e);
-
+				//Do not log the exception, as it is thrown. It may already be caught and logged by the caller.
+				//log.log(Level.SEVERE, "Can't start service '" + serviceEntry + "'", e);
 				errors.addException(serviceEntry.getDescriptor().getKey(), e);
 			}
 		}
@@ -986,7 +992,8 @@ public class ServicesRegistry {
 			try {
 				serviceEntry.disposeService();
 			} catch (Exception ex) {
-				log.log(Level.SEVERE, "Can't dispose service'" + serviceEntry.getDescriptor().getKey() + "'", ex);
+				//Do not log the exception, as it is thrown. It may already be caught and logged by the caller.
+				//log.log(Level.SEVERE, "Can't dispose service'" + serviceEntry.getDescriptor().getKey() + "'", ex);
 				errors.addException(serviceEntry.getDescriptor(), ex);
 			}
 		}
