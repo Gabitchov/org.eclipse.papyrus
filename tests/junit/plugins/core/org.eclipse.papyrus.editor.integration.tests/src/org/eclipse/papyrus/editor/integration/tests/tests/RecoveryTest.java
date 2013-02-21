@@ -11,12 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.editor.integration.tests.tests;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -120,6 +126,43 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 		initModel("completeCase", "complex_invalid_model");
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(3, pageManager.allPages().size());
+	}
+
+	//Not fixed yet
+	//We should be able to delete a diagram, even when there is an invalid page in the model
+	@Test
+	public void testDeleteDiagramWithInvalidAvailablePage() throws Exception {
+		initModel("deleteDiagramWithInvalidPage", "invalidAvailablePage");
+
+		//Di layout: Diagram 0 - Invalid page - Diagram 1
+		//We take the diagram at index 1 (i.e. after the invalid page) and try to delete it
+		final Diagram diagram = (Diagram)NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource().getContents().get(1);
+
+		final IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
+
+		//Check initial state
+		int availablePages = pageManager.allPages().size();
+
+		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+
+		CompoundCommand command = new CompoundCommand("Delete diagram");
+
+		Command sashRemoveComd = new RecordingCommand(editingDomain, "Remove page") {
+
+			@Override
+			protected void doExecute() {
+				pageManager.removePage(diagram);
+			}
+
+		};
+
+		command.append(sashRemoveComd);
+		command.append(new GMFtoEMFCommandWrapper(new DestroyElementPapyrusCommand(new DestroyElementRequest(diagram, false))));
+
+		editingDomain.getCommandStack().execute(command);
+
+		Assert.assertEquals("The page has not been correctly removed", availablePages - 1, pageManager.allPages().size());
+		Assert.assertNull("The diagram should not be contained in the resource anymore", diagram.eResource());
 	}
 
 	@Override
