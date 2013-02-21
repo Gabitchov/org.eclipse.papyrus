@@ -122,4 +122,11 @@ public interface IPageManager extends IPageMngr {
 	 */
 	public void selectPage(Object pageIdentifier);
 
+	/**
+	 * Returns the active page identifier
+	 * 
+	 * @return
+	 */
+	//	public Object getActivePage();
+
 }

@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
+import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.AbstractTabFolderPart;
@@ -958,9 +959,6 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		} else {
 			// No part found, create one
 			modelPart = createChildPart(newModel);
-			if(modelPart == null) {
-				System.out.println("break");
-			}
 			existingParts.addCreatedPage(modelPart);
 			// Attach it to the tabItem
 			tabItem.resetChild(modelPart);
@@ -993,8 +991,21 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 			return newPart;
 		}
-		// Use exception ?
-		return null;
+
+		// Use exception?
+		return createErrorPage();
+	}
+
+	/**
+	 * Creates an ErrorComponentPart which displays an error message to the user.
+	 * Avoid returning null, which might later lead to NPEs
+	 * 
+	 * @return
+	 */
+	private PagePart createErrorPage() {
+		//Handle invalid tab case. Improve robustness.
+		Activator.log.warn("Error: the SashWindowContainer returned an invalid tab");
+		return new ErrorComponentPart(this);
 	}
 
 	/**

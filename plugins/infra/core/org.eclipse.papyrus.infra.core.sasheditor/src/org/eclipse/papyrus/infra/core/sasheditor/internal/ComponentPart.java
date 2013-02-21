@@ -63,6 +63,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * 
 	 * @param parent
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 
 		try {
@@ -85,8 +86,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * @return
 	 * @throws PartInitException
 	 */
-	private Composite createEditorPartControl(Composite parentControl)
-			throws PartInitException {
+	private Composite createEditorPartControl(Composite parentControl) throws PartInitException {
 		Composite editorParent = new Composite(parentControl, SWT.NONE);
 		editorParent.setLayout(new FillLayout());
 		partModel.createPartControl(editorParent);
@@ -95,10 +95,10 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	}
 
 	/**
-	 * Dispose all resources used by this part.
-	 * <br/>
+	 * Dispose all resources used by this part. <br/>
 	 * The Part should not be used after it has been disposed.
 	 */
+	@Override
 	public void dispose() {
 
 		//		detachListeners(editorControl, true);
@@ -110,14 +110,13 @@ public class ComponentPart extends PagePart implements IComponentPage {
 
 	/**
 	 * Dispose this part and all its children.
-	 * The method is called recursively on children of the part.
-	 * <br/> 
+	 * The method is called recursively on children of the part. <br/>
 	 * SWT resources have already been disposed. We don't need to dispose them again.
 	 * 
 	 */
 	@Override
 	public void disposeThisAndChildren() {
-		
+
 		// clean up properties to help GC
 		partModel = null;
 	}
@@ -140,17 +139,16 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * @param toFind
 	 * @return
 	 */
+	@Override
 	public PagePart findPartAt(Point toFind, Class<?> expectedTileType) {
 
-		if(expectedTileType == this.getClass())
+		if(expectedTileType == this.getClass()) {
 			return this;
+		}
 
 		// Not found !!
 		// The tile contains the position, but the type is not found.
-		throw new UnsupportedOperationException("Tile match the expected position '"
-				+ toFind
-				+ "' but there is no Tile of requested type '"
-				+ expectedTileType.getClass().getName() + "'");
+		throw new UnsupportedOperationException("Tile match the expected position '" + toFind + "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'");
 	}
 
 	/**
@@ -158,8 +156,9 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * @return
 	 */
 	public PagePart findPart(Object control) {
-		if(getControl() == control)
+		if(getControl() == control) {
 			return this;
+		}
 
 		// Not found
 		return null;
@@ -170,6 +169,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * 
 	 * @return
 	 */
+	@Override
 	public Composite getControl() {
 		return editorControl;
 	}
@@ -199,6 +199,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * @param compositeParent
 	 *        The composite that should be used as parent.
 	 */
+	@Override
 	public void reparent(TabFolderPart newParent) {
 
 		// Change the tile parent
@@ -207,7 +208,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		editorControl.setParent(newParent.getControl());
 
 		// Change state
-		if(garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED) {
+		if(garbageState == GarbageState.UNVISITED || garbageState == GarbageState.ORPHANED || garbageState == GarbageState.CREATED) {
 			garbageState = GarbageState.REPARENTED;
 		} else {
 			// Bad state, this is an internal error
@@ -221,8 +222,11 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * Asks this part to take focus within the workbench.
 	 * Set the focus on the active nested part if the part is a container.
 	 */
+	@Override
 	public void setFocus() {
-		editorControl.setFocus();
+		if(editorControl != null) {
+			editorControl.setFocus();
+		}
 	}
 
 
@@ -246,6 +250,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * from its parent.
 	 * 
 	 */
+	@Override
 	public void garbage() {
 		dispose();
 		// fire appropriate life cycle event
@@ -260,6 +265,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * @param visitor
 	 * @return
 	 */
+	@Override
 	public boolean visit(IPartVisitor visitor) {
 		return visitor.accept(this);
 	}
@@ -286,8 +292,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		//				+ ", '" + editorPart.getTitle()
 		//				+ "', " + this);
 
-		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n"
-				, editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, getPageTitle(), this);
+		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, getPageTitle(), this);
 
 	}
 
