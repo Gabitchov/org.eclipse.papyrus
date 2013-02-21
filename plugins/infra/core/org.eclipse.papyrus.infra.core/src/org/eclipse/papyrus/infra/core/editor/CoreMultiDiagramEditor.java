@@ -219,8 +219,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	private EditingDomainProvider domainProvider = new EditingDomainProvider(this);
 
-	private boolean needsRefresh;
-
 	private class ContentChangedListener implements IContentChangedListener {
 
 		/**
@@ -234,10 +232,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	private class RefreshTabsCommandStackListener implements CommandStackListener {
 
 		public void commandStackChanged(EventObject event) {
-			if(needsRefresh) {
-				needsRefresh = false;
-				refreshTabs();
-			}
+			refreshTabs();
 		}
 
 	}
@@ -949,12 +944,20 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 	}
 
+	private boolean needsRefresh;
+
 	@Override
-	public IEditorPart getActiveEditor() {
-		if(needsRefresh) {
-			needsRefresh = false;
-			refreshTabs();
+	protected void refreshTabs() {
+		if(!needsRefresh) {
+			return;
 		}
+		needsRefresh = false;
+		super.refreshTabs();
+	}
+
+	@Override
+	public synchronized IEditorPart getActiveEditor() {
+		refreshTabs();
 		return super.getActiveEditor();
 	}
 }
