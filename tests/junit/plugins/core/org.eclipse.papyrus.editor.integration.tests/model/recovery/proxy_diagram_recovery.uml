@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_TQ5noHqdEeK5vdodFAvPrA" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_Tr2eQHqdEeK5vdodFAvPrA" name="Class1">
+    <ownedAttribute xmi:id="_UI3KYHqdEeK5vdodFAvPrA" name="class2" type="_T0CJ4HqdEeK5vdodFAvPrA" association="_UJA7YHqdEeK5vdodFAvPrA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UI3KYXqdEeK5vdodFAvPrA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UI3KYnqdEeK5vdodFAvPrA" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_T0CJ4HqdEeK5vdodFAvPrA" name="Class2"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_UJA7YHqdEeK5vdodFAvPrA" name="class1_class2_1" memberEnd="_UJA7YXqdEeK5vdodFAvPrA _UI3KYHqdEeK5vdodFAvPrA">
+    <ownedEnd xmi:id="_UJA7YXqdEeK5vdodFAvPrA" name="class1" type="_Tr2eQHqdEeK5vdodFAvPrA" association="_UJA7YHqdEeK5vdodFAvPrA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UJA7YnqdEeK5vdodFAvPrA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UJA7Y3qdEeK5vdodFAvPrA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_-qtdMHqQEeK9jI2Tc6HWsA" name="model">
+  <ownedComment xmi:id="_ARNg8HqREeK9jI2Tc6HWsA" annotatedElement="_-qtdMHqQEeK9jI2Tc6HWsA">
+    <body>This model contains two diagrams. The Class Diagram is opened, while the timing diagram is closed.&#xD;
+&#xD;
+Expected behavior:&#xD;
+&#xD;
+	- allPages() contains two entries&#xD;
+	- activeEditor is a UML Class Diagram Editor&#xD;
+	- activePage() is a Class Diagram</body>
+  </ownedComment>
+</uml:Model>

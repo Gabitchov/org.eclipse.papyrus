@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus Editor Integration Tests (Incubation)
+Bundle-SymbolicName: org.eclipse.papyrus.editor.integration.tests
+Bundle-Version: 0.10.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.editor.integration.tests.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.diagram.clazz;bundle-version="0.10.0",
+ org.junit4;bundle-version="4.8.1",
+ org.eclipse.papyrus.uml.table.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.diagram.timing;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
+ org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
+ org.eclipse.uml2.uml;bundle-version="4.1.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
+ org.eclipse.ui.ide;bundle-version="3.9.0",
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.gmf.runtime.common.core;bundle-version="1.7.0",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
+ org.eclipse.papyrus.uml.table.default;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.table.common;bundle-version="0.10.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
