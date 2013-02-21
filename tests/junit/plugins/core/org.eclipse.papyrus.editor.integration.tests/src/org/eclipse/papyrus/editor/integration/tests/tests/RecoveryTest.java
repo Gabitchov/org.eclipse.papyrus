@@ -33,6 +33,11 @@ import org.junit.Test;
  * The Editor should be able to load the valid parts and should not
  * fail on the invalid ones
  * 
+ * In most cases, we're simply interested in opening the Papyrus Editor
+ * (i.e. the model is invalid, so we don't expect to be able to manipulate
+ * the diagrams; but we should still be able to manipulate the editor
+ * and the semantic model, create new digrams, etc).
+ * 
  * @author Camille Letavernier
  * 
  */
@@ -50,8 +55,8 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 		//Assert.assertEquals(2, manager.allPages().size());
 	}
 
-	//Not fixed yet. Bug 401109: [PageManager] Deleting an Activity leads to critical model corruption
-	//FIXME Critical
+	//Should work
+	//Bug 401109: [PageManager] Deleting an element which contains an opened page leads to critical model corruption
 	@Test
 	public void testInvalidTab() throws Exception {
 		initModel("invalidTab", "invalid_child_tab");
@@ -107,15 +112,14 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 		Assert.assertEquals(2, pageManager.allPages().size());
 	}
 
-	@Ignore("Recovery not supported")
-	//Not fixed yet. Fails when the <children> tag contains an unresolved local URI (i.e. an invalid uri within the same resource)
-	//Works when only the availablePage is invalid
+	@Ignore("Disabled because the Papyrus Editor opens a user dialog. Won't run on Hudson.")
+	//Should work
 	/** @see {link #testInvalidTab()} */
 	@Test
 	public void testProxyTable() throws Exception {
 		initModel("proxyTable", "proxy_table_recovery");
-		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
-		Assert.assertEquals(2, pageManager.allPages());
+		//IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
+		//Assert.assertEquals(2, pageManager.allPages());
 	}
 
 	//This model contains a few different errors (Unresolved proxy, invalid tabs, invalid available pages, ...)
@@ -126,7 +130,6 @@ public class RecoveryTest extends AbstractEditorIntegrationTest {
 		//		Assert.assertEquals(3, pageManager.allPages().size());
 	}
 
-	//Not fixed yet
 	//We should be able to delete a diagram, even when there is an invalid page in the model
 	@Test
 	public void testDeleteDiagramWithInvalidAvailablePage() throws Exception {

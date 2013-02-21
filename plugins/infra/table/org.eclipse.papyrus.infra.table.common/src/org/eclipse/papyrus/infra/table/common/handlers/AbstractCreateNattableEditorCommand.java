@@ -70,6 +70,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.table.common.Activator;
 import org.eclipse.papyrus.infra.table.common.dialog.TwoInputDialog;
 import org.eclipse.papyrus.infra.table.common.messages.Messages;
@@ -97,12 +98,6 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 
 	/** the default description for the table */
 	private final String defaultDescription = "Table Description"; //$NON-NLS-1$
-
-	/** the description for the table */
-	private String description;
-
-	/** the name for the table */
-	private String name;
 
 	/** the editor type */
 	private final String editorType;
@@ -145,7 +140,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		try {
 
-			runAsTransaction();
+			runAsTransaction(event);
 		} catch (ServiceException e) {
 			throw new ExecutionException("Can't create TableEditor", e); //$NON-NLS-1$
 		}
@@ -159,17 +154,17 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @throws ServiceException
 	 * 
 	 */
-	public void runAsTransaction() throws ServiceException {
+	public void runAsTransaction(ExecutionEvent event) throws ServiceException {
 		//default Value
-		name = defaultName;
-		description = defaultDescription;
+		final String name;
+		final String description;
 		TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialogTitle, Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableNameMessage, Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableDescriptionMessage, defaultName, defaultDescription, null);
 		if(dialog.open() == Dialog.OK) {
 			//get the name and the description for the table
 			name = dialog.getValue();
 			description = dialog.getValue_2();
 
-			final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
+			final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
 			TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
 			//Create the transactional command
@@ -178,7 +173,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 				@Override
 				protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 					try {
-						AbstractCreateNattableEditorCommand.this.doExecute(serviceRegistry);
+						AbstractCreateNattableEditorCommand.this.doExecute(serviceRegistry, name, description);
 					} catch (ServiceException e) {
 						e.printStackTrace();
 						return Status.CANCEL_STATUS;
@@ -194,7 +189,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			try {
 				CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
-				Activator.getDefault().log.error("Can't create Table Editor", e); //$NON-NLS-1$
+				Activator.log.error("Can't create Table Editor", e); //$NON-NLS-1$
 			}
 
 		}
@@ -207,9 +202,9 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 */
-	public void doExecute(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	public void doExecute(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 
-		Object editorModel = createEditorModel(serviceRegistry);
+		Object editorModel = createEditorModel(serviceRegistry, name, description);
 		// Get the mngr allowing to add/open new editor.
 		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 		// add the new editor model to the sash.
@@ -225,7 +220,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 * @throws NotFoundException
 	 *         The model where to save the TableInstance is not found.
 	 */
-	protected Object createEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	protected Object createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 		PapyrusTableInstance papyrusTable = PapyrustableinstanceFactory.eINSTANCE.createPapyrusTableInstance();
 		papyrusTable.setName(name);
 		papyrusTable.setType(editorType);

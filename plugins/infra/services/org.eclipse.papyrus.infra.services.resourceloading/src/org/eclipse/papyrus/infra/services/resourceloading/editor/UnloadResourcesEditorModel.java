@@ -15,7 +15,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.EditorPart;
 
@@ -35,7 +37,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 
 	public UnloadResourcesEditorModel(URI uri) {
 		this.uri = uri;
-		name = "unresolved tab";
+		name = "Unresolved tab";
 	}
 
 	/**
@@ -53,7 +55,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 	 * @return
 	 */
 	public Image getTabIcon() {
-		return null;
+		return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
 	}
 
 	/**
