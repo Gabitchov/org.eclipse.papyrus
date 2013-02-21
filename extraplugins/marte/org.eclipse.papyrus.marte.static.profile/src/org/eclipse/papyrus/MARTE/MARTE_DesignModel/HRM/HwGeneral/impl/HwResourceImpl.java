@@ -90,7 +90,7 @@ public class HwResourceImpl extends ResourceImpl implements HwResource {
 	protected EList<HwResourceService> r_HW_Services;
 
 	/**
-	 * The cached value of the '{@link #getOwnedHW() <em>Owned HW</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedHW() <em>Owned HW</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedHW()
@@ -200,7 +200,7 @@ public class HwResourceImpl extends ResourceImpl implements HwResource {
 	 */
 	public EList<HwResource> getOwnedHW() {
 		if (ownedHW == null) {
-			ownedHW = new EObjectContainmentEList<HwResource>(HwResource.class, this, HwGeneralPackage.HW_RESOURCE__OWNED_HW);
+			ownedHW = new EObjectResolvingEList<HwResource>(HwResource.class, this, HwGeneralPackage.HW_RESOURCE__OWNED_HW);
 		}
 		return ownedHW;
 	}
@@ -248,8 +248,6 @@ public class HwResourceImpl extends ResourceImpl implements HwResource {
 		switch (featureID) {
 			case HwGeneralPackage.HW_RESOURCE__PHW_SERVICES:
 				return ((InternalEList<?>)getP_HW_Services()).basicRemove(otherEnd, msgs);
-			case HwGeneralPackage.HW_RESOURCE__OWNED_HW:
-				return ((InternalEList<?>)getOwnedHW()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

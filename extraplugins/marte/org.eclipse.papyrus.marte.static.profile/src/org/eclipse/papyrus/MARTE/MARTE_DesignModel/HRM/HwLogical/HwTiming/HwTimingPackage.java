@@ -177,7 +177,7 @@ public interface HwTimingPackage extends EPackage {
 	int HW_TIMING_RESOURCE__RHW_SERVICES = HwGeneralPackage.HW_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -322,7 +322,7 @@ public interface HwTimingPackage extends EPackage {
 	int HW_CLOCK__RHW_SERVICES = HW_TIMING_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -467,7 +467,7 @@ public interface HwTimingPackage extends EPackage {
 	int HW_TIMER__RHW_SERVICES = HW_TIMING_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

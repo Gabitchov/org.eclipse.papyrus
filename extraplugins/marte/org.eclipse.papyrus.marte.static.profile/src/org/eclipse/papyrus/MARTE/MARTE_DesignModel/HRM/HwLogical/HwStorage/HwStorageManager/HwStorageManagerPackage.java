@@ -177,7 +177,7 @@ public interface HwStorageManagerPackage extends EPackage {
 	int HW_STORAGE_MANAGER__RHW_SERVICES = HwGeneralPackage.HW_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -340,7 +340,7 @@ public interface HwStorageManagerPackage extends EPackage {
 	int HW_DMA__RHW_SERVICES = HW_STORAGE_MANAGER__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -539,7 +539,7 @@ public interface HwStorageManagerPackage extends EPackage {
 	int HW_MMU__RHW_SERVICES = HW_STORAGE_MANAGER__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

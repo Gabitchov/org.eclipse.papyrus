@@ -179,7 +179,7 @@ public interface HwComputingPackage extends EPackage {
 	int HW_COMPUTING_RESOURCE__RHW_SERVICES = HwGeneralPackage.HW_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -351,7 +351,7 @@ public interface HwComputingPackage extends EPackage {
 	int HW_PROCESSOR__RHW_SERVICES = HW_COMPUTING_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -631,7 +631,7 @@ public interface HwComputingPackage extends EPackage {
 	int HW_ISA__RHW_SERVICES = HwGeneralPackage.HW_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -803,7 +803,7 @@ public interface HwComputingPackage extends EPackage {
 	int HW_BRANCH_PREDICTOR__RHW_SERVICES = HwGeneralPackage.HW_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -948,7 +948,7 @@ public interface HwComputingPackage extends EPackage {
 	int HW_ASIC__RHW_SERVICES = HW_COMPUTING_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1120,7 +1120,7 @@ public interface HwComputingPackage extends EPackage {
 	int HW_PLD__RHW_SERVICES = HW_COMPUTING_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

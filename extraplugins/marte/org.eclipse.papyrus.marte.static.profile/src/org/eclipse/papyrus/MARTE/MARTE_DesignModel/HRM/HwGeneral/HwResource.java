@@ -98,7 +98,7 @@ public interface HwResource extends Resource {
 	EList<HwResourceService> getR_HW_Services();
 
 	/**
-	 * Returns the value of the '<em><b>Owned HW</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned HW</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -106,9 +106,9 @@ public interface HwResource extends Resource {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned HW</em>' containment reference list.
+	 * @return the value of the '<em>Owned HW</em>' reference list.
 	 * @see org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwGeneralPackage#getHwResource_OwnedHW()
-	 * @model containment="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<HwResource> getOwnedHW();

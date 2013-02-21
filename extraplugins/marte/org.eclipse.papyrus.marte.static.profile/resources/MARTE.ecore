@@ -963,8 +963,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="r_HW_Services" ordered="false"
               upperBound="-1" eType="#//MARTE_DesignModel/HRM/HwGeneral/HwResourceService"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="ownedHW" ordered="false"
-              upperBound="-1" eType="#//MARTE_DesignModel/HRM/HwGeneral/HwResource"
-              containment="true"/>
+              upperBound="-1" eType="#//MARTE_DesignModel/HRM/HwGeneral/HwResource"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="endPoints" ordered="false"
               upperBound="-1" eType="#//MARTE_DesignModel/HRM/HwLogical/HwCommunication/HwEndPoint">
             <eAnnotations source="subsets" references="#//MARTE_DesignModel/HRM/HwGeneral/HwResource/ownedHW"/>

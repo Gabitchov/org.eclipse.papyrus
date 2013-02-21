@@ -179,7 +179,7 @@ public interface HwMemoryPackage extends EPackage {
 	int HW_MEMORY__RHW_SERVICES = HwGeneralPackage.HW_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -369,7 +369,7 @@ public interface HwMemoryPackage extends EPackage {
 	int HW_RAM__RHW_SERVICES = HW_MEMORY__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -613,7 +613,7 @@ public interface HwMemoryPackage extends EPackage {
 	int HW_ROM__RHW_SERVICES = HW_MEMORY__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -821,7 +821,7 @@ public interface HwMemoryPackage extends EPackage {
 	int HW_DRIVE__RHW_SERVICES = HW_MEMORY__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1029,7 +1029,7 @@ public interface HwMemoryPackage extends EPackage {
 	int HW_CACHE__RHW_SERVICES = HW_MEMORY__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

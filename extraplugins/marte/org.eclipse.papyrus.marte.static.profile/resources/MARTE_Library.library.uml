@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DataTypes="http://www.eclipse.org/papyrus/DataTypes/1" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:NFPs="http://www.eclipse.org/papyrus/NFPs/1" xmlns:Time="http://www.eclipse.org/papyrus/Time/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/DataTypes/1 http://www.eclipse.org/papyrus/MARTE/1#//DataTypes http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA http://www.eclipse.org/papyrus/NFPs/1 http://www.eclipse.org/papyrus/MARTE/1#//NFPs http://www.eclipse.org/papyrus/Time/1 http://www.eclipse.org/papyrus/MARTE/1#//Time">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DataTypes="http://www.eclipse.org/papyrus/DataTypes/1" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:NFPs="http://www.eclipse.org/papyrus/NFPs/1" xmlns:Time="http://www.eclipse.org/papyrus/Time/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/DataTypes/1 http://www.eclipse.org/papyrus/MARTE/1#//VSL/DataTypes http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA http://www.eclipse.org/papyrus/NFPs/1 http://www.eclipse.org/papyrus/MARTE/1#//NFPs http://www.eclipse.org/papyrus/Time/1 http://www.eclipse.org/papyrus/MARTE/1#//Time">
   <uml:Package xmi:id="_uBlQkA73EdyML4mHwjNDrw" name="MARTE_Library">
     <packageImport xmi:id="_uBlQkQ73EdyML4mHwjNDrw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -2333,24 +2333,11 @@
   <l2:ModelLibrary xmi:id="_50PZULGzEd-tmN4hwNCxXQ" base_Package="_x9l9sA74EdyML4mHwjNDrw"/>
   <l2:ModelLibrary xmi:id="_DcPoAG6oEeKwEYt6tp1Aqg" base_Package="_uBlQkA73EdyML4mHwjNDrw"/>
   <NFPs:Dimension xmi:id="_gVWNIHHQEeKqG9oh8v31vA" symbol="T" base_Enumeration="_Iaa3gA4yEdysTsAUPnp57Q"/>
-  <NFPs:Dimension xmi:id="_jY-9QHHQEeKqG9oh8v31vA" symbol="" baseDimension="_37FIUHHQEeKqG9oh8v31vA _5PvOIHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_ijhHUA4yEdysTsAUPnp57Q">
-    <!--baseExponent>2</baseExponent>
-    <baseExponent>1</baseExponent>
-    <baseExponent>-3</baseExponent-->
-  </NFPs:Dimension>
-  <NFPs:Dimension xmi:id="_l4wyYHHQEeKqG9oh8v31vA" symbol="" baseDimension="_gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_qFaygA4yEdysTsAUPnp57Q">
-    <!--baseExponent>-1</baseExponent-->
-  </NFPs:Dimension>
+  <NFPs:Dimension xmi:id="_jY-9QHHQEeKqG9oh8v31vA" symbol="" baseDimension="_37FIUHHQEeKqG9oh8v31vA _5PvOIHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_ijhHUA4yEdysTsAUPnp57Q"/>
+  <NFPs:Dimension xmi:id="_l4wyYHHQEeKqG9oh8v31vA" symbol="" baseDimension="_gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_qFaygA4yEdysTsAUPnp57Q"/>
   <NFPs:Dimension xmi:id="_wk92YHHQEeKqG9oh8v31vA" symbol="D" base_Enumeration="_2pVmEA4yEdysTsAUPnp57Q"/>
-  <NFPs:Dimension xmi:id="_2itnMHHQEeKqG9oh8v31vA" baseDimension="_wk92YHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_DyNg0A4zEdysTsAUPnp57Q">
-    <!--baseExponent>1</baseExponent>
-    <baseExponent>-1</baseExponent-->
-  </NFPs:Dimension>
-  <NFPs:Dimension xmi:id="_3R3zQHHQEeKqG9oh8v31vA" baseDimension="_37FIUHHQEeKqG9oh8v31vA _5PvOIHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_UaKKgA4zEdysTsAUPnp57Q">
-    <!--baseExponent>2</baseExponent>
-    <baseExponent>1</baseExponent>
-    <baseExponent>-2</baseExponent-->
-  </NFPs:Dimension>
+  <NFPs:Dimension xmi:id="_2itnMHHQEeKqG9oh8v31vA" baseDimension="_wk92YHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_DyNg0A4zEdysTsAUPnp57Q"/>
+  <NFPs:Dimension xmi:id="_3R3zQHHQEeKqG9oh8v31vA" baseDimension="_37FIUHHQEeKqG9oh8v31vA _5PvOIHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_UaKKgA4zEdysTsAUPnp57Q"/>
   <NFPs:Dimension xmi:id="_37FIUHHQEeKqG9oh8v31vA" symbol="L" base_Enumeration="_g5AQ0A4zEdysTsAUPnp57Q"/>
   <NFPs:Dimension xmi:id="_4jZskHHQEeKqG9oh8v31vA" base_Enumeration="_Sw5dsBFUEdyUJeMeN__D-A"/>
   <NFPs:Dimension xmi:id="_5PvOIHHQEeKqG9oh8v31vA" symbol="M" base_Enumeration="_fuoVADJSEd211cMdxu944g"/>

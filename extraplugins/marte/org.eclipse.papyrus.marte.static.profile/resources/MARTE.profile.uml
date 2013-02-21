@@ -2787,7 +2787,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_olkHcWucEeKh2rhLHsYgWg"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_olkHcmucEeKh2rhLHsYgWg" value="*"/>
             </ownedAttribute>
-            <ownedAttribute xmi:id="_WnHIYGudEeKh2rhLHsYgWg" name="ownedHW" type="_LDER0BJxEdygQ5HMNSpiZw" aggregation="composite" association="_WnHIY2udEeKh2rhLHsYgWg">
+            <ownedAttribute xmi:id="_WnHIYGudEeKh2rhLHsYgWg" name="ownedHW" type="_LDER0BJxEdygQ5HMNSpiZw" association="_WnHIY2udEeKh2rhLHsYgWg">
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WnHIYWudEeKh2rhLHsYgWg"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WnHIYmudEeKh2rhLHsYgWg" value="*"/>
             </ownedAttribute>

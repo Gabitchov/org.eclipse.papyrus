@@ -268,7 +268,7 @@ public interface HwGeneralPackage extends EPackage {
 	int HW_RESOURCE__RHW_SERVICES = GRMPackage.RESOURCE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -380,10 +380,10 @@ public interface HwGeneralPackage extends EPackage {
 	EReference getHwResource_R_HW_Services();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResource#getOwnedHW <em>Owned HW</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResource#getOwnedHW <em>Owned HW</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned HW</em>'.
+	 * @return the meta object for the reference list '<em>Owned HW</em>'.
 	 * @see org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResource#getOwnedHW()
 	 * @see #getHwResource()
 	 * @generated
@@ -495,7 +495,7 @@ public interface HwGeneralPackage extends EPackage {
 		EReference HW_RESOURCE__RHW_SERVICES = eINSTANCE.getHwResource_R_HW_Services();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned HW</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned HW</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -178,7 +178,7 @@ public interface HwCommunicationPackage extends EPackage {
 	int HW_COMMUNICATION_RESOURCE__RHW_SERVICES = HwGeneralPackage.HW_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -323,7 +323,7 @@ public interface HwCommunicationPackage extends EPackage {
 	int HW_ARBITER__RHW_SERVICES = HW_COMMUNICATION_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -549,7 +549,7 @@ public interface HwCommunicationPackage extends EPackage {
 	int HW_MEDIA__RHW_SERVICES = GRMPackage.COMMUNICATION_MEDIA_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -784,7 +784,7 @@ public interface HwCommunicationPackage extends EPackage {
 	int HW_BUS__RHW_SERVICES = HW_MEDIA__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1055,7 +1055,7 @@ public interface HwCommunicationPackage extends EPackage {
 	int HW_BRIDGE__RHW_SERVICES = HW_MEDIA__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1227,7 +1227,7 @@ public interface HwCommunicationPackage extends EPackage {
 	int HW_END_POINT__RHW_SERVICES = HW_COMMUNICATION_RESOURCE__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

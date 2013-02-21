@@ -97,7 +97,7 @@ public class HwMediaImpl extends CommunicationMediaImpl implements HwMedia {
 	protected EList<HwResourceService> r_HW_Services;
 
 	/**
-	 * The cached value of the '{@link #getOwnedHW() <em>Owned HW</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedHW() <em>Owned HW</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedHW()
@@ -237,7 +237,7 @@ public class HwMediaImpl extends CommunicationMediaImpl implements HwMedia {
 	 */
 	public EList<HwResource> getOwnedHW() {
 		if (ownedHW == null) {
-			ownedHW = new EObjectContainmentEList<HwResource>(HwResource.class, this, HwCommunicationPackage.HW_MEDIA__OWNED_HW);
+			ownedHW = new EObjectResolvingEList<HwResource>(HwResource.class, this, HwCommunicationPackage.HW_MEDIA__OWNED_HW);
 		}
 		return ownedHW;
 	}
@@ -333,8 +333,6 @@ public class HwMediaImpl extends CommunicationMediaImpl implements HwMedia {
 		switch (featureID) {
 			case HwCommunicationPackage.HW_MEDIA__PHW_SERVICES:
 				return ((InternalEList<?>)getP_HW_Services()).basicRemove(otherEnd, msgs);
-			case HwCommunicationPackage.HW_MEDIA__OWNED_HW:
-				return ((InternalEList<?>)getOwnedHW()).basicRemove(otherEnd, msgs);
 			case HwCommunicationPackage.HW_MEDIA__ARBITERS:
 				return ((InternalEList<?>)getArbiters()).basicRemove(otherEnd, msgs);
 		}

@@ -176,7 +176,7 @@ public interface HwPowerPackage extends EPackage {
 	int HW_POWER_SUPPLY__RHW_SERVICES = HwLayoutPackage.HW_COMPONENT__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -456,7 +456,7 @@ public interface HwPowerPackage extends EPackage {
 	int HW_COOLING_SUPPLY__RHW_SERVICES = HwLayoutPackage.HW_COMPONENT__RHW_SERVICES;
 
 	/**
-	 * The feature id for the '<em><b>Owned HW</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned HW</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
