@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.junit.utils;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -47,6 +49,22 @@ public class EditorUtils {
 		editor = IDE.openEditor(activePage, file);
 		Assert.assertNotNull(editor);
 		return editor;
+	}
+
+	/**
+	 * Opens the file with the Papyrus Editor
+	 * 
+	 * @param file
+	 * @return
+	 * @throws PartInitException
+	 */
+	public static final IMultiDiagramEditor openPapyrusEditor(final IFile file) throws PartInitException {
+		GenericUtils.closeIntroPart();
+		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IEditorPart editor = null;
+		editor = IDE.openEditor(activePage, file, PapyrusMultiDiagramEditor.EDITOR_ID);
+		Assert.assertNotNull(editor);
+		return (IMultiDiagramEditor)editor;
 	}
 
 }

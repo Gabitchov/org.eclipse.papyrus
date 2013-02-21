@@ -27,4 +27,8 @@ import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
  */
 public class PapyrusMultiDiagramEditor extends CoreMultiDiagramEditor {
 
+	/**
+	 * The Papyrus Editor ID
+	 */
+	public static final String EDITOR_ID = "org.eclipse.papyrus.infra.core.papyrusEditor"; //$NON-NLS-1$
 }

@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.0"
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
+ org.eclipse.papyrus.editor;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.junit.utils
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

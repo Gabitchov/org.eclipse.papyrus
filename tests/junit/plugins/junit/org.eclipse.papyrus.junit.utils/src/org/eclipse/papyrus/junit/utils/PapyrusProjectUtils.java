@@ -40,7 +40,7 @@ public class PapyrusProjectUtils {
 	 * @throws IOException
 	 * @throws CoreException
 	 */
-	public static final void copyPapyrusModel(final IProject project, final Bundle bundle, final String sourcePath, final String fileRootName) throws CoreException, IOException {
+	public static final IFile copyPapyrusModel(final IProject project, final Bundle bundle, final String sourcePath, final String fileRootName) throws CoreException, IOException {
 		final IFile emptyModel_di = project.getFile(fileRootName + "." + SashModel.MODEL_FILE_EXTENSION);
 		final IFile emptyModel_no = project.getFile(fileRootName + "." + NotationModel.NOTATION_FILE_EXTENSION);
 		final IFile emptyModel_uml = project.getFile(fileRootName + "." + UmlModel.UML_FILE_EXTENSION);
@@ -48,5 +48,7 @@ public class PapyrusProjectUtils {
 		emptyModel_di.create(bundle.getResource(sourcePath + fileRootName + "." + SashModel.MODEL_FILE_EXTENSION).openStream(), true, new NullProgressMonitor());
 		emptyModel_no.create(bundle.getResource(sourcePath + fileRootName + "." + NotationModel.NOTATION_FILE_EXTENSION).openStream(), true, new NullProgressMonitor());
 		emptyModel_uml.create(bundle.getResource(sourcePath + fileRootName + "." + UmlModel.UML_FILE_EXTENSION).openStream(), true, new NullProgressMonitor());
+
+		return emptyModel_di;
 	}
 }
