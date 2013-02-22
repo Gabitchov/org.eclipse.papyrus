@@ -1,0 +1,76 @@
+In this documentation, we will use two different UML models to illustrate the search features. 
+
+Model 1:
+
+[[image:search-model1.png]]
+
+Model 2 :
+
+[[image:search-model2.png]]
+
+=Search elements=
+The search feature of Papyrus helps the user to find elements in the models using a string pattern. It is able to search in string attributes of model elements. 
+
+The search dialog is illustrated in the following image: 
+
+[[image:papyrus-search.png]] 
+
+* The user can specify the string pattern he/she is looking for in the A area. 
+** Check the "Case sensitive" if case must be considered. 
+** The user may also want to use regular expression to express the query. Then check "Regular expression" button. The regular expression must respect Java Regex
+* The user can filter the types of elements to search the string pattern in by selecting the metaclasses in area B whose instances will be analyzed. 
+* By default, the search feature will only search in the name attribute of instances of UML::NamedElement. By checking the button in area C, all string attributes will be analyzed
+* If button in area D is check, string attributes of stereotypes applied to model elements will be analyzed too. 
+
+For instance, the following search: 
+
+[[image:C-search.png]]
+
+will provide the following results: 
+
+[[image:C-result.png]]
+
+Note that the comment is not returned because we were note looking for all string attributes. 
+
+However, this search:
+
+[[image:comment-search.png]]
+
+will return : 
+
+[[image:comment-result.png]]
+
+
+=Replace String=
+Should the user want to replace the matches of your search with another string, he/she may click on the "Replace" button in the search dialog. A new dialog will popup:
+
+[[Image:replace.png]]
+
+As mentioned on the dialog, the replace action is mostly undoable. Matches that are found in a resource that is not opened in an editor will be replaced and will be save so that the user cannot undo the modification. 
+
+=Filter=
+The user can filter the results of the search by selecting the types of the elements he/she wants to show.
+
+For instance, on the following search: 
+
+[[image:my-search.png]]
+
+the user may filter the results by clicking on the icon identified in a red rectangle in the following picture: 
+
+[[image:My-results.png]]
+
+this will open a new dialog where the user can select the metaclasses he/she want to show: 
+
+[[image:filter.png]]
+
+then, the result page will show only the matches of the selected type: 
+
+[[image:my-filtered.png]]
+
+If the user wants to remove this filtering, he/she may click on the Filters button as illustrated in previous picture. This will open the following dialog: 
+
+[[image:select-filters.png]]
+
+----
+This work is developed by [http://www-list.cea.fr CEA LIST] and sponsored by [http://www.ericsson.com Ericsson] in the context of Polarsys [http://wiki.eclipse.org/Polarsys]
+

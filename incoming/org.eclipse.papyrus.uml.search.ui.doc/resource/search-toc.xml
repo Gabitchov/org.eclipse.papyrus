@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="search" topic="resource/search.html">
+	<topic href="resource/search.html" label="Search elements"></topic>
+	<topic href="resource/search.html#Replace_String" label="Replace String"></topic>
+	<topic href="resource/search.html#Filter" label="Filter"></topic>
+</toc>
