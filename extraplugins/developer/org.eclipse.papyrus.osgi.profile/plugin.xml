@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+ 
+      <mapping
+            source="pathmap://OSGI_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.osgi.profile/resource/">
+      </mapping>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Test profile use to test papyrus"
+            name="TestProfile"
+            path="pathmap://Test_PROFILES/testProfile.profile.uml"
+            provider="Eclipse.org">
+      </profile>
+   </extension>
+</plugin>
