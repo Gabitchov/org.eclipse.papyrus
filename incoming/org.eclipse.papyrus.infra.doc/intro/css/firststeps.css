@@ -1,0 +1,3 @@
+
+a#newpapyrusproject-introLink img { background-image : url(graphics/newproject.png); }
+a#newpapyrusproject-introLink:hover img { background-image : url(graphics/newproject_hov.png); }

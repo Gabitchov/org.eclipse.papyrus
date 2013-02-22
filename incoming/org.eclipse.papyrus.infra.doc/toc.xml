@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Papyrus Guide">
+	<topic label="User Guide">
+		<anchor id="PapyrusDocUser"/>
+ 	</topic>
+	<topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide" label="Developer Guide">
+ 		<anchor id="PapyrusDocDev"/>
+ 	</topic>
+ 	<topic label="Customization Guide">
+		<anchor id="PapyrusDocCustom"/>
+ 	</topic>
+	<topic label="Online Help">
+		<topic href="http://wiki.eclipse.org/Papyrus-FAQ" label="FAQ"/>
+		<anchor id="PapyrusDocOnline"/>
+	</topic>
+ 	<anchor id="PapyrusDocMain"/>
+</toc>
