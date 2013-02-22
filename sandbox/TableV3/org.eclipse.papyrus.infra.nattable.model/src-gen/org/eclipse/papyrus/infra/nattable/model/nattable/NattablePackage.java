@@ -142,13 +142,22 @@ public interface NattablePackage extends EPackage {
 	int TABLE__HORIZONTAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Invert Axis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__INVERT_AXIS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int TABLE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -430,6 +439,17 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_HorizontalContentProvider();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Invert Axis</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EAttribute getTable_InvertAxis();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis <em>EObject Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -571,6 +591,14 @@ public interface NattablePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE__HORIZONTAL_CONTENT_PROVIDER = eINSTANCE.getTable_HorizontalContentProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Invert Axis</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE__INVERT_AXIS = eINSTANCE.getTable_InvertAxis();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.

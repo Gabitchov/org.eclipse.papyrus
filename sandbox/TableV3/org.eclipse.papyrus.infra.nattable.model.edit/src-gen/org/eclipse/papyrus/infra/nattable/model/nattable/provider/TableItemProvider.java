@@ -80,6 +80,7 @@ public class TableItemProvider
 			addNamePropertyDescriptor(object);
 			addContextPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addInvertAxisPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -146,6 +147,28 @@ public class TableItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Invert Axis feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInvertAxisPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Table_invertAxis_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Table_invertAxis_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablePackage.Literals.TABLE__INVERT_AXIS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -221,6 +244,7 @@ public class TableItemProvider
 		switch (notification.getFeatureID(Table.class)) {
 			case NattablePackage.TABLE__NAME:
 			case NattablePackage.TABLE__DESCRIPTION:
+			case NattablePackage.TABLE__INVERT_AXIS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case NattablePackage.TABLE__EDITOR_CONFIGURATION:

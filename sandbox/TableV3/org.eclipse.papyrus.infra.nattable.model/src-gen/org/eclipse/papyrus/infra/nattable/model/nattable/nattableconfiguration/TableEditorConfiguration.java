@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration <em>Editor Declaration</em>}</li>
  * </ul>
  * </p>
  *
@@ -141,5 +142,35 @@ public interface TableEditorConfiguration extends EModelElement {
 	 * @generated
 	 */
 	void setDefaultHorizontalContentProvider(IAxisContentsProvider value);
+
+	/**
+	 * Returns the value of the '<em><b>Editor Declaration</b></em>' attribute.
+	 * The default value is <code>"COLUMN"</code>.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Editor Declaration</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Editor Declaration</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
+	 * @see #setEditorDeclaration(CellEditorDeclaration)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_EditorDeclaration()
+	 * @model default="COLUMN" required="true"
+	 * @generated
+	 */
+	CellEditorDeclaration getEditorDeclaration();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration <em>Editor Declaration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Editor Declaration</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
+	 * @see #getEditorDeclaration()
+	 * @generated
+	 */
+	void setEditorDeclaration(CellEditorDeclaration value);
 
 } // TableEditorConfiguration

@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -78,6 +79,36 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
+				return createCellEditorDeclarationFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
+				return convertCellEditorDeclarationToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TableEditorConfiguration createTableEditorConfiguration() {
 		TableEditorConfigurationImpl tableEditorConfiguration = new TableEditorConfigurationImpl();
 		return tableEditorConfiguration;
@@ -91,6 +122,26 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	public LocalTableEditorConfiguration createLocalTableEditorConfiguration() {
 		LocalTableEditorConfigurationImpl localTableEditorConfiguration = new LocalTableEditorConfigurationImpl();
 		return localTableEditorConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CellEditorDeclaration createCellEditorDeclarationFromString(EDataType eDataType, String initialValue) {
+		CellEditorDeclaration result = CellEditorDeclaration.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCellEditorDeclarationToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

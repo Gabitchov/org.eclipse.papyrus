@@ -13,6 +13,9 @@
         lowerBound="1" eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="horizontalContentProvider"
         lowerBound="1" eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="invertAxis" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EObjectAxis" eSuperTypes="#//IAxis">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
@@ -36,12 +39,19 @@
           eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultHorizontalContentProvider"
           eType="#//nattablecontentprovider/IAxisContentsProvider" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="editorDeclaration" lowerBound="1"
+          eType="#//nattableconfiguration/CellEditorDeclaration" defaultValueLiteral="COLUMN"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalTableEditorConfiguration" eSuperTypes="#//nattableconfiguration/TableEditorConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultTableEditorConfiguration"
           eType="#//nattableconfiguration/TableEditorConfiguration"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           iD="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="CellEditorDeclaration">
+      <eLiterals name="COLUMN"/>
+      <eLiterals name="ROW" value="1"/>
+      <eLiterals name="CELL" value="2"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattablecontentprovider" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"

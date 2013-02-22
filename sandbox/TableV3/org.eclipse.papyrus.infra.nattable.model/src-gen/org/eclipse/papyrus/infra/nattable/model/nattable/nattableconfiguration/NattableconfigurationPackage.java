@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -123,13 +124,22 @@ public interface NattableconfigurationPackage extends EPackage {
 	int TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Editor Declaration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Table Editor Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -205,6 +215,15 @@ public interface NattableconfigurationPackage extends EPackage {
 	int LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER;
 
 	/**
+	 * The feature id for the '<em><b>Editor Declaration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION;
+
+	/**
 	 * The feature id for the '<em><b>Default Table Editor Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,6 +267,17 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCAL_TABLE_EDITOR_CONFIGURATION_OPERATION_COUNT = TABLE_EDITOR_CONFIGURATION_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getCellEditorDeclaration()
+	 * @generated
+	 */
+	int CELL_EDITOR_DECLARATION = 2;
 
 
 	/**
@@ -305,6 +335,17 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableEditorConfiguration_DefaultHorizontalContentProvider();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration <em>Editor Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Editor Declaration</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration()
+	 * @see #getTableEditorConfiguration()
+	 * @generated
+	 */
+	EAttribute getTableEditorConfiguration_EditorDeclaration();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration <em>Local Table Editor Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,6 +376,16 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLocalTableEditorConfiguration_Type();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Cell Editor Declaration</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
+	 * @generated
+	 */
+	EEnum getCellEditorDeclaration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -402,6 +453,14 @@ public interface NattableconfigurationPackage extends EPackage {
 		EReference TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = eINSTANCE.getTableEditorConfiguration_DefaultHorizontalContentProvider();
 
 		/**
+		 * The meta object literal for the '<em><b>Editor Declaration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = eINSTANCE.getTableEditorConfiguration_EditorDeclaration();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.LocalTableEditorConfigurationImpl <em>Local Table Editor Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -426,6 +485,16 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE = eINSTANCE.getLocalTableEditorConfiguration_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getCellEditorDeclaration()
+		 * @generated
+		 */
+		EEnum CELL_EDITOR_DECLARATION = eINSTANCE.getCellEditorDeclaration();
 
 	}
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getEditorDeclaration <em>Editor Declaration</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,6 +98,26 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * @ordered
 	 */
 	protected IAxisContentsProvider defaultHorizontalContentProvider;
+
+	/**
+	 * The default value of the '{@link #getEditorDeclaration() <em>Editor Declaration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEditorDeclaration()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final CellEditorDeclaration EDITOR_DECLARATION_EDEFAULT = CellEditorDeclaration.COLUMN;
+
+	/**
+	 * The cached value of the '{@link #getEditorDeclaration() <em>Editor Declaration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEditorDeclaration()
+	 * @generated
+	 * @ordered
+	 */
+	protected CellEditorDeclaration editorDeclaration = EDITOR_DECLARATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -266,6 +288,27 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CellEditorDeclaration getEditorDeclaration() {
+		return editorDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEditorDeclaration(CellEditorDeclaration newEditorDeclaration) {
+		CellEditorDeclaration oldEditorDeclaration = editorDeclaration;
+		editorDeclaration = newEditorDeclaration == null ? EDITOR_DECLARATION_EDEFAULT : newEditorDeclaration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION, oldEditorDeclaration, editorDeclaration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -294,6 +337,8 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 				return getDefaultVerticalContentProvider();
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
 				return getDefaultHorizontalContentProvider();
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
+				return getEditorDeclaration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -319,6 +364,9 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
 				setDefaultHorizontalContentProvider((IAxisContentsProvider)newValue);
 				return;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
+				setEditorDeclaration((CellEditorDeclaration)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -343,6 +391,9 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
 				setDefaultHorizontalContentProvider((IAxisContentsProvider)null);
 				return;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
+				setEditorDeclaration(EDITOR_DECLARATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -363,6 +414,8 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 				return defaultVerticalContentProvider != null;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
 				return defaultHorizontalContentProvider != null;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
+				return editorDeclaration != EDITOR_DECLARATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -379,6 +432,8 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pastedElementTypeId: "); //$NON-NLS-1$
 		result.append(pastedElementTypeId);
+		result.append(", editorDeclaration: "); //$NON-NLS-1$
+		result.append(editorDeclaration);
 		result.append(')');
 		return result.toString();
 	}

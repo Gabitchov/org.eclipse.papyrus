@@ -211,6 +211,15 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTable_InvertAxis() {
+		return (EAttribute)tableEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEObjectAxis() {
 		return eObjectAxisEClass;
 	}
@@ -295,6 +304,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		createEReference(tableEClass, TABLE__EDITOR_CONFIGURATION);
 		createEReference(tableEClass, TABLE__VERTICAL_CONTENT_PROVIDER);
 		createEReference(tableEClass, TABLE__HORIZONTAL_CONTENT_PROVIDER);
+		createEAttribute(tableEClass, TABLE__INVERT_AXIS);
 
 		eObjectAxisEClass = createEClass(EOBJECT_AXIS);
 		createEReference(eObjectAxisEClass, EOBJECT_AXIS__ELEMENT);
@@ -356,6 +366,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		initEReference(getTable_EditorConfiguration(), theNattableconfigurationPackage.getLocalTableEditorConfiguration(), null, "editorConfiguration", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_VerticalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "verticalContentProvider", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_HorizontalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "horizontalContentProvider", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTable_InvertAxis(), theEcorePackage.getEBoolean(), "invertAxis", "false", 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(eObjectAxisEClass, EObjectAxis.class, "EObjectAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getEObjectAxis_Element(), theEcorePackage.getEObject(), null, "element", null, 0, 1, EObjectAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.papyrus.infra.nattable.model;visibility:=reexport;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable,
+Export-Package: org.eclipse.papyrus.infra.nattable.model,
+ org.eclipse.papyrus.infra.nattable.model.nattable,
  org.eclipse.papyrus.infra.nattable.model.nattable.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl,

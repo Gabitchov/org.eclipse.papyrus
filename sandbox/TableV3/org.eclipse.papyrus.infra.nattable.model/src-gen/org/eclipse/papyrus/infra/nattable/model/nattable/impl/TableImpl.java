@@ -42,6 +42,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getEditorConfiguration <em>Editor Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getVerticalContentProvider <em>Vertical Content Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getHorizontalContentProvider <em>Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#isInvertAxis <em>Invert Axis</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,6 +128,26 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * @ordered
 	 */
 	protected IAxisContentsProvider horizontalContentProvider;
+
+	/**
+	 * The default value of the '{@link #isInvertAxis() <em>Invert Axis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isInvertAxis()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean INVERT_AXIS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isInvertAxis() <em>Invert Axis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isInvertAxis()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean invertAxis = INVERT_AXIS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,6 +382,27 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isInvertAxis() {
+		return invertAxis;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInvertAxis(boolean newInvertAxis) {
+		boolean oldInvertAxis = invertAxis;
+		invertAxis = newInvertAxis;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__INVERT_AXIS, oldInvertAxis, invertAxis));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -395,6 +437,8 @@ public class TableImpl extends EModelElementImpl implements Table {
 				return getVerticalContentProvider();
 			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
 				return getHorizontalContentProvider();
+			case NattablePackage.TABLE__INVERT_AXIS:
+				return isInvertAxis();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -424,6 +468,9 @@ public class TableImpl extends EModelElementImpl implements Table {
 				return;
 			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
 				setHorizontalContentProvider((IAxisContentsProvider)newValue);
+				return;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				setInvertAxis((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -455,6 +502,9 @@ public class TableImpl extends EModelElementImpl implements Table {
 			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
 				setHorizontalContentProvider((IAxisContentsProvider)null);
 				return;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				setInvertAxis(INVERT_AXIS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -479,6 +529,8 @@ public class TableImpl extends EModelElementImpl implements Table {
 				return verticalContentProvider != null;
 			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
 				return horizontalContentProvider != null;
+			case NattablePackage.TABLE__INVERT_AXIS:
+				return invertAxis != INVERT_AXIS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -497,6 +549,8 @@ public class TableImpl extends EModelElementImpl implements Table {
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
+		result.append(", invertAxis: "); //$NON-NLS-1$
+		result.append(invertAxis);
 		result.append(')');
 		return result.toString();
 	}

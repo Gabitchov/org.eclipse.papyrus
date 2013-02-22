@@ -79,6 +79,7 @@ public class TableEditorConfigurationItemProvider
 
 			addPastedElementTypeIdPropertyDescriptor(object);
 			addPastedElementContainmentFeaturePropertyDescriptor(object);
+			addEditorDeclarationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -123,6 +124,28 @@ public class TableEditorConfigurationItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Editor Declaration feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEditorDeclarationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableEditorConfiguration_editorDeclaration_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableEditorConfiguration_editorDeclaration_feature", "_UI_TableEditorConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -196,6 +219,7 @@ public class TableEditorConfigurationItemProvider
 
 		switch (notification.getFeatureID(TableEditorConfiguration.class)) {
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:

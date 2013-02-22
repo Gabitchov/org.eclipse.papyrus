@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
@@ -53,6 +55,13 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	private EClass localTableEditorConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum cellEditorDeclarationEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -176,6 +185,15 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTableEditorConfiguration_EditorDeclaration() {
+		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLocalTableEditorConfiguration() {
 		return localTableEditorConfigurationEClass;
 	}
@@ -196,6 +214,15 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	public EAttribute getLocalTableEditorConfiguration_Type() {
 		return (EAttribute)localTableEditorConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getCellEditorDeclaration() {
+		return cellEditorDeclarationEEnum;
 	}
 
 	/**
@@ -231,10 +258,14 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE);
 		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER);
 		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER);
+		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION);
 
 		localTableEditorConfigurationEClass = createEClass(LOCAL_TABLE_EDITOR_CONFIGURATION);
 		createEReference(localTableEditorConfigurationEClass, LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION);
 		createEAttribute(localTableEditorConfigurationEClass, LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE);
+
+		// Create enums
+		cellEditorDeclarationEEnum = createEEnum(CELL_EDITOR_DECLARATION);
 	}
 
 	/**
@@ -278,10 +309,17 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		initEReference(getTableEditorConfiguration_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTableEditorConfiguration_DefaultVerticalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultVerticalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTableEditorConfiguration_DefaultHorizontalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultHorizontalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableEditorConfiguration_EditorDeclaration(), this.getCellEditorDeclaration(), "editorDeclaration", "COLUMN", 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(localTableEditorConfigurationEClass, LocalTableEditorConfiguration.class, "LocalTableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getLocalTableEditorConfiguration_DefaultTableEditorConfiguration(), this.getTableEditorConfiguration(), null, "defaultTableEditorConfiguration", null, 0, 1, LocalTableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getLocalTableEditorConfiguration_Type(), ecorePackage.getEString(), "type", null, 0, 1, LocalTableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		// Initialize enums and add enum literals
+		initEEnum(cellEditorDeclarationEEnum, CellEditorDeclaration.class, "CellEditorDeclaration"); //$NON-NLS-1$
+		addEEnumLiteral(cellEditorDeclarationEEnum, CellEditorDeclaration.COLUMN);
+		addEEnumLiteral(cellEditorDeclarationEEnum, CellEditorDeclaration.ROW);
+		addEEnumLiteral(cellEditorDeclarationEEnum, CellEditorDeclaration.CELL);
 	}
 
 } //NattableconfigurationPackageImpl

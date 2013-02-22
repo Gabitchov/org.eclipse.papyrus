@@ -120,7 +120,7 @@ public class DefaultContentProviderItemProvider
 				 getString("_UI_IAxisContentsProvider_initialDirection_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IAxisContentsProvider_initialDirection_feature", "_UI_IAxisContentsProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 NattablecontentproviderPackage.Literals.IAXIS_CONTENTS_PROVIDER__INITIAL_DIRECTION,
-				 false,
+				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,

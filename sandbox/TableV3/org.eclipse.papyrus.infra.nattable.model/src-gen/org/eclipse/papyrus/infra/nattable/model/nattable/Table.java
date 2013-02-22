@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration <em>Editor Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalContentProvider <em>Vertical Content Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalContentProvider <em>Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}</li>
  * </ul>
  * </p>
  *
@@ -196,5 +197,32 @@ public interface Table extends EModelElement {
 	 * @generated
 	 */
 	void setHorizontalContentProvider(IAxisContentsProvider value);
+
+	/**
+	 * Returns the value of the '<em><b>Invert Axis</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Invert Axis</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Invert Axis</em>' attribute.
+	 * @see #setInvertAxis(boolean)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_InvertAxis()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isInvertAxis();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Invert Axis</em>' attribute.
+	 * @see #isInvertAxis()
+	 * @generated
+	 */
+	void setInvertAxis(boolean value);
 
 } // Table
