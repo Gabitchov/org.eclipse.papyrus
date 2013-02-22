@@ -13,9 +13,10 @@
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
-            description="Test profile use to test papyrus"
-            name="TestProfile"
-            path="pathmap://Test_PROFILES/testProfile.profile.uml"
+            description="bundle layer of OSGI"
+            iconpath="img/osgi.org.ico"
+            name="OSGI profile"
+            path="pathmap://OSGI_PROFILES/osgi.profile.uml"
             provider="Eclipse.org">
       </profile>
    </extension>
