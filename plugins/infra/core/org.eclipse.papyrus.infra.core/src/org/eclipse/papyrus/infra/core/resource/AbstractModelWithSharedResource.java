@@ -5,7 +5,9 @@ package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
@@ -65,9 +67,12 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 		// Look for the resource
 		lookupResource(fullPathWithoutExtension);
+
 		// Check if model is loaded.
-		if(resourceIsSet())
+		if(resourceIsSet()) {
+			configureResource(resource);
 			return;
+		}
 		// model is not loaded, do it.
 		super.loadModel(fullPathWithoutExtension);
 	}
@@ -84,9 +89,12 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 		// Look for the resource
 		lookupResource(fullPath);
+
 		// Check if model is loaded.
-		if(resourceIsSet())
+		if(resourceIsSet()) {
+			configureResource(resource);
 			return;
+		}
 		// model is not loaded, do it.
 		super.createModel(fullPath);
 	}
@@ -117,8 +125,9 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	public void saveModel() throws IOException {
 
 		// Do nothing if we are a slave
-		if(modelKind == ModelKind.slave)
+		if(modelKind == ModelKind.slave) {
 			return;
+		}
 
 		// Do the save
 		super.saveModel();
@@ -156,8 +165,9 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 		List<T> roots = new ArrayList<T>();
 
 		for(EObject object : getResource().getContents()) {
-			if(isModelRoot(object))
+			if(isModelRoot(object)) {
 				roots.add((T)object);
+			}
 		}
 
 		return roots;
@@ -180,4 +190,14 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	public void addModelRoot(T root) {
 		getResource().getContents().add(root);
 	}
+
+	@Override
+	protected Map<Object, Object> getSaveOptions() {
+		if(modelKind == ModelKind.master) {
+			return super.getSaveOptions();
+		} else {
+			return Collections.emptyMap();
+		}
+	}
+
 }

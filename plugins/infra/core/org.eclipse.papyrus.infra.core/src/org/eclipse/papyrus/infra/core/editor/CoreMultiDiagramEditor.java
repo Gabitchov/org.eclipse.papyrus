@@ -642,6 +642,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	protected void warnUser(ModelMultiException e) {
+		Activator.log.error(e);
 		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n" + "%s" + "It is recommended to fix it before editing it", e.getMessage()));
 	}
 

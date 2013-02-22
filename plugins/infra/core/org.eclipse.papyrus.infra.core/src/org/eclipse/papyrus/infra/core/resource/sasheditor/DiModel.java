@@ -3,6 +3,9 @@
  */
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 
@@ -49,6 +52,16 @@ public class DiModel extends AbstractBaseModel implements IModel {
 	@Override
 	public String getIdentifier() {
 		return MODEL_FILE_EXTENSION;
+	}
+
+	@Override
+	protected Map<Object, Object> getSaveOptions() {
+		Map<Object, Object> saveOptions = super.getSaveOptions();
+
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.FALSE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.FALSE);
+
+		return saveOptions;
 	}
 
 }

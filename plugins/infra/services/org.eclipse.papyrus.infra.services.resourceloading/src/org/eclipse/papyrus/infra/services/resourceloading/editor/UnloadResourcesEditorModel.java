@@ -136,7 +136,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 			label.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false));
 			Text t = new Text(compo, SWT.None);
 			t.setText("This diagram is contained in an unresolved resource : " + unloadedUri.trimFragment().toString());
-			t.setLayoutData(new GridData(GridData.FILL_BOTH));
+			t.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 			t.setEditable(false);
 			label.setBackground(t.getBackground());
 			compo.setBackground(t.getBackground());

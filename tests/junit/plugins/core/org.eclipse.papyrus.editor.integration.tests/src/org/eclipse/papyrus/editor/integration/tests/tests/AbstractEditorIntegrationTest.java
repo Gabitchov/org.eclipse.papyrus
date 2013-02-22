@@ -14,8 +14,13 @@ package org.eclipse.papyrus.editor.integration.tests.tests;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.editor.integration.tests.Activator;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
@@ -70,8 +75,22 @@ public abstract class AbstractEditorIntegrationTest {
 			project.delete(true, new NullProgressMonitor());
 			project = null;
 		}
+	}
 
+	protected IPageManager getPageManager() throws ServiceException {
+		return getServicesRegistry().getService(IPageManager.class);
+	}
 
+	protected ServicesRegistry getServicesRegistry() throws ServiceException {
+		return editor.getServicesRegistry();
+	}
+
+	protected TransactionalEditingDomain getTransactionalEditingDomain() throws ServiceException {
+		return getServicesRegistry().getService(TransactionalEditingDomain.class);
+	}
+
+	protected ModelSet getModelSet() throws ServiceException {
+		return getServicesRegistry().getService(ModelSet.class);
 	}
 
 	/**

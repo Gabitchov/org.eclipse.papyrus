@@ -106,6 +106,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		editorControl.dispose();
 		// clean up properties to help GC
 		partModel = null;
+		rawModel = null;
 	}
 
 	/**
@@ -224,7 +225,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 */
 	@Override
 	public void setFocus() {
-		if(editorControl != null) {
+		if(editorControl != null && !editorControl.isDisposed()) {
 			editorControl.setFocus();
 		}
 	}

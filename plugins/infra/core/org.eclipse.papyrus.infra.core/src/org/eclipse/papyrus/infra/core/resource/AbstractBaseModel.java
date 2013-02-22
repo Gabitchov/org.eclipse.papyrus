@@ -4,6 +4,8 @@
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -21,6 +23,8 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
  * 
  */
 public abstract class AbstractBaseModel implements IModel {
+
+	public static final String ENCODING = "UTF-8"; //$NON-NLS-1$
 
 	/**
 	 * The associated ModelManager.
@@ -118,6 +122,14 @@ public abstract class AbstractBaseModel implements IModel {
 
 		// Create Resource of appropriate type
 		resource = getModelManager().createResource(resourceURI);
+		configureResource(resource);
+	}
+
+	protected void configureResource(Resource resource) {
+		if(resource instanceof XMIResource) {
+			((XMIResource)resource).getDefaultSaveOptions().putAll(getSaveOptions());
+			((XMIResource)resource).setEncoding(ENCODING);
+		}
 	}
 
 	/**
@@ -151,30 +163,26 @@ public abstract class AbstractBaseModel implements IModel {
 	 * @param fullPathWithoutExtension
 	 */
 	public void loadModel(IPath fullPathWithoutExtension) {
-
 		// Compute model URI
-		RuntimeException error = null ;
+		RuntimeException error = null;
 		resourceURI = getPlatformURI(fullPathWithoutExtension.addFileExtension(getModelFileExtension()));
 
 		// Create Resource of appropriate type
-		try{
+		try {
 			resource = modelSet.getResource(resourceURI, true);
-		}
-		catch (WrappedException e){
-			if (ModelUtils.isDegradedModeAllowed(e.getCause())){
+		} catch (WrappedException e) {
+			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
 				// only this case is managed in degraded mode
 				resource = modelSet.getResource(resourceURI, false);
 			}
-			error = e ;
+			error = e;
 		}
-		//see bug 397987: [Core][Save] The referenced plugin models are saved using relative path
-		if(resource instanceof XMIResource){
-			((XMIResource) resource).getDefaultSaveOptions().put(XMIResource.OPTION_URI_HANDLER, new org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware());
-		}
+
+		configureResource(resource);
 		// call registered snippets
 		snippets.performStart(this);
-		if (error != null){
-			throw error ;
+		if(error != null) {
+			throw error;
 		}
 	}
 
@@ -195,8 +203,7 @@ public abstract class AbstractBaseModel implements IModel {
 	 * 
 	 */
 	public void saveModel() throws IOException {
-		if (!getModelManager().getTransactionalEditingDomain().isReadOnly(resource)
-				&& !ModelUtils.resourceFailedOnLoad(resource)) {
+		if(!getModelManager().getTransactionalEditingDomain().isReadOnly(resource) && !ModelUtils.resourceFailedOnLoad(resource)) {
 			resource.save(null);
 		}
 	}
@@ -238,6 +245,24 @@ public abstract class AbstractBaseModel implements IModel {
 	 */
 	public void addModelSnippet(IModelSnippet snippet) {
 		snippets.add(snippet);
+	}
+
+	protected Map<Object, Object> getSaveOptions() {
+		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+
+		// default save options.
+		saveOptions.put(XMIResource.OPTION_DECLARE_XML, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_PROCESS_DANGLING_HREF, XMIResource.OPTION_PROCESS_DANGLING_HREF_DISCARD);
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SKIP_ESCAPE_URI, Boolean.FALSE);
+		saveOptions.put(XMIResource.OPTION_ENCODING, "UTF-8");
+
+		//see bug 397987: [Core][Save] The referenced plugin models are saved using relative path
+		saveOptions.put(XMIResource.OPTION_URI_HANDLER, new org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware());
+
+		return saveOptions;
 	}
 
 }

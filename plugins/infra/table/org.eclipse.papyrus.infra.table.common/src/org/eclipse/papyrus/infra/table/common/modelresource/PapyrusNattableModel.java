@@ -18,16 +18,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 
 
 /**
  * A model used to save data from the {@link DefaultNattableEditor}
- *
+ * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableInstance> implements IModel {
 
@@ -51,26 +50,19 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public PapyrusNattableModel() {
 
 	}
 
-	// Initialize stuff in the model.
-	@Override
-	public void init(ModelSet modelManager) {
-		super.init(modelManager);
-		// nothing to do now
-	}
-
 	/**
 	 * Get the file extension used for this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -80,9 +72,9 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 	/**
 	 * Get the identifier used to register this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -93,7 +85,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 	/**
 	 * Add a new initialized {@link PapyrusTableInstance} to the model.
-	 *
+	 * 
 	 * @param tableInstance
 	 *        The tableInstance to add.
 	 */
@@ -103,7 +95,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 
 	/**
 	 * Add a new initialized {@link PapyrusTableInstance} to the model.
-	 *
+	 * 
 	 * @param tableInstance
 	 *        The tableInstance to add.
 	 */
@@ -112,9 +104,9 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)
-	 *
+	 * 
 	 * @param object
 	 * @return
 	 */

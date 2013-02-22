@@ -6,7 +6,6 @@ package org.eclipse.papyrus.infra.gmfdiag.common.model;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 /**
  * @author dumoulin
@@ -30,16 +29,6 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 	 * 
 	 */
 	public NotationModel() {
-
-	}
-
-	// Initialize stuff in the model.
-	@Override
-	public void init(ModelSet modelManager) {
-		super.init(modelManager);
-		// Specify the factory to use to create the resource.
-		//		GMFResourceFactory gmfFactory = new GMFResourceFactory();
-		//		getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
 
 	}
 

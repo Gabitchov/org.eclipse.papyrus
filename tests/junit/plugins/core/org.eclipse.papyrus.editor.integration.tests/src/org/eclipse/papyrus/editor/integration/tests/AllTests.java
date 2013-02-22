@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.editor.integration.tests;
 
+import org.eclipse.papyrus.editor.integration.tests.tests.ModelSetTests;
 import org.eclipse.papyrus.editor.integration.tests.tests.PageManagerTests;
 import org.eclipse.papyrus.editor.integration.tests.tests.RecoveryTest;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({ PageManagerTests.class, RecoveryTest.class })
+@SuiteClasses({ PageManagerTests.class, RecoveryTest.class, ModelSetTests.class })
 public class AllTests {
 
 }
