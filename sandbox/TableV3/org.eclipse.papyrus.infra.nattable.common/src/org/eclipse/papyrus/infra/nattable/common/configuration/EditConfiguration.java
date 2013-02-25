@@ -23,11 +23,11 @@ import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
-import org.eclipse.nebula.widgets.nattable.layer.cell.RowOverrideLabelAccumulator;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.nattable.common.accumulator.CustomRowOverrideLabelAccumulator;
 import org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.common.celleditor.factory.AbstractCellEditorConfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.common.celleditor.factory.CellEditorConfigurationFactoryRegistry;
@@ -47,6 +47,8 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 	 * the model manager
 	 */
 	private final INattableModelManager modelManager;
+
+
 
 	//FIXME : remove this field, the ModelManager must provides it
 	private BodyLayerStack bodyLayerStack;
@@ -81,19 +83,24 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 		if(editorDeclaration.equals(CellEditorDeclaration.COLUMN)) {
 			if(table.isInvertAxis()) {
 				//we declared celleditor on row
+				final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack);
+				declaredCellEditors(this.modelManager.getRowElementsList(), configRegistry, null, accumulator);
+				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			} else {
 				final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
-				declaredCellEditorOnColumn(configRegistry, accumulator);
+				declaredCellEditors(this.modelManager.getColumnElementsList(), configRegistry, accumulator, null);
 				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			}
 		} else if(editorDeclaration.equals(CellEditorDeclaration.ROW)) {
 			if(table.isInvertAxis()) {
 				//we declared celleditor on column
 				final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
-				declaredCellEditorOnColumn(configRegistry, accumulator);
+				declaredCellEditors(this.modelManager.getColumnElementsList(), configRegistry, accumulator, null);
 				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			} else {
-
+				final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack);
+				declaredCellEditors(this.modelManager.getRowElementsList(), configRegistry, null, accumulator);
+				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			}
 		} else if(editorDeclaration.equals(CellEditorDeclaration.CELL)) {
 			//not yet supported
@@ -103,9 +110,10 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 
 	}
 
-	private void declaredCellEditorOnColumn(final IConfigRegistry configRegistry, final ColumnOverrideLabelAccumulator accumulator) {
-		final List<Object> elements = this.modelManager.getColumnElementsList();
-
+	private void declaredCellEditors(final List<Object> elements, final IConfigRegistry configRegistry, final ColumnOverrideLabelAccumulator columnAccumulator, final CustomRowOverrideLabelAccumulator rowAccumulator) {
+		boolean declareOnColumn = columnAccumulator != null;
+		boolean declareOnRow = rowAccumulator != null;
+		assert declareOnColumn != declareOnRow;
 		//currently we use only the EMF factory, in the future, we must use the global factory
 		final CellEditorConfigurationFactoryRegistry factoryRegistry = CellEditorConfigurationFactoryRegistry.INSTANCE;
 
@@ -126,9 +134,11 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 					final ICellEditor editor = config.getICellEditor(current, this.modelManager.getTableAxisElementProvider());
 					final IDataValidator validator = config.getDataValidator();
 					assert !cellId.equals(editorId);
-
-					accumulator.registerColumnOverrides(i, editorId, cellId);
-
+					if(declareOnColumn) {
+						columnAccumulator.registerColumnOverrides(i, editorId, cellId);
+					} else {
+						rowAccumulator.registerRowOverrides(i, editorId, cellId);
+					}
 					if(painter != null) {
 						configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, painter, displayMode, cellId);
 					}
@@ -151,10 +161,6 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 				Activator.log.warn(errorMessage);
 			}
 		}
-	}
-
-	private void declaredCellEditorOnRow(final IConfigRegistry configRegistry, final RowOverrideLabelAccumulator accumulator) {
-
 	}
 
 }

@@ -124,7 +124,7 @@ public class NattableModelManager implements INattableModelManager {
 
 		NattableModelManager.this.rowManager = newRowManager;
 		NattableModelManager.this.columnManager = newColumnManager;
-		getNatTable().refresh();
+		refreshNattable();
 	}
 
 	/**
