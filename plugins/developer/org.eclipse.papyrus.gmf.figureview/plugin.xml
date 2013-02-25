@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.gmf.figureview.view.FigureHierarchyView"
+            id="org.eclipse.papyrus.gmf.figureview.view"
+            name="Figure hierarchy view"
+            restorable="true">
+      </view>
+   </extension>
+</plugin>
