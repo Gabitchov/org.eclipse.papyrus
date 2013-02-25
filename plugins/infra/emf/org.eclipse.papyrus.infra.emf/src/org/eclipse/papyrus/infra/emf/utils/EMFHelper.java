@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -653,5 +654,38 @@ public class EMFHelper {
 		}
 
 		return isUsed;
+	}
+
+	/**
+	 * 
+	 * @param superType
+	 *        an eclassifier
+	 * @param subType
+	 *        another eClassifier
+	 * @return
+	 *         <code>true</code> if the 2nd {@link EClassifier} is a subtype of the first one
+	 */
+	public static boolean isSuperType(final EClassifier superType, final EClassifier subType) {
+		if(superType == subType) {
+			return true;
+		}
+
+		if(superType instanceof EClass && subType instanceof EClass) {
+			// special case because isSuperTypeOf doesn't handle it
+			if(superType == EcorePackage.eINSTANCE.getEObject()) {
+				return true;
+			}
+
+			EClass superTypeEClass = (EClass)superType;
+			EClass subTypeEClass = (EClass)subType;
+			return superTypeEClass.isSuperTypeOf(subTypeEClass);
+		}
+
+		//manage EDtataType
+		if(superType == EcorePackage.eINSTANCE.getEDataType() && subType instanceof EDataType) {
+			return true;
+		}
+
+		return false;
 	}
 }
