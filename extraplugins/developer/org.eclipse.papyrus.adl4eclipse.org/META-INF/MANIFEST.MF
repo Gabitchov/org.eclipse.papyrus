@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipse.org;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipse.profile;singleton:=true
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.adl4eclipse.org.Activator
 Require-Bundle: org.eclipse.ui,
