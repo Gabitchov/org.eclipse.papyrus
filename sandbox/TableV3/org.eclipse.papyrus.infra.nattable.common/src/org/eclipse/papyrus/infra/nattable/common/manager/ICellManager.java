@@ -15,7 +15,9 @@ package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
 //FIXME : the extension point should be declared on an Abstract class instead an Interface (to add method easily?)=
@@ -26,14 +28,20 @@ public interface ICellManager {
 	 */
 	public static final String NOT_AVALAIBLE = Messages.ICellManager_NotAvailable;
 
-	public boolean handles(final Object obj1, final Object obj2);
+
+	public boolean handles(final Object obj1, final Object obj2);//FIXME : add the table as parameter
+
+	public boolean handlersAxisElement(final Object obj);
 
 	public Object getValue(final Object obj1, final Object obj2);
 
-	public void setValue(final EditingDomain domain, final Object rowElement, final Object lineElement, final Object newValue);
+	public void setValue(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue);
 
 	public boolean isCellEditable(final Object obj1, final Object obj2);
 
-	public Command getSetValueCommand(final EditingDomain domain, final Object rowElement, final Object lineElement, final Object newValue);
+	public Command getSetValueCommand(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue);
+
+//	public ICellEditor getCellEditor(final Table table, final Object obj1);
+
 
 }

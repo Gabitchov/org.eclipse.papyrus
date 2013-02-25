@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleBooleanCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="60">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleIntegerCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="70">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleRealCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="80">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleStringCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="90">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleUnlimitedNaturalCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="95">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleBooleanCellEditorConfig"
+            factoryId="org.eclipse.papyrus.uml.nattable.celleditor.stereotypepropertyfactory"
+            order="60">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleReferenceComboCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="135">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleReferenceComboWithButtonCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="134">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration.factory">
+      <factory
+            class="org.eclipse.papyrus.uml.nattable.celleditor.registry.StereotypePropertyCellEditorConfigFactory"
+            id="org.eclipse.papyrus.uml.nattable.celleditor.stereotypepropertyfactory"
+            order="20">
+      </factory>
+   </extension>
+
+</plugin>

@@ -28,7 +28,9 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
@@ -41,6 +43,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 
@@ -322,7 +325,9 @@ public class NattableModelManager implements INattableModelManager {
 
 	@Override
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
-		// TODO Auto-generated method stub
+		final Object obj1 = this.verticalElements.get(columnIndex);
+		final Object obj2 = this.horizontalElements.get(rowIndex);
+		CellManagerFactory.INSTANCE.setCellValue(getEditingDomain(pTable), obj1, obj2, newValue);
 	}
 
 	/**
@@ -353,8 +358,20 @@ public class NattableModelManager implements INattableModelManager {
 
 
 	public void refreshNattable() {
-		NatTable table = getNatTable();
+		final NatTable table = getNatTable();
+		//FIXME!
+		table.setConfigRegistry(new ConfigRegistry());
+		table.setUiBindingRegistry(new UiBindingRegistry(table));
+		table.configure();
 		if(table != null && !table.isDisposed()) {
+			Display.getDefault().asyncExec(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					table.refresh();
+				}
+			});
 			table.refresh();
 		}
 	}
@@ -406,7 +423,7 @@ public class NattableModelManager implements INattableModelManager {
 	}
 
 	@Override
-	public Object getRowElemen(int index) {
+	public Object getRowElement(int index) {
 		return this.horizontalElements.get(index);
 	}
 
@@ -467,5 +484,23 @@ public class NattableModelManager implements INattableModelManager {
 
 	public boolean canInvertAxis() {
 		return columnManager.canBeUsedAsRowManager() && rowManager.canBeUsedAsColumnManager();
+	}
+
+
+	public boolean declareEditorsOnColumns() {
+		return true;
+	}
+
+	public boolean declareEditorsOnRows() {
+		return false;
+	}
+
+	@Override
+	public Table getTable() {
+		return pTable;
+	}
+
+	public ITableAxisElementProvider getTableAxisElementProvider() {//FIXME : must be renamed?
+		return this;
 	}
 }

@@ -48,6 +48,6 @@ public class BodyDataProvider extends AbstractDataProvider {
 	}
 
 	public void setDataValue(int columnIndex, int rowIndex, Object newValue) {
-		// TODO Auto-generated method stub
+		this.manager.setDataValue(columnIndex, rowIndex, newValue);
 	}
 }

@@ -47,7 +47,7 @@ public class RowHeaderDataProvider extends AbstractDataProvider {
 		if(columnIndex == 0) {
 			return rowIndex;
 		} else {
-			return this.manager.getRowElemen(rowIndex);
+			return this.manager.getRowElement(rowIndex);
 		}
 	}
 

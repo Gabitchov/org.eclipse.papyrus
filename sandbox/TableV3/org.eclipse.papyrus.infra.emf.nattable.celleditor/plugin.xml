@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration.factory">
+      <factory
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.registry.EMFFeatureCellEditorFactory"
+            id="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="10">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
+      <configuration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EMFSingleEStringCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="130">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EMFSingleEIntCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="120">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EMFSingleEBooleanCheckBoxCellEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="100">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EMFSingleEEnumEditorConfig"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="110">
+      </configuration>
+   </extension>
+
+</plugin>

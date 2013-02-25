@@ -14,14 +14,15 @@
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.papyrus.infra.nattable.common.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.ui.services.IDisposable;
 
 
-public interface INattableModelManager extends ILimitedNattableModelManager, IDisposable, IDataProvider {
+public interface INattableModelManager extends ILimitedNattableModelManager, ITableAxisElementProvider, IDisposable, IDataProvider {
 
 
 	public int getColumnCount();
@@ -50,14 +51,6 @@ public interface INattableModelManager extends ILimitedNattableModelManager, IDi
 
 	public IAxisManager getLineDataProvider();
 
-	public List<Object> getColumnElementsList();
-
-	public List<Object> getRowElementsList();
-
-	public Object getColumnElement(int index);
-
-	public Object getRowElemen(int index);
-
 	public boolean canReorderColumns();
 
 	public boolean canReoderRows();
@@ -67,6 +60,15 @@ public interface INattableModelManager extends ILimitedNattableModelManager, IDi
 	public void reorderRowElements(final IAxis axisToMove, final int newIndex);
 
 	public void invertAxis();
-	
+
 	public boolean canInvertAxis();
+
+	public boolean declareEditorsOnColumns();
+
+	public boolean declareEditorsOnRows();
+
+	public Table getTable();
+
+	public ITableAxisElementProvider getTableAxisElementProvider();
+
 }

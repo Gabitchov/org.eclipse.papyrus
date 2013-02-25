@@ -17,13 +17,17 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
+import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.nattable.common.solver.PathResolverFactory;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.swt.graphics.GC;
@@ -61,12 +65,41 @@ public class CustomizedCellPainter extends TextPainter {
 	@Override
 	protected String convertDataType(final ILayerCell cell, final IConfigRegistry configRegistry) {
 		final Object value = cell.getDataValue();
+		ILayer layer = cell.getLayer();
+		ILayer layer2 = null;
+		if(layer instanceof GridLayer) {
+			try {
+				//				layer2 = layer.getUnderlyingLayerByPosition(cell.getColumnIndex(), 0);
+				int i = 0;
+				i++;
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 		if(value instanceof String) {
+			EObject context = null;
 			//maybe it a path
+			if(((String)value).startsWith("property")) {
+				int rowIndex = cell.getRowPosition();
+				int columnIndex = cell.getColumnPosition();
+				//				layer2 = layer.getUnderlyingLayerByPosition(columnIndex, rowIndex);
+				//				layer2.get
+				//				int i = 0;
+				//				i++;
+			}
+			//			Object obj = PathResolverFactory.INSTANCE.getRealValue((String)value, context);
+			//			if(obj instanceof EObject) {
+			//				return getLabelForEObject((EObject)obj);//FIXME ;: and if the resolution doesn't gie an eobject but an object?
+			//			}
 		}
 		if(value != null) {
 			if(value instanceof EObject) {
-				return getLabelForEObject((EObject)value);
+				String str = getLabelForEObject((EObject)value);
+				if(value instanceof EStructuralFeature && ((EStructuralFeature)value).isDerived()) {//FIXME : not yet done for the list of structural feature!
+					return "/" + str; //FIXME : must probably be done with a customization.
+				}
+				return str;
 			} else if(value instanceof Collection<?>) {
 				final Iterator<Object> iter = ((Collection)value).iterator();
 				String text = BEGIN_OF_LIST;

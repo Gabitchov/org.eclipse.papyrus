@@ -21,7 +21,11 @@ import java.util.TreeMap;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.nattable.common.manager.ICellManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 //FIXME : should implements ICrossValueSolver?
 public class CellManagerFactory {
@@ -94,4 +98,19 @@ public class CellManagerFactory {
 		return false;
 
 	}
+	
+	public void setCellValue(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue){
+		final ICellManager cellManager = getCrossValueSolver(obj1, obj2);
+		if(cellManager!=null){
+			cellManager.setValue(domain, obj1, obj2, newValue);
+		}
+	}
+	
+//	public ICellEditor getCellEditor (final Table table, final Object obj1, final Object obj2){
+//		final ICellManager cellManager = getCrossValueSolver(obj1, obj2);
+//		if(cellManager!=null){
+//			return cellManager.getCellEditor(table, obj1);
+//		}
+//		return null;
+//	}
 }

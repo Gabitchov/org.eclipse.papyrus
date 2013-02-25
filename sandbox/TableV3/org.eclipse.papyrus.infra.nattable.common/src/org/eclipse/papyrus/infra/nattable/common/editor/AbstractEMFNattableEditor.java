@@ -38,6 +38,7 @@ import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
+import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.print.config.DefaultPrintBindings;
 import org.eclipse.nebula.widgets.nattable.reorder.ColumnReorderLayer;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
+import org.eclipse.papyrus.infra.nattable.common.configuration.EditConfiguration;
 import org.eclipse.papyrus.infra.nattable.common.configuration.InvertAxisOnCornerConfiguration;
 import org.eclipse.papyrus.infra.nattable.common.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.common.dataprovider.ColumnHeaderDataProvider;
@@ -74,6 +76,8 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.part.EditorPart;
 
 
@@ -255,75 +259,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		}
 	}
 
-	//	private IConfiguration editableGridConfiguration(final ColumnOverrideLabelAccumulator columnLabelAccumulator, BodyLayerStack fBodyLayer) {
-	//		return new AbstractRegistryConfiguration() {
-	//
-	//			@Override
-	//			public void configureRegistry(IConfigRegistry configRegistry) {
-	//				//we fill the column label accumulator
-	//				String CHECK_BOX_EDITOR_CONFIG_LABEL = "stringEditor";
-	//				String CHECK_BOX_CONFIG_LABEL = "stringConfigLabel";
-	//
-	//				String TYPE_EDITOR_CONFIG_LABEL = "typeEditor";
-	//				String TYPE_CONFIG_LABEL = "stringConfigLabel";
-	//
-	//				columnLabelAccumulator.registerColumnOverrides(0, CHECK_BOX_EDITOR_CONFIG_LABEL, CHECK_BOX_CONFIG_LABEL);
-	//				columnLabelAccumulator.registerColumnOverrides(1, TYPE_EDITOR_CONFIG_LABEL, TYPE_CONFIG_LABEL);
-	//
-	//				TextCellEditor textEditor = new TextCellEditor();
-	//				configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.EDIT, CHECK_BOX_CONFIG_LABEL);
-	//				configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new DefaultBooleanDisplayConverter() {
-	//
-	//					@Override
-	//					public Object displayToCanonicalValue(Object displayValue) {
-	//						return "";
-	//					}
-	//
-	//					@Override
-	//					public Object canonicalToDisplayValue(Object canonicalValue) {
-	//						if(canonicalValue == null) {
-	//							return null;
-	//						} else {
-	//							return canonicalValue.toString();
-	//						}
-	//					}
-	//
-	//				}, DisplayMode.EDIT, CHECK_BOX_CONFIG_LABEL);
-	//
-	//				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, textEditor, DisplayMode.EDIT, CHECK_BOX_EDITOR_CONFIG_LABEL);
-	//
-	//
-	//				List<String> canonicalValues = new ArrayList<String>();
-	//				canonicalValues.add("a");
-	//				canonicalValues.add("b");
-	//				canonicalValues.add("c");
-	//				ComboBoxCellEditor comboEditor = new ComboBoxCellEditor(canonicalValues);
-	//
-	//				configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new ComboBoxPainter(), DisplayMode.EDIT, TYPE_CONFIG_LABEL);
-	//				configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new DefaultBooleanDisplayConverter() {
-	//
-	//					@Override
-	//					public Object displayToCanonicalValue(Object displayValue) {
-	//						return "";
-	//					}
-	//
-	//					@Override
-	//					public Object canonicalToDisplayValue(Object canonicalValue) {
-	//						if(canonicalValue == null) {
-	//							return null;
-	//						} else {
-	//							return canonicalValue.toString();
-	//						}
-	//					}
-	//
-	//				}, DisplayMode.EDIT, TYPE_CONFIG_LABEL);
-	//
-	//				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, comboEditor, DisplayMode.EDIT, TYPE_EDITOR_CONFIG_LABEL);
-	//
-	//				// TODO Auto-generated method stub
-	//			}
-	//		};
-	//	}
+
 
 	@Override
 	public void createPartControl(final Composite parent) {
@@ -356,15 +292,14 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		//		fBodyLayer.addConfiguration(new StyleConfiguration());
 
 
-		//for the edition
-		//		final ColumnOverrideLabelAccumulator columnLabelAccumulator = new ColumnOverrideLabelAccumulator(fBodyLayer);
-		//		fBodyLayer.setConfigLabelAccumulator(columnLabelAccumulator);
+
 
 		NatTable natTable = new NatTable(parent, gridLayer, false);
 
 
 		//for the edition
-		//		this.natTable.addConfiguration(editableGridConfiguration(columnLabelAccumulator, fBodyLayer));
+		configureEdition(natTable, bodyLayerStack);
+
 		natTable.addConfiguration(new IConfiguration() {
 
 			@Override
@@ -428,10 +363,16 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		this.selectionProvider = new TableSelectionProvider(bodyLayerStack.getSelectionLayer());
 		getSite().registerContextMenu(this.menuMgr, this.selectionProvider);
 		getSite().setSelectionProvider(this.selectionProvider);
-
+		IMenuService menuService = (IMenuService)PlatformUI.getWorkbench().getService(IMenuService.class);
+//		menuService.
 		return natTable;
 	}
 
+	private void configureEdition(final NatTable nattable, final BodyLayerStack bodyLayerStack) {
+		final ColumnOverrideLabelAccumulator columnLabelAccumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
+		bodyLayerStack.setConfigLabelAccumulator(columnLabelAccumulator);
+		nattable.addConfiguration(new EditConfiguration(this.tableManager, bodyLayerStack));
+	}
 
 	/**
 	 * Enable the table to receive dropped elements

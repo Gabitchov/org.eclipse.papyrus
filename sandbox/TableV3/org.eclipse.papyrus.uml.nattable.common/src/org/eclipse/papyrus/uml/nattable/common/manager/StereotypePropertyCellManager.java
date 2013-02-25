@@ -18,7 +18,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.papyrus.infra.nattable.common.manager.ICellManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
@@ -79,11 +81,21 @@ public class StereotypePropertyCellManager implements ICellManager {
 
 	public boolean isCellEditable(Object obj1, Object obj2) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public Command getSetValueCommand(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public ICellEditor getCellEditor(Table table, Object obj1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean handlersAxisElement(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

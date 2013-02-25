@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.common.solver.PathResolverFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
@@ -107,7 +108,48 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 			if(current instanceof IdAxis) {
 				final String id = (String)current.getElement();
 				if(id.startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
+					final Object realValue = PathResolverFactory.INSTANCE.getRealValue(id, getTable().getContext());
+
+					//the value has been resolved
+					if(realValue != null) {
+						int currentIndex = axisElements.indexOf(id);
+						if(currentIndex == -1) {//the element was not in the axis with its id representation
+							currentIndex = axisElements.indexOf(realValue);
+
+							if(currentIndex == -1) {//the element was not in the axis with its real representation
+								axisElements.add(realValue);//we add it
+							} else if(currentIndex != i) {
+								axisElements.remove(currentIndex);
+								axisElements.add(i, realValue);
+							}
+
+						} else if(currentIndex != i) {//the current element was in the axis, using its id representation. We must use the real object now
+							axisElements.remove(currentIndex);
+							axisElements.add(i, realValue);
+						}
+					} else {//the value has not been resolved
+						int currentIndex = axisElements.indexOf(id);
+						if(currentIndex== -1){//the element was not in the axis with its id representation
+							
+						}
+					}
+
+
+
 					int currentIndex = axisElements.indexOf(id);
+
+					if(realValue != null && currentIndex == -1) {
+						currentIndex = axisElements.indexOf(realValue);
+						//the element has never been in the table
+						if(currentIndex == -1) {
+							axisElements.add(realValue);
+						} else if(currentIndex != i) {
+							axisElements.remove(currentIndex);
+							axisElements.add(i, id);
+						}
+
+					}
+
 					if(currentIndex == -1) {
 						axisElements.add(id);
 					} else if(currentIndex != i) {

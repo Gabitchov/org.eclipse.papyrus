@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui;bundle-version="2.9.0",
  org.eclipse.nebula.widgets.nattable.core;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0"
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
+ org.eclipse.emf.ecore
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.nattable.common.editor,
