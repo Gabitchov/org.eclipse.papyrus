@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.junit.utils;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -22,6 +24,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
+import org.junit.Assert;
 import org.osgi.framework.Bundle;
 
 public class PapyrusProjectUtils {
@@ -41,14 +44,24 @@ public class PapyrusProjectUtils {
 	 * @throws CoreException
 	 */
 	public static final IFile copyPapyrusModel(final IProject project, final Bundle bundle, final String sourcePath, final String fileRootName) throws CoreException, IOException {
-		final IFile emptyModel_di = project.getFile(fileRootName + "." + SashModel.MODEL_FILE_EXTENSION);
-		final IFile emptyModel_no = project.getFile(fileRootName + "." + NotationModel.NOTATION_FILE_EXTENSION);
-		final IFile emptyModel_uml = project.getFile(fileRootName + "." + UmlModel.UML_FILE_EXTENSION);
 
-		emptyModel_di.create(bundle.getResource(sourcePath + fileRootName + "." + SashModel.MODEL_FILE_EXTENSION).openStream(), true, new NullProgressMonitor());
-		emptyModel_no.create(bundle.getResource(sourcePath + fileRootName + "." + NotationModel.NOTATION_FILE_EXTENSION).openStream(), true, new NullProgressMonitor());
-		emptyModel_uml.create(bundle.getResource(sourcePath + fileRootName + "." + UmlModel.UML_FILE_EXTENSION).openStream(), true, new NullProgressMonitor());
+		String diSourcePath = sourcePath + fileRootName + "." + SashModel.MODEL_FILE_EXTENSION;
+		String notationSourcePath = sourcePath + fileRootName + "." + NotationModel.NOTATION_FILE_EXTENSION;
+		String umlSourcePath = sourcePath + fileRootName + "." + UmlModel.UML_FILE_EXTENSION;
+
+		final IFile emptyModel_di = copyIFile(diSourcePath, bundle, project, fileRootName + "." + SashModel.MODEL_FILE_EXTENSION);
+		copyIFile(notationSourcePath, bundle, project, fileRootName + "." + NotationModel.NOTATION_FILE_EXTENSION);
+		copyIFile(umlSourcePath, bundle, project, fileRootName + "." + UmlModel.UML_FILE_EXTENSION);
 
 		return emptyModel_di;
+	}
+
+	public static IFile copyIFile(String sourcePath, Bundle sourceBundle, IProject targetProject, String targetFileName) throws CoreException, IOException {
+		final IFile createdFile = targetProject.getFile(targetFileName);
+		URL bundleResource = sourceBundle.getResource(sourcePath);
+		Assert.assertNotNull("Cannot find bundle resource: " + sourcePath, bundleResource);
+		InputStream bundleResourceStream = bundleResource.openStream();
+		createdFile.create(bundleResourceStream, true, new NullProgressMonitor());
+		return createdFile;
 	}
 }
