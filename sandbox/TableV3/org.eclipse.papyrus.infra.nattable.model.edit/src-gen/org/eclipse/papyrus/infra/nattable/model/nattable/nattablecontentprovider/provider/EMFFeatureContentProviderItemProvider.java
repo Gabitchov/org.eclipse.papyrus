@@ -29,8 +29,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.EMFFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
 
 
@@ -116,11 +114,7 @@ DefaultContentProviderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		AxisDirection labelValue = ((EMFFeatureContentProvider)object).getInitialDirection();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_EMFFeatureContentProvider_type") : //$NON-NLS-1$
-			getString("_UI_EMFFeatureContentProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_EMFFeatureContentProvider_type"); //$NON-NLS-1$
 	}
 
 	/**

@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -79,36 +78,6 @@ public class NattablecontentproviderFactoryImpl extends EFactoryImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case NattablecontentproviderPackage.AXIS_DIRECTION:
-				return createAxisDirectionFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case NattablecontentproviderPackage.AXIS_DIRECTION:
-				return convertAxisDirectionToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DefaultContentProvider createDefaultContentProvider() {
 		DefaultContentProviderImpl defaultContentProvider = new DefaultContentProviderImpl();
 		return defaultContentProvider;
@@ -122,26 +91,6 @@ public class NattablecontentproviderFactoryImpl extends EFactoryImpl implements 
 	public EMFFeatureContentProvider createEMFFeatureContentProvider() {
 		EMFFeatureContentProviderImpl emfFeatureContentProvider = new EMFFeatureContentProviderImpl();
 		return emfFeatureContentProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AxisDirection createAxisDirectionFromString(EDataType eDataType, String initialValue) {
-		AxisDirection result = AxisDirection.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAxisDirectionToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

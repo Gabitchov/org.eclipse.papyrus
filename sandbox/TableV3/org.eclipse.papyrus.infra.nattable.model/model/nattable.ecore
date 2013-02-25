@@ -61,8 +61,6 @@
       <eOperations name="getAxis" upperBound="-1" eType="#//IAxis"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaContentProviderIds"
           lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialDirection" eType="#//nattablecontentprovider/AxisDirection"
-          defaultValueLiteral=""/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DefaultContentProvider" eSuperTypes="#//nattablecontentprovider/IAxisContentsProvider">
       <eStructuralFeatures xsi:type="ecore:EReference" name="axis" upperBound="-1"
@@ -74,9 +72,5 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ISynchronizedAxisContentProvider"
         abstract="true" interface="true" eSuperTypes="#//nattablecontentprovider/IAxisContentsProvider"/>
-    <eClassifiers xsi:type="ecore:EEnum" name="AxisDirection">
-      <eLiterals name="Vertical" literal="VERTICAL"/>
-      <eLiterals name="Horizontal" value="1" literal="HORIZONTAL"/>
-    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

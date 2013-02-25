@@ -255,7 +255,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 			final IAxisContentsProvider copy = EcoreUtil.copy(rowProvider);
 			rowProvider = copy;
 		}
-		rowProvider.setInitialDirection(AxisDirection.HORIZONTAL);
+
 		IAxisContentsProvider columnProvider = defaultConfig.getDefaultVerticalContentProvider();
 		if(columnProvider == null) {
 			columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
@@ -263,7 +263,6 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 			final IAxisContentsProvider copy = EcoreUtil.copy(columnProvider);
 			columnProvider = copy;
 		}
-		columnProvider.setInitialDirection(AxisDirection.VERTICAL);
 
 		//		final IAxisContentsProvider columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
 

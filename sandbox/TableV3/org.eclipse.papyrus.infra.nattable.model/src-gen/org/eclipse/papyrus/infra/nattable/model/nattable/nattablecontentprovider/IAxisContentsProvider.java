@@ -27,7 +27,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getJavaContentProviderIds <em>Java Content Provider Ids</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getInitialDirection <em>Initial Direction</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,36 +50,6 @@ public interface IAxisContentsProvider extends EModelElement {
 	 * @generated
 	 */
 	EList<String> getJavaContentProviderIds();
-
-	/**
-	 * Returns the value of the '<em><b>Initial Direction</b></em>' attribute.
-	 * The default value is <code>""</code>.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Initial Direction</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initial Direction</em>' attribute.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection
-	 * @see #setInitialDirection(AxisDirection)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage#getIAxisContentsProvider_InitialDirection()
-	 * @model default=""
-	 * @generated
-	 */
-	AxisDirection getInitialDirection();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider#getInitialDirection <em>Initial Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Initial Direction</em>' attribute.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection
-	 * @see #getInitialDirection()
-	 * @generated
-	 */
-	void setInitialDirection(AxisDirection value);
 
 	/**
 	 * <!-- begin-user-doc -->

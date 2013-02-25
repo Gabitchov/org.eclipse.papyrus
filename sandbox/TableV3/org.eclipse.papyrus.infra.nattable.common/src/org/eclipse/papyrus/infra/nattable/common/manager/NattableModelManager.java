@@ -97,30 +97,8 @@ public class NattableModelManager implements INattableModelManager {
 					final Object oldValue = msg.getOldValue();
 					final Object newValue = msg.getNewValue();
 					if(oldValue != null && newValue != null) {
-						if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_HorizontalContentProvider()) {//do command and redo command
-							if(oldValue == NattableModelManager.this.rowProvider && newValue == NattableModelManager.this.columnProvider) {
-								NattableModelManager.this.columnProvider = NattableModelManager.this.rowProvider;
-								NattableModelManager.this.rowProvider = (IAxisContentsProvider)newValue;
-								List<Object> oldVertcialElement = NattableModelManager.this.verticalElements;
-								NattableModelManager.this.verticalElements = NattableModelManager.this.horizontalElements;
-								NattableModelManager.this.horizontalElements = oldVertcialElement;
-								IAxisManager oldRowManager = NattableModelManager.this.rowManager;
-								NattableModelManager.this.rowManager = NattableModelManager.this.columnManager;
-								NattableModelManager.this.columnManager = oldRowManager;
-								getNatTable().refresh();
-							}
-						} else if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_VerticalContentProvider()) {//undo command
-							if(oldValue == NattableModelManager.this.columnProvider && newValue == NattableModelManager.this.rowProvider) {
-								NattableModelManager.this.columnProvider = NattableModelManager.this.rowProvider;
-								NattableModelManager.this.rowProvider = (IAxisContentsProvider)oldValue;
-								List<Object> oldVertcialElement = NattableModelManager.this.verticalElements;
-								NattableModelManager.this.verticalElements = NattableModelManager.this.horizontalElements;
-								NattableModelManager.this.horizontalElements = oldVertcialElement;
-								IAxisManager oldRowManager = NattableModelManager.this.rowManager;
-								NattableModelManager.this.rowManager = NattableModelManager.this.columnManager;
-								NattableModelManager.this.columnManager = oldRowManager;
-								getNatTable().refresh();
-							}
+						if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
+							invertJavaObject();
 						}
 					}
 				}
@@ -128,6 +106,25 @@ public class NattableModelManager implements INattableModelManager {
 		};
 		rawModel.eAdapters().add(this.invertAxisListener);
 		init();
+	}
+
+	public void invertJavaObject() {
+		IAxisContentsProvider newColumProvider = rowProvider;
+		IAxisContentsProvider newRowProvider = columnProvider;
+		List<Object> newVerticalElementList = horizontalElements;
+		List<Object> newHorizontalElementList = verticalElements;
+		IAxisManager newRowManager = columnManager;
+		IAxisManager newColumnManager = rowManager;
+
+		NattableModelManager.this.columnProvider = newColumProvider;
+		NattableModelManager.this.rowProvider = newRowProvider;
+
+		NattableModelManager.this.verticalElements = newVerticalElementList;
+		NattableModelManager.this.horizontalElements = newHorizontalElementList;
+
+		NattableModelManager.this.rowManager = newRowManager;
+		NattableModelManager.this.columnManager = newColumnManager;
+		getNatTable().refresh();
 	}
 
 	/**
@@ -467,16 +464,10 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	public void invertAxis() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_SwitchLinesAndColumns);
-		final IAxisContentsProvider vertical = this.pTable.getVerticalContentProvider();
-
-		final IAxisContentsProvider horizontal = this.pTable.getHorizontalContentProvider();
 		final EditingDomain domain = getEditingDomain(this.pTable);
-		//FIXME verify that we can exchanges the axis
+		boolean oldValue = this.pTable.isInvertAxis();
 		if(canInvertAxis()) {
-			Command tmp = new SetCommand(domain, this.pTable, NattablePackage.eINSTANCE.getTable_HorizontalContentProvider(), vertical);
-			cmd.append(tmp);
-
-			tmp = new SetCommand(domain, this.pTable, NattablePackage.eINSTANCE.getTable_VerticalContentProvider(), horizontal);
+			Command tmp = new SetCommand(domain, this.pTable, NattablePackage.eINSTANCE.getTable_InvertAxis(), !oldValue);
 			cmd.append(tmp);
 			domain.getCommandStack().execute(cmd);
 		}

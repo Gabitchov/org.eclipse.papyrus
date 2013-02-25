@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovide
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -24,14 +23,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.DefaultContentProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
 
@@ -43,7 +40,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.DefaultContentProviderImpl#getJavaContentProviderIds <em>Java Content Provider Ids</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.DefaultContentProviderImpl#getInitialDirection <em>Initial Direction</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.DefaultContentProviderImpl#getAxis <em>Axis</em>}</li>
  * </ul>
  * </p>
@@ -60,24 +56,6 @@ public class DefaultContentProviderImpl extends EModelElementImpl implements Def
 	 * @ordered
 	 */
 	protected EList<String> javaContentProviderIds;
-	/**
-	 * The default value of the '{@link #getInitialDirection() <em>Initial Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInitialDirection()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final AxisDirection INITIAL_DIRECTION_EDEFAULT = AxisDirection.VERTICAL;
-	/**
-	 * The cached value of the '{@link #getInitialDirection() <em>Initial Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInitialDirection()
-	 * @generated
-	 * @ordered
-	 */
-	protected AxisDirection initialDirection = INITIAL_DIRECTION_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getAxis() <em>Axis</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -124,27 +102,6 @@ public class DefaultContentProviderImpl extends EModelElementImpl implements Def
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AxisDirection getInitialDirection() {
-		return initialDirection;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInitialDirection(AxisDirection newInitialDirection) {
-		AxisDirection oldInitialDirection = initialDirection;
-		initialDirection = newInitialDirection == null ? INITIAL_DIRECTION_EDEFAULT : newInitialDirection;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION, oldInitialDirection, initialDirection));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<IAxis> getAxis() {
 		if (axis == null) {
 			axis = new EObjectContainmentEList<IAxis>(IAxis.class, this, NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS);
@@ -176,8 +133,6 @@ public class DefaultContentProviderImpl extends EModelElementImpl implements Def
 		switch (featureID) {
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
 				return getJavaContentProviderIds();
-			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION:
-				return getInitialDirection();
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
 				return getAxis();
 		}
@@ -196,9 +151,6 @@ public class DefaultContentProviderImpl extends EModelElementImpl implements Def
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
 				getJavaContentProviderIds().clear();
 				getJavaContentProviderIds().addAll((Collection<? extends String>)newValue);
-				return;
-			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION:
-				setInitialDirection((AxisDirection)newValue);
 				return;
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
 				getAxis().clear();
@@ -219,9 +171,6 @@ public class DefaultContentProviderImpl extends EModelElementImpl implements Def
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
 				getJavaContentProviderIds().clear();
 				return;
-			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION:
-				setInitialDirection(INITIAL_DIRECTION_EDEFAULT);
-				return;
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
 				getAxis().clear();
 				return;
@@ -239,8 +188,6 @@ public class DefaultContentProviderImpl extends EModelElementImpl implements Def
 		switch (featureID) {
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
 				return javaContentProviderIds != null && !javaContentProviderIds.isEmpty();
-			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__INITIAL_DIRECTION:
-				return initialDirection != INITIAL_DIRECTION_EDEFAULT;
 			case NattablecontentproviderPackage.DEFAULT_CONTENT_PROVIDER__AXIS:
 				return axis != null && !axis.isEmpty();
 		}
@@ -259,8 +206,6 @@ public class DefaultContentProviderImpl extends EModelElementImpl implements Def
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (javaContentProviderIds: "); //$NON-NLS-1$
 		result.append(javaContentProviderIds);
-		result.append(", initialDirection: "); //$NON-NLS-1$
-		result.append(initialDirection);
 		result.append(')');
 		return result.toString();
 	}

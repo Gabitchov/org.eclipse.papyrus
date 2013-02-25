@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.AxisDirection;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 
 
@@ -35,7 +34,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 * the managed table
 	 */
-	private Table pTable;
+	private Table pTable; //FIXME : this field should be removed
 
 	/**
 	 * the represented axis provider
@@ -281,10 +280,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	protected boolean hasAxisConfiguration(final TableEditorConfiguration configuration) {
 		IAxisContentsProvider axisConfig = null;
-		if(getRepresentedContentProvider().getInitialDirection() == AxisDirection.VERTICAL) {
-			axisConfig = configuration.getDefaultVerticalContentProvider();
-		} else if(getRepresentedContentProvider().getInitialDirection() == AxisDirection.HORIZONTAL) {
+		//we are working with the horizontal content provider
+		if(getTable().getHorizontalContentProvider() == getRepresentedContentProvider()) {
 			axisConfig = configuration.getDefaultHorizontalContentProvider();
+		} else {//we are working with the 
+			axisConfig = configuration.getDefaultVerticalContentProvider();
 		}
 		if(axisConfig != null) {
 			return !axisConfig.getAxis().isEmpty();
