@@ -13,10 +13,7 @@
  */
 package org.eclipse.papyrus.gmf.figureview.view;
 
-import java.util.ArrayList;
-
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -42,19 +39,6 @@ import org.eclipse.ui.part.ViewPart;
  * 
  */
 public class FigureHierarchyView extends ViewPart {
-
-	/**
-	 * this a object that represents a line into the table
-	 */
-	class EditPolicyDescriptor {
-
-		public String role = "NO ROLE";
-
-		public EditPolicy policy = null;
-	}
-
-
-	private ArrayList<EditPolicyDescriptor> editPolicyList = new ArrayList<EditPolicyDescriptor>();
 
 	private ISelectionListener myEditPartlistener;
 
@@ -225,10 +209,9 @@ public class FigureHierarchyView extends ViewPart {
 		super.dispose();
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		selectionService.removeSelectionListener(myEditPartlistener);
-		clear();
 	}
 
 	private void clear() {
-		this.editPolicyList.clear();
+		viewer.setInput(null);
 	}
 }
