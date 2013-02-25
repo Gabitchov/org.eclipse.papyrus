@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.gmf.editpartview.view.EditPartHierarchyView"
+            id="org.eclipse.papyrus.gmf.editpartview.view"
+            name="Edit part hierarchy view"
+            restorable="true">
+      </view>
+   </extension>
+</plugin>
