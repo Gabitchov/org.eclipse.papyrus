@@ -22,14 +22,13 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -38,9 +37,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  * 
  */
 public class DeleteCommandHandler extends AbstractCommandHandler implements IHandler {
-
-	/** Current deleteCommand for selection (updated in {@link DeleteCommandHandler#isEnabled()}) */
-	private Command deleteCommand;
 
 	/**
 	 * <pre>
@@ -104,6 +100,7 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 * 
 	 * @return current command (only built here when the stored command is null)
 	 */
+	@Override
 	protected Command getCommand() {
 		// Don't cache the command, as it is no more refreshed by isEnabled().
 		return buildCommand();
@@ -118,18 +115,25 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 
 		List<EObject> selectedElements = getSelectedElements();
 		for(EObject current : selectedElements) {
-			//FIXME use the method isReadOnly provided by the class EMFHelper 
-			//TODO after the refactoring (currently, there is circular dependencies)
-			if(isReadOnly(current)) {
+			if(EMFHelper.isReadOnly(current)) {
 				return false;
 			}
 			//the root of the model can't be deleted!
 			if(current.eContainer() == null) {
+				try {
+					//Pages can be deleted even when they are root elements
+					IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(current);
+					if(pageManager.allPages().contains(current)) {
+						return true;
+					}
+				} catch (ServiceException ex) {
+					//Cannot retrieve the ServicesRegistry: ignore
+				}
 				return false;
 			}
 		}
 
-		if(selectedElements.size()==0){
+		if(selectedElements.size() == 0) {
 			return false;
 		}
 		// Don't compute the delete command to know if it is enabled,
@@ -137,62 +141,4 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 		return true;
 	}
 
-	/**
-	 * Tests if an EObject is read only
-	 * Delegates to the EObject's editing domain if it can be found
-	 * 
-	 * @param eObject
-	 * @return
-	 *         True if the EObject is read only
-	 */
-	public static boolean isReadOnly(EObject eObject) {
-		if(eObject != null) {
-			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-			return isReadOnly(eObject, domain);
-		}
-		return false;
-	}
-
-	/**
-	 * Tests if an EObject is read only
-	 * Delegates to the given editing domain if it isn't null
-	 * 
-	 * @param eObject
-	 * @param domain
-	 * @return
-	 *         True if the EObject is read only
-	 */
-	public static boolean isReadOnly(EObject eObject, EditingDomain domain) {
-		return isReadOnly(eObject.eResource(), domain);
-	}
-
-	/**
-	 * Tests if the Resource is read only
-	 * Delegates to the given editing domain if it isn't null
-	 * 
-	 * @param resource
-	 * @param domain
-	 * @return
-	 *         True if the Resource is read only
-	 */
-	public static boolean isReadOnly(Resource resource, EditingDomain domain) {
-		if(domain instanceof AdapterFactoryEditingDomain) {
-			return ((AdapterFactoryEditingDomain)domain).isReadOnly(resource);
-		}
-
-		if(resource == null) {
-			return false;
-		}
-
-		ResourceSet resourceSet = resource.getResourceSet();
-
-		if(resourceSet == null) {
-			return false;
-		}
-
-		Map<String, ?> attributes = resourceSet.getURIConverter().getAttributes(resource.getURI(), null);
-		Boolean readOnly = (Boolean)attributes.get(URIConverter.ATTRIBUTE_READ_ONLY);
-
-		return readOnly == null ? false : readOnly;
-	}
 }

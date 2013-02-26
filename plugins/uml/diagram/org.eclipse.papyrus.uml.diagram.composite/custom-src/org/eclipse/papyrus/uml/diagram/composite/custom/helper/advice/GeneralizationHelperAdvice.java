@@ -53,6 +53,8 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 		if(!viewsToDestroy.isEmpty()) {
 
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
+			ddr.setClientContext(request.getClientContext());
+			ddr.addParameters(request.getParameters());
 			return ddr.getDestroyDependentsCommand(viewsToDestroy);
 
 		}
@@ -88,7 +90,7 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 	protected Set<View> getMemberViewsToDestroy(Generalization generalization) {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
-		Classifier general = ((Generalization)generalization).getGeneral();
+		Classifier general = generalization.getGeneral();
 		if(general != null) {
 
 			// Parse members
@@ -98,7 +100,7 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 				// Find Views in Composite Structure Diagram that are referencing current member
 				Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(member, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
 				while(viewIt.hasNext()) {
-					View view = (View)viewIt.next();
+					View view = viewIt.next();
 
 					// Test if current view (member) is concerned by the deletion (re-orientation) of the generalization
 					GeneralizationUtil util = new GeneralizationUtil();

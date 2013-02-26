@@ -45,6 +45,8 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
@@ -56,6 +58,7 @@ import org.eclipse.papyrus.uml.table.defaultt.handlers.CreateNattableEditorComma
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -245,7 +248,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	@Test
 	public void testDiagramDeletion() throws Exception {
 		initModel("diagramDeletion", "simple_class_model");
-		ModelSet modelSet = editor.getServicesRegistry().getService(ModelSet.class);
+		ModelSet modelSet = getModelSet();
 		final Diagram diagram = (Diagram)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
 		testPageDeletion(diagram, UmlClassDiagramForMultiEditor.class);
 	}
@@ -324,7 +327,9 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		final IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 
 		//Check initial state
-		Assert.assertEquals(1, pageManager.allPages().size());
+		Assert.assertFalse(pageManager.allPages().isEmpty());
+		int initialPagesSize = pageManager.allPages().size();
+
 		Assert.assertTrue(expectedEditorClass.isInstance(editor.getActiveEditor()));
 
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
@@ -347,21 +352,63 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		for(int i = 0; i < 3; i++) { //Undo/Redo 3 times
 			Assert.assertNull("The editor should be closed", editor.getActiveEditor());
-			Assert.assertTrue("The page has not been correctly deleted", pageManager.allPages().isEmpty());
+			Assert.assertEquals("The page has not been correctly deleted", initialPagesSize - 1, pageManager.allPages().size());
 
 			editingDomain.getCommandStack().undo();
 
-			Assert.assertEquals("The has not been correctly created", 1, pageManager.allPages().size());
+			Assert.assertEquals("The has not been correctly created", initialPagesSize, pageManager.allPages().size());
 			Assert.assertTrue("The editor has not been correctly opened", expectedEditorClass.isInstance(editor.getActiveEditor()));
 
 			editingDomain.getCommandStack().redo();
 		}
 	}
 
-	@Ignore("Unsupported yet")
 	@Test
 	public void testContainedDiagramDeletion() throws Exception {
-		throw new UnsupportedOperationException("Not implemented yet");
+		initModel("deleteContainedDiagrams", "delete_contained_diagram");
+		ModelSet modelSet = getModelSet();
+		IPageManager pageManager = getPageManager();
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+
+		final int initialSize = pageManager.allPages().size();
+		Model model = (Model)UmlUtils.getUmlModel(modelSet).getResource().getContents().get(0);
+
+		IElementEditService provider;
+
+		Element firstRootElement = model.getOwnedElements().get(0);
+		Element secondRootElement = model.getOwnedElements().get(1);
+
+		{
+			DestroyElementRequest destroyFirstElementRequest = new DestroyElementRequest(firstRootElement, false);
+			provider = ElementEditServiceUtils.getCommandProvider(firstRootElement);
+			ICommand destroyFirstElementCommand = provider.getEditCommand(destroyFirstElementRequest);
+
+			editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyFirstElementCommand));
+			Assert.assertEquals("The page should have been destroyed", initialSize - 1, pageManager.allPages().size());
+			//TODO: Test the opened pages too
+		}
+
+		{
+			DestroyElementRequest destroySecondElementRequest = new DestroyElementRequest(secondRootElement, false);
+			provider = ElementEditServiceUtils.getCommandProvider(secondRootElement);
+			ICommand destroySecondElementCommand = provider.getEditCommand(destroySecondElementRequest);
+
+			editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroySecondElementCommand));
+			Assert.assertTrue("All remaining pages should have been destroyed", pageManager.allPages().isEmpty());
+		}
+
+		editingDomain.getCommandStack().undo();
+
+		Assert.assertEquals("The deleted pages should have been restored", initialSize - 1, pageManager.allPages().size());
+
+		editingDomain.getCommandStack().undo();
+
+		Assert.assertEquals("All pages should have been restored", initialSize, pageManager.allPages().size());
+
+		editingDomain.getCommandStack().redo();
+		editingDomain.getCommandStack().redo();
+
+		Assert.assertTrue("All remaining pages should have been destroyed", pageManager.allPages().isEmpty());
 	}
 
 	@Ignore("Unsupported yet")

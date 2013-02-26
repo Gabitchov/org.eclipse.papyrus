@@ -83,6 +83,7 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 
 
 
+	@Override
 	protected ICommand getBeforeReorientRelationshipCommand(ReorientRelationshipRequest request) {
 
 		// The list of member views becoming inconsistent after re-orient. They will be deleted.
@@ -116,11 +117,11 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 							View current = (View)it.next();
 
 							if((current.getElement() instanceof Message) && current.getElement().equals(label.getElement())) {//if the two views have the same semantic element
-								if(current.eContainer().eContainer().equals((View)label.eContainer().eContainer())) {//if the views are in the same diagram
+								if(current.eContainer().eContainer().equals(label.eContainer().eContainer())) {//if the views are in the same diagram
 									viewsToDestroyCopy.remove(current);
 									//remove the parent (connector if it is in the list)
-									if(viewsToDestroyCopy.contains((View)current.eContainer())) {
-										viewsToDestroyCopy.remove((View)current.eContainer());
+									if(viewsToDestroyCopy.contains(current.eContainer())) {
+										viewsToDestroyCopy.remove(current.eContainer());
 									}
 									//break;
 								}
@@ -138,6 +139,8 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 		if(!viewsToDestroy.isEmpty()) {
 
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
+			ddr.setClientContext(request.getClientContext());
+			ddr.addParameters(request.getParameters());
 			//search for additional views to destroy (essentially inconsistent connectors that have to be deleted)
 			//and return the command to destroy all the inconsistent views
 			return ddr.getDestroyDependentsCommand(InconsistentMessageViewsHelper.addConnectorViewsToDestroy(viewsToDestroy));

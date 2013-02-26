@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.infra.emf.utils;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -61,17 +60,10 @@ public class ServiceUtilsForResource extends AbstractServiceUtils<Resource> {
 	 */
 	@Override
 	public ServicesRegistry getServiceRegistry(Resource from) throws ServiceException {
-		if(from == null || from.getResourceSet() == null) {
+		if(from == null) {
 			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry.");
 		}
-
-		// An AdapterFactory referencing the ServiceRegistry is attache to the REsourceSet.
-		// Try to get it.
-		ServiceRegistryAdapterFactory factory = (ServiceRegistryAdapterFactory)EcoreUtil.getAdapterFactory(from.getResourceSet().getAdapterFactories(), ServiceRegistryAdapterFactory.TYPE_ID);
-		if(factory == null) {
-			throw new ServiceNotFoundException("Can't find the ServiceRegistry. No Adapter is attached to the ResourceSet. Check if the proper service is ");
-		}
-		return factory.getServicesRegistry();
+		return ServiceUtilsForResourceSet.getInstance().getServiceRegistry(from.getResourceSet());
 	}
 
 }

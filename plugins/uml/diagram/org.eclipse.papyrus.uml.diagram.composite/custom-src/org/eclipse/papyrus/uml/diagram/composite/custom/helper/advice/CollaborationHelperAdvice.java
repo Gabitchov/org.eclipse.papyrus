@@ -64,6 +64,8 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 
 		if((viewsToDelete != null) && !(viewsToDelete.isEmpty())) {
 			DestroyDependentsRequest req = new DestroyDependentsRequest(request.getEditingDomain(), elementToEdit, false);
+			req.setClientContext(request.getClientContext());
+			req.addParameters(request.getParameters());
 			return req.getDestroyDependentsCommand(viewsToDelete);
 		}
 
@@ -84,7 +86,7 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 			Set<ConnectableElement> removedRoles = new HashSet<ConnectableElement>();
 			removedRoles.addAll(collaborationToEdit.getRoles());
 			if(request.getValue() instanceof ConnectableElement) {
-				removedRoles.remove((ConnectableElement)request.getValue());
+				removedRoles.remove(request.getValue());
 			} else if(request.getValue() instanceof List<?>) {
 				removedRoles.removeAll((List<?>)request.getValue());
 			}
@@ -100,6 +102,8 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 
 		if((viewsToDelete != null) && !(viewsToDelete.isEmpty())) {
 			DestroyDependentsRequest req = new DestroyDependentsRequest(request.getEditingDomain(), elementToEdit, false);
+			req.setClientContext(request.getClientContext());
+			req.addParameters(request.getParameters());
 			return req.getDestroyDependentsCommand(viewsToDelete);
 		}
 

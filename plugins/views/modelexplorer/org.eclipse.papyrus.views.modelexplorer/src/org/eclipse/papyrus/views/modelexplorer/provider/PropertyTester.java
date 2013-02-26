@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -141,17 +142,9 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 		if(!selection.isEmpty()) {
 			Iterator<?> iter = selection.iterator();
 			while(iter.hasNext()) {
-				Object current = iter.next();
-				if(current instanceof IAdaptable) {
-					EObject eObject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-					if(eObject == null) {
-						return false;
-					}
-				} else {
-					return false;
-				}
+				EObject current = EMFHelper.getEObject(iter.next());
+				return current != null;
 			}
-			return true;
 		}
 		return false;
 	}

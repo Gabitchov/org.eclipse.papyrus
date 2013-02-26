@@ -189,6 +189,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		return new ConfigureElementCommand(request) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				// Add UML Nature on the new Association
@@ -233,7 +234,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		Association association = (Association)req.getElementToDestroy();
 		for(Property end : association.getMemberEnds()) {
-			if (!dependentsToKeep.contains(end)) {
+			if(!dependentsToKeep.contains(end)) {
 				dependentsToDestroy.add(end);
 			}
 		}
@@ -361,6 +362,8 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		//return the command to destroy all these views
 		if(!viewsToDestroy.isEmpty()) {
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
+			ddr.setClientContext(request.getClientContext());
+			ddr.addParameters(request.getParameters());
 			ICommand destroyViewsCommand = ddr.getDestroyDependentsCommand(viewsToDestroy);
 			gmfCommand = CompositeCommand.compose(gmfCommand, destroyViewsCommand);
 		}

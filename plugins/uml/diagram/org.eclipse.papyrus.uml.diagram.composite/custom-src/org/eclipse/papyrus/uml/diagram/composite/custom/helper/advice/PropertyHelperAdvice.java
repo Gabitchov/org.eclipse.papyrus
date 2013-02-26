@@ -98,6 +98,8 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 		if((viewsToDelete != null) && !(viewsToDelete.isEmpty())) {
 			DestroyDependentsRequest req = new DestroyDependentsRequest(request.getEditingDomain(), elementToEdit, false);
+			req.setClientContext(request.getClientContext());
+			req.addParameters(request.getParameters());
 			return req.getDestroyDependentsCommand(viewsToDelete);
 		}
 

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.diagram.clazz.test;
 
 import org.eclipse.papyrus.diagram.clazz.test.canonical.AllCanonicalTests;
-import org.eclipse.papyrus.diagram.clazz.test.load.LoadTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -24,11 +23,11 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	// canonical
+// canonical
 AllCanonicalTests.class,
 
 // load
-LoadTests.class
+//LoadTests.class
 })
 public class AllTests {
 

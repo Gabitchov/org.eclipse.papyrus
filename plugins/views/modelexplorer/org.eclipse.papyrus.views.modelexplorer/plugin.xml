@@ -250,18 +250,11 @@
 		<activeWhen>
      <with
            variable="selection">
-        <and>
-           <test
-                 forcePluginActivation="true"
-                 property="org.eclipse.papyrus.views.modelexplorer.tester.isPage"
-                 value="false">
-           </test>
-           <test
-                 forcePluginActivation="true"
-                 property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
-                 value="true">
-           </test>
-        </and>
+        <test
+              forcePluginActivation="true"
+              property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+              value="true">
+        </test>
      </with>
 		</activeWhen>
 	</handler>

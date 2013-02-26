@@ -47,6 +47,8 @@ public class DirectedRelationshipHelperAdvice extends AbstractEditHelperAdvice {
 		if(!viewsToDestroy.isEmpty()) {
 
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
+			ddr.setClientContext(request.getClientContext());
+			ddr.addParameters(request.getParameters());
 			return ddr.getDestroyDependentsCommand(viewsToDestroy);
 
 		}

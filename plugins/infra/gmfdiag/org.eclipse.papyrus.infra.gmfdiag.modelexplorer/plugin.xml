@@ -68,25 +68,6 @@
             </and>
          </activeWhen>
       </handler>
-      <handler
-            class="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers.DeleteDiagramHandler"
-            commandId="org.eclipse.ui.edit.delete">
-         <activeWhen>
-            <and>
-               <with
-                     variable="selection">
-               </with>
-               <with
-                     variable="selection">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.diagrampropertytester.isDiagram"
-                        value="true">
-                  </test>
-               </with>
-            </and>
-         </activeWhen>
-      </handler>
    </extension>
    <extension
          point="org.eclipse.core.expressions.propertyTesters">

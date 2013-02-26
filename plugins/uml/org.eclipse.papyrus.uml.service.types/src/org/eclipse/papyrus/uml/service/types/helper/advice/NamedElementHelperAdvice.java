@@ -72,6 +72,8 @@ public class NamedElementHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Destroy these relationships
 		DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getElementToDestroy(), false);
+		ddr.setClientContext(request.getClientContext());
+		ddr.addParameters(request.getParameters());
 		ICommand destroyDependantCommand = ddr.getDestroyDependentsCommand(relationshipsWithoutEnds);
 
 		command = CompositeCommand.compose(destroyDependantCommand, command);
