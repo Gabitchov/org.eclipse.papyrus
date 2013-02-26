@@ -11,4 +11,5 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-localization: plugin
+Export-Package: org.eclipse.papyrus.adl4eclipse.org
 
