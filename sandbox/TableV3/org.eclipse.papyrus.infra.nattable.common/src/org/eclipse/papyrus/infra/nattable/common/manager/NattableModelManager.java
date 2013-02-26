@@ -220,12 +220,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 	}
 
-	//FIXME : this method should never be called, we should find another way to do the refresh
-	private NatTable getNatTable() {
-		final IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		return (NatTable)part.getAdapter(NatTable.class);
-	}
-
 	/**
 	 * called when the manager is used vertically
 	 */
@@ -354,20 +348,19 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 
 	public void refreshNattable() {
-		final NatTable table = getNatTable();
-		if(table != null) {
-			table.setConfigRegistry(new ConfigRegistry());
-			table.setUiBindingRegistry(new UiBindingRegistry(table));
-			table.configure();
-			if(table != null && !table.isDisposed()) {
+		if(natTable != null) {
+			natTable.setConfigRegistry(new ConfigRegistry());
+			natTable.setUiBindingRegistry(new UiBindingRegistry(natTable));
+			natTable.configure();
+			if(table != null && !natTable.isDisposed()) {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					@Override
 					public void run() {
-						table.refresh();
+						natTable.refresh();
 					}
 				});
-				table.refresh();
+				natTable.refresh();
 			}
 		}
 	}

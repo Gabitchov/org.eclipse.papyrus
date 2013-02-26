@@ -82,7 +82,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * the nattable widget
 	 */
-	private NatTable natTable;
+	protected NatTable natTable;
 
 	/**
 	 * the grid layer
