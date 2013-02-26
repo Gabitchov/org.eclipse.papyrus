@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.common.listener;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -59,9 +60,8 @@ public class NatTableDropListener implements DropTargetListener {
 		if(data instanceof IStructuredSelection) {
 			structuredSelection = (IStructuredSelection)data;
 		}
-		final Collection<Object> objectsToAdd = new ArrayList<Object>(structuredSelection.toList());
+		final Collection<Object> objectsToAdd = Collections.checkedCollection(structuredSelection.toList(), Object.class);
 		this.dropKindValue = this.manager.getLocationInTheTable(new Point(event.x, event.y));
-		System.out.println(dropKindValue);
 		int drop = DND.DROP_NONE;
 		switch(this.dropKindValue.getKind()) {
 		case AFTER_COLUMN_HEADER:
