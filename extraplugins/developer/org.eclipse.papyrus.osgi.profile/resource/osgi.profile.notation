@@ -114,6 +114,10 @@
           <element xmi:type="uml:Property" href="osgi.profile.uml#_6T8CkHxDEeKtsedMuIUuZQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_6T_F4XxDEeKtsedMuIUuZQ"/>
         </children>
+        <children xmi:type="notation:Shape" xmi:id="_7uyKcIApEeKvP8AdAQukFw" type="3002">
+          <element xmi:type="uml:Property" href="osgi.profile.uml#_7snAMIApEeKvP8AdAQukFw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_7uyKcYApEeKvP8AdAQukFw"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_esgU9HtxEeKcL-wrhM9ICg"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_esgU9XtxEeKcL-wrhM9ICg"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_esgU9ntxEeKcL-wrhM9ICg"/>
