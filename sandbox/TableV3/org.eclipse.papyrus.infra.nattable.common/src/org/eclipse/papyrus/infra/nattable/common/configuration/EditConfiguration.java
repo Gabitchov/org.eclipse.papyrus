@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.configuration;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
@@ -33,8 +35,10 @@ import org.eclipse.papyrus.infra.nattable.common.celleditor.factory.AbstractCell
 import org.eclipse.papyrus.infra.nattable.common.celleditor.factory.CellEditorConfigurationFactoryRegistry;
 import org.eclipse.papyrus.infra.nattable.common.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
+
 
 /**
  * 
@@ -48,7 +52,7 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 	 */
 	private final INattableModelManager modelManager;
 
-
+	private Collection<String> messagesAlreadyDisplayed = new ArrayList<String>();
 
 	//FIXME : remove this field, the ModelManager must provides it
 	private BodyLayerStack bodyLayerStack;
@@ -104,7 +108,7 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 			}
 		} else if(editorDeclaration.equals(CellEditorDeclaration.CELL)) {
 			//not yet supported
-			throw new UnsupportedOperationException("The declaration of celleditor on cell is not yet supported");
+			throw new UnsupportedOperationException(Messages.EditConfiguration_DeclarationNotYetSupported);
 		}
 
 
@@ -153,12 +157,18 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 					}
 
 				} else {
-					final String errorMessage = NLS.bind("I can't found configuration for {0}", current);
-					Activator.log.warn(errorMessage);
+					final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
+					if(!messagesAlreadyDisplayed.contains(errorMessage)) {
+						Activator.log.warn(errorMessage);
+						messagesAlreadyDisplayed.add(errorMessage);
+					}
 				}
 			} else {
-				final String errorMessage = NLS.bind("I can't found config factory for {0}", current);
-				Activator.log.warn(errorMessage);
+				final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationFactoryNotFound, current);
+				if(!messagesAlreadyDisplayed.contains(errorMessage)) {
+					Activator.log.warn(errorMessage);
+					messagesAlreadyDisplayed.add(errorMessage);
+				}
 			}
 		}
 	}

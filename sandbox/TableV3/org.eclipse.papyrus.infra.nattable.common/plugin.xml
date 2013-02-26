@@ -149,5 +149,28 @@
           provider="org.eclipse.papyrus.infra.nattable.common.provider.TableLabelProvider">
     </labelProvider>
  </extension>
+ 
+ <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+
+	<!-- Generalizarion specific advices (remove inconsistent views when a Generalization is deleted -->		
+	<adviceBinding id="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"
+		class="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"
+		inheritance="all" typeId="*">
+	</adviceBinding>
+		
+	</metamodel>
+</extension>
+	
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"/>
+	</binding>
+		
+</extension>
 </plugin>
 

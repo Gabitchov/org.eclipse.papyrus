@@ -13,9 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -69,16 +71,36 @@ public class EObjectManager extends AbstractAxisManager {
 	public synchronized void updateAxisContents() {
 		final List<Object> axisContents = getTableManager().getElementsList(getRepresentedContentProvider());
 		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
+		final List<EObject> representedElement = new ArrayList<EObject>();
 		for(int i = 0; i < axis.size(); i++) {
 			IAxis current = axis.get(i);
 			if(current instanceof EObjectAxis) {
 				final EObject element = (EObject)current.getElement();
-				int currentIndex = axisContents.indexOf(element);
-				if(currentIndex == -1) {
-					axisContents.add(element);
-				} else if(currentIndex != i) {
-					axisContents.remove(currentIndex);
-					axisContents.add(i, element);
+				if(element != null) {
+					int currentIndex = axisContents.indexOf(element);
+					if(currentIndex == -1) {
+						axisContents.add(element);
+					} else if(currentIndex != i) {
+						axisContents.remove(currentIndex);
+						if(i<=axisContents.size()){
+							axisContents.add(i, element);		
+						}else{
+							axisContents.add(element);
+						}
+						
+					}
+					representedElement.add((EObject)current.getElement());
+				}
+			}
+		}
+
+		//we remove the elements which are referenced but removed from the table (probably destroyed)
+		final ListIterator<Object> iterator = axisContents.listIterator();
+		while(iterator.hasNext()) {
+			final Object current = iterator.next();
+			if(current instanceof EObject || current == null) {
+				if(!representedElement.contains(current)) {
+					iterator.remove();
 				}
 			}
 		}

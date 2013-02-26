@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.swt.widgets.Display;
 
 
 public abstract class AbstractAxisManager implements IAxisManager {
@@ -79,7 +80,15 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 				@Override
 				public void notifyChanged(org.eclipse.emf.common.notify.Notification msg) {
-					updateAxisContents();
+					//FIXME : Here, this is a 2 asynExec... we must do refresh on the command stack event
+					Display.getDefault().asyncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							updateAxisContents();
+						}
+					});
+
 					//FIXME this line must be removed when we will use GlazedList
 					((NattableModelManager)getTableManager()).refreshNattable();
 

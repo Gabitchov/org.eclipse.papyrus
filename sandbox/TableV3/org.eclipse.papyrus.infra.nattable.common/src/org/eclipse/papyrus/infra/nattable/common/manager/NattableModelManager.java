@@ -356,20 +356,20 @@ public class NattableModelManager implements INattableModelManager {
 
 	public void refreshNattable() {
 		final NatTable table = getNatTable();
-		//FIXME!
-		table.setConfigRegistry(new ConfigRegistry());
-		table.setUiBindingRegistry(new UiBindingRegistry(table));
-		table.configure();
-		if(table != null && !table.isDisposed()) {
-			Display.getDefault().asyncExec(new Runnable() {
+		if(table != null) {
+			table.setConfigRegistry(new ConfigRegistry());
+			table.setUiBindingRegistry(new UiBindingRegistry(table));
+			table.configure();
+			if(table != null && !table.isDisposed()) {
+				Display.getDefault().asyncExec(new Runnable() {
 
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					table.refresh();
-				}
-			});
-			table.refresh();
+					@Override
+					public void run() {
+						table.refresh();
+					}
+				});
+				table.refresh();
+			}
 		}
 	}
 

@@ -31,6 +31,12 @@ public class Messages extends NLS {
 
 	public static String CornerDataProvider_InvertAxis;
 
+	public static String EditConfiguration_ConfigurationFactoryNotFound;
+
+	public static String EditConfiguration_ConfigurationNotFound;
+
+	public static String EditConfiguration_DeclarationNotYetSupported;
+
 	public static String EObjectManager_AddAxisElement;
 
 	public static String NattableModelManager_AddColumnCommand;
