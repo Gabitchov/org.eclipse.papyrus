@@ -53,6 +53,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
@@ -63,7 +64,6 @@ import org.eclipse.papyrus.uml.diagram.activity.helper.IPinToParameterLinkComman
 import org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchronizer;
 import org.eclipse.papyrus.uml.diagram.activity.helper.datastructure.LinkPinToParameter;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLMarkerNavigationProvider;
-import org.eclipse.papyrus.uml.diagram.common.commands.DestroyElementPapyrusCommand;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -334,11 +334,11 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		//Command to reset all pins
 		CompoundCommand cmd = null;
 		if(invocationAction instanceof CallAction) {
-			cmd = PinAndParameterSynchronizer.getResetPinsCmd((CallAction)invocationAction);
+			cmd = PinAndParameterSynchronizer.getResetPinsCmd(invocationAction);
 		} else if(invocationAction instanceof SendSignalAction) {
-			cmd = PinAndParameterSynchronizer.getResetPinsCmd((SendSignalAction)invocationAction);
+			cmd = PinAndParameterSynchronizer.getResetPinsCmd(invocationAction);
 		} else if(invocationAction instanceof BroadcastSignalAction) {
-			cmd = PinAndParameterSynchronizer.getResetPinsCmd((BroadcastSignalAction)invocationAction);
+			cmd = PinAndParameterSynchronizer.getResetPinsCmd(invocationAction);
 		}
 		Element behaviorStructural = null;
 		if(invocationAction instanceof CallBehaviorAction) {
