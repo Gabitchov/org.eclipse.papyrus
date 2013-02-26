@@ -83,6 +83,8 @@ public class BlockEditHelperAdvice extends AbstractEditHelperAdvice {
 		// Add connector destroy command if needed
 		if(!(connectorToDelete.isEmpty())) {
 			DestroyDependentsRequest req = new DestroyDependentsRequest(request.getEditingDomain(), elementToEdit, false);
+			req.setClientContext(request.getClientContext());
+			req.addParameters(request.getParameters());
 			ICommand connectorDestroyCommand = req.getDestroyDependentsCommand(connectorToDelete);
 			if(connectorDestroyCommand != null) {
 				setCommand = CompositeCommand.compose(connectorDestroyCommand, setCommand);

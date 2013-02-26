@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -40,15 +39,7 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 	 * @param diResourceSet
 	 */
 	public void createModel(final ModelSet modelSet) {
-		TransactionalEditingDomain transactionalEditingDomain = modelSet.getTransactionalEditingDomain();
-		RecordingCommand command = new RecordingCommand(transactionalEditingDomain) {
-
-			@Override
-			protected void doExecute() {
-				runAsTransaction(modelSet);
-			}
-		};
-		transactionalEditingDomain.getCommandStack().execute(command);
+		runAsTransaction(modelSet);
 	}
 
 	/**
@@ -68,8 +59,6 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-				CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
 				EObject model = getRootElement(modelResource);
 				attachModelToResource(model, modelResource);
 

@@ -4,18 +4,6 @@
 <plugin>
  <!-- we provide a new navigator content for the tables. To be called, this navigator content should have an id beginning with org.eclipse.papyrus.views.modelexplorer.* -->
    <extension point="org.eclipse.ui.handlers">
-      <handler class="org.eclipse.papyrus.infra.table.modelexplorer.handlers.DeleteTableHandler" commandId="org.eclipse.ui.edit.delete">
-         <activeWhen>
-            <or>
-               <with variable="selection">
-                  <and>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.table.modelexplorer.tester.isTable" value="true">
-                     </test>
-                  </and>
-               </with>
-            </or>
-         </activeWhen>
-      </handler>
          <handler class="org.eclipse.papyrus.infra.table.modelexplorer.handlers.DuplicateTableHandler" commandId="org.eclipse.papyrus.views.modelexplorer.duplicate.command">
          <activeWhen>
             <and>

@@ -69,6 +69,8 @@ public class DeleteViewDuringBlockDeleteHelperAdvice extends AbstractEditHelperA
 
 		if(!(viewsToDestroy.isEmpty())) {
 			DestroyDependentsRequest req = new DestroyDependentsRequest(request.getEditingDomain(), elementToEdit, false);
+			req.setClientContext(request.getClientContext());
+			req.addParameters(request.getParameters());
 			return req.getDestroyDependentsCommand(viewsToDestroy);
 		}
 		

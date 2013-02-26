@@ -23,7 +23,12 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
-
+/**
+ * A Helper to build the command used to remove the page associated to the destroyed element
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class RemovePageHelper {
 
 	public static ICommand getRemovePageCommand(final TransactionalEditingDomain editingDomain, final EObject elementToDestroy) {

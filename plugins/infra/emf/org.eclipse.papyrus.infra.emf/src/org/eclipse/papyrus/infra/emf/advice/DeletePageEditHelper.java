@@ -17,7 +17,15 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-
+/**
+ * An EditHelper which applies to all Papyrus page identifiers (i.e. Tables, Diagrams, ...)
+ * When a page identifier object is deleted, the associated page is removed
+ * 
+ * This EditHelper will be called when a Page is deleted
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class DeletePageEditHelper extends AbstractEditHelper {
 
 	@Override

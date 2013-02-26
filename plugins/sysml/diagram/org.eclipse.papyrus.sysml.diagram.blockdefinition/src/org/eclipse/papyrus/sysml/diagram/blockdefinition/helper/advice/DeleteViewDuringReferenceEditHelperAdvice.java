@@ -69,6 +69,8 @@ public class DeleteViewDuringReferenceEditHelperAdvice extends AbstractEditHelpe
 
 		if(!viewsToDestroy.isEmpty()) {
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getElementToEdit(), false);
+			ddr.setClientContext(request.getClientContext());
+			ddr.addParameters(request.getParameters());
 			ICommand destroyViewsCommand = ddr.getDestroyDependentsCommand(viewsToDestroy);
 			setCommand = CompositeCommand.compose(setCommand, destroyViewsCommand);
 		}

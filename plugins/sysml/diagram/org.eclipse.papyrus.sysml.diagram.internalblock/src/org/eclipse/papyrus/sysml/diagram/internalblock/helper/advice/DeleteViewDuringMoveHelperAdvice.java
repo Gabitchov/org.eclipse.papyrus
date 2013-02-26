@@ -63,6 +63,8 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 
 		if(!viewsToDestroy.isEmpty()) {
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getTargetContainer(), false);
+			ddr.setClientContext(request.getClientContext());
+			ddr.addParameters(request.getParameters());
 			ICommand destroyViewsCommand = ddr.getDestroyDependentsCommand(viewsToDestroy);
 			moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
 		}

@@ -254,6 +254,8 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		//return the command to destroy all these views
 		if(!viewsToDestroy.isEmpty()) {
 			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
+			ddr.setClientContext(request.getClientContext());
+			ddr.addParameters(request.getParameters());
 			ICommand destroyViewsCommand = ddr.getDestroyDependentsCommand(viewsToDestroy);
 			gmfCommand = CompositeCommand.compose(gmfCommand, destroyViewsCommand);
 		}
