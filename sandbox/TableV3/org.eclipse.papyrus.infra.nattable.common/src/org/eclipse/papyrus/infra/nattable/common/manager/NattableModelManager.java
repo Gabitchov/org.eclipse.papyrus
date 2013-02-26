@@ -48,7 +48,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 
 
-public class NattableModelManager implements INattableModelManager {
+public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
 
 	/**
 	 * the column manager
@@ -63,8 +63,6 @@ public class NattableModelManager implements INattableModelManager {
 	/**
 	 * the model of the table on which we are working
 	 */
-	private final Table pTable;
-
 	private List<Object> verticalElements;
 
 	private List<Object> horizontalElements;
@@ -84,7 +82,8 @@ public class NattableModelManager implements INattableModelManager {
 	 *        the model of the managed table
 	 */
 	public NattableModelManager(final Table rawModel) {
-		this.pTable = rawModel;
+		super(rawModel);
+		//		this.table = rawModel;
 		this.rowProvider = rawModel.getHorizontalContentProvider();
 		this.columnProvider = rawModel.getVerticalContentProvider();
 		this.verticalElements = new ArrayList<Object>();
@@ -133,11 +132,11 @@ public class NattableModelManager implements INattableModelManager {
 	protected void init() {
 		final List<String> verticalContentProviderIds = getVerticalContentProviderIds();
 		assert !verticalContentProviderIds.isEmpty();
-		this.columnManager = createAxisManager(verticalContentProviderIds, this.pTable.getVerticalContentProvider());
+		this.columnManager = createAxisManager(verticalContentProviderIds, this.table.getVerticalContentProvider());
 
 		final List<String> horizontalContentProviderIds = getHorizontalContentProviderIds();
 		assert !horizontalContentProviderIds.isEmpty();
-		this.rowManager = createAxisManager(horizontalContentProviderIds, this.pTable.getHorizontalContentProvider());
+		this.rowManager = createAxisManager(horizontalContentProviderIds, this.table.getHorizontalContentProvider());
 	}
 
 	/**
@@ -152,14 +151,14 @@ public class NattableModelManager implements INattableModelManager {
 	protected IAxisManager createAxisManager(final List<String> ids, final IAxisContentsProvider contentProvider) {
 		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
 		for(final String id : ids) {
-			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(this, id, this.pTable, contentProvider, ids.size() == 1);
+			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(this, id, this.table, contentProvider, ids.size() == 1);
 			assert manager != null;
 			managers.add(manager);
 		}
 		IAxisManager manager = null;
 		if(managers.size() > 1) {
 			manager = new CompositeAxisManager();
-			manager.init(this, "", this.pTable, contentProvider, true); //$NON-NLS-1$
+			manager.init(this, "", this.table, contentProvider, true); //$NON-NLS-1$
 			((CompositeAxisManager)manager).setAxisManager(managers);
 		} else {
 			manager = managers.get(0);
@@ -173,7 +172,7 @@ public class NattableModelManager implements INattableModelManager {
 	 *         the list of the ids of the axis manager to use for the vertical axis
 	 */
 	protected List<String> getVerticalContentProviderIds() {
-		return this.pTable.getVerticalContentProvider().getJavaContentProviderIds();
+		return this.table.getVerticalContentProvider().getJavaContentProviderIds();
 	}
 
 	/**
@@ -183,7 +182,7 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 
 	protected List<String> getHorizontalContentProviderIds() {
-		return this.pTable.getHorizontalContentProvider().getJavaContentProviderIds();
+		return this.table.getHorizontalContentProvider().getJavaContentProviderIds();
 	}
 
 	/**
@@ -206,7 +205,7 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	@Override
 	public void addRows(final Collection<Object> objectToAdd) {
-		final EditingDomain domain = getEditingDomain(this.pTable);
+		final EditingDomain domain = getEditingDomain(this.table);
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
 		Command tmp = this.rowManager.getAddAxisCommand(domain, objectToAdd);
 		if(tmp != null) {
@@ -253,7 +252,7 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	@Override
 	public void addColumns(final Collection<Object> objectToAdd) {
-		final EditingDomain domain = getEditingDomain(this.pTable);
+		final EditingDomain domain = getEditingDomain(this.table);
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
 		Command tmp = this.columnManager.getAddAxisCommand(domain, objectToAdd);
 		if(tmp != null) {
@@ -324,7 +323,7 @@ public class NattableModelManager implements INattableModelManager {
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
-		CellManagerFactory.INSTANCE.setCellValue(getEditingDomain(pTable), obj1, obj2, newValue);
+		CellManagerFactory.INSTANCE.setCellValue(getEditingDomain(table), obj1, obj2, newValue);
 	}
 
 	/**
@@ -464,10 +463,10 @@ public class NattableModelManager implements INattableModelManager {
 	 */
 	public void invertAxis() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_SwitchLinesAndColumns);
-		final EditingDomain domain = getEditingDomain(this.pTable);
-		boolean oldValue = this.pTable.isInvertAxis();
+		final EditingDomain domain = getEditingDomain(this.table);
+		boolean oldValue = this.table.isInvertAxis();
 		if(canInvertAxis()) {
-			Command tmp = new SetCommand(domain, this.pTable, NattablePackage.eINSTANCE.getTable_InvertAxis(), !oldValue);
+			Command tmp = new SetCommand(domain, this.table, NattablePackage.eINSTANCE.getTable_InvertAxis(), !oldValue);
 			cmd.append(tmp);
 			domain.getCommandStack().execute(cmd);
 		}
@@ -488,7 +487,7 @@ public class NattableModelManager implements INattableModelManager {
 
 	@Override
 	public Table getTable() {
-		return pTable;
+		return table;
 	}
 
 	public ITableAxisElementProvider getTableAxisElementProvider() {//FIXME : must be renamed?

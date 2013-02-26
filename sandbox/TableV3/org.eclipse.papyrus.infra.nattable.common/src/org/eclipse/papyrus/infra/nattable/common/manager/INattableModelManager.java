@@ -14,11 +14,18 @@
 package org.eclipse.papyrus.infra.nattable.common.manager;
 
 import java.util.Collection;
+import java.util.List;
 
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.common.layerstack.BodyLayerStack;
+import org.eclipse.papyrus.infra.nattable.common.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.services.IDisposable;
 
 
@@ -70,5 +77,10 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public Table getTable();
 
 	public ITableAxisElementProvider getTableAxisElementProvider();
+	
+	public NatTable createNattable(final Composite parent, int style, IWorkbenchPartSite site);
 
+	public LocationValue getLocationInTheTable(final Point location);
+	
+	public List<Object> getElementsList(final IAxisContentsProvider axisProvider);
 }
