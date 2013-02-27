@@ -16,9 +16,9 @@ package org.eclipse.papyrus.infra.nattable.common.manager;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.papyrus.infra.nattable.common.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.common.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -77,10 +77,18 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public Table getTable();
 
 	public ITableAxisElementProvider getTableAxisElementProvider();
-	
+
 	public NatTable createNattable(final Composite parent, int style, IWorkbenchPartSite site);
 
 	public LocationValue getLocationInTheTable(final Point location);
-	
+
 	public List<Object> getElementsList(final IAxisContentsProvider axisProvider);
+
+	public boolean canCreateRowElement(String elementType);
+
+	public boolean canCreateColumnElement(String elementType);
+
+	public Command getAddRowElementCommand(Collection<Object> objectsToAdd);
+
+	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
 }

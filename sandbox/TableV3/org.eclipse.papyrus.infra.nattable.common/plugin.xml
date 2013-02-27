@@ -78,6 +78,18 @@
           </visibleWhen>
        </command>
     </menuContribution>
+    <menuContribution
+          allPopups="false"
+          locationURI="org.eclipse.papyrus.infra.nattable.common.menuContribution2">
+    </menuContribution>
+    <menuContribution
+          allPopups="true"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <menu
+             id="table.common.menu"
+             label="Add Axis Element">
+       </menu>
+    </menuContribution>
  </extension>
  <extension
        point="org.eclipse.ui.handlers">

@@ -27,7 +27,6 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
@@ -44,8 +43,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
 
 
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
@@ -468,6 +465,49 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public boolean canInvertAxis() {
 		return columnManager.canBeUsedAsRowManager() && rowManager.canBeUsedAsColumnManager();
 	}
+
+
+	public boolean canCreateRowElement(String elementType) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+	public boolean canCreateColumnElement(String elementType) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+	public Command getAddRowElementCommand(Collection<Object> objectsToAdd) {
+		final EditingDomain domain = getEditingDomain(this.table);
+		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
+		Command tmp = this.rowManager.getAddAxisCommand(domain, objectsToAdd);
+		if(tmp != null) {
+			cmd.append(tmp);
+		}
+		tmp = this.columnManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
+		if(tmp != null) {
+			cmd.append(tmp);
+		}
+		return cmd;
+	}
+
+
+	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd) {
+		final EditingDomain domain = getEditingDomain(this.table);
+		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
+		Command tmp = this.columnManager.getAddAxisCommand(domain, objectsToAdd);
+		if(tmp != null) {
+			cmd.append(tmp);
+		}
+		tmp = this.rowManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
+		if(tmp != null) {
+			cmd.append(tmp);
+		}
+		return cmd;
+	}
+
 
 
 	public boolean declareEditorsOnColumns() {

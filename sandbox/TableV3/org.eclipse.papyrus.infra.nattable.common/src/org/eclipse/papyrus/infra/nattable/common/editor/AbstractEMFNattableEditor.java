@@ -131,7 +131,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	@Override
 	public void createPartControl(final Composite parent) {
-		this.tableManager.createNattable(parent, SWT.NONE, null);
+		this.tableManager.createNattable(parent, SWT.NONE, getSite());
 	}
 
 	@Override
