@@ -15,26 +15,6 @@
 -->
 
 <plugin>
-
-
-
-
-
-
-
-
-
-
-
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated nattableconfiguration -->
-      <package
-            uri="http://www.eclipse.org/papyrus/nattableconfiguration/model"
-            class="org.eclipse.papyrus.infra.nattable.model.nattableconfiguration.NattableconfigurationPackage"
-            genModel="model/nattableconfiguration.genmodel"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated nattable -->
       <package
