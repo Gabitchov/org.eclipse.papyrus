@@ -306,6 +306,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Property_3041(Property instance) {
+		try {
+			Object value_0 = name_Property_3041(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Property_3018(Property instance) {
 		try {
 			Object value_0 = name_Property_3018(instance);
@@ -381,6 +393,18 @@ public class ElementInitializers {
 	public void init_Operation_3007(Operation instance) {
 		try {
 			Object value_0 = name_Operation_3007(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Operation_3042(Operation instance) {
+		try {
+			Object value_0 = name_Operation_3042(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -918,6 +942,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_Property_3041(Property self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Property_3018(Property self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -961,6 +992,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Operation_3007(Operation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Operation_3042(Operation self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

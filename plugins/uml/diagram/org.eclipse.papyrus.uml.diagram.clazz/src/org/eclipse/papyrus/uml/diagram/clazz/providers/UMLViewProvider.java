@@ -217,11 +217,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case PropertyForClassEditPart.VISUAL_ID:
 				case PropertyForSignalEditPart.VISUAL_ID:
 				case PropertyForInterfaceEditPart.VISUAL_ID:
+				case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
 				case PropertyforDataTypeEditPart.VISUAL_ID:
 				case NestedClassForClassEditPart.VISUAL_ID:
 				case NestedClassForInterfaceEditPart.VISUAL_ID:
 				case OperationForClassEditPart.VISUAL_ID:
 				case OperationForInterfaceEditpart.VISUAL_ID:
+				case OperationForPrimitiveTypeEditPart.VISUAL_ID:
 				case OperationForDataTypeEditPart.VISUAL_ID:
 				case InstanceSpecificationEditPartCN.VISUAL_ID:
 				case ComponentEditPartCN.VISUAL_ID:
@@ -241,7 +243,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return DependencyNodeEditPart.VISUAL_ID == visualID || AssociationClassEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || InformationItemEditPart.VISUAL_ID == visualID || ClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || PropertyForClassEditPart.VISUAL_ID == visualID || PropertyForComponentEditPart.VISUAL_ID == visualID || PropertyForSignalEditPart.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || PropertyforDataTypeEditPart.VISUAL_ID == visualID || NestedClassForClassEditPart.VISUAL_ID == visualID || NestedClassForComponentEditPart.VISUAL_ID == visualID || NestedClassForInterfaceEditPart.VISUAL_ID == visualID || OperationForClassEditPart.VISUAL_ID == visualID || OperationForComponentEditPart.VISUAL_ID == visualID || OperationForInterfaceEditpart.VISUAL_ID == visualID || OperationForDataTypeEditPart.VISUAL_ID == visualID || ConnectableElementTemplateParameterEditPart.VISUAL_ID == visualID || OperationTemplateParameterEditPart.VISUAL_ID == visualID || ClassifierTemplateParameterEditPart.VISUAL_ID == visualID || TemplateParameterEditPart.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || ReceptionEditPart.VISUAL_ID == visualID || ReceptionInInterfaceEditPart.VISUAL_ID == visualID || SlotEditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID || ContainmentCircleEditPart.VISUAL_ID == visualID || TemplateSignatureEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || InformationItemEditPartCN.VISUAL_ID == visualID || ClassEditPartCN.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || NestedInterfaceForClassEditPart.VISUAL_ID == visualID || NestedInterfaceForComponentEditPart.VISUAL_ID == visualID || NestedInterfaceForInterfaceEditPart.VISUAL_ID == visualID;
+		return DependencyNodeEditPart.VISUAL_ID == visualID || AssociationClassEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || InformationItemEditPart.VISUAL_ID == visualID || ClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || PropertyForClassEditPart.VISUAL_ID == visualID || PropertyForComponentEditPart.VISUAL_ID == visualID || PropertyForSignalEditPart.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || PropertyforPrimitiveTypeEditPart.VISUAL_ID == visualID || PropertyforDataTypeEditPart.VISUAL_ID == visualID || NestedClassForClassEditPart.VISUAL_ID == visualID || NestedClassForComponentEditPart.VISUAL_ID == visualID || NestedClassForInterfaceEditPart.VISUAL_ID == visualID || OperationForClassEditPart.VISUAL_ID == visualID || OperationForComponentEditPart.VISUAL_ID == visualID || OperationForInterfaceEditpart.VISUAL_ID == visualID || OperationForPrimitiveTypeEditPart.VISUAL_ID == visualID || OperationForDataTypeEditPart.VISUAL_ID == visualID || ConnectableElementTemplateParameterEditPart.VISUAL_ID == visualID || OperationTemplateParameterEditPart.VISUAL_ID == visualID || ClassifierTemplateParameterEditPart.VISUAL_ID == visualID || TemplateParameterEditPart.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || ReceptionEditPart.VISUAL_ID == visualID || ReceptionInInterfaceEditPart.VISUAL_ID == visualID || SlotEditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID || ContainmentCircleEditPart.VISUAL_ID == visualID || TemplateSignatureEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || InformationItemEditPartCN.VISUAL_ID == visualID || ClassEditPartCN.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || NestedInterfaceForClassEditPart.VISUAL_ID == visualID || NestedInterfaceForComponentEditPart.VISUAL_ID == visualID || NestedInterfaceForInterfaceEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -350,6 +352,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createProperty_3005(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return createProperty_3006(domainElement, containerView, index, persisted, preferencesHint);
+		case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
+			return createProperty_3041(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return createProperty_3018(domainElement, containerView, index, persisted, preferencesHint);
 		case NestedClassForClassEditPart.VISUAL_ID:
@@ -364,6 +368,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createOperation_3003(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationForInterfaceEditpart.VISUAL_ID:
 			return createOperation_3007(domainElement, containerView, index, persisted, preferencesHint);
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return createOperation_3042(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
@@ -762,6 +768,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "PrimitiveType");
 		Node label5032 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
+		createCompartment(node, UMLVisualIDRegistry.getType(PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID), true, true, true, true);
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "PrimitiveType");
 		return node;
 	}
 
@@ -1010,6 +1019,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createProperty_3041(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(PropertyforPrimitiveTypeEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Property");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Node createProperty_3018(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -1104,6 +1128,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		node.setType(UMLVisualIDRegistry.getType(OperationForInterfaceEditpart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Operation");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createOperation_3042(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(OperationForPrimitiveTypeEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
@@ -1501,6 +1540,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "PrimitiveType");
 		Node label5058 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPartCN.VISUAL_ID));
+		createCompartment(node, UMLVisualIDRegistry.getType(PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "PrimitiveType");
 		return node;
 	}
 

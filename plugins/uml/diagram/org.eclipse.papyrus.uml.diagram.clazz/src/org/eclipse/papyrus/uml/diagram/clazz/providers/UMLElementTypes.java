@@ -86,6 +86,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForClassEditPar
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
@@ -99,6 +100,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForComponentEdit
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforPrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionInInterfaceEditPart;
@@ -277,6 +279,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Property_3041 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Property_3041"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Property_3018 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Property_3018"); //$NON-NLS-1$
 
 	/**
@@ -308,6 +315,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Operation_3007 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Operation_3042 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Operation_3042"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -710,6 +722,7 @@ public class UMLElementTypes {
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Property_3005, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Property_3006, UMLPackage.eINSTANCE.getProperty());
+			elements.put(Property_3041, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Property_3018, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Class_3014, UMLPackage.eINSTANCE.getClass_());
 			elements.put(Class_3004, UMLPackage.eINSTANCE.getClass_());
@@ -717,6 +730,7 @@ public class UMLElementTypes {
 			elements.put(Operation_3013, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Operation_3007, UMLPackage.eINSTANCE.getOperation());
+			elements.put(Operation_3042, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Operation_3019, UMLPackage.eINSTANCE.getOperation());
 			elements.put(ConnectableElementTemplateParameter_3034, UMLPackage.eINSTANCE.getConnectableElementTemplateParameter());
 			elements.put(OperationTemplateParameter_3035, UMLPackage.eINSTANCE.getOperationTemplateParameter());
@@ -810,6 +824,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
 			KNOWN_ELEMENT_TYPES.add(Property_3005);
 			KNOWN_ELEMENT_TYPES.add(Property_3006);
+			KNOWN_ELEMENT_TYPES.add(Property_3041);
 			KNOWN_ELEMENT_TYPES.add(Property_3018);
 			KNOWN_ELEMENT_TYPES.add(Class_3014);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
@@ -817,6 +832,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Operation_3013);
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
 			KNOWN_ELEMENT_TYPES.add(Operation_3007);
+			KNOWN_ELEMENT_TYPES.add(Operation_3042);
 			KNOWN_ELEMENT_TYPES.add(Operation_3019);
 			KNOWN_ELEMENT_TYPES.add(ConnectableElementTemplateParameter_3034);
 			KNOWN_ELEMENT_TYPES.add(OperationTemplateParameter_3035);
@@ -932,6 +948,8 @@ public class UMLElementTypes {
 			return Property_3005;
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return Property_3006;
+		case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
+			return Property_3041;
 		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return Property_3018;
 		case NestedClassForClassEditPart.VISUAL_ID:
@@ -946,6 +964,8 @@ public class UMLElementTypes {
 			return Operation_3003;
 		case OperationForInterfaceEditpart.VISUAL_ID:
 			return Operation_3007;
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return Operation_3042;
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return Operation_3019;
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:

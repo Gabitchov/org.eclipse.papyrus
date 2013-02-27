@@ -583,11 +583,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createOperation15CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(4);
+		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.Operation_3003);
 		types.add(UMLElementTypes.Operation_3007);
 		types.add(UMLElementTypes.Operation_3013);
 		types.add(UMLElementTypes.Operation_3019);
+		types.add(UMLElementTypes.Operation_3042);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -617,12 +618,13 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createProperty18CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(5);
+		List<IElementType> types = new ArrayList<IElementType>(6);
 		types.add(UMLElementTypes.Property_3002);
 		types.add(UMLElementTypes.Property_3005);
 		types.add(UMLElementTypes.Property_3006);
 		types.add(UMLElementTypes.Property_3012);
 		types.add(UMLElementTypes.Property_3018);
+		types.add(UMLElementTypes.Property_3041);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

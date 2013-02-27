@@ -136,6 +136,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new PropertyForSignalEditPart(view);
 			case PropertyForInterfaceEditPart.VISUAL_ID:
 				return new PropertyForInterfaceEditPart(view);
+			case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
+				return new PropertyforPrimitiveTypeEditPart(view);
 			case PropertyforDataTypeEditPart.VISUAL_ID:
 				return new PropertyforDataTypeEditPart(view);
 			case NestedClassForClassEditPart.VISUAL_ID:
@@ -150,6 +152,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new OperationForComponentEditPart(view);
 			case OperationForInterfaceEditpart.VISUAL_ID:
 				return new OperationForInterfaceEditpart(view);
+			case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+				return new OperationForPrimitiveTypeEditPart(view);
 			case OperationForDataTypeEditPart.VISUAL_ID:
 				return new OperationForDataTypeEditPart(view);
 			case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
@@ -254,6 +258,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InterfaceOperationCompartmentEditPartCN(view);
 			case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
 				return new InterfaceNestedClassifierCompartmentEditPartCN(view);
+			case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+				return new PrimitiveTypeAttributeCompartmentEditPartCN(view);
+			case PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID:
+				return new PrimitiveTypeOperationCompartmentEditPartCN(view);
 			case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
 				return new DataTypeAttributeCompartmentEditPartCN(view);
 			case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
@@ -284,6 +292,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InterfaceOperationCompartmentEditPart(view);
 			case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
 				return new InterfaceNestedClassifierCompartmentEditPart(view);
+			case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
+				return new PrimitiveTypeAttributeCompartmentEditPart(view);
+			case PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID:
+				return new PrimitiveTypeOperationCompartmentEditPart(view);
 			case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
 				return new DataTypeAttributeCompartmentEditPart(view);
 			case DataTypeOperationCompartmentEditPart.VISUAL_ID:

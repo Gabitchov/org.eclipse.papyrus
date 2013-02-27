@@ -81,7 +81,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLClassDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3018,3014,3004,3008,3013,3003,3007,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3041,3018,3014,3004,3008,3013,3003,3007,3042,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025,4026"/>
       </viewProvider>
    </extension>
@@ -93,7 +93,7 @@
             <method name="getType()" value="PapyrusUMLClassDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3018,3014,3004,3008,3013,3003,3007,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038"/>
+            <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3012,3002,3005,3006,3041,3018,3014,3004,3008,3013,3003,3007,3042,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025,4026"/>
@@ -102,7 +102,7 @@
             <method name="getType()" value="1,5066,5002,5005,5008,5011,5020,5023,5026,5161,5029,5032,5035,5037,5159,5038,0,5155,5156,5153,5154,5157,5158,5040,5043,5046,5049,5052,5055,5017,5162,5014,5058,5061,5063,5064,5160"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7011,7012,7013,7023,7024,7025,7026,7027,7028,7029,7032,7033,7030,7010,7031,7035,7017,7018,7019,7002,7003,7004,7006,7007,7008,7020,7021,7034,7001,7005,7009,7016,7015,7036,7037,7014,7038"/>
+            <method name="getType()" value="7011,7012,7013,7023,7024,7025,7026,7027,7028,7029,7041,7042,7032,7033,7030,7010,7031,7035,7017,7018,7019,7002,7003,7004,7006,7007,7008,7039,7040,7020,7021,7034,7001,7005,7009,7016,7015,7036,7037,7014,7038"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -137,6 +137,7 @@
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForComponentEditPart" id="Property_3002"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPart" id="Property_3005"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForInterfaceEditPart" id="Property_3006"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforPrimitiveTypeEditPart" id="Property_3041"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart" id="Property_3018"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart" id="Class_3014"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForComponentEditPart" id="Class_3004"/>
@@ -144,6 +145,7 @@
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForClassEditPart" id="Operation_3013"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart" id="Operation_3003"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart" id="Operation_3007"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart" id="Operation_3042"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart" id="Operation_3019"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart" id="ConnectableElementTemplateParameter_3034"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart" id="OperationTemplateParameter_3035"/>
@@ -172,7 +174,7 @@
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForClassEditPart" id="Interface_3036"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForComponentEditPart" id="Interface_3037"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterfaceEditPart" id="Interface_3038"/>
-         <context elements="Package_1000,Dependency_2014,AssociationClass_2013,Association_2015,InstanceSpecification_2001,Component_2002,Signal_2003,Interface_2004,Model_2005,Enumeration_2006,Package_2007,InformationItem_2099,Class_2008,PrimitiveType_2009,DataType_2010,Constraint_2011,Comment_2012,Diagram_2016,DurationObservation_2095,TimeObservation_2096,NamedElement_2097,NamedElement_2098,Property_3012,Property_3002,Property_3005,Property_3006,Property_3018,Class_3014,Class_3004,Class_3008,Operation_3013,Operation_3003,Operation_3007,Operation_3019,ConnectableElementTemplateParameter_3034,OperationTemplateParameter_3035,ClassifierTemplateParameter_3031,TemplateParameter_3016,EnumerationLiteral_3017,Reception_3011,Reception_3039,Slot_3030,RedefinableTemplateSignature_3015,Node_3032,TemplateSignature_3033,InstanceSpecification_3020,Component_3021,Signal_3022,Interface_3023,Model_3024,Enumeration_3025,Package_3009,InformationItem_3040,Class_3010,PrimitiveType_3026,DataType_3027,Comment_3028,Constraint_3029,Interface_3036,Interface_3037,Interface_3038"/>
+         <context elements="Package_1000,Dependency_2014,AssociationClass_2013,Association_2015,InstanceSpecification_2001,Component_2002,Signal_2003,Interface_2004,Model_2005,Enumeration_2006,Package_2007,InformationItem_2099,Class_2008,PrimitiveType_2009,DataType_2010,Constraint_2011,Comment_2012,Diagram_2016,DurationObservation_2095,TimeObservation_2096,NamedElement_2097,NamedElement_2098,Property_3012,Property_3002,Property_3005,Property_3006,Property_3041,Property_3018,Class_3014,Class_3004,Class_3008,Operation_3013,Operation_3003,Operation_3007,Operation_3042,Operation_3019,ConnectableElementTemplateParameter_3034,OperationTemplateParameter_3035,ClassifierTemplateParameter_3031,TemplateParameter_3016,EnumerationLiteral_3017,Reception_3011,Reception_3039,Slot_3030,RedefinableTemplateSignature_3015,Node_3032,TemplateSignature_3033,InstanceSpecification_3020,Component_3021,Signal_3022,Interface_3023,Model_3024,Enumeration_3025,Package_3009,InformationItem_3040,Class_3010,PrimitiveType_3026,DataType_3027,Comment_3028,Constraint_3029,Interface_3036,Interface_3037,Interface_3038"/>
       </modelingAssistantProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
@@ -441,6 +443,15 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
+               id="org.eclipse.papyrus.uml.diagram.clazz.Property_3041"
+               name="%metatype.name.Property_3041"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
+            <param name="semanticHint" value="3041"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
                id="org.eclipse.papyrus.uml.diagram.clazz.Property_3018"
                name="%metatype.name.Property_3018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
@@ -502,6 +513,15 @@
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
             <param name="semanticHint" value="3007"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3042"
+               name="%metatype.name.Operation_3042"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
+            <param name="semanticHint" value="3042"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
@@ -1050,6 +1070,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3005"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3006"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3041"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Property_3018"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Class_3014"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Class_3004"/>
@@ -1057,6 +1078,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3013"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3042"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.Operation_3019"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.ConnectableElementTemplateParameter_3034"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.clazz.OperationTemplateParameter_3035"/>

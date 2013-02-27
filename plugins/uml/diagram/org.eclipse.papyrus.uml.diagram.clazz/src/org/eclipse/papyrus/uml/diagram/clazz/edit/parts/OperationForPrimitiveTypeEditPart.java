@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -19,7 +19,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -64,10 +63,10 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.NestedClassForInterfaceItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeOperationDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.OperationLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.OperationForPrimitiveTypeItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
@@ -75,14 +74,16 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -90,12 +91,12 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class OperationForPrimitiveTypeEditPart extends UMLCompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3008;
+	public static final int VISUAL_ID = 3042;
 
 	/**
 	 * @generated
@@ -134,7 +135,7 @@ public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
-	public NestedClassForInterfaceEditPart(View view) {
+	public OperationForPrimitiveTypeEditPart(View view) {
 		super(view);
 	}
 
@@ -153,10 +154,12 @@ public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart impl
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new NestedClassForInterfaceItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OperationForPrimitiveTypeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeOperationDisplayEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new OperationLabelEditPolicy());
 	}
 
 	/**
@@ -247,16 +250,6 @@ public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart impl
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if(parserElement == null) {
-			return null;
-		}
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for(View view : views) {
-			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return UMLElementTypes.getImage(parserElement.eClass());
-			}
-		}
 		return null;
 	}
 
@@ -357,7 +350,7 @@ public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart impl
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Class_3008, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForInterfaceEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Operation_3042, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -601,7 +594,7 @@ public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart impl
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View)getModel();
 	}
 
 	/**
@@ -751,9 +744,6 @@ public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart impl
 				}
 			}
 		}
-		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
-			refreshLabel();
-		}
 		if(UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 		}
@@ -773,6 +763,25 @@ public class NestedClassForInterfaceEditPart extends UMLCompartmentEditPart impl
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new OperationFigureDescriptor();
 	}
+
+	/**
+	 * @generated
+	 */
+	public class OperationFigureDescriptor extends WrappingLabel {
+
+		/**
+		 * @generated
+		 */
+		public OperationFigureDescriptor() {
+			this.setText("");
+			this.setFont(THIS_FONT);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
 }

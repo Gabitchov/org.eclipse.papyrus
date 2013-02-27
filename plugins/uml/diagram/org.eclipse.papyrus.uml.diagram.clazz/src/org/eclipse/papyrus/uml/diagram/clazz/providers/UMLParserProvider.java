@@ -97,6 +97,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterf
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageNameEditPartCN;
@@ -106,6 +107,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForComponentEdit
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforPrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionInInterfaceEditPart;
@@ -569,6 +571,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser property_3041Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProperty_3041Parser() {
+		if(property_3041Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			property_3041Parser = parser;
+		}
+		return property_3041Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser property_3018Parser;
 
 	/**
@@ -666,6 +685,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			operation_3007Parser = parser;
 		}
 		return operation_3007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser operation_3042Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperation_3042Parser() {
+		if(operation_3042Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			operation_3042Parser = parser;
+		}
+		return operation_3042Parser;
 	}
 
 	/**
@@ -1710,6 +1746,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getProperty_3005Parser();
 		case PropertyForInterfaceEditPart.VISUAL_ID:
 			return getProperty_3006Parser();
+		case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
+			return getProperty_3041Parser();
 		case PropertyforDataTypeEditPart.VISUAL_ID:
 			return getProperty_3018Parser();
 		case NestedClassForClassEditPart.VISUAL_ID:
@@ -1722,6 +1760,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOperation_3003Parser();
 		case OperationForInterfaceEditpart.VISUAL_ID:
 			return getOperation_3007Parser();
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return getOperation_3042Parser();
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperation_3019Parser();
 		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:

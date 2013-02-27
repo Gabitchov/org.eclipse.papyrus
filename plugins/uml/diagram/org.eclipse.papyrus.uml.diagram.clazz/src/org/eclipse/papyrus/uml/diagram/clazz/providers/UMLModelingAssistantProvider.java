@@ -176,6 +176,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Interface_3036);
 			return types;
 		}
+		if(editPart instanceof PrimitiveTypeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Property_3041);
+			types.add(UMLElementTypes.Operation_3042);
+			return types;
+		}
 		if(editPart instanceof DataTypeEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
@@ -251,6 +257,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Reception_3011);
 			types.add(UMLElementTypes.Operation_3013);
 			types.add(UMLElementTypes.Class_3014);
+			return types;
+		}
+		if(editPart instanceof PrimitiveTypeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Property_3041);
+			types.add(UMLElementTypes.Operation_3042);
 			return types;
 		}
 		if(editPart instanceof DataTypeEditPartCN) {

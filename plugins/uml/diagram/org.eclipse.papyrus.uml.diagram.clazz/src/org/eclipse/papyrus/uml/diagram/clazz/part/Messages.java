@@ -795,6 +795,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String PrimitiveTypeAttributeCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PrimitiveTypeOperationCompartmentEditPartCN_title;
+
+	/**
+	 * @generated
+	 */
 	public static String DataTypeAttributeCompartmentEditPartCN_title;
 
 	/**
@@ -866,6 +876,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String InterfaceNestedClassifierCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PrimitiveTypeAttributeCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PrimitiveTypeOperationCompartmentEditPart_title;
 
 	/**
 	 * @generated
