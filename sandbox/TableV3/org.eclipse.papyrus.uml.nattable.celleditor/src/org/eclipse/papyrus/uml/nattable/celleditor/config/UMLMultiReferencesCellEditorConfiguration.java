@@ -8,17 +8,18 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.MultiReferenceCellEditor;
+import org.eclipse.papyrus.infra.nattable.common.celleditor.configs.AbstractCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.uml.nattable.celleditor.editor.MultiReferencesCellEditor;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
-public class MultiReferenceCellEditorConfiguration extends AbstractCellEditorConfiguration {
+public class UMLMultiReferencesCellEditorConfiguration extends AbstractCellEditorConfiguration {
 
 
-	public static final String EDITOR_ID = "UMLNAryReferenceEditor";
+	public static final String EDITOR_ID = "UML_NAryReference_Dialog";
 
-	
+
 
 	public IDisplayConverter getDisplayConvert(ILabelProvider provider) {
 		return new DefaultDisplayConverter() {
@@ -30,11 +31,6 @@ public class MultiReferenceCellEditorConfiguration extends AbstractCellEditorCon
 	}
 
 	public ICellPainter getCellPainter() {
-		return null;
-	}
-
-	public ICellEditor getICellEditor(Object element) {
-		//		return new MultiReferenceCellEditor(tableManager);
 		return null;
 	}
 
@@ -50,7 +46,11 @@ public class MultiReferenceCellEditorConfiguration extends AbstractCellEditorCon
 		return true;
 	}
 
-	public String getConfigEditorId() {
+	public ICellEditor getICellEditor(Object axisElement, ITableAxisElementProvider elementProvider) {
+		return new MultiReferencesCellEditor(elementProvider);
+	}
+
+	public String getEditorId() {
 		return EDITOR_ID;
 	}
 

@@ -43,6 +43,11 @@
             factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
             order="134">
       </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLMultiReferencesCellEditorConfiguration"
+            factoryId="org.eclipse.papyrus.emf.nattable.celleditor.emffactory"
+            order="50">
+      </configuration>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration.factory">

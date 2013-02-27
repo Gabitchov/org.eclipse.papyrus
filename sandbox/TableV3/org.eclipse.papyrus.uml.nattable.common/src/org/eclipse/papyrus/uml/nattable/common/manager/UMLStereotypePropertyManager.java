@@ -175,14 +175,14 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canInsertAxis(java.util.Collection, int)
-	 * 
 	 * @param objectsToAdd
 	 * @param index
+	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canInsertAxis(EditingDomain, java.util.Collection, int)
+	 * 
 	 * @return
 	 */
-	@Override
-	public boolean canInsertAxis(Collection<Object> objectsToAdd, int index) {
+
+	public boolean canInsertAxis(EditingDomain domain, Collection<Object> objectsToAdd, int index) {
 		return false;
 	}
 
