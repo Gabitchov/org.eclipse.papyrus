@@ -30,8 +30,8 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ComboBoxPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.configs.AbstractCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
 
 
 public class EMFSingleEEnumEditorConfig extends AbstractCellEditorConfiguration {

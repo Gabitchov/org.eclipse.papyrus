@@ -22,8 +22,8 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ComboBoxPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.configs.AbstractCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
 import org.eclipse.papyrus.uml.nattable.celleditor.dataprovider.UMLSingleReferenceDataProvider;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -49,7 +49,7 @@ public class UMLSingleReferenceComboCellEditorConfig extends AbstractCellEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#getCellPainter()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getCellPainter()
 	 * 
 	 * @return
 	 */
@@ -59,8 +59,8 @@ public class UMLSingleReferenceComboCellEditorConfig extends AbstractCellEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#getICellEditor(java.lang.Object,
-	 *      org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider)
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getICellEditor(java.lang.Object,
+	 *      org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider)
 	 * 
 	 * @param element
 	 * @param elementProvider
@@ -75,7 +75,7 @@ public class UMLSingleReferenceComboCellEditorConfig extends AbstractCellEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#getEditedType()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getEditedType()
 	 * 
 	 * @return
 	 */
@@ -85,7 +85,7 @@ public class UMLSingleReferenceComboCellEditorConfig extends AbstractCellEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#getDisplayMode()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getDisplayMode()
 	 * 
 	 * @return
 	 */
@@ -95,7 +95,7 @@ public class UMLSingleReferenceComboCellEditorConfig extends AbstractCellEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#isMany()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#isMany()
 	 * 
 	 * @return
 	 */
@@ -105,7 +105,7 @@ public class UMLSingleReferenceComboCellEditorConfig extends AbstractCellEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#getEditorId()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getEditorId()
 	 * 
 	 * @return
 	 */

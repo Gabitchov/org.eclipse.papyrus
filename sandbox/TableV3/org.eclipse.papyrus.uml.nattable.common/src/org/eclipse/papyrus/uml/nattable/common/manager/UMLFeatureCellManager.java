@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.nattable.common.solver.CellFeatureValueManager;
+import org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager;
 import org.eclipse.uml2.uml.UMLPackage;
 
 //FIXME : useless?

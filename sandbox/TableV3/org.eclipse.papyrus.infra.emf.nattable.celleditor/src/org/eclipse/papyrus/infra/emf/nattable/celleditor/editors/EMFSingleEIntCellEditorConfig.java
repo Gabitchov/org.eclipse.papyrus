@@ -57,7 +57,7 @@ public class EMFSingleEIntCellEditorConfig extends EMFSingleEStringCellEditorCon
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#getEditorId()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getEditorId()
 	 * 
 	 * @return
 	 */

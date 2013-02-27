@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.nattable.common.manager;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.nattable.common.manager.ICellManager;
+import org.eclipse.papyrus.infra.nattable.manager.ICellManager;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowPortNAMatcher;
 import org.eclipse.papyrus.uml.nattable.common.manager.StereotypePropertyCellManager;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;

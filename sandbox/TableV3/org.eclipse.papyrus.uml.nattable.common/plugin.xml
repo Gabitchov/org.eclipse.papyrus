@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.nattable.common.axismanager">
+         point="org.eclipse.papyrus.infra.nattable.axismanager">
       <axisManager
             id="org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider"
             manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLStereotypePropertyManager">
@@ -17,7 +17,7 @@
       </axisManager>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.nattable.common.cellmanager">
+         point="org.eclipse.papyrus.infra.nattable.cellmanager">
       <cellManager
             id="org.eclipse.papyrus.uml.nattable.common.uml.feature.cell.manager"
             manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLFeatureCellManager"

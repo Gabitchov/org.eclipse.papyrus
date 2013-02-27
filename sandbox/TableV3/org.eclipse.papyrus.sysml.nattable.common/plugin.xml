@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.nattable.common.cellmanager">
+         point="org.eclipse.papyrus.infra.nattable.cellmanager">
       <cellManager
             id="org.eclipse.papyrus.sysml.nattable.common.stereotype.property.cell.manager"
             manager="org.eclipse.papyrus.sysml.nattable.common.manager.SysMLStereotypePropertyCellManager"

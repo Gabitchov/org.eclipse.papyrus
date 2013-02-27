@@ -52,7 +52,7 @@ public class UMLSingleRealCellEditorConfig extends EMFSingleEStringCellEditorCon
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.AbstractCellEditorConfiguration#getDataValidator()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration#getDataValidator()
 	 * 
 	 * @return
 	 */

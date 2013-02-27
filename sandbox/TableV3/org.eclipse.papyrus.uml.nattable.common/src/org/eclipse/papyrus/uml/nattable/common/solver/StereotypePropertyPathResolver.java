@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.nattable.common.solver;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.nattable.common.solver.IPathResolver;
+import org.eclipse.papyrus.infra.nattable.solver.IPathResolver;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
 
 

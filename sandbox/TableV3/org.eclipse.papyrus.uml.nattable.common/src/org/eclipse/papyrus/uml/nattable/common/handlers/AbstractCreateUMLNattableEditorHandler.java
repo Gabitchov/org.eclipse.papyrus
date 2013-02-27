@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.nattable.common.handlers;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.nattable.common.editor.handler.AbstractCreateNattableEditorHandler;
+import org.eclipse.papyrus.infra.nattable.common.handlers.AbstractCreateNattableEditorHandler;
 import org.eclipse.uml2.uml.Element;
 
 

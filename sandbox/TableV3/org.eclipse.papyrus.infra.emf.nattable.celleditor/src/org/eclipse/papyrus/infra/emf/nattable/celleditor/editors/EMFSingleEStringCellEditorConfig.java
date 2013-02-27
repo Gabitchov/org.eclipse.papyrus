@@ -22,8 +22,8 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.TextCellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.configs.AbstractCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
 
 
 public class EMFSingleEStringCellEditorConfig extends AbstractCellEditorConfiguration {
@@ -95,7 +95,7 @@ public class EMFSingleEStringCellEditorConfig extends AbstractCellEditorConfigur
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration#getEditorId()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getEditorId()
 	 * 
 	 * @return
 	 */

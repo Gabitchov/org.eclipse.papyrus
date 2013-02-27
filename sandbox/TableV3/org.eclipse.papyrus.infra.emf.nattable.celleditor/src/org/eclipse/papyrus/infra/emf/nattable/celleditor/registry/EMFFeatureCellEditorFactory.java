@@ -30,8 +30,8 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.Activator;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.messages.Messages;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.configs.IAxisCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.factory.AbstractCellEditorConfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.celleditor.factory.AbstractCellEditorConfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
@@ -53,7 +53,7 @@ public class EMFFeatureCellEditorFactory extends AbstractCellEditorConfiguration
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.factory.AbstractCellEditorConfigurationFactory#initFactory(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.factory.AbstractCellEditorConfigurationFactory#initFactory(java.lang.String)
 	 * 
 	 * @param id
 	 */
@@ -96,7 +96,7 @@ public class EMFFeatureCellEditorFactory extends AbstractCellEditorConfiguration
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.factory.AbstractCellEditorConfigurationFactory#getCellEditorConfiguration(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.factory.AbstractCellEditorConfigurationFactory#getCellEditorConfiguration(java.lang.String)
 	 * 
 	 * @param id
 	 *        the id of the cell editor
@@ -114,7 +114,7 @@ public class EMFFeatureCellEditorFactory extends AbstractCellEditorConfiguration
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.factory.AbstractCellEditorConfigurationFactory#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.factory.AbstractCellEditorConfigurationFactory#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -130,7 +130,7 @@ public class EMFFeatureCellEditorFactory extends AbstractCellEditorConfiguration
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.factory.AbstractCellEditorConfigurationFactory#getCellEditorConfiguration(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.factory.AbstractCellEditorConfigurationFactory#getCellEditorConfiguration(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table

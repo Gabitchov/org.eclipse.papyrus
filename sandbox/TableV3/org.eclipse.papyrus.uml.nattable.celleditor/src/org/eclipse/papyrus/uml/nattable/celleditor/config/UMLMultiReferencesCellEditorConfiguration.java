@@ -8,8 +8,8 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.configs.AbstractCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
 import org.eclipse.papyrus.uml.nattable.celleditor.editor.MultiReferencesCellEditor;
 import org.eclipse.uml2.uml.UMLPackage;
 

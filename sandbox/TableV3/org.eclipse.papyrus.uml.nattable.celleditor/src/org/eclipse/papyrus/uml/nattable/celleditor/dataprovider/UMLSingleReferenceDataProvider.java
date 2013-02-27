@@ -21,7 +21,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
-import org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.TreeToFlatContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;

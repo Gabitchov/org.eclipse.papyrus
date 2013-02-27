@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.uml.nattable.common.manager;
 
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.papyrus.infra.nattable.common.manager.FeatureManager;
+import org.eclipse.papyrus.infra.nattable.manager.FeatureManager;
 
 /**
  *

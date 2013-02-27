@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.AbstractComboAction;
+import org.eclipse.papyrus.infra.nattable.celleditor.AbstractComboAction;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.uml.nattable.celleditor.dataprovider.UMLSingleReferenceDataProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;

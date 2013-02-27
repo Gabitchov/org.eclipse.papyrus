@@ -15,9 +15,9 @@ package org.eclipse.papyrus.uml.nattable.celleditor.config;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.ButtonConfiguration;
-import org.eclipse.papyrus.infra.nattable.common.celleditor.ComboBoxWithButtonCellEditor;
-import org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.celleditor.ButtonConfiguration;
+import org.eclipse.papyrus.infra.nattable.celleditor.ComboBoxWithButtonCellEditor;
+import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
 import org.eclipse.papyrus.uml.nattable.celleditor.dataprovider.UMLSingleReferenceDataProvider;
 import org.eclipse.papyrus.uml.nattable.celleditor.widget.UMLDialogComboAction;
 
@@ -29,7 +29,7 @@ public class UMLSingleReferenceComboWithButtonCellEditorConfig extends UMLSingle
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.nattable.celleditor.config.UMLSingleReferenceComboCellEditorConfig#getICellEditor(java.lang.Object,
-	 *      org.eclipse.papyrus.infra.nattable.common.manager.ITableAxisElementProvider)
+	 *      org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider)
 	 * 
 	 * @param element
 	 * @param elementProvider

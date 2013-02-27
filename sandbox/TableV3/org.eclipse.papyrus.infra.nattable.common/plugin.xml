@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<!--We declare the model used for the Papyrus Table Editor  -->
+   <extension point="org.eclipse.papyrus.infra.core.model">
+      <model classname="org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel" description="Model for Papyrus Nattable editors">
+      </model>
+   </extension>
+ <extension id="papyrus.table.menuspapyrus.table.menu" name="Papyrus Table Menus" point="org.eclipse.ui.menus">
+      <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
+         <menu icon="icons/table.gif" id="org.eclipse.papyrus.infra.nattable.popupmenu.createnattable" label="New Papyrus Nattable" mnemonic="&amp;T" tooltip="The Papyrus nattable menu">
+         </menu>
+      </menuContribution>
+      <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.ui.menu?after=org.eclipse.papyrus.uml.diagram.ui.menu.diagrams">
+         <menu
+               icon="icons/table.gif"
+               id="org.eclipse.papyrus.infra.nattable.menu.createnattable"
+               label="New Papyrus Nattable"
+               mnemonic="&amp;T"
+               tooltip="The Papyrus nattable menu">
+         </menu>
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.uml.diagram.ui.toolbar">
+         <toolbar id="org.eclipse.papyrus.infra.nattable.toolbar.createnattable" label="New Papyrus Nattable Toolbar">
+         </toolbar>
+      </menuContribution>
+   </extension>
+</plugin>

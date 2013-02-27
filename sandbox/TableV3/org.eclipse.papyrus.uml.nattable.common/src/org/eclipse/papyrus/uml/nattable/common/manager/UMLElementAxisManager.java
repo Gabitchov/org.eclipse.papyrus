@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.common.manager;
 
-import org.eclipse.papyrus.infra.nattable.common.manager.EObjectManager;
+import org.eclipse.papyrus.infra.nattable.manager.EObjectManager;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -25,7 +25,7 @@ public class UMLElementAxisManager extends EObjectManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.EObjectManager#isAllowedContents(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.EObjectManager#isAllowedContents(java.lang.Object)
 	 *
 	 * @param object
 	 * @return

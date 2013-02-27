@@ -28,7 +28,7 @@ public class UMLSingleUnlimitedNaturalCellEditorConfig extends EMFSingleEStringC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.celleditor.configs.AbstractCellEditorConfiguration#getDataValidator()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration#getDataValidator()
 	 * 
 	 * @return
 	 */

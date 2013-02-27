@@ -22,15 +22,15 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager;
-import org.eclipse.papyrus.infra.nattable.common.manager.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.common.solver.PathResolverFactory;
+import org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+import org.eclipse.papyrus.infra.nattable.solver.PathResolverFactory;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -163,7 +163,7 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canDropAxisElement(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canDropAxisElement(java.util.Collection)
 	 * 
 	 * @param objectsToAdd
 	 * @return
@@ -177,7 +177,7 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 	 * 
 	 * @param objectsToAdd
 	 * @param index
-	 * @see org.eclipse.papyrus.infra.nattable.common.manager.AbstractAxisManager#canInsertAxis(EditingDomain, java.util.Collection, int)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canInsertAxis(EditingDomain, java.util.Collection, int)
 	 * 
 	 * @return
 	 */
