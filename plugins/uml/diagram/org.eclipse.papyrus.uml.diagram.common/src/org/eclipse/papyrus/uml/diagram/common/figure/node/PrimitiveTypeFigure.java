@@ -1,132 +1,68 @@
-/*******************************************************************************
- * Copyright (c) 2006 CEA List.
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA List - initial API and implementation
- *******************************************************************************/
+ *  CEA List - initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Bug 345889 - [ClassDiagram] Compartment for properties and operations are not implemented yet for primitive type
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.Graphics;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.draw2d.geometry.Dimension;
 
 /**
- * Figure to represent primitive types
- * 
+ * Represents a Primitive Type
  */
-public class PrimitiveTypeFigure extends NodeNamedElementFigure {
+public class PrimitiveTypeFigure extends CompartmentFigure {
+
+	/** Attribute Compartment */
+	private final static String ATTRIBUTE_COMPARTMENT = "attributeCompartment";
+
+	/** Operation Compartment */
+	private final static String OPERATION_COMPARTMENT = "operationCompartment";
+
+	/** List of compartment */
+	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+
+		private static final long serialVersionUID =  -6373359195626265958L;
+
+		{
+			add(ATTRIBUTE_COMPARTMENT);
+			add(OPERATION_COMPARTMENT);
+		}
+	};
 
 	/**
-	 * The content pane.
-	 */
-	private Figure contentPane;
-
-	/**
-	 * 
-	 */
-	private Label tagLabel;
-
-	/**
-	 * constructor to create a TaggedElementFigure.
-	 * 
-	 * @param keyword
+	 * Default Constructor
 	 */
 	public PrimitiveTypeFigure() {
-		super("PrimitiveType");
-		ToolbarLayout layout = new ToolbarLayout();
-		layout.setStretchMinorAxis(true);
-		this.setLayoutManager(layout);
-
-		this.setOpaque(true); // non-transparent figure
-		// The area accepting inner figures.
-		createContentPane();
+		super(COMPARTMENT, "PrimitiveType");
 	}
 
 	/**
-	 * returns a container to add some graphical element as label for instance.
-	 * 
-	 * @return a container to add some new graphical elements
-	 */
-	// @unused
-	public IFigure getContentPane() {
-		return this.contentPane;
-	}
-
-	/**
-	 * this method is used to create the content figure.
-	 * 
-	 */
-	protected void createContentPane() {
-		contentPane = new Figure();
-		ToolbarLayout layout = new ToolbarLayout();
-		layout.setVertical(true);
-		this.contentPane.setLayoutManager(layout);
-		this.add(this.contentPane);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.cea.papyrus.core.common.figures.NodeFigure#getIconLabelPosition()
-	 */
-	/**
-	 * 
+	 * Get the attribute's compartment figure
 	 * 
 	 * @return
 	 */
-	@Override
-	protected int getIconLabelPosition() {
-		return 1;
-	}
-
-	@Override
-	public Dimension getMinimumDimension() {
-		int width = tagLabel.getTextBounds().width + 10;
-		int height = tagLabel.getTextBounds().height + 10;
-		Dimension dim = super.getMinimumDimension();
-		dim.height += height;
-		if(dim.width < width) {
-			dim.width = width;
-		}
-		return dim;
-
+	public IFigure getAttributeCompartmentFigure() {
+		return getCompartment(ATTRIBUTE_COMPARTMENT);
 	}
 
 	/**
-	 * Helper method to draw separate line between name and stereotypes
-	 * properties displays
+	 * Get the operation's compartment figure
 	 * 
-	 * @param graphics
+	 * @return
 	 */
-	// @unused
-	protected void drawSeparateLine(Graphics graphics) {
-		graphics.setForegroundColor(getBorderColor());
-		graphics.setBackgroundColor(getBorderColor());
-
-		if(this.getStereotypePropertiesContent() != null) {
-			int x = getBounds().x, w = getBounds().width;
-
-			// draw a line below name label
-			int y = getBounds().y + this.getNameHeight();
-
-			graphics.drawLine(x, y, x + w, y);
-		}
-
-	}
-
-	/**
-	 * Helper method to calculate the height of name
-	 */
-	@Override
-	protected int getNameHeight() {
-		return tagLabel.getTextBounds().height + super.getNameHeight();
+	public IFigure getOperationCompartmentFigure() {
+		return getCompartment(OPERATION_COMPARTMENT);
 	}
 }
