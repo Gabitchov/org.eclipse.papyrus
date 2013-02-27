@@ -27,6 +27,7 @@ import org.eclipse.nebula.widgets.nattable.config.IConfiguration;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
+import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
@@ -364,5 +365,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public void selectAll() {
 		natTable.doCommand(new SelectAllCommand());
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#exportToXLS()
+	 * 
+	 */
+	public void exportToXLS() {
+		natTable.doCommand(new ExportCommand(natTable.getConfigRegistry(), natTable.getShell()));
 	}
 }

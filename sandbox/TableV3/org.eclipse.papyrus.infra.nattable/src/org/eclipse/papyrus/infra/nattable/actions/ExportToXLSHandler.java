@@ -13,29 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.actions;
 
-import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 
 
-public abstract class AbstractTableHandler extends AbstractHandler {
+public class ExportToXLSHandler extends AbstractTableHandler {
 
-	protected IWorkbenchPart getActivePart() {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-	}
-
-	protected INattableModelManager getCurrentNattableModelManager() {
-		final IWorkbenchPart currentPart = getActivePart();
-		if(currentPart != null) {
-			final INattableModelManager manager = (INattableModelManager)currentPart.getAdapter(INattableModelManager.class);
-			return manager;
+	public Object execute(ExecutionEvent arg0) throws ExecutionException {
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			manager.exportToXLS();
 		}
 		return null;
 	}
 
-	@Override
-	public boolean isEnabled() {
-		return getCurrentNattableModelManager() != null;
-	}
 }

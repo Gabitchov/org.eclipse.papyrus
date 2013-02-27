@@ -34,7 +34,7 @@
                    variable="selection">
                 <test
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.common.editorpart.tester.isEMFNattableEditor"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
                       value="true">
                 </test>
              </with>
@@ -48,20 +48,26 @@
                    variable="selection">
                 <test
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.common.editorpart.tester.isEMFNattableEditor"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
                       value="true">
                 </test>
              </with>
           </visibleWhen>
        </command>
-    </menuContribution>
-    <menuContribution
-          allPopups="true"
-          locationURI="popup:org.eclipse.ui.popup.any">
-       <menu
-             id="table.common.menu"
-             label="Add Axis Element">
-       </menu>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
     </menuContribution>
  </extension>
  <extension
@@ -75,7 +81,7 @@
                    variable="selection">
                 <test
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.common.editorpart.tester.isEMFNattableEditor"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
                       value="true">
                 </test>
              </with>
@@ -91,7 +97,23 @@
                    variable="selection">
                 <test
                       forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.common.editorpart.tester.isEMFNattableEditor"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
+    <handler
+          class="org.eclipse.papyrus.infra.nattable.actions.ExportToXLSHandler"
+          commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand">
+       <activeWhen>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
                       value="true">
                 </test>
              </with>
@@ -102,10 +124,10 @@
  <extension
        point="org.eclipse.core.expressions.propertyTesters">
     <propertyTester
-          class="org.eclipse.papyrus.infra.nattable.NattableInstancePropertyTester"
-          id="org.eclipse.papyrus.infra.nattable.common.editorpart.tester"
-          namespace="org.eclipse.papyrus.infra.nattable.common.editorpart.tester"
-          properties="isEMFNattableEditor"
+          class="org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester"
+          id="org.eclipse.papyrus.infra.nattable.tester"
+          namespace="org.eclipse.papyrus.infra.nattable.tester"
+          properties="isNattableWidget"
           type="org.eclipse.jface.viewers.IStructuredSelection">
     </propertyTester>
  </extension>
@@ -146,6 +168,15 @@
 		<elementType ref="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"/>
 	</binding>
 		
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Export Table to XLS"
+         id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
+         name="Export Table to XLS Command">
+   </command>
 </extension>
 </plugin>
 

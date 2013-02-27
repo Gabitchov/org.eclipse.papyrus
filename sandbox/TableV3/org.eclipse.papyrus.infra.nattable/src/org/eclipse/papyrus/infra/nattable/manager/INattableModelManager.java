@@ -95,4 +95,6 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public void print();
 	
 	public void selectAll();
+
+	public void exportToXLS();
 }
