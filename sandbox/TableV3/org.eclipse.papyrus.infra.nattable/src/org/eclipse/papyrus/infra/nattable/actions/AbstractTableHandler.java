@@ -14,32 +14,23 @@
 package org.eclipse.papyrus.infra.nattable.actions;
 
 import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
-import org.eclipse.papyrus.infra.nattable.Activator;
-import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 
 
 public abstract class AbstractTableHandler extends AbstractHandler {
 
-	protected IEditorPart getCurrentTableEditor(final ExecutionEvent event) {
-		try {
-			return ServiceUtilsForHandlers.getInstance().getNestedActiveIEditorPart(event);
-		} catch (final ServiceException e) {
-			Activator.log.error(Messages.AbstractTableHandler_CurrentEditorCantBeFound, e);
-		}
-		return null;
+	protected IWorkbenchPart getActivePart() {
+		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
 	}
 
-	protected NatTable getCurrentNattable(final ExecutionEvent event) {
-//		final AbstractEMFNattableEditor editor = (AbstractEMFNattableEditor)getCurrentTableEditor(event);
-//		if(editor != null) {
-//			return (NatTable)editor.getAdapter(NatTable.class);
-//		}
+	protected INattableModelManager getCurrentNattableModelManager() {
+		final IWorkbenchPart currentPart = getActivePart();
+		if(currentPart != null) {
+			final INattableModelManager manager = (INattableModelManager)currentPart.getAdapter(INattableModelManager.class);
+			return manager;
+		}
 		return null;
-
 	}
 }

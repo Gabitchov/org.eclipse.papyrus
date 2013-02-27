@@ -14,8 +14,7 @@
 package org.eclipse.papyrus.infra.nattable;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
@@ -27,14 +26,10 @@ public class NattableInstancePropertyTester extends PropertyTester {
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		if(IS_EMF_NATTABLE_EDITOR.equals(property) && expectedValue instanceof Boolean) {
 			final IWorkbenchPart current = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePart();
-			if(current instanceof AbstractMultiPageSashEditor) {
-				final IEditorPart activeEditor = ((AbstractMultiPageSashEditor)current).getActiveEditor();
-				//				final boolean isInstance = activeEditor instanceof AbstractEMFNattableEditor;
-				//				//				System.out.println(expectedValue.equals(isInstance));
-				//				return expectedValue.equals(isInstance);
-			}
+			final INattableModelManager manager = (INattableModelManager)current.getAdapter(INattableModelManager.class);
+			return expectedValue.equals(manager != null);
 		}
-		//		System.out.println("false");
+
 		return false;
 	}
 }

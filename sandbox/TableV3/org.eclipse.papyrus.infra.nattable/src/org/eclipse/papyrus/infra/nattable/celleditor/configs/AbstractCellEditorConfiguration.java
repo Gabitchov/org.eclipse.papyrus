@@ -48,7 +48,6 @@ public abstract class AbstractCellEditorConfiguration implements IAxisCellEditor
 	 * 
 	 * @return
 	 */
-	@Override
 	public String getEditorDescription() {
 		return "No Existing Description";
 	}

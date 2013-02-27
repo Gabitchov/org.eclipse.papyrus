@@ -37,9 +37,13 @@ import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
+import org.eclipse.nebula.widgets.nattable.print.command.PrintCommand;
+import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOffCommand;
+import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOnCommand;
 import org.eclipse.nebula.widgets.nattable.print.config.DefaultPrintBindings;
 import org.eclipse.nebula.widgets.nattable.reorder.ColumnReorderLayer;
 import org.eclipse.nebula.widgets.nattable.reorder.event.ColumnReorderEvent;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.nattable.configuration.EditConfiguration;
@@ -158,13 +162,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		natTable.addConfiguration(new IConfiguration() {
 
-			@Override
+
 			public void configureUiBindings(UiBindingRegistry uiBindingRegistry) {
 				// TODO Auto-generated method stub
 
 			}
 
-			@Override
+
 			public void configureRegistry(IConfigRegistry configRegistry) {
 				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITABLE_RULE, new EditableRule() {
 
@@ -181,7 +185,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 			}
 
-			@Override
+
 			public void configureLayer(ILayer layer) {
 				// TODO Auto-generated method stub
 
@@ -265,7 +269,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	private void addColumnReorderListener(final ColumnReorderLayer columnReorderLayer) {
 		columnReorderLayer.addLayerListener(new ILayerListener() {
 
-			@Override
+
 			public void handleLayerEvent(final ILayerEvent event) {
 				if(event instanceof ColumnReorderEvent) {
 					ColumnReorderEvent columnReorderEvent = (ColumnReorderEvent)event;
@@ -340,5 +344,25 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			}
 		}
 		return new LocationValue(absolutePoint, widgetPoint, kind, cell, columnIndex, rowIndex, columnObject, rowObject);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#print()
+	 * 
+	 */
+	public void print() {
+		natTable.doCommand(new TurnViewportOffCommand());
+		natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
+		natTable.doCommand(new TurnViewportOnCommand());
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#selectAll()
+	 * 
+	 */
+	public void selectAll() {
+		natTable.doCommand(new SelectAllCommand());
 	}
 }

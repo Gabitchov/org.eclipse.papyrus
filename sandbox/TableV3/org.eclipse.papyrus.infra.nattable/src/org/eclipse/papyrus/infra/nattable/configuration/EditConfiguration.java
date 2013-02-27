@@ -79,7 +79,6 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 		this.modelManager = modelManager;
 	}
 
-	@Override
 	public void configureRegistry(IConfigRegistry configRegistry) {
 		final BodyLayerStack bodyLayerStack = this.bodyLayerStack;
 		final Table table = this.modelManager.getTable();

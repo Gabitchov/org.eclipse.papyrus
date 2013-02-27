@@ -83,7 +83,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 					//FIXME : Here, this is a 2 asynExec... we must do refresh on the command stack event
 					Display.getDefault().asyncExec(new Runnable() {
 
-						@Override
 						public void run() {
 							updateAxisContents();
 						}
@@ -177,8 +176,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
-	 *      java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain, java.util.Collection)
 	 * 
 	 * @param domain
 	 * @param objectToAdd
@@ -316,7 +314,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return !getTableManager().getElementsList(getRepresentedContentProvider()).contains(object);
 	}
 
-	@Override
 	public boolean canReoderElements() {
 		return true;
 	}

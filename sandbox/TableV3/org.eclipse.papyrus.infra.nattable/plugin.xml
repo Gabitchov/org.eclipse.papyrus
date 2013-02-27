@@ -83,7 +83,7 @@
        </activeWhen>
     </handler>
     <handler
-          class="org.eclipse.papyrus.infra.nattable.actions.SelectAllAction"
+          class="org.eclipse.papyrus.infra.nattable.actions.SelectAllHandler"
           commandId="org.eclipse.ui.edit.selectAll">
        <activeWhen>
           <and>
@@ -108,16 +108,6 @@
           properties="isEMFNattableEditor"
           type="org.eclipse.jface.viewers.IStructuredSelection">
     </propertyTester>
- </extension>
- <extension
-       point="org.eclipse.core.runtime.adapters">
-    <factory
-          adaptableType="org.eclipse.ui.IWorkbenchPart"
-          class="org.eclipse.papyrus.infra.nattable.adapter.NattableEditorAdapterFactory">
-       <adapter
-             type="org.eclipse.papyrus.infra.nattable.editor.AbstractEMFNattableEditor">
-       </adapter>
-    </factory>
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.nattable.cellmanager">

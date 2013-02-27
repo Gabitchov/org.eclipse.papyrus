@@ -13,25 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.actions;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
-import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * 
  * Handler for the print table action
  * 
  */
-public class PrintTableHandler extends AbstractHandler {
+public class PrintTableHandler extends AbstractTableHandler {
 
 	/**
 	 * 
@@ -42,20 +33,9 @@ public class PrintTableHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		try {
-			final IEditorPart editor = ServiceUtilsForHandlers.getInstance().getNestedActiveIEditorPart(event);
-			final NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
-			if(manager != null) {
-				//FIXME : the print action shold be provided by the widget, no?
-				//				final NatTable natTable = manager.get
-				//				natTable.doCommand(new TurnViewportOffCommand());
-				//				natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
-				//				natTable.doCommand(new TurnViewportOnCommand());
-			} else {
-				MessageDialog.openInformation(Display.getDefault().getActiveShell(), Messages.PrintTableHandler_TablePrint, Messages.PrintTableHandler_PrintCantBeDone);
-			}
-		} catch (final ServiceException e) {
-			Activator.log.error(e);
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			manager.print();
 		}
 		return null;
 	}

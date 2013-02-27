@@ -29,6 +29,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.nebula.widgets.nattable.print.command.PrintCommand;
+import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOffCommand;
+import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOnCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -187,7 +191,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @see org.eclipse.ui.services.IDisposable#dispose()
 	 * 
 	 */
-	@Override
 	public void dispose() {
 		this.columnManager.dispose();
 		this.rowManager.dispose();
@@ -200,7 +203,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @param objectToAdd
 	 *        the list of the objects to add in rows
 	 */
-	@Override
 	public void addRows(final Collection<Object> objectToAdd) {
 		final EditingDomain domain = getEditingDomain(this.table);
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
@@ -220,7 +222,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 * called when the manager is used vertically
 	 */
-	@Override
 	public int getColumnCount() {
 		return this.getColumnElementsList().size();
 	}
@@ -229,7 +230,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * called when the manager is used horizontally
 	 */
 
-	@Override
 	public int getRowCount() {
 		return this.getRowElementsList().size();
 	}
@@ -241,7 +241,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @param objectToAdd
 	 *        the list of the objects to add in columns
 	 */
-	@Override
 	public void addColumns(final Collection<Object> objectToAdd) {
 		final EditingDomain domain = getEditingDomain(this.table);
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
@@ -287,7 +286,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 *         the data provider for the body of the table
 	 */
-	@Override
 	public IDataProvider getBodyDataProvider() {
 		return this;
 	}
@@ -303,14 +301,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 *         the contents to display in the cell localted to columnIndex and rowIndex
 	 */
-	@Override
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
 		return CellManagerFactory.INSTANCE.getCrossValue(obj1, obj2);
 	}
 
-	@Override
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
@@ -325,7 +321,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 *         the column data provider
 	 */
-	@Override
 	public IAxisManager getColumnDataProvider() {
 		return this.columnManager;
 	}
@@ -338,7 +333,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 *         the row data provider
 	 */
-	@Override
 	public IAxisManager getLineDataProvider() {
 		return this.rowManager;
 	}
@@ -352,7 +346,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			if(table != null && !natTable.isDisposed()) {
 				Display.getDefault().asyncExec(new Runnable() {
 
-					@Override
 					public void run() {
 						natTable.refresh();
 					}
@@ -362,58 +355,57 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 	}
 
-	@Override
+
 	public List<Object> getColumnElementsList() {
 		return this.verticalElements;
 	}
 
-	@Override
 	public List<Object> getRowElementsList() {
 		return this.horizontalElements;
 	}
 
-	@Override
+
 	public boolean canInsertRow(Collection<Object> objectsToAdd, int index) {
 		return this.rowManager.canInsertAxis(objectsToAdd, index);
 	}
 
-	@Override
+
 	public boolean canInsertColumns(Collection<Object> objectsToAdd, int index) {
 		return this.columnManager.canInsertAxis(objectsToAdd, index);
 	}
 
-	@Override
+
 	public boolean canDropColumnsElement(Collection<Object> objectsToAdd) {
 		return this.columnManager.canDropAxisElement(objectsToAdd);
 	}
 
-	@Override
+
 	public boolean canDropRowElement(Collection<Object> objectsToAdd) {
 		return this.rowManager.canDropAxisElement(objectsToAdd);
 	}
 
-	@Override
+
 	public void insertRows(Collection<Object> objectsToAdd, int index) {
 		this.rowManager.getInsertAxisCommand(objectsToAdd, index);
 
 	}
 
-	@Override
+
 	public void insertColumns(Collection<Object> objectsToAdd, int index) {
 		this.columnManager.getInsertAxisCommand(objectsToAdd, index);
 	}
 
-	@Override
+
 	public Object getColumnElement(int index) {
 		return this.verticalElements.get(index);
 	}
 
-	@Override
+
 	public Object getRowElement(int index) {
 		return this.horizontalElements.get(index);
 	}
 
-	@Override
+
 	public List<Object> getElementsList(IAxisContentsProvider axisProvider) {
 		if(axisProvider == this.columnProvider) {
 			return this.verticalElements;
@@ -423,12 +415,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return null;
 	}
 
-	@Override
+
 	public boolean canReoderRows() {
 		return this.rowManager.canReoderElements();
 	}
 
-	@Override
+
 	public boolean canReorderColumns() {
 		return this.columnManager.canReoderElements();
 	}
@@ -518,7 +510,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return false;
 	}
 
-	@Override
+
 	public Table getTable() {
 		return table;
 	}
@@ -526,4 +518,5 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public ITableAxisElementProvider getTableAxisElementProvider() {//FIXME : must be renamed?
 		return this;
 	}
+
 }

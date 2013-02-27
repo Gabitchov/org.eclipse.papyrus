@@ -41,7 +41,6 @@ public class CustomRowOverrideLabelAccumulator extends AbstractOverrider {
 	 * @param columnPosition
 	 * @param rowPosition
 	 */
-	@Override
 	public void accumulateConfigLabels(LabelStack configLabels, int columnPosition, int rowPosition) {
 		int rowIndex = layer.getRowIndexByPosition(rowPosition);
 		List<String> overrides = getOverrides(Integer.valueOf(rowIndex));

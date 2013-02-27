@@ -91,4 +91,8 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd);
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
+	
+	public void print();
+	
+	public void selectAll();
 }

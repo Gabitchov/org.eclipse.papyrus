@@ -57,7 +57,6 @@ public class InvertAxisOnCornerConfiguration extends AbstractRegistryConfigurati
 		super.configureUiBindings(uiBindingRegistry);
 		uiBindingRegistry.registerSingleClickBinding(new MouseEventMatcher(GridRegion.CORNER), new IMouseAction() {
 
-			@Override
 			public void run(final NatTable natTable, final MouseEvent event) {
 				manager.invertAxis();
 			}
@@ -70,7 +69,6 @@ public class InvertAxisOnCornerConfiguration extends AbstractRegistryConfigurati
 	 * 
 	 * @param configRegistry
 	 */
-	@Override
 	public void configureRegistry(IConfigRegistry configRegistry) {
 		//nothing to do
 	}

@@ -15,16 +15,19 @@ package org.eclipse.papyrus.infra.nattable.actions;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
+import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 
-
-public class SelectAllAction extends AbstractTableHandler {
+/**
+ * 
+ * @author vl222926
+ * 
+ */
+public class SelectAllHandler extends AbstractTableHandler {
 
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		final NatTable nattable = getCurrentNattable(event);
-		if(nattable != null) {
-			nattable.doCommand(new SelectAllCommand());
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			manager.selectAll();
 		}
 		return null;
 	}

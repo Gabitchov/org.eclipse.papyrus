@@ -28,7 +28,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.papyrus.infra.nattable,
  org.eclipse.papyrus.infra.nattable.actions,
- org.eclipse.papyrus.infra.nattable.adapter,
  org.eclipse.papyrus.infra.nattable.celleditor,
  org.eclipse.papyrus.infra.nattable.celleditor.configs,
  org.eclipse.papyrus.infra.nattable.celleditor.factory,

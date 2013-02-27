@@ -31,12 +31,11 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 public class CellFeatureValueManager implements ICellManager {
 
-	@Override
+
 	public boolean handles(final Object obj1, final Object obj2) {
 		return organizeObject(obj1, obj2).size() == 2;
 	}
 
-	@Override
 	public Object getValue(final Object obj1, final Object obj2) {
 		final List<EObject> objects = organizeObject(obj1, obj2);
 		final EObject eobject = objects.get(0);
@@ -59,14 +58,14 @@ public class CellFeatureValueManager implements ICellManager {
 		return objects;
 	}
 
-	@Override
+
 	public void setValue(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue) {
 		final Command cmd = getSetValueCommand(domain, obj1, obj2, newValue);
 		assert cmd != null;
 		domain.getCommandStack().execute(cmd);
 	}
 
-	@Override
+
 	public boolean isCellEditable(Object obj1, Object obj2) {
 		final List<EObject> objects = organizeObject(obj1, obj2);
 		if(objects.size() == 2) {
@@ -85,7 +84,7 @@ public class CellFeatureValueManager implements ICellManager {
 		return false;
 	}
 
-	@Override
+
 	public Command getSetValueCommand(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
 		final List<EObject> objects = organizeObject(rowElement, lineElement);
 		//FIXME : we must use the service edit
@@ -97,7 +96,7 @@ public class CellFeatureValueManager implements ICellManager {
 		return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
 	}
 
-	@Override
+
 	public boolean handlersAxisElement(Object obj) {
 		return obj instanceof EStructuralFeature;
 	}
