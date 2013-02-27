@@ -303,6 +303,7 @@ public class ElementInitializers {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -398,6 +399,7 @@ public class ElementInitializers {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -939,6 +941,7 @@ public class ElementInitializers {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -994,6 +997,7 @@ public class ElementInitializers {
 	private String name_Operation_3007(Operation self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
+
 
 	/**
 	 * @generated

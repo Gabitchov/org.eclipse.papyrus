@@ -84,7 +84,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNam
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationName2EditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.MultiDependencyLabelEditPart;
@@ -568,6 +568,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return property_3006Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -703,6 +704,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return operation_3042Parser;
 	}
+
+
 
 	/**
 	 * @generated
@@ -1836,7 +1839,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getGeneralizationIsSubstitutable_6007Parser();
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:
 			return getInterfaceRealizationName_6008Parser();
-		case InterfaceRealizationName2EditPart.VISUAL_ID:
+		case InterfaceRealizationNameEditPart.VISUAL_ID:
 			return getInterfaceRealizationName_6009Parser();
 		case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:
 			return getSubstitutionName_6010Parser();

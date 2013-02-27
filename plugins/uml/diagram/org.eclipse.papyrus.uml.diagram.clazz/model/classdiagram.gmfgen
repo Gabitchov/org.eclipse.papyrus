@@ -4964,7 +4964,7 @@
         <labels
             visualID="6008"
             editPartClassName="AppliedStereotypeInterfaceRealizationEditPart"
-            itemSemanticEditPolicyClassName="InterfaceRealizationNameItemSemanticEditPolicy"
+            itemSemanticEditPolicyClassName="AppliedStereotypeInterfaceRealizationNameItemSemanticEditPolicy"
             readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -4988,8 +4988,8 @@
         </labels>
         <labels
             visualID="6009"
-            editPartClassName="InterfaceRealizationName2EditPart"
-            itemSemanticEditPolicyClassName="InterfaceRealizationName2ItemSemanticEditPolicy">
+            editPartClassName="InterfaceRealizationNameEditPart"
+            itemSemanticEditPolicyClassName="InterfaceRealizationNameItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap

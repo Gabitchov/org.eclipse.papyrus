@@ -904,6 +904,9 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
+	
+	
+
 	/**
 	 * @generated
 	 */
@@ -1403,6 +1406,8 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
+
+	
 
 	/**
 	 * @generated
@@ -2708,6 +2713,8 @@ public class UMLDiagramUpdater {
 		return Collections.emptyList();
 	}
 
+	
+
 	/**
 	 * @generated
 	 */
@@ -2796,6 +2803,7 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
+	
 	/**
 	 * @generated
 	 */
@@ -3804,6 +3812,8 @@ public class UMLDiagramUpdater {
 		return Collections.emptyList();
 	}
 
+	
+
 	/**
 	 * @generated
 	 */
@@ -3859,6 +3869,8 @@ public class UMLDiagramUpdater {
 	public static List<UMLLinkDescriptor> getOperation_3042IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
+
+	
 
 	/**
 	 * @generated
@@ -5092,6 +5104,8 @@ public class UMLDiagramUpdater {
 		return Collections.emptyList();
 	}
 
+	
+
 	/**
 	 * @generated
 	 */
@@ -5140,6 +5154,8 @@ public class UMLDiagramUpdater {
 	public static List<UMLLinkDescriptor> getOperation_3007OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
+
+	
 
 	/**
 	 * @generated

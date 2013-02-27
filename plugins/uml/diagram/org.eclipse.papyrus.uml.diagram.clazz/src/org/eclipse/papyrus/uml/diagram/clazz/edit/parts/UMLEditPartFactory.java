@@ -356,8 +356,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InterfaceRealizationEditPart(view);
 			case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:
 				return new AppliedStereotypeInterfaceRealizationEditPart(view);
-			case InterfaceRealizationName2EditPart.VISUAL_ID:
-				return new InterfaceRealizationName2EditPart(view);
+			case InterfaceRealizationNameEditPart.VISUAL_ID:
+				return new InterfaceRealizationNameEditPart(view);
 			case SubstitutionEditPart.VISUAL_ID:
 				return new SubstitutionEditPart(view);
 			case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:

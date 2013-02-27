@@ -2127,6 +2127,8 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 		return super.getTargetEditPart(request);
 	}
 
+	
+
 	/**
 	 * @generated
 	 */

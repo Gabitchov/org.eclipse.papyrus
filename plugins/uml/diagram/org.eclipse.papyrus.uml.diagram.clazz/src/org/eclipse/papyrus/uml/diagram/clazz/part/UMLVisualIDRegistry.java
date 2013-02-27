@@ -1545,7 +1545,7 @@ public class UMLVisualIDRegistry {
 			if(AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InterfaceRealizationName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(InterfaceRealizationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
  */
 public class PrimitiveTypePreferencePage extends AbstractPapyrusNodePreferencePage {
 
+
 	/**
 	 * @generated
 	 */

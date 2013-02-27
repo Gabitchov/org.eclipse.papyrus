@@ -802,6 +802,8 @@ public class Messages extends NLS {
 	 */
 	public static String PrimitiveTypeOperationCompartmentEditPartCN_title;
 
+	
+
 	/**
 	 * @generated
 	 */
@@ -887,6 +889,7 @@ public class Messages extends NLS {
 	 */
 	public static String PrimitiveTypeOperationCompartmentEditPart_title;
 
+	
 	/**
 	 * @generated
 	 */

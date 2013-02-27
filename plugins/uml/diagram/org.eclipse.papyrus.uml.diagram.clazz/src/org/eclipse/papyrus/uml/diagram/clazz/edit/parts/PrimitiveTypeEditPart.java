@@ -2112,6 +2112,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart {
 		return types;
 	}
 
+	
 	/**
 	 * @generated
 	 */

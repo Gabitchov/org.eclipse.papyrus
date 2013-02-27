@@ -1016,6 +1016,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return node;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -1150,6 +1151,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Operation");
 		return node;
 	}
+
 
 	/**
 	 * @generated
@@ -1872,7 +1874,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6008 = (Location)label6008.getLayoutConstraint();
 		location6008.setX(0);
 		location6008.setY(40);
-		Node label6009 = createLabel(edge, UMLVisualIDRegistry.getType(InterfaceRealizationName2EditPart.VISUAL_ID));
+		Node label6009 = createLabel(edge, UMLVisualIDRegistry.getType(InterfaceRealizationNameEditPart.VISUAL_ID));
 		label6009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6009 = (Location)label6009.getLayoutConstraint();
 		location6009.setX(0);

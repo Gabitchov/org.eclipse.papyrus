@@ -281,6 +281,7 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType Property_3041 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Property_3041"); //$NON-NLS-1$
 
+
 	/**
 	 * @generated
 	 */
@@ -315,6 +316,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Operation_3007 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"); //$NON-NLS-1$
+
 
 	/**
 	 * @generated
