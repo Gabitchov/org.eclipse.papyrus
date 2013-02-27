@@ -12,12 +12,18 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.gmf.runtime.diagram.core;bundle-version="1.6.0"
+ org.eclipse.gmf.runtime.diagram.core;bundle-version="1.6.0",
+ org.eclipse.ui.workbench,
+ org.eclipse.core.expressions,
+ org.eclipse.jface
 Export-Package: org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.uml.service.types.command,
  org.eclipse.papyrus.uml.service.types.element,
+ org.eclipse.papyrus.uml.service.types.filter,
+ org.eclipse.papyrus.uml.service.types.handlers,
  org.eclipse.papyrus.uml.service.types.helper,
  org.eclipse.papyrus.uml.service.types.helper.advice,
+ org.eclipse.papyrus.uml.service.types.menu,
  org.eclipse.papyrus.uml.service.types.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

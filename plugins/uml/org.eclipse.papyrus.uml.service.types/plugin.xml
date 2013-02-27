@@ -2204,6 +2204,1588 @@
 	</binding>
 	
 </extension>
-
+ <extension point="org.eclipse.ui.commands">
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Abstraction" id="org.eclipse.papyrus.uml.service.types.AbstractionCreateCommand" name="Create a new Abstraction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new AcceptCallAction" id="org.eclipse.papyrus.uml.service.types.AcceptCallActionCreateCommand" name="Create a new AcceptCallAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new AcceptEventAction" id="org.eclipse.papyrus.uml.service.types.AcceptEventActionCreateCommand" name="Create a new AcceptEventAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ActionExecutionSpecification" id="org.eclipse.papyrus.uml.service.types.ActionExecutionSpecificationCreateCommand" name="Create a new ActionExecutionSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ActionInputPin" id="org.eclipse.papyrus.uml.service.types.ActionInputPinCreateCommand" name="Create a new ActionInputPin">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Activity" id="org.eclipse.papyrus.uml.service.types.ActivityCreateCommand" name="Create a new Activity">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ActivityFinalNode" id="org.eclipse.papyrus.uml.service.types.ActivityFinalNodeCreateCommand" name="Create a new ActivityFinalNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ActivityParameterNode" id="org.eclipse.papyrus.uml.service.types.ActivityParameterNodeCreateCommand" name="Create a new ActivityParameterNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ActivityPartition" id="org.eclipse.papyrus.uml.service.types.ActivityPartitionCreateCommand" name="Create a new ActivityPartition">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Actor" id="org.eclipse.papyrus.uml.service.types.ActorCreateCommand" name="Create a new Actor">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new AddStructuralFeatureValueAction" id="org.eclipse.papyrus.uml.service.types.AddStructuralFeatureValueActionCreateCommand" name="Create a new AddStructuralFeatureValueAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new AddVariableValueAction" id="org.eclipse.papyrus.uml.service.types.AddVariableValueActionCreateCommand" name="Create a new AddVariableValueAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new AnyReceiveEvent" id="org.eclipse.papyrus.uml.service.types.AnyReceiveEventCreateCommand" name="Create a new AnyReceiveEvent">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Artifact" id="org.eclipse.papyrus.uml.service.types.ArtifactCreateCommand" name="Create a new Artifact">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new AssociationBase" id="org.eclipse.papyrus.uml.service.types.AssociationBaseCreateCommand" name="Create a new AssociationBase">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new AssociationClass" id="org.eclipse.papyrus.uml.service.types.AssociationClassCreateCommand" name="Create a new AssociationClass">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new BehaviorExecutionSpecification" id="org.eclipse.papyrus.uml.service.types.BehaviorExecutionSpecificationCreateCommand" name="Create a new BehaviorExecutionSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new BroadcastSignalAction" id="org.eclipse.papyrus.uml.service.types.BroadcastSignalActionCreateCommand" name="Create a new BroadcastSignalAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CallBehaviorAction" id="org.eclipse.papyrus.uml.service.types.CallBehaviorActionCreateCommand" name="Create a new CallBehaviorAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CallEvent" id="org.eclipse.papyrus.uml.service.types.CallEventCreateCommand" name="Create a new CallEvent">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CallOperationAction" id="org.eclipse.papyrus.uml.service.types.CallOperationActionCreateCommand" name="Create a new CallOperationAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CentralBufferNode" id="org.eclipse.papyrus.uml.service.types.CentralBufferNodeCreateCommand" name="Create a new CentralBufferNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ChangeEvent" id="org.eclipse.papyrus.uml.service.types.ChangeEventCreateCommand" name="Create a new ChangeEvent">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Class" id="org.eclipse.papyrus.uml.service.types.ClassCreateCommand" name="Create a new Class">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ClassifierTemplateParameter" id="org.eclipse.papyrus.uml.service.types.ClassifierTemplateParameterCreateCommand" name="Create a new ClassifierTemplateParameter">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Clause" id="org.eclipse.papyrus.uml.service.types.ClauseCreateCommand" name="Create a new Clause">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ClearAssociationAction" id="org.eclipse.papyrus.uml.service.types.ClearAssociationActionCreateCommand" name="Create a new ClearAssociationAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ClearStructuralFeatureAction" id="org.eclipse.papyrus.uml.service.types.ClearStructuralFeatureActionCreateCommand" name="Create a new ClearStructuralFeatureAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ClearVariableAction" id="org.eclipse.papyrus.uml.service.types.ClearVariableActionCreateCommand" name="Create a new ClearVariableAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Collaboration" id="org.eclipse.papyrus.uml.service.types.CollaborationCreateCommand" name="Create a new Collaboration">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CollaborationUse" id="org.eclipse.papyrus.uml.service.types.CollaborationUseCreateCommand" name="Create a new CollaborationUse">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CombinedFragment" id="org.eclipse.papyrus.uml.service.types.CombinedFragmentCreateCommand" name="Create a new CombinedFragment">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Comment" id="org.eclipse.papyrus.uml.service.types.CommentCreateCommand" name="Create a new Comment">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CommunicationPath" id="org.eclipse.papyrus.uml.service.types.CommunicationPathCreateCommand" name="Create a new CommunicationPath">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Component" id="org.eclipse.papyrus.uml.service.types.ComponentCreateCommand" name="Create a new Component">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ComponentRealization" id="org.eclipse.papyrus.uml.service.types.ComponentRealizationCreateCommand" name="Create a new ComponentRealization">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ConditionalNode" id="org.eclipse.papyrus.uml.service.types.ConditionalNodeCreateCommand" name="Create a new ConditionalNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ConnectableElementTemplateParameter" id="org.eclipse.papyrus.uml.service.types.ConnectableElementTemplateParameterCreateCommand" name="Create a new ConnectableElementTemplateParameter">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ConnectionPointReference" id="org.eclipse.papyrus.uml.service.types.ConnectionPointReferenceCreateCommand" name="Create a new ConnectionPointReference">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Connector" id="org.eclipse.papyrus.uml.service.types.ConnectorCreateCommand" name="Create a new Connector">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ConnectorEnd" id="org.eclipse.papyrus.uml.service.types.ConnectorEndCreateCommand" name="Create a new ConnectorEnd">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ConsiderIgnoreFragment" id="org.eclipse.papyrus.uml.service.types.ConsiderIgnoreFragmentCreateCommand" name="Create a new ConsiderIgnoreFragment">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Constraint" id="org.eclipse.papyrus.uml.service.types.ConstraintCreateCommand" name="Create a new Constraint">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Continuation" id="org.eclipse.papyrus.uml.service.types.ContinuationCreateCommand" name="Create a new Continuation">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ControlFlow" id="org.eclipse.papyrus.uml.service.types.ControlFlowCreateCommand" name="Create a new ControlFlow">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CreateLinkAction" id="org.eclipse.papyrus.uml.service.types.CreateLinkActionCreateCommand" name="Create a new CreateLinkAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CreateLinkObjectAction" id="org.eclipse.papyrus.uml.service.types.CreateLinkObjectActionCreateCommand" name="Create a new CreateLinkObjectAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new CreateObjectAction" id="org.eclipse.papyrus.uml.service.types.CreateObjectActionCreateCommand" name="Create a new CreateObjectAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DataStoreNode" id="org.eclipse.papyrus.uml.service.types.DataStoreNodeCreateCommand" name="Create a new DataStoreNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DataType" id="org.eclipse.papyrus.uml.service.types.DataTypeCreateCommand" name="Create a new DataType">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DecisionNode" id="org.eclipse.papyrus.uml.service.types.DecisionNodeCreateCommand" name="Create a new DecisionNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Dependency" id="org.eclipse.papyrus.uml.service.types.DependencyCreateCommand" name="Create a new Dependency">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Deployment" id="org.eclipse.papyrus.uml.service.types.DeploymentCreateCommand" name="Create a new Deployment">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DeploymentSpecification" id="org.eclipse.papyrus.uml.service.types.DeploymentSpecificationCreateCommand" name="Create a new DeploymentSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DestroyLinkAction" id="org.eclipse.papyrus.uml.service.types.DestroyLinkActionCreateCommand" name="Create a new DestroyLinkAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DestroyObjectAction" id="org.eclipse.papyrus.uml.service.types.DestroyObjectActionCreateCommand" name="Create a new DestroyObjectAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DestructionOccurrenceSpecification" id="org.eclipse.papyrus.uml.service.types.DestructionOccurrenceSpecificationCreateCommand" name="Create a new DestructionOccurrenceSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Device" id="org.eclipse.papyrus.uml.service.types.DeviceCreateCommand" name="Create a new Device">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Duration" id="org.eclipse.papyrus.uml.service.types.DurationCreateCommand" name="Create a new Duration">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DurationConstraint" id="org.eclipse.papyrus.uml.service.types.DurationConstraintCreateCommand" name="Create a new DurationConstraint">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DurationInterval" id="org.eclipse.papyrus.uml.service.types.DurationIntervalCreateCommand" name="Create a new DurationInterval">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new DurationObservation" id="org.eclipse.papyrus.uml.service.types.DurationObservationCreateCommand" name="Create a new DurationObservation">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ElementImport" id="org.eclipse.papyrus.uml.service.types.ElementImportCreateCommand" name="Create a new ElementImport">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Enumeration" id="org.eclipse.papyrus.uml.service.types.EnumerationCreateCommand" name="Create a new Enumeration">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new EnumerationLiteral" id="org.eclipse.papyrus.uml.service.types.EnumerationLiteralCreateCommand" name="Create a new EnumerationLiteral">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ExceptionHandler" id="org.eclipse.papyrus.uml.service.types.ExceptionHandlerCreateCommand" name="Create a new ExceptionHandler">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ExecutionEnvironment" id="org.eclipse.papyrus.uml.service.types.ExecutionEnvironmentCreateCommand" name="Create a new ExecutionEnvironment">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ExecutionOccurrenceSpecification" id="org.eclipse.papyrus.uml.service.types.ExecutionOccurrenceSpecificationCreateCommand" name="Create a new ExecutionOccurrenceSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ExpansionNode" id="org.eclipse.papyrus.uml.service.types.ExpansionNodeCreateCommand" name="Create a new ExpansionNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ExpansionRegion" id="org.eclipse.papyrus.uml.service.types.ExpansionRegionCreateCommand" name="Create a new ExpansionRegion">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Expression" id="org.eclipse.papyrus.uml.service.types.ExpressionCreateCommand" name="Create a new Expression">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Extend" id="org.eclipse.papyrus.uml.service.types.ExtendCreateCommand" name="Create a new Extend">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Extension" id="org.eclipse.papyrus.uml.service.types.ExtensionCreateCommand" name="Create a new Extension">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ExtensionEnd" id="org.eclipse.papyrus.uml.service.types.ExtensionEndCreateCommand" name="Create a new ExtensionEnd">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ExtensionPoint" id="org.eclipse.papyrus.uml.service.types.ExtensionPointCreateCommand" name="Create a new ExtensionPoint">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new FinalState" id="org.eclipse.papyrus.uml.service.types.FinalStateCreateCommand" name="Create a new FinalState">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new FlowFinalNode" id="org.eclipse.papyrus.uml.service.types.FlowFinalNodeCreateCommand" name="Create a new FlowFinalNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ForkNode" id="org.eclipse.papyrus.uml.service.types.ForkNodeCreateCommand" name="Create a new ForkNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new FunctionBehavior" id="org.eclipse.papyrus.uml.service.types.FunctionBehaviorCreateCommand" name="Create a new FunctionBehavior">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Gate" id="org.eclipse.papyrus.uml.service.types.GateCreateCommand" name="Create a new Gate">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new GeneralOrdering" id="org.eclipse.papyrus.uml.service.types.GeneralOrderingCreateCommand" name="Create a new GeneralOrdering">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Generalization" id="org.eclipse.papyrus.uml.service.types.GeneralizationCreateCommand" name="Create a new Generalization">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new GeneralizationSet" id="org.eclipse.papyrus.uml.service.types.GeneralizationSetCreateCommand" name="Create a new GeneralizationSet">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Image" id="org.eclipse.papyrus.uml.service.types.ImageCreateCommand" name="Create a new Image">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Include" id="org.eclipse.papyrus.uml.service.types.IncludeCreateCommand" name="Create a new Include">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InformationFlow" id="org.eclipse.papyrus.uml.service.types.InformationFlowCreateCommand" name="Create a new InformationFlow">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InformationItem" id="org.eclipse.papyrus.uml.service.types.InformationItemCreateCommand" name="Create a new InformationItem">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InitialNode" id="org.eclipse.papyrus.uml.service.types.InitialNodeCreateCommand" name="Create a new InitialNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InputPin" id="org.eclipse.papyrus.uml.service.types.InputPinCreateCommand" name="Create a new InputPin">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InstanceSpecification" id="org.eclipse.papyrus.uml.service.types.InstanceSpecificationCreateCommand" name="Create a new InstanceSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InstanceValue" id="org.eclipse.papyrus.uml.service.types.InstanceValueCreateCommand" name="Create a new InstanceValue">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Interaction" id="org.eclipse.papyrus.uml.service.types.InteractionCreateCommand" name="Create a new Interaction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InteractionConstraint" id="org.eclipse.papyrus.uml.service.types.InteractionConstraintCreateCommand" name="Create a new InteractionConstraint">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InteractionOperand" id="org.eclipse.papyrus.uml.service.types.InteractionOperandCreateCommand" name="Create a new InteractionOperand">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InteractionUse" id="org.eclipse.papyrus.uml.service.types.InteractionUseCreateCommand" name="Create a new InteractionUse">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Interface" id="org.eclipse.papyrus.uml.service.types.InterfaceCreateCommand" name="Create a new Interface">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InterfaceRealization" id="org.eclipse.papyrus.uml.service.types.InterfaceRealizationCreateCommand" name="Create a new InterfaceRealization">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new InterruptibleActivityRegion" id="org.eclipse.papyrus.uml.service.types.InterruptibleActivityRegionCreateCommand" name="Create a new InterruptibleActivityRegion">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Interval" id="org.eclipse.papyrus.uml.service.types.IntervalCreateCommand" name="Create a new Interval">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new IntervalConstraint" id="org.eclipse.papyrus.uml.service.types.IntervalConstraintCreateCommand" name="Create a new IntervalConstraint">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new JoinNode" id="org.eclipse.papyrus.uml.service.types.JoinNodeCreateCommand" name="Create a new JoinNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Lifeline" id="org.eclipse.papyrus.uml.service.types.LifelineCreateCommand" name="Create a new Lifeline">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LinkEndCreationData" id="org.eclipse.papyrus.uml.service.types.LinkEndCreationDataCreateCommand" name="Create a new LinkEndCreationData">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LinkEndData" id="org.eclipse.papyrus.uml.service.types.LinkEndDataCreateCommand" name="Create a new LinkEndData">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LinkEndDestructionData" id="org.eclipse.papyrus.uml.service.types.LinkEndDestructionDataCreateCommand" name="Create a new LinkEndDestructionData">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LiteralBoolean" id="org.eclipse.papyrus.uml.service.types.LiteralBooleanCreateCommand" name="Create a new LiteralBoolean">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LiteralInteger" id="org.eclipse.papyrus.uml.service.types.LiteralIntegerCreateCommand" name="Create a new LiteralInteger">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LiteralNull" id="org.eclipse.papyrus.uml.service.types.LiteralNullCreateCommand" name="Create a new LiteralNull">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LiteralReal" id="org.eclipse.papyrus.uml.service.types.LiteralRealCreateCommand" name="Create a new LiteralReal">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LiteralString" id="org.eclipse.papyrus.uml.service.types.LiteralStringCreateCommand" name="Create a new LiteralString">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LiteralUnlimitedNatural" id="org.eclipse.papyrus.uml.service.types.LiteralUnlimitedNaturalCreateCommand" name="Create a new LiteralUnlimitedNatural">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new LoopNode" id="org.eclipse.papyrus.uml.service.types.LoopNodeCreateCommand" name="Create a new LoopNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Manifestation" id="org.eclipse.papyrus.uml.service.types.ManifestationCreateCommand" name="Create a new Manifestation">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new MergeNode" id="org.eclipse.papyrus.uml.service.types.MergeNodeCreateCommand" name="Create a new MergeNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Message" id="org.eclipse.papyrus.uml.service.types.MessageCreateCommand" name="Create a new Message">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new MessageOccurrenceSpecification" id="org.eclipse.papyrus.uml.service.types.MessageOccurrenceSpecificationCreateCommand" name="Create a new MessageOccurrenceSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Model" id="org.eclipse.papyrus.uml.service.types.ModelCreateCommand" name="Create a new Model">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Node" id="org.eclipse.papyrus.uml.service.types.NodeCreateCommand" name="Create a new Node">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ObjectFlow" id="org.eclipse.papyrus.uml.service.types.ObjectFlowCreateCommand" name="Create a new ObjectFlow">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new OccurrenceSpecification" id="org.eclipse.papyrus.uml.service.types.OccurrenceSpecificationCreateCommand" name="Create a new OccurrenceSpecification">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new OpaqueAction" id="org.eclipse.papyrus.uml.service.types.OpaqueActionCreateCommand" name="Create a new OpaqueAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new OpaqueBehavior" id="org.eclipse.papyrus.uml.service.types.OpaqueBehaviorCreateCommand" name="Create a new OpaqueBehavior">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new OpaqueExpression" id="org.eclipse.papyrus.uml.service.types.OpaqueExpressionCreateCommand" name="Create a new OpaqueExpression">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Operation" id="org.eclipse.papyrus.uml.service.types.OperationCreateCommand" name="Create a new Operation">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new OperationTemplateParameter" id="org.eclipse.papyrus.uml.service.types.OperationTemplateParameterCreateCommand" name="Create a new OperationTemplateParameter">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new OutputPin" id="org.eclipse.papyrus.uml.service.types.OutputPinCreateCommand" name="Create a new OutputPin">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Package" id="org.eclipse.papyrus.uml.service.types.PackageCreateCommand" name="Create a new Package">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new PackageImport" id="org.eclipse.papyrus.uml.service.types.PackageImportCreateCommand" name="Create a new PackageImport">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new PackageMerge" id="org.eclipse.papyrus.uml.service.types.PackageMergeCreateCommand" name="Create a new PackageMerge">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Parameter" id="org.eclipse.papyrus.uml.service.types.ParameterCreateCommand" name="Create a new Parameter">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ParameterSet" id="org.eclipse.papyrus.uml.service.types.ParameterSetCreateCommand" name="Create a new ParameterSet">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new PartDecomposition" id="org.eclipse.papyrus.uml.service.types.PartDecompositionCreateCommand" name="Create a new PartDecomposition">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Pin" id="org.eclipse.papyrus.uml.service.types.PinCreateCommand" name="Create a new Pin">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Port" id="org.eclipse.papyrus.uml.service.types.PortCreateCommand" name="Create a new Port">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new PrimitiveType" id="org.eclipse.papyrus.uml.service.types.PrimitiveTypeCreateCommand" name="Create a new PrimitiveType">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Profile" id="org.eclipse.papyrus.uml.service.types.ProfileCreateCommand" name="Create a new Profile">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ProfileApplication" id="org.eclipse.papyrus.uml.service.types.ProfileApplicationCreateCommand" name="Create a new ProfileApplication">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Property" id="org.eclipse.papyrus.uml.service.types.PropertyCreateCommand" name="Create a new Property">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ProtocolConformance" id="org.eclipse.papyrus.uml.service.types.ProtocolConformanceCreateCommand" name="Create a new ProtocolConformance">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ProtocolStateMachine" id="org.eclipse.papyrus.uml.service.types.ProtocolStateMachineCreateCommand" name="Create a new ProtocolStateMachine">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ProtocolTransition" id="org.eclipse.papyrus.uml.service.types.ProtocolTransitionCreateCommand" name="Create a new ProtocolTransition">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Pseudostate" id="org.eclipse.papyrus.uml.service.types.PseudostateCreateCommand" name="Create a new Pseudostate">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new QualifierValue" id="org.eclipse.papyrus.uml.service.types.QualifierValueCreateCommand" name="Create a new QualifierValue">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new RaiseExceptionAction" id="org.eclipse.papyrus.uml.service.types.RaiseExceptionActionCreateCommand" name="Create a new RaiseExceptionAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadExtentAction" id="org.eclipse.papyrus.uml.service.types.ReadExtentActionCreateCommand" name="Create a new ReadExtentAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadIsClassifiedObjectAction" id="org.eclipse.papyrus.uml.service.types.ReadIsClassifiedObjectActionCreateCommand" name="Create a new ReadIsClassifiedObjectAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadLinkAction" id="org.eclipse.papyrus.uml.service.types.ReadLinkActionCreateCommand" name="Create a new ReadLinkAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadLinkObjectEndAction" id="org.eclipse.papyrus.uml.service.types.ReadLinkObjectEndActionCreateCommand" name="Create a new ReadLinkObjectEndAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadLinkObjectEndQualifierAction" id="org.eclipse.papyrus.uml.service.types.ReadLinkObjectEndQualifierActionCreateCommand" name="Create a new ReadLinkObjectEndQualifierAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadSelfAction" id="org.eclipse.papyrus.uml.service.types.ReadSelfActionCreateCommand" name="Create a new ReadSelfAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadStructuralFeatureAction" id="org.eclipse.papyrus.uml.service.types.ReadStructuralFeatureActionCreateCommand" name="Create a new ReadStructuralFeatureAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReadVariableAction" id="org.eclipse.papyrus.uml.service.types.ReadVariableActionCreateCommand" name="Create a new ReadVariableAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Realization" id="org.eclipse.papyrus.uml.service.types.RealizationCreateCommand" name="Create a new Realization">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Reception" id="org.eclipse.papyrus.uml.service.types.ReceptionCreateCommand" name="Create a new Reception">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReclassifyObjectAction" id="org.eclipse.papyrus.uml.service.types.ReclassifyObjectActionCreateCommand" name="Create a new ReclassifyObjectAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new RedefinableTemplateSignature" id="org.eclipse.papyrus.uml.service.types.RedefinableTemplateSignatureCreateCommand" name="Create a new RedefinableTemplateSignature">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReduceAction" id="org.eclipse.papyrus.uml.service.types.ReduceActionCreateCommand" name="Create a new ReduceAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Region" id="org.eclipse.papyrus.uml.service.types.RegionCreateCommand" name="Create a new Region">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new RemoveStructuralFeatureValueAction" id="org.eclipse.papyrus.uml.service.types.RemoveStructuralFeatureValueActionCreateCommand" name="Create a new RemoveStructuralFeatureValueAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new RemoveVariableValueAction" id="org.eclipse.papyrus.uml.service.types.RemoveVariableValueActionCreateCommand" name="Create a new RemoveVariableValueAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ReplyAction" id="org.eclipse.papyrus.uml.service.types.ReplyActionCreateCommand" name="Create a new ReplyAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new SendObjectAction" id="org.eclipse.papyrus.uml.service.types.SendObjectActionCreateCommand" name="Create a new SendObjectAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new SendSignalAction" id="org.eclipse.papyrus.uml.service.types.SendSignalActionCreateCommand" name="Create a new SendSignalAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new SequenceNode" id="org.eclipse.papyrus.uml.service.types.SequenceNodeCreateCommand" name="Create a new SequenceNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Signal" id="org.eclipse.papyrus.uml.service.types.SignalCreateCommand" name="Create a new Signal">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new SignalEvent" id="org.eclipse.papyrus.uml.service.types.SignalEventCreateCommand" name="Create a new SignalEvent">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Slot" id="org.eclipse.papyrus.uml.service.types.SlotCreateCommand" name="Create a new Slot">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new StartClassifierBehaviorAction" id="org.eclipse.papyrus.uml.service.types.StartClassifierBehaviorActionCreateCommand" name="Create a new StartClassifierBehaviorAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new StartObjectBehaviorAction" id="org.eclipse.papyrus.uml.service.types.StartObjectBehaviorActionCreateCommand" name="Create a new StartObjectBehaviorAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new State" id="org.eclipse.papyrus.uml.service.types.StateCreateCommand" name="Create a new State">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new StateInvariant" id="org.eclipse.papyrus.uml.service.types.StateInvariantCreateCommand" name="Create a new StateInvariant">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new StateMachine" id="org.eclipse.papyrus.uml.service.types.StateMachineCreateCommand" name="Create a new StateMachine">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Stereotype" id="org.eclipse.papyrus.uml.service.types.StereotypeCreateCommand" name="Create a new Stereotype">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new StringExpression" id="org.eclipse.papyrus.uml.service.types.StringExpressionCreateCommand" name="Create a new StringExpression">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new StructuredActivityNode" id="org.eclipse.papyrus.uml.service.types.StructuredActivityNodeCreateCommand" name="Create a new StructuredActivityNode">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Substitution" id="org.eclipse.papyrus.uml.service.types.SubstitutionCreateCommand" name="Create a new Substitution">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TemplateBinding" id="org.eclipse.papyrus.uml.service.types.TemplateBindingCreateCommand" name="Create a new TemplateBinding">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TemplateParameter" id="org.eclipse.papyrus.uml.service.types.TemplateParameterCreateCommand" name="Create a new TemplateParameter">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TemplateParameterSubstitution" id="org.eclipse.papyrus.uml.service.types.TemplateParameterSubstitutionCreateCommand" name="Create a new TemplateParameterSubstitution">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TemplateSignature" id="org.eclipse.papyrus.uml.service.types.TemplateSignatureCreateCommand" name="Create a new TemplateSignature">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TestIdentityAction" id="org.eclipse.papyrus.uml.service.types.TestIdentityActionCreateCommand" name="Create a new TestIdentityAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TimeConstraint" id="org.eclipse.papyrus.uml.service.types.TimeConstraintCreateCommand" name="Create a new TimeConstraint">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TimeEvent" id="org.eclipse.papyrus.uml.service.types.TimeEventCreateCommand" name="Create a new TimeEvent">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TimeExpression" id="org.eclipse.papyrus.uml.service.types.TimeExpressionCreateCommand" name="Create a new TimeExpression">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TimeInterval" id="org.eclipse.papyrus.uml.service.types.TimeIntervalCreateCommand" name="Create a new TimeInterval">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new TimeObservation" id="org.eclipse.papyrus.uml.service.types.TimeObservationCreateCommand" name="Create a new TimeObservation">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Transition" id="org.eclipse.papyrus.uml.service.types.TransitionCreateCommand" name="Create a new Transition">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Trigger" id="org.eclipse.papyrus.uml.service.types.TriggerCreateCommand" name="Create a new Trigger">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new UnmarshallAction" id="org.eclipse.papyrus.uml.service.types.UnmarshallActionCreateCommand" name="Create a new UnmarshallAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Usage" id="org.eclipse.papyrus.uml.service.types.UsageCreateCommand" name="Create a new Usage">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new UseCase" id="org.eclipse.papyrus.uml.service.types.UseCaseCreateCommand" name="Create a new UseCase">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ValuePin" id="org.eclipse.papyrus.uml.service.types.ValuePinCreateCommand" name="Create a new ValuePin">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new ValueSpecificationAction" id="org.eclipse.papyrus.uml.service.types.ValueSpecificationActionCreateCommand" name="Create a new ValueSpecificationAction">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Variable" id="org.eclipse.papyrus.uml.service.types.VariableCreateCommand" name="Create a new Variable">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Association" id="org.eclipse.papyrus.uml.service.types.AssociationCreateCommand" name="Create a new Association">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Trace" id="org.eclipse.papyrus.uml.service.types.TraceCreateCommand" name="Create a new Trace">
+	</command>
+	
+	
+	<command categoryId="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands" description="Create a new Refine" id="org.eclipse.papyrus.uml.service.types.RefineCreateCommand" name="Create a new Refine">
+	</command>
+ <category
+       id="org.eclipse.papyrus.uml.service.types.umlElementCreationCommands"
+       name="Commands for the creation of UML elements">
+ </category>
+	
+</extension>
+ <extension
+       point="org.eclipse.ui.commandImages">
+		<image commandId="org.eclipse.papyrus.uml.service.types.AbstractionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AcceptCallActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AcceptEventActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ActionExecutionSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ActionInputPinCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ActivityCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ActivityFinalNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ActivityParameterNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ActivityPartitionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ActorCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AddStructuralFeatureValueActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AddVariableValueActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AnyReceiveEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AnyReceiveEvent.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ArtifactCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AssociationBaseCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AssociationClassCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.BehaviorExecutionSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.BroadcastSignalActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CallBehaviorActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CallEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallEvent.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CallOperationActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CentralBufferNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CentralBufferNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ChangeEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ChangeEvent.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ClassCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ClassifierTemplateParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ClauseCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Clause.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ClearAssociationActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ClearStructuralFeatureActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ClearVariableActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearVariableAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CollaborationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CollaborationUseCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CombinedFragmentCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CommentCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CommunicationPathCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ComponentCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ComponentRealizationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ConditionalNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ConnectableElementTemplateParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ConnectionPointReferenceCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ConnectorCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ConnectorEndCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectorEnd.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ConsiderIgnoreFragmentCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ConstraintCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ContinuationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ControlFlowCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CreateLinkActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CreateLinkObjectActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.CreateObjectActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DataStoreNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DataTypeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DecisionNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DependencyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DeploymentCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DeploymentSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DestroyLinkActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DestroyObjectActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DestructionOccurrenceSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionOccurrenceSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DeviceCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DurationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Duration.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DurationConstraintCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DurationIntervalCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationInterval.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.DurationObservationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ElementImportCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.EnumerationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.EnumerationLiteralCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExceptionHandlerCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExecutionEnvironmentCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExecutionOccurrenceSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionOccurrenceSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExpansionNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExpansionRegionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExpressionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Expression.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExtendCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExtensionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extension.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExtensionEndCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionEnd.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ExtensionPointCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.FinalStateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.FlowFinalNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ForkNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.FunctionBehaviorCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.GateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.GeneralOrderingCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.GeneralizationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.GeneralizationSetCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ImageCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.IncludeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InformationFlowCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InformationItemCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InitialNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InputPinCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InstanceSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InstanceValueCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceValue.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InteractionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InteractionConstraintCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InteractionOperandCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InteractionUseCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InterfaceCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InterfaceRealizationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.InterruptibleActivityRegionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.IntervalCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interval.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.IntervalConstraintCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.JoinNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LifelineCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LinkEndCreationDataCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndCreationData.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LinkEndDataCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndData.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LinkEndDestructionDataCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndDestructionData.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LiteralBooleanCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralBoolean.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LiteralIntegerCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralInteger.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LiteralNullCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralNull.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LiteralRealCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralReal.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LiteralStringCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralString.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LiteralUnlimitedNaturalCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralUnlimitedNatural.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.LoopNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ManifestationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.MergeNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.MessageCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.MessageOccurrenceSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageOccurrenceSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ModelCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.NodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ObjectFlowCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.OccurrenceSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OccurrenceSpecification.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.OpaqueActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.OpaqueBehaviorCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.OpaqueExpressionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueExpression.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.OperationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.OperationTemplateParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.OutputPinCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PackageCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PackageImportCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PackageMergeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ParameterSetCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterSet.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PartDecompositionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PartDecomposition.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PinCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pin.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PortCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PrimitiveTypeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ProfileCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ProfileApplicationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PropertyCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ProtocolConformanceCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolConformance.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ProtocolStateMachineCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ProtocolTransitionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolTransition.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.PseudostateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.QualifierValueCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/QualifierValue.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.RaiseExceptionActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RaiseExceptionAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadExtentActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadIsClassifiedObjectActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadLinkActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadLinkObjectEndActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadLinkObjectEndQualifierActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadSelfActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadStructuralFeatureActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReadVariableActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.RealizationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReceptionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReclassifyObjectActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.RedefinableTemplateSignatureCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReduceActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.RegionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.RemoveStructuralFeatureValueActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveStructuralFeatureValueAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.RemoveVariableValueActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ReplyActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReplyAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.SendObjectActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.SendSignalActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.SequenceNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.SignalCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.SignalEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SignalEvent.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.SlotCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StartClassifierBehaviorActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StartObjectBehaviorActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartObjectBehaviorAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StateInvariantCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StateMachineCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StereotypeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StringExpressionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.StructuredActivityNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.SubstitutionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TemplateBindingCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TemplateParameterCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TemplateParameterSubstitutionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TemplateSignatureCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TestIdentityActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TimeConstraintCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TimeEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeEvent.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TimeExpressionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeExpression.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TimeIntervalCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeInterval.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TimeObservationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TransitionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TriggerCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Trigger.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.UnmarshallActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UnmarshallAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.UsageCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.UseCaseCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ValuePinCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.ValueSpecificationActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.VariableCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.AssociationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.TraceCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" >
+			</image>
+		
+		
+		<image commandId="org.eclipse.papyrus.uml.service.types.RefineCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" >
+			</image>
+ </extension>
 </plugin>
 
