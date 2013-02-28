@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *   Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
@@ -29,7 +31,11 @@ public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedS
 	 */
 	@Override
 	protected Property getUMLElement() {
-		return (Property)super.getUMLElement();
+		EObject element = super.getUMLElement(); 
+		if(element instanceof Property) {
+			return (Property)element;
+		}
+		return null;
 	};
 
 	/**
@@ -40,5 +46,4 @@ public class AppliedStereotypePropertyDisplayEditPolicy extends AbstractAppliedS
 		// calls the helper for this edit Part
 		PropertyLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)getHost());
 	}
-
 }

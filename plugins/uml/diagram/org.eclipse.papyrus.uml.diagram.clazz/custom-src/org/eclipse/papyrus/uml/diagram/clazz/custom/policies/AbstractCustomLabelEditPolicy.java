@@ -9,8 +9,9 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
+ *  
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -21,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * Edit policy for specific Label
@@ -52,9 +54,7 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(element, this);
-
 			addAdditionalListeners();
-
 			refreshDisplay();
 		}
 	}
@@ -76,18 +76,14 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 		if(view == null) {
 			return;
 		}
-		Element element = (Element)getUMLElement();
-
+		Element element = getUMLElement();
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
-
 		if(element == null) {
 			return;
 		}
 		getDiagramEventBroker().removeNotificationListener(element, this);
-
 		removeAdditionalListeners();
-
 	}
 
 	/**
@@ -117,7 +113,11 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	 * @return the uml element controlled by the host edit part
 	 */
 	protected Element getUMLElement() {
-		return (Element)getView().getElement();
+		// be sure to have a UML element 
+		if(getView().getElement() instanceof Element) {
+			return (Element)getView().getElement();
+		} 
+		return null;
 	}
 
 	/**
@@ -133,5 +133,4 @@ public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy 
 	 * Refreshes the display for the element controlled by the edit part with this edit policies
 	 */
 	public abstract void refreshDisplay();
-
 }

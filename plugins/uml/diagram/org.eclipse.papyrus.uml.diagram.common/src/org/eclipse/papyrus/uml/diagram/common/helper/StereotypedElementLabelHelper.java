@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - update getImage() : test if element is null
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
@@ -21,6 +22,7 @@ import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gef.GraphicalEditPart;
@@ -48,7 +50,11 @@ public abstract class StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Element getUMLElement(GraphicalEditPart editPart) {
-		return (Element)((View)editPart.getModel()).getElement();
+		EObject element = ((View)editPart.getModel()).getElement();
+		if(element instanceof Element) {
+			return (Element)element;
+		}
+		return null;
 	}
 
 	/**
@@ -67,7 +73,6 @@ public abstract class StereotypedElementLabelHelper {
 	 */
 	protected Map<String, List<String>> parseStereotypeProperties(GraphicalEditPart editPart, String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
 		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
-
 		StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, UMLVisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
 		while(stringTokenizer.hasMoreTokens()) {
 			String propertyName = stringTokenizer.nextToken();
@@ -93,7 +98,6 @@ public abstract class StereotypedElementLabelHelper {
 			return null;
 		}
 		if(stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
-
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)editPart.getModel());
 			Collection<Stereotype> stereotypes = new ArrayList<Stereotype>();
@@ -135,17 +139,14 @@ public abstract class StereotypedElementLabelHelper {
 		// retrieve if the name of the stereotype has to put to lower case or
 		// not
 		String sNameAppearance = store.getString(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
-
 		// changes the string of properties into a map, where the entries of the
 		// map are the
 		// stereotype qualified name, and the properties to display are the data
 		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(editPart, stereotypesToDisplay, stereotypesPropertiesToDisplay);
-
 		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
 		String out = "";
 		while(strQualifiedName.hasMoreElements()) {
 			String currentStereotype = strQualifiedName.nextToken();
-
 			// check if current stereotype is applied
 			final Element umlElement = getUMLElement(editPart);
 			Stereotype stereotype = umlElement.getAppliedStereotype(currentStereotype);
@@ -155,7 +156,6 @@ public abstract class StereotypedElementLabelHelper {
 					// property value contains qualifiedName ==> extract name
 					// from it
 					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
-
 					while(strToken.hasMoreTokens()) {
 						name = strToken.nextToken();
 					}
@@ -167,7 +167,6 @@ public abstract class StereotypedElementLabelHelper {
 				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
 				// 1).toLowerCase()+name.substring(1,
 				// name.length())+","+separator;
-
 				// check that the name has not already been added to the
 				// displayed string
 				if(sNameAppearance.equals(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
@@ -181,7 +180,6 @@ public abstract class StereotypedElementLabelHelper {
 						out = out + Activator.ST_LEFT + name + Activator.ST_RIGHT + separator;
 					}
 				}
-
 				// now should add all properties associated to this stereotype
 				List<String> properties = propertiesToDisplay.get(stereotype.getQualifiedName());
 				if(properties != null) {
@@ -209,12 +207,10 @@ public abstract class StereotypedElementLabelHelper {
 	public String stereotypesToDisplay(GraphicalEditPart editPart) {
 		View view = (View)editPart.getModel();
 		// retrieve all stereotypes to be displayed
-
 		// try to display stereotype properties
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(view);
 		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(view);
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
-
 		// now check presentation.
 		// if horizontal => equivalent to the inBrace visualization in nodes
 		// (i.e. only name =
@@ -222,13 +218,11 @@ public abstract class StereotypedElementLabelHelper {
 		// if vertical => equivalent to compartment visualization name of
 		// stereotype, NL, property =
 		// value, NL, etC.
-
 		// check the presentation kind. if only icon => do not display
 		// stereotype, only values
 		if(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
 			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement(editPart));
 		}
-
 		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(view);
 		String display = "";
 		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
@@ -262,7 +256,6 @@ public abstract class StereotypedElementLabelHelper {
 	 * @return the string that represent the stereotypes
 	 */
 	public String stereotypesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
-
 		// AL Changes Feb. 07 - Beg
 		// Style Handling for STEREOTYPE_NAME_APPEARANCE from
 		// ProfileApplicationPreferencePage
@@ -270,7 +263,6 @@ public abstract class StereotypedElementLabelHelper {
 		// to lower case) -
 		// default -
 		// or kept as entered by user (user controlled)
-
 		// Get the preference from PreferenceStore. there should be an assert
 		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		assert store != null : "The preference store was not found";
@@ -278,12 +270,10 @@ public abstract class StereotypedElementLabelHelper {
 			return "";
 		}
 		String sNameAppearance = store.getString(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
-
 		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
 		String out = "";
 		while(strQualifiedName.hasMoreElements()) {
 			String currentStereotype = strQualifiedName.nextToken();
-
 			// check if current stereotype is applied
 			final Element umlElement = getUMLElement(editPart);
 			Stereotype stereotype = umlElement.getAppliedStereotype(currentStereotype);
@@ -293,7 +283,6 @@ public abstract class StereotypedElementLabelHelper {
 					// property value contains qualifiedName ==> extract name
 					// from it
 					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
-
 					while(strToken.hasMoreTokens()) {
 						name = strToken.nextToken();
 					}
@@ -305,7 +294,6 @@ public abstract class StereotypedElementLabelHelper {
 				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
 				// 1).toLowerCase()+name.substring(1,
 				// name.length())+","+separator;
-
 				// check that the name has not already been added to the
 				// displayed string
 				if(sNameAppearance.equals(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
@@ -338,15 +326,12 @@ public abstract class StereotypedElementLabelHelper {
 	 */
 	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
 		IFigure figure = editPart.getFigure();
-
 		// computes the icon to be displayed
 		final Collection<Image> imageToDisplay = stereotypeIconsToDisplay(editPart);
-
 		// should check if edit part has to display the element icon or not
 		if(NameLabelIconHelper.showLabelIcon((View)editPart.getModel())) {
 			imageToDisplay.add(getImage(editPart));
 		}
-
 		// for each element in the list of stereotype icon, adds it to the icons
 		// list of the
 		// wrapping label
@@ -374,13 +359,10 @@ public abstract class StereotypedElementLabelHelper {
 	 */
 	protected String labelToDisplay(GraphicalEditPart editPart) {
 		StringBuffer buffer = new StringBuffer();
-
 		// computes the label for the stereotype (horizontal presentation)
 		buffer.append(stereotypesToDisplay(editPart));
-
 		// computes the string label to be displayed
 		buffer.append(elementLabel(editPart));
-
 		// buffer.append(PropertyUtil.getCustomLabel(getUMLElement(), 0));
 		return buffer.toString();
 	}
@@ -408,6 +390,8 @@ public abstract class StereotypedElementLabelHelper {
 			key = ((NamedElement)element).getName() + "::" + ((NamedElement)element).getVisibility();
 		} else if(element != null) {
 			key = element.getClass().getName();
+		} else {
+			return null;
 		}
 		ImageRegistry imageRegistry = Activator.getDefault().getImageRegistry();
 		Image image = imageRegistry.get(key);
@@ -426,5 +410,4 @@ public abstract class StereotypedElementLabelHelper {
 		}
 		return image;
 	}
-
 }

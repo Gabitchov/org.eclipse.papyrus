@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
+ *   
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
@@ -34,7 +36,6 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * The Class InstanceSpecificationNameLabelEditPolicy.
  */
@@ -56,21 +57,17 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		while(iterator.hasNext()) {
 			Classifier type = iterator.next();
 			getDiagramEventBroker().addNotificationListener(type, this);
-
 		}
-
 	}
 
 	@Override
 	public void deactivate() {
 		// TODO Auto-generated method stub
-
 		if(getUMLElement() != null) {
 			Iterator<Classifier> iterator = getUMLElement().getClassifiers().iterator();
 			while(iterator.hasNext()) {
 				Classifier type = iterator.next();
 				getDiagramEventBroker().removeNotificationListener(type, this);
-
 			}
 		}
 		super.deactivate();
@@ -82,14 +79,17 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * @param value
 	 * @return
 	 */
-
 	public String getMaskLabel(int value) {
 		return masks.get(value);
 	}
 
 	@Override
 	public InstanceSpecification getUMLElement() {
-		return (InstanceSpecification)super.getUMLElement();
+		EObject element = super.getUMLElement(); 
+		if(element instanceof InstanceSpecification) {
+			return (InstanceSpecification)element;
+		}
+		return null;
 	}
 
 	/**
@@ -97,7 +97,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * 
 	 * @return
 	 */
-
 	public Collection<String> getMaskLabels() {
 		return masks.values();
 	}
@@ -107,7 +106,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * 
 	 * @return
 	 */
-
 	public Collection<Integer> getMaskValues() {
 		return masks.keySet();
 	}
@@ -117,7 +115,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * 
 	 * @return
 	 */
-
 	public Map<Integer, String> getMasks() {
 		return masks;
 	}
@@ -127,7 +124,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * 
 	 * @return
 	 */
-
 	public int getCurrentDisplayValue() {
 		EAnnotation instanceDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
@@ -149,11 +145,9 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * 
 	 * @return
 	 */
-
 	public int getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_INSTANCESPECIFICATION;
 	}
-
 
 	@Override
 	public void notifyChanged(Notification notification) {
@@ -169,33 +163,26 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 			}
-
 		}
-
 		if(notification.getEventType() == Notification.REMOVE) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 			}
-
 		}
 		if(object == null) {
 			return;
 		}
-
 		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 			refreshDisplay();
 		} else if(notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
 			refreshDisplay();
 		}
-
 		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		}
-
 		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
-
 	}
 
 	/**
@@ -203,7 +190,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * 
 	 * @return
 	 */
-
 	public String getPreferencePageID() {
 		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage";
 	}
@@ -212,7 +198,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy#refreshDisplay()
 	 * 
 	 */
-
 	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part

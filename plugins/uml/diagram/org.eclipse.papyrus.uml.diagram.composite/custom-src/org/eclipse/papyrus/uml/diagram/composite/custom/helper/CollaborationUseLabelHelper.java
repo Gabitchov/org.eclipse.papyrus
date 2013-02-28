@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
@@ -113,7 +114,11 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public CollaborationUse getUMLElement(GraphicalEditPart editPart) {
-		return (CollaborationUse)((View)editPart.getModel()).getElement();
+		EObject element = super.getUMLElement(editPart); 
+		if(element instanceof CollaborationUse) {
+			return (CollaborationUse)element;
+		}
+		return null;
 	}
 
 }

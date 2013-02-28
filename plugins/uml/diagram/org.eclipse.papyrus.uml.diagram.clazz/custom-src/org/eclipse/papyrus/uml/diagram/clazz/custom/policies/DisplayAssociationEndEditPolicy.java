@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
@@ -60,11 +61,9 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public void addAdditionalListeners() {
-
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(getUMLElement().getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
-
 		}
 		getDiagramEventBroker().addNotificationListener(getUMLElement().getUpperValue(), this);
 		getDiagramEventBroker().addNotificationListener(getUMLElement().getLowerValue(), this);
@@ -133,7 +132,11 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Property getUMLElement() {
-		return (Property)super.getUMLElement();
+		EObject element = super.getUMLElement(); 
+		if(element instanceof Property) {
+			return (Property)element;
+		}
+		return null;
 	}
 
 	/**
@@ -152,12 +155,10 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		if(property == null) {
 			return;
 		}
-
 		//in order to find the role to display we need to now target of the edge, so it is important to have a notification about the change of the target
 		if((notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) || (notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source()))) {
 			refreshDisplay();
 		}
-
 		if(object == null) {
 			return;
 		}
@@ -166,21 +167,17 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		} else if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
 			refreshDisplay();
 		}
-
 		if(object.equals(property)) {
 			notifyPropertyChanged(property, notification);
 		} else if(object.equals(property.getType())) {
 			notifyPropertyTypeChanged(property.getType(), notification);
 		}
-
 		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		}
-
 		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
-
 	}
 
 	/**
@@ -209,7 +206,6 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 			refreshDisplay();
 			break;
 		case UMLPackage.PROPERTY__TYPE:
-
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
@@ -253,12 +249,9 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -304,7 +297,6 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 			getDiagramEventBroker().removeNotificationListener(getUMLElement().getType(), this);
 		}
 	}
-
 	//	/**
 	//	 * {@inheritDoc}
 	//	 */

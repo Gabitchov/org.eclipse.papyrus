@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
@@ -52,17 +53,14 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	@Override
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
-
 		Operation operation = getUMLElement();
 		// check host semantic element is not null
 		if(operation == null) {
 			return;
 		}
-
 		// adds a listener to the element itself, and to linked elements, like Type
 		for(Parameter parameter : operation.getOwnedParameters()) {
 			getDiagramEventBroker().addNotificationListener(parameter, this);
-
 			// should also add this element as a listener of parameter type
 			if(parameter.getType() != null) {
 				getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
@@ -136,7 +134,10 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	@Override
 	public Operation getUMLElement() {
-		return (Operation)hostSemanticElement;
+		if(hostSemanticElement instanceof Operation) {
+			return (Operation)hostSemanticElement;
+		}
+		return null;
 	}
 
 	/**
@@ -152,11 +153,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
 		Operation operation = getUMLElement();
-
 		if(object == null) {
 			return;
 		}
-
 		if(object.equals(operation)) {
 			notifyOperationChanged(operation, notification);
 		} else if(isParameter(object)) {
@@ -164,11 +163,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		} else if(isParameterType(object)) {
 			notifyParameterTypeChanged(notification);
 		}
-
 		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		}
-
 		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
@@ -186,7 +183,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Type)) {
 			return false;
 		}
-
 		for(Parameter parameter : getUMLElement().getOwnedParameters()) {
 			if(object.equals(parameter.getType())) {
 				return true;
@@ -206,7 +202,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Parameter)) {
 			return false;
 		}
-
 		return getUMLElement().getOwnedParameters().contains(object);
 	}
 
@@ -232,7 +227,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			break;
 		case UMLPackage.PARAMETER__TYPE:
-
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
@@ -276,12 +270,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -332,7 +323,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			break;
 		case UMLPackage.OPERATION__OWNED_PARAMETER:
-
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
@@ -376,12 +366,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -411,13 +398,10 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 		for(Parameter parameter : operation.getOwnedParameters()) {
 			getDiagramEventBroker().removeNotificationListener(parameter, this);
-
 			// remove parameter type listener
 			if(parameter.getType() != null) {
 				getDiagramEventBroker().removeNotificationListener(parameter.getType(), this);
 			}
-
 		}
 	}
-
 }

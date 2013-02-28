@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
@@ -58,11 +59,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			Activator.log.error("No semantic element present when adding listeners in PropertyLabelEditPolicy", null);
 			return;
 		}
-
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(property.getType() != null) {
 			getDiagramEventBroker().addNotificationListener(property.getType(), this);
-
 		}
 		getDiagramEventBroker().addNotificationListener(property.getUpperValue(), this);
 		getDiagramEventBroker().addNotificationListener(property.getLowerValue(), this);
@@ -127,11 +126,15 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * {@inheritedDoc}
 	 */
 	@Override
 	public Property getUMLElement() {
-		return (Property)super.getUMLElement();
+		EObject element = super.getUMLElement(); 
+		if(element instanceof Property) {
+			return (Property)element;
+		}
+		return null;
 	}
 
 	/**
@@ -147,11 +150,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
 		Property property = getUMLElement();
-
 		if(object == null || property == null) {
 			return;
 		}
-
 		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralInteger_Value())) {
 			refreshDisplay();
 		} else if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
@@ -162,15 +163,12 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		} else if(object.equals(property.getType())) {
 			notifyPropertyTypeChanged(property.getType(), notification);
 		}
-
 		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		}
-
 		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
-
 	}
 
 	/**
@@ -199,7 +197,6 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		case UMLPackage.PROPERTY__LOWER_VALUE:
 		case UMLPackage.PROPERTY__UPPER:
 		case UMLPackage.PROPERTY__UPPER_VALUE:
-
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
@@ -243,12 +240,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -295,13 +289,10 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// check semantic element is not null and this is really an instance of Property
 			return;
 		}
-
 		if(property.getType() != null) {
 			getDiagramEventBroker().removeNotificationListener(property.getType(), this);
 		}
-
 		getDiagramEventBroker().removeNotificationListener(property.getUpperValue(), this);
 		getDiagramEventBroker().removeNotificationListener(property.getLowerValue(), this);
 	}
-
 }
