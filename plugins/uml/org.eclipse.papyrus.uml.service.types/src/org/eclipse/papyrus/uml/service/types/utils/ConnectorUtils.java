@@ -17,11 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 
@@ -56,6 +58,27 @@ public class ConnectorUtils {
 
 		return deducedContainer;
 	}
+	
+	public Property getPartWithPort(View checkedView, View oppositeView) {
+		Property result = null;
+		EObject targetPort = checkedView.getElement();
+		if(targetPort instanceof Port) {
+			// Only look for PartWithPort if the role is a Port.
+
+			View parentView = ViewUtil.getContainerView(checkedView);
+			EObject semanticParent = parentView.getElement();
+			if((semanticParent instanceof Property) && !(semanticParent instanceof Port)) {
+				// Only add PartWithPort for assembly (not for delegation)
+				if(!EcoreUtil.isAncestor(parentView, oppositeView)) {
+					result = (Property)semanticParent;
+				}
+			}
+
+		}
+
+		return result;
+	}
+	
 
 	/**
 	 * Tries to find a common StructuredClassifier container to add the new Connector.

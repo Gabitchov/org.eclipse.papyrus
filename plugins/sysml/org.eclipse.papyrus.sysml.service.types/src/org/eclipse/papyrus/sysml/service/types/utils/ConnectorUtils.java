@@ -130,6 +130,14 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 			}
 		}
 		
+		// if end is a port, and the list is not empty, add the property from the check view in the list
+		if(!nestedPropertyPath.isEmpty() && checkedEnd.getElement() instanceof Port) {
+			Property partWithPort = getPartWithPort(checkedEnd, oppositeEnd);
+			if(partWithPort !=null) {
+				nestedPropertyPath.add(partWithPort);
+			}
+		}
+		
 		return nestedPropertyPath;
 	}
 	
