@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
+ * Copyright (c) 2011 Atos - CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  <a href="mailto:tristan.faure@atos.net">Tristan FAURE</a> - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.resources.refactoring.ui;
@@ -37,7 +38,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.ui.resources.refactoring.ui.ScopeChooser.ScopeChooserVisitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -75,6 +75,12 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 	public RenameParticipantsDialog(Shell parentShell, IFile context) {
 		super(parentShell);
 		this.context = context;
+	}
+
+	@Override
+	public void create() {
+		super.create();
+		getShell().pack();
 	}
 
 	/**
@@ -182,7 +188,13 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 		Object[] input = getInput();
 		comboViewer.setInput(input);
 		comboViewer.setSelection(new StructuredSelection(input[0]));
+
 		return area;
+	}
+
+	@Override
+	protected boolean isResizable() {
+		return true;
 	}
 
 	/**
@@ -230,14 +242,6 @@ public class RenameParticipantsDialog extends TitleAreaDialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
-	}
-
-	/**
-	 * Return the initial size of the dialog.
-	 */
-	@Override
-	protected Point getInitialSize() {
-		return new Point(450, 300);
 	}
 
 	public Collection<? extends IResource> getFiles() {

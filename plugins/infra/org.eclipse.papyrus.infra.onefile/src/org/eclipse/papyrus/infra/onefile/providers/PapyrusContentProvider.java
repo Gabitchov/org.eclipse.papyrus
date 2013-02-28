@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin Integration.
+ * Copyright (c) 2011 Atos Origin Integration - CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,14 +8,17 @@
  *
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.providers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -46,6 +49,7 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 	private CommonViewer common;
 
 
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		super.inputChanged(viewer, oldInput, newInput);
 		if(viewer instanceof CommonViewer) {
@@ -67,6 +71,7 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 		super.dispose();
 	}
 
+	@Override
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof IWorkspaceRoot) {
 			return null;
@@ -111,10 +116,12 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 		return result.isEmpty() ? null : result.toArray();
 	}
 
+	@Override
 	public Object[] getChildren(Object inputElement) {
 		return getElements(inputElement);
 	}
 
+	@Override
 	public Object getParent(Object element) {
 		if(element instanceof IPapyrusFile) {
 			IPapyrusFile papyFile = (IPapyrusFile)element;
@@ -123,6 +130,7 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 		return null;
 	}
 
+	@Override
 	public boolean hasChildren(Object element) {
 		return OneFileUtils.hasChildren(element);
 	}
@@ -184,7 +192,11 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 
 		IResourceDelta[] addedChildren = delta.getAffectedChildren(IResourceDelta.ADDED);
 
+		IResourceDelta[] removedChildren = delta.getAffectedChildren(IResourceDelta.REMOVED);
+
 		final Object[] addedObjects;
+
+		final Object[] removedObjects;
 
 		// Process additions before removals as to not cause selection
 		// preservation prior to new objects being added
@@ -198,13 +210,18 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 			addedObjects = new Object[0];
 		}
 
+		removedObjects = new Object[removedChildren.length];
+		int i = 0;
+		for(IResourceDelta removeDelta : removedChildren) {
+			removedObjects[i++] = removeDelta.getResource();
+		}
+
 		// Handle removed children. Issue one update for all removals.
 		// heuristic test for items moving within same folder (i.e. renames)
 		Runnable addAndRemove = new Runnable() {
 
 			public void run() {
 				if(common instanceof AbstractTreeViewer) {
-					AbstractTreeViewer treeViewer = (AbstractTreeViewer)common;
 					// Disable redraw until the operation is finished so we don't
 					// get a flash of both the new and old item (in the case of
 					// rename)
@@ -213,24 +230,55 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 					try {
 						// need to handle resource addition
 						if(addedObjects.length > 0) {
-							ArrayList<IPapyrusFile> elements = new ArrayList<IPapyrusFile>(addedObjects.length);
-							ArrayList<IPapyrusFile> toAdd = new ArrayList<IPapyrusFile>(addedObjects.length);
+							Set<Object> toRefresh = new HashSet<Object>();
+							Set<IPapyrusFile> toAdd = new HashSet<IPapyrusFile>(addedObjects.length);
 							for(Object r : addedObjects) {
 								if(r instanceof IResource) {
 									IResource current = (IResource)r;
 									if(OneFileUtils.diExists(current.getName(), current.getParent())) {
-										elements.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(OneFileUtils.getDi(current.getName(), current.getParent())));
+										IPapyrusFile oneFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(OneFileUtils.getDi(current.getName(), current.getParent()));
+										toRefresh.add(oneFile);
+										toRefresh.add(oneFile.getParent());
 									}
+
 									if(OneFileUtils.isDi(current)) {
 										toAdd.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile)current));
 									}
 								}
 							}
-							for(Object o : elements) {
-								common.refresh(o);
-							}
+
 							for(IPapyrusFile o : toAdd) {
 								common.add(o.getParent(), o);
+							}
+
+							for(Object o : toRefresh) {
+								common.refresh(o);
+							}
+						}
+
+						if(removedObjects.length > 0) {
+
+							Set<Object> toRefresh = new HashSet<Object>();
+							Set<Object> toRemove = new HashSet<Object>();
+
+							for(Object r : removedObjects) {
+								if(r instanceof IResource) {
+									IResource current = (IResource)r;
+									if(OneFileUtils.isDi(current)) {
+										toRemove.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile)current));
+										toRefresh.add(current.getParent());
+									} else if(OneFileUtils.diExists(current.getName(), current.getParent())) {
+										IPapyrusFile oneFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(OneFileUtils.getDi(current.getName(), current.getParent()));
+										toRefresh.add(oneFile);
+										toRemove.add(PapyrusModelHelper.getPapyrusModelFactory().createISubResourceFile(oneFile, (IFile)current));
+									}
+								}
+							}
+
+							common.remove(toRemove.toArray());
+
+							for(Object o : toRefresh) {
+								common.refresh(o);
 							}
 						}
 					} finally {

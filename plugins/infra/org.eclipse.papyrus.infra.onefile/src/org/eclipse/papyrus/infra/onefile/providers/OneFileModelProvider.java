@@ -31,6 +31,7 @@ public class OneFileModelProvider extends ModelProvider {
 	public OneFileModelProvider() {
 	}
 
+	@Override
 	public ResourceMapping[] getMappings(IResource resource, ResourceMappingContext context, IProgressMonitor monitor) {
 		if(OneFileUtils.isDi(resource)) {
 			return new ResourceMapping[]{ new PapyrusResourceMapping((IFile)resource) };

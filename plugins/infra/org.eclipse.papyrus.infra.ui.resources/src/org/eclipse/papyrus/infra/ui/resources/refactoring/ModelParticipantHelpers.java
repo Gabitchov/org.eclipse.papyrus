@@ -13,24 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.resources.refactoring;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.ui.resources.refactoring.ui.RenameParticipantsDialog;
 import org.eclipse.swt.widgets.Display;
@@ -69,17 +61,7 @@ public class ModelParticipantHelpers {
 		if(DiModel.DI_FILE_EXTENSION.equalsIgnoreCase(initialPath.getFileExtension())) {
 			diPath = initialPath;
 		} else {
-			// try to find a di file with the same name
-			try {
-				for(IResource r : parent.members()) {
-					IPath p = r.getFullPath();
-					if(DiModel.DI_FILE_EXTENSION.equalsIgnoreCase(p.getFileExtension()) && p.removeFileExtension().equals(initialPath.removeFileExtension())) {
-						diPath = p;
-						break;
-					}
-				}
-			} catch (CoreException e) {
-			}
+			return Collections.<IResource> singleton(initialFile);
 		}
 
 		Set<IResource> relatedFiles = new HashSet<IResource>();
@@ -105,29 +87,6 @@ public class ModelParticipantHelpers {
 
 
 		return relatedFiles;
-	}
-
-	private static List<IResource> getModelFilesFromNotationResource(Resource notationResource) {
-		List<IResource> modelFiles = new ArrayList<IResource>();
-
-		// look for a model associated with a diagram in notation
-		for(EObject eObject : notationResource.getContents()) {
-			if(eObject instanceof Diagram) {
-				Diagram diagram = (Diagram)eObject;
-				InternalEObject element = (InternalEObject)diagram.eGet(NotationPackage.Literals.VIEW__ELEMENT, false);
-				if(element != null && element.eIsProxy()) {
-					URI modelURI = element.eProxyURI().trimFragment();
-					if(modelURI.isPlatform()) {
-						IResource modelFile = ResourcesPlugin.getWorkspace().getRoot().findMember(modelURI.toPlatformString(true));
-						if(modelFile != null) {
-							modelFiles.add(modelFile);
-						}
-					}
-				}
-			}
-		}
-
-		return modelFiles;
 	}
 
 	public static class RenameDialogRunnable implements Runnable {

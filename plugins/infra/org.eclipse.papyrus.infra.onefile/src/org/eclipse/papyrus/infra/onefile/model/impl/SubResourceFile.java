@@ -28,13 +28,15 @@ import org.eclipse.ui.PlatformUI;
  * 
  */
 public class SubResourceFile implements ISubResourceFile {
-	@SuppressWarnings("unused")
+
 	private IPapyrusFile parent;
+
 	private final IFile subResource;
 
 	public SubResourceFile(IPapyrusFile papy, IFile r) {
 		this.parent = papy;
 		this.subResource = r;
+
 	}
 
 	public IProject getProject() {
@@ -53,12 +55,9 @@ public class SubResourceFile implements ISubResourceFile {
 
 	public Image getImage() {
 		Image image = JFaceResources.getImage(getFile().getFileExtension());
-		if (image == null) {
-			ImageDescriptor desc = PlatformUI.getWorkbench()
-					.getEditorRegistry()
-					.getImageDescriptor(getFile().getName());
-			JFaceResources.getImageRegistry().put(getFile().getFileExtension(),
-					desc);
+		if(image == null) {
+			ImageDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getImageDescriptor(getFile().getName());
+			JFaceResources.getImageRegistry().put(getFile().getFileExtension(), desc);
 		}
 		return JFaceResources.getImage(getFile().getFileExtension());
 	}
@@ -69,6 +68,10 @@ public class SubResourceFile implements ISubResourceFile {
 
 	public Object getAdapter(Class adapter) {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
+	}
+
+	public IPapyrusFile getParent() {
+		return parent;
 	}
 
 }

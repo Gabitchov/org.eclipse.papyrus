@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009 Atos Origin - CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a> - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.resources.refactoring;
@@ -35,6 +36,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.common.notify.Notifier;
@@ -168,10 +170,6 @@ public class RenameModelChange extends Change {
 		// to change all the resources.
 		pm.subTask(Messages.RenameModelChange_LoadingEMF);
 
-		//			String extension= newFile.getFileExtension();
-		//			if( extension == null){
-		//				newFile.getFullPath().addFileExtension(oldFile.getFileExtension());
-		//			}
 		pm.subTask(Messages.RenameModelChange_DaveDirtyEditor);
 		// We need to get the current workbench... so we have to use the UI-Thread!
 		openedEditors = new ArrayList<IMultiDiagramEditor>();
@@ -195,9 +193,6 @@ public class RenameModelChange extends Change {
 		 * Load ModelSet
 		 */
 		resourceSet = new ModelSet();
-		//		XMIResourceFactoryImpl value = new XMIResourceFactoryImpl();
-		//		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, value);
-		//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, value);
 		try {
 			ModelsReader reader = new ModelsReader();
 			reader.readModel(resourceSet);
@@ -213,16 +208,19 @@ public class RenameModelChange extends Change {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
+
 		// Force EMF resolve and load all the resources
 		try {
 			EcoreUtil.resolveAll(resourceSet);
-		} catch (RuntimeException e) {
+		} catch (Exception ex) {
 			// the resolve all does not have to break the operation
 		}
+
 		pm.worked(4);
 		domain = resourceSet.getTransactionalEditingDomain();
+
 		// TODO improve when impact analysis will be effective
 		return manageResourceSet(pm, resourceSet);
 	}
@@ -248,11 +246,17 @@ public class RenameModelChange extends Change {
 	 */
 	@Override
 	public Change perform(IProgressMonitor pm) throws CoreException {
+
 		String lMsg = Messages.bind(Messages.RenameModelChange_Change, oldFile.getName(), newFile.getName());
 		isUndoOperation = oldFile.exists() && !newFile.exists();
+
 		if(!isUndoOperation) {
+			//The file has already been renamed. Undo the rename change, then do the full refactoring in the resource set
 			newFile.move(oldFile.getFullPath(), true, new SubProgressMonitor(pm, 1));
 		}
+
+		Set<IResource> revertImpactedFiles = getRevertImpactedResources();
+
 		pm.beginTask(lMsg, 30);
 		try {
 			doRun(pm, resourceSet, domain);
@@ -308,14 +312,48 @@ public class RenameModelChange extends Change {
 			}
 			pm.worked(4);
 
+			RenameModelChange undoChange = new RenameModelChange(newFile, oldFile, revertImpactedFiles);
+
 			if(isUndoOperation) {
+				//Restore the expected state for the basic rename change
 				newFile.move(oldFile.getFullPath(), true, new SubProgressMonitor(pm, 1));
 			}
 
-			return new RenameModelChange(newFile, oldFile, impacted);
+			//Invert the change
+			return undoChange;
 		} finally {
 			pm.done();
 		}
+	}
+
+	private Set<IResource> getRevertImpactedResources() {
+		Set<IResource> result = new HashSet<IResource>();
+
+		Set<IResource> relatedFiles = ModelParticipantHelpers.getRelatedFiles(oldFile);
+		relatedFiles.add(oldFile);
+
+		for(IResource initialResource : impacted) {
+			if(relatedFiles.contains(initialResource)) {
+				IResource invertedResource = invertFileName(initialResource);
+				result.add(invertedResource); //Participant model (the file is renamed)
+			} else {
+				result.add(initialResource); //Client model (only links are modified)
+			}
+		}
+
+		return result;
+	}
+
+	private IResource invertFileName(IResource initialResource) {
+		String newName;
+
+		IPath pathWithoutExtension = newFile.getFullPath().removeFileExtension();
+		IPath pathWithExtension = pathWithoutExtension.addFileExtension(initialResource.getFileExtension());
+		newName = pathWithExtension.lastSegment();
+
+		IFile newFile = oldFile.getParent().getFile(new Path(newName));
+
+		return newFile;
 	}
 
 	private RefactoringStatus manageResourceSet(final IProgressMonitor pm, final ModelSet resourceSet) {
@@ -329,7 +367,7 @@ public class RenameModelChange extends Change {
 				for(URI uri : uriMap.keySet()) {
 					Resource r = resourceSet.getResource(uri, false);
 					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-					if(adapter != null) {
+					if(adapter == null) {
 						adapter = new ECrossReferenceAdapter();
 						adapter.setTarget(resourceSet);
 					}

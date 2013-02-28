@@ -105,7 +105,7 @@
          <triggerPoints>
             <or>
             	<instanceof
-                  value="org.eclipse.core.resources.IResource">
+                  value="org.eclipse.core.resources.IContainer">
             	</instanceof>
              <instanceof
                    value="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
@@ -116,7 +116,7 @@
             </or>
          </triggerPoints>
          <actionProvider
-               class="org.eclipse.papyrus.infra.onefile.providers.ISubresourceFileActionProvider"
+               class="org.eclipse.papyrus.infra.onefile.providers.SubresourceFileActionProvider"
                id="org.eclipse.papyrus.infra.onefile.DiContent.EditActions">
             <enablement>
                <instanceof

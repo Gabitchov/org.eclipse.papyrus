@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin Integration.
+ * Copyright (c) 2011 Atos Origin Integration - CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Tristan Faure (Atos Origin) tristan.faure@ato.net - Initial API and implementation
+ *  Tristan Faure (Atos Origin) tristan.faure@atos.net - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.providers;
 
@@ -32,7 +33,7 @@ import org.eclipse.ui.internal.navigator.resources.actions.EditActionProvider;
  * 
  */
 @SuppressWarnings("restriction")
-public class ISubresourceFileActionProvider extends EditActionProvider {
+public class SubresourceFileActionProvider extends EditActionProvider {
 
 	@Override
 	public void setContext(ActionContext context) {

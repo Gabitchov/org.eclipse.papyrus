@@ -17,32 +17,5 @@
          </enablement>
       </renameParticipant>
    </extension>
-   <extension
-         point="org.eclipse.ltk.core.refactoring.deleteParticipants">
-      <deleteParticipant
-            class="org.eclipse.papyrus.infra.ui.resources.refactoring.DeleteModelParticipant"
-            id="org.eclipse.papyrus.ui.resources.deleteParticipant"
-            name="%deleteParticipant.name">
-         <enablement>
-            <with
-                  variable="element">
-               <instanceof
-                     value="org.eclipse.core.resources.IFile">
-               </instanceof>
-            </with></enablement>
-      </deleteParticipant>
-   </extension>
-   <extension
-         point="org.eclipse.ltk.core.refactoring.moveParticipants">
-      <moveParticipant
-            class="org.eclipse.papyrus.infra.ui.resources.refactoring.MoveModelParticipant"
-            id="org.eclipse.papyrus.ui.resources.moveParticipant"
-            name="%moveParticipant.name">
-         <enablement>
-            <instanceof
-                  value="org.eclipse.core.resources.IFile">
-            </instanceof></enablement>
-      </moveParticipant>
-   </extension>
 
 </plugin>

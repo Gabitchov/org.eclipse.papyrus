@@ -48,7 +48,7 @@ public class PapyrusFile implements IPapyrusFile {
 		try {
 			for(IResource res : file.getParent().members()) {
 				if(res instanceof IFile && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
-					files.add((IFile)res);
+					files.add(res);
 				}
 			}
 		} catch (CoreException e) {
