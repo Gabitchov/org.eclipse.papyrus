@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nattableconfiguration:TableEditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nattable="http://www.eclipse.org/papyrus/nattable/model" xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration" xmlns:nattablecontentprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider">
+  <defaultVerticalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider">
+    <javaContentProviderIds>org.eclipse.papyrus.infra.nattable.page.editor.view.feature.axis.manager</javaContentProviderIds>
+    <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/name"/>
+    <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/context"/>
+    <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/isOpen"/>
+  </defaultVerticalContentProvider>
+  <defaultHorizontalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider">
+    <javaContentProviderIds>org.eclipse.papyrus.infra.nattable.page.editor.contents.axis.manager</javaContentProviderIds>
+  </defaultHorizontalContentProvider>
+</nattableconfiguration:TableEditorConfiguration>
