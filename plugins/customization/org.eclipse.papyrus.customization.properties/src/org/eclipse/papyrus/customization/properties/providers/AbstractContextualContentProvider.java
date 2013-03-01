@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -46,7 +47,7 @@ public abstract class AbstractContextualContentProvider extends SemanticEMFConte
 	 *        The EObject used to retrieve the available contexts
 	 */
 	protected AbstractContextualContentProvider(EObject source) {
-		super(findContexts(source).toArray(new Context[0]));
+		super(findContexts(source).toArray(new Context[0]), Activator.getDefault().getCustomizationManager());
 		contexts = ListHelper.asList((Context[])roots);
 	}
 

@@ -38,7 +38,7 @@ public class EnvironmentContentProvider extends SemanticEMFContentProvider imple
 	 *        different environments.
 	 */
 	public EnvironmentContentProvider(EStructuralFeature feature) {
-		super(null, feature, getRoots(feature));
+		super(null, feature, getRoots(feature), Activator.getDefault().getCustomizationManager());
 	}
 
 	private static EObject[] getRoots(EStructuralFeature feature) {

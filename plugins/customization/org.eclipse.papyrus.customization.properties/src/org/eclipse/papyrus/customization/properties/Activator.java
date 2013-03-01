@@ -95,6 +95,18 @@ public class Activator extends AbstractUIPlugin {
 		try {
 			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
 			for(MetamodelView metamodelView : registryDefaultCustomizations) {
+				//FIXME: One of the default uiCustom files in Papyrus has a side effect to call resolveAll on the resource set. While this is generally not a problem in Papyrus,
+				//it becomes critical with the properties view customization, as the resource set contains hundreds of proxies to xwt files (Which are really expensive to load)
+				//It seems that this uiCustom query cannot be easily fixed, so we disable it in this context.
+				//The query which tries to (indirectly) resolve all: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer
+				//Used by: PapyrusNotationFacet.querySet -> PapyrusNotationFacet.uiCustom
+				if("PapyrusNotationFacet".equals(metamodelView.getName())) {
+					System.out.println("Disable " + metamodelView.getName());
+					continue; //Disable this specific uiCustom
+				}
+
+				System.out.println("Add " + metamodelView.getName());
+
 				customizationManager.registerCustomization(metamodelView);
 			}
 

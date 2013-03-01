@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
@@ -45,15 +46,18 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 
 	protected AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots) {
-		super(Activator.getDefault().getCustomizationManager());
-
+	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots, CustomizationManager customizationManager) {
+		super(customizationManager);
 		this.roots = roots;
 
 		configureMetaclasses(feature);
 
 		this.eObject = editedEObject;
 		this.feature = feature;
+	}
+
+	public SemanticEMFContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots) {
+		this(editedEObject, feature, roots, Activator.getDefault().getCustomizationManager());
 	}
 
 	protected void configureMetaclasses(EStructuralFeature feature) {
@@ -68,6 +72,10 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 
 	public SemanticEMFContentProvider(EObject[] roots) {
 		this(null, null, roots);
+	}
+
+	public SemanticEMFContentProvider(EObject[] roots, CustomizationManager customizationManager) {
+		this(null, null, roots, customizationManager);
 	}
 
 	public SemanticEMFContentProvider(ResourceSet root) {
