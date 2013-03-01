@@ -49,14 +49,9 @@ public class ResourceUtils {
 		if(resource != null) {
 			URI uri = resource.getURI();
 			uri = resource.getResourceSet().getURIConverter().normalize(uri);
-			String scheme = uri.scheme();
-			if("platform".equals(scheme) && uri.segmentCount() > 1 && "resource".equals(uri.segment(0))) { //$NON-NLS-1$ //$NON-NLS-2$
-				StringBuffer platformResourcePath = new StringBuffer();
-				for(int j = 1, size = uri.segmentCount(); j < size; ++j) {
-					platformResourcePath.append('/');
-					platformResourcePath.append(uri.segment(j));
-				}
-				return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourcePath.toString()));
+			if(uri.isPlatformResource()) { 
+				String uriPlatformString = uri.toPlatformString(true) ;
+				return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uriPlatformString));
 			}
 		}
 		return null;
