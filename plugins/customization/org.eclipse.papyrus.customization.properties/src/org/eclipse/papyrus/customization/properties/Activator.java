@@ -101,11 +101,8 @@ public class Activator extends AbstractUIPlugin {
 				//The query which tries to (indirectly) resolve all: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer
 				//Used by: PapyrusNotationFacet.querySet -> PapyrusNotationFacet.uiCustom
 				if("PapyrusNotationFacet".equals(metamodelView.getName())) {
-					System.out.println("Disable " + metamodelView.getName());
 					continue; //Disable this specific uiCustom
 				}
-
-				System.out.println("Add " + metamodelView.getName());
 
 				customizationManager.registerCustomization(metamodelView);
 			}
