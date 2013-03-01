@@ -141,7 +141,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 
 		for(int i = 0; i < dialog.getResult().length; i++) {
 			IFile selectedFile = (IFile)dialog.getResult()[i];
-			URI profileUri = URI.createURI("platform:/resource" + selectedFile.getFullPath().toString()); //$NON-NLS-1$
+			URI profileUri = URI.createPlatformResourceURI(selectedFile.getFullPath().toString(), true);
 
 			ResourceSet resourceSet = umlPackage.eResource().getResourceSet();
 
