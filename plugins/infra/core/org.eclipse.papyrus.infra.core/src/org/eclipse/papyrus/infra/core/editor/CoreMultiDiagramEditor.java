@@ -416,8 +416,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 					return contentOutline;
 				}
 			} catch (BackboneException e) {
-				// TODO change next exception to more appropriate one
-				throw new RuntimeException(e);
+				//Ignore: There is not registered outline.
 			}
 		}
 
