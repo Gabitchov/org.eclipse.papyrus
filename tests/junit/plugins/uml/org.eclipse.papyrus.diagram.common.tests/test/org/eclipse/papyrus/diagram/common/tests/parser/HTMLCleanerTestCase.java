@@ -220,4 +220,20 @@ public class HTMLCleanerTestCase extends TestCase {
 		}
 		assertEquals(expectedResult, result);
 	}
+	
+	/**
+	 * Test method for {@link org.eclipse.papyrus.diagram.common.parser.HTMLCleaner#cleanHTMLTags(java.lang.String)}.
+	 */
+	@Test
+	public void testCleanHTMLTags13() {
+		final String test = "<test>some random text</test>";
+		final String expectedResult = "<test>some random text</test>";
+		String result = null;
+		try {
+			result = HTMLCleaner.removeHTMLTags(HTMLCleaner.preClean(test));
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+		assertEquals(expectedResult, result);
+	}
 }
