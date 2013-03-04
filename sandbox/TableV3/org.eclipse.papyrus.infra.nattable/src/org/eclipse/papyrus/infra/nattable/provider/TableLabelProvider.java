@@ -25,6 +25,11 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
+/**
+ * 
+ * This labelprovider provides icon and text for tables to display them in treeviewer
+ * 
+ */
 public class TableLabelProvider extends EMFLabelProvider implements IFilteredLabelProvider {
 
 	@Override

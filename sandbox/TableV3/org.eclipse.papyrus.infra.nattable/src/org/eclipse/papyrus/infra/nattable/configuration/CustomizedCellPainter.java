@@ -27,10 +27,12 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.solver.PathResolverFactory;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.ui.internal.SharedImages;
 
 
 public class CustomizedCellPainter extends TextPainter {
@@ -42,64 +44,41 @@ public class CustomizedCellPainter extends TextPainter {
 	private static final String VALUE_SEPARATOR = ", "; //$NON-NLS-1$
 
 	//FIXME currently the service registry can't be obtained for features, because their resources are not included in the resourceSet
-	private static LabelProviderService serv;
+	public static LabelProviderService serv;
 
+	//FIXME : we must have an EObject (the context of the table) to find the service registry
 	public CustomizedCellPainter() {
 		if(serv == null) {
 			serv = new LabelProviderServiceImpl();
 			try {
 				serv.startService();
 			} catch (final ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 		}
 	}
 
-	@Override
-	protected String getTextToDisplay(final ILayerCell cell, final GC gc, final int availableLength, final String text) {
-		// TODO Auto-generated method stub
-		return super.getTextToDisplay(cell, gc, availableLength, text);
-	}
 
 	@Override
 	protected String convertDataType(final ILayerCell cell, final IConfigRegistry configRegistry) {
 		final Object value = cell.getDataValue();
-		ILayer layer = cell.getLayer();
-		ILayer layer2 = null;
-		if(layer instanceof GridLayer) {
-			try {
-				//				layer2 = layer.getUnderlyingLayerByPosition(cell.getColumnIndex(), 0);
-				int i = 0;
-				i++;
-
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
-		if(value instanceof String) {
-			EObject context = null;
-			//maybe it a path
-			if(((String)value).startsWith("property")) {
-				int rowIndex = cell.getRowPosition();
-				int columnIndex = cell.getColumnPosition();
-				//				layer2 = layer.getUnderlyingLayerByPosition(columnIndex, rowIndex);
-				//				layer2.get
-				//				int i = 0;
-				//				i++;
-			}
-			//			Object obj = PathResolverFactory.INSTANCE.getRealValue((String)value, context);
-			//			if(obj instanceof EObject) {
-			//				return getLabelForEObject((EObject)obj);//FIXME ;: and if the resolution doesn't gie an eobject but an object?
-			//			}
-		}
+		//		if(value instanceof EStructuralFeature) {
+		//			LabelProviderService service = getLabelProviderService((EObject)value);
+		//			if(service == null) {
+		//				service = serv;
+		//			}
+		//			ILabelProvider provider = service.getLabelProvider("org.eclipse.papyrus.infra.nattable.header.labelprovider");
+		//			String txt = provider.getText(value);
+		//			int i = 0;
+		//			i++;
+		//		}
 		if(value != null) {
 			if(value instanceof EObject) {
-				String str = getLabelForEObject((EObject)value);
-				if(value instanceof EStructuralFeature && ((EStructuralFeature)value).isDerived()) {//FIXME : not yet done for the list of structural feature!
-					return "/" + str; //FIXME : must probably be done with a customization.
-				}
-				return str;
+				return getLabelForEObject((EObject)value);
+				//				if(value instanceof EStructuralFeature && ((EStructuralFeature)value).isDerived()) {//FIXME : not yet done for the list of structural feature!
+				//					return "/" + str; //FIXME : must probably be done with a customization.
+				//				}
+				//				return str;
 			} else if(value instanceof Collection<?>) {
 				final Iterator<Object> iter = ((Collection)value).iterator();
 				String text = BEGIN_OF_LIST;
@@ -127,8 +106,7 @@ public class CustomizedCellPainter extends TextPainter {
 	}
 
 
-
-	private String getLabelForEObject(final EObject object) {
+	protected String getLabelForEObject(final EObject object) {
 		LabelProviderService service = getLabelProviderService(object);
 		if(service == null) {
 			service = serv;
@@ -140,24 +118,23 @@ public class CustomizedCellPainter extends TextPainter {
 		return ""; //$NON-NLS-1$
 	}
 
-	private LabelProviderService getLabelProviderService(final EObject eobject) {
+	protected LabelProviderService getLabelProviderService(final EObject eobject) {
 		final ServicesRegistry registry = getServiceRegistry(eobject);
 		if(registry != null) {
 			try {
 				return registry.getService(LabelProviderService.class);
 			} catch (final ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 		}
 		return null;
 	}
 
-	private ServicesRegistry getServiceRegistry(final EObject object) {
+	protected ServicesRegistry getServiceRegistry(final EObject object) {
 		try {
 			return ServiceUtilsForResource.getInstance().getServiceRegistry(object.eResource());
 		} catch (final ServiceException e) {
-			//			Activator.log.error("ServiceRegistry not found", e);
+//			Activator.log.error("ServiceRegistry not found", e);
 		}
 		return null;
 	}

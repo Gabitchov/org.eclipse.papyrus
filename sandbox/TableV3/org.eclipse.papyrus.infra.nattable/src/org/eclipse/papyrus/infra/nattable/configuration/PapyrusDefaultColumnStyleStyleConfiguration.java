@@ -24,8 +24,7 @@ public class PapyrusDefaultColumnStyleStyleConfiguration extends DefaultColumnHe
 
 	@Override
 	public void configureRegistry(final IConfigRegistry configRegistry) {
-		this.cellPainter = new BeveledBorderDecorator(new CustomizedCellPainter());
+		this.cellPainter = new BeveledBorderDecorator(new HeaderCellPainter());
 		super.configureRegistry(configRegistry);
-		//		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new CustomizedCellPainter(), DisplayMode.NORMAL, GridRegion.COLUMN_HEADER);
 	}
 }

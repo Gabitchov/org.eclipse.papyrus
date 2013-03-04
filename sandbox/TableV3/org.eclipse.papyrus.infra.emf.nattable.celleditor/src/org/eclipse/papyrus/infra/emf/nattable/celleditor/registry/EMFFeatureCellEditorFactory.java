@@ -161,6 +161,22 @@ public class EMFFeatureCellEditorFactory extends AbstractCellEditorConfiguration
 		return null;
 	}
 
+	//	
+	//	//FIXME : 2 methods for the same thing
+	//	public IAxisCellEditorConfiguration getCellEditorConfiguration(final Table table, final EClassifier type, final boolean isMany){
+	//		for(final IAxisCellEditorConfiguration config : this.configurations.values()) {
+	//			if(config.isMany() == isMany) {
+	//				final EClassifier managedType = (EClassifier)config.getEditedType();
+	//				if(type == managedType) {
+	//					return config;
+	//				} else if(EMFHelper.isSuperType(managedType, type)) {
+	//					return config;
+	//				}
+	//			}
+	//		}
+	//		return null;
+	//	}
+
 	/**
 	 * 
 	 * @param eClass
@@ -184,5 +200,5 @@ public class EMFFeatureCellEditorFactory extends AbstractCellEditorConfiguration
 		return null;
 	}
 
-	
+
 }

@@ -87,12 +87,10 @@ public class CellFeatureValueManager implements ICellManager {
 
 	public Command getSetValueCommand(EditingDomain domain, Object rowElement, Object lineElement, Object newValue) {
 		final List<EObject> objects = organizeObject(rowElement, lineElement);
-		//FIXME : we must use the service edit
 		//FIXME : we must distinguish the set, the add, the unset?, the remove?
 		final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, objects.get(0), (EStructuralFeature)objects.get(1), newValue);
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(objects.get(0));
 		ICommand editCommand = provider.getEditCommand(request);
-		editCommand.canExecute();
 		return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
 	}
 
