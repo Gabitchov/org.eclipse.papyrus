@@ -1,3 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2010-2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 
+ * Ansgar Radermacher: Bug 402254: Height changes after first resize
+ * 
+ *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.commands;
 
 import java.util.Iterator;
@@ -81,14 +96,17 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 
 		if(internalResize) {
 			Zone.setHeight(stateLabel, Zone.getHeight(stateLabel) + dy);
-			//			dy = 0;
+			// dy = 0;
 		}
 		// first resize the state node with the constraint provided
 		Zone.setBounds(state, bounds);
 		// resize label and compartment
 		Zone.setWidth(stateLabel, bounds.width);
 		Zone.setWidth(stateCompartment, bounds.width);
-		Zone.setHeight(stateCompartment, bounds.height - Zone.getHeight(stateLabel));
+		if(Zone.getHeight(stateLabel) != -1) {
+			//only set height of state-compartment, if height is of label is already initialized assigned (bug 402254)
+			Zone.setHeight(stateCompartment, bounds.height - Zone.getHeight(stateLabel));
+		}
 		Zone.setY(stateCompartment, Zone.getHeight(stateLabel));
 
 		if(internalResize && (dx == 0))
@@ -316,7 +334,7 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 				// we test whether the current node is close to the outer BOTTOM
 				// and RIGHT
 				// borders
-				// this is the case if it has no RIGHT neighbours nor BOTTOM
+				// this is the case if it has no RIGHT neighbors nor BOTTOM
 				// neigbours at all
 				if(!Zone.hasRightNeighbours(zone) && !Zone.hasBottomNeighbours(zone)) {
 					// for each of these we add dx to their width and dy to
@@ -328,7 +346,7 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 					height += dy;
 					Zone.setHeight(view, height);
 				}
-				// the second case is when it has no RIGHT neighbours but BOTTOM
+				// the second case is when it has no RIGHT neighbors but BOTTOM
 				// ones, i.e.
 				// close to RIGHT border only
 				else if(!Zone.hasRightNeighbours(zone) && Zone.hasBottomNeighbours(zone)) {
