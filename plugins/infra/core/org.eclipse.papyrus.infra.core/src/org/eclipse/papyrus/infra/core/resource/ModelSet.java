@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
@@ -468,10 +470,9 @@ public class ModelSet extends ResourceSetImpl {
 				try {
 					if(!(model instanceof AdditionalResourcesModel)) {
 						model.saveModel();
-						monitor.worked(1);
 					}
+					monitor.worked(1);
 				} catch (Exception ex) {
-					//TODO: What happens when a save fails? Most of the time, it can be ignored (dangling href, ...)
 					Activator.log.error(ex);
 				}
 			}
@@ -588,6 +589,28 @@ public class ModelSet extends ResourceSetImpl {
 				snippet.dispose(modelsManager);
 			}
 
+		}
+	}
+
+	/**
+	 * 
+	 * @param target
+	 */
+	public void saveCopy(IPath targetPathWithoutExtension) {
+		List<IVersionableModel> versionableModels = new LinkedList<IVersionableModel>();
+
+		Map<Object, Object> targetMap = new HashMap<Object, Object>();
+
+		for(IModel model : models.values()) {
+			if(model instanceof IVersionableModel) {
+				IVersionableModel versionable = (IVersionableModel)model;
+				versionable.fillTargetMap(targetPathWithoutExtension, targetMap);
+				versionableModels.add(versionable);
+			}
+		}
+
+		for(IVersionableModel model : versionableModels) {
+			model.saveCopy(targetPathWithoutExtension, targetMap);
 		}
 	}
 

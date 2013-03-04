@@ -34,7 +34,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	/**
 	 * Model kind.
 	 */
-	private ModelKind modelKind;;
+	private ModelKind modelKind;
 
 	/**
 	 * 
@@ -132,6 +132,18 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 		// Do the save
 		super.saveModel();
 	}
+
+	@Override
+	public void saveCopy(IPath targetPathWithoutExtension, Map<Object, Object> targetMap) {
+		// Do nothing if we are a slave
+		if(modelKind == ModelKind.slave) {
+			return;
+		}
+
+		//Do the save
+		super.saveCopy(targetPathWithoutExtension, targetMap);
+	}
+
 
 	/**
 	 * Get the root of this model. Lookup in the associated {@link Resource} for

@@ -4,6 +4,7 @@
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware;
+import org.eclipse.papyrus.infra.core.Activator;
 
 /**
  * An abstract implmeentation of model. This class should be subclassed to fit
@@ -22,7 +25,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
  * @author cedric dumoulin
  * 
  */
-public abstract class AbstractBaseModel implements IModel {
+public abstract class AbstractBaseModel implements IVersionableModel {
 
 	public static final String ENCODING = "UTF-8"; //$NON-NLS-1$
 
@@ -263,6 +266,90 @@ public abstract class AbstractBaseModel implements IModel {
 		saveOptions.put(XMIResource.OPTION_URI_HANDLER, new org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware());
 
 		return saveOptions;
+	}
+
+
+	public void saveCopy(IPath targetPathWithoutExtension, Map<Object, Object> targetMap) {
+		//		OutputStream targetStream = getOutputStream(targetPath);
+		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+
+		URI targetURI = getTargetURI(targetPathWithoutExtension);
+
+		saveOptions.put(XMIResource.OPTION_URI_HANDLER, new SaveCopyURIHandlerImp(targetMap, targetURI));
+		try {
+			OutputStream outputStream = modelSet.getURIConverter().createOutputStream(targetURI);
+			resource.save(outputStream, saveOptions);
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		}
+		//	resource.save(targetStream, options);
+	}
+
+	public void fillTargetMap(IPath targetPathWithoutExtension, Map<Object, Object> targetMap) {
+		targetMap.put(getResourceURI(), getTargetURI(targetPathWithoutExtension));
+	}
+
+	protected URI getTargetURI(IPath targetPathWithoutExtension) {
+		String resourceSegment = resourceURI.lastSegment();
+		int index = resourceSegment.lastIndexOf(".");
+		if(index > -1) {
+			String extension = resourceSegment.substring(index + 1);
+			IPath targetPath = targetPathWithoutExtension.addFileExtension(extension);
+
+			URI targetURI;
+			if(targetPath.getDevice() == null) {
+				targetURI = URI.createPlatformResourceURI(targetPath.toOSString(), true);
+			} else {
+				targetURI = URI.createFileURI(targetPath.toString());
+			}
+			return targetURI;
+		}
+
+		return null;
+	}
+
+	public URI getURI() {
+		return resource.getURI();
+	}
+
+	protected class SaveCopyURIHandlerImp extends PlatformSchemeAware {
+
+		private Map<Object, Object> targetMap;
+
+		private URI targetURI;
+
+		public SaveCopyURIHandlerImp(Map<Object, Object> targetMap, URI targetURI) {
+			this.targetMap = targetMap;
+			this.targetURI = targetURI;
+		}
+
+		@Override
+		public void setBaseURI(URI baseURI) {
+			//We're saving to a different target URI. Ignore the call to setBaseURI.
+			super.setBaseURI(targetURI);
+		}
+
+		@Override
+		public URI deresolve(URI uri) {
+			URI resourceURI = uri.trimFragment();
+
+			//Do not map our own URI
+			if(!AbstractBaseModel.this.resourceURI.equals(resourceURI)) {
+				if(targetMap.containsKey(resourceURI)) {
+					Object target = targetMap.get(resourceURI);
+					if(target instanceof URI) {
+						URI targetURI = (URI)target;
+						if(uri.fragment() != null) {
+							targetURI = targetURI.appendFragment(uri.fragment());
+						}
+						return targetURI;
+					}
+				}
+			}
+
+			return super.deresolve(uri);
+		}
+
 	}
 
 }
