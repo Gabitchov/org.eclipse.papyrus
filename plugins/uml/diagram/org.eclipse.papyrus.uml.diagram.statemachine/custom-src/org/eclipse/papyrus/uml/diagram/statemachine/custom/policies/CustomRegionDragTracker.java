@@ -67,7 +67,10 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 
 	@Override
 	protected boolean handleDragStarted() {
-		// TODO Auto-generated method stub
+		// deactivated dragging in context of bug 397730 - regions should never move
+		if(true) {
+			return false;
+		}
 		boolean b = super.handleDragStarted();
 
 		CustomRegionResizableEditPolicy policy = (CustomRegionResizableEditPolicy)regionEP.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -110,5 +113,4 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 
 		return b;
 	}
-
 }

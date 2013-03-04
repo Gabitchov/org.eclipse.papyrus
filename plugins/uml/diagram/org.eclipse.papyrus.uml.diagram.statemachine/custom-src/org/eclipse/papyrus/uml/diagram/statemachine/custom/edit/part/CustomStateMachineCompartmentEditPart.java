@@ -4,7 +4,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomShapeCompartmentFigure;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomStateCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.uml2.uml.StateMachine;
 
@@ -25,7 +25,7 @@ public class CustomStateMachineCompartmentEditPart extends StateMachineCompartme
 	}
 
 	public IFigure createFigure() {
-		CustomShapeCompartmentFigure result = new CustomShapeCompartmentFigure(getCompartmentName(), getMapMode());
+		CustomStateCompartmentFigure result = new CustomStateCompartmentFigure(getCompartmentName(), getMapMode());
 		return result;
 	}
 
@@ -44,7 +44,7 @@ public class CustomStateMachineCompartmentEditPart extends StateMachineCompartme
 		View smView = (View)((View)getModel()).eContainer();
 		StateMachine sm = (StateMachine)smView.getElement();
 
-		((CustomShapeCompartmentFigure)getFigure()).setToolTip(sm.getName());
+		((CustomStateCompartmentFigure)getFigure()).setToolTip(sm.getName());
 
 	}
 

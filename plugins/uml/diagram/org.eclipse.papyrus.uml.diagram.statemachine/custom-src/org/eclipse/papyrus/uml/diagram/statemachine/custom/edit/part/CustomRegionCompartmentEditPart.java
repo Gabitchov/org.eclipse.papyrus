@@ -6,9 +6,10 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DeselectAllTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.internal.tools.RubberbandDragTracker;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomShapeCompartmentFigure;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomRegionCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.uml2.uml.Region;
 
@@ -29,8 +30,7 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 	}
 
 	public IFigure createFigure() {
-		CustomShapeCompartmentFigure result = new CustomShapeCompartmentFigure(getCompartmentName(), getMapMode());
-		result.setBorder(null);
+		CustomRegionCompartmentFigure result = new CustomRegionCompartmentFigure(getCompartmentName(), getMapMode());
 		return result;
 	}
 
@@ -64,7 +64,7 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 		View regionView = (View)((View)getModel()).eContainer();
 		Region region = (Region)regionView.getElement();
 
-		((CustomShapeCompartmentFigure)getFigure()).setToolTip(region.getName());
+		((ResizableCompartmentFigure)getFigure()).setToolTip(region.getName());
 
 	}
 }

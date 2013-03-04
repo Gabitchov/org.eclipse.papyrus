@@ -3,6 +3,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -26,6 +27,14 @@ import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Vertex;
 
+/**
+ * Create a vertex (sub-state), used only in composition with region creation
+ * in CustomStateCreationEditPolicy
+ * TODO: create a more cleaner combination of region creation and state creation that behaves exactly like the state
+ * creation. Current differences: there's no pop-up for editing its name, (2) positioning is always top-left.
+ * => use unchanged StateCreateCommand instead
+ */
+@Deprecated
 public class CustomVertexCreateElementCommand extends AbstractTransactionalCommand {
 
 	IAdaptable adaptable;
@@ -68,6 +77,8 @@ public class CustomVertexCreateElementCommand extends AbstractTransactionalComma
 		// adapt the view at execution time
 		View regionView = (View)adaptable.getAdapter(View.class);
 		View compartment = (View)regionView.getChildren().get(0);
+		// hack
+		viewDescriptor = new ViewDescriptor(new SemanticAdapter(null, (EObject)adaptable.getAdapter(EObject.class)), prefHints);
 
 		Region owner = (Region)regionView.getElement();
 		Vertex newVertex = null;
@@ -131,15 +142,20 @@ public class CustomVertexCreateElementCommand extends AbstractTransactionalComma
 		// create a view for the new vertex on the regionCompartment
 		IAdaptable newVertexAdapatable = new SemanticAdapter(newVertex, null);
 
-		View newVertexView;
+		// see below
+		// View newVertexView;
 
 		if(hint.getSemanticHint().equals(((IHintedType)UMLElementTypes.Pseudostate_16000).getSemanticHint()) || hint.getSemanticHint().equals(((IHintedType)UMLElementTypes.Pseudostate_17000).getSemanticHint())) {
-			newVertexView = (View)ViewService.getInstance().createNode(newVertexAdapatable, (View)regionView.eContainer().eContainer(), hint.getSemanticHint(), -1, prefHints);
+			// newVertexView =
+			ViewService.getInstance().createNode(newVertexAdapatable, (View)regionView.eContainer().eContainer(), hint.getSemanticHint(), -1, prefHints);
 		} else {
-			newVertexView = (View)ViewService.getInstance().createNode(newVertexAdapatable, compartment, hint.getSemanticHint(), -1, prefHints);
+			// newVertexView =
+			ViewService.getInstance().createNode(newVertexAdapatable, compartment, hint.getSemanticHint(), -1, prefHints);
 
 		}
-		viewDescriptor.setView(newVertexView);
+		// removed viewDescriptor.setView: problematic since region can be moved along with state immediately after creation along with state
+		// can cause bug 397730
+		// viewDescriptor.setView(newVertexView);
 
 		return CommandResult.newOKCommandResult(viewDescriptor);
 	}

@@ -923,8 +923,4 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			}
 		}
 	}
-
-
-
-
 }

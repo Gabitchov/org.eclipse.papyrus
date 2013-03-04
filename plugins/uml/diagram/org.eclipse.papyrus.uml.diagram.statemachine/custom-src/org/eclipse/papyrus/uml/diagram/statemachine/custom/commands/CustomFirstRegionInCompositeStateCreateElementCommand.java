@@ -32,6 +32,10 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLFactory;
 
+/**
+ * Create a region.
+ * TODO: Differences with generated RegionCreateCommand ? (is the latter used?)
+ */
 public class CustomFirstRegionInCompositeStateCreateElementCommand extends AbstractTransactionalCommand {
 
 	IAdaptable adaptable;
