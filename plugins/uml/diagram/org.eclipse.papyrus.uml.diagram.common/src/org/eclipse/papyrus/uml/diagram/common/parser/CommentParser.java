@@ -68,7 +68,12 @@ public class CommentParser implements IParser {
 		if(comment == null) {
 			return "<NULL COMMENT>"; //$NON-NLS-1$
 		}
-		return HTMLCleaner.removeHTMLTags(HTMLCleaner.preClean(comment.getBody()));
+		try {
+			return HTMLCleaner.removeHTMLTags(HTMLCleaner.preClean(comment.getBody()));
+		} catch (Exception e) {
+			return comment.getBody();
+		}
+		
 	}
 
 	/**

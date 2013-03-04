@@ -10,7 +10,6 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
@@ -28,10 +27,12 @@ public class HTMLCleaner {
 
 	/** symbol requiring new lines */
 	protected static final List<String> newLine = new ArrayList<String>();
-
+	
 	/** map of special html strings and their real value */
 	protected static final Map<String, String> xmlSpecials = new HashMap<String, String>();
 
+	protected static List<String> htmlTags = new ArrayList<String>();
+	
 	static {
 		// initialize the special character map
 		specials.put("nbsp", " "); // no-break space
@@ -135,11 +136,9 @@ public class HTMLCleaner {
 		specials.put("infin", "∞"); //infinity
 		specials.put("cap", "∩"); //intersection = cap
 		specials.put("int", "∫"); //integral 
-
 		xmlSpecials.put("amp", "&"); //ampersand
 		xmlSpecials.put("lt", "<"); //less-than sign
 		xmlSpecials.put("gt", ">"); //greater-than sign 
-
 		// new line list
 		newLine.add("BR"); // new line request
 		newLine.add("br");
@@ -155,66 +154,107 @@ public class HTMLCleaner {
 		newLine.add("/h3");
 		newLine.add("/p"); // end of paragraph
 		newLine.add("/P");
-
 		newLine.add("/li"); // end of item list
-
+		
+		htmlTags.add("h1");
+		htmlTags.add("H1");
+		htmlTags.add("h2");
+		htmlTags.add("H2");
+		htmlTags.add("h3");
+		htmlTags.add("H3");
+		htmlTags.add("BR");
+		htmlTags.add("/BR");
+		htmlTags.add("br");
+		htmlTags.add("/br");
+		htmlTags.add("strong");
+		htmlTags.add("/strong");
+		htmlTags.add("b");
+		htmlTags.add("/b");
+		htmlTags.add("u");
+		htmlTags.add("/u");
+		htmlTags.add("i");
+		htmlTags.add("/i");
+		htmlTags.add("ul");
+		htmlTags.add("/ul");
+		htmlTags.add("li");
+		htmlTags.add("/li");
+		htmlTags.add("p");
+		htmlTags.add("/p");
+		
 	}
 
-	public static String removeHTMLTags(String htmlString) {
+	public static String removeHTMLTags(String htmlString) throws Exception {
 		StringBuffer buffer = new StringBuffer();
-
 		// indicating if parser is in tag
 		boolean inTag = false;
-
 		// indicating if parser is in special character
 		boolean inSpecial = false;
-
 		// skip the next character
 		boolean skip = false;
-
 		// ignore or keep whitespace ?
 		boolean keepWhitespace = true;
-
 		// ignore or keep whitespace ?
 		boolean keepCarriageReturn = false;
-
 		int length = htmlString.length();
-
 		for(int i = 0; i < length; i++) {
 			skip = false;
 			char c = htmlString.charAt(i);
 			if(c == '<') { // opening a new tag...
-				inTag = true;
-
+				
 				// should do specific check for new lines (<BR>, <P>, <H1>,
 				// <H2>, etc..)
 				// get tag value
-				String tagValue = htmlString.substring(i + 1, htmlString.indexOf('>', i));
-				if(newLine.contains(tagValue)) {
-					if(keepCarriageReturn) {
-						buffer.append("\n");
-						keepCarriageReturn = false;
+				int closingTagIndex =  htmlString.indexOf('>', i);
+				if(closingTagIndex > i+1) {
+					String tagValue = htmlString.substring(i + 1, closingTagIndex);
+					
+					if(tagValue !=null) {
+						if(htmlTags.contains(tagValue.toLowerCase()) || newLine.contains(tagValue.toLowerCase())) {
+							inTag = true;
+							if(newLine.contains(tagValue)) {
+								if(keepCarriageReturn) {
+									buffer.append("\n");
+									keepCarriageReturn = false;
+								}
+								keepWhitespace = false;
+							}
+						} else {
+							buffer.append('<');
+						}
+					} else {
+						buffer.append('<');
 					}
-					keepWhitespace = false;
+				} else {
+					buffer.append('<');
 				}
-
+				
 			} else if(c == '>' && inTag) { // closing tag. must be in tag to
 											// close it...
 				inTag = false;
 				skip = true;
+				keepWhitespace = true;
 			} else if(c == '&') {
-				inSpecial = true;
 				// this is a special character
 				// look for next ';', which closes the special character
-				String specialCharacter = htmlString.substring(i + 1, htmlString.indexOf(';', i));
-
-				// replace the value with the specified
-				String replacement = specials.get(specialCharacter);
-				if(replacement == null) {
-					replacement = xmlSpecials.get(specialCharacter);
-				}
-				if(replacement != null) {
-					buffer.append(replacement);
+				int nextSemiColonIndex = htmlString.indexOf(';', i);
+				if(nextSemiColonIndex > i + 1) {
+					String specialCharacter = htmlString.substring(i + 1, htmlString.indexOf(';', i));
+					String replacement = specials.get(specialCharacter);
+					if(replacement == null) {
+						replacement = xmlSpecials.get(specialCharacter);
+					}
+					if(replacement != null) {
+						inSpecial = true;
+						buffer.append(replacement);
+					} else {
+						// simple '&' in a non html comment => keep it
+						buffer.append('&');
+						keepWhitespace = true;
+					}
+				} else {
+					// simple '&' in a non html comment => keep it
+					buffer.append('&');
+					keepWhitespace = true;
 				}
 			} else if(c == ';' && inSpecial) {
 				inSpecial = false;
@@ -237,7 +277,6 @@ public class HTMLCleaner {
 				keepCarriageReturn = true;
 			}
 		}
-
 		return buffer.toString();
 	}
 
@@ -252,24 +291,17 @@ public class HTMLCleaner {
 	 */
 	public static String cleanHTMLTags(String htmlString) {
 		StringBuffer buffer = new StringBuffer();
-
 		// indicating if parser is in tag
 		boolean inTag = false;
-
 		// indicating if parser is in special character
 		boolean inSpecial = false;
-
 		// skip the next character
 		boolean skip = false;
-
 		// ignore or keep whitespace ?
 		boolean keepWhitespace = true;
-
 		// ignore or keep whitespace ?
 		boolean keepCarriageReturn = false;
-
 		int length = htmlString.length();
-
 		for(int i = 0; i < length; i++) {
 			skip = false;
 			char c = htmlString.charAt(i);
@@ -290,7 +322,6 @@ public class HTMLCleaner {
 				keepCarriageReturn = true;
 			}
 		}
-
 		return buffer.toString();
 	}
 
@@ -301,35 +332,36 @@ public class HTMLCleaner {
 	 *        the string to clean
 	 * @return the cleaned string
 	 */
-	public static String preClean(String htmlString) {
+	public static String preClean(String htmlString) throws Exception {
 		if(htmlString == null) {
 			return "";
 		}
 		StringBuffer buffer = new StringBuffer();
-
 		// indicating if parser is in special character
 		boolean inSpecial = false;
-
 		// skip the next character
 		boolean skip = false;
-
 		int length = htmlString.length();
-
 		for(int i = 0; i < length; i++) {
 			skip = false;
 			char c = htmlString.charAt(i);
 			if(c == '&') {
-				inSpecial = true;
+				int nextSemicolon = htmlString.indexOf(';', i);
 				// this is a special character
 				// look for next ';', which closes the special character
-				String specialCharacter = htmlString.substring(i + 1, htmlString.indexOf(';', i));
-
-				// replace the value with the specified
-				String replacement = specials.get(specialCharacter);
-				if(replacement != null) {
-					buffer.append(replacement);
-				} else if(xmlSpecials.get(specialCharacter) != null) {
-					buffer.append("&" + specialCharacter + ";");
+				if(nextSemicolon > i + 1) {
+					inSpecial = true;
+					String specialCharacter = htmlString.substring(i + 1, nextSemicolon);
+					// replace the value with the specified
+					String replacement = specials.get(specialCharacter);
+					if(replacement != null) {
+						buffer.append(replacement);
+					} else if(xmlSpecials.get(specialCharacter) != null) {
+						buffer.append("&" + specialCharacter + ";");
+					}
+				} else {
+					inSpecial = false;
+					buffer.append('&');
 				}
 			} else if(c == ';' && inSpecial) {
 				inSpecial = false;
@@ -338,7 +370,6 @@ public class HTMLCleaner {
 				buffer.append(c);
 			}
 		}
-
 		return buffer.toString();
 	}
 }
