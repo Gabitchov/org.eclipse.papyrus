@@ -610,115 +610,153 @@
 		<object id="uml.Actor" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Actor"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Actor"/>			
+		<context
+        elements="uml.Actor"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Class" -->
 		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Class"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Class"/>			
+		<context
+        elements="uml.Class"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Constraint" -->
 		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Constraint"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Constraint"/>			
+		<context
+        elements="uml.Constraint"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.DataType" -->
 		<object id="uml.DataType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.DataType"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.DataType"/>			
+		<context
+        elements="uml.DataType"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Enumeration" -->
 		<object id="uml.Enumeration" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Enumeration"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Enumeration"/>			
+		<context
+        elements="uml.Enumeration"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.EnumerationLiteral" -->
 		<object id="uml.EnumerationLiteral" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.EnumerationLiteral"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.EnumerationLiteral"/>			
+		<context
+        elements="uml.EnumerationLiteral"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.InstanceSpecification" -->
 		<object id="uml.InstanceSpecification" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.InstanceSpecification"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.InstanceSpecification"/>			
+		<context
+        elements="uml.InstanceSpecification"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Interface" -->
 		<object id="uml.Interface" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Interface"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Interface"/>			
+		<context
+        elements="uml.Interface"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Operation" -->
 		<object id="uml.Operation" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Operation"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Operation"/>			
+		<context
+        elements="uml.Operation"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Port" -->
 		<object id="uml.Port" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Port"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Port"/>			
+		<context
+        elements="uml.Port"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.PrimitiveType" -->
 		<object id="uml.PrimitiveType" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.PrimitiveType"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.PrimitiveType"/>			
+		<context
+        elements="uml.PrimitiveType"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Property" -->
 		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Property"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Property"/>			
+		<context
+        elements="uml.Property"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Reception" -->
 		<object id="uml.Reception" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Reception"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Reception"/>			
+		<context
+        elements="uml.Reception"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Signal" -->
 		<object id="uml.Signal" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Signal"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Signal"/>			
+		<context
+        elements="uml.Signal"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Association" -->
 		<object id="uml.Association" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Association"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Association"/>			
+		<context
+        elements="uml.Association"
+        viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.Dependency" -->
 		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Dependency"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"/>			
+		<context
+        elements="uml.Dependency"
+        viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.Generalization" -->
 		<object id="uml.Generalization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Generalization"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Generalization"/>			
+		<context
+        elements="uml.Generalization"
+        viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.InterfaceRealization" -->
 		<object id="uml.InterfaceRealization" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.InterfaceRealization"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.InterfaceRealization"/>			
+		<context
+        elements="uml.InterfaceRealization"
+        viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.Usage" -->
 		<object id="uml.Usage" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Usage"/>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Usage"/>			
+		<context
+        elements="uml.Usage"
+        viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 	</viewProvider>	
 
