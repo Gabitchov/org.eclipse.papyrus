@@ -89,6 +89,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnProvider = rawModel.getVerticalContentProvider();
 		this.verticalElements = new ArrayList<Object>();
 		this.horizontalElements = new ArrayList<Object>();
+		
 		this.invertAxisListener = new AdapterImpl() {
 
 			@Override
@@ -106,6 +107,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 		rawModel.eAdapters().add(this.invertAxisListener);
 		init();
+		if(rawModel.isInvertAxis()){
+			invertJavaObject();
+		}
 	}
 
 	public void invertJavaObject() {
@@ -339,7 +343,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 
 	public void refreshNattable() {
-		if(natTable != null) {
+		if(natTable != null && natTable.isDisposed()) {
 			natTable.setConfigRegistry(new ConfigRegistry());
 			natTable.setUiBindingRegistry(new UiBindingRegistry(natTable));
 			natTable.configure();
