@@ -343,11 +343,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 
 	public void refreshNattable() {
-		if(natTable != null && natTable.isDisposed()) {
+		if(natTable != null && !natTable.isDisposed()) {
 			natTable.setConfigRegistry(new ConfigRegistry());
 			natTable.setUiBindingRegistry(new UiBindingRegistry(natTable));
 			natTable.configure();
-			if(table != null && !natTable.isDisposed()) {
+			if(table != null) {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
