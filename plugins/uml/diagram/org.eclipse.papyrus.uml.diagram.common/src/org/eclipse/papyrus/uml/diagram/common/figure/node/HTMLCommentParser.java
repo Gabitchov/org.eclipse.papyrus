@@ -23,8 +23,13 @@ import org.eclipse.papyrus.uml.diagram.common.parser.HTMLCleaner;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+import org.xml.sax.ext.DefaultHandler2;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Parser for simple html comments
@@ -46,6 +51,8 @@ public class HTMLCommentParser {
 			documentBuilderFactory.setNamespaceAware(true);
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 			String cleandText = HTMLCleaner.preClean(text);
+			// fail silently. if not set, default error handler will print an error message in the console
+			documentBuilder.setErrorHandler(new DefaultHandler()); 
 			Document document = documentBuilder.parse(new InputSource(new StringReader(cleandText)));
 			nodelist = document.getChildNodes();
 		} catch (ParserConfigurationException e) {
@@ -55,7 +62,8 @@ public class HTMLCommentParser {
 			Activator.log.error(e);
 			nodelist = new EmptyNodeList();
 		} catch (SAXException e) {
-			// Activator.log.error(e);
+			// fail silently
+			// Activator.log.debug(e.getMessage());
 			nodelist = new EmptyNodeList();
 		}  catch (Exception e) {
 			Activator.log.error(e);
