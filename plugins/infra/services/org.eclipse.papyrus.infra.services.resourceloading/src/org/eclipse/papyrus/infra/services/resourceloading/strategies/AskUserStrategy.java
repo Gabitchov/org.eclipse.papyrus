@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 ATOS ORIGIN.
+ * Copyright (c) 2010 ATOS ORIGIN, CEA LIST, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Tristan Faure (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.strategies;
 
@@ -101,7 +103,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 	public boolean loadResource(ModelSet modelSet, URI uri) {
 		// pathmap resource are always loaded
 		boolean result = !uri.isPlatform() && !uri.isFile();
-		URI initialURI = URI.createPlatformResourceURI(modelSet.getFilenameWithoutExtension().toString(), true);
+		URI initialURI = modelSet.getURIWithoutExtension();
 		// if no listener is registered, a listener is added on the editor to remove the notifications 
 		// when the editor is closed the listener removes too the choices made by the user.
 		addClosingEditorListener(initialURI);

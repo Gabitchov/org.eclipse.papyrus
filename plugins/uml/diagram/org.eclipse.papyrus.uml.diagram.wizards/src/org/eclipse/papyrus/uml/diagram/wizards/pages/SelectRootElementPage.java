@@ -10,10 +10,12 @@
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
+import static org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper.adapt;
+import static org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper.getSelectedResourceURI;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
@@ -66,15 +68,24 @@ public class SelectRootElementPage extends WizardPage {
 	/**
 	 * Constructor.
 	 *
-	 * @param file the file
+	 * @param selection the initial selection from which to get the resource for root element
 	 */
-	public SelectRootElementPage(IFile file) {
+	public SelectRootElementPage(IStructuredSelection selection) {
 		super(PAGE_ID);
 		setTitle(Messages.SelectRootElementPage_select_root_element_title);
 		setDescription(Messages.SelectRootElementPage_select_root_element_desc);
 
-		myDomainModelResource = getResourceForFile(file);
-
+		Resource resource = null;
+		if (!selection.isEmpty()) {
+			resource = adapt(selection.getFirstElement(), Resource.class);
+			if (resource == null) {
+				URI uri = getSelectedResourceURI(selection);
+				if (uri != null) {
+					resource = getResourceForURI(uri);
+				}
+			}
+		}
+		myDomainModelResource = resource;
 	}
 
 	/**
@@ -147,24 +158,24 @@ public class SelectRootElementPage extends WizardPage {
 	}
 
 	/**
-	 * Gets the resource for file.
+	 * Gets the resource for a URI.
 	 *
-	 * @param file the file
-	 * @return the resource for file
+	 * @param uri the URI of the resource
+	 * @return the resource
 	 */
-	private Resource getResourceForFile(IFile file) {
-		if (file == null) {
+	private Resource getResourceForURI(URI uri) {
+		if (uri == null) {
 			// log
 			return null;
 		}
 		ModelSet modelSet = new ModelSet();
 		Resource resource = null ;
 		try {
-			resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
+			resource = modelSet.getResource(uri, true);
 		}
 		catch (WrappedException e) {
 			if (ModelUtils.isDegradedModeAllowed(e.getCause())){
-				resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), false);
+				resource = modelSet.getResource(uri, true);
 				if (resource == null){
 					throw e;
 				}

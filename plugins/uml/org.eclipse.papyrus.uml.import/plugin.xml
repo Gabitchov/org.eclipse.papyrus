@@ -46,7 +46,7 @@
             <command
                   commandId="org.eclipse.papyrus.import.package.from.workspace"
                   icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-                  label="Import Package From &amp;Workspace"
+                  label="Import Package From &amp;User Model"
                   style="push">
             </command>
          </menu>
@@ -99,7 +99,7 @@
          </activeWhen>
       </handler>
       <handler
-            class="org.eclipse.papyrus.uml.importt.handlers.ImportPackageFromWorkspaceHandler"
+            class="org.eclipse.papyrus.uml.importt.handlers.ImportPackageFromUserModelHandler"
             commandId="org.eclipse.papyrus.import.package.from.workspace">
          <activeWhen>
          <and>

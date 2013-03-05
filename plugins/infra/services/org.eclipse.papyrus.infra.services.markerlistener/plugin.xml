@@ -2,6 +2,8 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="markereventlistener" name="MarkerEventListener" schema="schema/markereventlistener.exsd"/>
+   <extension-point id="markerproviders" name="Marker Providers" schema="schema/markerproviders.exsd"/>
+   
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service
@@ -9,5 +11,22 @@
             priority="1"
             startKind="startup">
       </service>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.infra.services.markerlistener.markerproviders">
+      <provider
+            class="org.eclipse.papyrus.infra.services.markerlistener.providers.WorkspaceMarkerProvider">
+         <enablement>
+            <with
+                  variable="isFile">
+               <equals
+                     value="true">
+               </equals>
+            </with>
+         </enablement>
+      </provider>
+      <monitor class="org.eclipse.papyrus.infra.services.markerlistener.providers.WorkspaceMarkerMonitor">
+      </monitor>
    </extension>
 </plugin>

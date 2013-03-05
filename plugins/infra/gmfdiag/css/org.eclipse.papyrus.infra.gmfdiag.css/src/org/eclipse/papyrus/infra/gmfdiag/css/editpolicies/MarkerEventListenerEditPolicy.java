@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.editpolicies;
 
@@ -16,7 +18,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartListener;
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView;
 import org.eclipse.papyrus.infra.gmfdiag.css.service.CssMarkerEventManagerService;
 import org.eclipse.papyrus.infra.gmfdiag.css.service.MarkerToPseudoSelectorMappingService;
 import org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener;
+import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.w3c.dom.Element;
 
 /**
@@ -184,7 +186,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 	 * @param marker The actual marker
 	 * @param addedOrRemoved Indicates whether states have to be added or removed (Possible values are IMarkerEventListener.MARKER_ADDED and IMarkerEventListener.MARKER_REMOVED)
 	 */
-	public void notifyMarkerChange(IMarker marker, int addedOrRemoved) {
+	public void notifyMarkerChange(IPapyrusMarker marker, int addedOrRemoved) {
 		String cssName = this.getPseudoSelector(marker) ;
 		if (! cssName.equals("")) {
 			Set<String> state = new HashSet<String>() ;
@@ -199,7 +201,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 	 * @param markers The actual markers
 	 * @param addedOrRemoved Indicates whether states have to be added or removed (Possible values are IMarkerEventListener.MARKER_ADDED and IMarkerEventListener.MARKER_REMOVED)
 	 */
-	public void notifyMarkerChange(IMarker[] markers, int addedOrRemoved) {
+	public void notifyMarkerChange(IPapyrusMarker[] markers, int addedOrRemoved) {
 		if (markers.length == 0)
 			return ;
 		String cssName = "" ;
@@ -232,7 +234,7 @@ public class MarkerEventListenerEditPolicy extends AbstractEditPolicy implements
 	 * @param marker The marker for which
 	 * @return the pseudo selector associated with the given marker
 	 */
-	protected String getPseudoSelector(IMarker marker) {
+	protected String getPseudoSelector(IPapyrusMarker marker) {
 		try {
 			if (!marker.exists()) {
 				// Tries to retrieve it from the local map

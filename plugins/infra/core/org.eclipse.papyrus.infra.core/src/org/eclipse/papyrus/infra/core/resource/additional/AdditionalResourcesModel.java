@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2013 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico emilien.perico@atosorigin.com - manage loading strategies
+ *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.additional;
@@ -53,17 +54,33 @@ public class AdditionalResourcesModel implements IModel {
 	/**
 	 * useless for additional resources
 	 */
+	@Deprecated
 	public void createModel(IPath fullPath) {
 		// do nothing
 	}
 
+	public void createModel(URI uri) {
+		// do nothing
+	}
+
+	@Deprecated
 	public void loadModel(IPath path) {
 		// call registered snippets
 		snippets.performStart(this);
 	}
 
+	public void loadModel(URI uri) {
+		// call registered snippets
+		snippets.performStart(this);
+	}
+
+	@Deprecated
 	public void importModel(IPath fullPathWithoutExtension) {
 		loadModel(fullPathWithoutExtension);
+	}
+
+	public void importModel(URI uriWithoutExtension) {
+		loadModel(uriWithoutExtension);
 	}
 
 	public void saveModel() throws IOException {
@@ -71,9 +88,7 @@ public class AdditionalResourcesModel implements IModel {
 			if(isAdditionalResource(getModelManager(), r.getURI())) {
 				// only save referenced models not
 				// read-only and either platform or file
-				if(!modelSet.getTransactionalEditingDomain().isReadOnly(r)
-						&& (r.getURI().isPlatformResource() || r.getURI().isFile())
-						&& !ModelUtils.resourceFailedOnLoad(r)) {
+				if(!modelSet.getTransactionalEditingDomain().isReadOnly(r) && (r.getURI().isPlatformResource() || r.getURI().isFile()) && !ModelUtils.resourceFailedOnLoad(r)) {
 					r.save(Collections.EMPTY_MAP);
 
 				}
@@ -84,7 +99,12 @@ public class AdditionalResourcesModel implements IModel {
 	/**
 	 * useless for additional resources
 	 */
+	@Deprecated
 	public void changeModelPath(IPath fullPath) {
+		// do nothing
+	}
+
+	public void setModelURI(URI uri) {
 		// do nothing
 	}
 
@@ -121,8 +141,8 @@ public class AdditionalResourcesModel implements IModel {
 	 */
 	public static boolean isAdditionalResource(ModelSet modelSet, URI uri) {
 		if(uri != null) {
-			String platformString = uri.trimFileExtension().toPlatformString(false);
-			return ((platformString == null) || !modelSet.getFilenameWithoutExtension().toString().equals(platformString.toString()));
+			URI uriWithoutExt = uri.trimFileExtension();
+			return !modelSet.getURIWithoutExtension().equals(uriWithoutExt);
 		}
 		return false;
 	}

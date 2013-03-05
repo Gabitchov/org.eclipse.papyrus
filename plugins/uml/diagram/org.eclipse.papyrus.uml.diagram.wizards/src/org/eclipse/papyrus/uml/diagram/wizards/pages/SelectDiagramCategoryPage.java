@@ -119,6 +119,14 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		setPageComplete(validatePage());
 	}
 
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		
+		// re-validate in case the user changed the file name on previous page
+		setPageComplete(validatePage());
+	}
+	
 	/**
 	 * 
 	 * Gets the diagram category.

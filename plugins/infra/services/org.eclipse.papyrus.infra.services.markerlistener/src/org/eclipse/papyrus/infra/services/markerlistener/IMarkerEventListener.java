@@ -1,6 +1,19 @@
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *	CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ *  
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.services.markerlistener;
 
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.services.IService;
 
@@ -28,7 +41,7 @@ public interface IMarkerEventListener extends IService {
 	 * @param marker The actual marker
 	 * @param addedOrRemoved Whether the breakpoint has been added or removed
 	 */
-	public void notifyMarkerChange(EObject eObjectOfMarker, IMarker marker, int addedOrRemoved) ;
+	public void notifyMarkerChange(EObject eObjectOfMarker, IPapyrusMarker marker, int addedOrRemoved) ;
 	
 	/**
 	 * Determines if this listener has to be notified during the initial marker checking performed by MarkersMonitorService

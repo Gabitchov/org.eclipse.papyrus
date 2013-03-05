@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
+ * Copyright (c) 2011, 2013 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - support non-IFile resources (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -27,6 +28,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 public class ReadOnlyManager {
 
 	protected static final IReadOnlyHandler[] orderedHandlersArray;
+	protected static final IReadOnlyHandler2[] orderedHandler2sArray;
 
 	protected static class HandlerPriorityPair implements Comparable<HandlerPriorityPair> {
 
@@ -68,9 +70,13 @@ public class ReadOnlyManager {
 		Collections.sort(handlerPriorityPairs);
 
 		orderedHandlersArray = new IReadOnlyHandler[handlerPriorityPairs.size()];
+		orderedHandler2sArray = new IReadOnlyHandler2[handlerPriorityPairs.size()];
 
-		for(int i = 0; i < orderedHandlersArray.length; i++) {
+		for (int i = 0; i < orderedHandlersArray.length; i++) {
 			orderedHandlersArray[i] = handlerPriorityPairs.get(i).handler;
+			if (orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
+				orderedHandler2sArray[i] = (IReadOnlyHandler2) orderedHandlersArray[i];
+			}
 		}
 	}
 
@@ -104,7 +110,14 @@ public class ReadOnlyManager {
 
 	public static boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
 		for(int i = 0; i < orderedHandlersArray.length; i++) {
-			if(orderedHandlersArray[i].isReadOnly(uris, editingDomain)) {
+			IReadOnlyHandler2 handler2 = orderedHandler2sArray[i];
+			if ((handler2 != null) && handler2.handlesURIs(uris, editingDomain)) {
+				// this one has a definitive answer, one way or the other
+				return handler2.isReadOnly(uris, editingDomain);
+			}
+			
+			// take the first that answers Yes
+			if (orderedHandlersArray[i].isReadOnly(uris, editingDomain)) {
 				return true;
 			}
 		}
@@ -113,7 +126,13 @@ public class ReadOnlyManager {
 
 	public static boolean enableWrite(URI[] uris, EditingDomain editingDomain) {
 		for(int i = 0; i < orderedHandlersArray.length; i++) {
-			if(orderedHandlersArray[i].isReadOnly(uris, editingDomain)) {
+			IReadOnlyHandler2 handler2 = orderedHandler2sArray[i];
+			if ((handler2 != null) && handler2.handlesURIs(uris, editingDomain)) {
+				// this one has a definitive answer, one way or the other
+				return handler2.enableWrite(uris, editingDomain);
+			}
+			
+			if (orderedHandlersArray[i].isReadOnly(uris, editingDomain)) {
 				boolean ok = orderedHandlersArray[i].enableWrite(uris, editingDomain);
 				if(!ok) {
 					return false;

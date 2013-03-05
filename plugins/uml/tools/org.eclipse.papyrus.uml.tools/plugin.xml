@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="importSources" name="Package Import Sources" schema="/schema/importSources.exsd"/>
+   
 <!-- Register the UML delegating constraint provider -->
 <extension
       point="org.eclipse.emf.validation.constraintProviders">
@@ -59,4 +61,12 @@
          provider="org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider">
    </labelProvider>
 </extension>
+
+   <extension
+         point="org.eclipse.papyrus.uml.tools.importSources">
+      <importSource
+            class="org.eclipse.papyrus.uml.tools.importsources.WorkspacePackageImportSource"
+            name="Workspace">
+      </importSource>
+   </extension>
 </plugin>

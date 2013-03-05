@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,11 +10,13 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.dialogs;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -25,6 +27,7 @@ import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.standard.FilteredRegisteredElementsSelectionDialog;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -141,7 +144,12 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 
 			// Apply selected profile if ok was selected
 			if(Dialog.OK == returnValue) {
-				return profileDialog.getResult();
+				Collection<ImportSpec<Profile>> dlgResult = profileDialog.getResult();
+				List<Profile> result = new java.util.ArrayList<Profile>(dlgResult.size());
+				for (ImportSpec<Profile> next : dlgResult) {
+					result.add(next.getElement());
+				}
+				return result;
 			} else {
 				new ArrayList<Profile>();
 			}

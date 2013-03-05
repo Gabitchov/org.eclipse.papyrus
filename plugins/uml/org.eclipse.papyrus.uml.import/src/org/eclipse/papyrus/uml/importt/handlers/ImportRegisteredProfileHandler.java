@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
 
@@ -27,12 +29,14 @@ import org.eclipse.papyrus.uml.extensionpoints.profile.FilteredRegisteredProfile
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 
 
@@ -107,10 +111,10 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 			int ret = dialog.open();
 
 			if(ret == Window.OK) {
-				ArrayList<?> result = dialog.getResult();
-				Iterator<?> resultIter = result.iterator();
+				Collection<ImportSpec<Profile>> result = dialog.getResult();
+				Iterator<ImportSpec<Profile>> resultIter = result.iterator();
 				while(resultIter.hasNext()) {
-					Element element = (Element)resultIter.next();
+					Package element = resultIter.next().getElement();
 					PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
 					ei.setImportedPackage((Package)element);
 

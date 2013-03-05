@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.validation.commands;
@@ -19,26 +20,27 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
-import org.eclipse.emf.facet.infra.facet.validation.EValidatorAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.infra.services.validation.EValidatorAdapter;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
@@ -115,9 +117,8 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			}
 		};
 
-		if(ValidationUtils.eclipseResourcesUtil != null) {
-			createMarkersWithProgress = ValidationUtils.eclipseResourcesUtil.getWorkspaceModifyOperation(createMarkersWithProgress);
-		}
+		createMarkersWithProgress = new ValidationTool(validateElement)
+			.wrap(createMarkersWithProgress);
 
 		try {
 			// runs the operation, and shows progress.
@@ -164,6 +165,8 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	{
 		return new Diagnostician() {
 
+			protected EValidatorAdapter validatorAdapter = new EValidatorAdapter();
+
 			@Override
 			public String getObjectLabel(EObject eObject) {
 				if(adapterFactory != null && !eObject.eIsProxy())
@@ -183,20 +186,14 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 				// copied from superclass, difference: use EValidatorAdapter instead of first value from eValidatorRegistry
 				// fix of bug 397518
 
-				Object eValidator = validatorAdapter;
-
 				boolean circular = context.get(EObjectValidator.ROOT_OBJECT) == eObject;
-				boolean result = ((EValidator)eValidator).validate(eClass, eObject, diagnostics, context);
+				boolean result = validatorAdapter.validate(eClass, eObject, diagnostics, context);
 				if((result || diagnostics != null) && !circular)
 				{
 					result &= doValidateContents(eObject, diagnostics, context);
 				}
 				return result;
 			}
-
-			// TODO: avoid discouraged access
-			@SuppressWarnings("restriction")
-			protected EValidatorAdapter validatorAdapter = new EValidatorAdapter();
 		};
 
 	}
@@ -209,41 +206,30 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		// final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		if(resource != null) {
 			if(validateElement != null) {
+				SubMonitor sub = SubMonitor.convert(monitor, 2);
+				
 				ValidationTool vt = new ValidationTool(validateElement, resource);
-				int monitorDeletionSteps = vt.getMarkers().length / ValidationTool.DELETE_PMARKER_RATIO;
 				int markersToCreate = diagnostic.getChildren().size();
-				int monitorCreationSteps = markersToCreate / ValidationTool.CREATE_PMARKER_RATIO;
 
-				monitor.beginTask("delete existing markers", monitorDeletionSteps + monitorCreationSteps); //$NON-NLS-1$
-				shell.getDisplay().readAndDispatch();
+				sub.beginTask("Delete existing markers", 1);
+				flushDisplayEvents(shell.getDisplay());
 
-				vt.deleteSubMarkers(monitor);
+				vt.deleteSubMarkers(sub.newChild(1));
 
-				// IFile file = WorkspaceSynchronizer.getFile(resource);
-				// eclipseResourcesUtil.deleteMarkers (file);
-
-				int i = 0;
 				monitor.setTaskName("Create markers (total: " + markersToCreate + " markers) and refresh diagrams"); //$NON-NLS-1$
-				shell.getDisplay().readAndDispatch();
+				flushDisplayEvents(shell.getDisplay());
 
-				for(Diagnostic childDiagnostic : diagnostic.getChildren()) {
-
-					if(monitor.isCanceled()) {
-						break;
-					}
-					ValidationUtils.eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
-					if(i++ > ValidationTool.CREATE_PMARKER_RATIO) {
-						i = 0;
-						monitor.worked(1);
-						// let other threads work, in particular the marker update thread
-						Thread.yield();
-						shell.getDisplay().readAndDispatch();
-					}
-				}
+				vt.createMarkers(diagnostic, sub.newChild(1));
+				
+				sub.done();
 			}
 		}
 	}
 
+	protected void flushDisplayEvents(Display display) {
+		while (display.readAndDispatch());
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

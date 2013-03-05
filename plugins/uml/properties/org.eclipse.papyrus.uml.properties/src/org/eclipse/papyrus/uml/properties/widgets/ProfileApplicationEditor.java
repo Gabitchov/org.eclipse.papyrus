@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,39 +8,33 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.messages.Messages;
-import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.FileSelectionFilter;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.Message;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.RegisteredProfileSelectionDialog;
+import org.eclipse.papyrus.uml.tools.importsources.PackageImportSourceDialog;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
-import org.eclipse.ui.model.WorkbenchContentProvider;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
@@ -112,61 +106,29 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		// ResourceSelectionDialog dialog =
 		// new ResourceSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), "Apply Profiles");
 
-		ILabelProvider lp = new WorkbenchLabelProvider();
-		ITreeContentProvider cp = new WorkbenchContentProvider();
-
-		ArrayList<String> filetypes = new ArrayList<String>();
-		filetypes.add("uml"); //$NON-NLS-1$
-
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), lp, cp);
-		dialog.setTitle(Messages.ProfileApplicationEditor_ApplyProfilesDialogTitle);
-		dialog.setMessage(Messages.ProfileApplicationEditor_ApplyProfilesDialogDescription);
-		dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
-		dialog.addFilter(new FileSelectionFilter(filetypes));
-		dialog.setValidator(new org.eclipse.papyrus.uml.properties.profile.ui.dialogs.FileSelectionValidator());
-		dialog.setDoubleClickSelects(true);
-		dialog.setHelpAvailable(false);
-		dialog.setAllowMultiple(true);
-
-		if(dialog.open() != Window.OK) {
-			return;
-		}
+		Collection<Package> packages = PackageImportSourceDialog.open(
+			getShell(),
+			Messages.ProfileApplicationEditor_ApplyProfilesDialogTitle,
+			Collections.singletonList(umlPackage));
 
 		// If nothing is selected : abort
-		if((dialog.getResult() == null) || (dialog.getResult().length < 1)) {
+		if((packages == null) || packages.isEmpty()) {
 			return;
 		}
 
-		ArrayList<Package> importedModels = new ArrayList<Package>();
-
-		for(int i = 0; i < dialog.getResult().length; i++) {
-			IFile selectedFile = (IFile)dialog.getResult()[i];
-			URI profileUri = URI.createPlatformResourceURI(selectedFile.getFullPath().toString(), true);
-
-			ResourceSet resourceSet = umlPackage.eResource().getResourceSet();
-
-			Resource profileResource = resourceSet.getResource(profileUri, true);
-
-			if(profileResource.getContents().get(0) instanceof Package) {
-				Package importedModel = (Package)profileResource.getContents().get(0);
-				importedModels.add(importedModel);
-			}
-
-		}
-
-		if(importedModels.size() > 0) {
-			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels, true);
+		if (packages.size() > 0) {
+			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), packages, true);
 
 			if(profileDialog.open() != Window.OK) {
 				return;
 			}
 
-			ArrayList<Profile> profilesToApply = profileDialog.getResult();
+			Collection<ImportSpec<Profile>> profilesToApply = profileDialog.getResult();
 
 			Message message = new Message(Messages.ProfileApplicationEditor_WaitMessageTitle, Messages.ProfileApplicationEditor_WaitMessage);
 			message.open();
-			for(Profile profile : profilesToApply) {
-				modelProperty.add(profile);
+			for (ImportSpec<Profile> profile : profilesToApply) {
+				modelProperty.add(profile.getElement());
 			}
 			message.close();
 			commit();

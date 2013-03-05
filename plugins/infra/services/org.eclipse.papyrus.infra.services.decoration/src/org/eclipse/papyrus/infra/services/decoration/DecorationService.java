@@ -12,6 +12,8 @@
  *  Ansgar Radermacher (CEA LIST) - ansgar.radermacher@cea.fr (major revision in context of bug 400593)
  *   
  *  Arnaud Cuccuru (CEA LIST) - arnaud.cuccuru@cea.fr
+ *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration;
 
@@ -21,7 +23,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.infra.services.decoration.util.DecorationSpecificFunc
 import org.eclipse.papyrus.infra.services.decoration.util.DecorationUtils;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener;
+import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 
 /**
  * The Class DecorationService.
@@ -175,7 +177,7 @@ public class DecorationService extends Observable implements IDecorationService 
 	 * @see org.eclipse.papyrus.infra.services.decoration.IDecorationService#addDecoration(java.lang.String, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.jface.resource.ImageDescriptor, java.lang.String)
 	 */
-	public synchronized IPapyrusDecoration addDecoration(IMarker marker, EObject element) {
+	public synchronized IPapyrusDecoration addDecoration(IPapyrusMarker marker, EObject element) {
 
 		try {
 			// obtain marker type specific function
@@ -258,7 +260,7 @@ public class DecorationService extends Observable implements IDecorationService 
 	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#notifyMarkerChange(org.eclipse.emf.ecore.EObject, org.eclipse.core.resources.IMarker, int)
 	 */
-	public void notifyMarkerChange(EObject eObjectOfMarker, IMarker marker, int addedOrRemoved) {
+	public void notifyMarkerChange(EObject eObjectOfMarker, IPapyrusMarker marker, int addedOrRemoved) {
 		if (addedOrRemoved == IMarkerEventListener.MARKER_ADDED) {
 			this.addDecoration(marker, eObjectOfMarker) ;
 		}

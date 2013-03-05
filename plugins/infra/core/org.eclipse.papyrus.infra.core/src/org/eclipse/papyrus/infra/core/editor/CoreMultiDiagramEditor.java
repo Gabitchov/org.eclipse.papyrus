@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *
  *****************************************************************************/
 
@@ -21,11 +22,11 @@ import java.util.EventObject;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -66,6 +67,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IURIEditorInput;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchActionConstants;
@@ -560,7 +562,15 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(ILabelProvider.class, 1, labelProvider);
 
 		// Start servicesRegistry
-		IFile file = ((IFileEditorInput)input).getFile();
+		URI uri;
+		if (input instanceof IFileEditorInput) {
+			uri = URI.createPlatformResourceURI(((IFileEditorInput) input).getFile().getFullPath().toString(), true);
+		} else if (input instanceof URIEditorInput) {
+			uri = ((URIEditorInput) input).getURI();
+		} else {
+			uri = URI.createURI(((IURIEditorInput) input).getURI().toString());
+		}
+		
 		try {
 			// Start the ModelSet first, and load if from the specified File
 			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
@@ -568,7 +578,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 			servicesRegistry.startServicesByClassKeys(servicesToStart);
 			resourceSet = servicesRegistry.getService(ModelSet.class);
-			resourceSet.loadModels(file);
+			resourceSet.loadModels(uri);
 
 			// start remaining services
 			servicesRegistry.startRegistry();
@@ -607,7 +617,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		setContentProvider(contentProvider);
 
 		// Set editor name
-		setPartName(file.getName());
+		setPartName(input.getName());
 
 		// Listen on contentProvider changes
 		sashModelMngr.getSashModelContentChangedProvider().addListener(contentChangedListener);

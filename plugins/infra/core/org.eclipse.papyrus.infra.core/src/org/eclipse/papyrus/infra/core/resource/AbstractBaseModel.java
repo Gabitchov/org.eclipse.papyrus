@@ -1,10 +1,22 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) 2010, 2013 CEA LIST and others.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware;
 import org.eclipse.papyrus.infra.core.Activator;
@@ -118,13 +131,37 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	 * 
 	 * @param fullPath
 	 */
+	@Deprecated
 	public void createModel(IPath fullPath) {
 
+		createModel(getPlatformURI(fullPath));
+	}
+
+	public void createModel(URI uri) {
 		// Compute model URI
-		resourceURI = getPlatformURI(fullPath.addFileExtension(getModelFileExtension()));
+		resourceURI = uri.appendFileExtension(getModelFileExtension());
 
 		// Create Resource of appropriate type
-		resource = getModelManager().createResource(resourceURI);
+		ModelSet modelSet = getModelManager();
+		resource = modelSet.getResource(resourceURI, false);
+		if(resource != null) {
+			// it already exists? Best effort to make sure it's loaded
+			try {
+				modelSet.getResource(resourceURI, true);
+			} catch (RuntimeException e) {
+				// it commonly happens when creating a new model in the
+				// workspace that the wizard creates an empty file, first.
+				Map<String, ?> attributes = modelSet.getURIConverter().getAttributes(resourceURI, Collections.singletonMap(URIConverter.OPTION_REQUESTED_ATTRIBUTES, Collections.singleton(URIConverter.ATTRIBUTE_LENGTH)));
+				Number length = (Number)attributes.get(URIConverter.ATTRIBUTE_LENGTH);
+				if((length != null) && (length.longValue() > 0L)) {
+					// it has some length but isn't readable; fail
+					throw e;
+				} // otherwise, it's just empty and we'll fill it
+			}
+		} else {
+			// new resource
+			resource = getModelManager().createResource(resourceURI);
+		}
 		configureResource(resource);
 	}
 
@@ -165,10 +202,22 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
+	@Deprecated
 	public void loadModel(IPath fullPathWithoutExtension) {
+		loadModel(getPlatformURI(fullPathWithoutExtension));
+	}
+
+	/**
+	 * Load the model by using the provided fullpath as a hint for the resource
+	 * URI. In this implementation, simply add the model extension.
+	 * 
+	 * @param fullPathWithoutExtension
+	 */
+	public void loadModel(URI uriWithoutExtension) {
+
 		// Compute model URI
 		RuntimeException error = null;
-		resourceURI = getPlatformURI(fullPathWithoutExtension.addFileExtension(getModelFileExtension()));
+		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
 
 		// Create Resource of appropriate type
 		try {
@@ -195,9 +244,14 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
+	@Deprecated
 	public void importModel(IPath fullPathWithoutExtension) {
 
 		loadModel(fullPathWithoutExtension);
+	}
+
+	public void importModel(URI uriWithoutExtension) {
+		loadModel(uriWithoutExtension);
 	}
 
 	/**
@@ -216,9 +270,14 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	 * 
 	 * @param nameWithoutExt
 	 */
+	@Deprecated
 	public void changeModelPath(IPath fullPath) {
+		setModelURI(getPlatformURI(fullPath));
+	}
+
+	public void setModelURI(URI uriWithoutExtension) {
 		// Compute model URI
-		resourceURI = getPlatformURI(fullPath.addFileExtension(getModelFileExtension()));
+		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
 
 		resource.setURI(resourceURI);
 	}

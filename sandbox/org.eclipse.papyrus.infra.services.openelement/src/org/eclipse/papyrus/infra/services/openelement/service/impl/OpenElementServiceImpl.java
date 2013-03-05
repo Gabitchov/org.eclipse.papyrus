@@ -232,4 +232,14 @@ public class OpenElementServiceImpl implements OpenElementService {
 		}
 	}
 
+	public IMultiDiagramEditor openSemanticElement(EObject semanticElement) throws PartInitException, ServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IMultiDiagramEditor openSemanticElement(EObject semanticElement, Object[] pages) throws PartInitException, ServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

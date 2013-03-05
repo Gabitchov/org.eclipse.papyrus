@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - service hook for integrating tools into graphical editor (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -128,6 +129,10 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			try {
 				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, Diagram.class);
 				editor = (GraphicalEditor)c.newInstance(servicesRegistry, diagram);
+				
+				IGraphicalEditorSupport editorSupport = servicesRegistry.getService(IGraphicalEditorSupport.class);
+				editorSupport.initialize(editor);
+				
 				return editor;
 
 			} catch (Exception e) {

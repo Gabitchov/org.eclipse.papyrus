@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,34 +10,31 @@
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
  *  Arnaud Cuccuru (CEA LIST) - arnaud.cuccuru@cea.fr
+ *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ *  
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.markerlistener;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.ui.resources.FileChangeManager;
-import org.eclipse.gmf.runtime.common.ui.resources.IFileObserver;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerMonitor;
+import org.eclipse.papyrus.infra.services.markerlistener.providers.MarkerMonitorRegistry;
 import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
 
 // TODO: Auto-generated Javadoc
@@ -53,7 +50,11 @@ public class MarkersMonitorService implements IService {
 	 * The list of registered Marker Event Listeners
 	 */
 	protected List<IMarkerEventListener> registeredMarkerEventListeners ;
-		
+	
+	private List<IMarkerMonitor> monitorExtensions;
+	
+	private final IMarkerEventListener relay = createRelayListener();
+	
 	/**
 	 * Gets the services registry.
 	 * 
@@ -74,9 +75,6 @@ public class MarkersMonitorService implements IService {
 		this.servicesRegistry = servicesRegistry;
 	}
 
-	/** The file observer. */
-	protected MarkerObserver fileObserver;
-
 
 	/**
 	 * Instantiates a new markers monitor service.
@@ -94,8 +92,9 @@ public class MarkersMonitorService implements IService {
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		this.servicesRegistry = servicesRegistry;
 		this.registeredMarkerEventListeners = this.getRegisteredMarkerEventListeners() ;
-		this.fileObserver = new MarkerObserver(ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain(), registeredMarkerEventListeners);
-		this.checkMarkers() ;
+		this.monitorExtensions = new MarkerMonitorRegistry().getMarkerMonitors();
+		
+		checkMarkers() ;
 	}
 
 	protected List<IMarkerEventListener> getRegisteredMarkerEventListeners() {
@@ -122,10 +121,20 @@ public class MarkersMonitorService implements IService {
 	 * 
 	 * @throws ServiceException
 	 */
-
 	public void startService() throws ServiceException {
-		//Start Listening
-		FileChangeManager.getInstance().addFileObserver(this.fileObserver);
+		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(
+			servicesRegistry);
+
+		for (IMarkerMonitor next : monitorExtensions) {
+			try {
+				next.initialize(modelSet);
+				next.addMarkerEventListener(relay);
+			} catch (Exception e) {
+				Activator.log.error(
+					"Uncaught exception in initialization of marker monitor.",
+					e);
+			}
+		}
 	}
 
 	/**
@@ -133,161 +142,89 @@ public class MarkersMonitorService implements IService {
 	 * 
 	 * @throws ServiceException
 	 */
-
 	public void disposeService() throws ServiceException {
-		//Stop Listening
-		FileChangeManager.getInstance().removeFileObserver(this.fileObserver);
+		for (IMarkerMonitor next : monitorExtensions) {
+			try {
+				next.removeMarkerEventListener(relay);
+				next.dispose();
+			} catch (Exception e) {
+				Activator.log.error(
+					"Uncaught exception in initialization of marker monitor.",
+					e);
+			}
+		}
 	}
 
 	/**
 	 * Initial Checking for existing markers in notation.uml.
 	 */
 	void checkMarkers() {
-		IMarker[] markers = null;
-
 		try {
 			EList<Resource> resources = ServiceUtils.getInstance().getModelSet(servicesRegistry).getResources();
 			// create a copy of the list, see bug 392194 (avoid concurrent modification exceptions)
 			EList<Resource> resourcesCopy = new BasicEList<Resource>(resources);
 			// loop over all resources (e.g. error markers are on notation, breakpoints on UML model)
-			for(Resource resource : resourcesCopy) {
-				URI uri = resource.getURI();
-				String platformResourceString = uri.toPlatformString(true);
-				IFile file = (platformResourceString != null ? ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
-				if(file != null) {
-					try {
-						markers = file.findMarkers(null /* all markers */, true, 0);
-						for(int i = 0; i < markers.length; i++) {
-							EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(markers[i], null, ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
-							if(eObjectFromMarker != null && this.registeredMarkerEventListeners != null) {
-								for (IMarkerEventListener listener : this.registeredMarkerEventListeners) {
-									if (listener.isNotifiedOnInitialMarkerCheck()) {
-										listener.notifyMarkerChange(eObjectFromMarker, markers[i], IMarkerEventListener.MARKER_ADDED) ;
-									}
+			for (Resource resource : resourcesCopy) {
+				try {
+					Collection<? extends IPapyrusMarker> markers = getMarkers(resource, null /* all markers */, true);
+					for (IPapyrusMarker next : markers) {
+						EObject eObjectFromMarker = next.getEObject();
+						if (eObjectFromMarker != null && this.registeredMarkerEventListeners != null) {
+							for (IMarkerEventListener listener : this.registeredMarkerEventListeners) {
+								if (listener.isNotifiedOnInitialMarkerCheck()) {
+									listener.notifyMarkerChange(eObjectFromMarker, next, IMarkerEventListener.MARKER_ADDED) ;
 								}
 							}
 						}
-					} catch (CoreException e) {
-						Activator.log.error(e.getMessage(), e);
 					}
+				} catch (CoreException e) {
+					Activator.log.error(e.getMessage(), e);
 				}
 			}
-
 		} catch (ServiceException e1) {
 			Activator.log.error(e1.getMessage(), e1);
 		}
 	}
 
-
-
-	// 	File Listening Functions
-
-	/**
-	 * An asynchronous update interface for receiving notifications
-	 * about Marker information as the Marker is constructed.
-	 */
-	class MarkerObserver implements IFileObserver {
-
-		/** The domain. */
-		private final TransactionalEditingDomain domain;
+	public Collection<? extends IPapyrusMarker> getMarkers(Resource resource,
+			String type, boolean includeSubtypes)
+			throws CoreException {
 		
-		protected List<IMarkerEventListener> markerEventListeners ;
-
-		/**
-		 * This method is called when information about an Marker
-		 * which was previously requested using an asynchronous
-		 * interface becomes available.
-		 * 
-		 * @param domain
-		 *        the domain
-		 */
-		public MarkerObserver(TransactionalEditingDomain domain, List<IMarkerEventListener> markerEventListeners) {
-			this.domain = domain;
-			this.markerEventListeners = markerEventListeners ;
-		}
-
-		/**
-		 * handle changes of file name.
-		 * 
-		 * @param oldFile
-		 *        the old file
-		 * @param file
-		 *        the file
-		 */
-		public void handleFileRenamed(IFile oldFile, IFile file) {
-		}
-
-		/**
-		 * @see org.eclipse.gmf.runtime.common.ui.resources.IFileObserver#handleFileMoved(org.eclipse.core.resources.IFile,
-		 *      org.eclipse.core.resources.IFile)
-		 * 
-		 * @param oldFile
-		 * @param file
-		 */
-
-		public void handleFileMoved(IFile oldFile, IFile file) {
-		}
-
-		/**
-		 * @see org.eclipse.gmf.runtime.common.ui.resources.IFileObserver#handleFileDeleted(org.eclipse.core.resources.IFile)
-		 * 
-		 * @param file
-		 */
-
-		public void handleFileDeleted(IFile file) {
-		}
-
-		/**
-		 * @see org.eclipse.gmf.runtime.common.ui.resources.IFileObserver#handleFileChanged(org.eclipse.core.resources.IFile)
-		 * 
-		 * @param file
-		 */
-
-		public void handleFileChanged(IFile file) {
-		}
-
-		/**
-		 * A marker has been added, treat as change.
-		 * 
-		 * @param marker
-		 *        the marker
-		 */
-		public void handleMarkerAdded(IMarker marker) {
-			handleMarkerChanged(marker);
-		}
-
-		/**
-		 * A marker has been deleted. Need to treat separately from change, since old values are not stored in
-		 * marker, but in attribute map
-		 * 
-		 * @param marker
-		 *        the marker
-		 * @param attributes
-		 *        the attributes
-		 */
-		public void handleMarkerDeleted(IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
-			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(null, attributes, domain);
-			if(eObjectFromMarker != null && this.markerEventListeners != null) {
-				for (IMarkerEventListener listener : this.markerEventListeners) {
-					listener.notifyMarkerChange(eObjectFromMarker, marker, IMarkerEventListener.MARKER_REMOVED) ;
-				}
-			}
-		}
-
-		/**
-		 * A marker has changed.
-		 * 
-		 * @param marker
-		 *        the marker
-		 */
-		public void handleMarkerChanged(IMarker marker) {
-			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(marker, null, domain);
-			if(eObjectFromMarker != null && this.markerEventListeners != null) {
-				for (IMarkerEventListener listener : this.markerEventListeners) {
-					listener.notifyMarkerChange(eObjectFromMarker, marker, IMarkerEventListener.MARKER_ADDED) ;
-				}
-			}
-		}
+		return MarkerListenerUtils.getMarkerProvider(resource).getMarkers(
+			resource, type, includeSubtypes);
 	}
 
+	private IMarkerEventListener createRelayListener() {
+		return new IMarkerEventListener() {
+			
+			public void notifyMarkerChange(EObject eObjectOfMarker,
+					IPapyrusMarker marker, int addedOrRemoved) {
+				
+				for (IMarkerEventListener next : registeredMarkerEventListeners) {
+					try {
+					next.notifyMarkerChange(eObjectOfMarker, marker, addedOrRemoved);
+					} catch (Exception e) {
+						Activator.log.error("Uncaught exception in marker listener.", e);
+					}
+				}
+			}
+			
+			public void startService() {
+				// not needed
+			}
+			
+			public void init(ServicesRegistry servicesRegistry) {
+				// not needed
+			}
+			
+			public void disposeService() {
+				// not needed
+			}
+			
+			public boolean isNotifiedOnInitialMarkerCheck() {
+				// not needed
+				return false;
+			}
+		};
+	}
 }

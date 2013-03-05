@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.listeners;
@@ -19,9 +20,9 @@ import java.util.Iterator;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -44,12 +45,17 @@ public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 	 */
 	public void notifyChanged(Notification notification) {
 		Resource resource = null;
-		ArrayList<DynamicEObjectImpl> appliedstereotypeToRemove = new ArrayList<DynamicEObjectImpl>();
+		
+		// note that stereotype applications from static profiles are not
+		// DynamicEObjectImpls!  Neither are stereotype applications from
+		// dynamic profiles in a CDO context
+		ArrayList<EObject> appliedstereotypeToRemove = new ArrayList<EObject>();
 		// listen remove and Set notification
 		if(notification.getEventType() == Notification.REMOVE || notification.getEventType() == Notification.SET) {
 
 			// listen if the the notifier is an eObject
-			if(notification.getNotifier() instanceof EObject) {
+			EObject notifier = EMFHelper.asEMFModelElement(notification.getNotifier());
+			if(notifier != null) {
 				resource = ((EObject)notification.getNotifier()).eResource();
 				if(resource != null) {
 					TreeIterator<EObject> iterator = resource.getAllContents();
@@ -57,17 +63,18 @@ public class RemoveStereotypeApplicationListener implements IPapyrusListener {
 					// look for applied stereotype without based element
 					while(iterator.hasNext()) {
 						EObject eObject = (EObject)iterator.next();
-						if(eObject instanceof DynamicEObjectImpl && UMLUtil.getBaseElement(eObject) == null) {
-							appliedstereotypeToRemove.add((DynamicEObjectImpl)eObject);
+						if ((UMLUtil.getStereotype(eObject) != null)
+							&& (UMLUtil.getBaseElement(eObject) == null)) {
+							
+							appliedstereotypeToRemove.add(eObject);
 						}
 					}
 				}
 			}
 		}
-		Iterator<DynamicEObjectImpl> iterator = appliedstereotypeToRemove.iterator();
+		Iterator<EObject> iterator = appliedstereotypeToRemove.iterator();
 		while(iterator.hasNext()) {
-			DynamicEObjectImpl dynamicEObjectImpl = (DynamicEObjectImpl)iterator.next();
-			resource.getContents().remove(dynamicEObjectImpl);
+			resource.getContents().remove(iterator.next());
 		}
 	}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *      Christian W. Damus (CEA) - support read-only objects (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.internal;
@@ -20,10 +21,14 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.NullElementType;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.messages.Messages;
@@ -93,28 +98,41 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 
 		IElementType elementType = null;
 
-		if(objectToEdit instanceof EObject) {
-			elementType = ElementTypeRegistry.getInstance().getElementType((EObject)objectToEdit, sharedClientContext);
-		}
-
-		if(objectToEdit instanceof EClass) {
+		if (objectToEdit instanceof EClass) {
 			elementType = ElementTypeRegistry.getInstance().getElementType((EClass)objectToEdit, sharedClientContext);
-		}
-
-		if(objectToEdit instanceof IElementType) {
+		} else if (objectToEdit instanceof EObject) {
+			EObject eObject = (EObject) objectToEdit;
+			if (isReadOnly(eObject)) {
+				elementType = NullElementType.getInstance();
+			} else {
+				elementType = ElementTypeRegistry.getInstance().getElementType(eObject, sharedClientContext);
+			}
+		} else if (objectToEdit instanceof IElementType) {
 			// Make sure the IElementType is in Papyrus shared context
 			if(sharedClientContext.includes((IElementType)objectToEdit)) {
 				elementType = (IElementType)objectToEdit;
 			}
 		}
 
-		if(elementType == null) {
+		if (elementType == null) {
 			throw new ServiceException(NLS.bind(Messages.ElementEditServiceProvider_NoIElementTypeFound, objectToEdit));
 		}
 
 		return new ElementEditService(elementType, sharedClientContext);
 	}
 
+	private boolean isReadOnly(EObject object) {
+		boolean result = false;
+		
+		Resource resource = object.eResource();
+		ResourceSet resourceSet = (resource == null) ? null : resource.getResourceSet();
+		if (resourceSet instanceof ModelSet) {
+			result = ((ModelSet) resourceSet).isReadOnly(object);
+		}
+		
+		return result;
+	}
+	
 	/**
 	 * <pre>
 	 * 

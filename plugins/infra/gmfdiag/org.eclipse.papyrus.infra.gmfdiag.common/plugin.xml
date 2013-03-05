@@ -93,6 +93,13 @@
                serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
          </dependsOn>
       </serviceFactory>
+      <service
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.DefaultGraphicalEditorSupport"
+            description="The default diagram editor support implementation."
+            id="org.eclipse.papyrus.infra.gmfdiag.common.IGraphicalEditorSupport"
+            priority="1"
+            startKind="lazy">
+      </service>
    </extension>
 <extension
       point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">

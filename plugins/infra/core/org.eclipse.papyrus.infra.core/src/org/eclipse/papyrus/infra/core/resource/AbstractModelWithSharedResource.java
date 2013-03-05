@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -57,16 +58,12 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 	/**
 	 * Attach the model to its resource if this is not already done.
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#loadModel(org.eclipse.core.runtime.IPath)
-	 * 
-	 * @param fullPathWithoutExtension
 	 */
 	@Override
-	public void loadModel(IPath fullPathWithoutExtension) {
+	public void loadModel(URI uriWithoutExtension) {
 
 		// Look for the resource
-		lookupResource(fullPathWithoutExtension);
+		lookupResource(uriWithoutExtension);
 
 		// Check if model is loaded.
 		if(resourceIsSet()) {
@@ -74,41 +71,36 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 			return;
 		}
 		// model is not loaded, do it.
-		super.loadModel(fullPathWithoutExtension);
+		super.loadModel(uriWithoutExtension);
 	}
 
 	/**
 	 * Create the model if this is not already done.
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#createModel(org.eclipse.core.runtime.IPath)
-	 * 
-	 * @param fullPath
 	 */
 	@Override
-	public void createModel(IPath fullPath) {
+	public void createModel(URI uri) {
 
 		// Look for the resource
-		lookupResource(fullPath);
+		lookupResource(uri);
 
 		// Check if model is loaded.
 		if(resourceIsSet()) {
 			configureResource(resource);
 			return;
 		}
-		// model is not loaded, do it.
-		super.createModel(fullPath);
+		super.createModel(uri);
 	}
 
 	/**
-	 * Lookup for the resource in the resourceSet. Return the resource or null
-	 * if not found.
+	 * Lookup for the resource in the resourceSet.
 	 * 
-	 * @param fullPath
+	 * @param uri
+	 *        the URI of the resource to look for
 	 */
-	private void lookupResource(IPath fullPath) {
+	private void lookupResource(URI uri) {
 
 		// Compute model URI
-		resourceURI = getPlatformURI(fullPath.addFileExtension(getModelFileExtension()));
+		resourceURI = uri.trimFileExtension().appendFileExtension(getModelFileExtension());
 
 		resource = getResourceSet().getResource(resourceURI, false);
 

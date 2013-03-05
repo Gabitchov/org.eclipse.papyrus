@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,15 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
 
+import static org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper.getSelectedResourceURI;
+
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -40,6 +44,11 @@ public class InitModelWizard extends CreateModelWizard {
 	/** The is init from existing domain model. */
 	private boolean isInitFromExistingDomainModel;
 
+	@Override
+	public boolean isInitModelWizard() {
+		return true;
+	}
+	
 	/**
 	 * Inits the.
 	 * 
@@ -50,10 +59,10 @@ public class InitModelWizard extends CreateModelWizard {
 	 */
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		IFile file = getSelectedFile(selection);
-		isInitFromExistingDomainModel = isSupportedDomainModelFile(file);
+		URI uri = getSelectedResourceURI(selection);
+		isInitFromExistingDomainModel = isSupportedDomainModelResource(uri);
 		super.init(workbench, selection);
-		selectRootElementPage = createSelectRootElementPage(file);
+		selectRootElementPage = createSelectRootElementPage(selection);
 		if(isCreateFromExistingDomainModel()) {
 			// Init Model not Create a new one
 			setWindowTitle(Messages.InitModelWizard_init_papyrus_diagram);
@@ -63,16 +72,16 @@ public class InitModelWizard extends CreateModelWizard {
 	/**
 	 * Creates the select root element page.
 	 * 
-	 * @param file
-	 *        the file
+	 * @param selection
+	 *        the initial workbench selection
 	 * @return the select root element page
 	 */
-	protected SelectRootElementPage createSelectRootElementPage(IFile file) {
+	protected SelectRootElementPage createSelectRootElementPage(IStructuredSelection selection) {
 		if(!isCreateFromExistingDomainModel()) {
 			// create model - nothing to choose from
 			return null;
 		}
-		return new SelectRootElementPage(file);
+		return new SelectRootElementPage(selection);
 	}
 
 	/**
@@ -95,22 +104,6 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
-	 * Creates the new model file page.
-	 * 
-	 * @param selection
-	 *        the selection
-	 * @return the new model file page {@inheritDoc}
-	 */
-	@Override
-	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
-		if(!isCreateFromExistingDomainModel()) {
-			return super.createNewModelFilePage(selection);
-		}
-		return new NewDiagramForExistingModelPage(selection, getDiagramFileName(getSelectedFile(selection)) + "." + getDiagramFileExtension(null), getDiagramFileExtension(null)); //$NON-NLS-1$
-	}
-
-
-	/**
 	 * Adds the pages.
 	 * 
 	 * {@inheritDoc}
@@ -131,7 +124,21 @@ public class InitModelWizard extends CreateModelWizard {
 	public static boolean isSupportedDomainModelFile(IFile file) {
 		//		if(file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension())){System.err.println("is SupportedDomainModelFile");}
 		//		else {System.err.println("not SupportedDomainModelFile");}
-		return file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension());
+		return file != null
+			&& isSupportedDomainModelResource(URI.createPlatformResourceURI(
+				file.getFullPath().toString(), true));
+	}
+
+	/**
+	 * Returns true if the resource can be served as a model model for the diagram.
+	 * 
+	 * @param uri
+	 *        the resource's URI
+	 * @return true, if is supported domain model resource
+	 */
+	public static boolean isSupportedDomainModelResource(URI uri) {
+		return (uri != null)
+			&& UmlModel.UML_FILE_EXTENSION.equals(uri.fileExtension());
 	}
 
 	/**
@@ -142,9 +149,8 @@ public class InitModelWizard extends CreateModelWizard {
 	 * @return true, if is supported domain model file
 	 */
 	public static boolean isSupportedDomainModelFile(IStructuredSelection sselection) {
-		IFile file = getSelectedFile(sselection);
-		//		if(!isSupportedDomainModelFile(file)){System.err.println("not SupportedDomainModelFile");}
-		return isSupportedDomainModelFile(file);
+		URI uri = getSelectedResourceURI(sselection);
+		return isSupportedDomainModelResource(uri);
 	}
 
 	/**
@@ -152,16 +158,17 @@ public class InitModelWizard extends CreateModelWizard {
 	 * 
 	 * @param diResourceSet
 	 *        the di resource set
-	 * @param newFile
-	 *        the new file {@inheritDoc}
+	 * @param newURI
+	 *        the URI of the new model's principal resource
 	 */
 	@Override
-	protected void createPapyrusModels(ModelSet modelSet, IFile newFile) {
+	protected void createPapyrusModels(ModelSet modelSet, URI newURI) {
 		if(isCreateFromExistingDomainModel()) {
-			RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(modelSet, newFile, getRoot());
+			RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(
+				modelSet, newURI, getRoot());
 			getCommandStack(modelSet).execute(command);
 		} else {
-			super.createPapyrusModels(modelSet, newFile);
+			super.createPapyrusModels(modelSet, newURI);
 		}
 	}
 
@@ -170,17 +177,17 @@ public class InitModelWizard extends CreateModelWizard {
 	 * 
 	 * @param diResourceSet
 	 *        the di resource set
-	 * @param newFile
-	 *        the new file
+	 * @param newURI
+	 *        the URI of the new model's principal resource
 	 * @param diagramCategoryId
 	 *        the diagram category id {@inheritDoc}
 	 */
 	@Override
-	protected void initDomainModel(ModelSet modelSet, final IFile newFile, String diagramCategoryId) {
+	protected void initDomainModel(ModelSet modelSet, final URI newURI, String diagramCategoryId) {
 		if(isCreateFromExistingDomainModel()) {
 			// do nothing
 		} else {
-			super.initDomainModel(modelSet, newFile, diagramCategoryId);
+			super.initDomainModel(modelSet, newURI, diagramCategoryId);
 		}
 	}
 
@@ -202,46 +209,16 @@ public class InitModelWizard extends CreateModelWizard {
 	 * 
 	 * @return true, if is creates the from existing domain model
 	 */
-	protected boolean isCreateFromExistingDomainModel() {
+	public boolean isCreateFromExistingDomainModel() {
 		return isInitFromExistingDomainModel;
 	}
 
-	/**
-	 * Suggests a name of diagram file for the domain model file without extension.
-	 * 
-	 * @param domainModel
-	 *        the domain model
-	 * @return the diagram file name
-	 */
-	protected String getDiagramFileName(IFile domainModel) {
-		return domainModel.getLocation().removeFileExtension().lastSegment();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard#getDiagramFileExtension(java.lang.String)
-	 */
 	@Override
-	protected String getDiagramFileExtension(String diagramCategoryId) {
+	public String getDiagramFileExtension(String diagramCategoryId) {
 		if(isCreateFromExistingDomainModel()) {
 			return NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 		}
 		return super.getDiagramFileExtension(diagramCategoryId);
-	}
-
-	/**
-	 * Returns the first file from the given selection.
-	 * 
-	 * @param selection
-	 *        the selection
-	 * @return the selected file
-	 */
-	private static IFile getSelectedFile(IStructuredSelection selection) {
-		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
-			return (IFile)selection.getFirstElement();
-		}
-		return null;
 	}
 
 	/**
@@ -259,7 +236,7 @@ public class InitModelWizard extends CreateModelWizard {
 	/**
 	 * The Class NewDiagramForExistingModelPage.
 	 */
-	protected class NewDiagramForExistingModelPage extends NewModelFilePage {
+	protected static class NewDiagramForExistingModelPage extends NewModelFilePage {
 
 		/** The my diagram file name. */
 		private String myDiagramFileName;
@@ -268,14 +245,21 @@ public class InitModelWizard extends CreateModelWizard {
 		 * Instantiates a new new diagram for existing model page.
 		 * 
 		 * @param selection
-		 *        the selection
+		 *            the selection
 		 * @param defaultFileName
-		 *        the default file name
+		 *            the default file name
+		 * @param modelKindName
+		 *            the user-presentable (translatable) name of the kind of
+		 *            model to create
 		 * @param diagramExtension
-		 *        the diagram extension
+		 *            the diagram extension
 		 */
-		public NewDiagramForExistingModelPage(IStructuredSelection selection, String defaultFileName, String diagramExtension) {
-			super(selection);
+		public NewDiagramForExistingModelPage(IStructuredSelection selection,
+				String modelKindName, String defaultFileName,
+				String diagramExtension) {
+			
+			super(selection, modelKindName);
+			
 			myDiagramFileName = defaultFileName;
 			setFileName(defaultFileName);
 			setFileExtension(diagramExtension);

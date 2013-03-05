@@ -38,8 +38,9 @@ public class CutHandler extends AbstractCommandHandler {
 		List<EObject> selection = getSelectedElements();
 		return CutToClipboardCommand.create(getEditingDomain(), selection);
 	}
+
 	@Override
-	public boolean isEnabled() {
+	protected boolean computeEnabled() {
 		//done explicitly inorder to desactivate it.
 		return false;
 	}

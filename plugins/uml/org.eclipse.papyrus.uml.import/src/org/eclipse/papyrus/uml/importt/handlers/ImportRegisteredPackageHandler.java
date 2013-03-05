@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
 
@@ -26,6 +28,7 @@ import org.eclipse.papyrus.uml.extensionpoints.library.FilteredRegisteredLibrari
 import org.eclipse.papyrus.uml.extensionpoints.library.RegisteredLibrary;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.importt.ui.PackageImportDialog;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -61,14 +64,18 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 			PackageImportDialog dialog = new PackageImportDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package)modelResource.getContents().get(0)));
 
 			if(dialog.open() == Window.OK) {
-				List<?> result = dialog.getResult();
+				Collection<ImportSpec<Package>> result = dialog.getResult();
 
-				for(Object resultElement : result) {
-					Package selectedPackage = (Package)resultElement;
-					if(dialog.isCopy()) {
-						handleCopyPackage(selectedPackage);
-					} else {
-						handleImportPackage(selectedPackage);
+				for (ImportSpec<Package> resultElement : result) {
+					Package selectedPackage = resultElement
+						.getElement();
+					switch (resultElement.getAction()) {
+						case COPY :
+							handleCopyPackage(selectedPackage);
+							break;
+						default :
+							handleImportPackage(selectedPackage);
+							break;
 					}
 				}
 			}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,28 +9,28 @@
  *
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.validation;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
+import org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerProvider;
+import org.eclipse.papyrus.infra.services.markerlistener.providers.WorkspaceMarkerProvider;
+import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
 
 @SuppressWarnings("restriction")
 public class ValidationTool {
@@ -41,10 +41,9 @@ public class ValidationTool {
 	/** current eobject */
 	private EObject eObject;
 
-	/** current editing domain */
-	private EditingDomain domain;
-
 	protected Resource resource;
+	
+	protected IMarkerProvider provider;
 
 	/**
 	 * show progress all n marker deletions
@@ -64,8 +63,7 @@ public class ValidationTool {
 	 *        a model element
 	 */
 	public ValidationTool(EObject eObject) {
-		this.resource = ValidationUtils.getValidationResource(eObject);
-		setEObject(eObject);
+		this(eObject, ValidationUtils.getValidationResource(eObject));
 	}
 
 	/**
@@ -80,6 +78,10 @@ public class ValidationTool {
 	public ValidationTool(EObject eObject, Resource resource) {
 		this.resource = resource;
 		setEObject(eObject);
+		
+		this.provider = (resource == null)
+			? IMarkerProvider.NULL
+			: MarkerListenerUtils.getMarkerProvider(resource);
 	}
 
 	public void tryChildIfEmpty() {
@@ -115,43 +117,15 @@ public class ValidationTool {
 		this.eObject = eObject;
 	}
 
-	public IMarker[] getMarkers() {
-		if(getEObject() != null) {
-			if(getEObject().eResource() != null) {
-				URI uri = resource.getURI();
-				String platformResourceString = uri.toPlatformString(true);
-				IFile file = (platformResourceString != null ?
-					ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
-				if(file != null) {
-					try {
-						// TODO: quite inefficient, since requested for each element (could cache markers, already done
-						// by findMarkers operation?)
-						return file.findMarkers(IMarker.PROBLEM, true, 0);
-					} catch (CoreException e) {
-					}
-				}
-			}
+	public Collection<? extends IPapyrusMarker> getMarkers() {
+		try {
+			// TODO: quite inefficient, since requested for each element (could cache markers, already done
+			// by findMarkers operation?)
+			return provider.getMarkers(resource, null, true);
+		} catch (CoreException e) {
 		}
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param marker
-	 * @return
-	 */
-	public EObject eObjectOfMarker(IMarker marker) {
-		if(getEObject() != null) {
-			domain = AdapterFactoryEditingDomain.getEditingDomainFor(getEObject());
-			try {
-				if(marker.isSubtypeOf((EValidator.MARKER)) /* || marker.isSubtypeOf(MarkerConstants.modelrefMarkerID) */) {
-					return ValidationUtils.eObjectFromMarkerOrMap(marker, null, domain);
-				}
-			} catch (CoreException e) {
-				// only reason: marker does not exist
-			}
-		}
-		return null;
+		
+		return Collections.emptyList();
 	}
 
 	/**
@@ -168,30 +142,33 @@ public class ValidationTool {
 	 * @param monitor A progress monitor
 	 */
 	public void deleteSubMarkers(IProgressMonitor monitor) {
-		int i = 0;
-		for(IMarker marker : getMarkers()) {
-			EObject eObjOfMarker = eObjectOfMarker(marker);
-			if(isContainedBy(eObjOfMarker, getEObject())) {
-				try {
-					marker.delete();
-
-				} catch (CoreException e) {
-				}
-			}
-			if(i++ > DELETE_PMARKER_RATIO) {
-				i = 0;
-				monitor.worked(1);
-			}
+		try {
+			provider.deleteMarkers(getEObject(), monitor);
+		} catch (CoreException e) {
+			Activator.getDefault().getLog().log(e.getStatus());
 		}
 	}
+	
+	public IRunnableWithProgress wrap(IRunnableWithProgress runnableWithProgress) {
+		IRunnableWithProgress result = runnableWithProgress;
 
-	private boolean isContainedBy(EObject subEObj, EObject eObj) {
-		if(eObj == subEObj)
-			return true;
-		else if(subEObj != null) {
-			return isContainedBy(subEObj.eContainer(), eObj);
+		if (isWorkspaceResource() && (MarkerListenerUtils.eclipseResourcesUtil != null)) {
+			result = MarkerListenerUtils.eclipseResourcesUtil
+				.getWorkspaceModifyOperation(result);
 		}
-		// reached, if subEObj == null
-		return false;
+
+		return result;
+	}
+	
+	protected boolean isWorkspaceResource() {
+		return provider instanceof WorkspaceMarkerProvider;
+	}
+	
+	public void createMarkers(Diagnostic diagnostic, IProgressMonitor monitor) {
+		try {
+			provider.createMarkers(resource, diagnostic, monitor);
+		} catch (CoreException e) {
+			Activator.getDefault().getLog().log(e.getStatus());
+		}
 	}
 }

@@ -33,7 +33,7 @@ import org.eclipse.swt.graphics.Image;
  * @author Camille Letavernier
  * 
  */
-public class ExtensibleLabelProvider implements ILabelProvider, ILabelProviderListener {
+public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener {
 
 	private final Set<ILabelProviderListener> listeners;
 
@@ -83,6 +83,28 @@ public class ExtensibleLabelProvider implements ILabelProvider, ILabelProviderLi
 		return getProvider(element).getText(element);
 	}
 
+	public Image getQualifierImage(Object element) {
+		Image result = null;
+
+		IQualifierLabelProvider provider = getProvider(element, IQualifierLabelProvider.class);
+		if(provider != null) {
+			result = provider.getQualifierImage(element);
+		}
+
+		return result;
+	}
+
+	public String getQualifierText(Object element) {
+		String result = null;
+
+		IQualifierLabelProvider provider = getProvider(element, IQualifierLabelProvider.class);
+		if(provider != null) {
+			result = provider.getQualifierText(element);
+		}
+
+		return result;
+	}
+
 	protected final ILabelProvider getProvider(Object element) {
 		for(List<IFilteredLabelProvider> filteredProviders : providers.values()) {
 			for(IFilteredLabelProvider provider : filteredProviders) {
@@ -93,6 +115,18 @@ public class ExtensibleLabelProvider implements ILabelProvider, ILabelProviderLi
 		}
 
 		return defaultProvider;
+	}
+
+	protected final <T> T getProvider(Object element, Class<T> type) {
+		for(List<IFilteredLabelProvider> filteredProviders : providers.values()) {
+			for(IFilteredLabelProvider provider : filteredProviders) {
+				if((type.isInstance(provider)) && provider.accept(element)) {
+					return type.cast(provider);
+				}
+			}
+		}
+
+		return type.isInstance(defaultProvider) ? type.cast(defaultProvider) : null;
 	}
 
 	protected final List<IFilteredLabelProvider> getProviders(int priority) {

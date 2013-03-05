@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - don't rely on IMarker changes to refresh Model Explorer labels (CDO)
  *  
  * History:
  *  Renamed from MoDiscoLabelProviderWTooltips - fix for bug 371905
@@ -17,10 +18,13 @@
 package org.eclipse.papyrus.views.modelexplorer;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
@@ -34,7 +38,7 @@ import org.eclipse.ui.internal.navigator.NavigatorDecoratingLabelProvider;
 /**
  * A LabelProvider with support for decorations
  */
-public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelProvider {
+public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelProvider implements Observer {
 
 	private DecorationService decorationService;
 
@@ -42,11 +46,29 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 		super(labelProvider);
 		try {
 			this.decorationService = servicesRegistry.getService(DecorationService.class);
+			this.decorationService.addListener(this);
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 		}
 	}
 
+	@Override
+	public void dispose() {
+		try {
+			if (decorationService != null) {
+				decorationService.deleteListener(this);
+			}
+		} finally {
+			super.dispose();
+		}
+	}
+	
+	public void update(Observable o, Object arg) {
+		if ((decorationService != null) && (o == decorationService)) {
+			fireLabelProviderChanged(new LabelProviderChangedEvent(this));
+		}
+	}
+	
 	@Override
 	public String getToolTipText(Object element) {
 		if(decorationService == null) {

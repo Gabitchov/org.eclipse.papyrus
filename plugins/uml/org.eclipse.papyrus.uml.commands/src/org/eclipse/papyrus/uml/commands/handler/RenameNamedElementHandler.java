@@ -92,8 +92,8 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isEnabled() {
-		boolean enabled = super.isEnabled();
+	protected boolean computeEnabled() {
+		boolean enabled = super.computeEnabled();
 		if(enabled) {
 			List<EObject> selectedElements = getSelectedElements();
 			EObject selection = selectedElements.get(0);

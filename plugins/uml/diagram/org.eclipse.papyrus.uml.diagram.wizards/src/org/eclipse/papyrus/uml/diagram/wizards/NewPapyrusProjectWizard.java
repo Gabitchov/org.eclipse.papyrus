@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,13 +9,11 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
 
-import java.net.URI;
-
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -23,6 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.ui.IWorkbench;
@@ -42,6 +41,11 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	/** The initial project name. */
 	private String initialProjectName;
 
+	@Override
+	public boolean isCreateProjectWizard() {
+		return true;
+	}
+	
 	/**
 	 * Inits the.
 	 *
@@ -79,19 +83,6 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		addPage(myNewProjectPage);
 		super.addPages();
 	}
-	
-	/**
-	 * Creates the new model file page.
-	 *
-	 * @param selection the selection
-	 * @return the new model file page
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
-		return null;
-	}
-	
 
 	/**
 	 * Perform finish.
@@ -125,7 +116,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		final IProject project = myNewProjectPage.getProjectHandle();
 
 		// get a project descriptor
-		URI projectLocationURI = null;
+		java.net.URI projectLocationURI = null;
 		if (!myNewProjectPage.useDefaults()) {
 			projectLocationURI = myNewProjectPage.getLocationURI();
 		}
@@ -151,17 +142,10 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
         return project;
 	}
 	
-	/**
-	 * Creates the new model file.
-	 *
-	 * @param categoryId the category id
-	 * @return the i file
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected IFile createNewModelFile(String categoryId) {
+	protected URI createNewModelURI(String categoryId) {
 		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension(categoryId)); //$NON-NLS-1$
-		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
+		return URI.createPlatformResourceURI(newFilePath.toString(), true);
 	}
 
 	/**

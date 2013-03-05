@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,9 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Emilien Perico emilien.perico@atosorigin.com - manage loading strategies
+ *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
+ *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
+ *  Christian W. Damus (CEA) - Refactoring of Create Model Wizard (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -27,6 +30,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -84,9 +88,9 @@ public class ModelSet extends ResourceSetImpl {
 	private TransactionalEditingDomain transactionalEditingDomain;
 
 	/**
-	 * The filename path, without extension, used for action on models.
+	 * The URI, without extension, used for action on models.
 	 */
-	private IPath filenameWithoutExtension;
+	private URI uriWithoutExtension;
 
 	/**
 	 * 
@@ -116,6 +120,15 @@ public class ModelSet extends ResourceSetImpl {
 	 *        the model
 	 */
 	public void registerModel(IModel model) {
+		IModel existing = models.get(model.getIdentifier());
+		if((existing == null) || existing.getClass().isAssignableFrom(model.getClass().getSuperclass())) {
+			// only add this model if it is the first instance for its identifier
+			// or it's an instance of a subclass
+			doRegisterModel(model);
+		}
+	}
+
+	private void doRegisterModel(IModel model) {
 		models.put(model.getIdentifier(), model);
 		model.init(this);
 	}
@@ -224,7 +237,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * 
 	 * @return the transactional editing domain
 	 */
-	public TransactionalEditingDomain getTransactionalEditingDomain() {
+	public synchronized TransactionalEditingDomain getTransactionalEditingDomain() {
 		transactionalEditingDomain = TransactionalEditingDomainManager.getTransactionalEditingDomain(this);
 
 		if(transactionalEditingDomain == null) {
@@ -236,30 +249,73 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * @return the filenameWithoutExtension
+	 * Queries whether I am associated with a transactional editing domain.
+	 * 
+	 * @return {@code true} if my editing domain has been {@linkplain #getTransactionalEditingDomain() created}; {@code false}, otherwise
+	 * 
+	 * @see #getTransactionalEditingDomain()
 	 */
+	protected synchronized boolean hasTransactionalEditingDomain() {
+		return transactionalEditingDomain != null;
+	}
+
+	/**
+	 * @return the filenameWithoutExtension
+	 * 
+	 * @deprecated Use the {@link #getURIWithoutExtension()} API, instead.
+	 */
+	@Deprecated
 	public IPath getFilenameWithoutExtension() {
-		return filenameWithoutExtension;
+		IPath result = null;
+
+		if(uriWithoutExtension != null) {
+			if(uriWithoutExtension.isPlatformResource()) {
+				result = new Path(uriWithoutExtension.toPlatformString(true));
+			} else {
+				throw new IllegalStateException("URI is not a platform:/resource URI");
+			}
+		}
+
+		return result;
+	}
+
+	public URI getURIWithoutExtension() {
+		return uriWithoutExtension;
 	}
 
 	/**
 	 * @return the filenameWithoutExtension
 	 * @throws BadStateException
 	 */
-	protected IPath getFilenameWithoutExtensionChecked() throws BadStateException {
-		if(filenameWithoutExtension == null) {
+	protected URI getURIWithoutExtensionChecked() throws BadStateException {
+		if(uriWithoutExtension == null) {
 			throw new BadStateException("Path should be set prior calling any operations.");
 		}
 
-		return filenameWithoutExtension;
+		return uriWithoutExtension;
 	}
 
 	/**
 	 * @param filenameWithoutExtension
 	 *        the filenameWithoutExtension to set
 	 */
-	protected void setFilenameWithoutExtension(IPath filenameWithoutExtension) {
-		this.filenameWithoutExtension = filenameWithoutExtension;
+	protected void setURIWithoutExtension(URI uriWithoutExtension) {
+		this.uriWithoutExtension = uriWithoutExtension;
+	}
+
+	/**
+	 * Create all the associated models. This creates the models, regardless if
+	 * they already exist.
+	 * 
+	 * @param newFile
+	 *        The file from which path is extracted to create the new
+	 *        resources
+	 * 
+	 * @deprecated Use the {@link #createModels(URI)} API, instead.
+	 */
+	@Deprecated
+	public void createsModels(IFile newFile) {
+		createModels(createURI(newFile));
 	}
 
 	/**
@@ -270,14 +326,14 @@ public class ModelSet extends ResourceSetImpl {
 	 *        The file from which path is extracted to create the new
 	 *        resources
 	 */
-	public void createsModels(IFile newFile) {
+	public void createModels(URI newURI) {
 
-		// Get the file name, without extension.
-		filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
+		// Set the URI, without extension.
+		setURIWithoutExtension(newURI.trimFileExtension());
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			model.createModel(filenameWithoutExtension);
+			model.createModel(uriWithoutExtension);
 		}
 
 		// call snippets to allow them to do their stuff
@@ -301,7 +357,7 @@ public class ModelSet extends ResourceSetImpl {
 			IModel model = getModel(modelId);
 
 			// Load models using the default path
-			model.createModel(filenameWithoutExtension);
+			model.createModel(uriWithoutExtension);
 		}
 
 		// call snippets to allow them to do their stuff
@@ -324,7 +380,7 @@ public class ModelSet extends ResourceSetImpl {
 	public IModel loadModel(String modelIdentifier) throws BadStateException {
 
 		IModel model = getModel(modelIdentifier);
-		model.loadModel(getFilenameWithoutExtensionChecked());
+		model.loadModel(getURIWithoutExtensionChecked());
 
 		return model;
 	}
@@ -355,11 +411,28 @@ public class ModelSet extends ResourceSetImpl {
 	 * 
 	 * @param file
 	 *        The file to load (no matter the extension)
+	 * @deprecated Use the {@link #loadModels(URI)} API, instead.
 	 */
+	@Deprecated
 	public void loadModels(IFile file) throws ModelMultiException {
+		loadModels(createURI(file));
+	}
+
+	private URI createURI(IFile file) {
+		return URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+	}
+
+	/**
+	 * Load all the associated models from a URI identifying one of the associated
+	 * files.
+	 * 
+	 * @param uri
+	 *        The URI to load (no matter the extension)
+	 */
+	public void loadModels(URI uri) throws ModelMultiException {
 
 		// Get the file name, without extension.
-		filenameWithoutExtension = file.getFullPath().removeFileExtension();
+		uriWithoutExtension = uri.trimFileExtension();
 
 		ModelMultiException exceptions = null;
 
@@ -368,7 +441,7 @@ public class ModelSet extends ResourceSetImpl {
 			// Try to load each model. Catch exceptions in order to load other
 			// models.
 			try {
-				model.loadModel(filenameWithoutExtension);
+				model.loadModel(uriWithoutExtension);
 			} catch (Exception e) {
 				// Record the exception
 				if(exceptions == null) {
@@ -399,18 +472,38 @@ public class ModelSet extends ResourceSetImpl {
 	 *        The IFile used to import the model.
 	 * @throws ModelException
 	 *         If an error occur during import.
+	 * 
+	 * @deprecated Use the {@link #importModels(ModelIdentifiers, URI)} API, instead
 	 */
+	@Deprecated
 	public void importModels(ModelIdentifiers modelIdentifiers, IFile file) throws ModelException {
 
-		IPath path = file.getFullPath().removeFileExtension();
+		importModels(modelIdentifiers, createURI(file));
+	}
+
+	/**
+	 * Import specified models into the ModelSet. The models are imported using
+	 * the specified IFile. After import, the models are associated with the
+	 * ModelSet Path.
+	 * 
+	 * @param modelIdentifiers
+	 *        The model to import from the specified IFile.
+	 * @param file
+	 *        The IFile used to import the model.
+	 * @throws ModelException
+	 *         If an error occur during import.
+	 */
+	public void importModels(ModelIdentifiers modelIdentifiers, URI uri) throws ModelException {
+
+		URI toImport = uri.trimFileExtension();
 		// Walk all registered models
 		for(String modelId : modelIdentifiers) {
 			IModel model = getModel(modelId);
 
 			// Load models using the default path
-			model.importModel(path);
-			if(filenameWithoutExtension != null) {
-				model.changeModelPath(filenameWithoutExtension);
+			model.importModel(toImport);
+			if(uri != null) {
+				model.setModelURI(uriWithoutExtension);
 			}
 		}
 	}
@@ -426,10 +519,30 @@ public class ModelSet extends ResourceSetImpl {
 	 *        the file
 	 * @throws ModelException
 	 * @returns The loaded model.
+	 * 
+	 * @deprecated Use the {@link #importModel(String, URI)} API, instead.
 	 */
+	@Deprecated
 	public IModel importModel(String modelIdentifier, IFile file) throws ModelException {
 
-		importModels(new ModelIdentifiers(modelIdentifier), file);
+		return importModel(modelIdentifier, createURI(file));
+	}
+
+	/**
+	 * Import only the specified model. ModelSetSnippets are not called. An
+	 * import can be performed after model are loaded. Normally, it should not
+	 * be done before a model is loaded.
+	 * 
+	 * @param modelIdentifier
+	 *        the model identifier
+	 * @param file
+	 *        the file
+	 * @throws ModelException
+	 * @returns The loaded model.
+	 */
+	public IModel importModel(String modelIdentifier, URI uri) throws ModelException {
+
+		importModels(new ModelIdentifiers(modelIdentifier), uri);
 
 		return getModel(modelIdentifier);
 	}
@@ -490,15 +603,31 @@ public class ModelSet extends ResourceSetImpl {
 	 *        the path
 	 * @throws IOException
 	 *         Signals that an I/O exception has occurred.
+	 * 
+	 * @deprecated Use the {@link #saveAs(URI)} API, instead.
 	 */
+	@Deprecated
 	public void saveAs(IPath path) throws IOException {
+		saveAs(URI.createPlatformResourceURI(path.toString(), true));
+	}
+
+	/**
+	 * The resources are already loaded, but we want to save them under another
+	 * name.
+	 * 
+	 * @param path
+	 *        the path
+	 * @throws IOException
+	 *         Signals that an I/O exception has occurred.
+	 */
+	public void saveAs(URI uri) throws IOException {
 
 		// Get the file name, without extension.
-		filenameWithoutExtension = path.removeFileExtension();
+		uriWithoutExtension = uri.trimFileExtension();
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			model.changeModelPath(filenameWithoutExtension);
+			model.setModelURI(uriWithoutExtension);
 		}
 
 		// Save with new paths
@@ -540,6 +669,35 @@ public class ModelSet extends ResourceSetImpl {
 		if(adapters != null) {
 			adapters.clear();
 		}
+	}
+
+	public boolean isReadOnly(EObject eObject) {
+		Resource resource = eObject.eResource();
+
+		// a detached object is necessarily editable
+		return (resource != null) && hasTransactionalEditingDomain() && getTransactionalEditingDomain().isReadOnly(resource);
+	}
+
+	/**
+	 * Obtains my internal API adapter.
+	 * 
+	 * @return my internal API adapter
+	 */
+	public Internal getInternal() {
+		return new Internal() {
+
+			public void setPrimaryModelResourceURI(URI uri) {
+				setURIWithoutExtension(uri.trimFileExtension());
+			}
+
+			public void registerModel(IModel model, boolean force) {
+				if(force) {
+					doRegisterModel(model);
+				} else {
+					ModelSet.this.registerModel(model);
+				}
+			}
+		};
 	}
 
 	/**
@@ -590,6 +748,34 @@ public class ModelSet extends ResourceSetImpl {
 			}
 
 		}
+	}
+
+	/**
+	 * Internal API for manipulation of {@link ModelSet}s.
+	 */
+	public static interface Internal {
+
+		/**
+		 * Sets the {@link ModelSet}'s primary resource URI.
+		 * 
+		 * @param uri
+		 *        the URI
+		 * 
+		 * @see ModelSet#createModels(URI)
+		 * @see ModelSet#saveAs(URI)
+		 */
+		void setPrimaryModelResourceURI(URI uri);
+
+		/**
+		 * Register a model with the option to force it (in case a more specific
+		 * implementation of the model is already registered).
+		 * 
+		 * @param model
+		 *        a model to register
+		 * @param force
+		 *        whether to force the registration
+		 */
+		void registerModel(IModel model, boolean force);
 	}
 
 	/**

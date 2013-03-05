@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
@@ -23,10 +24,9 @@ import java.util.TreeMap;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
@@ -47,14 +47,6 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	private IStructuredSelection mySelection;
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard#createNewModelFilePage(org.eclipse.jface.viewers.IStructuredSelection)
-	 */
-	@Override
-	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
-		return null;
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	@Override
@@ -62,10 +54,12 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 		super.init(workbench, selection);
 		this.mySelection = selection;
 	}
+	
+	@Override
+	public boolean isCreateMultipleModelsWizard() {
+		return true;
+	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard#diagramCategoryChanged(java.lang.String[])
-	 */
 	@Override
 	public IStatus diagramCategoryChanged(String... newCategories) {
 		// clean pages
@@ -82,7 +76,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 				myCategory2modelFilePageMap.put(newCategory, newPage);
 			}
 		}
-		return Status.OK_STATUS;
+		return super.diagramCategoryChanged(newCategories);
 	}
 	
 	/**
@@ -93,7 +87,8 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	 * @return the new model file page
 	 */
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection, String categoryId) {
-		NewModelFilePage newPage =  new NewModelFilePage(createModelFilePageId(categoryId), selection);
+		NewModelFilePage newPage = new NewModelFilePage(
+			createModelFilePageId(categoryId), selection, getModelKindName());
 		newPage.setWizard(this);
 		newPage.setDescription(Messages.bind(Messages.CreateSeveralModelsWizard_new_model_file_page_title, categoryId));
 		return newPage;
@@ -152,9 +147,8 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	public boolean performFinish() {
 		for (String category: getDiagramCategoryIds()) {
 			
-			final IFile newFile = createNewModelFile(category);
-			DiResourceSet diResourceSet = new DiResourceSet();
-			createAndOpenPapyrusModel(diResourceSet, newFile, category);
+			final URI newURI = createNewModelURI(category);
+			createAndOpenPapyrusModel(newURI, category);
 		}
 
 		saveDiagramCategorySettings();
@@ -162,17 +156,16 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard#createNewModelFile(java.lang.String)
-	 */
 	@Override
-	protected IFile createNewModelFile(String category) {
+	protected URI createNewModelURI(String category) {
 		NewModelFilePage newModelFilePage = myCategory2modelFilePageMap.get(category);
 		if (newModelFilePage == null) {
 			Activator.log.error(Messages.bind(Messages.CreateSeveralModelsWizard_cannot_initiate_page, category), new Exception());
 			return null;
 		}
-		return newModelFilePage.createNewFile();
+		
+		IFile file = newModelFilePage.createNewFile();
+		return URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 	}
 	
 	/**

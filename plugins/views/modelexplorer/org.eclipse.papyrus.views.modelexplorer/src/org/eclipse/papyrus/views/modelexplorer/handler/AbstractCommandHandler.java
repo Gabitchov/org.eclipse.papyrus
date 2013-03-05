@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,25 +11,30 @@
  * 
  * 		Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *      Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
+ *      Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *      
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * <pre>
@@ -44,6 +49,8 @@ import org.eclipse.ui.PlatformUI;
  */
 public abstract class AbstractCommandHandler extends AbstractModelExplorerHandler {
 
+	private List<?> selection = Collections.EMPTY_LIST;
+	
 	/**
 	 * <pre>
 	 * 
@@ -56,6 +63,10 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	 */
 	protected abstract Command getCommand();
 
+	protected List<?> getSelection() {
+		return selection;
+	}
+	
 	/**
 	 * <pre>
 	 * Get the selected element, the first selected element if several are selected or null
@@ -69,23 +80,19 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 		EObject eObject = null;
 
 		// Get current selection
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
+		List<?> selection = getSelection();
 
 		// Treat non-null selected object (try to adapt and return EObject)
-		if(selection != null) {
+		if (!selection.isEmpty()) {
 
 			// Get first element if the selection is an IStructuredSelection
-			if(selection instanceof IStructuredSelection) {
-				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-				selection = structuredSelection.getFirstElement();
+			Object first = selection.get(0);
+
+			if (first instanceof IAdaptable) {
+				first = ((IAdaptable)first).getAdapter(EObject.class);
 			}
 
-			if(selection instanceof IAdaptable) {
-				selection = ((IAdaptable)selection).getAdapter(EObject.class);
-			}
-
-			EObject businessObject = EMFHelper.getEObject(selection);
+			EObject businessObject = EMFHelper.getEObject(first);
 			if(businessObject != null) {
 				eObject = businessObject;
 			}
@@ -111,34 +118,18 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 		List<EObject> selectedEObjects = new ArrayList<EObject>();
 
 		// Get current selection
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
+		Collection<?> selection = getSelection();
 
 		// Treat non-null selected object (try to adapt and return EObject)
-		if(selection != null) {
+		if (!selection.isEmpty()) {
 
 			// Parse current selection
-			if(selection instanceof IStructuredSelection) {
-				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-				for(Object current : structuredSelection.toArray()) {
-					// Adapt current selection to EObject
-					EObject selectedEObject = EMFHelper.getEObject(current);
-					//we avoid to add null element in the list!
-					if(selectedEObject != null) {
-						selectedEObjects.add(selectedEObject);
-					}
-				}
-			} else { // Not a IStructuredSelection
+			for (Object current : selection) {
 				// Adapt current selection to EObject
-				EObject selectedElement = null;
-				if(selection instanceof IAdaptable) {
-					selectedElement = (EObject)((IAdaptable)selection).getAdapter(EObject.class);
-				}
-				if(selectedElement == null) {
-					selectedElement = (EObject)Platform.getAdapterManager().getAdapter(selection, EObject.class);
-				}
-				if(selectedElement != null) { //we avoid to add null element in the list!
-					selectedEObjects.add(selectedElement);
+				EObject selectedEObject = EMFHelper.getEObject(current);
+				if (selectedEObject != null) {
+					//we avoid to add null element in the list!
+					selectedEObjects.add(selectedEObject);
 				}
 			}
 		}
@@ -156,21 +147,48 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		try {
-			ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain().getCommandStack().execute(getCommand());
+			ISelection selection = HandlerUtil.getCurrentSelection(event);
+			this.selection = (selection instanceof IStructuredSelection)
+				? ((IStructuredSelection) selection).toList()
+				: Collections.EMPTY_LIST;
+			
+			ServiceUtilsForHandlers.getInstance()
+				.getTransactionalEditingDomain(event).getCommandStack()
+				.execute(getCommand());
 		} catch (ServiceException e) {
 			Activator.log.error("Unexpected error while executing command.", e); //$NON-NLS-1$
+		} finally {
+			// clear the selection
+			this.selection = Collections.EMPTY_LIST;
 		}
 
 		return null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isEnabled() {
+	protected boolean computeEnabled() {
+		boolean result = false;
+		
 		Command command = getCommand();
-		return command != null && getCommand().canExecute();
+		if (command != null) {
+			result = getCommand().canExecute();
+			command.dispose();
+		}
+		
+		return result;
 	}
 
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		if (evaluationContext instanceof IEvaluationContext) {
+			Object selection = ((IEvaluationContext) evaluationContext).getDefaultVariable();
+			if (selection instanceof Collection<?>) {
+				this.selection = (selection instanceof List<?>)
+					? (List<?>) selection
+					: new java.util.ArrayList<Object>((Collection<?>) selection);
+				setBaseEnabled(computeEnabled());
+				this.selection = Collections.EMPTY_LIST;
+			}
+		}
+		super.setEnabled(evaluationContext);
+	}
 }

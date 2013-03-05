@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
+
+<extension-point id="templates" name="UML2 Model Templates" schema="schema/templates.exsd"/>
+<extension-point id="newModelStorageProviders" name="New Model Storage Providers" schema="schema/newModelStorageProviders.exsd"/>
+
 <extension point="org.eclipse.ui.newWizards">
 	<category 
 		id="org.eclipse.papyrus.wizards.category"
@@ -27,6 +31,19 @@
    </wizard>
 </extension>
 
-<extension-point id="templates" name="UML2 Model Templates" schema="schema/templates.exsd"/>
+<extension
+      point="org.eclipse.papyrus.uml.diagram.wizards.newModelStorageProviders">
+   <provider
+         class="org.eclipse.papyrus.uml.diagram.wizards.WorkspaceNewModelStorageProvider"
+         name="In the workspace">
+      <enablement>
+         <iterate>
+             <adapt
+                   type="org.eclipse.core.resources.IResource">
+             </adapt>
+         </iterate>
+      </enablement>
+   </provider>
+</extension>
 
 </plugin>

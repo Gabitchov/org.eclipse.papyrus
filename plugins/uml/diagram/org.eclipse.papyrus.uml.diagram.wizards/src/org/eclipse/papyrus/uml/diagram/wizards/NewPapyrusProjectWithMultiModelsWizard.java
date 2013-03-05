@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,14 +9,14 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 
 /**
@@ -45,6 +45,11 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 	 */
 	public NewPapyrusProjectWithMultiModelsWizard(boolean doNotCreateModelForNoDiagrams) {
 		myDoNotCreateModelForNoDiagrams = doNotCreateModelForNoDiagrams;
+	}
+	
+	@Override
+	public boolean isCreateMultipleModelsWizard() {
+		return true;
 	}
 	
 	/* (non-Javadoc)
@@ -78,9 +83,8 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 				// don't create model
 				continue;
 			}
-			final IFile newFile = createNewModelFile(category);
-			DiResourceSet diResourceSet = new DiResourceSet();
-			createAndOpenPapyrusModel(diResourceSet, newFile, category);
+			final URI newURI = createNewModelURI(category);
+			createAndOpenPapyrusModel(newURI, category);
 		}
 
 		saveDiagramCategorySettings();

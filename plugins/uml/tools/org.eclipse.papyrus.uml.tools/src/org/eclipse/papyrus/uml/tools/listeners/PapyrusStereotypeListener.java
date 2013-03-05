@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.listeners;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.internal.impl.ElementImpl;
@@ -77,9 +79,9 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 
 		if(!isBaseElementChanged(feature)) {
 			// stereotype itself has changed.
-			Object notifier = notification.getNotifier();
+			EObject notifier = EMFHelper.asEMFModelElement(notification.getNotifier());
 			// notifier may be the stereotype application
-			if (notifier instanceof EObject) {
+			if (notifier != null) {
 				EObject baseElement = UMLUtil.getBaseElement((EObject) notifier);
 				if (baseElement instanceof Element) {
 					// notifier listeners for the base element

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,12 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.category;
 
-import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
@@ -25,27 +26,24 @@ public class NewPapyrusModelCommand extends RecordingCommand {
 	/** The my model set. */
 	private final ModelSet myModelSet;
 
-	/** The my file. */
-	private final IFile myFile;
+	/** The URI of the model to create. */
+	private final URI myURI;
 
 	/**
 	 * Instantiates a new new papyrus model command.
 	 *
 	 * @param modelSet the di resource set
-	 * @param newFile the new file
+	 * @param newURI the URI of the new model's principal resource
 	 */
-	public NewPapyrusModelCommand(ModelSet modelSet, IFile newFile) {
+	public NewPapyrusModelCommand(ModelSet modelSet, URI newURI) {
 		super(modelSet.getTransactionalEditingDomain());
 		myModelSet = modelSet;
-		myFile = newFile;
+		myURI = newURI;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
-	 */
 	@Override
 	protected void doExecute() {
-		myModelSet.createsModels(myFile);
+		myModelSet.createModels(myURI);
 	}
 
 }

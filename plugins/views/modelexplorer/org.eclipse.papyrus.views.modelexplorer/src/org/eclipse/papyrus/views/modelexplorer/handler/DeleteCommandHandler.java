@@ -110,7 +110,7 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isEnabled() {
+	protected boolean computeEnabled() {
 		//we need to test if selected element is not a meta-class
 
 		List<EObject> selectedElements = getSelectedElements();

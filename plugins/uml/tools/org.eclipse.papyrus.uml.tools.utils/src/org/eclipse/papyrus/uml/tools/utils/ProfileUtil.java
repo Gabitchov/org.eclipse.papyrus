@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Handle dynamic profile applications in CDO
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -93,7 +96,16 @@ public class ProfileUtil {
 
 					fileProfileDefinition = profileInFile.getDefinition();
 
-					if(appliedProfileDefinition != fileProfileDefinition) {
+					// don't just test that the EPackage definitions are the
+					// same object because in the CDO context they are not, even
+					// though they are "the same package". Comparing the NSURIs
+					// should suffice
+					if ((appliedProfileDefinition == null)
+						|| (fileProfileDefinition == null)
+						|| !UML2Util.safeEquals(
+							appliedProfileDefinition.getNsURI(),
+							fileProfileDefinition.getNsURI())) {
+						
 						isDirty = true;
 					}
 				}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,11 +11,13 @@
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Emilien Perico (Atos Origin) - fix bug on refresh
+ *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
@@ -26,7 +28,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -40,12 +41,14 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.FileSelectionFilter;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.Message;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.RegisteredProfileSelectionDialog;
 import org.eclipse.papyrus.uml.properties.profile.ui.panels.AppliedProfilePanel;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -238,13 +241,13 @@ public class AppliedProfileCompositeOnModel extends Composite {
 			if(profileDialog.open() != Window.OK) {
 				return;
 			}
-			ArrayList<Profile> profilestoApply = profileDialog.getResult();
+			Collection<ImportSpec<Profile>> profilestoApply = profileDialog.getResult();
 
 			Message message = new Message("Profile application", "Applying profile...");
 			message.open();
-			Iterator<Profile> iterator = profilestoApply.iterator();
+			Iterator<ImportSpec<Profile>> iterator = profilestoApply.iterator();
 			while(iterator.hasNext()) {
-				applyProfile(package_, iterator.next(), false);
+				applyProfile(package_, iterator.next().getElement(), false);
 			}
 			message.close();
 		}
@@ -461,7 +464,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	}
 
 	/**
-	 * Checks if the profile applied has been changed since last application (definition does not match.
+	 * Checks if the profile applied has been changed since last application (definition does not match).
 	 * 
 	 * @param _package
 	 *        on which the profile is applied
@@ -470,50 +473,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	 * @return true if the profile has changed
 	 */
 	private boolean isDirty(Package _package, Profile _profile) {
-		boolean isDirty = false;
-
-		// Retrieve model resourceSet
-		ResourceSet pkge_resourceSet = _package.eResource().getResourceSet();
-
-		// Retrieve profile resource
-		URI prof_URI = _profile.eResource().getURI();
-		Resource modelResource = pkge_resourceSet.getResource(prof_URI, true);
-
-		if(modelResource.getContents().get(0) instanceof Profile) {
-
-			// ckeck applied profile application definition vs profile definition referenced in file
-			Profile profileInFile = (Profile)(modelResource.getContents().get(0));
-
-			if(_package.getProfileApplication(_profile) != null) {
-				EPackage appliedProfileDefinition = _package.getProfileApplication(_profile).getAppliedDefinition();
-				EPackage fileProfileDefinition = null;
-
-				// Check profiles qualified names to ensure the correct profiles are compared
-				String appliedProfileName = _profile.getQualifiedName();
-				String fileProfileName = profileInFile.getQualifiedName();
-				if(!appliedProfileName.equals(fileProfileName)) {
-
-					// The profile must be a subprofile
-					Iterator<Profile> it = PackageUtil.getSubProfiles(profileInFile).iterator();
-					while(it.hasNext()) {
-						Profile current = it.next();
-						fileProfileName = current.getQualifiedName();
-						if(fileProfileName.equals(appliedProfileName)) {
-							profileInFile = current;
-						}
-					}
-				}
-
-				fileProfileDefinition = profileInFile.getDefinition();
-
-				if(appliedProfileDefinition != fileProfileDefinition) {
-					isDirty = true;
-				}
-			}
-
-		}
-
-		return isDirty;
+		return ProfileUtil.isDirty(_package, _profile);
 	}
 
 	/**

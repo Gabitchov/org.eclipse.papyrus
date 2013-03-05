@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2013 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,8 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - initial API and implementation
+ *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
@@ -17,6 +19,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.swt.widgets.Composite;
@@ -43,9 +46,11 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 * 
 	 * @param selection
 	 *        the selection
+	 * @param modelKindName
+	 *        the kind of model to be created (translatable)
 	 */
-	public NewModelFilePage(IStructuredSelection selection) {
-		this(PAGE_ID, selection);
+	public NewModelFilePage(IStructuredSelection selection, String modelKindName) {
+		this(PAGE_ID, selection, modelKindName);
 	}
 
 	/**
@@ -53,11 +58,12 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 *
 	 * @param pageId the page id
 	 * @param selection the selection
+	 * @param modelKindName the kind of model to be created (translatable)
 	 */
-	public NewModelFilePage(String pageId, IStructuredSelection selection) {
+	public NewModelFilePage(String pageId, IStructuredSelection selection, String modelKindName) {
 		super(pageId, selection);
-		setTitle(Messages.NewModelFilePage_3);
-		setDescription(Messages.NewModelFilePage_page_desc);
+		setTitle(NLS.bind(Messages.NewModelFilePage_3, modelKindName));
+		setDescription(NLS.bind(Messages.NewModelFilePage_page_desc, modelKindName));
 		setFileExtension(DEFAULT_DIAGRAM_EXTENSION);
 	}
 

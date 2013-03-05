@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,22 +10,24 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.ui.dialogs;
 
+import java.util.Collection;
+import java.util.EnumSet;
 import java.util.Iterator;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 
 /**
  * 
  */
-public class PackageImportTreeSelectionDialog extends ElementImportTreeSelectionDialog {
+public class PackageImportTreeSelectionDialog extends ElementImportTreeSelectionDialog<Package> {
 
 
 	/**
@@ -35,33 +37,25 @@ public class PackageImportTreeSelectionDialog extends ElementImportTreeSelection
 	 * @param parent
 	 */
 	public PackageImportTreeSelectionDialog(Shell parent, Package model) {
-		super(parent, model);
+		super(parent, EnumSet.of(ImportAction.IMPORT, ImportAction.COPY), Package.class, model);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.ui.dialogs.ElementImportTreeSelectionDialog#buildImportTreeList(org.eclipse.swt.widgets.TreeItem,
-	 * org.eclipse.uml2.uml.Package)
-	 */
-	/**
-	 * 
-	 * 
-	 * @param _package
-	 * @param elemTree
-	 */
+	public PackageImportTreeSelectionDialog(Shell parent, Collection<? extends Package> models) {
+		super(parent, EnumSet.of(ImportAction.IMPORT, ImportAction.COPY), Package.class, models);
+	}
+	
 	@Override
-	protected void buildImportTreeList(TreeItem elemTree, Package _package) {
-		Iterator elemIter = _package.getPackagedElements().iterator();
+	protected Collection<? extends Element> getChildren(Package package_) {
+		Collection<Package> result = new java.util.ArrayList<Package>();
+		
+		Iterator<PackageableElement> elemIter = package_.getPackagedElements().iterator();
 		while(elemIter.hasNext()) {
-			Element elem = (Element)elemIter.next();
+			Element elem = elemIter.next();
 			if(elem instanceof Package) {
-				TreeItem item = new TreeItem(elemTree, SWT.NONE);
-				item.setText(((Package)elem).getName());
-				item.setData(elem);
-				item.setImage(IMG_PACKAGE);
-				buildImportTreeList(item, (Package)elem);
+				result.add((Package) elem);
 			}
 		}
+		
+		return result;
 	}
 }

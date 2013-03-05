@@ -281,4 +281,17 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 
 	}
 
+	@Override
+	protected EObject getParent(EObject object) {
+		return (object instanceof Element)
+			? ((Element) object).getOwner()
+			: super.getParent(object);
+	}
+	
+	@Override
+	protected String getQualifiedText(EObject object) {
+		return (object instanceof NamedElement)
+			? ((NamedElement) object).getQualifiedName()
+			: super.getQualifiedText(object);
+	}
 }

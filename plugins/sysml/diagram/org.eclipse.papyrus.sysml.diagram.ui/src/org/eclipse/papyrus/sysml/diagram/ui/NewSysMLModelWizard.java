@@ -1,5 +1,5 @@
 /*****************************************************************************
-on * Copyright (c) 2010 CEA LIST.
+on * Copyright (c) 2010, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@ on * Copyright (c) 2010 CEA LIST.
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.ui;
@@ -16,7 +17,6 @@ package org.eclipse.papyrus.sysml.diagram.ui;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.ui.IWorkbench;
 
@@ -41,18 +41,10 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 		super.init(workbench, selection);
 		setWindowTitle("New SysML Model");
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
-	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
-		NewModelFilePage page = super.createNewModelFilePage(selection);
-		if (page != null) {
-			page.setTitle("Papyrus SysML Model");
-			page.setDescription("Create a New Papyrus SysML Model");
-		}
-		return page;
+	public String getModelKindName() {
+		return "Papyrus SysML";
 	}
 	
 	/**

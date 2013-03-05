@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Don't assume that profiles are in XMI resources (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profilefacet.utils;
@@ -148,8 +149,7 @@ public class AdditionalContentsUtils {
 	 *         This is a collection, because in case of a model splitted in several file, we could have several representation for the same profile
 	 */
 	public static final Collection<ProfileFacetSet> getAllFacetSet(final Profile profile) {
-		final XMIResource resource = (XMIResource)profile.eResource();
-		final String profileID = resource.getID(profile);
+		final String profileID = profile.eResource().getURIFragment(profile);
 
 		final Collection<ProfileFacetSet> facetSets = new HashSet<ProfileFacetSet>();
 		final ResourceSet resourceSet = profile.eResource().getResourceSet();

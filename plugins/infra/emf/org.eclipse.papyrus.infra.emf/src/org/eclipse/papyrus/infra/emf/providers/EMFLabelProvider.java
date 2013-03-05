@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.IQualifierLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -35,7 +36,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Camille Letavernier
  */
-public class EMFLabelProvider extends CustomizableModelLabelProvider implements IDetailLabelProvider {
+public class EMFLabelProvider extends CustomizableModelLabelProvider implements IDetailLabelProvider, IQualifierLabelProvider {
 
 	protected ILabelProvider baseEMFLabelProvider;
 
@@ -221,4 +222,67 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 		return ""; //$NON-NLS-1$
 	}
 
+	public String getQualifierText(Object element) {
+		String result = null;
+		
+		EObject parent = getParentObject(element);
+		if (parent != null) {
+			result = getQualifiedText(parent);
+		}
+		
+		return result;
+	}
+	
+	private EObject getParentObject(Object element) {
+		EObject result = null;
+		
+		if (element != null) {
+			EObject eObject = EMFHelper.getEObject(element);
+			if (eObject != null) {
+				result = getParent(eObject);
+			}
+		}
+
+		return result;
+	}
+	
+	public Image getQualifierImage(Object element) {
+		Image result = null;
+		
+		EObject parent = getParentObject(element);
+		if (parent != null) {
+			result = getImage(parent);
+		}
+		
+		return result;
+	}
+	
+	protected EObject getParent(EObject object) {
+		return object.eContainer();
+	}
+	
+	protected String getQualifiedText(EObject object) {
+		StringBuilder result = new StringBuilder();
+		
+		appendQualifiedText(object, result);
+		
+		return result.toString();
+	}
+	
+	protected void appendQualifiedText(EObject object, StringBuilder buf) {
+		EObject parent = getParent(object);
+		if (parent != null) {
+			appendQualifiedText(object, buf);
+		}
+
+		if (buf.length() > 0) {
+			buf.append("::");
+		}
+
+		String name = getText(object);
+		if (name == null) {
+			name = String.format("<%s>", object.eClass().getName());
+		}
+		buf.append(name);
+	}
 }

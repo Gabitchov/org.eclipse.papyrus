@@ -1,5 +1,5 @@
 /*****************************************************************************
-= * Copyright (c) 2010 CEA LIST.
+= * Copyright (c) 2010, 2013 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - post refreshes for transaction commit asynchronously (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -455,7 +456,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			return;
 		}
 		lastTrans = curTrans;
-		PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 
 			/**
 			 * {@inheritDoc}

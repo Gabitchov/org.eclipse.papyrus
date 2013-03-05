@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
+ *  Christian W. Damus (CEA) - don't rely on IMarker changes to refresh Model Explorer labels (CDO)
  *
  *****************************************************************************/
 
@@ -24,9 +26,6 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -97,11 +96,8 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	public boolean visit(IResourceDelta delta) {
 		IResource changedResource = delta.getResource();
 		if(delta.getFlags() == IResourceDelta.MARKERS) {
-			// only markers have been changed. Refresh their display only (no
-			// need to reload resources)
-			// TODO called once for each new marker => assure asynchronous
-			// refresh
-			modelSet.eNotify(new NotificationImpl(Notification.SET, new Object(), delta.getMarkerDeltas()));
+			// only markers have been changed. The marker-listener service takes
+			// care of this
 			return false;
 		}
 		// only proceed in case of Files (not projects, folders, ...) for the
@@ -110,7 +106,8 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			return true;
 		}
 		final String changedResourcePath = changedResource.getFullPath().toString();
-		IPath changedResourcePathWOExt = changedResource.getFullPath().removeFileExtension();
+		URI changedResourceURIWOExt = URI.createPlatformResourceURI(
+			changedResource.getFullPath().toString(), true).trimFileExtension();
 		URIConverter uriConverter = modelSet.getURIConverter();
 
 		for(Resource resource : modelSet.getResources()) {
@@ -126,7 +123,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			// the former a
 			// model-aware representation of the resource
 			if(normalizedURI.path().endsWith(changedResourcePath)) {
-				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
+				if(changedResourceURIWOExt.equals(modelSet.getURIWithoutExtension())) {
 					// model itself has changed.
 					// mark main resource as changed. User will asked later,
 					// when he activates the editor.

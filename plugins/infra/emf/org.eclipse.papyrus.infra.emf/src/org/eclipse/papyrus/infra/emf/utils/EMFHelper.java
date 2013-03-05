@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,9 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
+ *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
 
@@ -44,6 +47,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -164,22 +168,56 @@ public class EMFHelper {
 		//Support for EMF 0.2 CustomizedTree: The TreeElements are EObjects, and do not implement IAdatapble.
 		//FIXME: Use an AdapterFactory instead, to remove the dependency to EMF Facet 0.2
 		Object resolved = CustomizedContentProviderUtils.resolve(source);
-		if(resolved != source && resolved instanceof EObject) {
+		if(resolved != source && isEMFModelElement(resolved)) {
 			return (EObject)resolved;
 		}
 
 		//General case
-		if(source instanceof EObject) {
+		if(isEMFModelElement(source)) {
 			return (EObject)source;
 		} else if(source instanceof IAdaptable) {
 			EObject eObject = (EObject)((IAdaptable)source).getAdapter(EObject.class);
 			if(eObject == null) { //EMF Facet 0.1
 				eObject = (EObject)((IAdaptable)source).getAdapter(EReference.class);
 			}
-			return eObject;
+			return asEMFModelElement(eObject); // in case the adapter is a CDOResource
 		}
 
 		return null;
+	}
+	
+	/**
+	 * Queries whether an {@code object} is an EMF model element, an instance of
+	 * some {@link EClass} from an EMF model. This isn't as simple as checking
+	 * whether the object is an {@link EObject} because there are edge cases
+	 * where objects are {@code EObject}s but shouldn't be treated as
+	 * "model content". But, a minimum requirement is that the {@code object} is
+	 * an {@link EObject}.
+	 * 
+	 * @param object
+	 *            an object
+	 * @return whether it is "model content"
+	 * 
+	 * @see EMFHelper#asEMFModelElement(Object)
+	 */
+	public static boolean isEMFModelElement(Object object) {
+		return (object instanceof EObject) && !(object instanceof Resource);
+	}
+	
+	/**
+	 * Casts an {@code object} as an EMF model element, if appropriate.
+	 * 
+	 * @param object
+	 *            an object
+	 * @return the object as an EMF model element, or {@code null} if it is not
+	 *         an EMF model element
+	 * 
+	 * @see #isEMFModelElement(Object)
+	 */
+	public static EObject asEMFModelElement(Object object) {
+		return isEMFModelElement(object)
+			? (EObject) object
+			: null;
 	}
 
 	/**
@@ -415,7 +453,17 @@ public class EMFHelper {
 	 *         True if the EObject is read only
 	 */
 	public static boolean isReadOnly(final EObject eObject, final EditingDomain domain) {
-		return isReadOnly(eObject.eResource(), domain);
+		Resource resource = eObject.eResource();
+		ResourceSet resourceSet = (resource == null)
+			? null
+			: resource.getResourceSet();
+		ModelSet modelSet = (resourceSet instanceof ModelSet)
+			? (ModelSet) resourceSet
+			: null;
+
+		return (modelSet != null)
+			? modelSet.isReadOnly(eObject)
+			: isReadOnly(resource, domain);
 	}
 
 	/**
