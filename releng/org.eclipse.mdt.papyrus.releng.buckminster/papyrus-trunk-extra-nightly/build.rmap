@@ -145,12 +145,12 @@
     </rm:provider>
     
     <!-- CDO -->
-<!--     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false"> -->
-<!--       updateFrom("EMF CDO",0) -->
-<!--       <rm:uri format="{0}/modeling/emf/cdo/drops/S20120821-0312"> -->
-<!--         <bc:propertyRef key="eclipse.downloads"/> -->
-<!--       </rm:uri> -->
-<!--     </rm:provider> -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+	  <!-- updateFrom("EMF CDO",0) -->
+      <rm:uri format="{0}/modeling/emf/cdo/drops/S20130205-0640">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
     
     <!-- M2M ATL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
