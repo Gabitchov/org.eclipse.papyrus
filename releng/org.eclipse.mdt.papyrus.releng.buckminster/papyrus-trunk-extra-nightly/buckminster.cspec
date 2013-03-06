@@ -3,7 +3,7 @@
 	componentType="buckminster" version="0.9.0.qualifier">
 	<cs:dependencies>
 	
-        <cs:dependency name="org.eclipse.platform" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.papyrus.extra.build.feature" componentType="eclipse.feature"/>
 
