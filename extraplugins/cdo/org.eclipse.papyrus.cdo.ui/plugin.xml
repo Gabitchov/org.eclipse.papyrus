@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2013 CEA LIST.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+   CEA LIST - Initial API and implementation
+ 
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoriesView"
+            icon="icons/full/view16/model_repositories.gif"
+            id="org.eclipse.papyrus.cdo.ui.ModelRepositoriesView"
+            name="Model Repositories"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <serviceFactory
+            classname="org.eclipse.papyrus.cdo.internal.ui.editors.DawnGraphicalEditorSupportServiceFactory"
+            description="The Dawn-based CDO-aware diagram editor support implementation."
+            id="org.eclipse.papyrus.infra.gmfdiag.common.IGraphicalEditorSupport"
+            priority="10"
+            startKind="lazy">
+      </serviceFactory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.papyrus.cdo.internal.ui.properties.RepositoryPropertyPage"
+            id="org.eclipse.papyrus.cdo.ui.repositoryProperties"
+            name="CDO Repository Connection">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.papyrus.cdo.core.IPapyrusRepository">
+            </adapt>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.papyrus.cdo.core.IPapyrusRepository"
+            class="org.eclipse.papyrus.cdo.internal.ui.adapters.PapyrusRepositoryWorkbenchAdapter$Factory">
+         <adapter
+               type="org.eclipse.ui.model.IWorkbenchAdapter">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="org.eclipse.ui.IEditorPart"
+            class="org.eclipse.papyrus.cdo.internal.ui.adapters.EditorAdapterFactory">
+         <adapter
+               type="org.eclipse.emf.cdo.dawn.editors.IDawnEditor">
+         </adapter>
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.papyrus.infra.core.perspective">
+         <viewShortcut
+               id="org.eclipse.papyrus.cdo.ui.ModelRepositoriesView">
+         </viewShortcut>
+         <view
+               id="org.eclipse.papyrus.cdo.ui.ModelRepositoriesView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.navigator.ProjectExplorer">
+         </view>
+      </perspectiveExtension>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.cdo.dawn.elementstylizerfactory">
+      <DawnElementStylizerFactory
+            factory="org.eclipse.papyrus.cdo.internal.ui.decorators.PapyrusElementStylizerFactory"
+            priority="2 - Low">
+      </DawnElementStylizerFactory>
+   </extension>
+   
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider
+            class="org.eclipse.papyrus.cdo.internal.ui.decorators.DiagramDecoratorProvider">
+         <Priority
+               name="Low">
+         </Priority>
+      </decoratorProvider>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            class="org.eclipse.papyrus.cdo.internal.ui.decorators.CDOStateLabelDecorator"
+            id="org.eclipse.papyrus.cdo.ui.cdoStateDecorator"
+            label="CDO State Decorations"
+            state="true">
+         <description>
+            Decorates elements in Papyrus model repositories with CDO lock and conflict states.
+         </description>
+         <enablement>
+            <or>
+               <objectClass
+                     name="org.eclipse.emf.ecore.EObject">
+               </objectClass>
+               <objectClass
+                     name="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement">
+               </objectClass>
+            </or>
+         </enablement>
+      </decorator>
+   </extension>
+   
+   <extension
+        point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               label="Locks/Conflicts">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                     </equals>
+                  </with>
+                  <with variable="selection">
+                     <iterate ifEmpty="false" operator="and"> 
+                        <adapt type="org.eclipse.emf.cdo.CDOObject" />
+                     </iterate>
+                  </with>
+               </and>
+            </visibleWhen>
+            <command
+                  commandId="org.eclipse.papyrus.cdo.ui.commands.lock"
+                  label="Lock">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.cdo.ui.commands.unlock"
+                  label="Unlock">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.cdo.ui.commands.resolveConflicts"
+                  label="Resolve Conflicts">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.cdo.ui.commands.importModels"
+               label="Import into Repository...">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.papyrus.cdo.ui.commands.lock"
+            name="Lock objects">
+      </command>
+      <command
+            id="org.eclipse.papyrus.cdo.ui.commands.unlock"
+            name="Unlock objects">
+      </command>
+      <command
+            id="org.eclipse.papyrus.cdo.ui.commands.resolveConflicts"
+            name="Resolve conflicts">
+      </command>
+      <command
+            id="org.eclipse.papyrus.cdo.ui.commands.importModels"
+            name="Import Models into Repository">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.cdo.internal.ui.handlers.LockObjectsHandler"
+            commandId="org.eclipse.papyrus.cdo.ui.commands.lock">
+         <enabledWhen>
+           <iterate operator="and" ifEmpty="false">
+              <adapt
+                    type="org.eclipse.emf.cdo.CDOObject">
+                 <test
+                       property="org.eclipse.papyrus.cdo.ui.canLock">
+                 </test>
+              </adapt>
+           </iterate>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.cdo.internal.ui.handlers.UnlockObjectsHandler"
+            commandId="org.eclipse.papyrus.cdo.ui.commands.unlock">
+         <enabledWhen>
+           <iterate operator="and" ifEmpty="false">
+              <adapt
+                    type="org.eclipse.emf.cdo.CDOObject">
+                 <test
+                       property="org.eclipse.papyrus.cdo.ui.isLockedLocally" >
+                 </test>
+              </adapt>
+           </iterate>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.cdo.internal.ui.handlers.ResolveConflictsHandler"
+            commandId="org.eclipse.papyrus.cdo.ui.commands.resolveConflicts">
+         <enabledWhen>
+           <iterate operator="and" ifEmpty="false">
+              <adapt
+                    type="org.eclipse.emf.cdo.CDOObject">
+                 <test
+                       property="org.eclipse.papyrus.cdo.ui.isConflicted">
+                 </test>
+              </adapt>
+           </iterate>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.cdo.internal.ui.handlers.ImportModelsHandler"
+            commandId="org.eclipse.papyrus.cdo.ui.commands.importModels">
+         <enabledWhen>
+           <iterate operator="and" ifEmpty="false">
+              <adapt
+                    type="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
+              </adapt>
+           </iterate>
+         </enabledWhen>
+      </handler>
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.gef.EditPart"
+            class="org.eclipse.papyrus.cdo.internal.ui.adapters.CDOAdapterFactory">
+         <adapter
+               type="org.eclipse.emf.cdo.CDOObject">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement"
+            class="org.eclipse.papyrus.cdo.internal.ui.adapters.CDOAdapterFactory">
+         <adapter
+               type="org.eclipse.emf.cdo.CDOObject">
+         </adapter>
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.cdo.internal.ui.expressions.CDOObjectPropertyTester"
+            id="org.eclipse.papyrus.cdo.ui.cdoObjectTester"
+            namespace="org.eclipse.papyrus.cdo.ui"
+            properties="canLock,isLockedLocally,isLockedRemotely,isConflicted"
+            type="org.eclipse.emf.cdo.CDOObject">
+      </propertyTester>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.infra.services.markerlistener.markerproviders">
+      <provider
+            class="org.eclipse.papyrus.cdo.internal.ui.markers.CDOMarkerProvider">
+         <enablement>
+            <instanceof
+                  value="org.eclipse.emf.cdo.eresource.CDOResource">
+            </instanceof>
+         </enablement>
+      </provider>
+      <monitor class="org.eclipse.papyrus.cdo.internal.ui.markers.CDOMarkerMonitor">
+      </monitor>
+   </extension>
+   
+</plugin>

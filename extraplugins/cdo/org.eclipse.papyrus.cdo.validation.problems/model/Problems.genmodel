@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xA; &#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  CEA LIST - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.cdo.validation.problems/src" modelPluginID="org.eclipse.papyrus.cdo.validation.problems"
+    modelName="Problems" modelPluginClass="org.eclipse.papyrus.cdo.validation.problems.internal.ProblemsPlugin"
+    editPluginClass="org.eclipse.papyrus.cdo.validation.problems.provider.ProblemsEditPlugin"
+    editorPluginClass="org.eclipse.papyrus.cdo.validation.problems.presentation.ProblemsEditorPlugin"
+    nonNLSMarkers="true" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
+    reflectiveDelegation="true" codeFormatting="true" testSuiteClass="org.eclipse.papyrus.cdo.validation.problems.tests.ProblemsAllTests"
+    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Reflective" complianceLevel="5.0"
+    copyrightFields="false" providerRootExtendsClass="org.eclipse.papyrus.cdo.validation.problems.edit.ProblemTypeItemProviderAdapter"
+    optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
+    runtimeVersion="2.8" operationReflection="true" importOrganizing="true">
+  <foreignModel>Problems.ecore</foreignModel>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
+  <genPackages prefix="Problems" basePackage="org.eclipse.papyrus.cdo.validation"
+      disposableProviderFactory="true" generateExampleClass="false" extensibleProviderFactory="true"
+      childCreationExtenders="true" ecorePackage="Problems.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Problems.ecore#//ESeverity">
+      <genEnumLiterals ecoreEnumLiteral="Problems.ecore#//ESeverity/OK"/>
+      <genEnumLiterals ecoreEnumLiteral="Problems.ecore#//ESeverity/INFO"/>
+      <genEnumLiterals ecoreEnumLiteral="Problems.ecore#//ESeverity/WARNING"/>
+      <genEnumLiterals ecoreEnumLiteral="Problems.ecore#//ESeverity/ERROR"/>
+      <genEnumLiterals ecoreEnumLiteral="Problems.ecore#//ESeverity/CANCEL"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="Problems.ecore#//EDiagnostic"/>
+    <genDataTypes ecoreDataType="Problems.ecore#//EIterator">
+      <genTypeParameters ecoreTypeParameter="Problems.ecore#//EIterator/E"/>
+    </genDataTypes>
+    <genClasses ecoreClass="Problems.ecore#//EProblem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Problems.ecore#//EProblem/severity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Problems.ecore#//EProblem/message"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Problems.ecore#//EProblem/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Problems.ecore#//EProblem/code"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Problems.ecore#//EProblem/element"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Problems.ecore#//EProblem/related"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Problems.ecore#//EProblem/container"/>
+      <genOperations ecoreOperation="Problems.ecore#//EProblem/toDiagnostic"/>
+    </genClasses>
+    <genClasses ecoreClass="Problems.ecore#//EProblemsContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Problems.ecore#//EProblemsContainer/problems"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Problems.ecore#//EProblemsContainer/subjects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Problems.ecore#//EProblemsContainer/subcontainers"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Problems.ecore#//EProblemsContainer/container"/>
+      <genOperations ecoreOperation="Problems.ecore#//EProblemsContainer/allProblems"/>
+      <genOperations ecoreOperation="Problems.ecore#//EProblemsContainer/allProblems.1">
+        <genParameters ecoreParameter="Problems.ecore#//EProblemsContainer/allProblems.1/element"/>
+      </genOperations>
+      <genOperations ecoreOperation="Problems.ecore#//EProblemsContainer/allDiagnostics"/>
+      <genOperations ecoreOperation="Problems.ecore#//EProblemsContainer/allDiagnostics.1">
+        <genParameters ecoreParameter="Problems.ecore#//EProblemsContainer/allDiagnostics.1/element"/>
+      </genOperations>
+      <genOperations ecoreOperation="Problems.ecore#//EProblemsContainer/getWorstProblem">
+        <genParameters ecoreParameter="Problems.ecore#//EProblemsContainer/getWorstProblem/element"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

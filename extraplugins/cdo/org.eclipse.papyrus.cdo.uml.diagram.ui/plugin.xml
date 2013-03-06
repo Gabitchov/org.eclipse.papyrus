@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.wizards.newModelStorageProviders">
+      <provider
+            class="org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards.CDONewModelStorageProvider"
+            name="In a model repository">
+         <enablement>
+            <iterate>
+               <or>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                     <test
+                           property="org.eclipse.papyrus.cdo.core.isCDOObject">
+                     </test>
+                  </adapt>
+                  <adapt
+                        type="org.eclipse.emf.cdo.eresource.CDOResourceNode">
+                  </adapt>
+                  <adapt
+                        type="org.eclipse.papyrus.cdo.core.IPapyrusRepository">
+                  </adapt>
+               </or>
+            </iterate>
+         </enablement>
+      </provider>
+   </extension>
+
+   
+   <extension
+        point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.papyrus.cdo.ui.ModelRepositoriesView?after=createActions">
+         <command
+               commandId="org.eclipse.papyrus.cdo.uml.diagram.ui.commands.newModel"
+               icon="$nl$/icons/full/elcl16/newmodel_co.gif"
+               label="New Papyrus Model">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.papyrus.cdo.uml.diagram.ui.commands.newModel"
+            name="New Papyrus Model">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers.NewModelHandler"
+            commandId="org.eclipse.papyrus.cdo.uml.diagram.ui.commands.newModel">
+         <enabledWhen>
+           <iterate operator="and" ifEmpty="false">
+              <or>
+                 <adapt
+                       type="org.eclipse.emf.cdo.eresource.CDOResourceNode">
+                 </adapt>
+                 <adapt
+                       type="org.eclipse.papyrus.cdo.core.IPapyrusRepository">
+                 </adapt>
+              </or>
+           </iterate>
+         </enabledWhen>
+      </handler>
+   </extension>
+</plugin>

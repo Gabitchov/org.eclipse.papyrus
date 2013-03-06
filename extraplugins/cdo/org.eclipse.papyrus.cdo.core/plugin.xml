@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2013 CEA LIST.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+   CEA LIST - Initial API and implementation
+ 
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated repositories -->
+      <package
+            uri="http://www.eclipse.org/papyrus/repositories/0.10.0"
+            class="org.eclipse.papyrus.cdo.internal.core.repositories.RepositoriesPackage"
+            genModel="model/repositories.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated repositories -->
+      <parser
+            type="repositories"
+            class="org.eclipse.papyrus.cdo.internal.core.repositories.util.RepositoriesResourceFactoryImpl"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <serviceFactory
+            classname="org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManagerServiceFactory"
+            description="A provider of repository managers."
+            id="org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager"
+            priority="5"
+            startKind="startup">
+      </serviceFactory>
+      
+      <!-- Priority of OnDemandLoadingModelSet is 5 -->
+      <serviceFactory
+            classname="org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSetServiceFactory"
+            description="A provider of CDO-aware ModelSets."
+            id="org.eclipse.papyrus.infra.core.resource.ModelSet"
+            priority="10"
+            startKind="startup">
+         <dependsOn serviceKeyRef="org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager"/>
+      </serviceFactory>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.infra.core.transactionalEditingDomainProvider">
+      <transactionalEditingDomainProvider
+            class="org.eclipse.papyrus.cdo.core.resource.CDOAwareTransactionalEditingDomainProvider"
+            priority="11">
+      </transactionalEditingDomainProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
+      
+      <!-- Priority of AppliedProfileReadOnlyHandler is 15 -->
+      <readOnlyHandler
+            class="org.eclipse.papyrus.cdo.core.resource.CDOReadOnlyHandler"
+            priority="16">
+      </readOnlyHandler>
+   </extension>
+
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.cdo.internal.core.expressions.EObjectPropertyTester"
+            id="org.eclipse.papyrus.cdo.eObjectTester"
+            namespace="org.eclipse.papyrus.cdo.core"
+            properties="isCDOObject"
+            type="org.eclipse.emf.ecore.EObject">
+      </propertyTester>
+   </extension>
+   
+</plugin>

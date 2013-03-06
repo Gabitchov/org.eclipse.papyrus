@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.tools.importSources">
+      <importSource
+            class="org.eclipse.papyrus.cdo.uml.internal.ui.importsources.CDOPackageImportSource"
+            name="Model Repositories">
+         <enablement>
+            <iterate>
+               <or>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                     <test
+                           property="org.eclipse.papyrus.cdo.core.isCDOObject">
+                     </test>
+                     <instanceof
+                           value="org.eclipse.uml2.uml.Package">
+                     </instanceof>
+                  </adapt>
+               </or>
+            </iterate>
+         </enablement>
+      </importSource>
+   </extension>
+
+</plugin>
