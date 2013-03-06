@@ -355,9 +355,6 @@ public class Messages extends NLS {
 	/** IntegerEditor Title */
 	public static String PropertyEditors_IntegerTitle;
 
-	/** warning message for the integer validator */
-	public static String PropertyEditors_IntegerWarning;
-
 	/** MetaclassEditor Title */
 	public static String PropertyEditors_MetaclassTitle;
 
@@ -375,9 +372,6 @@ public class Messages extends NLS {
 
 	/** UnlimitedNaturalEditor Title */
 	public static String PropertyEditors_UnlimitedNaturalTitle;
-
-	/** warning message for the unlimited natural validator */
-	public static String PropertyEditors_UnlimitedNaturalWarning;
 
 	/** the "Value" String */
 	public static String PropertyEditors_Value;

@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
+import org.eclipse.papyrus.uml.tools.utils.validator.IntegerInputValidator;
+import org.eclipse.papyrus.uml.tools.utils.validator.UnlimitedNaturalInputValidator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
@@ -77,12 +79,6 @@ public class PropertyEditors {
 	/*
 	 * warning messages
 	 */
-	/** warning message for the integer validator */
-	public static final String IntegerValidator_WarningMessage = Messages.PropertyEditors_IntegerWarning;
-
-	/** warning message for the unlimited natural validator */
-	public static final String UnlimitedNaturalValidator_WarningMessage = Messages.PropertyEditors_UnlimitedNaturalWarning;
-
 	/** warning message for metaclass editor */
 	public static final String MetaclassEditor_WarningMessage = Messages.PropertyEditors_NoFoundElementMetaclass;
 
@@ -111,7 +107,7 @@ public class PropertyEditors {
 	public static String IntegerEditor(Property property, Object oldValue) {
 		String value = null;
 		String initialValue = findInitialValue(property, oldValue);
-		InputDialogMessage dialog = new InputDialogMessage(new Shell(), IntegerEditor_Title, Value, initialValue, new IntegerValidator());
+		InputDialogMessage dialog = new InputDialogMessage(new Shell(), IntegerEditor_Title, Value, initialValue, new IntegerInputValidator());
 		if(dialog.open() != InputDialogMessage.CANCEL) {
 			if(!"".equals(dialog.getValue())) { //$NON-NLS-1$
 				value = dialog.getValue();
@@ -154,7 +150,7 @@ public class PropertyEditors {
 	public static String UnlimitedNaturalEditor(Property property, Object oldValue) {
 		String value = null;
 		String initialValue = findInitialValue(property, oldValue);
-		InputDialogMessage dialog = new InputDialogMessage(new Shell(), UnlimitedNaturalEditor_Title, Value, initialValue, new UnlimitedNaturalValidator());
+		InputDialogMessage dialog = new InputDialogMessage(new Shell(), UnlimitedNaturalEditor_Title, Value, initialValue, new UnlimitedNaturalInputValidator());
 		if(dialog.open() != InputDialogMessage.CANCEL) {
 			if(!"".equals(dialog.getValue())) { //$NON-NLS-1$
 				value = dialog.getValue();
@@ -474,69 +470,5 @@ public class PropertyEditors {
 		return returnedValue;
 	}
 
-	/**
-	 * Validator for the IntegerEditor
-	 */
-	public static class IntegerValidator implements IInputValidator {
-
-		/**
-		 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
-		 * 
-		 * @param newText
-		 * @return null if the newText is valid an error message when newText is
-		 *         invalid
-		 */
-		public String isValid(String newText) {
-			if(newText != null && newText != "") { //$NON-NLS-1$
-				for(int iter = 0; iter < newText.length(); iter++) {
-					if(!Character.isDigit(newText.charAt(iter))) {
-						if(iter == 0) {
-							if((newText.charAt(iter) == '-')) { // the first
-																// character
-																// can be
-																// '-'
-								continue;
-							}
-						}
-						return IntegerValidator_WarningMessage;
-					}
-				}
-			}
-			return null;// it's OK
-		}
-
-	}
-
-	/**
-	 * Validator for the UnlimitedNaturalEditor
-	 */
-	public static class UnlimitedNaturalValidator implements IInputValidator {
-
-		/**
-		 * @see org.eclipse.jface.dialogs.IInputValidator#isValid(java.lang.String)
-		 * 
-		 * @param newText
-		 * @return null if the newText is valid an error message when newText is
-		 *         invalid
-		 */
-
-		public String isValid(String newText) {
-			if(newText != null && newText != "") { //$NON-NLS-1$
-				for(int iter = 0; iter < newText.length(); iter++) {
-					if(!Character.isDigit(newText.charAt(iter))) {
-						if(newText.length() == 1 && newText.charAt(0) == '*') { // '*'
-																				// means
-																				// the
-																				// infinity
-							break;
-						}
-						return UnlimitedNaturalValidator_WarningMessage;
-					}
-				}
-			}
-			return null;// it's OK
-		}
-
-	}
 
 }
