@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2013 CEA LIST.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+   CEA LIST - Initial API and implementation
+ 
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.views.validation.internal.ModelValidationView"
+            icon="icons/full/view16/model_validation.gif"
+            id="org.eclipse.papyrus.views.validation.ModelValidationView"
+            name="Model Validation"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.papyrus.infra.core.perspective">
+         <viewShortcut
+               id="org.eclipse.papyrus.views.validation.ModelValidationView">
+         </viewShortcut>
+         <view
+               id="org.eclipse.papyrus.views.validation.ModelValidationView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.views.validation.internal.ValidationMarkersService"
+            description="Validation markers tracking service for the Model Validation View."
+            id="org.eclipse.papyrus.views.validation.internal.ValidationMarkersService"
+            priority="1"
+            startKind="startup">
+      </service>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.markerlistener.markereventlistener">
+      <listener
+            class="org.eclipse.papyrus.views.validation.internal.ValidationMarkersService">
+      </listener>
+   </extension>
+</plugin>
