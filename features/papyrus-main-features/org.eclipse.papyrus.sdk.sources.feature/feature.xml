@@ -130,4 +130,8 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.views.validation.source.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.doc.source.feature"
+         version="0.0.0"/>
+
 </feature>
