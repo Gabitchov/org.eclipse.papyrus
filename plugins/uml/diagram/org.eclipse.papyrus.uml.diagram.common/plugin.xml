@@ -163,13 +163,6 @@
    </listener>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.core.modelListener">
-   <listener
-         name="org.eclipse.papyrus.uml.diagram.common.listener1"
-         realization="org.eclipse.papyrus.uml.diagram.common.listeners.RemoveStereotypeApplicationListener">
-   </listener>
-</extension>
-<extension
       point="org.eclipse.papyrus.infra.core.papyrusDiagram">
    <actionBarContributor
          id="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
