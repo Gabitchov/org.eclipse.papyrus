@@ -56,6 +56,12 @@
              <with
                    variable="selection">
                 <and>
+                   <with
+                         variable="activePart">
+                      <instanceof
+                            value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+                      </instanceof>
+                   </with>
                    <count
                          value="1">
                    </count>
@@ -65,16 +71,6 @@
                       </adapt>
                    </iterate>
                    <!-- we add these test to force the refresh of the Menu + to avoid handlers conflit   -->
-                   <test
-                         forcePluginActivation="true"
-                         property="org.eclipse.papyrus.uml.diagram.menu.tester.isDiagram"
-                         value="false">
-                   </test>
-                    <test
-                          forcePluginActivation="true"
-                          property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
-                          value="false">
-                    </test>
                     <test
                           forcePluginActivation="true"
                           property="org.eclipse.papyrus.uml.commands.tester.isNamedElement"

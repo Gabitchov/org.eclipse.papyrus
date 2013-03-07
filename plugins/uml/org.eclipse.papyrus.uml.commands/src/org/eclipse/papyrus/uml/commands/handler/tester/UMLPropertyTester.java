@@ -14,9 +14,9 @@
 package org.eclipse.papyrus.uml.commands.handler.tester;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -61,13 +61,9 @@ public class UMLPropertyTester extends PropertyTester {
 	 *         <code>true</code> if the selection is a NamedElement
 	 */
 	private boolean testIsNamedElement(IStructuredSelection selection) {
-		if(!selection.isEmpty() && selection.size() == 1) {
-			Object current = selection.getFirstElement();
-			if(current instanceof IAdaptable) {
-				current = ((IAdaptable)current).getAdapter(EObject.class);
-				return current instanceof NamedElement;
-			}
-			return selection.getFirstElement() instanceof NamedElement;
+		if(selection.size() == 1) {
+			EObject element = EMFHelper.getEObject(selection.getFirstElement());
+			return element instanceof NamedElement;
 		}
 		return false;
 	}

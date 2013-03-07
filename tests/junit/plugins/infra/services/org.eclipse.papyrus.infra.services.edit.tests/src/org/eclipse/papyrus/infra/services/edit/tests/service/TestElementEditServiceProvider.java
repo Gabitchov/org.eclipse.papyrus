@@ -1,6 +1,9 @@
 package org.eclipse.papyrus.infra.services.edit.tests.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -47,14 +50,14 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 
 		try {
 			IElementEditService attService = provider.getEditService(EcorePackage.eINSTANCE.getEAttribute());
-			assertTrue("No IElementEditService found for EAttribute.", attService != null);
+			assertNotNull("No IElementEditService found for EAttribute.", attService);
 			String attServiceDisplayName = attService.getDisplayName();
-			assertTrue("Default IElementEditService should match EAttribute.", attServiceDisplayName.equals("Generic Element"));
+			assertEquals("Default IElementEditService should match EAttribute.", "Generic Element", attServiceDisplayName);
 
 			IElementEditService packService = provider.getEditService(EcorePackage.eINSTANCE.getEPackage());
-			assertTrue("No IElementEditService found for EPackage.", packService != null);
+			assertNotNull("No IElementEditService found for EPackage.", packService);
 			// Check result
-			assertTrue("The IElementEditService should be EPackage related.", packService.getDisplayName().equals("EPACKG"));
+			assertEquals("The IElementEditService should be EPackage related.", "EPACKG", packService.getDisplayName());
 
 		} catch (ServiceException e) {
 			fail("Test aborted - Service exception in ElementEditServiceProvider::getEditService(EClass).");
@@ -69,15 +72,15 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 			EPackage pack = EcoreFactory.eINSTANCE.createEPackage();
 
 			IElementEditService attService = provider.getEditService(att);
-			assertTrue("No IElementEditService found for EAttribute.", attService != null);
+			assertNotNull("No IElementEditService found for EAttribute.", attService);
 			String attServiceDisplayName = attService.getDisplayName();
-			assertTrue("Default IElementEditService should match EAttribute.", attServiceDisplayName.equals("Generic Element"));
+			assertEquals("Default IElementEditService should match EAttribute.", "Generic Element", attServiceDisplayName);
 
 			IElementEditService packService = provider.getEditService(pack);
-			assertTrue("No IElementEditService found for EPackage.", packService != null);
+			assertNotNull("No IElementEditService found for EPackage.", packService);
 
 			// Check result
-			assertTrue("The IElementEditService should be EPackage related.", packService.getDisplayName().equals("EPACKG"));
+			assertEquals("The IElementEditService should be EPackage related.", "EPACKG", packService.getDisplayName());
 
 		} catch (ServiceException e) {
 			fail("Test aborted - Service exception in ElementEditServiceProvider::getEditService(EObject).");
@@ -90,9 +93,9 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 		try {
 
 			IElementEditService packService = provider.getEditService(ePackgType);
-			assertTrue("No IElementEditService found for EPackage.", packService != null);
+			assertNotNull("No IElementEditService found for EPackage.", packService);
 			// Check result
-			assertTrue("The IElementEditService should be EPackage related.", packService.getDisplayName().equals("EPACKG"));
+			assertEquals("The IElementEditService should be EPackage related.", "EPACKG", packService.getDisplayName());
 
 		} catch (ServiceException e) {
 			fail("Test aborted - Service exception in ElementEditServiceProvider::getEditService(EObject).");
@@ -103,7 +106,7 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 			ElementTypeRegistry.getInstance().register(new MetamodelType("ETT_TEST_ID", null, "EATT", EcorePackage.eINSTANCE.getEAttribute(), null)); //$NON-NLS-1$
 			IElementType eAtt = ElementTypeRegistry.getInstance().getType("ETT_TEST_ID");
 			IElementEditService attService = provider.getEditService(eAtt);
-			assertTrue("No IElementEditService should match EAttribute.", attService == null);
+			assertNull("No IElementEditService should match EAttribute.", attService);
 
 		} catch (ServiceException e) {
 			// Exception expected.
@@ -132,14 +135,14 @@ public class TestElementEditServiceProvider extends AbstractTestElementEditServi
 
 		try {
 			List<IElementEditService> package_ESubpackages = provider.getContainedTypeEditServices(aPackage, EcorePackage.eINSTANCE.getEPackage_ESubpackages());
-			assertTrue("Only 1 IElementEditService should match EcorePackage.eINSTANCE.getEPackage_ESubpackages()", package_ESubpackages.size() == 1);
+			assertEquals("Only 1 IElementEditService should match EcorePackage.eINSTANCE.getEPackage_ESubpackages()", 1, package_ESubpackages.size());
 
 			// Check result
 			IElementEditService service = package_ESubpackages.get(0);
 			assertTrue("The IElementEditService should be EPackage related.", service.getDisplayName().equals("EPACKG"));
 
 			List<IElementEditService> class_EOperations = provider.getContainedTypeEditServices(aClass, EcorePackage.eINSTANCE.getEClass_EOperations());
-			assertTrue("No IElementEditService should match EcorePackage.eINSTANCE.getEClass_EOperations()", class_EOperations.size() == 0);
+			assertEquals("No IElementEditService should match EcorePackage.eINSTANCE.getEClass_EOperations()", 0, class_EOperations.size());
 
 		} catch (ServiceException e) {
 			fail("Test aborted - Service exception in ElementEditServiceProvider::getContainedTypeEditServices.");

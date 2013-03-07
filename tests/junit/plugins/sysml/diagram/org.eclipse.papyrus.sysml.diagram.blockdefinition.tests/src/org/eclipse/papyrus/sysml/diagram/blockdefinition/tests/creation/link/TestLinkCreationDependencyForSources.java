@@ -22,19 +22,19 @@ import org.junit.BeforeClass;
  * JUnit tests for Dependency creation test (via palette tools).
  */
 public class TestLinkCreationDependencyForSources extends AbstractLinkCreationForSourcesTest {
-	
+
 	@BeforeClass
 	public static void initToolID() throws Exception {
 		toolID = "blockdefinition.tool.dependency";
-	}	
-	
+	}
+
 	@BeforeClass
 	public static void initExpectedResults() throws Exception {
-		
+
 		// Initialize source creation results
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorSourceView, true);
-		isCreationAllowed.put(actorPartSourceView, false);
+		isCreationAllowed.put(actorPartSourceView, true);
 		isCreationAllowed.put(blockSourceView, true);
 		isCreationAllowed.put(constraintBlockSourceView, true);
 		isCreationAllowed.put(dataTypeSourceView, true);
@@ -46,7 +46,7 @@ public class TestLinkCreationDependencyForSources extends AbstractLinkCreationFo
 		isCreationAllowed.put(signalSourceView, true);
 		isCreationAllowed.put(unitSourceView, true);
 		isCreationAllowed.put(valueTypeSourceView, true);
-		
+
 		isCreationAllowed.put(commentSourceView, false);
 		isCreationAllowed.put(commentCNSourceView, false);
 		isCreationAllowed.put(constraintSourceView, true);
@@ -57,21 +57,21 @@ public class TestLinkCreationDependencyForSources extends AbstractLinkCreationFo
 		isCreationAllowed.put(modelCNSourceView, true);
 		isCreationAllowed.put(packageSourceView, true);
 		isCreationAllowed.put(packageCNSourceView, true);
-		
+
 		isCreationAllowed.put(slotSourceView, false);
-		
-		isCreationAllowed.put(propertySourceView, false);
-		isCreationAllowed.put(portSourceView, false);
-		isCreationAllowed.put(flowportSourceView, false);
-		isCreationAllowed.put(partSourceView, false);
-		isCreationAllowed.put(referenceSourceView, false);
-		isCreationAllowed.put(valueSourceView, false);
-		isCreationAllowed.put(operationSourceView, false);
-		isCreationAllowed.put(receptionSourceView, false);
-		isCreationAllowed.put(constraintCLNSourceView, false);
-		isCreationAllowed.put(constraintPropertySourceView, false);
-		isCreationAllowed.put(flowPropertySourceView, false);
-		isCreationAllowed.put(enumerationLiteralSourceView, false);		
+
+		isCreationAllowed.put(propertySourceView, true);
+		isCreationAllowed.put(portSourceView, true);
+		isCreationAllowed.put(flowportSourceView, true);
+		isCreationAllowed.put(partSourceView, true);
+		isCreationAllowed.put(referenceSourceView, true);
+		isCreationAllowed.put(valueSourceView, true);
+		isCreationAllowed.put(operationSourceView, true);
+		isCreationAllowed.put(receptionSourceView, true);
+		isCreationAllowed.put(constraintCLNSourceView, true);
+		isCreationAllowed.put(constraintPropertySourceView, true);
+		isCreationAllowed.put(flowPropertySourceView, true);
+		isCreationAllowed.put(enumerationLiteralSourceView, true);
 
 		isCreationAllowed.put(associationSourceView, true);
 	}

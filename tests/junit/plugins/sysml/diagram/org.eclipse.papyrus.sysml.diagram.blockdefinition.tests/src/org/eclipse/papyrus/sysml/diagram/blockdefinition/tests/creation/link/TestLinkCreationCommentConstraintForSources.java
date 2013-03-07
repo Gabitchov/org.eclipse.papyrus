@@ -22,15 +22,15 @@ import org.junit.BeforeClass;
  * JUnit tests for Comment-Constraint link creation test (via palette tools).
  */
 public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCreationForSourcesTest {
-	
+
 	@BeforeClass
 	public static void initToolID() throws Exception {
 		toolID = "blockdefinition.tool.comment_constraint_link";
-	}	
-	
+	}
+
 	@BeforeClass
 	public static void initExpectedResults() throws Exception {
-		
+
 		// Initialize source creation results
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorSourceView, false);
@@ -46,7 +46,7 @@ public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCre
 		isCreationAllowed.put(signalSourceView, false);
 		isCreationAllowed.put(unitSourceView, false);
 		isCreationAllowed.put(valueTypeSourceView, false);
-		
+
 		isCreationAllowed.put(commentSourceView, true);
 		isCreationAllowed.put(commentCNSourceView, true);
 		isCreationAllowed.put(constraintSourceView, true);
@@ -57,9 +57,9 @@ public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCre
 		isCreationAllowed.put(modelCNSourceView, false);
 		isCreationAllowed.put(packageSourceView, false);
 		isCreationAllowed.put(packageCNSourceView, false);
-		
+
 		isCreationAllowed.put(slotSourceView, false);
-		
+
 		isCreationAllowed.put(propertySourceView, false);
 		isCreationAllowed.put(portSourceView, false);
 		isCreationAllowed.put(flowportSourceView, false);
@@ -68,10 +68,10 @@ public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCre
 		isCreationAllowed.put(valueSourceView, false);
 		isCreationAllowed.put(operationSourceView, false);
 		isCreationAllowed.put(receptionSourceView, false);
-		isCreationAllowed.put(constraintCLNSourceView, false);
+		isCreationAllowed.put(constraintCLNSourceView, true);
 		isCreationAllowed.put(constraintPropertySourceView, false);
 		isCreationAllowed.put(flowPropertySourceView, false);
-		isCreationAllowed.put(enumerationLiteralSourceView, false);		
+		isCreationAllowed.put(enumerationLiteralSourceView, false);
 
 		isCreationAllowed.put(associationSourceView, false);
 	}

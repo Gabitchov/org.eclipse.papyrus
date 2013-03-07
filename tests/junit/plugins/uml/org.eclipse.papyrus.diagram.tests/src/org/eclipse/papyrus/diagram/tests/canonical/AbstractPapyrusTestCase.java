@@ -27,6 +27,7 @@ import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
@@ -36,7 +37,6 @@ import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
@@ -208,8 +208,9 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 		project = root.getProject("ClazzDiagramTestProject");
 		file = project.getFile("ClazzDiagramTest.di");
 		this.diResourceSet = new DiResourceSet();
+
+		//at this point, no resources have been created
 		try {
-			//at this point, no resources have been created
 			if(!project.exists()) {
 				project.create(null);
 			}
@@ -236,7 +237,6 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				ICreationCommand command = getDiagramCommandCreation();
 				command.createDiagram(diResourceSet, null, "DiagramToTest");
 				diResourceSet.save(new NullProgressMonitor());
-
 			}
 
 			Runnable runnable = new Runnable() {
@@ -244,8 +244,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 				public void run() {
 					try {
 						page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-						IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-						papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
+						papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), PapyrusMultiDiagramEditor.EDITOR_ID);
 					} catch (Exception ex) {
 						ex.printStackTrace(System.out);
 					}

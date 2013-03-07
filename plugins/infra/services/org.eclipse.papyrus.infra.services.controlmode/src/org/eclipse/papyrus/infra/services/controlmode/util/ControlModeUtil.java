@@ -78,6 +78,9 @@ public class ControlModeUtil {
 		}
 
 		EditingDomain domain = EMFHelper.resolveEditingDomain(eObject);
+		if(domain == null) {
+			return false;
+		}
 
 		return enableUnControl && domain.isControllable(eObject) && AdapterFactoryEditingDomain.isControlled(eObject);
 	}

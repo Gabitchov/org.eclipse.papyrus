@@ -43,7 +43,6 @@ import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.Tool;
@@ -72,6 +71,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
@@ -95,6 +98,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 
 // DiResourceSet is deprecated but we need it for CreateUMLModelCommand
@@ -204,8 +208,10 @@ public abstract class AbstractPapyrusTestCase {
 	protected DiagramEditPart getDiagramEditPart() {
 		if(this.diagramEditPart == null) {
 			this.diagramEditor = (UmlGmfDiagramEditor)this.papyrusEditor.getActiveEditor();
-			final GraphicalViewer graphicalViewer = ((GraphicalViewer)this.diagramEditor.getAdapter(GraphicalViewer.class));
-			this.diagramEditPart = (DiagramEditPart)graphicalViewer.getContents().getRoot().getChildren().get(0);
+			this.diagramEditPart = (DiagramEditPart)this.papyrusEditor.getAdapter(DiagramEditPart.class);
+
+			Assert.assertNotNull("Cannot find the diagram editor", diagramEditor);
+			Assert.assertNotNull("Cannot find the Diagram edit part", diagramEditPart);
 		}
 		return this.diagramEditPart;
 	}
@@ -235,6 +241,13 @@ public abstract class AbstractPapyrusTestCase {
 			this.file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 			this.diResourceSet.createsModels(this.file);
 			new CreateUMLModelCommand().createModel(this.diResourceSet);
+			ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+			try {
+				registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); //High priority to override all contributions
+				registry.startRegistry();
+			} catch (ServiceException ex) {
+				//Ignore exceptions
+			}
 			// diResourceSet.createsModels(file);
 			final ICreationCommand command = getDiagramCommandCreation();
 			command.createDiagram(this.diResourceSet, null, "DiagramToTest");
@@ -280,6 +293,7 @@ public abstract class AbstractPapyrusTestCase {
 		final IWorkbenchPartReference reference = this.page.getReference(editorPart);
 		editorPart.getSite().getPage().toggleZoom(reference);
 		this.papyrusEditor = ((PapyrusMultiDiagramEditor)editorPart);
+		Assert.assertNotNull(papyrusEditor);
 	}
 
 	/**
@@ -873,8 +887,12 @@ public abstract class AbstractPapyrusTestCase {
 		display.syncExec(new Runnable() {
 
 			public void run() {
-				while(display.readAndDispatch()) {
-					// nothing
+				try {
+					while(display.readAndDispatch()) {
+						// nothing
+					}
+				} catch (Exception ex) {
+					//Do not fail the test for invalid runnables
 				}
 			}
 		});

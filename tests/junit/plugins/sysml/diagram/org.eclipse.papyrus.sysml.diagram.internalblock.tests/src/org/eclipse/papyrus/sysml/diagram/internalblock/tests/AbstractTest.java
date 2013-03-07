@@ -84,8 +84,7 @@ public abstract class AbstractTest {
 
 			public void run() {
 				// Close the editor without saving content created during tests
-				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				page.closeEditor(editor, false);
+				editor.getSite().getPage().closeEditor(editor, false);
 			}
 		});
 		editor = null;

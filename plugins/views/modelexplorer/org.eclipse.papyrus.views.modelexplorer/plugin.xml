@@ -250,11 +250,19 @@
 		<activeWhen>
      <with
            variable="selection">
-        <test
-              forcePluginActivation="true"
-              property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
-              value="true">
-        </test>
+        <and>
+           <with
+                 variable="activePart">
+              <instanceof
+                    value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+              </instanceof>
+           </with>
+           <test
+                 forcePluginActivation="true"
+                 property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                 value="true">
+           </test>
+        </and>
      </with>
 		</activeWhen>
 	</handler>
