@@ -1,7 +1,8 @@
-package org.eclipse.papyrus.uml.tools.utils.validator;
+package org.eclipse.papyrus.infra.widgets.validator;
 
 import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.papyrus.uml.tools.utils.messages.Messages;
+import org.eclipse.papyrus.infra.widgets.messages.Messages;
+
 
 
 public class IntegerInputValidator implements IInputValidator {

@@ -21,6 +21,14 @@ public class Messages extends NLS {
 	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.widgets.messages.messages"; //$NON-NLS-1$
 
+	public static String BooleanInputValidator_NotABoolean;
+	
+	public static String IntegerInputValidator_NotAnIntegerMessage;
+
+	public static String RealInputValidator_NotaRealMessage;
+
+	public static String UnlimitedNaturalInputValidator_NotAnUnlimitedNaturalMessage;
+
 	/** The Multiple value editor_ add elements. */
 	public static String MultipleValueEditor_AddElements;
 

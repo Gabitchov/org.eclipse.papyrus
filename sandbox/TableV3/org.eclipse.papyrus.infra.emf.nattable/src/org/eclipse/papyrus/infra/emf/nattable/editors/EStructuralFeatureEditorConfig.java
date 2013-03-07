@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.data.convert.DefaultBooleanDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.data.convert.DefaultDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.convert.DefaultIntegerDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.convert.DisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
@@ -246,12 +247,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 	 */
 	@Override
 	public IDataValidator getDataValidator(Table table, Object axisElement) {
-		int editorKind = getFeatureIdentifier(table, axisElement);
-		IDataValidator validator = null;
-		switch(editorKind) {
-		default:
-		}
-		return validator;
+		return null;
 	}
 
 	/**

@@ -15,13 +15,14 @@ package org.eclipse.papyrus.uml.nattable.editor;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
-import org.eclipse.papyrus.infra.widgets.creation.IntegerEditionFactory;
+import org.eclipse.papyrus.infra.widgets.creation.BooleanEditionFactory;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.infra.widgets.selectors.IntegerSelector;
-import org.eclipse.papyrus.infra.widgets.validator.IntegerInputValidator;
+import org.eclipse.papyrus.infra.widgets.selectors.BooleanSelector;
+import org.eclipse.papyrus.infra.widgets.validator.BooleanInputValidator;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * CellEditor for multivalued integer
@@ -29,19 +30,42 @@ import org.eclipse.papyrus.infra.widgets.validator.IntegerInputValidator;
  * @author Vincent Lorenzo
  * 
  */
-public class MultiIntegerCellEditor extends AbstractUMLMultiValueCellEditor {
+public class MultiBooleanCellEditor extends AbstractUMLMultiValueCellEditor {
 
-	public MultiIntegerCellEditor(Object axisElement, ITableAxisElementProvider elementProvider) {
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param axisElement
+	 * @param elementProvider
+	 */
+	public MultiBooleanCellEditor(Object axisElement, ITableAxisElementProvider elementProvider) {
 		super(axisElement, elementProvider);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.editor.AbstractUMLMultiValueCellEditor#getElementSelector(boolean,
+	 *      org.eclipse.jface.viewers.ILabelProvider, org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider)
+	 * 
+	 * @param isUnique
+	 * @param labelProvider
+	 * @param contentProvider
+	 * @return
+	 */
 	@Override
 	protected IElementSelector getElementSelector(boolean isUnique, ILabelProvider labelProvider, IStaticContentProvider contentProvider) {
-		return new IntegerSelector();
+		return new BooleanSelector();
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.editor.AbstractUMLMultiValueCellEditor#getFactory()
+	 * 
+	 * @return
+	 */
 	@Override
 	protected ReferenceValueFactory getFactory() {
-		return new IntegerEditionFactory();
+		return new BooleanEditionFactory();
 	}
 }

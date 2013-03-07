@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.nattable.validator;
 
 import org.eclipse.nebula.widgets.nattable.data.validate.DataValidator;
-import org.eclipse.papyrus.uml.tools.utils.validator.UnlimitedNaturalInputValidator;
+import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalInputValidator;
 
 /**
  * 
@@ -35,7 +35,6 @@ public class UnlimitedNaturalDataValidator extends DataValidator {
 	@Override
 	public boolean validate(int columnIndex, int rowIndex, Object newValue) {
 		final UnlimitedNaturalInputValidator validator = new UnlimitedNaturalInputValidator();
-
 		return validator.isValid(newValue.toString()) == null;
 	}
 }

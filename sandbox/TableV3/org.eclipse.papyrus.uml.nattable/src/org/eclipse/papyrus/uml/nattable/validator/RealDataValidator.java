@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.nattable.validator;
 
 import org.eclipse.nebula.widgets.nattable.data.validate.DataValidator;
-import org.eclipse.papyrus.uml.tools.utils.validator.RealInputValidator;
+import org.eclipse.papyrus.infra.widgets.validator.RealInputValidator;
 
 /**
  * 

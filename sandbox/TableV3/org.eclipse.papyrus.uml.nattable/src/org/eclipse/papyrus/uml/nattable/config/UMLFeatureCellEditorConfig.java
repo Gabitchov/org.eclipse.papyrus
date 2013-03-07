@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLSingleReferenceComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLStereotypeSingleEnumerationComboBoxDataProvider;
+import org.eclipse.papyrus.uml.nattable.editor.MultiBooleanCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiEnumCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiIntegerCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiRealCellEditor;
@@ -132,6 +133,9 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			break;
 		case SINGLE_UML_ENUMERATION:
 			editor = new ComboBoxCellEditor(getComboDataProvider(table, axisElement, elementProvider));
+			break;
+		case MULTI_BOOLEAN:
+			editor = new MultiBooleanCellEditor(axisElement, elementProvider);
 			break;
 		case MULTI_UNLIMITED_NATURAL:
 			editor = new MultiUnlimitedNaturalCellEditor(axisElement, elementProvider);

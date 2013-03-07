@@ -19,7 +19,8 @@ Export-Package: org.eclipse.papyrus.infra.widgets,
  org.eclipse.papyrus.infra.widgets.providers,
  org.eclipse.papyrus.infra.widgets.selectors,
  org.eclipse.papyrus.infra.widgets.strategy,
- org.eclipse.papyrus.infra.widgets.util
+ org.eclipse.papyrus.infra.widgets.util,
+ org.eclipse.papyrus.infra.widgets.validator
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.0.qualifier

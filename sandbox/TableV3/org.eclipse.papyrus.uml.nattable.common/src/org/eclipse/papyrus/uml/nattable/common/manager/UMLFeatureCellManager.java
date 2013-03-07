@@ -226,7 +226,7 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 			switch(UMLTableUtils.getAppliedSteretoypesWithThisProperty(el, id).size()) {
 			case 1:
 				final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
-				return prop.isDerived();
+				return !prop.isDerived();
 			}
 		}
 		return false;

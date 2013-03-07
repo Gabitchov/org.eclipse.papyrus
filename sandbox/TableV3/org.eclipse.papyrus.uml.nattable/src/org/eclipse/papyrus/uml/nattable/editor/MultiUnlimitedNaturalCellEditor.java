@@ -16,11 +16,10 @@ package org.eclipse.papyrus.uml.nattable.editor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
-import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
+import org.eclipse.papyrus.infra.widgets.creation.UnlimitedNaturalEditionFactory;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.IntegerSelector;
-import org.eclipse.papyrus.uml.tools.utils.validator.UnlimitedNaturalInputValidator;
 
 /**
  * CellEditor for multivalued unlimited natural
@@ -64,6 +63,6 @@ public class MultiUnlimitedNaturalCellEditor extends AbstractUMLMultiValueCellEd
 	 */
 	@Override
 	protected ReferenceValueFactory getFactory() {
-		return new StringEditionFactory(new UnlimitedNaturalInputValidator());
+		return new UnlimitedNaturalEditionFactory();
 	}
 }

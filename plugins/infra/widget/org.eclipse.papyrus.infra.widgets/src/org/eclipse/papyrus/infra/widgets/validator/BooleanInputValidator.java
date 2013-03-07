@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,16 +11,19 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.utils.validator;
+package org.eclipse.papyrus.infra.widgets.validator;
 
 import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.papyrus.uml.tools.utils.messages.Messages;
+import org.eclipse.papyrus.infra.tools.util.BooleanHelper;
+import org.eclipse.papyrus.infra.widgets.messages.Messages;
 
 /**
- * Validator for the Real
+ * InputValidator for boolean
+ * 
+ * @author Vincent Lorenzo
+ * 
  */
-public class RealInputValidator implements IInputValidator {
-
+public class BooleanInputValidator implements IInputValidator {
 
 
 
@@ -33,15 +36,10 @@ public class RealInputValidator implements IInputValidator {
 	 */
 
 	public String isValid(String newText) {
-		try {
-			if(newText != null) {
-				new Double(newText);
-			}
-		} catch (NumberFormatException e) {
-			return Messages.RealInputValidator_NotaRealMessage;
+		if(!BooleanHelper.isBoolean(newText)) {
+			return Messages.BooleanInputValidator_NotABoolean;
 		}
 		return null;
 	}
-
 
 }
