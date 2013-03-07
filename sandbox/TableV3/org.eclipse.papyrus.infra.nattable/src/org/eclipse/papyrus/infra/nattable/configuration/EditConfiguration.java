@@ -117,7 +117,7 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 		boolean declareOnRow = rowAccumulator != null;
 		assert declareOnColumn != declareOnRow;
 		final CellEditorConfigurationFactory factory = CellEditorConfigurationFactory.INSTANCE;
-
+		List<String> existingEditorIds = new ArrayList<String>();
 		for(int i = 0; i < elements.size(); i++) {
 			//FIXME : for containement feature : see oep.views.properties.
 			// example : create Usecase in a class from the property view : EcorePropertyEditorFactory create a popup to display available type 
@@ -129,6 +129,12 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 				final ICellEditor editor = config.getICellEditor(table, current, this.modelManager.getTableAxisElementProvider());
 				if(editor != null) {
 					final String editorId = config.getEditorId() + Integer.toString(i);
+					if(existingEditorIds.contains(editorId)){
+						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id");
+					}else{
+						existingEditorIds.add(editorId);
+					}
+					
 					final String cellId = editorId + "_cellId"; //$NON-NLS-1$
 
 					final ICellPainter painter = config.getCellPainter(table, current);
