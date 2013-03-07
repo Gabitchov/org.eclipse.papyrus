@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.viewLabelProvider;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.viewlabelprovider;singleton:=true
 Bundle-Version: 0.10.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.services.viewlabelprovider.Activator
 Require-Bundle: org.eclipse.core.runtime,
