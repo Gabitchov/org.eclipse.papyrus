@@ -10,20 +10,19 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="4.1.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
  org.eclipse.nebula.widgets.nattable.core;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.nattable,
- org.eclipse.papyrus.infra.widgets,
- org.eclipse.papyrus.uml.tools,
+ org.eclipse.papyrus.infra.nattable;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.emf.nattable.celleditor;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.1",
- org.eclipse.papyrus.infra.nattable
+ org.eclipse.papyrus.infra.nattable;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.nattable,
  org.eclipse.papyrus.uml.nattable.config,
  org.eclipse.papyrus.uml.nattable.utils
-Import-Package: org.eclipse.papyrus.infra.core.services,
- org.eclipse.papyrus.infra.nattable.celleditor.configs
