@@ -26,15 +26,17 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
-import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
@@ -181,8 +183,10 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
 		if(clazzdiagrameditPart == null) {
-			diagramEditor = (UmlClassDiagramForMultiEditor)papyrusEditor.getActiveEditor();
-			clazzdiagrameditPart = (DiagramEditPart)diagramEditor.getGraphicalViewer().getContents().getRoot().getChildren().get(0);
+			diagramEditor = (UMLDiagramEditor)papyrusEditor.getActiveEditor();
+			clazzdiagrameditPart = (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
+			Assert.assertNotNull("Cannot find the diagram editor", diagramEditor);
+			Assert.assertNotNull("Cannot find the Diagram edit part", clazzdiagrameditPart);
 		}
 		return clazzdiagrameditPart;
 	}
@@ -193,8 +197,8 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected void projectCreation() throws Exception {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
-		project = root.getProject("ClazzDiagramTestProject");
-		file = project.getFile("ClazzDiagramTest.di");
+		project = root.getProject("StereotypePropertyTests");
+		file = project.getFile("StereotypePropertyTests.di");
 		this.diResourceSet = new DiResourceSet();
 
 		//at this point, no resources have been created
@@ -213,6 +217,13 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 			diResourceSet.createsModels(file);
 			new CreateUMLModelCommand().createModel(this.diResourceSet);
+			ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+			try {
+				registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); //High priority to override all contributions
+				registry.startRegistry();
+			} catch (ServiceException ex) {
+				//Ignore exceptions
+			}
 			// diResourceSet.createsModels(file);
 			ICreationCommand command = new CreateClassDiagramCommand();
 			command.createDiagram(diResourceSet, null, "ClazzDiagram");
@@ -224,8 +235,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			public void run() {
 				try {
 					page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-					IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-					papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
+					papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), PapyrusMultiDiagramEditor.EDITOR_ID);
 				} catch (Exception ex) {
 					ex.printStackTrace(System.out);
 				}
