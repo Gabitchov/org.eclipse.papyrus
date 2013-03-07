@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.celleditor.configs;
 
 import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
 
@@ -33,12 +34,12 @@ public abstract class AbstractCellEditorConfiguration implements IAxisCellEditor
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getDataValidator()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getDataValidator(Table, Object)
 	 * 
 	 * @return
 	 *         <code>null</code>
 	 */
-	public IDataValidator getDataValidator() {
+	public IDataValidator getDataValidator(Table table, Object axisElement) {
 		return null;
 	}
 

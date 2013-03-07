@@ -15,9 +15,7 @@ package org.eclipse.papyrus.infra.nattable.manager;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
 //FIXME : the extension point should be declared on an Abstract class instead an Interface (to add method easily?)=
@@ -33,7 +31,18 @@ public interface ICellManager {
 
 	public boolean handlersAxisElement(final Object obj);
 
-	public Object getValue(final Object obj1, final Object obj2);
+	/**
+	 * 
+	 * @param axisElement1
+	 *        one of the axis
+	 * @param axisElement2
+	 *        the other axis
+	 * @return
+	 *         the value of the cell or {@value #NOT_AVALAIBLE} if the cell is meaningless for the couple of parameters
+	 * 
+	 *         THIS METHOD MUST NOT BE USED IN REPLACEMENT OF A SPECIFIC LABEL PROVIDER
+	 */
+	public Object getValue(final Object axisElement1, final Object axisElement2);
 
 	public void setValue(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue);
 
@@ -41,7 +50,7 @@ public interface ICellManager {
 
 	public Command getSetValueCommand(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue);
 
-//	public ICellEditor getCellEditor(final Table table, final Object obj1);
+	//	public ICellEditor getCellEditor(final Table table, final Object obj1);
 
 
 }

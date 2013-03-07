@@ -19,6 +19,7 @@ import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
  * 
@@ -29,54 +30,57 @@ public interface IAxisCellEditorConfiguration {
 
 	/**
 	 * 
+	 * @param axisElement
+	 *        TODO
+	 * @param table
+	 *        TODO
 	 * @param provider
 	 *        the label provider to use
 	 * @return
 	 *         the display converter
 	 */
-	public IDisplayConverter getDisplayConvert(final ILabelProvider provider);
+	public IDisplayConverter getDisplayConvert(Object axisElement, Table table, final ILabelProvider provider);
 
 	/**
 	 * 
+	 * @param table
+	 *        TODO
+	 * @param axisElement
+	 *        TODO
 	 * @return
 	 *         the cell painter for the editor
 	 */
-	public ICellPainter getCellPainter();
+	public ICellPainter getCellPainter(Table table, Object axisElement);
 
 	/**
 	 * 
+	 * @param table
+	 *        TODO
 	 * @param axisElement
 	 *        the edited element axis
 	 * @param elementProvider
 	 * @return
 	 */
-	public ICellEditor getICellEditor(Object axisElement, ITableAxisElementProvider elementProvider);
+	public ICellEditor getICellEditor(Table table, Object axisElement, ITableAxisElementProvider elementProvider);
+
 
 	/**
 	 * 
-	 * @return the edited type
-	 */
-	public Object getEditedType();
-
-	/**
-	 * 
+	 * @param table
+	 *        TODO
+	 * @param axisElement
+	 *        TODO
 	 * @return
 	 *         the display mode to use for the editor
 	 */
-	public String getDisplayMode();
-
-	/**
-	 * 
-	 * @return
-	 *         <code>true</code> if the editor allows to edit a list of value
-	 */
-	public boolean isMany();
+	public String getDisplayMode(Table table, Object axisElement);
 
 	/**
 	 * 
 	 * @return
 	 *         the id of the editor
 	 */
+	//FIXME should be renamed into getEditorConfigId
 	public String getEditorId();
 
 	/**
@@ -84,12 +88,17 @@ public interface IAxisCellEditorConfiguration {
 	 * @return
 	 *         the id to use to tag the cell
 	 */
-	public String getConfigCellId();
+	public String getConfigCellId();//FIXME : shoudl be removed!
 
 	/**
 	 * the data validator
+	 * 
+	 * @param table
+	 *        TODO
+	 * @param axisElement
+	 *        TODO
 	 */
-	public IDataValidator getDataValidator();
+	public IDataValidator getDataValidator(Table table, Object axisElement);
 
 	/**
 	 * 
@@ -98,5 +107,14 @@ public interface IAxisCellEditorConfiguration {
 	 */
 	public String getEditorDescription();
 
-
+	/**
+	 * 
+	 * @param table
+	 *        the table
+	 * @param object
+	 *        an object
+	 * @return
+	 *         <code>true</code> if the cell editor configuration is able to manage the object
+	 */
+	public boolean handles(Table table, Object object);
 }

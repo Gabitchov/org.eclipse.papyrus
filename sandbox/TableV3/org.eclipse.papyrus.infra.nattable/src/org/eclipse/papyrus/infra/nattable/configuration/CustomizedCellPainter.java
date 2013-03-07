@@ -89,6 +89,11 @@ public class CustomizedCellPainter extends TextPainter {
 						if(iter.hasNext()) {
 							text += VALUE_SEPARATOR;
 						}
+					} else {
+						text+=current;
+						if(iter.hasNext()) {
+							text += VALUE_SEPARATOR;
+						}
 					}
 				}
 				text += END_OF_LIST;
@@ -134,7 +139,7 @@ public class CustomizedCellPainter extends TextPainter {
 		try {
 			return ServiceUtilsForResource.getInstance().getServiceRegistry(object.eResource());
 		} catch (final ServiceException e) {
-//			Activator.log.error("ServiceRegistry not found", e);
+			//			Activator.log.error("ServiceRegistry not found", e);
 		}
 		return null;
 	}

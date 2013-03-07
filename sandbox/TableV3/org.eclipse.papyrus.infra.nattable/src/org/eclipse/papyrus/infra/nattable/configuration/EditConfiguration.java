@@ -31,8 +31,7 @@ import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.nattable.accumulator.CustomRowOverrideLabelAccumulator;
 import org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.celleditor.factory.AbstractCellEditorConfigurationFactory;
-import org.eclipse.papyrus.infra.nattable.celleditor.factory.CellEditorConfigurationFactoryRegistry;
+import org.eclipse.papyrus.infra.nattable.celleditor.factory.CellEditorConfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
@@ -117,25 +116,26 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 		boolean declareOnColumn = columnAccumulator != null;
 		boolean declareOnRow = rowAccumulator != null;
 		assert declareOnColumn != declareOnRow;
-		//currently we use only the EMF factory, in the future, we must use the global factory
-		final CellEditorConfigurationFactoryRegistry factoryRegistry = CellEditorConfigurationFactoryRegistry.INSTANCE;
+		final CellEditorConfigurationFactory factory = CellEditorConfigurationFactory.INSTANCE;
 
-		for(int i = 0; i < elements.size(); i++) {//FIXME : verify if the column is editable!
+		for(int i = 0; i < elements.size(); i++) {
 			//FIXME : for containement feature : see oep.views.properties.
-			// example : create Usecase in a class fro mthe property view : EcorePropertyEditorFactory create a popup to display available type 
+			// example : create Usecase in a class from the property view : EcorePropertyEditorFactory create a popup to display available type 
 			//then EditionDialog to edit the created object
 			final Object current = elements.get(i);
-			final AbstractCellEditorConfigurationFactory factory = factoryRegistry.getFirstCellEditorConfigurationFactory(null, current);
-			if(factory != null) {
-				final IAxisCellEditorConfiguration config = factory.getCellEditorConfiguration(modelManager.getTable(), current);
-				if(config != null) {
-					final String cellId = config.getConfigCellId();
+			final Table table = modelManager.getTable();
+			final IAxisCellEditorConfiguration config = factory.getFirstCellEditorConfiguration(table, current);
+			if(config != null) {
+				final ICellEditor editor = config.getICellEditor(table, current, this.modelManager.getTableAxisElementProvider());
+				if(editor != null) {
 					final String editorId = config.getEditorId() + Integer.toString(i);
-					final ICellPainter painter = config.getCellPainter();
-					final String displayMode = config.getDisplayMode();
-					final IDisplayConverter converter = config.getDisplayConvert(new EMFLabelProvider());//FIXME
-					final ICellEditor editor = config.getICellEditor(current, this.modelManager.getTableAxisElementProvider());
-					final IDataValidator validator = config.getDataValidator();
+					final String cellId = editorId + "_cellId"; //$NON-NLS-1$
+
+					final ICellPainter painter = config.getCellPainter(table, current);
+					final String displayMode = config.getDisplayMode(table, current);
+					final IDisplayConverter converter = config.getDisplayConvert(current, table, new EMFLabelProvider());//FIXME : label provider + arg order
+
+					final IDataValidator validator = config.getDataValidator(table, current);
 					assert !cellId.equals(editorId);
 					if(declareOnColumn) {
 						columnAccumulator.registerColumnOverrides(i, editorId, cellId);
@@ -154,16 +154,16 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 					if(validator != null) {
 						configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
 					}
-
 				} else {
-					final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
+					final String errorMessage = NLS.bind(Messages.EditConfiguration_FactoryHandlesElementButDoesntProvideEditor, config.getEditorId(), current);
 					if(!messagesAlreadyDisplayed.contains(errorMessage)) {
 						Activator.log.warn(errorMessage);
 						messagesAlreadyDisplayed.add(errorMessage);
 					}
+
 				}
 			} else {
-				final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationFactoryNotFound, current);
+				final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
 				if(!messagesAlreadyDisplayed.contains(errorMessage)) {
 					Activator.log.warn(errorMessage);
 					messagesAlreadyDisplayed.add(errorMessage);

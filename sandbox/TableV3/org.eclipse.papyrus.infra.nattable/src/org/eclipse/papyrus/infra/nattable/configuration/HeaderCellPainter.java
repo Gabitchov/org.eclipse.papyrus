@@ -48,7 +48,7 @@ public class HeaderCellPainter extends CustomizedCellPainter {
 			if(service == null) {
 				service = serv;
 			}
-			ILabelProvider provider = service.getLabelProvider(HEADER_LABEL_PROVIDER_CONTEXT);
+			ILabelProvider provider = service.getLabelProvider(HEADER_LABEL_PROVIDER_CONTEXT);//FIXME maybe it should be done directly in the CustomizedCellPainter...
 			if(provider != null) {
 				return provider.getText(value);
 			}

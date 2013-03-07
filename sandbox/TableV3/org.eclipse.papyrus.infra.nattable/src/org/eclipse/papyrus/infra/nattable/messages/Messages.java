@@ -37,6 +37,8 @@ public class Messages extends NLS {
 
 	public static String EditConfiguration_DeclarationNotYetSupported;
 
+	public static String EditConfiguration_FactoryHandlesElementButDoesntProvideEditor;
+
 	public static String EObjectManager_AddAxisElement;
 
 	public static String NattableModelManager_AddColumnCommand;

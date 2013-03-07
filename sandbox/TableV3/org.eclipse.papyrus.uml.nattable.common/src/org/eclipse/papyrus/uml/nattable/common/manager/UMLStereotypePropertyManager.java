@@ -30,12 +30,13 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
-import org.eclipse.papyrus.infra.nattable.solver.PathResolverFactory;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
-
 
 
 public class UMLStereotypePropertyManager extends AbstractAxisManager {
@@ -72,12 +73,22 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 			}
 		}
 		final Set<Property> allProperties = new HashSet<Property>();
+		final Set<Class> extendedMetaclass = new HashSet<Class>();
 		for(final Stereotype stereotype : appliedStereotypes) {
 			allProperties.addAll(stereotype.getAllAttributes());
+			extendedMetaclass.addAll(stereotype.getAllExtendedMetaclasses());
 		}
 
 		final List<String> allPropertyQN = new ArrayList<String>();
 		for(Property property : allProperties) {
+			Association association = property.getAssociation();
+			if(association instanceof Extension) {
+				Extension ext = (Extension)association;
+				Class metaClass = ext.getMetaclass();
+				if(property.getName().equals("base_" + metaClass.getName())) {
+					continue;
+				}
+			}
 			allPropertyQN.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + property.getQualifiedName());
 		}
 
@@ -102,61 +113,74 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 	@Override
 	public synchronized void updateAxisContents() {
 		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
+		
 		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
 		for(int i = 0; i < axis.size(); i++) {
-			IAxis current = axis.get(i);
+			final IAxis current = axis.get(i);
 			if(current instanceof IdAxis) {
-				final String id = (String)current.getElement();
-				if(id.startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
-					final Object realValue = PathResolverFactory.INSTANCE.getRealValue(id, getTable().getContext());
+				int currentIndex = axisElements.indexOf(current);
+				if(currentIndex == -1) {//the element was not in the axis with its id representation
+					//					currentIndex = axisElements.indexOf(current);
 
-					//the value has been resolved
-					if(realValue != null) {
-						int currentIndex = axisElements.indexOf(id);
-						if(currentIndex == -1) {//the element was not in the axis with its id representation
-							currentIndex = axisElements.indexOf(realValue);
-
-							if(currentIndex == -1) {//the element was not in the axis with its real representation
-								axisElements.add(realValue);//we add it
-							} else if(currentIndex != i) {
-								axisElements.remove(currentIndex);
-								axisElements.add(i, realValue);
-							}
-
-						} else if(currentIndex != i) {//the current element was in the axis, using its id representation. We must use the real object now
-							axisElements.remove(currentIndex);
-							axisElements.add(i, realValue);
-						}
-					} else {//the value has not been resolved
-						int currentIndex = axisElements.indexOf(id);
-						if(currentIndex== -1){//the element was not in the axis with its id representation
-							
-						}
-					}
-
-
-
-					int currentIndex = axisElements.indexOf(id);
-
-					if(realValue != null && currentIndex == -1) {
-						currentIndex = axisElements.indexOf(realValue);
-						//the element has never been in the table
-						if(currentIndex == -1) {
-							axisElements.add(realValue);
-						} else if(currentIndex != i) {
-							axisElements.remove(currentIndex);
-							axisElements.add(i, id);
-						}
-
-					}
-
-					if(currentIndex == -1) {
-						axisElements.add(id);
+					if(currentIndex == -1) {//the element was not in the axis with its real representation
+						axisElements.add(current);//we add it
 					} else if(currentIndex != i) {
 						axisElements.remove(currentIndex);
-						axisElements.add(i, id);
+						axisElements.add(i, current);
 					}
+
 				}
+				//				final String id = (String)current.getElement();
+				//				if(id.startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
+				//					final Object realValue = UMLTableUtils.getRealStereotypeProperty(getTable().getContext(), id);
+				//
+				//					//the value has been resolved
+				//					if(realValue != null) {
+				//						int currentIndex = axisElements.indexOf(id);
+				//						if(currentIndex == -1) {//the element was not in the axis with its id representation
+				//							currentIndex = axisElements.indexOf(realValue);
+				//
+				//							if(currentIndex == -1) {//the element was not in the axis with its real representation
+				//								axisElements.add(realValue);//we add it
+				//							} else if(currentIndex != i) {
+				//								axisElements.remove(currentIndex);
+				//								axisElements.add(i, realValue);
+				//							}
+				//
+				//						} else if(currentIndex != i) {//the current element was in the axis, using its id representation. We must use the real object now
+				//							axisElements.remove(currentIndex);
+				//							axisElements.add(i, realValue);
+				//						}
+				//					} else {//the value has not been resolved
+				//						int currentIndex = axisElements.indexOf(id);
+				//						if(currentIndex == -1) {//the element was not in the axis with its id representation
+				//
+				//						}
+				//					}
+				//
+				//
+				//
+				//					int currentIndex = axisElements.indexOf(id);
+				//
+				//					if(realValue != null && currentIndex == -1) {
+				//						currentIndex = axisElements.indexOf(realValue);
+				//						//the element has never been in the table
+				//						if(currentIndex == -1) {
+				//							axisElements.add(realValue);
+				//						} else if(currentIndex != i) {
+				//							axisElements.remove(currentIndex);
+				//							axisElements.add(i, id);
+				//						}
+				//
+				//					}
+				//
+				//					if(currentIndex == -1) {
+				//						axisElements.add(id);
+				//					} else if(currentIndex != i) {
+				//						axisElements.remove(currentIndex);
+				//						axisElements.add(i, id);
+				//					}
+				//				}
 			}
 		}
 	}
@@ -185,6 +209,7 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 	public boolean canInsertAxis(EditingDomain domain, Collection<Object> objectsToAdd, int index) {
 		return false;
 	}
+
 
 
 }

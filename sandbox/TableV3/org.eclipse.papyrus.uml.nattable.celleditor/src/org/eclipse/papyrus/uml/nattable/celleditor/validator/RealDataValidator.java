@@ -14,14 +14,28 @@
 package org.eclipse.papyrus.uml.nattable.celleditor.validator;
 
 import org.eclipse.nebula.widgets.nattable.data.validate.DataValidator;
+import org.eclipse.papyrus.uml.tools.utils.validator.RealInputValidator;
 
-
+/**
+ * 
+ * Validator for Real values
+ * 
+ */
 public class RealDataValidator extends DataValidator {
 
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.data.validate.DataValidator#validate(int, int, java.lang.Object)
+	 * 
+	 * @param columnIndex
+	 * @param rowIndex
+	 * @param newValue
+	 * @return
+	 */
 	@Override
 	public boolean validate(int columnIndex, int rowIndex, Object newValue) {
-
-		return true; //FIXME
+		final RealInputValidator validator = new RealInputValidator();
+		return validator.isValid(newValue.toString()) == null;
 	}
 
 }
