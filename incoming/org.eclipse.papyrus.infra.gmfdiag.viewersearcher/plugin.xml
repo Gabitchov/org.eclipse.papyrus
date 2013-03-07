@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.services.viewersearch.viewerSearcher">
+      <viewerSearcher
+            class="org.eclipse.papyrus.infra.gmfdiag.viewersearcher.DiagramViewerSearcher"
+            id="org.eclipse.papyrus.infra.services.gmfViewerSearcher.diagramViewerSearcher">
+      </viewerSearcher>
+   </extension>
+
+</plugin>

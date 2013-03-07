@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="org.eclipse.papyrus.infra.services.viewLabelProvider"
+         name="ViewLabelProvider"
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="10"
+            provider="org.eclipse.papyrus.infra.services.viewlabelprovider.provider.ViewLabelProvider">
+      </labelProvider>
+   </extension>
+
+</plugin>
