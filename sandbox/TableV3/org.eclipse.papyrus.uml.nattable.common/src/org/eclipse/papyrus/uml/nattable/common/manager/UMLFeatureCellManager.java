@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.nattable.celleditor.utils.UMLTableUtils;
+import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
