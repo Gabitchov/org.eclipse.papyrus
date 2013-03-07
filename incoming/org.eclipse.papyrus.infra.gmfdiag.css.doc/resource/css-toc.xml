@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc topic="resource/css.html" label="css">
+	<topic href="resource/css.html" label="Introduction"></topic>
+	<topic href="resource/css.html#Installation" label="Installation"></topic>
+	<topic href="resource/css.html#Using_StyleSheets" label="Using StyleSheets"></topic>
+	<topic href="resource/css.html#Editing_a_StyleSheet" label="Editing a StyleSheet">
+		<topic href="resource/css.html#Manually:_The_CSS_Syntax" label="Manually: The CSS Syntax">
+			<topic href="resource/css.html#Syntax_elements" label="Syntax elements"></topic>
+			<topic href="resource/css.html#Examples" label="Examples"></topic>
+		</topic>
+		<topic href="resource/css.html#With_the_Papyrus_tooling" label="With the Papyrus tooling"></topic>
+	</topic>
+	<topic href="resource/css.html#Manipulating_styles" label="Manipulating styles"></topic>
+	<topic href="resource/css.html#Deploying_a_CSS_Theme" label="Deploying a CSS Theme"></topic>
+	<topic href="resource/css.html#Limitations_and_issues" label="Limitations and issues">
+		<topic href="resource/css.html#Selectors" label="Selectors">
+			<topic href="resource/css.html#Selector_inheritance" label="Selector inheritance"></topic>
+			<topic href="resource/css.html#Profile.2FStereotype_support" label="Profile/Stereotype support"></topic>
+			<topic href="resource/css.html#Labels_and_compartments" label="Labels and compartments"></topic>
+			<topic href="resource/css.html#Events_support" label="Events support"></topic>
+		</topic>
+		<topic href="resource/css.html#Stylesheets" label="Stylesheets">
+			<topic href="resource/css.html#Model_stylesheets" label="Model stylesheets"></topic>
+			<topic href="resource/css.html#Workspace_stylesheets" label="Workspace stylesheets"></topic>
+		</topic>
+		<topic href="resource/css.html#Bugs" label="Bugs"></topic>
+	</topic>
+</toc>
