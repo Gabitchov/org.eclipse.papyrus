@@ -563,14 +563,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Start servicesRegistry
 		URI uri;
-		if (input instanceof IFileEditorInput) {
-			uri = URI.createPlatformResourceURI(((IFileEditorInput) input).getFile().getFullPath().toString(), true);
-		} else if (input instanceof URIEditorInput) {
-			uri = ((URIEditorInput) input).getURI();
+		if(input instanceof IFileEditorInput) {
+			uri = URI.createPlatformResourceURI(((IFileEditorInput)input).getFile().getFullPath().toString(), true);
+		} else if(input instanceof URIEditorInput) {
+			uri = ((URIEditorInput)input).getURI();
 		} else {
-			uri = URI.createURI(((IURIEditorInput) input).getURI().toString());
+			uri = URI.createURI(((IURIEditorInput)input).getURI().toString());
 		}
-		
+
 		try {
 			// Start the ModelSet first, and load if from the specified File
 			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
@@ -708,7 +708,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @see org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor#getPropertySheetPage()
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		if(this.tabbedPropertySheetPage == null) {
+		if(this.tabbedPropertySheetPage == null || this.tabbedPropertySheetPage.getControl() == null || this.tabbedPropertySheetPage.getControl().isDisposed()) {
 			this.tabbedPropertySheetPage = new TabbedPropertySheetPage(this);
 		}
 		return tabbedPropertySheetPage;
