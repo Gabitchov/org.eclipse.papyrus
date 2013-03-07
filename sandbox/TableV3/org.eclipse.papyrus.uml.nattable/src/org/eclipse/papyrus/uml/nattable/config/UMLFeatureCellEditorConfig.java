@@ -32,6 +32,7 @@ import org.eclipse.papyrus.uml.nattable.editor.MultiEnumCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiIntegerCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiRealCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiReferenceCellEditor;
+import org.eclipse.papyrus.uml.nattable.editor.MultiStringCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiUnlimitedNaturalCellEditor;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.nattable.validator.RealDataValidator;
@@ -39,6 +40,7 @@ import org.eclipse.papyrus.uml.nattable.validator.UnlimitedNaturalDataValidator;
 import org.eclipse.papyrus.uml.nattable.widget.UMLDialogComboAction;
 import org.eclipse.papyrus.uml.tools.utils.PrimitivesTypesUtils;
 import org.eclipse.uml2.types.TypesPackage;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.PrimitiveType;
@@ -145,6 +147,9 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			break;
 		case MULTI_REAL:
 			editor = new MultiRealCellEditor(axisElement, elementProvider);
+			break;
+		case MULTI_STRING:
+			editor = new MultiStringCellEditor(axisElement, elementProvider);
 			break;
 		case MULTI_UML_REFERENCE:
 			editor = new MultiReferenceCellEditor(axisElement, elementProvider);
@@ -296,44 +301,59 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			if(prop != null && prop.getType() != null) {
 				boolean isMany = prop.isMultivalued();
 				final Type type = prop.getType();
-				if(type instanceof PrimitiveType) {
-					final String name = type.getName();
-					if(PrimitivesTypesUtils.UML_BOOLEAN.equals(name)) {
-						if(isMany) {
-							editorKind = MULTI_BOOLEAN;
+				if(type instanceof DataType) {
+					if(type instanceof PrimitiveType) {
+						final String name = type.getName();
+						if(PrimitivesTypesUtils.UML_BOOLEAN.equals(name)) {
+							if(isMany) {
+								editorKind = MULTI_BOOLEAN;
+							} else {
+								editorKind = SINGLE_BOOLEAN;
+							}
+						} else if(PrimitivesTypesUtils.UML_INTEGER.equals(name)) {
+							if(isMany) {
+								editorKind = MULTI_INTEGER;
+							} else {
+								editorKind = SINGLE_INTEGER;
+							}
+						} else if(PrimitivesTypesUtils.UML_REAL.equals(name)) {
+							if(isMany) {
+								editorKind = MULTI_REAL;
+							} else {
+								editorKind = SINGLE_REAL;
+							}
+						} else if(PrimitivesTypesUtils.UML_STRING.equals(name)) {
+							if(isMany) {
+								editorKind = MULTI_STRING;
+							} else {
+								editorKind = SINGLE_STRING;
+							}
+						} else if(PrimitivesTypesUtils.UML_UNLIMITED_NATURAL.equals(name)) {
+							if(isMany) {
+								editorKind = MULTI_UNLIMITED_NATURAL;
+							} else {
+								editorKind = SINGLE_UNLIMITED_NATURAL;
+							}
 						} else {
-							editorKind = SINGLE_BOOLEAN;
+							//custom primitive type are managed as string
+							if(isMany) {
+								editorKind = MULTI_STRING;
+							} else {
+								editorKind = SINGLE_STRING;
+							}
 						}
-					} else if(PrimitivesTypesUtils.UML_INTEGER.equals(name)) {
+					} else if(type instanceof Enumeration) {
 						if(isMany) {
-							editorKind = MULTI_INTEGER;
+							editorKind = MULTI_UML_ENUMERATION;
 						} else {
-							editorKind = SINGLE_INTEGER;
+							editorKind = SINGLE_UML_ENUMERATION;
 						}
-					} else if(PrimitivesTypesUtils.UML_REAL.equals(name)) {
-						if(isMany) {
-							editorKind = MULTI_REAL;
-						} else {
-							editorKind = SINGLE_REAL;
-						}
-					} else if(PrimitivesTypesUtils.UML_STRING.equals(name)) {
+					} else {//datatype are managed as string
 						if(isMany) {
 							editorKind = MULTI_STRING;
 						} else {
 							editorKind = SINGLE_STRING;
 						}
-					} else if(PrimitivesTypesUtils.UML_UNLIMITED_NATURAL.equals(name)) {
-						if(isMany) {
-							editorKind = MULTI_UNLIMITED_NATURAL;
-						} else {
-							editorKind = SINGLE_UNLIMITED_NATURAL;
-						}
-					}
-				} else if(type instanceof Enumeration) {
-					if(isMany) {
-						editorKind = MULTI_UML_ENUMERATION;
-					} else {
-						editorKind = SINGLE_UML_ENUMERATION;
 					}
 				} else if(type instanceof Element) {
 					if(isMany) {
