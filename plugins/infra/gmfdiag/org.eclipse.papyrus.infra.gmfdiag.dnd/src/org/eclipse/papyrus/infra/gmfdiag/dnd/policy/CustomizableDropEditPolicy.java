@@ -300,10 +300,48 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
+		if(defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request)) {
+			defaultCreationEditPolicy.showTargetFeedback(request);
+		}
+
 		if(!(getHost() instanceof DiagramEditPart)) {
 			super.showTargetFeedback(request);
 		}
 	}
+
+	@Override
+	public void eraseTargetFeedback(Request request) {
+		if(defaultCreationEditPolicy != null) {
+			defaultCreationEditPolicy.eraseTargetFeedback(request);
+		}
+
+		if(!(getHost() instanceof DiagramEditPart)) {
+			super.eraseTargetFeedback(request);
+		}
+	}
+
+	@Override
+	public void showSourceFeedback(Request request) {
+		if(defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request)) {
+			defaultCreationEditPolicy.showSourceFeedback(request);
+		}
+
+		if(!(getHost() instanceof DiagramEditPart)) {
+			super.showSourceFeedback(request);
+		}
+	}
+
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if(defaultCreationEditPolicy != null) {
+			defaultCreationEditPolicy.showSourceFeedback(request);
+		}
+
+		if(!(getHost() instanceof DiagramEditPart)) {
+			super.eraseSourceFeedback(request);
+		}
+	}
+
 
 	/**
 	 * {@inheritDoc}
