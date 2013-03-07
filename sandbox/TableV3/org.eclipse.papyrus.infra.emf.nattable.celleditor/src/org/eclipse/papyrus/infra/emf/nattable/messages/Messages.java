@@ -11,13 +11,13 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.emf.nattable.celleditor.messages;
+package org.eclipse.papyrus.infra.emf.nattable.messages;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.emf.nattable.celleditor.messages.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.emf.nattable.messages.messages"; //$NON-NLS-1$
 
 	public static String EMFFeatureCellEditorFactory_SeveralCellEditorAreDeclaredWithTheSameId;
 

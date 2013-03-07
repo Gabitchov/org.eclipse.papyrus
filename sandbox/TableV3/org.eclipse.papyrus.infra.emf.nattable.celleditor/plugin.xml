@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
       <configuration
-            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EStructuralFeatureEditorConfig"
+            class="org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig"
             order="100">
       </configuration>
    </extension>
@@ -12,7 +12,7 @@
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider
             priority="100"
-            provider="org.eclipse.papyrus.infra.emf.nattable.celleditor.provider.EMFFeatureHeaderLabelProvider">
+            provider="org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>

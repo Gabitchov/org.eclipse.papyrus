@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.emf.nattable.celleditor.editors;
+package org.eclipse.papyrus.infra.emf.nattable.editors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.ComboBoxPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.emf.nattable.celleditor.painter.CustomCheckBoxPainter;
+import org.eclipse.papyrus.infra.emf.nattable.painter.CustomCheckBoxPainter;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.nattable.provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.infra.emf.nattable.celleditor.provider.EMFFeatureHeaderLabelProvider;
+import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
@@ -34,7 +34,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.provider.EMFFeatureHeaderLabelProvider#getImage(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getImage(java.lang.Object)
 	 * 
 	 * @param element
 	 * @return
@@ -45,7 +45,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.provider.EMFFeatureHeaderLabelProvider#getText(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getText(java.lang.Object)
 	 * 
 	 * @param element
 	 * @return
@@ -92,7 +92,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.provider.EMFFeatureHeaderLabelProvider#accept(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#accept(java.lang.Object)
 	 * 
 	 * @param element
 	 * @return

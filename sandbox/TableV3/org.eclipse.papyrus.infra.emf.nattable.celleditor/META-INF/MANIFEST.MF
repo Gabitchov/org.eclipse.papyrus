@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMF Nattable Celleditor (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.nattable.celleditor;singleton:=true
+Bundle-Name: EMF Nattable (Incubation)
+Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.nattable;singleton:=true
 Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.emf.nattable.celleditor.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.emf.nattable.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -17,7 +17,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.emf.nattable.celleditor.editors,
- org.eclipse.papyrus.infra.emf.nattable.celleditor.provider,
- org.eclipse.papyrus.infra.emf.nattable.celleditor.registry,
- org.eclipse.papyrus.infra.emf.nattable.celleditor.validator
+Export-Package: org.eclipse.papyrus.infra.emf.nattable.editors,
+ org.eclipse.papyrus.infra.emf.nattable.provider,
+ org.eclipse.papyrus.infra.emf.nattable.validator

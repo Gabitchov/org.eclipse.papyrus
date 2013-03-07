@@ -17,7 +17,7 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.TextCellEditor;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
-import org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EStructuralFeatureEditorConfig;
+import org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.celleditor.ButtonConfiguration;
 import org.eclipse.papyrus.infra.nattable.celleditor.ComboBoxWithButtonCellEditor;
@@ -70,7 +70,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.AbstractEMFSingleFeatureSingleEditorConfig#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.AbstractEMFSingleFeatureSingleEditorConfig#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -103,7 +103,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EStructuralFeatureEditorConfig#getICellEditor(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getICellEditor(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider)
 	 * 
 	 * @param table
@@ -160,7 +160,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EStructuralFeatureEditorConfig#getComboDataProvider(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getComboDataProvider(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider)
 	 * 
 	 * @param table
@@ -191,7 +191,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.AbstractEMFSingleFeatureSingleEditorConfig#getFeatureIdentifier(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.AbstractEMFSingleFeatureSingleEditorConfig#getFeatureIdentifier(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -345,7 +345,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EStructuralFeatureEditorConfig#getCellPainter(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getCellPainter(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -370,7 +370,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EStructuralFeatureEditorConfig#getDisplayConvert(java.lang.Object,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getDisplayConvert(java.lang.Object,
 	 *      org.eclipse.papyrus.infra.nattable.model.nattable.Table, org.eclipse.jface.viewers.ILabelProvider)
 	 * 
 	 * @param axisElement
@@ -438,7 +438,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.editors.EStructuralFeatureEditorConfig#getDataValidator(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getDataValidator(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
