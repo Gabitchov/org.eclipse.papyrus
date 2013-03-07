@@ -11,14 +11,14 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.celleditor.provider;
+package org.eclipse.papyrus.uml.nattable.provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.uml.nattable.celleditor.utils.UMLTableUtils;
+import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Property;
 

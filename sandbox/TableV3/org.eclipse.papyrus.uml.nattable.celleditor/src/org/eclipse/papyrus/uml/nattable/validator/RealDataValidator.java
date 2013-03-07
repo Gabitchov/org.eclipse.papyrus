@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.celleditor.validator;
+package org.eclipse.papyrus.uml.nattable.validator;
 
 import org.eclipse.nebula.widgets.nattable.data.validate.DataValidator;
 import org.eclipse.papyrus.uml.tools.utils.validator.RealInputValidator;

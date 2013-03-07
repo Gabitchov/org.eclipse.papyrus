@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.celleditor.editor;
+package org.eclipse.papyrus.uml.nattable.editor;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
@@ -22,12 +22,12 @@ import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 
 /**
- * CellEditor for multivalued Enumeration
+ * CellEditor for multivalued references
  * 
  * @author Vincent Lorenzo
  * 
  */
-public class MultiEnumCellEditor extends AbstractUMLMultiValueCellEditor {
+public class MultiReferenceCellEditor extends AbstractUMLMultiValueCellEditor {
 
 	/**
 	 * 
@@ -36,13 +36,23 @@ public class MultiEnumCellEditor extends AbstractUMLMultiValueCellEditor {
 	 * @param axisElement
 	 * @param elementProvider
 	 */
-	public MultiEnumCellEditor(Object axisElement, ITableAxisElementProvider elementProvider) {
+	public MultiReferenceCellEditor(Object axisElement, ITableAxisElementProvider elementProvider) {
 		super(axisElement, elementProvider);
 	}
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.celleditor.editor.AbstractUMLMultiValueCellEditor#getElementSelector(boolean,
+	 * @see org.eclipse.papyrus.uml.nattable.celleditor.AbstractUMLMultiValueCellEditor#getFactory()
+	 * 
+	 * @return
+	 */
+	protected ReferenceValueFactory getFactory() {
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.celleditor.AbstractUMLMultiValueCellEditor#getElementSelector(boolean,
 	 *      org.eclipse.jface.viewers.ILabelProvider, org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider)
 	 * 
 	 * @param isUnique
@@ -50,22 +60,13 @@ public class MultiEnumCellEditor extends AbstractUMLMultiValueCellEditor {
 	 * @param contentProvider
 	 * @return
 	 */
-	@Override
-	protected IElementSelector getElementSelector(boolean isUnique, ILabelProvider labelProvider, IStaticContentProvider contentProvider) {
+	protected IElementSelector getElementSelector(final boolean isUnique, final ILabelProvider labelProvider, final IStaticContentProvider contentProvider) {
 		final ReferenceSelector selector = new ReferenceSelector(isUnique);
 		selector.setContentProvider(contentProvider);
 		selector.setLabelProvider(new UMLLabelProvider());//FIXME
 		return selector;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.celleditor.editor.AbstractUMLMultiValueCellEditor#getFactory()
-	 * 
-	 * @return
-	 */
-	@Override
-	protected ReferenceValueFactory getFactory() {
-		return null;
-	}
+
+
 }

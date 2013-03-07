@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
       <configuration
-            class="org.eclipse.papyrus.uml.nattable.celleditor.config.UMLFeatureCellEditorConfig"
+            class="org.eclipse.papyrus.uml.nattable.config.UMLFeatureCellEditorConfig"
             order="50">
       </configuration>
    </extension>
@@ -12,7 +12,7 @@
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider
             priority="10"
-            provider="org.eclipse.papyrus.uml.nattable.celleditor.provider.StereotypePropertyHeaderLabelProvider">
+            provider="org.eclipse.papyrus.uml.nattable.provider.StereotypePropertyHeaderLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>

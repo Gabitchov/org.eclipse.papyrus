@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.celleditor.editor;
+package org.eclipse.papyrus.uml.nattable.editor;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
@@ -19,29 +19,23 @@ import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.infra.widgets.selectors.IntegerSelector;
-import org.eclipse.papyrus.uml.tools.utils.validator.IntegerInputValidator;
+import org.eclipse.papyrus.infra.widgets.selectors.RealSelector;
+import org.eclipse.papyrus.uml.tools.utils.validator.RealInputValidator;
 
-/**
- * CellEditor for multivalued integer
- * 
- * @author Vincent Lorenzo
- * 
- */
-public class MultiIntegerCellEditor extends AbstractUMLMultiValueCellEditor {
 
-	public MultiIntegerCellEditor(Object axisElement, ITableAxisElementProvider elementProvider) {
+public class MultiRealCellEditor extends AbstractUMLMultiValueCellEditor {
+
+	public MultiRealCellEditor(Object axisElement, ITableAxisElementProvider elementProvider) {
 		super(axisElement, elementProvider);
 	}
 
 	@Override
 	protected IElementSelector getElementSelector(boolean isUnique, ILabelProvider labelProvider, IStaticContentProvider contentProvider) {
-		IntegerSelector selector = new IntegerSelector();
-		return selector;
+		return new RealSelector();
 	}
 
 	@Override
 	protected ReferenceValueFactory getFactory() {
-		return new StringEditionFactory(new IntegerInputValidator());
+		return new StringEditionFactory(new RealInputValidator());
 	}
 }

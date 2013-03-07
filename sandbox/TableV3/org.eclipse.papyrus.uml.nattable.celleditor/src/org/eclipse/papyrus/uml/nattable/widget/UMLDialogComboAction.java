@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.celleditor.widget;
+package org.eclipse.papyrus.uml.nattable.widget;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,9 +29,9 @@ import org.eclipse.papyrus.infra.nattable.celleditor.AbstractComboAction;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
-import org.eclipse.papyrus.uml.nattable.celleditor.Activator;
-import org.eclipse.papyrus.uml.nattable.celleditor.dataprovider.UMLSingleReferenceComboBoxDataProvider;
-import org.eclipse.papyrus.uml.nattable.celleditor.utils.UMLTableUtils;
+import org.eclipse.papyrus.uml.nattable.Activator;
+import org.eclipse.papyrus.uml.nattable.dataprovider.UMLSingleReferenceComboBoxDataProvider;
+import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;

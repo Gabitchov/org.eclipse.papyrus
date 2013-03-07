@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.celleditor;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable;singleton:=true
 Bundle-Version: 0.10.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.nattable.celleditor.Activator
+Bundle-Activator: org.eclipse.papyrus.uml.nattable.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -22,8 +22,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.nattable
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.nattable.celleditor,
- org.eclipse.papyrus.uml.nattable.celleditor.config,
- org.eclipse.papyrus.uml.nattable.celleditor.utils
+Export-Package: org.eclipse.papyrus.uml.nattable,
+ org.eclipse.papyrus.uml.nattable.config,
+ org.eclipse.papyrus.uml.nattable.utils
 Import-Package: org.eclipse.papyrus.infra.core.services,
  org.eclipse.papyrus.infra.nattable.celleditor.configs
