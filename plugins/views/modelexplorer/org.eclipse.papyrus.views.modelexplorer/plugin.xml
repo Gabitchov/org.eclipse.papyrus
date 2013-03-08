@@ -21,13 +21,7 @@
       </dragAssistant>
    </extension>
    <extension point="org.eclipse.ui.navigator.navigatorContent">
-      <navigatorContent
-            activeByDefault="false"
-            contentProvider="org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider"
-            id="org.eclipse.papyrus.views.modelexplorer.navigatorContent"
-            labelProvider="org.eclipse.jface.viewers.LabelProvider"
-            name="Model Contents"
-            priority="lowest">
+      <navigatorContent activeByDefault="false" contentProvider="org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider" id="org.eclipse.papyrus.views.modelexplorer.navigatorContent" labelProvider="org.eclipse.jface.viewers.LabelProvider" name="Model Contents" priority="lowest">
          <triggerPoints>
             <or>
                <instanceof value="org.eclipse.emf.ecore.EObject">
@@ -248,19 +242,13 @@
 <extension point="org.eclipse.ui.handlers">
 	<handler class="org.eclipse.papyrus.views.modelexplorer.handler.DeleteCommandHandler" commandId="org.eclipse.ui.edit.delete">
 		<activeWhen>
-     <with
-           variable="selection">
+     <with variable="selection">
         <and>
-           <with
-                 variable="activePart">
-              <instanceof
-                    value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+           <with variable="activePart">
+              <instanceof value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
               </instanceof>
            </with>
-           <test
-                 forcePluginActivation="true"
-                 property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
-                 value="true">
+           <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject" value="true">
            </test>
         </and>
      </with>
@@ -396,11 +384,19 @@
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resources/PapyrusEcoreBrowser.uiCustom"/>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
-      <context
-            description="The ModelExplorer labelProvider context"
-            id="org.eclipse.papyrus.views.modelexplorer.labelProvider.context">
+   <extension point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <context description="The ModelExplorer labelProvider context" id="org.eclipse.papyrus.views.modelexplorer.labelProvider.context">
       </context>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.facet.registration">
+      <facetset file="resources/PapyrusPages.facetSet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="resources/PapyrusPages.querySet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resources/PapyrusPages.uiCustom"
+            loadByDefault="true"/>
    </extension>
 </plugin>
