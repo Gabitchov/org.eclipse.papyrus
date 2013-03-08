@@ -119,33 +119,35 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 	 * Set of child decorations. use severity information?
 	 */
 	public IPapyrusDecoration markerPropagation(EList<IPapyrusDecoration> childDecorations) {
-		boolean childWarnings = false;
-		boolean childErrors = false;
+		int childWarnings = 0;
+		int childErrors = 0;
 		// loop over children. Use the "highest" level for parent decoration
 		for(IPapyrusDecoration childDecoration : childDecorations) {
 			if(childDecoration.getDecorationImageForME() == getImageDescriptorForME(IPapyrusMarker.SEVERITY_WARNING)) {
-				childWarnings = true;
+				childWarnings ++;
 			}
 			else if(childDecoration.getDecorationImageForME() == getImageDescriptorForME(IPapyrusMarker.SEVERITY_ERROR)) {
-				childErrors = true;
+				childErrors ++;
 			}
 		}
-		if(childWarnings || childErrors) {
-			String message = "";
+		if(childWarnings > 0 || childErrors > 0) {
+			String message = ""; //$NON-NLS-1$
 			int childSeverity = 0;
-			if(childErrors && childWarnings) {
-				message = "Error and warning";
+			String msgErrors = childErrors + " error(s)"; //$NON-NLS-1$
+			String msgWarnings =  childWarnings + " warnings(s)"; //$NON-NLS-1$
+			if(childErrors > 0 && childWarnings > 0) {
+				message =  msgErrors + " and " + msgWarnings; //$NON-NLS-1$
 				childSeverity = IPapyrusMarker.SEVERITY_ERROR;
 			}
-			else if(childErrors) {
-				message = "Error";
+			else if(childErrors > 0) {
+				message = msgErrors;
 				childSeverity = IPapyrusMarker.SEVERITY_ERROR;
 			}
-			else if(childWarnings) {
-				message = "Warning";
+			else if(childWarnings > 0) {
+				message = msgWarnings;
 				childSeverity = IPapyrusMarker.SEVERITY_WARNING;
 			}
-			message += " marker(s) in one of the children";
+			message += " in the children"; //$NON-NLS-1$
 			IPapyrusDecoration deco = new Decoration(null, EValidator.MARKER,
 				getImageDescriptorForGE(childSeverity), getImageDescriptorForME(childSeverity), message, null, childSeverity);
 			deco.setPosition(PreferedPosition.NORTH_WEST);
