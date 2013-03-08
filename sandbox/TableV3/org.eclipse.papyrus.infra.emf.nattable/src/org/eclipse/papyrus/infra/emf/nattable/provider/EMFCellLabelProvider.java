@@ -74,7 +74,8 @@ public class EMFCellLabelProvider extends AbstractNattableCellLabelProvider {
 			Iterator<?> iter = ((Collection<?>)value).iterator();
 			label += Constants.BEGIN_OF_COLLECTION;
 			while(iter.hasNext()) {
-				label = service.getLabelProvider(value).getText(value);
+				Object current = iter.next();
+				label += service.getLabelProvider(current).getText(current);
 				if(iter.hasNext()) {
 					label += Constants.SEPARATOR;
 				}
