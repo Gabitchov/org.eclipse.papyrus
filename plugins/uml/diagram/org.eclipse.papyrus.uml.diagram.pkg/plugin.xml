@@ -93,7 +93,7 @@
 		<Priority name="Low"/>
 		
 		<!-- Specify diagram this palette tools relate to -->						
-		<editor id="org.eclipse.papyrus.uml.diagram.package"/>
+		<editor id="org.eclipse.papyrus.uml.diagram.pkg"/>
 	</paletteDefinition>
 </extension>
 
