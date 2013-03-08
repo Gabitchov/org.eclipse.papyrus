@@ -141,10 +141,18 @@
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
-    <labelProvider
-          priority="10"
-          provider="org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider">
-    </labelProvider>
+    <context
+          description="Context for the headers of the table"
+          id="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+    </context>
+    <context
+          description="Context for the body of the table"
+          id="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+    </context>
+    <context
+          description="the context to use to find the label provider used to display values in cells and headers"
+          id="org.eclipse.papyrus.infra.nattable.full.labelprovider">
+    </context>
  </extension>
  
  <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
@@ -177,6 +185,20 @@
          id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
          name="Export Table to XLS Command">
    </command>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+   <labelProvider
+         priority="200"
+         provider="org.eclipse.papyrus.infra.nattable.provider.NattableCellLabelProvider">
+      <labelProviderContext
+            context="org.eclipse.papyrus.infra.nattable.full.labelprovider">
+      </labelProviderContext>
+   </labelProvider>
+   <labelProvider
+         priority="10"
+         provider="org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider">
+   </labelProvider>
 </extension>
 </plugin>
 

@@ -28,11 +28,15 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.print.command.PrintCommand;
 import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOffCommand;
 import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOnCommand;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
+import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -89,7 +93,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.columnProvider = rawModel.getVerticalContentProvider();
 		this.verticalElements = new ArrayList<Object>();
 		this.horizontalElements = new ArrayList<Object>();
-		
+
 		this.invertAxisListener = new AdapterImpl() {
 
 			@Override
@@ -107,7 +111,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 		rawModel.eAdapters().add(this.invertAxisListener);
 		init();
-		if(rawModel.isInvertAxis()){
+		if(rawModel.isInvertAxis()) {
 			invertJavaObject();
 		}
 	}
@@ -344,7 +348,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	public void refreshNattable() {
 		if(natTable != null && !natTable.isDisposed()) {
-			natTable.setConfigRegistry(new ConfigRegistry());
+			natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
 			natTable.setUiBindingRegistry(new UiBindingRegistry(natTable));
 			natTable.configure();
 			if(table != null) {

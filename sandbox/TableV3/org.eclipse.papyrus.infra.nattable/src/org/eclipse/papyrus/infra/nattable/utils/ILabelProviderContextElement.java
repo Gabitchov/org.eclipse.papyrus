@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,26 +11,31 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.configuration;
+package org.eclipse.papyrus.infra.nattable.utils;
 
-import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
-import org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+
 
 /**
- * Register a specific Cellpainter
+ * This interface provides specific methods to allows to get a label with its context (object and edited feature)
  * 
  * @author Vincent Lorenzo
  * 
  */
-public class StyleConfiguration extends DefaultNatTableStyleConfiguration {
+public interface ILabelProviderContextElement {
 
-	@Override
-	public void configureRegistry(final IConfigRegistry configRegistry) {
-		super.configureRegistry(configRegistry);
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new CustomizedCellPainter());
+	/**
+	 * 
+	 * @return
+	 *         the cell for which we want the label
+	 */
+	public ILayerCell getCell();
 
-	}
-
-
+	/**
+	 * 
+	 * @return
+	 *         the config registry which can provide useful information
+	 */
+	public IConfigRegistry getConfigRegistry();
 }

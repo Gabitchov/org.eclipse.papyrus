@@ -14,141 +14,133 @@
 package org.eclipse.papyrus.infra.emf.nattable.provider;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
-import org.eclipse.swt.graphics.Image;
 
+/**
+ * Provides the label for the EstructuralFeature
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
+public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProvider {
 
-public class EMFFeatureHeaderLabelProvider implements IFilteredLabelProvider {
+	private boolean displayName = true;//FIXME : we need to get the axis of this element to know what we should display!
 
-	private boolean displayName = true;
+	private boolean displayMultiplicity = true;//FIXME : we need to get the axis of this element to know what we should display!
 
-	private boolean displayMultiplicity = true;
+	private boolean displayType = true;//FIXME : we need to get the axis of this element to know what we should display!
 
-	private boolean displayType = true;
+	private boolean displayIsDerived = true;//FIXME : we need to get the axis of this element to know what we should display!
 
-	private boolean displayIsDerived = true;
-
-	public EMFFeatureHeaderLabelProvider() {
-	}
-
-	public Image getImage(Object element) {
-		return null;
-	}
-
-	public String getText(Object element) {
-		EStructuralFeature feature = (EStructuralFeature)element;
-		String txt = getText(feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
-		if(feature instanceof EReference && ((EReference)feature).isContainment()) {
-			txt = "CF " + txt;
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#accept(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 *         <code>true</code> if we are looking for the label of an EStructuralFeature
+	 */
+	public boolean accept(Object element) {
+		if(element instanceof ILabelProviderContextElement) {
+			final Object object = ((ILabelProviderContextElement)element).getCell().getDataValue();
+			return object instanceof EStructuralFeature;
 		}
-		return txt;
-	}
-
-	public void addListener(ILabelProviderListener listener) {
-	}
-
-	public void dispose() {
-	}
-
-	public boolean isLabelProperty(Object element, String property) {
 		return false;
 	}
 
-	public void removeListener(ILabelProviderListener listener) {
-	}
-
-	public boolean accept(Object element) {
-		return element instanceof EStructuralFeature;
-	}
-
-	protected String getText(final String name, final Object type, final boolean isDerived, final int lowerBound, final int upperBounds) {
-		String displayedText = "";
+	/**
+	 * 
+	 * @param configRegistry
+	 *        the configRegistry
+	 * @param name
+	 *        the name of the feature
+	 * @param type
+	 *        the type of the feature
+	 * @param isDerived
+	 *        <code>true</code> if the feature is derived
+	 * @param lowerBound
+	 *        the lower bound of the feature
+	 * @param upperBounds
+	 *        the upper bound of the feature
+	 * @return
+	 *         the text to display for the feature according to these informations and the preferences of the user
+	 */
+	protected String getText(final IConfigRegistry configRegistry, final String name, final Object type, final boolean isDerived, final int lowerBound, final int upperBounds) {
+		//FIXME : we need to get the axis of this element to know what we should display!
+		String displayedText = ""; //$NON-NLS-1$
 		if(isDerived && displayIsDerived) {
-			displayedText += "/";
+			displayedText += "/"; //$NON-NLS-1$
 		}
 		if(displayName) {
 			displayedText += name;
 		}
 		if(displayType) {
 			if(displayName) {
-				displayedText += " : ";
+				displayedText += " : "; //$NON-NLS-1$
 			}
-			displayedText += getTypeName(type);
+			displayedText += getTypeName(configRegistry, type);
 		}
 		if(displayMultiplicity) {
-			displayedText += " [";
+			displayedText += " ["; //$NON-NLS-1$
 			if(upperBounds == -1 && lowerBound <= 1) {
-				displayedText += "*";
+				displayedText += "*"; //$NON-NLS-1$
 			} else if(lowerBound == upperBounds) {
 				displayedText += Integer.toString(lowerBound);
 			} else {
 				displayedText += Integer.toString(lowerBound);
-				displayedText += "..";
+				displayedText += ".."; //$NON-NLS-1$
 				if(upperBounds == -1) {
-					displayedText += "*";
+					displayedText += "*"; //$NON-NLS-1$
 				} else {
 					displayedText += Integer.toString(upperBounds);
 				}
 			}
-			displayedText += "]";
+			displayedText += "]"; //$NON-NLS-1$
 		}
 
 		return displayedText;
 	}
 
-	protected String getTypeName(final Object type) {
-		if(type instanceof EObject) {
-			if(type instanceof EClassifier) {
-				return ((EClassifier)type).getName();
-			} else {
-				return getLabelForEObject((EObject)type);//((EClassifier)type).getName();//FIXME : use the label provider service for it?
-			}
+	/**
+	 * 
+	 * @param configRegistry
+	 *        the configRegistry
+	 * @param type
+	 *        the type of the feature
+	 * @return
+	 *         the name to display for the type
+	 */
+	protected String getTypeName(final IConfigRegistry configRegistry, final Object type) {
+		final LabelProviderService serv = getLabelProviderService(configRegistry);
+		if(type instanceof EClassifier) {
+			return ((EClassifier)type).getName();
+		} else {
+			return serv.getLabelProvider(type).getText(type);
 		}
-		return "";
 	}
 
-	private String getLabelForEObject(final EObject object) {
-		LabelProviderService service = getLabelProviderService(object);
-		if(service == null) {
-			//			service = serv;
-			service = new LabelProviderServiceImpl();
-		}
-		if(service != null) {
-			final ILabelProvider provider = service.getLabelProvider();
-			return provider.getText(object);
-		}
-		return ""; //$NON-NLS-1$
-	}
 
-	private LabelProviderService getLabelProviderService(final EObject eobject) {
-		final ServicesRegistry registry = getServiceRegistry(eobject);
-		if(registry != null) {
-			try {
-				return registry.getService(LabelProviderService.class);
-			} catch (final ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getText(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
+	@Override
+	public String getText(Object element) {
+		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getCell().getDataValue();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		String txt = getText(configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
+		if(feature instanceof EReference && ((EReference)feature).isContainment()) {
+			txt = "CF " + txt; //$NON-NLS-1$
 		}
-		return null;
-	}
-
-	private ServicesRegistry getServiceRegistry(final EObject object) {
-		try {
-			return ServiceUtilsForResource.getInstance().getServiceRegistry(object.eResource());
-		} catch (final ServiceException e) {
-			//			Activator.log.error("ServiceRegistry not found", e);
-		}
-		return null;
+		return txt;
 	}
 }

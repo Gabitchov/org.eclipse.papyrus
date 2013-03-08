@@ -17,6 +17,20 @@
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>
       </labelProvider>
+      <labelProvider
+            priority="10"
+            provider="org.eclipse.papyrus.uml.nattable.provider.UMLUnlimitedNaturalLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="50"
+            provider="org.eclipse.papyrus.uml.nattable.provider.StereotypePropertyCellLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
    </extension>
 
 </plugin>

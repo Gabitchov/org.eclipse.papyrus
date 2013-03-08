@@ -14,12 +14,13 @@
 package org.eclipse.papyrus.uml.nattable.provider;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -34,13 +35,19 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getImage(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#accept(java.lang.Object)
 	 * 
 	 * @param element
 	 * @return
+	 *         <code>true</code> when element represents a property of a stereotype
 	 */
-	public Image getImage(Object element) {
-		return null;
+	public boolean accept(Object element) {
+		if(element instanceof ILabelProviderContextElement) {
+			final Object value = ((ILabelProviderContextElement)element).getCell().getDataValue();
+			String id = AxisUtils.getPropertyId(value);
+			return (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX));
+		}
+		return false;
 	}
 
 	/**
@@ -50,62 +57,18 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 * @param element
 	 * @return
 	 */
+	@Override
 	public String getText(Object element) {
-		String id = "";
-		if(element instanceof IdAxis) {
-			id = ((IdAxis)element).getElement();
-		} else if(element instanceof String) {
-			id = (String)element;
-		}
-		EObject eobject = null;
-		if(element instanceof IdAxis) {
-			EObject container = ((IdAxis)element).eContainer();
-			if(container != null) {
-				container = container.eContainer();
-			}
-			if(container instanceof Table) {
-				eobject = ((Table)container).getContext();
-			}
-		}
-
-		final Property prop = UMLTableUtils.getRealStereotypeProperty(eobject, id);
+		final Object value = ((ILabelProviderContextElement)element).getCell().getDataValue();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
+		final EObject tableContext = modelManager.getTable().getContext();
+		String id = AxisUtils.getPropertyId(value);
+		final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);
 		if(prop != null) {
-			return getText(prop.getName(), prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
+			return getText(configRegistry, prop.getName(), prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
 		} else {
 			return REQUIRED_PROFILE_NOT_AVALAIBLE;
 		}
-
 	}
-
-	public void addListener(ILabelProviderListener listener) {
-	}
-
-	public void dispose() {
-	}
-
-	public boolean isLabelProperty(Object element, String property) {
-		return false;
-	}
-
-	public void removeListener(ILabelProviderListener listener) {
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#accept(java.lang.Object)
-	 * 
-	 * @param element
-	 * @return
-	 *         <code>true</code> when element represents a property of a stereotype
-	 */
-	public boolean accept(Object element) {
-		String str = "";
-		if(element instanceof IdAxis) {
-			str = ((IdAxis)element).getElement();
-		} else if(element instanceof String) {
-			str = (String)element;
-		}
-		return (str.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX));
-	}
-
 }

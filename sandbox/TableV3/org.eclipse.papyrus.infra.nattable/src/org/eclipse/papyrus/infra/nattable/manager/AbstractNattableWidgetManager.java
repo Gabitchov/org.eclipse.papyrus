@@ -21,6 +21,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.EditableRule;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IConfiguration;
@@ -45,8 +46,14 @@ import org.eclipse.nebula.widgets.nattable.print.config.DefaultPrintBindings;
 import org.eclipse.nebula.widgets.nattable.reorder.ColumnReorderLayer;
 import org.eclipse.nebula.widgets.nattable.reorder.event.ColumnReorderEvent;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
+import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.configuration.EditConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.InvertAxisOnCornerConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
@@ -62,7 +69,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
@@ -192,6 +201,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 			}
 		});
+
+		natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
 		natTable.configure();
 		addColumnReorderListener(bodyLayerStack.getColumnReorderLayer());
 		addDragAndDropSupport(natTable);
@@ -207,6 +218,24 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			site.setSelectionProvider(this.selectionProvider);
 		}
 
+		return null;
+	}
+
+
+	protected final IConfigRegistry createAndInitializeNewConfigRegistry() {
+		final IConfigRegistry newRegistry = new ConfigRegistry();
+		newRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+		newRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		return newRegistry;
+	}
+
+	private LabelProviderService getLabelProviderService() {
+		try {
+			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table);
+			return serviceRegistry.getService(LabelProviderService.class);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
 		return null;
 	}
 

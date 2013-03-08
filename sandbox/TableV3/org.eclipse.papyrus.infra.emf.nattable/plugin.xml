@@ -17,6 +17,20 @@
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>
       </labelProvider>
+      <labelProvider
+            priority="100"
+            provider="org.eclipse.papyrus.infra.emf.nattable.provider.EMFCellLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="90"
+            provider="org.eclipse.papyrus.infra.emf.nattable.provider.EMFEObjectHeaderLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
    </extension>
 
 </plugin>
