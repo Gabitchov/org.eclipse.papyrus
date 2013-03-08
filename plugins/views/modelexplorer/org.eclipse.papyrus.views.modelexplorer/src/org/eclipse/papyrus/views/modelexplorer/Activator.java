@@ -124,7 +124,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
 	public CustomizationManager getCustomizationManager() {
-	return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
+		return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
 	}
 
 	private void init(final CustomizationManager customizationManager) {
@@ -141,7 +141,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 				customizationManager.registerCustomization(metamodelView);
 			}
 			customizationManager.loadCustomizations();
-			loadFacetsForCustomizations(registryDefaultCustomizations,customizationManager);
+			loadFacetsForCustomizations(registryDefaultCustomizations, customizationManager);
 
 		} catch (Throwable e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
@@ -152,54 +152,43 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * load the facets
 	 * 
 	 * @param customizations
-	 *            list of customization
+	 *        list of customization
 	 * @param customizationManager
-	 *            the Customization Manager
+	 *        the Customization Manager
 	 */
-	protected void loadFacetsForCustomizations(
-		final List<MetamodelView> customizations,
-		final CustomizationManager customizationManager) {
+	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
 		final Set<Facet> referencedFacets = new HashSet<Facet>();
-		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton()
-			.getAllFacetSets();
+		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
 
-		for (MetamodelView customization : customizations) {
+		for(MetamodelView customization : customizations) {
 			String metamodelURI = customization.getMetamodelURI();
 			// find customized FacetSet
 			FacetSet customizedFacetSet = null;
-			if (metamodelURI != null) {
-				for (FacetSet facetSet : facetSets) {
-					if (metamodelURI.equals(facetSet.getNsURI())) {
+			if(metamodelURI != null) {
+				for(FacetSet facetSet : facetSets) {
+					if(metamodelURI.equals(facetSet.getNsURI())) {
 						customizedFacetSet = facetSet;
 						break;
 					}
 				}
 			}
-			if (customizedFacetSet == null) {
+			if(customizedFacetSet == null) {
 				continue;
 			}
 
 			// find customized Facets
 			EList<TypeView> types = customization.getTypes();
-			for (TypeView typeView : types) {
+			for(TypeView typeView : types) {
 				String metaclassName = typeView.getMetaclassName();
-				Facet facet = findFacetWithFullyQualifiedName(metaclassName,
-					customizedFacetSet);
-				if (facet != null) {
+				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
+				if(facet != null) {
 					referencedFacets.add(facet);
 				} else {
-					Activator.log.warn(NLS
-						.bind(
-							Messages.BrowserActionBarContributor_missingRequiredFacet,
-							new Object[] {
-								metaclassName,
-								customizedFacetSet
-								.getName(),
-								customization.getName() }));
+					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
 				}
 			}
 
-			for (Facet referencedFacet : referencedFacets) {
+			for(Facet referencedFacet : referencedFacets) {
 				customizationManager.loadFacet(referencedFacet);
 			}
 		}
@@ -210,6 +199,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 		// customizationManager.getAppearanceConfiguration().touch();
 		// customizationManager.refreshDelayed(true);
 	}
+
 	/**
 	 * fin a facet from
 	 * 
@@ -217,12 +207,11 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * @param customizedFacetSet
 	 * @return
 	 */
-	private Facet findFacetWithFullyQualifiedName(final String metaclassName,
-		final FacetSet customizedFacetSet) {
+	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
 		EList<Facet> facets = customizedFacetSet.getFacets();
-		for (Facet facet : facets) {
+		for(Facet facet : facets) {
 			String facetName = getMetaclassQualifiedName(facet);
-			if (metaclassName.equals(facetName)) {
+			if(metaclassName.equals(facetName)) {
 				return facet;
 			}
 		}
@@ -235,12 +224,12 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 		final StringBuilder builder = new StringBuilder();
 
 		EPackage ePackage = eClass.getEPackage();
-		while (ePackage != null) {
+		while(ePackage != null) {
 			qualifiedNameParts.add(ePackage.getName());
 			ePackage = ePackage.getESuperPackage();
 		}
 
-		for (int i = qualifiedNameParts.size() - 1; i >= 0; i--) {
+		for(int i = qualifiedNameParts.size() - 1; i >= 0; i--) {
 			builder.append(qualifiedNameParts.get(i) + "."); //$NON-NLS-1$
 		}
 

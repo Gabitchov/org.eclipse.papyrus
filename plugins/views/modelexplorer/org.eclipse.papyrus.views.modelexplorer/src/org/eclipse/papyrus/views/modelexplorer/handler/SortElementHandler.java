@@ -17,8 +17,6 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.expressions.EvaluationContext;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.CustomCommonViewer;
@@ -28,11 +26,12 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.navigator.CommonViewerSorter;
+
+
 /**
  * this handler is used to set a sorter on the model explorer
- *
  */
 public class SortElementHandler extends AbstractHandler {
 
@@ -40,22 +39,26 @@ public class SortElementHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		if (Activator.getDefault().getCustomizationManager() != null) {
-			CustomizationManager customizationManager = Activator.getDefault()
-			.getCustomizationManager();
-			if(((ToolItem)((Event)event.getTrigger()).widget).getSelection()){
-				getSelectedTreeViewer(event).setSorter(new CommonViewerSorter());
-				if(getSelectedTreeViewer(event) instanceof CustomCommonViewer){
-					((CustomCommonViewer)getSelectedTreeViewer(event)).getDropAdapter().setFeedbackEnabled(false);
+		if(Activator.getDefault().getCustomizationManager() != null) {
+			TreeViewer selectedTreeViewer = getSelectedTreeViewer(event);
+			if(selectedTreeViewer == null) {
+				return null;
+			}
+
+			if(((ToolItem)((Event)event.getTrigger()).widget).getSelection()) {
+
+
+				selectedTreeViewer.setSorter(new CommonViewerSorter());
+				if(selectedTreeViewer instanceof CustomCommonViewer) {
+					((CustomCommonViewer)selectedTreeViewer).getDropAdapter().setFeedbackEnabled(false);
+				}
+			} else {
+				selectedTreeViewer.setSorter(null);
+				if(selectedTreeViewer instanceof CustomCommonViewer) {
+					((CustomCommonViewer)selectedTreeViewer).getDropAdapter().setFeedbackEnabled(true);
 				}
 			}
-			else{
-				getSelectedTreeViewer(event).setSorter(null);
-				if(getSelectedTreeViewer(event) instanceof CustomCommonViewer){
-					((CustomCommonViewer)getSelectedTreeViewer(event)).getDropAdapter().setFeedbackEnabled(true);
-				}
-			
-			}
+
 			getSelectedTreeViewer(event).refresh();
 		}
 		return null;
@@ -63,34 +66,22 @@ public class SortElementHandler extends AbstractHandler {
 
 	/**
 	 * used to obtain the tree viewer of the model explorer
+	 * 
 	 * @param event
 	 * @return
 	 */
 	protected TreeViewer getSelectedTreeViewer(ExecutionEvent event) {
-
-		IWorkbenchPart activePart;
 		// Try to get the active part
+		IWorkbenchPart activePart = HandlerUtil.getActivePart(event);
 
-		// Try to get the TreeViewer from the evaluation context
-		if( event.getApplicationContext() instanceof EvaluationContext) {
-			EvaluationContext context = (EvaluationContext)event.getApplicationContext();
-			// activeEditor, activeSite, selection, activeShell, activePart
-			Object site = context.getVariable("activeSite");
-			activePart = (IWorkbenchPart)context.getVariable("activePart");
-		}
-		else {
-			activePart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-		}
-
-		if(activePart instanceof TreeViewer)
+		if(activePart instanceof TreeViewer) {
 			return (TreeViewer)activePart;
+		}
 
-		if( activePart instanceof MultiViewPageBookView)
-		{
-			MultiViewPageBookView pageBookView =(MultiViewPageBookView)activePart;
-			IViewPart viewPart =  pageBookView.getActiveView();
-			if(viewPart instanceof ModelExplorerView)
-			{
+		if(activePart instanceof MultiViewPageBookView) {
+			MultiViewPageBookView pageBookView = (MultiViewPageBookView)activePart;
+			IViewPart viewPart = pageBookView.getActiveView();
+			if(viewPart instanceof ModelExplorerView) {
 				return ((ModelExplorerView)viewPart).getCommonViewer();
 			}
 		}
