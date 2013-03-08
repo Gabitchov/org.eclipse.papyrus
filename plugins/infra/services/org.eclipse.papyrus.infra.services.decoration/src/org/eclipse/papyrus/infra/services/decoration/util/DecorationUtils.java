@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.services.decoration.util;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.WordUtils;
@@ -28,17 +27,21 @@ import org.eclipse.papyrus.infra.services.decoration.IDecorationSpecificFunction
 import org.eclipse.papyrus.infra.services.decoration.IDecorationSpecificFunctions.MarkChildren;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DecorationUtils.
+ * The class DecorationUtils.
  */
 public class DecorationUtils {
 
-	/** Current element. */
-	private Object element;
+	/**
+	 * Current element.
+	 */
+	protected Object element;
 
-	/** current eobject. */
-	private EObject eObject;
+	/**
+	 * List of eObjects to evaluate. Either a single object or a list of objects
+	 * in case of a link item
+	 */
+	protected EList<EObject> eObjects;
 
 	/**
 	 * Instantiates a new decoration utils.
@@ -52,9 +55,20 @@ public class DecorationUtils {
 		}
 
 		EObject eObject = (EObject)Platform.getAdapterManager().getAdapter(element, EObject.class);
+		eObjects = new BasicEList<EObject>();
 
 		this.element = element;
-		setEObject(eObject);
+		if(eObject != null) {
+			eObjects.add(eObject);
+		}
+		else if(element instanceof LinkItem) {
+			// for bug 391676
+			for(Object child : ((LinkItem)element).getChildrenElements()) {
+				if(child instanceof EObject) {
+					eObjects.add((EObject)child);
+				}
+			}
+		}
 	}
 
 
@@ -68,47 +82,16 @@ public class DecorationUtils {
 		if(eObject == null) {
 			throw new IllegalArgumentException("The decorated EObject shall not be null");
 		}
-		setEObject(eObject);
-	}
-
-
-	/**
-	 * Try child if empty.
-	 */
-	public void tryChildIfEmpty() {
-		// element has no eObject. try parent
-		if(getEObject() == null) {
-			// TODO: is it possible to access the children in another way (without internal access?)
-			if(element instanceof LinkItem) {
-				List<?> items = ((LinkItem)element).getChildrenElements();
-				if(items.size() > 0 && items.get(0) instanceof EObject) {
-					// element = items[0];
-					setEObject((EObject)items.get(0));
-				}
-			}
-		}
+		eObjects = new BasicEList<EObject>();
+		eObjects.add(eObject);
 	}
 
 	/**
-	 * Gets the e object.
-	 * 
-	 * @return the e object
+	 * Gets the list of eObjects associated with the selected elements.
 	 */
-	public EObject getEObject() {
-		return eObject;
+	public EList<EObject> getEObjects() {
+		return eObjects;
 	}
-
-
-	/**
-	 * Sets the e object.
-	 * 
-	 * @param eObject
-	 *        the new e object
-	 */
-	public void setEObject(EObject eObject) {
-		this.eObject = eObject;
-	}
-
 
 	/**
 	 * Gets the decorations.
@@ -121,9 +104,12 @@ public class DecorationUtils {
 		return decorationService.getDecorations();
 	}
 
+
 	/**
-	 * Returns a list of decorations for a given UML element. It's a list, since there might be
+	 * Returns a list of decorations for a given UML element. It is a list, since there might be
 	 * more than one decoration (e.g. a validation marker and a tracepoint) for this element.
+	 * 
+	 * If current element is a folder or link-item, decorations from childs are propagated.
 	 * 
 	 * @param decorationService
 	 *        the decoration service
@@ -139,7 +125,7 @@ public class DecorationUtils {
 		if(decorations != null) {
 			for(Decoration decoration : decorations.values()) {
 				EObject eObjectOfDecorator = decoration.getElement();
-				if(eObjectOfDecorator == getEObject()) {
+				if(getEObjects().contains(eObjectOfDecorator)) {
 					// decoration is for this element
 					if(decoration.getMessage() == null) {
 						decoration.setMessage("");
@@ -156,7 +142,7 @@ public class DecorationUtils {
 
 					eObjectOfDecorator = eObjectOfDecorator.eContainer();
 					while(eObjectOfDecorator != null) {
-						if(eObjectOfDecorator == getEObject()) {
+						if(getEObjects().contains(eObjectOfDecorator)) {
 							String type = decoration.getType();
 							EList<IPapyrusDecoration> childDecorations = childDecorationMap.get(type);
 							if(childDecorations == null) {
@@ -208,7 +194,7 @@ public class DecorationUtils {
 			String message = "";
 			for(Decoration decoration : decorations.values()) {
 				EObject eObjectOfDecorator = decoration.getElement();
-				if(eObjectOfDecorator == getEObject()) {
+				if(getEObjects().contains(eObjectOfDecorator)) {
 					if(message.length() > 0) {
 						message += "\n";
 					}

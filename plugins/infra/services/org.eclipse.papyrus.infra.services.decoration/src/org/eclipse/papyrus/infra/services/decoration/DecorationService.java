@@ -25,6 +25,7 @@ import java.util.Observer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -250,11 +251,7 @@ public class DecorationService extends Observable implements IDecorationService 
 	 */
 	public List<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents) {
 		DecorationUtils tool = new DecorationUtils(element);
-		tool.tryChildIfEmpty();
-		if(tool.getEObject() != null) {
-			return tool.getDecorations(this, navigateToParents);
-		}
-		return null;
+		return tool.getDecorations(this, navigateToParents);
 	}
 
 	/* (non-Javadoc)

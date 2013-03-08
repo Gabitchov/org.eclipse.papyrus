@@ -23,6 +23,7 @@ import java.util.Observer;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -92,7 +93,9 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 
 		//Set the adapter decoration with position as indicated by decoration (from decoration service)
 		if(element != null) {
-			if(element instanceof EObject || (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
+			if(element instanceof EObject
+				|| element instanceof LinkItem			// fix for bug 391676
+				|| (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
 				List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
 				if(decorations != null) {
 					adapter.setDecorations(decorations);
@@ -102,7 +105,6 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 
 		//return the target decorated
 		return adapter.getDecoratedImage();
-
 	}
 
 	@Override

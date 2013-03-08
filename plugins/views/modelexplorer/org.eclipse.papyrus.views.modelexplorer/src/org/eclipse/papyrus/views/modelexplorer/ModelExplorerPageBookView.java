@@ -82,7 +82,7 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 	 */
 	public String getContributorId() {
 		// return Activator.PLUGIN_ID;
-		return "TreeOutlinePage";
+		return "TreeOutlinePage"; //$NON-NLS-1$
 
 	}
 
