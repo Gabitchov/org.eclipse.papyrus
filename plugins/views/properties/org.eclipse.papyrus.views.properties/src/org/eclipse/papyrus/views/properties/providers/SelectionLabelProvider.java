@@ -27,7 +27,9 @@ import org.eclipse.papyrus.views.properties.Activator;
  * 
  * @author Camille Letavernier
  * 
+ * @deprecated Use PropertiesHeaderLabelProvider instead
  */
+@Deprecated
 public class SelectionLabelProvider extends ExtensibleLabelProvider {
 
 	public static final String EXTENSION_ID = "org.eclipse.papyrus.views.properties.labelprovider"; //$NON-NLS-1$

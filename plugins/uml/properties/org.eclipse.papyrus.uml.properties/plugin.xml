@@ -16,7 +16,7 @@
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
             contributorId="TreeOutlinePage"
-            labelProvider="org.eclipse.papyrus.views.properties.providers.SelectionLabelProvider"
+            labelProvider="org.eclipse.papyrus.views.properties.providers.PropertiesHeaderLabelProvider"
             tabDescriptorProvider="org.eclipse.papyrus.views.properties.xwt.XWTTabDescriptorProvider">
          <propertyCategory
                category="org.eclipse.papyrus"></propertyCategory>
