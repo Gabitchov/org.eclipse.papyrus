@@ -67,11 +67,16 @@ public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 		// when adding the space for the labels.
 		int height = 0;
 		if(stateFigure.getStateMachineCompartmentFigure() != null) {
-			stateFigure.validate(); // validate the, assure that layout manager is called.
-			height = stateFigure.getStateMachineCompartmentFigure().getBounds().y - stateFigure.getBounds().y + 1;
-			// Sanity check
-			if(height < 0) {
-				height = 0;
+			if(stateFigure.getStateMachineCompartmentFigure().isVisible()) {
+				stateFigure.validate(); // validate the figure, assure that layout manager is called.
+				height = stateFigure.getStateMachineCompartmentFigure().getBounds().y - stateFigure.getBounds().y + 1;
+				// Sanity check
+				if(height < 0) {
+					height = 0;
+				}
+			}
+			else {
+				height = stateFigure.getNameLabel().getBounds().height;
 			}
 		}
 
