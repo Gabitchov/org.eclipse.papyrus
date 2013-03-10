@@ -87,18 +87,16 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		// AutomaticCompartmentLayoutManager add extra space on top of the first label which would not be accounted for
 		// when adding the space for the labels.
 		int height = 0;
-		if(stateFigure.getStateCompartmentFigure() != null) {
-			if(stateFigure.getStateCompartmentFigure().isVisible()) {
-				stateFigure.validate(); // validate the figure, assure that layout manager is called.
-				height = stateFigure.getStateCompartmentFigure().getBounds().y - stateFigure.getBounds().y + 1;
-				// Sanity check
-				if(height < 0) {
-					height = 0;
-				}
+		if(stateCompartView.isVisible() && (stateFigure.getStateCompartmentFigure() != null)) {
+			stateFigure.validate(); // validate the figure, assure that layout manager is called.
+			height = stateFigure.getStateCompartmentFigure().getBounds().y - stateFigure.getBounds().y + 1;
+			// Sanity check
+			if(height < 0) {
+				height = 0;
 			}
-			else {
-				height = stateFigure.getNameLabel().getBounds().height;
-			}
+		}
+		else {
+			height = stateFigure.getNameLabel().getBounds().height;
 		}
 
 		int stateHeight = Zone.getHeight(stateView);

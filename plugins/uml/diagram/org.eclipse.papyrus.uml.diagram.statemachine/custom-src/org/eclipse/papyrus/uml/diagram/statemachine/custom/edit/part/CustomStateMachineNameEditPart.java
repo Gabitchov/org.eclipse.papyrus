@@ -60,30 +60,27 @@ public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 
+		View stateMachineLabelView = (View)getModel();
+		View stateMachineView = (View)stateMachineLabelView.eContainer();
+		View stateMachineCompartView = (View)stateMachineView.getChildren().get(1);
+
 		StateMachineFigure stateFigure = ((StateMachineEditPart)getParent()).getPrimaryShape();
 		int width = stateFigure.getBounds().width;
 		// calculate height for labels via position of the rectangle figure after the labels. Layout managers such as the
 		// AutomaticCompartmentLayoutManager add extra space on top of the first label which would not be accounted for
 		// when adding the space for the labels.
 		int height = 0;
-		if(stateFigure.getStateMachineCompartmentFigure() != null) {
-			if(stateFigure.getStateMachineCompartmentFigure().isVisible()) {
-				stateFigure.validate(); // validate the figure, assure that layout manager is called.
-				height = stateFigure.getStateMachineCompartmentFigure().getBounds().y - stateFigure.getBounds().y + 1;
-				// Sanity check
-				if(height < 0) {
-					height = 0;
-				}
-			}
-			else {
-				height = stateFigure.getNameLabel().getBounds().height;
+		if(stateMachineCompartView.isVisible() && (stateFigure.getStateMachineCompartmentFigure() != null)) {
+			stateFigure.validate(); // validate the figure, assure that layout manager is called.
+			height = stateFigure.getStateMachineCompartmentFigure().getBounds().y - stateFigure.getBounds().y + 1;
+			// Sanity check
+			if(height < 0) {
+				height = 0;
 			}
 		}
-
-
-		View stateMachineLabelView = (View)getModel();
-		View stateMachineView = (View)stateMachineLabelView.eContainer();
-		View stateMachineCompartView = (View)stateMachineView.getChildren().get(1);
+		else {
+			height = stateFigure.getNameLabel().getBounds().height;
+		}
 
 		int stateMachineHeight = Zone.getHeight(stateMachineView);
 		int stateMachineWidth = Zone.getWidth(stateMachineView);
