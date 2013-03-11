@@ -2,11 +2,8 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="org.eclipse.papyrus.infra.nattable.axismanager" name="Axis Manager" schema="schema/org.eclipse.papyrus.infra.nattable.axismanager.exsd"/>
-   <extension-point id="org.eclipse.papyrus.infra.nattable.pathresolver" name="Path Resolver" schema="schema/org.eclipse.papyrus.infra.nattable.pathresolver.exsd"/>
    <extension-point id="org.eclipse.papyrus.infra.nattable.cellmanager" name="Cell Manager" schema="schema/org.eclipse.papyrus.infra.nattable.cellmanager.exsd"/>
    <extension-point id="org.eclipse.papyrus.infra.nattable.celleditor.configuration" name="CellEditorConfiguration" schema="schema/org.eclipse.papyrus.infra.nattable.celleditor.configuration.exsd"/>
-   <extension-point id="org.eclipse.papyrus.infra.nattable.celleditor.configuration.factory" name="CellEditor Configuration Factory" schema="schema/org.eclipse.papyrus.infra.nattable.celleditor.configuration.factory.exsd"/>
-
 
  <extension
        point="org.eclipse.papyrus.infra.nattable.axismanager">
