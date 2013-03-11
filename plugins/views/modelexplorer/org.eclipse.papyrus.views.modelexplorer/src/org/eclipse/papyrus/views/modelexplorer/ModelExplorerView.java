@@ -389,13 +389,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		tree.addKeyListener(new KeyListener() {
 
 			public void keyReleased(KeyEvent e) {
-				if(e.keyCode == SWT.CTRL) {
+				if(e.keyCode == SWT.ALT) {
 					exitItem();
 				}
 			}
 
 			public void keyPressed(KeyEvent e) {
-				if(e.keyCode != SWT.CTRL) {
+				if(e.keyCode != SWT.ALT) {
 					return;
 				}
 
@@ -404,7 +404,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				//Generate a basic mouse event
 				Event event = new Event();
 				event.widget = tree;
-				event.stateMask = SWT.CTRL;
+				event.stateMask = SWT.ALT;
 
 				Point absoluteTreeLocation = tree.toDisplay(new Point(0, 0));
 
@@ -422,7 +422,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 			@Override
 			public void mouseUp(MouseEvent e) {
-				if((e.stateMask & SWT.CTRL) == 0) {
+				if((e.stateMask & SWT.ALT) == 0) {
 					return;
 				}
 
@@ -483,7 +483,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			return true;
 		}
 
-		if((e.stateMask & SWT.CTRL) == 0) {
+		if((e.stateMask & SWT.ALT) == 0) {
 			return true;
 		}
 
@@ -500,7 +500,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			return false;
 		}
 
-		if((e.stateMask & SWT.CTRL) == 0) {
+		if((e.stateMask & SWT.ALT) == 0) {
 			return false;
 		}
 

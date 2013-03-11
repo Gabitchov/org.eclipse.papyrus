@@ -62,8 +62,8 @@ public class SelectionMenu {
 	public SelectionMenu(Shell parentShell, Point location) {
 		//Move the shell so that it doesn't open under the mouse
 		//The hovered element can still be selected
-		location.x += 5;
-		location.y += 5;
+		location.x += 1;
+		location.y += 1;
 
 		this.parentShell = parentShell;
 		this.location = location;
