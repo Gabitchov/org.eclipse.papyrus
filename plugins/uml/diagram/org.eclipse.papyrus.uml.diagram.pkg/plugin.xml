@@ -6,7 +6,6 @@
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
-       creationCondition="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreationCondition"
 		icon="icons/obj16/Diagram_Package.gif"
 		id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 		language="uml"
@@ -27,11 +26,11 @@
 
 <extension point="org.eclipse.ui.handlers">
 	<handler
-		class="org.eclipse.papyrus.uml.diagram.pkg.CreatePackageDiagramWithNavigationHandler"
+		class="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
 		commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
 			</with>
 		</activeWhen>
 	</handler>
@@ -41,7 +40,7 @@
 <extension point="org.eclipse.ui.menus">
 
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
@@ -54,7 +53,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
@@ -66,7 +65,7 @@
 	</toolbar>
 	</menuContribution>
 	
-	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 			icon="icons/obj16/Diagram_Package.gif"
 			label="Create a new Package Diagram"
@@ -123,6 +122,27 @@
 			"4013" = COMMENT_ANNOTATED_ELEMENT
 		  -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013"/>
+		
+		<object id="elementtype.node"
+	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+	       
+	     <method
+	        name="getSemanticHint()"
+			value="2007, 3009, 2012, 3028">
+		</method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="elementtype.node"/>
+	
+		<object id="elementtype.edge"
+	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+	       
+	     <method
+	        name="getSemanticHint()"
+			value="4008, 4010, 4013">
+		</method>
+		</object>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
+	
 		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
@@ -212,8 +232,8 @@
 		
 		<!-- 	
 			"4008" = DEPENDENCY
-			"6026" = DEPENDENCY_LABEL_DEPENDENCY_NAME_HINT
-			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_DEPENDENCY_HINT
+			"6026" = DEPENDENCY_LABEL_NAME_HINT
+			"6027" = DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT
 			"4010" = PACKAGE_IMPORT
 			"6022" = PACKAGE_IMPORT_LABEL_APPLIED_STEREOTYPE_HINT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
@@ -256,7 +276,7 @@
 	<page
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		name="Package Diagram"
-		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+		category="org.eclipse.papyrus.preferences.diagrams"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageDiagramGeneralPreferencePage">
 	</page>
 

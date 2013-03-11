@@ -13,13 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.pkg.provider;
 
-import static org.eclipse.papyrus.infra.core.Activator.log;
-
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.pkg.Activator;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.part.PackageDiagramEditPart;
 
 public class PackageDiagramEditPartProvider extends AbstractEditPartProvider {
@@ -44,7 +43,7 @@ public class PackageDiagramEditPartProvider extends AbstractEditPartProvider {
 			return PackageDiagramEditPart.class;
 		}
 
-		log.error(new Exception("Could not create EditPart."));
+		Activator.log.error(new Exception("Could not create EditPart."));
 		return null;
 	}
 

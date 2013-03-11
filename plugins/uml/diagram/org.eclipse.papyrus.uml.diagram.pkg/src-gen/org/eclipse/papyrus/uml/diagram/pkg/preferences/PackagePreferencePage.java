@@ -40,7 +40,6 @@ public class PackagePreferencePage extends PackageDiagramNodePreferencePage {
 		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
 		compartmentTitleDefaultVisibilityMap.put("PackageableElementCompartment", Boolean.TRUE); //$NON-NLS-1$
 
-
 		// Start of user code custom static initializations
 		// End of user code
 

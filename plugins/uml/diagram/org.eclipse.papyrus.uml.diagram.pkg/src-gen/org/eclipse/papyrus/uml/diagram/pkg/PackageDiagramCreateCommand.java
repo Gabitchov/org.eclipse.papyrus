@@ -45,7 +45,7 @@ public class PackageDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagram
 	protected PreferencesHint getPreferenceHint() {
 		return Activator.DIAGRAM_PREFERENCES_HINT;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

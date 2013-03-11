@@ -21,7 +21,6 @@ public class CommentPreferencePage extends PackageDiagramNodePreferencePage {
 	/** Constant key to access preferences */
 	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Comment"; //$NON-NLS-1$
 
-
 	/** Default constructor */
 	public CommentPreferencePage() {
 		super();
@@ -39,6 +38,5 @@ public class CommentPreferencePage extends PackageDiagramNodePreferencePage {
 		// End of user code
 
 	}
-
 
 }

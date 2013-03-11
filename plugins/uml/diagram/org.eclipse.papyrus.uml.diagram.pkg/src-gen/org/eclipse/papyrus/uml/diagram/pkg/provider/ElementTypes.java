@@ -25,13 +25,9 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** UML Package Diagram :: Diagram */
 	public static final String DIAGRAM_ID = "Package"; //$NON-NLS-1$
 
-
-
-
 	/** ********************************************************* */
 	/** UML Package Diagram - ClassDiagram related elements */
 	/** ********************************************************* */
-
 
 	/** ClassDiagram :: PACKAGE */
 	public static final IHintedType PACKAGE = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Package_2007"); //$NON-NLS-1$
@@ -57,7 +53,6 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String COMMENT_CN_LABEL_BODY_HINT = "5063"; //$NON-NLS-1$
 
-
 	/** ClassDiagram :: DEPENDENCY */
 	public static final IHintedType DEPENDENCY = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"); //$NON-NLS-1$
 
@@ -72,6 +67,5 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ClassDiagram :: COMMENT_ANNOTATED_ELEMENT */
 	public static final IHintedType COMMENT_ANNOTATED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.CommentAnnotatedElement_4013"); //$NON-NLS-1$
-
 
 }

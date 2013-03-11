@@ -249,7 +249,6 @@ public class PackageDiagramEditor extends UmlGmfDiagramEditor implements IProvid
 		return savedOperation != op;
 	}
 
-
 	/**
 	 * @generated
 	 */

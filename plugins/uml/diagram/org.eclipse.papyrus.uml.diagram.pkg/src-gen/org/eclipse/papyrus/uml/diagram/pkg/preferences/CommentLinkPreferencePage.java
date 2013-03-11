@@ -21,7 +21,6 @@ public class CommentLinkPreferencePage extends PackageDiagramLinkPreferencePage 
 	/** Constant key to access preferences */
 	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_CommentAnnotatedElement"; //$NON-NLS-1$
 
-
 	/** Default constructor */
 	public CommentLinkPreferencePage() {
 		super();

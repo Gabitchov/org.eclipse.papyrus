@@ -62,8 +62,6 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 				return true;
 			}
 
-
-
 		}
 		return false;
 	}

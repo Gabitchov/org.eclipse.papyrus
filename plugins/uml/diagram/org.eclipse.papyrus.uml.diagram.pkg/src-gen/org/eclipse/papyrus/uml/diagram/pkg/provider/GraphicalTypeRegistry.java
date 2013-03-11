@@ -41,6 +41,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		// Fill known edges set
 		knownEdges.add(ElementTypes.DEPENDENCY.getSemanticHint());
 		knownEdges.add(ElementTypes.PACKAGE_IMPORT.getSemanticHint());
+		knownEdges.add(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint());
 
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(ElementTypes.PACKAGE.getSemanticHint());
