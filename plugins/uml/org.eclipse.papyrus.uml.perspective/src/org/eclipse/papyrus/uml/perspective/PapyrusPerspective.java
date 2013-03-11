@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.perspective;
 
 import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard;
+import org.eclipse.papyrus.views.validation.internal.ModelValidationView;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
@@ -58,6 +59,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
 		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
 		layout.addShowViewShortcut(ID_MODELEXPLORER);
+		layout.addShowViewShortcut(ModelValidationView.VIEW_ID);
 		layout.addShowViewShortcut(IPageLayout.ID_PROBLEM_VIEW);
 		layout.addShowViewShortcut("org.eclipse.pde.runtime.LogView"); //Error log. //A constant doesn't seem to exist for this ID
 
@@ -93,7 +95,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		IFolderLayout bottomFolder = layout.createFolder(ID_BOTTOM_FOLDER, IPageLayout.BOTTOM, 0.70f, editorArea);
 
 		bottomFolder.addView(IPageLayout.ID_PROP_SHEET);
-		bottomFolder.addView(IPageLayout.ID_PROBLEM_VIEW);
+		bottomFolder.addView(ModelValidationView.VIEW_ID);
 
 		// bottom.addView("org.eclipse.pde.runtime.LogView");
 	}

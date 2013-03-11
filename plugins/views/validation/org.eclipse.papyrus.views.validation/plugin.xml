@@ -27,21 +27,6 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension
-            targetID="org.eclipse.papyrus.infra.core.perspective">
-         <viewShortcut
-               id="org.eclipse.papyrus.views.validation.ModelValidationView">
-         </viewShortcut>
-         <view
-               id="org.eclipse.papyrus.views.validation.ModelValidationView"
-               minimized="false"
-               relationship="stack"
-               relative="org.eclipse.ui.views.ProblemView">
-         </view>
-      </perspectiveExtension>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service
             classname="org.eclipse.papyrus.views.validation.internal.ValidationMarkersService"
