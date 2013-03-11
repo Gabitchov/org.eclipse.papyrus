@@ -52,7 +52,7 @@ public class MultiplicityLabelParser implements ISemanticParser {
 			String lower = ValueSpecificationUtil.getSpecificationValue(multiplicity.getLowerValue());
 			String upper = ValueSpecificationUtil.getSpecificationValue(multiplicity.getUpperValue());
 			if(multiplicity.getLower() != multiplicity.getUpper()) {
-				result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
+				result = String.format(MULTIPLICITY_FORMAT, lower, upper);
 			} else {
 				result = lower;
 			}
