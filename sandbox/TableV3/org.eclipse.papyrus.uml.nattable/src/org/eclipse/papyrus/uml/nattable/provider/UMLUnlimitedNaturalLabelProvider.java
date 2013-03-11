@@ -19,8 +19,8 @@ import java.util.List;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalInputValidator;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -41,8 +41,8 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 	 */
 	@Override
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			final ILayerCell cell = ((ILabelProviderContextElement)element).getCell();
+		if(element instanceof ILabelProviderCellContextElement) {
+			final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
 			final IConfigRegistry registry = ((ILabelProviderContextElement)element).getConfigRegistry();
 
 			//we do some quick test on the value

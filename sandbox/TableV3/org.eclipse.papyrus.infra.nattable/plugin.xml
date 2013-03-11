@@ -68,6 +68,46 @@
              </with>
           </visibleWhen>
        </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+             icon="icons/sort_columns_by_name_A_to_Z.gif"
+             label="Sort Columns (A-&gt;Z)"
+             style="push">
+          <parameter
+                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                value="true">
+          </parameter>
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+             icon="icons/sort_columns_by_name_Z_to_A.gif"
+             label="Sort Columns (Z-&gt;A)"
+             style="push">
+          <parameter
+                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                value="false">
+          </parameter>
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+             icon="icons/sort_columns_by_name_A_to_Z.gif"
+             label="Sort Rows (A-&gt;Z)"
+             style="push">
+          <parameter
+                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                value="true">
+          </parameter>
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+             icon="icons/sort_columns_by_name_Z_to_A.gif"
+             label="Sort Rows (Z-&gt;A)"
+             style="push">
+          <parameter
+                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                value="false">
+          </parameter>
+       </command>
     </menuContribution>
  </extension>
  <extension
@@ -184,6 +224,28 @@
          description="Export Table to XLS"
          id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
          name="Export Table to XLS Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.SortColumnsHandler"
+         id="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+         name="Sort Columns Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+            name="alphabetic_order"
+            optional="false">
+      </commandParameter>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.SortRowsHandler"
+         id="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+         name="Sort Rows Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+            name="alphabetic_order"
+            optional="false">
+      </commandParameter>
    </command>
 </extension>
 <extension

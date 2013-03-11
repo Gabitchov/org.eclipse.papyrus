@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.nattable.provider;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
@@ -43,7 +42,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 */
 	public boolean accept(Object element) {
 		if(element instanceof ILabelProviderContextElement) {
-			final Object value = ((ILabelProviderContextElement)element).getCell().getDataValue();
+			final Object value = ((ILabelProviderContextElement)element).getObject();
 			String id = AxisUtils.getPropertyId(value);
 			return (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX));
 		}
@@ -59,7 +58,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 */
 	@Override
 	public String getText(Object element) {
-		final Object value = ((ILabelProviderContextElement)element).getCell().getDataValue();
+		final Object value = ((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
 		final EObject tableContext = modelManager.getTable().getContext();

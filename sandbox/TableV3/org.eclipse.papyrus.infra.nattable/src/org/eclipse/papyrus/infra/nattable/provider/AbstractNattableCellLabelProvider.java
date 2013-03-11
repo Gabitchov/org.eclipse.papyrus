@@ -70,7 +70,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *        always throws {@link UnsupportedOperationException}
 	 */
 	public void addListener(ILabelProviderListener listener) {
-		throw new UnsupportedOperationException();
+//		throw new UnsupportedOperationException();
 	}
 
 	public void dispose() {
@@ -97,7 +97,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *        always throws {@link UnsupportedOperationException}
 	 */
 	public void removeListener(ILabelProviderListener listener) {
-		throw new UnsupportedOperationException();
+//		throw new UnsupportedOperationException();
 	}
 
 	/**

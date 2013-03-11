@@ -52,7 +52,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
 import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
 import org.eclipse.swt.widgets.Display;
 
-
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
 
 	/**
@@ -88,7 +87,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public NattableModelManager(final Table rawModel) {
 		super(rawModel);
-		//		this.table = rawModel;
+		// this.table = rawModel;
 		this.rowProvider = rawModel.getHorizontalContentProvider();
 		this.columnProvider = rawModel.getVerticalContentProvider();
 		this.verticalElements = new ArrayList<Object>();
@@ -154,8 +153,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        the ids of the axis manager to use
 	 * @param contentProvider
 	 *        the content provider in the model
-	 * @return
-	 *         the created axis manager to use to manage the {@link IAxisContentsProvider}
+	 * @return the created axis manager to use to manage the {@link IAxisContentsProvider}
 	 */
 	protected IAxisManager createAxisManager(final List<String> ids, final IAxisContentsProvider contentProvider) {
 		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
@@ -177,8 +175,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @return
-	 *         the list of the ids of the axis manager to use for the vertical axis
+	 * @return the list of the ids of the axis manager to use for the vertical
+	 *         axis
 	 */
 	protected List<String> getVerticalContentProviderIds() {
 		return this.table.getVerticalContentProvider().getJavaContentProviderIds();
@@ -186,8 +184,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @return
-	 *         the list of the ids of the axis manager to use for the horizontal axis
+	 * @return the list of the ids of the axis manager to use for the horizontal
+	 *         axis
 	 */
 
 	protected List<String> getHorizontalContentProviderIds() {
@@ -269,8 +267,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 
 	 * @param obj
 	 *        an eobject linked to the model
-	 * @return
-	 *         the editing domain to use
+	 * @return the editing domain to use
 	 */
 	private EditingDomain getEditingDomain(final EObject obj) {
 		ServicesRegistry registry = null;
@@ -291,8 +288,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getBodyDataProvider()
 	 * 
-	 * @return
-	 *         the data provider for the body of the table
+	 * @return the data provider for the body of the table
 	 */
 	public IDataProvider getBodyDataProvider() {
 		return this;
@@ -306,8 +302,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        the index of the column
 	 * @param rowIndex
 	 *        the index of the row
-	 * @return
-	 *         the contents to display in the cell localted to columnIndex and rowIndex
+	 * @return the contents to display in the cell localted to columnIndex and
+	 *         rowIndex
 	 */
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
 		final Object obj1 = this.verticalElements.get(columnIndex);
@@ -322,29 +318,28 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * this method returns the column data provider and is able to manage inversion in the axis
+	 * this method returns the column data provider and is able to manage
+	 * inversion in the axis
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getColumnDataProvider()
 	 * 
-	 * @return
-	 *         the column data provider
+	 * @return the column data provider
 	 */
 	public IAxisManager getColumnDataProvider() {
 		return this.columnManager;
 	}
 
 	/**
-	 * this method returns the row data provider and is able to manage inversion in the axis
+	 * this method returns the row data provider and is able to manage inversion
+	 * in the axis
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getLineDataProvider()
 	 * 
-	 * @return
-	 *         the row data provider
+	 * @return the row data provider
 	 */
 	public IAxisManager getLineDataProvider() {
 		return this.rowManager;
 	}
-
 
 	public void refreshNattable() {
 		if(natTable != null && !natTable.isDisposed()) {
@@ -363,7 +358,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 	}
 
-
 	public List<Object> getColumnElementsList() {
 		return this.verticalElements;
 	}
@@ -372,47 +366,38 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return this.horizontalElements;
 	}
 
-
 	public boolean canInsertRow(Collection<Object> objectsToAdd, int index) {
 		return this.rowManager.canInsertAxis(objectsToAdd, index);
 	}
-
 
 	public boolean canInsertColumns(Collection<Object> objectsToAdd, int index) {
 		return this.columnManager.canInsertAxis(objectsToAdd, index);
 	}
 
-
 	public boolean canDropColumnsElement(Collection<Object> objectsToAdd) {
 		return this.columnManager.canDropAxisElement(objectsToAdd);
 	}
 
-
 	public boolean canDropRowElement(Collection<Object> objectsToAdd) {
 		return this.rowManager.canDropAxisElement(objectsToAdd);
 	}
-
 
 	public void insertRows(Collection<Object> objectsToAdd, int index) {
 		this.rowManager.getInsertAxisCommand(objectsToAdd, index);
 
 	}
 
-
 	public void insertColumns(Collection<Object> objectsToAdd, int index) {
 		this.columnManager.getInsertAxisCommand(objectsToAdd, index);
 	}
-
 
 	public Object getColumnElement(int index) {
 		return this.verticalElements.get(index);
 	}
 
-
 	public Object getRowElement(int index) {
 		return this.horizontalElements.get(index);
 	}
-
 
 	public List<Object> getElementsList(IAxisContentsProvider axisProvider) {
 		if(axisProvider == this.columnProvider) {
@@ -423,11 +408,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return null;
 	}
 
-
 	public boolean canReoderRows() {
 		return this.rowManager.canReoderElements();
 	}
-
 
 	public boolean canReorderColumns() {
 		return this.columnManager.canReoderElements();
@@ -439,7 +422,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		domain.getCommandStack().execute(cmd);
 	}
 
-	//not tested
+	// not tested
 	public void reorderRowElements(final IAxis axisToMove, final int newIndex) {
 		final EditingDomain domain = getEditingDomain(axisToMove);
 		final Command cmd = MoveCommand.create(getEditingDomain(axisToMove), this.rowProvider, NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), axisToMove, newIndex);
@@ -466,18 +449,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return columnManager.canBeUsedAsRowManager() && rowManager.canBeUsedAsColumnManager();
 	}
 
-
 	public boolean canCreateRowElement(String elementType) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-
 	public boolean canCreateColumnElement(String elementType) {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
 
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd) {
 		final EditingDomain domain = getEditingDomain(this.table);
@@ -493,7 +473,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return cmd;
 	}
 
-
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd) {
 		final EditingDomain domain = getEditingDomain(this.table);
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
@@ -508,8 +487,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return cmd;
 	}
 
-
-
 	public boolean declareEditorsOnColumns() {
 		return true;
 	}
@@ -518,13 +495,24 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return false;
 	}
 
-
 	public Table getTable() {
 		return table;
 	}
 
-	public ITableAxisElementProvider getTableAxisElementProvider() {//FIXME : must be renamed?
+	public ITableAxisElementProvider getTableAxisElementProvider() {// FIXME :
+																	// must be
+																	// renamed?
 		return this;
+	}
+
+
+	public void sortColumnsByName(final boolean alphabeticOrder) {
+		this.columnManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry());
+	}
+
+
+	public void sortRowsByName(final boolean alphabeticOrder) {
+		this.rowManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry());
 	}
 
 }

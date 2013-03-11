@@ -48,7 +48,7 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 */
 	public boolean accept(Object element) {
 		if(element instanceof ILabelProviderContextElement) {
-			final Object object = ((ILabelProviderContextElement)element).getCell().getDataValue();
+			final Object object = ((ILabelProviderContextElement)element).getObject();
 			return object instanceof EStructuralFeature;
 		}
 		return false;
@@ -135,7 +135,7 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 */
 	@Override
 	public String getText(Object element) {
-		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getCell().getDataValue();
+		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		String txt = getText(configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
 		if(feature instanceof EReference && ((EReference)feature).isContainment()) {

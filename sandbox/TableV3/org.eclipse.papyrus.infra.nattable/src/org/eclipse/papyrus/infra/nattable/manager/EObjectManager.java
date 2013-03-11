@@ -69,38 +69,40 @@ public class EObjectManager extends AbstractAxisManager {
 	 */
 	@Override
 	public synchronized void updateAxisContents() {
-		final List<Object> axisContents = getTableManager().getElementsList(getRepresentedContentProvider());
-		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
-		final List<EObject> representedElement = new ArrayList<EObject>();
-		for(int i = 0; i < axis.size(); i++) {
-			IAxis current = axis.get(i);
-			if(current instanceof EObjectAxis) {
-				final EObject element = (EObject)current.getElement();
-				if(element != null) {
-					int currentIndex = axisContents.indexOf(element);
-					if(currentIndex == -1) {
-						axisContents.add(element);
-					} else if(currentIndex != i) {
-						axisContents.remove(currentIndex);
-						if(i<=axisContents.size()){
-							axisContents.add(i, element);		
-						}else{
+		if(getTableManager() != null) {
+			final List<Object> axisContents = getTableManager().getElementsList(getRepresentedContentProvider());
+			final List<IAxis> axis = getRepresentedContentProvider().getAxis();
+			final List<EObject> representedElement = new ArrayList<EObject>();
+			for(int i = 0; i < axis.size(); i++) {
+				IAxis current = axis.get(i);
+				if(current instanceof EObjectAxis) {
+					final EObject element = (EObject)current.getElement();
+					if(element != null) {
+						int currentIndex = axisContents.indexOf(element);
+						if(currentIndex == -1) {
 							axisContents.add(element);
+						} else if(currentIndex != i) {
+							axisContents.remove(currentIndex);
+							if(i <= axisContents.size()) {
+								axisContents.add(i, element);
+							} else {
+								axisContents.add(element);
+							}
+
 						}
-						
+						representedElement.add((EObject)current.getElement());
 					}
-					representedElement.add((EObject)current.getElement());
 				}
 			}
-		}
 
-		//we remove the elements which are referenced but removed from the table (probably destroyed)
-		final ListIterator<Object> iterator = axisContents.listIterator();
-		while(iterator.hasNext()) {
-			final Object current = iterator.next();
-			if(current instanceof EObject || current == null) {
-				if(!representedElement.contains(current)) {
-					iterator.remove();
+			//we remove the elements which are referenced but removed from the table (probably destroyed)
+			final ListIterator<Object> iterator = axisContents.listIterator();
+			while(iterator.hasNext()) {
+				final Object current = iterator.next();
+				if(current instanceof EObject || current == null) {
+					if(!representedElement.contains(current)) {
+						iterator.remove();
+					}
 				}
 			}
 		}

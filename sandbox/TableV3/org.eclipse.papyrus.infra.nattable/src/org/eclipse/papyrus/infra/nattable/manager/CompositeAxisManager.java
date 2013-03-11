@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 
 
@@ -189,5 +190,9 @@ public class CompositeAxisManager extends AbstractAxisManager {
 			}
 		}
 		return true;
+	}
+
+	public void sortAxisByName(boolean inverted, final IConfigRegistry configRegistry) {
+		super.sortAxisByName(inverted, configRegistry);
 	}
 }

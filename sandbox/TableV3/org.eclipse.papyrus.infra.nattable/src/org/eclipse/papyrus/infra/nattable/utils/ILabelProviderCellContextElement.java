@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
-import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 
 
@@ -23,15 +22,15 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
  * @author Vincent Lorenzo
  * 
  */
-public interface ILabelProviderContextElement {
+public interface ILabelProviderCellContextElement extends ILabelProviderContextElement{
 
 	/**
 	 * 
 	 * @return
-	 *         the config registry which can provide useful information
+	 *         the cell for which we want the label
 	 */
-	public IConfigRegistry getConfigRegistry();
+	public ILayerCell getCell();
 
-	public Object getObject();
-
+	
+		
 }

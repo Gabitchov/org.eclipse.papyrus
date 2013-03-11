@@ -22,6 +22,7 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
@@ -43,8 +44,8 @@ public class EMFCellLabelProvider extends AbstractNattableCellLabelProvider {
 	 *         {@link EStructuralFeature} of an {@link EObject}
 	 */
 	public boolean accept(Object element) {
-		if(element instanceof ILabelProviderContextElement) {
-			final ILayerCell cell = ((ILabelProviderContextElement)element).getCell();
+		if(element instanceof ILabelProviderCellContextElement) {
+			final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
 			final IConfigRegistry registry = ((ILabelProviderContextElement)element).getConfigRegistry();
 			final Object rowElement = getRowObject(cell, registry);
 			final Object columnElement = getColumnObject(cell, registry);
@@ -65,7 +66,7 @@ public class EMFCellLabelProvider extends AbstractNattableCellLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
-		final ILayerCell cell = ((ILabelProviderContextElement)element).getCell();
+		final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
 		final IConfigRegistry registry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		Object value = cell.getDataValue();
 		String label = ""; //$NON-NLS-1$

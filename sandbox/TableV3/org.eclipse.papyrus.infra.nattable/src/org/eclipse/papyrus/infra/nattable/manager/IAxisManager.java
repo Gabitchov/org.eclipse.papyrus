@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 import org.eclipse.ui.services.IDisposable;
@@ -26,22 +27,19 @@ public interface IAxisManager extends IDisposable {
 
 	/**
 	 * 
-	 * @return
-	 *         the id of the manager
+	 * @return the id of the manager
 	 */
 	public String getManagerId();
 
 	/**
 	 * 
-	 * @return
-	 *         <code>true</code> if the manager can be used horizontally
+	 * @return <code>true</code> if the manager can be used horizontally
 	 */
 	public boolean canBeUsedAsRowManager();
 
 	/**
 	 * 
-	 * @return
-	 *         <code>true</code> if the manager can be used vertically
+	 * @return <code>true</code> if the manager can be used vertically
 	 */
 	public boolean canBeUsedAsColumnManager();
 
@@ -51,8 +49,7 @@ public interface IAxisManager extends IDisposable {
 	 *        the editing domain
 	 * @param objectToAdd
 	 *        the object to add
-	 * @return
-	 *         the command to add an axis to the emf model
+	 * @return the command to add an axis to the emf model
 	 */
 	public Command getAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
 
@@ -62,19 +59,18 @@ public interface IAxisManager extends IDisposable {
 	 *        the editing domain
 	 * @param objectToAdd
 	 *        the object to add
-	 * @return
-	 *         the complementary command, which is called by the master on the slave to add required axis
+	 * @return the complementary command, which is called by the master on the
+	 *         slave to add required axis
 	 */
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
 
-
 	public void init(final INattableModelManager manager, String managerId, final Table table, final IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges);
 
-	//	public Object getHeaderDataValue(int columnIndex, int rowIndex);
+	// public Object getHeaderDataValue(int columnIndex, int rowIndex);
 
-	//	public int getHeaderColumnCount();
+	// public int getHeaderColumnCount();
 	//
-	//	public int getHeaderRowCount();
+	// public int getHeaderRowCount();
 
 	public void setHeaderDataValue(int columnIndex, int rowIndex, Object newValue);
 
@@ -86,63 +82,64 @@ public interface IAxisManager extends IDisposable {
 
 	public ILimitedNattableModelManager getTableManager();
 
-
-
-
-
-	//	public List<?> getAllVisibleAxis();
+	// public List<?> getAllVisibleAxis();
 
 	public List<?> getAllCurrentPossibleAxis();
 
-	//	public List<?> getAllExistingAxis();
+	// public List<?> getAllExistingAxis();
 
-
-	//	public IContentProvider getFlatContentProvider();
+	// public IContentProvider getFlatContentProvider();
 	//
-	//	public IContentProvider getHierarchicalContentProvider();
+	// public IContentProvider getHierarchicalContentProvider();
 
-	//	public boolean isUsedVertically();
+	// public boolean isUsedVertically();
 	//
-	//	public boolean isUsedHorizontally();
+	// public boolean isUsedHorizontally();
 
-	//	public boolean isMaster();
+	// public boolean isMaster();
 
 	public boolean canInsertAxis(Collection<Object> objectsToAdd, int index);
 
-
 	public boolean canDropAxisElement(Collection<Object> objectsToAdd);
-
 
 	public Command getInsertAxisCommand(Collection<Object> objectsToAdd, int index);
 
 	public void updateAxisContents();
 
-	//	public int getHeaderColumnCount() {
-	//		// TODO Auto-generated method stub
-	//		return 0;
-	//	}
+	// public int getHeaderColumnCount() {
+	// // TODO Auto-generated method stub
+	// return 0;
+	// }
 	//
-	//	public int getHeaderRowCount() {
-	//		// TODO Auto-generated method stub
-	//		return 0;
-	//	}
+	// public int getHeaderRowCount() {
+	// // TODO Auto-generated method stub
+	// return 0;
+	// }
 
-	//	public List<?> getAllVisibleAxis() {
-	//		// TODO Auto-generated method stub
-	//		return null;
-	//	}
+	// public List<?> getAllVisibleAxis() {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 	//
-	//	public List<?> getAllExistingAxis() {
-	//		// TODO Auto-generated method stub
-	//		return null;
-	//	}
+	// public List<?> getAllExistingAxis() {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 
 	public boolean isAllowedContents(final Object object);
 
 	/**
 	 * 
-	 * @return
-	 *         <code>true</code> if we can reorder the elements on the axis
+	 * @return <code>true</code> if we can reorder the elements on the axis
 	 */
 	public boolean canReoderElements();
+
+	/**
+	 * 
+	 * @param alpabeticOrder
+	 *        <code>true</code> if we sort the axis by alphabetic order, <code>false</code> if not
+	 * @param iConfigRegistry
+	 *        the config registry used to find the label provider
+	 */
+	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
 }

@@ -13,19 +13,41 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
+import org.eclipse.core.internal.dtree.IComparator;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+import org.eclipse.papyrus.infra.nattable.utils.Constants;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.widgets.Display;
-
+import org.eclipse.ui.handlers.HandlerUtil;
 
 public abstract class AbstractAxisManager implements IAxisManager {
 
@@ -35,7 +57,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 * the managed table
 	 */
-	private Table pTable; //FIXME : this field should be removed
+	private Table pTable; // FIXME : this field should be removed
 
 	/**
 	 * the represented axis provider
@@ -64,8 +86,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param managerId
 	 *        the id of this manager
 	 * @param table
-	 *        //FIXME : this arg must be remove
-	 *        the managed table
+	 *        //FIXME : this arg must be remove the managed table
 	 * @param provider
 	 *        the represented axis provider
 	 */
@@ -80,7 +101,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 				@Override
 				public void notifyChanged(org.eclipse.emf.common.notify.Notification msg) {
-					//FIXME : Here, this is a 2 asynExec... we must do refresh on the command stack event
+					// FIXME : Here, this is a 2 asynExec... we must do refresh
+					// on the command stack event
 					Display.getDefault().asyncExec(new Runnable() {
 
 						public void run() {
@@ -88,7 +110,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 						}
 					});
 
-					//FIXME this line must be removed when we will use GlazedList
+					// FIXME this line must be removed when we will use
+					// GlazedList
 					((NattableModelManager)getTableManager()).refreshNattable();
 
 				};
@@ -98,12 +121,13 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	/**
-	 * this methods must be used to update the contents of the rows or columns element
+	 * this methods must be used to update the contents of the rows or columns
+	 * element
 	 */
 	public synchronized void updateAxisContents() {
-		//must be overriden
-		//code example :
-		//		getTableManager().getColumnElementsList().add(anObject);
+		// must be overriden
+		// code example :
+		// getTableManager().getColumnElementsList().add(anObject);
 	}
 
 	/**
@@ -221,7 +245,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return false;
 	}
 
-	//FIXME must be protected
+	// FIXME must be protected
 	public Table getTable() {
 		return this.pTable;
 	}
@@ -236,7 +260,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return this.representedContentProvider;
 	}
 
-	//FIXME : must be protected
+	// FIXME : must be protected
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getTableManager()
@@ -247,29 +271,32 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return this.tableManager;
 	}
 
-	//FIXME?
-	//	public final boolean isUsedVertically() {
-	//		return getTable().getVerticalContentProvider() == getRepresentedContentProvider();
-	//	}
+	// FIXME?
+	// public final boolean isUsedVertically() {
+	// return getTable().getVerticalContentProvider() ==
+	// getRepresentedContentProvider();
+	// }
 
-	//	//FIXME?
-	//	public final boolean isUsedHorizontally() {
-	//		return getTable().getHorizontalContentProvider() == getRepresentedContentProvider();
-	//	}
+	// //FIXME?
+	// public final boolean isUsedHorizontally() {
+	// return getTable().getHorizontalContentProvider() ==
+	// getRepresentedContentProvider();
+	// }
 	//
-	//	//FIXME?
-	//	public Object getHeaderDataValue(final int columnIndex, final int rowIndex) {
-	//		return null;
+	// //FIXME?
+	// public Object getHeaderDataValue(final int columnIndex, final int
+	// rowIndex) {
+	// return null;
 	//
-	//	}
+	// }
 
-	//FIXME?
+	// FIXME?
 	public void setHeaderDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		// TODO Auto-generated method stub
 
 	}
 
-	//FIXME?
+	// FIXME?
 	public List<?> getAllCurrentPossibleAxis() {
 		// TODO Auto-generated method stub
 		return null;
@@ -287,10 +314,10 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	protected boolean hasAxisConfiguration(final TableEditorConfiguration configuration) {
 		IAxisContentsProvider axisConfig = null;
-		//we are working with the horizontal content provider
+		// we are working with the horizontal content provider
 		if(getTable().getHorizontalContentProvider() == getRepresentedContentProvider()) {
 			axisConfig = configuration.getDefaultHorizontalContentProvider();
-		} else {//we are working with the 
+		} else {// we are working with the
 			axisConfig = configuration.getDefaultVerticalContentProvider();
 		}
 		if(axisConfig != null) {
@@ -317,4 +344,90 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public boolean canReoderElements() {
 		return true;
 	}
+
+
+	public void sortAxisByName(final boolean alphabeticOrder, final IConfigRegistry configRegistry) {
+		// the order
+		Set<IAxis> axis = new TreeSet<IAxis>(new AxisComparator(alphabeticOrder, configRegistry));
+		axis.addAll(getRepresentedContentProvider().getAxis());
+
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(representedContentProvider);//FIXME
+		final Command cmd = SetCommand.create(domain, representedContentProvider, NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), new ArrayList<IAxis>(axis));
+		domain.getCommandStack().execute(cmd);
+	}
+
+	/**
+	 * The comparator used to sort IAxis
+	 * 
+	 * @author Vincent Lorenzo
+	 * 
+	 */
+	public class AxisComparator implements Comparator<IAxis> {
+
+		/**
+		 * indicates the direction of the sort
+		 */
+		private boolean alphabeticOrder;
+
+		/**
+		 * the config registry is used to find the label provider service
+		 */
+		private IConfigRegistry configRegistry;
+
+		/**
+		 * This regex allows to find all word character (letters + numbers)+ the whitespace
+		 */
+		private static final String REGEX = "[^\\w\\s]";
+
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param alphabeticOrder
+		 *        indicates the direction of the sort
+		 * @param configRegistry
+		 *        the config registry used by the table
+		 */
+		public AxisComparator(boolean alphabticOrder, final IConfigRegistry configRegistry) {
+			this.alphabeticOrder = alphabticOrder;
+			this.configRegistry = configRegistry;
+		}
+
+		/**
+		 * Compare 2 {@link IAxis}
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 * 
+		 * @param arg0
+		 * @param arg1
+		 * @return
+		 */
+		public int compare(IAxis arg0, IAxis arg1) {
+			LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+			Object element0 = arg0.getElement();
+			Object element1 = arg1.getElement();
+			final String str1 = getText(serv, element0).replaceAll(REGEX, "");//we keep only words characters (letters + numbers) + whitespace
+			final String str2 = getText(serv, element1).replaceAll(REGEX, "");
+			if(alphabeticOrder) {
+				return str1.compareToIgnoreCase(str2);
+			}
+			return str2.compareToIgnoreCase(str1);
+
+		}
+
+		/**
+		 * 
+		 * @param serv
+		 *        the label provider service
+		 * @param obj
+		 *        the object for which we want the displayed text
+		 * @return
+		 */
+		protected String getText(final LabelProviderService serv, final Object obj) {
+			final ILabelProvider provider = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
+			return provider.getText(new LabelProviderContextElement(obj, configRegistry));
+		}
+	}
+
+
 }

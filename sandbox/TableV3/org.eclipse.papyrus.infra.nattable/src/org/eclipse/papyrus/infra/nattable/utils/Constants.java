@@ -49,4 +49,9 @@ public class Constants {
 
 	public static final String BODY_LABEL_PROVIDER_CONTEXT = "org.eclipse.papyrus.infra.nattable.body.labelprovider";
 
+	/**
+	 * The name of the parameter used for the sort command
+	 */
+	public static final String SORT_COMMAND_PARAMETER = "org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter";
+
 }

@@ -23,42 +23,44 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
  * @author Vincent Lorenzo
  * 
  */
-public class LabelProviderContextElement implements ILabelProviderContextElement {
+public class LabelProviderCellContextElement extends LabelProviderContextElement implements ILabelProviderCellContextElement {
 
-	private IConfigRegistry registry;
+	/**
+	 * the cell
+	 */
+	private ILayerCell cell;
 
-	private Object object;
 	/**
 	 * *
 	 * Constructor.
 	 * 
-	 * @param object
+	 * @param cell
 	 *        the cell for which we want the label/icon, ...
 	 * @param registry
 	 *        the registry used by nattable
 	 */
-	public LabelProviderContextElement(final Object object, final IConfigRegistry registry) {
-		this.object = object;
-		this.registry = registry;
+	public LabelProviderCellContextElement(ILayerCell cell, final IConfigRegistry registry) {
+		super(cell.getDataValue(), registry);
+		this.cell = cell;
 	}
-
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement#getConfigRegistry()
+	 * @see org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement#getCell()
 	 * 
 	 * @return
 	 */
-	public IConfigRegistry getConfigRegistry() {
-		return this.registry;
+	public ILayerCell getCell() {
+		return cell;
 	}
+
 
 	/**
 	 * 
 	 * @return
 	 */
 	public Object getObject() {
-		return this.object;
+		return this.cell.getDataValue();
 	}
 
 }

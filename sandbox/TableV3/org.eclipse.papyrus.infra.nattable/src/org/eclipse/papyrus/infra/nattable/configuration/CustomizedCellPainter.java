@@ -20,7 +20,7 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
@@ -44,7 +44,7 @@ public class CustomizedCellPainter extends TextPainter {
 	@Override
 	protected String convertDataType(final ILayerCell cell, final IConfigRegistry configRegistry) {
 		final LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		final ILabelProviderContextElement contextElement = new LabelProviderContextElement(cell, configRegistry);
+		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
 		final ILabelProvider provider = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT, contextElement);
 		return provider.getText(contextElement);
 	}

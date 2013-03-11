@@ -97,4 +97,9 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public void selectAll();
 
 	public void exportToXLS();
+	
+	public void sortColumnsByName(final boolean alphabeticOrder);
+	
+	public void sortRowsByName(final boolean alphabeticOrder);
+	
 }
