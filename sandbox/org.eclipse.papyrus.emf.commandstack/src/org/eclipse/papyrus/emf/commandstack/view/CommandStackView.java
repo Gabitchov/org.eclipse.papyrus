@@ -44,6 +44,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 
 public class CommandStackView extends AbstractTreeView {
@@ -244,8 +245,12 @@ public class CommandStackView extends AbstractTreeView {
 					return children.toArray();
 				} else if(parentElement instanceof GMFtoEMFCommandWrapper) {
 					return new Object[]{ ((GMFtoEMFCommandWrapper)parentElement).getGMFCommand() };
+				} else if(parentElement instanceof GEFtoEMFCommandWrapper) {
+					return new Object[]{ ((GEFtoEMFCommandWrapper)parentElement).getGEFCommand() };
 				} else if(parentElement instanceof CommandProxy) {
 					return new Object[]{ ((CommandProxy)parentElement).getCommand() };
+				} else if(parentElement instanceof org.eclipse.gef.commands.CompoundCommand) {
+					return ((org.eclipse.gef.commands.CompoundCommand)parentElement).getChildren();
 				}
 				return new Object[0];
 			}
