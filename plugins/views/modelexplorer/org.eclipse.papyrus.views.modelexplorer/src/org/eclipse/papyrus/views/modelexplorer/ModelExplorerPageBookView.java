@@ -64,7 +64,6 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
 
@@ -83,7 +82,6 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 	public String getContributorId() {
 		// return Activator.PLUGIN_ID;
 		return "TreeOutlinePage"; //$NON-NLS-1$
-
 	}
 
 	/**

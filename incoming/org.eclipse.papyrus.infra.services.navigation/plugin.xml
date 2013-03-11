@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="navigationContributor" name="navigationContributor" schema="schema/navigationContributor.exsd"/>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.services.navigation.service.impl.NavigationServiceImpl"
+            id="org.eclipse.papyrus.infra.services.navigation.service.NavigationService"
+            priority="1"
+            startKind="lazy">
+      </service>
+   </extension>
+
+</plugin>

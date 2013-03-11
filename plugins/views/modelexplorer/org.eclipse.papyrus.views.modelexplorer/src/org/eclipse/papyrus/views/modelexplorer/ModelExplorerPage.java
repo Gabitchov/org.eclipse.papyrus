@@ -24,14 +24,15 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * Page handling the {@link ModelExplorerView} for the {@link ModelExplorerPageBookView}
+ * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class ModelExplorerPage extends ViewPartPage {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param part
 	 */
 	public ModelExplorerPage() {
@@ -39,24 +40,26 @@ public class ModelExplorerPage extends ViewPartPage {
 
 	/**
 	 * Create the Viewer for the requested part
-	 * @param part The part to associate to the Viewer.
+	 * 
+	 * @param part
+	 *        The part to associate to the Viewer.
 	 * @return
 	 */
+	@Override
 	protected IViewPart createViewer(IWorkbenchPart part) {
-		
 		// Part is of the right type because of call  to isImportant()
 		return new ModelExplorerView((IMultiDiagramEditor)part);
 	}
-	
+
 	/**
 	 * Create control of the inner view
+	 * 
 	 * @see org.eclipse.ui.part.Page#createControl(org.eclipse.swt.widgets.Composite)
-	 *
+	 * 
 	 * @param parent
 	 */
 	@Override
 	public void createControl(Composite parent) {
-		
 		getViewer().createPartControl(parent);
 	}
 

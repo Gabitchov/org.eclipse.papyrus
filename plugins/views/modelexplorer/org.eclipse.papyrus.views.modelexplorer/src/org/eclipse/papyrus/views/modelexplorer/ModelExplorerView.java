@@ -14,10 +14,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -38,9 +40,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.ToolTip;
@@ -55,6 +59,9 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
+import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
 import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
@@ -62,10 +69,17 @@ import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseMoveListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.ISaveablePart;
@@ -178,7 +192,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 
 	/** The {@link IPropertySheetPage} this model explorer will use. */
-	private IPropertySheetPage propertySheetPage = null;
+	private final List<IPropertySheetPage> propertySheetPages = new LinkedList<IPropertySheetPage>();
 
 	/**
 	 * 
@@ -370,9 +384,153 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
 		getCommonViewer().addDoubleClickListener(new DoubleClickListener(serviceRegistry));
 		Tree tree = getCommonViewer().getTree();
-		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 
+		tree.addKeyListener(new KeyListener() {
+
+			public void keyReleased(KeyEvent e) {
+				if(e.keyCode == SWT.CTRL) {
+					exitItem();
+				}
+			}
+
+			public void keyPressed(KeyEvent e) {
+				//Nothing
+			}
+		});
+
+		tree.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseUp(MouseEvent e) {
+				TreeItem currentItem = getTreeItem(e);
+				if(currentItem != null) {
+					Object data = currentItem.getData();
+					try {
+						NavigationService service = serviceRegistry.getService(NavigationService.class);
+						List<NavigableElement> navigableElements = service.getNavigableElements(data);
+
+						//TODO: Implement a priority on NavigableElements and navigate the element with the highest priority
+						for(NavigableElement navigableElement : navigableElements) {
+							if(navigableElement.isEnabled()) {
+								navigableElement.navigate(ModelExplorerView.this);
+							}
+						}
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+					}
+				}
+			}
+		});
+
+		tree.addMouseMoveListener(new MouseMoveListener() {
+
+			public void mouseMove(MouseEvent e) {
+
+				if(isExitState(e)) {
+					exitItem();
+				}
+
+				if(isEnterState(e)) {
+					enterItem(currentItem, e);
+				}
+
+			}
+
+		});
+
+		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 	}
+
+	TreeItem currentItem;
+
+	SelectionMenu selectionMenu;
+
+	private boolean isExitState(MouseEvent e) {
+		if(currentItem == null) {
+			return false;
+		}
+
+		TreeItem item = getTreeItem(e);
+		if(item == null) {
+			return true;
+		}
+
+		if(item != currentItem) {
+			return true;
+		}
+
+		if((e.stateMask & SWT.CTRL) == 0) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean isEnterState(MouseEvent e) {
+		TreeItem item = getTreeItem(e);
+		if(item == currentItem) {
+			return false;
+		}
+
+		if(item == null) {
+			return false;
+		}
+
+		if((e.stateMask & SWT.CTRL) == 0) {
+			return false;
+		}
+
+		currentItem = item;
+
+		return true;
+	}
+
+	private void disposeCurrentMenu() {
+		if(selectionMenu != null) {
+			selectionMenu.dispose();
+			selectionMenu = null;
+		}
+	}
+
+	private void exitItem() {
+		currentItem = null;
+		disposeCurrentMenu();
+	}
+
+	private void enterItem(TreeItem item, MouseEvent e) {
+		try {
+			NavigationService navigation = serviceRegistry.getService(NavigationService.class);
+			disposeCurrentMenu();
+			selectionMenu = navigation.createNavigationList(item.getData(), item.getParent());
+			if(selectionMenu == null) {
+				return;
+			}
+
+			selectionMenu.addSelectionChangedListener(new ISelectionChangedListener() {
+
+				public void selectionChanged(SelectionChangedEvent event) {
+					if(event.getSelection().isEmpty()) {
+						return;
+					}
+					Object selectedElement = ((IStructuredSelection)event.getSelection()).getFirstElement();
+					if(selectedElement instanceof NavigableElement) {
+						NavigableElement navigableElement = (NavigableElement)selectedElement;
+						if(navigableElement.isEnabled()) {
+							((NavigableElement)selectedElement).navigate(ModelExplorerView.this);
+							exitItem();
+						}
+					}
+				}
+			});
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+	}
+
+	private TreeItem getTreeItem(MouseEvent e) {
+		return ((Tree)e.widget).getItem(new Point(e.x, e.y));
+	}
+
 
 	/**
 	 * Return the control used to render this View
@@ -392,12 +550,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public void init(IViewSite site, IMemento aMemento) throws PartInitException {
 		super.init(site, aMemento);
 
-		// Hook undo/redo action
-		//		hookGlobalHistoryHandler(site);
-
-		//		page.addPartListener(partListener);
 		activate();
-
 	}
 
 	/**
@@ -411,19 +564,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		page.addSelectionListener(pageSelectionListener);
 	}
-
-	/**
-	 * Hook the global undo/redi actions.
-	 */
-	//	private void hookGlobalHistoryHandler(IViewSite site) {
-	//		undoHandler = new UndoActionHandler(site, null);
-	//		redoHandler = new RedoActionHandler(site, null);
-	//
-	//		IActionBars actionBars = site.getActionBars();
-	//
-	//		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(), undoHandler);
-	//		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoHandler);
-	//	}
 
 	/**
 	 * {@link ResourceSetListener} to listen and react to changes in the
@@ -511,7 +651,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		try {
 			this.editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
-			//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
+
 			// Set Viewer input if it already exist
 			if(getCommonViewer() != null) {
 				getCommonViewer().setInput(serviceRegistry);
@@ -524,18 +664,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// Listen to isDirty flag
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 
-		// Hook
-		//			if(undoHandler != null){
-		//				IUndoContext undoContext = getUndoContext(part);
-		//				undoHandler.setContext(undoContext);
-		//				undoHandler.update();
-		//				redoHandler.setContext(undoContext);
-		//				redoHandler.update();
-		//			}
 		if(this.getCommonViewer() != null) {
 			refresh();
 		}
-
 	}
 
 	/**
@@ -551,14 +682,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		getSite().getPage().removeSelectionListener(pageSelectionListener);
 		// Stop Listening to isDirty flag
 		saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
-
-		// unhook
-		//			IUndoContext undoContext = getUndoContext(editorPart);
-		//			undoHandler.setContext(undoContext);
-		//			undoHandler.update();
-		//			redoHandler.setContext(undoContext);
-		//			redoHandler.update();
-
 
 		if(editingDomain != null) {
 			editingDomain.removeResourceSetListener(resourceSetListener);
@@ -583,6 +706,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		saveAndDirtyService = null;
 		undoContext = null;
 		editingDomain = null;
+
+		for(IPropertySheetPage propertySheetPage : this.propertySheetPages) {
+			propertySheetPage.dispose();
+		}
+
+		propertySheetPages.clear();
 
 		super.dispose();
 
@@ -610,13 +739,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			final IMultiDiagramEditor multiDiagramEditor = ServiceUtils.getInstance().getService(IMultiDiagramEditor.class, serviceRegistry);
 
 			if(multiDiagramEditor != null) {
-				if(propertySheetPage == null || propertySheetPage.getControl() == null || propertySheetPage.getControl().isDisposed()) {
-					if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
-						ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
-						this.propertySheetPage = new TabbedPropertySheetPage(contributor);
-					}
+				if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
+					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
+					IPropertySheetPage propertySheetPage = new TabbedPropertySheetPage(contributor);
+					this.propertySheetPages.add(propertySheetPage);
+					return propertySheetPage;
 				}
-				return propertySheetPage;
 			}
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
