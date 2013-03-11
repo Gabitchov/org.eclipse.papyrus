@@ -115,7 +115,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * The {@link ServicesRegistry} associated to the Editor. This view is associated to the
 	 * ServicesRegistry rather than to the EditorPart.
 	 */
-	private ServicesRegistry serviceRegistry;
+	private final ServicesRegistry serviceRegistry;
 
 	/** The save aservice associated to the editor. */
 	private ISaveAndDirtyService saveAndDirtyService;
@@ -368,7 +368,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		super.createPartControl(aParent);
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
-		getCommonViewer().addDoubleClickListener(new DoubleClickListener());
+		getCommonViewer().addDoubleClickListener(new DoubleClickListener(serviceRegistry));
 		Tree tree = getCommonViewer().getTree();
 		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 
@@ -583,7 +583,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		saveAndDirtyService = null;
 		undoContext = null;
 		editingDomain = null;
-		serviceRegistry = null;
 
 		super.dispose();
 
@@ -611,7 +610,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			final IMultiDiagramEditor multiDiagramEditor = ServiceUtils.getInstance().getService(IMultiDiagramEditor.class, serviceRegistry);
 
 			if(multiDiagramEditor != null) {
-				if(propertySheetPage == null) {
+				if(propertySheetPage == null || propertySheetPage.getControl() == null || propertySheetPage.getControl().isDisposed()) {
 					if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
 						ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
 						this.propertySheetPage = new TabbedPropertySheetPage(contributor);

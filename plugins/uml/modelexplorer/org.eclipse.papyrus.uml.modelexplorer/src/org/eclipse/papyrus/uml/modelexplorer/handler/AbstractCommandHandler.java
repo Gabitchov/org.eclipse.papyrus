@@ -14,9 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -27,8 +24,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.uml.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.CommandContext;
 import org.eclipse.papyrus.views.modelexplorer.ICommandContext;
@@ -59,91 +55,6 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * </pre>
 	 */
 	protected abstract Command getCommand();
-
-	/**
-	 * <pre>
-	 * Get the selected element, the first selected element if several are selected or null 
-	 * if no selection or the selection is not an {@link EObject}. 
-	 * 
-	 * @return selected {@link EObject} or null
-	 * </pre>
-	 * 
-	 * @deprecated
-	 */
-	@Deprecated
-	protected EObject getSelectedElement() {
-		EObject eObject = null;
-
-		// Get current selection
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
-
-		// Treat non-null selected object (try to adapt and return EObject)
-		if(selection != null) {
-
-			// Get first element if the selection is an IStructuredSelection
-			if(selection instanceof IStructuredSelection) {
-				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-				selection = structuredSelection.getFirstElement();
-			}
-
-			// Treat non-null selected object (try to adapt and return EObject)
-			if(selection instanceof IAdaptable) {
-				selection = ((IAdaptable)selection).getAdapter(EObject.class);
-			}
-
-			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
-			if(businessObject instanceof EObject) {
-				eObject = (EObject)businessObject;
-			}
-
-		}
-		return eObject;
-	}
-
-	/**
-	 * <pre>
-	 * Parse current selection and extract the list of {@link EObject} from
-	 * this selection.
-	 * 
-	 * This also tries to adapt selected element into {@link EObject}
-	 * (for example to get the {@link EObject} from a selection in the ModelExplorer).
-	 * 
-	 * @return a list of currently selected {@link EObject}
-	 * </pre>
-	 * 
-	 * @deprecated
-	 */
-	@Deprecated
-	protected List<EObject> getSelectedElements() {
-
-		List<EObject> selectedEObjects = new ArrayList<EObject>();
-
-		// Get current selection
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		Object selection = (activeWorkbenchWindow != null) ? activeWorkbenchWindow.getSelectionService().getSelection() : null;
-
-		// Treat non-null selected object (try to adapt and return EObject)
-		if(selection != null) {
-
-			if(selection instanceof IStructuredSelection) {
-				IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-				for(Object current : structuredSelection.toArray()) {
-					// Adapt current selection to EObject
-					if(current instanceof IAdaptable) {
-						selectedEObjects.add((EObject)((IAdaptable)current).getAdapter(EObject.class));
-					}
-				}
-			} else { // Not a IStructuredSelection
-						// Adapt current selection to EObject
-				if(selection instanceof IAdaptable) {
-					selectedEObjects.add((EObject)((IAdaptable)selection).getAdapter(EObject.class));
-				}
-			}
-		}
-
-		return selectedEObjects;
-	}
 
 	/**
 	 * <pre>
@@ -219,10 +130,10 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 
 		try {
 
-			ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
+			ServiceUtilsForHandlers util = ServiceUtilsForHandlers.getInstance();
 			creationcommand = getCommand();
 
-			util.getTransactionalEditingDomain().getCommandStack().execute(creationcommand);
+			util.getTransactionalEditingDomain(event).getCommandStack().execute(creationcommand);
 
 			return creationcommand.getResult();
 

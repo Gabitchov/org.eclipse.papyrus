@@ -26,7 +26,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
@@ -38,6 +39,12 @@ import org.eclipse.papyrus.views.modelexplorer.Messages;
  */
 public class DoubleClickListener implements IDoubleClickListener {
 
+	private final ServicesRegistry servicesRegistry;
+
+	public DoubleClickListener(ServicesRegistry servicesRegistry) {
+		this.servicesRegistry = servicesRegistry;
+	}
+
 	/**
 	 * 
 	 * @see org.eclipse.jface.viewers.IDoubleClickListener#doubleClick(org.eclipse.jface.viewers.DoubleClickEvent)
@@ -48,7 +55,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 		final IPageManager pageManager;
 		//get the page Manager
 		try {
-			pageManager = ServiceUtilsForActionHandlers.getInstance().getIPageManager();
+			pageManager = ServiceUtils.getInstance().getIPageManager(servicesRegistry);
 		} catch (Exception e) {
 			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
 			return;
