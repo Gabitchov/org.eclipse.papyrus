@@ -18,6 +18,7 @@ import org.eclipse.net4j.util.security.PasswordCredentials;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -33,9 +34,9 @@ import org.eclipse.swt.widgets.Text;
 public class RepositoryCredentialsDialog
 		extends TitleAreaDialog {
 
-	private static final String TITLE = "Repository Login";
+	private static final String TITLE = Messages.RepositoryCredentialsDialog_0;
 
-	private static final String MESSAGE = "Enter your credentials for the repository \"{0}\".";
+	private static final String MESSAGE = Messages.RepositoryCredentialsDialog_1;
 
 	private final IPapyrusRepository repository;
 
@@ -75,16 +76,16 @@ public class RepositoryCredentialsDialog
 		main.setLayout(new GridLayout(2, false));
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
 
-		new Label(main, SWT.NONE).setText("User name:");
+		new Label(main, SWT.NONE).setText(Messages.RepositoryCredentialsDialog_2);
 		usernameText = new Text(main, SWT.BORDER);
 		GridDataFactory.fillDefaults().applyTo(usernameText);
 
-		new Label(main, SWT.NONE).setText("Password:");
+		new Label(main, SWT.NONE).setText(Messages.RepositoryCredentialsDialog_3);
 		passwordText = new Text(main, SWT.BORDER | SWT.PASSWORD);
 		GridDataFactory.fillDefaults().applyTo(passwordText);
 
 		rememberCheckbox = new Button(main, SWT.CHECK);
-		rememberCheckbox.setText("Remember login for this repository");
+		rememberCheckbox.setText(Messages.RepositoryCredentialsDialog_4);
 		GridDataFactory.fillDefaults().span(2, 1).applyTo(rememberCheckbox);
 
 		if (repository.getUsername() != null) {

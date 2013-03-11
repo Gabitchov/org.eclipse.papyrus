@@ -280,7 +280,7 @@ public class EProblemsContainerImpl
 		}
 
 		public void remove() {
-			throw new UnsupportedOperationException("remove");
+			throw new UnsupportedOperationException("remove"); //$NON-NLS-1$
 		}
 	}
 

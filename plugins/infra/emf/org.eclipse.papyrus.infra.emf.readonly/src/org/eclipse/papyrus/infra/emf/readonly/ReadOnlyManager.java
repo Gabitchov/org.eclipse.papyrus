@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
- *  Christian W. Damus (CEA) - support non-IFile resources (CDO)
+ *  Christian W. Damus (CEA) - support non-IFile resources and object-level permissions (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -22,17 +22,20 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
+
+import com.google.common.base.Optional;
 
 public class ReadOnlyManager {
 
-	protected static final IReadOnlyHandler[] orderedHandlersArray;
-	protected static final IReadOnlyHandler2[] orderedHandler2sArray;
+	protected static final IReadOnlyHandler2[] orderedHandlersArray;
 
 	protected static class HandlerPriorityPair implements Comparable<HandlerPriorityPair> {
 
-		public IReadOnlyHandler handler;
+		public Object handler;
 
 		public int priority;
 
@@ -55,7 +58,7 @@ public class ReadOnlyManager {
 			if("readOnlyHandler".equals(elem.getName())) {
 				try {
 					HandlerPriorityPair handlerPriorityPair = new HandlerPriorityPair();
-					handlerPriorityPair.handler = (IReadOnlyHandler)elem.createExecutableExtension("class");
+					handlerPriorityPair.handler = elem.createExecutableExtension("class");
 					handlerPriorityPair.priority = Integer.parseInt(elem.getAttribute("priority"));
 
 					handlerPriorityPairs.add(handlerPriorityPair);
@@ -69,13 +72,23 @@ public class ReadOnlyManager {
 
 		Collections.sort(handlerPriorityPairs);
 
-		orderedHandlersArray = new IReadOnlyHandler[handlerPriorityPairs.size()];
-		orderedHandler2sArray = new IReadOnlyHandler2[handlerPriorityPairs.size()];
+		orderedHandlersArray = new IReadOnlyHandler2[handlerPriorityPairs.size()];
 
 		for (int i = 0; i < orderedHandlersArray.length; i++) {
-			orderedHandlersArray[i] = handlerPriorityPairs.get(i).handler;
-			if (orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
-				orderedHandler2sArray[i] = (IReadOnlyHandler2) orderedHandlersArray[i];
+			Object handler = handlerPriorityPairs.get(i).handler;
+			if (handler instanceof IReadOnlyHandler2) {
+				orderedHandlersArray[i] = (IReadOnlyHandler2) handler;
+			} else {
+				@SuppressWarnings("deprecation")
+				boolean isOldStyle = (handler instanceof IReadOnlyHandler);
+			
+				if (isOldStyle) {
+					@SuppressWarnings("deprecation")
+					IReadOnlyHandler oldStyle = (IReadOnlyHandler) handler;
+					orderedHandlersArray[i] = new HandlerAdapter(oldStyle);
+				} else {
+					Activator.log.warn("Unsupported read-only handler type: " + handler);
+				}
 			}
 		}
 	}
@@ -109,38 +122,51 @@ public class ReadOnlyManager {
 	}
 
 	public static boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
-		for(int i = 0; i < orderedHandlersArray.length; i++) {
-			IReadOnlyHandler2 handler2 = orderedHandler2sArray[i];
-			if ((handler2 != null) && handler2.handlesURIs(uris, editingDomain)) {
-				// this one has a definitive answer, one way or the other
-				return handler2.isReadOnly(uris, editingDomain);
-			}
-			
-			// take the first that answers Yes
-			if (orderedHandlersArray[i].isReadOnly(uris, editingDomain)) {
-				return true;
-			}
+		Optional<Boolean> result = Optional.absent();
+		
+		for (int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
+			result = orderedHandlersArray[i].anyReadOnly(uris, editingDomain);
 		}
-		return false;
+		
+		return result.or(Boolean.FALSE);
 	}
 
 	public static boolean enableWrite(URI[] uris, EditingDomain editingDomain) {
-		for(int i = 0; i < orderedHandlersArray.length; i++) {
-			IReadOnlyHandler2 handler2 = orderedHandler2sArray[i];
-			if ((handler2 != null) && handler2.handlesURIs(uris, editingDomain)) {
-				// this one has a definitive answer, one way or the other
-				return handler2.enableWrite(uris, editingDomain);
-			}
-			
-			if (orderedHandlersArray[i].isReadOnly(uris, editingDomain)) {
-				boolean ok = orderedHandlersArray[i].enableWrite(uris, editingDomain);
-				if(!ok) {
-					return false;
-				}
-			}
+		Optional<Boolean> result = Optional.absent();
+		
+		for (int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
+			result = orderedHandlersArray[i].makeWritable(uris, editingDomain);
 		}
 
-		return true;
+		return result.or(Boolean.TRUE);
+	}
+
+	public static boolean isReadOnly(EObject eObject, EditingDomain editingDomain) {
+		Optional<Boolean> result = Optional.absent();
+		
+		for (int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
+			result = orderedHandlersArray[i].isReadOnly(eObject, editingDomain);
+		}
+		
+		if (!result.isPresent()) {
+			// assume that an object is writable if it's not in a resource
+			Resource resource = eObject.eResource();
+			result = Optional.of((resource != null)
+				&& isReadOnly(resource, editingDomain));
+		}
+		
+		return result.get();
+	}
+
+	public static boolean enableWrite(EObject eObject, EditingDomain editingDomain) {
+		Optional<Boolean> result = Optional.absent();
+		
+		for (int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
+			result = orderedHandlersArray[i].makeWritable(eObject, editingDomain);
+		}
+
+		return result.or(enableWrite(new URI[]{EcoreUtil.getURI(eObject)
+			.trimFragment()}, editingDomain));
 	}
 
 	public static boolean isReadOnly(IFile[] iFiles, EditingDomain editingDomain) {
@@ -149,5 +175,62 @@ public class ReadOnlyManager {
 
 	public static boolean enableWrite(IFile[] iFiles, EditingDomain editingDomain) {
 		return enableWrite(getURIs(iFiles), editingDomain);
+	}
+	
+	private static final class HandlerAdapter
+			implements IReadOnlyHandler2 {
+
+		@SuppressWarnings("deprecation")
+		private final IReadOnlyHandler delegate;
+
+		@SuppressWarnings("deprecation")
+		HandlerAdapter(IReadOnlyHandler handler) {
+			super();
+
+			this.delegate = handler;
+		}
+
+		public Optional<Boolean> anyReadOnly(URI[] uris,
+				EditingDomain editingDomain) {
+
+			// the old API contract is that handlers only return true if they
+			// know it to be true, because the manager takes the first positive
+			// answer
+			@SuppressWarnings("deprecation")
+			boolean delegateResult = delegate.isReadOnly(uris, editingDomain);
+			return delegateResult
+				? Optional.of(Boolean.TRUE)
+				: Optional.<Boolean> absent();
+		}
+
+		public Optional<Boolean> makeWritable(URI[] uris,
+				EditingDomain editingDomain) {
+
+			// the old API contract is that handlers only return false if they
+			// tried to but could not make the resources writable, because the
+			// manager takes the first negative answer (this is opposite to the
+			// isReadOnly logic)
+			@SuppressWarnings("deprecation")
+			boolean delegateResult = delegate.enableWrite(uris, editingDomain);
+			return delegateResult
+				? Optional.<Boolean> absent()
+				: Optional.of(Boolean.FALSE);
+		}
+
+		public Optional<Boolean> isReadOnly(EObject eObject,
+				EditingDomain editingDomain) {
+
+			// old-style read-only handlers don't support object-level
+			// permissions
+			return Optional.absent();
+		}
+
+		public Optional<Boolean> makeWritable(EObject eObject,
+				EditingDomain editingDomain) {
+
+			// old-style read-only handlers don't support object-level
+			// permissions
+			return Optional.absent();
+		}
 	}
 }

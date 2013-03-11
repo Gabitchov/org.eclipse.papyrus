@@ -46,7 +46,7 @@ public class PapyrusDawnResourceImpl
 	
 	@Override
 	public String toString() {
-		return String.format("%s{uri: %s}", super.toString(), getURI());
+		return String.format("%s{uri: %s}", super.toString(), getURI()); //$NON-NLS-1$
 	}
 	
 	@Override

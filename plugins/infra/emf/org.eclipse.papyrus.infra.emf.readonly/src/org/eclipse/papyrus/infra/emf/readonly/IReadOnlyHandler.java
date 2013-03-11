@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
+ * Copyright (c) 2011, 2013 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - Deprecate the current API to support non-filesystem storage. (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -16,6 +17,10 @@ package org.eclipse.papyrus.infra.emf.readonly;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+/**
+ * @deprecated Implement the {@link IReadOnlyHandler2} protocol, instead.
+ */
+@Deprecated
 public interface IReadOnlyHandler {
 
 	/**

@@ -32,8 +32,8 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
+import org.eclipse.papyrus.cdo.uml.diagram.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
-import org.eclipse.papyrus.uml.diagram.wizards.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -50,8 +50,7 @@ import com.google.common.eventbus.Subscribe;
 /**
  * This is the NewModelPage type. Enjoy.
  */
-public class NewModelPage
-		extends WizardPage {
+public class NewModelPage extends WizardPage {
 
 	public static final String PAGE_ID = "NewCDOModel"; //$NON-NLS-1$
 
@@ -67,19 +66,16 @@ public class NewModelPage
 
 	private boolean synchronizingFolderSelection;
 
-	public NewModelPage(IStructuredSelection selection, EventBus bus,
-			String modelKindName) {
+	public NewModelPage(IStructuredSelection selection, EventBus bus, String modelKindName) {
 
 		super(PAGE_ID);
 
-		setTitle(NLS.bind("New {0} Model", modelKindName));
-		setDescription(NLS.bind("Create a new {0} model", modelKindName));
+		setTitle(NLS.bind(Messages.NewModelPage_0, modelKindName));
+		setDescription(NLS.bind(Messages.NewModelPage_1, modelKindName));
 
-		if (!selection.isEmpty()) {
-			selectedNode = adapt(selection.getFirstElement(),
-				CDOResourceNode.class);
-			if ((selectedNode != null)
-				&& !(selectedNode instanceof CDOResourceFolder)) {
+		if(!selection.isEmpty()) {
+			selectedNode = adapt(selection.getFirstElement(), CDOResourceNode.class);
+			if((selectedNode != null) && !(selectedNode instanceof CDOResourceFolder)) {
 				selectedNode = selectedNode.getFolder();
 			}
 		}
@@ -93,38 +89,31 @@ public class NewModelPage
 		myComposite.setLayout(new GridLayout(2, false));
 
 		Label label = new Label(myComposite, SWT.NONE);
-		label.setText("Enter or select the parent folder:");
+		label.setText(Messages.NewModelPage_2);
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(label);
 
 		folderText = new Text(myComposite, SWT.BORDER);
-		GridDataFactory.fillDefaults().grab(true, false).span(2, 1)
-			.applyTo(folderText);
+		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).applyTo(folderText);
 		updateFolderSelection();
 
-		foldersTree = new TreeViewer(myComposite, SWT.BORDER | SWT.V_SCROLL
-			| SWT.H_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, true).span(2, 1)
-			.applyTo(foldersTree.getControl());
-		ModelRepositoryItemProvider itemProvider = new ModelRepositoryItemProvider(
-			null);
+		foldersTree = new TreeViewer(myComposite, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(foldersTree.getControl());
+		ModelRepositoryItemProvider itemProvider = new ModelRepositoryItemProvider(null);
 		foldersTree.setContentProvider(itemProvider);
-		foldersTree
-			.setLabelProvider(new DecoratingLabelProvider(itemProvider,
-				PlatformUI.getWorkbench().getDecoratorManager()
-					.getLabelDecorator()));
+		foldersTree.setLabelProvider(new DecoratingLabelProvider(itemProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
 		foldersTree.setSorter(itemProvider);
-		if (getRepository() != null) {
+		if(getRepository() != null) {
 			foldersTree.setInput(getRepository());
 		}
-		if (selectedNode != null) {
+		if(selectedNode != null) {
 			foldersTree.setSelection(new StructuredSelection(selectedNode));
 		}
 
-		new Label(myComposite, SWT.NONE).setText("Resource name:");
+		new Label(myComposite, SWT.NONE).setText(Messages.NewModelPage_3);
 
 		nameText = new Text(myComposite, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(nameText);
-		nameText.setText(suggestName("model", "di"));
+		nameText.setText(suggestName("model", "di")); //$NON-NLS-1$ //$NON-NLS-2$
 
 		setControl(myComposite);
 
@@ -136,20 +125,15 @@ public class NewModelPage
 			}
 		});
 
-		foldersTree
-			.addSelectionChangedListener(new ISelectionChangedListener() {
+		foldersTree.addSelectionChangedListener(new ISelectionChangedListener() {
 
-				public void selectionChanged(SelectionChangedEvent event) {
-					IStructuredSelection selection = (IStructuredSelection) event
-						.getSelection();
-					selectedNode = selection.isEmpty()
-						? null
-						: adapt(selection.getFirstElement(),
-							CDOResourceNode.class);
-					updateFolderSelection();
-					validatePage();
-				}
-			});
+			public void selectionChanged(SelectionChangedEvent event) {
+				IStructuredSelection selection = (IStructuredSelection)event.getSelection();
+				selectedNode = selection.isEmpty() ? null : adapt(selection.getFirstElement(), CDOResourceNode.class);
+				updateFolderSelection();
+				validatePage();
+			}
+		});
 
 		nameText.addModifyListener(new ModifyListener() {
 
@@ -165,7 +149,7 @@ public class NewModelPage
 	public void setRepository(IPapyrusRepository repository) {
 		this.repository = repository;
 
-		if (foldersTree != null) {
+		if(foldersTree != null) {
 			foldersTree.setInput(repository);
 		}
 
@@ -173,14 +157,12 @@ public class NewModelPage
 	}
 
 	private IInternalPapyrusRepository getRepository() {
-		return ((IInternalPapyrusRepository) repository);
+		return ((IInternalPapyrusRepository)repository);
 	}
 
 	CDOView getView() {
 		IInternalPapyrusRepository repo = getRepository();
-		return (repo == null)
-			? null
-			: repo.getMasterView();
+		return (repo == null) ? null : repo.getMasterView();
 	}
 
 	String getSelectedFolderPath() {
@@ -192,16 +174,16 @@ public class NewModelPage
 
 			public void run() {
 				CDOResourceFolder selected = null;
-				if (selectedNode instanceof CDOResourceFolder) {
-					selected = (CDOResourceFolder) selectedNode;
-				} else if (selectedNode != null) {
+				if(selectedNode instanceof CDOResourceFolder) {
+					selected = (CDOResourceFolder)selectedNode;
+				} else if(selectedNode != null) {
 					// will be null if the selectedNode is contained by the root
 					// resource
 					selected = selectedNode.getFolder();
 				}
 
-				if (selected == null) {
-					folderText.setText("");
+				if(selected == null) {
+					folderText.setText(""); //$NON-NLS-1$
 				} else {
 					folderText.setText(selected.getPath());
 				}
@@ -215,12 +197,15 @@ public class NewModelPage
 			public void run() {
 				String folder = folderText.getText().trim();
 				CDOView view = getView();
-				if (view != null) {
-					try {
-						foldersTree.setSelection(new StructuredSelection(view
-							.getResourceNode(folder)));
-					} catch (Exception e) {
-						// normal occurrence when the folder doesn't exist
+				if(view != null) {
+					if(folder.equals("")) { //$NON-NLS-1$
+						foldersTree.setSelection(StructuredSelection.EMPTY);
+					} else {
+						try {
+							foldersTree.setSelection(new StructuredSelection(view.getResourceNode(folder)));
+						} catch (Exception e) {
+							// normal occurrence when the folder doesn't exist
+						}
 					}
 				}
 			}
@@ -228,7 +213,7 @@ public class NewModelPage
 	}
 
 	private void whileSynchronizingFolderSelection(Runnable runnable) {
-		if (!synchronizingFolderSelection) {
+		if(!synchronizingFolderSelection) {
 			synchronizingFolderSelection = true;
 
 			try {
@@ -240,17 +225,17 @@ public class NewModelPage
 	}
 
 	String suggestName(String baseName, String extension) {
-		String result = String.format("%s.%s", baseName, extension);
+		String result = String.format("%s.%s", baseName, extension); //$NON-NLS-1$
 		CDOView view = getView();
 
-		if (view != null) {
-			for (int i = 1;; i++) {
-				if (!view.hasResource(getNewResourcePath(result))) {
+		if(view != null) {
+			for(int i = 1;; i++) {
+				if(!view.hasResource(getNewResourcePath(result))) {
 					break;
 				} else {
 					// use %s instead of %d to avoid any thousands separators
 					// (hah! that there should be so many models)
-					result = String.format("%s%s.%s", baseName, i, extension);
+					result = String.format("%s%s.%s", baseName, i, extension); //$NON-NLS-1$
 				}
 			}
 		}
@@ -262,18 +247,18 @@ public class NewModelPage
 		String result = null;
 		String path = getSelectedFolderPath();
 
-		if (path.equals("")) {
+		if(path.equals("")) { //$NON-NLS-1$
 			// it's a resource in the root
-			result = "/" + name;
+			result = "/" + name; //$NON-NLS-1$
 		} else {
 			StringBuilder buf = new StringBuilder();
 
-			if (!path.startsWith("/")) {
-				buf.append("/");
+			if(!path.startsWith("/")) { //$NON-NLS-1$
+				buf.append("/"); //$NON-NLS-1$
 			}
 			buf.append(path);
-			if (!path.endsWith("/")) {
-				buf.append("/");
+			if(!path.endsWith("/")) { //$NON-NLS-1$
+				buf.append("/"); //$NON-NLS-1$
 			}
 			buf.append(name);
 
@@ -284,9 +269,7 @@ public class NewModelPage
 	}
 
 	String getNewResourceName() {
-		return (nameText == null)
-			? null
-			: nameText.getText().trim();
+		return (nameText == null) ? null : nameText.getText().trim();
 	}
 
 	void setNewResourceName(String newName) {
@@ -294,20 +277,19 @@ public class NewModelPage
 	}
 
 	public URI createNewModelResourceURI() {
-		return CDOURIUtil.createResourceURI(getView(),
-			getNewResourcePath(getNewResourceName()));
+		return CDOURIUtil.createResourceURI(getView(), getNewResourcePath(getNewResourceName()));
 	}
 
 	private String getExtension() {
 		String result = null;
 		String name = getNewResourceName();
 
-		if (name != null) {
+		if(name != null) {
 			// the proper extension is whatever follows the *last* '.',
 			// but for our purposes we need e.g. "profile.uml" to be
 			// an extension
 			int dot = name.indexOf('.');
-			if (dot >= 0) {
+			if(dot >= 0) {
 				result = name.substring(dot + 1);
 			}
 		}
@@ -319,36 +301,31 @@ public class NewModelPage
 	 * Diagram extension changed.
 	 * 
 	 * @param newExtension
-	 *            the new extension
+	 *        the new extension
 	 * @return result of validation of the new extension
 	 */
 	public IStatus diagramExtensionChanged(String newExtension) {
 		String currentExtension = getExtension();
-		if (!newExtension.equals(currentExtension)) {
+		if(!newExtension.equals(currentExtension)) {
 
 			String oldFileName = getNewResourceName();
 			String base = oldFileName;
-			if (currentExtension != null) {
+			if(currentExtension != null) {
 				// take one off for the '.'
-				base = base.substring(0,
-					base.length() - currentExtension.length() - 1);
+				base = base.substring(0, base.length() - currentExtension.length() - 1);
 			}
 			String newFileName = suggestName(base, newExtension);
 
 			setNewResourceName(newFileName);
 
-			String message1 = Messages.NewModelFilePage_new_diagram_category_needs_specific_extension;
-			String message2 = Messages.bind(
-				Messages.NewModelFilePage_diagram_file_was_renamed,
-				oldFileName, newFileName);
+			String message1 = org.eclipse.papyrus.uml.diagram.wizards.Messages.NewModelFilePage_new_diagram_category_needs_specific_extension;
+			String message2 = org.eclipse.papyrus.uml.diagram.wizards.Messages.bind(org.eclipse.papyrus.uml.diagram.wizards.Messages.NewModelFilePage_diagram_file_was_renamed, oldFileName, newFileName);
 			String message = message1 + message2;
-			Status resultStatus = new Status(Status.INFO, Activator.PLUGIN_ID,
-				message);
+			Status resultStatus = new Status(Status.INFO, Activator.PLUGIN_ID, message);
 
 			String errorMessage = getErrorMessage();
-			if (errorMessage != null) {
-				resultStatus = new Status(Status.ERROR, Activator.PLUGIN_ID,
-					errorMessage);
+			if(errorMessage != null) {
+				resultStatus = new Status(Status.ERROR, Activator.PLUGIN_ID, errorMessage);
 			}
 			return resultStatus;
 		}
@@ -360,27 +337,23 @@ public class NewModelPage
 		setPageComplete(true);
 
 		String name = getNewResourceName();
-		if (getView() == null) {
-			setMessage("No repository is selected.", ERROR);
+		if(getView() == null) {
+			setMessage(Messages.NewModelPage_16, ERROR);
 			setPageComplete(false);
-		} else if (Strings.isNullOrEmpty(name)) {
-			setMessage("The new model resource name is required.", ERROR);
+		} else if(Strings.isNullOrEmpty(name)) {
+			setMessage(Messages.NewModelPage_17, ERROR);
 			setPageComplete(false);
 		} else {
 			String path = getNewResourcePath(name);
-			if (getView().hasResource(path)) {
-				setMessage(
-					NLS.bind("The resource \"{0}\" already exists.", path),
-					ERROR);
+			if(getView().hasResource(path)) {
+				setMessage(NLS.bind(Messages.NewModelPage_18, path), ERROR);
 				setPageComplete(false);
 			} else {
 				// check existence of folder (if any)
 				String folderPath = getSelectedFolderPath();
-				if (!Strings.isNullOrEmpty(folderPath)) {
-					if (!getView().hasResource(folderPath)) {
-						setMessage(
-							"The specified folder does not exist and will be created.",
-							WARNING);
+				if(!Strings.isNullOrEmpty(folderPath)) {
+					if(!getView().hasResource(folderPath)) {
+						setMessage(Messages.NewModelPage_19, WARNING);
 					}
 				}
 			}

@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.ui.wizards.ModelImportWizard;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -24,26 +25,30 @@ import org.eclipse.ui.handlers.HandlerUtil;
 /**
  * This is the ImportModelsHandler type. Enjoy.
  */
-public class ImportModelsHandler
-		extends AbstractHandler {
+public class ImportModelsHandler extends AbstractHandler {
 
-	public Object execute(ExecutionEvent event)
-			throws ExecutionException {
+	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		if (selection instanceof IStructuredSelection) {
-			IWorkbenchWindow window = HandlerUtil
-				.getActiveWorkbenchWindow(event);
+		if(selection instanceof IStructuredSelection) {
+			IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 
-			if (window != null) {
-				ModelImportWizard wizard = new ModelImportWizard();
-				wizard.init(window.getWorkbench(),
-					(IStructuredSelection) selection);
-
-				new WizardDialog(window.getShell(), wizard).open();
+			if(window != null) {
+				importModels(window, (IStructuredSelection)selection, null);
 			}
 		}
 
 		return null;
+	}
+
+	public static void importModels(IWorkbenchWindow window, IStructuredSelection selection, IPapyrusRepository repository) {
+		ModelImportWizard wizard = new ModelImportWizard();
+		wizard.init(window.getWorkbench(), selection);
+
+		if(repository != null) {
+			wizard.setRepository(repository);
+		}
+
+		new WizardDialog(window.getShell(), wizard).open();
 	}
 }

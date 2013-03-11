@@ -5,7 +5,7 @@
          point="org.eclipse.papyrus.uml.diagram.wizards.newModelStorageProviders">
       <provider
             class="org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards.CDONewModelStorageProvider"
-            name="In a model repository">
+            name="%storageProvider.name">
          <enablement>
             <iterate>
                <or>
@@ -35,7 +35,7 @@
          <command
                commandId="org.eclipse.papyrus.cdo.uml.diagram.ui.commands.newModel"
                icon="$nl$/icons/full/elcl16/newmodel_co.gif"
-               label="New Papyrus Model">
+               label="%newModelCommand.label">
          </command>
       </menuContribution>
    </extension>
@@ -43,7 +43,7 @@
          point="org.eclipse.ui.commands">
       <command
             id="org.eclipse.papyrus.cdo.uml.diagram.ui.commands.newModel"
-            name="New Papyrus Model">
+            name="%newModelCommand.name">
       </command>
    </extension>
    <extension

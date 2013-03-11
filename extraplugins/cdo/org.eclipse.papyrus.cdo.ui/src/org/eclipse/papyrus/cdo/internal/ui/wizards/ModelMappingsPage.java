@@ -26,13 +26,14 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportConfiguration;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportListener;
 import org.eclipse.papyrus.cdo.core.importer.IModelImportMapping;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportMappingListener;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportNode;
-import org.eclipse.papyrus.cdo.core.importer.ModelImportListenerAdapter;
-import org.eclipse.papyrus.cdo.core.importer.ModelImportMappingListenerAdapter;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferListener;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferMappingListener;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
+import org.eclipse.papyrus.cdo.core.importer.ModelTransferListenerAdapter;
+import org.eclipse.papyrus.cdo.core.importer.ModelTransferMappingListenerAdapter;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.providers.ModelImportNodeLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -54,24 +55,23 @@ import com.google.common.eventbus.Subscribe;
 /**
  * This is the RepositorySelectionPage type. Enjoy.
  */
-public class ModelMappingsPage
-		extends ModelImportWizardPage {
+public class ModelMappingsPage extends ModelImportWizardPage {
 
-	private static final String MESSAGE = "Map models to paths in the repository.";
+	private static final String MESSAGE = Messages.ModelMappingsPage_0;
 
-	private IModelImportConfiguration importConfig;
+	private IModelTransferConfiguration importConfig;
 
-	private IModelImportListener importConfigListener;
+	private IModelTransferListener importConfigListener;
 
 	private IPapyrusRepository repository;
 
 	private IModelImportMapping manyToOne;
 
-	private IModelImportMappingListener manyToOneListener;
+	private IModelTransferMappingListener manyToOneListener;
 
 	private IModelImportMapping oneToOne;
 
-	private IModelImportMappingListener oneToOneListener;
+	private IModelTransferMappingListener oneToOneListener;
 
 	private IModelImportMapping selectedMapping;
 
@@ -84,7 +84,7 @@ public class ModelMappingsPage
 	private TableViewer oneToOnePathsTable;
 
 	public ModelMappingsPage(EventBus bus) {
-		super("mappings", "Model Mappings", null, bus, MESSAGE);
+		super("mappings", Messages.ModelMappingsPage_2, null, bus, MESSAGE); //$NON-NLS-1$
 	}
 
 	public void createControl(Composite parent) {
@@ -94,45 +94,37 @@ public class ModelMappingsPage
 		result.setLayout(new GridLayout(2, false));
 
 		manyToOneRadio = new Button(result, SWT.RADIO);
-		manyToOneRadio.setText("A single model");
-		manyToOneRadio.setLayoutData(GridDataFactory.swtDefaults().span(2, 1)
-			.create());
+		manyToOneRadio.setText(Messages.ModelMappingsPage_3);
+		manyToOneRadio.setLayoutData(GridDataFactory.swtDefaults().span(2, 1).create());
 
 		Label label = new Label(result, SWT.NONE);
-		label.setText("Path:");
-		label.setLayoutData(GridDataFactory.swtDefaults()
-			.indent(convertWidthInCharsToPixels(5), 0).create());
+		label.setText(Messages.ModelMappingsPage_4);
+		label.setLayoutData(GridDataFactory.swtDefaults().indent(convertWidthInCharsToPixels(5), 0).create());
 
 		manyToOnePathText = new Text(result, SWT.BORDER);
-		manyToOnePathText.setLayoutData(GridDataFactory.fillDefaults()
-			.grab(true, false).create());
+		manyToOnePathText.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		manyToOnePathText.setEnabled(false);
 
 		oneToOneRadio = new Button(result, SWT.RADIO);
-		oneToOneRadio.setText("Separate models");
-		oneToOneRadio.setLayoutData(GridDataFactory.swtDefaults().span(2, 1)
-			.create());
+		oneToOneRadio.setText(Messages.ModelMappingsPage_5);
+		oneToOneRadio.setLayoutData(GridDataFactory.swtDefaults().span(2, 1).create());
 		oneToOneRadio.setSelection(true);
 
 		oneToOnePathsTable = new TableViewer(result);
-		oneToOnePathsTable.getControl().setLayoutData(
-			GridDataFactory.fillDefaults().grab(true, true).span(2, 1)
-				.indent(convertWidthInCharsToPixels(5), 0).create());
-		TableViewerColumn column = new TableViewerColumn(oneToOnePathsTable,
-			SWT.NONE);
-		column.getColumn().setText("Model");
+		oneToOnePathsTable.getControl().setLayoutData(GridDataFactory.fillDefaults().grab(true, true).span(2, 1).indent(convertWidthInCharsToPixels(5), 0).create());
+		TableViewerColumn column = new TableViewerColumn(oneToOnePathsTable, SWT.NONE);
+		column.getColumn().setText(Messages.ModelMappingsPage_6);
 		column.getColumn().setWidth(convertWidthInCharsToPixels(30));
 		column = new TableViewerColumn(oneToOnePathsTable, SWT.NONE);
-		column.getColumn().setText("Path");
+		column.getColumn().setText(Messages.ModelMappingsPage_7);
 		column.getColumn().setWidth(convertWidthInCharsToPixels(45));
-		column.setEditingSupport(new OneToOneMappingPathEditingSupport(
-			oneToOnePathsTable, 1));
+		column.setEditingSupport(new OneToOneMappingPathEditingSupport(oneToOnePathsTable, 1));
 		oneToOnePathsTable.getTable().setHeaderVisible(true);
-		oneToOnePathsTable
-			.setContentProvider(new OneToOneMappingContentProvider());
+		oneToOnePathsTable.getTable().setLinesVisible(true);
+		oneToOnePathsTable.setContentProvider(new OneToOneMappingContentProvider());
 		oneToOnePathsTable.setLabelProvider(new OneToOneMappingLabelProvider());
 
-		if (importConfig != null) {
+		if(importConfig != null) {
 			oneToOnePathsTable.setInput(importConfig);
 		}
 
@@ -140,8 +132,8 @@ public class ModelMappingsPage
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (((Button) e.widget).getSelection()) {
-					if (e.widget == manyToOneRadio) {
+				if(((Button)e.widget).getSelection()) {
+					if(e.widget == manyToOneRadio) {
 						oneToOneRadio.setSelection(false);
 						oneToOnePathsTable.getControl().setEnabled(false);
 						manyToOnePathText.setEnabled(true);
@@ -151,9 +143,8 @@ public class ModelMappingsPage
 						oneToOnePathsTable.getControl().setEnabled(true);
 					}
 
-					if (e.widget.getData() != null) {
-						selectedMapping((IModelImportMapping) e.widget
-							.getData());
+					if(e.widget.getData() != null) {
+						selectedMapping((IModelImportMapping)e.widget.getData());
 					}
 
 					validatePage();
@@ -166,7 +157,7 @@ public class ModelMappingsPage
 		manyToOnePathText.addModifyListener(new ModifyListener() {
 
 			public void modifyText(ModifyEvent e) {
-				manyToOnePathChanged(((Text) e.widget).getText().trim());
+				manyToOnePathChanged(((Text)e.widget).getText().trim());
 			}
 		});
 
@@ -177,8 +168,8 @@ public class ModelMappingsPage
 
 	@Override
 	public void dispose() {
-		if (importConfig != null) {
-			importConfig.removeModelImportListener(getImportConfigListener());
+		if(importConfig != null) {
+			importConfig.removeModelTransferListener(getImportConfigListener());
 		}
 
 		// I didn't create it, so don't dispose it
@@ -196,7 +187,7 @@ public class ModelMappingsPage
 	protected Diagnostic doValidatePage() {
 		Diagnostic result = Diagnostic.CANCEL_INSTANCE;
 
-		if (selectedMapping != null) {
+		if(selectedMapping != null) {
 			result = selectedMapping.validate();
 		}
 
@@ -208,35 +199,31 @@ public class ModelMappingsPage
 	}
 
 	@Subscribe
-	public void setConfiguration(IModelImportConfiguration config) {
+	public void setConfiguration(IModelTransferConfiguration config) {
 		this.importConfig = config;
 
-		if (config != null) {
-			config.addModelImportListener(getImportConfigListener());
+		if(config != null) {
+			config.addModelTransferListener(getImportConfigListener());
 		}
 
-		setManyToOneMapping(IModelImportMapping.Factory.MANY_TO_ONE
-			.create(config));
-		setOneToOneMapping(IModelImportMapping.Factory.ONE_TO_ONE
-			.create(config));
+		setManyToOneMapping(IModelImportMapping.Factory.MANY_TO_ONE.create(config));
+		setOneToOneMapping(IModelImportMapping.Factory.ONE_TO_ONE.create(config));
 
-		if (oneToOnePathsTable != null) {
+		if(oneToOnePathsTable != null) {
 			oneToOnePathsTable.setInput(config);
 		}
 
 		validatePage();
 	}
 
-	private IModelImportListener getImportConfigListener() {
-		if (importConfigListener == null) {
-			importConfigListener = new ModelImportListenerAdapter() {
+	private IModelTransferListener getImportConfigListener() {
+		if(importConfigListener == null) {
+			importConfigListener = new ModelTransferListenerAdapter() {
 
 				@Override
-				public void modelsToImportChanged(
-						IModelImportConfiguration configuration) {
+				public void modelsToTransferChanged(IModelTransferConfiguration configuration) {
 
-					if ((oneToOnePathsTable != null)
-						&& !oneToOnePathsTable.getControl().isDisposed()) {
+					if((oneToOnePathsTable != null) && !oneToOnePathsTable.getControl().isDisposed()) {
 
 						oneToOnePathsTable.refresh();
 					}
@@ -248,36 +235,35 @@ public class ModelMappingsPage
 	}
 
 	private void setManyToOneMapping(IModelImportMapping mapping) {
-		if (manyToOne != null) {
-			manyToOne.removeModelImportMappingListener(getManyToOneListener());
+		if(manyToOne != null) {
+			manyToOne.removeModelTransferMappingListener(getManyToOneListener());
 		}
 
 		manyToOne = mapping;
 
-		if (manyToOne != null) {
-			manyToOne.addModelImportMappingListener(getManyToOneListener());
+		if(manyToOne != null) {
+			manyToOne.addModelTransferMappingListener(getManyToOneListener());
 			manyToOne.setRepository(repository);
-			if (manyToOneRadio != null) {
+			if(manyToOneRadio != null) {
 				manyToOneRadio.setData(manyToOne);
-				if (manyToOneRadio.getSelection()) {
+				if(manyToOneRadio.getSelection()) {
 					selectedMapping(manyToOne);
 				}
 
-				IModelImportNode node = Iterables.getFirst(
-					importConfig.getModelsToImport(), null);
-				if (node != null) {
+				IModelTransferNode node = Iterables.getFirst(importConfig.getModelsToTransfer(), null);
+				if(node != null) {
 					updateManyToOneMapping(node);
 				}
 			}
 		}
 	}
 
-	private IModelImportMappingListener getManyToOneListener() {
-		if (manyToOneListener == null) {
-			manyToOneListener = new ModelImportMappingListenerAdapter() {
+	private IModelTransferMappingListener getManyToOneListener() {
+		if(manyToOneListener == null) {
+			manyToOneListener = new ModelTransferMappingListenerAdapter() {
 
 				@Override
-				public void modelImportMappingChanged(IModelImportNode node) {
+				public void modelTransferMappingChanged(IModelTransferNode node) {
 					updateManyToOneMapping(node);
 				}
 			};
@@ -286,43 +272,43 @@ public class ModelMappingsPage
 		return manyToOneListener;
 	}
 
-	void updateManyToOneMapping(IModelImportNode node) {
+	void updateManyToOneMapping(IModelTransferNode node) {
 		IPath mapping = manyToOne.getMapping(node);
-		if ((mapping != null) && (manyToOnePathText != null)) {
+		if((mapping != null) && (manyToOnePathText != null)) {
 			String path = mapping.toString();
-			if (!manyToOnePathText.getText().equals(path)) {
+			if(!manyToOnePathText.getText().equals(path)) {
 				manyToOnePathText.setText(path);
 			}
 		}
 	}
 
 	private void setOneToOneMapping(IModelImportMapping mapping) {
-		if (oneToOne != null) {
-			oneToOne.removeModelImportMappingListener(getOneToOneListener());
+		if(oneToOne != null) {
+			oneToOne.removeModelTransferMappingListener(getOneToOneListener());
 		}
 
 		oneToOne = mapping;
 
-		if (oneToOne != null) {
-			oneToOne.addModelImportMappingListener(getOneToOneListener());
+		if(oneToOne != null) {
+			oneToOne.addModelTransferMappingListener(getOneToOneListener());
 			oneToOne.setRepository(repository);
-			if (oneToOneRadio != null) {
+			if(oneToOneRadio != null) {
 				oneToOneRadio.setData(oneToOne);
-				if (oneToOneRadio.getSelection()) {
+				if(oneToOneRadio.getSelection()) {
 					selectedMapping(oneToOne);
 				}
 			}
 		}
 	}
 
-	private IModelImportMappingListener getOneToOneListener() {
-		if (oneToOneListener == null) {
-			oneToOneListener = new ModelImportMappingListenerAdapter() {
+	private IModelTransferMappingListener getOneToOneListener() {
+		if(oneToOneListener == null) {
+			oneToOneListener = new ModelTransferMappingListenerAdapter() {
 
 				@Override
-				public void modelImportMappingChanged(IModelImportNode node) {
+				public void modelTransferMappingChanged(IModelTransferNode node) {
 					IPath mapping = oneToOne.getMapping(node);
-					if ((mapping != null) && (oneToOnePathsTable != null)) {
+					if((mapping != null) && (oneToOnePathsTable != null)) {
 						oneToOnePathsTable.refresh();
 					}
 				}
@@ -336,10 +322,10 @@ public class ModelMappingsPage
 	public void setRepository(IPapyrusRepository repository) {
 		this.repository = repository;
 
-		if (manyToOne != null) {
+		if(manyToOne != null) {
 			manyToOne.setRepository(repository);
 		}
-		if (oneToOne != null) {
+		if(oneToOne != null) {
 			oneToOne.setRepository(repository);
 		}
 
@@ -348,29 +334,27 @@ public class ModelMappingsPage
 
 	private void manyToOnePathChanged(String newPath) {
 		try {
-			IModelImportNode node = Iterables.getFirst(
-				importConfig.getModelsToImport(), null);
+			IModelTransferNode node = Iterables.getFirst(importConfig.getModelsToTransfer(), null);
 			setMapping(node, newPath);
 		} catch (Exception e) {
-			setMessage("Please enter a valid path.", IMessageProvider.ERROR);
+			setMessage(Messages.ModelMappingsPage_8, IMessageProvider.ERROR);
 		}
 	}
 
-	private boolean setMapping(IModelImportNode node, String newPath) {
+	private boolean setMapping(IModelTransferNode node, String newPath) {
 		boolean result = false;
 
 		IPath path = new Path(newPath);
-		if (path.isEmpty()) {
-			setMessage("Please enter a path.", IMessageProvider.ERROR);
+		if(path.isEmpty()) {
+			setMessage(Messages.ModelMappingsPage_9, IMessageProvider.ERROR);
 			setPageComplete(false);
-		} else if (path.hasTrailingSeparator()) {
-			setMessage("Please enter a path that is not a folder.",
-				IMessageProvider.ERROR);
+		} else if(path.hasTrailingSeparator()) {
+			setMessage(Messages.ModelMappingsPage_10, IMessageProvider.ERROR);
 			setPageComplete(false);
 		} else {
 			result = true;
 
-			if ((selectedMapping != null) && (node != null)) {
+			if((selectedMapping != null) && (node != null)) {
 				selectedMapping.mapTo(node, path);
 			}
 
@@ -384,12 +368,10 @@ public class ModelMappingsPage
 	// Nested types
 	//
 
-	private static class OneToOneMappingContentProvider
-			implements IStructuredContentProvider {
+	private static class OneToOneMappingContentProvider implements IStructuredContentProvider {
 
 		public Object[] getElements(Object inputElement) {
-			return ((IModelImportConfiguration) inputElement)
-				.getModelsToImport().toArray();
+			return ((IModelTransferConfiguration)inputElement).getModelsToTransfer().toArray();
 		}
 
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
@@ -402,51 +384,44 @@ public class ModelMappingsPage
 
 	}
 
-	private class OneToOneMappingLabelProvider
-			extends ModelImportNodeLabelProvider
-			implements ITableLabelProvider {
+	private class OneToOneMappingLabelProvider extends ModelImportNodeLabelProvider implements ITableLabelProvider {
 
 		public Image getColumnImage(Object element, int columnIndex) {
-			return (columnIndex == 0)
-				? getImage(element)
-				: null;
+			return (columnIndex == 0) ? getImage(element) : null;
 		}
 
 		public String getColumnText(Object element, int columnIndex) {
 			String result = null;
 
-			switch (columnIndex) {
-				case 0 : // Model
-					result = getText(element);
-					break;
-				case 1 : // Path
-					if (oneToOne != null) {
-						IPath path = oneToOne
-							.getMapping((IModelImportNode) element);
-						if (path != null) {
-							result = path.toString();
-						}
+			switch(columnIndex) {
+			case 0: // Model
+				result = getText(element);
+				break;
+			case 1: // Path
+				if(oneToOne != null) {
+					IPath path = oneToOne.getMapping((IModelTransferNode)element);
+					if(path != null) {
+						result = path.toString();
 					}
+				}
 
-					if (result == null) {
-						result = "";
-					}
-					break;
+				if(result == null) {
+					result = ""; //$NON-NLS-1$
+				}
+				break;
 			}
 
 			return result;
 		}
 	}
 
-	private class OneToOneMappingPathEditingSupport
-			extends EditingSupport {
+	private class OneToOneMappingPathEditingSupport extends EditingSupport {
 
 		private TextCellEditor editor;
 
-		private int columnIndex;
+		private final int columnIndex;
 
-		OneToOneMappingPathEditingSupport(ColumnViewer columnViewer,
-				int columnIndex) {
+		OneToOneMappingPathEditingSupport(ColumnViewer columnViewer, int columnIndex) {
 
 			super(columnViewer);
 
@@ -455,9 +430,8 @@ public class ModelMappingsPage
 
 		@Override
 		protected CellEditor getCellEditor(Object element) {
-			if (editor == null) {
-				editor = new TextCellEditor((Composite) getViewer()
-					.getControl());
+			if(editor == null) {
+				editor = new TextCellEditor((Composite)getViewer().getControl());
 			}
 			return editor;
 		}
@@ -469,19 +443,15 @@ public class ModelMappingsPage
 
 		@Override
 		protected Object getValue(Object element) {
-			IPath path = oneToOne.getMapping((IModelImportNode) element);
-			return (path == null)
-				? ""
-				: path.toString();
+			IPath path = oneToOne.getMapping((IModelTransferNode)element);
+			return (path == null) ? "" : path.toString(); //$NON-NLS-1$
 		}
 
 		@Override
 		protected void setValue(final Object element, Object value) {
-			String newPath = (value == null)
-				? ""
-				: String.valueOf(value);
+			String newPath = (value == null) ? "" : String.valueOf(value); //$NON-NLS-1$
 
-			if (!setMapping((IModelImportNode) element, newPath)) {
+			if(!setMapping((IModelTransferNode)element, newPath)) {
 				// continue editing
 				getViewer().getControl().getDisplay().asyncExec(new Runnable() {
 

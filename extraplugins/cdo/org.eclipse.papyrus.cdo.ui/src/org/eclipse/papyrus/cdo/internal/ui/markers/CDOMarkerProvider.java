@@ -205,7 +205,7 @@ public class CDOMarkerProvider
 				throw exceptionType.cast(e.exception());
 			} catch (InterruptedException e) {
 				Activator.log.error(
-					"CDO problem markers runnable interrupted.", e);
+					"CDO problem markers runnable interrupted.", e); //$NON-NLS-1$
 			}
 		} else {
 			runnable.run();
@@ -229,7 +229,7 @@ public class CDOMarkerProvider
 				throw exceptionType.cast(e.exception());
 			} catch (InterruptedException e) {
 				Activator.log.error(
-					"CDO problem markers runnable interrupted.", e);
+					"CDO problem markers runnable interrupted.", e); //$NON-NLS-1$
 				result = null;
 			}
 		} else {

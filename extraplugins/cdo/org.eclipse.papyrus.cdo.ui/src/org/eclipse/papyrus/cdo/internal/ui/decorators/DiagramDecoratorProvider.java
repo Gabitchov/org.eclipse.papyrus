@@ -50,7 +50,7 @@ public class DiagramDecoratorProvider
 		DawnElementStylizer stylizer = DawnElementStylizerRegistry.instance
 			.getStylizer(editPart);
 		if (stylizer != null) {
-			decoratorTarget.installDecorator("cdoState", new CDOStateDiagramDecorator(
+			decoratorTarget.installDecorator("cdoState", new CDOStateDiagramDecorator( //$NON-NLS-1$
 				decoratorTarget, stylizer));
 		}
 	}

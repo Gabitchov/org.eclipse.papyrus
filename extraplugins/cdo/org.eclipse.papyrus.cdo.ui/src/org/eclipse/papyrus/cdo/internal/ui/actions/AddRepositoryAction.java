@@ -22,6 +22,7 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.dialogs.AddRepositoryDialog;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
@@ -33,7 +34,7 @@ public class AddRepositoryAction
 	private IWorkbenchPart part;
 
 	public AddRepositoryAction(IWorkbenchPart part) {
-		super("Add Repository...", Activator
+		super(Messages.AddRepositoryAction_0, Activator
 			.getIcon(Activator.ICON_ADD_REPOSITORY));
 
 		this.part = part;
@@ -71,7 +72,7 @@ public class AddRepositoryAction
 						});
 				} catch (Exception e) {
 					Activator.log.error(
-						"Unexpected exception in async repository connection.",
+						"Unexpected exception in async repository connection.", //$NON-NLS-1$
 						e);
 				}
 			}

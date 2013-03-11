@@ -18,6 +18,7 @@ import org.eclipse.papyrus.cdo.core.CommitException;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -38,7 +39,7 @@ import com.google.common.base.Objects;
 public class RepositoryPropertyPage
 		extends PropertyPage {
 
-	private static final String MESSAGE = "Edit the repository name and location.";
+	private static final String MESSAGE = Messages.RepositoryPropertyPage_0;
 
 	private RepositoryPropertiesBlock block;
 	
@@ -71,7 +72,7 @@ public class RepositoryPropertyPage
 			});
 		
 		forgetCredsButton = new Button(result, SWT.PUSH);
-		forgetCredsButton.setText("Clear stored password");
+		forgetCredsButton.setText(Messages.RepositoryPropertyPage_1);
 		forgetCredsButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -105,8 +106,8 @@ public class RepositoryPropertyPage
 				|| MessageDialog
 					.openQuestion(
 						getShell(),
-						"Repository Connected",
-						"The repository will have to be disconnected in order to apply these changes.  Proceed?")) {
+						Messages.RepositoryPropertyPage_2,
+						Messages.RepositoryPropertyPage_3)) {
 
 				updateRepository(repository);
 
@@ -146,7 +147,7 @@ public class RepositoryPropertyPage
 		} catch (CommitException e) {
 			StatusAdapter adapter = new StatusAdapter(e.getStatus());
 			adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY,
-				"Disconnect failed");
+				Messages.RepositoryPropertyPage_4);
 			StatusManager.getManager().handle(adapter, StatusManager.SHOW);
 		}
 	}

@@ -17,6 +17,7 @@ import org.eclipse.papyrus.cdo.core.CommitException;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.IWorkbenchPart;
@@ -31,7 +32,7 @@ public class RemoveRepositoryAction
 		extends AbstractRepositoryAction {
 
 	public RemoveRepositoryAction(IWorkbenchPart part) {
-		super("Remove", ISharedImages.IMG_TOOL_DELETE,
+		super(Messages.RemoveRepositoryAction_0, ISharedImages.IMG_TOOL_DELETE,
 			ISharedImages.IMG_TOOL_DELETE_DISABLED, part);
 		
 		setActionDefinitionId(IWorkbenchCommandConstants.EDIT_DELETE);
@@ -47,11 +48,11 @@ public class RemoveRepositoryAction
 		boolean connected = repository.isConnected();
 
 		String message = connected
-			? "The repository \"{0}\" is currently connected. Are you sure you want to disconnect and remove it?"
-			: "Are you sure you want to remove the repository \"{0}\"?";
+			? Messages.RemoveRepositoryAction_1
+			: Messages.RemoveRepositoryAction_2;
 
 		if (MessageDialog.openQuestion(getPart().getSite().getShell(),
-			"Remove Repository", NLS.bind(message, repository.getName()))) {
+			Messages.RemoveRepositoryAction_3, NLS.bind(message, repository.getName()))) {
 			IPapyrusRepositoryManager mgr = PapyrusRepositoryManager.INSTANCE;
 
 			if (!connected) {
@@ -69,7 +70,7 @@ public class RemoveRepositoryAction
 				} catch (CommitException e) {
 					StatusAdapter adapter = new StatusAdapter(e.getStatus());
 					adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY,
-						"Disconnect failed");
+						Messages.RemoveRepositoryAction_4);
 					StatusManager.getManager().handle(adapter,
 						StatusManager.SHOW);
 				}

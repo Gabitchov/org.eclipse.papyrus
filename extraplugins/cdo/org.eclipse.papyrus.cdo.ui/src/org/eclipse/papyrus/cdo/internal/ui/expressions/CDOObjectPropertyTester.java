@@ -23,13 +23,13 @@ import org.eclipse.papyrus.cdo.internal.ui.decorators.CDOStateAdapter;
 public class CDOObjectPropertyTester
 		extends PropertyTester {
 
-	public static final String CAN_LOCK = "canLock";
+	public static final String CAN_LOCK = "canLock"; //$NON-NLS-1$
 
-	public static final String IS_LOCKED_LOCALLY = "isLockedLocally";
+	public static final String IS_LOCKED_LOCALLY = "isLockedLocally"; //$NON-NLS-1$
 
-	public static final String IS_LOCKED_REMOTELY = "isLockedRemotely";
+	public static final String IS_LOCKED_REMOTELY = "isLockedRemotely"; //$NON-NLS-1$
 
-	public static final String IS_CONFLICTED = "isConflicted";
+	public static final String IS_CONFLICTED = "isConflicted"; //$NON-NLS-1$
 
 	public CDOObjectPropertyTester() {
 		super();

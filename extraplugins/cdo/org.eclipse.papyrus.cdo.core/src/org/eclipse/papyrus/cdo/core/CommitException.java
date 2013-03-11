@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
+import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 
 
 /**
@@ -26,7 +27,7 @@ public class CommitException
 	private static final long serialVersionUID = 1L;
 
 	public CommitException() {
-		this("Commit failed.");
+		this(Messages.CommitException_0);
 	}
 
 	public CommitException(String message) {
@@ -34,7 +35,7 @@ public class CommitException
 	}
 
 	public CommitException(Throwable cause) {
-		this("Commit failed.", cause);
+		this(Messages.CommitException_0, cause);
 	}
 
 	public CommitException(String message, Throwable cause) {

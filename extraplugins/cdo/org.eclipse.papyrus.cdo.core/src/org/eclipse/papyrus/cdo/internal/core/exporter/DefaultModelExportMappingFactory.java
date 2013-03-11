@@ -9,30 +9,22 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.cdo.core.importer;
+package org.eclipse.papyrus.cdo.internal.core.exporter;
 
-import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.papyrus.cdo.core.exporter.IModelExportMapping;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 
 /**
- * This is the ModelImportListenerAdapter type. Enjoy.
+ * This is the DefaultModelExportMappingFactory type. Enjoy.
  */
-public class ModelImportListenerAdapter
-		implements IModelImportListener {
+public class DefaultModelExportMappingFactory implements IModelExportMapping.Factory {
 
-	public ModelImportListenerAdapter() {
+	public DefaultModelExportMappingFactory() {
 		super();
 	}
 
-	public void modelsToImportChanged(IModelImportConfiguration configuration) {
-		// pass
-	}
-
-	public void modelDependentsChanged(IModelImportNode node) {
-		// pass
-	}
-
-	public void modelImportProblemsOccurred(Diagnostic problems) {
-		// pass
+	public IModelExportMapping create(IModelTransferConfiguration configuration) {
+		return new ModelExportMapping(configuration);
 	}
 
 }

@@ -136,7 +136,7 @@ public class UIUtil {
 			for (int i = 0; i < stack.length; i++) {
 				StackTraceElement next = stack[i];
 				if (UIUtil.class.getName().equals(next.getClassName())
-					&& "ensureUIThread".equals(next.getMethodName())) {
+					&& "ensureUIThread".equals(next.getMethodName())) { //$NON-NLS-1$
 
 					callingMethodName = stack[i + 1].getMethodName();
 					break;
@@ -144,13 +144,13 @@ public class UIUtil {
 			}
 
 			if (callingMethodName == null) {
-				throw new IllegalStateException("Invalid stack trace");
+				throw new IllegalStateException("Invalid stack trace"); //$NON-NLS-1$
 			}
 
 			final Method method = findMethod(receiver.getClass(),
 				callingMethodName, arguments);
 			if (method == null) {
-				throw new IllegalStateException("Could not find calling method");
+				throw new IllegalStateException("Could not find calling method"); //$NON-NLS-1$
 			}
 
 			method.setAccessible(true);

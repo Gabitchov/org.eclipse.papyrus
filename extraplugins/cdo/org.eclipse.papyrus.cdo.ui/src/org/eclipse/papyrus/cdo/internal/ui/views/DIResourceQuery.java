@@ -35,6 +35,7 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent.Kind;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.swt.events.DisposeEvent;
@@ -72,8 +73,8 @@ public class DIResourceQuery {
 		this.viewer = viewer;
 		this.query = view
 			.createQuery(
-				"ocl",
-				"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource())",
+				"ocl", //$NON-NLS-1$
+				"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource())", //$NON-NLS-1$
 				DiPackage.Literals.SASH_MODEL);
 
 		view.addListener(cdoViewListener);
@@ -204,7 +205,7 @@ public class DIResourceQuery {
 			extends Job {
 
 		QueryJob() {
-			super("Find Papyrus models");
+			super(Messages.DIResourceQuery_2);
 
 			setSystem(true);
 		}
@@ -227,7 +228,7 @@ public class DIResourceQuery {
 					// can get "node not found" exceptions on incompletely
 					// deleted resources
 					Activator.log.error(
-						"Error retrieving resource result from CDO query.", e);
+						"Error retrieving resource result from CDO query.", e); //$NON-NLS-1$
 				}
 			}
 			Set<CDOResource> result = resultBuilder.build();

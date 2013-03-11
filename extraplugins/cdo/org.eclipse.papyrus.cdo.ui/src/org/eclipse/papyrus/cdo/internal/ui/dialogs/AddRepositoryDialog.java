@@ -14,6 +14,7 @@ package org.eclipse.papyrus.cdo.internal.ui.dialogs;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.properties.RepositoryPropertiesBlock;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -27,9 +28,9 @@ import org.eclipse.swt.widgets.Shell;
 public class AddRepositoryDialog
 		extends TitleAreaDialog {
 
-	private static final String TITLE = "Add Repository";
+	private static final String TITLE = Messages.AddRepositoryDialog_0;
 	
-	private static final String MESSAGE = "Enter the repository name and location.";
+	private static final String MESSAGE = Messages.AddRepositoryDialog_1;
 
 	private RepositoryPropertiesBlock block;
 

@@ -21,25 +21,33 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.onefile;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.services.markerlistener;bundle-version="0.10.0",
  org.eclipse.papyrus.cdo.validation.problems;bundle-version="0.10.0",
- org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.0"
+ org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.0",
+ org.eclipse.papyrus.editor;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Import-Package: com.google.common.base;version="10.0.1",
  com.google.common.cache;version="10.0.1",
  com.google.common.collect;version="10.0.1",
- com.google.common.eventbus;version="10.0.1"
-Export-Package: org.eclipse.papyrus.cdo.internal.ui,
- org.eclipse.papyrus.cdo.internal.ui.actions,
- org.eclipse.papyrus.cdo.internal.ui.adapters,
- org.eclipse.papyrus.cdo.internal.ui.decorators,
- org.eclipse.papyrus.cdo.internal.ui.dialogs,
- org.eclipse.papyrus.cdo.internal.ui.editors,
- org.eclipse.papyrus.cdo.internal.ui.expressions,
- org.eclipse.papyrus.cdo.internal.ui.handlers,
- org.eclipse.papyrus.cdo.internal.ui.markers,
- org.eclipse.papyrus.cdo.internal.ui.properties,
- org.eclipse.papyrus.cdo.internal.ui.providers,
- org.eclipse.papyrus.cdo.internal.ui.util,
- org.eclipse.papyrus.cdo.internal.ui.views,
- org.eclipse.papyrus.cdo.internal.ui.wizards
+ com.google.common.eventbus;version="10.0.1",
+ com.google.common.io;version="10.0.1"
+Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.ui",
+ org.eclipse.papyrus.cdo.internal.ui.actions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.adapters;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.decorators;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.dialogs;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.dnd;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.editors;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.expressions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.handlers;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.l10n;x-internal:=true,
+ org.eclipse.papyrus.cdo.internal.ui.markers;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.properties;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.providers;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.util;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.views;
+  x-friends:="org.eclipse.papyrus.cdo.ui.tests,
+   org.eclipse.papyrus.cdo.uml.diagram.ui,
+   org.eclipse.papyrus.cdo.uml.ui,
+   org.eclipse.papyrus.cdo.uml.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.wizards;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui"

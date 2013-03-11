@@ -73,8 +73,8 @@ public class PapyrusRepository
 		extends Container<CDOResourceNode>
 		implements IInternalPapyrusRepository, IAdaptable {
 
-	private static final String SECURE_STORE_PATH = "/" + Activator.PLUGIN_ID
-		+ "/repositories";
+	private static final String SECURE_STORE_PATH = "/" + Activator.PLUGIN_ID //$NON-NLS-1$
+		+ "/repositories"; //$NON-NLS-1$
 
 	private static final CDOResourceNode[] NO_RESOURCE_NODES = new CDOResourceNode[0];
 
@@ -112,7 +112,7 @@ public class PapyrusRepository
 
 	public void setName(String name) {
 		if (Strings.isNullOrEmpty(name)) {
-			throw new IllegalArgumentException("null or empty name");
+			throw new IllegalArgumentException("null or empty name"); //$NON-NLS-1$
 		}
 
 		model.setName(name);
@@ -123,7 +123,7 @@ public class PapyrusRepository
 	}
 
 	public String getUsername() {
-		return getSecureStorageValue("username");
+		return getSecureStorageValue("username"); //$NON-NLS-1$
 	}
 
 	public void setUsername(String username) {
@@ -134,11 +134,11 @@ public class PapyrusRepository
 			}
 		}
 
-		setSecureStorageValue("username", username, false);
+		setSecureStorageValue("username", username, false); //$NON-NLS-1$
 	}
 
 	public String getPassword() {
-		return getSecureStorageValue("password");
+		return getSecureStorageValue("password"); //$NON-NLS-1$
 	}
 
 	private String getSecureStorageValue(String key) {
@@ -153,7 +153,7 @@ public class PapyrusRepository
 				result = store.get(key, null);
 			} catch (StorageException e) {
 				Activator.log.error(String.format(
-					"Failed to load repository %s from secure storage.", key),
+					"Failed to load repository %s from secure storage.", key), //$NON-NLS-1$
 					e);
 			}
 		}
@@ -162,12 +162,12 @@ public class PapyrusRepository
 	}
 
 	private String getSecureStorePath() {
-		return String.format("%s/%s", SECURE_STORE_PATH,
+		return String.format("%s/%s", SECURE_STORE_PATH, //$NON-NLS-1$
 			EncodingUtils.encodeSlashes(getURL()));
 	}
 
 	public void setPassword(String password) {
-		setSecureStorageValue("password", password, true);
+		setSecureStorageValue("password", password, true); //$NON-NLS-1$
 	}
 
 	private void setSecureStorageValue(String key, String value, boolean encrypt) {
@@ -181,7 +181,7 @@ public class PapyrusRepository
 			}
 		} catch (StorageException e) {
 			Activator.log.error(String.format(
-				"Failed to store repository %s in secure storage.", key), e);
+				"Failed to store repository %s in secure storage.", key), e); //$NON-NLS-1$
 		}
 	}
 
@@ -203,7 +203,7 @@ public class PapyrusRepository
 			Object oldCreds = null;
 			if (creds != null) {
 				oldCreds = container.putElement(
-					CredentialsProviderFactory.PRODUCT_GROUP, "interactive",
+					CredentialsProviderFactory.PRODUCT_GROUP, "interactive", //$NON-NLS-1$
 					null, creds);
 			}
 
@@ -211,7 +211,7 @@ public class PapyrusRepository
 				for (;;) {
 					try {
 						session = (CDOSession) container.getElement(
-							"org.eclipse.emf.cdo.sessions", "cdo", getURL());
+							"org.eclipse.emf.cdo.sessions", "cdo", getURL()); //$NON-NLS-1$ //$NON-NLS-2$
 						CDOUtil.setLegacyModeDefault(true);
 					} catch (NotAuthenticatedException e) {
 						// user cancelled the credentials dialog. That's OK
@@ -242,11 +242,11 @@ public class PapyrusRepository
 					if (oldCreds != null) {
 						container.putElement(
 							CredentialsProviderFactory.PRODUCT_GROUP,
-							"interactive", null, oldCreds);
+							"interactive", null, oldCreds); //$NON-NLS-1$
 					} else {
 						container/* IPluginContainer.INSTANCE */.removeElement(
 							CredentialsProviderFactory.PRODUCT_GROUP,
-							"interactive", null);
+							"interactive", null); //$NON-NLS-1$
 					}
 				}
 			}
@@ -307,7 +307,7 @@ public class PapyrusRepository
 
 	protected void checkConnected() {
 		if (!isConnected()) {
-			throw new IllegalStateException("not connected");
+			throw new IllegalStateException("not connected"); //$NON-NLS-1$
 		}
 	}
 
@@ -380,7 +380,7 @@ public class PapyrusRepository
 
 	CDOTransaction checkTransaction(CDOView view) {
 		if (!(view instanceof CDOTransaction)) {
-			throw new IllegalArgumentException("not a transaction");
+			throw new IllegalArgumentException("not a transaction"); //$NON-NLS-1$
 		}
 
 		return (CDOTransaction) view;

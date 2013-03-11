@@ -9,18 +9,25 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.cdo.core.importer;
+package org.eclipse.papyrus.cdo.uml.internal.ui.l10n;
 
-import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.osgi.util.NLS;
 
 /**
- * This is the IModelImportListener type. Enjoy.
+ * This is the Messages type.  Enjoy.
  */
-public interface IModelImportListener {
+public class Messages extends NLS {
 
-	void modelsToImportChanged(IModelImportConfiguration configuration);
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.cdo.uml.internal.ui.l10n.messages"; //$NON-NLS-1$
 
-	void modelDependentsChanged(IModelImportNode node);
+	public static String CDOPackageImportSource_0;
 
-	void modelImportProblemsOccurred(Diagnostic problems);
+	public static String CDOPackageImportSource_1;
+	static {
+		// initialize resource bundle
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+	}
+
+	private Messages() {
+	}
 }

@@ -33,6 +33,7 @@ import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.progress.UIJob;
@@ -123,7 +124,7 @@ public class CDOStateLabelDecorator
 						.labelProviderChanged(event);
 				} catch (Exception e) {
 					Activator.log.error(
-						"Uncaught exception in label provider listener.", e);
+						"Uncaught exception in label provider listener.", e); //$NON-NLS-1$
 				}
 			}
 		}
@@ -141,7 +142,7 @@ public class CDOStateLabelDecorator
 		private boolean pending;
 
 		LabelUpdateJob() {
-			super("Update CDO state label decorations");
+			super(Messages.CDOStateLabelDecorator_1);
 
 			setSystem(true);
 		}

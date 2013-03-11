@@ -22,6 +22,7 @@ import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.net4j.util.lifecycle.ILifecycle;
 import org.eclipse.net4j.util.lifecycle.LifecycleEventAdapter;
@@ -30,7 +31,9 @@ import org.eclipse.papyrus.cdo.core.IResourceSetDisposalApprover;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
+import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
@@ -52,19 +55,17 @@ public class PapyrusCDOEditorManager {
 
 	public static final PapyrusCDOEditorManager INSTANCE = new PapyrusCDOEditorManager();
 
-	private BiMap<IEditorPart, CDOView> editors = HashBiMap.create();
+	private final BiMap<IEditorPart, CDOView> editors = HashBiMap.create();
 
-	private Cache<IWorkbenchPage, EditorListener> editorListeners = CacheBuilder
-		.newBuilder().weakKeys()
-		.build(new CacheLoader<IWorkbenchPage, EditorListener>() {
+	private final Cache<IWorkbenchPage, EditorListener> editorListeners = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<IWorkbenchPage, EditorListener>() {
 
-			@Override
-			public EditorListener load(IWorkbenchPage key) {
-				EditorListener result = new EditorListener();
-				key.addPartListener(result);
-				return result;
-			}
-		});
+		@Override
+		public EditorListener load(IWorkbenchPage key) {
+			EditorListener result = new EditorListener();
+			key.addPartListener(result);
+			return result;
+		}
+	});
 
 	private IResourceSetDisposalApprover disposalApprover;
 
@@ -72,23 +73,20 @@ public class PapyrusCDOEditorManager {
 		super();
 	}
 
-	public IEditorPart openEditor(IWorkbenchPage page, URI uri, String name)
-			throws PartInitException {
+	public IEditorPart openEditor(IWorkbenchPage page, URI uri, String name) throws PartInitException {
 
 		IInternalPapyrusRepository repository = getRepository(uri);
 		repository.addResourceSetDisposalApprover(getDisposalApprover());
 
-		IEditorPart result = page.openEditor(new PapyrusCDOEditorInput(uri,
-			name), "org.eclipse.papyrus.infra.core.papyrusEditor");
+		IEditorPart result = page.openEditor(new PapyrusCDOEditorInput(uri, name), PapyrusMultiDiagramEditor.EDITOR_ID);
 
-		EditingDomain domain = (EditingDomain) result
-			.getAdapter(EditingDomain.class);
+		EditingDomain domain = (EditingDomain)result.getAdapter(EditingDomain.class);
 		ResourceSet resourceSet = domain.getResourceSet();
 
 		CDOView view = repository.getCDOView(resourceSet);
 		add(view, result);
 
-		if (view instanceof CDOTransaction) {
+		if(view instanceof CDOTransaction) {
 			view.addListener(new PapyrusTransactionListener());
 		}
 
@@ -96,7 +94,7 @@ public class PapyrusCDOEditorManager {
 	}
 
 	private IResourceSetDisposalApprover getDisposalApprover() {
-		if (disposalApprover == null) {
+		if(disposalApprover == null) {
 			disposalApprover = new ResourceSetDisposalApprover();
 		}
 
@@ -104,8 +102,7 @@ public class PapyrusCDOEditorManager {
 	}
 
 	IInternalPapyrusRepository getRepository(URI uri) {
-		return (IInternalPapyrusRepository) PapyrusRepositoryManager.INSTANCE
-			.getRepositoryForURI(uri);
+		return (IInternalPapyrusRepository)PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
 	}
 
 	void add(CDOView view, IEditorPart editor) {
@@ -129,8 +126,7 @@ public class PapyrusCDOEditorManager {
 	// Nested types
 	//
 
-	private class CDOViewListener
-			extends LifecycleEventAdapter {
+	private class CDOViewListener extends LifecycleEventAdapter {
 
 		private final IEditorPart editor;
 
@@ -143,7 +139,7 @@ public class PapyrusCDOEditorManager {
 			UIUtil.later(new Runnable() {
 
 				public void run() {
-					if (editors.containsKey(editor)) {
+					if(editors.containsKey(editor)) {
 						editor.getSite().getPage().closeEditor(editor, false);
 					}
 				}
@@ -153,18 +149,17 @@ public class PapyrusCDOEditorManager {
 		}
 	}
 
-	private class EditorListener
-			implements IPartListener {
+	private class EditorListener implements IPartListener {
 
-		private Set<IEditorPart> editors = Sets.newHashSet();
+		private final Set<IEditorPart> editors = Sets.newHashSet();
 
 		void addEditor(IEditorPart editor) {
 			editors.add(editor);
 		}
 
 		public void partClosed(IWorkbenchPart part) {
-			if (editors.remove(part)) {
-				IEditorPart editor = (IEditorPart) part;
+			if(editors.remove(part)) {
+				IEditorPart editor = (IEditorPart)part;
 				closed(editor);
 			}
 		}
@@ -186,55 +181,47 @@ public class PapyrusCDOEditorManager {
 		}
 	}
 
-	private class ResourceSetDisposalApprover
-			implements IResourceSetDisposalApprover {
+	private class ResourceSetDisposalApprover implements IResourceSetDisposalApprover {
 
-		public DisposeAction disposalRequested(IPapyrusRepository repository,
-				Collection<ResourceSet> resourceSets) {
+		public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
 
 			DisposeAction result = DisposeAction.CLOSE;
-			IInternalPapyrusRepository internal = (IInternalPapyrusRepository) repository;
+			IInternalPapyrusRepository internal = (IInternalPapyrusRepository)repository;
 			final List<IEditorPart> dirty = Lists.newArrayList();
 
-			for (ResourceSet next : resourceSets) {
+			for(ResourceSet next : resourceSets) {
 				CDOView view = internal.getCDOView(next);
 				IEditorPart editor = editors.inverse().get(view);
 
-				if ((editor != null) && editor.isDirty()) {
+				if((editor != null) && editor.isDirty()) {
 					dirty.add(editor);
 				}
 			}
 
-			if (!dirty.isEmpty()) {
-				Future<Integer> dlgResult = UIUtil
-					.call(new Callable<Integer>() {
+			if(!dirty.isEmpty()) {
+				Future<Integer> dlgResult = UIUtil.call(new Callable<Integer>() {
 
-						public Integer call() {
-							MessageDialog dlg = new MessageDialog(
-								dirty.get(0).getSite().getShell(),
-								"Unsaved Model Editors",
-								null,
-								"There are unsaved model editors using this repository.  Save them first?",
-								MessageDialog.QUESTION_WITH_CANCEL, //
-								new String[]{"Yes", "No", "Cancel"}, 2);
+					public Integer call() {
+						MessageDialog dlg = new MessageDialog(dirty.get(0).getSite().getShell(), Messages.PapyrusCDOEditorManager_1, null, Messages.PapyrusCDOEditorManager_2, MessageDialog.QUESTION_WITH_CANCEL, //
+						new String[]{ IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL }, 2);
 
-							return dlg.open();
-						}
-					});
+						return dlg.open();
+					}
+				});
 
 				try {
-					switch (dlgResult.get()) {
-						case 0 : // Yes
-							result = DisposeAction.SAVE;
-							break;
-						case 1 : // No
-							result = DisposeAction.CLOSE;
-							break;
-						case 2 : // Cancel
-							result = DisposeAction.NONE;
-							break;
-						default :
-							break;
+					switch(dlgResult.get()) {
+					case 0: // Yes
+						result = DisposeAction.SAVE;
+						break;
+					case 1: // No
+						result = DisposeAction.CLOSE;
+						break;
+					case 2: // Cancel
+						result = DisposeAction.NONE;
+						break;
+					default:
+						break;
 					}
 				} catch (Exception e) {
 					// shouldn't happen because the UIUtil doesn't support

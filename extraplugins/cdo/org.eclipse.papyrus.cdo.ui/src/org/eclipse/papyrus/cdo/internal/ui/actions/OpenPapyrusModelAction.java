@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorManager;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;
@@ -30,7 +31,7 @@ public class OpenPapyrusModelAction
 	private final IWorkbenchPart part;
 
 	public OpenPapyrusModelAction(IWorkbenchPart part) {
-		super("Open in Papyrus Editor");
+		super(Messages.OpenPapyrusModelAction_0);
 
 		this.part = part;
 	}

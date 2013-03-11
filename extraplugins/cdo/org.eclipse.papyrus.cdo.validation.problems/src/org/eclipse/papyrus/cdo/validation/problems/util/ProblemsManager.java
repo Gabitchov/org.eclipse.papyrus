@@ -113,7 +113,7 @@ public class ProblemsManager {
 	public static ProblemsManager createProblemsManager(
 			ResourceSet resourceSet, EClass customProblemClass) {
 		if (customProblemClass == null) {
-			throw new IllegalArgumentException("null customProblemClass");
+			throw new IllegalArgumentException("null customProblemClass"); //$NON-NLS-1$
 		}
 
 		return new ProblemsManager.Custom(resourceSet, customProblemClass);
@@ -244,7 +244,7 @@ public class ProblemsManager {
 				}
 
 				public void remove() {
-					throw new UnsupportedOperationException("remove");
+					throw new UnsupportedOperationException("remove"); //$NON-NLS-1$
 				}
 			};
 		} else {
@@ -275,7 +275,7 @@ public class ProblemsManager {
 				}
 
 				public void remove() {
-					throw new UnsupportedOperationException("remove");
+					throw new UnsupportedOperationException("remove"); //$NON-NLS-1$
 				}
 			};
 		}
@@ -440,7 +440,7 @@ public class ProblemsManager {
 			if (!ProblemsPackage.Literals.EPROBLEM
 				.isSuperTypeOf(customProblemClass)) {
 				throw new IllegalArgumentException(
-					"customProblemClass does not conform to EProblem");
+					"customProblemClass does not conform to EProblem"); //$NON-NLS-1$
 			}
 
 			this.customProblemClass = customProblemClass;
@@ -549,7 +549,7 @@ public class ProblemsManager {
 		}
 
 		public void remove() {
-			throw new UnsupportedOperationException("remove");
+			throw new UnsupportedOperationException("remove"); //$NON-NLS-1$
 		}
 	}
 

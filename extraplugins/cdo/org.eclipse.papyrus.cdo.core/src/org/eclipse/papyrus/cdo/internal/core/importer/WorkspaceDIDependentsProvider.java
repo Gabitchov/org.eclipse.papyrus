@@ -81,7 +81,7 @@ public class WorkspaceDIDependentsProvider
 					throws CoreException {
 
 				if ((proxy.getType() == IResource.FILE)
-					&& proxy.getName().endsWith(".di")) {
+					&& proxy.getName().endsWith(".di")) { //$NON-NLS-1$
 
 					String path = proxy.requestFullPath().toString();
 

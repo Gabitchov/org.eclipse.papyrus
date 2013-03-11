@@ -11,18 +11,28 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.importer;
 
-import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 
 /**
- * This is the IModelImportOperation type. Enjoy.
+ * This is the IModelTransferMapping type. Enjoy.
  */
-public interface IModelImportOperation {
+public interface IModelTransferMapping {
 
-	Diagnostic run(IProgressMonitor monitor);
+	IModelTransferConfiguration getConfiguration();
 
-	interface Context {
+	void mapTo(IModelTransferNode source, IPath path);
 
-		Diagnostic run(IModelImportOperation operation);
-	}
+	IPath getMapping(IModelTransferNode node);
+
+	IPapyrusRepository getRepository();
+
+	void setRepository(IPapyrusRepository repository);
+
+	Diagnostic validate();
+
+	void addModelTransferMappingListener(IModelTransferMappingListener listener);
+
+	void removeModelTransferMappingListener(IModelTransferMappingListener listener);
 }

@@ -22,7 +22,7 @@ import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 public class EObjectPropertyTester
 		extends PropertyTester {
 
-	public static final String IS_CDO_OBJECT = "isCDOObject";
+	public static final String IS_CDO_OBJECT = "isCDOObject"; //$NON-NLS-1$
 
 	public EObjectPropertyTester() {
 		super();

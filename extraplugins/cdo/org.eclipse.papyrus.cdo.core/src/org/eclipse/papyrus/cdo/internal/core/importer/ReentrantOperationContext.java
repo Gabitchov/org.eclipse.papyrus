@@ -15,25 +15,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportOperation;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 
 /**
  * This is the ReentrantOperationContext type. Enjoy.
  */
 public class ReentrantOperationContext
-		implements IModelImportOperation.Context {
+		implements IModelTransferOperation.Context {
 
-	private final IModelImportOperation.Context delegate;
+	private final IModelTransferOperation.Context delegate;
 
 	private AtomicInteger depth = new AtomicInteger();
 
-	public ReentrantOperationContext(IModelImportOperation.Context delegate) {
+	public ReentrantOperationContext(IModelTransferOperation.Context delegate) {
 		super();
 
 		this.delegate = delegate;
 	}
 
-	public Diagnostic run(IModelImportOperation operation) {
+	public Diagnostic run(IModelTransferOperation operation) {
 		Diagnostic result;
 
 		try {

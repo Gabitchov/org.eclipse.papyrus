@@ -11,29 +11,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.importer;
 
-import org.eclipse.emf.common.util.Diagnostic;
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.URI;
 
 /**
- * This is the ModelImportMappingListenerAdapter type. Enjoy.
+ * This is the IModelTransferNode type. Enjoy.
  */
-public class ModelImportMappingListenerAdapter
-		implements IModelImportMappingListener {
+public interface IModelTransferNode {
 
-	public ModelImportMappingListenerAdapter() {
-		super();
-	}
+	String getName();
+	
+	URI getPrimaryResourceURI();
 
-	public void modelImportRepositoryChanged(
-			IModelImportMapping mapping) {
-		// pass
-	}
+	Collection<URI> getResourceURIs();
 
-	public void modelImportMappingChanged(IModelImportNode node) {
-		// pass
-	}
+	Collection<IModelTransferNode> getDependencies();
 
-	public void modelImportMappingProblemsOccurred(Diagnostic problems) {
-		// pass
-	}
-
+	Collection<IModelTransferNode> getDependents();
 }

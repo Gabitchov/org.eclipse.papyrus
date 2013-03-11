@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.properties.RepositoryPropertiesBlock;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -29,17 +30,18 @@ import com.google.common.eventbus.Subscribe;
 /**
  * This is the RepositorySelectionPage type. Enjoy.
  */
-public class RepositorySelectionPage
-		extends ModelImportWizardPage {
+public class RepositorySelectionPage extends ModelImportWizardPage {
 
-	private static final String MESSAGE = "Select a repository to import the models into.";
+	private static final String MESSAGE = Messages.RepositorySelectionPage_0;
 
 	private RepositorySelectionBlock repoSelectionBlock;
 
 	private RepositoryPropertiesBlock repoBlock;
 
+	private IPapyrusRepository repository;
+
 	public RepositorySelectionPage(EventBus bus) {
-		super("repository", "Model Repository", null, bus, MESSAGE);
+		super("repository", Messages.RepositorySelectionPage_2, null, bus, MESSAGE); //$NON-NLS-1$
 	}
 
 	public void createControl(Composite parent) {
@@ -48,21 +50,23 @@ public class RepositorySelectionPage
 		Composite result = new Composite(parent, SWT.NONE);
 		result.setLayout(new GridLayout(1, false));
 
-		new Label(result, SWT.NONE).setText("Repositories:");
+		new Label(result, SWT.NONE).setText(Messages.RepositorySelectionPage_3);
 
-		repoSelectionBlock = new RepositorySelectionBlock(
-			PapyrusRepositoryManager.INSTANCE, getEventBus(),
-			Suppliers.ofInstance(getContainer()));
+		repoSelectionBlock = new RepositorySelectionBlock(PapyrusRepositoryManager.INSTANCE, getEventBus(), Suppliers.ofInstance(getContainer()));
 		repoSelectionBlock.createControl(result);
 
 		Group group = new Group(result, SWT.BORDER);
-		group.setText("Repository details:");
-		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false)
-			.create());
+		group.setText(Messages.RepositorySelectionPage_4);
+		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(new GridLayout(1, false));
 		repoBlock = new RepositoryPropertiesBlock(getSelectedRepository());
 		repoBlock.createControl(group);
 		repoBlock.setEditable(false);
+
+		if(repository != null) {
+			repoSelectionBlock.setSelectedRepository(repository);
+			repoBlock.setRepository(repository);
+		}
 
 		setControl(result);
 
@@ -78,16 +82,24 @@ public class RepositorySelectionPage
 	}
 
 	@Subscribe
-	public void selected(final IPapyrusRepository repository) {
-		repoBlock.setRepository(repository);
-		validatePage();
+	public void selected(IPapyrusRepository repository) {
+		this.repository = repository;
+
+		if((repoSelectionBlock != null) && (repoSelectionBlock.getSelectedRepository() != repository)) {
+			repoSelectionBlock.setSelectedRepository(repository);
+		}
+
+		if(repoBlock != null) {
+			repoBlock.setRepository(repository);
+			validatePage();
+		}
 	}
 
 	@Override
 	protected Diagnostic doValidatePage() {
 		Diagnostic result = Diagnostic.CANCEL_INSTANCE;
 
-		if (getSelectedRepository() != null) {
+		if(getSelectedRepository() != null) {
 			result = Diagnostic.OK_INSTANCE;
 		}
 
@@ -95,8 +107,6 @@ public class RepositorySelectionPage
 	}
 
 	public IPapyrusRepository getSelectedRepository() {
-		return (repoSelectionBlock == null)
-			? null
-			: repoSelectionBlock.getSelectedRepository();
+		return repository;
 	}
 }

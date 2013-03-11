@@ -32,8 +32,12 @@ import org.eclipse.papyrus.cdo.internal.ui.actions.DisconnectRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.LinkWithEditorAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.OpenPapyrusModelAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.RemoveRepositoryAction;
+import org.eclipse.papyrus.cdo.internal.ui.actions.RenameModelAction;
+import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDragAdapter;
+import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropAdapter;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchCommandConstants;
@@ -44,14 +48,13 @@ import org.eclipse.ui.dialogs.PropertyDialogAction;
 /**
  * This is the ModelRepositoriesView type. Enjoy.
  */
-public class ModelRepositoriesView
-		extends ContainerView {
+public class ModelRepositoriesView extends ContainerView {
 
 	public final static String ID = "org.eclipse.papyrus.cdo.ui.ModelRepositoriesView"; //$NON-NLS-1$
 
 	public static final int LINK_WITH_EDITOR_PROPERTY = 0x10000;
 
-	private static final String STATE_LINKING = "linkWithEditor";
+	private static final String STATE_LINKING = "linkWithEditor"; //$NON-NLS-1$
 
 	private final IInternalPapyrusRepositoryManager repositoryManager;
 
@@ -71,6 +74,8 @@ public class ModelRepositoriesView
 
 	private CreateFolderAction createFolderAction;
 
+	private RenameModelAction renameModelAction;
+
 	private DeleteModelAction deleteModelAction;
 
 	private boolean isLinkWithEditor;
@@ -80,24 +85,21 @@ public class ModelRepositoriesView
 	public ModelRepositoriesView() {
 		super();
 
-		repositoryManager = (IInternalPapyrusRepositoryManager) PapyrusRepositoryManager.INSTANCE;
+		repositoryManager = PapyrusRepositoryManager.INSTANCE;
 	}
 
 	@Override
 	protected IContainer<?> getContainer() {
-		return (IContainer<?>) repositoryManager;
+		return (IContainer<?>)repositoryManager;
 	}
 
 	@Override
-	public void init(IViewSite site, IMemento memento)
-			throws PartInitException {
+	public void init(IViewSite site, IMemento memento) throws PartInitException {
 
 		super.init(site, memento);
 
 		// link by default
-		Boolean linking = (memento == null)
-			? Boolean.TRUE
-			: memento.getBoolean(STATE_LINKING);
+		Boolean linking = (memento == null) ? Boolean.TRUE : memento.getBoolean(STATE_LINKING);
 		setLinkWithEditor(!Boolean.FALSE.equals(linking));
 	}
 
@@ -112,10 +114,10 @@ public class ModelRepositoriesView
 	}
 
 	public void setLinkWithEditor(boolean link) {
-		if (isLinkWithEditor != link) {
+		if(isLinkWithEditor != link) {
 			isLinkWithEditor = link;
 
-			if (linkingHelper != null) {
+			if(linkingHelper != null) {
 				linkingHelper.setLinkWithEditor(link);
 			}
 
@@ -127,31 +129,35 @@ public class ModelRepositoriesView
 	protected Control createUI(Composite parent) {
 		createActions();
 
-		return super.createUI(parent);
+		Control result = super.createUI(parent);
+
+		// don't show drop feed-back because the viewer sorts alphabetically
+		// (ordering of resource nodes has no meaning)
+		ResourceDragAdapter.install(getViewer());
+		ResourceDropAdapter.install(getViewer()).setFeedbackEnabled(false);
+
+		return result;
 	}
 
 	@Override
 	protected void createdUI() {
 		super.createdUI();
 
-		linkingHelper = new LinkingHelper(getSite(), repositoryManager,
-			getViewer());
+		linkingHelper = new LinkingHelper(getSite(), repositoryManager, getViewer());
 		linkingHelper.setLinkWithEditor(isLinkWithEditor());
 
 		ISelectionProvider selectionProvider = getSite().getSelectionProvider();
 		selectionProvider.addSelectionChangedListener(openModelAction);
 		selectionProvider.addSelectionChangedListener(connectRepositoryAction);
-		selectionProvider
-			.addSelectionChangedListener(disconnectRepositoryAction);
+		selectionProvider.addSelectionChangedListener(disconnectRepositoryAction);
 		selectionProvider.addSelectionChangedListener(removeRepositoryAction);
 		selectionProvider.addSelectionChangedListener(createFolderAction);
+		selectionProvider.addSelectionChangedListener(renameModelAction);
 		selectionProvider.addSelectionChangedListener(deleteModelAction);
 
 		// have to create this one after building the UI
-		propertyDialogAction = new PropertyDialogAction(getSite(),
-			selectionProvider);
-		propertyDialogAction
-			.setActionDefinitionId(IWorkbenchCommandConstants.FILE_PROPERTIES);
+		propertyDialogAction = new PropertyDialogAction(getSite(), selectionProvider);
+		propertyDialogAction.setActionDefinitionId(IWorkbenchCommandConstants.FILE_PROPERTIES);
 	}
 
 	protected void createActions() {
@@ -162,11 +168,12 @@ public class ModelRepositoriesView
 		removeRepositoryAction = new RemoveRepositoryAction(this);
 		openModelAction = new OpenPapyrusModelAction(this);
 		createFolderAction = new CreateFolderAction(this);
+		renameModelAction = new RenameModelAction(this);
 		deleteModelAction = new DeleteModelAction(this);
-		
-		getViewSite().getActionBars().setGlobalActionHandler(
-			ActionFactory.DELETE.getId(), deleteModelAction);
 
+		IActionBars actionBars = getViewSite().getActionBars();
+		actionBars.setGlobalActionHandler(ActionFactory.RENAME.getId(), renameModelAction);
+		actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), deleteModelAction);
 	}
 
 	@Override
@@ -178,21 +185,21 @@ public class ModelRepositoriesView
 	}
 
 	@Override
-	protected void fillContextMenu(IMenuManager manager,
-			ITreeSelection selection) {
+	protected void fillContextMenu(IMenuManager manager, ITreeSelection selection) {
 
-		manager.add(new GroupMarker("createActions"));
+		manager.add(new GroupMarker("createActions")); //$NON-NLS-1$
 
-		if (!selection.isEmpty()) {
+		if(!selection.isEmpty()) {
 			Object selected = selection.getFirstElement();
 
-			if (selected instanceof DIModel) {
+			if(selected instanceof DIModel) {
 				manager.add(openModelAction);
+				manager.add(renameModelAction);
 				manager.add(deleteModelAction);
 			}
 
-			if (selected instanceof IPapyrusRepository) {
-				if (((IPapyrusRepository) selected).isConnected()) {
+			if(selected instanceof IPapyrusRepository) {
+				if(((IPapyrusRepository)selected).isConnected()) {
 					manager.add(createFolderAction);
 				}
 
@@ -209,9 +216,9 @@ public class ModelRepositoriesView
 
 	@Override
 	protected void doubleClicked(Object object) {
-		if (object instanceof DIModel) {
+		if(object instanceof DIModel) {
 			invoke(openModelAction);
-		} else if (object instanceof IPapyrusRepository) {
+		} else if(object instanceof IPapyrusRepository) {
 			invoke(connectRepositoryAction);
 		} else {
 			super.doubleClicked(object);
@@ -219,7 +226,7 @@ public class ModelRepositoriesView
 	}
 
 	protected void invoke(Action action) {
-		if (action.isEnabled()) {
+		if(action.isEnabled()) {
 			action.run();
 		}
 	}

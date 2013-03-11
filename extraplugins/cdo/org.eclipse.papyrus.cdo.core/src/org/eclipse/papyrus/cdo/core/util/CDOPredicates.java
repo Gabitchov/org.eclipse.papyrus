@@ -9,18 +9,22 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.cdo.core.importer;
+package org.eclipse.papyrus.cdo.core.util;
 
-import org.eclipse.emf.common.util.Diagnostic;
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 
 /**
- * This is the IModelImportMappingListener type. Enjoy.
+ * This is the CDOPredicates type. Enjoy.
  */
-public interface IModelImportMappingListener {
+public class CDOPredicates {
 
-	void modelImportRepositoryChanged(IModelImportMapping mapping);
+	// Not instantiable by clients.
+	private CDOPredicates() {
+		super();
+	}
 
-	void modelImportMappingChanged(IModelImportNode node);
-
-	void modelImportMappingProblemsOccurred(Diagnostic problems);
+	public static <T> Predicate<T> adaptsTo(Class<?> adapterType) {
+		return Predicates.<T, Object> compose(Predicates.notNull(), CDOFunctions.<T, Object> adapt(adapterType));
+	}
 }

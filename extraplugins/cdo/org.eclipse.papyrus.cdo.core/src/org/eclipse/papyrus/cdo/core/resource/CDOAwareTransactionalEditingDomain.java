@@ -64,7 +64,7 @@ public class CDOAwareTransactionalEditingDomain
 					} catch (Exception e) {
 						Activator.log
 							.error(
-								"Uncaught exception in resource set change listener.",
+								"Uncaught exception in resource set change listener.", //$NON-NLS-1$
 								e);
 					}
 				}

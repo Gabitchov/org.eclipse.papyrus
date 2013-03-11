@@ -36,6 +36,7 @@ import org.eclipse.papyrus.cdo.internal.ui.SharedImages;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
 import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
 import org.eclipse.papyrus.cdo.uml.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.uml.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.DelegatingLabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
@@ -119,7 +120,7 @@ public class CDOPackageImportSource
 				String result = null;
 
 				if (element == CDOPackageImportSource.this) {
-					result = "Model Repositories";
+					result = Messages.CDOPackageImportSource_0;
 				}
 
 				return result;
@@ -148,7 +149,7 @@ public class CDOPackageImportSource
 		if (cdo == null) {
 			throw new CoreException(new Status(IStatus.WARNING,
 				Activator.PLUGIN_ID,
-				NLS.bind("Not a repository model resource: \"{0}\".",
+				NLS.bind(Messages.CDOPackageImportSource_1,
 					getText(model))));
 		}
 

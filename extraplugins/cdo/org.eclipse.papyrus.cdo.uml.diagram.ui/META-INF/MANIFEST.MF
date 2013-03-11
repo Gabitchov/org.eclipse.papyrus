@@ -14,8 +14,9 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui,
- org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers,
- org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards
+Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui;x-internal:=true,
+ org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers;x-internal:=true,
+ org.eclipse.papyrus.cdo.uml.diagram.internal.ui.l10n;x-internal:=true,
+ org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;x-internal:=true
 Import-Package: com.google.common.base;version="10.0.1",
  com.google.common.eventbus;version="10.0.1"

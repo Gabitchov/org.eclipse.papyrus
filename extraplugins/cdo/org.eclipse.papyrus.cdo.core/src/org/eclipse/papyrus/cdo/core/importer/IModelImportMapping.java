@@ -11,38 +11,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.importer;
 
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.importer.ManyToOneModelImportMappingFactory;
 import org.eclipse.papyrus.cdo.internal.core.importer.OneToOneModelImportMappingFactory;
 
 /**
  * This is the IModelImportMapping type. Enjoy.
  */
-public interface IModelImportMapping {
+public interface IModelImportMapping extends IModelTransferMapping {
 
-	IModelImportConfiguration getConfiguration();
-	
-	IPapyrusRepository getRepository();
-
-	void setRepository(IPapyrusRepository repository);
-
-	void mapTo(IModelImportNode source, IPath path);
-
-	IPath getMapping(IModelImportNode node);
-
-	Diagnostic validate();
-
-	void addModelImportMappingListener(IModelImportMappingListener listener);
-
-	void removeModelImportMappingListener(IModelImportMappingListener listener);
-	
 	interface Factory {
+
 		Factory ONE_TO_ONE = new OneToOneModelImportMappingFactory();
-		
+
 		Factory MANY_TO_ONE = new ManyToOneModelImportMappingFactory();
-		
-		IModelImportMapping create(IModelImportConfiguration configuration);
+
+		IModelImportMapping create(IModelTransferConfiguration configuration);
 	}
 }

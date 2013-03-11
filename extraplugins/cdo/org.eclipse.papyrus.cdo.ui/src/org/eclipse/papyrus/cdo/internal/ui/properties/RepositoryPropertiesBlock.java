@@ -31,6 +31,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -94,30 +95,30 @@ public class RepositoryPropertiesBlock
 		result.setLayout(new GridLayout(2, false));
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(result);
 
-		new Label(result, SWT.NONE).setText("Name:");
+		new Label(result, SWT.NONE).setText(Messages.RepositoryPropertiesBlock_0);
 		nameText = new Text(result, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(nameText);
 
-		new Label(result, SWT.NONE).setText("Protocol:");
+		new Label(result, SWT.NONE).setText(Messages.RepositoryPropertiesBlock_1);
 		protocolCombo = new ComboViewer(result);
 		protocolCombo.setContentProvider(new ArrayContentProvider());
 		protocolCombo.setInput(Protocol.values());
 
 		defaultPort = new Button(result, SWT.CHECK);
-		defaultPort.setText("Use default port");
+		defaultPort.setText(Messages.RepositoryPropertiesBlock_2);
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(defaultPort);
 
 		Label label = new Label(result, SWT.NONE);
-		label.setText("Port:");
+		label.setText(Messages.RepositoryPropertiesBlock_3);
 		GridDataFactory.swtDefaults().indent(15, 0).applyTo(label);
 		portText = new Text(result, SWT.BORDER);
 		GridDataFactory.fillDefaults().applyTo(portText);
 
-		new Label(result, SWT.NONE).setText("Host:");
+		new Label(result, SWT.NONE).setText(Messages.RepositoryPropertiesBlock_4);
 		hostText = new Text(result, SWT.BORDER);
 		GridDataFactory.fillDefaults().applyTo(hostText);
 
-		new Label(result, SWT.NONE).setText("Repository:");
+		new Label(result, SWT.NONE).setText(Messages.RepositoryPropertiesBlock_5);
 		repoText = new Text(result, SWT.BORDER);
 		GridDataFactory.fillDefaults().applyTo(repoText);
 
@@ -172,25 +173,25 @@ public class RepositoryPropertiesBlock
 
 		String name = (repository == null)
 			? (createMode
-				? "My Repository"
-				: "")
+				? Messages.RepositoryPropertiesBlock_6
+				: "") //$NON-NLS-1$
 			: repository.getName();
 		String url = (repository == null)
 			? (createMode
-				? "tcp://localhost?repositoryName=repo1"
+				? "tcp://localhost?repositoryName=repo1" //$NON-NLS-1$
 				: null)
 			: repository.getURL();
 		URI uri = (url == null)
 			? null
 			: URI.createURI(url);
 		String host = (uri == null)
-			? ""
+			? "" //$NON-NLS-1$
 			: parseHost(uri);
 		String repo = (uri == null)
-			? ""
+			? "" //$NON-NLS-1$
 			: parseRepositoryName(uri);
 		Protocol protocol = Protocol.TCP;
-		String portString = "";
+		String portString = ""; //$NON-NLS-1$
 		boolean isDefaultPort = true;
 		if (uri != null) {
 			protocol = Protocol.valueOf(uri.scheme().toUpperCase());
@@ -258,22 +259,22 @@ public class RepositoryPropertiesBlock
 				throw new IllegalArgumentException();
 			}
 		} catch (Exception e) {
-			setStatus(error("Port must be a positive integer."));
+			setStatus(error(Messages.RepositoryPropertiesBlock_12));
 			return;
 		}
 
 		if (hostText.getText().trim().length() == 0) {
-			setStatus(error("The host name is required."));
+			setStatus(error(Messages.RepositoryPropertiesBlock_13));
 			return;
 		}
 
 		if (repoText.getText().trim().length() == 0) {
-			setStatus(error("The repository identifier is required."));
+			setStatus(error(Messages.RepositoryPropertiesBlock_14));
 			return;
 		}
 
 		if (nameText.getText().trim().length() == 0) {
-			setStatus(error("A name for the repository configuration is required."));
+			setStatus(error(Messages.RepositoryPropertiesBlock_15));
 			return;
 		}
 
@@ -284,7 +285,7 @@ public class RepositoryPropertiesBlock
 			.getRepository(url);
 		if ((existing != null) && (existing != repository)) {
 			setStatus(error(NLS.bind(
-				"A repository \"{0}\" already exists at this location.",
+				Messages.RepositoryPropertiesBlock_16,
 				existing.getName())));
 			return;
 		}
@@ -295,7 +296,7 @@ public class RepositoryPropertiesBlock
 			if ((next != repository) && Objects.equal(next.getName(), name)) {
 				setStatus(warning(NLS
 					.bind(
-						"A repository named \"{0}\" already exists at a different location.",
+						Messages.RepositoryPropertiesBlock_17,
 						next.getName())));
 				return;
 			}
@@ -315,14 +316,14 @@ public class RepositoryPropertiesBlock
 	private String computeURL() {
 		StringBuilder result = new StringBuilder();
 
-		result.append(getSelectedProtocol().scheme).append(":");
+		result.append(getSelectedProtocol().scheme).append(":"); //$NON-NLS-1$
 
-		result.append("//");
+		result.append("//"); //$NON-NLS-1$
 		result.append(hostText.getText().trim());
 
-		result.append(":").append(portText.getText().trim());
+		result.append(":").append(portText.getText().trim()); //$NON-NLS-1$
 
-		result.append("?repositoryName=").append(repoText.getText().trim());
+		result.append("?repositoryName=").append(repoText.getText().trim()); //$NON-NLS-1$
 
 		return result.toString();
 	}
@@ -348,7 +349,7 @@ public class RepositoryPropertiesBlock
 	}
 
 	private String parseRepositoryName(URI uri) {
-		return CDOURIUtil.getParameters(uri.query()).get("repositoryName");
+		return CDOURIUtil.getParameters(uri.query()).get("repositoryName"); //$NON-NLS-1$
 	}
 
 	public IStatus getStatus() {
@@ -397,7 +398,7 @@ public class RepositoryPropertiesBlock
 	}
 
 	public static enum Protocol {
-		TCP("tcp", 2036), HTTP("http", 80);
+		TCP("tcp", 2036), HTTP("http", 80); //$NON-NLS-1$ //$NON-NLS-2$
 
 		private final String scheme;
 

@@ -19,44 +19,35 @@ import java.util.Iterator;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 
-public class ReadOnlyTester
-		extends PropertyTester {
+public class ReadOnlyTester extends PropertyTester {
 
 	public static final String IS_READ_ONLY = "isReadOnly"; //$NON-NLS-1$
 
-	public boolean test(Object receiver, String property, Object[] args,
-			Object expectedValue) {
-		if (IS_READ_ONLY.equals(property)
-			&& receiver instanceof IStructuredSelection) {
-			IStructuredSelection selection = (IStructuredSelection) receiver;
+	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
+		if (IS_READ_ONLY.equals(property) && receiver instanceof IStructuredSelection) {
+			IStructuredSelection selection = (IStructuredSelection)receiver;
 
 			Iterator<?> it = selection.iterator();
 			while (it.hasNext()) {
 				Object obj = it.next();
-				Object businessObject = BusinessModelResolver.getInstance()
-					.getBusinessModel(obj);
+				Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(obj);
+				
 				if (businessObject instanceof EObject) {
 					EObject eObject = (EObject) businessObject;
 					Resource resource = eObject.eResource();
-					ResourceSet resourceSet = (resource == null)
-						? null
-						: resource.getResourceSet();
-					if (resourceSet instanceof ModelSet) {
-						return ((ModelSet) resourceSet).isReadOnly(eObject);
-					} else if (resourceSet != null) {
-						return ReadOnlyManager.isReadOnly(resource,
+					if ((resource != null) && (resource.getResourceSet() != null)) {
+						return ReadOnlyManager.isReadOnly(eObject,
 							WorkspaceEditingDomainFactory.INSTANCE
-								.getEditingDomain(resourceSet));
+								.getEditingDomain(resource.getResourceSet()));
 					}
 				}
 			}
 		}
+		
 		return false;
 	}
 

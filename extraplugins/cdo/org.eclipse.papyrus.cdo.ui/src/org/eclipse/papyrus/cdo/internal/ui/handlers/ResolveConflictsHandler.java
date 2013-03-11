@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.cdo.dawn.editors.IDawnEditor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
@@ -34,8 +35,8 @@ public class ResolveConflictsHandler
 
 			if (MessageDialog
 				.openQuestion(HandlerUtil.getActiveShellChecked(event),
-					"Resolve Conflicts",
-					"Are you sure you want to roll back all pending changes to resolve conflicts?")) {
+					Messages.ResolveConflictsHandler_0,
+					Messages.ResolveConflictsHandler_1)) {
 				activeEditor.getDawnEditorSupport().rollback();
 			}
 		}

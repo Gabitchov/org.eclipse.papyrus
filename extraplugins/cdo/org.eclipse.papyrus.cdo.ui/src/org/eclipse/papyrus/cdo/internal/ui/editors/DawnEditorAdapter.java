@@ -112,7 +112,7 @@ public class DawnEditorAdapter
 			&& (clazz != Object.class); clazz = clazz.getSuperclass()) {
 
 			try {
-				Field idField = clazz.getField("ID");
+				Field idField = clazz.getField("ID"); //$NON-NLS-1$
 				int modifiers = idField.getModifiers();
 				if ((idField.getType() == String.class)
 					&& Modifier.isStatic(modifiers)
@@ -128,7 +128,7 @@ public class DawnEditorAdapter
 
 		if (result == null) {
 			// this is the default ID pattern generated for Papyrus editors
-			result = editor.getClass().getName() + "ID";
+			result = editor.getClass().getName() + "ID"; //$NON-NLS-1$
 		}
 
 		return result;
@@ -144,7 +144,7 @@ public class DawnEditorAdapter
 				((CDOTransaction) view).commit(monitor);
 			} catch (CommitException e) {
 				Activator.log.error(
-					"Failed to commit transaction to save editor.", e);
+					"Failed to commit transaction to save editor.", e); //$NON-NLS-1$
 			}
 		} else {
 			diagramEditor.doSave(monitor);

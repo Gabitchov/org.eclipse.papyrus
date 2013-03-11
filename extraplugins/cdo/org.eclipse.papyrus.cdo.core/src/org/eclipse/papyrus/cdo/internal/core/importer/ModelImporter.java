@@ -30,13 +30,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelImportMapping;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportNode;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportOperation;
 import org.eclipse.papyrus.cdo.core.importer.IModelImporter;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
+import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
@@ -47,49 +48,41 @@ import com.google.common.collect.Sets;
 /**
  * This is the ModelImporter type. Enjoy.
  */
-public class ModelImporter
-		implements IModelImporter {
+public class ModelImporter implements IModelImporter {
 
-	protected static final ContentType DI_CONTENT = new ContentType("DI");
+	protected static final ContentType DI_CONTENT = new ContentType("DI"); //$NON-NLS-1$
 
-	protected static final ContentType UML_CONTENT = new ContentType("UML");
+	protected static final ContentType UML_CONTENT = new ContentType("UML"); //$NON-NLS-1$
 
-	protected static final ContentType NOTATION_CONTENT = new ContentType(
-		"Notation");
+	protected static final ContentType NOTATION_CONTENT = new ContentType("Notation"); //$NON-NLS-1$
 
-	protected static final ContentType UNKNOWN_CONTENT = new ContentType(
-		"unknown");
+	protected static final ContentType UNKNOWN_CONTENT = new ContentType("unknown"); //$NON-NLS-1$
 
 	public ModelImporter() {
 		super();
 	}
 
 	public Diagnostic importModels(final IModelImportMapping mapping) {
-
 		BasicDiagnostic result = new BasicDiagnostic();
 
 		add(result, mapping.getConfiguration().validate());
 		add(result, mapping.validate());
 
-		if (result.getSeverity() < Diagnostic.ERROR) {
-			add(result,
-				mapping.getConfiguration().getOperationContext()
-					.run(new IModelImportOperation() {
+		if(result.getSeverity() < Diagnostic.ERROR) {
+			add(result, mapping.getConfiguration().getOperationContext().run(new IModelTransferOperation() {
 
-						public Diagnostic run(IProgressMonitor monitor) {
-							return doImport(mapping, monitor);
-						}
-					}));
+				public Diagnostic run(IProgressMonitor monitor) {
+					return doImport(mapping, monitor);
+				}
+			}));
 		}
 
 		return result;
 	}
 
-	protected Diagnostic doImport(IModelImportMapping mapping,
-			IProgressMonitor monitor) {
-
+	protected Diagnostic doImport(IModelImportMapping mapping, IProgressMonitor monitor) {
 		BasicDiagnostic result = new BasicDiagnostic();
-		IModelImportConfiguration configuration = mapping.getConfiguration();
+		IModelTransferConfiguration configuration = mapping.getConfiguration();
 
 		// by the time the configuration has analyzed every model to be
 		// imported, all proxies have been resolved that can be. So,
@@ -97,38 +90,27 @@ public class ModelImporter
 
 		// 1 for transaction commit, 1 for saving affected non-imported
 		// models, and 1 for clean-up
-		SubMonitor sub = SubMonitor.convert(monitor, "Importing models",
-			configuration.getModelsToImport().size() + 3);
+		SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelImporter_4, configuration.getModelsToTransfer().size() + 3);
 
-		IInternalPapyrusRepository repository = (IInternalPapyrusRepository) mapping
-			.getRepository();
-		ResourceSet destination = repository
-			.createTransaction(new ResourceSetImpl());
-		CDOTransaction transaction = (CDOTransaction) repository
-			.getCDOView(destination);
-
-		for (IModelImportNode model : configuration.getModelsToImport()) {
-			add(result,
-				importModel(model, configuration.getResourceSet(),
-					mapping.getMapping(model), transaction, sub.newChild(1)));
-		}
+		IInternalPapyrusRepository repository = (IInternalPapyrusRepository)mapping.getRepository();
+		ResourceSet destination = repository.createTransaction(new ResourceSetImpl());
+		CDOTransaction transaction = (CDOTransaction)repository.getCDOView(destination);
 
 		try {
+			for(IModelTransferNode model : configuration.getModelsToTransfer()) {
+				add(result, importModel(model, configuration.getResourceSet(), mapping.getMapping(model), transaction, sub.newChild(1)));
+			}
+
 			try {
 				transaction.commit(sub.newChild(1));
 			} catch (CommitException e) {
-				result.add(new BasicDiagnostic(IStatus.ERROR,
-					Activator.PLUGIN_ID, 0,
-					"Failed to commit import transaction.", new Object[]{e}));
+				result.add(new BasicDiagnostic(IStatus.ERROR, Activator.PLUGIN_ID, 0, Messages.ModelImporter_5, new Object[]{ e }));
 			}
 
 			try {
 				saveNonimportedModels(mapping, transaction, sub.newChild(1));
 			} catch (Exception e) {
-				result.add(new BasicDiagnostic(IStatus.ERROR,
-					Activator.PLUGIN_ID, 0,
-					"Failed to save affected models in the workspace.",
-					new Object[]{e}));
+				result.add(new BasicDiagnostic(IStatus.ERROR, Activator.PLUGIN_ID, 0, Messages.ModelImporter_6, new Object[]{ e }));
 			}
 		} finally {
 			cleanUp(configuration.getResourceSet());
@@ -142,23 +124,18 @@ public class ModelImporter
 		return result;
 	}
 
-	protected Diagnostic importModel(IModelImportNode model, ResourceSet rset,
-			IPath toPath, CDOTransaction transaction, IProgressMonitor monitor) {
-
+	protected Diagnostic importModel(IModelTransferNode model, ResourceSet rset, IPath toPath, CDOTransaction transaction, IProgressMonitor monitor) {
 		BasicDiagnostic result = new BasicDiagnostic();
 
 		IPath basePath = toPath.removeFileExtension();
 
-		SubMonitor sub = SubMonitor.convert(monitor, model.getName(), model
-			.getResourceURIs().size());
+		SubMonitor sub = SubMonitor.convert(monitor, model.getName(), model.getResourceURIs().size());
 
-		for (URI next : model.getResourceURIs()) {
-			Resource destination = transaction.getOrCreateResource(basePath
-				.addFileExtension(next.fileExtension()).toString());
+		for(URI next : model.getResourceURIs()) {
+			Resource destination = transaction.getOrCreateResource(basePath.addFileExtension(next.fileExtension()).toString());
 
-			add(result,
-				importResource(rset.getResource(next, true), destination));
-			monitor.worked(1);
+			add(result, importResource(rset.getResource(next, true), destination));
+			sub.worked(1);
 		}
 
 		sub.done();
@@ -167,9 +144,9 @@ public class ModelImporter
 	}
 
 	protected Diagnostic importResource(Resource source, Resource destination) {
-		if (!destination.getContents().isEmpty()) {
+		if(!destination.getContents().isEmpty()) {
 			ContentType contentType = getContentType(source);
-			if (contentType == DI_CONTENT) {
+			if(contentType == DI_CONTENT) {
 				mergeDIContent(source, destination);
 			} else {
 				// just append the additional content
@@ -187,24 +164,24 @@ public class ModelImporter
 	 * content.
 	 * 
 	 * @param resource
-	 *            a resource to be combined with existing content
+	 *        a resource to be combined with existing content
 	 * 
 	 * @return the content type
 	 */
 	protected ContentType getContentType(Resource resource) {
 		ContentType result = UNKNOWN_CONTENT;
 
-		for (EObject next : resource.getContents()) {
+		for(EObject next : resource.getContents()) {
 			EPackage ePackage = next.eClass().getEPackage();
-			if (ePackage == DiPackage.eINSTANCE) {
+			if(ePackage == DiPackage.eINSTANCE) {
 				result = DI_CONTENT;
 				break;
 			}
-			if (ePackage.getName().equalsIgnoreCase("uml")) {
+			if(ePackage.getName().equalsIgnoreCase("uml")) { //$NON-NLS-1$
 				result = UML_CONTENT;
 				break;
 			}
-			if (ePackage.getName().equalsIgnoreCase("notation")) {
+			if(ePackage.getName().equalsIgnoreCase("notation")) { //$NON-NLS-1$
 				result = NOTATION_CONTENT;
 				break;
 			}
@@ -215,33 +192,30 @@ public class ModelImporter
 
 	protected void mergeDIContent(Resource source, Resource destination) {
 		// snip out the source window manager and get its counterpart
-		SashWindowsMngr srcMngr = (SashWindowsMngr) EcoreUtil.getObjectByType(
-			source.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+		SashWindowsMngr srcMngr = (SashWindowsMngr)EcoreUtil.getObjectByType(source.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
 		EcoreUtil.remove(srcMngr);
-		SashWindowsMngr dstMngr = (SashWindowsMngr) EcoreUtil.getObjectByType(
-			destination.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+		SashWindowsMngr dstMngr = (SashWindowsMngr)EcoreUtil.getObjectByType(destination.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
 
 		// merge the window manager contents
-		if (dstMngr == null) {
+		if(dstMngr == null) {
 			destination.getContents().add(0, srcMngr);
 		} else {
 			SashModel dstModel = dstMngr.getSashModel();
 			SashModel srcModel = srcMngr.getSashModel();
 
-			if (dstModel == null) {
+			if(dstModel == null) {
 				dstMngr.setSashModel(srcModel);
 			} else {
 				dstModel.getWindows().addAll(srcModel.getWindows());
-				if (dstModel.getCurrentSelection() == null) {
-					dstModel
-						.setCurrentSelection(srcModel.getCurrentSelection());
+				if(dstModel.getCurrentSelection() == null) {
+					dstModel.setCurrentSelection(srcModel.getCurrentSelection());
 				}
 			}
 
 			PageList dstPages = dstMngr.getPageList();
 			PageList srcPages = srcMngr.getPageList();
 
-			if (dstPages == null) {
+			if(dstPages == null) {
 				dstMngr.setPageList(srcPages);
 			} else {
 				dstPages.getAvailablePage().addAll(srcPages.getAvailablePage());
@@ -252,49 +226,39 @@ public class ModelImporter
 		destination.getContents().addAll(source.getContents());
 	}
 
-	protected Diagnostic saveNonimportedModels(IModelImportMapping mapping,
-			CDOTransaction transaction, IProgressMonitor monitor) {
-
-		IModelImportConfiguration configuration = mapping.getConfiguration();
+	protected Diagnostic saveNonimportedModels(IModelImportMapping mapping, CDOTransaction transaction, IProgressMonitor monitor) {
+		IModelTransferConfiguration configuration = mapping.getConfiguration();
 
 		BasicDiagnostic result = new BasicDiagnostic();
 
-		Collection<IModelImportNode> imported = configuration
-			.getModelsToImport();
-		Set<IModelImportNode> nonImported = Sets.newHashSet();
+		Collection<IModelTransferNode> imported = configuration.getModelsToTransfer();
+		Set<IModelTransferNode> nonImported = Sets.newHashSet();
 
-		for (IModelImportNode next : configuration.getModelsToImport()) {
-			for (IModelImportNode dependent : next.getDependents()) {
-				if (!imported.contains(dependent)) {
+		for(IModelTransferNode next : configuration.getModelsToTransfer()) {
+			for(IModelTransferNode dependent : next.getDependents()) {
+				if(!imported.contains(dependent)) {
 					nonImported.add(dependent);
 				}
 			}
 		}
 
-		if (!nonImported.isEmpty()) {
-			SubMonitor sub = SubMonitor.convert(monitor,
-				"Saving workspace models...", nonImported.size());
+		if(!nonImported.isEmpty()) {
+			SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelImporter_9, nonImported.size());
 
 			ResourceSet rset = configuration.getResourceSet();
 
 			try {
-				for (IModelImportNode next : nonImported) {
-					for (URI uri : next.getResourceURIs()) {
+				for(IModelTransferNode next : nonImported) {
+					for(URI uri : next.getResourceURIs()) {
 						Resource resource = rset.getResource(uri, false);
 
 						// if the resource is modified, then we imported it, so
 						// don't save
-						if ((resource != null) && !resource.isModified()) {
+						if((resource != null) && !resource.isModified()) {
 							try {
 								resource.save(null);
 							} catch (Exception e) {
-								add(result,
-									new BasicDiagnostic(
-										IStatus.ERROR,
-										Activator.PLUGIN_ID,
-										0,
-										"Failed to save workspace dependent of imported model.",
-										new Object[]{e}));
+								add(result, new BasicDiagnostic(IStatus.ERROR, Activator.PLUGIN_ID, 0, Messages.ModelImporter_10, new Object[]{ e }));
 							}
 						}
 					}
@@ -310,7 +274,7 @@ public class ModelImporter
 	}
 
 	private void cleanUp(ResourceSet resourceSet) {
-		for (Resource next : resourceSet.getResources()) {
+		for(Resource next : resourceSet.getResources()) {
 			next.unload();
 			next.eAdapters().clear();
 		}
@@ -318,7 +282,7 @@ public class ModelImporter
 	}
 
 	private static void add(DiagnosticChain diagnostics, Diagnostic diagnostic) {
-		if (diagnostic.getSeverity() > Diagnostic.OK) {
+		if(diagnostic.getSeverity() > Diagnostic.OK) {
 			diagnostics.merge(diagnostic);
 		}
 	}
@@ -346,13 +310,12 @@ public class ModelImporter
 
 		@Override
 		public boolean equals(Object obj) {
-			return (obj instanceof ContentType)
-				&& ((ContentType) obj).getName().equals(getName());
+			return (obj instanceof ContentType) && ((ContentType)obj).getName().equals(getName());
 		}
 
 		@Override
 		public String toString() {
-			return getName() + " content";
+			return getName() + " content"; //$NON-NLS-1$
 		}
 	}
 }

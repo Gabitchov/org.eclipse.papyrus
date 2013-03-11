@@ -34,6 +34,7 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.SharedImages;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -57,9 +58,7 @@ public class RepositorySelectionBlock {
 
 	private IPapyrusRepository selectedRepository;
 
-	public RepositorySelectionBlock(IPapyrusRepositoryManager repoMan,
-			EventBus bus, Supplier<? extends IRunnableContext> runnableContext) {
-
+	public RepositorySelectionBlock(IPapyrusRepositoryManager repoMan, EventBus bus, Supplier<? extends IRunnableContext> runnableContext) {
 		this.repoMan = repoMan;
 		this.bus = bus;
 		this.runnableContext = runnableContext;
@@ -67,35 +66,36 @@ public class RepositorySelectionBlock {
 
 	public Control createControl(Composite parent) {
 		repoList = new TableViewer(parent);
-		GridDataFactory.fillDefaults().grab(true, true)
-			.applyTo(repoList.getControl());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(repoList.getControl());
 		repoList.setContentProvider(new RepositoryContentProvider());
 		repoList.setLabelProvider(new RepositoryLabelProvider());
 		repoList.setInput(repoMan);
 
+		if(selectedRepository != null) {
+			repoList.setSelection(new StructuredSelection(selectedRepository));
+			selected(selectedRepository);
+		}
+
 		repoList.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				IStructuredSelection sel = (IStructuredSelection) event
-					.getSelection();
+				IStructuredSelection sel = (IStructuredSelection)event.getSelection();
 
-				if (sel.isEmpty()) {
-					if (selectedRepository != null) {
+				if(sel.isEmpty()) {
+					if(selectedRepository != null) {
 						// veto empty selection
-						repoList.setSelection(new StructuredSelection(
-							selectedRepository));
+						repoList.setSelection(new StructuredSelection(selectedRepository));
 					}
 				} else {
-					selected((IPapyrusRepository) sel.getFirstElement());
+					selected((IPapyrusRepository)sel.getFirstElement());
 				}
 			}
 		});
 
 		// initially select the first connected repo
-		for (IPapyrusRepository next : PapyrusRepositoryManager.INSTANCE
-			.getRepositories()) {
+		for(IPapyrusRepository next : PapyrusRepositoryManager.INSTANCE.getRepositories()) {
 
-			if (next.isConnected()) {
+			if(next.isConnected()) {
 				selected(next);
 				repoList.setSelection(new StructuredSelection(next));
 				break;
@@ -110,7 +110,7 @@ public class RepositorySelectionBlock {
 	}
 
 	public void setEnabled(boolean enabled) {
-		if (repoList != null) {
+		if(repoList != null) {
 			repoList.getControl().setEnabled(enabled);
 		}
 	}
@@ -122,61 +122,56 @@ public class RepositorySelectionBlock {
 	void selected(final IPapyrusRepository repository) {
 		selectedRepository = repository;
 
-		if (!repository.isConnected()) {
+		if(!repository.isConnected()) {
 			try {
-				runnableContext.get().run(true, false,
-					new IRunnableWithProgress() {
+				runnableContext.get().run(true, false, new IRunnableWithProgress() {
 
-						public void run(IProgressMonitor monitor)
-								throws InvocationTargetException,
-								InterruptedException {
+					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 
-							SubMonitor sub = SubMonitor.convert(
-								monitor,
-								NLS.bind("Connecting {0} ...",
-									repository.getName()),
-								IProgressMonitor.UNKNOWN);
+						SubMonitor sub = SubMonitor.convert(monitor, NLS.bind(Messages.RepositorySelectionBlock_0, repository.getName()), IProgressMonitor.UNKNOWN);
 
-							try {
-								repository.connect();
+						try {
+							repository.connect();
 
-								// yes, it's a busy wait, but there's not much
-								// to be done about that.
-								final long deadline = System
-									.currentTimeMillis() + 5000L;
-								while (!repository.isConnected()) {
-									Thread.sleep(250L);
-									if (System.currentTimeMillis() >= deadline) {
-										break;
+							// yes, it's a busy wait, but there's not much
+							// to be done about that.
+							final long deadline = System.currentTimeMillis() + 5000L;
+							while(!repository.isConnected()) {
+								Thread.sleep(250L);
+								if(System.currentTimeMillis() >= deadline) {
+									break;
+								}
+							}
+
+							repoList.getControl().getDisplay().asyncExec(new Runnable() {
+
+								public void run() {
+									if(!repoList.getControl().isDisposed()) {
+										repoList.update(repository, null);
+										bus.post(repository);
 									}
 								}
-
-								repoList.getControl().getDisplay()
-									.asyncExec(new Runnable() {
-
-										public void run() {
-											if (!repoList.getControl()
-												.isDisposed()) {
-												repoList.update(repository,
-													null);
-												bus.post(repository);
-											}
-										}
-									});
-							} finally {
-								sub.done();
-							}
+							});
+						} finally {
+							sub.done();
 						}
-					});
+					}
+				});
 			} catch (Exception e) {
-				StatusManager.getManager().handle(
-					new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-						"Repository connection interrupted.", e),
-					StatusManager.SHOW);
+				StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.RepositorySelectionBlock_1, e), StatusManager.SHOW);
 			}
 		}
 
 		bus.post(repository);
+	}
+
+	public void setSelectedRepository(IPapyrusRepository repository) {
+		this.selectedRepository = repository;
+
+		if(repoList != null) {
+			repoList.setSelection(new StructuredSelection(selectedRepository));
+			selected(selectedRepository);
+		}
 	}
 
 	public IPapyrusRepository getSelectedRepository() {
@@ -187,16 +182,14 @@ public class RepositorySelectionBlock {
 	// Nested types
 	//
 
-	private static class RepositoryContentProvider
-			implements IStructuredContentProvider {
+	private static class RepositoryContentProvider implements IStructuredContentProvider {
 
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			viewer.refresh();
 		}
 
 		public Object[] getElements(Object inputElement) {
-			return ((IPapyrusRepositoryManager) inputElement).getRepositories()
-				.toArray();
+			return ((IPapyrusRepositoryManager)inputElement).getRepositories().toArray();
 		}
 
 		public void dispose() {
@@ -204,20 +197,17 @@ public class RepositorySelectionBlock {
 		}
 	}
 
-	private static class RepositoryLabelProvider
-			extends LabelProvider {
+	private static class RepositoryLabelProvider extends LabelProvider {
 
 		@Override
 		public Image getImage(Object element) {
-			boolean open = ((IPapyrusRepository) element).isConnected();
-			return SharedImages.getImage(open
-				? Activator.ICON_OPEN_REPOSITORY
-				: Activator.ICON_CLOSED_REPOSITORY);
+			boolean open = ((IPapyrusRepository)element).isConnected();
+			return SharedImages.getImage(open ? Activator.ICON_OPEN_REPOSITORY : Activator.ICON_CLOSED_REPOSITORY);
 		}
 
 		@Override
 		public String getText(Object element) {
-			return ((IPapyrusRepository) element).getName();
+			return ((IPapyrusRepository)element).getName();
 		}
 	}
 }

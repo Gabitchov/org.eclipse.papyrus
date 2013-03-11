@@ -11,25 +11,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
-import org.eclipse.papyrus.cdo.core.importer.IModelImportConfiguration;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportConfiguration.Factory;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration.Factory;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 
 /**
  * This is the DefaultModelImportConfigurationFactory type. Enjoy.
  */
-public class DefaultModelImportConfigurationFactory
-		implements Factory {
+public class DefaultModelImportConfigurationFactory implements Factory {
 
 	public DefaultModelImportConfigurationFactory() {
 		super();
 	}
 
-	public IModelImportConfiguration create(
-			IModelImportOperation.Context operationContext) {
-
-		ModelImportConfiguration result = new ModelImportConfiguration(
-			operationContext);
+	public IModelTransferConfiguration create(IModelTransferOperation.Context operationContext, ResourceSet resourceSet) {
+		ModelTransferConfiguration result = new ModelTransferConfiguration(operationContext, resourceSet);
 
 		result.addModelDependentsProvider(new WorkspaceDIDependentsProvider());
 

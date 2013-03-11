@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
@@ -26,7 +27,7 @@ public class ConnectRepositoryAction
 		extends AbstractRepositoryAction {
 
 	public ConnectRepositoryAction(IWorkbenchPart part) {
-		super("Connect", Activator
+		super(Messages.ConnectRepositoryAction_0, Activator
 			.getIcon(Activator.ICON_CONNECT_REPOSITORY_ENABLED), Activator
 			.getIcon(Activator.ICON_CONNECT_REPOSITORY_DISABLED), part);
 	}
@@ -51,7 +52,7 @@ public class ConnectRepositoryAction
 				});
 		} catch (Exception e) {
 			Activator.log.error(
-				"Unexpected exception in async repository connection.", e);
+				"Unexpected exception in async repository connection.", e); //$NON-NLS-1$
 		}
 	}
 }

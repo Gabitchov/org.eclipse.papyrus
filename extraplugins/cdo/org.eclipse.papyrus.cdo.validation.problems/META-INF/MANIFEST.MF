@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)",
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.cdo.validation.problems,
  org.eclipse.papyrus.cdo.validation.problems.impl,
- org.eclipse.papyrus.cdo.validation.problems.internal,
+ org.eclipse.papyrus.cdo.validation.problems.internal;x-internal:=true,
  org.eclipse.papyrus.cdo.validation.problems.util
 Bundle-ActivationPolicy: lazy

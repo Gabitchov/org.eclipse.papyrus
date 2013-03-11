@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.cdo.core.resource;
 
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -46,7 +47,7 @@ public class CDOAwareModelSetServiceFactory
 			try {
 				modelSet.unload();
 			} catch (Exception e) {
-				throw new ServiceException("Failed to unload CDO-aware ModelSet.", e);
+				throw new ServiceException(Messages.CDOAwareModelSetServiceFactory_0, e);
 			}
 		}
 	}

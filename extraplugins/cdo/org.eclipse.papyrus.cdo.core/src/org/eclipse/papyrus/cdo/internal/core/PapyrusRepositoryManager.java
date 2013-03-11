@@ -96,7 +96,7 @@ public class PapyrusRepositoryManager
 
 	public IPapyrusRepository createRepository(String url) {
 		if (getRepository(url) != null) {
-			throw new IllegalArgumentException("repository already exists");
+			throw new IllegalArgumentException("repository already exists"); //$NON-NLS-1$
 		}
 
 		Repository repository = RepositoriesFactory.eINSTANCE
@@ -115,11 +115,11 @@ public class PapyrusRepositoryManager
 	public void setURL(IPapyrusRepository repository, String url) {
 		if (!Objects.equal(repository.getURL(), url)) {
 			if (getRepository(url) != null) {
-				throw new IllegalArgumentException("repository already exists");
+				throw new IllegalArgumentException("repository already exists"); //$NON-NLS-1$
 			}
 
 			if (repository.isConnected()) {
-				throw new IllegalStateException("repository is connected");
+				throw new IllegalStateException("repository is connected"); //$NON-NLS-1$
 			}
 
 			PapyrusRepository internalRepository = (PapyrusRepository) repository;
@@ -131,7 +131,7 @@ public class PapyrusRepositoryManager
 
 	public void removeRepository(IPapyrusRepository repository) {
 		if (repository.isConnected()) {
-			throw new IllegalArgumentException("repository is still connected");
+			throw new IllegalArgumentException("repository is still connected"); //$NON-NLS-1$
 		}
 
 		repositories.remove(repository.getURL());
@@ -177,13 +177,13 @@ public class PapyrusRepositoryManager
 				}
 			} catch (IOException e) {
 				Activator.log.error(
-					"Failed to save model repositories to custom storage.", e);
+					"Failed to save model repositories to custom storage.", e); //$NON-NLS-1$
 			}
 		} else {
 			try {
 				repositoryRegistry.eResource().save(null);
 			} catch (IOException e) {
-				Activator.log.error("Failed to save model repositories.", e);
+				Activator.log.error("Failed to save model repositories.", e); //$NON-NLS-1$
 			}
 		}
 
@@ -192,17 +192,17 @@ public class PapyrusRepositoryManager
 			SecurePreferencesFactory.getDefault().flush();
 		} catch (IOException e) {
 			Activator.log.error(
-				"Failed to save repository passwords to secure storage.", e);
+				"Failed to save repository passwords to secure storage.", e); //$NON-NLS-1$
 		}
 	}
 
 	private RepositoryRegistry loadRepositories() {
 		ResourceSet rset = new ResourceSetImpl();
 		rset.getResourceFactoryRegistry().getExtensionToFactoryMap()
-			.put("xml", new XMLResourceFactoryImpl());
+			.put("xml", new XMLResourceFactoryImpl()); //$NON-NLS-1$
 
 		File repositoriesFile = new File(Activator.getDefault()
-			.getStateLocation().toFile(), "repositories.xml");
+			.getStateLocation().toFile(), "repositories.xml"); //$NON-NLS-1$
 		URI uri = URI.createFileURI(repositoriesFile.getAbsolutePath());
 		Resource resource = rset.createResource(uri);
 
@@ -218,7 +218,7 @@ public class PapyrusRepositoryManager
 				}
 			} catch (Exception e) {
 				Activator.log.error(
-					"Failed to load repository registry from custom storage.",
+					"Failed to load repository registry from custom storage.", //$NON-NLS-1$
 					e);
 			}
 		} else {
@@ -226,7 +226,7 @@ public class PapyrusRepositoryManager
 				try {
 					resource.load(null);
 				} catch (Exception e) {
-					Activator.log.error("Failed to load repository registry.",
+					Activator.log.error("Failed to load repository registry.", //$NON-NLS-1$
 						e);
 					// if there's any junk, clear it out
 					resource.getContents().clear();

@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
-import org.eclipse.papyrus.cdo.core.importer.IModelImportConfiguration;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelImportMapping;
 import org.eclipse.papyrus.cdo.core.importer.IModelImportMapping.Factory;
 
@@ -25,7 +25,7 @@ public class OneToOneModelImportMappingFactory
 		super();
 	}
 
-	public IModelImportMapping create(IModelImportConfiguration configuration) {
+	public IModelImportMapping create(IModelTransferConfiguration configuration) {
 		return new OneToOneModelImportMapping(configuration);
 	}
 

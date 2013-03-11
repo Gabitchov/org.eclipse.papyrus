@@ -11,22 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.importer;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.Diagnostic;
 
 /**
- * This is the IModelImportNode type. Enjoy.
+ * This is the IModelTransferOperation type. Enjoy.
  */
-public interface IModelImportNode {
+public interface IModelTransferOperation {
 
-	String getName();
-	
-	URI getPrimaryResourceURI();
+	Diagnostic run(IProgressMonitor monitor);
 
-	Collection<URI> getResourceURIs();
+	interface Context {
 
-	Collection<IModelImportNode> getDependencies();
-
-	Collection<IModelImportNode> getDependents();
+		Diagnostic run(IModelTransferOperation operation);
+	}
 }

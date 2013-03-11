@@ -21,20 +21,21 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportNode;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportOperation;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
+import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
 /**
- * This is the ModelImportNode type. Enjoy.
+ * This is the ModelTransferNode type. Enjoy.
  */
-public class ModelImportNode
-		implements IModelImportNode {
+public class ModelTransferNode
+		implements IModelTransferNode {
 
-	private final ModelImportConfiguration config;
+	private final ModelTransferConfiguration config;
 
 	private Resource resource;
 
@@ -42,25 +43,25 @@ public class ModelImportNode
 
 	private Set<Resource> components = Sets.newLinkedHashSet();
 
-	private Set<IModelImportNode> dependencies = Sets.newLinkedHashSet();
+	private Set<IModelTransferNode> dependencies = Sets.newLinkedHashSet();
 
-	private Set<IModelImportNode> dependents = Sets.newLinkedHashSet();
+	private Set<IModelTransferNode> dependents = Sets.newLinkedHashSet();
 
-	public ModelImportNode(ModelImportConfiguration config, Resource resource) {
+	public ModelTransferNode(ModelTransferConfiguration config, Resource resource) {
 		super();
 
 		this.config = config;
 		this.resource = resource;
 	}
 
-	void initialize(IModelImportOperation.Context context) {
+	void initialize(IModelTransferOperation.Context context) {
 
-		context.run(new IModelImportOperation() {
+		context.run(new IModelTransferOperation() {
 
 			public Diagnostic run(IProgressMonitor monitor) {
 
 				SubMonitor sub = SubMonitor.convert(monitor,
-					"Calculating model dependencies ...", 2);
+					Messages.ModelTransferNode_0, 2);
 
 				components.add(resource);
 				scanForComponents();
@@ -83,7 +84,7 @@ public class ModelImportNode
 			String path = uri.path();
 			if (uri.isPlatformResource()) {
 				// trim the project segment
-				path = path.substring(("/" + uri.segment(0)).length());
+				path = path.substring(("/" + uri.segment(0)).length()); //$NON-NLS-1$
 			} // else a file: URI's path does not include the device, so it's OK
 
 			this.name = path;
@@ -110,15 +111,15 @@ public class ModelImportNode
 		return result.build();
 	}
 
-	public Collection<IModelImportNode> getDependencies() {
+	public Collection<IModelTransferNode> getDependencies() {
 		return Collections.unmodifiableSet(dependencies);
 	}
 
-	public Collection<IModelImportNode> getDependents() {
+	public Collection<IModelTransferNode> getDependents() {
 		return Collections.unmodifiableSet(dependents);
 	}
 
-	void addDependent(IModelImportNode node) {
+	void addDependent(IModelTransferNode node) {
 		dependents.add(node);
 	}
 
@@ -129,14 +130,14 @@ public class ModelImportNode
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof IModelImportNode)
+		return (obj instanceof IModelTransferNode)
 			&& getPrimaryResourceURI().equals(
-				((IModelImportNode) obj).getPrimaryResourceURI());
+				((IModelTransferNode) obj).getPrimaryResourceURI());
 	}
 
 	@Override
 	public String toString() {
-		return String.format("ModelImportNode(%s)", getName());
+		return String.format("ModelTransferNode(%s)", getName()); //$NON-NLS-1$
 	}
 
 	private void scanForComponents() {
@@ -159,7 +160,7 @@ public class ModelImportNode
 			for (Resource xref : DependencyAdapter.getDependencies(component)) {
 				URI primary = findPrimaryResource(xref.getURI(), converter);
 				if ((primary != null) && converter.exists(primary, null)) {
-					IModelImportNode node = config.getNode(primary);
+					IModelTransferNode node = config.getNode(primary);
 					if ((node != null) && !node.equals(this)) {
 						dependencies.add(node);
 					}

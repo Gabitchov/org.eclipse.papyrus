@@ -101,7 +101,7 @@ public class CDOPapyrusMarker
 		} else if (name.equals(MESSAGE)) {
 			result = problem.getMessage();
 		} else {
-			throw new CoreException(error("No such marker attribute: " + name));
+			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 		}
 
 		return result;
@@ -182,13 +182,13 @@ public class CDOPapyrusMarker
 
 		if (name.equals(EValidator.URI_ATTRIBUTE)) {
 			throw new CoreException(
-				error("Cannot set URI of a CDOPapyrusMarker."));
+				error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
 		} else if (name.equals(SEVERITY)) {
 			setMarkerSeverity(((Number) value).intValue());
 		} else if (name.equals(MESSAGE)) {
 			problem.setMessage((String) value);
 		} else {
-			throw new CoreException(error("No such marker attribute: " + name));
+			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 		}
 	}
 
@@ -205,7 +205,7 @@ public class CDOPapyrusMarker
 				problem.setSeverity(ESeverity.ERROR);
 				break;
 			default :
-				throw new CoreException(error("Invalid marker severity: "
+				throw new CoreException(error("Invalid marker severity: " //$NON-NLS-1$
 					+ severity));
 		}
 	}
@@ -215,18 +215,18 @@ public class CDOPapyrusMarker
 
 		if (name.equals(EValidator.URI_ATTRIBUTE)) {
 			throw new CoreException(
-				error("Cannot set URI of a CDOPapyrusMarker."));
+				error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
 		} else if (name.equals(MESSAGE)) {
 			problem.setMessage(value);
 		} else {
-			throw new CoreException(error("No such marker attribute: " + name));
+			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 		}
 	}
 
 	public void setAttribute(String name, boolean value)
 			throws CoreException {
 
-		throw new CoreException(error("No such marker attribute: " + name));
+		throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 	}
 
 	public void setAttribute(String name, int value)
@@ -235,7 +235,7 @@ public class CDOPapyrusMarker
 		if (name.equals(SEVERITY)) {
 			setMarkerSeverity(value);
 		} else {
-			throw new CoreException(error("No such marker attribute: " + name));
+			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 		}
 	}
 
@@ -248,7 +248,7 @@ public class CDOPapyrusMarker
 
 			if (name.equals(EValidator.URI_ATTRIBUTE)) {
 				throw new CoreException(
-					error("Cannot set URI of a CDOPapyrusMarker."));
+					error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
 			} else if (name.equals(SEVERITY)) {
 				setMarkerSeverity(((Number) value).intValue());
 			} else if (name.equals(MESSAGE)) {
@@ -270,6 +270,6 @@ public class CDOPapyrusMarker
 	
 	@Override
 	public String toString() {
-		return String.format("CDOPapyrusMarker:%s:%s", getResource(), hashCode());
+		return String.format("CDOPapyrusMarker:%s:%s", getResource(), hashCode()); //$NON-NLS-1$
 	}
 }

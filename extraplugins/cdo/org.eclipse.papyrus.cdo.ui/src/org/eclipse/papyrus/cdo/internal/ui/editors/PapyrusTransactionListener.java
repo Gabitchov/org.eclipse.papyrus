@@ -95,7 +95,7 @@ public class PapyrusTransactionListener
 				} else if (lockedObject instanceof CDOIDAndBranch) {
 					id = ((CDOIDAndBranch) lockedObject).getID();
 				} else {
-					throw new RuntimeException("Unexpected object type: "
+					throw new RuntimeException("Unexpected object type: " //$NON-NLS-1$
 						+ lockedObject);
 				}
 
@@ -111,7 +111,7 @@ public class PapyrusTransactionListener
 
 						if (CDOUtils.isLocked(object, false)) {
 							throw new IllegalStateException(
-								"Locally locked objects should not occur.");
+								"Locally locked objects should not occur."); //$NON-NLS-1$
 						} else if (CDOUtils.isLocked(object, true)) {
 							changedObjects.put(element,
 								DawnState.LOCKED_REMOTELY);

@@ -13,7 +13,6 @@ package org.eclipse.papyrus.cdo.core.resource;
 
 import java.io.IOException;
 
-import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.dawn.gmf.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -196,21 +195,5 @@ public class CDOAwareModelSet
 				}
 			}
 		};
-	}
-
-	@Override
-	public boolean isReadOnly(EObject eObject) {
-		boolean result;
-
-		CDOObject cdo = CDOUtils.getCDOObject(eObject);
-
-		if (cdo != null) {
-			// TODO: Check user permissions
-			result = CDOUtils.isLocked(cdo, true);
-		} else {
-			result = super.isReadOnly(eObject);
-		}
-
-		return result;
 	}
 }

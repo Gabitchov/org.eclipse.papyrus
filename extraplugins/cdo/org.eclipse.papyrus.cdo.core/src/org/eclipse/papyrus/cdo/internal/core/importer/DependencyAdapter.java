@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
@@ -28,33 +29,37 @@ import com.google.common.collect.Sets;
 /**
  * This is the DependencyAdapter type. Enjoy.
  */
-public class DependencyAdapter
-		extends AdapterImpl {
+public class DependencyAdapter extends AdapterImpl {
 
-	private Set<Resource> dependencies = Sets.newLinkedHashSet();
+	private final Set<Resource> dependencies = Sets.newLinkedHashSet();
 
-	private Set<Resource> dependents = Sets.newLinkedHashSet();
+	private final Set<Resource> dependents = Sets.newLinkedHashSet();
 
 	private DependencyAdapter() {
 		super();
 	}
 
-	static DependencyAdapter getInstance(Resource resource) {
-		DependencyAdapter result = null;
+	public static DependencyAdapter getInstance(Resource resource) {
+		DependencyAdapter result = getExistingInstance(resource);
 
-		for (Object next : resource.eAdapters()) {
-			if (next instanceof DependencyAdapter) {
-				result = (DependencyAdapter) next;
-				break;
-			}
-		}
-
-		if (result == null) {
+		if(result == null) {
 			result = new DependencyAdapter();
-			resource.eAdapters().add(Math.min(1, resource.eAdapters().size()),
-				result);
+			resource.eAdapters().add(Math.min(1, resource.eAdapters().size()), result);
 
 			result.analyze(resource);
+		}
+
+		return result;
+	}
+
+	static DependencyAdapter getExistingInstance(Resource resource) {
+		DependencyAdapter result = null;
+
+		for(Object next : resource.eAdapters()) {
+			if(next instanceof DependencyAdapter) {
+				result = (DependencyAdapter)next;
+				break;
+			}
 		}
 
 		return result;
@@ -77,18 +82,17 @@ public class DependencyAdapter
 	}
 
 	private void analyze(Resource resource) {
-		for (Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
-			for (EObject xref : iter.next().eCrossReferences()) {
+		for(Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
+			for(EObject xref : iter.next().eCrossReferences()) {
 				Resource xrefRes = xref.eResource();
-				if ((xrefRes != null)
-					&& (isUserModelResource(xrefRes.getURI()))) {
+				if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
 
 					addDependency(xrefRes);
 				}
 			}
 		}
 
-		if (isDIResource(resource)) {
+		if(isDIResource(resource)) {
 			// find implicit dependencies, being the other components of the
 			// logical Papyrus model. Note that this iteration over new
 			// members depends on the set being a LinkedHashSet (retaining
@@ -97,49 +101,47 @@ public class DependencyAdapter
 			do {
 				size = dependencies.size();
 
-				for (Resource firstOrder : ImmutableList.copyOf(dependencies)
-					.subList(oldSize, size)) {
-					
-					for (Resource next : getDependencies(firstOrder)) {
-						if (getDIResource(next) == resource) {
+				for(Resource firstOrder : ImmutableList.copyOf(dependencies).subList(oldSize, size)) {
+					for(Resource next : getDependencies(firstOrder)) {
+						if(getDIResource(next) == resource) {
 							addDependency(next);
 						}
 					}
 				}
 
 				oldSize = size;
-			} while (oldSize < dependencies.size());
+			} while(oldSize < dependencies.size());
 		}
 	}
 
 	private Resource getResource() {
-		return (Resource) getTarget();
+		return (Resource)getTarget();
 	}
 
 	private void addDependency(Resource resource) {
 		Resource self = getResource();
 
-		if ((resource != self) && dependencies.add(resource)) {
+		if((resource != self) && dependencies.add(resource)) {
 			getInstance(resource).addDependent(self);
 		}
 	}
 
 	private void addDependent(Resource resource) {
-		if (resource != getResource()) {
+		if(resource != getResource()) {
 			dependents.add(resource);
 		}
 	}
 
 	boolean isUserModelResource(URI uri) {
 		return // config.hasResource(uri) &&
-		(uri.isPlatformResource() || uri.isFile()) && !uri.isArchive();
+		(uri.isPlatformResource() || uri.isFile() || CDOUtils.isCDOURI(uri)) && !uri.isArchive();
 	}
 
-	static boolean isDIResource(Resource resource) {
+	public static boolean isDIResource(Resource resource) {
 		boolean result = false;
 
-		for (EObject next : resource.getContents()) {
-			if (next instanceof SashWindowsMngr) {
+		for(EObject next : resource.getContents()) {
+			if(next instanceof SashWindowsMngr) {
 				result = true;
 				break;
 			}
@@ -148,20 +150,19 @@ public class DependencyAdapter
 		return result;
 	}
 
-	static Resource getDIResource(Resource resource) {
+	public static Resource getDIResource(Resource resource) {
 		Resource result = null;
 
-		if (isDIResource(resource)) {
+		if(isDIResource(resource)) {
 			result = resource;
 		} else {
 			// find the the DI resource
 			ResourceSet rset = resource.getResourceSet();
-			URI uri = resource.getURI().trimFileExtension()
-				.appendFileExtension(DiModel.DI_FILE_EXTENSION);
-			if (rset.getURIConverter().exists(uri, null)) {
+			URI uri = resource.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			if(rset.getURIConverter().exists(uri, null)) {
 				Resource di = rset.getResource(uri, true);
 
-				if ((di != null) && isDIResource(di)) {
+				if((di != null) && isDIResource(di)) {
 					result = di;
 				}
 			}

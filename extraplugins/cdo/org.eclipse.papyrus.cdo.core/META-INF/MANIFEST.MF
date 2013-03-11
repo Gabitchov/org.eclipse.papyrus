@@ -25,14 +25,23 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.expressions;bundle-version="[3.4.0,4.0.0)"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.cdo.core,
+ org.eclipse.papyrus.cdo.core.exporter,
  org.eclipse.papyrus.cdo.core.importer,
  org.eclipse.papyrus.cdo.core.resource,
- org.eclipse.papyrus.cdo.internal.core,
- org.eclipse.papyrus.cdo.internal.core.expressions,
- org.eclipse.papyrus.cdo.internal.core.importer,
- org.eclipse.papyrus.cdo.internal.core.repositories,
- org.eclipse.papyrus.cdo.internal.core.repositories.impl,
- org.eclipse.papyrus.cdo.internal.core.repositories.util
+ org.eclipse.papyrus.cdo.core.util,
+ org.eclipse.papyrus.cdo.internal.core;
+  x-friends:="org.eclipse.papyrus.cdo.core.tests,
+   org.eclipse.papyrus.cdo.ui,
+   org.eclipse.papyrus.cdo.ui.tests,
+   org.eclipse.papyrus.cdo.uml.diagram.ui,
+   org.eclipse.papyrus.cdo.uml.ui",
+ org.eclipse.papyrus.cdo.internal.core.exporter;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
+ org.eclipse.papyrus.cdo.internal.core.expressions;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
+ org.eclipse.papyrus.cdo.internal.core.importer;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
+ org.eclipse.papyrus.cdo.internal.core.l10n;x-internal:=true,
+ org.eclipse.papyrus.cdo.internal.core.repositories;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
+ org.eclipse.papyrus.cdo.internal.core.repositories.impl;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui",
+ org.eclipse.papyrus.cdo.internal.core.repositories.util;x-friends:="org.eclipse.papyrus.cdo.core.tests,org.eclipse.papyrus.cdo.ui"
 Bundle-ActivationPolicy: lazy
 Import-Package: com.google.common.base;version="10.0.1",
  com.google.common.collect;version="10.0.1"

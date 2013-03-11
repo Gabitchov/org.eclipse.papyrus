@@ -20,9 +20,9 @@
       <view
             category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoriesView"
-            icon="icons/full/view16/model_repositories.gif"
+            icon="$nl$/icons/full/view16/model_repositories.gif"
             id="org.eclipse.papyrus.cdo.ui.ModelRepositoriesView"
-            name="Model Repositories"
+            name="%reposView.name"
             restorable="true">
       </view>
    </extension>
@@ -41,7 +41,7 @@
       <page
             class="org.eclipse.papyrus.cdo.internal.ui.properties.RepositoryPropertyPage"
             id="org.eclipse.papyrus.cdo.ui.repositoryProperties"
-            name="CDO Repository Connection">
+            name="%repoPropertyPage.name">
          <enabledWhen>
             <adapt
                   type="org.eclipse.papyrus.cdo.core.IPapyrusRepository">
@@ -105,10 +105,10 @@
       <decorator
             class="org.eclipse.papyrus.cdo.internal.ui.decorators.CDOStateLabelDecorator"
             id="org.eclipse.papyrus.cdo.ui.cdoStateDecorator"
-            label="CDO State Decorations"
+            label="%cdoDecorator.label"
             state="true">
          <description>
-            Decorates elements in Papyrus model repositories with CDO lock and conflict states.
+            %cdoDecorator.description
          </description>
          <enablement>
             <or>
@@ -128,7 +128,7 @@
       <menuContribution
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <menu
-               label="Locks/Conflicts">
+               label="%locksMenu.label">
             <visibleWhen
                   checkEnabled="false">
                <and>
@@ -147,15 +147,15 @@
             </visibleWhen>
             <command
                   commandId="org.eclipse.papyrus.cdo.ui.commands.lock"
-                  label="Lock">
+                  label="%lockCommand.label">
             </command>
             <command
                   commandId="org.eclipse.papyrus.cdo.ui.commands.unlock"
-                  label="Unlock">
+                  label="%unlockCommand.label">
             </command>
             <command
                   commandId="org.eclipse.papyrus.cdo.ui.commands.resolveConflicts"
-                  label="Resolve Conflicts">
+                  label="%resolveCommand.label">
             </command>
          </menu>
       </menuContribution>
@@ -163,7 +163,17 @@
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <command
                commandId="org.eclipse.papyrus.cdo.ui.commands.importModels"
-               label="Import into Repository...">
+               label="%importCommand.label">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.papyrus.cdo.ui.ModelRepositoriesView?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.cdo.ui.commands.exportModel"
+               label="%exportCommand.label">
             <visibleWhen
                   checkEnabled="true">
             </visibleWhen>
@@ -174,19 +184,23 @@
          point="org.eclipse.ui.commands">
       <command
             id="org.eclipse.papyrus.cdo.ui.commands.lock"
-            name="Lock objects">
+            name="%lockCommand.name">
       </command>
       <command
             id="org.eclipse.papyrus.cdo.ui.commands.unlock"
-            name="Unlock objects">
+            name="%unlockCommand.name">
       </command>
       <command
             id="org.eclipse.papyrus.cdo.ui.commands.resolveConflicts"
-            name="Resolve conflicts">
+            name="%resolveCommand.name">
       </command>
       <command
             id="org.eclipse.papyrus.cdo.ui.commands.importModels"
-            name="Import Models into Repository">
+            name="%importCommand.name">
+      </command>
+      <command
+            id="org.eclipse.papyrus.cdo.ui.commands.exportModel"
+            name="%exportCommand.name">
       </command>
    </extension>
    <extension
@@ -244,6 +258,17 @@
            </iterate>
          </enabledWhen>
       </handler>
+      <handler
+            class="org.eclipse.papyrus.cdo.internal.ui.handlers.ExportModelHandler"
+            commandId="org.eclipse.papyrus.cdo.ui.commands.exportModel">
+         <enabledWhen>
+           <iterate operator="and" ifEmpty="false">
+              <instanceof
+                    value="org.eclipse.papyrus.cdo.internal.ui.views.DIModel">
+              </instanceof>
+           </iterate>
+         </enabledWhen>
+      </handler>
    </extension>
    
    <extension
@@ -288,4 +313,11 @@
       </monitor>
    </extension>
    
+   <extension
+         point="org.eclipse.ui.dropActions">
+      <action
+            class="org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropActionDelegate"
+            id="org.eclipse.papyrus.cdo.ui.modelDropAction">
+      </action>
+   </extension>
 </plugin>

@@ -23,6 +23,7 @@ import org.eclipse.papyrus.cdo.internal.core.ICredentialsProviderFactory;
 import org.eclipse.papyrus.cdo.internal.core.IInteractiveCredentialsProvider;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.dialogs.RepositoryCredentialsDialog;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWindowListener;
@@ -141,7 +142,7 @@ public class DialogCredentialsProviderFactory
 
 				public Void call() {
 					MessageDialog.openWarning(getCurrentShell(),
-						"Login Failed", e.getLocalizedMessage());
+						Messages.DialogCredentialsProviderFactory_0, e.getLocalizedMessage());
 					return null;
 				}
 			});

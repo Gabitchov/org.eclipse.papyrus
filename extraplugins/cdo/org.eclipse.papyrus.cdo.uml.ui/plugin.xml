@@ -5,7 +5,7 @@
          point="org.eclipse.papyrus.uml.tools.importSources">
       <importSource
             class="org.eclipse.papyrus.cdo.uml.internal.ui.importsources.CDOPackageImportSource"
-            name="Model Repositories">
+            name="%importSource.name">
          <enablement>
             <iterate>
                <or>

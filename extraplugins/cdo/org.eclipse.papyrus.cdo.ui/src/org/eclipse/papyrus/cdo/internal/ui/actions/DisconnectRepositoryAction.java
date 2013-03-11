@@ -18,6 +18,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.cdo.core.CommitException;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.statushandlers.IStatusAdapterConstants;
 import org.eclipse.ui.statushandlers.StatusAdapter;
@@ -30,7 +31,7 @@ public class DisconnectRepositoryAction
 		extends AbstractRepositoryAction {
 
 	public DisconnectRepositoryAction(IWorkbenchPart part) {
-		super("Disconnect", Activator
+		super(Messages.DisconnectRepositoryAction_0, Activator
 			.getIcon(Activator.ICON_DISCONNECT_REPOSITORY_ENABLED), Activator
 			.getIcon(Activator.ICON_DISCONNECT_REPOSITORY_DISABLED), part);
 	}
@@ -61,14 +62,14 @@ public class DisconnectRepositoryAction
 				});
 		} catch (Exception e) {
 			Activator.log.error(
-				"Unexpected exception in async repository connection.", e);
+				"Unexpected exception in async repository connection.", e); //$NON-NLS-1$
 		}
 
 		if (commitFailure[0] != null) {
 			StatusAdapter adapter = new StatusAdapter(
 				commitFailure[0].getStatus());
 			adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY,
-				"Disconnect failed");
+				Messages.DisconnectRepositoryAction_2);
 			StatusManager.getManager().handle(adapter, StatusManager.SHOW);
 		}
 	}

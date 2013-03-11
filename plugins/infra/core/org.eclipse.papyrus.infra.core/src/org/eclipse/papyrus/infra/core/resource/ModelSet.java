@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
 import org.eclipse.papyrus.infra.core.Activator;
@@ -67,7 +68,7 @@ import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesMod
  * @author cedric dumoulin
  * 
  */
-public class ModelSet extends ResourceSetImpl {
+public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 
 	/**
 	 * Id use to register the EditinDomain into the registry
@@ -672,10 +673,23 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	public boolean isReadOnly(EObject eObject) {
+		boolean result = false;
+		
 		Resource resource = eObject.eResource();
 
 		// a detached object is necessarily editable
-		return (resource != null) && hasTransactionalEditingDomain() && getTransactionalEditingDomain().isReadOnly(resource);
+		if (resource != null) {
+			if (hasTransactionalEditingDomain()) {
+				EditingDomain domain = getTransactionalEditingDomain();
+				if (domain instanceof IReadOnlyProvider) {
+					result = ((IReadOnlyProvider) domain).isReadOnly(eObject);
+				} else {
+					result = domain.isReadOnly(resource);
+				}
+			}
+		}
+		
+		return result;
 	}
 
 	/**

@@ -11,38 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
-import java.util.Map;
-
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportConfiguration;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportNode;
-
-import com.google.common.base.Objects;
-import com.google.common.collect.Maps;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 
 /**
  * This is the ManyToOneModelImportMapping type. Enjoy.
  */
-public class OneToOneModelImportMapping
-		extends AbstractModelImportMapping {
+public class OneToOneModelImportMapping extends AbstractModelImportMapping {
 
-	private Map<IModelImportNode, IPath> mappings = Maps.newHashMap();
-
-	public OneToOneModelImportMapping(IModelImportConfiguration config) {
+	public OneToOneModelImportMapping(IModelTransferConfiguration config) {
 		super(config);
-		
+
 		computeDefaultMappings(config);
-	}
-
-	public void mapTo(IModelImportNode source, IPath path) {
-		if (!Objects.equal(getMapping(source), path)) {
-			mappings.put(source, path);
-
-			fireMappingChanged(source);
-		}
-	}
-
-	public IPath getMapping(IModelImportNode node) {
-		return mappings.get(node);
 	}
 }

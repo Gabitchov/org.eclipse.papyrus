@@ -19,7 +19,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportNode;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
+import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.ui.util.CompositeLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
@@ -27,11 +28,9 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 /**
  * This is the ModelImportNodeLabelProvider type. Enjoy.
  */
-public class ModelImportNodeLabelProvider
-		implements ILabelProvider {
+public class ModelImportNodeLabelProvider implements ILabelProvider {
 
-	private ILabelProvider delegate = new CompositeLabelProvider(
-		new PapyrusElementLabelProvider(), new WorkbenchLabelProvider());
+	private final ILabelProvider delegate = new CompositeLabelProvider(new PapyrusElementLabelProvider(), new WorkbenchLabelProvider());
 
 	public ModelImportNodeLabelProvider() {
 		super();
@@ -39,31 +38,28 @@ public class ModelImportNodeLabelProvider
 
 	public Image getImage(Object element) {
 		Image result = null;
-		IModelImportNode model = getModelImportNode(element);
+		IModelTransferNode model = getModelImportNode(element);
 
-		if (model != null) {
+		if(model != null) {
 			result = delegate.getImage(getWorkbenchObject(model));
 		}
 
 		return result;
 	}
 
-	protected IModelImportNode getModelImportNode(Object element) {
-		return (element instanceof IModelImportNode)
-			? (IModelImportNode) element
-			: null;
+	protected IModelTransferNode getModelImportNode(Object element) {
+		return (element instanceof IModelTransferNode) ? (IModelTransferNode)element : null;
 	}
 
 	public String getText(Object element) {
 		String result = null;
-		IModelImportNode model = getModelImportNode(element);
+		IModelTransferNode model = getModelImportNode(element);
 
-		if (model != null) {
+		if(model != null) {
 			result = delegate.getText(getWorkbenchObject(model));
 
-			if (result == null) {
-				result = model.getPrimaryResourceURI().trimFileExtension()
-					.lastSegment();
+			if(result == null) {
+				result = model.getPrimaryResourceURI().trimFileExtension().lastSegment();
 			}
 		}
 
@@ -86,15 +82,20 @@ public class ModelImportNodeLabelProvider
 		delegate.removeListener(listener);
 	}
 
-	Object getWorkbenchObject(IModelImportNode element) {
+	Object getWorkbenchObject(IModelTransferNode element) {
 		Object result = element;
 
 		URI uri = element.getPrimaryResourceURI();
-		if (uri.isPlatformResource()) {
-			IFile file = ResourcesPlugin.getWorkspace().getRoot()
-				.getFile(new Path(uri.toPlatformString(true)));
 
-			if ((file != null) && getPapyrusModelFactory().isDi(file)) {
+		if(CDOUtils.isCDOURI(uri)) {
+			// fake a platform resource URI so that we can create an IPapyrusFile
+			uri = URI.createPlatformResourceURI(uri.authority() + uri.path(), true);
+		}
+
+		if(uri.isPlatformResource()) {
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
+
+			if((file != null) && getPapyrusModelFactory().isDi(file)) {
 				result = getPapyrusModelFactory().createIPapyrusFile(file);
 			} else {
 				result = file;

@@ -25,6 +25,7 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.google.common.collect.Iterables;
@@ -40,7 +41,7 @@ public class CreateFolderAction
 	private String folderName;
 
 	public CreateFolderAction(IWorkbenchPart part) {
-		super(CDOResourceNode.class, "Create Folder...",
+		super(CDOResourceNode.class, Messages.CreateFolderAction_0,
 			Activator.ICON_CREATE_FOLDER);
 
 		this.part = part;
@@ -71,7 +72,7 @@ public class CreateFolderAction
 		boolean result = false;
 
 		InputDialog dialog = new InputDialog(part.getSite().getShell(),
-			"Create New Folder", "Enter a name for the new folder.",
+			Messages.CreateFolderAction_1, Messages.CreateFolderAction_2,
 			getDefaultFolderName(selection), createInputValidator(selection));
 
 		if (dialog.open() == Window.OK) {
@@ -116,7 +117,7 @@ public class CreateFolderAction
 		String result = null;
 
 		for (int i = 1; result == null; i++) {
-			result = "folder" + i;
+			result = "folder" + i; //$NON-NLS-1$
 
 			if (nameExists(existing, result)) {
 				result = null;
@@ -134,13 +135,13 @@ public class CreateFolderAction
 			public String isValid(String newText) {
 				String result;
 				String name = (newText == null)
-					? ""
+					? "" //$NON-NLS-1$
 					: newText.trim();
 
 				if (name.length() == 0) {
-					result = "Name may not be empty";
+					result = Messages.CreateFolderAction_5;
 				} else if (nameExists(existing, name)) {
-					result = "A resource or folder of that name already exists";
+					result = Messages.CreateFolderAction_6;
 				} else {
 					result = null;
 				}

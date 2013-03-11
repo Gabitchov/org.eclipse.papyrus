@@ -12,37 +12,44 @@
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportConfiguration;
-import org.eclipse.papyrus.cdo.core.importer.IModelImportNode;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 
 import com.google.common.base.Objects;
 
 /**
  * This is the ManyToOneModelImportMapping type. Enjoy.
  */
-public class ManyToOneModelImportMapping
-		extends AbstractModelImportMapping {
+public class ManyToOneModelImportMapping extends AbstractModelImportMapping {
 
 	private IPath mapping;
 
-	public ManyToOneModelImportMapping(IModelImportConfiguration config) {
+	public ManyToOneModelImportMapping(IModelTransferConfiguration config) {
 		super(config);
-		
+
 		computeDefaultMappings(config);
 	}
 
-	public void mapTo(IModelImportNode source, IPath path) {
-		if (!Objects.equal(this.mapping, path)) {
+	@Override
+	public void mapTo(IModelTransferNode source, IPath path) {
+		if(!Objects.equal(this.mapping, path)) {
 			this.mapping = path;
 
-			for (IModelImportNode next : getConfiguration().getModelsToImport()) {
+			for(IModelTransferNode next : getConfiguration().getModelsToTransfer()) {
 				fireMappingChanged(next);
 			}
 		}
 	}
 
-	public IPath getMapping(IModelImportNode node) {
+	@Override
+	public IPath getMapping(IModelTransferNode node) {
 		return mapping;
+	}
+
+	@Override
+	protected void validateUniqueMappings(DiagnosticChain diagnostics) {
+		// pass.  The whole point of this mapping is that all inputs map to one output
 	}
 
 }

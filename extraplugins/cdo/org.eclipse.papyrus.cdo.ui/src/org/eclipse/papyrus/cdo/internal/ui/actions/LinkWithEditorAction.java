@@ -14,6 +14,7 @@ package org.eclipse.papyrus.cdo.internal.ui.actions;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoriesView;
 import org.eclipse.ui.IPropertyListener;
 
@@ -26,7 +27,7 @@ public class LinkWithEditorAction
 	private ModelRepositoriesView part;
 
 	public LinkWithEditorAction(ModelRepositoriesView part) {
-		super("Link with Editor", IAction.AS_CHECK_BOX);
+		super(Messages.LinkWithEditorAction_0, IAction.AS_CHECK_BOX);
 
 		this.part = part;
 		part.addPropertyListener(new IPropertyListener() {

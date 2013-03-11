@@ -47,7 +47,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -457,12 +457,12 @@ public class EMFHelper {
 		ResourceSet resourceSet = (resource == null)
 			? null
 			: resource.getResourceSet();
-		ModelSet modelSet = (resourceSet instanceof ModelSet)
-			? (ModelSet) resourceSet
+		IReadOnlyProvider provider = (resourceSet instanceof IReadOnlyProvider)
+			? (IReadOnlyProvider) resourceSet
 			: null;
 
-		return (modelSet != null)
-			? modelSet.isReadOnly(eObject)
+		return (provider != null)
+			? provider.isReadOnly(eObject)
 			: isReadOnly(resource, domain);
 	}
 
