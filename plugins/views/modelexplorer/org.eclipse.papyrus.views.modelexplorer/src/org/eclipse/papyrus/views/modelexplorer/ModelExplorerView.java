@@ -78,6 +78,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
@@ -394,7 +395,26 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			}
 
 			public void keyPressed(KeyEvent e) {
-				//Nothing
+				if(e.keyCode != SWT.CTRL) {
+					return;
+				}
+
+				Tree tree = getCommonViewer().getTree();
+
+				//Generate a basic mouse event
+				Event event = new Event();
+				event.widget = tree;
+				event.stateMask = SWT.CTRL;
+
+				Point absoluteTreeLocation = tree.toDisplay(new Point(0, 0));
+
+				event.x = tree.getDisplay().getCursorLocation().x - absoluteTreeLocation.x;
+				event.y = tree.getDisplay().getCursorLocation().y - absoluteTreeLocation.y;
+
+				MouseEvent mouseEvent = new MouseEvent(event);
+				if(isEnterState(mouseEvent)) {
+					enterItem(currentItem);
+				}
 			}
 		});
 
@@ -402,6 +422,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 			@Override
 			public void mouseUp(MouseEvent e) {
+				if((e.stateMask & SWT.CTRL) == 0) {
+					return;
+				}
+
 				TreeItem currentItem = getTreeItem(e);
 				if(currentItem != null) {
 					Object data = currentItem.getData();
@@ -431,7 +455,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				}
 
 				if(isEnterState(e)) {
-					enterItem(currentItem, e);
+					enterItem(currentItem);
 				}
 
 			}
@@ -497,7 +521,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		disposeCurrentMenu();
 	}
 
-	private void enterItem(TreeItem item, MouseEvent e) {
+	private void enterItem(TreeItem item) {
 		try {
 			NavigationService navigation = serviceRegistry.getService(NavigationService.class);
 			disposeCurrentMenu();

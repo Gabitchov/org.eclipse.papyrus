@@ -19,7 +19,6 @@ import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.TypedElement;
 
 /**
  * Navigates from a TypedElement to its Type declaration
@@ -28,26 +27,31 @@ import org.eclipse.uml2.uml.TypedElement;
  */
 public class TypedNavigableElement implements NavigableElement {
 
-	private final TypedElement typedElement;
+	protected final Type type;
 
-	public TypedNavigableElement(TypedElement typedElement) {
-		this.typedElement = typedElement;
+	/**
+	 * 
+	 * @param type
+	 *        The Type to navigate to. May be null.
+	 */
+	public TypedNavigableElement(Type type) {
+		this.type = type;
 	}
 
 	public String getLabel() {
-		String label = "Open type declaration" + getTypeLabel();
+		String label = "Go to type" + getTypeLabel();
 		return label;
 	}
 
 	public String getDescription() {
-		return "Opens the type declaration of this TypedElement" + getTypeLabel();
+		return "Go to the type declaration of this TypedElement" + getTypeLabel();
 	}
 
-	private String getTypeLabel() {
-		if(typedElement.getType() == null) {
+	protected String getTypeLabel() {
+		if(type == null) {
 			return " (Undefined)";
 		} else {
-			return " (" + typedElement.getType().getName() + ")";
+			return " (" + type.getName() + ")";
 		}
 	}
 
@@ -56,17 +60,16 @@ public class TypedNavigableElement implements NavigableElement {
 			return;
 		}
 
-		Type type = typedElement.getType();
 		navigationContext.revealSemanticElement(Collections.singletonList(type));
 	}
 
 	public Image getImage() {
-		if(typedElement.getType() == null) {
+		if(type == null) {
 			return null;
 		}
 
 		try {
-			return ServiceUtilsForEObject.getInstance().getServiceRegistry(typedElement).getService(LabelProviderService.class).getLabelProvider().getImage(typedElement.getType());
+			return ServiceUtilsForEObject.getInstance().getServiceRegistry(type).getService(LabelProviderService.class).getLabelProvider().getImage(type);
 		} catch (Exception ex) {
 			return null;
 		}
@@ -76,7 +79,6 @@ public class TypedNavigableElement implements NavigableElement {
 	 * Enabled when the type is defined
 	 */
 	public boolean isEnabled() {
-		return typedElement.getType() != null;
+		return type != null;
 	}
-
 }
