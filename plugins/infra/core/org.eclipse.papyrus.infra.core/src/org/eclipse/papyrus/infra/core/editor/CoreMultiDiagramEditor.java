@@ -19,6 +19,7 @@ import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoContext;
@@ -124,6 +125,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	protected ISaveAndDirtyService saveAndDirtyService;
 
+	private final List<IPropertySheetPage> propertiesPages = new LinkedList<IPropertySheetPage>();
+
 	/**
 	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
 	 */
@@ -193,11 +196,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * Cached event that can be reused.
 	 */
 	protected DoSaveEvent lifeCycleEvent;
-
-	/**
-	 * 
-	 */
-	private TabbedPropertySheetPage tabbedPropertySheetPage = null;
 
 	private static class EditingDomainProvider implements IEditingDomainProvider {
 
@@ -708,10 +706,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @see org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor#getPropertySheetPage()
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		if(this.tabbedPropertySheetPage == null || this.tabbedPropertySheetPage.getControl() == null || this.tabbedPropertySheetPage.getControl().isDisposed()) {
-			this.tabbedPropertySheetPage = new TabbedPropertySheetPage(this);
-		}
-		return tabbedPropertySheetPage;
+		IPropertySheetPage propertiesPage = new TabbedPropertySheetPage(this);
+		propertiesPages.add(propertiesPage);
+		return propertiesPage;
 	}
 
 	/**
@@ -772,10 +769,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		saveAndDirtyService = null;
 		sashModelMngr = null;
 
-		if(tabbedPropertySheetPage != null) {
-			tabbedPropertySheetPage.dispose();
-			tabbedPropertySheetPage = null;
+		for(IPropertySheetPage propertiesPage : this.propertiesPages) {
+			propertiesPage.dispose();
 		}
+		propertiesPages.clear();
 
 		super.dispose();
 	}
