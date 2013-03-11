@@ -32,6 +32,9 @@ public class AllTests {
 		/* Bundle tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
 
+		/* CDO tests */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.cdo.tests.AllTests.class));
+
 		/* UML Compare tests */
 		/**
 		 * UML Compare tests have been temporarily disabled. See:

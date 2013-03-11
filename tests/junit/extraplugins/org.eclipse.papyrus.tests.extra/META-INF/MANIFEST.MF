@@ -7,8 +7,13 @@ Bundle-Activator: org.eclipse.papyrus.tests.extra.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.junit4;bundle-version="4.0.0",
  org.eclipse.papyrus.infra.gmfdiag.css.tests;bundle-version="0.10.0",
- org.eclipse.papyrus.bundles.tests;bundle-version="0.10.0"
+ org.eclipse.papyrus.bundles.tests;bundle-version="0.10.0",
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.cdo.core.tests;bundle-version="0.10.0",
+ org.eclipse.papyrus.cdo.tests;bundle-version="0.10.0",
+ org.eclipse.papyrus.cdo.ui.tests;bundle-version="0.10.0",
+ org.eclipse.papyrus.cdo.uml.ui.tests;bundle-version="0.10.0",
+ org.eclipse.papyrus.cdo.validation.problems.tests;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
