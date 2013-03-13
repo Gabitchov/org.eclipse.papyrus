@@ -33,9 +33,9 @@ public class ConnectorMultiplicityTargetEditPart extends org.eclipse.papyrus.uml
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected EObject getParserElement() {
-		if(resolveSemanticElement() instanceof Connector) {
-			Connector connector = (Connector)resolveSemanticElement();
+	public EObject resolveSemanticElement() {
+		if(super.resolveSemanticElement() instanceof Connector) {
+			Connector connector = (Connector)super.resolveSemanticElement();
 			if(connector.getEnds().size() == 2) {
 				return connector.getEnds().get(1);
 			}

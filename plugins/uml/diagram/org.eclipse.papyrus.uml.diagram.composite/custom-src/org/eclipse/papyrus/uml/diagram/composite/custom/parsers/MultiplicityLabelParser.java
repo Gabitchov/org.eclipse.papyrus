@@ -81,7 +81,7 @@ public class MultiplicityLabelParser implements ISemanticParser {
 		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
 
 		if((element != null) && (element instanceof MultiplicityElement)) {
-			Property semElement = (Property)element;
+			MultiplicityElement semElement = (MultiplicityElement)element;
 
 			semanticElementsBeingParsed.add(semElement);
 			if(semElement.getLowerValue() != null) {
