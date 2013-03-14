@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter;
 

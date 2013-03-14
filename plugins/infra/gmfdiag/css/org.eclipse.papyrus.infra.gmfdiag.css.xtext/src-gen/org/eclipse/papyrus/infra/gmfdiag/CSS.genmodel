@@ -5,7 +5,7 @@
     modelPluginID="org.eclipse.papyrus.infra.gmfdiag.css.xtext" forceOverwrite="true"
     modelName="CSS" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.infra.gmfdiag.css.xtext.edit"
-    editorPluginID="org.eclipse.papyrus.infra.gmfdiag.css.xtext.editor" runtimeVersion="2.8">
+    editorPluginID="org.eclipse.papyrus.infra.gmfdiag.css.xtext.editor" runtimeVersion="2.9">
   <genPackages prefix="Css" basePackage="org.eclipse.papyrus.infra.gmfdiag" disposableProviderFactory="true"
       ecorePackage="CSS.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="CSS.ecore#//UNARY">

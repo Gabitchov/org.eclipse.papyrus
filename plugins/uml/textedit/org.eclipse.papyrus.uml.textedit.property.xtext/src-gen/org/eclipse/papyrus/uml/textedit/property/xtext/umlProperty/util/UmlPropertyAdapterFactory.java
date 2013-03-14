@@ -1,33 +1,15 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.BoundSpecification;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.DefaultValueRule;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifierSpecification;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifiersRule;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.MultiplicityRule;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.PropertyRule;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.QualifiedName;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.RedefinesRule;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.SubsetsRule;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.TypeRule;
-import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.UmlPropertyPackage;
+
+import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.*;
 
 /**
  * <!-- begin-user-doc -->

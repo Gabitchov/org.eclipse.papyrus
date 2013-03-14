@@ -7,7 +7,7 @@
     modelName="AppliedStereotypeProperty" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.edit"
     editorPluginID="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.editor"
-    usedGenPackages="../../../../../../../../../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/Alf.genmodel#//alf ../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    runtimeVersion="2.9" usedGenPackages="../../../../../../../../../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/Alf.genmodel#//alf ../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <genPackages prefix="AppliedStereotypeProperty" basePackage="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext"
       resource="XML" disposableProviderFactory="true" ecorePackage="AppliedStereotypeProperty.ecore#/">
     <genClasses ecoreClass="AppliedStereotypeProperty.ecore#//AppliedStereotypePropertyRule">

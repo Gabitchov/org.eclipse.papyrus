@@ -32,3 +32,5 @@ Bundle-Name: CSS Editor (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib

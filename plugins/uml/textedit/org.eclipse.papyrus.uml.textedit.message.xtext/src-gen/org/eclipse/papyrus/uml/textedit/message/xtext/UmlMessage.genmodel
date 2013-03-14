@@ -5,7 +5,8 @@
     modelPluginID="org.eclipse.papyrus.uml.textedit.message.xtext" forceOverwrite="true"
     modelName="UmlMessage" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.message.xtext.edit"
-    editorPluginID="org.eclipse.papyrus.uml.textedit.message.xtext.editor" usedGenPackages="../../../../../../../../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    editorPluginID="org.eclipse.papyrus.uml.textedit.message.xtext.editor" runtimeVersion="2.9"
+    usedGenPackages="../../../../../../../../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <genPackages prefix="UmlMessage" basePackage="org.eclipse.papyrus.uml.textedit.message.xtext"
       disposableProviderFactory="true" ecorePackage="UmlMessage.ecore#/">
     <genClasses ecoreClass="UmlMessage.ecore#//MessageRule">

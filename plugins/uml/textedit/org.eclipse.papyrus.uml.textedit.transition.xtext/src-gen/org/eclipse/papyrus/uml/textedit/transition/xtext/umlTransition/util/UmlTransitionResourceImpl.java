@@ -1,12 +1,9 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.util;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 /**

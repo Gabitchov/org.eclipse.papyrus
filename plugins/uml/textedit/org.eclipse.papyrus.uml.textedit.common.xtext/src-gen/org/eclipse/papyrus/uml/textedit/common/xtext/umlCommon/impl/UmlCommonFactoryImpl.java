@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl;
 
@@ -10,16 +6,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.BoundSpecification;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.Direction;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.QualifiedName;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonFactory;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.VisibilityKind;
+
+import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +31,7 @@ public class UmlCommonFactoryImpl extends EFactoryImpl implements UmlCommonFacto
   {
     try
     {
-      UmlCommonFactory theUmlCommonFactory = (UmlCommonFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon"); 
+      UmlCommonFactory theUmlCommonFactory = (UmlCommonFactory)EPackage.Registry.INSTANCE.getEFactory(UmlCommonPackage.eNS_URI);
       if (theUmlCommonFactory != null)
       {
         return theUmlCommonFactory;

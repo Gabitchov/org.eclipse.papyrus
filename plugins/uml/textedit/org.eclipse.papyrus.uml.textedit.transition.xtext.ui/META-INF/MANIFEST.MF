@@ -31,9 +31,7 @@ Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.transition.xtext.ui
- .internal.UmlTransitionActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.transition.xtext
- .ui;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal.UmlTransitionActivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.transition.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Import-Package: org.apache.log4j

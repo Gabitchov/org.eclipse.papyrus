@@ -4,7 +4,7 @@
     editorDirectory="/org.eclipse.papyrus.uml.alf.editor/src" modelPluginID="org.eclipse.papyrus.uml.alf"
     forceOverwrite="true" modelName="Alf" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.alf.edit"
-    editorPluginID="org.eclipse.papyrus.uml.alf.editor">
+    editorPluginID="org.eclipse.papyrus.uml.alf.editor" runtimeVersion="2.9">
   <genPackages prefix="Alf" basePackage="org.eclipse.papyrus.uml.alf" disposableProviderFactory="true"
       ecorePackage="Alf.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Alf.ecore#//BooleanValue">

@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -99,8 +88,6 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
 		// Initialize simple dependencies
 		AlfPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
-
-		// Obtain or create and register interdependencies
 
 		// Create package meta-data objects
 		theAppliedStereotypePropertyPackage.createPackageContents();

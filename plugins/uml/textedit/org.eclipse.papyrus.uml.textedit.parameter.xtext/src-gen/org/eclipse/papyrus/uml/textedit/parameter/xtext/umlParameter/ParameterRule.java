@@ -1,12 +1,9 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.Direction;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;

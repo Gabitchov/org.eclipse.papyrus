@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.co
- ntentassist.antlr
+Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.quickfix,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contentassist
 Require-Bundle: org.eclipse.papyrus.uml.textedit.parameter.xtext;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
@@ -26,9 +27,7 @@ Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.
- internal.UmlParameterActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext.
- ui;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.internal.UmlParameterActivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Import-Package: org.apache.log4j

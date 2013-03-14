@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl;
 
@@ -174,8 +170,6 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 
 		// Initialize simple dependencies
 		UMLPackage.eINSTANCE.eClass();
-
-		// Obtain or create and register interdependencies
 
 		// Create package meta-data objects
 		theUmlTransitionPackage.createPackageContents();

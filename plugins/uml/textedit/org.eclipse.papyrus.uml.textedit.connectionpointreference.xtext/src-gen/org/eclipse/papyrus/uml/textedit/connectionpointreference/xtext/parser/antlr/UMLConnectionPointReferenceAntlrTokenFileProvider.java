@@ -4,7 +4,6 @@
 package org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr;
 
 import java.io.InputStream;
-
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class UMLConnectionPointReferenceAntlrTokenFileProvider implements IAntlrTokenFileProvider {

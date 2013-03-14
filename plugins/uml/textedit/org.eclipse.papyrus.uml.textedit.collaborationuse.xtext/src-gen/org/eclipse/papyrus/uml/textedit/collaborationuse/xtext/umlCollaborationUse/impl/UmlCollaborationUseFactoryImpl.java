@@ -1,20 +1,16 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.CollaborationUseRule;
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.TypeRule;
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUseFactory;
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
+
+import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +30,7 @@ public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlC
   {
     try
     {
-      UmlCollaborationUseFactory theUmlCollaborationUseFactory = (UmlCollaborationUseFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/collaborationuse/xtext/UmlCollaborationUse"); 
+      UmlCollaborationUseFactory theUmlCollaborationUseFactory = (UmlCollaborationUseFactory)EPackage.Registry.INSTANCE.getEFactory(UmlCollaborationUsePackage.eNS_URI);
       if (theUmlCollaborationUseFactory != null)
       {
         return theUmlCollaborationUseFactory;

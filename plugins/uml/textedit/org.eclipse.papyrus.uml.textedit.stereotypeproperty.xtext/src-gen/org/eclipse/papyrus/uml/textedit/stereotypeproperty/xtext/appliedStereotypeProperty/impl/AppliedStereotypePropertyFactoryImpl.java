@@ -1,27 +1,16 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyFactory;
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage;
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
+
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +30,7 @@ public class AppliedStereotypePropertyFactoryImpl extends EFactoryImpl implement
   {
     try
     {
-      AppliedStereotypePropertyFactory theAppliedStereotypePropertyFactory = (AppliedStereotypePropertyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/property/xtext/StereotypeProperty"); 
+      AppliedStereotypePropertyFactory theAppliedStereotypePropertyFactory = (AppliedStereotypePropertyFactory)EPackage.Registry.INSTANCE.getEFactory(AppliedStereotypePropertyPackage.eNS_URI);
       if (theAppliedStereotypePropertyFactory != null)
       {
         return theAppliedStereotypePropertyFactory;

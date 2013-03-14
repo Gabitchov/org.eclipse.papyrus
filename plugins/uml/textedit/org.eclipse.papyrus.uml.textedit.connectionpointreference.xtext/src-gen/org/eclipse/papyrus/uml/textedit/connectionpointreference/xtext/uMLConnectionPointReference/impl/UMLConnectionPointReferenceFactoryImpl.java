@@ -1,19 +1,16 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule;
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.UMLConnectionPointReferenceFactory;
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.UMLConnectionPointReferencePackage;
+
+import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +30,7 @@ public class UMLConnectionPointReferenceFactoryImpl extends EFactoryImpl impleme
   {
     try
     {
-      UMLConnectionPointReferenceFactory theUMLConnectionPointReferenceFactory = (UMLConnectionPointReferenceFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference"); 
+      UMLConnectionPointReferenceFactory theUMLConnectionPointReferenceFactory = (UMLConnectionPointReferenceFactory)EPackage.Registry.INSTANCE.getEFactory(UMLConnectionPointReferencePackage.eNS_URI);
       if (theUMLConnectionPointReferenceFactory != null)
       {
         return theUMLConnectionPointReferenceFactory;

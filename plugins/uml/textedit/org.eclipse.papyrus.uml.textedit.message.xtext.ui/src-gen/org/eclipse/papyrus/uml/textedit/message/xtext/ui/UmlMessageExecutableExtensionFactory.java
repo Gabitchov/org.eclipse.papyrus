@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class UmlMessageExecutableExtensionFactory extends AbstractGuiceAwareExec
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator.getInstance().getBundle();
+		return UmlMessageActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage");
+		return UmlMessageActivator.getInstance().getInjector(UmlMessageActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_MESSAGE_XTEXT_UMLMESSAGE);
 	}
 	
 }

@@ -5,7 +5,8 @@
     modelPluginID="org.eclipse.papyrus.uml.textedit.property.xtext" forceOverwrite="true"
     modelName="UmlProperty" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.property.xtext.edit"
-    editorPluginID="org.eclipse.papyrus.uml.textedit.property.xtext.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    editorPluginID="org.eclipse.papyrus.uml.textedit.property.xtext.editor" runtimeVersion="2.9"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <genPackages prefix="UmlProperty" basePackage="org.eclipse.papyrus.uml.textedit.property.xtext"
       resource="XML" disposableProviderFactory="true" ecorePackage="UmlProperty.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlProperty.ecore#//VisibilityKind">

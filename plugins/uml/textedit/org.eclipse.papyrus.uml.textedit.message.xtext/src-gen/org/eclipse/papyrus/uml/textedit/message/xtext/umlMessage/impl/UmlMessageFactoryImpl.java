@@ -1,20 +1,16 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule;
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessageFactory;
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage;
+
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +30,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
   {
     try
     {
-      UmlMessageFactory theUmlMessageFactory = (UmlMessageFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/textedit/message/xtext/UmlMessage"); 
+      UmlMessageFactory theUmlMessageFactory = (UmlMessageFactory)EPackage.Registry.INSTANCE.getEFactory(UmlMessagePackage.eNS_URI);
       if (theUmlMessageFactory != null)
       {
         return theUmlMessageFactory;

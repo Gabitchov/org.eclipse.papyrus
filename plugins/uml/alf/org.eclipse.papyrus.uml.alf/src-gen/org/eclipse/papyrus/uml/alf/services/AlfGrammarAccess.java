@@ -11,27 +11,18 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.alf.services;
 
-import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Alternatives;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.EnumLiteralDeclaration;
-import org.eclipse.xtext.EnumRule;
-import org.eclipse.xtext.Grammar;
-import org.eclipse.xtext.GrammarUtil;
-import org.eclipse.xtext.Group;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
-import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
-import org.eclipse.xtext.service.GrammarProvider;
-
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.Inject;
+
+import java.util.List;
+
+import org.eclipse.xtext.*;
+import org.eclipse.xtext.service.GrammarProvider;
+import org.eclipse.xtext.service.AbstractElementFinder.*;
+
+import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 
 @Singleton
 public class AlfGrammarAccess extends AbstractGrammarElementFinder {
@@ -60,11 +51,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		/// *
 		//  Test rule
 		// * / Test:
+		//
 		//	("testExpression" expression+=Expression)* ("testAssignmentExpression" assignExpression+=AssignmentCompletion)*
+		//
 		//	("testStatement" statements+=Statement)* ("testBlock" block=Block);
 		public ParserRule getRule() { return rule; }
 
 		//("testExpression" expression+=Expression)* ("testAssignmentExpression" assignExpression+=AssignmentCompletion)*
+		//
 		//("testStatement" statements+=Statement)* ("testBlock" block=Block)
 		public Group getGroup() { return cGroup; }
 
@@ -125,9 +119,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSTRING_LITERALParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		////('testStatementSequence' statement += StatementSequence)* ;
+		//
+		//
 		/// *********************************
 		// * PrimitiveLiterals
 		// ********************************** / LITERAL:
+		//
 		//	BOOLEAN_LITERAL | NUMBER_LITERAL | STRING_LITERAL;
 		public ParserRule getRule() { return rule; }
 
@@ -150,7 +147,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueBooleanValueEnumRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//// (suffix = SuffixExpression) ? ;
-		//BOOLEAN_LITERAL:
+		// BOOLEAN_LITERAL:
+		//
 		//	value=BooleanValue;
 		public ParserRule getRule() { return rule; }
 
@@ -168,6 +166,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUNLIMITED_LITERALParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//NUMBER_LITERAL:
+		//
 		//	INTEGER_LITERAL | UNLIMITED_LITERAL;
 		public ParserRule getRule() { return rule; }
 
@@ -187,7 +186,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueIntegerValueTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//// (suffix = SuffixExpression) ? ;
-		//INTEGER_LITERAL:
+		// INTEGER_LITERAL:
+		//
 		//	value=IntegerValue;
 		public ParserRule getRule() { return rule; }
 
@@ -204,7 +204,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cValueAsteriskKeyword_0 = (Keyword)cValueAssignment.eContents().get(0);
 		
 		//// (suffix = SuffixExpression) ? ;
-		//UNLIMITED_LITERAL:
+		// UNLIMITED_LITERAL:
+		//
 		//	value="*";
 		public ParserRule getRule() { return rule; }
 
@@ -221,7 +222,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//// (suffix = SuffixExpression) ?;
-		//STRING_LITERAL:
+		// STRING_LITERAL:
+		//
 		//	value=STRING;
 		public ParserRule getRule() { return rule; }
 
@@ -263,17 +265,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_1_0 = (RuleCall)cSuffixAssignment_1.eContents().get(0);
 		
 		//NameExpression:
+		//
 		//	(prefixOp=("++" | "--") path=QualifiedNamePath? id=ID | path=QualifiedNamePath? id=ID (invocationCompletion=Tuple |
+		//
 		//	sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion | postfixOp=("++" | "--"))?)
+		//
 		//	suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
 		//(prefixOp=("++" | "--") path=QualifiedNamePath? id=ID | path=QualifiedNamePath? id=ID (invocationCompletion=Tuple |
+		//
 		//sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion | postfixOp=("++" | "--"))?)
+		//
 		//suffix=SuffixExpression?
 		public Group getGroup() { return cGroup; }
 
 		//prefixOp=("++" | "--") path=QualifiedNamePath? id=ID | path=QualifiedNamePath? id=ID (invocationCompletion=Tuple |
+		//
 		//sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion | postfixOp=("++" | "--"))?
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -305,6 +313,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIdIDTerminalRuleCall_0_0_2_0() { return cIdIDTerminalRuleCall_0_0_2_0; }
 
 		//path=QualifiedNamePath? id=ID (invocationCompletion=Tuple |
+		//
 		//sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion | postfixOp=("++" | "--"))?
 		public Group getGroup_0_1() { return cGroup_0_1; }
 
@@ -321,6 +330,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIdIDTerminalRuleCall_0_1_1_0() { return cIdIDTerminalRuleCall_0_1_1_0; }
 
 		//(invocationCompletion=Tuple | sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion | postfixOp=("++" |
+		//
 		//"--"))?
 		public Alternatives getAlternatives_0_1_2() { return cAlternatives_0_1_2; }
 
@@ -363,6 +373,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//QualifiedNamePath:
+		//
 		//	(namespace+=UnqualifiedName "::")+;
 		public ParserRule getRule() { return rule; }
 
@@ -388,6 +399,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTemplateBindingTemplateBindingParserRuleCall_1_0 = (RuleCall)cTemplateBindingAssignment_1.eContents().get(0);
 		
 		//UnqualifiedName:
+		//
 		//	name=ID templateBinding=TemplateBinding?;
 		public ParserRule getRule() { return rule; }
 
@@ -420,6 +432,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//TemplateBinding:
+		//
 		//	"<" bindings+=NamedTemplateBinding ("," bindings+=NamedTemplateBinding)* ">";
 		public ParserRule getRule() { return rule; }
 
@@ -461,6 +474,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cActualQualifiedNameWithBindingParserRuleCall_2_0 = (RuleCall)cActualAssignment_2.eContents().get(0);
 		
 		//NamedTemplateBinding:
+		//
 		//	formal=ID "=>" actual=QualifiedNameWithBinding;
 		public ParserRule getRule() { return rule; }
 
@@ -496,6 +510,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRemainingQualifiedNameWithBindingParserRuleCall_2_1_0 = (RuleCall)cRemainingAssignment_2_1.eContents().get(0);
 		
 		//QualifiedNameWithBinding:
+		//
 		//	id=ID binding=TemplateBinding? ("::" remaining=QualifiedNameWithBinding)?;
 		public ParserRule getRule() { return rule; }
 
@@ -542,6 +557,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Tuple:
+		//
 		//	{Tuple} "(" (tupleElements+=TupleElement ("," tupleElements+=TupleElement)*)? ")";
 		public ParserRule getRule() { return rule; }
 
@@ -585,6 +601,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentExpressionParserRuleCall_0 = (RuleCall)cArgumentAssignment.eContents().get(0);
 		
 		//TupleElement:
+		//
 		//	argument=Expression;
 		public ParserRule getRule() { return rule; }
 
@@ -602,6 +619,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		/// **************
 		// * Expressions
 		// ************** / Expression:
+		//
 		//	ConditionalTestExpression;
 		public ParserRule getRule() { return rule; }
 
@@ -623,6 +641,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWhenFalseConditionalTestExpressionParserRuleCall_1_3_0 = (RuleCall)cWhenFalseAssignment_1_3.eContents().get(0);
 		
 		//ConditionalTestExpression:
+		//
 		//	exp=ConditionalOrExpression ("?" whenTrue=ConditionalTestExpression ":" whenFalse=ConditionalTestExpression)?;
 		public ParserRule getRule() { return rule; }
 
@@ -668,6 +687,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpConditionalAndExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		//ConditionalOrExpression:
+		//
 		//	exp+=ConditionalAndExpression ("||" exp+=ConditionalAndExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -704,6 +724,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpInclusiveOrExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		//ConditionalAndExpression:
+		//
 		//	exp+=InclusiveOrExpression ("&&" exp+=InclusiveOrExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -740,6 +761,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpExclusiveOrExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		//InclusiveOrExpression:
+		//
 		//	exp+=ExclusiveOrExpression ("|" exp+=ExclusiveOrExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -776,6 +798,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpAndExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		//ExclusiveOrExpression:
+		//
 		//	exp+=AndExpression ("^" exp+=AndExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -812,6 +835,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpEqualityExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		//AndExpression:
+		//
 		//	exp+=EqualityExpression ("&" exp+=EqualityExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -851,6 +875,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpClassificationExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		//EqualityExpression:
+		//
 		//	exp+=ClassificationExpression (op+=("==" | "!=") exp+=ClassificationExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -899,10 +924,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeNameNameExpressionParserRuleCall_1_1_0 = (RuleCall)cTypeNameAssignment_1_1.eContents().get(0);
 		
 		////enum EqualityOperator :
-		////	EQUALS = '==' |
-		////	NOT_EQUALS = '!='
-		////;
-		//ClassificationExpression:
+		// //	EQUALS = '==' |
+		// //	NOT_EQUALS = '!='
+		// //;
+		// ClassificationExpression:
+		//
 		//	exp=RelationalExpression (op=("instanceof" | "hastype") typeName=NameExpression)?;
 		public ParserRule getRule() { return rule; }
 
@@ -953,10 +979,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRightShiftExpressionParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
 		////enum ClassificationOperator :
-		////	INSTANCEOF = 'instanceof' |
-		////	HASTYPE = 'hastype'
-		////;
-		//RelationalExpression:
+		// //	INSTANCEOF = 'instanceof' |
+		// //	HASTYPE = 'hastype'
+		// //;
+		// RelationalExpression:
+		//
 		//	left=ShiftExpression (op=("<" | ">" | "<=" | ">=") right=ShiftExpression)?;
 		public ParserRule getRule() { return rule; }
 
@@ -1012,12 +1039,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpAdditiveExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		////RelationalOperator :
-		////	LOWER = '<' |
-		////	UPPER = '>' |
-		////	LOWER_EQUALS = '<=' |
-		////	UPPER_EQUALS = '>='
-		////;
+		// //	LOWER = '<' |
+		// //	UPPER = '>' |
+		// //	LOWER_EQUALS = '<=' |
+		// //	UPPER_EQUALS = '>='
+		// //;
+		//
+		//
 		//ShiftExpression:
+		//
 		//	exp+=AdditiveExpression (op=("<<" | ">>" | ">>>") exp+=AdditiveExpression)?;
 		public ParserRule getRule() { return rule; }
 
@@ -1069,11 +1099,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpMultiplicativeExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		////enum ShiftOperator :
-		////	LSHIFT = '<<' |
-		////	RSHIFT = '>>' |
-		////	URSHIFT = '>>>'
-		////;
-		//AdditiveExpression:
+		// //	LSHIFT = '<<' |
+		// //	RSHIFT = '>>' |
+		// //	URSHIFT = '>>>'
+		// //;
+		// AdditiveExpression:
+		//
 		//	exp+=MultiplicativeExpression (op+=("+" | "-") exp+=MultiplicativeExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -1123,10 +1154,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpUnaryExpressionParserRuleCall_1_1_0 = (RuleCall)cExpAssignment_1_1.eContents().get(0);
 		
 		////enum AdditiveOp :
-		////	PLUS = '+' |
-		////	MINUS = '-'
-		////;
-		//MultiplicativeExpression:
+		// //	PLUS = '+' |
+		// //	MINUS = '-'
+		// //;
+		// MultiplicativeExpression:
+		//
 		//	exp+=UnaryExpression (op+=("*" | "/" | "%") exp+=UnaryExpression)*;
 		public ParserRule getRule() { return rule; }
 
@@ -1178,11 +1210,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpPrimaryExpressionParserRuleCall_1_0 = (RuleCall)cExpAssignment_1.eContents().get(0);
 		
 		////enum MultiplicativeOp :
-		////	MULT = '*' |
-		////	DIV = '/' |
-		////	MOD = '%'
-		////;
-		//UnaryExpression:
+		// //	MULT = '*' |
+		// //	DIV = '/' |
+		// //	MOD = '%'
+		// //;
+		// UnaryExpression:
+		//
 		//	op=("!" | "-" | "+" | "$" | "~")? exp=PrimaryExpression;
 		public ParserRule getRule() { return rule; }
 
@@ -1223,9 +1256,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPrefixValueSpecificationParserRuleCall_0 = (RuleCall)cPrefixAssignment.eContents().get(0);
 		
 		////PrimaryExpression :
-		////	prefix = ValueSpecification (suffix = SuffixExpression)? 
-		////;
-		//PrimaryExpression:
+		// //	prefix = ValueSpecification (suffix = SuffixExpression)? 
+		// //;
+		// PrimaryExpression:
+		//
 		//	prefix=ValueSpecification;
 		public ParserRule getRule() { return rule; }
 
@@ -1248,11 +1282,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassExtentExpressionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//SuffixExpression:
+		//
 		//	OperationCallExpression | PropertyCallExpression | LinkOperationExpression | SequenceOperationExpression |
+		//
 		//	SequenceReductionExpression | SequenceExpansionExpression | ClassExtentExpression;
 		public ParserRule getRule() { return rule; }
 
 		//OperationCallExpression | PropertyCallExpression | LinkOperationExpression | SequenceOperationExpression |
+		//
 		//SequenceReductionExpression | SequenceExpansionExpression | ClassExtentExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -1290,6 +1327,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_3_0 = (RuleCall)cSuffixAssignment_3.eContents().get(0);
 		
 		//OperationCallExpression:
+		//
 		//	"." operationName=ID tuple=Tuple suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -1333,9 +1371,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_3_0 = (RuleCall)cSuffixAssignment_3.eContents().get(0);
 		
 		//// OperationCallExpressionWithoutDot :
-		//// 	operationName = ID tuple = Tuple (suffix = SuffixExpression)?
-		//// ;
+		// // 	operationName = ID tuple = Tuple (suffix = SuffixExpression)?
+		// // ;
+		//
+		//
 		//PropertyCallExpression:
+		//
 		//	"." propertyName=ID ("[" index=Expression "]")? suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -1383,6 +1424,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTupleLinkOperationTupleParserRuleCall_2_0 = (RuleCall)cTupleAssignment_2.eContents().get(0);
 		
 		//LinkOperationExpression:
+		//
 		//	"." kind=LinkOperationKind tuple=LinkOperationTuple;
 		public ParserRule getRule() { return rule; }
 
@@ -1418,7 +1460,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//LinkOperationTuple:
+		//
 		//	"(" linkOperationTupleElement+=LinkOperationTupleElement ("," linkOperationTupleElement+=LinkOperationTupleElement)*
+		//
 		//	")";
 		public ParserRule getRule() { return rule; }
 
@@ -1465,9 +1509,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cObjectExpressionParserRuleCall_3_0 = (RuleCall)cObjectAssignment_3.eContents().get(0);
 		
 		////LinkOperationTupleElement :
-		////	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
-		////;
+		// //	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
+		// //;
+		//
+		//
 		//LinkOperationTupleElement:
+		//
 		//	role=ID ("[" roleIndex=Expression "]")? "=>" object=Expression;
 		public ParserRule getRule() { return rule; }
 
@@ -1517,15 +1564,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_3_0 = (RuleCall)cSuffixAssignment_3.eContents().get(0);
 		
 		//SequenceOperationExpression: //'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
-		//	"->" operationName=QualifiedNameWithBinding tuple=Tuple suffix=SuffixExpression?;
+		// "->"
+		//
+		//	operationName=QualifiedNameWithBinding tuple=Tuple suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
 		////'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
-		//"->" operationName=QualifiedNameWithBinding tuple=Tuple suffix=SuffixExpression?
+		// "->" operationName=QualifiedNameWithBinding
+		//
+		//tuple=Tuple suffix=SuffixExpression?
 		public Group getGroup() { return cGroup; }
 
 		////'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
-		//"->"
+		// "->"
 		public Keyword getHyphenMinusGreaterThanSignKeyword_0() { return cHyphenMinusGreaterThanSignKeyword_0; }
 
 		//operationName=QualifiedNameWithBinding
@@ -1560,6 +1611,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_4_0 = (RuleCall)cSuffixAssignment_4.eContents().get(0);
 		
 		//SequenceReductionExpression:
+		//
 		//	"->" "reduce" isOrdered?="ordered"? behavior=QualifiedNameWithBinding suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -1600,6 +1652,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIsUniqueOperationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//SequenceExpansionExpression:
+		//
 		//	SelectOrRejectOperation | CollectOrIterateOperation | ForAllOrExistsOrOneOperation | IsUniqueOperation;
 		public ParserRule getRule() { return rule; }
 
@@ -1635,6 +1688,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_6_0 = (RuleCall)cSuffixAssignment_6.eContents().get(0);
 		
 		//SelectOrRejectOperation:
+		//
 		//	"->" op=SelectOrRejectOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -1691,6 +1745,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_6_0 = (RuleCall)cSuffixAssignment_6.eContents().get(0);
 		
 		//CollectOrIterateOperation:
+		//
 		//	"->" op=CollectOrIterateOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -1747,6 +1802,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_6_0 = (RuleCall)cSuffixAssignment_6.eContents().get(0);
 		
 		//ForAllOrExistsOrOneOperation:
+		//
 		//	"->" op=ForAllOrExistsOrOneOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -1802,6 +1858,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_6_0 = (RuleCall)cSuffixAssignment_6.eContents().get(0);
 		
 		//IsUniqueOperation:
+		//
 		//	"->" "isUnique" name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -1851,11 +1908,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNullExpressionParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//ValueSpecification:
+		//
 		//	NameExpression | LITERAL | ThisExpression | SuperInvocationExpression | InstanceCreationExpression |
+		//
 		//	ParenthesizedExpression | NullExpression;
 		public ParserRule getRule() { return rule; }
 
 		//NameExpression | LITERAL | ThisExpression | SuperInvocationExpression | InstanceCreationExpression |
+		//
 		//ParenthesizedExpression | NullExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -1891,6 +1951,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuperInvocationExpressionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//NonLiteralValueSpecification:
+		//
 		//	NameExpression | ParenthesizedExpression | InstanceCreationExpression | ThisExpression | SuperInvocationExpression;
 		public ParserRule getRule() { return rule; }
 
@@ -1927,6 +1988,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_3_1_0 = (RuleCall)cSuffixAssignment_3_1.eContents().get(0);
 		
 		//ParenthesizedExpression:
+		//
 		//	"(" expOrTypeCast=Expression ")" (casted=NonLiteralValueSpecification | suffix=SuffixExpression)?;
 		public ParserRule getRule() { return rule; }
 
@@ -1968,6 +2030,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNullKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//NullExpression:
+		//
 		//	{NullExpression} "null";
 		public ParserRule getRule() { return rule; }
 
@@ -1990,6 +2053,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_2_0 = (RuleCall)cSuffixAssignment_2.eContents().get(0);
 		
 		//ThisExpression:
+		//
 		//	{ThisExpression} "this" suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
@@ -2024,28 +2088,52 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTupleTupleParserRuleCall_1_1_2_0 = (RuleCall)cTupleAssignment_1_1_2.eContents().get(0);
 		
 		//// SuperInvocationExpression :
+		//
+		//
 		////	//{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+		//
+		//
 		////	'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression) 
+		//
+		//
 		////;
-		//SuperInvocationExpression: //{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+		// SuperInvocationExpression:
+		//
+		////{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+		//
+		//
 		////'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression)
+		//
+		//
 		////'super' ((tuple = Tuple) |
-		////		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
-		//	"super" (tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple);
+		// //		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
+		// "super"
+		//
+		//	(tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple);
 		public ParserRule getRule() { return rule; }
 
 		////{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+		//
+		//
 		////'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression)
+		//
+		//
 		////'super' ((tuple = Tuple) |
-		////		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
-		//"super" (tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple)
+		// //		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
+		// "super"
+		//
+		//(tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple)
 		public Group getGroup() { return cGroup; }
 
 		////{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+		//
+		//
 		////'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression)
+		//
+		//
 		////'super' ((tuple = Tuple) |
-		////		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
-		//"super"
+		// //		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
+		// "super"
 		public Keyword getSuperKeyword_0() { return cSuperKeyword_0; }
 
 		//tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple
@@ -2088,23 +2176,41 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuffixSuffixExpressionParserRuleCall_3_0 = (RuleCall)cSuffixAssignment_3.eContents().get(0);
 		
 		////InstanceCreationExpression :
-		////'new' constructor=QualifiedNameWithBinding 
+		// //'new' constructor=QualifiedNameWithBinding 
+		//
+		//
 		////	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+		//
+		//
 		////'new' constructor=QualifiedNameWithBinding 
-		////	tuple = Tuple (suffix = SuffixExpression) ?
-		////;
+		// //	tuple = Tuple (suffix = SuffixExpression) ?
+		// //;
+		//
+		//
 		//InstanceCreationExpression: //'new' constructor=QualifiedNameWithBinding 
+		//
+		//
 		////	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+		//
+		//
 		//	"new" constructor=QualifiedNameWithBinding tuple=InstanceCreationTuple suffix=SuffixExpression?;
 		public ParserRule getRule() { return rule; }
 
 		////'new' constructor=QualifiedNameWithBinding 
+		//
+		//
 		////	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+		//
+		//
 		//"new" constructor=QualifiedNameWithBinding tuple=InstanceCreationTuple suffix=SuffixExpression?
 		public Group getGroup() { return cGroup; }
 
 		////'new' constructor=QualifiedNameWithBinding 
+		//
+		//
 		////	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+		//
+		//
 		//"new"
 		public Keyword getNewKeyword_0() { return cNewKeyword_0; }
 
@@ -2142,11 +2248,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//InstanceCreationTuple:
+		//
 		//	{InstanceCreationTuple} "(" (instanceCreationTupleElement+=InstanceCreationTupleElement (","
+		//
 		//	instanceCreationTupleElement+=InstanceCreationTupleElement)*)? ")";
 		public ParserRule getRule() { return rule; }
 
 		//{InstanceCreationTuple} "(" (instanceCreationTupleElement+=InstanceCreationTupleElement (","
+		//
 		//instanceCreationTupleElement+=InstanceCreationTupleElement)*)? ")"
 		public Group getGroup() { return cGroup; }
 
@@ -2157,6 +2266,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
 		//(instanceCreationTupleElement+=InstanceCreationTupleElement (","
+		//
 		//instanceCreationTupleElement+=InstanceCreationTupleElement)*)?
 		public Group getGroup_2() { return cGroup_2; }
 
@@ -2192,9 +2302,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cObjectExpressionParserRuleCall_2_0 = (RuleCall)cObjectAssignment_2.eContents().get(0);
 		
 		////LinkOperationTupleElement :
-		////	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
-		////;
+		// //	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
+		// //;
+		//
+		//
 		//InstanceCreationTupleElement:
+		//
 		//	role=ID "=>" object=Expression;
 		public ParserRule getRule() { return rule; }
 
@@ -2232,15 +2345,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionSequenceConstructionExpressionParserRuleCall_1_0 = (RuleCall)cExpressionAssignment_1.eContents().get(0);
 		
 		//SequenceConstructionOrAccessCompletion:
+		//
 		//	multiplicityIndicator?="[" (accessCompletion=AccessCompletion |
+		//
 		//	sequenceCompletion=PartialSequenceConstructionCompletion) | expression=SequenceConstructionExpression;
 		public ParserRule getRule() { return rule; }
 
 		//multiplicityIndicator?="[" (accessCompletion=AccessCompletion |
+		//
 		//sequenceCompletion=PartialSequenceConstructionCompletion) | expression=SequenceConstructionExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//multiplicityIndicator?="[" (accessCompletion=AccessCompletion |
+		//
 		//sequenceCompletion=PartialSequenceConstructionCompletion)
 		public Group getGroup_0() { return cGroup_0; }
 
@@ -2280,6 +2397,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//AccessCompletion:
+		//
 		//	accessIndex=Expression "]";
 		public ParserRule getRule() { return rule; }
 
@@ -2304,6 +2422,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionSequenceConstructionExpressionParserRuleCall_1_0 = (RuleCall)cExpressionAssignment_1.eContents().get(0);
 		
 		//PartialSequenceConstructionCompletion:
+		//
 		//	"]" expression=SequenceConstructionExpression;
 		public ParserRule getRule() { return rule; }
 
@@ -2338,9 +2457,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		////SequenceConstructionCompletion :
-		////	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
+		// //	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
+		//
+		//
 		////;
-		//SequenceConstructionExpression:
+		// SequenceConstructionExpression:
+		//
 		//	"{" sequenceElement+=SequenceElement (("," sequenceElement+=SequenceElement)* | ".." rangeUpper=Expression) "}";
 		public ParserRule getRule() { return rule; }
 
@@ -2394,6 +2516,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSequenceConstructionExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//SequenceElement:
+		//
 		//	Expression | SequenceConstructionExpression;
 		public ParserRule getRule() { return rule; }
 
@@ -2417,6 +2540,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ClassExtentExpression:
+		//
 		//	{ClassExtentExpression} "." "allInstances" "(" ")";
 		public ParserRule getRule() { return rule; }
 
@@ -2451,6 +2575,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		/// *****************
 		// * Statements
 		// **************** / Block:
+		//
 		//	"{" {Block} sequence=StatementSequence? "}";
 		public ParserRule getRule() { return rule; }
 
@@ -2479,6 +2604,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStatementsDocumentedStatementParserRuleCall_0 = (RuleCall)cStatementsAssignment.eContents().get(0);
 		
 		//StatementSequence:
+		//
 		//	statements+=DocumentedStatement+;
 		public ParserRule getRule() { return rule; }
 
@@ -2500,6 +2626,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStatementStatementParserRuleCall_1_0 = (RuleCall)cStatementAssignment_1.eContents().get(0);
 		
 		//DocumentedStatement:
+		//
 		//	comment=(ML_COMMENT | SL_COMMENT)? statement=Statement;
 		public ParserRule getRule() { return rule; }
 
@@ -2539,6 +2666,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAsteriskSolidusKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//InlineStatement:
+		//
 		//	"/ *@" "inline" "(" langageName=ID ")" body=STRING "* /";
 		public ParserRule getRule() { return rule; }
 
@@ -2583,23 +2711,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStatementStatementParserRuleCall_2_0 = (RuleCall)cStatementAssignment_2.eContents().get(0);
 		
 		//AnnotatedStatement:
+		//
 		//	"//@" annotation= //block = Block
-		//	Annotation statement=Statement;
+		// Annotation statement=Statement;
 		public ParserRule getRule() { return rule; }
 
 		//"//@" annotation= //block = Block
-		//Annotation statement=Statement
+		// Annotation statement=Statement
 		public Group getGroup() { return cGroup; }
 
 		//"//@"
 		public Keyword getSolidusSolidusCommercialAtKeyword_0() { return cSolidusSolidusCommercialAtKeyword_0; }
 
 		//annotation= //block = Block
-		//Annotation
+		// Annotation
 		public Assignment getAnnotationAssignment_1() { return cAnnotationAssignment_1; }
 
 		////block = Block
-		//Annotation
+		// Annotation
 		public RuleCall getAnnotationAnnotationParserRuleCall_1_0() { return cAnnotationAnnotationParserRuleCall_1_0; }
 
 		//statement=Statement
@@ -2632,15 +2761,22 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInstanceCreationInvocationStatementParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
 		
 		//Statement:
-		//	AnnotatedStatement | InlineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | IfStatement |
-		//	SwitchStatement | WhileStatement | DoStatement | ForStatement | BreakStatement | ReturnStatement | AcceptStatement |
-		//	ClassifyStatement | InvocationOrAssignementOrDeclarationStatement | SuperInvocationStatement | ThisInvocationStatement
-		//	| InstanceCreationInvocationStatement;
+		//
+		//	AnnotatedStatement | InlineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | IfStatement
+		//
+		//	| SwitchStatement | WhileStatement | DoStatement | ForStatement | BreakStatement | ReturnStatement | AcceptStatement
+		//
+		//	| ClassifyStatement | InvocationOrAssignementOrDeclarationStatement | SuperInvocationStatement |
+		//
+		//	ThisInvocationStatement | InstanceCreationInvocationStatement;
 		public ParserRule getRule() { return rule; }
 
 		//AnnotatedStatement | InlineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | IfStatement |
+		//
 		//SwitchStatement | WhileStatement | DoStatement | ForStatement | BreakStatement | ReturnStatement | AcceptStatement |
+		//
 		//ClassifyStatement | InvocationOrAssignementOrDeclarationStatement | SuperInvocationStatement | ThisInvocationStatement
+		//
 		//| InstanceCreationInvocationStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -2715,6 +2851,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//Annotation:
+		//
 		//	kind=AnnotationKind ("(" args+=ID ("," args+=ID)* ")")?;
 		public ParserRule getRule() { return rule; }
 
@@ -2761,6 +2898,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBlockParserRuleCall_0 = (RuleCall)cBlockAssignment.eContents().get(0);
 		
 		//BlockStatement:
+		//
 		//	block=Block;
 		public ParserRule getRule() { return rule; }
 
@@ -2778,6 +2916,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//EmptyStatement:
+		//
 		//	{EmptyStatement} ";";
 		public ParserRule getRule() { return rule; }
 
@@ -2810,12 +2949,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//LocalNameDeclarationStatement:
+		//
 		//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
-		//	"=" init=SequenceElement ";";
+		// "="
+		//
+		//	init=SequenceElement ";";
 		public ParserRule getRule() { return rule; }
 
 		//"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
-		//"=" init=SequenceElement ";"
+		// "="
+		//
+		//init=SequenceElement ";"
 		public Group getGroup() { return cGroup; }
 
 		//"let"
@@ -2849,7 +2993,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightSquareBracketKeyword_4_1() { return cRightSquareBracketKeyword_4_1; }
 
 		////'=' init = Expression ';'
-		//"="
+		// "="
 		public Keyword getEqualsSignKeyword_5() { return cEqualsSignKeyword_5; }
 
 		//init=SequenceElement
@@ -2872,6 +3016,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFinalClauseFinalClauseParserRuleCall_2_0 = (RuleCall)cFinalClauseAssignment_2.eContents().get(0);
 		
 		//IfStatement:
+		//
 		//	"if" sequentialClausses=SequentialClauses finalClause=FinalClause?;
 		public ParserRule getRule() { return rule; }
 
@@ -2906,6 +3051,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConccurentClausesConcurrentClausesParserRuleCall_1_2_0 = (RuleCall)cConccurentClausesAssignment_1_2.eContents().get(0);
 		
 		//SequentialClauses:
+		//
 		//	conccurentClauses+=ConcurrentClauses ("else" "if" conccurentClauses+=ConcurrentClauses)*;
 		public ParserRule getRule() { return rule; }
 
@@ -2946,6 +3092,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNonFinalClauseNonFinalClauseParserRuleCall_1_2_0 = (RuleCall)cNonFinalClauseAssignment_1_2.eContents().get(0);
 		
 		//ConcurrentClauses:
+		//
 		//	nonFinalClause+=NonFinalClause ("or" "if" nonFinalClause+=NonFinalClause)*;
 		public ParserRule getRule() { return rule; }
 
@@ -2985,6 +3132,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBlockParserRuleCall_3_0 = (RuleCall)cBlockAssignment_3.eContents().get(0);
 		
 		//NonFinalClause:
+		//
 		//	"(" condition=Expression ")" block=Block;
 		public ParserRule getRule() { return rule; }
 
@@ -3018,6 +3166,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBlockParserRuleCall_1_0 = (RuleCall)cBlockAssignment_1.eContents().get(0);
 		
 		//FinalClause:
+		//
 		//	"else" block=Block;
 		public ParserRule getRule() { return rule; }
 
@@ -3050,6 +3199,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//SwitchStatement:
+		//
 		//	"switch" "(" expression=Expression ")" "{" switchClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}";
 		public ParserRule getRule() { return rule; }
 
@@ -3101,6 +3251,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStatementSequenceNonEmptyStatementSequenceParserRuleCall_2_0 = (RuleCall)cStatementSequenceAssignment_2.eContents().get(0);
 		
 		//SwitchClause:
+		//
 		//	switchCase+=SwitchCase switchCase+=SwitchCase* statementSequence=NonEmptyStatementSequence;
 		public ParserRule getRule() { return rule; }
 
@@ -3135,6 +3286,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//SwitchCase:
+		//
 		//	"case" expression=Expression ":";
 		public ParserRule getRule() { return rule; }
 
@@ -3163,6 +3315,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStatementSequenceNonEmptyStatementSequenceParserRuleCall_2_0 = (RuleCall)cStatementSequenceAssignment_2.eContents().get(0);
 		
 		//SwitchDefaultClause:
+		//
 		//	"default" ":" statementSequence=NonEmptyStatementSequence;
 		public ParserRule getRule() { return rule; }
 
@@ -3188,6 +3341,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStatementDocumentedStatementParserRuleCall_0 = (RuleCall)cStatementAssignment.eContents().get(0);
 		
 		//NonEmptyStatementSequence:
+		//
 		//	statement+=DocumentedStatement+;
 		public ParserRule getRule() { return rule; }
 
@@ -3210,6 +3364,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBlockParserRuleCall_4_0 = (RuleCall)cBlockAssignment_4.eContents().get(0);
 		
 		/// * WHILE STATEMENTS * / WhileStatement:
+		//
 		//	"while" "(" condition=Expression ")" block=Block;
 		public ParserRule getRule() { return rule; }
 
@@ -3252,6 +3407,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		/// * DO STATEMENTS * / DoStatement:
+		//
 		//	"do" block=Block "while" "(" condition=Expression ")" ";";
 		public ParserRule getRule() { return rule; }
 
@@ -3298,6 +3454,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBlockParserRuleCall_4_0 = (RuleCall)cBlockAssignment_4.eContents().get(0);
 		
 		/// * FOR STATEMENTS * / ForStatement:
+		//
 		//	"for" "(" control=ForControl ")" block=Block;
 		public ParserRule getRule() { return rule; }
 
@@ -3337,6 +3494,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLoopVariableDefinitionLoopVariableDefinitionParserRuleCall_1_1_0 = (RuleCall)cLoopVariableDefinitionAssignment_1_1.eContents().get(0);
 		
 		//ForControl:
+		//
 		//	loopVariableDefinition+=LoopVariableDefinition ("," loopVariableDefinition+=LoopVariableDefinition)*;
 		public ParserRule getRule() { return rule; }
 
@@ -3385,11 +3543,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionExpressionParserRuleCall_1_3_0 = (RuleCall)cExpressionAssignment_1_3.eContents().get(0);
 		
 		//LoopVariableDefinition:
+		//
 		//	name=ID "in" expression1=Expression (".." expression2=Expression)? | type=QualifiedNameWithBinding name=ID ":"
+		//
 		//	expression=Expression;
 		public ParserRule getRule() { return rule; }
 
 		//name=ID "in" expression1=Expression (".." expression2=Expression)? | type=QualifiedNameWithBinding name=ID ":"
+		//
 		//expression=Expression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -3456,6 +3617,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		/// * BREAK STATEMENTS * / BreakStatement:
+		//
 		//	{BreakStatement} "break" ";";
 		public ParserRule getRule() { return rule; }
 
@@ -3481,6 +3643,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		/// * RETURN STATEMENTS * / ReturnStatement:
+		//
 		//	"return" expression=Expression ";";
 		public ParserRule getRule() { return rule; }
 
@@ -3512,7 +3675,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCompoundAcceptCompoundAcceptStatementCompletionParserRuleCall_1_1_0 = (RuleCall)cCompoundAcceptAssignment_1_1.eContents().get(0);
 		
 		/// * ACCEPT STATEMENTS * / AcceptStatement:
-		//	clause=AcceptClause (simpleAccept=SimpleAcceptStatementCompletion | compoundAccept=CompoundAcceptStatementCompletion);
+		//
+		//	clause=AcceptClause (simpleAccept=SimpleAcceptStatementCompletion |
+		//
+		//	compoundAccept=CompoundAcceptStatementCompletion);
 		public ParserRule getRule() { return rule; }
 
 		//clause=AcceptClause (simpleAccept=SimpleAcceptStatementCompletion | compoundAccept=CompoundAcceptStatementCompletion)
@@ -3547,6 +3713,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//SimpleAcceptStatementCompletion:
+		//
 		//	{SimpleAcceptStatementCompletion} ";";
 		public ParserRule getRule() { return rule; }
 
@@ -3571,6 +3738,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAcceptBlockAcceptBlockParserRuleCall_1_1_0 = (RuleCall)cAcceptBlockAssignment_1_1.eContents().get(0);
 		
 		//CompoundAcceptStatementCompletion:
+		//
 		//	block=Block ("or" acceptBlock+=AcceptBlock)*;
 		public ParserRule getRule() { return rule; }
 
@@ -3605,6 +3773,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBlockParserRuleCall_1_0 = (RuleCall)cBlockAssignment_1.eContents().get(0);
 		
 		//AcceptBlock:
+		//
 		//	clause=AcceptClause block=Block;
 		public ParserRule getRule() { return rule; }
 
@@ -3638,6 +3807,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//AcceptClause:
+		//
 		//	"accept" "(" (name=ID ":")? qualifiedNameList=QualifiedNameList ")";
 		public ParserRule getRule() { return rule; }
 
@@ -3683,6 +3853,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// * CLASSIFY STATEMENTS * / ClassifyStatement:
+		//
 		//	"classify" expression=Expression clause=ClassificationClause ";";
 		public ParserRule getRule() { return rule; }
 
@@ -3723,11 +3894,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassifyToClauseClassificationToClauseParserRuleCall_1_1_0 = (RuleCall)cClassifyToClauseAssignment_1_1.eContents().get(0);
 		
 		//ClassificationClause:
+		//
 		//	classifyFromClause=ClassificationFromClause classifyToClause=ClassificationToClause? |
+		//
 		//	reclassyAllClause=ReclassifyAllClause? classifyToClause=ClassificationToClause;
 		public ParserRule getRule() { return rule; }
 
 		//classifyFromClause=ClassificationFromClause classifyToClause=ClassificationToClause? |
+		//
 		//reclassyAllClause=ReclassifyAllClause? classifyToClause=ClassificationToClause
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -3770,6 +3944,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cQualifiedNameListQualifiedNameListParserRuleCall_1_0 = (RuleCall)cQualifiedNameListAssignment_1.eContents().get(0);
 		
 		//ClassificationFromClause:
+		//
 		//	"from" qualifiedNameList=QualifiedNameList;
 		public ParserRule getRule() { return rule; }
 
@@ -3794,6 +3969,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cQualifiedNameListQualifiedNameListParserRuleCall_1_0 = (RuleCall)cQualifiedNameListAssignment_1.eContents().get(0);
 		
 		//ClassificationToClause:
+		//
 		//	"to" qualifiedNameList=QualifiedNameList;
 		public ParserRule getRule() { return rule; }
 
@@ -3818,6 +3994,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAsteriskKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//ReclassifyAllClause:
+		//
 		//	{ReclassifyAllClause} "from" "*";
 		public ParserRule getRule() { return rule; }
 
@@ -3845,6 +4022,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cQualifiedNameQualifiedNameWithBindingParserRuleCall_1_1_0 = (RuleCall)cQualifiedNameAssignment_1_1.eContents().get(0);
 		
 		//QualifiedNameList:
+		//
 		//	qualifiedName+=QualifiedNameWithBinding ("," qualifiedName+=QualifiedNameWithBinding)*;
 		public ParserRule getRule() { return rule; }
 
@@ -3883,12 +4061,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//InvocationOrAssignementOrDeclarationStatement:
-		//	typePart_OR_assignedPart_OR_invocationPart=NameExpression (variableDeclarationCompletion=VariableDeclarationCompletion //(suffixCompletion = SuffixCompletion)?
-		//	| assignmentCompletion=AssignmentCompletion)? ";";
+		//
+		//	typePart_OR_assignedPart_OR_invocationPart=NameExpression
+		//
+		//	(variableDeclarationCompletion=VariableDeclarationCompletion //(suffixCompletion = SuffixCompletion)?
+		// |
+		//
+		//	assignmentCompletion=AssignmentCompletion)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//typePart_OR_assignedPart_OR_invocationPart=NameExpression (variableDeclarationCompletion=VariableDeclarationCompletion //(suffixCompletion = SuffixCompletion)?
-		//| assignmentCompletion=AssignmentCompletion)? ";"
+		//typePart_OR_assignedPart_OR_invocationPart=NameExpression (variableDeclarationCompletion=VariableDeclarationCompletion
+		//
+		////(suffixCompletion = SuffixCompletion)?
+		// | assignmentCompletion=AssignmentCompletion)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//typePart_OR_assignedPart_OR_invocationPart=NameExpression
@@ -3898,7 +4083,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getTypePart_OR_assignedPart_OR_invocationPartNameExpressionParserRuleCall_0_0() { return cTypePart_OR_assignedPart_OR_invocationPartNameExpressionParserRuleCall_0_0; }
 
 		//(variableDeclarationCompletion=VariableDeclarationCompletion //(suffixCompletion = SuffixCompletion)?
-		//| assignmentCompletion=AssignmentCompletion)?
+		// |
+		//
+		//assignmentCompletion=AssignmentCompletion)?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//variableDeclarationCompletion=VariableDeclarationCompletion
@@ -3925,12 +4112,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//SuperInvocationStatement:
+		//
 		//	_super=SuperInvocationExpression //(suffix = SuffixCompletion)? ';'
-		//	";";
+		// ";";
 		public ParserRule getRule() { return rule; }
 
 		//_super=SuperInvocationExpression //(suffix = SuffixCompletion)? ';'
-		//";"
+		// ";"
 		public Group getGroup() { return cGroup; }
 
 		//_super=SuperInvocationExpression
@@ -3940,7 +4128,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall get_superSuperInvocationExpressionParserRuleCall_0_0() { return c_superSuperInvocationExpressionParserRuleCall_0_0; }
 
 		////(suffix = SuffixCompletion)? ';'
-		//";"
+		// ";"
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
@@ -3953,15 +4141,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssignmentCompletionAssignmentCompletionParserRuleCall_1_0 = (RuleCall)cAssignmentCompletionAssignment_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//ThisInvocationStatement: //_this = ThisExpression suffix = SuffixCompletion (assignmentCompletion = AssignmentCompletion)? ';'
+		//ThisInvocationStatement:
+		//
+		////_this = ThisExpression suffix = SuffixCompletion (assignmentCompletion = AssignmentCompletion)? ';'
+		//
+		//
 		//	_this=ThisExpression assignmentCompletion=AssignmentCompletion? ";";
 		public ParserRule getRule() { return rule; }
 
 		////_this = ThisExpression suffix = SuffixCompletion (assignmentCompletion = AssignmentCompletion)? ';'
+		//
+		//
 		//_this=ThisExpression assignmentCompletion=AssignmentCompletion? ";"
 		public Group getGroup() { return cGroup; }
 
 		////_this = ThisExpression suffix = SuffixCompletion (assignmentCompletion = AssignmentCompletion)? ';'
+		//
+		//
 		//_this=ThisExpression
 		public Assignment get_thisAssignment_0() { return c_thisAssignment_0; }
 
@@ -3986,12 +4182,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//InstanceCreationInvocationStatement:
+		//
 		//	_new=InstanceCreationExpression //(suffix = SuffixCompletion)? ';'
-		//	";";
+		// ";";
 		public ParserRule getRule() { return rule; }
 
 		//_new=InstanceCreationExpression //(suffix = SuffixCompletion)? ';'
-		//";"
+		// ";"
 		public Group getGroup() { return cGroup; }
 
 		//_new=InstanceCreationExpression
@@ -4001,7 +4198,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall get_newInstanceCreationExpressionParserRuleCall_0_0() { return c_newInstanceCreationExpressionParserRuleCall_0_0; }
 
 		////(suffix = SuffixCompletion)? ';'
-		//";"
+		// ";"
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
@@ -4018,9 +4215,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInitValueAssignmentCompletionParserRuleCall_2_0 = (RuleCall)cInitValueAssignment_2.eContents().get(0);
 		
 		////SuffixCompletion :
-		////	suffix = SuffixExpression
-		////;
-		//VariableDeclarationCompletion:
+		// //	suffix = SuffixExpression
+		// //;
+		// VariableDeclarationCompletion:
+		//
 		//	(multiplicityIndicator?="[" "]")? variableName=ID initValue=AssignmentCompletion;
 		public ParserRule getRule() { return rule; }
 
@@ -4061,8 +4259,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRightHandSideSequenceElementParserRuleCall_1_0 = (RuleCall)cRightHandSideAssignment_1.eContents().get(0);
 		
 		////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
+		//
+		//
 		////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
-		//AssignmentCompletion:
+		// AssignmentCompletion:
+		//
 		//	op=AssignmentOperator rightHandSide=SequenceElement;
 		public ParserRule getRule() { return rule; }
 
@@ -4092,6 +4293,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFALSEFalseKeyword_1_0 = (Keyword)cFALSEEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum BooleanValue:
+		//
 		//	TRUE="true" | FALSE="false";
 		public EnumRule getRule() { return rule; }
 
@@ -4122,6 +4324,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCLEARClearAssocKeyword_2_0 = (Keyword)cCLEAREnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum LinkOperationKind:
+		//
 		//	CREATE="createLink" | DESTROY="destroyLink" | CLEAR="clearAssoc";
 		public EnumRule getRule() { return rule; }
 
@@ -4156,6 +4359,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cREJECTRejectKeyword_1_0 = (Keyword)cREJECTEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum SelectOrRejectOperator:
+		//
 		//	SELECT="select" | REJECT="reject";
 		public EnumRule getRule() { return rule; }
 
@@ -4184,6 +4388,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cITERATEIterateKeyword_1_0 = (Keyword)cITERATEEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum CollectOrIterateOperator:
+		//
 		//	COLLECT="collect" | ITERATE="iterate";
 		public EnumRule getRule() { return rule; }
 
@@ -4214,6 +4419,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cONEOneKeyword_2_0 = (Keyword)cONEEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum ForAllOrExistsOrOneOperator:
+		//
 		//	FORALL="forAll" | EXISTS="exists" | ONE="one";
 		public EnumRule getRule() { return rule; }
 
@@ -4252,6 +4458,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPARALLELParallelKeyword_3_0 = (Keyword)cPARALLELEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum AnnotationKind:
+		//
 		//	ISOLATED="isolated" | DETERMINED="determined" | ASSURED="assured" | PARALLEL="parallel";
 		public EnumRule getRule() { return rule; }
 
@@ -4312,11 +4519,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cURSHIFTASSIGNGreaterThanSignGreaterThanSignGreaterThanSignEqualsSignKeyword_11_0 = (Keyword)cURSHIFTASSIGNEnumLiteralDeclaration_11.eContents().get(0);
 		
 		//enum AssignmentOperator:
-		//	ASSIGN="=" | PLUSASSIGN="+=" | MINUSASSIGN="-=" | MULTASSIGN="*=" | MODASSIGN="%=" | DIVASSIGN="/=" | ANDASSIGN="&=" |
-		//	ORASSIGN="|=" | XORASSIGN="^=" | LSHIFTASSIGN="<<=" | RSHIFTASSIGN=">>=" | URSHIFTASSIGN=">>>=";
+		//
+		//	ASSIGN="=" | PLUSASSIGN="+=" | MINUSASSIGN="-=" | MULTASSIGN="*=" | MODASSIGN="%=" | DIVASSIGN="/=" | ANDASSIGN="&="
+		//
+		//	| ORASSIGN="|=" | XORASSIGN="^=" | LSHIFTASSIGN="<<=" | RSHIFTASSIGN=">>=" | URSHIFTASSIGN=">>>=";
 		public EnumRule getRule() { return rule; }
 
 		//ASSIGN="=" | PLUSASSIGN="+=" | MINUSASSIGN="-=" | MULTASSIGN="*=" | MODASSIGN="%=" | DIVASSIGN="/=" | ANDASSIGN="&=" |
+		//
 		//ORASSIGN="|=" | XORASSIGN="^=" | LSHIFTASSIGN="<<=" | RSHIFTASSIGN=">>=" | URSHIFTASSIGN=">>>="
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -4508,19 +4718,36 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	
-	private final GrammarProvider grammarProvider;
+	private final Grammar grammar;
 
 	private TerminalsGrammarAccess gaTerminals;
 
 	@Inject
 	public AlfGrammarAccess(GrammarProvider grammarProvider,
 		TerminalsGrammarAccess gaTerminals) {
-		this.grammarProvider = grammarProvider;
+		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 	}
 	
-	public Grammar getGrammar() {	
-		return grammarProvider.getGrammar(this);
+	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
+		Grammar grammar = grammarProvider.getGrammar(this);
+		while (grammar != null) {
+			if ("org.eclipse.papyrus.uml.alf.Alf".equals(grammar.getName())) {
+				return grammar;
+			}
+			List<Grammar> grammars = grammar.getUsedGrammars();
+			if (!grammars.isEmpty()) {
+				grammar = grammars.iterator().next();
+			} else {
+				return null;
+			}
+		}
+		return grammar;
+	}
+	
+	
+	public Grammar getGrammar() {
+		return grammar;
 	}
 	
 
@@ -4532,7 +4759,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	//  Test rule
 	// * / Test:
+	//
 	//	("testExpression" expression+=Expression)* ("testAssignmentExpression" assignExpression+=AssignmentCompletion)*
+	//
 	//	("testStatement" statements+=Statement)* ("testBlock" block=Block);
 	public TestElements getTestAccess() {
 		return (pTest != null) ? pTest : (pTest = new TestElements());
@@ -4543,9 +4772,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////('testStatementSequence' statement += StatementSequence)* ;
+	//
+	//
 	/// *********************************
 	// * PrimitiveLiterals
 	// ********************************** / LITERAL:
+	//
 	//	BOOLEAN_LITERAL | NUMBER_LITERAL | STRING_LITERAL;
 	public LITERALElements getLITERALAccess() {
 		return (pLITERAL != null) ? pLITERAL : (pLITERAL = new LITERALElements());
@@ -4556,7 +4788,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// (suffix = SuffixExpression) ? ;
-	//BOOLEAN_LITERAL:
+	// BOOLEAN_LITERAL:
+	//
 	//	value=BooleanValue;
 	public BOOLEAN_LITERALElements getBOOLEAN_LITERALAccess() {
 		return (pBOOLEAN_LITERAL != null) ? pBOOLEAN_LITERAL : (pBOOLEAN_LITERAL = new BOOLEAN_LITERALElements());
@@ -4567,6 +4800,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum BooleanValue:
+	//
 	//	TRUE="true" | FALSE="false";
 	public BooleanValueElements getBooleanValueAccess() {
 		return (unknownRuleBooleanValue != null) ? unknownRuleBooleanValue : (unknownRuleBooleanValue = new BooleanValueElements());
@@ -4577,6 +4811,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NUMBER_LITERAL:
+	//
 	//	INTEGER_LITERAL | UNLIMITED_LITERAL;
 	public NUMBER_LITERALElements getNUMBER_LITERALAccess() {
 		return (pNUMBER_LITERAL != null) ? pNUMBER_LITERAL : (pNUMBER_LITERAL = new NUMBER_LITERALElements());
@@ -4587,7 +4822,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// (suffix = SuffixExpression) ? ;
-	//INTEGER_LITERAL:
+	// INTEGER_LITERAL:
+	//
 	//	value=IntegerValue;
 	public INTEGER_LITERALElements getINTEGER_LITERALAccess() {
 		return (pINTEGER_LITERAL != null) ? pINTEGER_LITERAL : (pINTEGER_LITERAL = new INTEGER_LITERALElements());
@@ -4598,7 +4834,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// (suffix = SuffixExpression) ? ;
-	//UNLIMITED_LITERAL:
+	// UNLIMITED_LITERAL:
+	//
 	//	value="*";
 	public UNLIMITED_LITERALElements getUNLIMITED_LITERALAccess() {
 		return (pUNLIMITED_LITERAL != null) ? pUNLIMITED_LITERAL : (pUNLIMITED_LITERAL = new UNLIMITED_LITERALElements());
@@ -4609,18 +4846,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal IntegerValue:
+	//
 	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
-	//	// BINARY
-	//	// HEX
-	//	// OCT
-	//	| ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//	"A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	// // BINARY
+	// // HEX
+	// // OCT
+	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* |
+	//
+	//	("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" | "A".."F"))* | "0" "_"? "0".."7" ("_"?
+	//
+	//	"0".."7")*;
 	public TerminalRule getIntegerValueRule() {
 		return (tIntegerValue != null) ? tIntegerValue : (tIntegerValue = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IntegerValue"));
 	} 
 
 	//// (suffix = SuffixExpression) ?;
-	//STRING_LITERAL:
+	// STRING_LITERAL:
+	//
 	//	value=STRING;
 	public STRING_LITERALElements getSTRING_LITERALAccess() {
 		return (pSTRING_LITERAL != null) ? pSTRING_LITERAL : (pSTRING_LITERAL = new STRING_LITERALElements());
@@ -4631,8 +4873,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NameExpression:
+	//
 	//	(prefixOp=("++" | "--") path=QualifiedNamePath? id=ID | path=QualifiedNamePath? id=ID (invocationCompletion=Tuple |
+	//
 	//	sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion | postfixOp=("++" | "--"))?)
+	//
 	//	suffix=SuffixExpression?;
 	public NameExpressionElements getNameExpressionAccess() {
 		return (pNameExpression != null) ? pNameExpression : (pNameExpression = new NameExpressionElements());
@@ -4643,6 +4888,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedNamePath:
+	//
 	//	(namespace+=UnqualifiedName "::")+;
 	public QualifiedNamePathElements getQualifiedNamePathAccess() {
 		return (pQualifiedNamePath != null) ? pQualifiedNamePath : (pQualifiedNamePath = new QualifiedNamePathElements());
@@ -4653,6 +4899,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnqualifiedName:
+	//
 	//	name=ID templateBinding=TemplateBinding?;
 	public UnqualifiedNameElements getUnqualifiedNameAccess() {
 		return (pUnqualifiedName != null) ? pUnqualifiedName : (pUnqualifiedName = new UnqualifiedNameElements());
@@ -4663,6 +4910,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateBinding:
+	//
 	//	"<" bindings+=NamedTemplateBinding ("," bindings+=NamedTemplateBinding)* ">";
 	public TemplateBindingElements getTemplateBindingAccess() {
 		return (pTemplateBinding != null) ? pTemplateBinding : (pTemplateBinding = new TemplateBindingElements());
@@ -4673,6 +4921,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NamedTemplateBinding:
+	//
 	//	formal=ID "=>" actual=QualifiedNameWithBinding;
 	public NamedTemplateBindingElements getNamedTemplateBindingAccess() {
 		return (pNamedTemplateBinding != null) ? pNamedTemplateBinding : (pNamedTemplateBinding = new NamedTemplateBindingElements());
@@ -4683,6 +4932,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedNameWithBinding:
+	//
 	//	id=ID binding=TemplateBinding? ("::" remaining=QualifiedNameWithBinding)?;
 	public QualifiedNameWithBindingElements getQualifiedNameWithBindingAccess() {
 		return (pQualifiedNameWithBinding != null) ? pQualifiedNameWithBinding : (pQualifiedNameWithBinding = new QualifiedNameWithBindingElements());
@@ -4693,6 +4943,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Tuple:
+	//
 	//	{Tuple} "(" (tupleElements+=TupleElement ("," tupleElements+=TupleElement)*)? ")";
 	public TupleElements getTupleAccess() {
 		return (pTuple != null) ? pTuple : (pTuple = new TupleElements());
@@ -4703,6 +4954,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleElement:
+	//
 	//	argument=Expression;
 	public TupleElementElements getTupleElementAccess() {
 		return (pTupleElement != null) ? pTupleElement : (pTupleElement = new TupleElementElements());
@@ -4715,6 +4967,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	/// **************
 	// * Expressions
 	// ************** / Expression:
+	//
 	//	ConditionalTestExpression;
 	public ExpressionElements getExpressionAccess() {
 		return (pExpression != null) ? pExpression : (pExpression = new ExpressionElements());
@@ -4725,6 +4978,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConditionalTestExpression:
+	//
 	//	exp=ConditionalOrExpression ("?" whenTrue=ConditionalTestExpression ":" whenFalse=ConditionalTestExpression)?;
 	public ConditionalTestExpressionElements getConditionalTestExpressionAccess() {
 		return (pConditionalTestExpression != null) ? pConditionalTestExpression : (pConditionalTestExpression = new ConditionalTestExpressionElements());
@@ -4735,6 +4989,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConditionalOrExpression:
+	//
 	//	exp+=ConditionalAndExpression ("||" exp+=ConditionalAndExpression)*;
 	public ConditionalOrExpressionElements getConditionalOrExpressionAccess() {
 		return (pConditionalOrExpression != null) ? pConditionalOrExpression : (pConditionalOrExpression = new ConditionalOrExpressionElements());
@@ -4745,6 +5000,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConditionalAndExpression:
+	//
 	//	exp+=InclusiveOrExpression ("&&" exp+=InclusiveOrExpression)*;
 	public ConditionalAndExpressionElements getConditionalAndExpressionAccess() {
 		return (pConditionalAndExpression != null) ? pConditionalAndExpression : (pConditionalAndExpression = new ConditionalAndExpressionElements());
@@ -4755,6 +5011,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InclusiveOrExpression:
+	//
 	//	exp+=ExclusiveOrExpression ("|" exp+=ExclusiveOrExpression)*;
 	public InclusiveOrExpressionElements getInclusiveOrExpressionAccess() {
 		return (pInclusiveOrExpression != null) ? pInclusiveOrExpression : (pInclusiveOrExpression = new InclusiveOrExpressionElements());
@@ -4765,6 +5022,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExclusiveOrExpression:
+	//
 	//	exp+=AndExpression ("^" exp+=AndExpression)*;
 	public ExclusiveOrExpressionElements getExclusiveOrExpressionAccess() {
 		return (pExclusiveOrExpression != null) ? pExclusiveOrExpression : (pExclusiveOrExpression = new ExclusiveOrExpressionElements());
@@ -4775,6 +5033,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AndExpression:
+	//
 	//	exp+=EqualityExpression ("&" exp+=EqualityExpression)*;
 	public AndExpressionElements getAndExpressionAccess() {
 		return (pAndExpression != null) ? pAndExpression : (pAndExpression = new AndExpressionElements());
@@ -4785,6 +5044,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EqualityExpression:
+	//
 	//	exp+=ClassificationExpression (op+=("==" | "!=") exp+=ClassificationExpression)*;
 	public EqualityExpressionElements getEqualityExpressionAccess() {
 		return (pEqualityExpression != null) ? pEqualityExpression : (pEqualityExpression = new EqualityExpressionElements());
@@ -4795,10 +5055,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////enum EqualityOperator :
-	////	EQUALS = '==' |
-	////	NOT_EQUALS = '!='
-	////;
-	//ClassificationExpression:
+	// //	EQUALS = '==' |
+	// //	NOT_EQUALS = '!='
+	// //;
+	// ClassificationExpression:
+	//
 	//	exp=RelationalExpression (op=("instanceof" | "hastype") typeName=NameExpression)?;
 	public ClassificationExpressionElements getClassificationExpressionAccess() {
 		return (pClassificationExpression != null) ? pClassificationExpression : (pClassificationExpression = new ClassificationExpressionElements());
@@ -4809,10 +5070,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////enum ClassificationOperator :
-	////	INSTANCEOF = 'instanceof' |
-	////	HASTYPE = 'hastype'
-	////;
-	//RelationalExpression:
+	// //	INSTANCEOF = 'instanceof' |
+	// //	HASTYPE = 'hastype'
+	// //;
+	// RelationalExpression:
+	//
 	//	left=ShiftExpression (op=("<" | ">" | "<=" | ">=") right=ShiftExpression)?;
 	public RelationalExpressionElements getRelationalExpressionAccess() {
 		return (pRelationalExpression != null) ? pRelationalExpression : (pRelationalExpression = new RelationalExpressionElements());
@@ -4823,12 +5085,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////RelationalOperator :
-	////	LOWER = '<' |
-	////	UPPER = '>' |
-	////	LOWER_EQUALS = '<=' |
-	////	UPPER_EQUALS = '>='
-	////;
+	// //	LOWER = '<' |
+	// //	UPPER = '>' |
+	// //	LOWER_EQUALS = '<=' |
+	// //	UPPER_EQUALS = '>='
+	// //;
+	//
+	//
 	//ShiftExpression:
+	//
 	//	exp+=AdditiveExpression (op=("<<" | ">>" | ">>>") exp+=AdditiveExpression)?;
 	public ShiftExpressionElements getShiftExpressionAccess() {
 		return (pShiftExpression != null) ? pShiftExpression : (pShiftExpression = new ShiftExpressionElements());
@@ -4839,11 +5104,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////enum ShiftOperator :
-	////	LSHIFT = '<<' |
-	////	RSHIFT = '>>' |
-	////	URSHIFT = '>>>'
-	////;
-	//AdditiveExpression:
+	// //	LSHIFT = '<<' |
+	// //	RSHIFT = '>>' |
+	// //	URSHIFT = '>>>'
+	// //;
+	// AdditiveExpression:
+	//
 	//	exp+=MultiplicativeExpression (op+=("+" | "-") exp+=MultiplicativeExpression)*;
 	public AdditiveExpressionElements getAdditiveExpressionAccess() {
 		return (pAdditiveExpression != null) ? pAdditiveExpression : (pAdditiveExpression = new AdditiveExpressionElements());
@@ -4854,10 +5120,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////enum AdditiveOp :
-	////	PLUS = '+' |
-	////	MINUS = '-'
-	////;
-	//MultiplicativeExpression:
+	// //	PLUS = '+' |
+	// //	MINUS = '-'
+	// //;
+	// MultiplicativeExpression:
+	//
 	//	exp+=UnaryExpression (op+=("*" | "/" | "%") exp+=UnaryExpression)*;
 	public MultiplicativeExpressionElements getMultiplicativeExpressionAccess() {
 		return (pMultiplicativeExpression != null) ? pMultiplicativeExpression : (pMultiplicativeExpression = new MultiplicativeExpressionElements());
@@ -4868,11 +5135,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////enum MultiplicativeOp :
-	////	MULT = '*' |
-	////	DIV = '/' |
-	////	MOD = '%'
-	////;
-	//UnaryExpression:
+	// //	MULT = '*' |
+	// //	DIV = '/' |
+	// //	MOD = '%'
+	// //;
+	// UnaryExpression:
+	//
 	//	op=("!" | "-" | "+" | "$" | "~")? exp=PrimaryExpression;
 	public UnaryExpressionElements getUnaryExpressionAccess() {
 		return (pUnaryExpression != null) ? pUnaryExpression : (pUnaryExpression = new UnaryExpressionElements());
@@ -4883,9 +5151,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////PrimaryExpression :
-	////	prefix = ValueSpecification (suffix = SuffixExpression)? 
-	////;
-	//PrimaryExpression:
+	// //	prefix = ValueSpecification (suffix = SuffixExpression)? 
+	// //;
+	// PrimaryExpression:
+	//
 	//	prefix=ValueSpecification;
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return (pPrimaryExpression != null) ? pPrimaryExpression : (pPrimaryExpression = new PrimaryExpressionElements());
@@ -4896,7 +5165,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SuffixExpression:
+	//
 	//	OperationCallExpression | PropertyCallExpression | LinkOperationExpression | SequenceOperationExpression |
+	//
 	//	SequenceReductionExpression | SequenceExpansionExpression | ClassExtentExpression;
 	public SuffixExpressionElements getSuffixExpressionAccess() {
 		return (pSuffixExpression != null) ? pSuffixExpression : (pSuffixExpression = new SuffixExpressionElements());
@@ -4907,6 +5178,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OperationCallExpression:
+	//
 	//	"." operationName=ID tuple=Tuple suffix=SuffixExpression?;
 	public OperationCallExpressionElements getOperationCallExpressionAccess() {
 		return (pOperationCallExpression != null) ? pOperationCallExpression : (pOperationCallExpression = new OperationCallExpressionElements());
@@ -4917,9 +5189,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// OperationCallExpressionWithoutDot :
-	//// 	operationName = ID tuple = Tuple (suffix = SuffixExpression)?
-	//// ;
+	// // 	operationName = ID tuple = Tuple (suffix = SuffixExpression)?
+	// // ;
+	//
+	//
 	//PropertyCallExpression:
+	//
 	//	"." propertyName=ID ("[" index=Expression "]")? suffix=SuffixExpression?;
 	public PropertyCallExpressionElements getPropertyCallExpressionAccess() {
 		return (pPropertyCallExpression != null) ? pPropertyCallExpression : (pPropertyCallExpression = new PropertyCallExpressionElements());
@@ -4930,6 +5205,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LinkOperationExpression:
+	//
 	//	"." kind=LinkOperationKind tuple=LinkOperationTuple;
 	public LinkOperationExpressionElements getLinkOperationExpressionAccess() {
 		return (pLinkOperationExpression != null) ? pLinkOperationExpression : (pLinkOperationExpression = new LinkOperationExpressionElements());
@@ -4940,7 +5216,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LinkOperationTuple:
+	//
 	//	"(" linkOperationTupleElement+=LinkOperationTupleElement ("," linkOperationTupleElement+=LinkOperationTupleElement)*
+	//
 	//	")";
 	public LinkOperationTupleElements getLinkOperationTupleAccess() {
 		return (pLinkOperationTuple != null) ? pLinkOperationTuple : (pLinkOperationTuple = new LinkOperationTupleElements());
@@ -4951,9 +5229,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////LinkOperationTupleElement :
-	////	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
-	////;
+	// //	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
+	// //;
+	//
+	//
 	//LinkOperationTupleElement:
+	//
 	//	role=ID ("[" roleIndex=Expression "]")? "=>" object=Expression;
 	public LinkOperationTupleElementElements getLinkOperationTupleElementAccess() {
 		return (pLinkOperationTupleElement != null) ? pLinkOperationTupleElement : (pLinkOperationTupleElement = new LinkOperationTupleElementElements());
@@ -4964,6 +5245,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum LinkOperationKind:
+	//
 	//	CREATE="createLink" | DESTROY="destroyLink" | CLEAR="clearAssoc";
 	public LinkOperationKindElements getLinkOperationKindAccess() {
 		return (unknownRuleLinkOperationKind != null) ? unknownRuleLinkOperationKind : (unknownRuleLinkOperationKind = new LinkOperationKindElements());
@@ -4974,7 +5256,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequenceOperationExpression: //'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
-	//	"->" operationName=QualifiedNameWithBinding tuple=Tuple suffix=SuffixExpression?;
+	// "->"
+	//
+	//	operationName=QualifiedNameWithBinding tuple=Tuple suffix=SuffixExpression?;
 	public SequenceOperationExpressionElements getSequenceOperationExpressionAccess() {
 		return (pSequenceOperationExpression != null) ? pSequenceOperationExpression : (pSequenceOperationExpression = new SequenceOperationExpressionElements());
 	}
@@ -4984,6 +5268,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequenceReductionExpression:
+	//
 	//	"->" "reduce" isOrdered?="ordered"? behavior=QualifiedNameWithBinding suffix=SuffixExpression?;
 	public SequenceReductionExpressionElements getSequenceReductionExpressionAccess() {
 		return (pSequenceReductionExpression != null) ? pSequenceReductionExpression : (pSequenceReductionExpression = new SequenceReductionExpressionElements());
@@ -4994,6 +5279,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequenceExpansionExpression:
+	//
 	//	SelectOrRejectOperation | CollectOrIterateOperation | ForAllOrExistsOrOneOperation | IsUniqueOperation;
 	public SequenceExpansionExpressionElements getSequenceExpansionExpressionAccess() {
 		return (pSequenceExpansionExpression != null) ? pSequenceExpansionExpression : (pSequenceExpansionExpression = new SequenceExpansionExpressionElements());
@@ -5004,6 +5290,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SelectOrRejectOperation:
+	//
 	//	"->" op=SelectOrRejectOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 	public SelectOrRejectOperationElements getSelectOrRejectOperationAccess() {
 		return (pSelectOrRejectOperation != null) ? pSelectOrRejectOperation : (pSelectOrRejectOperation = new SelectOrRejectOperationElements());
@@ -5014,6 +5301,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum SelectOrRejectOperator:
+	//
 	//	SELECT="select" | REJECT="reject";
 	public SelectOrRejectOperatorElements getSelectOrRejectOperatorAccess() {
 		return (unknownRuleSelectOrRejectOperator != null) ? unknownRuleSelectOrRejectOperator : (unknownRuleSelectOrRejectOperator = new SelectOrRejectOperatorElements());
@@ -5024,6 +5312,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectOrIterateOperation:
+	//
 	//	"->" op=CollectOrIterateOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 	public CollectOrIterateOperationElements getCollectOrIterateOperationAccess() {
 		return (pCollectOrIterateOperation != null) ? pCollectOrIterateOperation : (pCollectOrIterateOperation = new CollectOrIterateOperationElements());
@@ -5034,6 +5323,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum CollectOrIterateOperator:
+	//
 	//	COLLECT="collect" | ITERATE="iterate";
 	public CollectOrIterateOperatorElements getCollectOrIterateOperatorAccess() {
 		return (unknownRuleCollectOrIterateOperator != null) ? unknownRuleCollectOrIterateOperator : (unknownRuleCollectOrIterateOperator = new CollectOrIterateOperatorElements());
@@ -5044,6 +5334,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ForAllOrExistsOrOneOperation:
+	//
 	//	"->" op=ForAllOrExistsOrOneOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 	public ForAllOrExistsOrOneOperationElements getForAllOrExistsOrOneOperationAccess() {
 		return (pForAllOrExistsOrOneOperation != null) ? pForAllOrExistsOrOneOperation : (pForAllOrExistsOrOneOperation = new ForAllOrExistsOrOneOperationElements());
@@ -5054,6 +5345,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum ForAllOrExistsOrOneOperator:
+	//
 	//	FORALL="forAll" | EXISTS="exists" | ONE="one";
 	public ForAllOrExistsOrOneOperatorElements getForAllOrExistsOrOneOperatorAccess() {
 		return (unknownRuleForAllOrExistsOrOneOperator != null) ? unknownRuleForAllOrExistsOrOneOperator : (unknownRuleForAllOrExistsOrOneOperator = new ForAllOrExistsOrOneOperatorElements());
@@ -5064,6 +5356,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IsUniqueOperation:
+	//
 	//	"->" "isUnique" name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
 	public IsUniqueOperationElements getIsUniqueOperationAccess() {
 		return (pIsUniqueOperation != null) ? pIsUniqueOperation : (pIsUniqueOperation = new IsUniqueOperationElements());
@@ -5074,7 +5367,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValueSpecification:
+	//
 	//	NameExpression | LITERAL | ThisExpression | SuperInvocationExpression | InstanceCreationExpression |
+	//
 	//	ParenthesizedExpression | NullExpression;
 	public ValueSpecificationElements getValueSpecificationAccess() {
 		return (pValueSpecification != null) ? pValueSpecification : (pValueSpecification = new ValueSpecificationElements());
@@ -5085,6 +5380,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NonLiteralValueSpecification:
+	//
 	//	NameExpression | ParenthesizedExpression | InstanceCreationExpression | ThisExpression | SuperInvocationExpression;
 	public NonLiteralValueSpecificationElements getNonLiteralValueSpecificationAccess() {
 		return (pNonLiteralValueSpecification != null) ? pNonLiteralValueSpecification : (pNonLiteralValueSpecification = new NonLiteralValueSpecificationElements());
@@ -5095,6 +5391,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParenthesizedExpression:
+	//
 	//	"(" expOrTypeCast=Expression ")" (casted=NonLiteralValueSpecification | suffix=SuffixExpression)?;
 	public ParenthesizedExpressionElements getParenthesizedExpressionAccess() {
 		return (pParenthesizedExpression != null) ? pParenthesizedExpression : (pParenthesizedExpression = new ParenthesizedExpressionElements());
@@ -5105,6 +5402,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NullExpression:
+	//
 	//	{NullExpression} "null";
 	public NullExpressionElements getNullExpressionAccess() {
 		return (pNullExpression != null) ? pNullExpression : (pNullExpression = new NullExpressionElements());
@@ -5115,6 +5413,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ThisExpression:
+	//
 	//	{ThisExpression} "this" suffix=SuffixExpression?;
 	public ThisExpressionElements getThisExpressionAccess() {
 		return (pThisExpression != null) ? pThisExpression : (pThisExpression = new ThisExpressionElements());
@@ -5125,14 +5424,28 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// SuperInvocationExpression :
+	//
+	//
 	////	//{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+	//
+	//
 	////	'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression) 
+	//
+	//
 	////;
-	//SuperInvocationExpression: //{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+	// SuperInvocationExpression:
+	//
+	////{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
+	//
+	//
 	////'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression)
+	//
+	//
 	////'super' ((tuple = Tuple) |
-	////		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
-	//	"super" (tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple);
+	// //		 ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
+	// "super"
+	//
+	//	(tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple);
 	public SuperInvocationExpressionElements getSuperInvocationExpressionAccess() {
 		return (pSuperInvocationExpression != null) ? pSuperInvocationExpression : (pSuperInvocationExpression = new SuperInvocationExpressionElements());
 	}
@@ -5142,13 +5455,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////InstanceCreationExpression :
-	////'new' constructor=QualifiedNameWithBinding 
+	// //'new' constructor=QualifiedNameWithBinding 
+	//
+	//
 	////	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+	//
+	//
 	////'new' constructor=QualifiedNameWithBinding 
-	////	tuple = Tuple (suffix = SuffixExpression) ?
-	////;
+	// //	tuple = Tuple (suffix = SuffixExpression) ?
+	// //;
+	//
+	//
 	//InstanceCreationExpression: //'new' constructor=QualifiedNameWithBinding 
+	//
+	//
 	////	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+	//
+	//
 	//	"new" constructor=QualifiedNameWithBinding tuple=InstanceCreationTuple suffix=SuffixExpression?;
 	public InstanceCreationExpressionElements getInstanceCreationExpressionAccess() {
 		return (pInstanceCreationExpression != null) ? pInstanceCreationExpression : (pInstanceCreationExpression = new InstanceCreationExpressionElements());
@@ -5159,7 +5482,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InstanceCreationTuple:
+	//
 	//	{InstanceCreationTuple} "(" (instanceCreationTupleElement+=InstanceCreationTupleElement (","
+	//
 	//	instanceCreationTupleElement+=InstanceCreationTupleElement)*)? ")";
 	public InstanceCreationTupleElements getInstanceCreationTupleAccess() {
 		return (pInstanceCreationTuple != null) ? pInstanceCreationTuple : (pInstanceCreationTuple = new InstanceCreationTupleElements());
@@ -5170,9 +5495,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////LinkOperationTupleElement :
-	////	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
-	////;
+	// //	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
+	// //;
+	//
+	//
 	//InstanceCreationTupleElement:
+	//
 	//	role=ID "=>" object=Expression;
 	public InstanceCreationTupleElementElements getInstanceCreationTupleElementAccess() {
 		return (pInstanceCreationTupleElement != null) ? pInstanceCreationTupleElement : (pInstanceCreationTupleElement = new InstanceCreationTupleElementElements());
@@ -5183,7 +5511,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequenceConstructionOrAccessCompletion:
+	//
 	//	multiplicityIndicator?="[" (accessCompletion=AccessCompletion |
+	//
 	//	sequenceCompletion=PartialSequenceConstructionCompletion) | expression=SequenceConstructionExpression;
 	public SequenceConstructionOrAccessCompletionElements getSequenceConstructionOrAccessCompletionAccess() {
 		return (pSequenceConstructionOrAccessCompletion != null) ? pSequenceConstructionOrAccessCompletion : (pSequenceConstructionOrAccessCompletion = new SequenceConstructionOrAccessCompletionElements());
@@ -5194,6 +5524,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AccessCompletion:
+	//
 	//	accessIndex=Expression "]";
 	public AccessCompletionElements getAccessCompletionAccess() {
 		return (pAccessCompletion != null) ? pAccessCompletion : (pAccessCompletion = new AccessCompletionElements());
@@ -5204,6 +5535,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PartialSequenceConstructionCompletion:
+	//
 	//	"]" expression=SequenceConstructionExpression;
 	public PartialSequenceConstructionCompletionElements getPartialSequenceConstructionCompletionAccess() {
 		return (pPartialSequenceConstructionCompletion != null) ? pPartialSequenceConstructionCompletion : (pPartialSequenceConstructionCompletion = new PartialSequenceConstructionCompletionElements());
@@ -5214,9 +5546,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////SequenceConstructionCompletion :
-	////	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
+	// //	(multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
+	//
+	//
 	////;
-	//SequenceConstructionExpression:
+	// SequenceConstructionExpression:
+	//
 	//	"{" sequenceElement+=SequenceElement (("," sequenceElement+=SequenceElement)* | ".." rangeUpper=Expression) "}";
 	public SequenceConstructionExpressionElements getSequenceConstructionExpressionAccess() {
 		return (pSequenceConstructionExpression != null) ? pSequenceConstructionExpression : (pSequenceConstructionExpression = new SequenceConstructionExpressionElements());
@@ -5227,6 +5562,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequenceElement:
+	//
 	//	Expression | SequenceConstructionExpression;
 	public SequenceElementElements getSequenceElementAccess() {
 		return (pSequenceElement != null) ? pSequenceElement : (pSequenceElement = new SequenceElementElements());
@@ -5237,6 +5573,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassExtentExpression:
+	//
 	//	{ClassExtentExpression} "." "allInstances" "(" ")";
 	public ClassExtentExpressionElements getClassExtentExpressionAccess() {
 		return (pClassExtentExpression != null) ? pClassExtentExpression : (pClassExtentExpression = new ClassExtentExpressionElements());
@@ -5249,6 +5586,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	/// *****************
 	// * Statements
 	// **************** / Block:
+	//
 	//	"{" {Block} sequence=StatementSequence? "}";
 	public BlockElements getBlockAccess() {
 		return (pBlock != null) ? pBlock : (pBlock = new BlockElements());
@@ -5259,6 +5597,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StatementSequence:
+	//
 	//	statements+=DocumentedStatement+;
 	public StatementSequenceElements getStatementSequenceAccess() {
 		return (pStatementSequence != null) ? pStatementSequence : (pStatementSequence = new StatementSequenceElements());
@@ -5269,6 +5608,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DocumentedStatement:
+	//
 	//	comment=(ML_COMMENT | SL_COMMENT)? statement=Statement;
 	public DocumentedStatementElements getDocumentedStatementAccess() {
 		return (pDocumentedStatement != null) ? pDocumentedStatement : (pDocumentedStatement = new DocumentedStatementElements());
@@ -5279,6 +5619,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InlineStatement:
+	//
 	//	"/ *@" "inline" "(" langageName=ID ")" body=STRING "* /";
 	public InlineStatementElements getInlineStatementAccess() {
 		return (pInlineStatement != null) ? pInlineStatement : (pInlineStatement = new InlineStatementElements());
@@ -5289,8 +5630,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AnnotatedStatement:
+	//
 	//	"//@" annotation= //block = Block
-	//	Annotation statement=Statement;
+	// Annotation statement=Statement;
 	public AnnotatedStatementElements getAnnotatedStatementAccess() {
 		return (pAnnotatedStatement != null) ? pAnnotatedStatement : (pAnnotatedStatement = new AnnotatedStatementElements());
 	}
@@ -5300,10 +5642,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Statement:
-	//	AnnotatedStatement | InlineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | IfStatement |
-	//	SwitchStatement | WhileStatement | DoStatement | ForStatement | BreakStatement | ReturnStatement | AcceptStatement |
-	//	ClassifyStatement | InvocationOrAssignementOrDeclarationStatement | SuperInvocationStatement | ThisInvocationStatement
-	//	| InstanceCreationInvocationStatement;
+	//
+	//	AnnotatedStatement | InlineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | IfStatement
+	//
+	//	| SwitchStatement | WhileStatement | DoStatement | ForStatement | BreakStatement | ReturnStatement | AcceptStatement
+	//
+	//	| ClassifyStatement | InvocationOrAssignementOrDeclarationStatement | SuperInvocationStatement |
+	//
+	//	ThisInvocationStatement | InstanceCreationInvocationStatement;
 	public StatementElements getStatementAccess() {
 		return (pStatement != null) ? pStatement : (pStatement = new StatementElements());
 	}
@@ -5313,6 +5659,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Annotation:
+	//
 	//	kind=AnnotationKind ("(" args+=ID ("," args+=ID)* ")")?;
 	public AnnotationElements getAnnotationAccess() {
 		return (pAnnotation != null) ? pAnnotation : (pAnnotation = new AnnotationElements());
@@ -5323,6 +5670,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum AnnotationKind:
+	//
 	//	ISOLATED="isolated" | DETERMINED="determined" | ASSURED="assured" | PARALLEL="parallel";
 	public AnnotationKindElements getAnnotationKindAccess() {
 		return (unknownRuleAnnotationKind != null) ? unknownRuleAnnotationKind : (unknownRuleAnnotationKind = new AnnotationKindElements());
@@ -5333,6 +5681,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BlockStatement:
+	//
 	//	block=Block;
 	public BlockStatementElements getBlockStatementAccess() {
 		return (pBlockStatement != null) ? pBlockStatement : (pBlockStatement = new BlockStatementElements());
@@ -5343,6 +5692,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EmptyStatement:
+	//
 	//	{EmptyStatement} ";";
 	public EmptyStatementElements getEmptyStatementAccess() {
 		return (pEmptyStatement != null) ? pEmptyStatement : (pEmptyStatement = new EmptyStatementElements());
@@ -5353,8 +5703,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LocalNameDeclarationStatement:
+	//
 	//	"let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
-	//	"=" init=SequenceElement ";";
+	// "="
+	//
+	//	init=SequenceElement ";";
 	public LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return (pLocalNameDeclarationStatement != null) ? pLocalNameDeclarationStatement : (pLocalNameDeclarationStatement = new LocalNameDeclarationStatementElements());
 	}
@@ -5364,6 +5717,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfStatement:
+	//
 	//	"if" sequentialClausses=SequentialClauses finalClause=FinalClause?;
 	public IfStatementElements getIfStatementAccess() {
 		return (pIfStatement != null) ? pIfStatement : (pIfStatement = new IfStatementElements());
@@ -5374,6 +5728,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequentialClauses:
+	//
 	//	conccurentClauses+=ConcurrentClauses ("else" "if" conccurentClauses+=ConcurrentClauses)*;
 	public SequentialClausesElements getSequentialClausesAccess() {
 		return (pSequentialClauses != null) ? pSequentialClauses : (pSequentialClauses = new SequentialClausesElements());
@@ -5384,6 +5739,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConcurrentClauses:
+	//
 	//	nonFinalClause+=NonFinalClause ("or" "if" nonFinalClause+=NonFinalClause)*;
 	public ConcurrentClausesElements getConcurrentClausesAccess() {
 		return (pConcurrentClauses != null) ? pConcurrentClauses : (pConcurrentClauses = new ConcurrentClausesElements());
@@ -5394,6 +5750,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NonFinalClause:
+	//
 	//	"(" condition=Expression ")" block=Block;
 	public NonFinalClauseElements getNonFinalClauseAccess() {
 		return (pNonFinalClause != null) ? pNonFinalClause : (pNonFinalClause = new NonFinalClauseElements());
@@ -5404,6 +5761,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FinalClause:
+	//
 	//	"else" block=Block;
 	public FinalClauseElements getFinalClauseAccess() {
 		return (pFinalClause != null) ? pFinalClause : (pFinalClause = new FinalClauseElements());
@@ -5414,6 +5772,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SwitchStatement:
+	//
 	//	"switch" "(" expression=Expression ")" "{" switchClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}";
 	public SwitchStatementElements getSwitchStatementAccess() {
 		return (pSwitchStatement != null) ? pSwitchStatement : (pSwitchStatement = new SwitchStatementElements());
@@ -5424,6 +5783,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SwitchClause:
+	//
 	//	switchCase+=SwitchCase switchCase+=SwitchCase* statementSequence=NonEmptyStatementSequence;
 	public SwitchClauseElements getSwitchClauseAccess() {
 		return (pSwitchClause != null) ? pSwitchClause : (pSwitchClause = new SwitchClauseElements());
@@ -5434,6 +5794,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SwitchCase:
+	//
 	//	"case" expression=Expression ":";
 	public SwitchCaseElements getSwitchCaseAccess() {
 		return (pSwitchCase != null) ? pSwitchCase : (pSwitchCase = new SwitchCaseElements());
@@ -5444,6 +5805,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SwitchDefaultClause:
+	//
 	//	"default" ":" statementSequence=NonEmptyStatementSequence;
 	public SwitchDefaultClauseElements getSwitchDefaultClauseAccess() {
 		return (pSwitchDefaultClause != null) ? pSwitchDefaultClause : (pSwitchDefaultClause = new SwitchDefaultClauseElements());
@@ -5454,6 +5816,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NonEmptyStatementSequence:
+	//
 	//	statement+=DocumentedStatement+;
 	public NonEmptyStatementSequenceElements getNonEmptyStatementSequenceAccess() {
 		return (pNonEmptyStatementSequence != null) ? pNonEmptyStatementSequence : (pNonEmptyStatementSequence = new NonEmptyStatementSequenceElements());
@@ -5464,6 +5827,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * WHILE STATEMENTS * / WhileStatement:
+	//
 	//	"while" "(" condition=Expression ")" block=Block;
 	public WhileStatementElements getWhileStatementAccess() {
 		return (pWhileStatement != null) ? pWhileStatement : (pWhileStatement = new WhileStatementElements());
@@ -5474,6 +5838,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * DO STATEMENTS * / DoStatement:
+	//
 	//	"do" block=Block "while" "(" condition=Expression ")" ";";
 	public DoStatementElements getDoStatementAccess() {
 		return (pDoStatement != null) ? pDoStatement : (pDoStatement = new DoStatementElements());
@@ -5484,6 +5849,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * FOR STATEMENTS * / ForStatement:
+	//
 	//	"for" "(" control=ForControl ")" block=Block;
 	public ForStatementElements getForStatementAccess() {
 		return (pForStatement != null) ? pForStatement : (pForStatement = new ForStatementElements());
@@ -5494,6 +5860,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ForControl:
+	//
 	//	loopVariableDefinition+=LoopVariableDefinition ("," loopVariableDefinition+=LoopVariableDefinition)*;
 	public ForControlElements getForControlAccess() {
 		return (pForControl != null) ? pForControl : (pForControl = new ForControlElements());
@@ -5504,7 +5871,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LoopVariableDefinition:
+	//
 	//	name=ID "in" expression1=Expression (".." expression2=Expression)? | type=QualifiedNameWithBinding name=ID ":"
+	//
 	//	expression=Expression;
 	public LoopVariableDefinitionElements getLoopVariableDefinitionAccess() {
 		return (pLoopVariableDefinition != null) ? pLoopVariableDefinition : (pLoopVariableDefinition = new LoopVariableDefinitionElements());
@@ -5515,6 +5884,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * BREAK STATEMENTS * / BreakStatement:
+	//
 	//	{BreakStatement} "break" ";";
 	public BreakStatementElements getBreakStatementAccess() {
 		return (pBreakStatement != null) ? pBreakStatement : (pBreakStatement = new BreakStatementElements());
@@ -5525,6 +5895,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * RETURN STATEMENTS * / ReturnStatement:
+	//
 	//	"return" expression=Expression ";";
 	public ReturnStatementElements getReturnStatementAccess() {
 		return (pReturnStatement != null) ? pReturnStatement : (pReturnStatement = new ReturnStatementElements());
@@ -5535,7 +5906,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * ACCEPT STATEMENTS * / AcceptStatement:
-	//	clause=AcceptClause (simpleAccept=SimpleAcceptStatementCompletion | compoundAccept=CompoundAcceptStatementCompletion);
+	//
+	//	clause=AcceptClause (simpleAccept=SimpleAcceptStatementCompletion |
+	//
+	//	compoundAccept=CompoundAcceptStatementCompletion);
 	public AcceptStatementElements getAcceptStatementAccess() {
 		return (pAcceptStatement != null) ? pAcceptStatement : (pAcceptStatement = new AcceptStatementElements());
 	}
@@ -5545,6 +5919,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SimpleAcceptStatementCompletion:
+	//
 	//	{SimpleAcceptStatementCompletion} ";";
 	public SimpleAcceptStatementCompletionElements getSimpleAcceptStatementCompletionAccess() {
 		return (pSimpleAcceptStatementCompletion != null) ? pSimpleAcceptStatementCompletion : (pSimpleAcceptStatementCompletion = new SimpleAcceptStatementCompletionElements());
@@ -5555,6 +5930,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CompoundAcceptStatementCompletion:
+	//
 	//	block=Block ("or" acceptBlock+=AcceptBlock)*;
 	public CompoundAcceptStatementCompletionElements getCompoundAcceptStatementCompletionAccess() {
 		return (pCompoundAcceptStatementCompletion != null) ? pCompoundAcceptStatementCompletion : (pCompoundAcceptStatementCompletion = new CompoundAcceptStatementCompletionElements());
@@ -5565,6 +5941,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AcceptBlock:
+	//
 	//	clause=AcceptClause block=Block;
 	public AcceptBlockElements getAcceptBlockAccess() {
 		return (pAcceptBlock != null) ? pAcceptBlock : (pAcceptBlock = new AcceptBlockElements());
@@ -5575,6 +5952,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AcceptClause:
+	//
 	//	"accept" "(" (name=ID ":")? qualifiedNameList=QualifiedNameList ")";
 	public AcceptClauseElements getAcceptClauseAccess() {
 		return (pAcceptClause != null) ? pAcceptClause : (pAcceptClause = new AcceptClauseElements());
@@ -5585,6 +5963,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * CLASSIFY STATEMENTS * / ClassifyStatement:
+	//
 	//	"classify" expression=Expression clause=ClassificationClause ";";
 	public ClassifyStatementElements getClassifyStatementAccess() {
 		return (pClassifyStatement != null) ? pClassifyStatement : (pClassifyStatement = new ClassifyStatementElements());
@@ -5595,7 +5974,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassificationClause:
+	//
 	//	classifyFromClause=ClassificationFromClause classifyToClause=ClassificationToClause? |
+	//
 	//	reclassyAllClause=ReclassifyAllClause? classifyToClause=ClassificationToClause;
 	public ClassificationClauseElements getClassificationClauseAccess() {
 		return (pClassificationClause != null) ? pClassificationClause : (pClassificationClause = new ClassificationClauseElements());
@@ -5606,6 +5987,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassificationFromClause:
+	//
 	//	"from" qualifiedNameList=QualifiedNameList;
 	public ClassificationFromClauseElements getClassificationFromClauseAccess() {
 		return (pClassificationFromClause != null) ? pClassificationFromClause : (pClassificationFromClause = new ClassificationFromClauseElements());
@@ -5616,6 +5998,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassificationToClause:
+	//
 	//	"to" qualifiedNameList=QualifiedNameList;
 	public ClassificationToClauseElements getClassificationToClauseAccess() {
 		return (pClassificationToClause != null) ? pClassificationToClause : (pClassificationToClause = new ClassificationToClauseElements());
@@ -5626,6 +6009,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ReclassifyAllClause:
+	//
 	//	{ReclassifyAllClause} "from" "*";
 	public ReclassifyAllClauseElements getReclassifyAllClauseAccess() {
 		return (pReclassifyAllClause != null) ? pReclassifyAllClause : (pReclassifyAllClause = new ReclassifyAllClauseElements());
@@ -5636,6 +6020,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedNameList:
+	//
 	//	qualifiedName+=QualifiedNameWithBinding ("," qualifiedName+=QualifiedNameWithBinding)*;
 	public QualifiedNameListElements getQualifiedNameListAccess() {
 		return (pQualifiedNameList != null) ? pQualifiedNameList : (pQualifiedNameList = new QualifiedNameListElements());
@@ -5646,8 +6031,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InvocationOrAssignementOrDeclarationStatement:
-	//	typePart_OR_assignedPart_OR_invocationPart=NameExpression (variableDeclarationCompletion=VariableDeclarationCompletion //(suffixCompletion = SuffixCompletion)?
-	//	| assignmentCompletion=AssignmentCompletion)? ";";
+	//
+	//	typePart_OR_assignedPart_OR_invocationPart=NameExpression
+	//
+	//	(variableDeclarationCompletion=VariableDeclarationCompletion //(suffixCompletion = SuffixCompletion)?
+	// |
+	//
+	//	assignmentCompletion=AssignmentCompletion)? ";";
 	public InvocationOrAssignementOrDeclarationStatementElements getInvocationOrAssignementOrDeclarationStatementAccess() {
 		return (pInvocationOrAssignementOrDeclarationStatement != null) ? pInvocationOrAssignementOrDeclarationStatement : (pInvocationOrAssignementOrDeclarationStatement = new InvocationOrAssignementOrDeclarationStatementElements());
 	}
@@ -5657,8 +6047,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SuperInvocationStatement:
+	//
 	//	_super=SuperInvocationExpression //(suffix = SuffixCompletion)? ';'
-	//	";";
+	// ";";
 	public SuperInvocationStatementElements getSuperInvocationStatementAccess() {
 		return (pSuperInvocationStatement != null) ? pSuperInvocationStatement : (pSuperInvocationStatement = new SuperInvocationStatementElements());
 	}
@@ -5667,7 +6058,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSuperInvocationStatementAccess().getRule();
 	}
 
-	//ThisInvocationStatement: //_this = ThisExpression suffix = SuffixCompletion (assignmentCompletion = AssignmentCompletion)? ';'
+	//ThisInvocationStatement:
+	//
+	////_this = ThisExpression suffix = SuffixCompletion (assignmentCompletion = AssignmentCompletion)? ';'
+	//
+	//
 	//	_this=ThisExpression assignmentCompletion=AssignmentCompletion? ";";
 	public ThisInvocationStatementElements getThisInvocationStatementAccess() {
 		return (pThisInvocationStatement != null) ? pThisInvocationStatement : (pThisInvocationStatement = new ThisInvocationStatementElements());
@@ -5678,8 +6073,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InstanceCreationInvocationStatement:
+	//
 	//	_new=InstanceCreationExpression //(suffix = SuffixCompletion)? ';'
-	//	";";
+	// ";";
 	public InstanceCreationInvocationStatementElements getInstanceCreationInvocationStatementAccess() {
 		return (pInstanceCreationInvocationStatement != null) ? pInstanceCreationInvocationStatement : (pInstanceCreationInvocationStatement = new InstanceCreationInvocationStatementElements());
 	}
@@ -5689,9 +6085,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////SuffixCompletion :
-	////	suffix = SuffixExpression
-	////;
-	//VariableDeclarationCompletion:
+	// //	suffix = SuffixExpression
+	// //;
+	// VariableDeclarationCompletion:
+	//
 	//	(multiplicityIndicator?="[" "]")? variableName=ID initValue=AssignmentCompletion;
 	public VariableDeclarationCompletionElements getVariableDeclarationCompletionAccess() {
 		return (pVariableDeclarationCompletion != null) ? pVariableDeclarationCompletion : (pVariableDeclarationCompletion = new VariableDeclarationCompletionElements());
@@ -5702,8 +6099,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
+	//
+	//
 	////	'|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
-	//AssignmentCompletion:
+	// AssignmentCompletion:
+	//
 	//	op=AssignmentOperator rightHandSide=SequenceElement;
 	public AssignmentCompletionElements getAssignmentCompletionAccess() {
 		return (pAssignmentCompletion != null) ? pAssignmentCompletion : (pAssignmentCompletion = new AssignmentCompletionElements());
@@ -5714,8 +6114,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum AssignmentOperator:
-	//	ASSIGN="=" | PLUSASSIGN="+=" | MINUSASSIGN="-=" | MULTASSIGN="*=" | MODASSIGN="%=" | DIVASSIGN="/=" | ANDASSIGN="&=" |
-	//	ORASSIGN="|=" | XORASSIGN="^=" | LSHIFTASSIGN="<<=" | RSHIFTASSIGN=">>=" | URSHIFTASSIGN=">>>=";
+	//
+	//	ASSIGN="=" | PLUSASSIGN="+=" | MINUSASSIGN="-=" | MULTASSIGN="*=" | MODASSIGN="%=" | DIVASSIGN="/=" | ANDASSIGN="&="
+	//
+	//	| ORASSIGN="|=" | XORASSIGN="^=" | LSHIFTASSIGN="<<=" | RSHIFTASSIGN=">>=" | URSHIFTASSIGN=">>>=";
 	public AssignmentOperatorElements getAssignmentOperatorAccess() {
 		return (unknownRuleAssignmentOperator != null) ? unknownRuleAssignmentOperator : (unknownRuleAssignmentOperator = new AssignmentOperatorElements());
 	}
@@ -5727,48 +6129,63 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	/// ****************
 	// * Terminals
 	// ***************** / //terminal DOUBLE_COLON : '::' ;
-	//terminal ID:
+	// terminal ID:
+	//
 	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
 	public TerminalRule getIDRule() {
 		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
 	} 
 
 	//terminal STRING:
+	//
 	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
 	} 
 
 	//terminal ML_COMMENT:
+	//
 	//	"/ *" !"@"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
 	} 
 
 	////terminal IDENTIFIER : ID  ;
+	//
+	//
 	////terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
+	//
+	//
 	////terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	////terminal ML_COMMENT	: '/°' -> '°/';
+	// //terminal ML_COMMENT	: '/°' -> '°/';
+	//
+	//
 	////terminal SL_COMMENT 	: '°°' !('\n'|'\r')* ('\r'? '\n')?;
-	////terminal WS			: (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
+	// //terminal WS			: (' '|'\t'|'\r'|'\n')+; terminal
+	//
+	//SL_COMMENT:
+	//
 	//	"//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
 	} 
 
 	//terminal INT returns ecore::EInt:
+	//
 	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaTerminals.getINTRule();
 	} 
 
 	//terminal WS:
+	//
 	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaTerminals.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
+	//
 	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return gaTerminals.getANY_OTHERRule();

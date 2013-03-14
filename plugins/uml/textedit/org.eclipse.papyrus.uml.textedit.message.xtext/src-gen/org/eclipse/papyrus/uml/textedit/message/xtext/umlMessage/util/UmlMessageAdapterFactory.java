@@ -1,18 +1,15 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule;
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage;
+
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.*;
 
 /**
  * <!-- begin-user-doc -->

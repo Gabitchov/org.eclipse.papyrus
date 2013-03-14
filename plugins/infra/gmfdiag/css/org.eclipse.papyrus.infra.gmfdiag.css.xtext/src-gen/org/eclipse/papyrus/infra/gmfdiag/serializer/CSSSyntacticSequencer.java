@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2012-2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.serializer;
 
 import com.google.inject.Inject;
@@ -526,7 +537,7 @@ public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     (WS | CDC | CDO)*
+	 *     (CDC | CDO | WS)*
 	 */
 	protected void emit_Stylesheet___CDCTerminalRuleCall_1_2_or_CDOTerminalRuleCall_1_1_or_WSTerminalRuleCall_1_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -534,7 +545,7 @@ public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     (WS | CDC | CDO)+
+	 *     (CDC | CDO | WS)+
 	 */
 	protected void emit_Stylesheet___CDCTerminalRuleCall_1_2_or_CDOTerminalRuleCall_1_1_or_WSTerminalRuleCall_1_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -542,7 +553,7 @@ public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ((CDC WS*) | (CDO WS*))*
+	 *     ((CDO WS*) | (CDC WS*))*
 	 */
 	protected void emit_Stylesheet_____CDCTerminalRuleCall_2_1_1_0_WSTerminalRuleCall_2_1_1_1_a___or___CDOTerminalRuleCall_2_1_0_0_WSTerminalRuleCall_2_1_0_1_a____a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -550,7 +561,7 @@ public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ((CDO WS*) | (CDC WS*))*
+	 *     ((CDC WS*) | (CDO WS*))*
 	 */
 	protected void emit_Stylesheet_____CDCTerminalRuleCall_3_1_1_0_WSTerminalRuleCall_3_1_1_1_a___or___CDOTerminalRuleCall_3_1_0_0_WSTerminalRuleCall_3_1_0_1_a____a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

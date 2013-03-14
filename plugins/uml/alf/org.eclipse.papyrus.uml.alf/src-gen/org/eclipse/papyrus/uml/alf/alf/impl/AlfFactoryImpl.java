@@ -17,8 +17,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.papyrus.uml.alf.alf.*;
 
 /**
@@ -39,7 +42,7 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory
   {
     try
     {
-      AlfFactory theAlfFactory = (AlfFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/alf/Alf"); 
+      AlfFactory theAlfFactory = (AlfFactory)EPackage.Registry.INSTANCE.getEFactory(AlfPackage.eNS_URI);
       if (theAlfFactory != null)
       {
         return theAlfFactory;

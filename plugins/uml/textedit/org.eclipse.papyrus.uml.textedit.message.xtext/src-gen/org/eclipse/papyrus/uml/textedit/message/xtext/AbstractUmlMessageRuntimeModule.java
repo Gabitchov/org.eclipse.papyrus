@@ -35,18 +35,23 @@ public abstract class AbstractUmlMessageRuntimeModule extends DefaultRuntimeModu
 	}
 	
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
+	public java.lang.ClassLoader bindClassLoaderToInstance() {
+		return getClass().getClassLoader();
+	}
+
+	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.uml.textedit.message.xtext.services.UmlMessageGrammarAccess.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISemanticSequencer> bindISemanticSequencer() {
-		return org.eclipse.papyrus.uml.textedit.message.xtext.serializer.AbstractUmlMessageSemanticSequencer.class;
+		return org.eclipse.papyrus.uml.textedit.message.xtext.serializer.UmlMessageSemanticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer> bindISyntacticSequencer() {
-		return org.eclipse.papyrus.uml.textedit.message.xtext.serializer.AbstractUmlMessageSyntacticSequencer.class;
+		return org.eclipse.papyrus.uml.textedit.message.xtext.serializer.UmlMessageSyntacticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment

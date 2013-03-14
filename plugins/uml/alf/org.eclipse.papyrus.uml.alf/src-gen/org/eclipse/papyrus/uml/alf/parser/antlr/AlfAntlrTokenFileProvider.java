@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.alf.parser.antlr;
 
 import java.io.InputStream;
-
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class AlfAntlrTokenFileProvider implements IAntlrTokenFileProvider {

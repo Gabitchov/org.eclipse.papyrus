@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.internal.UmlCollaborationUseActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class UmlCollaborationUseExecutableExtensionFactory extends AbstractGuice
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.internal.UmlCollaborationUseActivator.getInstance().getBundle();
+		return UmlCollaborationUseActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.internal.UmlCollaborationUseActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUse");
+		return UmlCollaborationUseActivator.getInstance().getInjector(UmlCollaborationUseActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_COLLABORATIONUSE_XTEXT_UMLCOLLABORATIONUSE);
 	}
 	
 }

@@ -1,5 +1,14 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2012-2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -68,7 +77,7 @@ public class CssFactoryImpl extends EFactoryImpl implements CssFactory
   {
     try
     {
-      CssFactory theCssFactory = (CssFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/infra/gmfdiag/CSS"); 
+      CssFactory theCssFactory = (CssFactory)EPackage.Registry.INSTANCE.getEFactory(CssPackage.eNS_URI);
       if (theCssFactory != null)
       {
         return theCssFactory;

@@ -1,15 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage;
 

@@ -34,7 +34,7 @@ Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.message.xtext;si
- ngleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.message.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib

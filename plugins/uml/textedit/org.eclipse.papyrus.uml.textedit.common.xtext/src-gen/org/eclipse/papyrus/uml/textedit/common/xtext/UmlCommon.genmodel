@@ -5,7 +5,8 @@
     modelPluginID="org.eclipse.papyrus.uml.textedit.common.xtext" forceOverwrite="true"
     modelName="UmlCommon" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.common.xtext.edit"
-    editorPluginID="org.eclipse.papyrus.uml.textedit.common.xtext.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    editorPluginID="org.eclipse.papyrus.uml.textedit.common.xtext.editor" runtimeVersion="2.9"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <genPackages prefix="UmlCommon" basePackage="org.eclipse.papyrus.uml.textedit.common.xtext"
       resource="XML" disposableProviderFactory="true" ecorePackage="UmlCommon.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlCommon.ecore#//VisibilityKind">
@@ -34,12 +35,5 @@
     <genClasses ecoreClass="UmlCommon.ecore#//BoundSpecification">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlCommon.ecore#//BoundSpecification/value"/>
     </genClasses>
-  </genPackages>
-  <genPackages prefix="Types" ecorePackage="http://www.eclipse.org/uml2/4.0.0/Types#/">
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Real"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//UnlimitedNatural"/>
   </genPackages>
 </genmodel:GenModel>

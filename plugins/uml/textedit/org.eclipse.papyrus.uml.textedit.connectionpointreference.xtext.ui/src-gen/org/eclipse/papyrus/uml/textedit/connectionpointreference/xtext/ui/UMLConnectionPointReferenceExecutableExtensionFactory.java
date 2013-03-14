@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class UMLConnectionPointReferenceExecutableExtensionFactory extends Abstr
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator.getInstance().getBundle();
+		return UMLConnectionPointReferenceActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference");
+		return UMLConnectionPointReferenceActivator.getInstance().getInjector(UMLConnectionPointReferenceActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_CONNECTIONPOINTREFERENCE_XTEXT_UMLCONNECTIONPOINTREFERENCE);
 	}
 	
 }

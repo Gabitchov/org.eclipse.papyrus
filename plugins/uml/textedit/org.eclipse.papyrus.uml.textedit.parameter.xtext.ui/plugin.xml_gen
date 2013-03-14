@@ -151,6 +151,28 @@
     </extension>
 
 
+    <!-- marker definitions for org.eclipse.papyrus.uml.textedit.parameter.xtext.UmlParameter -->
+    <extension
+            id="umlparameter.check.fast"
+            name="UmlParameter Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.fast"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="umlparameter.check.normal"
+            name="UmlParameter Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.normal"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="umlparameter.check.expensive"
+            name="UmlParameter Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.expensive"/>
+        <persistent value="true"/>
+    </extension>
 
    <extension
          point="org.eclipse.xtext.builder.participant">
@@ -216,12 +238,33 @@
 			</command>
 		</menuContribution>
 	</extension>
-   <!-- quickfix marker resolution generator -->
-   <extension
-         point="org.eclipse.ui.ide.markerResolution">
-      <markerResolutionGenerator
-            class="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.UmlParameterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
-      </markerResolutionGenerator>
-   </extension>
+    <!-- quickfix marker resolution generator for org.eclipse.papyrus.uml.textedit.parameter.xtext.UmlParameter -->
+    <extension
+            point="org.eclipse.ui.ide.markerResolution">
+        <markerResolutionGenerator
+            class="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.UmlParameterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.umlparameter.check.fast">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.UmlParameterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.umlparameter.check.normal">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.UmlParameterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.umlparameter.check.expensive">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+    </extension>
 
 </plugin>

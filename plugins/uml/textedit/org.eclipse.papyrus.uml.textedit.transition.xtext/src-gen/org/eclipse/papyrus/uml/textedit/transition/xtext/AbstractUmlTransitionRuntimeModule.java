@@ -35,18 +35,23 @@ public abstract class AbstractUmlTransitionRuntimeModule extends DefaultRuntimeM
 	}
 	
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
+	public java.lang.ClassLoader bindClassLoaderToInstance() {
+		return getClass().getClassLoader();
+	}
+
+	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.uml.textedit.transition.xtext.services.UmlTransitionGrammarAccess.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISemanticSequencer> bindISemanticSequencer() {
-		return org.eclipse.papyrus.uml.textedit.transition.xtext.serializer.AbstractUmlTransitionSemanticSequencer.class;
+		return org.eclipse.papyrus.uml.textedit.transition.xtext.serializer.UmlTransitionSemanticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer> bindISyntacticSequencer() {
-		return org.eclipse.papyrus.uml.textedit.transition.xtext.serializer.AbstractUmlTransitionSyntacticSequencer.class;
+		return org.eclipse.papyrus.uml.textedit.transition.xtext.serializer.UmlTransitionSyntacticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment

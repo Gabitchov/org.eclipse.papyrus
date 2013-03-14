@@ -151,6 +151,28 @@
     </extension>
 
 
+    <!-- marker definitions for org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty -->
+    <extension
+            id="appliedstereotypeproperty.check.fast"
+            name="AppliedStereotypeProperty Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.fast"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="appliedstereotypeproperty.check.normal"
+            name="AppliedStereotypeProperty Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.normal"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="appliedstereotypeproperty.check.expensive"
+            name="AppliedStereotypeProperty Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.expensive"/>
+        <persistent value="true"/>
+    </extension>
 
    <extension
          point="org.eclipse.xtext.builder.participant">
@@ -216,12 +238,33 @@
 			</command>
 		</menuContribution>
 	</extension>
-   <!-- quickfix marker resolution generator -->
-   <extension
-         point="org.eclipse.ui.ide.markerResolution">
-      <markerResolutionGenerator
-            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
-      </markerResolutionGenerator>
-   </extension>
+    <!-- quickfix marker resolution generator for org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty -->
+    <extension
+            point="org.eclipse.ui.ide.markerResolution">
+        <markerResolutionGenerator
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.appliedstereotypeproperty.check.fast">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.appliedstereotypeproperty.check.normal">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.appliedstereotypeproperty.check.expensive">
+            <attribute
+                name="FIXABLE_KEY"
+                value="true">
+            </attribute>
+        </markerResolutionGenerator>
+    </extension>
 
 </plugin>

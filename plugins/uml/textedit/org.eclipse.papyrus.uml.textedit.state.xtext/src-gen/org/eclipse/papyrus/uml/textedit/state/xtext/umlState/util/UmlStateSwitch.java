@@ -1,28 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.state.xtext.umlState.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.DoRule;
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.EntryRule;
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.ExitRule;
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.QualifiedName;
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
+
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.*;
 
 /**
  * <!-- begin-user-doc -->

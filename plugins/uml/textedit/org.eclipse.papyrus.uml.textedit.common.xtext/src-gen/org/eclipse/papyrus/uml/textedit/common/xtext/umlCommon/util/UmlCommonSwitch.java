@@ -1,19 +1,13 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.BoundSpecification;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.QualifiedName;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
-import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
+
+import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.*;
 
 /**
  * <!-- begin-user-doc -->

@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class UmlCommonExecutableExtensionFactory extends AbstractGuiceAwareExecu
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator.getInstance().getBundle();
+		return UmlCommonActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon");
+		return UmlCommonActivator.getInstance().getInjector(UmlCommonActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_COMMON_XTEXT_UMLCOMMON);
 	}
 	
 }

@@ -1,23 +1,9 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext.ui;
-  uses:="org.eclipse.ui.plugin,
-   org.osgi.framework,
-   org.eclipse.xtext.ui,
-   org.eclipse.xtext.ui.guice,
-   com.google.inject",
+Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext.ui; uses:="org.eclipse.ui.plugin,  org.osgi.framework,  org.eclipse.xtext.ui,  org.eclipse.xtext.ui.guice,  com.google.inject",
  org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist,
- org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr;
-  uses:="org.eclipse.xtext,
-   org.eclipse.xtext.ui.editor.contentassist.antlr.internal,
-   org.eclipse.xtext.ui.editor.contentassist.antlr,
-   org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal,
-   org.eclipse.papyrus.uml.textedit.property.xtext.services",
+ org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr; uses:="org.eclipse.xtext,  org.eclipse.xtext.ui.editor.contentassist.antlr.internal,  org.eclipse.xtext.ui.editor.contentassist.antlr,  org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal,  org.eclipse.papyrus.uml.textedit.property.xtext.services",
  org.eclipse.papyrus.uml.textedit.property.xtext.ui.contentassist.antlr.internal,
- org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions;
-  uses:="org.eclipse.xtext.gmf.glue,
-   org.eclipse.papyrus.extensionpoints.editors.ui,
-   org.eclipse.uml2.uml,
-   org.eclipse.papyrus.uml.tools.utils",
+ org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions; uses:="org.eclipse.xtext.gmf.glue,  org.eclipse.papyrus.extensionpoints.editors.ui,  org.eclipse.uml2.uml,  org.eclipse.papyrus.uml.tools.utils",
  org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal;uses:="org.eclipse.ui.plugin,org.osgi.framework,com.google.inject",
  org.eclipse.papyrus.uml.textedit.property.xtext.ui.labeling,
  org.eclipse.papyrus.uml.textedit.property.xtext.ui.outline,
@@ -46,9 +32,7 @@ Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.xtext.ui.i
- nternal.UmlPropertyActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext.u
- i;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal.UmlPropertyActivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Import-Package: org.apache.log4j

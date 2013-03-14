@@ -3,10 +3,10 @@
 */
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr;
 
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services.UmlCollaborationUseGrammarAccess;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-
 import com.google.inject.Inject;
+
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services.UmlCollaborationUseGrammarAccess;
 
 public class UmlCollaborationUseParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

@@ -8,7 +8,7 @@
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
     copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.edit"
     editorPluginID="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.editor"
-    usedGenPackages="../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    runtimeVersion="2.9" usedGenPackages="../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <genPackages prefix="UMLConnectionPointReference" basePackage="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext"
       resource="XML" disposableProviderFactory="true" ecorePackage="UMLConnectionPointReference.ecore#/">
     <genClasses ecoreClass="UMLConnectionPointReference.ecore#//ConnectionPointReferenceRule">

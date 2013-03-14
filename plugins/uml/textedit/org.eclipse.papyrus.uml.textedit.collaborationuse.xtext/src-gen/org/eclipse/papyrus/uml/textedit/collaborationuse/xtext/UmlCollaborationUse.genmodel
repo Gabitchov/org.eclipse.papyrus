@@ -7,7 +7,7 @@
     modelName="UmlCollaborationUse" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.edit"
     editorPluginID="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.editor"
-    usedGenPackages="../../../../../../../../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UMLCommon.genmodel#//umlCommon">
+    runtimeVersion="2.9" usedGenPackages="../../../../../../../../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UMLCommon.genmodel#//umlCommon">
   <genPackages prefix="UmlCollaborationUse" basePackage="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext"
       resource="XML" disposableProviderFactory="true" ecorePackage="UmlCollaborationUse.ecore#/">
     <genClasses ecoreClass="UmlCollaborationUse.ecore#//CollaborationUseRule">

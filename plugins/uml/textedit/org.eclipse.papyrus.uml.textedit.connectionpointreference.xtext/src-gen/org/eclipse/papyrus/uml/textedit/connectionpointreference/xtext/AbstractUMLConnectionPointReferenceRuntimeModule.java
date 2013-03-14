@@ -35,18 +35,23 @@ public abstract class AbstractUMLConnectionPointReferenceRuntimeModule extends D
 	}
 	
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
+	public java.lang.ClassLoader bindClassLoaderToInstance() {
+		return getClass().getClassLoader();
+	}
+
+	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.services.UMLConnectionPointReferenceGrammarAccess.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISemanticSequencer> bindISemanticSequencer() {
-		return org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer.AbstractUMLConnectionPointReferenceSemanticSequencer.class;
+		return org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer.UMLConnectionPointReferenceSemanticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer> bindISyntacticSequencer() {
-		return org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer.AbstractUMLConnectionPointReferenceSyntacticSequencer.class;
+		return org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer.UMLConnectionPointReferenceSyntacticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment

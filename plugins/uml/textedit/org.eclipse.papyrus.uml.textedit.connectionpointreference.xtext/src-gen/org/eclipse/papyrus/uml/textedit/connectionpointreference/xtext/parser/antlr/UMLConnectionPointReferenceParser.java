@@ -3,10 +3,10 @@
 */
 package org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr;
 
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.services.UMLConnectionPointReferenceGrammarAccess;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-
 import com.google.inject.Inject;
+
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.services.UMLConnectionPointReferenceGrammarAccess;
 
 public class UMLConnectionPointReferenceParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

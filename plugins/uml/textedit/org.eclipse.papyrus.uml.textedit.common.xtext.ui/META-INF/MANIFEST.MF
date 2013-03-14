@@ -26,9 +26,7 @@ Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.int
- ernal.UmlCommonActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.ui;
- singleton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Import-Package: org.apache.log4j
