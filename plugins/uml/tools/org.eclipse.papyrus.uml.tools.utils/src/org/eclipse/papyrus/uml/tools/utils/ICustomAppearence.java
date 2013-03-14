@@ -123,7 +123,7 @@ public interface ICustomAppearence {
 	 * default uml property display in classes edit part.
 	 */
 	public final static int DEFAULT_UML_PROPERTY = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY;
-	
+
 	/**
 	 * default uml property display in classes edit part.
 	 */
@@ -132,7 +132,7 @@ public interface ICustomAppearence {
 	/**
 	 * default uml operation display.
 	 */
-	public final static int DEFAULT_UML_OPERATION = DISP_VISIBILITY | DISP_NAME | DISP_PARAMETER_DIRECTION | DISP_PARAMETER_TYPE | DISP_RT_TYPE | DISP_MOFIFIERS;
+	public final static int DEFAULT_UML_OPERATION = DISP_VISIBILITY | DISP_NAME | DISP_PARAMETER_DIRECTION | DISP_PARAMETER_TYPE | DISP_RT_TYPE | DISP_PARAMETER_NAME;
 
 	/**
 	 * default uml Property in composite diagrams.
@@ -163,6 +163,7 @@ public interface ICustomAppearence {
 	 */
 	// @unused
 	public final static int DEFAULT_UML_PARAMETER = DISP_PARAMETER_DIRECTION | DISP_PARAMETER_NAME | DISP_PARAMETER_TYPE;
+
 	/**
 	 * default uml instancespecification .
 	 */
