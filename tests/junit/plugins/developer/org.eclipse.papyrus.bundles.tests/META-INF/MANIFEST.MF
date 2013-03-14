@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.junit4,
  org.eclipse.pde.runtime,
  org.eclipse.ui.ide,
  org.eclipse.pde;bundle-version="3.7.0",
  org.eclipse.pde.core,
- org.eclipse.update.configurator
+ org.eclipse.update.configurator,
+ org.junit;bundle-version="4.10.0"
 Export-Package: org.eclipse.papyrus.bundles.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
