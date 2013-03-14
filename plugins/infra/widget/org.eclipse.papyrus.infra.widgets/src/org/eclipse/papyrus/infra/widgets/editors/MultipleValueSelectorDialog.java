@@ -217,7 +217,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 *        True if the values returned by this dialog should be unique
 	 */
 	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, String title, boolean unique, boolean ordered) {
-		this(parentShell, selector, null, unique, false, MANY);
+		this(parentShell, selector, title, unique, false, MANY);
 	}
 
 	/**
