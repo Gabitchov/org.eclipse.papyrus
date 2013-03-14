@@ -138,4 +138,8 @@ public class StringSelector implements IElementSelector {
 	public void addElementSelectionListener(IElementSelectionListener listener) {
 		elementSelectionListeners.add(listener);
 	}
+
+	public void removeElementSelectionListener(IElementSelectionListener listener) {
+		elementSelectionListeners.remove(listener);
+	}
 }

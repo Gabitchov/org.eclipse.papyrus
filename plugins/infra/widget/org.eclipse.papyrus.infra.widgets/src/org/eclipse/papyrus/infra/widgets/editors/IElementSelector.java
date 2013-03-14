@@ -72,4 +72,13 @@ public interface IElementSelector {
 	 */
 	public void addElementSelectionListener(IElementSelectionListener listener);
 
+	/**
+	 * Removes the element selection listener
+	 * 
+	 * @param listener
+	 * 
+	 * @see {@link #addElementSelectionListener(IElementSelectionListener)}
+	 */
+	public void removeElementSelectionListener(IElementSelectionListener listener);
+
 }

@@ -44,6 +44,10 @@ public class NullSelector implements IElementSelector {
 		//Nothing
 	}
 
+	public void removeElementSelectionListener(IElementSelectionListener listener) {
+		//Nothing
+	}
+
 	public final static NullSelector instance = new NullSelector();
 
 }

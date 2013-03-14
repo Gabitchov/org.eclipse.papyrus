@@ -19,8 +19,12 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -48,7 +52,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  * @author Camille Letavernier
  * 
  */
-public class MultipleValueSelectorDialog extends SelectionDialog implements SelectionListener, IElementSelectionListener {
+public class MultipleValueSelectorDialog extends SelectionDialog implements ISelectionChangedListener, IDoubleClickListener, IElementSelectionListener, SelectionListener {
 
 	public static int MANY = -1;
 
@@ -344,10 +348,13 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	private void createListSection(Composite parent) {
 
 		selectedElements = new Tree(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-		selectedElements.addSelectionListener(this);
+		//		selectedElements.addSelectionListener(this);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		selectedElements.setLayoutData(data);
 		selectedElementsViewer = new TreeViewer(selectedElements);
+
+		selectedElementsViewer.addSelectionChangedListener(this);
+		selectedElementsViewer.addDoubleClickListener(this);
 
 		selectedElementsViewer.setContentProvider(CollectionContentProvider.instance);
 
@@ -425,15 +432,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 			createAction();
 		}
 
-		/* Disable the bouton 'add' if the upperBound is reached */
-		if(this.upperBound != MANY) {
-			if(allElements.size() >= this.upperBound) {
-				add.setEnabled(false);
-			} else {
-				add.setEnabled(true);
-			}
-		}
-
+		updateControls();
 	}
 
 	/**
@@ -637,9 +636,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	}
 
 	public void widgetDefaultSelected(SelectionEvent e) {
-		if(e.widget == selectedElements) {
-			removeAction();
-		}
+		//Nothing (see #doubleClick())
 	}
 
 	/**
@@ -666,6 +663,18 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		updateControl(up, ordered);
 		updateControl(down, ordered);
 		updateControl(create, this.factory != null && this.factory.canCreateObject());
+
+		/* Disable the bouton 'add' if the upperBound is reached */
+		boolean canCreate = factory != null && factory.canCreateObject();
+		if(canCreate) {
+			if(this.upperBound != MANY) {
+				if(allElements.size() >= this.upperBound) {
+					canCreate = false;
+				}
+			}
+		}
+
+		updateControl(add, canCreate);
 	}
 
 	private void updateControl(Control control, boolean enabled) {
@@ -685,5 +694,30 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 */
 	public void setUpperBound(int upperBound) {
 		this.upperBound = upperBound;
+	}
+
+	@Override
+	public boolean close() {
+		selector.removeElementSelectionListener(this);
+		return super.close();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Handles double click event on the right-panel tree viewer {@link #selectedElementsViewer}
+	 * 
+	 */
+	public void doubleClick(DoubleClickEvent event) {
+		removeAction();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Handles selection change event on the right-panel tree viewer {@link #selectedElementsViewer}
+	 */
+	public void selectionChanged(SelectionChangedEvent event) {
+		updateControls();
 	}
 }

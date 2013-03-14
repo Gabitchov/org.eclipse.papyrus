@@ -46,8 +46,12 @@ public class StrategyBasedContentProvider extends EncapsulatedContentProvider {
 	@Override
 	public void dispose() {
 		super.dispose();
-		browseStrategy = null;
-		revealStrategy = null;
+		if(browseStrategy != null) {
+			browseStrategy.dispose();
+		}
+		if(revealStrategy != null) {
+			revealStrategy.dispose();
+		}
 	}
 
 	@Override

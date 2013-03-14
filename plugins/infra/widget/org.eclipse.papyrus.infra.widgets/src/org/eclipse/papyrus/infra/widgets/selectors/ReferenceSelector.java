@@ -437,4 +437,8 @@ public class ReferenceSelector implements IElementSelector {
 		elementSelectionListeners.add(listener);
 	}
 
+	public void removeElementSelectionListener(IElementSelectionListener listener) {
+		elementSelectionListeners.remove(listener);
+	}
+
 }

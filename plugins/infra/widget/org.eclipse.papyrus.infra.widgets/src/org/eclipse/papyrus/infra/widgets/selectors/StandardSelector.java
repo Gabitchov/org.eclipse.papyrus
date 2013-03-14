@@ -122,4 +122,8 @@ public class StandardSelector implements IElementSelector {
 		elementSelectionListeners.add(listener);
 	}
 
+	public void removeElementSelectionListener(IElementSelectionListener listener) {
+		elementSelectionListeners.remove(listener);
+	}
+
 }
