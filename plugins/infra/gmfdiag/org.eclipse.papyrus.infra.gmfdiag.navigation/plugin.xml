@@ -28,6 +28,15 @@
          </Priority>
       </decoratorProvider>
    </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+      <editpolicyProvider
+            class="org.eclipse.papyrus.infra.gmfdiag.navigation.provider.NavigationEditPolicyProvider">
+         <Priority
+               name="Medium">
+         </Priority>
+      </editpolicyProvider>
+   </extension>
   
    <!--commented for the build Juno M4, because perspective doesn't work-->
    
