@@ -77,12 +77,14 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		IModelImportMapping mapping = IModelImportMapping.Factory.ONE_TO_ONE.create(config);
 		mapping.setRepository(getPapyrusRepository());
 
+		long commitTime = System.currentTimeMillis();
+
 		Diagnostic problems = fixture.importModels(mapping);
 		assertThat(problems.getSeverity(), is(Diagnostic.OK));
 		assertThat(problems.getChildren().size(), is(0));
 
 		CDOView view = getInternalPapyrusRepository().getMasterView();
-		sleep(3); // give the view invalidation a moment to catch up
+		view.waitForUpdate(commitTime, 10000L);
 
 		assertResource(view.getResource("has_dependencies/model.di"));
 		assertResource(view.getResource("has_dependencies/model.uml"));
@@ -105,12 +107,14 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		mapping.setRepository(getPapyrusRepository());
 		mapping.mapTo(Iterables.get(config.getModelsToTransfer(), 0), new Path("my_import/combined.di"));
 
+		long commitTime = System.currentTimeMillis();
+
 		Diagnostic problems = fixture.importModels(mapping);
 		assertThat(problems.getSeverity(), is(Diagnostic.OK));
 		assertThat(problems.getChildren().size(), is(0));
 
 		CDOView view = getInternalPapyrusRepository().getMasterView();
-		sleep(3); // give the view invalidation a moment to catch up
+		view.waitForUpdate(commitTime, 10000L);
 
 		assertResource(view.getResource("my_import/combined.di"), "di", 1);
 		assertResource(view.getResource("my_import/combined.uml"), "uml", 2);
@@ -168,16 +172,6 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 
 		config.dispose();
 		config = null;
-	}
-
-	void sleep(int seconds) {
-		for(int i = 0; i < seconds; i++) {
-			try {
-				Thread.sleep(1000);
-			} catch (Exception e) {
-				// fine. We just won't sleep as long
-			}
-		}
 	}
 
 	void assertResource(Resource resource) {
