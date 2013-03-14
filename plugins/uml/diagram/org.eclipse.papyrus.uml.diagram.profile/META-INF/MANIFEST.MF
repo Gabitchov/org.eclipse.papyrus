@@ -11,7 +11,6 @@ Export-Package: org.eclipse.papyrus.uml.diagram.profile,
  org.eclipse.papyrus.uml.diagram.profile.custom.preferences,
  org.eclipse.papyrus.uml.diagram.profile.custom.providers,
  org.eclipse.papyrus.uml.diagram.profile.custom.requests,
- org.eclipse.papyrus.uml.diagram.profile.custom.ui.dialog,
  org.eclipse.papyrus.uml.diagram.profile.edit.commands,
  org.eclipse.papyrus.uml.diagram.profile.edit.helpers,
  org.eclipse.papyrus.uml.diagram.profile.edit.parts,
@@ -53,7 +52,10 @@ Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10
  org.eclipse.ui.navigator.resources;bundle-version="3.4.400",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
- org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="1.7.0"
+ org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="1.7.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf.diagram.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.10.0.qualifier

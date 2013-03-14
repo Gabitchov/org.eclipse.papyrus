@@ -21,17 +21,11 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.profile.custom.messages.messages"; //$NON-NLS-1$
 
-	public static String CustomSemanticCreateCommand_MetaclassImport0;
+	public static String CustomSemanticCreateCommand_CreateCustomSemanticCommandForMetaclass;
 
-	public static String CustomSemanticCreateCommand_FetchingMetaclasses;
+	public static String CustomSemanticCreateCommand_LabelProviderServiceNotFound;
 
-	public static String ChooseSetMetaclassDialog_Metaclasses;
-
-	public static String ChooseSetMetaclassDialog_ImportedMetaclasses;
-
-	public static String ChooseSetMetaclassDialog_Metaclass;
-
-	public static String ChooseSetMetaclassDialog_Information;
+	public static String CustomSemanticCreateCommand_SelectMetaclass;
 
 	static {
 		// initialize resource bundle

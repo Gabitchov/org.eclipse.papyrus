@@ -15,7 +15,12 @@
 
 package org.eclipse.papyrus.uml.diagram.profile.custom.commands;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -29,14 +34,19 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.profile.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.profile.custom.requests.CustomCreateElementRequestAdapter;
-import org.eclipse.papyrus.uml.diagram.profile.custom.ui.dialog.ChooseSetMetaclassDialog;
-import org.eclipse.papyrus.uml.profile.ImageManager;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.papyrus.uml.tools.providers.UMLMetaclassContentProvider;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -60,7 +70,7 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 	/**
 	 * the added metaclasses
 	 */
-	private ArrayList<?> addedMetaclasses;
+	private List<Object> addedMetaclasses;
 
 	/**
 	 * the profile
@@ -77,7 +87,7 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 	 * @param profile
 	 */
 	public CustomSemanticCreateCommand(TransactionalEditingDomain domain, CustomCreateElementRequestAdapter requestAdapter, Profile profile) {
-		super(domain, "Create Custom Semantic Command for Metaclass", null); //$NON-NLS-1$
+		super(domain, Messages.CustomSemanticCreateCommand_CreateCustomSemanticCommandForMetaclass, null);
 		this.profile = profile;
 		this.customRequestAdapter = requestAdapter;
 	}
@@ -95,26 +105,32 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult result = CommandResult.newCancelledCommandResult();
-		ChooseSetMetaclassDialog cmcd = new ChooseSetMetaclassDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), this.profile);
+		ReferenceSelector selector = new ReferenceSelector(true);
+		selector.setContentProvider(new UMLMetaclassContentProvider(profile));
+		LabelProviderService serv = null;
+		try {
+			serv = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, profile);
+		} catch (ServiceException e) {
+			Activator.log.error(Messages.CustomSemanticCreateCommand_LabelProviderServiceNotFound, e);
+		}
+		ILabelProvider labelProvider = serv.getLabelProvider();
+		selector.setLabelProvider(labelProvider);
 
-		// opening of a message box indicating profile application
-		final Shell message = new Shell(new Shell(), SWT.APPLICATION_MODAL | SWT.SHELL_TRIM);
-		message.setText(Messages.CustomSemanticCreateCommand_MetaclassImport0);
-		message.setImage(ImageManager.IMG_METACLASS);
+		//		EList<PackageableElement> importedElement = profile.getImportedElements();
+		//we don't set initial selection to allows to draw new instance of imported metaclass
+		final List<EObject> alreadyImportedElement = new ArrayList<EObject>();
+		//		for(final PackageableElement current : importedElement){
+		//			if(current instanceof Class && ((Class)current).isMetaclass()){
+		//				alreadyImportedElement.add(current);
+		//			}
+		//		}
+		final MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.CustomSemanticCreateCommand_SelectMetaclass, true, false, -1);
+		dialog.setLabelProvider(labelProvider);
+		dialog.setInitialElementSelections(alreadyImportedElement);
 
-		message.setSize(250, 100);
-
-		final Label label = new Label(message, SWT.NONE);
-		label.setText(Messages.CustomSemanticCreateCommand_FetchingMetaclasses);
-		label.setBounds(20, 15, 150, 20);
-
-		message.open();
-		cmcd.open();
-		message.close();
-
-
-		if(cmcd.getReturnCode() == IStatus.OK) {
-			this.addedMetaclasses = cmcd.getSelectedElements();
+		if(dialog.open() == IStatus.OK) {
+			Object[] selectedMetaclass = dialog.getResult();
+			this.addedMetaclasses = Arrays.asList(selectedMetaclass);
 			if(!this.addedMetaclasses.isEmpty()) {
 				ICommand createElementImportCommand = getImportElementCommand();
 				if(createElementImportCommand != null) {
@@ -122,10 +138,8 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 				}
 				return CommandResult.newOKCommandResult();
 			}
-			//else we return a canceled command result (avoid an Undo for nothing for the user!)
 		}
 		return result;
-
 	}
 
 	/**
@@ -145,7 +159,6 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 				//we create an ElementImport for the new metaclass
 				ElementImport ei = UMLFactory.eINSTANCE.createElementImport();
 				//we create the class
-
 
 				ei.setImportedElement((PackageableElement)this.addedMetaclasses.get(i));
 				ei.setAlias(((NamedElement)this.addedMetaclasses.get(i)).getName());
