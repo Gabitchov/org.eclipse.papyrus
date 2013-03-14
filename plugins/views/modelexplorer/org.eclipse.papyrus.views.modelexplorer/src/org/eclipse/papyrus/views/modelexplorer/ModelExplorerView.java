@@ -17,6 +17,7 @@ package org.eclipse.papyrus.views.modelexplorer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -79,6 +80,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
@@ -368,7 +370,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					labelProvider = new LabelProvider();
 				}
 
-				//ILabelProvider labelProvider = ((NavigatorContentDescriptor)descriptor).createLabelProvider();
 				viewer.setLabelProvider(labelProvider); // add for decorator and tooltip support
 				break;
 			}
@@ -378,12 +379,32 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		return viewer;
 	}
 
+	private void installEMFFacetTreePainter(Tree tree) {
+		//Install the EMFFacet Custom Tree Painter
+		org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
+
+		//The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
+		//Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
+		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
+		for(Listener listener : tree.getListeners(SWT.MeasureItem)) {
+			if(listener.getClass().getName().contains("org.eclipse.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
+				listenersToRemove.add(listener);
+			}
+		}
+
+		for(Listener listener : listenersToRemove) {
+			tree.removeListener(SWT.MeasureItem, listener);
+		}
+	}
+
 	@Override
 	public void createPartControl(Composite aParent) {
 		super.createPartControl(aParent);
+
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
 		getCommonViewer().addDoubleClickListener(new DoubleClickListener(serviceRegistry));
+
 		Tree tree = getCommonViewer().getTree();
 
 		tree.addKeyListener(new KeyListener() {
@@ -462,7 +483,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		});
 
-		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
+		installEMFFacetTreePainter(tree);
 	}
 
 	TreeItem currentItem;

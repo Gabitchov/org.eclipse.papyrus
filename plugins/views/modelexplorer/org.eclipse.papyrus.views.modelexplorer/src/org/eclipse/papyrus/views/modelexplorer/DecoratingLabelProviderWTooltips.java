@@ -56,20 +56,20 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 	@Override
 	public void dispose() {
 		try {
-			if (decorationService != null) {
+			if(decorationService != null) {
 				decorationService.deleteListener(this);
 			}
 		} finally {
 			super.dispose();
 		}
 	}
-	
+
 	public void update(Observable o, Object arg) {
-		if ((decorationService != null) && (o == decorationService)) {
+		if((decorationService != null) && (o == decorationService)) {
 			fireLabelProviderChanged(new LabelProviderChangedEvent(this));
 		}
 	}
-	
+
 	@Override
 	public String getToolTipText(Object element) {
 		if(decorationService == null) {
@@ -93,8 +93,7 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 
 		//Set the adapter decoration with position as indicated by decoration (from decoration service)
 		if(element != null) {
-			if(element instanceof EObject
-				|| element instanceof LinkItem			// fix for bug 391676
+			if(element instanceof EObject || element instanceof LinkItem // fix for bug 391676
 				|| (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
 				List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
 				if(decorations != null) {
@@ -114,7 +113,7 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 
 	@Override
 	public int getToolTipDisplayDelayTime(Object object) {
-		return 1000;
+		return 500;
 	}
 
 	@Override
