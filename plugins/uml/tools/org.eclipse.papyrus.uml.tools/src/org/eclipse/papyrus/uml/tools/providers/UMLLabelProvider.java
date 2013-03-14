@@ -47,7 +47,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 * @param element
 	 * @return <ul>
 	 *         <li>if stereotypes are applied on the elements : return the image corresponding to the first applied stereotype</li>
-	 *         <li>if the element is a MetaClass return the image representing a metaclass</li>
 	 *         <li>if the element is a {@link DecorationNode}, returns the image corresponding to a compartment</li>
 	 *         <li> <code>null</code> if no image was found</li>
 	 *         </ul>
@@ -56,13 +55,6 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	protected Image getImage(EObject element) {
 
 		element = resolveElement(element);
-
-		// test for Metaclass
-		if(element instanceof Class) {
-			if(TypeUtil.isMetaclass((Type)element)) {
-				return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, ICON_METACLASS);
-			}
-		}
 
 		// test for other UML Elements
 		if(element instanceof Element) {

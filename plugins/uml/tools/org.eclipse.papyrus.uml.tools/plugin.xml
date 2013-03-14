@@ -60,6 +60,14 @@
          priority="50"
          provider="org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider">
    </labelProvider>
+   <labelProvider
+         priority="10"
+         provider="org.eclipse.papyrus.uml.tools.providers.UMLEClassLabelProvider">
+   </labelProvider>
+   <labelProvider
+         priority="10"
+         provider="org.eclipse.papyrus.uml.tools.providers.UMLMetaclassLabelProvider">
+   </labelProvider>
 </extension>
 
    <extension
