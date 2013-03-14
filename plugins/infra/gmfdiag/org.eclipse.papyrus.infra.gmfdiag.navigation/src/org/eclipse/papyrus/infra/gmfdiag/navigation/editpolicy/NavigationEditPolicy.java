@@ -40,7 +40,12 @@ import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.ui.IEditorPart;
 
-
+/**
+ * An edit policy to use the {@link NavigationService} on GMF Diagrams
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class NavigationEditPolicy extends GraphicalEditPolicy {
 
 	public static final String EDIT_POLICY_ID = "org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationEditPolicy";
@@ -70,22 +75,6 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 	}
 
 	@Override
-	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof SelectionRequest) {
-			if(((SelectionRequest)request).isAltKeyPressed()) {
-				return getHost();
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public boolean understandsRequest(Request req) {
-		System.out.println("Understands?");
-		return super.understandsRequest(req);
-	}
-
-	@Override
 	public void showTargetFeedback(Request request) {
 		super.showTargetFeedback(request);
 
@@ -103,7 +92,6 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 	@Override
 	public Command getCommand(Request request) {
 		if(request instanceof SelectionRequest) {
-			System.out.println("GetSelectionCommand");
 			return viewerContext.navigate((SelectionRequest)request);
 		}
 		return super.getCommand(request);
@@ -112,11 +100,6 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 	private EditPart getRoot() {
 		RootEditPart rootEditPart = getHost().getRoot();
 		return rootEditPart.getContents();
-	}
-
-	@Override
-	public void deactivate() {
-		super.deactivate();
 	}
 
 	//A Single ViewerContext for each diagram (Root EditPartViewer)
