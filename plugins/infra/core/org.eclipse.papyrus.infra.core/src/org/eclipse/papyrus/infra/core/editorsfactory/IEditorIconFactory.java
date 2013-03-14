@@ -52,4 +52,9 @@ public interface IEditorIconFactory {
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier);
 
+	/**
+	 * Dispose this factory
+	 */
+	public void dispose();
+
 }

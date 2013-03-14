@@ -641,7 +641,11 @@ public class EditorPart extends PagePart implements IEditorPage {
 	@Override
 	public void setFocus() {
 		if(editorPart != null) {
-			editorPart.setFocus();
+			try {
+				editorPart.setFocus();
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+			}
 		}
 	}
 

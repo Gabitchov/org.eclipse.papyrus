@@ -43,7 +43,9 @@ public class PageIconRegistryServiceFactory implements IServiceFactory {
 	 * @throws ServiceException
 	 */
 	public void disposeService() throws ServiceException {
-
+		if(pageIconsRegistry != null) {
+			pageIconsRegistry.dispose();
+		}
 	}
 
 	/**

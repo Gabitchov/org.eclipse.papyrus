@@ -45,7 +45,7 @@ public class PageIconsRegistry implements IPageIconsRegistryExtended {
 			if(factory.isPageModelFactoryFor(pageIdentifier)) {
 				{
 					// return factory.getEditorIcon(pageIdentifier);
-					return factory.createEditorIcon(pageIdentifier);
+					return factory.getEditorIcon(pageIdentifier);
 				}
 			}
 		}
@@ -70,8 +70,9 @@ public class PageIconsRegistry implements IPageIconsRegistryExtended {
 	 */
 	public void add(IEditorIconFactory editorIconFactory) {
 		// This should never happen
-		if(editorIconFactory == null)
+		if(editorIconFactory == null) {
 			throw new RuntimeException("Parameter should not be null.");
+		}
 
 		pageIcons.add(editorIconFactory);
 	}
@@ -97,12 +98,18 @@ public class PageIconsRegistry implements IPageIconsRegistryExtended {
 		for(IEditorIconFactory factory : getPageIcons()) {
 			if(factory.isPageModelFactoryFor(model)) {
 				{
-					if ( factory instanceof IEditorIconFactoryExtended){						
+					if(factory instanceof IEditorIconFactoryExtended) {
 						return ((IEditorIconFactoryExtended)factory).getURLMainIcon(model);
 					}
 				}
 			}
 		}
 		return "";
+	}
+
+	public void dispose() {
+		for(IEditorIconFactory factory : pageIcons) {
+			factory.dispose();
+		}
 	}
 }

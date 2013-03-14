@@ -32,4 +32,9 @@ public interface IPageIconsRegistry {
 	 * @return the icon representing the editor
 	 */
 	public Image getEditorIcon(Object model);
+
+	/**
+	 * Dispose this registry
+	 */
+	public void dispose();
 }

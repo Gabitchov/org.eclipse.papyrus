@@ -64,8 +64,9 @@ public class EditorIconFactory implements IEditorIconFactoryExtended {
 	 */
 	public Image createEditorIcon(Object pageIdentifier) {
 		ImageDescriptor imageDescriptor = editorDescriptor.getIcon();
-		if(imageDescriptor == null)
+		if(imageDescriptor == null) {
 			return null;
+		}
 		Image image = imageDescriptor.createImage();
 		return image;
 	}
@@ -129,6 +130,18 @@ public class EditorIconFactory implements IEditorIconFactoryExtended {
 	 */
 	public String getURLMainIcon(Object pageIdentifier) {
 		return editorDescriptor.getIconURL();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Dispose the cached image
+	 */
+	public void dispose() {
+		if(cachedImage != null) {
+			cachedImage.dispose();
+			cachedImage = null;
+		}
 	}
 
 }
