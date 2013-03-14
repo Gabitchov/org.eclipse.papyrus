@@ -813,6 +813,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 
 		if(ISaveablePart.class.equals(adapter)) {
+			try {
+				return serviceRegistry.getService(IMultiDiagramEditor.class);
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
 			return saveAndDirtyService;
 		}
 
