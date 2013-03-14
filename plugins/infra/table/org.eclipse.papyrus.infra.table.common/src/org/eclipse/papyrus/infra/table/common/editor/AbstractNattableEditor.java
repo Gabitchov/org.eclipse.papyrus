@@ -155,6 +155,7 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 	public Object getAdapter(Class adapter) {
 		return super.getAdapter(adapter);
 	};
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.table.common.internal.NatTableEditor#dispose()
@@ -365,12 +366,16 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.infra.t
 			org.eclipse.core.commands.Command command = commandService.getCommand("org.eclipse.emf.facet.widget.nattable.common.columns.command"); //$NON-NLS-1$
 			if(command != null) {
 				final State state = command.getState("org.eclipse.ui.commands.toggleState"); //$NON-NLS-1$
-				state.setValue(this.rawModel.getTable().isOnlyShowCommonColumns());
+				if(state != null) {
+					state.setValue(this.rawModel.getTable().isOnlyShowCommonColumns());
+				}
 			}
 			command = commandService.getCommand("org.eclipse.emf.facet.widget.nattable.empty.columns.command"); //$NON-NLS-1$
 			if(command != null) {
 				final State state = command.getState("org.eclipse.ui.commands.toggleState"); //$NON-NLS-1$
-				state.setValue(this.rawModel.getTable().isHideEmptyColumns());
+				if(state != null) {
+					state.setValue(this.rawModel.getTable().isHideEmptyColumns());
+				}
 			}
 		}
 	}
