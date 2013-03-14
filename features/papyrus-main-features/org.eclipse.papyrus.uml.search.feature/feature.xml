@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.search.feature"
-      label="UM Search Feature (Incubation)"
+      label="Papyrus UML Search Feature (Incubation)"
       version="0.10.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
@@ -15,8 +15,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="%licenseURL">
-		%license
-	</license>
+      %license
+   </license>
 
    <plugin
          id="org.eclipse.papyrus.uml.search.ui"
