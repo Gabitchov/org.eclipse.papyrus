@@ -117,6 +117,16 @@
          priority="10">
    </operationApprover>
 </extension>
+<extension
+      point="org.eclipse.core.runtime.adapters">
+   <factory
+         adaptableType="org.eclipse.emf.edit.domain.EditingDomain"
+         class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler">
+      </adapter>
+   </factory>
+</extension>
 <!-- commented for Papyrus M4 build -->
 <!--   <extension
          point="org.eclipse.papyrus.editor.perspectiveconfiguration">
