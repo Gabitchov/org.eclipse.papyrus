@@ -25,18 +25,20 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 
-public class FSReadOnlyHandler implements IReadOnlyHandler {
+import com.google.common.base.Optional;
 
-	public boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
+public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
+
+	public Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain) {
 		for(URI uri : uris) {
 
 			IFile file = getFile(uri);
 			if(file != null && file.isReadOnly()) {
-				return true;
+				return Optional.of(Boolean.TRUE);
 			}
 		}
 
-		return false;
+		return Optional.absent();
 	}
 
 	private static IFile getFile(URI uri) {
@@ -46,7 +48,7 @@ public class FSReadOnlyHandler implements IReadOnlyHandler {
 		return null;
 	}
 
-	public boolean enableWrite(final URI[] uris, EditingDomain editingDomain) {
+	public Optional<Boolean> makeWritable(final URI[] uris, EditingDomain editingDomain) {
 		final AtomicBoolean doEnableWrite = new AtomicBoolean();
 		Display.getCurrent().syncExec(new Runnable() {
 
@@ -63,7 +65,7 @@ public class FSReadOnlyHandler implements IReadOnlyHandler {
 		});
 
 		if(doEnableWrite.get()) {
-			boolean ok = true;
+			Boolean ok = true;
 			for(URI uri : uris) {
 				IFile file = getFile(uri);
 				if(file != null && file.isReadOnly()) {
@@ -76,9 +78,9 @@ public class FSReadOnlyHandler implements IReadOnlyHandler {
 					}
 				}
 			}
-			return ok;
+			return Optional.of(ok);
 		} else {
-			return false;
+			return Optional.absent();
 		}
 	}
 

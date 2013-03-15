@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
 import org.eclipse.ui.PlatformUI;
 
-public class EnableWriteHandler extends AbstractHandler {
+public class EnableWriteCommandHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		EObject elem = getSelectedElement();
@@ -33,15 +33,12 @@ public class EnableWriteHandler extends AbstractHandler {
 				IPapyrusFile papFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(file);
 				IFile[] associatedFiles = OneFileUtils.getAssociatedFiles(papFile);
 
-				ReadOnlyManager.enableWrite(associatedFiles, WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(rs));
-
-				for(IFile associatedFile : associatedFiles) {
-					URI associatedUri = URI.createPlatformResourceURI(associatedFile.getFullPath().toString(), true);
-					Resource associatedResource = rs.getResource(associatedUri, true);
-					if(associatedResource != null) {
-						associatedResource.setModified(true);
-					}
+				URI[] associatedUris = new URI[associatedFiles.length];
+				for (int i=0 ; i < associatedFiles.length ; i++) {
+					associatedUris[i] = URI.createPlatformResourceURI(associatedFiles[i].getFullPath().toString(), true);
 				}
+
+				ReadOnlyManager.getInstance().makeWritable(associatedUris, WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(rs));
 			}
 		}
 		return null;

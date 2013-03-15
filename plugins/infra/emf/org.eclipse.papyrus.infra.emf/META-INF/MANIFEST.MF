@@ -27,7 +27,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions;bundle-version="3.4.400",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.7.0",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0"
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
+ com.google.guava
 Export-Package: org.eclipse.papyrus.infra.emf,
  org.eclipse.papyrus.infra.emf.commands,
  org.eclipse.papyrus.infra.emf.databinding,

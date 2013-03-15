@@ -5,6 +5,7 @@
          point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
             class="org.eclipse.papyrus.team.svn.SVNLockHandler"
+            id="org.eclipse.papyrus.team.svn.SVNLockHandler"
             priority="20">
       </readOnlyHandler>
    </extension>

@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -47,7 +48,8 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyProvider;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.ProxyModificationTrackingAdapter;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -185,7 +187,7 @@ public class EMFHelper {
 
 		return null;
 	}
-	
+
 	/**
 	 * Queries whether an {@code object} is an EMF model element, an instance of
 	 * some {@link EClass} from an EMF model. This isn't as simple as checking
@@ -195,7 +197,7 @@ public class EMFHelper {
 	 * an {@link EObject}.
 	 * 
 	 * @param object
-	 *            an object
+	 *        an object
 	 * @return whether it is "model content"
 	 * 
 	 * @see EMFHelper#asEMFModelElement(Object)
@@ -203,21 +205,19 @@ public class EMFHelper {
 	public static boolean isEMFModelElement(Object object) {
 		return (object instanceof EObject) && !(object instanceof Resource);
 	}
-	
+
 	/**
 	 * Casts an {@code object} as an EMF model element, if appropriate.
 	 * 
 	 * @param object
-	 *            an object
+	 *        an object
 	 * @return the object as an EMF model element, or {@code null} if it is not
 	 *         an EMF model element
 	 * 
 	 * @see #isEMFModelElement(Object)
 	 */
 	public static EObject asEMFModelElement(Object object) {
-		return isEMFModelElement(object)
-			? (EObject) object
-			: null;
+		return isEMFModelElement(object) ? (EObject)object : null;
 	}
 
 	/**
@@ -448,22 +448,23 @@ public class EMFHelper {
 	 * Delegates to the given editing domain if it isn't null
 	 * 
 	 * @param eObject
+	 * 
 	 * @param domain
 	 * @return
 	 *         True if the EObject is read only
 	 */
 	public static boolean isReadOnly(final EObject eObject, final EditingDomain domain) {
-		Resource resource = eObject.eResource();
-		ResourceSet resourceSet = (resource == null)
-			? null
-			: resource.getResourceSet();
-		IReadOnlyProvider provider = (resourceSet instanceof IReadOnlyProvider)
-			? (IReadOnlyProvider) resourceSet
-			: null;
+		if(domain != null) {
+			Object handler = Platform.getAdapterManager().getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler) {
+				return ((IReadOnlyHandler)handler).isReadOnly(eObject, domain).get();
+			}
 
-		return (provider != null)
-			? provider.isReadOnly(eObject)
-			: isReadOnly(resource, domain);
+			if(eObject.eResource() != null) {
+				return domain.isReadOnly(eObject.eResource());
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -476,14 +477,19 @@ public class EMFHelper {
 	 *         True if the Resource is read only
 	 */
 	public static boolean isReadOnly(final Resource resource, final EditingDomain domain) {
-		if(domain instanceof AdapterFactoryEditingDomain) {
-			return ((AdapterFactoryEditingDomain)domain).isReadOnly(resource);
-		}
-
 		if(resource == null) {
 			return false;
 		}
 
+		if(domain != null && resource.getURI() != null) {
+			Object handler = Platform.getAdapterManager().getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler) {
+				return ((IReadOnlyHandler)handler).anyReadOnly(new URI[]{ resource.getURI() }, domain).get();
+			}
+			return domain.isReadOnly(resource);
+		}
+
+		// no editing domain : use file system attribute
 		ResourceSet resourceSet = resource.getResourceSet();
 
 		if(resourceSet == null) {
@@ -642,26 +648,9 @@ public class EMFHelper {
 	 * @return the usages or null if there is no usages
 	 */
 	public static Collection<Setting> getUsages(EObject source) {
-		if(source == null) {
-			return Collections.emptyList();
-		}
-
-		ECrossReferenceAdapter crossReferencer = ECrossReferenceAdapter.getCrossReferenceAdapter(source);
-		if(crossReferencer == null) {
-			// try to register a cross referencer at the highest level
-			crossReferencer = new ECrossReferenceAdapter();
-			if(source.eResource() != null) {
-				if(source.eResource().getResourceSet() != null) {
-					crossReferencer.setTarget(source.eResource().getResourceSet());
-				} else {
-					crossReferencer.setTarget(source.eResource());
-				}
-			} else {
-				crossReferencer.setTarget(source);
-			}
-		}
-
-		return crossReferencer.getInverseReferences(source, true);
+		// the functional code is defined in core because we need it in infra.core
+		// but infra.core can't depend on infra.emf (circular dependency)
+		return ProxyModificationTrackingAdapter.getUsages(source);
 	}
 
 

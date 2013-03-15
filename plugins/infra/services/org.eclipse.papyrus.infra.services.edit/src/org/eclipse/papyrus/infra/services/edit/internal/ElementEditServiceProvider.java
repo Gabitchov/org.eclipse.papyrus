@@ -21,15 +21,13 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.NullElementType;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.messages.Messages;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -122,15 +120,7 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 	}
 
 	private boolean isReadOnly(EObject object) {
-		boolean result = false;
-		
-		Resource resource = object.eResource();
-		ResourceSet resourceSet = (resource == null) ? null : resource.getResourceSet();
-		if (resourceSet instanceof ModelSet) {
-			result = ((ModelSet) resourceSet).isReadOnly(object);
-		}
-		
-		return result;
+		return EMFHelper.isReadOnly(object);
 	}
 	
 	/**

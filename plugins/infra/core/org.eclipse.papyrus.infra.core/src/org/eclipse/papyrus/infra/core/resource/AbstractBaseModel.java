@@ -19,11 +19,11 @@ import java.io.OutputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -214,28 +214,16 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 	 * @param fullPathWithoutExtension
 	 */
 	public void loadModel(URI uriWithoutExtension) {
-
 		// Compute model URI
-		RuntimeException error = null;
 		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
 
 		// Create Resource of appropriate type
-		try {
-			resource = modelSet.getResource(resourceURI, true);
-		} catch (WrappedException e) {
-			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
-				// only this case is managed in degraded mode
-				resource = modelSet.getResource(resourceURI, false);
-			}
-			error = e;
-		}
+		resource = modelSet.getResource(resourceURI, true);
 
 		configureResource(resource);
+
 		// call registered snippets
 		snippets.performStart(this);
-		if(error != null) {
-			throw error;
-		}
 	}
 
 	/**
@@ -409,6 +397,15 @@ public abstract class AbstractBaseModel implements IVersionableModel {
 			return super.deresolve(uri);
 		}
 
+	}
+
+	public Set<URI> getModifiedURIs() {
+		if (getResource() != null) {
+			if (!getResource().isTrackingModification() || getResource().isModified()) {
+				return Collections.singleton(getResource().getURI());
+			}
+		}
+		return Collections.emptySet();
 	}
 
 }

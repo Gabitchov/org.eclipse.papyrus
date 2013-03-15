@@ -8,9 +8,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 
 /**
  * A UML model whose resource is either a uml file or a profile(?).
@@ -45,16 +43,7 @@ public class ExtendedUmlModel extends UmlModel {
 					if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment()) && !"di".equalsIgnoreCase(extension) && !"notation".equalsIgnoreCase(extension)) {
 						if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension) != null) {
 							resourceURI = getPlatformURI(r.getFullPath());
-							try {
-								resource = getResourceSet().getResource(resourceURI, true);
-							} catch (WrappedException e) {
-								if (ModelUtils.isDegradedModeAllowed(e.getCause())){
-									resource = getResourceSet().getResource(resourceURI, false);
-									if (resource == null){
-										throw e;
-									}
-								}
-							}
+							resource = getResourceSet().getResource(resourceURI, true);
 							break;
 						}
 					}

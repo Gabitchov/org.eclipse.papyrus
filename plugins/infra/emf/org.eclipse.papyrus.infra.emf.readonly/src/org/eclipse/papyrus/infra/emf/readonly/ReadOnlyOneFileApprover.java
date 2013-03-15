@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.emf.readonly;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -27,6 +26,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -36,6 +36,8 @@ import org.eclipse.gmf.runtime.common.core.internal.command.ICommandWithSettable
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
+
+import com.google.common.base.Optional;
 
 public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 
@@ -48,7 +50,7 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 	}
 
 	public IStatus proceedExecuting(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
-		HashSet<IFile> filesToCheckForLock = new HashSet<IFile>();
+		HashSet<URI> filesToCheckForLock = new HashSet<URI>();
 
 		if(operation instanceof ICommand) {
 			ICommand command = (ICommand)operation;
@@ -61,8 +63,9 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 				if(affectedFile.exists()) {
 					// the file is in the workspace
 					IPapyrusFile papFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(affectedFile);
-					filesToCheckForLock.addAll(Arrays.asList(OneFileUtils.getAssociatedFiles(papFile)));
-
+					for (IFile f : OneFileUtils.getAssociatedFiles(papFile)) {
+						filesToCheckForLock.add(URI.createPlatformResourceURI(f.getFullPath().toString(), true));
+					}
 				} else {
 					// the file is not in the workspace
 					IPath path = affectedFile.getRawLocation();
@@ -84,10 +87,10 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 		
 		EditingDomain editingDomain = getEditingDomain(operation);
 
-		IFile[] filesToCheckForLockArray = filesToCheckForLock.toArray(new IFile[filesToCheckForLock.size()]);
-		if(ReadOnlyManager.isReadOnly(filesToCheckForLock.toArray(filesToCheckForLockArray), editingDomain)) {
-			boolean ok = ReadOnlyManager.enableWrite(filesToCheckForLockArray, editingDomain);
-			if(!ok) {
+		URI[] filesToCheckForLockArray = filesToCheckForLock.toArray(new URI[filesToCheckForLock.size()]);
+		if(ReadOnlyManager.getInstance().anyReadOnly(filesToCheckForLockArray, editingDomain).get()) {
+			Optional<Boolean> ok = ReadOnlyManager.getInstance().makeWritable(filesToCheckForLockArray, editingDomain);
+			if(!ok.get()) {
 				return Status.CANCEL_STATUS;
 			}
 		}

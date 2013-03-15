@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.core.resource.additional;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
@@ -145,5 +147,17 @@ public class AdditionalResourcesModel implements IModel {
 			return !modelSet.getURIWithoutExtension().equals(uriWithoutExt);
 		}
 		return false;
+	}
+
+	public Set<URI> getModifiedURIs() {
+		Set<URI> res = new HashSet<URI>();
+		for(Resource r : modelSet.getResources()) {
+			if(isAdditionalResource(getModelManager(), r.getURI())) {
+				if (!r.isTrackingModification() || r.isModified()) {
+					res.add(r.getURI());
+				}
+			}
+		}
+		return res;
 	}
 }

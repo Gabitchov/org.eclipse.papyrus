@@ -12,24 +12,25 @@
 package org.eclipse.papyrus.uml.profile.readonly;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.emf.readonly.AbstractReadOnlyHandler;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Profile;
 
+import com.google.common.base.Optional;
 
-public class AppliedProfileReadOnlyHandler implements IReadOnlyHandler {
 
-	public boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
+public class AppliedProfileReadOnlyHandler extends AbstractReadOnlyHandler {
+
+	public Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain) {
 		if(editingDomain != null) {
 			Resource mainUmlResource = null;
 			if(editingDomain.getResourceSet() instanceof ModelSet) {
 				UmlModel umlModel = (UmlModel)((ModelSet)editingDomain.getResourceSet()).getModel(UmlModel.MODEL_ID);
 				if(umlModel == null) {
-					return false;
+					return Optional.absent();
 				}
 				mainUmlResource = umlModel.getResource();
 			}
@@ -37,12 +38,12 @@ public class AppliedProfileReadOnlyHandler implements IReadOnlyHandler {
 			for(URI uri : uris) {
 				Resource resource = editingDomain.getResourceSet().getResource(uri, false);
 				if(isProfileResource(resource) && mainUmlResource != resource) {
-					return true;
+					return Optional.of(Boolean.TRUE);
 				}
 			}
 		}
 
-		return false;
+		return Optional.absent();
 	}
 
 	private boolean isProfileResource(Resource resource) {
@@ -50,17 +51,15 @@ public class AppliedProfileReadOnlyHandler implements IReadOnlyHandler {
 			return false;
 		}
 
-		for(EObject rootElement : resource.getContents()) {
-			if(rootElement instanceof Profile) {
-				return true;
-			}
+		if (!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof Profile) {
+			return true;
 		}
 
 		return false;
 	}
 
-	public boolean enableWrite(URI[] uris, EditingDomain editingDomain) {
-		return false; //Applied profiles should remain read-only
+	public Optional<Boolean> makeWritable(URI[] uris, EditingDomain editingDomain) {
+		return Optional.absent(); //Applied profiles should remain read-only
 	}
 
 }

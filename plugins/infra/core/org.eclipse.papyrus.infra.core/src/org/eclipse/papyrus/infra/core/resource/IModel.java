@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
@@ -140,4 +141,10 @@ public interface IModel {
 	 */
 	public void addModelSnippet(IModelSnippet snippet);
 
+	/**
+	 * return uris of this model resources that had been modified since the last save.
+	 * 
+	 * @return
+	 */
+	public Set<URI> getModifiedURIs();
 }

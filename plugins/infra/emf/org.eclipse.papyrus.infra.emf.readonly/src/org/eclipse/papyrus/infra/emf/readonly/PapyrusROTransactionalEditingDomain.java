@@ -15,17 +15,16 @@
 package org.eclipse.papyrus.infra.emf.readonly;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyProvider;
 
 
 public class PapyrusROTransactionalEditingDomain
-		extends TransactionalEditingDomainImpl
-		implements IReadOnlyProvider {
+		extends TransactionalEditingDomainImpl {
 
 	public PapyrusROTransactionalEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack, ResourceSet resourceSet) {
 		super(adapterFactory, stack, resourceSet);
@@ -33,11 +32,14 @@ public class PapyrusROTransactionalEditingDomain
 
 	@Override
 	public boolean isReadOnly(Resource resource) {
-		return ReadOnlyManager.isReadOnly(resource, this);
+		if (resource != null && resource.getURI() != null) {
+			return ReadOnlyManager.getInstance().anyReadOnly(new URI[] {resource.getURI()}, this).get();
+		}
+		return false;
 	}
 	
 	public boolean isReadOnly(EObject eObject) {
-		return ReadOnlyManager.isReadOnly(eObject, this);
+		return ReadOnlyManager.getInstance().isReadOnly(eObject, this).get();
 	}
 	
 	@Override

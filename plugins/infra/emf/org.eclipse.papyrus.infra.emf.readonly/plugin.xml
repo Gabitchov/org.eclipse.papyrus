@@ -6,17 +6,19 @@
          point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
             class="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
+            id="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
             priority="10">
       </readOnlyHandler>
       <readOnlyHandler
             class="org.eclipse.papyrus.infra.emf.readonly.EMFReadOnlyHandler"
+            id="org.eclipse.papyrus.infra.emf.readonly.EMFReadOnlyHandler"
             priority="5">
       </readOnlyHandler>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.infra.emf.readonly.handlers.EnableWriteHandler"
+            class="org.eclipse.papyrus.infra.emf.readonly.handlers.EnableWriteCommandHandler"
             commandId="org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand">
          <enabledWhen>
             <and>

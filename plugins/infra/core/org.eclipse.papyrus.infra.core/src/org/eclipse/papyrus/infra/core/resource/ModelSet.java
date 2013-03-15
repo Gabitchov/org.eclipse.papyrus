@@ -21,31 +21,34 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
-import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
+
+import com.google.common.base.Optional;
 
 /**
  * This class is used to manage a set of {@link IModel}.
@@ -68,7 +71,7 @@ import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesMod
  * @author cedric dumoulin
  * 
  */
-public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
+public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Id use to register the EditinDomain into the registry
@@ -76,22 +79,22 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 	public static final String PAPYRUS_EDITING_DOMAIN_ID = "org.eclipse.papyrus.SharedEditingDomainID";
 
 	/** The associated IModels. */
-	private Map<String, IModel> models = new HashMap<String, IModel>();
+	protected Map<String, IModel> models = new HashMap<String, IModel>();
 
 	/** The snippets. */
-	private ModelSetSnippetList snippets = new ModelSetSnippetList();
+	protected ModelSetSnippetList snippets = new ModelSetSnippetList();
 
-	private AdditionalResourcesModel additional = new AdditionalResourcesModel();
+	protected AdditionalResourcesModel additional = new AdditionalResourcesModel();
 
 	/**
 	 * The associated EditingDomain.
 	 */
-	private TransactionalEditingDomain transactionalEditingDomain;
+	protected TransactionalEditingDomain transactionalEditingDomain;
 
 	/**
 	 * The URI, without extension, used for action on models.
 	 */
-	private URI uriWithoutExtension;
+	protected URI uriWithoutExtension;
 
 	/**
 	 * 
@@ -100,16 +103,12 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 	 */
 	public ModelSet() {
 		registerModel(additional);
-		this.setURIResourceMap(new HashMap<URI, Resource>());
-	}
 
-	@Override
-	public Map<Object, Object> getLoadOptions() {
-		Map<Object, Object> loadOptions = super.getLoadOptions();
-		loadOptions.put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
-		loadOptions.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-		loadOptions.put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
-		return loadOptions;
+		getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
+		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+		getLoadOptions().put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
+
+		this.eAdapters().add(new ProxyModificationTrackingAdapter());
 	}
 
 	/**
@@ -129,7 +128,7 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 		}
 	}
 
-	private void doRegisterModel(IModel model) {
+	protected void doRegisterModel(IModel model) {
 		models.put(model.getIdentifier(), model);
 		model.init(this);
 	}
@@ -170,9 +169,40 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 
 	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
-		Resource resource = null;
-		resource = super.getResource(uri, loadOnDemand);
-		return setResourceOptions(resource);
+		Resource r = null;
+		try {
+			r = super.getResource(uri, loadOnDemand);
+		} catch (WrappedException e) {
+			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
+				r = getResource(uri, false);
+				if (r == null) {
+					throw e;
+				}
+			}
+		}
+		return setResourceOptions(r);
+	}
+
+	/**
+	 * @deprecated please use {@link #getAssociatedResource(EObject, String, boolean)} instead
+	 * 
+	 * @param modelElement
+	 * @param associatedResourceExtension
+	 * @return
+	 */
+	public Resource getAssociatedResource(EObject modelElement, String associatedResourceExtension) {
+		return getAssociatedResource(modelElement, associatedResourceExtension, true);
+	}
+
+	/**
+	 * @deprecated please use {@link #getAssociatedResource(Resource, String, boolean)} instead
+	 * 
+	 * @param modelResource
+	 * @param associatedResourceExtension
+	 * @return
+	 */
+	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
+		return getAssociatedResource(modelResource, associatedResourceExtension, true);
 	}
 
 	/**
@@ -180,11 +210,12 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 	 * 
 	 * @param modelElement
 	 * @param associatedResourceExtension
+	 * @param loadOnDemand same as for getResource
 	 * @return
 	 */
-	public Resource getAssociatedResource(EObject modelElement, String associatedResourceExtension) {
+	public Resource getAssociatedResource(EObject modelElement, String associatedResourceExtension, boolean loadOnDemand) {
 		if(modelElement != null) {
-			return getAssociatedResource(modelElement.eResource(), associatedResourceExtension);
+			return getAssociatedResource(modelElement.eResource(), associatedResourceExtension, loadOnDemand);
 		}
 		return null;
 	}
@@ -194,29 +225,20 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 	 * 
 	 * @param modelResource
 	 * @param associatedResourceExtension
+	 * @param loadOnDemand same as for getResource
 	 * @return
 	 */
-	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
+	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension, boolean loadOnDemand) {
 		Resource r = null;
 		if(modelResource != null) {
 			URI trimmedModelURI = modelResource.getURI().trimFileExtension();
-			try {
-				r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
-			} catch (WrappedException e) {
-				if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
-					r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), false);
-					if(r == null) {
-						throw e;
-					}
-				}
-			} catch (Exception e) {
-			}
+			r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), loadOnDemand);
 		}
 		return setResourceOptions(r);
 	}
 
 	/**
-	 * This method is called by getResource and createResource before returning
+	 * This method is called by getResource, createResource and demandLoad before returning
 	 * the resource to the caller so we can set options on the resource.
 	 * 
 	 * @param r
@@ -224,13 +246,17 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
-		if(r instanceof ResourceImpl) {
-			ResourceImpl impl = (ResourceImpl)r;
-			if(impl.getIntrinsicIDToEObjectMap() == null) {
-				impl.setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
-			}
+		if (r != null && !r.isTrackingModification()) {
+			r.setTrackingModification(true);
 		}
 		return r;
+	}
+
+	@Override
+	protected void demandLoad(Resource resource) throws IOException {
+		// perf optimization : call setResourceOptions before the loading of the resource to avoid
+		// going through the whole objects tree when setting the tracking modification
+		super.demandLoad(setResourceOptions(resource));
 	}
 
 	/**
@@ -247,17 +273,6 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 			EditingDomainManager.getInstance().configureListeners(PAPYRUS_EDITING_DOMAIN_ID, transactionalEditingDomain);
 		}
 		return transactionalEditingDomain;
-	}
-
-	/**
-	 * Queries whether I am associated with a transactional editing domain.
-	 * 
-	 * @return {@code true} if my editing domain has been {@linkplain #getTransactionalEditingDomain() created}; {@code false}, otherwise
-	 * 
-	 * @see #getTransactionalEditingDomain()
-	 */
-	protected synchronized boolean hasTransactionalEditingDomain() {
-		return transactionalEditingDomain != null;
 	}
 
 	/**
@@ -419,7 +434,7 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 		loadModels(createURI(file));
 	}
 
-	private URI createURI(IFile file) {
+	protected URI createURI(IFile file) {
 		return URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 	}
 
@@ -578,16 +593,37 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 		Collection<IModel> modelList = models.values();
 		monitor.beginTask("Saving resources", modelList.size());
 
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		IReadOnlyHandler roHandler = getReadOnlyHandler();
+
+		if (roHandler != null) {
+			Set<URI> roUris = new HashSet<URI>();
+			for(IModel model : modelList) {
+				Set<URI> uris = model.getModifiedURIs();
+				for(URI u : uris) {
+					Optional<Boolean> res = roHandler.anyReadOnly(new URI[]{u}, editingDomain);
+					if(res.isPresent() && res.get()) {
+						roUris.add(u);
+					}
+				}
+			}
+
+			if (!roUris.isEmpty()) {
+				Optional<Boolean> authorizeSave = roHandler.makeWritable(roUris.toArray(new URI[roUris.size()]), editingDomain);
+
+				if (authorizeSave.isPresent() && !authorizeSave.get()) {
+					monitor.done();
+					throw new IOException("Some modified resources are read-only : the model can't be saved");
+				}
+			}
+		}
+
 		try {
 			// Walk all registered models
 			for(IModel model : modelList) {
-				try {
-					if(!(model instanceof AdditionalResourcesModel)) {
-						model.saveModel();
-					}
+				if(!(model instanceof AdditionalResourcesModel)) {
+					model.saveModel();
 					monitor.worked(1);
-				} catch (Exception ex) {
-					Activator.log.error(ex);
 				}
 			}
 			additional.saveModel();
@@ -672,24 +708,13 @@ public class ModelSet extends ResourceSetImpl implements IReadOnlyProvider {
 		}
 	}
 
-	public boolean isReadOnly(EObject eObject) {
-		boolean result = false;
-		
-		Resource resource = eObject.eResource();
-
-		// a detached object is necessarily editable
-		if (resource != null) {
-			if (hasTransactionalEditingDomain()) {
-				EditingDomain domain = getTransactionalEditingDomain();
-				if (domain instanceof IReadOnlyProvider) {
-					result = ((IReadOnlyProvider) domain).isReadOnly(eObject);
-				} else {
-					result = domain.isReadOnly(resource);
-				}
-			}
+	public IReadOnlyHandler getReadOnlyHandler() {
+		EditingDomain editingDomain = getTransactionalEditingDomain();
+		Object handler = Platform.getAdapterManager().getAdapter(editingDomain, IReadOnlyHandler.class);
+		if (handler instanceof IReadOnlyHandler) {
+			return (IReadOnlyHandler) handler;
 		}
-		
-		return result;
+		return null;
 	}
 
 	/**
