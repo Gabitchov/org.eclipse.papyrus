@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 
 import com.google.common.base.Optional;
 
@@ -25,25 +25,7 @@ import com.google.common.base.Optional;
  * This is the CDOReadOnlyHandler type. Enjoy.
  */
 public class CDOReadOnlyHandler
-		implements IReadOnlyHandler2 {
-
-	public CDOReadOnlyHandler() {
-		super();
-	}
-
-	public boolean handlesURIs(URI[] uris, EditingDomain editingDomain) {
-		boolean result = false;
-
-		if ((uris.length > 0) && CDOUtils.isCDOEditingDomain(editingDomain)) {
-			for (int i = 0; !result && (i < uris.length); i++) {
-				if (CDOUtils.isCDOURI(uris[i])) {
-					result = true;
-				}
-			}
-		}
-
-		return result;
-	}
+		implements IReadOnlyHandler {
 
 	public Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain) {
 		Optional<Boolean> result = Optional.absent();

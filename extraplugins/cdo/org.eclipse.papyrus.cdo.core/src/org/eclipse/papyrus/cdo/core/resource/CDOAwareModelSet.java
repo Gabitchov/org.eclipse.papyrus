@@ -185,12 +185,10 @@ public class CDOAwareModelSet
 
 			public void notifyEvent(IEvent event) {
 				if (event instanceof CDOViewInvalidationEvent) {
-					if (hasTransactionalEditingDomain()) {
-						TransactionalEditingDomain domain = getTransactionalEditingDomain();
-						if (domain instanceof CDOAwareTransactionalEditingDomain) {
-							((CDOAwareTransactionalEditingDomain) domain)
-								.fireResourceSetChanged((CDOViewInvalidationEvent) event);
-						}
+					TransactionalEditingDomain domain = getTransactionalEditingDomain();
+					if (domain instanceof CDOAwareTransactionalEditingDomain) {
+						((CDOAwareTransactionalEditingDomain) domain)
+						.fireResourceSetChanged((CDOViewInvalidationEvent) event);
 					}
 				}
 			}
