@@ -40,7 +40,6 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -52,14 +51,14 @@ import org.junit.Test;
 import org.junit.matchers.JUnitMatchers;
 
 import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 
 /**
  * This is the CDOAwareModelSetTest type. Enjoy.
  */
-public class CDOAwareModelSetTest
-		extends AbstractPapyrusCDOTest {
+public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 
 	private static final String MODEL_FILENAME = "model.uml";
 
@@ -73,8 +72,7 @@ public class CDOAwareModelSetTest
 
 	@Test
 	public void modelSetCreated() {
-		Resource resource = fixture.getResource(
-			getTestResourceURI(MODEL_FILENAME), false);
+		Resource resource = fixture.getResource(getTestResourceURI(MODEL_FILENAME), false);
 		assertThat(resource, notNullValue());
 
 		CDOTransaction transaction = getTransaction(fixture);
@@ -84,8 +82,7 @@ public class CDOAwareModelSetTest
 	}
 
 	@Test
-	public void unloadModelSet()
-			throws Exception {
+	public void unloadModelSet() throws Exception {
 		fixture.unload();
 
 		assertThat(fixture.getResources(), equalTo(Collections.EMPTY_LIST));
@@ -95,8 +92,7 @@ public class CDOAwareModelSetTest
 		CDOTransaction transaction = getTransaction(fixture);
 		assertThat(transaction.isDirty(), is(false));
 
-		Resource resource = fixture.getResource(
-			getTestResourceURI(MODEL_FILENAME), false);
+		Resource resource = fixture.getResource(getTestResourceURI(MODEL_FILENAME), false);
 		assertThat(resource, notNullValue());
 		assertThat(resource.isLoaded(), is(true));
 	}
@@ -105,39 +101,28 @@ public class CDOAwareModelSetTest
 	public void cdoResourceFactory() {
 		CDOTransaction transaction = getTransaction(fixture);
 
-		Resource resource = transaction
-			.getOrCreateResource(getResourcePath(MODEL_FILENAME));
-		assertThat(
-			fixture.getResourceFactoryRegistry().getFactory(resource.getURI()),
-			instanceOf(PapyrusCDOResourceFactory.class));
+		Resource resource = transaction.getOrCreateResource(getResourcePath(MODEL_FILENAME));
+		assertThat(fixture.getResourceFactoryRegistry().getFactory(resource.getURI()), instanceOf(PapyrusCDOResourceFactory.class));
 	}
 
 	@Test
 	public void editingDomain() {
-		assertThat(fixture.getTransactionalEditingDomain(),
-			instanceOf(CDOAwareTransactionalEditingDomain.class));
+		assertThat(fixture.getTransactionalEditingDomain(), instanceOf(CDOAwareTransactionalEditingDomain.class));
 	}
 
 	@Test
 	public void cdoResourceNotReadOnly() {
 		CDOTransaction transaction = getTransaction(fixture);
 
-		Resource resource = transaction
-			.getOrCreateResource(getResourcePath(MODEL_FILENAME));
-		assertThat(
-			ReadOnlyManager.isReadOnly(resource,
-				fixture.getTransactionalEditingDomain()), is(false));
+		Resource resource = transaction.getOrCreateResource(getResourcePath(MODEL_FILENAME));
+		assertThat(fixture.getReadOnlyHandler().anyReadOnly(new URI[]{ resource.getURI() }, fixture.getTransactionalEditingDomain()), is(Optional.of(false)));
 	}
 
 	@Test
-	public void getEObject()
-			throws Exception {
+	public void getEObject() throws Exception {
+		ResourceSet other = getPapyrusRepository().createTransaction(new ResourceSetImpl());
 
-		ResourceSet other = getPapyrusRepository().createTransaction(
-			new ResourceSetImpl());
-
-		Resource resource = getTransaction(other).getOrCreateResource(
-			getResourcePath("other.uml"));
+		Resource resource = getTransaction(other).getOrCreateResource(getResourcePath("other.uml"));
 
 		Model model = UMLFactory.eINSTANCE.createModel();
 		model.setName("test");
@@ -157,20 +142,15 @@ public class CDOAwareModelSetTest
 	}
 
 	@Test
-	public void resolveProxy()
-			throws Exception {
+	public void resolveProxy() throws Exception {
+		ResourceSet other = getPapyrusRepository().createTransaction(new ResourceSetImpl());
 
-		ResourceSet other = getPapyrusRepository().createTransaction(
-			new ResourceSetImpl());
-
-		Resource resource1 = getTransaction(other).getOrCreateResource(
-			getResourcePath(MODEL_FILENAME));
+		Resource resource1 = getTransaction(other).getOrCreateResource(getResourcePath(MODEL_FILENAME));
 		Model model1 = UMLFactory.eINSTANCE.createModel();
 		model1.setName("model1");
 		resource1.getContents().add(model1);
 
-		Resource resource2 = getTransaction(other).getOrCreateResource(
-			getResourcePath("other.uml"));
+		Resource resource2 = getTransaction(other).getOrCreateResource(getResourcePath("other.uml"));
 		Model model2 = UMLFactory.eINSTANCE.createModel();
 		model2.setName("model2");
 		resource2.getContents().add(model2);
@@ -182,10 +162,8 @@ public class CDOAwareModelSetTest
 		getPapyrusRepository().close(other);
 
 		Resource resource = fixture.getResource(uri, true);
-		Model referencer = (Model) EcoreUtil.getObjectByType(
-			resource.getContents(), UMLPackage.Literals.MODEL);
-		assertThat(referencer.getImportedPackages(),
-			JUnitMatchers.<Package> hasItem(CoreMatchers.<Package> anything()));
+		Model referencer = (Model)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.MODEL);
+		assertThat(referencer.getImportedPackages(), JUnitMatchers.<Package> hasItem(CoreMatchers.<Package> anything()));
 		Package imported = referencer.getImportedPackages().get(0);
 		assertThat(imported.eIsProxy(), is(false));
 		assertThat(imported.getName(), equalTo("model1"));
@@ -196,19 +174,15 @@ public class CDOAwareModelSetTest
 	//
 
 	@Before
-	public void createModelSet()
-			throws Exception {
-
+	public void createModelSet() throws Exception {
 		services = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
 
 		try {
 			// start the ModelSet and its dependencies
 			services.startServicesByClassKeys(ModelSet.class);
 		} catch (ServiceMultiException e) {
-			for (ServiceNotFoundException next : Iterables.filter(
-				e.getExceptions(), ServiceNotFoundException.class)) {
-				assertThat(next.getLocalizedMessage(),
-					not(containsString("ModelSet")));
+			for(ServiceNotFoundException next : Iterables.filter(e.getExceptions(), ServiceNotFoundException.class)) {
+				assertThat(next.getLocalizedMessage(), not(containsString("ModelSet")));
 			}
 		}
 
@@ -221,19 +195,16 @@ public class CDOAwareModelSetTest
 	}
 
 	@After
-	public void disposeModelSet()
-			throws Exception {
-
+	public void disposeModelSet() throws Exception {
 		try {
 			services.disposeRegistry();
 		} catch (ServiceMultiException e) {
-			if (Iterables.any(Iterables.transform(e.getExceptions(),
-				new Function<Throwable, Throwable>() {
+			if(Iterables.any(Iterables.transform(e.getExceptions(), new Function<Throwable, Throwable>() {
 
-					public Throwable apply(Throwable input) {
-						return input.getCause();
-					}
-				}), Predicates.instanceOf(LifecycleException.class))) {
+				public Throwable apply(Throwable input) {
+					return input.getCause();
+				}
+			}), Predicates.instanceOf(LifecycleException.class))) {
 
 				// known exception due to minimal CDOObject implementation
 			} else {
