@@ -20,9 +20,11 @@ import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SelectAndExecuteCommand;
 import org.eclipse.papyrus.sysml.diagram.internalblock.utils.BlockDropHelper;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
@@ -118,5 +120,13 @@ public class StructureClassifierDropEditPolicy extends CustomDragDropEditPolicy 
 		}
 
 		return super.getDropObjectsCommand(dropRequest);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected View getReferenceViewForConnectorEnd() {
+		return ViewUtil.getContainerView(super.getReferenceViewForConnectorEnd());
 	}
 }
