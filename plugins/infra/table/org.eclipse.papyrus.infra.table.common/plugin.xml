@@ -80,4 +80,25 @@
          </command>
       </menuContribution>
    </extension>
+    <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance">
+         <adviceBinding
+               class="org.eclipse.papyrus.infra.table.common.advice.DeletePapyrusTableInstanceAdvice"
+               id="org.eclipse.papyrus.infra.table.common.advice.DeletePapyrusTableInstanceAdvice"
+               inheritance="all"
+               typeId="*">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <elementType
+               ref="org.eclipse.papyrus.infra.table.common.advice.DeletePapyrusTableInstanceAdvice">
+         </elementType>
+      </binding>
+   </extension>
 </plugin>
