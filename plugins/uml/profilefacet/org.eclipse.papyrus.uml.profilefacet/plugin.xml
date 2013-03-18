@@ -20,4 +20,25 @@
             uncontrolCommand="org.eclipse.papyrus.uml.profilefacet.controlmode.ProfileFacetSetUncontrolCommand">
       </customUncontrolCommand>
    </extension>
+       <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance">
+         <adviceBinding
+               class="org.eclipse.papyrus.uml.profilefacet.advice.DeleteProfileFacetSetAdvice"
+               id="org.eclipse.papyrus.uml.profilefacet.advice.DeleteProfileFacetSetAdvice"
+               inheritance="all"
+               typeId="*">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <elementType
+               ref="org.eclipse.papyrus.uml.profilefacet.advice.DeleteProfileFacetSetAdvice">
+         </elementType>
+      </binding>
+   </extension>
 </plugin>
