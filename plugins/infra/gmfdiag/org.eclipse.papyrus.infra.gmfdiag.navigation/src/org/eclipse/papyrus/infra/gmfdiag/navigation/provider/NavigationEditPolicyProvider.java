@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy.NavigationEditPolicy;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 
@@ -33,7 +32,6 @@ public class NavigationEditPolicyProvider extends AbstractProvider implements IE
 				NavigationService navigationService = ServiceUtilsForEditPart.getInstance().getService(NavigationService.class, editPart);
 				return navigationService != null;
 			} catch (Exception ex) {
-				Activator.log.error(ex);
 				//Ignore: The NavigationService is not available; do nothing
 			}
 		}
