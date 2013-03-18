@@ -5,7 +5,7 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </queries>
-  <queries xsi:type="query:JavaModelQuery" name="isOpen" description="Tests whether a Page is opened" lowerBound="1" implementationClassName="org.eclipse.papyrus.views.modelexplorer.queries.IsOpen">
+  <queries xsi:type="query:JavaModelQuery" name="isOpen" description="Tests whether a Page is opened" isExternalContextDependent="true" lowerBound="1" implementationClassName="org.eclipse.papyrus.views.modelexplorer.queries.IsOpen">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </queries>

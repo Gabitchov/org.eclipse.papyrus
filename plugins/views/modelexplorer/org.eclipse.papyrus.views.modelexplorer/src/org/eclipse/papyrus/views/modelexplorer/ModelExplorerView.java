@@ -55,6 +55,9 @@ import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -113,7 +116,7 @@ import com.google.common.collect.Lists;
  * source when the current Editor change. To allow to explore different Model, use a {@link ModelExplorerPageBookView}.
  * 
  */
-public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement, IEditingDomainProvider {
+public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement, IEditingDomainProvider, IPageLifeCycleEventsListener {
 
 	/**
 	 * The context of the LabelProviderService used by this view
@@ -380,12 +383,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	}
 
 	private void installEMFFacetTreePainter(Tree tree) {
-		// Install the EMFFacet Custom Tree Painter
+		//Install the EMFFacet Custom Tree Painter
 		org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 
-		// The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
-		// Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
-		// Removal also fixes bug 400012: no scrollbar although tree is larger than visible area  
+		//The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
+		//Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
 		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
 		for(Listener listener : tree.getListeners(SWT.MeasureItem)) {
 			if(listener.getClass().getName().contains("org.eclipse.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
@@ -485,7 +487,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		});
 
 		installEMFFacetTreePainter(tree);
-		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
+		try {
+			ISashWindowsContainer sashWindowsContainer = serviceRegistry.getService(ISashWindowsContainer.class);
+			sashWindowsContainer.addPageLifeCycleListener(this);
+		} catch (ServiceException ex) {
+			//Ignore
+		}
 	}
 
 	TreeItem currentItem;
@@ -748,6 +755,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			return;
 		}
 
+		try {
+			ISashWindowsContainer sashWindowsContainer = serviceRegistry.getService(ISashWindowsContainer.class);
+			if(sashWindowsContainer != null) {
+				sashWindowsContainer.removePageLifeCycleListener(this);
+			}
+		} catch (ServiceException ex) {
+			//Ignore
+		}
+
 		deactivate();
 
 		saveAndDirtyService = null;
@@ -979,6 +995,45 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		} else {
 			viewer.setSelection(selection);
 		}
+	}
+
+	public void pageOpened(IPage page) {
+		refreshTree();
+	}
+
+	public void pageClosed(IPage page) {
+		refreshTree();
+	}
+
+	private void refreshTree() {
+		Display.getDefault().asyncExec(new Runnable() {
+
+			public void run() {
+				getCommonViewer().refresh(true);
+				//Force redraw to refresh facet overlay
+				getCommonViewer().getTree().redraw();
+			}
+		});
+	}
+
+	public void pageChanged(IPage newPage) {
+		//Nothing
+	}
+
+	public void pageActivated(IPage page) {
+		//Nothing
+	}
+
+	public void pageDeactivated(IPage page) {
+		//Nothing
+	}
+
+	public void pageAboutToBeOpened(IPage page) {
+		//Nothing
+	}
+
+	public void pageAboutToBeClosed(IPage page) {
+		//Nothing
 	}
 
 }
