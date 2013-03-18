@@ -319,5 +319,26 @@
          id="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
    </context>
 </extension>
+  <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/papyrus/nattable/model">
+         <adviceBinding
+               class="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableContextAdvice"
+               id="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice"
+               inheritance="all"
+               typeId="*">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <elementType
+               ref="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice">
+         </elementType>
+      </binding>
+   </extension>
 </plugin>
 
