@@ -664,16 +664,14 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 		updateControl(create, this.factory != null && this.factory.canCreateObject());
 
 		/* Disable the bouton 'add' if the upperBound is reached */
-		boolean canCreate = factory != null && factory.canCreateObject();
-		if(canCreate) {
-			if(this.upperBound != MANY) {
-				if(allElements.size() >= this.upperBound) {
-					canCreate = false;
-				}
+		boolean canAdd = true;
+		if(this.upperBound != MANY) {
+			if(allElements.size() >= this.upperBound) {
+				canAdd = false;
 			}
 		}
 
-		updateControl(add, canCreate);
+		updateControl(add, canAdd);
 	}
 
 	private void updateControl(Control control, boolean enabled) {
