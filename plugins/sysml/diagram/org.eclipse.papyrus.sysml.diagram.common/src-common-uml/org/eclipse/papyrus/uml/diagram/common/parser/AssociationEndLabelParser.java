@@ -39,11 +39,11 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		if(flags == 0) {
 			return MaskedLabel;
 		}
-		
+
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -71,7 +71,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 					visibility = "+";
 					break;
 				}
-				result = String.format(VISIBILITY_FORMAT, visibility);
+				result = String.format(VISIBILITY_FORMAT, visibility, result);
 			}
 
 			// manage derived modifier
@@ -158,7 +158,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

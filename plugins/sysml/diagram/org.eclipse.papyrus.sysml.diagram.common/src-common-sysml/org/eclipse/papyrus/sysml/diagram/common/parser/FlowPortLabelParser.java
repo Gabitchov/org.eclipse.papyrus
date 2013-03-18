@@ -52,11 +52,11 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		if(flags == 0) {
 			return MaskedLabel;
 		}
-		
+
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -67,6 +67,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			FlowPort flowPort = UMLUtil.getStereotypeApplication(property, FlowPort.class);
 			if(flowPort != null) {
 
+				int directionFlag = flags & ILabelPreferenceConstants.DISP_DIRECTION;
 				// manage direction only if the FlowPort is type and type is not a FlowSpecification
 				if((flags & ILabelPreferenceConstants.DISP_DIRECTION) == ILabelPreferenceConstants.DISP_DIRECTION) {
 					String direction;
@@ -84,9 +85,9 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 						direction = "inout";
 						break;
 					}
-					
+
 					// manage direction only if the FlowPort is not a FlowSpecification
-					if ((property.getType() == null) || ((property.getType() != null) && (UMLUtil.getStereotypeApplication(property.getType(), FlowSpecification.class) == null))) {
+					if((property.getType() == null) || ((property.getType() != null) && (UMLUtil.getStereotypeApplication(property.getType(), FlowSpecification.class) == null))) {
 						result = String.format(DIRECTION_FORMAT, direction, result);
 					}
 				}
@@ -112,7 +113,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 					visibility = "+";
 					break;
 				}
-				result = String.format(VISIBILITY_FORMAT, visibility);
+				result = String.format(VISIBILITY_FORMAT, visibility, result);
 			}
 
 			// manage derived modifier
@@ -231,7 +232,8 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 		}
 		return semanticElementsBeingParsed;
 	}
-	
+
+	@Override
 	public Map<Integer, String> getMasks() {
 		Map<Integer, String> masks = new HashMap<Integer, String>(10);
 		masks.put(ILabelPreferenceConstants.DISP_DIRECTION, "Direction");

@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.VisibilityKind;
 public class PropertyLabelParser extends NamedElementLabelParser {
 
 	/** The String format for displaying a {@link Property} with visibility */
-	protected static final String VISIBILITY_FORMAT = "%s ";
+	protected static final String VISIBILITY_FORMAT = "%s %s";
 
 	/** The String format for displaying a {@link Property} label with derived modifier */
 	protected static final String DERIVED_FORMAT = "%s/";
@@ -65,11 +65,11 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		if(flags == 0) {
 			return MaskedLabel;
 		}
-		
+
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -97,7 +97,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 					visibility = "+";
 					break;
 				}
-				result = String.format(VISIBILITY_FORMAT, visibility);
+				result = String.format(VISIBILITY_FORMAT, visibility, result);
 			}
 
 			// manage derived modifier
