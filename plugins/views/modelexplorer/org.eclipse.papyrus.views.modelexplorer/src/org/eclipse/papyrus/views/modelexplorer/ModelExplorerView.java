@@ -383,11 +383,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	}
 
 	private void installEMFFacetTreePainter(Tree tree) {
-		//Install the EMFFacet Custom Tree Painter
+		// Install the EMFFacet Custom Tree Painter
 		org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 
-		//The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
-		//Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
+		// The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
+		// Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
+		// Removal also fixes bug 400012: no scrollbar although tree is larger than visible area  
 		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
 		for(Listener listener : tree.getListeners(SWT.MeasureItem)) {
 			if(listener.getClass().getName().contains("org.eclipse.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
