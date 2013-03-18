@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<nattableconfiguration:TableEditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration" xmlns:nattablecontentprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider">
-  <defaultVerticalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider">
+<nattableconfiguration:TableEditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nattableaxisconfiguration="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration" xmlns:nattableaxisprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider" xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration" xmlns:nattablelabelprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider" type="PapyruGenericNattable">
+  <verticalAxisProvider xsi:type="nattableaxisprovider:DefaultAxisProvider">
     <javaContentProviderIds>org.eclipse.papyrus.uml.nattable.common.uml.feature.provider</javaContentProviderIds>
     <javaContentProviderIds>org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider</javaContentProviderIds>
-  </defaultVerticalContentProvider>
-  <defaultHorizontalContentProvider xsi:type="nattablecontentprovider:DefaultContentProvider">
+    <axisConfiguration xsi:type="nattableaxisconfiguration:DefaultAxisConfiguration" indexStyle="ALPHABETIC">
+      <labelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" labelProviderContext="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider"/>
+    </axisConfiguration>
+  </verticalAxisProvider>
+  <horizontalAxisProvider xsi:type="nattableaxisprovider:DefaultAxisProvider">
     <javaContentProviderIds>org.eclipse.papyrus.uml.nattable.common.uml.element.provider</javaContentProviderIds>
-  </defaultHorizontalContentProvider>
+    <axisConfiguration xsi:type="nattableaxisconfiguration:DefaultAxisConfiguration">
+      <labelConfiguration xsi:type="nattablelabelprovider:EObjectLabelProviderConfiguration" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider"/>
+    </axisConfiguration>
+  </horizontalAxisProvider>
 </nattableconfiguration:TableEditorConfiguration>

@@ -125,7 +125,6 @@ public class EObjectAxisImpl extends EModelElementImpl implements EObjectAxis {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

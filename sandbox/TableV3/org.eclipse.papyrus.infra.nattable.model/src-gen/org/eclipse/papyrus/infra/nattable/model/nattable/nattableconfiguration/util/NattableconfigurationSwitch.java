@@ -84,14 +84,6 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: {
-				LocalTableEditorConfiguration localTableEditorConfiguration = (LocalTableEditorConfiguration)theEObject;
-				T result = caseLocalTableEditorConfiguration(localTableEditorConfiguration);
-				if (result == null) result = caseTableEditorConfiguration(localTableEditorConfiguration);
-				if (result == null) result = caseEModelElement(localTableEditorConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -108,21 +100,6 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTableEditorConfiguration(TableEditorConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Local Table Editor Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Local Table Editor Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLocalTableEditorConfiguration(LocalTableEditorConfiguration object) {
 		return null;
 	}
 

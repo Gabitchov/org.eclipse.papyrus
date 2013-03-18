@@ -38,7 +38,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 */
 	public static NattableconfigurationFactory init() {
 		try {
-			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"); //$NON-NLS-1$ 
+			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(NattableconfigurationPackage.eNS_URI);
 			if (theNattableconfigurationFactory != null) {
 				return theNattableconfigurationFactory;
 			}
@@ -68,7 +68,6 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION: return createTableEditorConfiguration();
-			case NattableconfigurationPackage.LOCAL_TABLE_EDITOR_CONFIGURATION: return createLocalTableEditorConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -112,16 +111,6 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	public TableEditorConfiguration createTableEditorConfiguration() {
 		TableEditorConfigurationImpl tableEditorConfiguration = new TableEditorConfigurationImpl();
 		return tableEditorConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LocalTableEditorConfiguration createLocalTableEditorConfiguration() {
-		LocalTableEditorConfigurationImpl localTableEditorConfiguration = new LocalTableEditorConfigurationImpl();
-		return localTableEditorConfiguration;
 	}
 
 	/**

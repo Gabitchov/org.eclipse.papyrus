@@ -16,6 +16,9 @@
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
+         </labelProviderContext>
       </labelProvider>
       <labelProvider
             priority="10"

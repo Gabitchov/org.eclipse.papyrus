@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.layerstack;
 
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataCommandHandler;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.action.KeyEditAction;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
@@ -67,6 +68,10 @@ public class BodyLayerStack extends AbstractLayerTransform {
 
 
 		this.selectionLayer = new SelectionLayer(this.columnHideShowLayer);
+		//		CopyDataCommandHandler handler = new CopyDataCommandHandler(this.selectionLayer);
+		////		handler.setCopyFormattedText(true);//to do the paste using the label provider
+		//		this.selectionLayer.registerCommandHandler(handler);
+		
 		this.viewportLayer = new ViewportLayer(this.selectionLayer);
 		setUnderlyingLayer(this.viewportLayer);
 		setRegionName(GridRegion.BODY);

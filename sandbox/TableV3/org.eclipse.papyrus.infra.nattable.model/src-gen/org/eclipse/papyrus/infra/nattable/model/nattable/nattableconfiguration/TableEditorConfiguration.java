@@ -12,11 +12,9 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 
-
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EReference;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,11 +24,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getVerticalAxisProvider <em>Vertical Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration <em>Editor Declaration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,108 +37,56 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  */
 public interface TableEditorConfiguration extends EModelElement {
 	/**
-	 * Returns the value of the '<em><b>Pasted Element Type Id</b></em>' attribute.
+	 * Returns the value of the '<em><b>Vertical Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pasted Element Type Id</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Vertical Axis Provider</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pasted Element Type Id</em>' attribute.
-	 * @see #setPastedElementTypeId(String)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_PastedElementTypeId()
-	 * @model
+	 * @return the value of the '<em>Vertical Axis Provider</em>' containment reference.
+	 * @see #setVerticalAxisProvider(AbstractAxisProvider)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_VerticalAxisProvider()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	String getPastedElementTypeId();
+	AbstractAxisProvider getVerticalAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId <em>Pasted Element Type Id</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getVerticalAxisProvider <em>Vertical Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pasted Element Type Id</em>' attribute.
-	 * @see #getPastedElementTypeId()
+	 * @param value the new value of the '<em>Vertical Axis Provider</em>' containment reference.
+	 * @see #getVerticalAxisProvider()
 	 * @generated
 	 */
-	void setPastedElementTypeId(String value);
+	void setVerticalAxisProvider(AbstractAxisProvider value);
 
 	/**
-	 * Returns the value of the '<em><b>Pasted Element Containment Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Horizontal Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pasted Element Containment Feature</em>' reference isn't clear,
+	 * If the meaning of the '<em>Horizontal Axis Provider</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pasted Element Containment Feature</em>' reference.
-	 * @see #setPastedElementContainmentFeature(EReference)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_PastedElementContainmentFeature()
-	 * @model
+	 * @return the value of the '<em>Horizontal Axis Provider</em>' containment reference.
+	 * @see #setHorizontalAxisProvider(AbstractAxisProvider)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_HorizontalAxisProvider()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EReference getPastedElementContainmentFeature();
+	AbstractAxisProvider getHorizontalAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pasted Element Containment Feature</em>' reference.
-	 * @see #getPastedElementContainmentFeature()
+	 * @param value the new value of the '<em>Horizontal Axis Provider</em>' containment reference.
+	 * @see #getHorizontalAxisProvider()
 	 * @generated
 	 */
-	void setPastedElementContainmentFeature(EReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Default Vertical Content Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default Vertical Content Provider</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Vertical Content Provider</em>' containment reference.
-	 * @see #setDefaultVerticalContentProvider(IAxisContentsProvider)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_DefaultVerticalContentProvider()
-	 * @model containment="true"
-	 * @generated
-	 */
-	IAxisContentsProvider getDefaultVerticalContentProvider();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Vertical Content Provider</em>' containment reference.
-	 * @see #getDefaultVerticalContentProvider()
-	 * @generated
-	 */
-	void setDefaultVerticalContentProvider(IAxisContentsProvider value);
-
-	/**
-	 * Returns the value of the '<em><b>Default Horizontal Content Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default Horizontal Content Provider</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Horizontal Content Provider</em>' containment reference.
-	 * @see #setDefaultHorizontalContentProvider(IAxisContentsProvider)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_DefaultHorizontalContentProvider()
-	 * @model containment="true"
-	 * @generated
-	 */
-	IAxisContentsProvider getDefaultHorizontalContentProvider();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Horizontal Content Provider</em>' containment reference.
-	 * @see #getDefaultHorizontalContentProvider()
-	 * @generated
-	 */
-	void setDefaultHorizontalContentProvider(IAxisContentsProvider value);
+	void setHorizontalAxisProvider(AbstractAxisProvider value);
 
 	/**
 	 * Returns the value of the '<em><b>Editor Declaration</b></em>' attribute.
@@ -172,5 +117,31 @@ public interface TableEditorConfiguration extends EModelElement {
 	 * @generated
 	 */
 	void setEditorDeclaration(CellEditorDeclaration value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableEditorConfiguration_Type()
+	 * @model id="true" required="true"
+	 * @generated
+	 */
+	String getType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(String value);
 
 } // TableEditorConfiguration

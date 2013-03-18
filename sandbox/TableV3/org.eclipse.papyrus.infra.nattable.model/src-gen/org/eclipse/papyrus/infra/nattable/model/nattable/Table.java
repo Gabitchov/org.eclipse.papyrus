@@ -15,9 +15,9 @@ package org.eclipse.papyrus.infra.nattable.model.nattable;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,8 +31,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration <em>Editor Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalContentProvider <em>Vertical Content Provider</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalContentProvider <em>Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalAxisProvider <em>Vertical Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}</li>
  * </ul>
  * </p>
@@ -121,82 +121,82 @@ public interface Table extends EModelElement {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Editor Configuration</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Editor Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Editor Configuration</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Editor Configuration</em>' containment reference.
-	 * @see #setEditorConfiguration(LocalTableEditorConfiguration)
+	 * @return the value of the '<em>Editor Configuration</em>' reference.
+	 * @see #setEditorConfiguration(TableEditorConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_EditorConfiguration()
-	 * @model containment="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	LocalTableEditorConfiguration getEditorConfiguration();
+	TableEditorConfiguration getEditorConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration <em>Editor Configuration</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration <em>Editor Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Editor Configuration</em>' containment reference.
+	 * @param value the new value of the '<em>Editor Configuration</em>' reference.
 	 * @see #getEditorConfiguration()
 	 * @generated
 	 */
-	void setEditorConfiguration(LocalTableEditorConfiguration value);
+	void setEditorConfiguration(TableEditorConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Vertical Content Provider</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Vertical Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Vertical Content Provider</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Vertical Axis Provider</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vertical Content Provider</em>' containment reference.
-	 * @see #setVerticalContentProvider(IAxisContentsProvider)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_VerticalContentProvider()
+	 * @return the value of the '<em>Vertical Axis Provider</em>' containment reference.
+	 * @see #setVerticalAxisProvider(AbstractAxisProvider)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_VerticalAxisProvider()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IAxisContentsProvider getVerticalContentProvider();
+	AbstractAxisProvider getVerticalAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalContentProvider <em>Vertical Content Provider</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalAxisProvider <em>Vertical Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vertical Content Provider</em>' containment reference.
-	 * @see #getVerticalContentProvider()
+	 * @param value the new value of the '<em>Vertical Axis Provider</em>' containment reference.
+	 * @see #getVerticalAxisProvider()
 	 * @generated
 	 */
-	void setVerticalContentProvider(IAxisContentsProvider value);
+	void setVerticalAxisProvider(AbstractAxisProvider value);
 
 	/**
-	 * Returns the value of the '<em><b>Horizontal Content Provider</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Horizontal Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Horizontal Content Provider</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Horizontal Axis Provider</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Horizontal Content Provider</em>' containment reference.
-	 * @see #setHorizontalContentProvider(IAxisContentsProvider)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_HorizontalContentProvider()
+	 * @return the value of the '<em>Horizontal Axis Provider</em>' containment reference.
+	 * @see #setHorizontalAxisProvider(AbstractAxisProvider)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_HorizontalAxisProvider()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	IAxisContentsProvider getHorizontalContentProvider();
+	AbstractAxisProvider getHorizontalAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalContentProvider <em>Horizontal Content Provider</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Horizontal Content Provider</em>' containment reference.
-	 * @see #getHorizontalContentProvider()
+	 * @param value the new value of the '<em>Horizontal Axis Provider</em>' containment reference.
+	 * @see #getHorizontalAxisProvider()
 	 * @generated
 	 */
-	void setHorizontalContentProvider(IAxisContentsProvider value);
+	void setHorizontalAxisProvider(AbstractAxisProvider value);
 
 	/**
 	 * Returns the value of the '<em><b>Invert Axis</b></em>' attribute.

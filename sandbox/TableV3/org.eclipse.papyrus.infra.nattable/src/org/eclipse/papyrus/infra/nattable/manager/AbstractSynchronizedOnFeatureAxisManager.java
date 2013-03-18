@@ -18,17 +18,17 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.EMFFeatureContentProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 
 
 public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractAxisManager {
 
 	@Override
-	public void init(final INattableModelManager manager, final String managerId, final Table table, final IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges) {
+	public void init(final INattableModelManager manager, final String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
 		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
-		assert provider instanceof EMFFeatureContentProvider;
-		final EReference ref = ((EMFFeatureContentProvider)provider).getFeature();
+		assert provider instanceof EMFFeatureValueAxisProvider;
+		final EReference ref = ((EMFFeatureValueAxisProvider)provider).getListenFeature();
 		assert ref.isMany();
 		final EObject context = getTable().getContext();
 		assert context.eClass().getEAllReferences().contains(ref);

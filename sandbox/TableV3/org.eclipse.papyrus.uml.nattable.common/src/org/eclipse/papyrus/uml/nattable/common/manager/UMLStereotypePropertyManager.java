@@ -28,8 +28,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -44,7 +44,7 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 	//	private Adapter listener;
 
 	@Override
-	public void init(INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges) {
+	public void init(INattableModelManager manager, String managerId, Table table, AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
 		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
 		//		if(hasConfiguration()) {
 		//			updateAxisContents();
@@ -101,7 +101,7 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 				toAdd.add(newAxis);
 			}
 			//FIXME : we must use a factory and use the service edit
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), toAdd);
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), toAdd);
 
 		}
 		return null;

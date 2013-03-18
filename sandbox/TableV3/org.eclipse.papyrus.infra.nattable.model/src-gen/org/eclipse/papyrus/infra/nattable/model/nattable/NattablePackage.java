@@ -115,7 +115,7 @@ public interface NattablePackage extends EPackage {
 	int TABLE__DESCRIPTION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Editor Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Editor Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -124,22 +124,22 @@ public interface NattablePackage extends EPackage {
 	int TABLE__EDITOR_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Vertical Content Provider</b></em>' containment reference.
+	 * The feature id for the '<em><b>Vertical Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__VERTICAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TABLE__VERTICAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Horizontal Content Provider</b></em>' containment reference.
+	 * The feature id for the '<em><b>Horizontal Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__HORIZONTAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int TABLE__HORIZONTAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Invert Axis</b></em>' attribute.
@@ -296,7 +296,6 @@ public interface NattablePackage extends EPackage {
 	 */
 	int EOBJECT_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.IdAxisImpl <em>Id Axis</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -406,10 +405,10 @@ public interface NattablePackage extends EPackage {
 	EAttribute getTable_Description();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration <em>Editor Configuration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration <em>Editor Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Editor Configuration</em>'.
+	 * @return the meta object for the reference '<em>Editor Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration()
 	 * @see #getTable()
 	 * @generated
@@ -417,26 +416,26 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_EditorConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalContentProvider <em>Vertical Content Provider</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalAxisProvider <em>Vertical Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Vertical Content Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalContentProvider()
+	 * @return the meta object for the containment reference '<em>Vertical Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalAxisProvider()
 	 * @see #getTable()
 	 * @generated
 	 */
-	EReference getTable_VerticalContentProvider();
+	EReference getTable_VerticalAxisProvider();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalContentProvider <em>Horizontal Content Provider</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Horizontal Content Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalContentProvider()
+	 * @return the meta object for the containment reference '<em>Horizontal Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalAxisProvider()
 	 * @see #getTable()
 	 * @generated
 	 */
-	EReference getTable_HorizontalContentProvider();
+	EReference getTable_HorizontalAxisProvider();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}'.
@@ -569,7 +568,7 @@ public interface NattablePackage extends EPackage {
 		EAttribute TABLE__DESCRIPTION = eINSTANCE.getTable_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Editor Configuration</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Editor Configuration</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -577,20 +576,20 @@ public interface NattablePackage extends EPackage {
 		EReference TABLE__EDITOR_CONFIGURATION = eINSTANCE.getTable_EditorConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Vertical Content Provider</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Vertical Axis Provider</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TABLE__VERTICAL_CONTENT_PROVIDER = eINSTANCE.getTable_VerticalContentProvider();
+		EReference TABLE__VERTICAL_AXIS_PROVIDER = eINSTANCE.getTable_VerticalAxisProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Horizontal Content Provider</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Horizontal Axis Provider</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TABLE__HORIZONTAL_CONTENT_PROVIDER = eINSTANCE.getTable_HorizontalContentProvider();
+		EReference TABLE__HORIZONTAL_AXIS_PROVIDER = eINSTANCE.getTable_HorizontalAxisProvider();
 
 		/**
 		 * The meta object literal for the '<em><b>Invert Axis</b></em>' attribute feature.

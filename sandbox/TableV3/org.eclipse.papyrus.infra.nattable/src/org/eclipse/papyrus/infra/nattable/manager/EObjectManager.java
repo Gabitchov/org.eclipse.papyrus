@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
 /**
  * 
@@ -57,7 +57,7 @@ public class EObjectManager extends AbstractAxisManager {
 			if(isAllowedContents(object)) {
 				final EObjectAxis horizontalAxis = NattableFactory.eINSTANCE.createEObjectAxis();
 				horizontalAxis.setElement((EObject)object);
-				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), horizontalAxis);
+				final Command tmp = AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), horizontalAxis);
 				cmd.append(tmp);
 			}
 		}

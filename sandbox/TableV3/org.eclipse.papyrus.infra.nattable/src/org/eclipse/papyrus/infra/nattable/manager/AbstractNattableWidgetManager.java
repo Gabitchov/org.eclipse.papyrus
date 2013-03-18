@@ -21,12 +21,15 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.EditableRule;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IConfiguration;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
+import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
@@ -56,10 +59,12 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.configuration.EditConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.InvertAxisOnCornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.CornerDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.RowHeaderDataProvider;
+import org.eclipse.papyrus.infra.nattable.formatter.ExportFormatter;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
@@ -141,7 +146,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
 		final BodyDataProvider bodyDataProvider = new BodyDataProvider(this);
-		final BodyLayerStack bodyLayerStack = new BodyLayerStack(bodyDataProvider, this);;
+		BodyLayerStack bodyLayerStack = new BodyLayerStack(bodyDataProvider, this);;
 
 		final IDataProvider columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
 		columnHeaderLayerStack = new ColumnHeaderLayerStack(columnHeaderDataProvider, bodyLayerStack, bodyDataProvider);
@@ -218,14 +223,21 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			site.setSelectionProvider(this.selectionProvider);
 		}
 
-		return null;
+		return this.natTable;
 	}
 
 
 	protected final IConfigRegistry createAndInitializeNewConfigRegistry() {
 		final IConfigRegistry newRegistry = new ConfigRegistry();
-		newRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		newRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		if(!natTable.isDisposed()) {
+			newRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			newRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+			//commented because seems generate several bugs with edition
+			//newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL,  GridRegion.BODY);
+
+
+			newRegistry.registerConfigAttribute(CellConfigAttributes.EXPORT_FORMATTER, new ExportFormatter());
+		}
 		return newRegistry;
 	}
 
@@ -316,7 +328,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if(start >= 0 && start < end) {
 							end--;
 						}
-						final List<IAxis> allAxis = table.getVerticalContentProvider().getAxis();
+						final List<IAxis> allAxis = table.getVerticalAxisProvider().getAxis();
 						final IAxis axisToMove = allAxis.get(start);
 						if(axisToMove != null) {
 							reorderColumnsElements(axisToMove, end);
@@ -376,6 +388,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return new LocationValue(absolutePoint, widgetPoint, kind, cell, columnIndex, rowIndex, columnObject, rowObject);
 	}
 
+
+	public GridLayer getGridLayer() {
+		return gridLayer;
+	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#print()
@@ -403,5 +420,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public void exportToXLS() {
 		natTable.doCommand(new ExportCommand(natTable.getConfigRegistry(), natTable.getShell()));
+	}
+
+	public void copyToClipboard() {
+		natTable.doCommand(new CopyDataToClipboardCommand("\t", "\n", natTable.getConfigRegistry()));
 	}
 }

@@ -12,24 +12,16 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,11 +30,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getVerticalAxisProvider <em>Vertical Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getEditorDeclaration <em>Editor Declaration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,54 +41,24 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  */
 public class TableEditorConfigurationImpl extends EModelElementImpl implements TableEditorConfiguration {
 	/**
-	 * The default value of the '{@link #getPastedElementTypeId() <em>Pasted Element Type Id</em>}' attribute.
+	 * The cached value of the '{@link #getVerticalAxisProvider() <em>Vertical Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPastedElementTypeId()
+	 * @see #getVerticalAxisProvider()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PASTED_ELEMENT_TYPE_ID_EDEFAULT = null;
+	protected AbstractAxisProvider verticalAxisProvider;
 
 	/**
-	 * The cached value of the '{@link #getPastedElementTypeId() <em>Pasted Element Type Id</em>}' attribute.
+	 * The cached value of the '{@link #getHorizontalAxisProvider() <em>Horizontal Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPastedElementTypeId()
+	 * @see #getHorizontalAxisProvider()
 	 * @generated
 	 * @ordered
 	 */
-	protected String pastedElementTypeId = PASTED_ELEMENT_TYPE_ID_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getPastedElementContainmentFeature() <em>Pasted Element Containment Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPastedElementContainmentFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EReference pastedElementContainmentFeature;
-
-	/**
-	 * The cached value of the '{@link #getDefaultVerticalContentProvider() <em>Default Vertical Content Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultVerticalContentProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected IAxisContentsProvider defaultVerticalContentProvider;
-
-	/**
-	 * The cached value of the '{@link #getDefaultHorizontalContentProvider() <em>Default Horizontal Content Provider</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultHorizontalContentProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected IAxisContentsProvider defaultHorizontalContentProvider;
+	protected AbstractAxisProvider horizontalAxisProvider;
 
 	/**
 	 * The default value of the '{@link #getEditorDeclaration() <em>Editor Declaration</em>}' attribute.
@@ -118,6 +79,26 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * @ordered
 	 */
 	protected CellEditorDeclaration editorDeclaration = EDITOR_DECLARATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,8 +124,8 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPastedElementTypeId() {
-		return pastedElementTypeId;
+	public AbstractAxisProvider getVerticalAxisProvider() {
+		return verticalAxisProvider;
 	}
 
 	/**
@@ -152,70 +133,11 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPastedElementTypeId(String newPastedElementTypeId) {
-		String oldPastedElementTypeId = pastedElementTypeId;
-		pastedElementTypeId = newPastedElementTypeId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID, oldPastedElementTypeId, pastedElementTypeId));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPastedElementContainmentFeature() {
-		if (pastedElementContainmentFeature != null && pastedElementContainmentFeature.eIsProxy()) {
-			InternalEObject oldPastedElementContainmentFeature = (InternalEObject)pastedElementContainmentFeature;
-			pastedElementContainmentFeature = (EReference)eResolveProxy(oldPastedElementContainmentFeature);
-			if (pastedElementContainmentFeature != oldPastedElementContainmentFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
-			}
-		}
-		return pastedElementContainmentFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference basicGetPastedElementContainmentFeature() {
-		return pastedElementContainmentFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPastedElementContainmentFeature(EReference newPastedElementContainmentFeature) {
-		EReference oldPastedElementContainmentFeature = pastedElementContainmentFeature;
-		pastedElementContainmentFeature = newPastedElementContainmentFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IAxisContentsProvider getDefaultVerticalContentProvider() {
-		return defaultVerticalContentProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDefaultVerticalContentProvider(IAxisContentsProvider newDefaultVerticalContentProvider, NotificationChain msgs) {
-		IAxisContentsProvider oldDefaultVerticalContentProvider = defaultVerticalContentProvider;
-		defaultVerticalContentProvider = newDefaultVerticalContentProvider;
+	public NotificationChain basicSetVerticalAxisProvider(AbstractAxisProvider newVerticalAxisProvider, NotificationChain msgs) {
+		AbstractAxisProvider oldVerticalAxisProvider = verticalAxisProvider;
+		verticalAxisProvider = newVerticalAxisProvider;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER, oldDefaultVerticalContentProvider, newDefaultVerticalContentProvider);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER, oldVerticalAxisProvider, newVerticalAxisProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -226,18 +148,18 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultVerticalContentProvider(IAxisContentsProvider newDefaultVerticalContentProvider) {
-		if (newDefaultVerticalContentProvider != defaultVerticalContentProvider) {
+	public void setVerticalAxisProvider(AbstractAxisProvider newVerticalAxisProvider) {
+		if (newVerticalAxisProvider != verticalAxisProvider) {
 			NotificationChain msgs = null;
-			if (defaultVerticalContentProvider != null)
-				msgs = ((InternalEObject)defaultVerticalContentProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER, null, msgs);
-			if (newDefaultVerticalContentProvider != null)
-				msgs = ((InternalEObject)newDefaultVerticalContentProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER, null, msgs);
-			msgs = basicSetDefaultVerticalContentProvider(newDefaultVerticalContentProvider, msgs);
+			if (verticalAxisProvider != null)
+				msgs = ((InternalEObject)verticalAxisProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER, null, msgs);
+			if (newVerticalAxisProvider != null)
+				msgs = ((InternalEObject)newVerticalAxisProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER, null, msgs);
+			msgs = basicSetVerticalAxisProvider(newVerticalAxisProvider, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER, newDefaultVerticalContentProvider, newDefaultVerticalContentProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER, newVerticalAxisProvider, newVerticalAxisProvider));
 	}
 
 	/**
@@ -245,8 +167,8 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IAxisContentsProvider getDefaultHorizontalContentProvider() {
-		return defaultHorizontalContentProvider;
+	public AbstractAxisProvider getHorizontalAxisProvider() {
+		return horizontalAxisProvider;
 	}
 
 	/**
@@ -254,11 +176,11 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDefaultHorizontalContentProvider(IAxisContentsProvider newDefaultHorizontalContentProvider, NotificationChain msgs) {
-		IAxisContentsProvider oldDefaultHorizontalContentProvider = defaultHorizontalContentProvider;
-		defaultHorizontalContentProvider = newDefaultHorizontalContentProvider;
+	public NotificationChain basicSetHorizontalAxisProvider(AbstractAxisProvider newHorizontalAxisProvider, NotificationChain msgs) {
+		AbstractAxisProvider oldHorizontalAxisProvider = horizontalAxisProvider;
+		horizontalAxisProvider = newHorizontalAxisProvider;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER, oldDefaultHorizontalContentProvider, newDefaultHorizontalContentProvider);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER, oldHorizontalAxisProvider, newHorizontalAxisProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -269,18 +191,18 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultHorizontalContentProvider(IAxisContentsProvider newDefaultHorizontalContentProvider) {
-		if (newDefaultHorizontalContentProvider != defaultHorizontalContentProvider) {
+	public void setHorizontalAxisProvider(AbstractAxisProvider newHorizontalAxisProvider) {
+		if (newHorizontalAxisProvider != horizontalAxisProvider) {
 			NotificationChain msgs = null;
-			if (defaultHorizontalContentProvider != null)
-				msgs = ((InternalEObject)defaultHorizontalContentProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER, null, msgs);
-			if (newDefaultHorizontalContentProvider != null)
-				msgs = ((InternalEObject)newDefaultHorizontalContentProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER, null, msgs);
-			msgs = basicSetDefaultHorizontalContentProvider(newDefaultHorizontalContentProvider, msgs);
+			if (horizontalAxisProvider != null)
+				msgs = ((InternalEObject)horizontalAxisProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER, null, msgs);
+			if (newHorizontalAxisProvider != null)
+				msgs = ((InternalEObject)newHorizontalAxisProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER, null, msgs);
+			msgs = basicSetHorizontalAxisProvider(newHorizontalAxisProvider, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER, newDefaultHorizontalContentProvider, newDefaultHorizontalContentProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER, newHorizontalAxisProvider, newHorizontalAxisProvider));
 	}
 
 	/**
@@ -309,13 +231,34 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
-				return basicSetDefaultVerticalContentProvider(null, msgs);
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
-				return basicSetDefaultHorizontalContentProvider(null, msgs);
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER:
+				return basicSetVerticalAxisProvider(null, msgs);
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER:
+				return basicSetHorizontalAxisProvider(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -328,17 +271,14 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
-				return getPastedElementTypeId();
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
-				if (resolve) return getPastedElementContainmentFeature();
-				return basicGetPastedElementContainmentFeature();
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
-				return getDefaultVerticalContentProvider();
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
-				return getDefaultHorizontalContentProvider();
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER:
+				return getVerticalAxisProvider();
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER:
+				return getHorizontalAxisProvider();
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
 				return getEditorDeclaration();
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -348,24 +288,20 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
-				setPastedElementTypeId((String)newValue);
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER:
+				setVerticalAxisProvider((AbstractAxisProvider)newValue);
 				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
-				setPastedElementContainmentFeature((EReference)newValue);
-				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
-				setDefaultVerticalContentProvider((IAxisContentsProvider)newValue);
-				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
-				setDefaultHorizontalContentProvider((IAxisContentsProvider)newValue);
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER:
+				setHorizontalAxisProvider((AbstractAxisProvider)newValue);
 				return;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
 				setEditorDeclaration((CellEditorDeclaration)newValue);
+				return;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+				setType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -379,20 +315,17 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
-				setPastedElementTypeId(PASTED_ELEMENT_TYPE_ID_EDEFAULT);
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER:
+				setVerticalAxisProvider((AbstractAxisProvider)null);
 				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
-				setPastedElementContainmentFeature((EReference)null);
-				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
-				setDefaultVerticalContentProvider((IAxisContentsProvider)null);
-				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
-				setDefaultHorizontalContentProvider((IAxisContentsProvider)null);
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER:
+				setHorizontalAxisProvider((AbstractAxisProvider)null);
 				return;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
 				setEditorDeclaration(EDITOR_DECLARATION_EDEFAULT);
+				return;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+				setType(TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -406,16 +339,14 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
-				return PASTED_ELEMENT_TYPE_ID_EDEFAULT == null ? pastedElementTypeId != null : !PASTED_ELEMENT_TYPE_ID_EDEFAULT.equals(pastedElementTypeId);
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE:
-				return pastedElementContainmentFeature != null;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
-				return defaultVerticalContentProvider != null;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
-				return defaultHorizontalContentProvider != null;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER:
+				return verticalAxisProvider != null;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER:
+				return horizontalAxisProvider != null;
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
 				return editorDeclaration != EDITOR_DECLARATION_EDEFAULT;
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -430,10 +361,10 @@ public class TableEditorConfigurationImpl extends EModelElementImpl implements T
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (pastedElementTypeId: "); //$NON-NLS-1$
-		result.append(pastedElementTypeId);
-		result.append(", editorDeclaration: "); //$NON-NLS-1$
+		result.append(" (editorDeclaration: "); //$NON-NLS-1$
 		result.append(editorDeclaration);
+		result.append(", type: "); //$NON-NLS-1$
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

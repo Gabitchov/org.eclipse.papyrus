@@ -74,6 +74,16 @@
                 name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
                 value="true">
           </parameter>
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
        </command>
        <command
              commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
@@ -84,6 +94,16 @@
                 name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
                 value="false">
           </parameter>
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
        </command>
        <command
              commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
@@ -94,6 +114,16 @@
                 name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
                 value="true">
           </parameter>
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
        </command>
        <command
              commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
@@ -104,6 +134,16 @@
                 name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
                 value="false">
           </parameter>
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
        </command>
     </menuContribution>
  </extension>
@@ -144,6 +184,22 @@
     <handler
           class="org.eclipse.papyrus.infra.nattable.actions.ExportToXLSHandler"
           commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand">
+       <activeWhen>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
+    <handler
+          class="org.eclipse.papyrus.infra.nattable.copy.CopySelectionToClipboardAction"
+          commandId="org.eclipse.ui.edit.copy">
        <activeWhen>
           <and>
              <with
@@ -258,6 +314,10 @@
          priority="10"
          provider="org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider">
    </labelProvider>
+   <context
+         description="Context for feature in the header of the axis"
+         id="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
+   </context>
 </extension>
 </plugin>
 

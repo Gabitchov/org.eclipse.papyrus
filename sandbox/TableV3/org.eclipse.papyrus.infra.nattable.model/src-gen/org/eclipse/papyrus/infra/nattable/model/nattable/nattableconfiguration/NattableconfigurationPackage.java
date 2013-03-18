@@ -88,40 +88,22 @@ public interface NattableconfigurationPackage extends EPackage {
 	int TABLE_EDITOR_CONFIGURATION__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Pasted Element Type Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Vertical Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Horizontal Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Default Vertical Content Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Default Horizontal Content Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Editor Declaration</b></em>' attribute.
@@ -130,7 +112,16 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_EDITOR_CONFIGURATION__TYPE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Table Editor Configuration</em>' class.
@@ -139,7 +130,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -160,116 +151,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	int TABLE_EDITOR_CONFIGURATION_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.LocalTableEditorConfigurationImpl <em>Local Table Editor Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.LocalTableEditorConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getLocalTableEditorConfiguration()
-	 * @generated
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION = 1;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__EANNOTATIONS = TABLE_EDITOR_CONFIGURATION__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Type Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID = TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Pasted Element Containment Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Default Vertical Content Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER = TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER;
-
-	/**
-	 * The feature id for the '<em><b>Default Horizontal Content Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER;
-
-	/**
-	 * The feature id for the '<em><b>Editor Declaration</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION;
-
-	/**
-	 * The feature id for the '<em><b>Default Table Editor Configuration</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION = TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE = TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Local Table Editor Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Get EAnnotation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION___GET_EANNOTATION__STRING = TABLE_EDITOR_CONFIGURATION___GET_EANNOTATION__STRING;
-
-	/**
-	 * The number of operations of the '<em>Local Table Editor Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_TABLE_EDITOR_CONFIGURATION_OPERATION_COUNT = TABLE_EDITOR_CONFIGURATION_OPERATION_COUNT + 0;
-
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -277,7 +158,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getCellEditorDeclaration()
 	 * @generated
 	 */
-	int CELL_EDITOR_DECLARATION = 2;
+	int CELL_EDITOR_DECLARATION = 1;
 
 
 	/**
@@ -291,48 +172,26 @@ public interface NattableconfigurationPackage extends EPackage {
 	EClass getTableEditorConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId <em>Pasted Element Type Id</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getVerticalAxisProvider <em>Vertical Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Pasted Element Type Id</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementTypeId()
+	 * @return the meta object for the containment reference '<em>Vertical Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getVerticalAxisProvider()
 	 * @see #getTableEditorConfiguration()
 	 * @generated
 	 */
-	EAttribute getTableEditorConfiguration_PastedElementTypeId();
+	EReference getTableEditorConfiguration_VerticalAxisProvider();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pasted Element Containment Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getPastedElementContainmentFeature()
+	 * @return the meta object for the containment reference '<em>Horizontal Axis Provider</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getHorizontalAxisProvider()
 	 * @see #getTableEditorConfiguration()
 	 * @generated
 	 */
-	EReference getTableEditorConfiguration_PastedElementContainmentFeature();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultVerticalContentProvider <em>Default Vertical Content Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Default Vertical Content Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultVerticalContentProvider()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EReference getTableEditorConfiguration_DefaultVerticalContentProvider();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultHorizontalContentProvider <em>Default Horizontal Content Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Default Horizontal Content Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getDefaultHorizontalContentProvider()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EReference getTableEditorConfiguration_DefaultHorizontalContentProvider();
+	EReference getTableEditorConfiguration_HorizontalAxisProvider();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration <em>Editor Declaration</em>}'.
@@ -346,36 +205,15 @@ public interface NattableconfigurationPackage extends EPackage {
 	EAttribute getTableEditorConfiguration_EditorDeclaration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration <em>Local Table Editor Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Local Table Editor Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration
-	 * @generated
-	 */
-	EClass getLocalTableEditorConfiguration();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration <em>Default Table Editor Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Default Table Editor Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration#getDefaultTableEditorConfiguration()
-	 * @see #getLocalTableEditorConfiguration()
-	 * @generated
-	 */
-	EReference getLocalTableEditorConfiguration_DefaultTableEditorConfiguration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration#getType()
-	 * @see #getLocalTableEditorConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getType()
+	 * @see #getTableEditorConfiguration()
 	 * @generated
 	 */
-	EAttribute getLocalTableEditorConfiguration_Type();
+	EAttribute getTableEditorConfiguration_Type();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}'.
@@ -421,36 +259,20 @@ public interface NattableconfigurationPackage extends EPackage {
 		EClass TABLE_EDITOR_CONFIGURATION = eINSTANCE.getTableEditorConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Pasted Element Type Id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Vertical Axis Provider</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID = eINSTANCE.getTableEditorConfiguration_PastedElementTypeId();
+		EReference TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER = eINSTANCE.getTableEditorConfiguration_VerticalAxisProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Pasted Element Containment Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Horizontal Axis Provider</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE = eINSTANCE.getTableEditorConfiguration_PastedElementContainmentFeature();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Vertical Content Provider</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER = eINSTANCE.getTableEditorConfiguration_DefaultVerticalContentProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Horizontal Content Provider</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER = eINSTANCE.getTableEditorConfiguration_DefaultHorizontalContentProvider();
+		EReference TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER = eINSTANCE.getTableEditorConfiguration_HorizontalAxisProvider();
 
 		/**
 		 * The meta object literal for the '<em><b>Editor Declaration</b></em>' attribute feature.
@@ -461,30 +283,12 @@ public interface NattableconfigurationPackage extends EPackage {
 		EAttribute TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = eINSTANCE.getTableEditorConfiguration_EditorDeclaration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.LocalTableEditorConfigurationImpl <em>Local Table Editor Configuration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.LocalTableEditorConfigurationImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getLocalTableEditorConfiguration()
-		 * @generated
-		 */
-		EClass LOCAL_TABLE_EDITOR_CONFIGURATION = eINSTANCE.getLocalTableEditorConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Table Editor Configuration</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION = eINSTANCE.getLocalTableEditorConfiguration_DefaultTableEditorConfiguration();
-
-		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE = eINSTANCE.getLocalTableEditorConfiguration_Type();
+		EAttribute TABLE_EDITOR_CONFIGURATION__TYPE = eINSTANCE.getTableEditorConfiguration_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.

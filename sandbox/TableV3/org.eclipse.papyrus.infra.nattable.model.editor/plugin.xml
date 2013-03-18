@@ -35,6 +35,87 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationEditorID"
+            name="%_UI_NattableaxisconfigurationEditor_label"
+            icon="icons/full/obj16/NattableaxisconfigurationModelFile.gif"
+            extensions="nattableaxisconfiguration"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderEditorID"
+            name="%_UI_NattablelabelproviderEditor_label"
+            icon="icons/full/obj16/NattablelabelproviderModelFile.gif"
+            extensions="nattablelabelprovider"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationModelWizardID"
+            name="%_UI_NattableaxisconfigurationModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattableaxisconfigurationModelFile.gif">
+         <description>%_UI_NattableaxisconfigurationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null
+null
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderEditorID"
+            name="%_UI_NattableaxisproviderEditor_label"
+            icon="icons/full/obj16/NattableaxisproviderModelFile.gif"
+            extensions="nattableaxisprovider"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderModelWizardID"
+            name="%_UI_NattablelabelproviderModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattablelabelproviderModelFile.gif">
+         <description>%_UI_NattablelabelproviderModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null
+null
+null
+null
+null
+null
+null
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
             id="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorID"
             name="%_UI_NattableEditor_label"
             icon="icons/full/obj16/NattableModelFile.gif"
@@ -60,6 +141,16 @@
       </wizard>
    </extension>
 
+null
+null
+null
+null
+null
+null
+null
+null
+null
+null
    <extension point="org.eclipse.ui.editors">
       <!-- @generated nattable -->
       <editor
@@ -78,26 +169,24 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderModelWizardID"
-            name="%_UI_NattablecontentproviderModelWizard_label"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderModelWizard"
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderModelWizardID"
+            name="%_UI_NattableaxisproviderModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/NattablecontentproviderModelFile.gif">
-         <description>%_UI_NattablecontentproviderModelWizard_description</description>
+            icon="icons/full/obj16/NattableaxisproviderModelFile.gif">
+         <description>%_UI_NattableaxisproviderModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated nattable -->
-      <editor
-            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderEditorID"
-            name="%_UI_NattablecontentproviderEditor_label"
-            icon="icons/full/obj16/NattablecontentproviderModelFile.gif"
-            extensions="nattablecontentprovider"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderEditor"
-            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation.NattablecontentproviderActionBarContributor">
-      </editor>
-   </extension>
-
+null
+null
+null
+null
+null
+null
+null
+null
+null
+null
 </plugin>

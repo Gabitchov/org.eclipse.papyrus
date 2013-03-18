@@ -46,13 +46,13 @@ public class NattableConfigAttributes {
 	 * 
 	 * <ul>
 	 * <li>To store it :
-	 * <code> configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, YOUR_LABEL_PROVER_SERVICE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);</code>
+	 * <code> configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, YOUR_LABEL_PROVER_SERVICE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);</code>
 	 * </li>
 	 * <li>To get it : <code></code></li>
-	 * 		LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+	 * 		LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 	 * </ul>
 	 */
-	public static final ConfigAttribute<LabelProviderService> LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE = new ConfigAttribute<LabelProviderService>();
+	public static final ConfigAttribute<LabelProviderService> LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE = new ConfigAttribute<LabelProviderService>();
 
 	/**
 	 * Id used to register the label provider service

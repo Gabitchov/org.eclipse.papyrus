@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.manager.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
 
 public class AxisManagerFactory {
@@ -59,7 +59,7 @@ public class AxisManagerFactory {
 	}
 
 	//	INattableModelManager manager, String managerId, Table table, IAxisContentsProvider provider
-	public IAxisManager getAxisManager(final INattableModelManager nattableManager, final String id, final Table table, final IAxisContentsProvider contentProvider, boolean mustRefreshContentsOnAxisChanges) {
+	public IAxisManager getAxisManager(final INattableModelManager nattableManager, final String id, final Table table, final AbstractAxisProvider contentProvider, boolean mustRefreshContentsOnAxisChanges) {
 		final Class<IAxisManager> managerClass = this.map.get(id);
 		IAxisManager axisManager = null;
 		if(managerClass != null) {

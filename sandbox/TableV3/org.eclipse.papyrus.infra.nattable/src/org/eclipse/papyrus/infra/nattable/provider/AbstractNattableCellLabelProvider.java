@@ -143,6 +143,6 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *         the label provider service
 	 */
 	protected LabelProviderService getLabelProviderService(final IConfigRegistry registry) {
-		return registry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		return registry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 	}
 }

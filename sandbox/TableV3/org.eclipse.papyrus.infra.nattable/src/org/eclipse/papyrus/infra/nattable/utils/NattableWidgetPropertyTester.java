@@ -26,8 +26,10 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		if(IS_NATTABLE_WIDGET.equals(property) && expectedValue instanceof Boolean) {
 			final IWorkbenchPart current = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePart();
-			final INattableModelManager manager = (INattableModelManager)current.getAdapter(INattableModelManager.class);
-			return expectedValue.equals(manager != null);
+			if(current != null) {
+				final INattableModelManager manager = (INattableModelManager)current.getAdapter(INattableModelManager.class);
+				return expectedValue.equals(manager != null);
+			}
 		}
 		return false;
 	}

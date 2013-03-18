@@ -21,7 +21,7 @@ import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -82,7 +82,7 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 
 	public LocationValue getLocationInTheTable(final Point location);
 
-	public List<Object> getElementsList(final IAxisContentsProvider axisProvider);
+	public List<Object> getElementsList(final AbstractAxisProvider axisProvider);
 
 	public boolean canCreateRowElement(String elementType);
 
@@ -91,15 +91,30 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd);
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
-	
+
 	public void print();
-	
+
 	public void selectAll();
 
 	public void exportToXLS();
-	
+
 	public void sortColumnsByName(final boolean alphabeticOrder);
-	
+
 	public void sortRowsByName(final boolean alphabeticOrder);
-	
+
+	/**
+	 * 
+	 * @return
+	 *         the "real"{@link AbstractAxisProvider}, that's to say that this method use the property {@link Table#isInvertAxis()} to return the real
+	 *         vertical axis
+	 */
+	public AbstractAxisProvider getVerticalAxisProvider();
+
+	/**
+	 * 
+	 * @return
+	 *         the "real"{@link AbstractAxisProvider}, that's to say that this method use the property {@link Table#isInvertAxis()} to return the real
+	 *         horizontal axis
+	 */
+	public AbstractAxisProvider getHorizontalAxisProvider();
 }

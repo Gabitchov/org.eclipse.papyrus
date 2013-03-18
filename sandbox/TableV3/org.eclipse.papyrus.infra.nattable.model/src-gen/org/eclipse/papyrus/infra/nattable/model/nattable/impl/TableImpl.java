@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,8 +40,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getEditorConfiguration <em>Editor Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getVerticalContentProvider <em>Vertical Content Provider</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getHorizontalContentProvider <em>Horizontal Content Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getVerticalAxisProvider <em>Vertical Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#isInvertAxis <em>Invert Axis</em>}</li>
  * </ul>
  * </p>
@@ -100,34 +100,34 @@ public class TableImpl extends EModelElementImpl implements Table {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEditorConfiguration() <em>Editor Configuration</em>}' containment reference.
+	 * The cached value of the '{@link #getEditorConfiguration() <em>Editor Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEditorConfiguration()
 	 * @generated
 	 * @ordered
 	 */
-	protected LocalTableEditorConfiguration editorConfiguration;
+	protected TableEditorConfiguration editorConfiguration;
 
 	/**
-	 * The cached value of the '{@link #getVerticalContentProvider() <em>Vertical Content Provider</em>}' containment reference.
+	 * The cached value of the '{@link #getVerticalAxisProvider() <em>Vertical Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVerticalContentProvider()
+	 * @see #getVerticalAxisProvider()
 	 * @generated
 	 * @ordered
 	 */
-	protected IAxisContentsProvider verticalContentProvider;
+	protected AbstractAxisProvider verticalAxisProvider;
 
 	/**
-	 * The cached value of the '{@link #getHorizontalContentProvider() <em>Horizontal Content Provider</em>}' containment reference.
+	 * The cached value of the '{@link #getHorizontalAxisProvider() <em>Horizontal Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHorizontalContentProvider()
+	 * @see #getHorizontalAxisProvider()
 	 * @generated
 	 * @ordered
 	 */
-	protected IAxisContentsProvider horizontalContentProvider;
+	protected AbstractAxisProvider horizontalAxisProvider;
 
 	/**
 	 * The default value of the '{@link #isInvertAxis() <em>Invert Axis</em>}' attribute.
@@ -253,7 +253,15 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LocalTableEditorConfiguration getEditorConfiguration() {
+	public TableEditorConfiguration getEditorConfiguration() {
+		if (editorConfiguration != null && editorConfiguration.eIsProxy()) {
+			InternalEObject oldEditorConfiguration = (InternalEObject)editorConfiguration;
+			editorConfiguration = (TableEditorConfiguration)eResolveProxy(oldEditorConfiguration);
+			if (editorConfiguration != oldEditorConfiguration) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablePackage.TABLE__EDITOR_CONFIGURATION, oldEditorConfiguration, editorConfiguration));
+			}
+		}
 		return editorConfiguration;
 	}
 
@@ -262,11 +270,41 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEditorConfiguration(LocalTableEditorConfiguration newEditorConfiguration, NotificationChain msgs) {
-		LocalTableEditorConfiguration oldEditorConfiguration = editorConfiguration;
+	public TableEditorConfiguration basicGetEditorConfiguration() {
+		return editorConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEditorConfiguration(TableEditorConfiguration newEditorConfiguration) {
+		TableEditorConfiguration oldEditorConfiguration = editorConfiguration;
 		editorConfiguration = newEditorConfiguration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__EDITOR_CONFIGURATION, oldEditorConfiguration, editorConfiguration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AbstractAxisProvider getVerticalAxisProvider() {
+		return verticalAxisProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetVerticalAxisProvider(AbstractAxisProvider newVerticalAxisProvider, NotificationChain msgs) {
+		AbstractAxisProvider oldVerticalAxisProvider = verticalAxisProvider;
+		verticalAxisProvider = newVerticalAxisProvider;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__EDITOR_CONFIGURATION, oldEditorConfiguration, newEditorConfiguration);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER, oldVerticalAxisProvider, newVerticalAxisProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -277,18 +315,18 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEditorConfiguration(LocalTableEditorConfiguration newEditorConfiguration) {
-		if (newEditorConfiguration != editorConfiguration) {
+	public void setVerticalAxisProvider(AbstractAxisProvider newVerticalAxisProvider) {
+		if (newVerticalAxisProvider != verticalAxisProvider) {
 			NotificationChain msgs = null;
-			if (editorConfiguration != null)
-				msgs = ((InternalEObject)editorConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__EDITOR_CONFIGURATION, null, msgs);
-			if (newEditorConfiguration != null)
-				msgs = ((InternalEObject)newEditorConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__EDITOR_CONFIGURATION, null, msgs);
-			msgs = basicSetEditorConfiguration(newEditorConfiguration, msgs);
+			if (verticalAxisProvider != null)
+				msgs = ((InternalEObject)verticalAxisProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER, null, msgs);
+			if (newVerticalAxisProvider != null)
+				msgs = ((InternalEObject)newVerticalAxisProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER, null, msgs);
+			msgs = basicSetVerticalAxisProvider(newVerticalAxisProvider, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__EDITOR_CONFIGURATION, newEditorConfiguration, newEditorConfiguration));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER, newVerticalAxisProvider, newVerticalAxisProvider));
 	}
 
 	/**
@@ -296,8 +334,8 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IAxisContentsProvider getVerticalContentProvider() {
-		return verticalContentProvider;
+	public AbstractAxisProvider getHorizontalAxisProvider() {
+		return horizontalAxisProvider;
 	}
 
 	/**
@@ -305,11 +343,11 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVerticalContentProvider(IAxisContentsProvider newVerticalContentProvider, NotificationChain msgs) {
-		IAxisContentsProvider oldVerticalContentProvider = verticalContentProvider;
-		verticalContentProvider = newVerticalContentProvider;
+	public NotificationChain basicSetHorizontalAxisProvider(AbstractAxisProvider newHorizontalAxisProvider, NotificationChain msgs) {
+		AbstractAxisProvider oldHorizontalAxisProvider = horizontalAxisProvider;
+		horizontalAxisProvider = newHorizontalAxisProvider;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER, oldVerticalContentProvider, newVerticalContentProvider);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER, oldHorizontalAxisProvider, newHorizontalAxisProvider);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -320,61 +358,18 @@ public class TableImpl extends EModelElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVerticalContentProvider(IAxisContentsProvider newVerticalContentProvider) {
-		if (newVerticalContentProvider != verticalContentProvider) {
+	public void setHorizontalAxisProvider(AbstractAxisProvider newHorizontalAxisProvider) {
+		if (newHorizontalAxisProvider != horizontalAxisProvider) {
 			NotificationChain msgs = null;
-			if (verticalContentProvider != null)
-				msgs = ((InternalEObject)verticalContentProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER, null, msgs);
-			if (newVerticalContentProvider != null)
-				msgs = ((InternalEObject)newVerticalContentProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER, null, msgs);
-			msgs = basicSetVerticalContentProvider(newVerticalContentProvider, msgs);
+			if (horizontalAxisProvider != null)
+				msgs = ((InternalEObject)horizontalAxisProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER, null, msgs);
+			if (newHorizontalAxisProvider != null)
+				msgs = ((InternalEObject)newHorizontalAxisProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER, null, msgs);
+			msgs = basicSetHorizontalAxisProvider(newHorizontalAxisProvider, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER, newVerticalContentProvider, newVerticalContentProvider));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IAxisContentsProvider getHorizontalContentProvider() {
-		return horizontalContentProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetHorizontalContentProvider(IAxisContentsProvider newHorizontalContentProvider, NotificationChain msgs) {
-		IAxisContentsProvider oldHorizontalContentProvider = horizontalContentProvider;
-		horizontalContentProvider = newHorizontalContentProvider;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER, oldHorizontalContentProvider, newHorizontalContentProvider);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHorizontalContentProvider(IAxisContentsProvider newHorizontalContentProvider) {
-		if (newHorizontalContentProvider != horizontalContentProvider) {
-			NotificationChain msgs = null;
-			if (horizontalContentProvider != null)
-				msgs = ((InternalEObject)horizontalContentProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER, null, msgs);
-			if (newHorizontalContentProvider != null)
-				msgs = ((InternalEObject)newHorizontalContentProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER, null, msgs);
-			msgs = basicSetHorizontalContentProvider(newHorizontalContentProvider, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER, newHorizontalContentProvider, newHorizontalContentProvider));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER, newHorizontalAxisProvider, newHorizontalAxisProvider));
 	}
 
 	/**
@@ -406,12 +401,10 @@ public class TableImpl extends EModelElementImpl implements Table {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NattablePackage.TABLE__EDITOR_CONFIGURATION:
-				return basicSetEditorConfiguration(null, msgs);
-			case NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER:
-				return basicSetVerticalContentProvider(null, msgs);
-			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
-				return basicSetHorizontalContentProvider(null, msgs);
+			case NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER:
+				return basicSetVerticalAxisProvider(null, msgs);
+			case NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER:
+				return basicSetHorizontalAxisProvider(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -432,11 +425,12 @@ public class TableImpl extends EModelElementImpl implements Table {
 			case NattablePackage.TABLE__DESCRIPTION:
 				return getDescription();
 			case NattablePackage.TABLE__EDITOR_CONFIGURATION:
-				return getEditorConfiguration();
-			case NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER:
-				return getVerticalContentProvider();
-			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
-				return getHorizontalContentProvider();
+				if (resolve) return getEditorConfiguration();
+				return basicGetEditorConfiguration();
+			case NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER:
+				return getVerticalAxisProvider();
+			case NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER:
+				return getHorizontalAxisProvider();
 			case NattablePackage.TABLE__INVERT_AXIS:
 				return isInvertAxis();
 		}
@@ -461,13 +455,13 @@ public class TableImpl extends EModelElementImpl implements Table {
 				setDescription((String)newValue);
 				return;
 			case NattablePackage.TABLE__EDITOR_CONFIGURATION:
-				setEditorConfiguration((LocalTableEditorConfiguration)newValue);
+				setEditorConfiguration((TableEditorConfiguration)newValue);
 				return;
-			case NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER:
-				setVerticalContentProvider((IAxisContentsProvider)newValue);
+			case NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER:
+				setVerticalAxisProvider((AbstractAxisProvider)newValue);
 				return;
-			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
-				setHorizontalContentProvider((IAxisContentsProvider)newValue);
+			case NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER:
+				setHorizontalAxisProvider((AbstractAxisProvider)newValue);
 				return;
 			case NattablePackage.TABLE__INVERT_AXIS:
 				setInvertAxis((Boolean)newValue);
@@ -494,13 +488,13 @@ public class TableImpl extends EModelElementImpl implements Table {
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 			case NattablePackage.TABLE__EDITOR_CONFIGURATION:
-				setEditorConfiguration((LocalTableEditorConfiguration)null);
+				setEditorConfiguration((TableEditorConfiguration)null);
 				return;
-			case NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER:
-				setVerticalContentProvider((IAxisContentsProvider)null);
+			case NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER:
+				setVerticalAxisProvider((AbstractAxisProvider)null);
 				return;
-			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
-				setHorizontalContentProvider((IAxisContentsProvider)null);
+			case NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER:
+				setHorizontalAxisProvider((AbstractAxisProvider)null);
 				return;
 			case NattablePackage.TABLE__INVERT_AXIS:
 				setInvertAxis(INVERT_AXIS_EDEFAULT);
@@ -525,10 +519,10 @@ public class TableImpl extends EModelElementImpl implements Table {
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case NattablePackage.TABLE__EDITOR_CONFIGURATION:
 				return editorConfiguration != null;
-			case NattablePackage.TABLE__VERTICAL_CONTENT_PROVIDER:
-				return verticalContentProvider != null;
-			case NattablePackage.TABLE__HORIZONTAL_CONTENT_PROVIDER:
-				return horizontalContentProvider != null;
+			case NattablePackage.TABLE__VERTICAL_AXIS_PROVIDER:
+				return verticalAxisProvider != null;
+			case NattablePackage.TABLE__HORIZONTAL_AXIS_PROVIDER:
+				return horizontalAxisProvider != null;
 			case NattablePackage.TABLE__INVERT_AXIS:
 				return invertAxis != INVERT_AXIS_EDEFAULT;
 		}

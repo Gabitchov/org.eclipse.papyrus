@@ -35,10 +35,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderFactory;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
@@ -77,55 +78,10 @@ public class TableEditorConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPastedElementTypeIdPropertyDescriptor(object);
-			addPastedElementContainmentFeaturePropertyDescriptor(object);
 			addEditorDeclarationPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Pasted Element Type Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPastedElementTypeIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TableEditorConfiguration_pastedElementTypeId_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_TableEditorConfiguration_pastedElementTypeId_feature", "_UI_TableEditorConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Pasted Element Containment Feature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPastedElementContainmentFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TableEditorConfiguration_pastedElementContainmentFeature_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_TableEditorConfiguration_pastedElementContainmentFeature_feature", "_UI_TableEditorConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -151,6 +107,28 @@ public class TableEditorConfigurationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableEditorConfiguration_type_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableEditorConfiguration_type_feature", "_UI_TableEditorConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -162,8 +140,8 @@ public class TableEditorConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER);
-			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER);
+			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER);
+			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER);
 		}
 		return childrenFeatures;
 	}
@@ -200,7 +178,8 @@ public class TableEditorConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TableEditorConfiguration)object).getPastedElementTypeId();
+		CellEditorDeclaration labelValue = ((TableEditorConfiguration)object).getEditorDeclaration();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TableEditorConfiguration_type") : //$NON-NLS-1$
 			getString("_UI_TableEditorConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
@@ -218,12 +197,12 @@ public class TableEditorConfigurationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TableEditorConfiguration.class)) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID:
 			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER:
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER:
+			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -243,23 +222,23 @@ public class TableEditorConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER,
-				 NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider()));
+				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER,
+				 NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER,
-				 NattablecontentproviderFactory.eINSTANCE.createEMFFeatureContentProvider()));
+				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER,
+				 NattableaxisproviderFactory.eINSTANCE.createEMFFeatureValueAxisProvider()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER,
-				 NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider()));
+				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER,
+				 NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER,
-				 NattablecontentproviderFactory.eINSTANCE.createEMFFeatureContentProvider()));
+				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER,
+				 NattableaxisproviderFactory.eINSTANCE.createEMFFeatureValueAxisProvider()));
 	}
 
 	/**
@@ -274,8 +253,8 @@ public class TableEditorConfigurationItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER ||
-			childFeature == NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER;
+			childFeature == NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER ||
+			childFeature == NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER;
 
 		if (qualify) {
 			return getString

@@ -20,34 +20,26 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.eclipse.core.internal.dtree.IComparator;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 public abstract class AbstractAxisManager implements IAxisManager {
 
@@ -62,7 +54,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 * the represented axis provider
 	 */
-	private IAxisContentsProvider representedContentProvider;
+	private AbstractAxisProvider representedContentProvider;
 
 	/**
 	 * the global manager for the table
@@ -90,7 +82,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param provider
 	 *        the represented axis provider
 	 */
-	public void init(final INattableModelManager manager, final String managerId, final Table table, final IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges) {
+	public void init(final INattableModelManager manager, final String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
 		this.tableManager = manager;
 		this.manager_id = managerId;
 		this.pTable = table;
@@ -256,7 +248,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * 
 	 * @return
 	 */
-	public IAxisContentsProvider getRepresentedContentProvider() {
+	public AbstractAxisProvider getRepresentedContentProvider() {
 		return this.representedContentProvider;
 	}
 
@@ -302,23 +294,14 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		return null;
 	}
 
-	protected boolean hasDefaultConfiguration() {
-		final TableEditorConfiguration configuration = getTable().getEditorConfiguration().getDefaultTableEditorConfiguration();
-		return hasAxisConfiguration(configuration);
-	}
-
-	protected boolean hasLocalConfiguration() {
-		final LocalTableEditorConfiguration configuration = getTable().getEditorConfiguration();
-		return hasAxisConfiguration(configuration);
-	}
 
 	protected boolean hasAxisConfiguration(final TableEditorConfiguration configuration) {
-		IAxisContentsProvider axisConfig = null;
+		AbstractAxisProvider axisConfig = null;
 		// we are working with the horizontal content provider
-		if(getTable().getHorizontalContentProvider() == getRepresentedContentProvider()) {
-			axisConfig = configuration.getDefaultHorizontalContentProvider();
+		if(getTable().getHorizontalAxisProvider() == getRepresentedContentProvider()) {
+			axisConfig = configuration.getHorizontalAxisProvider();
 		} else {// we are working with the
-			axisConfig = configuration.getDefaultVerticalContentProvider();
+			axisConfig = configuration.getVerticalAxisProvider();
 		}
 		if(axisConfig != null) {
 			return !axisConfig.getAxis().isEmpty();
@@ -327,7 +310,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	protected boolean hasConfiguration() {
-		return hasDefaultConfiguration() || hasLocalConfiguration();
+		final TableEditorConfiguration configuration = getTable().getEditorConfiguration();
+		return hasAxisConfiguration(configuration);
 	}
 
 	/**
@@ -352,7 +336,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		axis.addAll(getRepresentedContentProvider().getAxis());
 
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(representedContentProvider);//FIXME
-		final Command cmd = SetCommand.create(domain, representedContentProvider, NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), new ArrayList<IAxis>(axis));
+		final Command cmd = SetCommand.create(domain, representedContentProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), new ArrayList<IAxis>(axis));
 		domain.getCommandStack().execute(cmd);
 	}
 
@@ -403,7 +387,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		 * @return
 		 */
 		public int compare(IAxis arg0, IAxis arg1) {
-			LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+			LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			Object element0 = arg0.getElement();
 			Object element1 = arg1.getElement();
 			final String str1 = getText(serv, element0).replaceAll(REGEX, "");//we keep only words characters (letters + numbers) + whitespace

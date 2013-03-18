@@ -34,8 +34,25 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated nattable -->
       <package
-            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage"
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage"
             genModel="model/nattable.genmodel"/>
    </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
+
 </plugin>

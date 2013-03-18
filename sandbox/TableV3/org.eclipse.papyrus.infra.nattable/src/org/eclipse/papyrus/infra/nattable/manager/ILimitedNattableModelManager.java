@@ -15,11 +15,11 @@ package org.eclipse.papyrus.infra.nattable.manager;
 
 import java.util.List;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
 
 public interface ILimitedNattableModelManager {
 
-	public List<Object> getElementsList(final IAxisContentsProvider axisProvider);
+	public List<Object> getElementsList(final AbstractAxisProvider axisProvider);
 
 }

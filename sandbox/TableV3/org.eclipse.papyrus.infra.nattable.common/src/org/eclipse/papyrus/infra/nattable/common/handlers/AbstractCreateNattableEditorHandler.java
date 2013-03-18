@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
+ *   Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ * 
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.common.handlers;
@@ -21,7 +21,6 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -48,35 +47,21 @@ import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableMo
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderFactory;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @author dumoulin
+ * 
  * 
  */
 public abstract class AbstractCreateNattableEditorHandler extends AbstractHandler {
 
 	/** the default name for the table */
 	private final String defaultName;
-
-	/** the default description for the table */
-	private final String defaultDescription = "Table Description"; //$NON-NLS-1$
-
-	/** the description for the table */
-	private String description;
-
-	/** the name for the table */
-	private String name;
-
-	/** the editor type */
-	private final String editorType;
 
 	/**
 	 * 
@@ -87,9 +72,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @param defaultName
 	 *        the default name for this editor
 	 */
-	public AbstractCreateNattableEditorHandler(final String editorType, final String defaultName) {
-		Assert.isNotNull(editorType != null);
-		this.editorType = editorType;
+	public AbstractCreateNattableEditorHandler(final String editorType, final String defaultName) {//FIXME : remove editorType
 		this.defaultName = defaultName;
 	}
 
@@ -103,8 +86,6 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	@Override
 	public boolean isEnabled() {
 		return true;
-		//		EObject context = getTableContext();
-		//		return context != null;
 	}
 
 	/**
@@ -132,11 +113,11 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 */
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// default Value
-		this.name = this.defaultName;
-		this.description = this.defaultDescription;
+		final String name;
+		final String description;
 		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, this.defaultName, null);
 		if(dialog.open() == Dialog.OK) {
-			this.name = dialog.getValue();
+			name = dialog.getValue();
 			final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
 			final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -144,7 +125,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 				@Override
 				protected void doExecute() {
 					try {
-						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry);
+						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, description);
 					} catch (final NotFoundException e) {
 						Activator.log.error(e);
 					} catch (final ServiceException e) {
@@ -154,55 +135,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 				}
 			});
 		}
-		// FIXME
-		// TwoInputDialog dialog = new TwoInputDialog(
-		// Display.getCurrent().getActiveShell(),
-		// Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialogTitle,
-		// Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableNameMessage,
-		// Messages.AbstractCreateNattableEditorCommand_CreateNewTableDialog_TableDescriptionMessage,
-		// defaultName, defaultDescription, null);
-		// if (dialog.open() == Dialog.OK) {
-		// // get the name and the description for the table
-		// name = dialog.getValue();
-		// description = dialog.getValue_2();
-		//
-		// final ServicesRegistry serviceRegistry =
-		// ServiceUtilsForActionHandlers
-		// .getInstance().getServiceRegistry();
-		// TransactionalEditingDomain domain = ServiceUtils.getInstance()
-		// .getTransactionalEditingDomain(serviceRegistry);
-		//
-		// // Create the transactional command
-		// AbstractEMFOperation command = new AbstractEMFOperation(domain,
-		//					"Create Table Editor") { //$NON-NLS-1$
-		//
-		// @Override
-		// protected IStatus doExecute(final IProgressMonitor monitor,
-		// final IAdaptable info) throws ExecutionException {
-		// try {
-		// AbstractCreateNattableEditorCommand.this
-		// .doExecute(serviceRegistry);
-		// } catch (ServiceException e) {
-		// e.printStackTrace();
-		// return Status.CANCEL_STATUS;
-		// } catch (NotFoundException e) {
-		// e.printStackTrace();
-		// return Status.CANCEL_STATUS;
-		// }
-		// return Status.OK_STATUS;
-		// }
-		// };
 
-		// // Execute the command
-		// try {
-		// CheckedOperationHistory.getInstance().execute(command,
-		// new NullProgressMonitor(), null);
-		// } catch (ExecutionException e) {
-		// Activator.getDefault().log
-		//						.error("Can't create Table Editor", e); //$NON-NLS-1$
-		// }
-		//
-		// }
 	}
 
 	/**
@@ -212,9 +145,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 */
-	public void doExecute(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	public void doExecute(final ServicesRegistry serviceRegistry,String name, String description) throws ServiceException, NotFoundException {
 
-		final Object editorModel = createEditorModel(serviceRegistry);
+		final Object editorModel = createEditorModel(serviceRegistry, name, description);
 		// Get the mngr allowing to add/open new editor.
 		final IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
 		// add the new editor model to the sash.
@@ -231,42 +164,40 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @throws NotFoundException
 	 *         The model where to save the TableInstance is not found.
 	 */
-	protected Object createEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	protected Object createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 
 		final Table table = NattableFactory.eINSTANCE.createTable();
-		final LocalTableEditorConfiguration localConfig = NattableconfigurationFactory.eINSTANCE.createLocalTableEditorConfiguration();
-		localConfig.setType(this.editorType);
+		//		final LocalTableEditorConfiguration localConfig = NattableconfigurationFactory.eINSTANCE.createLocalTableEditorConfiguration();
+		//		localConfig.setType(this.editorType);
 		final TableEditorConfiguration defaultConfig = getDefaultTableEditorConfiguration();
 		assert defaultConfig != null;
 
-		localConfig.setDefaultTableEditorConfiguration(defaultConfig);
+		//		localConfig.setDefaultTableEditorConfiguration(defaultConfig);
 
-		table.setEditorConfiguration(localConfig);
-		table.setDescription(this.description);
-		table.setName(this.name);
+		table.setEditorConfiguration(defaultConfig);
+		table.setDescription(description);
+		table.setName(name);
 		table.setContext(getTableContext());
 
 
-		IAxisContentsProvider rowProvider = defaultConfig.getDefaultHorizontalContentProvider();
+		AbstractAxisProvider rowProvider = defaultConfig.getHorizontalAxisProvider();
 		if(rowProvider == null) {
-			rowProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
+			rowProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
 		} else {
-			final IAxisContentsProvider copy = EcoreUtil.copy(rowProvider);
-			rowProvider = copy;
+			rowProvider = EcoreUtil.copy(rowProvider);
 		}
 
-		IAxisContentsProvider columnProvider = defaultConfig.getDefaultVerticalContentProvider();
+		AbstractAxisProvider columnProvider = defaultConfig.getVerticalAxisProvider();
 		if(columnProvider == null) {
-			columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
+			columnProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
 		} else {
-			final IAxisContentsProvider copy = EcoreUtil.copy(columnProvider);
-			columnProvider = copy;
+			columnProvider = EcoreUtil.copy(columnProvider);
 		}
 
 		//		final IAxisContentsProvider columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
 
-		table.setHorizontalContentProvider(rowProvider);
-		table.setVerticalContentProvider(columnProvider);
+		table.setHorizontalAxisProvider(rowProvider);
+		table.setVerticalAxisProvider(columnProvider);
 
 		// Save the model in the associated resource
 		final PapyrusNattableModel model = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
@@ -275,6 +206,11 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	}
 
 
+	/**
+	 * 
+	 * @return
+	 *         the configuration to use for the new table
+	 */
 	protected TableEditorConfiguration getDefaultTableEditorConfiguration() {
 		final EObject current = getSelection().get(0);
 		final ResourceSet resourceSet = current.eResource().getResourceSet();

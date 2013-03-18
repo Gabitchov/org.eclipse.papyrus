@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.commands.State;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
@@ -27,16 +28,8 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
-import org.eclipse.nebula.widgets.nattable.print.command.PrintCommand;
-import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOffCommand;
-import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOnCommand;
-import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
-import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
-import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -47,10 +40,18 @@ import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
 
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
 
@@ -73,9 +74,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	private Adapter invertAxisListener;
 
-	private IAxisContentsProvider rowProvider;
+	private AbstractAxisProvider rowProvider;
 
-	private IAxisContentsProvider columnProvider;
+	private AbstractAxisProvider columnProvider;
 
 	/**
 	 * 
@@ -88,8 +89,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public NattableModelManager(final Table rawModel) {
 		super(rawModel);
 		// this.table = rawModel;
-		this.rowProvider = rawModel.getHorizontalContentProvider();
-		this.columnProvider = rawModel.getVerticalContentProvider();
+		this.rowProvider = rawModel.getHorizontalAxisProvider();
+		this.columnProvider = rawModel.getVerticalAxisProvider();
 		this.verticalElements = new ArrayList<Object>();
 		this.horizontalElements = new ArrayList<Object>();
 
@@ -115,9 +116,41 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 	}
 
+	private FocusListener focusListener;
+
+	@Override
+	public NatTable createNattable(Composite parent, int style, IWorkbenchPartSite site) {
+		NatTable nattable = super.createNattable(parent, style, site);
+		focusListener = new FocusListener() {
+
+			public void focusLost(FocusEvent e) {
+				//nothing to do
+			}
+
+			public void focusGained(FocusEvent e) {
+				//not yet supported
+				//				final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+				//				AbstractAxisConfiguration verticalAxisConfiguration = getTable().getVerticalAxisProvider().getAxisConfiguration();
+				//				if(verticalAxisConfiguration instanceof DefaultAxisConfiguration) {
+				//					if(commandService != null) {
+				//						org.eclipse.core.commands.Command command = commandService.getCommand("org.eclipse.papyrus.infra.nattable.row.display.index"); //$NON-NLS-1$
+				//						if(command != null) {
+				//							final State state = command.getState("org.eclipse.ui.commands.toggleState"); //$NON-NLS-1$
+				//							if(state != null) {
+				//								state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayIndex());
+				//							}
+				//						}
+				//					}
+				//				}
+			}
+		};
+		nattable.addFocusListener(focusListener);
+		return nattable;
+	}
+
 	public void invertJavaObject() {
-		IAxisContentsProvider newColumProvider = rowProvider;
-		IAxisContentsProvider newRowProvider = columnProvider;
+		AbstractAxisProvider newColumProvider = rowProvider;
+		AbstractAxisProvider newRowProvider = columnProvider;
 		List<Object> newVerticalElementList = horizontalElements;
 		List<Object> newHorizontalElementList = verticalElements;
 		IAxisManager newRowManager = columnManager;
@@ -140,11 +173,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	protected void init() {
 		final List<String> verticalContentProviderIds = getVerticalContentProviderIds();
 		assert !verticalContentProviderIds.isEmpty();
-		this.columnManager = createAxisManager(verticalContentProviderIds, this.table.getVerticalContentProvider());
+		this.columnManager = createAxisManager(verticalContentProviderIds, this.table.getVerticalAxisProvider());
 
 		final List<String> horizontalContentProviderIds = getHorizontalContentProviderIds();
 		assert !horizontalContentProviderIds.isEmpty();
-		this.rowManager = createAxisManager(horizontalContentProviderIds, this.table.getHorizontalContentProvider());
+		this.rowManager = createAxisManager(horizontalContentProviderIds, this.table.getHorizontalAxisProvider());
 	}
 
 	/**
@@ -155,7 +188,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        the content provider in the model
 	 * @return the created axis manager to use to manage the {@link IAxisContentsProvider}
 	 */
-	protected IAxisManager createAxisManager(final List<String> ids, final IAxisContentsProvider contentProvider) {
+	protected IAxisManager createAxisManager(final List<String> ids, final AbstractAxisProvider contentProvider) {
 		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
 		for(final String id : ids) {
 			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(this, id, this.table, contentProvider, ids.size() == 1);
@@ -179,7 +212,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *         axis
 	 */
 	protected List<String> getVerticalContentProviderIds() {
-		return this.table.getVerticalContentProvider().getJavaContentProviderIds();
+		return this.table.getVerticalAxisProvider().getJavaContentProviderIds();
 	}
 
 	/**
@@ -189,7 +222,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 
 	protected List<String> getHorizontalContentProviderIds() {
-		return this.table.getHorizontalContentProvider().getJavaContentProviderIds();
+		return this.table.getHorizontalAxisProvider().getJavaContentProviderIds();
 	}
 
 	/**
@@ -399,7 +432,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return this.horizontalElements.get(index);
 	}
 
-	public List<Object> getElementsList(IAxisContentsProvider axisProvider) {
+	public List<Object> getElementsList(AbstractAxisProvider axisProvider) {
 		if(axisProvider == this.columnProvider) {
 			return this.verticalElements;
 		} else if(axisProvider == this.rowProvider) {
@@ -418,14 +451,14 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	public void reorderColumnsElements(final IAxis axisToMove, final int newIndex) {
 		final EditingDomain domain = getEditingDomain(axisToMove);
-		final Command cmd = MoveCommand.create(getEditingDomain(axisToMove), this.columnProvider, NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), axisToMove, newIndex);
+		final Command cmd = MoveCommand.create(getEditingDomain(axisToMove), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
 		domain.getCommandStack().execute(cmd);
 	}
 
 	// not tested
 	public void reorderRowElements(final IAxis axisToMove, final int newIndex) {
 		final EditingDomain domain = getEditingDomain(axisToMove);
-		final Command cmd = MoveCommand.create(getEditingDomain(axisToMove), this.rowProvider, NattablecontentproviderPackage.eINSTANCE.getDefaultContentProvider_Axis(), axisToMove, newIndex);
+		final Command cmd = MoveCommand.create(getEditingDomain(axisToMove), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
 		domain.getCommandStack().execute(cmd);
 	}
 
@@ -513,6 +546,34 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	public void sortRowsByName(final boolean alphabeticOrder) {
 		this.rowManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry());
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getVerticalAxisProvider()
+	 * 
+	 * @return
+	 */
+	public AbstractAxisProvider getVerticalAxisProvider() {
+		if(this.table.isInvertAxis()) {
+			return this.table.getHorizontalAxisProvider();
+		} else {
+			return this.table.getVerticalAxisProvider();
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getHorizontalAxisProvider()
+	 * 
+	 * @return
+	 */
+	public AbstractAxisProvider getHorizontalAxisProvider() {
+		if(this.table.isInvertAxis()) {
+			return this.table.getVerticalAxisProvider();
+		} else {
+			return this.table.getHorizontalAxisProvider();
+		}
 	}
 
 }

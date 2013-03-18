@@ -104,7 +104,7 @@ public class UMLDialogComboAction extends AbstractComboAction {
 				realFeature = realEditedObject.eClass().getEStructuralFeature(prop.getName());
 			}
 
-			if(stereotypesWithEditedFeatureAppliedOnElement.size() > 1) {
+			if(stereotypesWithEditedFeatureAppliedOnElement!=null && stereotypesWithEditedFeatureAppliedOnElement.size() > 1) {
 				//FIXME : not yet managed
 				return;
 			}

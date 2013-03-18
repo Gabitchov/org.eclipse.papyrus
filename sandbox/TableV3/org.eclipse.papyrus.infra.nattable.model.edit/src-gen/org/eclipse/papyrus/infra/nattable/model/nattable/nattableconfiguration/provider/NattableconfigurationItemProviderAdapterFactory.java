@@ -105,29 +105,6 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LocalTableEditorConfigurationItemProvider localTableEditorConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLocalTableEditorConfigurationAdapter() {
-		if (localTableEditorConfigurationItemProvider == null) {
-			localTableEditorConfigurationItemProvider = new LocalTableEditorConfigurationItemProvider(this);
-		}
-
-		return localTableEditorConfigurationItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -227,7 +204,6 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 */
 	public void dispose() {
 		if (tableEditorConfigurationItemProvider != null) tableEditorConfigurationItemProvider.dispose();
-		if (localTableEditorConfigurationItemProvider != null) localTableEditorConfigurationItemProvider.dispose();
 	}
 
 }

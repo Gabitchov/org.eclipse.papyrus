@@ -20,7 +20,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.ui.services.IDisposable;
 
 public interface IAxisManager extends IDisposable {
@@ -64,7 +64,7 @@ public interface IAxisManager extends IDisposable {
 	 */
 	public Command getComplementaryAddAxisCommand(final EditingDomain domain, final Collection<Object> objectToAdd);
 
-	public void init(final INattableModelManager manager, String managerId, final Table table, final IAxisContentsProvider provider, boolean mustRefreshOnAxisChanges);
+	public void init(final INattableModelManager manager, String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges);
 
 	// public Object getHeaderDataValue(int columnIndex, int rowIndex);
 
@@ -78,7 +78,7 @@ public interface IAxisManager extends IDisposable {
 
 	public Table getTable();;
 
-	public IAxisContentsProvider getRepresentedContentProvider();;
+	public AbstractAxisProvider getRepresentedContentProvider();;
 
 	public ILimitedNattableModelManager getTableManager();
 

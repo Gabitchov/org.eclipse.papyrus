@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.reorder;
 
-import org.eclipse.nebula.widgets.nattable.reorder.config.DefaultReorderBindings;
+import org.eclipse.nebula.widgets.nattable.reorder.config.DefaultColumnReorderBindings;
 import org.eclipse.nebula.widgets.nattable.ui.action.AggregateDragMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
@@ -25,7 +25,7 @@ import org.eclipse.swt.SWT;
  * This bindings allows to move the columns, only when the manager allows it.
  * 
  */
-public class CustomDefaultColumnReorderBindings extends DefaultReorderBindings {
+public class CustomDefaultColumnReorderBindings extends DefaultColumnReorderBindings {
 
 	/**
 	 * the table manager

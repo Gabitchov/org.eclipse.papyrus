@@ -83,10 +83,6 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 				return createTableEditorConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseLocalTableEditorConfiguration(LocalTableEditorConfiguration object) {
-				return createLocalTableEditorConfigurationAdapter();
-			}
-			@Override
 			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -121,20 +117,6 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTableEditorConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration <em>Local Table Editor Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration
-	 * @generated
-	 */
-	public Adapter createLocalTableEditorConfigurationAdapter() {
 		return null;
 	}
 

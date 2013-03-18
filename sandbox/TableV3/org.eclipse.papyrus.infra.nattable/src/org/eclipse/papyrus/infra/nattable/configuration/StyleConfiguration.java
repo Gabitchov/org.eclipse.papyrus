@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.nattable.configuration;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
+import org.eclipse.papyrus.infra.nattable.formatter.ExportFormatter;
 
 /**
  * Register a specific Cellpainter
@@ -29,7 +31,6 @@ public class StyleConfiguration extends DefaultNatTableStyleConfiguration {
 	public void configureRegistry(final IConfigRegistry configRegistry) {
 		super.configureRegistry(configRegistry);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new CustomizedCellPainter());
-
 	}
 
 

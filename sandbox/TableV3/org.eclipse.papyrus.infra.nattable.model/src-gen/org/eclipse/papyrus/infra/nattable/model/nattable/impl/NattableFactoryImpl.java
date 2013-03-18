@@ -37,7 +37,7 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 */
 	public static NattableFactory init() {
 		try {
-			NattableFactory theNattableFactory = (NattableFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/nattable/model"); //$NON-NLS-1$ 
+			NattableFactory theNattableFactory = (NattableFactory)EPackage.Registry.INSTANCE.getEFactory(NattablePackage.eNS_URI);
 			if (theNattableFactory != null) {
 				return theNattableFactory;
 			}

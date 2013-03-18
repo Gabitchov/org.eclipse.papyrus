@@ -25,15 +25,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.LocalTableEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.NattablecontentproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.impl.NattablecontentproviderPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,13 +53,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	private EClass tableEditorConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass localTableEditorConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,17 +112,23 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 
 		// Obtain or create and register interdependencies
 		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
-		NattablecontentproviderPackageImpl theNattablecontentproviderPackage = (NattablecontentproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecontentproviderPackage.eNS_URI) instanceof NattablecontentproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecontentproviderPackage.eNS_URI) : NattablecontentproviderPackage.eINSTANCE);
+		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
+		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
+		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattableconfigurationPackage.createPackageContents();
 		theNattablePackage.createPackageContents();
-		theNattablecontentproviderPackage.createPackageContents();
+		theNattableaxisproviderPackage.createPackageContents();
+		theNattablelabelproviderPackage.createPackageContents();
+		theNattableaxisconfigurationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattableconfigurationPackage.initializePackageContents();
 		theNattablePackage.initializePackageContents();
-		theNattablecontentproviderPackage.initializePackageContents();
+		theNattableaxisproviderPackage.initializePackageContents();
+		theNattablelabelproviderPackage.initializePackageContents();
+		theNattableaxisconfigurationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattableconfigurationPackage.freeze();
@@ -149,8 +153,8 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTableEditorConfiguration_PastedElementTypeId() {
-		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(0);
+	public EReference getTableEditorConfiguration_VerticalAxisProvider() {
+		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -158,7 +162,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTableEditorConfiguration_PastedElementContainmentFeature() {
+	public EReference getTableEditorConfiguration_HorizontalAxisProvider() {
 		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -167,26 +171,8 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTableEditorConfiguration_DefaultVerticalContentProvider() {
-		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTableEditorConfiguration_DefaultHorizontalContentProvider() {
-		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getTableEditorConfiguration_EditorDeclaration() {
-		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -194,26 +180,8 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLocalTableEditorConfiguration() {
-		return localTableEditorConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLocalTableEditorConfiguration_DefaultTableEditorConfiguration() {
-		return (EReference)localTableEditorConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLocalTableEditorConfiguration_Type() {
-		return (EAttribute)localTableEditorConfigurationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getTableEditorConfiguration_Type() {
+		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -254,15 +222,10 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 
 		// Create classes and their features
 		tableEditorConfigurationEClass = createEClass(TABLE_EDITOR_CONFIGURATION);
-		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_TYPE_ID);
-		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__PASTED_ELEMENT_CONTAINMENT_FEATURE);
-		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_VERTICAL_CONTENT_PROVIDER);
-		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__DEFAULT_HORIZONTAL_CONTENT_PROVIDER);
+		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER);
+		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER);
 		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION);
-
-		localTableEditorConfigurationEClass = createEClass(LOCAL_TABLE_EDITOR_CONFIGURATION);
-		createEReference(localTableEditorConfigurationEClass, LOCAL_TABLE_EDITOR_CONFIGURATION__DEFAULT_TABLE_EDITOR_CONFIGURATION);
-		createEAttribute(localTableEditorConfigurationEClass, LOCAL_TABLE_EDITOR_CONFIGURATION__TYPE);
+		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__TYPE);
 
 		// Create enums
 		cellEditorDeclarationEEnum = createEEnum(CELL_EDITOR_DECLARATION);
@@ -293,7 +256,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		NattablecontentproviderPackage theNattablecontentproviderPackage = (NattablecontentproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablecontentproviderPackage.eNS_URI);
+		NattableaxisproviderPackage theNattableaxisproviderPackage = (NattableaxisproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -301,19 +264,13 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 
 		// Add supertypes to classes
 		tableEditorConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
-		localTableEditorConfigurationEClass.getESuperTypes().add(this.getTableEditorConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(tableEditorConfigurationEClass, TableEditorConfiguration.class, "TableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTableEditorConfiguration_PastedElementTypeId(), theEcorePackage.getEString(), "pastedElementTypeId", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableEditorConfiguration_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableEditorConfiguration_DefaultVerticalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultVerticalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableEditorConfiguration_DefaultHorizontalContentProvider(), theNattablecontentproviderPackage.getIAxisContentsProvider(), null, "defaultHorizontalContentProvider", null, 0, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableEditorConfiguration_VerticalAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "verticalAxisProvider", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableEditorConfiguration_HorizontalAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "horizontalAxisProvider", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableEditorConfiguration_EditorDeclaration(), this.getCellEditorDeclaration(), "editorDeclaration", "COLUMN", 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
-		initEClass(localTableEditorConfigurationEClass, LocalTableEditorConfiguration.class, "LocalTableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLocalTableEditorConfiguration_DefaultTableEditorConfiguration(), this.getTableEditorConfiguration(), null, "defaultTableEditorConfiguration", null, 0, 1, LocalTableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getLocalTableEditorConfiguration_Type(), ecorePackage.getEString(), "type", null, 0, 1, LocalTableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableEditorConfiguration_Type(), ecorePackage.getEString(), "type", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(cellEditorDeclarationEEnum, CellEditorDeclaration.class, "CellEditorDeclaration"); //$NON-NLS-1$

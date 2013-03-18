@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
  * @author Vincent Lorenzo
  * 
  */
+//FIXME : we should use the TextPainter itself, now with the GenericDisplayConverter, it should works fine
 public class CustomizedCellPainter extends TextPainter {
 
 	/**
@@ -43,7 +44,7 @@ public class CustomizedCellPainter extends TextPainter {
 	 */
 	@Override
 	protected String convertDataType(final ILayerCell cell, final IConfigRegistry configRegistry) {
-		final LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		final LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		final ILabelProviderContextElement contextElement = new LabelProviderCellContextElement(cell, configRegistry);
 		final ILabelProvider provider = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT, contextElement);
 		return provider.getText(contextElement);

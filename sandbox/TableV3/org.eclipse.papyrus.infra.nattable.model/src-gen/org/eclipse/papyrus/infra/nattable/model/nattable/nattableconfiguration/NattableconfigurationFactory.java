@@ -41,15 +41,6 @@ public interface NattableconfigurationFactory extends EFactory {
 	TableEditorConfiguration createTableEditorConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Local Table Editor Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Local Table Editor Configuration</em>'.
-	 * @generated
-	 */
-	LocalTableEditorConfiguration createLocalTableEditorConfiguration();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
