@@ -90,14 +90,19 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 
 			} else {
 				List objects = new ArrayList();
-				if (n.getEventType() == Notification.ADD_MANY) {
+				switch(n.getEventType()) {
+				case Notification.ADD_MANY:
 					objects = (List<?>)n.getNewValue();
-				} else if(n.getEventType() == Notification.REMOVE_MANY) {
+					break;
+				case Notification.REMOVE_MANY:
 					objects = (List<?>)n.getOldValue();
-				} else if(n.getEventType() == Notification.ADD) {
+					break;
+				case Notification.ADD:
 					objects.add(n.getNewValue());
-				} else if(n.getEventType() == Notification.REMOVE) {
+					break;
+				case Notification.REMOVE:
 					objects.add(n.getOldValue());
+					break;
 				}
 
 				for (Object o : objects) {
