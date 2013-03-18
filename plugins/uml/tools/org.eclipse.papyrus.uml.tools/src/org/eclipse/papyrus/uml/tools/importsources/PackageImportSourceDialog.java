@@ -35,8 +35,7 @@ import org.eclipse.uml2.uml.Package;
 /**
  * This is the PackageImportSourceDialog type. Enjoy.
  */
-public class PackageImportSourceDialog
-		extends MultipleValueSelectorDialog {
+public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 
 	private IPackageImportSource source;
 
@@ -48,9 +47,9 @@ public class PackageImportSourceDialog
 	 * Initializes me.
 	 * 
 	 * @param parentShell
-	 *            the shell to use as parent of the dialog
+	 *        the shell to use as parent of the dialog
 	 * @param title
-	 *            the dialog title
+	 *        the dialog title
 	 */
 	public PackageImportSourceDialog(Shell parentShell, String title) {
 		super(parentShell, new MyReferenceSelector(), title, true, true);
@@ -65,8 +64,7 @@ public class PackageImportSourceDialog
 	 * @return the selected models from which to import, or {@code null} if the
 	 *         user cancelled
 	 */
-	public static Collection<Package> open(Shell parentShell, String title,
-			IStructuredSelection selection) {
+	public static Collection<Package> open(Shell parentShell, String title, IStructuredSelection selection) {
 
 		return open(parentShell, title, selection.toList());
 	}
@@ -78,11 +76,9 @@ public class PackageImportSourceDialog
 	 * @return the selected models from which to import, or {@code null} if the
 	 *         user cancelled
 	 */
-	public static Collection<Package> open(Shell parentShell, String title,
-			Collection<?> selection) {
+	public static Collection<Package> open(Shell parentShell, String title, Collection<?> selection) {
 
-		PackageImportSourceDialog dlg = new PackageImportSourceDialog(
-			parentShell, title);
+		PackageImportSourceDialog dlg = new PackageImportSourceDialog(parentShell, title);
 		dlg.initialize(selection);
 
 		dlg.open();
@@ -91,13 +87,11 @@ public class PackageImportSourceDialog
 	}
 
 	public void initialize(Collection<?> selection) {
-		IEvaluationService evaluationService = (IEvaluationService) PlatformUI
-			.getWorkbench().getService(IEvaluationService.class);
-		source = new PackageImportSourceRegistry(evaluationService)
-			.createImportSourceFor(selection);
+		IEvaluationService evaluationService = (IEvaluationService)PlatformUI.getWorkbench().getService(IEvaluationService.class);
+		source = new PackageImportSourceRegistry(evaluationService).createImportSourceFor(selection);
 		source.initialize(selection);
 
-		MyReferenceSelector selector = (MyReferenceSelector) this.selector;
+		MyReferenceSelector selector = (MyReferenceSelector)this.selector;
 		ILabelProvider labelProvider = source.getModelHierarchyLabelProvider();
 		selector.setLabelProvider(labelProvider);
 		selector.setContentProvider(source.getModelHierarchyContentProvider());
@@ -111,13 +105,13 @@ public class PackageImportSourceDialog
 	private static ResourceSet getResourceSet(Collection<?> selection) {
 		ResourceSet result = null;
 
-		for (Object next : selection) {
+		for(Object next : selection) {
 			EObject context = EMFHelper.getEObject(next);
-			if (context != null) {
+			if(context != null) {
 				Resource res = context.eResource();
-				if (res != null) {
+				if(res != null) {
 					result = res.getResourceSet();
-					if (result != null) {
+					if(result != null) {
 						break;
 					}
 				}
@@ -140,7 +134,7 @@ public class PackageImportSourceDialog
 	public boolean close() {
 		boolean result = super.close();
 
-		if (result) {
+		if(result) {
 			computePackages();
 
 			dispose();
@@ -150,7 +144,7 @@ public class PackageImportSourceDialog
 	}
 
 	public void dispose() {
-		if (source != null) {
+		if(source != null) {
 			source.dispose();
 			source = null;
 		}
@@ -158,24 +152,17 @@ public class PackageImportSourceDialog
 
 	private void computePackages() {
 		Object[] dlgResult = getResult();
-		if (dlgResult != null) {
-			selectedPackages = new java.util.ArrayList<Package>(
-				dlgResult.length);
+		if(dlgResult != null) {
+			selectedPackages = new java.util.ArrayList<Package>(dlgResult.length);
 
-			for (Object selectedElement : dlgResult) {
+			for(Object selectedElement : dlgResult) {
 				try {
-					selectedPackages.addAll(source.getPackages(resourceSet,
-						selectedElement));
+					selectedPackages.addAll(source.getPackages(resourceSet, selectedElement));
 				} catch (CoreException e) {
 					StatusAdapter adapter = new StatusAdapter(e.getStatus());
-					adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY,
-						"Invalid Model(s) Selected");
-					adapter
-						.setProperty(
-							IStatusAdapterConstants.EXPLANATION_PROPERTY,
-							"One or more of the models selected could not provide packages to import.");
-					StatusManager.getManager().handle(adapter,
-						StatusManager.SHOW);
+					adapter.setProperty(IStatusAdapterConstants.TITLE_PROPERTY, "Invalid Model(s) Selected");
+					adapter.setProperty(IStatusAdapterConstants.EXPLANATION_PROPERTY, "One or more of the models selected could not provide packages to import.");
+					StatusManager.getManager().handle(adapter, StatusManager.SHOW);
 				}
 			}
 		}
@@ -185,23 +172,22 @@ public class PackageImportSourceDialog
 	// Nested types
 	//
 
-	private static class MyReferenceSelector
-			extends ReferenceSelector {
+	private static class MyReferenceSelector extends ReferenceSelector {
 
 		private IPackageImportSource source;
-		
+
 		void setImportSource(IPackageImportSource source) {
 			this.source = source;
 		}
-		
+
 		@Override
 		public void createControls(Composite parent) {
 			super.createControls(parent);
 
-			if (source instanceof CompositePackageImportSource) {
+			if(source instanceof CompositePackageImportSource) {
 				// expand to the second level to show projects in the workspace
 				// and whatever is contributed by other sources
-				fTree.getViewer().expandToLevel(2);
+				treeViewer.expandToLevel(2);
 			}
 
 		}

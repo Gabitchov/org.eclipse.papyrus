@@ -224,63 +224,63 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 
 	public String getQualifierText(Object element) {
 		String result = null;
-		
+
 		EObject parent = getParentObject(element);
-		if (parent != null) {
+		if(parent != null) {
 			result = getQualifiedText(parent);
 		}
-		
+
 		return result;
 	}
-	
+
 	private EObject getParentObject(Object element) {
 		EObject result = null;
-		
-		if (element != null) {
+
+		if(element != null) {
 			EObject eObject = EMFHelper.getEObject(element);
-			if (eObject != null) {
+			if(eObject != null) {
 				result = getParent(eObject);
 			}
 		}
 
 		return result;
 	}
-	
+
 	public Image getQualifierImage(Object element) {
 		Image result = null;
-		
+
 		EObject parent = getParentObject(element);
-		if (parent != null) {
+		if(parent != null) {
 			result = getImage(parent);
 		}
-		
+
 		return result;
 	}
-	
+
 	protected EObject getParent(EObject object) {
 		return object.eContainer();
 	}
-	
+
 	protected String getQualifiedText(EObject object) {
 		StringBuilder result = new StringBuilder();
-		
+
 		appendQualifiedText(object, result);
-		
+
 		return result.toString();
 	}
-	
+
 	protected void appendQualifiedText(EObject object, StringBuilder buf) {
 		EObject parent = getParent(object);
-		if (parent != null) {
-			appendQualifiedText(object, buf);
+		if(parent != null) {
+			appendQualifiedText(parent, buf);
 		}
 
-		if (buf.length() > 0) {
+		if(buf.length() > 0) {
 			buf.append("::");
 		}
 
 		String name = getText(object);
-		if (name == null) {
+		if(name == null) {
 			name = String.format("<%s>", object.eClass().getName());
 		}
 		buf.append(name);

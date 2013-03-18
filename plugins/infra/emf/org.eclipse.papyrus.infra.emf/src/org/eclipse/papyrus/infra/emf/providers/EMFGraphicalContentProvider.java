@@ -18,9 +18,13 @@ package org.eclipse.papyrus.infra.emf.providers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -88,6 +92,8 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	private static final int HISTORY_MAX_SIZE = 5;
 
 	private String currentFilterPattern = ""; //$NON-NLS-1$
+
+	private TableViewer historyViewer;
 
 	/**
 	 * the wanted root of the contentprovider
@@ -210,7 +216,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		data.heightHint = 70;
 		historyTable.setLayoutData(data);
-		final TableViewer historyViewer = new TableViewer(historyTable);
+		historyViewer = new TableViewer(historyTable);
 		historyViewer.setContentProvider(new HistoryContentProvider());
 		historyViewer.setLabelProvider(viewer.getLabelProvider());
 		historyViewer.setInput(selectionHistory);
@@ -377,17 +383,14 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	 * @param settings
 	 *        settings used to store dialog
 	 */
-	protected void storeDialog(IDialogSettings settings, EObject currentValue) {
+	protected void storeDialog(IDialogSettings settings, Collection<EObject> newValues) {
+		selectionHistory.removeAll(newValues);
 
-		if(selectionHistory.contains(currentValue)) {
-			selectionHistory.remove(currentValue);
-		}
+		selectionHistory.addAll(0, newValues);
 
-		selectionHistory.add(0, currentValue);
-
-		//This should loop only once, unless the history was already oversized
-		while(selectionHistory.size() > HISTORY_MAX_SIZE) {
-			selectionHistory.remove(HISTORY_MAX_SIZE);
+		//Truncate the history: only keep a sublist of size HISTORY_MAX_SIZE
+		if(selectionHistory.size() > HISTORY_MAX_SIZE) {
+			selectionHistory = selectionHistory.subList(0, HISTORY_MAX_SIZE);
 		}
 
 		List<String> uriList = new ArrayList<String>();
@@ -403,6 +406,8 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 			historySettings = settings.addNewSection(HISTORY_SETTINGS);
 		}
 		historySettings.put(PREVIOUS_SELECTION, uriList.toArray(new String[uriList.size()]));
+
+		historyViewer.setInput(selectionHistory);
 	}
 
 	@Override
@@ -447,9 +452,20 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 	@Override
 	public void commit(AbstractEditor editor) {
-		Object semanticElement = getAdaptedValue(selectedObject);
-		if(semanticElement instanceof EObject) {
-			storeDialog(getDialogSettings(), (EObject)semanticElement);
+		Iterator<?> selectionIterator = ((IStructuredSelection)viewer.getSelection()).iterator();
+		Set<EObject> eObjectsToStore = new LinkedHashSet<EObject>();
+		while(selectionIterator.hasNext()) {
+			Object selectedElement = selectionIterator.next();
+			if(isValidValue(selectedElement)) {
+				Object semanticObject = getAdaptedValue(selectedElement);
+				if(semanticObject instanceof EObject) {
+					eObjectsToStore.add((EObject)semanticObject);
+				}
+			}
+		}
+
+		if(!eObjectsToStore.isEmpty()) {
+			storeDialog(getDialogSettings(), eObjectsToStore);
 		}
 	}
 

@@ -273,8 +273,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 		createListSection(selectedPane);
 		createRightButtonsSection(selectedPane);
 
-		getShell().setSize(600, 400);
-		getShell().layout();
+		getShell().pack();
 
 		super.getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 

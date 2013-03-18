@@ -18,25 +18,29 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
 import org.eclipse.papyrus.infra.widgets.strategy.StrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TreeItem;
-import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
 
@@ -50,15 +54,10 @@ import org.eclipse.ui.dialogs.PatternFilter;
  */
 public class ReferenceSelector implements IElementSelector {
 
-	//	/**
-	//	 * A Widget to enter a filter as a String, accepting wildcards
-	//	 */
-	//	protected Filter filter;
-
 	/**
-	 * The display tree
+	 * The tree viewer
 	 */
-	protected FilteredTree fTree;
+	protected TreeViewer treeViewer;
 
 	/**
 	 * The content provider, returning the available reference values
@@ -82,6 +81,9 @@ public class ReferenceSelector implements IElementSelector {
 	protected boolean multiSelection;
 
 
+	protected final List<ICommitListener> commitListeners;
+
+
 	private Set<IElementSelectionListener> elementSelectionListeners = new HashSet<IElementSelectionListener>();
 
 	/**
@@ -103,6 +105,7 @@ public class ReferenceSelector implements IElementSelector {
 	public ReferenceSelector(boolean unique) {
 		this.unique = unique;
 		this.multiSelection = true;
+		commitListeners = new LinkedList<ICommitListener>();
 	}
 
 	/**
@@ -112,15 +115,14 @@ public class ReferenceSelector implements IElementSelector {
 	 * 
 	 */
 	public ReferenceSelector() {
-		this.unique = false;
-		this.multiSelection = false;
+		this(false);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object[] getSelectedElements() {
-		ISelection selection = fTree.getViewer().getSelection();
+		ISelection selection = treeViewer.getSelection();
 
 		if(selection instanceof IStructuredSelection) {
 			Object[] containerElementsToMove = getElementsToMove(((IStructuredSelection)selection).toArray());
@@ -131,33 +133,6 @@ public class ReferenceSelector implements IElementSelector {
 
 		return new Object[0];
 	}
-
-	//	/**
-	//	 * This method is used for handling correctly the IAdaptableContentProvider
-	//	 * The objects can be in two different forms :
-	//	 * - The semantic element
-	//	 * - The container element
-	//	 * 
-	//	 * This methods returns an array of container elements from an array of
-	//	 * semantic elements. This is useful when specifying a selection to a
-	//	 * viewer using an IAdaptableContentProvider
-	//	 * 
-	//	 * @param semanticElements
-	//	 *        The array of semantic elements to be converted
-	//	 * @return
-	//	 *         The array of elements wrapped in their container
-	//	 * 
-	//	 * @see #getSemanticElements(Object[])
-	//	 * @see org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider
-	//	 */
-	//	private Object[] getContainerElements(Object[] semanticElements) {
-	//		Object[] containerElements = new Object[semanticElements.length];
-	//		int i = 0;
-	//		for(Object semanticElement : semanticElements) {
-	//			containerElements[i++] = contentProvider.getContainerValue(semanticElement);
-	//		}
-	//		return containerElements;
-	//	}
 
 	/**
 	 * This method is used for handling correctly the IAdaptableContentProvider
@@ -206,6 +181,7 @@ public class ReferenceSelector implements IElementSelector {
 			}
 		}
 
+		notifyCommitListeners();
 		return elementsToMove.toArray();
 	}
 
@@ -239,20 +215,17 @@ public class ReferenceSelector implements IElementSelector {
 		}
 
 		Collection<Object> visibleElements = new LinkedList<Object>();
-		for(TreeItem rootItem : fTree.getViewer().getTree().getItems()) {
+		for(TreeItem rootItem : treeViewer.getTree().getItems()) {
 			visibleElements.add(getElement(rootItem));
 			if(rootItem.getExpanded()) {
 				fillVisibleElements(rootItem, visibleElements);
 			}
 		}
 
-		//		fTree.getViewer().refresh();
-		//		fTree.getViewer().setSelection(new StructuredSelection(visibleElements));
-
-		//		Object[] containerElementsToMove = getElementsToMove(((IStructuredSelection)fTree.getViewer().getSelection()).toArray());
 		Object[] containerElementsToMove = getElementsToMove(visibleElements.toArray());
 		Object[] semanticElementsToMove = getSemanticElements(containerElementsToMove);
 		addSelectedElements(semanticElementsToMove);
+
 		return semanticElementsToMove;
 	}
 
@@ -295,7 +268,7 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public void refresh() {
 		((SelectionFilteredBrowseStrategy)contentProvider.getBrowseStrategy()).refresh();
-		fTree.getViewer().refresh();
+		treeViewer.refresh();
 	}
 
 	/**
@@ -306,8 +279,8 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public void setLabelProvider(ILabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
-		if(fTree != null) {
-			fTree.getViewer().setLabelProvider(labelProvider);
+		if(treeViewer != null) {
+			treeViewer.setLabelProvider(labelProvider);
 		}
 	}
 
@@ -327,9 +300,13 @@ public class ReferenceSelector implements IElementSelector {
 
 		this.contentProvider = new StrategyBasedContentProvider(filteredBrowseStrategy, revealBrowseStrategy);
 
-		if(fTree != null) {
-			fTree.getViewer().setContentProvider(contentProvider);
-			fTree.getViewer().setInput(""); //$NON-NLS-1$
+		if(treeViewer != null) {
+			treeViewer.setContentProvider(contentProvider);
+			treeViewer.setInput(""); //$NON-NLS-1$
+		}
+
+		if(contentProvider instanceof ICommitListener) {
+			commitListeners.add(contentProvider);
 		}
 	}
 
@@ -369,59 +346,59 @@ public class ReferenceSelector implements IElementSelector {
 	 * {@inheritDoc}
 	 */
 	public void createControls(Composite parent) {
-		Composite content = new Composite(parent, SWT.BORDER);
+		Composite content = new Composite(parent, SWT.NONE);
 		content.setLayout(new GridLayout(1, true));
 
-		//		filter = new Filter(content, SWT.BORDER);
-		//		filter.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		treeViewer = new TreeViewer(content, SWT.BORDER | SWT.MULTI);
+		treeViewer.setFilters(new ViewerFilter[]{ new PatternFilter() });
 
-		final PatternFilter filter = new PatternFilter();
-		filter.setPattern("*"); //$NON-NLS-1$
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		data.minimumHeight = 300;
+		data.minimumWidth = 300;
+		treeViewer.getTree().setLayoutData(data);
 
-		fTree = new FilteredTree(content, SWT.MULTI | SWT.BORDER, new PatternFilter(), true);
-
-		//fList = new FilteredList(content, SWT.MULTI | SWT.BORDER, labelProvider, true, true, true);
-		fTree.getViewer().getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		if(contentProvider != null) {
-			fTree.getViewer().setContentProvider(contentProvider);
-			fTree.getViewer().setInput(""); //$NON-NLS-1$
-		}
 		if(labelProvider != null) {
-			fTree.getViewer().setLabelProvider(labelProvider);
+			treeViewer.setLabelProvider(labelProvider);
 		}
-		//
-		//		this.filter.addChangeListener(new Listener() {
-		//
-		//			public void handleEvent(Event event) {
-		//				filter.setPattern(ReferenceSelector.this.filter.getFilter());
-		//			}
-		//		});
 
-		//		fTree.getViewer().addFilter(new ViewerFilter() {
-		//
-		//			@Override
-		//			public boolean select(Viewer viewer, Object parentElement, Object containerElement) {
-		//				if(unique) {
-		//					//TODO : check if the selected element has selectable children
-		//					return !selectedElements.contains(contentProvider.getAdaptedValue(containerElement));
-		//				} else {
-		//					return true;
-		//				}
-		//			}
-		//		});
+		if(contentProvider != null) {
+			treeViewer.setContentProvider(contentProvider);
+			treeViewer.setInput(""); //$NON-NLS-1$
+		}
+
+		if(contentProvider instanceof IGraphicalContentProvider) {
+			IGraphicalContentProvider graphicalContentProvider = contentProvider;
+
+			Composite beforeTreeComposite = new Composite(content, SWT.NONE);
+			beforeTreeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+			FillLayout layout = new FillLayout();
+			layout.marginHeight = 0;
+			layout.marginWidth = 0;
+			beforeTreeComposite.setLayout(layout);
+			graphicalContentProvider.createBefore(beforeTreeComposite);
+
+			beforeTreeComposite.moveAbove(treeViewer.getTree());
+
+			Composite afterTreeComposite = new Composite(content, SWT.NONE);
+			layout = new FillLayout();
+			layout.marginHeight = 0;
+			layout.marginWidth = 0;
+			afterTreeComposite.setLayout(layout);
+			afterTreeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+			graphicalContentProvider.createAfter(afterTreeComposite);
+		}
 
 		//Adds double-click support
-		fTree.getViewer().getTree().addSelectionListener(new SelectionListener() {
+		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
-			public void widgetSelected(SelectionEvent e) {
-				// Nothing
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
+			public void doubleClick(DoubleClickEvent event) {
 				if(!elementSelectionListeners.isEmpty()) {
 					Object[] selectedElements = getSelectedElements();
-					for(IElementSelectionListener listener : elementSelectionListeners) {
-						listener.addElements(selectedElements);
+					if(selectedElements.length > 0) {
+						notifyCommitListeners();
+						for(IElementSelectionListener listener : elementSelectionListeners) {
+							listener.addElements(selectedElements);
+						}
 					}
 				}
 			}
@@ -439,6 +416,12 @@ public class ReferenceSelector implements IElementSelector {
 
 	public void removeElementSelectionListener(IElementSelectionListener listener) {
 		elementSelectionListeners.remove(listener);
+	}
+
+	protected void notifyCommitListeners() {
+		for(ICommitListener commitListener : commitListeners) {
+			commitListener.commit(null);
+		}
 	}
 
 }
