@@ -41,12 +41,11 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.PrimitiveType;
-import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
-
+import org.eclipse.uml2.uml.Package;
 /**
  * 
  * This factory allows to generate a ProfileEFacetSet from a UML Profile
@@ -99,7 +98,7 @@ public class ProfileFacetGenericFactory {
 	 * @return
 	 *         the ProfileFacetSet for this profile or <code>null</code> if the profile argument doesn't contains steretoypes with properties
 	 */
-	public ProfileFacetSet createProfileFacetSet(final Profile profile) {
+	public ProfileFacetSet createProfileFacetSet(final Package profile) {
 		final ProfileFacetSet set = ProfileFacetFactory.eINSTANCE.createProfileFacetSet();
 		set.setName(profile.getName());
 		set.setProfileQualifiedName(profile.getQualifiedName());
@@ -110,8 +109,8 @@ public class ProfileFacetGenericFactory {
 		final String XMI_ID = res.getID(profile);
 		set.setRepresentedElement_XMI_ID(XMI_ID);
 		for(final PackageableElement packagedElement : profile.getPackagedElements()) {
-			if(packagedElement instanceof Profile) {
-				final ProfileFacetSet subProfile = createProfileFacetSet((Profile)packagedElement);
+			if(packagedElement instanceof Package) {
+				final ProfileFacetSet subProfile = createProfileFacetSet((Package)packagedElement);
 				//We ignore empty facetSet
 				if(subProfile != null && (subProfile.getStereotypeFacets().size() != 0 || subProfile.getSubProfileFacetSet().size() != 0)) {
 					set.getESubpackages().add(subProfile);
