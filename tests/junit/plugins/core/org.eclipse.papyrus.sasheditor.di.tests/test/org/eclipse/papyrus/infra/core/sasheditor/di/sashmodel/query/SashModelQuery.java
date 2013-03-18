@@ -158,7 +158,7 @@ public class SashModelQuery {
 	 */
 	public void createModel(IQueryExp query) throws QueryException {
 		
-		Window first = sashModel.getWindows().get(0);
+		Window first;
 		if( query instanceof PanelTerm) {
 			first = getFirstWindowModel();
 		}
