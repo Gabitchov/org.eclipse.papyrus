@@ -40,7 +40,6 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -68,7 +67,6 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 	}
 
 	@Test
-	@Ignore("CDO fails to commit transaction on EMF Facet query on Linux platform")
 	public void testOneToOneImport() {
 		URI uri1 = hasDependencies.getResourceURI("model.di");
 		URI uri2 = hasDependents.getResourceURI("Datatypes.di");
@@ -98,7 +96,6 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 	}
 
 	@Test
-	@Ignore("CDO fails to commit transaction on EMF Facet query on Linux platform")
 	public void testManyToOneImport() {
 		URI uri1 = hasDependencies.getResourceURI("model.di");
 		URI uri2 = hasDependents.getResourceURI("Datatypes.di");
