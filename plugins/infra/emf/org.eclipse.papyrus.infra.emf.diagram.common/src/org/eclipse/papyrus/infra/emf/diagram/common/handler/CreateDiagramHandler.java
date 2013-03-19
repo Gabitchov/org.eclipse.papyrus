@@ -23,8 +23,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.papyrus.infra.core.Activator;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -141,7 +141,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 		// Attach to sash in order to show it
 		// Add the diagram as a page to the current sash folder
 		try {
-			registry.getService(IPageMngr.class).addPage(di2Diagram);
+			registry.getService(IPageManager.class).openPage(di2Diagram);
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 		}
