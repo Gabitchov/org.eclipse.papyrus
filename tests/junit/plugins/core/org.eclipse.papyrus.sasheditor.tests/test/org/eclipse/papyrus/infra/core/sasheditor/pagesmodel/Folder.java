@@ -17,8 +17,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * This represent a Folder in the Checker query.
  * 

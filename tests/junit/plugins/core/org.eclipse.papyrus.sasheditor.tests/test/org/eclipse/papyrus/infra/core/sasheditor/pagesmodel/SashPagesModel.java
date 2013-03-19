@@ -17,9 +17,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
-
 /**
  * Sash Pages model allow to create a models of the pages represented by the {@link SashWindowsContainer}.
  * Such model can then be used to create corresponding pages and intermediate artifact in a {@link ISashWindowsContentProvider},

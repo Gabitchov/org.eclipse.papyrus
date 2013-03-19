@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author dumoulin

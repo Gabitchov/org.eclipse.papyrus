@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.pagesmodel;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * This represent a page in the Checker query.
