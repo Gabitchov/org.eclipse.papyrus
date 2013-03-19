@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.swt.widgets.Display;
 
 
 /**
@@ -62,8 +63,13 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 		}
 	}
 
-	public void selectPage(Object pageIdentifier) {
-		folderAndPageMngr.setActivePage(pageIdentifier);
+	public void selectPage(final Object pageIdentifier) {
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				folderAndPageMngr.setActivePage(pageIdentifier);
+			}
+		});
 	}
 
 	public void setCurrentFolderAndPageMngr(ICurrentFolderAndPageMngr currentFolderAndPageMngr) {
