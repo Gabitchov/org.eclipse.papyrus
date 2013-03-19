@@ -65,7 +65,6 @@ public class LookupIPageVisitor implements IPageVisitor {
 	 *
 	 * @param page
 	 */
-	@Override
 	public void accept(IComponentPage page) {
 		
 		if(result !=null) {
@@ -83,7 +82,6 @@ public class LookupIPageVisitor implements IPageVisitor {
 	 *
 	 * @param page
 	 */
-	@Override
 	public void accept(IEditorPage page) {
 		
 		if(result !=null) {
