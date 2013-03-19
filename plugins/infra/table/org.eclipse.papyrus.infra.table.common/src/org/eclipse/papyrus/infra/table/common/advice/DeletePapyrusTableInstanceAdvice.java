@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -58,13 +58,15 @@ public class DeletePapyrusTableInstanceAdvice extends AbstractEditHelperAdvice {
 			final DestroyElementRequest request2 = new DestroyElementRequest(instance, false);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(instance);
 			return provider.getEditCommand(request2);
-		} else if(objectToDestroy instanceof EObject) {//the destroyed element sould be a table container
+		} else if(objectToDestroy instanceof EObject) {//the destroyed element could be a table container
 			final ECrossReferenceAdapter crossReferencerAdapter = CrossReferenceAdapter.getCrossReferenceAdapter(objectToDestroy);
 			final Collection<Setting> settings = crossReferencerAdapter.getNonNavigableInverseReferences(objectToDestroy);
+			//the destroyed context can references several table!
+			final CompositeCommand cmd = new CompositeCommand("Destroy Table Instance2 Command"); //$NON-NLS-1$
 			for(Setting currentSetting : settings) {
 				final EObject currentEObject = currentSetting.getEObject();
 				final EStructuralFeature currentfeature = currentSetting.getEStructuralFeature();
-				if(currentEObject instanceof TableInstance2 && currentfeature == TableinstancePackage.eINSTANCE.getTableInstance_Context() && ((TableInstance)currentEObject).getContext() == objectToDestroy) {
+				if(currentEObject instanceof TableInstance2 && currentfeature == TableinstancePackage.eINSTANCE.getTableInstance_Context()) {
 					final Collection<Setting> tableInstanceSettings = crossReferencerAdapter.getNonNavigableInverseReferences(currentEObject);
 					for(Setting setting : tableInstanceSettings) {
 						final EObject eobject = setting.getEObject();
@@ -72,10 +74,14 @@ public class DeletePapyrusTableInstanceAdvice extends AbstractEditHelperAdvice {
 						if(eobject instanceof PapyrusTableInstance && currentFeature == PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_Table()) {//the destroyed element is a table container
 							final DestroyElementRequest request2 = new DestroyElementRequest(eobject, false);
 							final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(eobject);
-							return provider.getEditCommand(request2);
+							final ICommand tmp = provider.getEditCommand(request2);
+							cmd.add(tmp);
 						}
 					}
 				}
+			}
+			if(!cmd.isEmpty()) {
+				return cmd;
 			}
 		}
 		return null;
