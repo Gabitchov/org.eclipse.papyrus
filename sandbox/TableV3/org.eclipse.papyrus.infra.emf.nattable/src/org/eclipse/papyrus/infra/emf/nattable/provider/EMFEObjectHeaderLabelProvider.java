@@ -19,6 +19,7 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * The label provider used for header when they represents an {@link EObject} and NOT an {@link EStructuralFeature}
@@ -57,5 +58,20 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		final LabelProviderService serv = getLabelProviderService(configRegistry);
 		return serv.getLabelProvider(object).getText(object);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getImage(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
+	@Override
+	public Image getImage(Object element) {
+		final EObject object = (EObject)((ILabelProviderContextElement)element).getObject();
+		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		final LabelProviderService serv = getLabelProviderService(configRegistry);
+		return serv.getLabelProvider(object).getImage(object);
 	}
 }

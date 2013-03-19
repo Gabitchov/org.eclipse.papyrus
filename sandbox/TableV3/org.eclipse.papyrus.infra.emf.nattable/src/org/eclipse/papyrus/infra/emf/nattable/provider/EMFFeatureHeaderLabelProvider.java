@@ -13,14 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.nattable.provider;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
 import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * Provides the label for the EstructuralFeature
@@ -30,6 +32,8 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
  */
 public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProvider {
 
+
+
 	private boolean displayName = true;//FIXME : we need to get the axis of this element to know what we should display!
 
 	private boolean displayMultiplicity = true;//FIXME : we need to get the axis of this element to know what we should display!
@@ -37,6 +41,7 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	private boolean displayType = true;//FIXME : we need to get the axis of this element to know what we should display!
 
 	private boolean displayIsDerived = true;//FIXME : we need to get the axis of this element to know what we should display!
+
 
 	/**
 	 * 
@@ -137,10 +142,53 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	public String getText(Object element) {
 		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
-		String txt = getText(configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
-		if(feature instanceof EReference && ((EReference)feature).isContainment()) {
-			txt = "CF " + txt; //$NON-NLS-1$
-		}
-		return txt;
+		return getText(configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getImage(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
+	@Override
+	public Image getImage(Object element) {
+		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
+		if(feature instanceof EAttribute) {
+			return EStructuralFeatureImageRegistry.getAttributeIcon();
+			
+		} else if(feature instanceof EReference) {
+			return getEReferenceImage((EReference)feature);
+		}
+		return super.getImage(feature);
+	}
+
+	/**
+	 * 
+	 * @param reference
+	 *        an EReference
+	 * @return
+	 *         the image for this reference
+	 */
+	public static Image getEReferenceImage(final EReference reference) {
+		final EReference opposite = reference.getEOpposite();
+
+		if(reference.isContainment()) {
+			if(opposite == null) {
+				return EStructuralFeatureImageRegistry.getUnidirectionalAggregIcon();
+			}
+			return EStructuralFeatureImageRegistry.getAggregIcon();
+		}
+
+		if(opposite != null && opposite.isContainment()) {
+			return EStructuralFeatureImageRegistry.getInvAggregIcon();
+		}
+
+		if(opposite == null) {
+			return EStructuralFeatureImageRegistry.getUnidirectionalLinkIcon();
+		}
+		return EStructuralFeatureImageRegistry.getLinkIcon();
+	}
+
 }
