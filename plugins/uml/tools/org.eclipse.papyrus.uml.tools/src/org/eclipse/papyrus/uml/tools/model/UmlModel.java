@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * A UML model.
@@ -90,4 +92,18 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 		return resource.getContents().get(0);
 	}
 
+	/**
+	 * Initialize the model if it is empty. Initialize  it with a default uml.Model
+	 */
+	public void initializeEmptyModel() {
+		
+		// Skip if the model is not empty
+		if( ! resource.getContents().isEmpty() ) {
+			return;
+		}
+		
+		Model model = UMLFactory.eINSTANCE.createModel();
+		model.setName("model");
+		resource.getContents().add(model);
+	}
 }

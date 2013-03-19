@@ -28,7 +28,7 @@
    <extension
          point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="DiActionBarContributor"
+            actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="defaultContext"
             factoryClass="org.eclipse.papyrus.uml.diagram.emftree.EmfTreeDiagramEditorFactory">
       </editorDiagram>

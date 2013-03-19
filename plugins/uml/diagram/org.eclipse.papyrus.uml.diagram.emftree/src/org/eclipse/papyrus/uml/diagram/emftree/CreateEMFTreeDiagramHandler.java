@@ -23,4 +23,7 @@ public class CreateEMFTreeDiagramHandler extends CreateDiagramHandler {
 		addNewDiagram("Emf Tree", EmfTreeDiagramEditorFactory.EMF_DIAGRAM_TYPE, null, registry);
 	}
 
+	public void createDiagram(ServicesRegistry registry) {
+		addNewDiagram(registry);
+	}
 }

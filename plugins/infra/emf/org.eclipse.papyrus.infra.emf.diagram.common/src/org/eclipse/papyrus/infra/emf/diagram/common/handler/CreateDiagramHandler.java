@@ -23,6 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -76,6 +77,38 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 	}
 
 	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 * 
+	 * @param event
+	 * @return
+	 * @throws ExecutionException
+	 */
+	public Object execute(final ServicesRegistry servicesRegistry) throws ExecutionException {
+
+		TransactionalEditingDomain editingDomain;
+
+		try {
+			editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(servicesRegistry);
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
+		}
+
+		RecordingCommand command = new RecordingCommand(editingDomain, "Create EMF Diagram") {
+
+			@Override
+			protected void doExecute() {
+				addNewDiagram(servicesRegistry);
+			}
+
+		};
+
+		editingDomain.getCommandStack().execute(command);
+		return null;
+	}
+
+	/**
 	 * Subclasses should implements this method.
 	 */
 	protected abstract void addNewDiagram(ServicesRegistry registry);
@@ -108,7 +141,7 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 		// Attach to sash in order to show it
 		// Add the diagram as a page to the current sash folder
 		try {
-			registry.getService(ISashWindowsContentProvider.class).addPage(di2Diagram);
+			registry.getService(IPageMngr.class).addPage(di2Diagram);
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 		}
