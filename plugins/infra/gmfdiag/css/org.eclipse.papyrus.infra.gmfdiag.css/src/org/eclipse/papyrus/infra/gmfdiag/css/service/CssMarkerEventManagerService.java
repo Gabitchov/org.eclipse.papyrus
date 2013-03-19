@@ -92,6 +92,9 @@ public class CssMarkerEventManagerService implements IMarkerEventListener {
 						List<IPapyrusMarker> listOfMarkersForSemanticElement = new ArrayList<IPapyrusMarker>();
 						for(IPapyrusMarker next : allPapyrusMarkers) {
 							EObject cddSemanticElement = getEObjectOfMarker(next);
+							if(cddSemanticElement == null) { //May be null, for example when the object associated to the marker has been deleted
+								return;
+							}
 							if(EcoreUtil.getURI(cddSemanticElement).toString().equals(semanticElementURI)) {
 								listOfMarkersForSemanticElement.add(next);
 							}
