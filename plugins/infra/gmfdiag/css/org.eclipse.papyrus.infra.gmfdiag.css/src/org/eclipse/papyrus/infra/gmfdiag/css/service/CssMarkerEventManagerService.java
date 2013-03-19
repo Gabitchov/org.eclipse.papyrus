@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.editpolicies.MarkerEventListenerEditPolicy;
 import org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
@@ -40,15 +41,15 @@ import org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService;
 
 public class CssMarkerEventManagerService implements IMarkerEventListener {
 
-	protected ServicesRegistry servicesRegistry ;
+	protected ServicesRegistry servicesRegistry;
 
-	protected Map<String, List<MarkerEventListenerEditPolicy>> eObjectURIToEditPolicies ; 
+	protected Map<String, List<MarkerEventListenerEditPolicy>> eObjectURIToEditPolicies;
 
 	protected MarkersMonitorService monitorService;
-	
+
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
-		this.servicesRegistry = servicesRegistry ;
-		this.eObjectURIToEditPolicies = new HashMap<String, List<MarkerEventListenerEditPolicy>>() ;
+		this.servicesRegistry = servicesRegistry;
+		this.eObjectURIToEditPolicies = new HashMap<String, List<MarkerEventListenerEditPolicy>>();
 		this.monitorService = servicesRegistry.getService(MarkersMonitorService.class);
 	}
 
@@ -63,39 +64,40 @@ public class CssMarkerEventManagerService implements IMarkerEventListener {
 	/**
 	 * Registers a MarkerEventListenerEditPolicy with this CssMarkerEventManagerService
 	 * 
-	 * @param editPolicy The edit policy to be registered with this CssMarkerEventManagerService
+	 * @param editPolicy
+	 *        The edit policy to be registered with this CssMarkerEventManagerService
 	 */
 	public void registerEditPolicy(MarkerEventListenerEditPolicy editPolicy) {
-		Assert.isTrue(editPolicy.getHost().getModel() instanceof View) ;
-		if (editPolicy.getHost().getModel() instanceof View) {
-			EObject semanticElement = ((View)editPolicy.getHost().getModel()).getElement() ;
-			if (semanticElement != null) {
-				String semanticElementURI = EcoreUtil.getURI(semanticElement).toString() ;
-				List<MarkerEventListenerEditPolicy> correspondingGraphicalEditPolicies = eObjectURIToEditPolicies.get(semanticElementURI) ;
-				if (correspondingGraphicalEditPolicies == null) {
-					correspondingGraphicalEditPolicies = new ArrayList<MarkerEventListenerEditPolicy>() ;
-					correspondingGraphicalEditPolicies.add(editPolicy) ;
-				}
-				else {
-					if (! correspondingGraphicalEditPolicies.contains(editPolicy)) {
-						correspondingGraphicalEditPolicies.add(editPolicy) ;
+		Assert.isTrue(editPolicy.getHost().getModel() instanceof View);
+		if(editPolicy.getHost().getModel() instanceof View) {
+			EObject semanticElement = ((View)editPolicy.getHost().getModel()).getElement();
+			if(semanticElement != null) {
+				String semanticElementURI = EcoreUtil.getURI(semanticElement).toString();
+				List<MarkerEventListenerEditPolicy> correspondingGraphicalEditPolicies = eObjectURIToEditPolicies.get(semanticElementURI);
+				if(correspondingGraphicalEditPolicies == null) {
+					correspondingGraphicalEditPolicies = new ArrayList<MarkerEventListenerEditPolicy>();
+					correspondingGraphicalEditPolicies.add(editPolicy);
+				} else {
+					if(!correspondingGraphicalEditPolicies.contains(editPolicy)) {
+						correspondingGraphicalEditPolicies.add(editPolicy);
 					}
 				}
-				eObjectURIToEditPolicies.put(semanticElementURI, correspondingGraphicalEditPolicies) ;
-				
+				eObjectURIToEditPolicies.put(semanticElementURI, correspondingGraphicalEditPolicies);
+
 				// retrieves all markers associated with the resource of the semanticElement, and pass these markers for notification
 				Resource resource = semanticElement.eResource();
-				if (resource != null) {
+				if(resource != null) {
 					try {
 						Collection<? extends IPapyrusMarker> allPapyrusMarkers = monitorService.getMarkers(resource, "org.eclipse.papyrus.modelmarker", true);
-						List<IPapyrusMarker> listOfMarkersForSemanticElement = new ArrayList<IPapyrusMarker>() ;
-						for (IPapyrusMarker next : allPapyrusMarkers) {
-							EObject cddSemanticElement = getEObjectOfMarker(next) ;
-							if (EcoreUtil.getURI(cddSemanticElement).toString().equals(semanticElementURI))
-								listOfMarkersForSemanticElement.add(next) ;
+						List<IPapyrusMarker> listOfMarkersForSemanticElement = new ArrayList<IPapyrusMarker>();
+						for(IPapyrusMarker next : allPapyrusMarkers) {
+							EObject cddSemanticElement = getEObjectOfMarker(next);
+							if(EcoreUtil.getURI(cddSemanticElement).toString().equals(semanticElementURI)) {
+								listOfMarkersForSemanticElement.add(next);
+							}
 						}
 						IPapyrusMarker[] markersForSemanticElement = listOfMarkersForSemanticElement.toArray(new IPapyrusMarker[listOfMarkersForSemanticElement.size()]);
-						editPolicy.notifyMarkerChange(markersForSemanticElement, IMarkerEventListener.MARKER_ADDED) ;
+						editPolicy.notifyMarkerChange(markersForSemanticElement, IMarkerEventListener.MARKER_ADDED);
 					} catch (CoreException e) {
 						e.printStackTrace();
 					}
@@ -107,59 +109,63 @@ public class CssMarkerEventManagerService implements IMarkerEventListener {
 	/**
 	 * Unregisters the given MarkerEventListenerEditPolicy from this CssMarkerEventManagerService
 	 * 
-	 * @param editPolicy The edit policy to be unregistered from this CssMarkerEventManagerService
+	 * @param editPolicy
+	 *        The edit policy to be unregistered from this CssMarkerEventManagerService
 	 */
 	public void unregisterEditPolicy(MarkerEventListenerEditPolicy editPolicy) {
-		Assert.isTrue(editPolicy.getHost().getModel() instanceof View) ;
-		if (editPolicy.getHost().getModel() instanceof View) {
-			EObject semanticElement = ((View)editPolicy.getHost().getModel()).getElement() ;
-			if (semanticElement != null) {
-				String semanticElementURI = EcoreUtil.getURI(semanticElement).toString() ;
-				List<MarkerEventListenerEditPolicy> correspondingGraphicalEditParts = eObjectURIToEditPolicies.get(semanticElementURI) ;
-				if (correspondingGraphicalEditParts != null) {
-					correspondingGraphicalEditParts.remove(editPolicy) ;
-					if (correspondingGraphicalEditParts.isEmpty()) {
-						eObjectURIToEditPolicies.remove(semanticElementURI) ;
-					}
-					else {
-						eObjectURIToEditPolicies.put(semanticElementURI, correspondingGraphicalEditParts) ;
+		Assert.isTrue(editPolicy.getHost().getModel() instanceof View);
+		if(editPolicy.getHost().getModel() instanceof View) {
+			EObject semanticElement = ((View)editPolicy.getHost().getModel()).getElement();
+			if(semanticElement != null) {
+				String semanticElementURI = EcoreUtil.getURI(semanticElement).toString();
+				List<MarkerEventListenerEditPolicy> correspondingGraphicalEditParts = eObjectURIToEditPolicies.get(semanticElementURI);
+				if(correspondingGraphicalEditParts != null) {
+					correspondingGraphicalEditParts.remove(editPolicy);
+					if(correspondingGraphicalEditParts.isEmpty()) {
+						eObjectURIToEditPolicies.remove(semanticElementURI);
+					} else {
+						eObjectURIToEditPolicies.put(semanticElementURI, correspondingGraphicalEditParts);
 					}
 				}
 			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#notifyMarkerChange(org.eclipse.emf.ecore.EObject, org.eclipse.core.resources.IMarker, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#notifyMarkerChange(org.eclipse.emf.ecore.EObject,
+	 * org.eclipse.core.resources.IMarker, int)
 	 */
 	public void notifyMarkerChange(EObject semanticElement, IPapyrusMarker marker, int markerState) {
-		if (semanticElement != null) {
-			String semanticElementURI = EcoreUtil.getURI(semanticElement).toString() ;
-			List<MarkerEventListenerEditPolicy> correspondingGraphicalEditParts = eObjectURIToEditPolicies.get(semanticElementURI) ;
-			if (correspondingGraphicalEditParts != null) {
-				for (MarkerEventListenerEditPolicy editPart : correspondingGraphicalEditParts) {
-					editPart.notifyMarkerChange(marker, markerState) ;
+		if(semanticElement != null) {
+			String semanticElementURI = EcoreUtil.getURI(semanticElement).toString();
+			List<MarkerEventListenerEditPolicy> correspondingGraphicalEditParts = eObjectURIToEditPolicies.get(semanticElementURI);
+			if(correspondingGraphicalEditParts != null) {
+				for(MarkerEventListenerEditPolicy editPart : correspondingGraphicalEditParts) {
+					editPart.notifyMarkerChange(marker, markerState);
 				}
 			}
 		}
 
 	}
-	
+
 	/**
 	 * Convenience method returning the EObject of a given marker (provided that it is a marker with a URI)
 	 * 
-	 * @param marker The marker from which eObject has to be retrieved
+	 * @param marker
+	 *        The marker from which eObject has to be retrieved
 	 * @return The EObject associated with the given marker
 	 */
 	public static EObject getEObjectOfMarker(IPapyrusMarker marker) {
 		URI uriOfMarker = getURI(marker);
 		if(uriOfMarker != null) {
 			try {
-				ResourceSet resourceSet = new ResourceSetImpl() ;
+				ResourceSet resourceSet = new ResourceSetImpl();
 				resourceSet.getResource(uriOfMarker.trimFragment(), true);
 				return resourceSet.getEObject(uriOfMarker, true);
 			} catch (MissingResourceException e) {
-				System.err.println("Missing resource");
+				Activator.log.error(e);
 			}
 		}
 		return null;
@@ -168,7 +174,8 @@ public class CssMarkerEventManagerService implements IMarkerEventListener {
 	/**
 	 * Convenience method returning the URI corresponding to the value of the EValidator.URI_ATTRIBUTE of a marker
 	 * 
-	 * @param marker The marker from which the URI corresponding to the value its EValidator.URI_ATTRIBUTE has to be constructed
+	 * @param marker
+	 *        The marker from which the URI corresponding to the value its EValidator.URI_ATTRIBUTE has to be constructed
 	 * @return The URI corresponding to the value of the EValidator.URI_ATTRIBUTE of the given marker
 	 */
 	public static URI getURI(IPapyrusMarker marker) {
@@ -179,11 +186,13 @@ public class CssMarkerEventManagerService implements IMarkerEventListener {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener#isNotifiedOnInitialMarkerCheck()
 	 */
 	public boolean isNotifiedOnInitialMarkerCheck() {
 		return false;
 	}
-	
+
 }
