@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2013 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - Work around regression in URI parsing in EMF 2.9
  *
  *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.tests.testModel1;
@@ -141,15 +142,15 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	public void testGetObjectOfControlledResource() {
 		// test getting EObject of the specified URI
 		// level 0
-		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_SEFk0H04Ed-RG-XtCG9Nmw", false);
+		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml", false).appendFragment("_SEFk0H04Ed-RG-XtCG9Nmw");
 		EObject eObject = modelSet.getEObject(uriClass0, true);
 		assertTestGetObjectOfControlledResource("Load object of the current resource: ", eObject, uriClass0);
 		// level 1
-		URI uriClass1 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.uml#_nQhGUH04Ed-RG-XtCG9Nmw", false);
+		URI uriClass1 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.uml", false).appendFragment("_nQhGUH04Ed-RG-XtCG9Nmw");
 		EObject eObject2 = modelSet.getEObject(uriClass1, true);
 		assertTestGetObjectOfControlledResource("Load object in a controlled resource at level 1", eObject2, uriClass1);
 		// level 2
-		URI uriClass2 = URI.createPlatformResourceURI(RESOURCE_URI + "Package1.uml#_sRCZ4H04Ed-RG-XtCG9Nmw", false);
+		URI uriClass2 = URI.createPlatformResourceURI(RESOURCE_URI + "Package1.uml", false).appendFragment("_sRCZ4H04Ed-RG-XtCG9Nmw");
 		EObject eObject3 = modelSet.getEObject(uriClass2, true);
 		assertTestGetObjectOfControlledResource("Load object in a controlled resource at level 2", eObject3, uriClass2);
 	}
@@ -188,15 +189,15 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	public void testGetDiagramOfControlledResource() {
 		// get notation reference from di resource
 		// level 0
-		URI uriNewDiagram = URI.createPlatformResourceURI(RESOURCE_URI + "model1.notation#_QtEHgH04Ed-RG-XtCG9Nmw", false);
+		URI uriNewDiagram = URI.createPlatformResourceURI(RESOURCE_URI + "model1.notation", false).appendFragment("_QtEHgH04Ed-RG-XtCG9Nmw");
 		EObject newDiagram = modelSet.getEObject(uriNewDiagram, true);
 		assertTestGetDiagramOfControlledResource("Load diagram in a controlled resource at level 2", newDiagram, uriNewDiagram);
 		// level 1
-		URI uriDiagram0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation#_mvutcH04Ed-RG-XtCG9Nmw", false);
+		URI uriDiagram0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation", false).appendFragment("_mvutcH04Ed-RG-XtCG9Nmw");
 		EObject diagram0 = modelSet.getEObject(uriDiagram0, true);
 		assertTestGetDiagramOfControlledResource("Load diagram in a controlled resource at level 2", diagram0, uriDiagram0);
 		// level 2
-		URI uriDiagram1 = URI.createPlatformResourceURI(RESOURCE_URI + "Package1.notation#_r1npMH04Ed-RG-XtCG9Nmw", false);
+		URI uriDiagram1 = URI.createPlatformResourceURI(RESOURCE_URI + "Package1.notation", false).appendFragment("_r1npMH04Ed-RG-XtCG9Nmw");
 		EObject diagram1 = modelSet.getEObject(uriDiagram1, true);
 		assertTestGetDiagramOfControlledResource("Load diagram in a controlled resource at level 2", diagram1, uriDiagram1);
 	}
@@ -230,7 +231,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	 * Gets a needed profile resource from the local project
 	 */
 	public void testGetObjectOfProfileResource() {
-		URI uriPlatformProfile = URI.createPlatformResourceURI(RESOURCE_URI + "MyProfile.uml#_XkGiwB07Ed-QQ4mYkrb7Gg", false);
+		URI uriPlatformProfile = URI.createPlatformResourceURI(RESOURCE_URI + "MyProfile.uml", false).appendFragment("_XkGiwB07Ed-QQ4mYkrb7Gg");
 		System.err.println(uriPlatformProfile);
 		Resource resource = modelSet.getResource(uriPlatformProfile, true);
 		assertNotNull("Resource should not be null", resource);
@@ -257,7 +258,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	 * - try to get the property type from model1 resource to check the reference update
 	 */
 	public void testGetDanglingReferenceFromAControlledResource() {
-		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_RHuPYIQsEd-SDs-So_GGkw", false);
+		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml", false).appendFragment("_RHuPYIQsEd-SDs-So_GGkw");
 		EObject property0 = modelSet.getEObject(uriProperty0, true);
 		if(property0 instanceof Property) {
 			Type type = ((Property)property0).getType();

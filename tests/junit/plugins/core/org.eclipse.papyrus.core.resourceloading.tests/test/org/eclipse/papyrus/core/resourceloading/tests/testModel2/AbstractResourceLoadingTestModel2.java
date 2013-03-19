@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2013 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - Work around regression in URI parsing in EMF 2.9 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.tests.testModel2;
@@ -104,7 +105,9 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 					createFolder(project, INITIAL_PATH);
 					URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(INITIAL_PATH + res + s), null);
 					URL newFile = FileLocator.resolve(url);
-					file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
+					
+					// encode the URI for spaces in the path
+					file.createLink(new URL(newFile.toString().replaceAll(" ", "%20")).toURI(), IResource.REPLACE, monitor);
 				}
 			}
 		}
@@ -133,7 +136,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	 * Gets an object (Class0) from a reference (type of property) to the high level resource (model1)
 	 */
 	public void testGetReferenceInControlledRessource() {
-		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.uml#_57LlkIRSEd-ZSb15jhF0Qw", false);
+		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.uml", false).appendFragment("_57LlkIRSEd-ZSb15jhF0Qw");
 		EObject property0 = modelSet.getEObject(uriProperty0, true);
 		Type type = null;
 		if(property0 instanceof Property) {
@@ -141,7 +144,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			assertTestGetDanglingReferenceFromParentResource("Get type from controlled resource is resolved", type);
 		}
 
-		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_1766sIRSEd-ZSb15jhF0Qw", false);
+		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml", false).appendFragment("_1766sIRSEd-ZSb15jhF0Qw");
 		EObject class0 = modelSet.getEObject(uriClass0, true);
 		assertTestGetReferenceInControlledRessource("Type of property is resolved ? :", type, class0);
 	}
@@ -198,7 +201,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 	 * Gets a figure (figure of Class0) contains in the high level resource (model1) from a diagram in controlled resource (Package0)
 	 */
 	public void testGetFigureInControlledRessource() {
-		URI uriFigurePackage0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation#_-ig9EIRSEd-ZSb15jhF0Qw", false);
+		URI uriFigurePackage0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation", false).appendFragment("_-ig9EIRSEd-ZSb15jhF0Qw");
 		EObject figurePackage0 = modelSet.getEObject(uriFigurePackage0, true);
 		assertTestGetFigureInControlledRessource1("Get figure in Package0 resource", figurePackage0);
 		EObject element = null;
@@ -206,7 +209,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			Node node = (Node)figurePackage0;
 			element = node.getElement();
 		}
-		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_1766sIRSEd-ZSb15jhF0Qw", false);
+		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml", false).appendFragment("_1766sIRSEd-ZSb15jhF0Qw");
 		EObject class0 = modelSet.getEObject(uriClass0, true);
 		assertTestGetFigureInControlledRessource2("Load figure from high level resource", class0, element);
 	}
