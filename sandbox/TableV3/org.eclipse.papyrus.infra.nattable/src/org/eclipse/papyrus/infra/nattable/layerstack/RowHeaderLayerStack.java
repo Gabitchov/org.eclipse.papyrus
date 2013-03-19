@@ -26,7 +26,7 @@ import org.eclipse.nebula.widgets.nattable.ui.action.AggregateDragMode;
 import org.eclipse.nebula.widgets.nattable.ui.action.CellDragMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
-import org.eclipse.papyrus.infra.nattable.configuration.PapyrusDefaultLineHeaderStyleConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.PapyrusRowHeaderStyleConfiguration;
 import org.eclipse.papyrus.infra.nattable.editor.RowReorderDragMode;
 import org.eclipse.swt.SWT;
 
@@ -43,7 +43,7 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 		final RowHeaderLayer rowHeaderLayer = new RowHeaderLayer(dataLayer, bodyLayer, /* bodyLayer.getSelectionLayer() */new SelectionLayer(dataLayer));
 
 		//ne marche pas! but : avoir le même type de cellule dans les headers des lignes et des colonnes
-		rowHeaderLayer.addConfiguration(new PapyrusDefaultLineHeaderStyleConfiguration());
+		rowHeaderLayer.addConfiguration(new PapyrusRowHeaderStyleConfiguration());
 		//		final IConfiguration configuration = new CustomConfig();
 		//		setUnderlyingLayer(sortHeaderLayer);
 		//		rowHeaderLayer.addConfiguration(configuration);

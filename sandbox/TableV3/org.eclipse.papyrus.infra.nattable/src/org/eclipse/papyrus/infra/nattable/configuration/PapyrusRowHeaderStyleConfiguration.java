@@ -14,17 +14,29 @@
 package org.eclipse.papyrus.infra.nattable.configuration;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.layer.config.DefaultColumnHeaderStyleConfiguration;
+import org.eclipse.nebula.widgets.nattable.layer.config.DefaultRowHeaderStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.BeveledBorderDecorator;
+import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.CellPainterDecorator;
+import org.eclipse.nebula.widgets.nattable.ui.util.CellEdgeEnum;
+import org.eclipse.papyrus.infra.nattable.painter.CustomHeaderImagePainter;
+
+/**
+ * 
+ * The default style for the row header. We provide a specific label provider and image painter
+ * 
+ */
+public class PapyrusRowHeaderStyleConfiguration extends DefaultRowHeaderStyleConfiguration {
 
 
-public class PapyrusDefaultColumnStyleStyleConfiguration extends DefaultColumnHeaderStyleConfiguration {
-
-
-
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.layer.config.DefaultRowHeaderStyleConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
+	 * 
+	 * @param configRegistry
+	 */
 	@Override
 	public void configureRegistry(final IConfigRegistry configRegistry) {
-		this.cellPainter = new BeveledBorderDecorator(new CustomizedCellPainter());
+		this.cellPainter = new BeveledBorderDecorator(new CellPainterDecorator(new CustomizedCellPainter(), CellEdgeEnum.LEFT, new CustomHeaderImagePainter()));
 		super.configureRegistry(configRegistry);
 	}
 }

@@ -30,7 +30,7 @@ import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.nebula.widgets.nattable.viewport.action.ViewportSelectColumnAction;
-import org.eclipse.papyrus.infra.nattable.configuration.PapyrusDefaultColumnStyleStyleConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.PapyrusColumnHeaderStyleConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -62,7 +62,7 @@ public class ColumnHeaderLayerStack extends AbstractLayerTransform {
 
 		final IConfiguration configuration = new CustomConfig();
 		//		setUnderlyingLayer(sortHeaderLayer);
-		this.colHeaderLayer.addConfiguration(new PapyrusDefaultColumnStyleStyleConfiguration());
+		this.colHeaderLayer.addConfiguration(new PapyrusColumnHeaderStyleConfiguration());
 		//		this.colHeaderLayer.addConfiguration(configuration);
 		setUnderlyingLayer(this.colHeaderLayer);
 		setRegionName(GridRegion.COLUMN_HEADER);
