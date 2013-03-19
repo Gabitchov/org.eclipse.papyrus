@@ -318,6 +318,16 @@
          description="Context for feature in the header of the axis"
          id="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
    </context>
+   <labelProvider
+         priority="100"
+         provider="org.eclipse.papyrus.infra.nattable.provider.IndexHeaderLabelProvider">
+      <labelProviderContext
+            context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+      </labelProviderContext>
+      <labelProviderContext
+            context="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
+      </labelProviderContext>
+   </labelProvider>
 </extension>
   <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">

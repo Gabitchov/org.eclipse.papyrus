@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,9 +25,9 @@ import org.eclipse.uml2.uml.Property;
 public class StereotypePropertyCellLabelProvider extends AbstractUMLNattableCellLabelProvider {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFCellLabelProvider#accept(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return
 	 */
@@ -42,9 +42,10 @@ public class StereotypePropertyCellLabelProvider extends AbstractUMLNattableCell
 			final Object columnObject = getColumnObject(cell, registry);
 
 			final List<Object> objects = getUMLObjects(rowObject, columnObject);
-			final Object feature = objects.get(1);
-			return feature instanceof Property;
-
+			if(objects.size() == 2) {
+				final Object feature = objects.get(1);
+				return feature instanceof Property;
+			}
 		}
 		return false;
 	}

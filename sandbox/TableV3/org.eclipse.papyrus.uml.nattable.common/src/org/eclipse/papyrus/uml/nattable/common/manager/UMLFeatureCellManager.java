@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,14 +37,14 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * @author Vincent Lorenzo
  *         This cell manager allows to display properties of stereotypes and execute the set value command
  */
 public class UMLFeatureCellManager extends CellFeatureValueManager {
 
 	/**
-	 * 
+	 *
 	 * @param obj1
 	 * @param obj2
 	 * @return
@@ -61,25 +61,29 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 			objects.add(obj2);
 		}
 
-		final Object property = objects.get(1);
-		String id = "";
-		if(property instanceof IdAxis) {
-			id = ((IdAxis)property).getElement();
-			objects.remove(property);
-			objects.add(id);
-		} else if(property instanceof String) {
-			id = (String)property;
-		}
-		if(!id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX)) {
+		if(objects.size() == 2) {
+			final Object property = objects.get(1);
+			String id = "";
+			if(property instanceof IdAxis) {
+				id = ((IdAxis)property).getElement();
+				objects.remove(property);
+				objects.add(id);
+			} else if(property instanceof String) {
+				id = (String)property;
+			}
+			if(!id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX)) {
+				return Collections.emptyList();
+			}
+		} else {
 			return Collections.emptyList();
 		}
 		return objects;
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#handles(java.lang.Object, java.lang.Object)
-	 * 
+	 *
 	 * @param obj1
 	 * @param obj2
 	 * @return
@@ -98,9 +102,9 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#handlersAxisElement(java.lang.Object)
-	 * 
+	 *
 	 * @param obj
 	 * @return
 	 */
@@ -118,9 +122,9 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#getValue(java.lang.Object, java.lang.Object)
-	 * 
+	 *
 	 * @param obj1
 	 * @param obj2
 	 * @return
@@ -147,10 +151,10 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#setValue(org.eclipse.emf.edit.domain.EditingDomain, java.lang.Object,
 	 *      java.lang.Object, java.lang.Object)
-	 * 
+	 *
 	 * @param domain
 	 * @param obj1
 	 * @param obj2
@@ -169,16 +173,17 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.lang.Object, java.lang.Object, java.lang.Object)
-	 * 
+	 *
 	 * @param domain
 	 * @param obj1
 	 * @param obj2
 	 * @param newValue
 	 * @return
 	 */
+	@Override
 	public Command getSetValueCommand(EditingDomain domain, Object obj1, Object obj2, Object newValue) {
 		if(super.handles(obj1, obj2)) {
 			return super.getSetValueCommand(domain, obj1, obj2, newValue);
@@ -206,9 +211,9 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#isCellEditable(java.lang.Object, java.lang.Object)
-	 * 
+	 *
 	 * @param obj1
 	 * @param obj2
 	 * @return

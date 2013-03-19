@@ -38,7 +38,7 @@ public class SysMLStereotypePropertyCellManager extends StereotypePropertyCellMa
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.common.manager.StereotypePropertyCellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.nattable.messages.manager.StereotypePropertyCellManager#handles(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -63,7 +63,7 @@ public class SysMLStereotypePropertyCellManager extends StereotypePropertyCellMa
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.common.manager.StereotypePropertyCellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.nattable.messages.manager.StereotypePropertyCellManager#isCellEditable(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2

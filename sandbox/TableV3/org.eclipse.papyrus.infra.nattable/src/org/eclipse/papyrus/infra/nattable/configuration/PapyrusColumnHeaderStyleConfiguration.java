@@ -18,7 +18,7 @@ import org.eclipse.nebula.widgets.nattable.layer.config.DefaultColumnHeaderStyle
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.BeveledBorderDecorator;
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.CellPainterDecorator;
 import org.eclipse.nebula.widgets.nattable.ui.util.CellEdgeEnum;
-import org.eclipse.papyrus.infra.nattable.painter.CustomHeaderImagePainter;
+import org.eclipse.papyrus.infra.nattable.painter.CustomImagePainter;
 
 /**
  * 
@@ -36,7 +36,7 @@ public class PapyrusColumnHeaderStyleConfiguration extends DefaultColumnHeaderSt
 	 */
 	@Override
 	public void configureRegistry(final IConfigRegistry configRegistry) {
-		this.cellPainter = new BeveledBorderDecorator(new CellPainterDecorator(new CustomizedCellPainter(), CellEdgeEnum.LEFT, new CustomHeaderImagePainter()));//new CustomizedCellPainter());
+		this.cellPainter = new BeveledBorderDecorator(new CellPainterDecorator(new CustomizedCellPainter(), CellEdgeEnum.LEFT, new CustomImagePainter()));//new CustomizedCellPainter());
 		super.configureRegistry(configRegistry);
 	}
 

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,16 +26,16 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This label provider allows to display '*' instead of -1 for unlimitednatural
- * 
+ *
  * @author Vincent Lorenzo
- * 
+ *
  */
 public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLabelProvider {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFCellLabelProvider#accept(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return
 	 */
@@ -58,9 +58,11 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 			final Object columnObject = getColumnObject(cell, registry);
 
 			final List<Object> objects = getUMLObjects(rowObject, columnObject);
-			final Object feature = objects.get(1);
-			if(feature instanceof Property) {
-				return UMLUtil.isUnlimitedNatural(((Property)feature).getType());
+			if(objects.size() == 2) {
+				final Object feature = objects.get(1);
+				if(feature instanceof Property) {
+					return UMLUtil.isUnlimitedNatural(((Property)feature).getType());
+				}
 			}
 			return false;
 		}
@@ -68,9 +70,9 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFCellLabelProvider#getText(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return
 	 */
