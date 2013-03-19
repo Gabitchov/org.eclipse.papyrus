@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.editors.tests;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -103,7 +104,7 @@ public class DawnEditorAdapterTest extends AbstractPapyrusCDOUITest {
 
 	@Test
 	public void testGetDawnEditorSupport() {
-		assertThat(fixture.getDawnEditorSupport(), is(PapyrusGMFEditorSupport.class));
+		assertThat(fixture.getDawnEditorSupport(), instanceOf(PapyrusGMFEditorSupport.class));
 	}
 
 	@Test

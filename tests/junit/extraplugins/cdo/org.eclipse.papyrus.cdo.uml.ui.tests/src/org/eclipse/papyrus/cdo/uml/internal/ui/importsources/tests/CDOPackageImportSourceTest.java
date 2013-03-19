@@ -12,14 +12,14 @@
 package org.eclipse.papyrus.cdo.uml.internal.ui.importsources.tests;
 
 import static java.util.Collections.singleton;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.junit.matchers.JUnitMatchers.containsString;
-import static org.junit.matchers.JUnitMatchers.hasItem;
 
 import java.util.Arrays;
 import java.util.List;

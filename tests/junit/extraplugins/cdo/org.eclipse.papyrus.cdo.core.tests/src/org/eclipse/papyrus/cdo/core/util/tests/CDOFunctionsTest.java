@@ -11,12 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.util.tests;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;

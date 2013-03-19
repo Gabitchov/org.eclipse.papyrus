@@ -11,11 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter.tests;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.either;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
-import static org.junit.matchers.JUnitMatchers.either;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -88,7 +88,6 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 		assertThat(child.getData().get(0), sameInstance((Object)getNode(uri1)));
 	}
 
-	@SuppressWarnings("restriction")
 	@Test
 	public void testValidation_nonUniqueMappings() throws Exception {
 		URI uri1 = getTestResourceURI(DEPENDENT_MODEL_DI);

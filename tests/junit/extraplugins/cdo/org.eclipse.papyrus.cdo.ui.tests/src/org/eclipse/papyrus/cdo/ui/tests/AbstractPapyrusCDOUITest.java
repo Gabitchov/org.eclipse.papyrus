@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.ui.tests;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -60,8 +60,7 @@ import com.google.common.collect.Lists;
 /**
  * This is the AbstractPapyrusCDOUITest type. Enjoy.
  */
-public abstract class AbstractPapyrusCDOUITest
-		extends AbstractPapyrusCDOTest {
+public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.cdo.ui.tests";
 
@@ -84,25 +83,19 @@ public abstract class AbstractPapyrusCDOUITest
 	}
 
 	@Before
-	public void initWorkbench()
-			throws Exception {
+	public void initWorkbench() throws Exception {
 
-		page = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-			.getActivePage();
+		page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 
 		// ensure the Papyrus perspective
-		IPerspectiveDescriptor perspective = page
-			.getWorkbenchWindow()
-			.getWorkbench()
-			.getPerspectiveRegistry()
-			.findPerspectiveWithId("org.eclipse.papyrus.infra.core.perspective");
-		if (!perspective.getId().equals(page.getPerspective().getId())) {
+		IPerspectiveDescriptor perspective = page.getWorkbenchWindow().getWorkbench().getPerspectiveRegistry().findPerspectiveWithId("org.eclipse.papyrus.infra.core.perspective");
+		if(!perspective.getId().equals(page.getPerspective().getId())) {
 			page.setPerspective(perspective);
 		}
 
 		// minimize the Welcome view
-		for (IViewReference next : page.getViewReferences()) {
-			if ("org.eclipse.ui.internal.introview".equals(next.getId())) {
+		for(IViewReference next : page.getViewReferences()) {
+			if("org.eclipse.ui.internal.introview".equals(next.getId())) {
 				page.setPartState(next, IWorkbenchPage.STATE_MINIMIZED);
 				break;
 			}
@@ -118,8 +111,7 @@ public abstract class AbstractPapyrusCDOUITest
 	}
 
 	@Before
-	public void importTestModel()
-			throws Exception {
+	public void importTestModel() throws Exception {
 
 		CDOTransaction transaction = createTransaction();
 		ResourceSet rset = transaction.getResourceSet();
@@ -135,8 +127,8 @@ public abstract class AbstractPapyrusCDOUITest
 	@After
 	public void closeEditors() {
 		flushDisplayEvents();
-		
-		for (IEditorPart next : openedEditors) {
+
+		for(IEditorPart next : openedEditors) {
 			try {
 				page.closeEditor(next, false);
 			} catch (Exception e) {
@@ -154,17 +146,14 @@ public abstract class AbstractPapyrusCDOUITest
 		flushDisplayEvents();
 	}
 
-	private Resource importResource(CDOTransaction transaction, String srcPath,
-			String dstPath) {
+	private Resource importResource(CDOTransaction transaction, String srcPath, String dstPath) {
 		ResourceSet rset = transaction.getResourceSet();
 
-		Resource xml = rset.getResource(URI.createPlatformPluginURI(PLUGIN_ID
-			+ "/resources/" + srcPath, true), true);
+		Resource xml = rset.getResource(URI.createPlatformPluginURI(PLUGIN_ID + "/resources/" + srcPath, true), true);
 
 		EcoreUtil.resolveAll(xml);
 
-		Resource result = transaction
-			.getOrCreateResource(getResourcePath(dstPath));
+		Resource result = transaction.getOrCreateResource(getResourcePath(dstPath));
 		result.getContents().clear();
 		result.getContents().addAll(xml.getContents());
 
@@ -181,22 +170,20 @@ public abstract class AbstractPapyrusCDOUITest
 	protected IViewPart getRepositoryExplorer() {
 		return page.findView(ModelRepositoriesView.ID);
 	}
-	
+
 	protected IEditorPart openEditor() {
 		URI uri = getTestResourceURI(TEST_MODEL_NAME);
 
 		try {
-			IEditorPart result = PapyrusCDOEditorManager.INSTANCE.openEditor(
-				getWorkbenchPage(), uri, TEST_MODEL_NAME);
+			IEditorPart result = PapyrusCDOEditorManager.INSTANCE.openEditor(getWorkbenchPage(), uri, TEST_MODEL_NAME);
 
 			openedEditors.add(result);
 
-			assertThat(result, is(IMultiDiagramEditor.class));
+			assertThat(result, instanceOf(IMultiDiagramEditor.class));
 
-			lastEditor = (IMultiDiagramEditor) result;
-			if (lastEditor.getActiveEditor() instanceof DiagramDocumentEditor) {
-				lastDiagramEditor = (DiagramDocumentEditor) lastEditor
-					.getActiveEditor();
+			lastEditor = (IMultiDiagramEditor)result;
+			if(lastEditor.getActiveEditor() instanceof DiagramDocumentEditor) {
+				lastDiagramEditor = (DiagramDocumentEditor)lastEditor.getActiveEditor();
 			}
 
 			flushDisplayEvents();
@@ -224,13 +211,13 @@ public abstract class AbstractPapyrusCDOUITest
 	}
 
 	protected void flushDisplayEvents() {
-		while (Display.getCurrent().readAndDispatch()) {
+		while(Display.getCurrent().readAndDispatch()) {
 			// pass
 		}
 	}
 
 	protected void sleep(int seconds) {
-		for (int i = 0; i < seconds; i++) {
+		for(int i = 0; i < seconds; i++) {
 			try {
 				Thread.sleep(1000);
 			} catch (Exception e) {
@@ -242,16 +229,15 @@ public abstract class AbstractPapyrusCDOUITest
 	}
 
 	protected IDawnEditor getDawnEditor() {
-		return (IDawnEditor) lastEditor.getAdapter(IDawnEditor.class);
+		return (IDawnEditor)lastEditor.getAdapter(IDawnEditor.class);
 	}
-	
+
 	protected IDawnEditorSupport getDawnEditorSupport() {
 		return getDawnEditor().getDawnEditorSupport();
 	}
-	
+
 	protected void executeEdit(final Runnable edit) {
-		TransactionalEditingDomain domain = getModelSet()
-			.getTransactionalEditingDomain();
+		TransactionalEditingDomain domain = getModelSet().getTransactionalEditingDomain();
 
 		domain.getCommandStack().execute(new RecordingCommand(domain, "Edit") {
 
@@ -266,8 +252,7 @@ public abstract class AbstractPapyrusCDOUITest
 		ModelSet result = null;
 
 		try {
-			result = lastEditor.getServicesRegistry()
-				.getService(ModelSet.class);
+			result = lastEditor.getServicesRegistry().getService(ModelSet.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Failed to get ModelSet from current editor.");
@@ -277,29 +262,25 @@ public abstract class AbstractPapyrusCDOUITest
 	}
 
 	protected Package getUMLModel() {
-		Resource resource = getModelSet().getResource(
-			getTestResourceURI(TEST_UML_NAME), true);
+		Resource resource = getModelSet().getResource(getTestResourceURI(TEST_UML_NAME), true);
 		assertThat("UML model not found.", resource, notNullValue());
-		return (Package) EcoreUtil.getObjectByType(resource.getContents(),
-			UMLPackage.Literals.PACKAGE);
+		return (Package)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);
 	}
 
-	protected <N extends NamedElement> N findElement(String relativeName,
-			Class<N> type) {
+	protected <N extends NamedElement> N findElement(String relativeName, Class<N> type) {
 
 		N result = null;
 		Namespace namespace = getUMLModel();
 
-		for (Iterator<String> iter = Splitter.on(NamedElement.SEPARATOR)
-			.split(relativeName).iterator(); iter.hasNext();) {
+		for(Iterator<String> iter = Splitter.on(NamedElement.SEPARATOR).split(relativeName).iterator(); iter.hasNext();) {
 
 			NamedElement next = namespace.getMember(iter.next());
-			if (next instanceof Namespace) {
-				namespace = (Namespace) next;
+			if(next instanceof Namespace) {
+				namespace = (Namespace)next;
 			}
 
-			if (!iter.hasNext()) {
-				if (type.isInstance(next)) {
+			if(!iter.hasNext()) {
+				if(type.isInstance(next)) {
 					result = type.cast(next);
 				}
 			}
@@ -308,8 +289,7 @@ public abstract class AbstractPapyrusCDOUITest
 		return result;
 	}
 
-	protected <N extends NamedElement> N expectElement(String relativeName,
-			Class<N> type) {
+	protected <N extends NamedElement> N expectElement(String relativeName, Class<N> type) {
 
 		N result = findElement(relativeName, type);
 		assertThat("UML element not found.", result, notNullValue());
@@ -319,11 +299,11 @@ public abstract class AbstractPapyrusCDOUITest
 	protected IMultiDiagramEditor getEditor() {
 		return lastEditor;
 	}
-	
+
 	protected DiagramDocumentEditor getDiagramEditor() {
 		return lastDiagramEditor;
 	}
-	
+
 	protected DiagramEditPart getDiagramEditPart() {
 		return getDiagramEditor().getDiagramEditPart();
 	}
@@ -344,9 +324,7 @@ public abstract class AbstractPapyrusCDOUITest
 
 	protected EditPart findEditPart(EObject element) {
 		View view = findView(element);
-		return (view == null)
-			? null
-			: DawnDiagramUpdater.findEditPart(view, getDiagramEditor());
+		return (view == null) ? null : DawnDiagramUpdater.findEditPart(view, getDiagramEditor());
 	}
 
 	protected EditPart expectEditPart(EObject element) {

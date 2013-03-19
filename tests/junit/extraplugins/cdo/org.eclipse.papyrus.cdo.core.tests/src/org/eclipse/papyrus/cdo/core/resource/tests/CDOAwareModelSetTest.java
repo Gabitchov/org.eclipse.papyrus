@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource.tests;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -18,7 +19,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 
 import java.util.Collections;
 
@@ -48,7 +48,6 @@ import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.matchers.JUnitMatchers;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
@@ -163,7 +162,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 
 		Resource resource = fixture.getResource(uri, true);
 		Model referencer = (Model)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.MODEL);
-		assertThat(referencer.getImportedPackages(), JUnitMatchers.<Package> hasItem(CoreMatchers.<Package> anything()));
+		assertThat(referencer.getImportedPackages(), CoreMatchers.<Package> hasItem(CoreMatchers.anything()));
 		Package imported = referencer.getImportedPackages().get(0);
 		assertThat(imported.eIsProxy(), is(false));
 		assertThat(imported.getName(), equalTo("model1"));

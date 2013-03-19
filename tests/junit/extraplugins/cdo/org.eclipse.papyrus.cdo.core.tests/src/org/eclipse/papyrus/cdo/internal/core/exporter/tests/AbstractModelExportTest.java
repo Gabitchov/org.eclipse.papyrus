@@ -11,11 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter.tests;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;

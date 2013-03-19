@@ -11,10 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer.tests;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
