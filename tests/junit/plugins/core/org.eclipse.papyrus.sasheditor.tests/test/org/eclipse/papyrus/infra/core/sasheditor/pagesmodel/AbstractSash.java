@@ -62,7 +62,6 @@ public abstract class AbstractSash extends PanelTerm {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.IModelObject.sashmodel.query.IQueryTerm#visit(org.eclipse.papyrus.infra.core.sasheditor.IPagesModelVisitor.sashmodel.query.IQueryVisitor)
 	 *
 	 * @param visitor
 	 * @throws PagesModelException 

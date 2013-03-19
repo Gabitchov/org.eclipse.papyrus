@@ -105,4 +105,6 @@ public interface ISashWindowsContainer {
 	public abstract IPage lookupModelPage(Object rawModel);
 
 	public abstract void selectPage(IPage page);
+
+	public abstract void visit(IPageVisitor pageVisitor);
 }

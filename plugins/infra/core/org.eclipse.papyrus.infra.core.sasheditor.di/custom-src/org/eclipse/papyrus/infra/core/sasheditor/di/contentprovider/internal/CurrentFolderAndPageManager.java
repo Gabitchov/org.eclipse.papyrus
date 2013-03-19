@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.IPageUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
@@ -66,7 +67,15 @@ public class CurrentFolderAndPageManager implements ICurrentFolderAndPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void setActivePage( Object pageIdentifier) {
-		IPage page = sashWindowsContainer.lookupModelPage(pageIdentifier);
+		// Bug 401107
+		// lookup doesn't find the IPage
+		// This is because we provide Diagram types, and IPage#getRaw return a PageRef.
+//		IPage page = sashWindowsContainer.lookupModelPage(pageIdentifier);
+		IPage page = IPageUtils.lookupModelPage(sashWindowsContainer, pageIdentifier);
 		sashWindowsContainer.selectPage(page);
+		
+		// lookupModelPageSelector#isSearchedPage(IPage)
 	}
+	
+	
 }

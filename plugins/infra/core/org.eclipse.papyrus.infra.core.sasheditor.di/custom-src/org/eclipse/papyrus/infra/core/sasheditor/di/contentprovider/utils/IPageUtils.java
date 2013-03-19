@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 
 
@@ -47,4 +48,20 @@ public class IPageUtils {
 		return pageModel;
 	}
 
+	/**
+	 * Lookup the IPage model corresponding to the identifier from the {@link ISashWindowsContainer}.
+	 * The identifier can be either a {@link PageRef} or a emf Diagram.
+	 * <br>
+	 * This method can be used as a hack to bug 401107
+	 * 
+	 * @param container
+	 * @param identifier
+	 * @return The corresponding IPage, or null if not found.
+	 */
+	public static IPage lookupModelPage(ISashWindowsContainer container, Object identifier) {
+		
+		LookupIPageVisitor visitor = new LookupIPageVisitor(identifier);
+		container.visit( visitor);
+		return visitor.getResult();
+	}
 }
