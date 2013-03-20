@@ -18,10 +18,13 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -44,6 +47,15 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 	protected Package rootPackage;
 
 	public void start(ModelSet modelsManager) {
+		try {
+			IMultiDiagramEditor editor = ServiceUtilsForResourceSet.getInstance().getService(IMultiDiagramEditor.class, modelsManager);
+			if(editor == null) {
+				return; //Do not popup a dialog when there is no Editor
+			}
+		} catch (ServiceException ex) {
+			return;
+		}
+
 		UmlModel umlModel = (UmlModel)modelsManager.getModel(UmlModel.MODEL_ID);
 		if(umlModel == null) {
 			return;

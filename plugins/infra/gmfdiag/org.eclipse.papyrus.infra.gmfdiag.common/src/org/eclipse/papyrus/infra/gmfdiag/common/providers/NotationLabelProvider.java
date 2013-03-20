@@ -21,9 +21,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.swt.graphics.Image;
 
@@ -35,19 +34,28 @@ public class NotationLabelProvider extends EMFLabelProvider {
 	/** icon for a compartment */
 	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
 
+	private IPageIconsRegistry pageIconsRegistry;
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		if(pageIconsRegistry != null) {
+			pageIconsRegistry.dispose();
+			pageIconsRegistry = null;
+		}
+	}
+
 	@Override
 	protected Image getImage(EObject element) {
 		if(element instanceof Diagram) {
-			IPageIconsRegistry registry = null;
-			try {
-				registry = ServiceUtilsForEObject.getInstance().getService(IPageIconsRegistry.class, element);
-			} catch (ServiceException e) {
-				// nothing to do
+			//return getPagesIconsRegistry().getEditorIcp
+			if(pageIconsRegistry == null) {
+				pageIconsRegistry = new PageIconsRegistry();
+				PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+				editorReader.populate((PageIconsRegistry)pageIconsRegistry);
 			}
-			if(registry == null) {
-				registry = new PageIconsRegistry();
-			}
-			return registry.getEditorIcon(element);
+
+			return pageIconsRegistry.getEditorIcon(element);
 		}
 
 		// if the element is a compartment
