@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,21 +28,22 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 
 /**
  * The Label provider used for EMF element
- * 
+ *
  * @author Vincent Lorenzo
- * 
+ *
  */
-public class EMFCellLabelProvider extends AbstractNattableCellLabelProvider {
+public class EMFCellLabelProvider extends AbstractNattableCellLabelProvider {//FIXME : not an EMF LabelProvider, but a generic label provider. must allow to remove ModelViewsCellLabelProvider
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#accept(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return
 	 *         <code>true</code> if the element is an instance of {@link ILabelProviderContextElement} and if the cell represents an
 	 *         {@link EStructuralFeature} of an {@link EObject}
 	 */
+	@Override
 	public boolean accept(Object element) {
 		if(element instanceof ILabelProviderCellContextElement) {
 			final ILayerCell cell = ((ILabelProviderCellContextElement)element).getCell();
@@ -51,16 +52,17 @@ public class EMFCellLabelProvider extends AbstractNattableCellLabelProvider {
 			final Object columnElement = getColumnObject(cell, registry);
 			if(rowElement instanceof EObject && columnElement instanceof EStructuralFeature) {
 				return true;
-			} else if(rowElement instanceof EStructuralFeature && columnElement instanceof EObject)
+			} else if(rowElement instanceof EStructuralFeature && columnElement instanceof EObject) {
 				return true;
+			}
 		}
 		return false;
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getText(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return
 	 */

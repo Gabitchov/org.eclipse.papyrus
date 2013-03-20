@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,14 +15,24 @@ package org.eclipse.papyrus.infra.nattable.manager;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 
-
+/**
+ *
+ * @author Vincent Lorenzo
+ *
+ */
 public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractAxisManager {
+
+	/**
+	 * the feature listener
+	 */
+	protected Adapter featureListener;
 
 	@Override
 	public void init(final INattableModelManager manager, final String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
@@ -35,9 +45,9 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canDropAxisElement(java.util.Collection)
-	 * 
+	 *
 	 * @param objectsToAdd
 	 * @return
 	 */
@@ -47,9 +57,9 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canInsertAxis(java.util.Collection, int)
-	 * 
+	 *
 	 * @param objectsToAdd
 	 * @param index
 	 * @return
