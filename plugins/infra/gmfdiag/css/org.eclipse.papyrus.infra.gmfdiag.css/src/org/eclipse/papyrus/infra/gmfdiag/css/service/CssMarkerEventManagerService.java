@@ -91,11 +91,11 @@ public class CssMarkerEventManagerService implements IMarkerEventListener {
 						Collection<? extends IPapyrusMarker> allPapyrusMarkers = monitorService.getMarkers(resource, "org.eclipse.papyrus.modelmarker", true);
 						List<IPapyrusMarker> listOfMarkersForSemanticElement = new ArrayList<IPapyrusMarker>();
 						for(IPapyrusMarker next : allPapyrusMarkers) {
-							EObject cddSemanticElement = getEObjectOfMarker(next);
-							if(cddSemanticElement == null) { //May be null, for example when the object associated to the marker has been deleted
+							URI cddSemanticElementURI = getURI(next);
+							if(cddSemanticElementURI == null) {
 								return;
 							}
-							if(EcoreUtil.getURI(cddSemanticElement).toString().equals(semanticElementURI)) {
+							if(cddSemanticElementURI.toString().equals(semanticElementURI)) {
 								listOfMarkersForSemanticElement.add(next);
 							}
 						}
