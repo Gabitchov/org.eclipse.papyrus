@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+      <extension
+            point="org.eclipse.ui.menus">
+         <menuContribution
+               allPopups="false"
+               locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+            <menu
+                  icon="img/adl.png"
+                  id="com.cea.papyrus.adl4eclipse.menu"
+                  label="ADL4eclipse"
+                  tooltip="ADL4eclipse">
+            </menu>
+         </menuContribution>
+      </extension>
+      <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.cea.papyrus.adl4eclipse.menu">
+         <command
+               commandId="org.eclipse.papyrus.adltool.assistant.BundlesImportHandler"
+               id="org.eclipse.papyrus.adltool.assistant.BundlesImportHandler.popup"
+               label="Simple Architecture Snapshot"
+               style="push"
+               tooltip="Architecture Snapshot from the workspace">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.adltool.assistant.CompleteArchitectureHandler"
+               id="org.eclipse.papyrus.adltool.assistant.CompleteArchitectureHandler.popup"
+               label="Complete Architecture Snapshot"
+               style="push"
+               tooltip="Architecture Snapshot from the workspace">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.adltool.assistant.SimpleArchitecrureHandler"
+            id="org.eclipse.papyrus.adltool.assistant.BundlesImportHandler"
+            name="Simple Architecture Snapshot">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.adltool.assistant.CompleteArchitectureHandler"
+            id="org.eclipse.papyrus.adltool.assistant.CompleteArchitectureHandler"
+            name="Complete Architecture Snapshot">
+      </command>
+   </extension>
+     <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.papyrus.adltool.assistant.Activator"></startup>
+   </extension>
+</plugin>
