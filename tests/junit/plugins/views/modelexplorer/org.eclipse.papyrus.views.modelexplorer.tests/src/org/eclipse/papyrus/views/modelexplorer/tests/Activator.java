@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.modelexplorer.tests"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.modelexplorer.tests"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
