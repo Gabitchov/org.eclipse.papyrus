@@ -1,70 +1,122 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.editor.managers;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.*;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.nattable.manager.AbstractSynchronizedOnFeatureAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.ICellManager;
+import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;
 
-public class EditorContextSynchronizerAxisManager extends AbstractAxisManager {
+/**
+ *
+ * @author Vincent Lorenzo
+ *
+ */
+public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOnFeatureAxisManager {
 
+	private ICellManager cellmanager = new ModelViewsCellManager();
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractSynchronizedOnFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.INattableModelManager,
+	 *      java.lang.String, org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider, boolean)
+	 *
+	 * @param manager
+	 * @param managerId
+	 * @param table
+	 * @param provider
+	 * @param mustRefreshOnAxisChanges
+	 */
+	@Override
+	public void init(final INattableModelManager manager, final String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
+		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
+		final PageList pageList = Utils.getPageList(getTable());
+		this.featureListener = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if(msg.getFeature() == DiPackage.eINSTANCE.getPageList_AvailablePage()) {
+					updateAxisContents();
+					((NattableModelManager)getTableManager()).refreshNattable();
+				}
+			};
+		};
+		pageList.eAdapters().add(this.featureListener);
+	}
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#updateAxisContents()
+	 *
+	 */
 	@Override
 	public synchronized void updateAxisContents() {
-		final List<Object> elements = getTableManager().getElementsList(
-				getRepresentedContentProvider());
-		final EObject tableContext = getTable().getContext();
-		IPageManager pageManager = null;
-		try {
-			pageManager = ServiceUtilsForResource.getInstance()
-					.getIPageManager(getTable().eResource());
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for (final Object current : pageManager.allPages()) {
-			if (current instanceof EObject) {
-				final EObject eobject = (EObject) current;
-				final EStructuralFeature feature = eobject.eClass()
-						.getEStructuralFeature("context");
-				if (feature != null) {
-					final EObject value = (EObject) eobject.eGet(feature);
-					if (value == tableContext) {
-						if (!elements.contains(current)) {
-							elements.add(current);
-						}
-					}
-					final TreeIterator<EObject> tree = tableContext
-							.eAllContents();
-					while (tree.hasNext()) {
-						if (tree.next().equals(value)) {
-							if (!elements.contains(current)) {
-								elements.add(current);
-							}
-							break;
-						}
-					}
-				}
+		final PageList pageList = Utils.getPageList(getTable());
+		final List<Object> elements = getTableManager().getElementsList(getRepresentedContentProvider());
+		elements.clear();//FIXME risk of blinking with the glazed list!
+		for(final PageRef ref : pageList.getAvailablePage()) {
+			final Object page = ref.getPageIdentifier();
+			if(mustBeDisplayedInThisTable(page)) {
+				elements.add(page);
 			}
-
 		}
-
-		//
-		// for (final IAxis current : getRepresentedContentProvider().getAxis())
-		// {
-		// if (current instanceof IdAxis) {
-		// final String id = (String) current.getElement();
-		// if (id.startsWith("nattable_editor_pages:/")
-		// && !elements.contains(id)) {
-		// elements.add(id);
-		// }
-		// }
-		// }
 	}
+
+
+	/**
+	 *
+	 * @param page
+	 *        a page
+	 * @return
+	 *         <code>true</code> if the page is referenced by a child of the context of the table or by the context itself
+	 */
+	private boolean mustBeDisplayedInThisTable(final Object page) {
+		Object value = this.cellmanager.getValue(page, Utils.NATTABLE_EDITOR_PAGE_ID + Utils.VIEW_CONTEXT);
+		if(value instanceof EObject) {
+			final EObject tableContext = getTable().getContext();
+			EObject container = (EObject)value;
+			while(container != null) {
+				if(container == tableContext) {
+					return true;
+				}
+				container = container.eContainer();
+			}
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		final PageList pageList = Utils.getPageList(getTable());
+		pageList.eAdapters().remove(this.featureListener);
+	}
+
 }

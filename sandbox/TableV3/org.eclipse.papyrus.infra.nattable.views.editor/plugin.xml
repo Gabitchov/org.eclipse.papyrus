@@ -109,7 +109,27 @@
       <cellManager
             id="org.eclipse.papyrus.infra.nattable.page.editor.modelviewscellmanager"
             manager="org.eclipse.papyrus.infra.nattable.views.editor.managers.ModelViewsCellManager"
-            order="201">
+            order="10">
       </cellManager>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="11"
+            provider="org.eclipse.papyrus.infra.nattable.views.editor.provider.ModelViewsHeaderLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
+         </labelProviderContext>
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="10"
+            provider="org.eclipse.papyrus.infra.nattable.views.editor.provider.ModelViewsCellLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
    </extension>
 </plugin>
