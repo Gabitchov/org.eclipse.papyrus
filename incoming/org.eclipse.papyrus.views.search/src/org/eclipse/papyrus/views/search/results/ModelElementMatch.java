@@ -13,7 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.results;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
+import org.eclipse.ui.PartInitException;
 
 /**
  * 
@@ -52,13 +56,15 @@ public class ModelElementMatch extends ModelMatch {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.views.search.results.AbstractResultEntry#elementToOpen()
+	 * @see org.eclipse.papyrus.views.search.results.AbstractResultEntry#openElement()
 	 * 
 	 * @return
 	 */
 	@Override
-	public Object elementToOpen() {
-		return source;
+	public Object openElement(OpenElementService service) throws ServiceException, PartInitException {
+		if(source instanceof EObject) {
+			return service.openSemanticElement((EObject)source);
+		}
+		return null;
 	}
-
 }

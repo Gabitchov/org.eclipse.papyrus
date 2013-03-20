@@ -14,8 +14,12 @@
 package org.eclipse.papyrus.views.search.results;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
 import org.eclipse.search.ui.text.Match;
+import org.eclipse.search.ui.text.MatchFilter;
+import org.eclipse.ui.PartInitException;
 
 /**
  * 
@@ -54,7 +58,7 @@ public abstract class AbstractResultEntry extends Match {
 	 * @return
 	 *         the element to open with {@link OpenElementService}
 	 */
-	public abstract Object elementToOpen();
+	public abstract Object openElement(OpenElementService service) throws ServiceException, PartInitException;
 
 	/**
 	 * Every implementation of {@link AbstractResultEntry} must implement this to define what element is to be analyzed by {@link MatchFilter}(s)

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.search.ui.pages;
 
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ISelection;
@@ -113,13 +112,11 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage {
 					if(scopeEntry != null && scopeEntry.getServicesRegistry() != null) {
 						try {
 							OpenElementService service = scopeEntry.getServicesRegistry().getService(OpenElementService.class);
-							if(resultEntry.elementToOpen() instanceof EObject) {
-								service.openElement((EObject)resultEntry.elementToOpen());
-							}
+							resultEntry.openElement(service);
 						} catch (ServiceException e) {
 							//							Activator.log.error(Messages.PapyrusSearchResultPage_0 + resultEntry.elementToOpen(), e);
 						} catch (PartInitException e) {
-							Activator.log.error(Messages.PapyrusSearchResultPage_1 + resultEntry.elementToOpen(), e);
+							Activator.log.error(Messages.PapyrusSearchResultPage_1, e);
 						}
 					}
 
