@@ -82,13 +82,31 @@ public class OpenElementServiceImpl implements OpenElementService {
 	/**
 	 * {@inheritDoc}
 	 */
-	public IMultiDiagramEditor openElement(final EObject viewElement) throws PartInitException, ServiceException {
+	public IMultiDiagramEditor openElement(EObject viewElement) throws PartInitException, ServiceException {
 		URI pageURI = getPageForViewElement(viewElement);
 		if(pageURI == null) {
 			return null;
 		}
 
-		return openURI(pageURI);
+		IMultiDiagramEditor editor = openURI(pageURI);
+		if(editor != null) {
+			if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
+				final IRevealSemanticElement revealElement = (IRevealSemanticElement)editor.getActiveEditor();
+				final EObject semanticElement = EMFHelper.getEObject(viewElement);
+				Display.getDefault().syncExec(new Runnable() {
+
+					public void run() {
+						revealElement.revealSemanticElement(Collections.singletonList(semanticElement));
+					}
+				});
+
+			}
+		}
+
+		if(editor != null) {
+			editor.getEditorSite().getPage().activate(editor);
+		}
+		return editor;
 	}
 
 	/**
@@ -96,7 +114,11 @@ public class OpenElementServiceImpl implements OpenElementService {
 	 */
 	public IMultiDiagramEditor openSemanticElement(final EObject semanticElement) throws PartInitException, ServiceException {
 		URI[] pages = getPagesForSemanticElement(semanticElement);
-		return openSemanticElement(semanticElement, pages);
+		IMultiDiagramEditor editor = openSemanticElement(semanticElement, pages);
+		if(editor != null) {
+			editor.getEditorSite().getPage().activate(editor);
+		}
+		return editor;
 	}
 
 	/**
@@ -114,7 +136,11 @@ public class OpenElementServiceImpl implements OpenElementService {
 			pageURIs[i++] = uri;
 		}
 
-		return openSemanticElement(semanticElement, pageURIs);
+		IMultiDiagramEditor editor = openSemanticElement(semanticElement, pageURIs);
+		if(editor != null) {
+			editor.getEditorSite().getPage().activate(editor);
+		}
+		return editor;
 	}
 
 	private IMultiDiagramEditor openSemanticElement(final EObject semanticElement, URI[] pageURIs) throws ServiceException, PartInitException {
@@ -244,7 +270,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 	}
 
 	private IFile getDiFile(URI uri) {
-		URI fileURI = uri.trimFileExtension();
+		URI fileURI = uri.trimFileExtension().trimFragment();
 		fileURI = fileURI.appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
 
 		if(fileURI.isPlatformResource()) {
@@ -317,6 +343,9 @@ public class OpenElementServiceImpl implements OpenElementService {
 	}
 
 	private IMultiDiagramEditor openURIsInNewEditor(IFile diFile, URI[] pageURIs) throws PartInitException {
+		if(diFile == null) {
+			return null;
+		}
 		final IEditorInput input = new PapyrusPageInput(diFile, pageURIs, false);
 
 		RunnableWithResult<IMultiDiagramEditor> runnable;

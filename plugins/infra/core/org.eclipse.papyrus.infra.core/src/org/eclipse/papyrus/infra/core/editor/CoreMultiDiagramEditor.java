@@ -35,6 +35,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ui.actions.ActionRegistry;
@@ -626,23 +627,30 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		if(input instanceof IPapyrusPageInput) {
 			IPapyrusPageInput papyrusPageInput = (IPapyrusPageInput)input;
-			IPageManager pageMngr = getIPageManager();
+			final IPageManager pageManager = getIPageManager();
 
 			if(papyrusPageInput.closeOtherPages()) {
-				pageMngr.closeAllOpenedPages();
+				pageManager.closeAllOpenedPages();
 			}
 
 			for(URI pageIdentifierURI : papyrusPageInput.getPages()) {
-				EObject pageIdentifier = resourceSet.getEObject(pageIdentifierURI, true);
-				if(!pageMngr.allPages().contains(pageIdentifier)) {
+				final EObject pageIdentifier = resourceSet.getEObject(pageIdentifierURI, true);
+				if(!pageManager.allPages().contains(pageIdentifier)) {
 					Activator.log.warn("The object " + pageIdentifier + " does not reference an existing page");
 					continue;
 				}
 
-				if(pageMngr.isOpen(pageIdentifier)) {
-					pageMngr.selectPage(pageIdentifier);
+				if(pageManager.isOpen(pageIdentifier)) {
+					pageManager.selectPage(pageIdentifier);
 				} else {
-					pageMngr.openPage(pageIdentifier);
+					transactionalEditingDomain.getCommandStack().execute(new RecordingCommand(transactionalEditingDomain, "Open page") {
+
+						@Override
+						protected void doExecute() {
+							pageManager.openPage(pageIdentifier);
+						}
+					});
+
 				}
 			}
 		}
