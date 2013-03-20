@@ -452,15 +452,6 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.clazz.Property_3041"
-               name="%metatype.name.Property_3041"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Property_3002"/>
-            <param name="semanticHint" value="3041"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <specializationType
                id="org.eclipse.papyrus.uml.diagram.clazz.Property_3018"
                name="%metatype.name.Property_3018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
@@ -522,15 +513,6 @@
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
             <param name="semanticHint" value="3007"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3042"
-               name="%metatype.name.Operation_3042"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
-            <param name="semanticHint" value="3042"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
