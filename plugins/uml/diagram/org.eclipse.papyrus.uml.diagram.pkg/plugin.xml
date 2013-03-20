@@ -276,7 +276,7 @@
 	<page
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		name="Package Diagram"
-		category="org.eclipse.papyrus.preferences.diagrams"
+		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageDiagramGeneralPreferencePage">
 	</page>
 
