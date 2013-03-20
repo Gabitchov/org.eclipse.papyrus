@@ -46,7 +46,7 @@ public class ResourceVisitor implements IResourceProxyVisitor {
 
 			URI uri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 
-			if(uri.fileExtension().equals("di")) { //$NON-NLS-1$
+			if("di".equals(uri.fileExtension())) { //$NON-NLS-1$
 				//Verify that it is a true papyrus model
 				try {
 					ModelSet modelSet = ModelUtils.openFile(resource);

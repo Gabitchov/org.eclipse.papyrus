@@ -17,8 +17,6 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.papyrus.infra.core.editor.PageIconRegistryServiceFactory;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -103,9 +101,9 @@ public class ScopeEntry {
 			ServicesRegistry serviceRegistry = new ServicesRegistry();
 			serviceRegistry.add(LabelProviderService.class, 10, new LabelProviderServiceImpl());
 			serviceRegistry.add(OpenElementService.class, 10, new OpenElementServiceImpl());
-			PageIconRegistryServiceFactory factory = new PageIconRegistryServiceFactory();
-			Object instance = factory.createServiceInstance();
-			serviceRegistry.add(IPageIconsRegistry.class, 10, instance);
+			//			PageIconRegistryServiceFactory factory = new PageIconRegistryServiceFactory();
+			//			Object instance = factory.createServiceInstance();
+			//			serviceRegistry.add(IPageIconsRegistry.class, 10, instance);
 			//			serviceRegistry.add(IPageIconsRegistry.class, 10, new PageIconRegistryServiceFactory());
 			serviceRegistry.startRegistry();
 

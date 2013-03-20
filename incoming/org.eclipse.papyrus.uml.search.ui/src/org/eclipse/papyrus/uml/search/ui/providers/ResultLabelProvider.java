@@ -16,30 +16,22 @@ package org.eclipse.papyrus.uml.search.ui.providers;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.uml.search.ui.Activator;
-import org.eclipse.papyrus.uml.search.ui.Messages;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
-import org.eclipse.papyrus.views.search.scope.ScopeEntry;
 import org.eclipse.swt.graphics.Image;
 
 public class ResultLabelProvider extends LabelProvider {
 
+	private LabelProviderService labelProviderService;
+
+	public ResultLabelProvider() {
+		labelProviderService = new LabelProviderServiceImpl();
+	}
+
 	@Override
 	public Image getImage(Object element) {
 		if(element instanceof AbstractResultEntry) {
-			Object elementValue = ((AbstractResultEntry)element).getElement();
-			if(elementValue instanceof ScopeEntry) {
-				ScopeEntry scopeEntry = (ScopeEntry)elementValue;
-				try {
-					LabelProviderService service = scopeEntry.getServicesRegistry().getService(LabelProviderService.class);
-
-					return service.getLabelProvider().getImage(((AbstractResultEntry)element).elementToDisplay());
-
-				} catch (ServiceException e) {
-					Activator.log.warn(Messages.ResultLabelProvider_0 + element);
-				}
-
-			}
+			return labelProviderService.getLabelProvider().getImage(((AbstractResultEntry)element).elementToDisplay());
 		}
 
 		return null;
@@ -48,22 +40,20 @@ public class ResultLabelProvider extends LabelProvider {
 	@Override
 	public String getText(Object element) {
 		if(element instanceof AbstractResultEntry) {
-			Object elementValue = ((AbstractResultEntry)element).getElement();
-			if(elementValue instanceof ScopeEntry) {
-				ScopeEntry scopeEntry = (ScopeEntry)elementValue;
-				try {
-					LabelProviderService service = scopeEntry.getServicesRegistry().getService(LabelProviderService.class);
-
-					return service.getLabelProvider().getText(((AbstractResultEntry)element).elementToDisplay());
-
-				} catch (ServiceException e) {
-					Activator.log.warn(Messages.ResultLabelProvider_1 + element);
-				}
-
-			}
+			return labelProviderService.getLabelProvider().getText(((AbstractResultEntry)element).elementToDisplay());
 		}
 
 		return ""; //$NON-NLS-1$
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		try {
+			labelProviderService.disposeService();
+		} catch (ServiceException ex) {
+			//Ignore
+		}
 	}
 
 }

@@ -24,6 +24,8 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.uml.search.ui.pages.PapyrusSearchResultPage;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
+import org.eclipse.papyrus.views.search.results.ModelMatch;
+import org.eclipse.papyrus.views.search.results.ResultEntry;
 import org.eclipse.papyrus.views.search.utils.MatchUtils;
 import org.eclipse.search.ui.text.AbstractTextSearchResult;
 
@@ -138,8 +140,20 @@ public class ResultContentProvider implements ITreeContentProvider {
 		for(Object key : fChildrenMap.keySet()) {
 			if(key instanceof AbstractResultEntry) {
 				if(((AbstractResultEntry)key).equals(parent)) {
-					parent = key;
-					((AbstractResultEntry)child).setParent(parent);
+					if((parent instanceof ModelMatch) && key instanceof ResultEntry) {
+						//Must replace ResultEntry in the tree by RealMatch
+						for(Object childInMap : fChildrenMap.get(key)) {
+							if(childInMap instanceof AbstractResultEntry) {
+								((AbstractResultEntry)childInMap).setParent(parent);
+							}
+						}
+						key = parent;
+
+					} else {
+						parent = key;
+						((AbstractResultEntry)child).setParent(parent);
+					}
+
 				}
 			}
 

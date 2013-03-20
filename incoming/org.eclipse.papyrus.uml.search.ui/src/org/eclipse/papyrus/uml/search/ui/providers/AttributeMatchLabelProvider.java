@@ -45,7 +45,7 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 	}
 
 	private String printResult(String sectionThatMatch, String value, int offset, int lenght, String attributeName) {
-		return "\"" + sectionThatMatch + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + offset + "," + lenght + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-9$
+		return "\"" + sectionThatMatch + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + offset + "," + lenght + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ 
 	}
 
 	public String getText(Object element) {
