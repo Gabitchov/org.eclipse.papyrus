@@ -189,7 +189,7 @@ public class OpenElementServiceImpl implements OpenElementService {
 			}
 		}
 
-		if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
+		if(editor != null && editor.getActiveEditor() instanceof IRevealSemanticElement) {
 			final IRevealSemanticElement revealElement = (IRevealSemanticElement)editor.getActiveEditor();
 			Display.getDefault().syncExec(new Runnable() {
 
