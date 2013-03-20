@@ -103,29 +103,25 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 	}
 
 	public IFile getFile(Object element) {
-		//		if(element instanceof EObject) {
-		//			Resource eResource = ((EObject)element).eResource();
-		//			IFile resource = ModelUtils.getIFile(eResource);
-		//			if(resource != null) {
-		//				try {
-		//					ModelSet modelSet = ModelUtils.openFile(resource);
-		//					SashModel sashModel = (SashModel)modelSet.getModelChecked(SashModel.MODEL_ID);
-		//					IFile diResource = ModelUtils.getIFile(sashModel.getResource());
-		//
-		//					return diResource;
-		//				} catch (ModelMultiException e) {
-		//					Activator.log.warn(Messages.PapyrusSearchResult_4 + resource);
-		//					return null;
-		//				} catch (NotFoundException e) {
-		//					Activator.log.warn(Messages.PapyrusSearchResult_5 + resource);
-		//					return null;
-		//				}
-		//			}
-		//		}
+		if(element instanceof ScopeEntry) {
+			if(((ScopeEntry)element).getResource() instanceof IFile) {
+				return (IFile)((ScopeEntry)element).getResource();
+			}
+		}
 		return null;
 	}
 
 	public boolean isShownInEditor(Match match, IEditorPart editor) {
+		if(match instanceof AbstractResultEntry) {
+			Object element = match.getElement();
+			if(element instanceof ScopeEntry) {
+				((ScopeEntry)element).getResource();
+
+				if(((ScopeEntry)element).getResource().equals(ResourceUtil.getResource(editor.getEditorInput()))) {
+					return true;
+				}
+			}
+		}
 
 		return false;
 	}

@@ -117,7 +117,7 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage {
 								service.openElement((EObject)resultEntry.elementToOpen());
 							}
 						} catch (ServiceException e) {
-							Activator.log.error(Messages.PapyrusSearchResultPage_0 + resultEntry.elementToOpen(), e);
+							//							Activator.log.error(Messages.PapyrusSearchResultPage_0 + resultEntry.elementToOpen(), e);
 						} catch (PartInitException e) {
 							Activator.log.error(Messages.PapyrusSearchResultPage_1 + resultEntry.elementToOpen(), e);
 						}
