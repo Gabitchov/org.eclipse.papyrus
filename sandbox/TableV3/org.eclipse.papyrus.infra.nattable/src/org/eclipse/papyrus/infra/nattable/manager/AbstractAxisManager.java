@@ -99,12 +99,13 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 						public void run() {
 							updateAxisContents();
+							// FIXME this line must be removed when we will use
+							// GlazedList or not because we must redeclare cell editor!
+							((NattableModelManager)getTableManager()).refreshNattable();
 						}
 					});
 
-					// FIXME this line must be removed when we will use
-					// GlazedList
-					((NattableModelManager)getTableManager()).refreshNattable();
+
 
 				};
 			};
@@ -335,8 +336,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		Set<IAxis> axis = new TreeSet<IAxis>(new AxisComparator(alphabeticOrder, configRegistry));
 		axis.addAll(getRepresentedContentProvider().getAxis());
 
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(representedContentProvider);//FIXME
-		final Command cmd = SetCommand.create(domain, representedContentProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), new ArrayList<IAxis>(axis));
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(this.representedContentProvider);//FIXME
+		final Command cmd = SetCommand.create(domain, this.representedContentProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), new ArrayList<IAxis>(axis));
 		domain.getCommandStack().execute(cmd);
 	}
 
@@ -387,12 +388,12 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		 * @return
 		 */
 		public int compare(IAxis arg0, IAxis arg1) {
-			LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+			LabelProviderService serv = this.configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			Object element0 = arg0.getElement();
 			Object element1 = arg1.getElement();
 			final String str1 = getText(serv, element0).replaceAll(REGEX, "");//we keep only words characters (letters + numbers) + whitespace
 			final String str2 = getText(serv, element1).replaceAll(REGEX, "");
-			if(alphabeticOrder) {
+			if(this.alphabeticOrder) {
 				return str1.compareToIgnoreCase(str2);
 			}
 			return str2.compareToIgnoreCase(str1);
@@ -409,7 +410,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		 */
 		protected String getText(final LabelProviderService serv, final Object obj) {
 			final ILabelProvider provider = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-			return provider.getText(new LabelProviderContextElement(obj, configRegistry));
+			return provider.getText(new LabelProviderContextElement(obj, this.configRegistry));
 		}
 	}
 

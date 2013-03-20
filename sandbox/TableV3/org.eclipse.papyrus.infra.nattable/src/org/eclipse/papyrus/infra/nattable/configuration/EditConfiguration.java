@@ -17,15 +17,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
+import org.eclipse.nebula.widgets.nattable.edit.config.DefaultEditConfiguration;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
 
 /**
@@ -44,64 +46,44 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.C
  * The configuration for the edition of the table
  * 
  */
-public class EditConfiguration extends AbstractRegistryConfiguration {
+public class EditConfiguration extends DefaultEditConfiguration {
 
 	/**
-	 * the model manager
+	 * the list of the message already displayed
 	 */
-	private final INattableModelManager modelManager;
-
 	private Collection<String> messagesAlreadyDisplayed = new ArrayList<String>();
 
-	//FIXME : remove this field, the ModelManager must provides it
-	private BodyLayerStack bodyLayerStack;
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param modelManager
-	 * @param bodyLayerStack
-	 */
-	public EditConfiguration(final INattableModelManager modelManager, final BodyLayerStack bodyLayerStack) {
-		this.modelManager = modelManager;
-		this.bodyLayerStack = bodyLayerStack;
-	}
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param modelManager
-	 */
-	public EditConfiguration(final INattableModelManager modelManager) {
-		this.modelManager = modelManager;
-	}
-
+	@Override
 	public void configureRegistry(IConfigRegistry configRegistry) {
-		final BodyLayerStack bodyLayerStack = this.bodyLayerStack;
-		final Table table = this.modelManager.getTable();
-		final CellEditorDeclaration editorDeclaration = this.modelManager.getTable().getEditorConfiguration().getEditorDeclaration();
+		super.configureRegistry(configRegistry);
+		//we remove the default cell editor
+		configRegistry.unregisterConfigAttribute(EditConfigAttributes.CELL_EDITOR, DisplayMode.NORMAL, null);
+
+		INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+
+		final BodyLayerStack bodyLayerStack = modelManager.getBodyLayerStack();
+		final Table table = modelManager.getTable();
+		final CellEditorDeclaration editorDeclaration = modelManager.getTable().getEditorConfiguration().getEditorDeclaration();
 		if(editorDeclaration.equals(CellEditorDeclaration.COLUMN)) {
 			if(table.isInvertAxis()) {
 				//we declared celleditor on row
 				final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack);
-				declaredCellEditors(this.modelManager.getRowElementsList(), configRegistry, null, accumulator);
+				declaredCellEditors(modelManager.getRowElementsList(), configRegistry, null, accumulator);
 				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			} else {
 				final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
-				declaredCellEditors(this.modelManager.getColumnElementsList(), configRegistry, accumulator, null);
+				declaredCellEditors(modelManager.getColumnElementsList(), configRegistry, accumulator, null);
 				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			}
 		} else if(editorDeclaration.equals(CellEditorDeclaration.ROW)) {
 			if(table.isInvertAxis()) {
 				//we declared celleditor on column
 				final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
-				declaredCellEditors(this.modelManager.getColumnElementsList(), configRegistry, accumulator, null);
+				declaredCellEditors(modelManager.getColumnElementsList(), configRegistry, accumulator, null);
 				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			} else {
 				final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack);
-				declaredCellEditors(this.modelManager.getRowElementsList(), configRegistry, null, accumulator);
+				declaredCellEditors(modelManager.getRowElementsList(), configRegistry, null, accumulator);
 				bodyLayerStack.setConfigLabelAccumulator(accumulator);
 			}
 		} else if(editorDeclaration.equals(CellEditorDeclaration.CELL)) {
@@ -113,6 +95,7 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 	}
 
 	private void declaredCellEditors(final List<Object> elements, final IConfigRegistry configRegistry, final ColumnOverrideLabelAccumulator columnAccumulator, final CustomRowOverrideLabelAccumulator rowAccumulator) {
+		INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		boolean declareOnColumn = columnAccumulator != null;
 		boolean declareOnRow = rowAccumulator != null;
 		assert declareOnColumn != declareOnRow;
@@ -126,15 +109,15 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 			final Table table = modelManager.getTable();
 			final IAxisCellEditorConfiguration config = factory.getFirstCellEditorConfiguration(table, current);
 			if(config != null) {
-				final ICellEditor editor = config.getICellEditor(table, current, this.modelManager.getTableAxisElementProvider());
+				final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
 				if(editor != null) {
 					final String editorId = config.getEditorId() + Integer.toString(i);
-					if(existingEditorIds.contains(editorId)){
+					if(existingEditorIds.contains(editorId)) {
 						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id");
-					}else{
+					} else {
 						existingEditorIds.add(editorId);
 					}
-					
+
 					final String cellId = editorId + "_cellId"; //$NON-NLS-1$
 
 					final ICellPainter painter = config.getCellPainter(table, current);
@@ -162,17 +145,17 @@ public class EditConfiguration extends AbstractRegistryConfiguration {
 					}
 				} else {
 					final String errorMessage = NLS.bind(Messages.EditConfiguration_FactoryHandlesElementButDoesntProvideEditor, config.getEditorId(), current);
-					if(!messagesAlreadyDisplayed.contains(errorMessage)) {
+					if(!this.messagesAlreadyDisplayed.contains(errorMessage)) {
 						Activator.log.warn(errorMessage);
-						messagesAlreadyDisplayed.add(errorMessage);
+						this.messagesAlreadyDisplayed.add(errorMessage);
 					}
 
 				}
 			} else {
 				final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
-				if(!messagesAlreadyDisplayed.contains(errorMessage)) {
+				if(!this.messagesAlreadyDisplayed.contains(errorMessage)) {
 					Activator.log.warn(errorMessage);
-					messagesAlreadyDisplayed.add(errorMessage);
+					this.messagesAlreadyDisplayed.add(errorMessage);
 				}
 			}
 		}

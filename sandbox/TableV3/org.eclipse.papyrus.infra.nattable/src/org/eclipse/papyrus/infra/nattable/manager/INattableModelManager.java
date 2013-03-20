@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
@@ -117,4 +118,6 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	 *         horizontal axis
 	 */
 	public AbstractAxisProvider getHorizontalAxisProvider();
+
+	public BodyLayerStack getBodyLayerStack();
 }

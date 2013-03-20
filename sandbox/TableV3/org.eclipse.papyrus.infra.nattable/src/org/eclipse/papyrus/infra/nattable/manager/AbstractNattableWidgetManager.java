@@ -29,7 +29,6 @@ import org.eclipse.nebula.widgets.nattable.config.IConfiguration;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
@@ -39,7 +38,6 @@ import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.print.command.PrintCommand;
@@ -49,22 +47,19 @@ import org.eclipse.nebula.widgets.nattable.print.config.DefaultPrintBindings;
 import org.eclipse.nebula.widgets.nattable.reorder.ColumnReorderLayer;
 import org.eclipse.nebula.widgets.nattable.reorder.event.ColumnReorderEvent;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
-import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
-import org.eclipse.papyrus.infra.nattable.configuration.EditConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.InvertAxisOnCornerConfiguration;
-import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.CornerDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.RowHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.formatter.ExportFormatter;
+import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
@@ -124,6 +119,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	private TableSelectionProvider selectionProvider;
 
 	/**
+	 * the body layer stack
+	 */
+	private BodyLayerStack bodyLayerStack;
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -146,22 +146,22 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
 		final BodyDataProvider bodyDataProvider = new BodyDataProvider(this);
-		BodyLayerStack bodyLayerStack = new BodyLayerStack(bodyDataProvider, this);;
+		this.bodyLayerStack = new BodyLayerStack(bodyDataProvider, this);;
 
 		final IDataProvider columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
-		columnHeaderLayerStack = new ColumnHeaderLayerStack(columnHeaderDataProvider, bodyLayerStack, bodyDataProvider);
+		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(columnHeaderDataProvider, this.bodyLayerStack, bodyDataProvider);
 
 		final IDataProvider rowHeaderDataProvider = new RowHeaderDataProvider(this);
 
 
-		rowHeaderLayerStack = new RowHeaderLayerStack(rowHeaderDataProvider, bodyLayerStack);
+		this.rowHeaderLayerStack = new RowHeaderLayerStack(rowHeaderDataProvider, this.bodyLayerStack);
 
 
 		final IDataProvider cornerDataProvider = new CornerDataProvider(columnHeaderDataProvider, rowHeaderDataProvider);
-		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), rowHeaderLayerStack, columnHeaderLayerStack);
+		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), this.rowHeaderLayerStack, this.columnHeaderLayerStack);
 		cornerLayer.addConfiguration(new InvertAxisOnCornerConfiguration(this));
-		this.gridLayer = new GridLayer(bodyLayerStack, columnHeaderLayerStack, rowHeaderLayerStack, cornerLayer);
-		gridLayer.addConfiguration(new DefaultPrintBindings());
+		this.gridLayer = new PapyrusGridLayer(this.bodyLayerStack, this.columnHeaderLayerStack, this.rowHeaderLayerStack, cornerLayer);
+		this.gridLayer.addConfiguration(new DefaultPrintBindings());
 		//		gridLayer.addConfiguration(new StyleConfiguration());
 		//		fBodyLayer.getBodyDataLayer().addConfiguration(new StyleConfiguration());
 		//		fBodyLayer.addConfiguration(new StyleConfiguration());
@@ -169,13 +169,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 
 
-		this.natTable = new NatTable(parent, gridLayer, false);
+		this.natTable = new NatTable(parent, this.gridLayer, false);
 
 
 		//for the edition
-		configureEdition(natTable, bodyLayerStack);
+		//		configureEdition(this.natTable, this.bodyLayerStack);
 
-		natTable.addConfiguration(new IConfiguration() {
+		this.natTable.addConfiguration(new IConfiguration() {
 
 
 			public void configureUiBindings(UiBindingRegistry uiBindingRegistry) {
@@ -207,18 +207,18 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			}
 		});
 
-		natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
-		natTable.configure();
-		addColumnReorderListener(bodyLayerStack.getColumnReorderLayer());
-		addDragAndDropSupport(natTable);
+		this.natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
+		this.natTable.configure();
+		addColumnReorderListener(this.bodyLayerStack.getColumnReorderLayer());
+		addDragAndDropSupport(this.natTable);
 
 
 		if(site != null) {
-			final MenuManager menuMgr = createMenuManager(natTable);
-			final Menu menu = menuMgr.createContextMenu(natTable);
-			natTable.setMenu(menu);
+			final MenuManager menuMgr = createMenuManager(this.natTable);
+			final Menu menu = menuMgr.createContextMenu(this.natTable);
+			this.natTable.setMenu(menu);
 
-			this.selectionProvider = new TableSelectionProvider(bodyLayerStack.getSelectionLayer());
+			this.selectionProvider = new TableSelectionProvider(this.bodyLayerStack.getSelectionLayer());
 			site.registerContextMenu(menuMgr, this.selectionProvider);
 			site.setSelectionProvider(this.selectionProvider);
 		}
@@ -229,7 +229,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	protected final IConfigRegistry createAndInitializeNewConfigRegistry() {
 		final IConfigRegistry newRegistry = new ConfigRegistry();
-		if(!natTable.isDisposed()) {
+		if(!this.natTable.isDisposed()) {
 			newRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 			newRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			//commented because seems generate several bugs with edition
@@ -243,23 +243,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	private LabelProviderService getLabelProviderService() {
 		try {
-			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table);
+			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table);
 			return serviceRegistry.getService(LabelProviderService.class);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
 		return null;
-	}
-
-	/**
-	 * 
-	 * @param nattable
-	 * @param bodyLayerStack
-	 */
-	protected void configureEdition(final NatTable nattable, final BodyLayerStack bodyLayerStack) {
-		final ColumnOverrideLabelAccumulator columnLabelAccumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
-		bodyLayerStack.setConfigLabelAccumulator(columnLabelAccumulator);
-		nattable.addConfiguration(new EditConfiguration(this, bodyLayerStack));
 	}
 
 	/**
@@ -328,7 +317,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if(start >= 0 && start < end) {
 							end--;
 						}
-						final List<IAxis> allAxis = table.getVerticalAxisProvider().getAxis();
+						final List<IAxis> allAxis = AbstractNattableWidgetManager.this.table.getVerticalAxisProvider().getAxis();
 						final IAxis axisToMove = allAxis.get(start);
 						if(axisToMove != null) {
 							reorderColumnsElements(axisToMove, end);
@@ -390,7 +379,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 
 	public GridLayer getGridLayer() {
-		return gridLayer;
+		return this.gridLayer;
 	}
 
 	/**
@@ -399,9 +388,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 
 	 */
 	public void print() {
-		natTable.doCommand(new TurnViewportOffCommand());
-		natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
-		natTable.doCommand(new TurnViewportOnCommand());
+		this.natTable.doCommand(new TurnViewportOffCommand());
+		this.natTable.doCommand(new PrintCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
+		this.natTable.doCommand(new TurnViewportOnCommand());
 	}
 
 	/**
@@ -410,7 +399,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 
 	 */
 	public void selectAll() {
-		natTable.doCommand(new SelectAllCommand());
+		this.natTable.doCommand(new SelectAllCommand());
 	}
 
 	/**
@@ -419,10 +408,20 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 
 	 */
 	public void exportToXLS() {
-		natTable.doCommand(new ExportCommand(natTable.getConfigRegistry(), natTable.getShell()));
+		this.natTable.doCommand(new ExportCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
 	}
 
 	public void copyToClipboard() {
-		natTable.doCommand(new CopyDataToClipboardCommand("\t", "\n", natTable.getConfigRegistry()));
+		this.natTable.doCommand(new CopyDataToClipboardCommand("\t", "\n", this.natTable.getConfigRegistry()));
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getBodyLayerStack()
+	 * 
+	 * @return
+	 */
+	public BodyLayerStack getBodyLayerStack() {
+		return this.bodyLayerStack;
 	}
 }
