@@ -48,12 +48,13 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 
 	public void start(ModelSet modelsManager) {
 		try {
+			//FIXME: The ServiceUtilsForResourceSet initializer service is not started yet. We can't access the ServicesRegistry.
 			IMultiDiagramEditor editor = ServiceUtilsForResourceSet.getInstance().getService(IMultiDiagramEditor.class, modelsManager);
 			if(editor == null) {
 				return; //Do not popup a dialog when there is no Editor
 			}
 		} catch (ServiceException ex) {
-			return;
+			//return;
 		}
 
 		UmlModel umlModel = (UmlModel)modelsManager.getModel(UmlModel.MODEL_ID);

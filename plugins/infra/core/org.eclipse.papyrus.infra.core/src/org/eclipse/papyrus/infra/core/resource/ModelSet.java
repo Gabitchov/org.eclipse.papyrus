@@ -175,7 +175,7 @@ public class ModelSet extends ResourceSetImpl {
 		} catch (WrappedException e) {
 			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
 				r = getResource(uri, false);
-				if (r == null) {
+				if(r == null) {
 					throw e;
 				}
 			}
@@ -190,6 +190,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * @param associatedResourceExtension
 	 * @return
 	 */
+	@Deprecated
 	public Resource getAssociatedResource(EObject modelElement, String associatedResourceExtension) {
 		return getAssociatedResource(modelElement, associatedResourceExtension, true);
 	}
@@ -201,6 +202,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * @param associatedResourceExtension
 	 * @return
 	 */
+	@Deprecated
 	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
 		return getAssociatedResource(modelResource, associatedResourceExtension, true);
 	}
@@ -210,7 +212,8 @@ public class ModelSet extends ResourceSetImpl {
 	 * 
 	 * @param modelElement
 	 * @param associatedResourceExtension
-	 * @param loadOnDemand same as for getResource
+	 * @param loadOnDemand
+	 *        same as for getResource
 	 * @return
 	 */
 	public Resource getAssociatedResource(EObject modelElement, String associatedResourceExtension, boolean loadOnDemand) {
@@ -225,7 +228,8 @@ public class ModelSet extends ResourceSetImpl {
 	 * 
 	 * @param modelResource
 	 * @param associatedResourceExtension
-	 * @param loadOnDemand same as for getResource
+	 * @param loadOnDemand
+	 *        same as for getResource
 	 * @return
 	 */
 	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension, boolean loadOnDemand) {
@@ -246,7 +250,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
-		if (r != null && !r.isTrackingModification()) {
+		if(r != null && !r.isTrackingModification()) {
 			r.setTrackingModification(true);
 		}
 		return r;
@@ -596,24 +600,26 @@ public class ModelSet extends ResourceSetImpl {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 		IReadOnlyHandler roHandler = getReadOnlyHandler();
 
-		if (roHandler != null) {
+		if(roHandler != null) {
 			Set<URI> roUris = new HashSet<URI>();
 			for(IModel model : modelList) {
 				Set<URI> uris = model.getModifiedURIs();
 				for(URI u : uris) {
-					Optional<Boolean> res = roHandler.anyReadOnly(new URI[]{u}, editingDomain);
+					Optional<Boolean> res = roHandler.anyReadOnly(new URI[]{ u }, editingDomain);
 					if(res.isPresent() && res.get()) {
 						roUris.add(u);
 					}
 				}
 			}
 
-			if (!roUris.isEmpty()) {
+			if(!roUris.isEmpty()) {
 				Optional<Boolean> authorizeSave = roHandler.makeWritable(roUris.toArray(new URI[roUris.size()]), editingDomain);
 
-				if (authorizeSave.isPresent() && !authorizeSave.get()) {
+				if(authorizeSave.isPresent() && !authorizeSave.get()) {
 					monitor.done();
-					throw new IOException("Some modified resources are read-only : the model can't be saved");
+					//FIXME: In Kepler M6, it seems that it is sometimes possible to modify the readOnly StandardL3 profile.
+					//This doesn't have any consequence, but prevents the save action. We'd better not throw an exception here.
+					//throw new IOException("Some modified resources are read-only : the model can't be saved");
 				}
 			}
 		}
@@ -711,8 +717,8 @@ public class ModelSet extends ResourceSetImpl {
 	public IReadOnlyHandler getReadOnlyHandler() {
 		EditingDomain editingDomain = getTransactionalEditingDomain();
 		Object handler = Platform.getAdapterManager().getAdapter(editingDomain, IReadOnlyHandler.class);
-		if (handler instanceof IReadOnlyHandler) {
-			return (IReadOnlyHandler) handler;
+		if(handler instanceof IReadOnlyHandler) {
+			return (IReadOnlyHandler)handler;
 		}
 		return null;
 	}
