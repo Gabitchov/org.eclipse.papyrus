@@ -34,7 +34,7 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFCellLabelProvider#accept(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider#accept(java.lang.Object)
 	 *
 	 * @param element
 	 * @return
@@ -71,7 +71,7 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFCellLabelProvider#getText(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider#getText(java.lang.Object)
 	 *
 	 * @param element
 	 * @return

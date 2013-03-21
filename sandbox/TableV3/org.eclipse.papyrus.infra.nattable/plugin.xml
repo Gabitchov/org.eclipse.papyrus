@@ -246,6 +246,13 @@
           description="the context to use to find the label provider used to display values in cells and headers"
           id="org.eclipse.papyrus.infra.nattable.full.labelprovider">
     </context>
+     <labelProvider
+            priority="100"
+            provider="org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
  </extension>
  
  <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">

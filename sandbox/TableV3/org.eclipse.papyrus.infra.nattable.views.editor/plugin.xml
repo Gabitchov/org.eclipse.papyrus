@@ -124,13 +124,6 @@
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>
       </labelProvider>
-      <labelProvider
-            priority="10"
-            provider="org.eclipse.papyrus.infra.nattable.views.editor.provider.ModelViewsCellLabelProvider">
-         <labelProviderContext
-               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
-         </labelProviderContext>
-      </labelProvider>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">

@@ -19,7 +19,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.emf.nattable.provider.EMFCellLabelProvider;
+import org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Element;
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Vincent Lorenzo
  *
  */
-public abstract class AbstractUMLNattableCellLabelProvider extends EMFCellLabelProvider {
+public abstract class AbstractUMLNattableCellLabelProvider extends GenericCellLabelProvider {
 
 
 	/**

@@ -59,7 +59,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 * 
 	 */
 	public String getText(Object element) {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
