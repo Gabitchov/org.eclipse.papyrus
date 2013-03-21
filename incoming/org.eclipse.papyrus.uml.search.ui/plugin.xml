@@ -11,8 +11,7 @@
             icon="icons/PapyrusSearch.png"
             id="org.eclipse.papyrus.search.ui.pages.PapyrusSearchPage"
             label="%searchPageLabel"
-            showScopeSection="true"
-            tabPosition="0">
+            showScopeSection="true">
       </page>
    </extension>
    <extension
@@ -48,6 +47,16 @@
             priority="10"
             provider="org.eclipse.papyrus.uml.search.ui.providers.AttributeMatchLabelProvider">
       </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.core.runtime.IAdaptable"
+            class="org.eclipse.papyrus.uml.search.ui.adapter.PapyrusSearchAdapterFactory">
+         <adapter
+               type="org.eclipse.search.ui.ISearchPageScoreComputer">
+         </adapter>
+      </factory>
    </extension>
 
 </plugin>
