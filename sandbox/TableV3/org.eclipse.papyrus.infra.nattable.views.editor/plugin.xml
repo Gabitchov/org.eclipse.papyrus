@@ -132,4 +132,11 @@
          </labelProviderContext>
       </labelProvider>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
+      <configuration
+            class="org.eclipse.papyrus.infra.nattable.views.editor.celleditor.ModelViewsCellEditorConfiguration"
+            order="10">
+      </configuration>
+   </extension>
 </plugin>

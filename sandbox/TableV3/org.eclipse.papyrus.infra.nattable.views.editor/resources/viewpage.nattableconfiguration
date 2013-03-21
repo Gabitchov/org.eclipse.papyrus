@@ -8,6 +8,7 @@
     <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/name"/>
     <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/context"/>
     <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/isOpen"/>
+    <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/type"/>
   </verticalAxisProvider>
   <horizontalAxisProvider xsi:type="nattableaxisprovider:EMFFeatureValueAxisProvider">
     <listenFeature href="platform:/plugin/org.eclipse.papyrus.infra.core.sasheditor.di/model/di.ecore#//PageList/availablePage"/>

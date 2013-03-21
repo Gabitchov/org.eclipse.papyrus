@@ -18,7 +18,14 @@ import java.util.List;
 import org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;
 
+/**
+ * The feature axis content provider for the ModelViews table
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class EditorFeatureAxisManager extends AbstractAxisManager {
 
 	@Override
@@ -27,7 +34,7 @@ public class EditorFeatureAxisManager extends AbstractAxisManager {
 		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
 			if(current instanceof IdAxis) {
 				final String id = (String)current.getElement();
-				if(id.startsWith("nattable_editor_pages:/") && !elements.contains(id)) {
+				if(id.startsWith(Utils.NATTABLE_EDITOR_PAGE_ID) && !elements.contains(id)) {
 					elements.add(id);
 				}
 			}

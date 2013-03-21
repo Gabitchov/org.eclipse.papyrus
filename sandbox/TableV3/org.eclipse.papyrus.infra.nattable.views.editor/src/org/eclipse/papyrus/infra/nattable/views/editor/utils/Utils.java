@@ -26,7 +26,11 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.views.editor.Activator;
 
-
+/**
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class Utils {
 
 	private Utils() {
@@ -54,7 +58,12 @@ public class Utils {
 	public static final String VIEW_IS_OPEN = "isOpen"; //$NON-NLS-1$
 
 	/**
-	 *
+	 * the type column
+	 */
+	public static final String VIEW_EDITOR_TYPE = "type"; //$NON-NLS-1$
+
+	/**
+	 * 
 	 * @return
 	 *         the page list used for this model
 	 */
@@ -69,7 +78,7 @@ public class Utils {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param eobject
 	 *        an eobject
 	 * @return

@@ -17,48 +17,51 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
-import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;
 import org.eclipse.swt.graphics.Image;
 
-
+/**
+ * The label provider used for ModelView header
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider {
 
-
-	public ModelViewsHeaderLabelProvider() {
-		int i = 0;
-		i++;
-	}
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#accept(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	public boolean accept(final Object element) {
 		if(element instanceof ILabelProviderContextElement) {
 			final Object object = ((ILabelProviderContextElement)element).getObject();
-			String id = "";
-			if(object instanceof IdAxis) {
-				id = ((IdAxis)object).getElement();
+			final String id = AxisUtils.getPropertyId(object);
+			if(id != null) {
+				return id.startsWith(Utils.NATTABLE_EDITOR_PAGE_ID);
 			}
-			if(object instanceof String) {
-				id = (String)object;
-			}
-			return id.startsWith(Utils.NATTABLE_EDITOR_PAGE_ID);
 		}
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getText(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	public String getText(final Object element) {
 		final Object object = ((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
-		String id = "";
-		if(object instanceof IdAxis) {
-			id = ((IdAxis)object).getElement();
-		}
-		if(object instanceof String) {
-			id = (String)object;
-		}
-		final String name = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, "");
+		final String id = AxisUtils.getPropertyId(object);
+		final String name = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		Object type = null;
 		boolean isDerived = false;
 		int lowerBounds = 1;
@@ -70,25 +73,29 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 			isDerived = true;
 			type = EcorePackage.eINSTANCE.getEBoolean();
 		} else if(Utils.VIEW_CONTEXT.equals(name)) {
+			isDerived = true;
 			type = EcorePackage.eINSTANCE.getEObject();
+		} else if(Utils.VIEW_EDITOR_TYPE.equals(name)) {
+			type = EcorePackage.eINSTANCE.getEString();
 		}
 		return getText(configRegistry, name, type, isDerived, lowerBounds, upperBounds);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getImage(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	public Image getImage(final Object element) {
 		final Object object = ((ILabelProviderContextElement)element).getObject();
-		String id = "";
-		if(object instanceof IdAxis) {
-			id = ((IdAxis)object).getElement();
-		}
-		if(object instanceof String) {
-			id = (String)object;
-		}
-		final String columnName = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, "");
-		if(Utils.VIEW_NAME.equals(columnName) || Utils.VIEW_IS_OPEN.equals(columnName)) {
+		final String id = AxisUtils.getPropertyId(object);
+		final String columnName = id.replaceFirst(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
+		if(Utils.VIEW_NAME.equals(columnName) || Utils.VIEW_IS_OPEN.equals(columnName) || Utils.VIEW_EDITOR_TYPE.equals(columnName)) {
 			return EStructuralFeatureImageRegistry.getAttributeIcon();
-		} else if(Utils.VIEW_CONTEXT.equals("context")) {
+		} else if(Utils.VIEW_CONTEXT.equals(columnName)) {
 			return EStructuralFeatureImageRegistry.getLinkIcon();
 		}
 		return null;
