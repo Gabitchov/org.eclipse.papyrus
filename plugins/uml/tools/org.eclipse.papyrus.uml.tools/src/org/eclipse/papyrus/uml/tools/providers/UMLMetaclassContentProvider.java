@@ -15,7 +15,8 @@ package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.List;
 
-import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.AbstractFilteredContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -26,7 +27,7 @@ import org.eclipse.uml2.uml.Element;
  * @author Vincent Lorenzo
  * 
  */
-public class UMLMetaclassContentProvider extends AbstractStaticContentProvider {
+public class UMLMetaclassContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
 
 	/**
 	 * the list of the avalaible metaclassse
@@ -41,7 +42,7 @@ public class UMLMetaclassContentProvider extends AbstractStaticContentProvider {
 	 *        the element used to find the available metaclasses
 	 */
 	public UMLMetaclassContentProvider(final Element element) {
-		possibleMetaclasses = ElementUtil.getPossibleMetaclasses(element);
+		this.possibleMetaclasses = ElementUtil.getPossibleMetaclasses(element);
 	}
 
 	/**
@@ -51,6 +52,17 @@ public class UMLMetaclassContentProvider extends AbstractStaticContentProvider {
 	 * @return
 	 */
 	public Object[] getElements() {
-		return possibleMetaclasses.toArray();
+		return this.possibleMetaclasses.toArray();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
+	 * 
+	 * @param inputElement
+	 * @return
+	 */
+	public Object[] getElements(Object inputElement) {
+		return getElements();
 	}
 }
