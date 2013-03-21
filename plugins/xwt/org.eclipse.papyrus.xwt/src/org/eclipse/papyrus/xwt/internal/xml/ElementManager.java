@@ -336,7 +336,7 @@ public class ElementManager {
 	 */
 	protected void preElement(Element element) {
 		assert element != null;
-		assert elements.containsKey(element.getId()) : "Element already exists in registry: " + element.getId();
+		assert !elements.containsKey(element.getId()) : "Element already exists in registry: " + element.getId();
 
 		// Add to cache.
 		elements.put(element.getId(), element);
@@ -352,7 +352,7 @@ public class ElementManager {
 	 */
 	protected void postElement(Element element) {
 		assert element != null;
-		assert !elements.containsKey(element.getId()) : "Element not found in registry: " + element.getId();
+		assert elements.containsKey(element.getId()) : "Element not found in registry: " + element.getId();
 		if("xdata".equalsIgnoreCase(element.getName()) && IConstants.XWT_X_NAMESPACE.equals(element.getNamespace())) {
 			xDataElement = element;
 		}
