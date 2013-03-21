@@ -315,5 +315,13 @@
      <persistent
            value="true">
      </persistent>
+   </extension>
+    <extension
+         point="org.eclipse.papyrus.infra.core.papyrusContentOutline">
+      <contentoutline
+            class="org.eclipse.papyrus.infra.core.contentoutline.NestedEditorDelegatedOutlinePage"
+            description="Generic outline for Papyrus"
+            priority="2">
+      </contentoutline>
    </extension> 	
 </plugin>

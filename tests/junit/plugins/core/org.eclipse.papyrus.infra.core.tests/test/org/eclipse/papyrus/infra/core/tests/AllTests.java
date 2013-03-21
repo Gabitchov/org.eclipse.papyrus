@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
 
+import org.eclipse.papyrus.infra.core.contentoutline.NestedEditorDelegatedOutlinePageTest;
 import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProviderTest;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResourceTest;
 import org.eclipse.papyrus.infra.core.resource.ModelSetTest;
@@ -30,6 +31,7 @@ ModelSetTest.class, AbstractModelWithSharedResourceTest.class,
 ComposedServiceTest.class, ServicesRegistryTest.class,
 // {oep}.core.lifecycleevents
 /* SaveAndDirtyServiceTest.class, */LifeCycleEventsProviderTest.class, 
+NestedEditorDelegatedOutlinePageTest.class,
 })
 /**
  * Suite Class for all tests in the plugin

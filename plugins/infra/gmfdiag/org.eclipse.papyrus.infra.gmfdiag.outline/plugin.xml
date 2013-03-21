@@ -14,12 +14,13 @@
 ########################################################################################
 -->
 <plugin>
-   <extension
+  <!-- <extension
          point="org.eclipse.papyrus.infra.core.papyrusContentOutline">
       <contentoutline
-            class="org.eclipse.papyrus.infra.gmfdiag.outline.DiagramOutline"
+            class="org.eclipse.papyrus.infra.gmfdiag.outline.NestedEditorDelegatedOutlinePage"
+            description="GMF outline for Papyrus"
             priority="2">
       </contentoutline>
    </extension>
-
+-->
 </plugin>
