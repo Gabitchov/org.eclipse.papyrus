@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message6ItemSemanticEditPolicy;
@@ -49,9 +48,7 @@ import org.eclipse.uml2.uml.MessageSort;
 /**
  * @generated
  */
-public class Message6EditPart extends AbstractMessageEditPart
-
-implements ITreeBranchEditPart {
+public class Message6EditPart extends AbstractMessageEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -150,7 +147,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new MessageLost();
 	}
@@ -161,7 +157,8 @@ implements ITreeBranchEditPart {
 	public MessageLost getPrimaryShape() {
 		return (MessageLost)getFigure();
 	}
-		/**
+
+	/**
 	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
 	public class MessageLost extends MessageFigure {
@@ -182,22 +179,18 @@ implements ITreeBranchEditPart {
 		public MessageLost() {
 			super();
 			this.setForegroundColor(ColorConstants.black);
-
 			createContents();
 			setTargetDecoration(createTargetDecoration());
 		}
-		
+
 		/**
 		 * @generated NOT
 		 */
 		protected void createContents() {
 			super.createContents();
-
 			fFigureMessageLostLabelFigure = new WrappingLabel();
 			fFigureMessageLostLabelFigure.setText("");
-
 			fFigureMessageLostLabelFigure.setFont(FFIGUREMESSAGELOSTLABELFIGURE_FONT);
-
 			this.add(fFigureMessageLostLabelFigure);
 		}
 
@@ -209,7 +202,6 @@ implements ITreeBranchEditPart {
 			df.setAlwaysFill(true);
 			df.setPreferredSize(new Dimension(10, 10));
 			add(df, new ArrowLocator(this, ConnectionLocator.TARGET)); // child figure
-						
 			PolylineDecoration arrow = new PolylineDecoration();
 			arrow.setForegroundColor(getForegroundColor());
 			PointList pl = new PointList();
@@ -218,8 +210,7 @@ implements ITreeBranchEditPart {
 			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
 			arrow.setTemplate(pl);
 			arrow.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-			
-			return arrow;		
+			return arrow;
 		}
 
 		/**
@@ -235,7 +226,6 @@ implements ITreeBranchEditPart {
 		public WrappingLabel getAppliedStereotypeLabel() {
 			return super.getAppliedStereotypeLabel();
 		}
-
 	}
 
 	/**
@@ -275,5 +265,4 @@ implements ITreeBranchEditPart {
 		}
 		super.eraseSourceFeedback(request);
 	}
-
 }

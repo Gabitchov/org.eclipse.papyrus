@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
@@ -93,6 +92,7 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
@@ -101,6 +101,7 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		Object adapter = element.getAdapter(EObject.class);
 		if(adapter instanceof TimeConstraint) {
@@ -172,32 +173,34 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature) || ValueSpecification.class.isAssignableFrom(feature.getContainerClass());
 	}
-	
+
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
 		EObject element = (EObject)adapter.getAdapter(EObject.class);
 		if(element instanceof DurationConstraint) {
 			return getDurationConstraint((DurationConstraint)element);
-		} 
+		}
 		return super.getEditString(adapter, flags);
 	}
 
 	protected String getDurationConstraint(DurationConstraint constraint) {
 		ValueSpecification spec = constraint.getSpecification();
-		if(spec instanceof Interval){
+		if(spec instanceof Interval) {
 			Interval interval = (Interval)spec;
 			String min = ValueSpecificationUtil.getSpecificationValue(interval.getMin());
 			String max = ValueSpecificationUtil.getSpecificationValue(interval.getMax());
-			if(min.equals(max))
+			if(min.equals(max)) {
 				return min;
-		}			
+			}
+		}
 		String value = ValueSpecificationUtil.getSpecificationValue(spec);
 		return value;
 	}
-	
+
+	@Override
 	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 		EObject element = (EObject)adapter.getAdapter(EObject.class);
-		if(element instanceof DurationConstraint){
+		if(element instanceof DurationConstraint) {
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
 			if(editingDomain == null) {
 				return UnexecutableCommand.INSTANCE;
@@ -206,63 +209,66 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 			if(values == null || values.length != 2) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			return new UpdateDurationConstraintCommand(editingDomain, (DurationConstraint)element, values[0], values[1] );
+			return new UpdateDurationConstraintCommand(editingDomain, (DurationConstraint)element, values[0], values[1]);
 		}
 		return super.getParseCommand(adapter, newString, flags);
 	}
 
 	private Object[] parseInterval(String newString) {
 		int pos = newString.indexOf("..");
-		if(pos > -1){
-			String[] part = {newString.substring(0, pos), newString.substring(pos + 2)};
+		if(pos > -1) {
+			String[] part = { newString.substring(0, pos), newString.substring(pos + 2) };
 			try {
-				int min = Integer.parseInt( part[0].trim());
-				int max = Integer.parseInt( part[1].trim());
-				return new Integer[]{min, max};
+				int min = Integer.parseInt(part[0].trim());
+				int max = Integer.parseInt(part[1].trim());
+				return new Integer[]{ min, max };
 			} catch (Exception e) {
 			}
 			return part;
-		}else{
+		} else {
 			try {
 				int value = Integer.parseInt(newString);
-				return new Integer[]{value, value};
+				return new Integer[]{ value, value };
 			} catch (Exception e) {
 			}
-			
+
 			// same value for min and max
-			return new String[]{newString, newString};
+			return new String[]{ newString, newString };
 		}
 	}
-	
+
 	static class UpdateDurationConstraintCommand extends AbstractTransactionalCommand {
+
 		private DurationConstraint constraint;
+
 		private Object min;
+
 		private Object max;
-		
+
 		public UpdateDurationConstraintCommand(TransactionalEditingDomain domain, DurationConstraint constraint, Object min, Object max) {
 			super(domain, "Set Values", null);
 			this.constraint = constraint;
 			this.min = min;
 			this.max = max;
 		}
-		
+
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			ValueSpecification spec = constraint.getSpecification();
-			if(spec instanceof Interval){
+			if(spec instanceof Interval) {
 				Interval interval = (Interval)spec;
-				setValue(interval.getMin(), min );
-				setValue(interval.getMax(), max );
-			}			
+				setValue(interval.getMin(), min);
+				setValue(interval.getMax(), max);
+			}
 			return CommandResult.newOKCommandResult();
 		}
 
 		private void setValue(ValueSpecification spec, Object val) {
-			if(spec instanceof Duration){
+			if(spec instanceof Duration) {
 				Duration dur = (Duration)spec;
-				if( dur.getExpr() instanceof LiteralInteger && val instanceof Integer){
+				if(dur.getExpr() instanceof LiteralInteger && val instanceof Integer) {
 					((LiteralInteger)dur.getExpr()).setValue((Integer)val);
-				}else{
+				} else {
 					LiteralString str = UMLFactory.eINSTANCE.createLiteralString();
 					str.setValue(val.toString());
 					dur.setExpr(str);

@@ -32,7 +32,6 @@ import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.handles.ConnectionEndpointHandle;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.tools.ConnectionEndpointTracker;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart;
 import org.eclipse.swt.SWT;
 
 /**
@@ -128,12 +127,15 @@ public class AnnotatedLinkEndpointEditPolicy extends ConnectionEndpointEditPolic
 		List list = new ArrayList();
 		list.add(new ConnectionEndpointHandle((ConnectionEditPart)getHost(), ConnectionLocator.SOURCE) {
 
+			@Override
 			protected DragTracker createDragTracker() {
 				ConnectionEndpointTracker tracker = new ConnectionEndpointTracker((ConnectionEditPart)getOwner()) {
 
+					@Override
 					protected Request createTargetRequest() {
 						ReconnectRequest request = new ReconnectRequest(getCommandName()) {
 
+							@Override
 							public boolean isMovingStartAnchor() {
 								return true;
 							}
@@ -149,12 +151,15 @@ public class AnnotatedLinkEndpointEditPolicy extends ConnectionEndpointEditPolic
 		});
 		list.add(new ConnectionEndpointHandle((ConnectionEditPart)getHost(), ConnectionLocator.TARGET) {
 
+			@Override
 			protected DragTracker createDragTracker() {
 				ConnectionEndpointTracker tracker = new ConnectionEndpointTracker((ConnectionEditPart)getOwner()) {
 
+					@Override
 					protected Request createTargetRequest() {
 						ReconnectRequest request = new ReconnectRequest(getCommandName()) {
 
+							@Override
 							public boolean isMovingStartAnchor() {
 								return false;
 							}

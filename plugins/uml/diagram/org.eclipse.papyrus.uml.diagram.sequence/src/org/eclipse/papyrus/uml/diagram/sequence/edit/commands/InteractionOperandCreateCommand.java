@@ -82,7 +82,6 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -97,9 +96,7 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
@@ -111,11 +108,8 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CombinedFragment owner = (CombinedFragment)getElementToEdit();
 		Set<InteractionFragment> coveredInteractionFragments = (Set<InteractionFragment>)getRequest().getParameters().get(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS);
-
 		InteractionOperand newElement = createInteractionOperand(owner, coveredInteractionFragments);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -138,42 +132,33 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	public static InteractionOperand createInteractionOperand(CombinedFragment cf, Set<InteractionFragment> coveredInteractionFragments) {
 		InteractionOperand newIO = UMLFactory.eINSTANCE.createInteractionOperand();
 		cf.getOperands().add(newIO);
-
 		// we don't use ElementInitializers.init_NamedElement here because the standard algo using namespace is not suitable
 		String base = newIO.eClass().getName();
 		String name = ElementInitializers.getNextNumberedName((EList)cf.getOperands(), base);
 		newIO.setName(name);
-
 		// Add all combined fragment's covered lifelines on interaction operand
 		for(InteractionOperand operand : cf.getOperands()) {
 			operand.getCovereds().addAll(cf.getCovereds());
 		}
-
 		// create guard
 		InteractionConstraint guard = UMLFactory.eINSTANCE.createInteractionConstraint();
 		newIO.setGuard(guard);
-
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 		literalString.setValue("undefined");
 		guard.setSpecification(literalString);
-
 		LiteralInteger min = UMLFactory.eINSTANCE.createLiteralInteger();
 		min.setValue(0);
 		guard.setMinint(min);
-
 		LiteralInteger max = UMLFactory.eINSTANCE.createLiteralInteger();
 		max.setValue(1);
 		guard.setMaxint(max);
-
 		if(coveredInteractionFragments != null) {
-
 			InteractionFragment cfOwner = null;
 			if(cf.getEnclosingOperand() != null) {
 				cfOwner = cf.getEnclosingOperand();
 			} else if(cf.getEnclosingInteraction() != null) {
 				cfOwner = cf.getEnclosingInteraction();
 			}
-
 			if(cfOwner != null) {
 				// set the enclosing operand to the newly created one if the current enclosing interaction is the enclosing interaction
 				// of the new operand.
@@ -186,8 +171,6 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 				}
 			}
 		}
-
 		return newIO;
 	}
-
 }

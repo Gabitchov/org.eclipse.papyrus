@@ -20,7 +20,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CommentAnnotatedEl
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends AnnotatedLinkEditPart{
+public class CommentAnnotatedElementEditPart extends AnnotatedLinkEditPart {
 
 	/**
 	 * @generated
@@ -41,5 +41,4 @@ public class CommentAnnotatedElementEditPart extends AnnotatedLinkEditPart{
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentAnnotatedElementItemSemanticEditPolicy());
 	}
-
 }

@@ -39,6 +39,7 @@ public class AbstractMessageItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(elementType);
 	}
 
+	@Override
 	protected Command getReorientRelationshipTargetCommand(ReconnectRequest request) {
 		EObject connectionSemElement = ViewUtil.resolveSemanticElement((View)request.getConnectionEditPart().getModel());
 		EObject targetSemElement = ViewUtil.resolveSemanticElement((View)request.getTarget().getModel());

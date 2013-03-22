@@ -87,7 +87,7 @@ public class MessageItemSemanticEditPolicy extends AbstractMessageItemSemanticEd
 	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return SequenceDeleteHelper.completeDeleteMessageCommand(req,getHost());
+		return SequenceDeleteHelper.completeDeleteMessageCommand(req, getHost());
 	}
 
 	/**
@@ -224,5 +224,4 @@ public class MessageItemSemanticEditPolicy extends AbstractMessageItemSemanticEd
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

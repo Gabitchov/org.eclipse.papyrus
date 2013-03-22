@@ -33,7 +33,6 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	public static final String LABEL_DISPLAY_PREFERENCE = PackageEditPart.MODEL_ID + "_Lifeline.label.display";
 
-
 	public static final int SHOW_REPRESENT_NAME = 1 << 1;
 
 	public static final int SHOW_REPRESENT_TYPE = 1 << 2;
@@ -43,6 +42,7 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 	public static final int SHOW_LIFELINE_NAME = 1 << 4;
 
 	public static final int DEFAULT_LABEL_DISPLAY = SHOW_REPRESENT_NAME | SHOW_REPRESENT_TYPE;
+
 	/**
 	 * @generated
 	 */
@@ -63,26 +63,22 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = PackageEditPart.MODEL_ID + "_Lifeline";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 250);
-
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
-
 		// Set the default for the gradient
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
 		//org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new  org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
 		//		new org.eclipse.swt.graphics.RGB(255, 255, 255),
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
-
 		// default for label display
 		store.setDefault(LABEL_DISPLAY_PREFERENCE, DEFAULT_LABEL_DISPLAY);
 	}
-	
-	/** buttons to select the display kind for the label of the  */
+
+	/** buttons to select the display kind for the label of the */
 	protected Button showRepName, showRepType, showUndefined, showName;
 
 	/** current operation display style */
@@ -105,7 +101,7 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 		button.addSelectionListener(new AppearenceSelectionListener(mask));
 		return button;
 	}
-	
+
 	/**
 	 * Listeners for the check buttons that select the display of the label
 	 */
@@ -127,7 +123,6 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 		 * {@inheritDoc}
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
-
 		}
 
 		/**
@@ -136,12 +131,11 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 		public void widgetSelected(SelectionEvent e) {
 			// add or remove the flag to the display Operation value (invert the current value)
 			displayValue = displayValue ^ style;
-
 			// refresh buttons at the end
 			refreshButtons();
 		}
 	}
-	
+
 	/**
 	 * Creates the group and check boxes to choose the kind of display
 	 * 
@@ -153,7 +147,6 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 		Group group = new Group(parent, SWT.SHADOW_NONE);
 		group.setText("Label Display");
 		group.setLayout(new GridLayout(1, true));
-
 		showRepName = createCheckButton(group, "Show represent name", SHOW_REPRESENT_NAME);
 		showRepType = createCheckButton(group, "Show represent type", SHOW_REPRESENT_TYPE);
 		showUndefined = createCheckButton(group, "Always show undefined type", SHOW_UNDEFINED_TYPE);
@@ -162,13 +155,11 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
-
 		// adds the label preferences checkboxes
 		createLabelPreferencesButtons(parent);
-
 		refreshButtons();
 	}
-	
+
 	/**
 	 * Load the default preferences of the fields contained in this page
 	 */
@@ -186,22 +177,20 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 		super.performDefaults();
 	}
 
-	
 	@Override
 	public boolean performOk() {
 		storePreferences();
 		return super.performOk();
 	}
-	
-	
+
 	protected void refreshButtons() {
-		showRepName.setSelection(isCheck(displayValue , SHOW_REPRESENT_NAME));
-		showRepType.setSelection(isCheck(displayValue , SHOW_REPRESENT_TYPE) );
-		showUndefined.setSelection(isCheck(displayValue , SHOW_UNDEFINED_TYPE) );
-		showName.setSelection(isCheck(displayValue , SHOW_LIFELINE_NAME));
-	}		
-	
-	private static boolean isCheck(int value, int mask){
+		showRepName.setSelection(isCheck(displayValue, SHOW_REPRESENT_NAME));
+		showRepType.setSelection(isCheck(displayValue, SHOW_REPRESENT_TYPE));
+		showUndefined.setSelection(isCheck(displayValue, SHOW_UNDEFINED_TYPE));
+		showName.setSelection(isCheck(displayValue, SHOW_LIFELINE_NAME));
+	}
+
+	private static boolean isCheck(int value, int mask) {
 		return (value & mask) != 0;
 	}
 
@@ -217,6 +206,4 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 			store.setValue(LABEL_DISPLAY_PREFERENCE, displayValue);
 		}
 	}
-	
-	
 }

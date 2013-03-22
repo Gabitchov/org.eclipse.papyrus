@@ -104,12 +104,12 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 			contentPane.setBorder(null);
 			//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697)
 			contentPane.setLayoutManager(new XYLayout());
-//			LayoutManager layout = contentPane.getLayoutManager();
-//			if(layout instanceof ConstrainedToolbarLayout) {
-//				ConstrainedToolbarLayout constrainedToolbarLayout = (ConstrainedToolbarLayout)layout;
-//				constrainedToolbarLayout.setStretchMajorAxis(true);
-//				constrainedToolbarLayout.setStretchMinorAxis(true);
-//			}
+			//			LayoutManager layout = contentPane.getLayoutManager();
+			//			if(layout instanceof ConstrainedToolbarLayout) {
+			//				ConstrainedToolbarLayout constrainedToolbarLayout = (ConstrainedToolbarLayout)layout;
+			//				constrainedToolbarLayout.setStretchMajorAxis(true);
+			//				constrainedToolbarLayout.setStretchMinorAxis(true);
+			//			}
 		}
 		return result;
 	}
@@ -125,47 +125,45 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, createCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
-		
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
 	private EditPolicy createCreationEditPolicy() {
-		return new CreationEditPolicy(){
+		return new CreationEditPolicy() {
+
 			protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 				//THIS WAS ALREADY DID IN getCreateCommand(), WHY AGAIN?
-//				Command createCommand = super.getCreateElementAndViewCommand(request);
-//				if (createCommand == null || !createCommand.canExecute()){
-//					return createCommand;
-//				}
-//				ICommandProxy commandProxy = (ICommandProxy)createCommand;
-//				CompositeCommand command = (CompositeCommand)commandProxy.getICommand();
-//				
-//				IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
-//				if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
-//					//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
-//					//to relocate both its bounds and combined fragment bounds when operand is added to combined fragment 
-//					OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this, request.getViewAndElementDescriptor(), command);
-//				}
-//				return commandProxy;
+				//				Command createCommand = super.getCreateElementAndViewCommand(request);
+				//				if (createCommand == null || !createCommand.canExecute()){
+				//					return createCommand;
+				//				}
+				//				ICommandProxy commandProxy = (ICommandProxy)createCommand;
+				//				CompositeCommand command = (CompositeCommand)commandProxy.getICommand();
+				//				
+				//				IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
+				//				if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
+				//					//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
+				//					//to relocate both its bounds and combined fragment bounds when operand is added to combined fragment 
+				//					OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this, request.getViewAndElementDescriptor(), command);
+				//				}
+				//				return commandProxy;
 				return super.getCreateElementAndViewCommand(request);
 			}
-			
+
 			protected Command getCreateCommand(CreateViewRequest request) {
 				ICommandProxy commandProxy = (ICommandProxy)super.getCreateCommand(request);
 				ICommand command = commandProxy.getICommand();
-				CompositeCommand compositeCommand = null; 
-				if (command instanceof CompositeCommand) {
-					compositeCommand = (CompositeCommand) command;
+				CompositeCommand compositeCommand = null;
+				if(command instanceof CompositeCommand) {
+					compositeCommand = (CompositeCommand)command;
 				} else {
 					compositeCommand = new CompositeCommand(commandProxy.getLabel());
 					compositeCommand.add(command);
 				}
-				
-				for (ViewDescriptor viewDescriptor : request.getViewDescriptors()) {
+				for(ViewDescriptor viewDescriptor : request.getViewDescriptors()) {
 					IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
 					if(type.getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
 						//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
@@ -207,7 +205,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
-
 		if(feature instanceof EStructuralFeature) {
 			EStructuralFeature ref = (EStructuralFeature)feature;
 			String typeName = ref.getName();
@@ -251,33 +248,30 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		super.refreshVisuals();
 		refreshBounds();
 	}
-	
+
 	public boolean ignoreRequest(Request request) {
-		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))){
-			List parts = ((ChangeBoundsRequest) request).getEditParts();
-			if(parts != null){
+		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))) {
+			List parts = ((ChangeBoundsRequest)request).getEditParts();
+			if(parts != null) {
 				for(Object obj : parts)
-					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart){
+					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart) {
 						return true;
 					}
 			}
 		}
-		
 		return false;
 	}
-	
+
 	public void showTargetFeedback(Request request) {
-		 if(ignoreRequest(request)) {
-            return;
-        }
-	        
-        super.showTargetFeedback(request);
+		if(ignoreRequest(request)) {
+			return;
+		}
+		super.showTargetFeedback(request);
 	}
-	
+
 	public Command getCommand(Request request) {
 		if(ignoreRequest(request))
 			return null;
-		
 		return super.getCommand(request);
 	}
 }

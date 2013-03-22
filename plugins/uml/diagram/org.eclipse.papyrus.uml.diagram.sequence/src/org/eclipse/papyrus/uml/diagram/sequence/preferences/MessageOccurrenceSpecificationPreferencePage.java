@@ -34,7 +34,5 @@ public class MessageOccurrenceSpecificationPreferencePage extends AbstractPapyru
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

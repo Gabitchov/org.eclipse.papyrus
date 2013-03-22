@@ -59,9 +59,9 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -287,7 +287,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -369,9 +368,7 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -398,7 +395,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -406,7 +402,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -414,7 +409,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -700,7 +694,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -727,7 +720,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -736,7 +728,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -744,12 +735,11 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
 
 	@Override
 	public void performRequest(Request request) {
-		if(request.getType().equals(REQ_OPEN)){
+		if(request.getType().equals(REQ_OPEN)) {
 			getParent().performRequest(request);
 			return;
 		}

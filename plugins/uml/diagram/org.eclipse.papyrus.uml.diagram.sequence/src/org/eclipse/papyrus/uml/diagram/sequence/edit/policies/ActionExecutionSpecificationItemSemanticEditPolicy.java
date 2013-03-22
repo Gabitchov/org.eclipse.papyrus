@@ -81,27 +81,21 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand deleteElementsCommand = new CompoundCommand();
-		
 		EObject selectedEObject = req.getElementToDestroy();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				deleteElementsCommand.add(new ICommandProxy(deleteCommand));
-				
-				if (selectedEObject instanceof ExecutionSpecification && getHost() instanceof ShapeNodeEditPart) {
-					SequenceDeleteHelper.destroyExecutionOccurrenceSpecification(req,
-							deleteElementsCommand,  (ShapeNodeEditPart) getHost(), (ExecutionSpecification) selectedEObject);					
+				if(selectedEObject instanceof ExecutionSpecification && getHost() instanceof ShapeNodeEditPart) {
+					SequenceDeleteHelper.destroyExecutionOccurrenceSpecification(req, deleteElementsCommand, (ShapeNodeEditPart)getHost(), (ExecutionSpecification)selectedEObject);
 				}
 			}
-		}		
-		
-		if(deleteElementsCommand.size()>0){
+		}
+		if(deleteElementsCommand.size() > 0) {
 			return deleteElementsCommand;
 		}
-		
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -121,7 +115,7 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 		} else {
 			return mainCommand.chain(deleteViewsCommand);
 		}
-	}			
+	}
 
 	/**
 	 * @generated
@@ -258,5 +252,4 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

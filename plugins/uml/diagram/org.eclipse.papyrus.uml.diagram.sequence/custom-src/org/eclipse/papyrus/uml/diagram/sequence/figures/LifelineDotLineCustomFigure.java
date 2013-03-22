@@ -18,7 +18,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.XYLayout;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -58,39 +57,39 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 		normalModeManager = new XYLayout();
 
 		/*
-		inlineModeManager = new FlowLayout(true) {
-
-			{
-				majorSpacing = 10;
-				minorSpacing = 10;
-				fill = true;
-			}
- 
-			@Override
-			protected Dimension getChildSize(IFigure child, int wHint, int hHint) {
-				wHint = getParent().getBounds().width;
-				hHint = getParent().getBounds().height;
-				if(innerConnectableElementsNumber > 0) {
-					wHint /= innerConnectableElementsNumber;
-				}
-				if(!child.getParent().getChildren().get(innerConnectableElementsNumber - 1).equals(child)) {
-					wHint = wHint - majorSpacing;
-				}
-
-				((Figure)child).setPreferredSize(wHint, hHint);
-				Dimension childSize = super.getChildSize(child, wHint, hHint);
-				return childSize;
-			}
- 
-			@Override
-			protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
-				Dimension calculatePreferredSize = super.calculatePreferredSize(container, wHint, hHint);
-				calculatePreferredSize.width = wHint;
-				calculatePreferredSize.height = hHint;
-				return calculatePreferredSize;
-			}
-		};
-		*/
+		 * inlineModeManager = new FlowLayout(true) {
+		 * 
+		 * {
+		 * majorSpacing = 10;
+		 * minorSpacing = 10;
+		 * fill = true;
+		 * }
+		 * 
+		 * @Override
+		 * protected Dimension getChildSize(IFigure child, int wHint, int hHint) {
+		 * wHint = getParent().getBounds().width;
+		 * hHint = getParent().getBounds().height;
+		 * if(innerConnectableElementsNumber > 0) {
+		 * wHint /= innerConnectableElementsNumber;
+		 * }
+		 * if(!child.getParent().getChildren().get(innerConnectableElementsNumber - 1).equals(child)) {
+		 * wHint = wHint - majorSpacing;
+		 * }
+		 * 
+		 * ((Figure)child).setPreferredSize(wHint, hHint);
+		 * Dimension childSize = super.getChildSize(child, wHint, hHint);
+		 * return childSize;
+		 * }
+		 * 
+		 * @Override
+		 * protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
+		 * Dimension calculatePreferredSize = super.calculatePreferredSize(container, wHint, hHint);
+		 * calculatePreferredSize.width = wHint;
+		 * calculatePreferredSize.height = hHint;
+		 * return calculatePreferredSize;
+		 * }
+		 * };
+		 */
 		inlineModeManager = new XYLayout();
 		setLayoutManager(normalModeManager);
 	}
@@ -120,45 +119,47 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 	/**
 	 * Print lifeline if the edit part is not in inline mode
 	 */
+	@Override
 	protected void outlineShape(Graphics graphics) {
 		if(!inlineMode) {
 			paintDashLineBackground(graphics);
 			super.outlineShape(graphics);
 		}
 	}
-	
+
 	protected void paintDashLineBackground(Graphics graphics) {
 		NodeFigure dashLineRectangle = getDashLineRectangle();
-		if(!dashLineRectangle.isOpaque())
-			return ;
-		
+		if(!dashLineRectangle.isOpaque()) {
+			return;
+		}
+
 		Rectangle r = getBounds().getCopy();
 		r.x = r.x + r.width / 2;
-		r.width = 1;		
+		r.width = 1;
 		Rectangle lineBounds = r.expand(4, 0);
-		
+
 		graphics.pushState();
-		try{
+		try {
 			graphics.setBackgroundColor(dashLineRectangle.getBackgroundColor());
 			graphics.setForegroundColor(dashLineRectangle.getForegroundColor());
 			graphics.fillRectangle(lineBounds);
-		}finally{
+		} finally {
 			graphics.popState();
 		}
 	}
 
 	@Override
 	public boolean containsPoint(int x, int y) {
-		if (!super.containsPoint(x, y)) {
+		if(!super.containsPoint(x, y)) {
 			return false;
 		}
 		NodeFigure dashLineRectangle = getDashLineRectangle();
-		if (dashLineRectangle.containsPoint(x, y)) {
+		if(dashLineRectangle.containsPoint(x, y)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	// fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=384616
 	public static class DefaultSizeNodeFigureEx extends DefaultSizeNodeFigure {
 
@@ -166,59 +167,75 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 			super(width, height);
 		}
 
-		public IFigure findMouseEventTargetAt(int x, int y) {		
+		@Override
+		public IFigure findMouseEventTargetAt(int x, int y) {
 			// check children first instead of self
 			IFigure f = findMouseEventTargetInDescendantsAt(x, y);
-			if (f != null)
+			if(f != null) {
 				return f;
-			if (!containsPoint(x, y))
+			}
+			if(!containsPoint(x, y)) {
 				return null;
-			if (isMouseEventTarget())
+			}
+			if(isMouseEventTarget()) {
 				return this;
+			}
 			return null;
 		}
 
+		@Override
 		public IFigure findFigureAt(int x, int y, TreeSearch search) {
-			if (search.prune(this))
+			if(search.prune(this)) {
 				return null;
+			}
 			IFigure child = findDescendantAtExcluding(x, y, search);
-			if (child != null)
+			if(child != null) {
 				return child;
-			if (!containsPoint(x, y))
+			}
+			if(!containsPoint(x, y)) {
 				return null;
-			if (search.accept(this))
+			}
+			if(search.accept(this)) {
 				return this;
+			}
 			return null;
 		}
-	};
-	
-	public static class NodeNamedElementFigureEx extends NodeNamedElementFigure{
-	
-		public IFigure findMouseEventTargetAt(int x, int y) {	
+	}
+
+	public static class NodeNamedElementFigureEx extends NodeNamedElementFigure {
+
+		@Override
+		public IFigure findMouseEventTargetAt(int x, int y) {
 			// check children first instead of self
 			IFigure f = findMouseEventTargetInDescendantsAt(x, y);
-			if (f != null)
+			if(f != null) {
 				return f;
-			if (!containsPoint(x, y))
+			}
+			if(!containsPoint(x, y)) {
 				return null;
-			if (isMouseEventTarget())
+			}
+			if(isMouseEventTarget()) {
 				return this;
+			}
 			return null;
 		}
 
+		@Override
 		public IFigure findFigureAt(int x, int y, TreeSearch search) {
-			if (search.prune(this))
+			if(search.prune(this)) {
 				return null;
+			}
 			IFigure child = findDescendantAtExcluding(x, y, search);
-			if (child != null)
+			if(child != null) {
 				return child;
-			if (!containsPoint(x, y))
+			}
+			if(!containsPoint(x, y)) {
 				return null;
-			if (search.accept(this))
+			}
+			if(search.accept(this)) {
 				return this;
+			}
 			return null;
 		}
 	}
 }
-
-

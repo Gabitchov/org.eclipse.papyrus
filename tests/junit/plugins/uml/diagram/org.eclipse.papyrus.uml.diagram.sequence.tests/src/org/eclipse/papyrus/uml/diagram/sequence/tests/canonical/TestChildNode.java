@@ -50,10 +50,12 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 		return rootPart;
 	}
 
+	@Override
 	protected View getRootView() {
 		return getRootEditPart().getNotationView();
 	}
 
+	@Override
 	protected Element getRootSemanticModel() {
 		return (Element)getRootView().getElement();
 	}

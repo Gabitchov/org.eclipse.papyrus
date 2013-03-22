@@ -64,6 +64,7 @@ public class TestGuardEdition_364808 extends TestTopNode {
 
 	private static final String EDIT = "Edit: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -141,8 +142,9 @@ public class TestGuardEdition_364808 extends TestTopNode {
 	private Text findEditor(Composite composite, WrappingLabel label) {
 		for(Control c : composite.getChildren()) {
 			if(c instanceof Text) {
-				if(label.getText().equals(((Text)c).getText()))
+				if(label.getText().equals(((Text)c).getText())) {
 					return (Text)c;
+				}
 			}
 		}
 		return null;
@@ -161,8 +163,9 @@ public class TestGuardEdition_364808 extends TestTopNode {
 	}
 
 	public void input(Widget widget, char... character) {
-		if(widget.isDisposed())
+		if(widget.isDisposed()) {
 			return;
+		}
 
 		for(char c : character) {
 			Event e = createKeyEvent(widget, 0, c);

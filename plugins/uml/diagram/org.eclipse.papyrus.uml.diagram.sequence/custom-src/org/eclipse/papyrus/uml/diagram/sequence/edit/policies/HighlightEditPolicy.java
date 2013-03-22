@@ -54,6 +54,7 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 
 	protected Indicator targetIndicator;
 
+	@Override
 	public void showSourceFeedback(Request request) {
 		EditPolicy editPolicy = null;
 		Object type = request.getType();

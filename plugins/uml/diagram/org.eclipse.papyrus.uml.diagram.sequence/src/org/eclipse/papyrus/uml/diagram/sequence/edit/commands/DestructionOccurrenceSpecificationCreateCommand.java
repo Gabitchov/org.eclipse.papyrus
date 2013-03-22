@@ -63,7 +63,6 @@ public class DestructionOccurrenceSpecificationCreateCommand extends EditElement
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -80,20 +79,15 @@ public class DestructionOccurrenceSpecificationCreateCommand extends EditElement
 	 * @generated NOT
 	 */
 	public boolean canExecute() {
-
 		// Get the lifeline
 		Lifeline lifeline = (Lifeline)getElementToEdit();
-
 		for(InteractionFragment ift : lifeline.getCoveredBys()) {
 			if(ift instanceof DestructionOccurrenceSpecification) {
 				// For each occurenceSpecification which covered the lifeline, check the associated event.
 				return false;
-
 			}
 		}
-
 		return true;
-
 	}
 
 	/**
@@ -102,13 +96,9 @@ public class DestructionOccurrenceSpecificationCreateCommand extends EditElement
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
-
 		DestructionOccurrenceSpecification destructionSpecification = (DestructionOccurrenceSpecification)CommandHelper.doCreateDestructionOccurrenceSpecification((Lifeline)getElementToEdit(), modelContainer);
-
 		ElementInitializers.getInstance().init_DestructionOccurrenceSpecification_3022(destructionSpecification);
-
 		doConfigure(destructionSpecification, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(destructionSpecification);
 		return CommandResult.newOKCommandResult(destructionSpecification);
 	}
@@ -126,5 +116,4 @@ public class DestructionOccurrenceSpecificationCreateCommand extends EditElement
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

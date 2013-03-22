@@ -44,6 +44,7 @@ public class TestMovingCombinedFragment_364711 extends TestTopNode {
 
 	private static final String MOVE = "Move: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

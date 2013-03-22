@@ -48,6 +48,7 @@ public class TestMessageCreate_379661 extends TestLink {
 
 	private static final String MOVE = "Move: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -129,10 +130,12 @@ public class TestMessageCreate_379661 extends TestLink {
 
 	protected void moveLifeline(LifelineEditPart lifelineEP, Point moveDelta) {
 		ChangeBoundsRequest req = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
-		if(moveDelta.x != 0)
+		if(moveDelta.x != 0) {
 			req.setResizeDirection(moveDelta.x > 0 ? PositionConstants.EAST : PositionConstants.WEST);
-		if(moveDelta.y != 0)
+		}
+		if(moveDelta.y != 0) {
 			req.setResizeDirection(moveDelta.y > 0 ? PositionConstants.SOUTH : PositionConstants.NORTH);
+		}
 		req.setLocation(getAbsoluteCenter(lifelineEP));
 		req.setEditParts(lifelineEP);
 		req.setMoveDelta(moveDelta);

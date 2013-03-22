@@ -70,6 +70,7 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 
 	private static final String EDIT = "Edit: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -139,8 +140,9 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 	}
 
 	public void input(Widget widget, char... character) {
-		if(widget.isDisposed())
+		if(widget.isDisposed()) {
 			return;
+		}
 
 		for(char c : character) {
 			Event e = createKeyEvent(widget, 0, c);
@@ -171,8 +173,9 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 	private Text findEditor(Composite composite, WrappingLabel label) {
 		for(Control c : composite.getChildren()) {
 			if(c instanceof Text) {
-				if(label.getText().equals(((Text)c).getText()))
+				if(label.getText().equals(((Text)c).getText())) {
 					return (Text)c;
+				}
 			}
 		}
 		return null;
@@ -193,8 +196,9 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);
-		if(extendedData != null)
+		if(extendedData != null) {
 			requestcreation.getExtendedData().putAll(extendedData);
+		}
 		Command command = parentPart.getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);

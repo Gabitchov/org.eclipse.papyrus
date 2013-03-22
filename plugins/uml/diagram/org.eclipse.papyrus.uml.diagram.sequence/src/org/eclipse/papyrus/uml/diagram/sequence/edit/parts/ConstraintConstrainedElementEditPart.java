@@ -41,5 +41,4 @@ public class ConstraintConstrainedElementEditPart extends AnnotatedLinkEditPart 
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
 	}
-
 }

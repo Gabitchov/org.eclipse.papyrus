@@ -54,17 +54,17 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		// default for label display
 		store.setDefault(LABEL_DISPLAY_PREFERENCE, DEFAULT_LABEL_DISPLAY);
 	}
-	
+
 	public static final String LABEL_DISPLAY_PREFERENCE = PackageEditPart.MODEL_ID + "_Message.label.display";
-	
+
 	public static final int DEFAULT_LABEL_DISPLAY = ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE | ICustomAppearence.DISP_RT_TYPE;
-	
+
 	/** current operation display style */
 	private int displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);
 
-	/** buttons to select the display kind for the label of  */
-	private Button dispParamDir ,dispParamMod, dispParamName, dispVis, dispParamType, dispReturnType, dispParamMul, dispParamDef , dispName, dispMod,dispParamVal;
-	
+	/** buttons to select the display kind for the label of */
+	private Button dispParamDir, dispParamMod, dispParamName, dispVis, dispParamType, dispReturnType, dispParamMul, dispParamDef, dispName, dispMod, dispParamVal;
+
 	/**
 	 * Creates the group and check boxes to choose the kind of display
 	 * 
@@ -76,7 +76,6 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		Group group = new Group(parent, SWT.SHADOW_NONE);
 		group.setText("Label Display");
 		group.setLayout(new GridLayout(2, true));
-
 		dispParamDir = createCheckButton(group, "Parameters Direction", ICustomAppearence.DISP_PARAMETER_DIRECTION);
 		dispParamMod = createCheckButton(group, "Parameters Modifiers", ICustomAppearence.DISP_PARAMETER_MODIFIERS);
 		dispParamName = createCheckButton(group, "Parameters Name", ICustomAppearence.DISP_PARAMETER_NAME);
@@ -86,40 +85,38 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		dispParamMul = createCheckButton(group, "Parameters Multiplicity", ICustomAppearence.DISP_PARAMETER_MULTIPLICITY);
 		dispParamDef = createCheckButton(group, "Parameters Default Value", ICustomAppearence.DISP_PARAMETER_DEFAULT);
 		dispParamVal = createCheckButton(group, "Parameters Value", ICustomAppearence.DISP_DERIVE);
-		dispName = createCheckButton(group,  "Name", ICustomAppearence.DISP_NAME);
+		dispName = createCheckButton(group, "Name", ICustomAppearence.DISP_NAME);
 		dispMod = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MOFIFIERS);
 	}
-	
+
 	protected void refreshButtons(SelectionEvent e) {
-		dispParamDir.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_DIRECTION));
-		dispParamMod.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_MODIFIERS));
-		dispParamName.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_NAME));
-		dispVis.setSelection(isCheck(displayValue , ICustomAppearence.DISP_VISIBILITY));
-		dispParamType.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_TYPE));
-		dispReturnType.setSelection(isCheck(displayValue , ICustomAppearence.DISP_RT_TYPE));
-		dispParamMul.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_MULTIPLICITY));
-		dispParamDef.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_DEFAULT));
-		dispParamVal.setSelection(isCheck(displayValue , ICustomAppearence.DISP_DERIVE));
-		dispName.setSelection(isCheck(displayValue , ICustomAppearence.DISP_NAME));
-		dispMod.setSelection(isCheck(displayValue , ICustomAppearence.DISP_MOFIFIERS));
-		if(e != null && dispParamDef.getSelection() && dispParamVal.getSelection()){
+		dispParamDir.setSelection(isCheck(displayValue, ICustomAppearence.DISP_PARAMETER_DIRECTION));
+		dispParamMod.setSelection(isCheck(displayValue, ICustomAppearence.DISP_PARAMETER_MODIFIERS));
+		dispParamName.setSelection(isCheck(displayValue, ICustomAppearence.DISP_PARAMETER_NAME));
+		dispVis.setSelection(isCheck(displayValue, ICustomAppearence.DISP_VISIBILITY));
+		dispParamType.setSelection(isCheck(displayValue, ICustomAppearence.DISP_PARAMETER_TYPE));
+		dispReturnType.setSelection(isCheck(displayValue, ICustomAppearence.DISP_RT_TYPE));
+		dispParamMul.setSelection(isCheck(displayValue, ICustomAppearence.DISP_PARAMETER_MULTIPLICITY));
+		dispParamDef.setSelection(isCheck(displayValue, ICustomAppearence.DISP_PARAMETER_DEFAULT));
+		dispParamVal.setSelection(isCheck(displayValue, ICustomAppearence.DISP_DERIVE));
+		dispName.setSelection(isCheck(displayValue, ICustomAppearence.DISP_NAME));
+		dispMod.setSelection(isCheck(displayValue, ICustomAppearence.DISP_MOFIFIERS));
+		if(e != null && dispParamDef.getSelection() && dispParamVal.getSelection()) {
 			// parameter default and value can only select one of them
-			if(e.widget == dispParamDef){
+			if(e.widget == dispParamDef) {
 				dispParamVal.setSelection(false);
 				displayValue = displayValue ^ ICustomAppearence.DISP_DERIVE;
-			}else if(e.widget == dispParamVal){
+			} else if(e.widget == dispParamVal) {
 				dispParamDef.setSelection(false);
 				displayValue = displayValue ^ ICustomAppearence.DISP_PARAMETER_DEFAULT;
 			}
 		}
-	}		
+	}
 
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
-
 		// adds the label preferences checkboxes
 		createLabelPreferencesButtons(parent);
-
 		refreshButtons(null);
 	}
 
@@ -133,14 +130,13 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		super.performDefaults();
 	}
 
-	
 	@Override
 	public boolean performOk() {
 		storePreferences();
 		return super.performOk();
 	}
-	
-	private static boolean isCheck(int value, int mask){
+
+	private static boolean isCheck(int value, int mask) {
 		return (value & mask) != 0;
 	}
 
@@ -156,7 +152,6 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 			store.setValue(LABEL_DISPLAY_PREFERENCE, displayValue);
 		}
 	}
-	
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
@@ -175,7 +170,7 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		button.addSelectionListener(new AppearenceSelectionListener(mask));
 		return button;
 	}
-	
+
 	/**
 	 * Listeners for the check buttons that select the display of the label
 	 */
@@ -197,7 +192,6 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		 * {@inheritDoc}
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
-
 		}
 
 		/**
@@ -206,7 +200,6 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		public void widgetSelected(SelectionEvent e) {
 			// add or remove the flag to the display Operation value (invert the current value)
 			displayValue = displayValue ^ style;
-
 			// refresh buttons at the end
 			refreshButtons(e);
 		}

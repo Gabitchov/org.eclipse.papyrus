@@ -108,17 +108,14 @@ public class Message3CreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
-
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.REPLY_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);
 		}
-
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
 	}
 
@@ -184,5 +181,4 @@ public class Message3CreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

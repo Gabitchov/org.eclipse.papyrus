@@ -74,7 +74,6 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,9 +88,7 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
@@ -102,20 +99,15 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
-
 		CombinedFragment combinedFragment = CommandHelper.doCreateCoRegion(modelContainer, (Lifeline)getElementToEdit());
-
 		if(combinedFragment != null) {
 			doConfigure(combinedFragment, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(combinedFragment);
 			return CommandResult.newOKCommandResult(combinedFragment);
 		}
-
 		return CommandResult.newErrorCommandResult("");
-
 	}
 
 	/**
@@ -131,5 +123,4 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -89,9 +89,8 @@ public class Message4ItemSemanticEditPolicy extends AbstractMessageItemSemanticE
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand destroyElementCommand = new CompoundCommand();
-		Command deleteCommand = SequenceDeleteHelper.completeDeleteMessageCommand(req,getHost());
+		Command deleteCommand = SequenceDeleteHelper.completeDeleteMessageCommand(req, getHost());
 		destroyElementCommand.add(deleteCommand);
-		
 		return LifelineMessageCreateHelper.restoreLifelineOnMessageDelete(destroyElementCommand, getHost());
 	}
 
@@ -229,5 +228,4 @@ public class Message4ItemSemanticEditPolicy extends AbstractMessageItemSemanticE
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

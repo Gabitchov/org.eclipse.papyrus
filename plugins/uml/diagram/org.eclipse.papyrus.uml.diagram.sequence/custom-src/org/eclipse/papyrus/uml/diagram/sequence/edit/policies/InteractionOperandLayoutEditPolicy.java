@@ -68,43 +68,43 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 				createConnectionRequest.setTargetEditPart(combinedFragment);
 			}
 			return combinedFragment.getCommand(request);
-		} else if (request instanceof CreateViewAndElementRequest  ) {
+		} else if(request instanceof CreateViewAndElementRequest) {
 			//FIXME If necessary
 			//Update Bounds and Guides.
 			return getCreateCommand((CreateViewAndElementRequest)request);
-		}else if (REQ_RESIZE_CHILDREN.equals(request.getType())){
+		} else if(REQ_RESIZE_CHILDREN.equals(request.getType())) {
 			return interactionCompartment.getCommand(request);
 		}
 		return super.getCommand(request);
 	}
 
-//	/**
-//	 * Handle combined fragment resize
-//	 */
-//	@Override
-//	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
-//		CompoundCommand compoundCmd = new CompoundCommand();
-//		compoundCmd.setLabel("Move or Resize");
-//
-//		for(Object o : request.getEditParts()) {
-//			GraphicalEditPart child = (GraphicalEditPart)o;
-//			Object constraintFor = getConstraintFor(request, child);
-//			if(constraintFor != null) {
-//				if(child instanceof CombinedFragmentEditPart) {
-//					Command resizeChildrenCommand = InteractionCompartmentXYLayoutEditPolicy.getCombinedFragmentResizeChildrenCommand(request, (CombinedFragmentEditPart)child);
-//					if(resizeChildrenCommand != null && resizeChildrenCommand.canExecute()) {
-//						compoundCmd.add(resizeChildrenCommand);
-//					}
-//				}
-//
-//				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
-//				compoundCmd.add(changeConstraintCommand);
-//			}
-//		}
-//		if(compoundCmd.isEmpty()) {
-//			return null;
-//		}
-//		return compoundCmd.unwrap();
-//	}
+	//	/**
+	//	 * Handle combined fragment resize
+	//	 */
+	//	@Override
+	//	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
+	//		CompoundCommand compoundCmd = new CompoundCommand();
+	//		compoundCmd.setLabel("Move or Resize");
+	//
+	//		for(Object o : request.getEditParts()) {
+	//			GraphicalEditPart child = (GraphicalEditPart)o;
+	//			Object constraintFor = getConstraintFor(request, child);
+	//			if(constraintFor != null) {
+	//				if(child instanceof CombinedFragmentEditPart) {
+	//					Command resizeChildrenCommand = InteractionCompartmentXYLayoutEditPolicy.getCombinedFragmentResizeChildrenCommand(request, (CombinedFragmentEditPart)child);
+	//					if(resizeChildrenCommand != null && resizeChildrenCommand.canExecute()) {
+	//						compoundCmd.add(resizeChildrenCommand);
+	//					}
+	//				}
+	//
+	//				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
+	//				compoundCmd.add(changeConstraintCommand);
+	//			}
+	//		}
+	//		if(compoundCmd.isEmpty()) {
+	//			return null;
+	//		}
+	//		return compoundCmd.unwrap();
+	//	}
 
 }

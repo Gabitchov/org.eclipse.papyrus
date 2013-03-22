@@ -121,6 +121,7 @@ public class CenterLocator extends BorderItemLocator {
 	 * 
 	 * @see org.eclipse.draw2d.Locator#relocate(org.eclipse.draw2d.IFigure)
 	 */
+	@Override
 	public void relocate(IFigure borderItem) {
 		if(getDestructionEventFigure() != null) {
 			if(borderItem.equals(getDestructionEventFigure().getParent())) {
@@ -131,13 +132,13 @@ public class CenterLocator extends BorderItemLocator {
 		super.relocate(borderItem);
 
 	}
-	
-	public Rectangle getValidLocation(Rectangle proposedLocation,
-			IFigure borderItem) {
+
+	@Override
+	public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
 		if(getDestructionEventFigure() != null) {
 			if(borderItem.equals(getDestructionEventFigure().getParent())) {
 				Rectangle realLocation = new Rectangle(proposedLocation);
-				Point point =  new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, getParentBorder().y + getParentBorder().height  - realLocation.height / 2);
+				Point point = new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, getParentBorder().y + getParentBorder().height - realLocation.height / 2);
 				realLocation.setLocation(point);
 				return realLocation;
 			}
@@ -168,6 +169,7 @@ public class CenterLocator extends BorderItemLocator {
 	 * @param suggestedSide
 	 * @return point
 	 */
+	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
 
 		Dimension borderItemSize = getSize(borderItem);

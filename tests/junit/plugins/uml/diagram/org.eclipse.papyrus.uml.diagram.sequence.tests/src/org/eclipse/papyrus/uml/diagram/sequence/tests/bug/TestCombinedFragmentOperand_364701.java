@@ -51,6 +51,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 	private static final String OPERAND_RESIZE = "Operand Resize: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

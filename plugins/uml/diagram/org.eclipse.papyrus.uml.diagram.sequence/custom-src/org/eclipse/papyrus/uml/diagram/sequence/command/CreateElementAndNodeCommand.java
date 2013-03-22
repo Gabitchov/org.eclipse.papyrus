@@ -61,7 +61,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 	protected IHintedType elementType;
 
 	protected CreateViewRequest createViewRequest;
-	
+
 	private List affectedFiles;
 
 	/**
@@ -85,14 +85,15 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 		this.editingDomain = editingDomain;
 		this.elementType = elementType;
 	}
-	
+
+	@Override
 	public List getAffectedFiles() {
-		if (affectedFiles == null) {
-			if (getCreatedView() != null) {
+		if(affectedFiles == null) {
+			if(getCreatedView() != null) {
 				affectedFiles = getWorkspaceFiles(getCreatedView());
 			} else {
 				affectedFiles = super.getAffectedFiles();
-			}			
+			}
 		}
 		return affectedFiles;
 	}
@@ -147,7 +148,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 			elementCreationCommand.execute();
 			EObject result = req.getNewElement();
 			if(result instanceof EObject) {
-				return (EObject)result;
+				return result;
 			}
 		}
 		return null;
@@ -161,7 +162,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 		if(nodeEditPart != null) {
 			// check if execution specification is already drawn
 			if(getCreatedView() == null) {
-				ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter((EObject)element), Node.class, elementType.getSemanticHint(), nodeEditPart.getDiagramPreferencesHint());
+				ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter(element), Node.class, elementType.getSemanticHint(), nodeEditPart.getDiagramPreferencesHint());
 				createViewRequest = new CreateViewRequest(descriptor);
 				createViewRequest.setLocation(location);
 				nodeCreationCommand = nodeEditPart.getCommand(createViewRequest);
@@ -173,8 +174,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		element = createModelElement();
 		// create the view for the execution specification
 		if(element != null) {

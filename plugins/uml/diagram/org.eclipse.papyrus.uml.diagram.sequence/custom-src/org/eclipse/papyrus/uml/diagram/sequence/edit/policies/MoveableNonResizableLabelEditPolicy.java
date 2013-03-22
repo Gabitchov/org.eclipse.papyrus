@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableEditPolicyEx;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.LabelHelper;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
@@ -61,13 +60,16 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 
 	private Polyline tether = null;
 
+	@Override
 	protected void eraseChangeBoundsFeedback(ChangeBoundsRequest request) {
 		super.eraseChangeBoundsFeedback(request);
-		if(tether != null)
+		if(tether != null) {
 			removeFeedback(tether);
+		}
 		tether = null;
 	}
 
+	@Override
 	protected IFigure createDragSourceFeedbackFigure() {
 		IFigure feedback = super.createDragSourceFeedbackFigure();
 		tether = new Polyline();
@@ -93,6 +95,7 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 		return null;
 	}
 
+	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
 		super.showChangeBoundsFeedback(request);
 
@@ -136,19 +139,21 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 		int x = r.x + r.width / 2 - refPoint.x;
 		int y = r.y + r.height / 2 - refPoint.y;
 
-		if(y > 0 && y > x && y > -x)
+		if(y > 0 && y > x && y > -x) {
 			startPoint = midTop;
-		else if(y < 0 && y < x && y < -x)
+		} else if(y < 0 && y < x && y < -x) {
 			startPoint = midBottom;
-		else if(x < 0 && y > x && y < -x)
+		} else if(x < 0 && y > x && y < -x) {
 			startPoint = midRight;
-		else
+		} else {
 			startPoint = midLeft;
+		}
 
 		tether.setStart(startPoint);
 		tether.setEnd(ref.getLocation());
 	}
 
+	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
 		GraphicalEditPart editPart = (GraphicalEditPart)getHost();
 		Point refPoint = getReferencePoint();
@@ -177,6 +182,7 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 	protected DragTracker createSelectionHandleDragTracker() {
 		return new DragEditPartsTrackerEx(getHost()) {
 
+			@Override
 			protected boolean isMove() {
 				return true;
 			}

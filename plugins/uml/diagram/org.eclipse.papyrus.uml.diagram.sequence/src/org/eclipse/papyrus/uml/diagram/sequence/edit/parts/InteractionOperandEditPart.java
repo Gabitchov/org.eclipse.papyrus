@@ -128,9 +128,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 /**
  * @generated
  */
-public class InteractionOperandEditPart extends
-
-AbstractBorderedShapeEditPart implements ITextAwareEditPart {
+public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -183,10 +181,8 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionOperandItemSemanticEditPolicy());
 		//installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new InteractionOperandLayoutEditPolicy());
 		//		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new InteractionOperandDragDropEditPolicy());
@@ -194,10 +190,8 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		
 		// Fixed bug id=364701 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=364701)
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new InteractionOperandDragDropEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new InteractionOperandDragDropEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new GuardConditionDirectEditPolicy());
 	}
 
@@ -211,9 +205,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case ContinuationEditPart.VISUAL_ID:
-
 					return new BorderItemResizableEditPolicy();
-
 				}
 				EditPolicy result = super.createChildEditPolicy(child);
 				if(result == null) {
@@ -268,7 +260,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -387,9 +378,9 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 	 */
 	@Override
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure){
+		if(primaryShape instanceof NodeFigure) {
 			((NodeFigure)primaryShape).setLineWidth(width);
-		}else if(primaryShape instanceof Shape) {
+		} else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -422,16 +413,13 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			// Fixed bug id=364701 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=364701)
 			// by using StackLayout instead of XYLayout
 			this.setLayoutManager(new XYLayout());
-
 			this.setLineStyle(Graphics.LINE_DASH);
-
 			this.setBorder(null);
-
 			this.setLineSeparator(!firstOperand);
 			this.setLineWidth(2);
 			createContents();
 		}
-		
+
 		protected void paintBackground(Graphics graphics, Rectangle rectangle) {
 			graphics.pushState();
 			super.paintBackground(graphics, rectangle);
@@ -445,9 +433,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			fInteractionConstraintLabel = new WrappingLabel();
 			fInteractionConstraintLabel.setText("");
 			updateConstraintLabel();
-
 			this.add(fInteractionConstraintLabel, new Rectangle(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10), getMapMode().DPtoLP(200), getMapMode().DPtoLP(20)));
-
 		}
 
 		/**
@@ -471,20 +457,15 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		public WrappingLabel getInteractionConstraintLabel() {
 			return fInteractionConstraintLabel;
 		}
-
 	}
 
-	static String getGuardLabelText(InteractionOperand interactionOperand , boolean edit ){
+	static String getGuardLabelText(InteractionOperand interactionOperand, boolean edit) {
 		CombinedFragment enclosingCF = (CombinedFragment)interactionOperand.getOwner();
 		InteractionOperatorKind cfOperator = enclosingCF.getInteractionOperator();
-
 		InteractionConstraint guard = interactionOperand.getGuard();
-
 		String specValue = null;
-
 		if(guard != null) {
 			ValueSpecification specification = guard.getSpecification();
-
 			if(specification != null) {
 				try {
 					specValue = specification.stringValue();
@@ -492,32 +473,30 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 				}
 			}
 		}
-
 		StringBuilder sb = new StringBuilder("");
-
 		if(InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)) {
 			String condition = LoopOperatorUtil.getLoopCondition(guard);
 			if(condition != null) {
 				sb.append(condition);
 			}
 		}
-
 		if(specValue == null) {
 			EList<InteractionOperand> operands = enclosingCF.getOperands();
 			if(InteractionOperatorKind.ALT_LITERAL.equals(cfOperator) && interactionOperand.equals(operands.get(operands.size() - 1))) {
 				specValue = "else";
 			}
 		}
-
 		if(specValue != null) {
-			if(!edit) sb.append('[');
+			if(!edit)
+				sb.append('[');
 			sb.append(specValue);
-			if(!edit) sb.append(']');
+			if(!edit)
+				sb.append(']');
 		}
 		String text = sb.toString();
 		return text;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -525,7 +504,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -545,7 +523,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1302,7 +1279,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-
 		Object newValue = notification.getNewValue();
 		if(UMLPackage.eINSTANCE.getInteractionOperand_Guard().equals(feature)) {
 			// Case of add, change or delete guard
@@ -1348,7 +1324,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 				notifierHelper.listenObject(newIntegerValue);
 			}
 		}
-
 		// handle modification of minint et maxint to match constraints min <= max and min >= 0
 		if(notification.getNotifier() instanceof LiteralInteger && InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
 			LiteralInteger literalIntNotifier = (LiteralInteger)notification.getNotifier();
@@ -1382,7 +1357,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			}
 		}
 		getPrimaryShape().updateConstraintLabel();
-
 		// Manage Continuation constraint on covered lifeline :
 		// Continuations are always global in the enclosing InteractionFragment 
 		//(e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
@@ -1399,14 +1373,13 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 							List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(currentlyCoveredLifeline);
 							coveredLifelinesToAdd.removeAll(continuationCoveredLifelines);
 							if(!coveredLifelinesToAdd.isEmpty()) {
-								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd),true);
+								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd), true);
 							}
-
 							// Delete old covered lifelines (not covered anymore)
 							List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(continuationCoveredLifelines);
 							coveredLifelinesToRemove.removeAll(currentlyCoveredLifeline);
 							if(!coveredLifelinesToRemove.isEmpty()) {
-								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove),true);
+								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove), true);
 							}
 						}
 					}
@@ -1417,49 +1390,48 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		if((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} 
+			}
 		}
-		
 		if(ElementIconUtil.isIconNotification(notification))
 			refreshLabelIcon();
 	}
-	
+
 	protected void refreshLabelIcon() {
 		Image image = ElementIconUtil.getLabelIcon(this);
 		getPrimaryShape().getInteractionConstraintLabel().setIcon(image);
 	}
-	
+
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabelIcon();
 		refreshTransparency();
 	}
-	
+
 	protected void refreshBackgroundColor() {
 		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-        if ( style != null ) {
-        	if ((style.getGradient() == null || !supportsGradient())) {	        	        	
-            	if(16777215 == style.getFillColor()){  // default color
-            		getPrimaryShape().setTransparency(100);
-            		getPrimaryShape().setIsUsingGradient(true);
-            		getPrimaryShape().setGradientData(style.getFillColor(), style.getFillColor(), 0);
-            	}else{
-            		refreshTransparency();
-            		setBackgroundColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(style.getFillColor())));
-            	}
-        	} else {
-        		refreshTransparency();
-        		setGradient(style.getGradient());
-        	}        	
-        }
-    }
-	
+		if(style != null) {
+			if((style.getGradient() == null || !supportsGradient())) {
+				if(16777215 == style.getFillColor()) { // default color
+					getPrimaryShape().setTransparency(100);
+					getPrimaryShape().setIsUsingGradient(true);
+					getPrimaryShape().setGradientData(style.getFillColor(), style.getFillColor(), 0);
+				} else {
+					refreshTransparency();
+					setBackgroundColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(style.getFillColor())));
+				}
+			} else {
+				refreshTransparency();
+				setGradient(style.getGradient());
+			}
+		}
+	}
+
 	@Override
 	protected void setTransparency(int transp) {
 		getPrimaryShape().setTransparency(transp);
 	}
-	
+
 	/**
 	 * Override to set the gradient data to the correct figure
 	 */
@@ -1475,18 +1447,17 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			fig.setIsUsingGradient(false);
 		}
 	}
-	
+
 	public boolean supportsGradient() {
 		return true;
 	}
-	
+
 	protected void setBackgroundColor(Color c) {
 		PapyrusNodeFigure fig = getPrimaryShape();
 		fig.setBackgroundColor(c);
 		fig.setIsUsingGradient(false);
 		fig.setGradientData(-1, -1, 0);
 	}
-
 
 	/**
 	 * Get the InteractionOperator of the CombinedFragment.
@@ -1495,7 +1466,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 	 */
 	private InteractionOperatorKind getInteractionOperator() {
 		InteractionOperatorKind interactionOperatorKind = null;
-
 		EditPart parent = getParent();
 		if(parent instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			parent = parent.getParent();
@@ -1506,7 +1476,6 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 				}
 			}
 		}
-
 		return interactionOperatorKind;
 	}
 
@@ -1563,39 +1532,38 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			}
 		}
 	}
-	
-	
 
 	private DirectEditManager manager;
+
 	private IParser parser;
-	
+
 	protected DirectEditManager getManager() {
 		if(manager == null) {
 			WrappingLabel label = this.getPrimaryShape().getInteractionConstraintLabel();
-			manager = new TextDirectEditManager(this, WrapTextCellEditor.class, new UMLEditPartFactory.TextCellEditorLocator(label)); 
+			manager = new TextDirectEditManager(this, WrapTextCellEditor.class, new UMLEditPartFactory.TextCellEditorLocator(label));
 		}
 		return manager;
 	}
 
 	protected void performDirectEditRequest(Request request) {
-		if(request instanceof DirectEditRequest){
+		if(request instanceof DirectEditRequest) {
 			WrappingLabel label = getPrimaryShape().getInteractionConstraintLabel();
-			Point location = ((DirectEditRequest)request).getLocation().getCopy();			
+			Point location = ((DirectEditRequest)request).getLocation().getCopy();
 			label.translateToRelative(location); // convert request location to relative			
-			if(label.containsPoint(location))  // check if mouse click on label
+			if(label.containsPoint(location)) // check if mouse click on label
 				getManager().show();
 		}
 	}
-	
+
 	protected EObject getParserElement() {
 		return resolveSemanticElement();
 	}
 
 	public IParser getParser() {
 		if(parser == null) {
-			parser = new GuardConditionParser(); 
+			parser = new GuardConditionParser();
 		}
-		return parser;		
+		return parser;
 	}
 
 	public ParserOptions getParserOptions() {
@@ -1615,7 +1583,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
 	}
-	
+
 	public void setLabelText(String text) {
 		WrappingLabel label = this.getPrimaryShape().getInteractionConstraintLabel();
 		label.setText(text);
@@ -1623,13 +1591,15 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
+
 			public String isValid(final Object value) {
 				if(value instanceof String) {
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
-					if(element != null && parser != null){
+					if(element != null && parser != null) {
 						try {
 							IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+
 								public void run() {
 									setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
 								}
@@ -1644,37 +1614,29 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		};
 	}
 
-	class GuardConditionDirectEditPolicy extends DirectEditPolicy{
+	class GuardConditionDirectEditPolicy extends DirectEditPolicy {
 
 		@Override
 		protected Command getDirectEditCommand(DirectEditRequest edit) {
-			String labelText = (String) edit.getCellEditor().getValue();
-			
+			String labelText = (String)edit.getCellEditor().getValue();
 			//for CellEditor, null is always returned for invalid values
-			if (labelText == null) {
+			if(labelText == null) {
 				return null;
 			}
-			
-			ITextAwareEditPart compartment = (ITextAwareEditPart) getHost();
+			ITextAwareEditPart compartment = (ITextAwareEditPart)getHost();
 			EObject model = (EObject)compartment.getModel();
-			EObjectAdapter elementAdapter = null ;
-			if (model instanceof View) {
-	            View view = (View)model;
-				elementAdapter = new EObjectAdapterEx(ViewUtil.resolveSemanticElement(view),
-					view);
-	        }
-			else
+			EObjectAdapter elementAdapter = null;
+			if(model instanceof View) {
+				View view = (View)model;
+				elementAdapter = new EObjectAdapterEx(ViewUtil.resolveSemanticElement(view), view);
+			} else
 				elementAdapter = new EObjectAdapterEx(model, null);
-			
-			String prevText = compartment.getParser().getEditString(elementAdapter,
-				compartment.getParserOptions().intValue());
+			String prevText = compartment.getParser().getEditString(elementAdapter, compartment.getParserOptions().intValue());
 			// check to make sure an edit has occurred before returning a command.
-			if (!prevText.equals(labelText)) {
-				ICommand iCommand = 
-					compartment.getParser().getParseCommand(elementAdapter, labelText, 0);
+			if(!prevText.equals(labelText)) {
+				ICommand iCommand = compartment.getParser().getParseCommand(elementAdapter, labelText, 0);
 				return new ICommandProxy(iCommand);
-			}		
-			
+			}
 			// refresh label again 
 			getPrimaryShape().updateConstraintLabel();
 			return null;
@@ -1682,19 +1644,21 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 
 		@Override
 		protected void showCurrentEditValue(DirectEditRequest request) {
-			String value = (String) request.getCellEditor().getValue();
+			String value = (String)request.getCellEditor().getValue();
 			WrappingLabel label = getPrimaryShape().getInteractionConstraintLabel();
 			label.setText(value);
 		}
 	}
-	
+
 	static class UpdateGuardConditionCommand extends AbstractTransactionalCommand {
-		
+
 		private InteractionConstraint guard;
+
 		private String text;
+
 		private InteractionOperand interactionOperand;
 
-		public UpdateGuardConditionCommand(TransactionalEditingDomain domain,InteractionOperand interactionOperand, InteractionConstraint guard, String text) {
+		public UpdateGuardConditionCommand(TransactionalEditingDomain domain, InteractionOperand interactionOperand, InteractionConstraint guard, String text) {
 			super(domain, null, null);
 			this.interactionOperand = interactionOperand;
 			this.guard = guard;
@@ -1705,48 +1669,46 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			CombinedFragment enclosingCF = (CombinedFragment)interactionOperand.getOwner();
 			InteractionOperatorKind cfOperator = enclosingCF.getInteractionOperator();
-			if(InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)){
-				if(text.contains("]") && text.contains("[") ){
+			if(InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)) {
+				if(text.contains("]") && text.contains("[")) {
 					String[] parts = text.split("]");
 					String[] nums = parts[0].replaceAll("\\[", "").split(",");
 					int min = 0, max = -1;
 					min = parseInt(nums[0], 0);
 					max = nums.length > 1 ? parseInt(nums[1], -1) : min;
-					
 					if(guard.getMinint() != null)
-						setIntValue( guard.getMinint() ,min);
+						setIntValue(guard.getMinint(), min);
 					else
-						guard.setMinint(createLiteralInteger(min));					
+						guard.setMinint(createLiteralInteger(min));
 					if(guard.getMaxint() != null)
-						setIntValue( guard.getMaxint() ,max);
+						setIntValue(guard.getMaxint(), max);
 					else
 						guard.setMaxint(createLiteralInteger(max));
-					
 					if(parts.length > 1)
-						text = parts[1] == null? "" : parts[1].trim();
+						text = parts[1] == null ? "" : parts[1].trim();
 					else
 						text = "";
-				}else{
+				} else {
 					guard.setMinint(null);
 					guard.setMaxint(null);
 				}
 			}
-			if(guard.getSpecification() != null || text.length() > 0){
+			if(guard.getSpecification() != null || text.length() > 0) {
 				LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 				literalString.setValue(text);
 				guard.setSpecification(literalString);
 			}
 			return CommandResult.newOKCommandResult();
 		}
-		
-		private LiteralInteger createLiteralInteger(int val){
+
+		private LiteralInteger createLiteralInteger(int val) {
 			LiteralInteger li = UMLFactory.eINSTANCE.createLiteralInteger();
 			li.setValue(val);
 			return li;
 		}
 
 		private void setIntValue(ValueSpecification spec, int val) {
-			if(spec instanceof LiteralInteger){
+			if(spec instanceof LiteralInteger) {
 				((LiteralInteger)spec).setValue(val);
 			}
 		}
@@ -1759,11 +1721,11 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			return defaultInt;
 		}
 	}
-	
-	
+
 	static class GuardConditionParser extends MessageFormatParser implements ISemanticParser {
+
 		public GuardConditionParser() {
-			super(new EAttribute[]{ UMLPackage.eINSTANCE.getLiteralInteger_Value(),	UMLPackage.eINSTANCE.getLiteralString_Value()  });
+			super(new EAttribute[]{ UMLPackage.eINSTANCE.getLiteralInteger_Value(), UMLPackage.eINSTANCE.getLiteralString_Value() });
 		}
 
 		public List getSemanticElementsBeingParsed(EObject element) {
@@ -1771,7 +1733,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			if(element instanceof InteractionOperand) {
 				InteractionOperand op = (InteractionOperand)element;
 				semanticElementsBeingParsed.add(op);
-				semanticElementsBeingParsed.add(op.getGuard() );
+				semanticElementsBeingParsed.add(op.getGuard());
 			}
 			return semanticElementsBeingParsed;
 		}
@@ -1780,12 +1742,12 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			EStructuralFeature feature = getEStructuralFeature(notification);
 			return isValidFeature(feature);
 		}
-		
+
 		public boolean isAffectingEvent(Object event, int flags) {
 			EStructuralFeature feature = getEStructuralFeature(event);
 			return isValidFeature(feature);
 		}
-		
+
 		public String getPrintString(IAdaptable element, int flags) {
 			Object adapter = element.getAdapter(EObject.class);
 			if(adapter instanceof InteractionOperand) {
@@ -1794,27 +1756,26 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			}
 			return "";
 		}
-		
+
 		@Override
 		public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 			return ParserEditStatus.EDITABLE_STATUS;
 		}
-		
+
 		@Override
 		public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 			EObject element = (EObject)adapter.getAdapter(EObject.class);
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
-			if(editingDomain == null || !(element instanceof InteractionOperand )) {
+			if(editingDomain == null || !(element instanceof InteractionOperand)) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			
 			InteractionOperand interactionOperand = (InteractionOperand)element;
 			InteractionConstraint guard = interactionOperand.getGuard();
 			CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Values"); //$NON-NLS-1$
-			command.compose(new UpdateGuardConditionCommand(editingDomain, interactionOperand, guard, newString ));
+			command.compose(new UpdateGuardConditionCommand(editingDomain, interactionOperand, guard, newString));
 			return command;
 		}
-		
+
 		@Override
 		public String getEditString(IAdaptable element, int flags) {
 			Object adapter = element.getAdapter(EObject.class);
@@ -1824,7 +1785,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			}
 			return "";
 		}
- 
+
 		protected EStructuralFeature getEStructuralFeature(Object notification) {
 			EStructuralFeature featureImpl = null;
 			if(notification instanceof Notification) {
@@ -1840,64 +1801,65 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			return UMLPackage.eINSTANCE.getInteractionConstraint_Maxint().equals(feature) || UMLPackage.eINSTANCE.getInteractionConstraint_Minint().equals(feature) || UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature);
 		}
 	}
-	
-	static class EObjectAdapterEx	extends EObjectAdapter {
+
+	static class EObjectAdapterEx extends EObjectAdapter {
+
 		private View view = null;
-	
+
 		/**
 		 * constructor
-		 * @param element	element to be wrapped
-		 * @param view	view to be wrapped
+		 * 
+		 * @param element
+		 *        element to be wrapped
+		 * @param view
+		 *        view to be wrapped
 		 */
 		public EObjectAdapterEx(EObject element, View view) {
 			super(element);
 			this.view = view;
 		}
-	
+
 		public Object getAdapter(Class adapter) {
 			Object o = super.getAdapter(adapter);
-			if (o != null)
+			if(o != null)
 				return o;
-			if (adapter.equals(View.class)) {
+			if(adapter.equals(View.class)) {
 				return view;
 			}
 			return null;
 		}
 	}
- 
+
 	public boolean ignoreRequest(Request request) {
-		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))){
-			List parts = ((ChangeBoundsRequest) request).getEditParts();
-			if(parts != null){
+		if(request instanceof ChangeBoundsRequest && (request.getType().equals(RequestConstants.REQ_ADD) || request.getType().equals(RequestConstants.REQ_DROP))) {
+			List parts = ((ChangeBoundsRequest)request).getEditParts();
+			if(parts != null) {
 				for(Object obj : parts)
-					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart){
+					if(obj instanceof CommentEditPart || obj instanceof ConstraintEditPart || obj instanceof TimeObservationEditPart) {
 						return true;
 					}
 			}
 		}
-		
 		return false;
 	}
-	
+
 	public void showTargetFeedback(Request request) {
-		 if(ignoreRequest(request)) {
-           return;
-       }
-	        
-       super.showTargetFeedback(request);
+		if(ignoreRequest(request)) {
+			return;
+		}
+		super.showTargetFeedback(request);
 	}
-	
+
 	public Command getCommand(Request request) {
 		if(ignoreRequest(request))
 			return null;
-		
 		return super.getCommand(request);
 	}
-	
+
 	protected void refreshTransparency() {
-        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-        if ( style != null ) {    	
-        	setTransparency(style.getTransparency());
-        }
-    }
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(style != null) {
+			setTransparency(style.getTransparency());
+		}
+	}
 }

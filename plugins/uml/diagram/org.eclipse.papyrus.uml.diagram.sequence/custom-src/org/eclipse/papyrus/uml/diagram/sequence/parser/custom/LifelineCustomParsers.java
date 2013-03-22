@@ -66,6 +66,7 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 		return featureImpl;
 	}
 
+	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
@@ -76,6 +77,7 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
 		StringBuffer sb = new StringBuffer();

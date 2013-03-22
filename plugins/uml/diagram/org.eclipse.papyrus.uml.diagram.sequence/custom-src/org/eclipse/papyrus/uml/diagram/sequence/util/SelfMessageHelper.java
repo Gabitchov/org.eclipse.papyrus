@@ -51,7 +51,7 @@ public class SelfMessageHelper {
 			return;
 		}
 		AbstractMessageEditPart message = (AbstractMessageEditPart)label.getParent();
-		if (!isSelfLink(message)){
+		if(!isSelfLink(message)) {
 			return;
 		}
 		final Location location = getLocation(label);

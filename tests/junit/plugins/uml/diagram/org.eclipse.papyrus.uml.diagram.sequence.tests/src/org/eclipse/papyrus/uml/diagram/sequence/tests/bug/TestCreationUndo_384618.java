@@ -39,6 +39,7 @@ import org.junit.Test;
  */
 public class TestCreationUndo_384618 extends TestLink {
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

@@ -57,9 +57,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class CommentEditPart extends
-
-AbstractCommentEditPart {
+public class CommentEditPart extends AbstractCommentEditPart {
 
 	/**
 	 * @generated
@@ -103,7 +101,6 @@ AbstractCommentEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -153,7 +150,6 @@ AbstractCommentEditPart {
 			((CommentBodyEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -203,7 +199,6 @@ AbstractCommentEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -264,9 +259,9 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure){
+		if(primaryShape instanceof NodeFigure) {
 			((NodeFigure)primaryShape).setLineWidth(width);
-		}else if(primaryShape instanceof Shape) {
+		} else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -1116,7 +1111,6 @@ AbstractCommentEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1136,22 +1130,21 @@ AbstractCommentEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
 	}
-	
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshTransparency();
 	}
-	
+
 	protected void refreshTransparency() {
-        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-        if ( style != null ) {    	
-        	setTransparency(style.getTransparency());
-        }
-    }
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(style != null) {
+			setTransparency(style.getTransparency());
+		}
+	}
 }

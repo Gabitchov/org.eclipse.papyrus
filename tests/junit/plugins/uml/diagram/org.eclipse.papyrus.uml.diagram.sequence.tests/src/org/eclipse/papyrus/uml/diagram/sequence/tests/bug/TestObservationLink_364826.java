@@ -201,8 +201,8 @@ public class TestObservationLink_364826 extends TestLink {
 		}
 		waitForComplete();
 
-		manageObservationLink(observation1, connPart, getAbsoluteEdgeExtremity((ConnectionNodeEditPart)connPart, true).translate(0, -5));
-		manageObservationLink(observation2, connPart, getAbsoluteEdgeExtremity((ConnectionNodeEditPart)connPart, false).translate(0, -5));
+		manageObservationLink(observation1, connPart, getAbsoluteEdgeExtremity(connPart, true).translate(0, -5));
+		manageObservationLink(observation2, connPart, getAbsoluteEdgeExtremity(connPart, false).translate(0, -5));
 	}
 
 
@@ -240,8 +240,8 @@ public class TestObservationLink_364826 extends TestLink {
 		observation1 = (GraphicalEditPart)observation1.getChildren().get(0);
 		observation2 = (GraphicalEditPart)observation2.getChildren().get(0);
 
-		manageObservationLink(observation1, lifeline1, getAbsoluteEdgeExtremity((ConnectionNodeEditPart)connPart, true).translate(0, -5));
-		manageObservationLink(observation2, lifeline2, getAbsoluteEdgeExtremity((ConnectionNodeEditPart)connPart, false).translate(0, -5));
+		manageObservationLink(observation1, lifeline1, getAbsoluteEdgeExtremity(connPart, true).translate(0, -5));
+		manageObservationLink(observation2, lifeline2, getAbsoluteEdgeExtremity(connPart, false).translate(0, -5));
 	}
 
 
@@ -374,6 +374,7 @@ public class TestObservationLink_364826 extends TestLink {
 		return connectionRequest;
 	}
 
+	@Override
 	protected Point getAbsoluteCenter(IGraphicalEditPart part) {
 		IFigure f = part.getFigure();
 		Rectangle b = f.getBounds().getCopy();

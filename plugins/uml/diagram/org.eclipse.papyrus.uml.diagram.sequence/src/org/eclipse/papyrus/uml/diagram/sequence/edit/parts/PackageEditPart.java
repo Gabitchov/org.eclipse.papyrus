@@ -72,37 +72,30 @@ public class PackageEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.PackageCanonicalEditPolicy());
-
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		
 		//fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		
 		// do not handle connection event
-		installEditPolicy(
-			EditPolicy.GRAPHICAL_NODE_ROLE,
-			new ContainerNodeEditPolicy(){
-				
-				protected Command getConnectionAndEndCommands(
-					CreateConnectionRequest request) {
-					return UnexecutableCommand.INSTANCE;
-				}
-			});
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ContainerNodeEditPolicy() {
+
+			protected Command getConnectionAndEndCommands(CreateConnectionRequest request) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		});
 	}
 
 	private EditPolicy createLayoutEditPolicy() {
 		return new XYLayoutEditPolicy() {
+
 			protected Command createAddCommand(EditPart child, Object constraint) {
-				if (child instanceof LifelineEditPart) {
-					if (!SequenceUtil.isCreateMessageEndLifeline((LifelineEditPart) child)) {
+				if(child instanceof LifelineEditPart) {
+					if(!SequenceUtil.isCreateMessageEndLifeline((LifelineEditPart)child)) {
 						return null;
 					}
 				}
@@ -161,7 +154,6 @@ public class PackageEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
-
 		super.handleNotificationEvent(event);
 		if(event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
@@ -176,11 +168,9 @@ public class PackageEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	public Object getAdapter(Class adapter) {
-
 		if(adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
 	}
-
 }

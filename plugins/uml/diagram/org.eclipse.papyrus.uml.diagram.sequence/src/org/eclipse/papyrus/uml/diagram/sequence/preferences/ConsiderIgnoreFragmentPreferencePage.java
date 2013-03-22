@@ -65,36 +65,31 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusElement
 	 * @generated NOT
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = PackageEditPart.MODEL_ID + "_ConsiderIgnoreFragment";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
-
 		for(String name : compartments) {
 			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
-
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
-
 		// Set the default for the gradient
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
 		//org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new  org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
 		//		new org.eclipse.swt.graphics.RGB(255, 255, 255),
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
-
 	}
 
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		for(String name : compartments) {
-			map.put(name,Boolean.FALSE);
+			map.put(name, Boolean.FALSE);
 		}
 		return map;
 	}
-	
+
 	protected void initializeCompartmentsList() {
 		for(String name : compartments) {
 			this.compartmentsList.add(name);
@@ -104,7 +99,7 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusElement
 	protected TreeMap<String, String> getLabelRole() {
 		return new TreeMap<String, String>();
 	}
-	
+
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
 		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
@@ -117,7 +112,6 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusElement
 			NodeCompartmentGroupEx compartmentGroup = new NodeCompartmentGroupEx(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), getPreferenceStore());
 			addAbstractGroup(compartmentGroup);
 		}
-
 		//Label role group
 		if(!getLabelRole().isEmpty()) {
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());

@@ -67,5 +67,4 @@ public class InteractionInteractionCompartmentItemSemanticEditPolicy extends UML
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

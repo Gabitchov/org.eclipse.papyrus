@@ -24,14 +24,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message4ItemSemanticEditPolicy;
@@ -47,9 +45,7 @@ import org.eclipse.uml2.uml.MessageSort;
 /**
  * @generated
  */
-public class Message4EditPart extends AbstractMessageEditPart
-
-implements ITreeBranchEditPart {
+public class Message4EditPart extends AbstractMessageEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -148,7 +144,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new MessageCreate();
 	}
@@ -182,7 +177,6 @@ implements ITreeBranchEditPart {
 			super();
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
-
 			createContents();
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -192,14 +186,10 @@ implements ITreeBranchEditPart {
 		 */
 		protected void createContents() {
 			super.createContents();
-
 			fFigureMessageCreateLabelFigure = new WrappingLabel();
 			fFigureMessageCreateLabelFigure.setText("");
-
 			fFigureMessageCreateLabelFigure.setFont(FFIGUREMESSAGECREATELABELFIGURE_FONT);
-
 			this.add(fFigureMessageCreateLabelFigure);
-
 		}
 
 		/**
@@ -230,7 +220,6 @@ implements ITreeBranchEditPart {
 		public WrappingLabel getAppliedStereotypeLabel() {
 			return super.getAppliedStereotypeLabel();
 		}
-
 	}
 
 	/**
@@ -270,5 +259,4 @@ implements ITreeBranchEditPart {
 		}
 		super.eraseSourceFeedback(request);
 	}
-
 }

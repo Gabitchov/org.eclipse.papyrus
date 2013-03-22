@@ -62,9 +62,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ContinuationEditPart extends
-
-AbstractBorderItemEditPart {
+public class ContinuationEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -148,7 +146,6 @@ AbstractBorderItemEditPart {
 			((ContinuationNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -201,7 +198,6 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -1049,11 +1045,8 @@ AbstractBorderItemEditPart {
 		 * @generated
 		 */
 		public ContinuationFigure() {
-
 			CenterLayout layoutThis = new CenterLayout();
-
 			this.setLayoutManager(layoutThis);
-
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50)));
 			createContents();
 		}
@@ -1062,11 +1055,8 @@ AbstractBorderItemEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fFigureContinuationNameLabel = new CenteredWrappedLabel();
-
 			this.add(fFigureContinuationNameLabel);
-
 		}
 
 		/**
@@ -1075,7 +1065,7 @@ AbstractBorderItemEditPart {
 		public CenteredWrappedLabel getFigureContinuationNameLabel() {
 			return fFigureContinuationNameLabel;
 		}
-		
+
 		protected void fillShape(Graphics graphics) {
 			graphics.pushState();
 			applyTransparency(graphics);
@@ -1088,7 +1078,7 @@ AbstractBorderItemEditPart {
 		 * Must be in [0, 100] range.
 		 */
 		private int transparency = 0;
-		
+
 		/**
 		 * Returns transparency value (belongs to [0, 100] interval)
 		 * 
@@ -1098,33 +1088,33 @@ AbstractBorderItemEditPart {
 		public int getTransparency() {
 			return transparency;
 		}
- 
+
 		/**
 		 * Sets the transparency if the given parameter is in [0, 100] range
 		 * 
-		 * @param transparency The transparency to set
+		 * @param transparency
+		 *        The transparency to set
 		 * @since 1.2
 		 */
 		public void setTransparency(int transparency) {
-			if (transparency != this.transparency &&
-					transparency >= 0 && transparency <= 100) {
+			if(transparency != this.transparency && transparency >= 0 && transparency <= 100) {
 				this.transparency = transparency;
 				repaint();
 			}
 		}
-				
+
 		/**
 		 * Converts transparency value from percent range [0, 100] to alpha range
 		 * [0, 255] and applies converted value. 0% corresponds to alpha 255 and
 		 * 100% corresponds to alpha 0.
 		 * 
-		 * @param g The Graphics used to paint
+		 * @param g
+		 *        The Graphics used to paint
 		 * @since 1.2
 		 */
 		protected void applyTransparency(Graphics g) {
 			g.setAlpha(255 - transparency * 255 / 100);
 		}
-
 	}
 
 	/**
@@ -1134,7 +1124,6 @@ AbstractBorderItemEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1154,7 +1143,6 @@ AbstractBorderItemEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1166,7 +1154,6 @@ AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
-
 		if(UMLPackage.eINSTANCE.getContinuation_Setting().equals(notification.getFeature())) {
 			IBorderItemLocator borderItemLocator = getBorderItemLocator();
 			int newValue = (Boolean)notification.getNewValue() ? PositionConstants.SOUTH : PositionConstants.NORTH;
@@ -1177,21 +1164,20 @@ AbstractBorderItemEditPart {
 			}
 		}
 		super.handleNotificationEvent(notification);
-		
 		Object feature = notification.getFeature();
 		if((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} 
+			}
 		}
 	}
-	
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLineWidth();
 		refreshTransparency();
 	}
-	
+
 	protected void setTransparency(int transp) {
 		getPrimaryShape().setTransparency(transp);
 	}

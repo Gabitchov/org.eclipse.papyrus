@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,9 +25,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Handle;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
@@ -96,7 +93,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		}
 		return super.createManualHandles();
 	}
-	
+
 	@Override
 	public Command getCommand(Request request) {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
@@ -135,7 +132,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						fig.translateToAbsolute(bounds);
 
 						PointList points = getConnection().getPoints();
-						Point sourceRefPoint = points.getFirstPoint().getCopy();;
+						Point sourceRefPoint = points.getFirstPoint().getCopy();
 						getConnection().translateToAbsolute(sourceRefPoint);
 
 						int dy = sourceRefPoint.y - bounds.getCenter().y;
@@ -187,12 +184,12 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		compoudCmd.add(super.getBendpointsChangedCommand(request));
 		PointList points = getConnection().getPoints();
 		if(MOVED_UP.equals(moveData)) {
-			Point sourceRefPoint = points.getFirstPoint();;
+			Point sourceRefPoint = points.getFirstPoint();
 			getConnection().translateToAbsolute(sourceRefPoint);
 			Command srcCmd = getReconnectCommand(connectionPart, connectionPart.getSource(), sourceRefPoint, RequestConstants.REQ_RECONNECT_SOURCE);
 			compoudCmd.add(srcCmd);
 		} else if(MOVED_DOWN.equals(moveData)) {
-			Point targetRefPoint = points.getLastPoint();;
+			Point targetRefPoint = points.getLastPoint();
 			getConnection().translateToAbsolute(targetRefPoint);
 			Command tgtCmd = getReconnectCommand(connectionPart, connectionPart.getSource(), targetRefPoint, RequestConstants.REQ_RECONNECT_TARGET);
 			compoudCmd.add(tgtCmd);
@@ -270,6 +267,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	protected void showMoveLineSegFeedback(BendpointRequest request) {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
@@ -357,8 +355,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			Rectangle conBounds = linkPoints.getBounds();
 			getConnection().translateToAbsolute(conBounds);
 			// check top and bottom y limit
-			if(conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y)
+			if(conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y) {
 				return false;
+			}
 		}
 		//It seems the self message can be created on ES, too
 		else if(sourcePart instanceof AbstractExecutionSpecificationEditPart) {
@@ -385,8 +384,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		getConnection().setVisible(true);
 		super.eraseConnectionFeedback(request, removeFeedbackFigure);
 
-		if(router != null)
+		if(router != null) {
 			getConnection().setConnectionRouter(router);
+		}
 		router = null;
 	}
 

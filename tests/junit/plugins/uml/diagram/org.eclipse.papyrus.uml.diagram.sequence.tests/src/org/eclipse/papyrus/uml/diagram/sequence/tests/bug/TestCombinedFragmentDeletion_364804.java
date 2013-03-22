@@ -46,6 +46,7 @@ import org.junit.Test;
  */
 public class TestCombinedFragmentDeletion_364804 extends TestTopNode {
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

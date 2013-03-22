@@ -314,17 +314,17 @@ public class OccurrenceSpecificationMoveHelper {
 				}
 			}
 		}
-		
+
 		// relocate each observation linked time element
-		for(Object targetConnection : lifelinePart.getTargetConnections()){
-			if(targetConnection instanceof ObservationLinkEditPart){
+		for(Object targetConnection : lifelinePart.getTargetConnections()) {
+			if(targetConnection instanceof ObservationLinkEditPart) {
 				Command cmd = getMoveSingleTimeRelatedElementCommand((ObservationLinkEditPart)targetConnection, movedOccurrenceSpecification1, movedOccurrenceSpecification2, yLocation1, yLocation2, lifelinePart);
 				if(cmd != null) {
 					globalCmd.add(cmd);
 				}
 			}
 		}
-		
+
 		// refresh layout commands :
 		// one before the commands for the undo and one after for classic execution
 		if(!globalCmd.isEmpty() && lifelineFigure instanceof BorderedNodeFigure) {
@@ -345,17 +345,13 @@ public class OccurrenceSpecificationMoveHelper {
 		return globalCmd;
 	}
 
-	private static Command getMoveSingleTimeRelatedElementCommand(
-			final ObservationLinkEditPart targetConnection,
-			final OccurrenceSpecification movedOccurrenceSpecification1,
-			final OccurrenceSpecification movedOccurrenceSpecification2,
-			final int yLocation1, final int yLocation2,final LifelineEditPart lifelinePart) {
-		
-		AbstractTransactionalCommand updateTargetAnchorCommand = new AbstractTransactionalCommand(((IGraphicalEditPart) targetConnection).getEditingDomain(),"update target anchor",null) {
+	private static Command getMoveSingleTimeRelatedElementCommand(final ObservationLinkEditPart targetConnection, final OccurrenceSpecification movedOccurrenceSpecification1, final OccurrenceSpecification movedOccurrenceSpecification2, final int yLocation1, final int yLocation2, final LifelineEditPart lifelinePart) {
+
+		AbstractTransactionalCommand updateTargetAnchorCommand = new AbstractTransactionalCommand(((IGraphicalEditPart)targetConnection).getEditingDomain(), "update target anchor", null) {
+
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-					IAdaptable info) throws ExecutionException {
-				
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
 				// both bounds may have changed
 				Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
 				Point referencePoint2 = getReferencePoint(lifelinePart, movedOccurrenceSpecification2, yLocation2);
@@ -363,10 +359,10 @@ public class OccurrenceSpecificationMoveHelper {
 				int position1 = PositionConstants.NONE;
 				int position2 = PositionConstants.NONE;
 				TimeObservationLabelEditPart tolEP = (TimeObservationLabelEditPart)targetConnection.getSource();
-				if(tolEP == null){
+				if(tolEP == null) {
 					return CommandResult.newCancelledCommandResult();
 				}
-				
+
 				if(movedOccurrenceSpecification1 != null) {
 					position1 = SequenceUtil.positionWhereEventIsLinkedToPart(movedOccurrenceSpecification1, tolEP);
 				}
@@ -374,34 +370,35 @@ public class OccurrenceSpecificationMoveHelper {
 					position2 = SequenceUtil.positionWhereEventIsLinkedToPart(movedOccurrenceSpecification2, tolEP);
 				}
 				ConnectionAnchor targetAnchor = null;
-				if(position1 == PositionConstants.CENTER){
+				if(position1 == PositionConstants.CENTER) {
 					targetAnchor = lifelinePart.getNodeFigure().getSourceConnectionAnchorAt(referencePoint1);
-				}else if(position2 == PositionConstants.CENTER){
+				} else if(position2 == PositionConstants.CENTER) {
 					targetAnchor = lifelinePart.getNodeFigure().getSourceConnectionAnchorAt(referencePoint2);
 				}
-				
-				if(targetAnchor!= null){
+
+				if(targetAnchor != null) {
 					String newTargetTerminal = lifelinePart.mapConnectionAnchorToTerminal(targetAnchor);
 					ConnectorImpl c = (ConnectorImpl)targetConnection.getModel();
-					if (newTargetTerminal != null) {
-						if (newTargetTerminal.length() == 0)
+					if(newTargetTerminal != null) {
+						if(newTargetTerminal.length() == 0) {
 							c.setTargetAnchor(null);
-						else {
-							IdentityAnchor a = (IdentityAnchor) c.getTargetAnchor();
-							if (a == null)
+						} else {
+							IdentityAnchor a = (IdentityAnchor)c.getTargetAnchor();
+							if(a == null) {
 								a = NotationFactory.eINSTANCE.createIdentityAnchor();
+							}
 							a.setId(newTargetTerminal);
 							c.setTargetAnchor(a);
 						}
 					}
 
 				}
-				
-				return CommandResult.newOKCommandResult(); 
+
+				return CommandResult.newOKCommandResult();
 			}
 		};
-		
-		
+
+
 		// return the resize command
 		ICommandProxy resize = new ICommandProxy(updateTargetAnchorCommand);
 		return resize;
@@ -466,11 +463,10 @@ public class OccurrenceSpecificationMoveHelper {
 				}
 				// top and bottom may have been inverted during the move.
 				// restore x position, fix time duration always move to east
-				int viewX = (Integer) ViewUtil.getPropertyValue((View) timePart.getModel(), NotationPackage.eINSTANCE
-						.getLocation_X(), NotationPackage.eINSTANCE.getLocation_X().getEContainingClass());
-						
+				int viewX = (Integer)ViewUtil.getPropertyValue((View)timePart.getModel(), NotationPackage.eINSTANCE.getLocation_X(), NotationPackage.eINSTANCE.getLocation_X().getEContainingClass());
+
 				newBounds = new Rectangle(viewX, Math.min(top, bottom), -1, Math.abs(bottom - top));
-//				newBounds = new Rectangle(referencePoint1.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
+				//				newBounds = new Rectangle(referencePoint1.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
 			}
 		} else if(position1 != PositionConstants.NONE) {
 			Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
@@ -517,8 +513,8 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		if(newBounds != null) {
 			TransactionalEditingDomain editingDomain = timePart.getEditingDomain();
-			if(timePart instanceof DurationConstraintEditPart){
-				DurationConstraintEditPart dcep = (DurationConstraintEditPart) timePart;
+			if(timePart instanceof DurationConstraintEditPart) {
+				DurationConstraintEditPart dcep = (DurationConstraintEditPart)timePart;
 				newBounds = dcep.updateMoveBounds(newBounds);
 			}
 			// return the resize command
@@ -737,9 +733,9 @@ public class OccurrenceSpecificationMoveHelper {
 		req.setEditParts(editPart);
 		//Make sure do not coming again to update duration constraints...
 		req.getExtendedData().put(SequenceRequestConstant.DO_NOT_MOVE_EDIT_PARTS, true);
-		return  LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)editPart.getParent(), req, true, false, true);
+		return LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)editPart.getParent(), req, true, false, true);
 	}
-	
+
 	/**
 	 * Get the reference point to reconnect or resize edit parts at the given y location
 	 * 
@@ -790,7 +786,7 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		OccurrenceSpecification event2 = getOccurrenceSpecificationFromReconnectGeneralOrdering(request);
 		if(event2 instanceof OccurrenceSpecification) {
-			Command cmd = getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)event2, null, request.getLocation().y, -1, lifelinePart, notToMoveEditParts);
+			Command cmd = getMoveOccurrenceSpecificationsCommand(event2, null, request.getLocation().y, -1, lifelinePart, notToMoveEditParts);
 			if(cmd != null) {
 				globalCmd.add(cmd);
 			}
@@ -849,21 +845,21 @@ public class OccurrenceSpecificationMoveHelper {
 				compoundCmd.add(cmd);
 			}
 
-//			if(request.getSizeDelta().height == 0) {
-//				// move time elements for events between start and finish
-//				InteractionFragment nextOccSpec = InteractionFragmentHelper.findNextFragment(start, start.eContainer());
-//				while(nextOccSpec != null && nextOccSpec != finish) {
-//					Point occSpecLocation = SequenceUtil.findLocationOfEvent(lifelinePart, nextOccSpec);
-//					if(nextOccSpec instanceof OccurrenceSpecification && occSpecLocation != null) {
-//						int occSpecY = occSpecLocation.y + request.getMoveDelta().y;
-//						cmd = getMoveTimeElementsCommand((OccurrenceSpecification)nextOccSpec, null, occSpecY, -1, lifelinePart, notToMoveEditParts);
-//						if(cmd != null) {
-//							compoundCmd.add(cmd);
-//						}
-//					}
-//					nextOccSpec = InteractionFragmentHelper.findNextFragment(nextOccSpec, start.eContainer());
-//				}
-//			}
+			//			if(request.getSizeDelta().height == 0) {
+			//				// move time elements for events between start and finish
+			//				InteractionFragment nextOccSpec = InteractionFragmentHelper.findNextFragment(start, start.eContainer());
+			//				while(nextOccSpec != null && nextOccSpec != finish) {
+			//					Point occSpecLocation = SequenceUtil.findLocationOfEvent(lifelinePart, nextOccSpec);
+			//					if(nextOccSpec instanceof OccurrenceSpecification && occSpecLocation != null) {
+			//						int occSpecY = occSpecLocation.y + request.getMoveDelta().y;
+			//						cmd = getMoveTimeElementsCommand((OccurrenceSpecification)nextOccSpec, null, occSpecY, -1, lifelinePart, notToMoveEditParts);
+			//						if(cmd != null) {
+			//							compoundCmd.add(cmd);
+			//						}
+			//					}
+			//					nextOccSpec = InteractionFragmentHelper.findNextFragment(nextOccSpec, start.eContainer());
+			//				}
+			//			}
 		}
 		return compoundCmd;
 	}
@@ -881,7 +877,7 @@ public class OccurrenceSpecificationMoveHelper {
 		// Erase the y move if element can not be moved on y axe
 		if(!canTimeElementPartBeYMoved(movedTimePart)) {
 			request.getMoveDelta().y = 0;
-		}else{
+		} else {
 			//move to one direction at once.
 			Point moveDelta = request.getMoveDelta();
 			if(Math.abs(moveDelta.x) > Math.abs(moveDelta.y)) {

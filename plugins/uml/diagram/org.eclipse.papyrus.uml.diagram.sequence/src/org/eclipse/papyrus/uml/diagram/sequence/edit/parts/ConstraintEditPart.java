@@ -31,7 +31,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -60,9 +59,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ConstraintEditPart extends
-
-AbstractConstraintEditPart {
+public class ConstraintEditPart extends AbstractConstraintEditPart {
 
 	/**
 	 * @generated
@@ -105,13 +102,13 @@ AbstractConstraintEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-		if(event.getFeature() instanceof EReference){
-			EReference ref = (EReference) event.getFeature();
-			if("specification".equals(ref.getName()) ){
+		if(event.getFeature() instanceof EReference) {
+			EReference ref = (EReference)event.getFeature();
+			if("specification".equals(ref.getName())) {
 				List parts = getChildren();
 				for(Object p : parts)
-					if(p instanceof Constraint2EditPart){
-						((Constraint2EditPart) p).handleNotificationEvent(event);
+					if(p instanceof Constraint2EditPart) {
+						((Constraint2EditPart)p).handleNotificationEvent(event);
 					}
 			}
 		}
@@ -120,8 +117,8 @@ AbstractConstraintEditPart {
 	protected void refreshLabel() {
 		List parts = getChildren();
 		for(Object p : parts)
-			if(p instanceof Constraint2EditPart){
-				((Constraint2EditPart) p).refreshLabel();
+			if(p instanceof Constraint2EditPart) {
+				((Constraint2EditPart)p).refreshLabel();
 			}
 	}
 
@@ -176,7 +173,6 @@ AbstractConstraintEditPart {
 			((Constraint2EditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -229,7 +225,6 @@ AbstractConstraintEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -247,7 +242,7 @@ AbstractConstraintEditPart {
 		IFigure shape = createNodeShape();
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
-		figure.setForegroundColor(ColorConstants.black);  // fix constraint link color
+		figure.setForegroundColor(ColorConstants.black); // fix constraint link color
 		figure.setBackgroundColor(ColorConstants.black);
 		return figure;
 	}
@@ -292,9 +287,9 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure){
+		if(primaryShape instanceof NodeFigure) {
 			((NodeFigure)primaryShape).setLineWidth(width);
-		}else if(primaryShape instanceof Shape) {
+		} else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -1144,7 +1139,6 @@ AbstractConstraintEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1164,23 +1158,22 @@ AbstractConstraintEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
 	}
-	
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
 		refreshTransparency();
 	}
-	
+
 	protected void refreshTransparency() {
-        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-        if ( style != null ) {    	
-        	setTransparency(style.getTransparency());
-        }
-    }
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(style != null) {
+			setTransparency(style.getTransparency());
+		}
+	}
 }

@@ -49,6 +49,7 @@ import org.junit.Test;
  */
 public class TestCombinedFragmentGates_364816 extends TestLink {
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

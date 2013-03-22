@@ -136,18 +136,18 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class SequenceUtil {
 
 	private static final double MAXIMAL_DISTANCE_FROM_EVENT = 10;
-	
+
 	/**
 	 * Request type of observation link
 	 */
 	public static final String OBSERVATION_LINK_TYPE = "observation link"; //$NON-NLS-1$
-	
+
 	public static final String OBSERVATION_LINK_REQUEST_START = "observation connection start"; //$NON-NLS-1$
-	
+
 	public static final String OBSERVATION_LINK_REQUEST_END = "observation connection end"; //$NON-NLS-1$
-	
+
 	public static final String OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE = "observation reconnect source"; //$NON-NLS-1$
-	
+
 	public static final String OBSERVATION_LINK_REQUEST_RECONNECT_TARGET = "observation reconnect target"; //$NON-NLS-1$
 
 	/**
@@ -283,7 +283,7 @@ public class SequenceUtil {
 	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, InteractionFragment fragment) {
 		return findLocationOfEvent(lifelineEditPart, fragment, false);
 	}
-	
+
 	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, InteractionFragment fragment, boolean relyOnMessageFigure) {
 		if(lifelineEditPart == null) {
 			return null;
@@ -455,8 +455,8 @@ public class SequenceUtil {
 	public static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart) {
 		return getAbsoluteEdgeExtremity(connection, isStart, false);
 	}
-	
-	static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart, boolean relyOnMessageFigure) {		
+
+	static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart, boolean relyOnMessageFigure) {
 		Connection msgFigure = connection.getConnectionFigure();
 		if(connection.getNotationView() instanceof Edge && !relyOnMessageFigure) {
 			// rather take up to date model information
@@ -520,8 +520,8 @@ public class SequenceUtil {
 	public static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event) {
 		return findLocationOfMessageOccurrence(nodeEditPart, event, false);
 	}
-	
-	static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {				
+
+	static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {
 		// messages to the node
 		List<?> targetConnections = nodeEditPart.getTargetConnections();
 		for(Object conn : targetConnections) {
@@ -552,7 +552,7 @@ public class SequenceUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Find the location on a node of a execution occurrence specification
 	 * 
@@ -572,27 +572,27 @@ public class SequenceUtil {
 					IFigure figure = ((ActionExecutionSpecificationEditPart)child).getFigure();
 					Rectangle copy = figure.getBounds().getCopy();
 					figure.translateToAbsolute(copy);
-					 if(event.equals(((ExecutionSpecification)element).getStart())){
-						 return copy.getTop();
-					 }else if(event.equals(((ExecutionSpecification)element).getFinish())){
-						 return copy.getBottom();
-					 }
+					if(event.equals(((ExecutionSpecification)element).getStart())) {
+						return copy.getTop();
+					} else if(event.equals(((ExecutionSpecification)element).getFinish())) {
+						return copy.getBottom();
+					}
 				}
-			}else if(child instanceof BehaviorExecutionSpecificationEditPart) {
+			} else if(child instanceof BehaviorExecutionSpecificationEditPart) {
 				EObject element = ((BehaviorExecutionSpecificationEditPart)child).resolveSemanticElement();
 				if(element != null && element instanceof ExecutionSpecification) {
 					IFigure figure = ((BehaviorExecutionSpecificationEditPart)child).getFigure();
 					Rectangle copy = figure.getBounds().getCopy();
 					figure.translateToAbsolute(copy);
-					 if(event.equals(((ExecutionSpecification)element).getStart())){
-						 return copy.getTop();
-					 }else if(event.equals(((ExecutionSpecification)element).getFinish())){
-						 return copy.getBottom();
-					 }
+					if(event.equals(((ExecutionSpecification)element).getStart())) {
+						return copy.getTop();
+					} else if(event.equals(((ExecutionSpecification)element).getFinish())) {
+						return copy.getBottom();
+					}
 				}
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -612,36 +612,36 @@ public class SequenceUtil {
 		}
 		// Map referencing children occurrences by their location on the lifeline.
 		Map<Point, List<OccurrenceSpecification>> occurrences = new HashMap<Point, List<OccurrenceSpecification>>();
-		
-//		//Find message end directly.
-//		EditPart editPart = lifelineEditPart.getViewer().findObjectAt(location);
-//		if (editPart instanceof MessageEndEditPart){
-//			MessageEndEditPart messageEnd = (MessageEndEditPart)editPart;
-//			IFigure figure = messageEnd.getFigure();
-//			Rectangle bounds = figure.getBounds().getCopy();
-//			figure.translateToAbsolute(bounds);
-//			EObject element = messageEnd.resolveSemanticElement();
-//			if (element instanceof MessageOccurrenceSpecification){
-//				ArrayList<OccurrenceSpecification> arrayList = new ArrayList<OccurrenceSpecification>();
-//				arrayList.add((MessageOccurrenceSpecification)element);
-//				occurrences.put(bounds.getCenter(), arrayList);
-//				return occurrences.entrySet().iterator().next();
-//			}
-//		} else if(editPart instanceof ExecutionSpecificationEndEditPart) {
-//			ExecutionSpecificationEndEditPart end = (ExecutionSpecificationEndEditPart)editPart;
-//			OccurrenceSpecification event = (OccurrenceSpecification)end.resolveSemanticElement();
-//			AbstractExecutionSpecificationEditPart parent = (AbstractExecutionSpecificationEditPart)end.getParent();
-//			ExecutionSpecification es = (ExecutionSpecification)parent.resolveSemanticElement();
-//			Rectangle bounds = getAbsoluteBounds(parent);
-//			ArrayList<OccurrenceSpecification> arrayList = new ArrayList<OccurrenceSpecification>();
-//			arrayList.add((OccurrenceSpecification)event);
-//			if(event == es.getStart()) {
-//				occurrences.put(bounds.getTop(), arrayList);
-//			} else {
-//				occurrences.put(bounds.getBottom(), arrayList);
-//			}
-//			return occurrences.entrySet().iterator().next();
-//		}
+
+		//		//Find message end directly.
+		//		EditPart editPart = lifelineEditPart.getViewer().findObjectAt(location);
+		//		if (editPart instanceof MessageEndEditPart){
+		//			MessageEndEditPart messageEnd = (MessageEndEditPart)editPart;
+		//			IFigure figure = messageEnd.getFigure();
+		//			Rectangle bounds = figure.getBounds().getCopy();
+		//			figure.translateToAbsolute(bounds);
+		//			EObject element = messageEnd.resolveSemanticElement();
+		//			if (element instanceof MessageOccurrenceSpecification){
+		//				ArrayList<OccurrenceSpecification> arrayList = new ArrayList<OccurrenceSpecification>();
+		//				arrayList.add((MessageOccurrenceSpecification)element);
+		//				occurrences.put(bounds.getCenter(), arrayList);
+		//				return occurrences.entrySet().iterator().next();
+		//			}
+		//		} else if(editPart instanceof ExecutionSpecificationEndEditPart) {
+		//			ExecutionSpecificationEndEditPart end = (ExecutionSpecificationEndEditPart)editPart;
+		//			OccurrenceSpecification event = (OccurrenceSpecification)end.resolveSemanticElement();
+		//			AbstractExecutionSpecificationEditPart parent = (AbstractExecutionSpecificationEditPart)end.getParent();
+		//			ExecutionSpecification es = (ExecutionSpecification)parent.resolveSemanticElement();
+		//			Rectangle bounds = getAbsoluteBounds(parent);
+		//			ArrayList<OccurrenceSpecification> arrayList = new ArrayList<OccurrenceSpecification>();
+		//			arrayList.add((OccurrenceSpecification)event);
+		//			if(event == es.getStart()) {
+		//				occurrences.put(bounds.getTop(), arrayList);
+		//			} else {
+		//				occurrences.put(bounds.getBottom(), arrayList);
+		//			}
+		//			return occurrences.entrySet().iterator().next();
+		//		}
 		// graphical children of the lifeline
 		List<?> children = lifelineEditPart.getChildren();
 		for(Object child : children) {
@@ -684,9 +684,9 @@ public class SequenceUtil {
 					}
 				}
 			}
-			
+
 			// CoRegion
-			if (child instanceof CombinedFragment2EditPart){
+			if(child instanceof CombinedFragment2EditPart) {
 				completeOccurrencesMapWithMessages((GraphicalEditPart)child, occurrences);
 			}
 		}
@@ -1621,139 +1621,120 @@ public class SequenceUtil {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Check whether the Lifeline is Create Message's target node 
+	 * Check whether the Lifeline is Create Message's target node
+	 * 
 	 * @param lifelineEP
 	 * @return boolean
 	 */
-	public static boolean isCreateMessageEndLifeline(LifelineEditPart lifelineEP){
+	public static boolean isCreateMessageEndLifeline(LifelineEditPart lifelineEP) {
 		List<Object> targetConnections = lifelineEP.getTargetConnections();
-		if(targetConnections!=null && targetConnections.size()>0){
-			for(int i = 0;i<targetConnections.size();i++){
+		if(targetConnections != null && targetConnections.size() > 0) {
+			for(int i = 0; i < targetConnections.size(); i++) {
 				Object connection = targetConnections.get(i);
-				if(connection instanceof Message4EditPart){
+				if(connection instanceof Message4EditPart) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-		
-	
+
+
 	/**
-	 * Find Time Observations editpart which are related to specific OccurenceSpecification 
+	 * Find Time Observations editpart which are related to specific OccurenceSpecification
+	 * 
 	 * @param lifelinePart
 	 * @param oss
 	 * @return List<TimeObservationLabelEditPart>
 	 */
-	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart,List<OccurrenceSpecification> oss){
+	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart, List<OccurrenceSpecification> oss) {
 		List<TimeObservationLabelEditPart> list = new ArrayList<TimeObservationLabelEditPart>();
-		if(oss == null || oss.size() == 0){
+		if(oss == null || oss.size() == 0) {
 			return list;
 		}
-		if(lifelinePart!=null&&lifelinePart.getTargetConnections().size()>0){
-			for(Object targetConnection : lifelinePart.getTargetConnections()){
-				if(targetConnection instanceof ObservationLinkEditPart){
+		if(lifelinePart != null && lifelinePart.getTargetConnections().size() > 0) {
+			for(Object targetConnection : lifelinePart.getTargetConnections()) {
+				if(targetConnection instanceof ObservationLinkEditPart) {
 					ObservationLinkEditPart observationLinkEditPart = (ObservationLinkEditPart)targetConnection;
-					if(observationLinkEditPart.getSource() instanceof TimeObservationLabelEditPart){
+					if(observationLinkEditPart.getSource() instanceof TimeObservationLabelEditPart) {
 						TimeObservationLabelEditPart source = (TimeObservationLabelEditPart)observationLinkEditPart.getSource();
 						EObject timeElement = source.resolveSemanticElement();
 						if(timeElement instanceof TimeObservation) {
 							if(oss.contains(((TimeObservation)timeElement).getEvent())) {
 								list.add(source);
 							}
-						} 
+						}
 					}
 				}
 			}
 		}
 		return list;
 	}
-	
+
 	/**
-	 * Find Time Observations editpart which are related to specific OccurenceSpecification 
+	 * Find Time Observations editpart which are related to specific OccurenceSpecification
+	 * 
 	 * @param lifelinePart
 	 * @param os
 	 * @return List<TimeObservationLabelEditPart>
 	 */
-	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart,OccurrenceSpecification os){
+	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart, OccurrenceSpecification os) {
 		List<OccurrenceSpecification> oss = new ArrayList<OccurrenceSpecification>();
 		oss.add(os);
 		return findOccurenceSpecificationRelatedTimeObservationPart(lifelinePart, oss);
 	}
-	
+
 	/**
 	 * Find specific editpart by semantic model
+	 * 
 	 * @param editPart
 	 * @param targetElement
 	 * @param targetClass
 	 * @return EditPart
 	 */
-	public static EditPart getEditPart(EditPart editPart,
-			EObject targetElement, Class targetClass) {
-		if (editPart == null || targetElement == null || targetClass == null)
+	public static EditPart getEditPart(EditPart editPart, EObject targetElement, Class targetClass) {
+		if(editPart == null || targetElement == null || targetClass == null) {
 			return null;
+		}
 		Map<?, ?> map = editPart.getViewer().getEditPartRegistry();
-		for (Entry<?, ?> entry : map.entrySet()) {
+		for(Entry<?, ?> entry : map.entrySet()) {
 			Object key = entry.getKey();
-			if (!(key instanceof View)) {
+			if(!(key instanceof View)) {
 				continue;
 			}
-			View view = (View) key;
+			View view = (View)key;
 			EObject tempElement = view.getElement();
-			if (targetElement.equals(tempElement)) {
+			if(targetElement.equals(tempElement)) {
 				Object value = entry.getValue();
-				if (value.getClass() == targetClass) {
-					return (EditPart) value;
+				if(value.getClass() == targetClass) {
+					return (EditPart)value;
 				}
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Intall observation link policy to specific editpart
+	 * 
 	 * @param editPart
 	 */
 	public static void installObservationLinkPolicy(EditPart editPart) {
 		String editPolicy = "observationlink";
-		if (editPart instanceof LifelineEditPart
-				|| editPart instanceof TimeObservationLabelEditPart) {
-			editPart.installEditPolicy(editPolicy,
-					new ObservationLinkPolicy(editPart));
+		if(editPart instanceof LifelineEditPart || editPart instanceof TimeObservationLabelEditPart) {
+			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		}
-		if (editPart instanceof DurationObservationEditPart) {
-			editPart.installEditPolicy(editPolicy,
-					new ObservationLinkPolicy(editPart));
-		} 
-		if (editPart instanceof MessageEditPart
-				|| editPart instanceof Message2EditPart
-				|| editPart instanceof Message3EditPart
-				|| editPart instanceof Message4EditPart
-				|| editPart instanceof Message5EditPart
-				|| editPart instanceof Message6EditPart
-				|| editPart instanceof Message7EditPart) {
-			editPart.installEditPolicy(editPolicy,
-					new ObservationLinkPolicy(editPart));
-		} else if (editPart instanceof MessageNameEditPart
-				|| editPart instanceof MessageName2EditPart
-				|| editPart instanceof MessageName3EditPart
-				|| editPart instanceof MessageName4EditPart
-				|| editPart instanceof MessageName5EditPart
-				|| editPart instanceof MessageName6EditPart
-				|| editPart instanceof MessageName7EditPart) {
-			editPart.getParent().installEditPolicy(editPolicy,
-					new ObservationLinkPolicy(editPart));
-		} else if (editPart instanceof MessageSyncAppliedStereotypeEditPart
-				|| editPart instanceof MessageAsyncAppliedStereotypeEditPart
-				|| editPart instanceof MessageReplyAppliedStereotypeEditPart
-				|| editPart instanceof MessageCreateAppliedStereotypeEditPart
-				|| editPart instanceof MessageDeleteAppliedStereotypeEditPart
-				|| editPart instanceof MessageLostAppliedStereotypeEditPart
-				|| editPart instanceof MessageFoundAppliedStereotypeEditPart) {
-			editPart.getParent().installEditPolicy(editPolicy,
-					new ObservationLinkPolicy(editPart));
+		if(editPart instanceof DurationObservationEditPart) {
+			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
+		}
+		if(editPart instanceof MessageEditPart || editPart instanceof Message2EditPart || editPart instanceof Message3EditPart || editPart instanceof Message4EditPart || editPart instanceof Message5EditPart || editPart instanceof Message6EditPart || editPart instanceof Message7EditPart) {
+			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
+		} else if(editPart instanceof MessageNameEditPart || editPart instanceof MessageName2EditPart || editPart instanceof MessageName3EditPart || editPart instanceof MessageName4EditPart || editPart instanceof MessageName5EditPart || editPart instanceof MessageName6EditPart || editPart instanceof MessageName7EditPart) {
+			editPart.getParent().installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
+		} else if(editPart instanceof MessageSyncAppliedStereotypeEditPart || editPart instanceof MessageAsyncAppliedStereotypeEditPart || editPart instanceof MessageReplyAppliedStereotypeEditPart || editPart instanceof MessageCreateAppliedStereotypeEditPart || editPart instanceof MessageDeleteAppliedStereotypeEditPart || editPart instanceof MessageLostAppliedStereotypeEditPart || editPart instanceof MessageFoundAppliedStereotypeEditPart) {
+			editPart.getParent().installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		}
 	}
 

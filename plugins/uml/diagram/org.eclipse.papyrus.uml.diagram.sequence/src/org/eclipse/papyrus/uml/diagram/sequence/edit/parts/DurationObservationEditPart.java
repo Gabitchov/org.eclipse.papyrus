@@ -62,9 +62,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * @generated
  */
-public class DurationObservationEditPart extends
-
-AbstractBorderedShapeEditPart {
+public class DurationObservationEditPart extends AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
@@ -96,9 +94,7 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DurationObservationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
-		
-		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE,new CustomConnectionHandleEditPolicy());
-		
+		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new CustomConnectionHandleEditPolicy());
 		//installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new MoveableNonResizableLabelEditPolicy());
 		//installEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY, new DeleteTimeElementWithoutEventPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -117,23 +113,22 @@ AbstractBorderedShapeEditPart {
 		refreshBounds();
 	}
 
-//	/**
-//	 * Handles refresh bounds the same way as for a non resizable label
-//	 * 
-//	 * @generated NOT
-//	 */
-//	protected void refreshBounds() {
-//		int dx = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-//		int dy = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-//		Point offset = new Point(dx, dy);
-//		if(getParent() instanceof AbstractConnectionEditPart) {
-//			((AbstractGraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new LabelLocator(((AbstractConnectionEditPart)getParent()).getConnectionFigure(), offset, ConnectionLocator.MIDDLE));
-//		} else {
-//			getFigure().getParent().setConstraint(getFigure(), new LabelLocator(getFigure().getParent(), offset, ConnectionLocator.MIDDLE));
-//		}
-//
-//	}
-
+	//	/**
+	//	 * Handles refresh bounds the same way as for a non resizable label
+	//	 * 
+	//	 * @generated NOT
+	//	 */
+	//	protected void refreshBounds() {
+	//		int dx = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+	//		int dy = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+	//		Point offset = new Point(dx, dy);
+	//		if(getParent() instanceof AbstractConnectionEditPart) {
+	//			((AbstractGraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new LabelLocator(((AbstractConnectionEditPart)getParent()).getConnectionFigure(), offset, ConnectionLocator.MIDDLE));
+	//		} else {
+	//			getFigure().getParent().setConstraint(getFigure(), new LabelLocator(getFigure().getParent(), offset, ConnectionLocator.MIDDLE));
+	//		}
+	//
+	//	}
 	/**
 	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
 	 */
@@ -187,7 +182,6 @@ AbstractBorderedShapeEditPart {
 			((DurationObservationLabelEditPart)childEditPart).setLabel(getPrimaryShape().getDurationLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -255,7 +249,6 @@ AbstractBorderedShapeEditPart {
 		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1095,15 +1088,10 @@ AbstractBorderedShapeEditPart {
 		 * @generated
 		 */
 		public DurationObservationConstraint() {
-
 			this.setTextWrap(true);
-
 			this.setTextJustification(PositionConstants.CENTER);
-
 			this.setForegroundColor(ColorConstants.black);
-
 			this.setFont(THIS_FONT);
-
 		}
 
 		/**
@@ -1113,7 +1101,6 @@ AbstractBorderedShapeEditPart {
 			// use this for label
 			return this;
 		}
-
 	}
 
 	/**
@@ -1128,7 +1115,6 @@ AbstractBorderedShapeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1148,7 +1134,6 @@ AbstractBorderedShapeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

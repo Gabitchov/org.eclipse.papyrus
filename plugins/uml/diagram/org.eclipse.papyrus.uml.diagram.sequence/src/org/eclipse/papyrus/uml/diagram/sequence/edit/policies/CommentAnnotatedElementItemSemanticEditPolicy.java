@@ -42,13 +42,12 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSe
 	protected Command getDestroyReferenceCommand(final DestroyReferenceRequest req) {
 		if(req.getReferencedObject() instanceof MessageEnd) {
 			return getGEFWrapper(new DestroyReferenceCommand(req) {
+
 				@Override
-				protected CommandResult doExecuteWithResult(
-						IProgressMonitor monitor, IAdaptable info)
-						throws ExecutionException {					 
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					CommandResult res = super.doExecuteWithResult(monitor, info);
 					if(res.getStatus().isOK()) {
-						MessageEndHelper.removeConnectionSourceFromMessageEnd((MessageEnd) req.getReferencedObject(),req.getContainer());
+						MessageEndHelper.removeConnectionSourceFromMessageEnd((MessageEnd)req.getReferencedObject(), req.getContainer());
 					}
 					return res;
 				}
@@ -56,5 +55,4 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSe
 		}
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}
-
 }

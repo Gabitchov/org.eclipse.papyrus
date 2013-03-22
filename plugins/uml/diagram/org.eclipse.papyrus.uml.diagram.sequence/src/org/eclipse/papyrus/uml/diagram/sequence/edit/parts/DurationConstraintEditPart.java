@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.Border;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineShape;
@@ -76,9 +75,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 /**
  * @generated
  */
-public class DurationConstraintEditPart extends
-
-BorderedBorderItemEditPart {
+public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -114,34 +111,26 @@ BorderedBorderItemEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-	
-	
+
 	@Override
-	protected void refreshBounds() {		
-		if (getBorderItemLocator() != null) {
-			int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_X())).intValue();
-			int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_Y())).intValue();
+	protected void refreshBounds() {
+		if(getBorderItemLocator() != null) {
+			int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+			int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 			Point loc = new Point(x, y);
-			
-			int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-			int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-			if(width == -1){ // fix resize issue, the height is not able to smaller than prefer height due to width is -1 
-				width = getFigure().getPreferredSize(width,height).width;
+			int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			if(width == -1) { // fix resize issue, the height is not able to smaller than prefer height due to width is -1 
+				width = getFigure().getPreferredSize(width, height).width;
 			}
 			Dimension size = new Dimension(width, height);
-
-			getBorderItemLocator().setConstraint(new Rectangle(
-				loc, size));
+			getBorderItemLocator().setConstraint(new Rectangle(loc, size));
 		} else {
 			super.refreshBounds();
 		}
-						
 		//fix combined fragment move
-		this.getFigure().getParent().getLayoutManager().layout(	this.getFigure().getParent());
-		
-		relocateLabelEditPart();				
+		this.getFigure().getParent().getLayoutManager().layout(this.getFigure().getParent());
+		relocateLabelEditPart();
 	}
 
 	/**
@@ -207,7 +196,7 @@ BorderedBorderItemEditPart {
 	 * @generated NOT use ExternalLabelPositionLocator
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof DurationConstraintLabelEditPart ){
+		if(borderItemEditPart instanceof DurationConstraintLabelEditPart) {
 			DurationConstraintLabelLocator locator = new DurationConstraintLabelLocator(getMainFigure());
 			locator.setParentEditPart(this);
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -229,7 +218,6 @@ BorderedBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -1158,11 +1146,8 @@ BorderedBorderItemEditPart {
 		 * @generated
 		 */
 		public DurationConstraintFigure() {
-
 			CenterLayout layoutThis = new CenterLayout();
-
 			this.setLayoutManager(layoutThis);
-
 			this.setFill(false);
 			this.setOutline(false);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(40), getMapMode().DPtoLP(-1)));
@@ -1202,10 +1187,8 @@ BorderedBorderItemEditPart {
 				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, getLineWidth() / 2 + ARROW_HEIGHT);
 				points.addPoint(figureWidth / 2, getLineWidth() / 2);
 				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, getLineWidth() / 2 + ARROW_HEIGHT);
-				
 				points.addPoint(figureWidth / 2, getLineWidth() / 2);
-				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() /2 );
-				
+				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() / 2);
 				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, figureHeight - getLineWidth() / 2 - ARROW_HEIGHT);
 				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() / 2);
 				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, figureHeight - getLineWidth() / 2 - ARROW_HEIGHT);
@@ -1219,36 +1202,31 @@ BorderedBorderItemEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fDurationArrow = new PolylineShape();
 			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
-
 			this.add(fDurationArrow);
-
 		}
 
 		@Override
 		public boolean containsPoint(int x, int y) {
 			boolean containsPoint = super.containsPoint(x, y);
-			if (!containsPoint){
+			if(!containsPoint) {
 				return false;
 			}
-			if (fDurationArrow != null){
+			if(fDurationArrow != null) {
 				return PointListUtilities.containsPoint(fDurationArrow.getPoints(), new Point(x, y));
-//				return fDurationArrow.containsPoint(x, y);
+				//				return fDurationArrow.containsPoint(x, y);
 			}
 			return containsPoint;
 		}
-		
+
 		/**
 		 * @generated
 		 */
 		private Border createBorder0() {
 			LinesBorder result = new LinesBorder();
-
 			result.setSides(PositionConstants.TOP | PositionConstants.BOTTOM);
-
 			return result;
 		}
 
@@ -1259,12 +1237,11 @@ BorderedBorderItemEditPart {
 			return fDurationArrow;
 		}
 
-		
 		public void paintFigure(Graphics graphics) {
-			graphics.setLineWidth(lineWidth);						
+			graphics.setLineWidth(lineWidth);
 			super.paintFigure(graphics);
 		}
-		
+
 		@Override
 		public void setLineWidth(int w) {
 			LinesBorder lb = (LinesBorder)getBorder();
@@ -1281,7 +1258,6 @@ BorderedBorderItemEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1301,7 +1277,6 @@ BorderedBorderItemEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1340,95 +1315,90 @@ BorderedBorderItemEditPart {
 		}
 		super.eraseSourceFeedback(request);
 	}
-	
+
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
-		
 		Object feature = notification.getFeature();
 		if((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} 
+			}
 		}
 	}
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLineWidth();
-	}	
+	}
 
 	private void relocateLabelEditPart() {
 		List list = this.getChildren();
-		for (Object o : list) {
-			if (o instanceof DurationConstraintLabelEditPart) {
-				DurationConstraintLabelEditPart label = (DurationConstraintLabelEditPart) o;
-				if(label.getBorderItemLocator() != null){
-					 IBorderItemLocator loc = label.getBorderItemLocator();
-					 loc.relocate(label.getFigure());
+		for(Object o : list) {
+			if(o instanceof DurationConstraintLabelEditPart) {
+				DurationConstraintLabelEditPart label = (DurationConstraintLabelEditPart)o;
+				if(label.getBorderItemLocator() != null) {
+					IBorderItemLocator loc = label.getBorderItemLocator();
+					loc.relocate(label.getFigure());
 				}
 			}
 		}
-	}	
-	
+	}
+
 	public Rectangle updateMoveBounds(Rectangle newBounds) {
-		if(getCurrentSideOfParent() == PositionConstants.WEST){
+		if(getCurrentSideOfParent() == PositionConstants.WEST) {
 			Rectangle bounds = this.getFigure().getBounds();
-			return newBounds.translate(-bounds.width, 0);  // keep bounds in left side
-		}			
+			return newBounds.translate(-bounds.width, 0); // keep bounds in left side
+		}
 		return newBounds;
 	}
-	
-	public int getCurrentSideOfParent(){
+
+	public int getCurrentSideOfParent() {
 		IBorderItemLocator locator = this.getBorderItemLocator();
-		if(locator != null ){
+		if(locator != null) {
 			return locator.getCurrentSideOfParent();
 		}
 		return PositionConstants.EAST;
-	}	
-	
-	public static Rectangle fixMessageBounds(Rectangle newBounds,
-			Request cvr, LifelineEditPart host) {
-		Object oc1 = getFirstElement(cvr.getExtendedData()
-				.get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION));
-		Object oc2 = getFirstElement(cvr.getExtendedData()
-				.get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2));
-			
-		if(oc1 != null && oc2 != null && (oc1 instanceof MessageOccurrenceSpecification  || oc2 instanceof MessageOccurrenceSpecification) ){
+	}
+
+	public static Rectangle fixMessageBounds(Rectangle newBounds, Request cvr, LifelineEditPart host) {
+		Object oc1 = getFirstElement(cvr.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION));
+		Object oc2 = getFirstElement(cvr.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2));
+		if(oc1 != null && oc2 != null && (oc1 instanceof MessageOccurrenceSpecification || oc2 instanceof MessageOccurrenceSpecification)) {
 			Point start = null, end = null;
 			Rectangle bounds = null;
 			if(oc1 instanceof InteractionFragment)
-				start = SequenceUtil.findLocationOfEvent(host, (InteractionFragment) oc1, true);			
+				start = SequenceUtil.findLocationOfEvent(host, (InteractionFragment)oc1, true);
 			if(oc2 instanceof InteractionFragment)
-				end = SequenceUtil.findLocationOfEvent(host, (InteractionFragment) oc2, true);
-			
-			if(start != null && end != null){
-				bounds = (start.y < end.y)? new Rectangle(start, end) : new Rectangle(end, start);
+				end = SequenceUtil.findLocationOfEvent(host, (InteractionFragment)oc2, true);
+			if(start != null && end != null) {
+				bounds = (start.y < end.y) ? new Rectangle(start, end) : new Rectangle(end, start);
 			}
-			
-			if(bounds != null){
+			if(bounds != null) {
 				IFigure parentFigure = host.getFigure();
 				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
 				parentFigure.translateToRelative(bounds);
-				bounds.translate(parentFigDelta);						
-				if(bounds.y != newBounds.y || newBounds.height != bounds.height){
+				bounds.translate(parentFigDelta);
+				if(bounds.y != newBounds.y || newBounds.height != bounds.height) {
 					newBounds.y = bounds.y;
-					newBounds.height = bounds.height;		
-				}			
+					newBounds.height = bounds.height;
+				}
 			}
 		}
 		return newBounds;
 	}
-	
-	static Object getFirstElement(Object obj){
-		if(obj != null && obj instanceof List){
-			List list = (List) obj;
+
+	static Object getFirstElement(Object obj) {
+		if(obj != null && obj instanceof List) {
+			List list = (List)obj;
 			if(list.size() > 0)
 				return list.get(0);
 		}
 		return null;
 	}
-	static class DurationConstraintLabelLocator extends ExternalLabelPositionLocator{
+
+	static class DurationConstraintLabelLocator extends ExternalLabelPositionLocator {
+
 		private DurationConstraintEditPart durationConstraintEditPart;
 
 		public DurationConstraintLabelLocator(IFigure mainFigure) {
@@ -1438,18 +1408,18 @@ BorderedBorderItemEditPart {
 		public void setParentEditPart(DurationConstraintEditPart durationConstraintEditPart) {
 			this.durationConstraintEditPart = durationConstraintEditPart;
 		}
-		
+
 		@Override
 		public void relocate(IFigure target) {
-			if(constraint.y == 0){
-				if(durationConstraintEditPart.getCurrentSideOfParent() == PositionConstants.WEST){
+			if(constraint.y == 0) {
+				if(durationConstraintEditPart.getCurrentSideOfParent() == PositionConstants.WEST) {
 					Point r = parentFigure.getBounds().getLeft().translate(-20, -5);
-					target.setBounds( new Rectangle(r, target.getPreferredSize() ));
-				}else{
+					target.setBounds(new Rectangle(r, target.getPreferredSize()));
+				} else {
 					Point r = parentFigure.getBounds().getRight().translate(5, -5);
-					target.setBounds( new Rectangle(r, target.getPreferredSize() ));
+					target.setBounds(new Rectangle(r, target.getPreferredSize()));
 				}
-			}else
+			} else
 				super.relocate(target);
 		}
 	}

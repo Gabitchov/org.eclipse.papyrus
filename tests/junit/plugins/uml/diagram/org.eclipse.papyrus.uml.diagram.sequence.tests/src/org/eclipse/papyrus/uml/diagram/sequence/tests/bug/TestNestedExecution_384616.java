@@ -50,6 +50,7 @@ public class TestNestedExecution_384616 extends TestTopNode {
 
 	private static final String MOVE = "Move: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -74,9 +75,9 @@ public class TestNestedExecution_384616 extends TestTopNode {
 		waitForComplete();
 
 		/*
-		 * Tips: 1. The real location of the first node would be (123, 200). 2. Make sure the bottom of nested Execution is less than the parent one. 
+		 * Tips: 1. The real location of the first node would be (123, 200). 2. Make sure the bottom of nested Execution is less than the parent one.
 		 */
-		
+
 		createNode(elementType, lifeline1, new Point(131, 220), new Dimension(20, 40));
 		waitForComplete();
 
@@ -130,8 +131,9 @@ public class TestNestedExecution_384616 extends TestTopNode {
 		req.setEditParts(op);
 		req.setResizeDirection(resizeDir);
 		req.setSizeDelta(deltaSize);
-		if(resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST)
+		if(resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST) {
 			req.setMoveDelta(new Point(-deltaSize.width(), -deltaSize.height()));
+		}
 
 		Command c = op.getCommand(req);
 		manageResizeCommnad(op, deltaSize, c);

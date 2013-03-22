@@ -64,8 +64,9 @@ public class PopupUtil {
 
 	public static void click(final Menu bar, int index) {
 		MenuItem[] items = bar.getItems();
-		if(items != null && index < items.length)
+		if(items != null && index < items.length) {
 			notifyEvent(items[index], SWT.Selection);
+		}
 
 		bar.setVisible(false);
 		bar.notifyListeners(SWT.Hide, new Event());
@@ -114,8 +115,9 @@ public class PopupUtil {
 		 *        the event to check.
 		 */
 		public void handleEvent(Event event) {
-			if(!(event.widget instanceof Menu))
+			if(!(event.widget instanceof Menu)) {
 				return;
+			}
 			Menu menu = (Menu)event.widget;
 			if(hasStyle(menu, SWT.POP_UP)) {
 				if(event.type == SWT.Show) {
@@ -123,8 +125,9 @@ public class PopupUtil {
 					click(menu, clickMenuIndex);
 					menuPopup = true;
 				}
-				if(event.type == SWT.Hide)
+				if(event.type == SWT.Hide) {
 					currentContextMenu = null;
+				}
 			}
 		}
 	}
@@ -139,10 +142,12 @@ public class PopupUtil {
 	 * @return <code>true</code> if the widget has the specified style bit set. Otherwise <code>false</code>.
 	 */
 	public static boolean hasStyle(final Widget w, final int style) {
-		if((w == null) || w.isDisposed())
+		if((w == null) || w.isDisposed()) {
 			return false;
-		if(style == SWT.NONE)
+		}
+		if(style == SWT.NONE) {
 			return true;
+		}
 
 		final List<Boolean> list = new ArrayList<Boolean>();
 		w.getDisplay().syncExec(new Runnable() {

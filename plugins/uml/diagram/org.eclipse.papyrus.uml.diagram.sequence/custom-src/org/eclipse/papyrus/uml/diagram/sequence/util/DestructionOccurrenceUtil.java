@@ -26,20 +26,21 @@ import org.eclipse.uml2.uml.MessageSort;
 
 
 public class DestructionOccurrenceUtil {
+
 	public static void reorderDestructionOccurrence(List<InteractionFragment> reorderedFragments) {
 		int size = reorderedFragments.size();
 		List<InteractionFragment> destructionOccurrenceList = new ArrayList<InteractionFragment>(size);
 		for(int i = 0; i < size; i++) {
 			InteractionFragment o = reorderedFragments.get(i);
-			if(o instanceof DestructionOccurrenceSpecification){
+			if(o instanceof DestructionOccurrenceSpecification) {
 				destructionOccurrenceList.add(o);
 			}
 		}
-		
+
 		reorderedFragments.removeAll(destructionOccurrenceList);
 		reorderedFragments.addAll(destructionOccurrenceList);
 	}
-	
+
 	public static void constraintDestructionOccurrence(Message mess, List<InteractionFragment> constraint) {
 		if(mess.getMessageSort() != MessageSort.DELETE_MESSAGE_LITERAL)
 			return;
@@ -47,10 +48,10 @@ public class DestructionOccurrenceUtil {
 		addDestructionOccurrenceConstraint(mess.getSendEvent(), constraint);
 	}
 
-	public static  void addDestructionOccurrenceConstraint(MessageEnd end, List<InteractionFragment> constraint) {
-		if(end instanceof InteractionFragment){
-			InteractionFragment frag = (InteractionFragment) end;
-			if(frag.getCovereds().size() > 0){
+	public static void addDestructionOccurrenceConstraint(MessageEnd end, List<InteractionFragment> constraint) {
+		if(end instanceof InteractionFragment) {
+			InteractionFragment frag = (InteractionFragment)end;
+			if(frag.getCovereds().size() > 0) {
 				Lifeline lifeline = ((InteractionFragment)frag).getCovereds().get(0);
 				DestructionOccurrenceSpecification d = findDestructionOccurrence(lifeline);
 				if(d != null)
@@ -62,10 +63,10 @@ public class DestructionOccurrenceUtil {
 	public static DestructionOccurrenceSpecification findDestructionOccurrence(Lifeline lifeline) {
 		EList<InteractionFragment> list = lifeline.getCoveredBys();
 		for(InteractionFragment f : list)
-			if(f instanceof DestructionOccurrenceSpecification){
+			if(f instanceof DestructionOccurrenceSpecification) {
 				return (DestructionOccurrenceSpecification)f;
 			}
-		
+
 		return null;
 	}
 }

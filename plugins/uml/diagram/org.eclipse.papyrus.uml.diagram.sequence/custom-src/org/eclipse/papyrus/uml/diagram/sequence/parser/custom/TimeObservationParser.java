@@ -68,6 +68,7 @@ public class TimeObservationParser extends MessageFormatParser implements ISeman
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
@@ -76,6 +77,7 @@ public class TimeObservationParser extends MessageFormatParser implements ISeman
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		StringBuffer result = new StringBuffer();
 		Object adapter = element.getAdapter(EObject.class);

@@ -53,6 +53,7 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 
 	private static final String CHANGE_OPERATOR_KIND = "Change Operator Kind: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

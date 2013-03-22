@@ -119,14 +119,11 @@ public class Message5CreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
 		Lifeline lifeline = null;
-
 		// the Receive Message End
 		MessageOccurrenceSpecification receiveMessageEnd = null;
-
 		if(getTarget() instanceof DestructionOccurrenceSpecification) {
 			receiveMessageEnd = getReceiveMessageEnd();
 			if(receiveMessageEnd != null)
@@ -136,16 +133,13 @@ public class Message5CreateCommand extends EditElementCommand {
 		} else {
 			lifeline = (Lifeline)getTarget();
 		}
-
 		// Create the message
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.DELETE_MESSAGE_LITERAL, getSource(), lifeline, sourceContainer, targetContainer, null, receiveMessageEnd);
-
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);
 		}
-
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
 	}
 
@@ -160,7 +154,6 @@ public class Message5CreateCommand extends EditElementCommand {
 	private MessageOccurrenceSpecification getReceiveMessageEnd() throws ExecutionException {
 		MessageOccurrenceSpecification mosResult = null;
 		OccurrenceSpecification os = null;
-
 		// Get the occurrence specification associated with the destructionEvent
 		Collection<Setting> settings = UMLUtil.getInverseReferences(getTarget());
 		for(Setting setting : settings) {
@@ -168,7 +161,6 @@ public class Message5CreateCommand extends EditElementCommand {
 				os = (OccurrenceSpecification)setting.getEObject();
 			}
 		}
-
 		if(os != null) {
 			// Transform the occurrenceSpecification into a mos (conserving its properties).
 			EObjectInheritanceCopyCommand cmd = new EObjectInheritanceCopyCommand(os, UMLPackage.eINSTANCE.getMessageOccurrenceSpecification(), getEditingDomain());
@@ -247,5 +239,4 @@ public class Message5CreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

@@ -191,11 +191,13 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 			isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
 		}
 
-		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)getHost(), false, false))
+		if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)getHost(), false, false)) {
 			options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+		}
 
 		AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)getHost()).getEditingDomain(), StringStatics.BLANK, options) {
 
+			@Override
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				((IGraphicalEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
 				return Status.OK_STATUS;
@@ -334,7 +336,9 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 
 	/**
 	 * Copied from a generated method from a semantic edit policy which supports the edit element service
-	 * @param req the DestroyElementRequest
+	 * 
+	 * @param req
+	 *        the DestroyElementRequest
 	 * @return the destroy command
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {

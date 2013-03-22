@@ -21,16 +21,13 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -43,7 +40,6 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -69,10 +65,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -85,13 +79,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
-import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
-import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
@@ -123,8 +113,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperatorKindCompatibleMapping;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
-import org.eclipse.papyrus.uml.diagram.sequence.util.MessageAnchorRepairer;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -248,14 +236,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((CombinedFragmentCombinedFragmentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -310,8 +296,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight)) ;
-
+		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
 	}
 
@@ -372,9 +357,9 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	 * @generated NOT
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure){
+		if(primaryShape instanceof NodeFigure) {
 			((NodeFigure)primaryShape).setLineWidth(width);
-		}else if(primaryShape instanceof Shape) {
+		} else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -395,7 +380,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -415,7 +399,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1182,10 +1165,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 
 	public List<InteractionOperandEditPart> getOperandChildrenEditParts() {
 		List<InteractionOperandEditPart> children = new LinkedList<InteractionOperandEditPart>();
-
 		IGraphicalEditPart compartment = getChildBySemanticHint(String.valueOf(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
 		if(compartment instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-
 			for(Object ep : compartment.getChildren()) {
 				if(ep instanceof InteractionOperandEditPart) {
 					children.add((InteractionOperandEditPart)ep);
@@ -1200,7 +1181,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-
 		if(UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator().equals(feature)) {
 			CombinedFragment combinedFragment = (CombinedFragment)resolveSemanticElement();
 			String newStringValue = notification.getNewStringValue();
@@ -1210,33 +1190,30 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 				return;
 			}
 			EList<InteractionOperand> operands = combinedFragment.getOperands();
-			if (operands == null || operands.size() <= 1) {
+			if(operands == null || operands.size() <= 1) {
 				// If CombinedFragment have no operand, we can change the
 				// OperatorKind
 				updateHeaderLabel();
 			} else {
-				if (notification.getOldValue() instanceof InteractionOperatorKind) {
-					InteractionOperatorKind newValue = (InteractionOperatorKind) notification
-							.getNewValue();
-					if (!InteractionOperatorKindCompatibleMapping
-							.supportMultiOperand(newValue)) {
-						MessageDialog.openError(Display.getCurrent()
-								.getActiveShell(), FORBIDDEN_ACTION,
-								BLOCK_OPERATOR_MODIFICATION_MSG);
-						CommandHelper.executeCommandWithoutHistory(
-								getEditingDomain(), SetCommand.create(
-										getEditingDomain(), combinedFragment,
-										feature, notification.getOldValue()), true);
+				if(notification.getOldValue() instanceof InteractionOperatorKind) {
+					InteractionOperatorKind newValue = (InteractionOperatorKind)notification.getNewValue();
+					if(!InteractionOperatorKindCompatibleMapping.supportMultiOperand(newValue)) {
+						MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
+						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()), true);
 					} else {
 						updateHeaderLabel();
 					}
 				}
 			}
-			/*else if(notification.getOldValue() instanceof InteractionOperatorKind && !newStringValue.equals(getPrimaryShape().getHeaderLabel().getText())) {
-				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
-				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
-				return;
-			}*/
+			/*
+			 * else if(notification.getOldValue() instanceof InteractionOperatorKind &&
+			 * !newStringValue.equals(getPrimaryShape().getHeaderLabel().getText())) {
+			 * MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
+			 * CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature,
+			 * notification.getOldValue()));
+			 * return;
+			 * }
+			 */
 			// update guards on enclosed operands
 			for(InteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
 				ioep.getPrimaryShape().updateConstraintLabel();
@@ -1270,14 +1247,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 						List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(combinedFragmentCoveredLifelines);
 						coveredLifelinesToAdd.removeAll(operandCoveredLifelines);
 						if(!coveredLifelinesToAdd.isEmpty()) {
-							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd),true);
+							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd), true);
 						}
-
 						// Delete old covered lifelines (not covered anymore)
 						List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(operandCoveredLifelines);
 						coveredLifelinesToRemove.removeAll(combinedFragmentCoveredLifelines);
 						if(!coveredLifelinesToRemove.isEmpty()) {
-							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove),true);
+							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove), true);
 						}
 					}
 				}
@@ -1287,42 +1263,38 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 				refreshLabel();
 			}
 		}
-		
-		if(notification.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.QUALIFIED_NAME.equals(((EAnnotation)notification.getNewValue()).getSource()) ) {
+		if(notification.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.QUALIFIED_NAME.equals(((EAnnotation)notification.getNewValue()).getSource())) {
 			refreshLabel();
 		}
 		super.handleNotificationEvent(notification);
 		//fixed bug (id=364711) when bounds changed update coveredBys with the figure's bounds.
-		if (notification.getNotifier() instanceof Bounds) {
-			if (notification.getNotifier() instanceof Bounds) {
+		if(notification.getNotifier() instanceof Bounds) {
+			if(notification.getNotifier() instanceof Bounds) {
 				Display.getDefault().asyncExec(new Runnable() {
+
 					public void run() {
-						LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater(); 
+						LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater();
 						updater.update(CombinedFragmentEditPart.this);
 					}
 				});
 			}
 		}
-		
 		if((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} 
+			}
 		}
-		
 		if(resolveSemanticElement() != null) {
 			refreshShadow();
 		}
-		
 		if(ElementIconUtil.isIconNotification(notification))
 			refreshLabelIcon();
-		
 	}
 
 	protected void refreshShadow() {
 		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
 	}
-		
+
 	/**
 	 * Override to set the transparency to the correct figure
 	 */
@@ -1330,7 +1302,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	protected void setTransparency(int transp) {
 		getPrimaryShape().setTransparency(transp);
 	}
-	
+
 	/**
 	 * Override to set the gradient data to the correct figure
 	 */
@@ -1345,18 +1317,18 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			fig.setIsUsingGradient(false);
 		}
 	}
-		
+
 	public boolean supportsGradient() {
 		return true;
 	}
-	
+
 	protected void setBackgroundColor(Color c) {
 		PapyrusNodeFigure fig = getPrimaryShape();
 		fig.setBackgroundColor(c);
 		fig.setIsUsingGradient(false);
-		fig.setGradientData(-1, -1, 0);	
+		fig.setGradientData(-1, -1, 0);
 	}
-	
+
 	/**
 	 * Update header label
 	 */
@@ -1367,7 +1339,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			String operatorKind = combinedFragment.getInteractionOperator().getName();
 			getPrimaryShape().getHeaderLabel().setText(operatorKind);
 		}
-		
 	}
 
 	/**
@@ -1382,12 +1353,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	}
 
 	IEclipsePreferences.IPreferenceChangeListener propertyListener;
-	
+
 	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
-		if(this.propertyListener == null){
+		if(this.propertyListener == null) {
 			this.propertyListener = new IEclipsePreferences.IPreferenceChangeListener() {
+
 				public void preferenceChange(PreferenceChangeEvent event) {
 					handlePreferenceChange(event);
 				}
@@ -1399,17 +1371,16 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	protected void handlePreferenceChange(PreferenceChangeEvent event) {
 		if(getParent() == null)
 			return;
-		
 		String key = event.getKey();
 		if(key.equals(getTitlePreferenceKey()))
 			refreshLabel();
 	}
-	
-	public String getTitlePreferenceKey(){
+
+	public String getTitlePreferenceKey() {
 		return "ELEMENT_PapyrusUMLSequenceDiagram_CombinedFragment_CombinedFragmentCompartment.compartment_name.visibility";
 	}
-	
-	public WrappingLabel getTitleLabel(){
+
+	public WrappingLabel getTitleLabel() {
 		return getPrimaryShape().getTitleLabel();
 	}
 
@@ -1431,34 +1402,32 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 		if(element instanceof CombinedFragment) {
 			CombinedFragment combinedFragment = (CombinedFragment)element;
 			String name = combinedFragment.getName();
-			
 			int depth = AppearanceHelper.getQualifiedNameDepth(this.getNotationView());
-			if(depth == 0){ // full qualified
+			if(depth == 0) { // full qualified
 				name = combinedFragment.getQualifiedName();
 			}
-			
 			WrappingLabel label = getPrimaryShape().getTitleLabel();
 			label.setText(name);
-			
 			ScopedPreferenceStore store = new ScopedPreferenceStore(InstanceScope.INSTANCE, "org.eclipse.papyrus.infra.gmfdiag.preferences");
 			String visible = store.getString(getTitlePreferenceKey());
-			label.setVisible("true".equals(visible) );		
-		}	
+			label.setVisible("true".equals(visible));
+		}
 	}
-	
+
 	private DirectEditManager manager;
+
 	private IParser parser;
-	
+
 	protected DirectEditManager getManager() {
 		if(manager == null) {
 			WrappingLabel label = this.getPrimaryShape().getTitleLabel();
-			manager = new TextDirectEditManager(this, TextCellEditorEx.class, new UMLEditPartFactory.TextCellEditorLocator(label){
+			manager = new TextDirectEditManager(this, TextCellEditorEx.class, new UMLEditPartFactory.TextCellEditorLocator(label) {
+
 				public void relocate(CellEditor celleditor) {
 					Text text = (Text)celleditor.getControl();
 					Rectangle rect = getWrapLabel().getBounds().getCopy();
 					getWrapLabel().translateToAbsolute(rect);
 					Point right = rect.getRight();
-					
 					if(!text.getFont().isDisposed()) {
 						if(getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
 							rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
@@ -1466,7 +1435,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 							int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
 							rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 						}
-						if(rect.getRight().x > right.x){ // should not exceed right border
+						if(rect.getRight().x > right.x) { // should not exceed right border
 							rect.translate(right.x - rect.getRight().x, 0);
 						}
 					}
@@ -1474,17 +1443,17 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 						text.setBounds(rect.x, rect.y, rect.width, rect.height);
 					}
 				}
-			}); 
+			});
 		}
 		return manager;
 	}
 
 	protected void performDirectEditRequest(Request request) {
-		if(request instanceof DirectEditRequest){
+		if(request instanceof DirectEditRequest) {
 			WrappingLabel label = getPrimaryShape().getTitleLabel();
-			Point location = ((DirectEditRequest)request).getLocation().getCopy();			
+			Point location = ((DirectEditRequest)request).getLocation().getCopy();
 			label.translateToRelative(location); // convert request location to relative			
-			if(label.containsPoint(location))  // check if mouse click on label
+			if(label.containsPoint(location)) // check if mouse click on label
 				getManager().show();
 		}
 	}
@@ -1495,9 +1464,9 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 
 	public IParser getParser() {
 		if(parser == null) {
-			parser = new CombinedFragmentTitleParser(); 
+			parser = new CombinedFragmentTitleParser();
 		}
-		return parser;		
+		return parser;
 	}
 
 	public ParserOptions getParserOptions() {
@@ -1517,7 +1486,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
 	}
-	
+
 	public void setLabelText(String text) {
 		WrappingLabel label = this.getPrimaryShape().getTitleLabel();
 		label.setText(text);
@@ -1525,13 +1494,15 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
+
 			public String isValid(final Object value) {
 				if(value instanceof String) {
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
-					if(element != null && parser != null){
+					if(element != null && parser != null) {
 						try {
 							IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+
 								public void run() {
 									setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
 								}
@@ -1545,59 +1516,52 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			}
 		};
 	}
-	
-	class CombinedFragmentDirectEditPolicy extends DirectEditPolicy{
+
+	class CombinedFragmentDirectEditPolicy extends DirectEditPolicy {
 
 		@Override
 		protected Command getDirectEditCommand(DirectEditRequest edit) {
-			String labelText = (String) edit.getCellEditor().getValue();
-			
+			String labelText = (String)edit.getCellEditor().getValue();
 			//for CellEditor, null is always returned for invalid values
-			if (labelText == null) {
+			if(labelText == null) {
 				return null;
 			}
-			
-			ITextAwareEditPart compartment = (ITextAwareEditPart) getHost();
+			ITextAwareEditPart compartment = (ITextAwareEditPart)getHost();
 			EObject model = (EObject)compartment.getModel();
-			EObjectAdapter elementAdapter = null ;
-			if (model instanceof View) {
-	            View view = (View)model;
-				elementAdapter = new EObjectAdapterEx(ViewUtil.resolveSemanticElement(view),
-					view);
-	        }
-			else
+			EObjectAdapter elementAdapter = null;
+			if(model instanceof View) {
+				View view = (View)model;
+				elementAdapter = new EObjectAdapterEx(ViewUtil.resolveSemanticElement(view), view);
+			} else
 				elementAdapter = new EObjectAdapterEx(model, null);
-			
-			String prevText = compartment.getParser().getEditString(elementAdapter,
-				compartment.getParserOptions().intValue());
+			String prevText = compartment.getParser().getEditString(elementAdapter, compartment.getParserOptions().intValue());
 			// check to make sure an edit has occurred before returning a command.
-			if (!prevText.equals(labelText)) {
-				ICommand iCommand = 
-					compartment.getParser().getParseCommand(elementAdapter, labelText, 0);
+			if(!prevText.equals(labelText)) {
+				ICommand iCommand = compartment.getParser().getParseCommand(elementAdapter, labelText, 0);
 				return new ICommandProxy(iCommand);
-			}		
-			
+			}
 			return null;
 		}
 
 		@Override
 		protected void showCurrentEditValue(DirectEditRequest request) {
-			String value = (String) request.getCellEditor().getValue();
+			String value = (String)request.getCellEditor().getValue();
 			WrappingLabel label = getPrimaryShape().getTitleLabel();
 			label.setText(value);
 		}
 	}
-	
+
 	static class CombinedFragmentTitleParser extends MessageFormatParser implements ISemanticParser {
+
 		public CombinedFragmentTitleParser() {
-			super(new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name()});
+			super(new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() });
 		}
 
 		public List getSemanticElementsBeingParsed(EObject element) {
 			List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
 			if(element instanceof CombinedFragment) {
-				CombinedFragment cf = (CombinedFragment)element;				
-				semanticElementsBeingParsed.add(cf);				
+				CombinedFragment cf = (CombinedFragment)element;
+				semanticElementsBeingParsed.add(cf);
 			}
 			return semanticElementsBeingParsed;
 		}
@@ -1606,12 +1570,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			EStructuralFeature feature = getEStructuralFeature(notification);
 			return isValidFeature(feature);
 		}
-		
+
 		public boolean isAffectingEvent(Object event, int flags) {
 			EStructuralFeature feature = getEStructuralFeature(event);
 			return isValidFeature(feature);
 		}
-		
+
 		public String getPrintString(IAdaptable element, int flags) {
 			Object adapter = element.getAdapter(EObject.class);
 			if(adapter instanceof CombinedFragment) {
@@ -1620,23 +1584,23 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			}
 			return "";
 		}
-		
+
 		@Override
 		public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 			return ParserEditStatus.EDITABLE_STATUS;
 		}
-		
+
 		@Override
 		public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 			EObject element = (EObject)adapter.getAdapter(EObject.class);
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
-			if(editingDomain == null || !(element instanceof CombinedFragment )) {
+			if(editingDomain == null || !(element instanceof CombinedFragment)) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			SetRequest request = new SetRequest(element, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
 			return new SetValueCommand(request);
 		}
-		
+
 		@Override
 		public String getEditString(IAdaptable element, int flags) {
 			Object adapter = element.getAdapter(EObject.class);
@@ -1646,7 +1610,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			}
 			return "";
 		}
- 
+
 		protected EStructuralFeature getEStructuralFeature(Object notification) {
 			EStructuralFeature featureImpl = null;
 			if(notification instanceof Notification) {
@@ -1662,77 +1626,75 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature);
 		}
 	}
-	
-	static class EObjectAdapterEx	extends EObjectAdapter {
+
+	static class EObjectAdapterEx extends EObjectAdapter {
+
 		private View view = null;
-	
+
 		/**
 		 * constructor
-		 * @param element	element to be wrapped
-		 * @param view	view to be wrapped
+		 * 
+		 * @param element
+		 *        element to be wrapped
+		 * @param view
+		 *        view to be wrapped
 		 */
 		public EObjectAdapterEx(EObject element, View view) {
 			super(element);
 			this.view = view;
 		}
-	
+
 		public Object getAdapter(Class adapter) {
 			Object o = super.getAdapter(adapter);
-			if (o != null)
+			if(o != null)
 				return o;
-			if (adapter.equals(View.class)) {
+			if(adapter.equals(View.class)) {
 				return view;
 			}
 			return null;
 		}
 	}
-	
+
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy policy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		return policy != null ? policy : new ResizableShapeEditPolicyEx() ;
+		return policy != null ? policy : new ResizableShapeEditPolicyEx();
 	}
-	
-	static class ResizableShapeEditPolicyEx extends ResizableShapeEditPolicy{
-	   protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
-	        IFigure feedback = getDragSourceFeedbackFigure();
-	        
-	        PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-	        getHostFigure().translateToAbsolute(rect);
-	        Rectangle old = rect.getCopy();
-	        rect.translate(request.getMoveDelta());
-	        rect.resize(request.getSizeDelta());
-	        
-	        IFigure f = getHostFigure();
-	        Dimension min = f.getMinimumSize().getCopy();
-	        Dimension max = f.getMaximumSize().getCopy();
-	        IMapMode mmode = MapModeUtil.getMapMode(f);
-	        min.height = mmode.LPtoDP(min.height);
-	        min.width = mmode.LPtoDP(min.width);
-	        max.height = mmode.LPtoDP(max.height);
-	        max.width = mmode.LPtoDP(max.width);
-	        
-	        if (min.width>rect.width){
-	            rect.width = min.width;
-	            if(request.getMoveDelta().x > 0 && request.getSizeDelta().width < 0){ // shrinking from left
-	            	rect.x = old.getRight().x - min.width;
-	            	request.getMoveDelta().x = rect.x - old.getLeft().x;
-	            }
-	        }
-	        else if (max.width < rect.width)
-	            rect.width = max.width;
-	        
-	        if (min.height>rect.height){
-	            rect.height = min.height;
-	            if(request.getMoveDelta().y > 0 && request.getSizeDelta().height < 0){ // shrinking from upper
-	            	rect.y = old.getBottom().y - min.height; 
-	            	request.getMoveDelta().y = rect.y - old.getTop().y;
-	            }
-	        }
-	        else if (max.height < rect.height)
-	            rect.height = max.height;
-	        
-	        feedback.translateToRelative(rect);
-	        feedback.setBounds(rect);
-	    }
+
+	static class ResizableShapeEditPolicyEx extends ResizableShapeEditPolicy {
+
+		protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
+			IFigure feedback = getDragSourceFeedbackFigure();
+			PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+			getHostFigure().translateToAbsolute(rect);
+			Rectangle old = rect.getCopy();
+			rect.translate(request.getMoveDelta());
+			rect.resize(request.getSizeDelta());
+			IFigure f = getHostFigure();
+			Dimension min = f.getMinimumSize().getCopy();
+			Dimension max = f.getMaximumSize().getCopy();
+			IMapMode mmode = MapModeUtil.getMapMode(f);
+			min.height = mmode.LPtoDP(min.height);
+			min.width = mmode.LPtoDP(min.width);
+			max.height = mmode.LPtoDP(max.height);
+			max.width = mmode.LPtoDP(max.width);
+			if(min.width > rect.width) {
+				rect.width = min.width;
+				if(request.getMoveDelta().x > 0 && request.getSizeDelta().width < 0) { // shrinking from left
+					rect.x = old.getRight().x - min.width;
+					request.getMoveDelta().x = rect.x - old.getLeft().x;
+				}
+			} else if(max.width < rect.width)
+				rect.width = max.width;
+			if(min.height > rect.height) {
+				rect.height = min.height;
+				if(request.getMoveDelta().y > 0 && request.getSizeDelta().height < 0) { // shrinking from upper
+					rect.y = old.getBottom().y - min.height;
+					request.getMoveDelta().y = rect.y - old.getTop().y;
+				}
+			} else if(max.height < rect.height)
+				rect.height = max.height;
+			feedback.translateToRelative(rect);
+			feedback.setBounds(rect);
+		}
 	}
 }

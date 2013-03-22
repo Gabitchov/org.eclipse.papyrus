@@ -135,28 +135,28 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		if(refreshConnectionCommand != null) {
 			cc.compose(new CommandProxy(refreshConnectionCommand));
 		}
-		
+
 		LifelineEditPart parentPart = (LifelineEditPart)getHost();
 		IHintedType type = (IHintedType)UMLElementTypes.Lifeline_3001;
 		if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
-			 setChildLifelineBounds(cc, request, parentPart);
+			setChildLifelineBounds(cc, request, parentPart);
 		}
-		
+
 		return new ICommandProxy(cc);
 	}
-	
+
 	private void setChildLifelineBounds(CompositeCommand cc, CreateViewAndElementRequest request, LifelineEditPart parentPart) {
 		Point location = request.getLocation().getCopy();
-		LifelineDotLineCustomFigure parentFigure = (LifelineDotLineCustomFigure) parentPart.getContentPane();
+		LifelineDotLineCustomFigure parentFigure = (LifelineDotLineCustomFigure)parentPart.getContentPane();
 		Rectangle parentBounds = parentFigure.getBounds().getCopy();
-		parentFigure.translateToAbsolute(parentBounds );
-	 
+		parentFigure.translateToAbsolute(parentBounds);
+
 		Rectangle childBounds = parentBounds.getCopy();
 		childBounds.height = parentBounds.height;
 		childBounds.width = -1; // default size
-		childBounds.y = 0;  // y offset from parent
-		childBounds.x = location.x - parentBounds.x;  // x offset from parent
-		
+		childBounds.y = 0; // y offset from parent
+		childBounds.x = location.x - parentBounds.x; // x offset from parent
+
 		SetBoundsCommand cmd = new SetBoundsCommand(parentPart.getEditingDomain(), "set size", request.getViewAndElementDescriptor(), childBounds);
 		cc.compose(cmd);
 	}

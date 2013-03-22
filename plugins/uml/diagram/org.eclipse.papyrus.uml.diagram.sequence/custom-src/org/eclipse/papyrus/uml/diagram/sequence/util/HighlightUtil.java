@@ -68,22 +68,19 @@ public class HighlightUtil {
 
 	private static List<IFigure> getHighlightFigures(EditPart host) {
 		List<IFigure> figures = new ArrayList<IFigure>();
-		if (host instanceof LifelineEditPart) {
-			LifelineEditPart part = (LifelineEditPart) host;
-			figures.add(part.getPrimaryShape()
-					.getFigureLifelineNameContainerFigure());
+		if(host instanceof LifelineEditPart) {
+			LifelineEditPart part = (LifelineEditPart)host;
+			figures.add(part.getPrimaryShape().getFigureLifelineNameContainerFigure());
 			figures.add(part.getPrimaryShape().getFigureLifelineDotLineFigure());
-		} else if (host instanceof InteractionOperandEditPart) {
-			InteractionOperandEditPart op = (InteractionOperandEditPart) host;
-			CombinedFragmentEditPart cep = (CombinedFragmentEditPart) op
-					.getParent().getParent();
+		} else if(host instanceof InteractionOperandEditPart) {
+			InteractionOperandEditPart op = (InteractionOperandEditPart)host;
+			CombinedFragmentEditPart cep = (CombinedFragmentEditPart)op.getParent().getParent();
 			figures.add(cep.getPrimaryShape());
-		} else if (host != null) {
+		} else if(host != null) {
 			try {
-				Method getMethod = host.getClass().getDeclaredMethod(
-						"getPrimaryShape");
+				Method getMethod = host.getClass().getDeclaredMethod("getPrimaryShape");
 				getMethod.setAccessible(true);
-				figures.add((IFigure) getMethod.invoke(host));
+				figures.add((IFigure)getMethod.invoke(host));
 			} catch (Exception e) {
 				return getHighlightFigures(host.getParent());
 			}
@@ -102,19 +99,17 @@ public class HighlightUtil {
 
 	public static void highlight(EditPart host) {
 		List<IFigure> highlightFigures = getHighlightFigures(host);
-		if (highlightFigures.isEmpty()) {
+		if(highlightFigures.isEmpty()) {
 			return;
 		}
-		synchronized (figureState) {
-			for (IFigure figure : highlightFigures) {
+		synchronized(figureState) {
+			for(IFigure figure : highlightFigures) {
 				FigureState fs = figureState.get(figure);
-				if (fs == null) {
+				if(fs == null) {
 					fs = createFigureState(host, figure);
 					figureState.put(figure, fs);
 				}
-				updateFigure(figure, getHighlightBackground(fs.bgColor),
-						getHighlightForeground(fs.fgColor),
-						getHighlightLineWidth(fs.lineWidth));
+				updateFigure(figure, getHighlightBackground(fs.bgColor), getHighlightForeground(fs.fgColor), getHighlightLineWidth(fs.lineWidth));
 			}
 		}
 	}
@@ -123,27 +118,25 @@ public class HighlightUtil {
 		int lineWidth = 1;
 		Color bgColor = null, fgColor = null;
 		Object model = host.getModel();
-		if (model instanceof LineStyle) {
-			int modelLineWidth = ((LineStyle) model).getLineWidth();
-			if (modelLineWidth != -1) {
+		if(model instanceof LineStyle) {
+			int modelLineWidth = ((LineStyle)model).getLineWidth();
+			if(modelLineWidth != -1) {
 				lineWidth = modelLineWidth;
 			}
-			int lineColor = ((LineStyle) model).getLineColor();
-			fgColor = DiagramColorRegistry.getInstance().getColor(
-					Integer.valueOf(lineColor));
+			int lineColor = ((LineStyle)model).getLineColor();
+			fgColor = DiagramColorRegistry.getInstance().getColor(Integer.valueOf(lineColor));
 		} else {
 			Border border = fig.getBorder();
-			if (border instanceof LineBorder) {
-				lineWidth = ((LineBorder) border).getWidth();
-			} else if (fig instanceof Shape) {
-				lineWidth = ((Shape) fig).getLineWidth();
+			if(border instanceof LineBorder) {
+				lineWidth = ((LineBorder)border).getWidth();
+			} else if(fig instanceof Shape) {
+				lineWidth = ((Shape)fig).getLineWidth();
 			}
 			fgColor = fig.getForegroundColor();
 		}
-		if (model instanceof FillStyle) {
-			int fillColor = ((FillStyle) model).getFillColor();
-			bgColor = DiagramColorRegistry.getInstance().getColor(
-					Integer.valueOf(fillColor));
+		if(model instanceof FillStyle) {
+			int fillColor = ((FillStyle)model).getFillColor();
+			bgColor = DiagramColorRegistry.getInstance().getColor(Integer.valueOf(fillColor));
 		} else {
 			bgColor = fig.getBackgroundColor();
 		}
@@ -151,23 +144,21 @@ public class HighlightUtil {
 	}
 
 	public static void unhighlight() {
-		if (figureState == null || figureState.isEmpty()) {
+		if(figureState == null || figureState.isEmpty()) {
 			return;
 		}
-		synchronized (figureState) {
+		synchronized(figureState) {
 			Set<Entry<Object, FigureState>> entrySet = figureState.entrySet();
-			for (Entry<Object, FigureState> entry : entrySet) {
+			for(Entry<Object, FigureState> entry : entrySet) {
 				Object key = entry.getKey();
 				FigureState value = entry.getValue();
-				if (key instanceof IFigure) {
-					IFigure fig = (IFigure) key;
-					updateFigure(fig, value.bgColor, value.fgColor,
-							value.lineWidth);
-				} else if (key instanceof EditPart) {
-					List<IFigure> figures = getHighlightFigures((EditPart) key);
-					for (IFigure fig : figures) {
-						updateFigure(fig, value.bgColor, value.fgColor,
-								value.lineWidth);
+				if(key instanceof IFigure) {
+					IFigure fig = (IFigure)key;
+					updateFigure(fig, value.bgColor, value.fgColor, value.lineWidth);
+				} else if(key instanceof EditPart) {
+					List<IFigure> figures = getHighlightFigures((EditPart)key);
+					for(IFigure fig : figures) {
+						updateFigure(fig, value.bgColor, value.fgColor, value.lineWidth);
 					}
 				}
 			}
@@ -177,13 +168,13 @@ public class HighlightUtil {
 
 	public static void unhighlight(EditPart host) {
 		List<IFigure> highlightFigures = getHighlightFigures(host);
-		if (highlightFigures.isEmpty()) {
+		if(highlightFigures.isEmpty()) {
 			return;
 		}
-		synchronized (figureState) {
-			for (IFigure figure : highlightFigures) {
+		synchronized(figureState) {
+			for(IFigure figure : highlightFigures) {
 				FigureState s = figureState.remove(figure);
-				if (s == null) {
+				if(s == null) {
 					continue;
 				}
 				updateFigure(figure, s.bgColor, s.fgColor, s.lineWidth);
@@ -191,25 +182,24 @@ public class HighlightUtil {
 		}
 	}
 
-	private static void updateFigure(IFigure fig, Color bgColor, Color fgColor,
-			int lineWidth) {
-		if (fig == null) {
+	private static void updateFigure(IFigure fig, Color bgColor, Color fgColor, int lineWidth) {
+		if(fig == null) {
 			return;
 		}
-		synchronized (fig) {
-			if (lineWidth > 0) {
+		synchronized(fig) {
+			if(lineWidth > 0) {
 				Border border = fig.getBorder();
-				if (border != null && border instanceof LineBorder) {
-					((LineBorder) border).setWidth(lineWidth);
+				if(border != null && border instanceof LineBorder) {
+					((LineBorder)border).setWidth(lineWidth);
 				}
-				if (fig instanceof Shape) {
-					((Shape) fig).setLineWidth(lineWidth);
+				if(fig instanceof Shape) {
+					((Shape)fig).setLineWidth(lineWidth);
 				}
-				if (fig instanceof NodeFigure) {
-					((NodeFigure) fig).setLineWidth(lineWidth);
+				if(fig instanceof NodeFigure) {
+					((NodeFigure)fig).setLineWidth(lineWidth);
 				}
-				if (fig instanceof DestructionEventFigure) {
-					((DestructionEventFigure) fig).setLineWidth(lineWidth);
+				if(fig instanceof DestructionEventFigure) {
+					((DestructionEventFigure)fig).setLineWidth(lineWidth);
 				}
 			}
 			// Safely don't modify these now.

@@ -53,10 +53,10 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 	public void selectActionExecution(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
 		installEnvironment(sourceType, targetType, subNodeType);
 		target = createSubNode(target, subNodeType, getAbsoluteCenter(target));
-		
+
 		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof ActionExecutionSpecificationEditPart);
 
-//		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
+		//		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
 		waitForComplete();
 		PopupUtil.addMenuListener(0);
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, 60));
@@ -66,7 +66,7 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		AbstractMessageEditPart p = (AbstractMessageEditPart)source.getSourceConnections().get(0);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((View)p.getModel()).getType().equals(((IHintedType)linkType).getSemanticHint()));
 
-//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2); // LifelineNameEditPart 
+		//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2); // LifelineNameEditPart 
 		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof ActionExecutionSpecificationEditPart);
 
 		getDiagramCommandStack().undo();
@@ -83,7 +83,7 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		target = createSubNode(target, subNodeType, getAbsoluteCenter(target));
 		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof BehaviorExecutionSpecificationEditPart);
 
-//		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
+		//		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
 		waitForComplete();
 		PopupUtil.addMenuListener(1);
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, 60));
@@ -93,7 +93,7 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		AbstractMessageEditPart p = (AbstractMessageEditPart)source.getSourceConnections().get(0);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((View)p.getModel()).getType().equals(((IHintedType)linkType).getSemanticHint()));
 
-//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2);
+		//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2);
 
 		getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, source.getSourceConnections().size() == 0);

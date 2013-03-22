@@ -47,7 +47,6 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.InteractionOperand_3005 == req.getElementType()) {
-
 			CombinedFragment combinedFragment = getAssociatedCombinedFragment(req.getContainer());
 			if(combinedFragment == null) {
 				return UnexecutableCommand.INSTANCE;
@@ -95,8 +94,6 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 		} else if(eObject != null) {
 			combinedFragment = getAssociatedCombinedFragment(eObject.eContainer());
 		}
-
 		return combinedFragment;
 	}
-
 }

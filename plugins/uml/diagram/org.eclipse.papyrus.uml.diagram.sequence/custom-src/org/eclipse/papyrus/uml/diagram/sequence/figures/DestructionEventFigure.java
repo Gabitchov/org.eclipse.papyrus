@@ -20,7 +20,7 @@ import org.eclipse.draw2d.Graphics;
  * @generated
  */
 public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
-	
+
 	/**
 	 * Constructor <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -30,12 +30,13 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 
 		super();
 	}
-	
+
 	/**
 	 * The stop is a cross
 	 * 
 	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
 	 */
+	@Override
 	protected void paintFigure(Graphics graphics) {
 		super.paintFigure(graphics);
 		graphics.pushState();
@@ -56,8 +57,9 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 	}
 
 	public void setLineWidth(int w) {
-		if ((lineWidth == w) || (w < 0))
+		if((lineWidth == w) || (w < 0)) {
 			return;
+		}
 		lineWidth = w;
 		repaint();
 	}

@@ -15,7 +15,7 @@ import org.eclipse.swt.graphics.Image;
 
 public class ElementIconUtil {
 
-	public static Image getLabelIcon(GraphicalEditPart part){
+	public static Image getLabelIcon(GraphicalEditPart part) {
 		EObject parserElement = part.resolveSemanticElement();
 		if(parserElement == null) {
 			return null;
@@ -24,14 +24,14 @@ public class ElementIconUtil {
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, part.getViewer());
 		for(View view : views) {
 			//if(NameLabelIconHelper.showLabelIcon(view)) {
-			if(AppearanceHelper.showElementIcon(view)){
+			if(AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());
 			}
 		}
-		return null;	
+		return null;
 	}
-	
-	public static boolean isIconNotification(Notification event){
+
+	public static boolean isIconNotification(Notification event) {
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			return true;
 		}

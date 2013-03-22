@@ -101,6 +101,7 @@ public class CombinedFragmentDeleteHelper {
 			fragmentsToMove = op.getFragments();
 		}
 
+		@Override
 		public boolean canExecute() {
 			return (sourceOperand != null && combinedFragment != null);
 		}
@@ -111,16 +112,16 @@ public class CombinedFragmentDeleteHelper {
 				List<CombinedFragmentEditPart> parts = collectCombinedFragmentParts();
 				if(parent instanceof InteractionOperand) {
 					((InteractionOperand)parent).getFragments().addAll(fragmentsToMove);
-					moveToOperandPart((InteractionOperandEditPart)host.getParent(), parts);  
+					moveToOperandPart((InteractionOperandEditPart)host.getParent(), parts);
 				} else if(parent instanceof Interaction) {
 					((Interaction)parent).getFragments().addAll(fragmentsToMove);
-					moveToInteractionPart((InteractionInteractionCompartmentEditPart)host.getParent(), parts);  
+					moveToInteractionPart((InteractionInteractionCompartmentEditPart)host.getParent(), parts);
 				}
 			}
 			sourceOperand.getFragments().clear();
 			return CommandResult.newOKCommandResult();
 		}
-		
+
 		private void moveToOperandPart(GraphicalEditPart op, List<CombinedFragmentEditPart> keepParts) {
 			if(!keepParts.isEmpty()) {
 				Rectangle parentBounds = getAbsoluteBounds((AbstractGraphicalEditPart)op.getParent());
@@ -158,8 +159,9 @@ public class CombinedFragmentDeleteHelper {
 			for(InteractionFragment f : fragmentsToMove) {
 				if(f instanceof CombinedFragment) {
 					EditPart p = findEditPartByModel(host, f);
-					if(p instanceof CombinedFragmentEditPart)
+					if(p instanceof CombinedFragmentEditPart) {
 						parts.add((CombinedFragmentEditPart)p);
+					}
 				}
 			}
 			return parts;
@@ -168,10 +170,12 @@ public class CombinedFragmentDeleteHelper {
 
 	static public class SelectLabelProvider extends org.eclipse.jface.viewers.LabelProvider {
 
+		@Override
 		public String getText(Object object) {
 			return object.toString();
 		}
 
+		@Override
 		public Image getImage(Object object) {
 			return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_ETOOL_DELETE);
 		}
@@ -196,6 +200,7 @@ public class CombinedFragmentDeleteHelper {
 			this.keepCommand = keepCommand;
 		}
 
+		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, org.eclipse.core.runtime.IAdaptable info) throws ExecutionException {
 			CommandResult cmdResult = super.doExecuteWithResult(progressMonitor, info);
 			if(!cmdResult.getStatus().isOK()) {
@@ -211,6 +216,7 @@ public class CombinedFragmentDeleteHelper {
 			}
 		}
 
+		@Override
 		protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 			if(choice != null && choice.contains(labels[0])) {
 				deletaAllCommand.undo(progressMonitor, info);
@@ -221,6 +227,7 @@ public class CombinedFragmentDeleteHelper {
 			}
 		}
 
+		@Override
 		protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 			if(choice.contains(labels[0])) {
 				deletaAllCommand.redo(progressMonitor, info);
@@ -310,12 +317,14 @@ public class CombinedFragmentDeleteHelper {
 				EditPart p = (EditPart)o;
 
 				Object model = p.getModel();
-				if(model != null && model instanceof View && m.equals(((View)model).getElement()))
+				if(model != null && model instanceof View && m.equals(((View)model).getElement())) {
 					return p;
+				}
 
 				EditPart res = findEditPartByModel(p, m);
-				if(res != null)
+				if(res != null) {
 					return res;
+				}
 			}
 		}
 		return null;

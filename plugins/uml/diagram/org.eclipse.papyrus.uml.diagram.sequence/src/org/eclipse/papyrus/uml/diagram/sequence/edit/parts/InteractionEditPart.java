@@ -24,12 +24,10 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
-import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -41,16 +39,11 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.common.core.util.Log;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
@@ -60,9 +53,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
-import org.eclipse.gmf.runtime.notation.Anchor;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -132,10 +122,8 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
@@ -173,25 +161,22 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure createNodeShape() {
 		return primaryShape = new InteractionRectangleFigure() {
+
 			@Override
 			public Dimension getMinimumSize(int wHint, int hHint) {
 				Rectangle bounds = new Rectangle();
-				
-				for (Object child : InteractionEditPart.this.getChildren()) {
-					if (child instanceof InteractionInteractionCompartmentEditPart) {
-						InteractionInteractionCompartmentEditPart childEditPart = (InteractionInteractionCompartmentEditPart) child;
-
-						for (Object grandChild : childEditPart.getChildren()) {
-							GraphicalEditPart editPart = (GraphicalEditPart) grandChild;
+				for(Object child : InteractionEditPart.this.getChildren()) {
+					if(child instanceof InteractionInteractionCompartmentEditPart) {
+						InteractionInteractionCompartmentEditPart childEditPart = (InteractionInteractionCompartmentEditPart)child;
+						for(Object grandChild : childEditPart.getChildren()) {
+							GraphicalEditPart editPart = (GraphicalEditPart)grandChild;
 							IFigure figure = editPart.getFigure();
 							bounds.union(figure.getBounds());
 						}
 						IFigure figure = childEditPart.getFigure();
 						Rectangle rectangle = figure.getBounds();
-						
 						IFigure parentfigure = InteractionEditPart.this.getFigure();
 						Rectangle parentRectangle = parentfigure.getBounds();
-						
 						bounds.width += parentRectangle.width - rectangle.width + 10; // border 2x5
 						bounds.height += parentRectangle.height - rectangle.height + 16; // border 2x5 + 2x3
 						break;
@@ -217,14 +202,12 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			((InteractionNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
-
 		if(childEditPart instanceof InteractionInteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InteractionInteractionCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -273,7 +256,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		return getContentPane();
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -282,17 +265,16 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight)){
-			
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight)) {
+
 			protected ConnectionAnchor createAnchor(PrecisionPoint p) {
-				if (p==null)
+				if(p == null)
 					// If the old terminal for the connection anchor cannot be resolved (by SlidableAnchor) a null
 					// PrecisionPoint will passed in - this is handled here
 					return createDefaultAnchor();
 				return new AnchorHelper.IntersectionPointAnchor(this, p);
 			}
 		};
-
 		return result;
 	}
 
@@ -1144,7 +1126,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1164,7 +1145,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1182,7 +1162,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-
 		if(UMLPackage.eINSTANCE.getInteraction_FormalGate().equals(feature)) {
 			// Handle formal gate
 			notifier.unlistenObject((Notifier)notification.getOldValue());
@@ -1202,7 +1181,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 				}
 			}
 		}
-
 		super.handleNotificationEvent(notification);
 	}
 
@@ -1241,33 +1219,31 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 * Handle found message
 	 */
 	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) {		
-		 ConnectionAnchor sourceAnchor = createAnchor(request, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID, Message7EditPart.class);
-		 if (sourceAnchor == null) {
-			 sourceAnchor = super.getSourceConnectionAnchor(request);
-		 }
-		 return sourceAnchor;
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		ConnectionAnchor sourceAnchor = createAnchor(request, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID, Message7EditPart.class);
+		if(sourceAnchor == null) {
+			sourceAnchor = super.getSourceConnectionAnchor(request);
+		}
+		return sourceAnchor;
 	}
 
 	/**
 	 * Handle found message
 	 */
 	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {	
-		if(connEditPart instanceof Message7EditPart){
-			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart,true);
-			if(terminal.length() > 0){
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
+		if(connEditPart instanceof Message7EditPart) {
+			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, true);
+			if(terminal.length() > 0) {
 				PrecisionPoint pt = SlidableAnchor.parseTerminalString(terminal);
-				return new AnchorHelper.InnerPointAnchor(getFigure(),pt);
+				return new AnchorHelper.InnerPointAnchor(getFigure(), pt);
 			}
-		}		
-		
+		}
 		ConnectionAnchor sourceConnectionAnchor = super.getSourceConnectionAnchor(connEditPart);
-//		Point referencePoint = sourceConnectionAnchor.getReferencePoint();
-//		if(connEditPart instanceof Message7EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
-//			sourceConnectionAnchor = new XYAnchor(referencePoint);
-//		}
-
+		//		Point referencePoint = sourceConnectionAnchor.getReferencePoint();
+		//		if(connEditPart instanceof Message7EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+		//			sourceConnectionAnchor = new XYAnchor(referencePoint);
+		//		}
 		return sourceConnectionAnchor;
 	}
 
@@ -1275,35 +1251,33 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 * Handle lost message
 	 */
 	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {		
-		 ConnectionAnchor targetAnchor = createAnchor(request, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID, Message6EditPart.class);
-		 if (targetAnchor == null) {
-			 targetAnchor = super.getTargetConnectionAnchor(request);
-		 }
-		 return targetAnchor;
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		ConnectionAnchor targetAnchor = createAnchor(request, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID, Message6EditPart.class);
+		if(targetAnchor == null) {
+			targetAnchor = super.getTargetConnectionAnchor(request);
+		}
+		return targetAnchor;
 	}
-	
+
 	/**
 	 * Handle lost message
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		
-		if(connEditPart instanceof Message6EditPart){
+		if(connEditPart instanceof Message6EditPart) {
 			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, false);
-			if(terminal.length() > 0){
+			if(terminal.length() > 0) {
 				PrecisionPoint pt = SlidableAnchor.parseTerminalString(terminal);
-				return new AnchorHelper.InnerPointAnchor(getFigure(),pt);
+				return new AnchorHelper.InnerPointAnchor(getFigure(), pt);
 			}
 		}
-		
 		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(connEditPart);
-//		Point referencePoint = targetConnectionAnchor.getReferencePoint();
-//		if(connEditPart instanceof Message6EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
-//			targetConnectionAnchor = new XYAnchor(referencePoint);
-//		}		
+		//		Point referencePoint = targetConnectionAnchor.getReferencePoint();
+		//		if(connEditPart instanceof Message6EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+		//			targetConnectionAnchor = new XYAnchor(referencePoint);
+		//		}		
 		return targetConnectionAnchor;
-	}	
+	}
 
 	/**
 	 * Create Anchor
@@ -1341,7 +1315,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			if(messageType.equals(connectionEditPart.getClass()) && request instanceof LocationRequest) {
 				return createAnchor(((LocationRequest)request).getLocation().getCopy());
 			}
-
 		}
 		return null;
 	}
@@ -1356,6 +1329,5 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	private ConnectionAnchor createAnchor(Point location) {
 		//return new SlidableAnchor(getFigure(), BaseSlidableAnchor.getAnchorRelativeLocation(location, getFigure().getBounds()));
 		return AnchorHelper.InnerPointAnchor.createAnchorAtLocation(getFigure(), new PrecisionPoint(location));
-	}		
-
+	}
 }

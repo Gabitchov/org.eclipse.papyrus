@@ -88,7 +88,6 @@ public class LifelineCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -106,7 +105,6 @@ public class LifelineCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 		return !(getElementToEdit() instanceof InteractionOperand);
-
 	}
 
 	/**
@@ -118,20 +116,15 @@ public class LifelineCreateCommand extends EditElementCommand {
 		EObject object = getElementToEdit();
 		Interaction interactionOwner = null;
 		Property property = null;
-
 		Lifeline newElement = UMLFactory.eINSTANCE.createLifeline();
-
 		if(object instanceof Lifeline) {
 			Lifeline parentLifeline = (Lifeline)object;
 			property = CommandHelper.getProperties(availableProperties);
-
 			if(property == null) {
 				return CommandResult.newCancelledCommandResult();
 			}
 			newElement.setRepresents(property);
-
 			interactionOwner = parentLifeline.getInteraction();
-
 			// create or retrieve a PartDecomposition
 			PartDecomposition partDecomposition = parentLifeline.getDecomposedAs();
 			if(partDecomposition == null) {
@@ -141,18 +134,13 @@ public class LifelineCreateCommand extends EditElementCommand {
 				ifts.add(partDecomposition);
 				parentLifeline.setDecomposedAs(partDecomposition);
 			}
-
 			partDecomposition.getCovereds().add(newElement);
 		} else {
 			interactionOwner = (Interaction)getElementToEdit();
 		}
-
 		interactionOwner.getLifelines().add(newElement);
-
 		ElementInitializers.getInstance().init_Lifeline_3001(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -165,13 +153,11 @@ public class LifelineCreateCommand extends EditElementCommand {
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		
 		// fix bug 364696(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364696) 
 		Object object = getRequest().getParameters().get(SequenceRequestConstant.CONNECTABLE_ELEMENT);
-		if(object instanceof ConnectableElement){
-			newElement.setRepresents((ConnectableElement) object);
+		if(object instanceof ConnectableElement) {
+			newElement.setRepresents((ConnectableElement)object);
 		}
-		
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
@@ -187,5 +173,4 @@ public class LifelineCreateCommand extends EditElementCommand {
 	public void setAvailableProperties(List<Property> availableProperties) {
 		this.availableProperties = availableProperties;
 	}
-
 }

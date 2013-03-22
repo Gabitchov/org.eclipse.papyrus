@@ -43,6 +43,7 @@ import org.junit.Test;
  */
 public class TestNestedCombinedFragment_364795 extends TestTopNode {
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

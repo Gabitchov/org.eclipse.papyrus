@@ -69,6 +69,7 @@ public class DurationObservationParser extends MessageFormatParser implements IS
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
@@ -77,6 +78,7 @@ public class DurationObservationParser extends MessageFormatParser implements IS
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		Object adapter = element.getAdapter(EObject.class);
 		if(adapter instanceof DurationObservation) {

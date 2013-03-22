@@ -130,7 +130,7 @@ public class SelectOrCreateDialog extends FormDialog {
 	 *        The map of possible types for the element
 	 *        and the possible parents where the element
 	 *        can be created.
-	 * @param types 
+	 * @param types
 	 */
 	public SelectOrCreateDialog(Shell shell, String title, ILabelProvider typeLabelProvider, ILabelProvider elementLabelProvider, TransactionalEditingDomain transactionalEditingDomain, Collection<EObject> existingElements, LinkedHashMap<EClass, List<EObject>> mapTypesPossibleParents, List<Type> types) {
 		super(shell);
@@ -255,9 +255,9 @@ public class SelectOrCreateDialog extends FormDialog {
 		}
 
 		selectionButton.setLayoutData(new GridData(SWT.NONE));
-		
+
 		filterSignalButton = pToolkit.createButton(lBody, "filter out all signals which are not receivable", SWT.CHECK);
-		
+
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -466,54 +466,54 @@ public class SelectOrCreateDialog extends FormDialog {
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), elementLabelProvider);
 		dialog.setMessage(Messages.SelectOrCreateDialog_SelectLabel);
 		dialog.setMultipleSelection(false);
-		dialog.setElements(filterElements(existingElements));		
+		dialog.setElements(filterElements(existingElements));
 		if(dialog.open() == Window.OK) {
 			setElementSelection((EObject)dialog.getFirstResult());
 		}
 	}
-	
-	private Set<Signal> getAllSignals(List<Type> types){
+
+	private Set<Signal> getAllSignals(List<Type> types) {
 		Set<Signal> accept = new HashSet<Signal>();
 		Set<Classifier> collected = new HashSet<Classifier>();
-		for(Type t: types)
-			if(t instanceof Classifier){
-				Classifier c = (Classifier)t;				
+		for(Type t : types)
+			if(t instanceof Classifier) {
+				Classifier c = (Classifier)t;
 				collectSignals(c, accept, collected);
 			}
-		
+
 		return accept;
 	}
 
 	protected void collectSignals(Classifier c, Set<Signal> accept, Set<Classifier> collected) {
 		if(collected.contains(c))
-			return;		
+			return;
 		collected.add(c);
-		if(c instanceof org.eclipse.uml2.uml.Class){
+		if(c instanceof org.eclipse.uml2.uml.Class) {
 			EList<Reception> receptions = ((org.eclipse.uml2.uml.Class)c).getOwnedReceptions();
 			for(Reception r : receptions)
 				accept.add(r.getSignal());
 		}
-		
+
 		EList<Property> attrs = c.getAllAttributes();
 		for(Property p : attrs)
-			if(p.getType() instanceof Signal){
+			if(p.getType() instanceof Signal) {
 				accept.add((Signal)p.getType());
-			}else if(p.getType() instanceof Classifier){
-				collectSignals((Classifier)p.getType(), accept, collected); 
+			} else if(p.getType() instanceof Classifier) {
+				collectSignals((Classifier)p.getType(), accept, collected);
 			}
 	}
 
 	private Object[] filterElements(Collection<EObject> elements) {
 		if(!filterSignalButton.getSelection() || types == null || types.isEmpty())
 			return elements.toArray(new EObject[elements.size()]);
-				
+
 		Set<Signal> accept = getAllSignals(types);
-		
+
 		List<EObject> result = new ArrayList<EObject>();
-		for(EObject o:elements)
+		for(EObject o : elements)
 			if(!(o instanceof Signal))
 				result.add(o);
-			else if( accept.contains(o))
+			else if(accept.contains(o))
 				result.add(o);
 		return result.toArray(new EObject[result.size()]);
 	}

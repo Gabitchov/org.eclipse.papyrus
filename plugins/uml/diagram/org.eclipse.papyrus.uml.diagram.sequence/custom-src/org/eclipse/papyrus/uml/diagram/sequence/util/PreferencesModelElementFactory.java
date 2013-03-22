@@ -1,4 +1,5 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
+
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;

@@ -92,7 +92,7 @@ public class Message6CreateCommand extends EditElementCommand {
 				return false;
 			}
 		}
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4008(getContainer(), getSource(), getTarget())){
+		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4008(getContainer(), getSource(), getTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canExist(MessageSort.ASYNCH_SIGNAL_LITERAL, getSource(), null);
@@ -110,14 +110,12 @@ public class Message6CreateCommand extends EditElementCommand {
 		}
 		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
-
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.ASYNCH_SIGNAL_LITERAL, getSource(), null, sourceContainer, targetContainer);
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);
 		}
-
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
 	}
 
@@ -183,5 +181,4 @@ public class Message6CreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

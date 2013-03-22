@@ -129,20 +129,20 @@ public class MessageRouter extends ObliqueRouter {
 			break;
 		}
 	}
-	
+
 	protected boolean checkShapesIntersect(Connection conn, PointList newLine) {
-		if(conn.getTargetAnchor().getOwner() instanceof AnchorHelper.CombinedFragmentNodeFigure){
+		if(conn.getTargetAnchor().getOwner() instanceof AnchorHelper.CombinedFragmentNodeFigure) {
 			return false;
 		}
 		return super.checkShapesIntersect(conn, newLine);
 	}
 
 	protected void adjustCreateEndpoint(Connection conn, PointList newLine) {
-		if(conn instanceof MessageCreate){
-			if(newLine.size() >= 2){
+		if(conn instanceof MessageCreate) {
+			if(newLine.size() >= 2) {
 				Point start = newLine.getFirstPoint();
 				Point end = newLine.getLastPoint();
-				if(start.y != end.y){
+				if(start.y != end.y) {
 					start.y = end.y;
 					newLine.setPoint(start, 0);
 				}
@@ -215,10 +215,10 @@ public class MessageRouter extends ObliqueRouter {
 
 	protected boolean isOnRightHand(Connection conn, IFigure owner, Point middle) {
 		boolean right = true;
-		if(conn.getTargetAnchor() instanceof AnchorHelper.SideAnchor){
-			 AnchorHelper.SideAnchor anchor = ( AnchorHelper.SideAnchor) conn.getTargetAnchor();
+		if(conn.getTargetAnchor() instanceof AnchorHelper.SideAnchor) {
+			AnchorHelper.SideAnchor anchor = (AnchorHelper.SideAnchor)conn.getTargetAnchor();
 			right = anchor.isRight();
-		}else{
+		} else {
 			PointList list = conn.getPoints();
 			if(list.getPoint(0).x > list.getPoint(1).x)
 				right = false;

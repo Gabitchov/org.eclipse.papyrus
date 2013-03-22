@@ -86,29 +86,29 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 		if(executions.isEmpty()) {
 			return false;
 		}
-//		LifelineEditPart lifelineEditPart = (LifelineEditPart)getHost().getParent();
-//		for(ExecutionSpecification executionSpecification : executions) {
-//			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(executionSpecification);
-//			for(Setting ref : settings) {
-//				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-//					View view = (View)ref.getEObject();
-//					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, getHost());
-//					if(!(part instanceof ShapeNodeEditPart)) {
-//						continue;
-//					}
-//					Rectangle childBounds = ((ShapeNodeEditPart)part).getFigure().getBounds().getCopy();
-//					List<ShapeNodeEditPart> toCheckExecutionSpecificationList = new ArrayList<ShapeNodeEditPart>(lifelineEditPart.getChildShapeNodeEditPart());
-//					toCheckExecutionSpecificationList.remove(part);
-//					ShapeNodeEditPart parent = LifelineXYLayoutEditPolicy.getParent(lifelineEditPart, childBounds, toCheckExecutionSpecificationList);
-//					if(parent != null) {
-//						Rectangle parentBounds = parent.getFigure().getBounds().getCopy();
-//						if(childBounds.y + moveDelta.y >= parentBounds.bottom() - 1) {
-//							return true;
-//						}
-//					}
-//				}
-//			}
-//		}
+		//		LifelineEditPart lifelineEditPart = (LifelineEditPart)getHost().getParent();
+		//		for(ExecutionSpecification executionSpecification : executions) {
+		//			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(executionSpecification);
+		//			for(Setting ref : settings) {
+		//				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+		//					View view = (View)ref.getEObject();
+		//					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, getHost());
+		//					if(!(part instanceof ShapeNodeEditPart)) {
+		//						continue;
+		//					}
+		//					Rectangle childBounds = ((ShapeNodeEditPart)part).getFigure().getBounds().getCopy();
+		//					List<ShapeNodeEditPart> toCheckExecutionSpecificationList = new ArrayList<ShapeNodeEditPart>(lifelineEditPart.getChildShapeNodeEditPart());
+		//					toCheckExecutionSpecificationList.remove(part);
+		//					ShapeNodeEditPart parent = LifelineXYLayoutEditPolicy.getParent(lifelineEditPart, childBounds, toCheckExecutionSpecificationList);
+		//					if(parent != null) {
+		//						Rectangle parentBounds = parent.getFigure().getBounds().getCopy();
+		//						if(childBounds.y + moveDelta.y >= parentBounds.bottom() - 1) {
+		//							return true;
+		//						}
+		//					}
+		//				}
+		//			}
+		//		}
 		return true;
 	}
 

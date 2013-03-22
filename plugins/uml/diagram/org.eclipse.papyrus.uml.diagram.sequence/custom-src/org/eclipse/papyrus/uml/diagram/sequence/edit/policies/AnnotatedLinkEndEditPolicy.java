@@ -42,7 +42,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.EllipseDecoration;
 import org.eclipse.swt.SWT;
-import org.eclipse.uml2.uml.NamedElement;
 
 
 /**

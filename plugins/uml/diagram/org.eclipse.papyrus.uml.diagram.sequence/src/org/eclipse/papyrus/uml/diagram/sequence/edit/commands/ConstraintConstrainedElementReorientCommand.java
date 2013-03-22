@@ -131,10 +131,10 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		getOldSource().getConstrainedElements().remove(getOldTarget());
 		getOldSource().getConstrainedElements().add(getNewTarget());
 		if(getOldTarget() instanceof MessageEnd) {
-			MessageEndHelper.removeConnectionSourceFromMessageEnd((MessageEnd) getOldTarget(), getOldSource() );
+			MessageEndHelper.removeConnectionSourceFromMessageEnd((MessageEnd)getOldTarget(), getOldSource());
 		}
 		if(getNewTarget() instanceof MessageEnd) {
-			MessageEndHelper.addConnectionSourceToMessageEnd((MessageEnd) getNewTarget(), getOldSource());
+			MessageEndHelper.addConnectionSourceToMessageEnd((MessageEnd)getNewTarget(), getOldSource());
 		}
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}

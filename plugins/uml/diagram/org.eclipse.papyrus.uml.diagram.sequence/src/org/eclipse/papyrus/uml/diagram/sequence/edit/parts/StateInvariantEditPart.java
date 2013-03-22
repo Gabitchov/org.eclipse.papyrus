@@ -71,9 +71,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class StateInvariantEditPart extends
-
-AbstractBorderItemEditPart {
+public class StateInvariantEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -156,7 +154,6 @@ AbstractBorderItemEditPart {
 			((StateInvariantNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -206,7 +203,6 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -1048,11 +1044,8 @@ AbstractBorderItemEditPart {
 		 * @generated
 		 */
 		public ContinuationFigure() {
-
 			CenterLayout layoutThis = new CenterLayout();
-
 			this.setLayoutManager(layoutThis);
-
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50)));
 			createContents();
 		}
@@ -1061,11 +1054,8 @@ AbstractBorderItemEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fFigureContinuationNameLabel = new CenteredWrappedLabel();
-
 			this.add(fFigureContinuationNameLabel);
-
 		}
 
 		/**
@@ -1074,7 +1064,7 @@ AbstractBorderItemEditPart {
 		public CenteredWrappedLabel getFigureContinuationNameLabel() {
 			return fFigureContinuationNameLabel;
 		}
-		
+
 		protected void fillShape(Graphics graphics) {
 			graphics.pushState();
 			applyTransparency(graphics);
@@ -1087,7 +1077,7 @@ AbstractBorderItemEditPart {
 		 * Must be in [0, 100] range.
 		 */
 		private int transparency = 0;
-		
+
 		/**
 		 * Returns transparency value (belongs to [0, 100] interval)
 		 * 
@@ -1097,35 +1087,34 @@ AbstractBorderItemEditPart {
 		public int getTransparency() {
 			return transparency;
 		}
- 
+
 		/**
 		 * Sets the transparency if the given parameter is in [0, 100] range
 		 * 
-		 * @param transparency The transparency to set
+		 * @param transparency
+		 *        The transparency to set
 		 * @since 1.2
 		 */
 		public void setTransparency(int transparency) {
-			if (transparency != this.transparency &&
-					transparency >= 0 && transparency <= 100) {
+			if(transparency != this.transparency && transparency >= 0 && transparency <= 100) {
 				this.transparency = transparency;
 				repaint();
 			}
 		}
-				
+
 		/**
 		 * Converts transparency value from percent range [0, 100] to alpha range
 		 * [0, 255] and applies converted value. 0% corresponds to alpha 255 and
 		 * 100% corresponds to alpha 0.
 		 * 
-		 * @param g The Graphics used to paint
+		 * @param g
+		 *        The Graphics used to paint
 		 * @since 1.2
 		 */
 		protected void applyTransparency(Graphics g) {
 			g.setAlpha(255 - transparency * 255 / 100);
 		}
 	}
-	
-	
 
 	/**
 	 * @generated
@@ -1134,7 +1123,6 @@ AbstractBorderItemEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1154,82 +1142,75 @@ AbstractBorderItemEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
 	}
-	
+
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
-		
 		Object feature = notification.getFeature();
 		if((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} 
+			}
 		}
-	}		
+	}
 
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLineWidth();
 		refreshTransparency();
 	}
-	
+
 	protected void setTransparency(int transp) {
 		getPrimaryShape().setTransparency(transp);
 	}
-	
-	protected void refreshBounds() {
-		if (getBorderItemLocator() != null) {
-			int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_X())).intValue();
-			int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_Y())).intValue();
-			Point loc = new Point(x, y);
-			
-			int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-			int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-			Dimension size = new Dimension(width, height);
 
+	protected void refreshBounds() {
+		if(getBorderItemLocator() != null) {
+			int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+			int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+			Point loc = new Point(x, y);
+			int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			Dimension size = new Dimension(width, height);
 			// fix size
-			getFigure().setBounds(new Rectangle(loc, size)); 
-			getBorderItemLocator().setConstraint(new Rectangle(	loc, size));
+			getFigure().setBounds(new Rectangle(loc, size));
+			getBorderItemLocator().setConstraint(new Rectangle(loc, size));
 		} else {
 			super.refreshBounds();
 		}
 	}
-	
-	static class StateInvariantLocator extends CenterLocator{
+
+	static class StateInvariantLocator extends CenterLocator {
+
 		public StateInvariantLocator(IFigure parentFigure, int location) {
 			super(parentFigure, location);
-		
 		}
 
 		public void relocate(IFigure borderItem) {
 			Point constraintLocation = getConstraint().getLocation();
 			Dimension size = getSize(borderItem);
 			Point ptNewLocation = new Point(getParentBorder().getCenter().x - size.width / 2, constraintLocation.y);
-			borderItem.setBounds(new Rectangle(ptNewLocation, size));	
+			borderItem.setBounds(new Rectangle(ptNewLocation, size));
 		}
-		
+
 		public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
 			Rectangle realLocation = new Rectangle(proposedLocation);
-			Point point =  new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, realLocation.y);
+			Point point = new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, realLocation.y);
 			realLocation.setLocation(point);
-			return realLocation;					
+			return realLocation;
 		}
 	};
-	
-	public static class StateInvariantResizableEditPolicy extends BorderItemResizableEditPolicy{
-		
+
+	public static class StateInvariantResizableEditPolicy extends BorderItemResizableEditPolicy {
+
 		protected Command getResizeCommand(ChangeBoundsRequest request) {
 			IBorderItemEditPart borderItemEP = (IBorderItemEditPart)getHost();
 			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
-			
 			if(borderItemLocator != null) {
 				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 				getHostFigure().translateToAbsolute(rect);
@@ -1237,32 +1218,26 @@ AbstractBorderItemEditPart {
 				rect.resize(request.getSizeDelta());
 				getHostFigure().translateToRelative(rect);
 				Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
-				
-				if(borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart) borderItemEP.getParent(), borderItemEP, realLocation.getCopy()))
+				if(borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart)borderItemEP.getParent(), borderItemEP, realLocation.getCopy()))
 					return null;
-				
 				ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View)getHost().getModel()), realLocation);
 				return new ICommandProxy(moveCommand);
 			}
 			return null;
 		}
-		
+
 		protected Command getMoveCommand(ChangeBoundsRequest request) {
 			IBorderItemEditPart borderItemEP = (IBorderItemEditPart)getHost();
 			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
-
 			if(borderItemLocator != null) {
 				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 				getHostFigure().translateToAbsolute(rect);
 				rect.translate(request.getMoveDelta());
 				rect.resize(request.getSizeDelta());
-
 				getHostFigure().translateToRelative(rect);
 				Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
-
-				if(borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart) borderItemEP.getParent(), borderItemEP, realLocation.getCopy()))
+				if(borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart)borderItemEP.getParent(), borderItemEP, realLocation.getCopy()))
 					return null;
-				
 				Point location = realLocation.getTopLeft();
 				ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View)getHost().getModel()), location);
 				return new ICommandProxy(moveCommand);
@@ -1270,22 +1245,16 @@ AbstractBorderItemEditPart {
 			return null;
 		}
 
-		private boolean restrictInParentBounds(LifelineEditPart ep,
-				IBorderItemEditPart borderItemEP, Rectangle realLocation) {
+		private boolean restrictInParentBounds(LifelineEditPart ep, IBorderItemEditPart borderItemEP, Rectangle realLocation) {
 			borderItemEP.getFigure().translateToAbsolute(realLocation);
-			
 			Rectangle bounds = ep.getPrimaryShape().getBounds().getCopy();
-			ep.getPrimaryShape().translateToAbsolute(bounds);					
+			ep.getPrimaryShape().translateToAbsolute(bounds);
 			int nameHeight = ep.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
-			
 			if(realLocation.y - nameHeight < bounds.y)
 				return false;
-			
 			if(realLocation.getBottom().y > bounds.getBottom().y)
 				return false;
-			
 			return true;
 		}
 	}
-	
 }

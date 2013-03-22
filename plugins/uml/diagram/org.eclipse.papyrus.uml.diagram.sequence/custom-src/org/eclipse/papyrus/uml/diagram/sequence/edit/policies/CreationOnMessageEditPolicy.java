@@ -79,7 +79,7 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 				} else {
 					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, location);
 				}
-				
+
 				if(location != null) {
 					//Let the hosted lifeline to do it.
 					EditPart object = getHost().getViewer().findObjectAtExcluding(location, Collections.emptyList(), new EditPartViewer.Conditional() {
@@ -100,11 +100,11 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 							object = object.getParent();
 						}
 					}
-					if (targetEditPart != null){
+					if(targetEditPart != null) {
 						return targetEditPart.getCommand(request);
 					}
 				}
-					
+
 			}
 		}
 		return super.getCreateElementAndViewCommand(request);

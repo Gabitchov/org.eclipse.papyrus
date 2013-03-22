@@ -68,7 +68,6 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		super(UMLElementTypes.ConsiderIgnoreFragment_3007);
 	}
 
-	
 	/**
 	 * @generated
 	 */
@@ -78,14 +77,13 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
-				if(selectedEObject instanceof CombinedFragment){
-					ICommand selectCmd = CombinedFragmentDeleteHelper.createDestroyElementCommand((CombinedFragment) selectedEObject , getEditingDomain(), provider, req, deleteCommand, (CombinedFragmentEditPart)getHost());
+				if(selectedEObject instanceof CombinedFragment) {
+					ICommand selectCmd = CombinedFragmentDeleteHelper.createDestroyElementCommand((CombinedFragment)selectedEObject, getEditingDomain(), provider, req, deleteCommand, (CombinedFragmentEditPart)getHost());
 					return new ICommandProxy(selectCmd);
-				}else
+				} else
 					return new ICommandProxy(deleteCommand);
-			}						
+			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

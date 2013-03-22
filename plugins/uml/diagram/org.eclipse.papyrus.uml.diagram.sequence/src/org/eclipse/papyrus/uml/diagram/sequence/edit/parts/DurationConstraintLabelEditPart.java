@@ -63,9 +63,9 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -113,7 +113,6 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -320,7 +319,6 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -402,9 +400,7 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -431,7 +427,6 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -439,7 +434,6 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -447,7 +441,6 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -608,7 +601,6 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -751,21 +743,13 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 		 * @generated
 		 */
 		public MultilineLabelFigure() {
-
 			this.setTextAlignment(PositionConstants.CENTER);
-
 			this.setAlignment(PositionConstants.CENTER);
-
 			this.setBackgroundColor(getBackgroundColor());
-
 			this.setTextWrap(true);
-
 			this.setTextJustification(PositionConstants.CENTER);
-
 		}
-
 	}
 
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 }

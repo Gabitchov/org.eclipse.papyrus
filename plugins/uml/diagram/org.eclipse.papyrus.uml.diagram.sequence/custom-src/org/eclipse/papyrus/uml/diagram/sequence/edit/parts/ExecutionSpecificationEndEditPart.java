@@ -78,87 +78,101 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
-public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
-		implements INodeEditPart {
-	
+public class ExecutionSpecificationEndEditPart extends GraphicalEditPart implements INodeEditPart {
+
 	private static final String DUMMY_TYPE = "999998";
+
 	private static final int DEFAULT_SIZE = 16;
+
 	private Locator locator;
+
 	private OccurrenceSpecification executionSpecificationEnd;
-	
-	public ExecutionSpecificationEndEditPart(OccurrenceSpecification occurrenceSpecification, ShapeNodeEditPart parent, RelativeLocator locator ) {
-		super(createDummyView(parent, occurrenceSpecification) );
+
+	public ExecutionSpecificationEndEditPart(OccurrenceSpecification occurrenceSpecification, ShapeNodeEditPart parent, RelativeLocator locator) {
+		super(createDummyView(parent, occurrenceSpecification));
 		this.executionSpecificationEnd = occurrenceSpecification;
 		this.setParent(parent);
 		this.locator = locator;
 		addToResource(parent.getNotationView(), this.getNotationView());
 	}
-	
-	private static EObject createDummyView(ShapeNodeEditPart parent,
-			EObject model) {
+
+	private static EObject createDummyView(ShapeNodeEditPart parent, EObject model) {
 		final Shape node = new ShapeImpl() {
+
+			@Override
 			public boolean eNotificationRequired() {
-				return true;  
+				return true;
 			}
 		};
 
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(DUMMY_TYPE);
 		node.setElement(model);
-	   
+
 		return node;
 	}
-	
+
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getView_SourceEdges().equals(feature))
+		if(NotationPackage.eINSTANCE.getView_SourceEdges().equals(feature)) {
 			refreshSourceConnections();
-		else if (NotationPackage.eINSTANCE.getView_TargetEdges()
-				.equals(feature)) 
+		} else if(NotationPackage.eINSTANCE.getView_TargetEdges().equals(feature)) {
 			refreshTargetConnections();
-		else
+		} else {
 			super.handleNotificationEvent(notification);
-	}
-	
-	protected void addNotationalListeners() {
-		if (hasNotationView()) {
-			addListenerFilter("View", this,(View)getModel());
 		}
 	}
-	
-	static class DummyCommand extends org.eclipse.emf.common.command.AbstractCommand  {
+
+	@Override
+	protected void addNotationalListeners() {
+		if(hasNotationView()) {
+			addListenerFilter("View", this, (View)getModel());
+		}
+	}
+
+	static class DummyCommand extends org.eclipse.emf.common.command.AbstractCommand {
+
 		public void execute() {
 		}
 
 		public void redo() {
 		}
 
+		@Override
 		public void undo() {
 		}
 
+		@Override
 		protected boolean prepare() {
 			return true;
 		}
 	}
-	
+
 	private void addToResource(final View container, final View view) {
 		CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new DummyCommand() {
+
+			@Override
 			public void execute() {
-				ViewUtil.insertChildView(container, view,-1, false);
+				ViewUtil.insertChildView(container, view, -1, false);
 			}
-		},true);
+		}, true);
 	}
-	
+
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExecutionSpecificationEndSemanticEditPolicy());
 		//The custom Graphical node edit policy for showing feedback has been removed, and this will be finished in HighlightEditPolicy.
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy(){
-			protected void addSelectionHandles() {  // remove handles
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
+
+			@Override
+			protected void addSelectionHandles() { // remove handles
 			}
-		});	
-		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy(){
+		});
+		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy() {
+
 			@Override
 			protected void highlight(EditPart object) {
 				super.highlight(getParent());
@@ -169,59 +183,67 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			}
 		});
 	}
-	
+
 	public void rebuildLinks(Diagram diagram) {
 		helper.collectViews(diagram);
 		EObject semanticModel = this.resolveSemanticElement();
 		EAnnotation annotation = executionSpecificationEnd.getEAnnotation("Connections");
-		if (annotation != null) {
-			for (EObject eo : annotation.getReferences()) {
+		if(annotation != null) {
+			for(EObject eo : annotation.getReferences()) {
 				View view = helper.findView(eo);
-				if (view == null)
+				if(view == null) {
 					continue; // should not happen
+				}
 
 				EList edges = view.getSourceEdges();
-				for (Object o : edges) {
-					if (o instanceof Edge ) {					
-						if(needRestoreLink((Edge) o)) {
-							restoreEdgeTarget((Edge) o);
-							break;						
+				for(Object o : edges) {
+					if(o instanceof Edge) {
+						if(needRestoreLink((Edge)o)) {
+							restoreEdgeTarget((Edge)o);
+							break;
 						}
 					}
 				}
 			}
 		}
 	}
-	
+
 	private boolean needRestoreLink(Edge e) {
-		if(e.getTarget() == null)
+		if(e.getTarget() == null) {
 			return true;
-		
+		}
+
 		EObject model = e.getTarget().getElement();
-		if(!(model instanceof OccurrenceSpecification))
+		if(!(model instanceof OccurrenceSpecification)) {
 			return false;
-		
+		}
+
 		if(model == this.resolveSemanticElement()) {
-			if(!this.getNotationView().equals( e.getTarget()))
+			if(!this.getNotationView().equals(e.getTarget())) {
 				return true;
+			}
 		}
 		return false;
 	}
 
 	private void restoreEdgeTarget(final Edge edge) {
 		CommandHelper.executeCommandWithoutHistory(this.getEditingDomain(), new DummyCommand() {
+
+			@Override
 			public void execute() {
-				edge.setTarget((View) ExecutionSpecificationEndEditPart.this
-						.getModel());
+				edge.setTarget((View)ExecutionSpecificationEndEditPart.this.getModel());
 			}
-		},true);
+		}, true);
 	}
-	
+
 	static ViewHelper helper = new ViewHelper();
 
 	static class ViewHelper {
+
 		Diagram diagram = null;
+
 		Set<View> allViews = new HashSet<View>();
+
 		Map<EObject, View> viewMaps = new HashMap<EObject, View>();
 
 		View findView(EObject key) {
@@ -229,15 +251,16 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 		}
 
 		void collectViews(Diagram d) {
-			if (diagram != d) { // compare pointer ref
+			if(diagram != d) { // compare pointer ref
 				diagram = d;
 				allViews.clear();
 				viewMaps.clear();
 
 				getAllNestedViews(diagram, allViews);
-				for (View v : allViews) {
-					if (v instanceof DecorationNode)
+				for(View v : allViews) {
+					if(v instanceof DecorationNode) {
 						continue;
+					}
 
 					viewMaps.put(v.getElement(), v);
 				}
@@ -245,14 +268,15 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 		}
 
 		static private void getAllNestedViews(View view, Set<View> allViews) {
-			for (View childView : (List<View>) view.getChildren()) {
+			for(View childView : (List<View>)view.getChildren()) {
 				getAllNestedViews(childView, allViews);
 				allViews.add(childView);
 			}
 		}
-	}	
-	
-	static class ReorientExecutionSpecificationEndCommand extends EditElementCommand{
+	}
+
+	static class ReorientExecutionSpecificationEndCommand extends EditElementCommand {
+
 		private ReorientReferenceRelationshipRequest request;
 
 		public ReorientExecutionSpecificationEndCommand(ReorientReferenceRelationshipRequest request) {
@@ -260,78 +284,68 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			this.request = request;
 		}
 
+		@Override
 		public boolean canExecute() {
 			return true;
 		}
-		
+
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			// adding new end
 			if(request.getNewRelationshipEnd() instanceof OccurrenceSpecification) {
-				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification) request.getNewRelationshipEnd(), request.getReferenceOwner());
+				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification)request.getNewRelationshipEnd(), request.getReferenceOwner());
 				// update uml model reference
 				if(request.getReferenceOwner() instanceof Constraint) {
-					((Constraint)request.getReferenceOwner()).getConstrainedElements().add((OccurrenceSpecification) request.getNewRelationshipEnd());
-				}else if(request.getReferenceOwner() instanceof Comment) {
-					((Comment) request.getReferenceOwner()).getAnnotatedElements().add( (OccurrenceSpecification)  request.getNewRelationshipEnd());
+					((Constraint)request.getReferenceOwner()).getConstrainedElements().add((OccurrenceSpecification)request.getNewRelationshipEnd());
+				} else if(request.getReferenceOwner() instanceof Comment) {
+					((Comment)request.getReferenceOwner()).getAnnotatedElements().add((OccurrenceSpecification)request.getNewRelationshipEnd());
 				}
 			}
 			// removing old end
 			if(request.getOldRelationshipEnd() instanceof OccurrenceSpecification) {
-				ExecutionSpecificationEndHelper.removeConnectionSourceFromExecutionSpecificationEnd((OccurrenceSpecification) request.getOldRelationshipEnd(), request.getReferenceOwner());
+				ExecutionSpecificationEndHelper.removeConnectionSourceFromExecutionSpecificationEnd((OccurrenceSpecification)request.getOldRelationshipEnd(), request.getReferenceOwner());
 				// update uml model reference
 				if(request.getReferenceOwner() instanceof Constraint) {
-					((Constraint)request.getReferenceOwner()).getConstrainedElements().remove((OccurrenceSpecification) request.getOldRelationshipEnd());
-				}else if(request.getReferenceOwner() instanceof Comment) {
-					((Comment) request.getReferenceOwner()).getAnnotatedElements().remove( (OccurrenceSpecification)  request.getOldRelationshipEnd());
+					((Constraint)request.getReferenceOwner()).getConstrainedElements().remove(request.getOldRelationshipEnd());
+				} else if(request.getReferenceOwner() instanceof Comment) {
+					((Comment)request.getReferenceOwner()).getAnnotatedElements().remove(request.getOldRelationshipEnd());
 				}
 			}
 			return CommandResult.newOKCommandResult();
 		}
 	}
-	
-	static class ExecutionSpecificationEndSemanticEditPolicy extends SemanticEditPolicy{
-		
-		protected Command getSemanticCommand(
-				final IEditCommandRequest request) {
-			if (request instanceof CreateRelationshipRequest) {
-				return getCreateRelationshipCommand((CreateRelationshipRequest) request);
-			}
-			else if( request instanceof ReorientReferenceRelationshipRequest) {
-				return  getGEFWrapper(new ReorientExecutionSpecificationEndCommand((ReorientReferenceRelationshipRequest) request ) ) ;
+
+	static class ExecutionSpecificationEndSemanticEditPolicy extends SemanticEditPolicy {
+
+		@Override
+		protected Command getSemanticCommand(final IEditCommandRequest request) {
+			if(request instanceof CreateRelationshipRequest) {
+				return getCreateRelationshipCommand((CreateRelationshipRequest)request);
+			} else if(request instanceof ReorientReferenceRelationshipRequest) {
+				return getGEFWrapper(new ReorientExecutionSpecificationEndCommand((ReorientReferenceRelationshipRequest)request));
 			}
 			Command cmd = super.getSemanticCommand(request);
 			return cmd;
 		}
 
-		protected Command getStartCreateRelationshipCommand(
-				CreateRelationshipRequest req) {
-			if (UMLElementTypes.ConstraintConstrainedElement_4011 == req
-					.getElementType()) {
-				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(
-						req, req.getSource(), req.getTarget()));
+		protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+			if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
 			}
 			return null;
 		}
 
-		protected Command getCompleteCreateRelationshipCommand(
-				CreateRelationshipRequest req) {
-			if (UMLElementTypes.ConstraintConstrainedElement_4011 == req
-					.getElementType()) {
-				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(
-						req, req.getSource(), req.getTarget()));
-			}else if(UMLElementTypes.CommentAnnotatedElement_4010 == req
-					.getElementType()) {
+		protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+			if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
+			} else if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
 				return getGEFWrapper(new CommentAnnotatedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
 			}
 			return null;
 		}
 
-		protected Command getCreateRelationshipCommand(
-				CreateRelationshipRequest req) {
-			Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-					: getCompleteCreateRelationshipCommand(req);
+		protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+			Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 			return command;
 		}
 
@@ -339,62 +353,57 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			return new ICommandProxy(cmd);
 		}
 	}
-	
-	public static class  ExecutionSpecificationEndHelper{
-		public static void removeConnectionSourceFromExecutionSpecificationEnd(OccurrenceSpecification executionOccurrence , EObject connectionSource) {
-			EAnnotation annotation = executionOccurrence
-					.getEAnnotation("Connections");
-			if (annotation != null) {
-				 annotation.getReferences().remove( connectionSource);
+
+	public static class ExecutionSpecificationEndHelper {
+
+		public static void removeConnectionSourceFromExecutionSpecificationEnd(OccurrenceSpecification executionOccurrence, EObject connectionSource) {
+			EAnnotation annotation = executionOccurrence.getEAnnotation("Connections");
+			if(annotation != null) {
+				annotation.getReferences().remove(connectionSource);
 			}
 		}
-		
-		public static void addConnectionSourceToExecutionSpecificationEnd(OccurrenceSpecification executionOccurrence,EObject connectionSource)  {
-			EAnnotation annotation = executionOccurrence
-					.getEAnnotation("Connections");
-			if (annotation == null) {
+
+		public static void addConnectionSourceToExecutionSpecificationEnd(OccurrenceSpecification executionOccurrence, EObject connectionSource) {
+			EAnnotation annotation = executionOccurrence.getEAnnotation("Connections");
+			if(annotation == null) {
 				annotation = EcoreFactory.eINSTANCE.createEAnnotation();
 				annotation.setSource("Connections"); //$NON-NLS-1$
 				executionOccurrence.getEAnnotations().add(annotation);
 			}
-			if( !annotation.getReferences().contains( connectionSource) )
+			if(!annotation.getReferences().contains(connectionSource)) {
 				annotation.getReferences().add(connectionSource);
-		}
-	}
-	
-	static class CommentAnnotatedElementCreateCommandEx extends CommentAnnotatedElementCreateCommand{
-
-		public CommentAnnotatedElementCreateCommandEx(
-				CreateRelationshipRequest request, EObject source,
-				EObject target) {
-			super(request, source, target);
-		}
-		
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			CommandResult res = super.doExecuteWithResult(monitor, info);
-			if (getTarget() instanceof OccurrenceSpecification) {
-				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification) getTarget(), getSource());
 			}
-			return res;	 
-		}	
+		}
 	}
-	
-	static class ConstraintConstrainedElementCreateCommandEx extends
-			ConstraintConstrainedElementCreateCommand {
 
-		public ConstraintConstrainedElementCreateCommandEx(
-				CreateRelationshipRequest request, EObject source,
-				EObject target) {
+	static class CommentAnnotatedElementCreateCommandEx extends CommentAnnotatedElementCreateCommand {
+
+		public CommentAnnotatedElementCreateCommandEx(CreateRelationshipRequest request, EObject source, EObject target) {
 			super(request, source, target);
 		}
 
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			CommandResult res = super.doExecuteWithResult(monitor, info);
+			if(getTarget() instanceof OccurrenceSpecification) {
+				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification)getTarget(), getSource());
+			}
+			return res;
+		}
+	}
+
+	static class ConstraintConstrainedElementCreateCommandEx extends ConstraintConstrainedElementCreateCommand {
+
+		public ConstraintConstrainedElementCreateCommandEx(CreateRelationshipRequest request, EObject source, EObject target) {
+			super(request, source, target);
+		}
+
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			CommandResult res = super.doExecuteWithResult(monitor, info);
-			if (getTarget() instanceof OccurrenceSpecification) {
-				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification) getTarget(), getSource());
+			if(getTarget() instanceof OccurrenceSpecification) {
+				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification)getTarget(), getSource());
 			}
 			return res;
 		}
@@ -403,55 +412,50 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 	public Locator getLocator() {
 		return locator;
 	}
-	
+
+	@Override
 	protected IFigure createFigure() {
 		IFigure fig = new ExecutionSpecificationEndFigure();
-		fig.setForegroundColor(ColorConstants.black);  
-//		Rectangle b = fig.getBounds();
-//		final ExecutionOccurrenceSpecification model = (ExecutionOccurrenceSpecification) this.resolveSemanticElement();
-//		Label tooltip = new Label();
-//		tooltip.setText(model.getName());
-//		fig.setToolTip(tooltip);
+		fig.setForegroundColor(ColorConstants.black);
+		//		Rectangle b = fig.getBounds();
+		//		final ExecutionOccurrenceSpecification model = (ExecutionOccurrenceSpecification) this.resolveSemanticElement();
+		//		Label tooltip = new Label();
+		//		tooltip.setText(model.getName());
+		//		fig.setToolTip(tooltip);
 
 		fig.setOpaque(false);
 		return fig;
 	}
 
+	@Override
 	public boolean hasNotationView() {
 		return true;
 	}
 
-	public ConnectionAnchor getSourceConnectionAnchor(
-			ConnectionEditPart connection) {
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
 		return null;
 	}
-	
-	public ConnectionAnchor getTargetConnectionAnchor(
-			ConnectionEditPart connEditPart) {
-		final ConnectionNodeEditPart connection = (ConnectionNodeEditPart) connEditPart;
+
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		final ConnectionNodeEditPart connection = (ConnectionNodeEditPart)connEditPart;
 		String t = ""; //$NON-NLS-1$
 		try {
-			t = (String) getEditingDomain().runExclusive(
-					new RunnableWithResult.Impl() {
+			t = (String)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
 
-						public void run() {
-							Anchor a = ((Edge) connection.getModel())
-									.getTargetAnchor();
-							if (a instanceof IdentityAnchor)
-								setResult(((IdentityAnchor) a).getId());
-							else
-								setResult(""); //$NON-NLS-1$
-						}
-					});
+				public void run() {
+					Anchor a = ((Edge)connection.getModel()).getTargetAnchor();
+					if(a instanceof IdentityAnchor) {
+						setResult(((IdentityAnchor)a).getId());
+					} else {
+						setResult(""); //$NON-NLS-1$
+					}
+				}
+			});
 		} catch (InterruptedException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(),
-					DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-					"getTargetConnectionAnchor", e); //$NON-NLS-1$
-			Log.error(DiagramUIPlugin.getInstance(),
-					DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"getTargetConnectionAnchor", e); //$NON-NLS-1$
+			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "getTargetConnectionAnchor", e); //$NON-NLS-1$
+			Log.error(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "getTargetConnectionAnchor", e); //$NON-NLS-1$
 		}
-		IAnchorableFigure fig = ((IAnchorableFigure) getFigure());
+		IAnchorableFigure fig = ((IAnchorableFigure)getFigure());
 		ConnectionAnchor a = fig.getConnectionAnchor(t);
 		return a;
 	}
@@ -459,13 +463,11 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
 		Point center = getFigure().getBounds().getCenter();
 		getFigure().translateToAbsolute(center);
-		Point pt = ((DropRequest) request).getLocation() == null ? center
-				: new Point(((DropRequest) request).getLocation());
-		if (request instanceof CreateRequest) {
+		Point pt = ((DropRequest)request).getLocation() == null ? center : new Point(((DropRequest)request).getLocation());
+		if(request instanceof CreateRequest) {
 			getFigure().translateToRelative(pt);
 		}
-		ConnectionAnchor a = ((IAnchorableFigure) getFigure())
-				.getTargetConnectionAnchorAt(pt);
+		ConnectionAnchor a = ((IAnchorableFigure)getFigure()).getTargetConnectionAnchorAt(pt);
 		return a;
 	}
 
@@ -478,50 +480,50 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 	}
 
 	public String mapConnectionAnchorToTerminal(ConnectionAnchor c) {
-		return ((IAnchorableFigure) getFigure()).getConnectionAnchorTerminal(c);
+		return ((IAnchorableFigure)getFigure()).getConnectionAnchorTerminal(c);
 	}
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart#mapTerminalToConnectionAnchor(String)
 	 */
 	public ConnectionAnchor mapTerminalToConnectionAnchor(String terminal) {
-		return ((IAnchorableFigure) getFigure()).getConnectionAnchor(terminal);
+		return ((IAnchorableFigure)getFigure()).getConnectionAnchor(terminal);
 	}
 
+	@Override
 	protected List getModelSourceConnections() {
-		return ViewUtil
-				.getSourceConnectionsConnectingVisibleViews((View) getModel());
+		return ViewUtil.getSourceConnectionsConnectingVisibleViews((View)getModel());
 	}
 
+	@Override
 	protected List getModelTargetConnections() {
-		List list = ViewUtil
-				.getTargetConnectionsConnectingVisibleViews((View) getModel());
+		List list = ViewUtil.getTargetConnectionsConnectingVisibleViews((View)getModel());
 		return list;
 	}
-	
+
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		EditPart targetEditPart = super.getTargetEditPart(request);
 		if(AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END.equals(request.getType()) || AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_REORIENT_END.equals(request.getType())) {
 			return targetEditPart;
 		}
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest){
-			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
-			if(types.contains(UMLElementTypes.CommentAnnotatedElement_4010) || types.contains(UMLElementTypes.ConstraintConstrainedElement_4011)){
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			List types = ((CreateUnspecifiedTypeConnectionRequest)request).getElementTypes();
+			if(types.contains(UMLElementTypes.CommentAnnotatedElement_4010) || types.contains(UMLElementTypes.ConstraintConstrainedElement_4011)) {
 				return targetEditPart;
 			}
-		}else if(request instanceof ReconnectRequest){
+		} else if(request instanceof ReconnectRequest) {
 			ConnectionEditPart con = ((ReconnectRequest)request).getConnectionEditPart();
-			if(con instanceof CommentAnnotatedElementEditPart || con instanceof ConstraintConstrainedElementEditPart){
+			if(con instanceof CommentAnnotatedElementEditPart || con instanceof ConstraintConstrainedElementEditPart) {
 				return targetEditPart;
 			}
 		}
-		if (RequestConstants.REQ_SELECTION == request.getType() && isSelectable()){
+		if(RequestConstants.REQ_SELECTION == request.getType() && isSelectable()) {
 			return this;
 		}
 		return getParent().getTargetEditPart(request);
 	}
-	
+
 	static class ExecutionSpecificationEndAnchor extends SlidableOvalAnchor {
 
 		public ExecutionSpecificationEndAnchor(CircleFigure circleFigure, PrecisionPoint p) {
@@ -532,12 +534,14 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			super(circleFigure);
 		}
 
+		@Override
 		public Point getLocation(Point reference) {
-			return getBox().getCenter();    
+			return getBox().getCenter();
 		}
 	}
 
 	class ExecutionSpecificationEndFigure extends CircleFigure {
+
 		ExecutionSpecificationEndFigure() {
 			super(DEFAULT_SIZE, DEFAULT_SIZE);
 		}
@@ -552,16 +556,20 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			//g.drawOval(r);
 		}
 
+		@Override
 		protected ConnectionAnchor createAnchor(PrecisionPoint p) {
-			if (p == null)
+			if(p == null) {
 				return createDefaultAnchor();
+			}
 			return new ExecutionSpecificationEndAnchor(this, p);
 		}
 
+		@Override
 		protected ConnectionAnchor createDefaultAnchor() {
 			return new ExecutionSpecificationEndAnchor(this);
 		}
 
+		@Override
 		public ConnectionAnchor getTargetConnectionAnchorAt(Point p) {
 			try {
 				return super.getTargetConnectionAnchorAt(p);
@@ -569,11 +577,11 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 				return null;
 			}
 		};
-		
+
 		@Override
 		public void validate() {
-			locator.relocate(this);  //place figure at north or south, ignore layout manager
+			locator.relocate(this); //place figure at north or south, ignore layout manager
 			super.validate();
 		}
-	}	
+	}
 }

@@ -44,6 +44,7 @@ public class TestLifelineAlignment_364688 extends TestLink {
 
 	private static final String ALIGNMENT = "Alignment: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

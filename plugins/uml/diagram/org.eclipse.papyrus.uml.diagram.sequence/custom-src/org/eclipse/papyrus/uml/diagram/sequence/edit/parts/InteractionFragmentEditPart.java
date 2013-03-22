@@ -189,15 +189,15 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 			}
 		}
 	}
-	
+
 	/**
 	 * Find parent editpart of lifeline
+	 * 
 	 * @return EditPart
 	 */
 	public EditPart getInteractionCompartment() {
 		EditPart editPart = getParent();
-		while (editPart != null
-				&& !(editPart instanceof InteractionInteractionCompartmentEditPart)) {
+		while(editPart != null && !(editPart instanceof InteractionInteractionCompartmentEditPart)) {
 			editPart = editPart.getParent();
 		}
 		return editPart;

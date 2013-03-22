@@ -48,7 +48,7 @@ public interface SequenceRequestConstant {
 
 	/** The location of the connection start creation request */
 	public static final String SOURCE_LOCATION_DATA = "Location of connection source point"; //$NON-NLS-1$
-	
+
 	/** update connectable element reference */
 	public static final String CONNECTABLE_ELEMENT = "Connectable Element"; //$NON-NLS-1$
 }

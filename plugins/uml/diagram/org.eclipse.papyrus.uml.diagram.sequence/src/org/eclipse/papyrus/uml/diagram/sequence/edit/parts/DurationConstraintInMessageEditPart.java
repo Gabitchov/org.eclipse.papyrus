@@ -132,7 +132,6 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 		} else {
 			getFigure().getParent().setConstraint(getFigure(), new LabelLocator(getFigure().getParent(), offset, ConnectionLocator.MIDDLE));
 		}
-
 	}
 
 	/**
@@ -188,7 +187,6 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 			((DurationConstraintInMessageLabelEditPart)childEditPart).setLabel(getPrimaryShape().getDurationLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -256,7 +254,6 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1174,15 +1171,10 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 		 * @generated
 		 */
 		public DurationObservationConstraint() {
-
 			this.setTextWrap(true);
-
 			this.setTextJustification(PositionConstants.CENTER);
-
 			this.setForegroundColor(ColorConstants.black);
-
 			this.setFont(THIS_FONT);
-
 		}
 
 		/**
@@ -1192,7 +1184,6 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 			// use this for label
 			return this;
 		}
-
 	}
 
 	/**
@@ -1207,7 +1198,6 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1227,11 +1217,9 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
 	}
-
 }

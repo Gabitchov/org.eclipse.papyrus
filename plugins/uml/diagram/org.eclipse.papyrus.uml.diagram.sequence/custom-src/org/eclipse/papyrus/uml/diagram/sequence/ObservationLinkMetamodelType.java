@@ -11,15 +11,14 @@ public class ObservationLinkMetamodelType extends MetamodelType {
 	public static final String ID = "org.eclipse.papyrus.uml.diagram.sequence.emf.type.core.observationlink"; //$NON-NLS-1$
 
 	private static final ObservationLinkMetamodelType INSTANCE = new ObservationLinkMetamodelType();
-	private static final MetamodelTypeDescriptor DESCRIPTOR_INSTANCE = new MetamodelTypeDescriptor(
-			INSTANCE);
+
+	private static final MetamodelTypeDescriptor DESCRIPTOR_INSTANCE = new MetamodelTypeDescriptor(INSTANCE);
 
 	/**
 	 * Initializes me.
 	 */
 	private ObservationLinkMetamodelType() {
-		super(ID, null, EMFTypeCoreMessages.defaultEditHelper_name,
-				EcorePackage.Literals.EOBJECT, new DefaultEditHelper());
+		super(ID, null, EMFTypeCoreMessages.defaultEditHelper_name, EcorePackage.Literals.EOBJECT, new DefaultEditHelper());
 	}
 
 	public static ObservationLinkMetamodelType getInstance() {
@@ -31,6 +30,7 @@ public class ObservationLinkMetamodelType extends MetamodelType {
 	}
 
 	private static class DefaultEditHelper extends AbstractEditHelper {
+
 		DefaultEditHelper() {
 			super();
 		}

@@ -75,7 +75,6 @@ public class InteractionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,20 +89,15 @@ public class InteractionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated-NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Interaction newElement = UMLFactory.eINSTANCE.createInteraction();
-
 		EObject elementToEdit = getElementToEdit();
-
 		if(elementToEdit instanceof Package) {
 			if(((Package)elementToEdit).getPackagedElements() != null) {
 				((Package)elementToEdit).getPackagedElements().add(newElement);
@@ -112,11 +106,8 @@ public class InteractionCreateCommand extends EditElementCommand {
 		} else if(elementToEdit instanceof BehavioredClassifier) {
 			((BehavioredClassifier)elementToEdit).setClassifierBehavior(newElement);
 		}
-
 		ElementInitializers.getInstance().init_Interaction_2001(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -134,5 +125,4 @@ public class InteractionCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

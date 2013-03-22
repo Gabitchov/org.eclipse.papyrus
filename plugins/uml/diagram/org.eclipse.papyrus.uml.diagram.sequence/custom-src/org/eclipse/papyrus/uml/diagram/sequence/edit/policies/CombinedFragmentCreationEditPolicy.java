@@ -55,54 +55,52 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost(), null);
 
 			request.getExtendedData().put(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS, coveredInteractionFragments);
-			
+
 			// Add updating bounds command for Combined fragment createment
 			String hint = request.getViewAndElementDescriptor().getSemanticHint();
-			if(OperandBoundsComputeHelper.isDerivedCombinedFragment(hint)){
-				if (createElementAndViewCmd instanceof ICommandProxy) {
-					ICommandProxy commandProxy = (ICommandProxy) createElementAndViewCmd;
+			if(OperandBoundsComputeHelper.isDerivedCombinedFragment(hint)) {
+				if(createElementAndViewCmd instanceof ICommandProxy) {
+					ICommandProxy commandProxy = (ICommandProxy)createElementAndViewCmd;
 					ICommand realCmd = commandProxy.getICommand();
-					if (realCmd instanceof CompositeCommand) {
-						ICommand createUpdateBoundsCmd = OperandBoundsComputeHelper.createUpdateCFAndIOBoundsForCFCreationCommand(this.getHost(),request);
-						if (createUpdateBoundsCmd != null)
-							((CompositeCommand) realCmd)
-									.add(createUpdateBoundsCmd);
+					if(realCmd instanceof CompositeCommand) {
+						ICommand createUpdateBoundsCmd = OperandBoundsComputeHelper.createUpdateCFAndIOBoundsForCFCreationCommand(this.getHost(), request);
+						if(createUpdateBoundsCmd != null)
+							((CompositeCommand)realCmd).add(createUpdateBoundsCmd);
 					}
 				}
 			}
 		}
 		return createElementAndViewCmd;
 	}
-	
+
 	@Override
 	protected Command getCreateCommand(CreateViewRequest request) {
 		Command createViewCmd = super.getCreateCommand(request);
-		if (createViewCmd instanceof ICommandProxy) {
-			ICommandProxy commandProxy = (ICommandProxy) createViewCmd;
+		if(createViewCmd instanceof ICommandProxy) {
+			ICommandProxy commandProxy = (ICommandProxy)createViewCmd;
 			CompositeCommand compositeCommand = null;
 			ICommand realCmd = commandProxy.getICommand();
-			if (realCmd instanceof CompositeCommand) {
-				compositeCommand = (CompositeCommand) realCmd;
+			if(realCmd instanceof CompositeCommand) {
+				compositeCommand = (CompositeCommand)realCmd;
 			} else {
 				compositeCommand = new CompositeCommand(commandProxy.getLabel());
 				compositeCommand.add(realCmd);
 				realCmd = compositeCommand;
 			}
-			for (ViewDescriptor viewDescriptor : request.getViewDescriptors()) {
+			for(ViewDescriptor viewDescriptor : request.getViewDescriptors()) {
 				String hint = viewDescriptor.getSemanticHint();
 				if(isDerivedCombinedFragment(hint)) {
 					// Add updating bounds command for Combined fragment createment
-					if(OperandBoundsComputeHelper.isDerivedCombinedFragment(hint)){
+					if(OperandBoundsComputeHelper.isDerivedCombinedFragment(hint)) {
 						ICommand createUpdateBoundsCmd = OperandBoundsComputeHelper.createUpdateCFAndIOBoundsForCFCreationCommand(this.getHost(), request);
-						if (createUpdateBoundsCmd != null)
-							((CompositeCommand) realCmd)
-									.add(createUpdateBoundsCmd);
+						if(createUpdateBoundsCmd != null)
+							((CompositeCommand)realCmd).add(createUpdateBoundsCmd);
 					}
 				}
 			}
-			
+
 			createViewCmd = new ICommandProxy(compositeCommand.reduce());
-		} 
+		}
 		return createViewCmd;
 	}
 

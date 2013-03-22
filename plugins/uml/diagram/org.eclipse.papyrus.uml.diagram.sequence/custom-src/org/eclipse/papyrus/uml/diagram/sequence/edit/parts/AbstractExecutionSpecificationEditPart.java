@@ -38,7 +38,7 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
-import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
@@ -69,8 +69,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		executionSpecificationEndParts = new ArrayList();
 
 		EObject element = this.resolveSemanticElement();
-		if(!(element instanceof ExecutionSpecification))
+		if(!(element instanceof ExecutionSpecification)) {
 			return;
+		}
 		ExecutionSpecification execution = (ExecutionSpecification)element;
 		final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
 		executionSpecificationEndParts.add(startPart);
@@ -164,14 +165,16 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				rect.translate(request.getMoveDelta());
 				rect.resize(request.getSizeDelta());
 
-				if(min.width > rect.width)
+				if(min.width > rect.width) {
 					rect.width = min.width;
-				else if(max.width < rect.width)
+				} else if(max.width < rect.width) {
 					rect.width = max.width;
-				if(min.height > rect.height)
+				}
+				if(min.height > rect.height) {
 					rect.height = min.height;
-				else if(max.height < rect.height)
+				} else if(max.height < rect.height) {
 					rect.height = max.height;
+				}
 
 				if(rect.height == min.height && request.getSizeDelta().height < 0 && request.getMoveDelta().y > 0) { //shrink at north
 					Point loc = rect.getLocation();
@@ -195,6 +198,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				feedback.setBounds(rect);
 			}
 
+			@Override
 			protected void eraseChangeBoundsFeedback(ChangeBoundsRequest request) {
 				super.eraseChangeBoundsFeedback(request);
 				HighlightUtil.unhighlight();
@@ -210,7 +214,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	}
 
 	protected final void refreshShadow() {
-		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
+		getPrimaryShape().setShadow(AppearanceHelper.showShadow((View)getModel()));
 	}
 
 	/**
@@ -242,13 +246,14 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		IPapyrusNodeFigure fig = getPrimaryShape();
 		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if(gradient != null) {
-			fig.setIsUsingGradient(true);;
+			fig.setIsUsingGradient(true);
 			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
 		} else {
 			fig.setIsUsingGradient(false);
 		}
 	}
 
+	@Override
 	public boolean supportsGradient() {
 		return true;
 	}
@@ -286,28 +291,37 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
 		}
 
+		@Override
 		public IFigure findMouseEventTargetAt(int x, int y) {
 			// check children first instead of self
 			IFigure f = findMouseEventTargetInDescendantsAt(x, y);
-			if(f != null)
+			if(f != null) {
 				return f;
-			if(!containsPoint(x, y))
+			}
+			if(!containsPoint(x, y)) {
 				return null;
-			if(isMouseEventTarget())
+			}
+			if(isMouseEventTarget()) {
 				return this;
+			}
 			return null;
 		}
 
+		@Override
 		public IFigure findFigureAt(int x, int y, TreeSearch search) {
-			if(search.prune(this))
+			if(search.prune(this)) {
 				return null;
+			}
 			IFigure child = findDescendantAtExcluding(x, y, search);
-			if(child != null)
+			if(child != null) {
 				return child;
-			if(!containsPoint(x, y))
+			}
+			if(!containsPoint(x, y)) {
 				return null;
-			if(search.accept(this))
+			}
+			if(search.accept(this)) {
 				return this;
+			}
 			return null;
 		}
 	}
@@ -346,11 +360,12 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 
 				// check again to see if the new bar location overlaps with existing bars
 				ShapeNodeEditPart part = LifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-				if(part == parentBar) // if parent bar is the same, there will be no overlapping 
+				if(part == parentBar) {
 					break;
-				else
+				} else {
 					// if overlaps, go on moving the bar to next x position
 					parentBar = part;
+				}
 			}
 		}
 		return parentBar;
@@ -408,6 +423,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	/**
 	 * Add connection on top off the figure during the feedback.
 	 */
+	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
@@ -416,7 +432,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				if(UMLElementTypes.Message_4003.equals(obj)) {
 					// Sync Message
 					if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
-						return new AnchorHelper.FixedAnchorEx(getFigure(),  PositionConstants.TOP);
+						return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 					}
 					// otherwise, this is a recursive call, let destination free
 				}
@@ -444,7 +460,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
 		if(connEditPart instanceof MessageEditPart) {
 			// Sync Message
-			return new AnchorHelper.FixedAnchorEx(getFigure(),  PositionConstants.TOP);
+			return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 		}
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
@@ -495,6 +511,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 		return super.getSourceConnectionAnchor(connEditPart);
 	}
 
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshTransparency();

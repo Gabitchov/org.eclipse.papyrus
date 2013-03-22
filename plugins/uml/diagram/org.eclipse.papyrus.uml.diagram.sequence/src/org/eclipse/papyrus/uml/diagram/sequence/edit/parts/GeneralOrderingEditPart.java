@@ -27,9 +27,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class GeneralOrderingEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -101,7 +99,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new GeneralOrderingDescriptor();
 	}
@@ -138,10 +135,8 @@ implements ITreeBranchEditPart {
 			super();
 			// create super contents
 			createContents();
-
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
-
 			// set the middle decoration
 			setMiddleDecoration(createTargetDecoration());
 		}
@@ -194,11 +189,11 @@ implements ITreeBranchEditPart {
 				getMiddleDecoration().setBackgroundColor(fg);
 			}
 		}
-		
+
 		@Override
 		public void setLineWidth(int w) {
 			super.setLineWidth(w);
-			if(getMiddleDecoration() instanceof Shape){
+			if(getMiddleDecoration() instanceof Shape) {
 				((Shape)getMiddleDecoration()).setLineWidth(w);
 			}
 		}
@@ -240,9 +235,8 @@ implements ITreeBranchEditPart {
 				});
 			}
 		}
-
 	}
-	
+
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
@@ -251,7 +245,7 @@ implements ITreeBranchEditPart {
 			refreshLineWidth();
 		}
 	}
-	
+
 	protected void setLineWidth(int width) {
 		getPrimaryShape().setLineWidth(width);
 	}

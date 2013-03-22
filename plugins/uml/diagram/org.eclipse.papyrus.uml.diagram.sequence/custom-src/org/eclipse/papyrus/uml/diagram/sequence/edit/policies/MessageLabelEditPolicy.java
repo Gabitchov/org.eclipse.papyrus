@@ -46,13 +46,13 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 
 public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
-	
-	public static interface ICustomMessageLabel{
-		
+
+	public static interface ICustomMessageLabel {
+
 	}
 
 	private DefaultValueListener defaultValueListener;
-	
+
 	/**
 	 * Refreshes the display of the edit part
 	 */
@@ -61,12 +61,13 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// calls the helper for this edit Part
 		ConnectionEditPart lp = (ConnectionEditPart)getHost();
 		List children = lp.getChildren();
-		for(Object p : children)
-			if(p instanceof ICustomMessageLabel){
+		for(Object p : children) {
+			if(p instanceof ICustomMessageLabel) {
 				MessageLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)p);
 			}
+		}
 	}
-	
+
 	public int getCurrentDisplayValue() {
 		EAnnotation customeDisplayAnnotation = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
@@ -102,18 +103,19 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	public Collection<Integer> getMaskValues() {
 		return MessageLabelHelper.getInstance().getMaskValues();
 	}
-	
+
 	public String getPreferencePageID() {
 		return "org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage";
 	}
-	
+
 	@Override
 	public Message getUMLElement() {
-		if(hostSemanticElement instanceof Message)
+		if(hostSemanticElement instanceof Message) {
 			return ((Message)hostSemanticElement);
+		}
 		return null;
 	}
-	
+
 	@Override
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
@@ -124,42 +126,43 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 		hookMessageSignature(e.getSignature());
-		
+
 		EList<ValueSpecification> argments = e.getArguments();
-		for(ValueSpecification v : argments)
+		for(ValueSpecification v : argments) {
 			if(v instanceof EObject) {
-				getDiagramEventBroker().addNotificationListener((EObject)v, this);
+				getDiagramEventBroker().addNotificationListener(v, this);
 			}
+		}
 	}
 
 	private void hookMessageSignature(NamedElement sig) {
-		if (sig == null){
+		if(sig == null) {
 			return;
 		}
-		if(sig instanceof Operation){
-			Operation operation = (Operation)sig;	
+		if(sig instanceof Operation) {
+			Operation operation = (Operation)sig;
 			getDiagramEventBroker().addNotificationListener(operation, this);
 			// adds a listener to the element itself, and to linked elements, like Type
 			for(Parameter parameter : operation.getOwnedParameters()) {
 				getDiagramEventBroker().addNotificationListener(parameter, this);
 				getDiagramEventBroker().addNotificationListener(parameter.getDefaultValue(), defaultValueListener);
-				
+
 				// should also add this element as a listener of parameter type
 				getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
 			}
-		}else if(sig instanceof Signal){
+		} else if(sig instanceof Signal) {
 			Signal signal = (Signal)sig;
 			getDiagramEventBroker().addNotificationListener(signal, this);
 			for(Property property : signal.getOwnedAttributes()) {
 				getDiagramEventBroker().addNotificationListener(property, this);
 				getDiagramEventBroker().addNotificationListener(property.getDefaultValue(), defaultValueListener);
-				
+
 				// should also add this element as a listener of parameter type
 				getDiagramEventBroker().addNotificationListener(property.getType(), this);
 			}
 		}
 	}
-	
+
 	@Override
 	protected void removeAdditionalListeners() {
 		super.removeAdditionalListeners();
@@ -169,41 +172,42 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 		unhookMessageSignature(e.getSignature());
-		
+
 		EList<ValueSpecification> argments = e.getArguments();
-		for(ValueSpecification v : argments)
+		for(ValueSpecification v : argments) {
 			if(v instanceof EObject) {
-				getDiagramEventBroker().removeNotificationListener((EObject)v, this);
+				getDiagramEventBroker().removeNotificationListener(v, this);
 			}
+		}
 	}
 
 	private void unhookMessageSignature(NamedElement sig) {
-		if (sig == null){
+		if(sig == null) {
 			return;
 		}
-		if(sig instanceof Operation){
-			Operation operation = (Operation)sig;	
+		if(sig instanceof Operation) {
+			Operation operation = (Operation)sig;
 			getDiagramEventBroker().removeNotificationListener(operation, this);
 			for(Parameter parameter : operation.getOwnedParameters()) {
 				getDiagramEventBroker().removeNotificationListener(parameter, this);
 				getDiagramEventBroker().removeNotificationListener(parameter.getDefaultValue(), defaultValueListener);
-				
+
 				// remove parameter type listener
 				getDiagramEventBroker().removeNotificationListener(parameter.getType(), this);
 			}
-		}else if(sig instanceof Signal){
+		} else if(sig instanceof Signal) {
 			Signal signal = (Signal)sig;
 			getDiagramEventBroker().removeNotificationListener(signal, this);
 			for(Property property : signal.getOwnedAttributes()) {
 				getDiagramEventBroker().removeNotificationListener(property, this);
 				getDiagramEventBroker().removeNotificationListener(property.getDefaultValue(), defaultValueListener);
-				
+
 				// remove parameter type listener
 				getDiagramEventBroker().removeNotificationListener(property.getType(), this);
 			}
 		}
 	}
-	
+
 	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
@@ -213,18 +217,18 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(e == null) {
 			return;
 		}
-		if(UMLPackage.Literals.MESSAGE__ARGUMENT.equals( notification.getFeature())){
+		if(UMLPackage.Literals.MESSAGE__ARGUMENT.equals(notification.getFeature())) {
 			parameterListChange(notification);
 			return;
-		}else if(e.getArguments().contains(object)){
+		} else if(e.getArguments().contains(object)) {
 			refreshDisplay();
 			return;
 		}
-		
+
 		NamedElement sig = e.getSignature();
-		if(sig instanceof Operation){
-			Operation operation = (Operation)sig;	
-	 
+		if(sig instanceof Operation) {
+			Operation operation = (Operation)sig;
+
 			if(object.equals(operation)) {
 				notifyOperationChanged(operation, notification);
 			} else if(isParameter(object, operation)) {
@@ -232,31 +236,31 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			} else if(isParameterType(object, operation)) {
 				notifyTypeChanged(notification);
 			}
-		}else if(sig instanceof Signal){
+		} else if(sig instanceof Signal) {
 			Signal signal = (Signal)sig;
 			if(object.equals(signal)) {
 				notifySignalChanged(signal, notification);
-			}else if(isProperty(object, signal)) {
+			} else if(isProperty(object, signal)) {
 				notifyPropertyChanged(notification);
-			}else if(isPropertyType(object, signal)) {
+			} else if(isPropertyType(object, signal)) {
 				notifyTypeChanged(notification);
-			}else if(object instanceof ValueSpecification){
+			} else if(object instanceof ValueSpecification) {
 				Element own = ((ValueSpecification)object).getOwner();
-				if(isProperty(own, signal)){
-					refreshDisplay();  // may be default value
+				if(isProperty(own, signal)) {
+					refreshDisplay(); // may be default value
 				}
 			}
 		}
 
-		if(isMaskManagedAnnotation(object) ){
+		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
-		}else if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
+		} else if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
-		}else if(sig == null && object instanceof Message && notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())){
+		} else if(sig == null && object instanceof Message && notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 			refreshDisplay();
 		}
 		//Try to update label when signature of message changed.
-		else if (UMLPackage.eINSTANCE.getMessage_Signature() == notification.getFeature()){
+		else if(UMLPackage.eINSTANCE.getMessage_Signature() == notification.getFeature()) {
 			Object oldValue = notification.getOldValue();
 			if(oldValue instanceof NamedElement) {
 				unhookMessageSignature((NamedElement)oldValue);
@@ -268,8 +272,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 		}
 	}
-	
-	class DefaultValueListener implements NotificationListener{
+
+	class DefaultValueListener implements NotificationListener {
 
 		public void notifyChanged(Notification notification) {
 			refreshDisplay();
@@ -279,10 +283,12 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	private void notifyPropertyChanged(Notification notification) {
 		switch(notification.getFeatureID(Property.class)) {
 		case UMLPackage.PROPERTY__DEFAULT_VALUE: // set or unset default value		
-			if(notification.getOldValue() instanceof EObject)
+			if(notification.getOldValue() instanceof EObject) {
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), defaultValueListener);
-			if(notification.getNewValue() instanceof EObject)
+			}
+			if(notification.getNewValue() instanceof EObject) {
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), defaultValueListener);
+			}
 			refreshDisplay();
 			break;
 		case UMLPackage.PROPERTY__NAME:
@@ -314,10 +320,12 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	protected void notifyParameterChanged(Notification notification) {
 		switch(notification.getFeatureID(Parameter.class)) {
 		case UMLPackage.PARAMETER__DEFAULT_VALUE:
-			if(notification.getOldValue() instanceof EObject)
+			if(notification.getOldValue() instanceof EObject) {
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), defaultValueListener);
-			if(notification.getNewValue() instanceof EObject)
+			}
+			if(notification.getNewValue() instanceof EObject) {
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), defaultValueListener);
+			}
 			refreshDisplay();
 			break;
 		case UMLPackage.PARAMETER__NAME:
@@ -348,7 +356,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			// if it is removed => removes listener from the type element
 			break;
-		case Notification.ADD_MANY: 
+		case Notification.ADD_MANY:
 			if(notification.getNewValue() instanceof List<?>) {
 				List<?> addedElements = (List<?>)notification.getNewValue();
 				for(Object addedElement : addedElements) {
@@ -363,7 +371,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 			refreshDisplay();
 			break;
-		case Notification.REMOVE_MANY: 
+		case Notification.REMOVE_MANY:
 			if(notification.getOldValue() instanceof List<?>) {
 				List<?> removedElements = (List<?>)notification.getOldValue();
 				for(Object removedElement : removedElements) {
@@ -441,7 +449,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			break;
 		}
 	}
-	
+
 
 	private void notifySignalChanged(Signal signal, Notification notification) {
 		switch(notification.getFeatureID(Signal.class)) {
@@ -463,7 +471,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * 
 	 * @param object
 	 *        the object to test
-	 * @param operation 
+	 * @param operation
 	 * @return <code>true</code> if the object corresponds to the type of a parameter of the
 	 *         operation
 	 */
@@ -485,7 +493,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * 
 	 * @param object
 	 *        the object to test
-	 * @param operation 
+	 * @param operation
 	 * @return <code>true</code> if the object is a parameter of the operation
 	 */
 	protected boolean isParameter(Object object, Operation operation) {
@@ -495,13 +503,13 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 		return operation.getOwnedParameters().contains(object);
 	}
-	
+
 	private boolean isPropertyType(Object object, Signal signal) {
 		if(!(object instanceof Type)) {
 			return false;
 		}
 
-		for(Property property :signal.getOwnedAttributes()) {
+		for(Property property : signal.getOwnedAttributes()) {
 			if(object.equals(property.getType())) {
 				return true;
 			}
@@ -517,18 +525,19 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		return signal.getOwnedAttributes().contains(object);
 	}
 
-	static class MessageLabelHelper extends StereotypedElementLabelHelper{
+	static class MessageLabelHelper extends StereotypedElementLabelHelper {
+
 		/**
 		 * singelton instance
 		 */
 		private static MessageLabelHelper labelHelper;
-		
+
 		/** Map for masks */
 		protected final Map<Integer, String> masks = new HashMap<Integer, String>(11);
-		
+
 		protected MessageLabelHelper() {
 			// initialize the map
-			masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");  
+			masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
 			masks.put(ICustomAppearence.DISP_NAME, "Name");
 			masks.put(ICustomAppearence.DISP_PARAMETER_NAME, "Parameters Name");
 			masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
@@ -539,7 +548,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			masks.put(ICustomAppearence.DISP_DERIVE, "Parameters Value");
 			masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
 			masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
-			
+
 		}
 
 		/**
@@ -553,18 +562,22 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 			return labelHelper;
 		}
-		
+
+		@Override
 		public Message getUMLElement(GraphicalEditPart editPart) {
 			EObject e = ((View)editPart.getModel()).getElement();
-			if(e instanceof Message)
+			if(e instanceof Message) {
 				return ((Message)e);
+			}
 			return null;
 		}
 
+		@Override
 		protected String elementLabel(GraphicalEditPart editPart) {
-			if(editPart instanceof LabelEditPart)
+			if(editPart instanceof LabelEditPart) {
 				editPart = (GraphicalEditPart)editPart.getParent();
-			
+			}
+
 			int displayValue = MessagePreferencePage.DEFAULT_LABEL_DISPLAY;
 
 			IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
@@ -572,14 +585,14 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				displayValue = policy.getCurrentDisplayValue();
 			}
 			Message e = getUMLElement(editPart);
-			if (e == null){
+			if(e == null) {
 				return null;
 			}
 			NamedElement signature = e.getSignature();
 
 			if(signature instanceof Operation) {
 				return OperationUtil.getCustomLabel(e, (Operation)signature, displayValue);
-			}else if(signature instanceof Signal) {
+			} else if(signature instanceof Signal) {
 				return SignalUtil.getCustomLabel(e, (Signal)signature, displayValue);
 			} else if(signature != null) {
 				return signature.getName();
@@ -588,24 +601,25 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// signature is null
 			return getMessageLabel(e, displayValue);
 		}
-		
+
 		private String getMessageLabel(Message e, int style) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(e.getName());
-			
+
 			// parameters : '(' parameter-list ')'
 			EList<ValueSpecification> arguments = e.getArguments();
-			if(arguments.size() > 0 && (style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_DERIVE) != 0){
+			if(arguments.size() > 0 && (style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_DERIVE) != 0) {
 				buffer.append("(");
-				for(int i = 0 ;i < arguments.size(); i ++){					
-					if(i > 0)
+				for(int i = 0; i < arguments.size(); i++) {
+					if(i > 0) {
 						buffer.append(", ");
-					
+					}
+
 					ValueSpecification arg = arguments.get(i);
 					//type
-					if ((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0){
+					if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
 						String type = TypedElementUtil.getTypeAsString(arg);
-						if (type != null){
+						if(type != null) {
 							buffer.append(type);
 						}
 					}
@@ -615,21 +629,23 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 						buffer.append(" ");
 						String name = trimToEmpty(arg.getName());
 						buffer.append(name);
-						if(name.trim().length() > 0)
+						if(name.trim().length() > 0) {
 							showEqualMark = true;
+						}
 					}
-					
+
 					// value
 					if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 						String value = ValueSpecificationUtil.getSpecificationValue(arg);
-						if(value != null){
-							if(showEqualMark)
+						if(value != null) {
+							if(showEqualMark) {
 								buffer.append(" = ");
+							}
 							buffer.append(value);
-						} 
-					}										
+						}
+					}
 				}
-				buffer.append(")");			
+				buffer.append(")");
 			}
 			return buffer.toString();
 		}
@@ -650,8 +666,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return masks.keySet();
 		}
 	}
-	
+
 	static public class SignalUtil {
+
 		private static String getCustomPropertyLabel(Message e, Property property, int style) {
 			StringBuffer buffer = new StringBuffer();
 			// visibility
@@ -667,14 +684,15 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					buffer.append("/");
 				}
 			}
-			
+
 			boolean showEqualMark = false;
 			// name
 			if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
 				buffer.append(" ");
 				String name = trimToEmpty(property.getName());
-				if(name.trim().length() > 0)
+				if(name.trim().length() > 0) {
 					showEqualMark = true;
+				}
 				buffer.append(name);
 			}
 
@@ -693,19 +711,21 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 				buffer.append(multiplicity);
 			}
-			
+
 			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 				String value = getValue(e, property);
-				if(value != null){
-					if(showEqualMark)
+				if(value != null) {
+					if(showEqualMark) {
 						buffer.append(" = ");
+					}
 					buffer.append(value);
-				} 
-			}else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
-				 // default value
+				}
+			} else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
+				// default value
 				if(property.getDefault() != null) {
-					if(showEqualMark)
+					if(showEqualMark) {
 						buffer.append(" = ");
+					}
 					buffer.append(property.getDefault());
 				}
 			}
@@ -718,11 +738,11 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					if(multiLine) {
 						buffer.append("\n");
 					}
-					
-					if (!buffer.toString().endsWith(" ")){					
+
+					if(!buffer.toString().endsWith(" ")) {
 						buffer.append(" ");
 					}
-					
+
 					buffer.append(modifiers);
 				}
 			}
@@ -734,8 +754,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				Signal signal = (Signal)property.getOwner();
 				int index = signal.getOwnedAttributes().indexOf(property);
 				EList<ValueSpecification> arguments = e.getArguments();
-				if(arguments.size() > index){
-					return ValueSpecificationUtil.getSpecificationValue( arguments.get(index) );
+				if(arguments.size() > index) {
+					return ValueSpecificationUtil.getSpecificationValue(arguments.get(index));
 				}
 			} catch (Exception e1) {
 			}
@@ -744,7 +764,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 		/**
 		 * return the custom label of the signal, given UML2 specification and a custom style.
-		 * @param e 
+		 * 
+		 * @param e
 		 * 
 		 * @param style
 		 *        the integer representing the style of the label
@@ -780,7 +801,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		 * 
 		 * @return a string containing all properties separated by commas
 		 */
-		private static String getPropertiesAsString(Message e, Signal signal, int style) {			
+		private static String getPropertiesAsString(Message e, Signal signal, int style) {
 			StringBuffer propertiesString = new StringBuffer();
 			boolean firstProperty = true;
 			for(Property property : signal.getOwnedAttributes()) {
@@ -797,8 +818,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return propertiesString.toString();
 		}
 	}
-	
+
 	static class OperationUtil {
+
 		public static String getCustomLabel(Message e, int paramIndex, Parameter parameter, int style) {
 			StringBuffer buffer = new StringBuffer();
 			// visibility
@@ -818,8 +840,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
 				buffer.append(" ");
 				String name = trimToEmpty(parameter.getName());
-				if(name.trim().length() > 0)
+				if(name.trim().length() > 0) {
 					showEqualMark = true;
+				}
 				buffer.append(name);
 			}
 
@@ -838,19 +861,21 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
 				buffer.append(multiplicity);
 			}
-			
+
 			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
 				String value = getValue(e, paramIndex, parameter);
-				if(value != null){
-					if(showEqualMark)
+				if(value != null) {
+					if(showEqualMark) {
 						buffer.append(" = ");
+					}
 					buffer.append(value);
-				} 
-			}else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
-				 // default value
-				 if(parameter.getDefault() != null) {
-					if(showEqualMark)
+				}
+			} else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
+				// default value
+				if(parameter.getDefault() != null) {
+					if(showEqualMark) {
 						buffer.append(" = ");
+					}
 					buffer.append(parameter.getDefault());
 				}
 			}
@@ -868,12 +893,12 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 			return buffer.toString();
 		}
-		
+
 		private static String getValue(Message e, int paramIndex, Parameter parameter) {
 			try {
 				EList<ValueSpecification> arguments = e.getArguments();
-				if(arguments.size() > paramIndex){
-					return ValueSpecificationUtil.getSpecificationValue( arguments.get(paramIndex) );
+				if(arguments.size() > paramIndex) {
+					return ValueSpecificationUtil.getSpecificationValue(arguments.get(paramIndex));
 				}
 			} catch (Exception e1) {
 			}
@@ -1035,10 +1060,11 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 			return returnParameter;
 		}
-		
+
 		/**
 		 * Returns operation parameters as a string, the label is customized using a bit mask
-		 * @param e 
+		 * 
+		 * @param e
 		 * 
 		 * @return a string containing all parameters separated by commas
 		 */
@@ -1053,9 +1079,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 					// get the label for this parameter
 					String parameterString = getCustomLabel(e, paramIndex, parameter, style).trim();
-					paramIndex ++;
-					if (!parameterString.equals("")) {
-						if (!firstParameter) {
+					paramIndex++;
+					if(!parameterString.equals("")) {
+						if(!firstParameter) {
 							paramString.append(", ");
 						}
 						paramString.append(parameterString);
@@ -1066,8 +1092,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return paramString.toString();
 		}
 	}
-	
-	static String trimToEmpty(String str){
-		return str == null? "" : str;
+
+	static String trimToEmpty(String str) {
+		return str == null ? "" : str;
 	}
 }

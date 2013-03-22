@@ -101,5 +101,4 @@ public class UMLLinkDescriptor extends UMLNodeDescriptor {
 	public IAdaptable getSemanticAdapter() {
 		return mySemanticAdapter;
 	}
-
 }

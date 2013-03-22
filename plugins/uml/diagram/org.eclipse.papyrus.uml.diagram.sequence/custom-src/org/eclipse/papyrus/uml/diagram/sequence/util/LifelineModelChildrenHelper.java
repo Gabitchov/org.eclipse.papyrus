@@ -73,7 +73,7 @@ public class LifelineModelChildrenHelper {
 		}
 		List<View> remains = new ArrayList<View>();
 		for(View view : views) {
-			if (!result.contains(view)){
+			if(!result.contains(view)) {
 				remains.add(view);
 			}
 		}
@@ -84,10 +84,10 @@ public class LifelineModelChildrenHelper {
 		return result;
 	}
 
-	private static void doInsert(View view, List<View> result, List<View> allViews, List<View> ignoreViews){
+	private static void doInsert(View view, List<View> result, List<View> allViews, List<View> ignoreViews) {
 		Rectangle r1 = getViewBounds(view);
 		r1.width = 16;
-		if (!result.contains(view)){
+		if(!result.contains(view)) {
 			result.add(view);
 		}
 		ignoreViews.add(view);
@@ -108,7 +108,7 @@ public class LifelineModelChildrenHelper {
 			doInsert(v, result, allViews, ignoreViews);
 		}
 	}
-	
+
 	private static List<View> doSortVertically(List<View> views) {
 		List<View> insertViews = new ArrayList<View>();
 		for(int i = 0; i < views.size(); i++) {

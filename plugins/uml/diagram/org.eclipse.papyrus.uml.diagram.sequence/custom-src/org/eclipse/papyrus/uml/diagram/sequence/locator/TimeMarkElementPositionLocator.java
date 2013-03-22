@@ -113,6 +113,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	 *        recursion count to avoid an infinite loop
 	 * @return point
 	 */
+	@Override
 	protected Point locateOnBorder(Point suggestedLocation, int suggestedSide, int circuitCount, IFigure borderItem) {
 		Point recommendedLocation = locateOnParent(suggestedLocation, suggestedSide, borderItem);
 
@@ -155,6 +156,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	 * @param suggestedSide
 	 * @return point
 	 */
+	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
 		int[] horizontalGap = getHorizontalGap();
 		Rectangle bounds = getParentDotLineBorder();

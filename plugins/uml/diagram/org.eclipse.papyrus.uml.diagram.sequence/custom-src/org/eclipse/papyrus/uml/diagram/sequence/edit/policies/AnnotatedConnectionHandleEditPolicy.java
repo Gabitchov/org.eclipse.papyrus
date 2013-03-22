@@ -36,6 +36,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 @SuppressWarnings("restriction")
 public class AnnotatedConnectionHandleEditPolicy extends ConnectionHandleEditPolicy {
 
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected List getHandleFigures() {
 		List list = new ArrayList(1);
@@ -44,6 +45,7 @@ public class AnnotatedConnectionHandleEditPolicy extends ConnectionHandleEditPol
 			ConnectionHandle connectionHandle = new ConnectionHandle((IGraphicalEditPart)getHost(), HandleDirection.OUTGOING, tooltip);
 			connectionHandle.setDragTracker(new ConnectionHandleTool(connectionHandle) {
 
+				@Override
 				protected String getCommandName() {
 					if(isInState(STATE_CONNECTION_STARTED | STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
 						return AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END;
@@ -52,6 +54,7 @@ public class AnnotatedConnectionHandleEditPolicy extends ConnectionHandleEditPol
 					}
 				}
 
+				@Override
 				protected CreateConnectionRequest createTargetRequest() {
 					IHintedType type = (IHintedType)UMLElementTypes.CommentAnnotatedElement_4010;
 					return new CreateConnectionViewRequest(new ConnectionViewDescriptor(type, type.getSemanticHint(), getPreferencesHint()));

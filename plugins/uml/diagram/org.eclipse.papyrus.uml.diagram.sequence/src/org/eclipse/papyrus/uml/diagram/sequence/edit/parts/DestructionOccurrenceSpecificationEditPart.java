@@ -44,9 +44,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DestructionOccurrenceSpecificationEditPart extends
-
-AbstractBorderItemEditPart {
+public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -131,27 +129,22 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-	
-	protected void refreshBounds() {
-		if (getBorderItemLocator() != null) {
-			int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_X())).intValue();
-			int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
-				.getLocation_Y())).intValue();
-			Point loc = new Point(x, y);
-			
-			int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-			int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-			Dimension size = new Dimension(width, height);
 
+	protected void refreshBounds() {
+		if(getBorderItemLocator() != null) {
+			int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+			int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+			Point loc = new Point(x, y);
+			int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			Dimension size = new Dimension(width, height);
 			if(width != -1 && height != -1)
-			    getFigure().setBounds(new Rectangle(loc, size)); 
-			getBorderItemLocator().setConstraint(new Rectangle(	loc, size));
+				getFigure().setBounds(new Rectangle(loc, size));
+			getBorderItemLocator().setConstraint(new Rectangle(loc, size));
 		} else {
 			super.refreshBounds();
 		}
@@ -222,9 +215,9 @@ AbstractBorderItemEditPart {
 	 */
 	protected void setLineWidth(int width) {
 		getPrimaryShape().setLineWidth(width);
-//		if(primaryShape instanceof Shape) {
-//			((Shape)primaryShape).setLineWidth(width);
-//		}
+		//		if(primaryShape instanceof Shape) {
+		//			((Shape)primaryShape).setLineWidth(width);
+		//		}
 	}
 
 	/**
@@ -996,7 +989,6 @@ AbstractBorderItemEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1016,22 +1008,20 @@ AbstractBorderItemEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}	
-	
+	}
+
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
-		
 		Object feature = notification.getFeature();
 		if((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} 
+			}
 		}
 	}
 

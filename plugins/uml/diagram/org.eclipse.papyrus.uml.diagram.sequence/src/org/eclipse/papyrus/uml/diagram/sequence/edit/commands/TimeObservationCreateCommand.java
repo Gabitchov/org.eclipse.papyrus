@@ -82,7 +82,6 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -118,9 +117,7 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 * @generated NOT get the Lifeline grand parent as owner, assign the occurrence specification
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
-
 		// get the parent package as owner
 		EObject container = getElementToEdit();
 		while(container != null && !(container instanceof Package)) {
@@ -131,9 +128,7 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 		}
 		Package owner = (Package)container;
 		owner.getPackagedElements().add(newElement);
-
 		ElementInitializers.getInstance().init_TimeObservation_3020(newElement);
-
 		// assign the occurrence specification
 		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
 		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);
@@ -151,9 +146,7 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 				break;
 			}
 		}
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -171,5 +164,4 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

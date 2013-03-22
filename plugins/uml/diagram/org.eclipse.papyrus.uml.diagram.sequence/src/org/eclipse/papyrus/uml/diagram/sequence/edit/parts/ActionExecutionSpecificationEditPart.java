@@ -50,9 +50,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ActionExecutionSpecificationEditPart extends
-
-AbstractExecutionSpecificationEditPart {
+public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpecificationEditPart {
 
 	/**
 	 * @generated
@@ -165,7 +163,6 @@ AbstractExecutionSpecificationEditPart {
 		final NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new DelegatingLayout());
 		//figure.setLayoutManager(new StackLayout());
-
 		IFigure shape = createNodeShape();
 		figure.add(shape, new FillParentLocator());
 		contentPane = setupContentPane(shape);
@@ -214,7 +211,6 @@ AbstractExecutionSpecificationEditPart {
 	//			((Shape)primaryShape).setLineWidth(width);
 	//		}
 	//	}
-
 	/**
 	 * @generated
 	 */
@@ -983,7 +979,6 @@ AbstractExecutionSpecificationEditPart {
 	//		}
 	//
 	//	}
-
 	/**
 	 * @generated
 	 */
@@ -991,7 +986,6 @@ AbstractExecutionSpecificationEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1011,7 +1005,6 @@ AbstractExecutionSpecificationEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

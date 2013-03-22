@@ -75,5 +75,4 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

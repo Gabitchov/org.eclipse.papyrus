@@ -32,12 +32,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.Life
 public class LifelineResizeHelper {
 
 	private static final String MANUAL_LABEL_SIZE = "manual.label.size";
+
 	private static final String CUSTOM_EXTENSION_INFO = "CustomExtensionInfo";
-	
-	public static boolean isManualSize(LifelineEditPart lp){
+
+	public static boolean isManualSize(LifelineEditPart lp) {
 		View view = lp.getNotationView();
 		EAnnotation oldAnnotation = view.getEAnnotation(CUSTOM_EXTENSION_INFO);
-		if(oldAnnotation != null) {			
+		if(oldAnnotation != null) {
 			String val = oldAnnotation.getDetails().get(MANUAL_LABEL_SIZE);
 			return "true".equalsIgnoreCase(val);
 		}
@@ -45,57 +46,57 @@ public class LifelineResizeHelper {
 		Dimension namePreSize = primaryShape.getFigureLifelineNameContainerFigure().getPreferredSize();
 		Dimension preferredSize = primaryShape.getFigureExecutionsContainerFigure().getPreferredSize();
 		//This will disable the auto expanding of Lifeline Bordered Figure.
-		if (namePreSize.width < preferredSize.width){
+		if(namePreSize.width < preferredSize.width) {
 			return true;
 		}
 		return false;
 	}
-	
-	public static ICommand createManualLabelSizeCommand(TransactionalEditingDomain domain, IAdaptable adapter){
+
+	public static ICommand createManualLabelSizeCommand(TransactionalEditingDomain domain, IAdaptable adapter) {
 		return new ManualLabelSizeCommand(domain, adapter, CUSTOM_EXTENSION_INFO);
 	}
-	
-	public static ICommand createManualLabelSizeCommand(LifelineEditPart lifelineEP){
+
+	public static ICommand createManualLabelSizeCommand(LifelineEditPart lifelineEP) {
 		return new ManualLabelSizeCommand(lifelineEP.getEditingDomain(), lifelineEP.getNotationView(), CUSTOM_EXTENSION_INFO);
 	}
-	
+
 	public static class ManualLabelSizeCommand extends AbstractTransactionalCommand {
 
 		public EModelElement getObject() {
 			if(object != null)
 				return object;
-			if(adapter != null){
+			if(adapter != null) {
 				return (View)adapter.getAdapter(View.class);
 			}
 			return null;
-		}		
+		}
 
 		/** The object. */
 		private EModelElement object;
 
 		/** The e annotation name. */
 		private String eAnnotationName;
-		
+
 		private IAdaptable adapter;
-		
+
 		public ManualLabelSizeCommand(TransactionalEditingDomain domain, EModelElement object, String eannotationName) {
-			super(domain,"manual size", null);
+			super(domain, "manual size", null);
 			this.object = object;
 			this.eAnnotationName = eannotationName;
 		}
-		
+
 		public ManualLabelSizeCommand(TransactionalEditingDomain domain, IAdaptable adapter, String eannotationName) {
-			super(domain,"manual size", null);
+			super(domain, "manual size", null);
 			this.adapter = adapter;
 			this.eAnnotationName = eannotationName;
 		}
- 
+
 		protected EAnnotation createEAnnotation() {
 			EAnnotation eannotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eannotation.setSource(eAnnotationName);
 			return eannotation;
 		}
-		
+
 		protected void attachEannotation(EAnnotation annotation, EModelElement object) {
 			object.getEAnnotations().add(annotation);
 		}
@@ -111,5 +112,5 @@ public class LifelineResizeHelper {
 			return CommandResult.newOKCommandResult();
 		}
 	}
-	
+
 }

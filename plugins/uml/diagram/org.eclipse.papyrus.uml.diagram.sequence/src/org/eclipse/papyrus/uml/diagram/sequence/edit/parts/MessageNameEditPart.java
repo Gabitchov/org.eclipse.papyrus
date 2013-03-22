@@ -80,7 +80,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class MessageNameEditPart extends MessageLabelEditPart implements ITextAwareEditPart , MessageLabelEditPolicy.ICustomMessageLabel {
+public class MessageNameEditPart extends MessageLabelEditPart implements ITextAwareEditPart, MessageLabelEditPolicy.ICustomMessageLabel {
 
 	/**
 	 * @generated
@@ -112,7 +112,6 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -304,7 +303,6 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -386,9 +384,7 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -415,7 +411,6 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -423,7 +418,6 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -431,7 +425,6 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -593,7 +586,6 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -708,7 +700,6 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -719,15 +710,14 @@ public class MessageNameEditPart extends MessageLabelEditPart implements ITextAw
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-	
+
 	@Override
 	public void refreshBounds() {
 		super.refreshBounds();
 		MessageEditPart parent = (MessageEditPart)getParent();
 		//Update location of label for self linked message.
 		if(SelfMessageHelper.isSelfLink(parent)) {
-		SelfMessageHelper.	updateLabelLocation(this);
+			SelfMessageHelper.updateLabelLocation(this);
 		}
 	}
-
 }

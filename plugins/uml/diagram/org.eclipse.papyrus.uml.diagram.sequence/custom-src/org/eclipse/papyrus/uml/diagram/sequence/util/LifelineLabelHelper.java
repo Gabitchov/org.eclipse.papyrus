@@ -46,9 +46,9 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 		masks.put(LifelinePreferencePage.SHOW_REPRESENT_NAME, "Show represent name");
 		masks.put(LifelinePreferencePage.SHOW_REPRESENT_TYPE, "Show represent type");
 		masks.put(LifelinePreferencePage.SHOW_UNDEFINED_TYPE, "Always show undefined type");
-		masks.put(LifelinePreferencePage.SHOW_LIFELINE_NAME, "Always show lifeline name");	
+		masks.put(LifelinePreferencePage.SHOW_LIFELINE_NAME, "Always show lifeline name");
 	}
-	
+
 
 	/**
 	 * Returns the mask name given the value of the mask
@@ -69,7 +69,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * Returns the map of masks used to display 
+	 * Returns the map of masks used to display
 	 * 
 	 * @return the map of masks used to display
 	 */
@@ -89,13 +89,16 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Lifeline getUMLElement(GraphicalEditPart editPart) {
 		return (Lifeline)((View)editPart.getModel()).getElement();
 	}
 
+	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
-		if(editPart instanceof LifelineNameEditPart)
+		if(editPart instanceof LifelineNameEditPart) {
 			editPart = (GraphicalEditPart)editPart.getParent();
+		}
 		int displayValue = LifelinePreferencePage.DEFAULT_LABEL_DISPLAY;
 
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
@@ -106,17 +109,18 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	private static final String UNAMED = "<Unnamed>";
+
 	private static final String UNDEFINED = "<Undefined>";
-	
+
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=383722
 	private String getCustomLabel(Lifeline lifeline, int displayValue) {
-		StringBuilder sb = new StringBuilder();		
+		StringBuilder sb = new StringBuilder();
 		appendName(lifeline, displayValue, sb);
-		boolean displayType = isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_TYPE );
-		if( lifeline.getRepresents() == null || isCheck(displayValue , LifelinePreferencePage.SHOW_LIFELINE_NAME ) ){
+		boolean displayType = isCheck(displayValue, LifelinePreferencePage.SHOW_REPRESENT_TYPE);
+		if(lifeline.getRepresents() == null || isCheck(displayValue, LifelinePreferencePage.SHOW_LIFELINE_NAME)) {
 			displayType = false;
 		}
-		if(displayType){
+		if(displayType) {
 			// handle represent type label
 			appendType(lifeline, displayValue, sb);
 		}
@@ -125,46 +129,50 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 
 	protected void appendName(Lifeline lifeline, int displayValue, StringBuilder sb) {
-		ConnectableElement element = lifeline.getRepresents();		
-		String lifelineName = lifeline.getName(); 
-		if( element == null || isCheck(displayValue , LifelinePreferencePage.SHOW_LIFELINE_NAME ) ){
+		ConnectableElement element = lifeline.getRepresents();
+		String lifelineName = lifeline.getName();
+		if(element == null || isCheck(displayValue, LifelinePreferencePage.SHOW_LIFELINE_NAME)) {
 			appendString(sb, lifelineName, UNAMED);
 			return;
-		}else{
+		} else {
 			// represents is not null
-			if(isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_NAME )){
-				appendString(sb, element.getName(), UNAMED);				
+			if(isCheck(displayValue, LifelinePreferencePage.SHOW_REPRESENT_NAME)) {
+				appendString(sb, element.getName(), UNAMED);
 			}
 			//  if neither <1> or <2> are checked, show lifeline name (or <unnamed> when the lifeline has no name)
-			else if(!isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_TYPE ))
+			else if(!isCheck(displayValue, LifelinePreferencePage.SHOW_REPRESENT_TYPE)) {
 				appendString(sb, lifelineName, UNAMED);
+			}
 		}
 	}
-	
+
 	protected void appendType(Lifeline lifeline, int displayValue, StringBuilder sb) {
-		ConnectableElement element = lifeline.getRepresents();		
-		if(element == null)
+		ConnectableElement element = lifeline.getRepresents();
+		if(element == null) {
 			return;
-		
+		}
+
 		Type type = element.getType();
-		if(isCheck(displayValue , LifelinePreferencePage.SHOW_REPRESENT_TYPE )){
-			if(type == null ){
-				if(isCheck(displayValue , LifelinePreferencePage.SHOW_UNDEFINED_TYPE ))
-					sb.append(":").append(UNDEFINED);						
-			}else{
-				appendString(sb.append(":") , type.getName(), UNAMED);
+		if(isCheck(displayValue, LifelinePreferencePage.SHOW_REPRESENT_TYPE)) {
+			if(type == null) {
+				if(isCheck(displayValue, LifelinePreferencePage.SHOW_UNDEFINED_TYPE)) {
+					sb.append(":").append(UNDEFINED);
+				}
+			} else {
+				appendString(sb.append(":"), type.getName(), UNAMED);
 			}
-		}		
+		}
 	}
 
-	private static boolean isCheck(int value, int mask){
+	private static boolean isCheck(int value, int mask) {
 		return (value & mask) != 0;
 	}
 
 	private void appendString(StringBuilder sb, String str, String defaultValue) {
-		if(str != null)
+		if(str != null) {
 			sb.append(str);
-		else
+		} else {
 			sb.append(defaultValue);
+		}
 	}
 }

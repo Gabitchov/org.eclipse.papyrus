@@ -107,10 +107,10 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.TimeConstraint_3019 == req.getElementType()) {
 			return getGEFWrapper(new TimeConstraintCreateCommand(req));
 		}
-//Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826		
-//		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
-//			return getGEFWrapper(new TimeObservationCreateCommand(req));
-//		}
+		//Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826		
+		//		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
+		//			return getGEFWrapper(new TimeObservationCreateCommand(req));
+		//		}
 		if(UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
 			return getGEFWrapper(new DurationConstraintCreateCommand(req));
 		}
@@ -130,10 +130,10 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
 			return getGEFWrapper(new DurationConstraintCreateCommand(req));
 		}
-//		Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826			
-//		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
-//			return getGEFWrapper(new DurationObservationCreateCommand(req));
-//		}
+		//		Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826			
+		//		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+		//			return getGEFWrapper(new DurationObservationCreateCommand(req));
+		//		}
 		return super.getCreateCommand(req);
 	}
 
@@ -146,17 +146,16 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				Command command = new ICommandProxy(deleteCommand);
-				command = LifelineMessageCreateHelper.restoreLifelineOnDelete(command, (LifelineEditPart) getHost());		
+				command = LifelineMessageCreateHelper.restoreLifelineOnDelete(command, (LifelineEditPart)getHost());
 				CompoundCommand deleteElementsCommand = new CompoundCommand();
 				deleteElementsCommand.add(command);
-				if(getHost() instanceof LifelineEditPart){
-					LifelineEditPart ep = (LifelineEditPart) getHost();
+				if(getHost() instanceof LifelineEditPart) {
+					LifelineEditPart ep = (LifelineEditPart)getHost();
 					SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, ep, req.getEditingDomain());
 					List children = ep.getChildren();
-					for(Object obj : children) 
+					for(Object obj : children)
 						if(obj instanceof AbstractExecutionSpecificationEditPart) {
 							SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, (AbstractExecutionSpecificationEditPart)obj, req.getEditingDomain());
 						}
@@ -302,5 +301,4 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

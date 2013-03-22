@@ -109,7 +109,6 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		GeneralOrdering newElement = UMLFactory.eINSTANCE.createGeneralOrdering();
 		getContainer().getGeneralOrderings().add(newElement);
 		newElement.setBefore(getSource());
@@ -118,7 +117,6 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -182,5 +180,4 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

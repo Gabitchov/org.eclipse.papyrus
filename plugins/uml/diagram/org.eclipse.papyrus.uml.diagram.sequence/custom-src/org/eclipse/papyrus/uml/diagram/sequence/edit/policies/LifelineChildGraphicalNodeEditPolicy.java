@@ -36,9 +36,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 
 /**
  * A specific policy to handle :
@@ -93,6 +93,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 				 * types. At this point, there is no way to validate the
 				 * commands for this scenario.
 				 */
+				@Override
 				public boolean canExecute() {
 					return true;
 				}
@@ -141,10 +142,10 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 		Command command = super.getReconnectSourceCommand(request);
 		if(command != null) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
-			if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart){
-				LifelineEditPart newSource = (LifelineEditPart) request.getTarget();
-				LifelineEditPart target = (LifelineEditPart) request.getConnectionEditPart().getTarget();
-				command = LifelineMessageCreateHelper.moveLifelineDown(command, target, newSource.getFigure().getBounds().getLocation().getCopy());	
+			if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart) {
+				LifelineEditPart newSource = (LifelineEditPart)request.getTarget();
+				LifelineEditPart target = (LifelineEditPart)request.getConnectionEditPart().getTarget();
+				command = LifelineMessageCreateHelper.moveLifelineDown(command, target, newSource.getFigure().getBounds().getLocation().getCopy());
 			}
 		}
 		return command;
@@ -164,7 +165,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 		Command command = super.getReconnectTargetCommand(request);
 		if(command != null) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
-			if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart){
+			if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart) {
 				command = LifelineMessageCreateHelper.reconnectMessageCreateTarget(request, command);
 			}
 		}
@@ -221,8 +222,9 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	@Override
 	public void eraseSourceFeedback(Request request) {
 		super.eraseSourceFeedback(request);
-		if(durationCreationFeedback != null)
+		if(durationCreationFeedback != null) {
 			removeFeedback(durationCreationFeedback);
+		}
 		durationCreationFeedback = null;
 	}
 
@@ -231,6 +233,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	 * 
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getDummyConnectionRouter(org.eclipse.gef.requests.CreateConnectionRequest)
 	 */
+	@Override
 	protected ConnectionRouter getDummyConnectionRouter(CreateConnectionRequest req) {
 		return messageRouter;
 	}

@@ -117,12 +117,10 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
-				if(deleteCommand instanceof ICompositeCommand){
-					OperandBoundsComputeHelper.addUpdateBoundsCommandForOperandDelelete(this.getHost(),(ICompositeCommand)deleteCommand);
+				if(deleteCommand instanceof ICompositeCommand) {
+					OperandBoundsComputeHelper.addUpdateBoundsCommandForOperandDelelete(this.getHost(), (ICompositeCommand)deleteCommand);
 				}
-				
 				return new ICommandProxy(deleteCommand);
 			}
 		}
@@ -295,5 +293,4 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

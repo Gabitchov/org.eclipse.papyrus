@@ -84,7 +84,6 @@ public class Message4ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();
-
 		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4006(container, getLink(), getNewSource(), getOldTarget())) {
 			return false;
 		}
@@ -130,7 +129,6 @@ public class Message4ReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		ReconnectMessageHelper.updateMessageEnd(getLink().getSendEvent(), getOldSource(), getNewSource());
-
 		return CommandResult.newOKCommandResult(getLink());
 	}
 

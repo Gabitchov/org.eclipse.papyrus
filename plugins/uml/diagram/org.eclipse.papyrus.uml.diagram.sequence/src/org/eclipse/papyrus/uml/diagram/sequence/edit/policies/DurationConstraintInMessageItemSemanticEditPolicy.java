@@ -75,7 +75,6 @@ public class DurationConstraintInMessageItemSemanticEditPolicy extends UMLBaseIt
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -208,5 +207,4 @@ public class DurationConstraintInMessageItemSemanticEditPolicy extends UMLBaseIt
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

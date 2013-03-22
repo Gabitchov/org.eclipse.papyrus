@@ -172,15 +172,14 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 */
 	protected IFigure createNodeShape() {
 		primaryShape = new InteractionUseRectangleFigure();
-		getPrimaryShape().setShadow(false);  
+		getPrimaryShape().setShadow(false);
 		return primaryShape;
 	}
-	
-	
+
 	protected final void refreshShadow() {
 		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
 	}
-		
+
 	/**
 	 * Override to set the transparency to the correct figure
 	 */
@@ -188,7 +187,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	protected void setTransparency(int transp) {
 		getPrimaryShape().setTransparency(transp);
 	}
-	
+
 	/**
 	 * sets the back ground color of this edit part
 	 * 
@@ -216,7 +215,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			fig.setIsUsingGradient(false);
 		}
 	}
-		
+
 	public boolean supportsGradient() {
 		return true;
 	}
@@ -240,7 +239,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			((InteractionUseName2EditPart)childEditPart).setLabel(getPrimaryShape().getCenterLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -296,7 +294,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -326,7 +323,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 *        instance of generated figure class
 	 * @generated
 	 */
-
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -364,7 +360,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
-		}else if(primaryShape instanceof NodeFigure){
+		} else if(primaryShape instanceof NodeFigure) {
 			((NodeFigure)primaryShape).setLineWidth(width);
 		}
 	}
@@ -394,7 +390,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -414,7 +409,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1171,7 +1165,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-
 		if(UMLPackage.eINSTANCE.getInteractionUse_RefersTo().equals(feature)) {
 			if(notification.getOldValue() instanceof Interaction) {
 				notifier.unlistenAll();
@@ -1182,13 +1175,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			if(notification.getNewValue() instanceof Interaction) {
 				Interaction interaction = (Interaction)notification.getNewValue();
 				notifier.listenObject(interaction);
-
 				List<Gate> actualGates = interactionUse.getActualGates();
 				List<Gate> formalGates = interaction.getFormalGates();
 				for(Gate formalGate : formalGates) {
 					Gate newActualGate = (Gate)EcoreUtil.create(UMLPackage.Literals.GATE);
 					newActualGate.setName(formalGate.getName());
-					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate),true);
+					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate), true);
 					notifier.listenObject(formalGate);
 					notifier.listenObject(newActualGate);
 				}
@@ -1207,7 +1199,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 					Gate element = actualGates.get(i);
 					if(((Gate)oldValue).getName().equals(element.getName())) {
 						notifier.unlistenObject(element);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionUse, UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), element),true);
+						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionUse, UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), element), true);
 					}
 				}
 			}
@@ -1262,14 +1254,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 				notifier.listenObject(gate); // Add listener on gate
 			}
 		}
-
 		if((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
 				refreshLineWidth();
-			} 
+			}
 		}
 		refreshShadow();
-		
 		super.handleNotificationEvent(notification);
 	}
 
@@ -1308,11 +1298,9 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 					notifier.listenObject(formalGate);
 				}
 			}
-
 			for(Gate actualGate : interactionUse.getActualGates()) {
 				notifier.listenObject(actualGate);
 			}
-
 		}
 	}
 
@@ -1334,10 +1322,10 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		notifier.unlistenAll();
 		super.removeNotify();
 	}
-	
+
 	@Override
 	public void performRequest(Request request) {
-		if(request.getType().equals(REQ_OPEN)){
+		if(request.getType().equals(REQ_OPEN)) {
 			InteractionUse interactionUse = (InteractionUse)resolveSemanticElement();
 			Interaction interaction = interactionUse.getRefersTo();
 			if(interaction == null) {
@@ -1353,7 +1341,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		}
 		super.performRequest(request);
 	}
-	
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshTransparency();

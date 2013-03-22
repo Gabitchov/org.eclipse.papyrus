@@ -24,14 +24,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message7ItemSemanticEditPolicy;
@@ -48,9 +46,7 @@ import org.eclipse.uml2.uml.MessageSort;
 /**
  * @generated
  */
-public class Message7EditPart extends AbstractMessageEditPart
-
-implements ITreeBranchEditPart {
+public class Message7EditPart extends AbstractMessageEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -149,7 +145,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new MessageFound();
 	}
@@ -182,7 +177,6 @@ implements ITreeBranchEditPart {
 		public MessageFound() {
 			super();
 			this.setForegroundColor(ColorConstants.black);
-
 			createContents();
 			setSourceDecoration(createSourceDecoration());
 			setTargetDecoration(createTargetDecoration());
@@ -193,14 +187,10 @@ implements ITreeBranchEditPart {
 		 */
 		protected void createContents() {
 			super.createContents();
-
 			fFigureMessageFoundLabelFigure = new WrappingLabel();
 			fFigureMessageFoundLabelFigure.setText("");
-
 			fFigureMessageFoundLabelFigure.setFont(FFIGUREMESSAGEFOUNDLABELFIGURE_FONT);
-
 			this.add(fFigureMessageFoundLabelFigure);
-
 		}
 
 		/**
@@ -208,11 +198,8 @@ implements ITreeBranchEditPart {
 		 */
 		private RotatableDecoration createSourceDecoration() {
 			EllipseDecoration df = new EllipseDecoration();
-
 			df.setAlwaysFill(true);
-
 			df.setPreferredSize(new Dimension(10, 10));
-
 			return df;
 		}
 
@@ -244,7 +231,6 @@ implements ITreeBranchEditPart {
 		public WrappingLabel getAppliedStereotypeLabel() {
 			return super.getAppliedStereotypeLabel();
 		}
-
 	}
 
 	/**
@@ -284,5 +270,4 @@ implements ITreeBranchEditPart {
 		}
 		super.eraseSourceFeedback(request);
 	}
-
 }

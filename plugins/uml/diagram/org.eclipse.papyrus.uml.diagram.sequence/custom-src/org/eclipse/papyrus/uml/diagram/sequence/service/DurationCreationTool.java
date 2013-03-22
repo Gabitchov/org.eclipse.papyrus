@@ -29,8 +29,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.tools.AbstractConnectionCreationTool;
-import org.eclipse.gef.tools.AbstractTool;
 import org.eclipse.gef.tools.TargetingTool;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
@@ -91,6 +89,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 */
 	private EditPartListener.Stub deactivationListener = new EditPartListener.Stub() {
 
+		@Override
 		public void partDeactivated(EditPart editpart) {
 			handleSourceDeactivated();
 		}
@@ -111,27 +110,33 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#handleDrag()
 	 */
+	@Override
 	protected boolean handleDrag() {
-		if(isInState(STATE_CONNECTION_STARTED))
+		if(isInState(STATE_CONNECTION_STARTED)) {
 			return handleMove();
+		}
 		return false;
 	}
 
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#handleDragInProgress()
 	 */
+	@Override
 	protected boolean handleDragInProgress() {
-		if(isInState(STATE_ACCESSIBLE_DRAG_IN_PROGRESS))
+		if(isInState(STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
 			return handleMove();
+		}
 		return false;
 	}
 
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#getDebugNameForState(int)
 	 */
+	@Override
 	protected String getDebugNameForState(int s) {
-		if(s == STATE_CONNECTION_STARTED || s == STATE_ACCESSIBLE_DRAG_IN_PROGRESS)
+		if(s == STATE_CONNECTION_STARTED || s == STATE_ACCESSIBLE_DRAG_IN_PROGRESS) {
 			return "Connection Started";//$NON-NLS-1$
+		}
 		return super.getDebugNameForState(s);
 	}
 
@@ -140,6 +145,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 * 
 	 * @see org.eclipse.gef.tools.TargetingTool#updateTargetRequest()
 	 */
+	@Override
 	protected void updateTargetRequest() {
 		CreateRequest req = getCreateRequest();
 		req.setLocation(getLocation());
@@ -191,6 +197,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	/**
 	 * @see org.eclipse.gef.tools.TargetingTool#handleInvalidInput()
 	 */
+	@Override
 	protected boolean handleInvalidInput() {
 		eraseSourceFeedback();
 		setConnectionSource(null);
@@ -207,6 +214,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 *        which button is pressed
 	 * @return <code>true</code> if the button down was processed
 	 */
+	@Override
 	protected boolean handleButtonDown(int button) {
 		if(button == 1 && stateTransition(STATE_CONNECTION_STARTED, STATE_TERMINAL)) {
 			return handleCreateConnection();
@@ -232,18 +240,21 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 			setState(STATE_INVALID);
 			handleInvalidInput();
 		}
-		if(isInState(STATE_CONNECTION_STARTED))
+		if(isInState(STATE_CONNECTION_STARTED)) {
 			//Fake a drag to cause feedback to be displayed immediately on mouse down.
 			handleDrag();
+		}
 		return true;
 	}
 
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#handleMove()
 	 */
+	@Override
 	protected boolean handleMove() {
-		if(isInState(STATE_CONNECTION_STARTED) && viewer != getCurrentViewer())
+		if(isInState(STATE_CONNECTION_STARTED) && viewer != getCurrentViewer()) {
 			return false;
+		}
 		if(isInState(STATE_CONNECTION_STARTED | STATE_INITIAL | STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
 			updateTargetRequest();
 			updateTargetUnderMouse();
@@ -288,8 +299,9 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 * Asks the source editpart to erase connection creation feedback.
 	 */
 	protected void eraseSourceFeedback() {
-		if(!isShowingSourceFeedback())
+		if(!isShowingSourceFeedback()) {
 			return;
+		}
 		setFlag(FLAG_SOURCE_FEEDBACK, false);
 		if(connectionSource != null) {
 			connectionSource.eraseSourceFeedback(getSourceRequest());
@@ -302,9 +314,11 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 * 
 	 * @see org.eclipse.gef.Tool#mouseWheelScrolled(org.eclipse.swt.widgets.Event, org.eclipse.gef.EditPartViewer)
 	 */
+	@Override
 	public void mouseWheelScrolled(Event event, EditPartViewer viewer) {
-		if(isInState(STATE_INITIAL | STATE_CONNECTION_STARTED))
+		if(isInState(STATE_INITIAL | STATE_CONNECTION_STARTED)) {
 			performViewerMouseWheel(event, viewer);
+		}
 	}
 
 	/**
@@ -333,6 +347,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 * 
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
 	 */
+	@Override
 	protected boolean handleButtonUp(int button) {
 		if(isInState(STATE_CONNECTION_STARTED)) {
 			handleCreateConnection();
@@ -347,6 +362,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#handleCommandStackChanged()
 	 */
+	@Override
 	protected boolean handleCommandStackChanged() {
 		if(!isInState(STATE_INITIAL)) {
 			if(getCurrentInput().isMouseButtonDown(1)) {
@@ -363,6 +379,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	/**
 	 * @see org.eclipse.gef.Tool#deactivate()
 	 */
+	@Override
 	public void deactivate() {
 		eraseSourceFeedback();
 		setConnectionSource(null);
@@ -376,6 +393,7 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 	 * 
 	 * @see org.eclipse.gef.tools.AbstractConnectionCreationTool#calculateCursor()
 	 */
+	@Override
 	protected Cursor calculateCursor() {
 		if(isInState(STATE_CONNECTION_STARTED)) {
 			// Give some feedback so the user knows the area where autoscrolling
@@ -405,8 +423,9 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 		Command command = getCurrentCommand();
 		if(command != null && command.canExecute()) {
 			EditPart ep = getTargetEditPart();
-			if(ep instanceof DiagramEditPart || ep instanceof CompartmentEditPart)
+			if(ep instanceof DiagramEditPart || ep instanceof CompartmentEditPart) {
 				return CURSOR_TARGET_MENU;
+			}
 		}
 		return super.calculateCursor();
 	}

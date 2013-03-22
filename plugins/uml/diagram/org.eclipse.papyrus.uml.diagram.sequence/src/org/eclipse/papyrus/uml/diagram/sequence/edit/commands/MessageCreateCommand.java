@@ -87,14 +87,12 @@ public class MessageCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-
 		if(getSource() != null && getTarget() != null) {
 			if(!CommandHelper.hasValidContainer(getRequest())) {
 				return false;
 			}
 		}
-
-		if (! UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4003(getContainer(), getSource(), getTarget())){
+		if(!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4003(getContainer(), getSource(), getTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canExist(MessageSort.SYNCH_CALL_LITERAL, (Element)source, (Element)target);
@@ -112,14 +110,12 @@ public class MessageCreateCommand extends EditElementCommand {
 		}
 		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
-
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.SYNCH_CALL_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);
 		}
-
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
 	}
 
@@ -185,5 +181,4 @@ public class MessageCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

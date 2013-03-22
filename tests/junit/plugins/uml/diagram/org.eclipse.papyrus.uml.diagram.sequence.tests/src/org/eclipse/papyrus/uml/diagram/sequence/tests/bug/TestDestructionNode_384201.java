@@ -46,6 +46,7 @@ public class TestDestructionNode_384201 extends TestTopNode {
 	private static final String RESIZE = "Resize: ";
 
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -93,8 +94,9 @@ public class TestDestructionNode_384201 extends TestTopNode {
 		req.setEditParts(op);
 		req.setResizeDirection(resizeDir);
 		req.setSizeDelta(deltaSize);
-		if(resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST)
+		if(resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST) {
 			req.setMoveDelta(new Point(-deltaSize.width(), -deltaSize.height()));
+		}
 
 		Command c = op.getCommand(req);
 		verifyResizeCommnad(op, deltaSize, c);

@@ -74,7 +74,6 @@ public class StateInvariantCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,9 +88,7 @@ public class StateInvariantCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
@@ -100,15 +97,11 @@ public class StateInvariantCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
-
 		// Create the stateInvariant
 		StateInvariant stateInvariant = CommandHelper.doCreateStateInvariant((Lifeline)getElementToEdit(), modelContainer);
-
 		doConfigure(stateInvariant, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(stateInvariant);
 		return CommandResult.newOKCommandResult(stateInvariant);
 	}
@@ -126,5 +119,4 @@ public class StateInvariantCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

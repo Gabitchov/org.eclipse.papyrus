@@ -53,6 +53,7 @@ import org.junit.Test;
  */
 public class TestMessageLostFound_384202 extends TestLink {
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}

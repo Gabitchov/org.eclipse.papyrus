@@ -30,6 +30,7 @@ public class EllipseDecoration extends Ellipse implements RotatableDecoration {
 		myAlwaysFill = alwaysFill;
 	}
 
+	@Override
 	public void setLocation(Point p) {
 		Dimension delta = getPreferredSize().getScaled(0.5).getNegated();
 		super.setLocation(p.getTranslated(delta));

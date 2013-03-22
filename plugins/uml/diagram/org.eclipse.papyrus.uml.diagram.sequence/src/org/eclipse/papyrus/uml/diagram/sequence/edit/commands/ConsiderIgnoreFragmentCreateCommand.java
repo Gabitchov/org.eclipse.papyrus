@@ -80,7 +80,6 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -107,11 +106,8 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	 */
 	@SuppressWarnings("unchecked")
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
-
 		ElementInitializers.getInstance().init_ConsiderIgnoreFragment_3007(newElement);
-
 		// START GENERATED NOT CODE
 		EObject elementToEdit = getElementToEdit();
 		InteractionFragment owner = null;
@@ -124,17 +120,12 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 			owner = i;
 			i.getFragments().add(newElement);
 		}
-
 		newElement.setInteractionOperator(InteractionOperatorKind.CONSIDER_LITERAL);
-
 		// Create an interaction operand with the ConsiderIgnoreFragment (multiplicy 1...*)
 		InteractionOperand createInteractionOperand = UMLFactory.eINSTANCE.createInteractionOperand();
 		newElement.getOperands().add(createInteractionOperand);
-
 		Set<InteractionFragment> coveredInteractionFragments = (Set<InteractionFragment>)getRequest().getParameters().get(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS);
-
 		if(coveredInteractionFragments != null) {
-
 			// set the enclosing operand to the newly created one if the current enclosing interaction is the enclosing interaction
 			// of the new operand.
 			// => the interaction fragment that are inside an other container (like an enclosed CF) are not modified
@@ -146,9 +137,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 			}
 		}
 		// END GENERATED NOT CODE
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -166,5 +155,4 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -70,93 +70,93 @@ public class OperandBoundsComputeHelper {
 	 * Default height of Interaction Operand
 	 */
 	public static final int DEFAULT_INTERACTION_OPERAND_HEIGHT = 61;
-	
-	public static final int MIN_INTERACTION_OPERAND_HEIGHT = 10; 
+
+	public static final int MIN_INTERACTION_OPERAND_HEIGHT = 10;
+
 	/**
 	 * Default width of Interaction Operand
 	 */
 	public static final int DEFAULT_INTERACTION_OPERAND_WIDTH = 210;
+
 	/**
 	 * Border width of CombinedFragmentFigure
 	 */
 	public static final int COMBINED_FRAGMENT_FIGURE_BORDER = 1;
-	
+
 	/**
 	 * Find first Interaction Operand EditpPart of CombinedFragmentCombinedFragmentCompartmentEditPart
+	 * 
 	 * @param compartEP
 	 * @return InteractionOperandEditPart
 	 */
-	public static InteractionOperandEditPart findFirstIOEP(
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartEP) {
+	public static InteractionOperandEditPart findFirstIOEP(CombinedFragmentCombinedFragmentCompartmentEditPart compartEP) {
 		InteractionOperandEditPart firstIOEP = null;
 		List children = compartEP.getChildren();
-		for (int i = 0; i < children.size(); i++) {
-			if (children.get(i) instanceof InteractionOperandEditPart) {
-				firstIOEP = (InteractionOperandEditPart) children.get(i);
+		for(int i = 0; i < children.size(); i++) {
+			if(children.get(i) instanceof InteractionOperandEditPart) {
+				firstIOEP = (InteractionOperandEditPart)children.get(i);
 				break;
 			}
 		}
 		return firstIOEP;
 	}
-	
+
 	/**
 	 * Find Last Interaction Operand EditpPart of CombinedFragmentCombinedFragmentCompartmentEditPart
+	 * 
 	 * @param compartEP
 	 * @return InteractionOperandEditPart
 	 */
-	public static InteractionOperandEditPart findLastIOEP(
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartEP) {
+	public static InteractionOperandEditPart findLastIOEP(CombinedFragmentCombinedFragmentCompartmentEditPart compartEP) {
 		InteractionOperandEditPart lastIOEP = null;
 		List children = compartEP.getChildren();
-		for (int i = children.size() - 1; i >= 0; i--) {
-			if (children.get(i) instanceof InteractionOperandEditPart) {
-				lastIOEP = (InteractionOperandEditPart) children.get(i);
+		for(int i = children.size() - 1; i >= 0; i--) {
+			if(children.get(i) instanceof InteractionOperandEditPart) {
+				lastIOEP = (InteractionOperandEditPart)children.get(i);
 				break;
 			}
 		}
 		return lastIOEP;
 	}
-	
+
 	/**
 	 * Find Previous Interaction Operand EditpPart of current given InteractionOperandEditPart
+	 * 
 	 * @param compartEP
 	 * @param currentIOEP
 	 * @return InteractionOperandEditPart
 	 */
-	public static InteractionOperandEditPart findPreviousIOEP(
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartEP,
-			InteractionOperandEditPart currentIOEP) {
+	public static InteractionOperandEditPart findPreviousIOEP(CombinedFragmentCombinedFragmentCompartmentEditPart compartEP, InteractionOperandEditPart currentIOEP) {
 		InteractionOperandEditPart previousIOEP = null;
 		List children = compartEP.getChildren();
-		for (int i = 0; i < children.size() - 1; i++) {
-			if (children.get(i) instanceof InteractionOperandEditPart) {
-				if (children.get(i) == currentIOEP) {
+		for(int i = 0; i < children.size() - 1; i++) {
+			if(children.get(i) instanceof InteractionOperandEditPart) {
+				if(children.get(i) == currentIOEP) {
 					break;
 				} else {
-					previousIOEP = (InteractionOperandEditPart) children.get(i);
+					previousIOEP = (InteractionOperandEditPart)children.get(i);
 				}
 			}
 		}
 		return previousIOEP;
 	}
-	
+
 	/**
 	 * Find Latter Interaction Operand EditpPart of current given InteractionOperandEditPart
+	 * 
 	 * @param compartEP
 	 * @param currentIOEP
 	 * @return InteractionOperandEditPart
 	 */
-	public static InteractionOperandEditPart findLatterIOEP(
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartEP,
-			InteractionOperandEditPart currentIOEP) {
+	public static InteractionOperandEditPart findLatterIOEP(CombinedFragmentCombinedFragmentCompartmentEditPart compartEP, InteractionOperandEditPart currentIOEP) {
 		InteractionOperandEditPart latterIOEP = null;
 		List children = compartEP.getChildren();
-		for (int i = children.size() - 1; i > 0; i--) {
-			if (children.get(i) instanceof InteractionOperandEditPart) {
-				if (children.get(i) == currentIOEP) {
+		for(int i = children.size() - 1; i > 0; i--) {
+			if(children.get(i) instanceof InteractionOperandEditPart) {
+				if(children.get(i) == currentIOEP) {
 					break;
 				} else {
-					latterIOEP = (InteractionOperandEditPart) children.get(i);
+					latterIOEP = (InteractionOperandEditPart)children.get(i);
 				}
 			}
 		}
@@ -165,38 +165,35 @@ public class OperandBoundsComputeHelper {
 
 	/**
 	 * Update EditPart bounds using new rect
+	 * 
 	 * @param parent
 	 * @param rect
 	 */
-	public static void updateEditPartBounds(GraphicalEditPart editpart,
-			final Rectangle rect) {
-		if (editpart.getModel() instanceof Node) {
-			Node node = (Node) editpart.getModel();
-			if (node.getLayoutConstraint() instanceof Bounds) {
-				Bounds bounds = (Bounds) node.getLayoutConstraint();
+	public static void updateEditPartBounds(GraphicalEditPart editpart, final Rectangle rect) {
+		if(editpart.getModel() instanceof Node) {
+			Node node = (Node)editpart.getModel();
+			if(node.getLayoutConstraint() instanceof Bounds) {
+				Bounds bounds = (Bounds)node.getLayoutConstraint();
 				updateBounds(bounds, rect, editpart.getEditingDomain());
 			}
 		}
 	}
-	
+
 	/**
 	 * Update EditPart bounds using new rect
+	 * 
 	 * @param parent
 	 * @param rect
 	 */
-	public static ICommand createUpdateEditPartBoundsCommand(
-			final GraphicalEditPart editpart, final Rectangle rect) {
-		ICommand cmd = new AbstractTransactionalCommand(
-				editpart.getEditingDomain(),
-				"Update Operand Bounds", null) {
+	public static ICommand createUpdateEditPartBoundsCommand(final GraphicalEditPart editpart, final Rectangle rect) {
+		ICommand cmd = new AbstractTransactionalCommand(editpart.getEditingDomain(), "Update Operand Bounds", null) {
+
 			@Override
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
-				if (editpart.getModel() instanceof Node) {
-					Node node = (Node) editpart.getModel();
-					if (node.getLayoutConstraint() instanceof Bounds) {
-						Bounds bounds = (Bounds) node.getLayoutConstraint();
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				if(editpart.getModel() instanceof Node) {
+					Node node = (Node)editpart.getModel();
+					if(node.getLayoutConstraint() instanceof Bounds) {
+						Bounds bounds = (Bounds)node.getLayoutConstraint();
 						fillBounds(bounds, rect);
 					}
 				}
@@ -205,119 +202,98 @@ public class OperandBoundsComputeHelper {
 		};
 		return cmd;
 	}
-	
+
 	/**
-	 * Create command for updating Interaction Operand EditpPart bounds after the CombinedFragment to be created. 
+	 * Create command for updating Interaction Operand EditpPart bounds after the CombinedFragment to be created.
+	 * 
 	 * @param editPart
 	 * @param request
 	 * @return ICommand
 	 */
 	public static ICommand createUpdateCFAndIOBoundsForCFCreationCommand(final EditPart editPart, final CreateViewRequest request) {
-		if (!(editPart instanceof GraphicalEditPart)) {
+		if(!(editPart instanceof GraphicalEditPart)) {
 			return null;
 		}
-		GraphicalEditPart graphicalEditPart= (GraphicalEditPart)editPart;
-		ICommand cmd = new AbstractTransactionalCommand(graphicalEditPart.getEditingDomain(),"Create update operand bounds command",null) {
+		GraphicalEditPart graphicalEditPart = (GraphicalEditPart)editPart;
+		ICommand cmd = new AbstractTransactionalCommand(graphicalEditPart.getEditingDomain(), "Create update operand bounds command", null) {
+
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-					IAdaptable info) throws ExecutionException {
-				OperandBoundsComputeHelper.updateCFAndIOBoundsForCFCreation(
-						(GraphicalEditPart) editPart, request);
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				OperandBoundsComputeHelper.updateCFAndIOBoundsForCFCreation((GraphicalEditPart)editPart, request);
 				return CommandResult.newOKCommandResult();
 			}
 		};
 		return cmd;
 	}
-	
+
 	/**
-	 * Update Interaction Operand EditpPart bounds after the CombinedFragment to be created. 
+	 * Update Interaction Operand EditpPart bounds after the CombinedFragment to be created.
+	 * 
 	 * @param parent
 	 * @param request
 	 * @param selectionRect
 	 */
 	private static void updateCFAndIOBoundsForCFCreation(GraphicalEditPart parent, CreateViewRequest request) {
 		Object subEditPart = null;
-		if (parent instanceof InteractionInteractionCompartmentEditPart) {
-			InteractionInteractionCompartmentEditPart interactionInteractionCompartmentEditPart = (InteractionInteractionCompartmentEditPart) parent;
-			subEditPart = interactionInteractionCompartmentEditPart
-					.getChildren().get(
-							interactionInteractionCompartmentEditPart
-									.getChildren().size() - 1);
-			
-		}else if (parent instanceof InteractionOperandEditPart) {
-			InteractionOperandEditPart interactionOperandEditPart = (InteractionOperandEditPart) parent;
-			subEditPart = interactionOperandEditPart
-					.getChildren().get(
-							interactionOperandEditPart
-									.getChildren().size() - 1);
+		if(parent instanceof InteractionInteractionCompartmentEditPart) {
+			InteractionInteractionCompartmentEditPart interactionInteractionCompartmentEditPart = (InteractionInteractionCompartmentEditPart)parent;
+			subEditPart = interactionInteractionCompartmentEditPart.getChildren().get(interactionInteractionCompartmentEditPart.getChildren().size() - 1);
+
+		} else if(parent instanceof InteractionOperandEditPart) {
+			InteractionOperandEditPart interactionOperandEditPart = (InteractionOperandEditPart)parent;
+			subEditPart = interactionOperandEditPart.getChildren().get(interactionOperandEditPart.getChildren().size() - 1);
 		}
-		if (subEditPart != null
-				&& subEditPart instanceof CombinedFragmentEditPart) {
-			CombinedFragmentEditPart combinedFragmentEditPart = (CombinedFragmentEditPart) subEditPart;
+		if(subEditPart != null && subEditPart instanceof CombinedFragmentEditPart) {
+			CombinedFragmentEditPart combinedFragmentEditPart = (CombinedFragmentEditPart)subEditPart;
 			// set bounds for CombinedFragmentEditPart
 			Rectangle cfEPAbsoluteRect = null;
 			int labelContainerHeight = computeCombinedFragementHeaderHeight(combinedFragmentEditPart);
-			Shape cfEPShape = (Shape) combinedFragmentEditPart.getModel();
-			if (cfEPShape.getLayoutConstraint() instanceof Bounds) {
-				if(request.getSize() == null){
+			Shape cfEPShape = (Shape)combinedFragmentEditPart.getModel();
+			if(cfEPShape.getLayoutConstraint() instanceof Bounds) {
+				if(request.getSize() == null) {
 					Dimension cfEPDefaultSize = new Dimension();
-					cfEPDefaultSize.setWidth(DEFAULT_INTERACTION_OPERAND_WIDTH+COMBINED_FRAGMENT_FIGURE_BORDER*2);
-					cfEPDefaultSize.setHeight(DEFAULT_INTERACTION_OPERAND_HEIGHT+labelContainerHeight+COMBINED_FRAGMENT_FIGURE_BORDER*2);
-					cfEPAbsoluteRect = new Rectangle(request.getLocation(),cfEPDefaultSize);
-				}else{
-					cfEPAbsoluteRect = new Rectangle(request.getLocation(),request.getSize());
+					cfEPDefaultSize.setWidth(DEFAULT_INTERACTION_OPERAND_WIDTH + COMBINED_FRAGMENT_FIGURE_BORDER * 2);
+					cfEPDefaultSize.setHeight(DEFAULT_INTERACTION_OPERAND_HEIGHT + labelContainerHeight + COMBINED_FRAGMENT_FIGURE_BORDER * 2);
+					cfEPAbsoluteRect = new Rectangle(request.getLocation(), cfEPDefaultSize);
+				} else {
+					cfEPAbsoluteRect = new Rectangle(request.getLocation(), request.getSize());
 				}
 				Rectangle cfEPRelativeRect = cfEPAbsoluteRect.getCopy();
 				combinedFragmentEditPart.getFigure().translateToRelative(cfEPRelativeRect);
-				Bounds cfEPBounds = (Bounds) cfEPShape.getLayoutConstraint();
-				fillBounds(cfEPBounds,cfEPRelativeRect);
+				Bounds cfEPBounds = (Bounds)cfEPShape.getLayoutConstraint();
+				fillBounds(cfEPBounds, cfEPRelativeRect);
 			}
-			
+
 			// set bounds for new added Operand
-			InteractionOperandEditPart lastOperand = OperandBoundsComputeHelper
-					.findLastIOEP((CombinedFragmentCombinedFragmentCompartmentEditPart) combinedFragmentEditPart.getChildBySemanticHint(UMLVisualIDRegistry
-							.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID)));
-			Shape shape = (Shape) lastOperand.getModel();
-			if (shape.getLayoutConstraint() instanceof Bounds) {
-				Bounds bounds = (Bounds) shape.getLayoutConstraint();
-				Rectangle rect = new Rectangle(bounds.getX(), bounds.getY(),
-						cfEPAbsoluteRect.width()-COMBINED_FRAGMENT_FIGURE_BORDER*2, cfEPAbsoluteRect.height()
-								- labelContainerHeight-COMBINED_FRAGMENT_FIGURE_BORDER*2);
-				fillBounds(bounds,rect);
+			InteractionOperandEditPart lastOperand = OperandBoundsComputeHelper.findLastIOEP((CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragmentEditPart.getChildBySemanticHint(UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID)));
+			Shape shape = (Shape)lastOperand.getModel();
+			if(shape.getLayoutConstraint() instanceof Bounds) {
+				Bounds bounds = (Bounds)shape.getLayoutConstraint();
+				Rectangle rect = new Rectangle(bounds.getX(), bounds.getY(), cfEPAbsoluteRect.width() - COMBINED_FRAGMENT_FIGURE_BORDER * 2, cfEPAbsoluteRect.height() - labelContainerHeight - COMBINED_FRAGMENT_FIGURE_BORDER * 2);
+				fillBounds(bounds, rect);
 			}
 		}
 	}
 
 	/**
-	 * Create command for updating Interaction Operand EditpPart bounds after CombinedFragment to be resized. 
+	 * Create command for updating Interaction Operand EditpPart bounds after CombinedFragment to be resized.
+	 * 
 	 * @param compoundCmd
 	 * @param request
 	 * @param combinedFragmentEditPart
 	 * @return Command
 	 */
-	public static Command createUpdateIOBoundsForCFResizeCommand(
-			CompoundCommand compoundCmd, final ChangeBoundsRequest request,
-			CombinedFragmentEditPart combinedFragmentEditPart) {
-		if (combinedFragmentEditPart.getChildren().size() > 0
-				&& combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart) combinedFragmentEditPart
-					.getChildren().get(0);
-			CombinedFragment cf = (CombinedFragment) ((CombinedFragmentEditPart) combinedFragmentEditPart)
-					.resolveSemanticElement();
+	public static Command createUpdateIOBoundsForCFResizeCommand(CompoundCommand compoundCmd, final ChangeBoundsRequest request, CombinedFragmentEditPart combinedFragmentEditPart) {
+		if(combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+			CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragmentEditPart.getChildren().get(0);
+			CombinedFragment cf = (CombinedFragment)combinedFragmentEditPart.resolveSemanticElement();
 			InteractionOperandEditPart targetIOEP = null;
-			if ((request.getResizeDirection() & PositionConstants.NORTH) != 0) {
+			if((request.getResizeDirection() & PositionConstants.NORTH) != 0) {
 				targetIOEP = findFirstIOEP(compartment);
-			} else if ((request.getResizeDirection() & PositionConstants.SOUTH) != 0) {
+			} else if((request.getResizeDirection() & PositionConstants.SOUTH) != 0) {
 				targetIOEP = findLastIOEP(compartment);
 			}
-			updateIOBoundsForCFResize(
-					request,
-					compoundCmd,
-					compartment.getChildren(),
-					cf,
-					targetIOEP != null ? (InteractionOperand) targetIOEP
-							.resolveSemanticElement() : null,
-					request.getSizeDelta(), request.getResizeDirection());
+			updateIOBoundsForCFResize(request, compoundCmd, compartment.getChildren(), cf, targetIOEP != null ? (InteractionOperand)targetIOEP.resolveSemanticElement() : null, request.getSizeDelta(), request.getResizeDirection());
 		}
 		//Append command for expand covered Lifelines when moving CombinedFragment.
 		Point moveDelta = request.getMoveDelta();
@@ -343,7 +319,8 @@ public class OperandBoundsComputeHelper {
 	}
 
 	/**
-	 * Update Interaction Operand EditpPart bounds after CombinedFragment to be resized. 
+	 * Update Interaction Operand EditpPart bounds after CombinedFragment to be resized.
+	 * 
 	 * @param request
 	 * @param compoundCmd
 	 * @param combinedFragmentChildrenEditParts
@@ -352,27 +329,17 @@ public class OperandBoundsComputeHelper {
 	 * @param sizeDelta
 	 * @param direction
 	 */
-	private static void updateIOBoundsForCFResize(final ChangeBoundsRequest request,
-			CompoundCommand compoundCmd,
-			List<EditPart> combinedFragmentChildrenEditParts,
-			CombinedFragment cf, InteractionOperand targetOperand,
-			final Dimension sizeDelta, int direction) {
-		InteractionOperandEditPart targetOperandEditPart = findTargetOperandEditPart(
-				cf, targetOperand, combinedFragmentChildrenEditParts);
-		for (EditPart ep : combinedFragmentChildrenEditParts) {
-			if (ep instanceof InteractionOperandEditPart) {
-				InteractionOperandEditPart ioEP = (InteractionOperandEditPart) ep;
+	private static void updateIOBoundsForCFResize(final ChangeBoundsRequest request, CompoundCommand compoundCmd, List<EditPart> combinedFragmentChildrenEditParts, CombinedFragment cf, InteractionOperand targetOperand, final Dimension sizeDelta, int direction) {
+		InteractionOperandEditPart targetOperandEditPart = findTargetOperandEditPart(cf, targetOperand, combinedFragmentChildrenEditParts);
+		for(EditPart ep : combinedFragmentChildrenEditParts) {
+			if(ep instanceof InteractionOperandEditPart) {
+				InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
 				Object ioEPModel = ioEP.getModel();
-				if (ioEPModel instanceof Shape) {
-					Shape ioEPShape = (Shape) ioEPModel;
-					if (ioEPShape.getLayoutConstraint() instanceof Bounds) {
-						final Bounds ioEPOriginalBounds = (Bounds) ioEPShape
-								.getLayoutConstraint();
-						ICommand cmd = new UpdateIOBoundsForCFResizeCommand(
-								ioEP.getEditingDomain(),
-								"Update operand bounds interaction command",
-								ioEPOriginalBounds, request, sizeDelta,
-								ioEP == targetOperandEditPart, direction);
+				if(ioEPModel instanceof Shape) {
+					Shape ioEPShape = (Shape)ioEPModel;
+					if(ioEPShape.getLayoutConstraint() instanceof Bounds) {
+						final Bounds ioEPOriginalBounds = (Bounds)ioEPShape.getLayoutConstraint();
+						ICommand cmd = new UpdateIOBoundsForCFResizeCommand(ioEP.getEditingDomain(), "Update operand bounds interaction command", ioEPOriginalBounds, request, sizeDelta, ioEP == targetOperandEditPart, direction);
 						compoundCmd.add(new ICommandProxy(cmd));
 					}
 				}
@@ -380,22 +347,24 @@ public class OperandBoundsComputeHelper {
 		}
 
 	}
-	
+
 	/**
 	 * Update bounds using new rect
+	 * 
 	 * @param bounds
 	 * @param rect
 	 * @param transactionalEditingDomain
 	 */
-	public static void updateBounds(final Bounds bounds, final Rectangle rect,
-			TransactionalEditingDomain transactionalEditingDomain) {
-		if (bounds != null) {
+	public static void updateBounds(final Bounds bounds, final Rectangle rect, TransactionalEditingDomain transactionalEditingDomain) {
+		if(bounds != null) {
 			final Rectangle originalBounds = new Rectangle();
 			originalBounds.setX(bounds.getX());
 			originalBounds.setY(bounds.getY());
 			originalBounds.setWidth(bounds.getWidth());
 			originalBounds.setHeight(bounds.getHeight());
 			AbstractCommand cmd = new AbstractCommand() {
+
+				@Override
 				public boolean canExecute() {
 					return true;
 				}
@@ -407,36 +376,37 @@ public class OperandBoundsComputeHelper {
 				public void redo() {
 					execute();
 				}
-				
-				public void undo(){
+
+				@Override
+				public void undo() {
 					exec(originalBounds);
 				}
-				
-				public void exec(Rectangle rect){
-					fillBounds(bounds,rect);
+
+				public void exec(Rectangle rect) {
+					fillBounds(bounds, rect);
 				}
 
+				@Override
 				public boolean canUndo() {
 					return true;
 				}
 			};
-			CommandHelper.executeCommandWithoutHistory(
-					transactionalEditingDomain, cmd,true);
+			CommandHelper.executeCommandWithoutHistory(transactionalEditingDomain, cmd, true);
 		}
 	}
 
 	/**
 	 * Get InteractionOperandEditPart from its model object InteractionOperand.
+	 * 
 	 * @param cf
 	 * @param targetOperand
 	 * @param combinedFragmentChildrenEditParts
 	 * @return InteractionOperandEditPart
 	 */
-	public static InteractionOperandEditPart findTargetOperandEditPart(CombinedFragment cf,
-			InteractionOperand targetOperand,
-			List<EditPart> combinedFragmentChildrenEditParts) {
-		if(targetOperand == null)
+	public static InteractionOperandEditPart findTargetOperandEditPart(CombinedFragment cf, InteractionOperand targetOperand, List<EditPart> combinedFragmentChildrenEditParts) {
+		if(targetOperand == null) {
 			return null;
+		}
 		for(EditPart ep : combinedFragmentChildrenEditParts) {
 			if(ep instanceof InteractionOperandEditPart) {
 				InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
@@ -450,30 +420,32 @@ public class OperandBoundsComputeHelper {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Get graphical edit part bounds
+	 * 
 	 * @param editPart
 	 * @return
 	 */
-	public static Bounds getEditPartBounds(GraphicalEditPart editPart){
-		if (editPart.getModel() instanceof Node) {
-			Node node = (Node) editPart.getModel();
-			if (node.getLayoutConstraint() instanceof Bounds) {
-				Bounds bounds = (Bounds) node.getLayoutConstraint();
+	public static Bounds getEditPartBounds(GraphicalEditPart editPart) {
+		if(editPart.getModel() instanceof Node) {
+			Node node = (Node)editPart.getModel();
+			if(node.getLayoutConstraint() instanceof Bounds) {
+				Bounds bounds = (Bounds)node.getLayoutConstraint();
 				return bounds;
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Fill data from Bounds to Rectangle
+	 * 
 	 * @param source
 	 * @return Rectangle
 	 */
 	public static Rectangle fillRectangle(Bounds source) {
-		if (source == null) {
+		if(source == null) {
 			return null;
 		}
 		Rectangle target = new Rectangle();
@@ -483,15 +455,16 @@ public class OperandBoundsComputeHelper {
 		target.setHeight(source.getHeight());
 		return target;
 	}
-	
+
 	/**
 	 * Fill data from Rectangle to Bounds
+	 * 
 	 * @param bounds
 	 * @param source
 	 * @return Bounds
 	 */
-	public static Bounds fillBounds(Bounds bounds,Rectangle source) {
-		if (bounds == null || source == null) {
+	public static Bounds fillBounds(Bounds bounds, Rectangle source) {
+		if(bounds == null || source == null) {
 			return null;
 		}
 		bounds.setX(source.x());
@@ -500,149 +473,136 @@ public class OperandBoundsComputeHelper {
 		bounds.setHeight(source.height());
 		return bounds;
 	}
-	
+
 	/**
 	 * Get interaction operand bounds
+	 * 
 	 * @param operandEP
 	 * @return Bounds
 	 */
-	public static Bounds getInteractionOperandEPBounds(GraphicalEditPart operandEP){
+	public static Bounds getInteractionOperandEPBounds(GraphicalEditPart operandEP) {
 		Object lastChildModel = operandEP.getModel();
-		if (lastChildModel instanceof Shape) {
-			Shape lastOperandShape = (Shape) lastChildModel;
-			if (lastOperandShape.getLayoutConstraint() instanceof Bounds) {
+		if(lastChildModel instanceof Shape) {
+			Shape lastOperandShape = (Shape)lastChildModel;
+			if(lastOperandShape.getLayoutConstraint() instanceof Bounds) {
 				return (Bounds)lastOperandShape.getLayoutConstraint();
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Create interaction operand resize command
+	 * 
 	 * @param currentIOEP
 	 * @param heightDelta
 	 * @param compartEP
 	 * @param direction
 	 * @return
 	 */
-	public static Command createIOEPResizeCommand(
-			InteractionOperandEditPart currentIOEP, int heightDelta,
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartEP,
-			int direction) {
-		Bounds currentIOEPBounds = OperandBoundsComputeHelper
-				.getEditPartBounds(currentIOEP);
-		if (currentIOEPBounds == null) {
+	public static Command createIOEPResizeCommand(InteractionOperandEditPart currentIOEP, int heightDelta, CombinedFragmentCombinedFragmentCompartmentEditPart compartEP, int direction) {
+		Bounds currentIOEPBounds = OperandBoundsComputeHelper.getEditPartBounds(currentIOEP);
+		if(currentIOEPBounds == null) {
 			return null;
 		}
 		InteractionOperandEditPart targetIOEP = null;
-		if ((direction & PositionConstants.NORTH) != 0) {
-			targetIOEP = OperandBoundsComputeHelper.findPreviousIOEP(compartEP,
-					currentIOEP);
-		} else if ((direction & PositionConstants.SOUTH) != 0) {
-			targetIOEP = OperandBoundsComputeHelper.findLatterIOEP(compartEP,
-					currentIOEP);
+		if((direction & PositionConstants.NORTH) != 0) {
+			targetIOEP = OperandBoundsComputeHelper.findPreviousIOEP(compartEP, currentIOEP);
+		} else if((direction & PositionConstants.SOUTH) != 0) {
+			targetIOEP = OperandBoundsComputeHelper.findLatterIOEP(compartEP, currentIOEP);
 		}
-		
-		CompositeCommand compositeCommand = new CompositeCommand(
-				"Resize Operand");
+
+		CompositeCommand compositeCommand = new CompositeCommand("Resize Operand");
 		// if last operand
-		if(targetIOEP == null){
-			if (heightDelta < 0) {
-				if (currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
+		if(targetIOEP == null) {
+			if(heightDelta < 0) {
+				if(currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
 					return null;
 				}
 			}
-			Rectangle currentIOEPRect = OperandBoundsComputeHelper
-					.fillRectangle(currentIOEPBounds);
+			Rectangle currentIOEPRect = OperandBoundsComputeHelper.fillRectangle(currentIOEPBounds);
 			currentIOEPRect.setHeight(currentIOEPBounds.getHeight() + heightDelta);
-			ICommand currentIOEPCommand = OperandBoundsComputeHelper
-					.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
+			ICommand currentIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
 			compositeCommand.add(currentIOEPCommand);
-			
+
 			ICommand cmd = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, heightDelta);
-			if (cmd != null && cmd.canExecute()){
+			if(cmd != null && cmd.canExecute()) {
 				compositeCommand.add(cmd);
 			}
 			// auto update CombinedFragmentEditPart bounds after resize the last operand
-			if(compartEP.getParent() instanceof CombinedFragmentEditPart){
-				CombinedFragmentEditPart parent = (CombinedFragmentEditPart) compartEP.getParent();
-				if (parent.getModel() instanceof Node) {
-					Node node = (Node) parent.getModel();
-					if (node.getLayoutConstraint() instanceof Bounds) {
-						Bounds containerBounds = (Bounds) node
-								.getLayoutConstraint();
+			if(compartEP.getParent() instanceof CombinedFragmentEditPart) {
+				CombinedFragmentEditPart parent = (CombinedFragmentEditPart)compartEP.getParent();
+				if(parent.getModel() instanceof Node) {
+					Node node = (Node)parent.getModel();
+					if(node.getLayoutConstraint() instanceof Bounds) {
+						Bounds containerBounds = (Bounds)node.getLayoutConstraint();
 						Dimension preferredSize = parent.getFigure().getPreferredSize();
-						int width = containerBounds.getWidth()!=-1? containerBounds.getWidth() :  preferredSize.width();
-						int height = containerBounds.getHeight()!=-1? containerBounds.getHeight() :  preferredSize.height();
+						int width = containerBounds.getWidth() != -1 ? containerBounds.getWidth() : preferredSize.width();
+						int height = containerBounds.getHeight() != -1 ? containerBounds.getHeight() : preferredSize.height();
 						height = height + heightDelta;
-						Rectangle containerRect = new Rectangle(containerBounds.getX(),containerBounds.getY(),width,height);
+						Rectangle containerRect = new Rectangle(containerBounds.getX(), containerBounds.getY(), width, height);
 						compositeCommand.add(OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(parent, containerRect));
 						//Preserve Message anchors.
 						ICommand preserveMessageAnchorsCommand = MessageAnchorRepairer.createPreserveMessageAnchorsCommand(parent, heightDelta);
-						if (preserveMessageAnchorsCommand != null && preserveMessageAnchorsCommand.canExecute()){
+						if(preserveMessageAnchorsCommand != null && preserveMessageAnchorsCommand.canExecute()) {
 							compositeCommand.add(preserveMessageAnchorsCommand);
 						}
 						ICommand expandCoveredsCommand = getExpandCoveredsCommand((CombinedFragmentEditPart)compartEP.getParent(), containerRect);
-						if (expandCoveredsCommand != null){
+						if(expandCoveredsCommand != null) {
 							compositeCommand.add(expandCoveredsCommand);
 						}
 					}
 				}
 			}
-		}else{
-			Bounds targetIOEPBounds = OperandBoundsComputeHelper
-					.getEditPartBounds(targetIOEP);
-			if (targetIOEPBounds == null) {
+		} else {
+			Bounds targetIOEPBounds = OperandBoundsComputeHelper.getEditPartBounds(targetIOEP);
+			if(targetIOEPBounds == null) {
 				return null;
 			}
-			if (heightDelta > 0) {
-				if (targetIOEPBounds.getHeight() - heightDelta < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
+			if(heightDelta > 0) {
+				if(targetIOEPBounds.getHeight() - heightDelta < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
 					return null;
 				}
 			} else {
-				if (currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
+				if(currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
 					return null;
 				}
 			}
-			Rectangle targetIOEPRect = OperandBoundsComputeHelper
-					.fillRectangle(targetIOEPBounds);
-			Rectangle currentIOEPRect = OperandBoundsComputeHelper
-					.fillRectangle(currentIOEPBounds);
+			Rectangle targetIOEPRect = OperandBoundsComputeHelper.fillRectangle(targetIOEPBounds);
+			Rectangle currentIOEPRect = OperandBoundsComputeHelper.fillRectangle(currentIOEPBounds);
 			targetIOEPRect.setHeight(targetIOEPBounds.getHeight() - heightDelta);
 			currentIOEPRect.setHeight(currentIOEPBounds.getHeight() + heightDelta);
 			int shiftY = 0;
-			if ((direction & PositionConstants.NORTH) != 0) {
+			if((direction & PositionConstants.NORTH) != 0) {
 				currentIOEPRect.setY(currentIOEPRect.y() - heightDelta);
 				shiftY = -heightDelta;
-			}else if ((direction & PositionConstants.SOUTH) != 0) {
+			} else if((direction & PositionConstants.SOUTH) != 0) {
 				targetIOEPRect.setY(targetIOEPRect.y() + heightDelta);
 				shiftY = heightDelta;
 			}
 
-			ICommand previousIOEPCommand = OperandBoundsComputeHelper
-					.createUpdateEditPartBoundsCommand(targetIOEP, targetIOEPRect);
+			ICommand previousIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(targetIOEP, targetIOEPRect);
 			compositeCommand.add(previousIOEPCommand);
 
 			ICommand shiftPreviousMessages = getShiftEnclosedMessagesCommand(targetIOEP, targetIOEPRect, shiftY);
-			if (shiftPreviousMessages != null && shiftPreviousMessages.canExecute()){
+			if(shiftPreviousMessages != null && shiftPreviousMessages.canExecute()) {
 				compositeCommand.add(shiftPreviousMessages);
 			}
-			
-			ICommand currentIOEPCommand = OperandBoundsComputeHelper
-					.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
+
+			ICommand currentIOEPCommand = OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
 			compositeCommand.add(currentIOEPCommand);
-			
+
 			ICommand shiftCurrentMessages = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, shiftY);
-			if (shiftCurrentMessages != null && shiftCurrentMessages.canExecute()){
+			if(shiftCurrentMessages != null && shiftCurrentMessages.canExecute()) {
 				compositeCommand.add(shiftCurrentMessages);
 			}
 		}
 
 		return new ICommandProxy(compositeCommand);
 	}
-	
-	private static ICommand getShiftEnclosedMessagesCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY){
-		if (editPart == null ||newBounds == null || movedY == 0){
+
+	private static ICommand getShiftEnclosedMessagesCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
+		if(editPart == null || newBounds == null || movedY == 0) {
 			return null;
 		}
 		IFigure cfFigure = editPart.getFigure();
@@ -650,23 +610,23 @@ public class OperandBoundsComputeHelper {
 
 		cfFigure.getParent().translateToAbsolute(origCFBounds);
 		origCFBounds.translate(cfFigure.getParent().getBounds().getLocation());
-		
+
 		InteractionOperand interactionOperand = (InteractionOperand)editPart.resolveSemanticElement();
 		Set<Message> messages = new HashSet<Message>();
 		EList<InteractionFragment> fragments = interactionOperand.getFragments();
 		for(InteractionFragment frag : fragments) {
-			if (!(frag instanceof MessageOccurrenceSpecification)){
+			if(!(frag instanceof MessageOccurrenceSpecification)) {
 				continue;
 			}
 			Message message = ((MessageOccurrenceSpecification)frag).getMessage();
-			if (message != null){
+			if(message != null) {
 				messages.add(message);
 			}
 		}
-		if (messages.isEmpty()){
+		if(messages.isEmpty()) {
 			return null;
 		}
-		CompositeCommand commands= new CompositeCommand("Shift Enclosed Messages");
+		CompositeCommand commands = new CompositeCommand("Shift Enclosed Messages");
 		for(Message msg : messages) {
 			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(msg);
 			for(Setting ref : settings) {
@@ -685,26 +645,28 @@ public class OperandBoundsComputeHelper {
 						Point targetPoint = targetAnchor.getReferencePoint();
 
 						Edge edge = (Edge)cep.getModel();
-						
-						if (!origCFBounds.contains(sourcePoint)){
+
+						if(!origCFBounds.contains(sourcePoint)) {
 							IdentityAnchor gmfSourceAnchor = (IdentityAnchor)edge.getSourceAnchor();
 							Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
 							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfSourceAnchor));
 						}
-						if (!origCFBounds.contains(targetPoint)){
+						if(!origCFBounds.contains(targetPoint)) {
 							IdentityAnchor gmfTargetAnchor = (IdentityAnchor)edge.getTargetAnchor();
-							Rectangle	figureBounds = targetAnchor.getOwner().getBounds();
+							Rectangle figureBounds = targetAnchor.getOwner().getBounds();
 							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfTargetAnchor));
 						}
 					}
-				}}
+				}
+			}
 		}
-		
-		if (commands.isEmpty()){
+
+		if(commands.isEmpty()) {
 			return null;
 		}
 		return commands;
 	}
+
 	private static ICommand getMoveAnchorCommand(int yDelta, Rectangle figureBounds, IdentityAnchor gmfAnchor) {
 		String oldTerminal = gmfAnchor.getId();
 		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
@@ -724,54 +686,48 @@ public class OperandBoundsComputeHelper {
 
 		return new SetValueCommand(new SetRequest(gmfAnchor, NotationPackage.Literals.IDENTITY_ANCHOR__ID, newTerminal));
 	}
+
 	/**
 	 * Compute CombinedFragement's header height
-	 * @param combinedFragmentEditPart 
+	 * 
+	 * @param combinedFragmentEditPart
 	 * @return int
 	 */
-	public static int computeCombinedFragementHeaderHeight(
-			CombinedFragmentEditPart combinedFragmentEditPart) {
+	public static int computeCombinedFragementHeaderHeight(CombinedFragmentEditPart combinedFragmentEditPart) {
 		int headerHeight = 0;
 		IFigure labelContainer = combinedFragmentEditPart.getPrimaryShape().getHeaderLabel().getParent();
-		if(labelContainer!=null){
+		if(labelContainer != null) {
 			headerHeight = labelContainer.getPreferredSize().height();
 		}
 		return headerHeight;
 	}
-	
+
 	/**
 	 * Check if operation resizing on CombinedFragment is allowed
+	 * 
 	 * @param request
 	 * @param child
 	 * @return boolean
 	 */
-	public static boolean checkRedistrictOnCFResize(ChangeBoundsRequest request,
-			EditPart child) {
-		if(child instanceof CombinedFragmentEditPart){
-			if ((request.getResizeDirection() & PositionConstants.NORTH_SOUTH) != 0) {
+	public static boolean checkRedistrictOnCFResize(ChangeBoundsRequest request, EditPart child) {
+		if(child instanceof CombinedFragmentEditPart) {
+			if((request.getResizeDirection() & PositionConstants.NORTH_SOUTH) != 0) {
 				CombinedFragmentEditPart combinedFragmentEditPart = (CombinedFragmentEditPart)child;
-				if (combinedFragmentEditPart.getChildren().size() > 0
-						&& combinedFragmentEditPart.getChildren()
-								.get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-					CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart) combinedFragmentEditPart
-							.getChildren().get(0);
-					List<EditPart> combinedFragmentChildrenEditParts = compartment
-							.getChildren();
-					CombinedFragment cf = (CombinedFragment) ((CombinedFragmentEditPart) combinedFragmentEditPart)
-							.resolveSemanticElement();
+				if(combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+					CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragmentEditPart.getChildren().get(0);
+					List<EditPart> combinedFragmentChildrenEditParts = compartment.getChildren();
+					CombinedFragment cf = (CombinedFragment)combinedFragmentEditPart.resolveSemanticElement();
 					InteractionOperand targetOperand = null;
-					if ((request.getResizeDirection() & PositionConstants.NORTH) != 0) {
+					if((request.getResizeDirection() & PositionConstants.NORTH) != 0) {
 						targetOperand = cf.getOperands().get(0);
-					} else if ((request.getResizeDirection() & PositionConstants.SOUTH) != 0) {
-						targetOperand = cf.getOperands().get(
-								cf.getOperands().size() - 1);
+					} else if((request.getResizeDirection() & PositionConstants.SOUTH) != 0) {
+						targetOperand = cf.getOperands().get(cf.getOperands().size() - 1);
 					}
-					InteractionOperandEditPart targetOperandEditPart = OperandBoundsComputeHelper.findTargetOperandEditPart(
-							cf, targetOperand, combinedFragmentChildrenEditParts);
+					InteractionOperandEditPart targetOperandEditPart = OperandBoundsComputeHelper.findTargetOperandEditPart(cf, targetOperand, combinedFragmentChildrenEditParts);
 					int heightDelta = request.getSizeDelta().height();
-					if(targetOperandEditPart!=null && heightDelta<0){
+					if(targetOperandEditPart != null && heightDelta < 0) {
 						int height = targetOperandEditPart.getFigure().getBounds().height();
-						if(height-Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT){
+						if(height - Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
 							return false;
 						}
 					}
@@ -780,131 +736,121 @@ public class OperandBoundsComputeHelper {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Add command for updating adjacent interaction operand bounds after deleting a interaction operand
+	 * 
 	 * @param editPart
 	 * @param cmd
 	 */
-	public static void addUpdateBoundsCommandForOperandDelelete(EditPart editPart,ICompositeCommand cmd) {
-		if(editPart instanceof InteractionOperandEditPart){
-			if(editPart.getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart){
+	public static void addUpdateBoundsCommandForOperandDelelete(EditPart editPart, ICompositeCommand cmd) {
+		if(editPart instanceof InteractionOperandEditPart) {
+			if(editPart.getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 				CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)editPart.getParent();
-					if(compartment.getParent() instanceof CombinedFragmentEditPart){
-						List<EditPart> combinedFragmentChildrenEditParts = compartment
-								.getChildren();
-						InteractionOperandEditPart previousIOEP = null;
-						InteractionOperandEditPart latterIOEP = null;
-						boolean isFirstOperand = false;
-						
-						InteractionOperandEditPart currentioEP = (InteractionOperandEditPart)editPart;
-						final Rectangle currentioEPBounds = currentioEP.getFigure().getBounds();
-						
-						for(int i = 0;i<combinedFragmentChildrenEditParts.size();i++) {
-							EditPart ep = combinedFragmentChildrenEditParts.get(i);
-							if(ep instanceof InteractionOperandEditPart) {
-								InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
-								if(currentioEP == ioEP){
-									if(previousIOEP!=null){
-										Object previousIOEPModel = previousIOEP.getModel();
-										if (previousIOEPModel instanceof Shape) {
-											Shape previousIOEPShape = (Shape) previousIOEPModel;
-											if (previousIOEPShape.getLayoutConstraint() instanceof Bounds) {
-												final Bounds previousIOEPOriginalBounds = (Bounds) previousIOEPShape.getLayoutConstraint();
-												ICommand command = new AbstractTransactionalCommand(previousIOEP.getEditingDomain(),"Merge operand bounds command",null){
-													@Override
-													protected CommandResult doExecuteWithResult(
-															IProgressMonitor monitor,
-															IAdaptable info)
-															throws ExecutionException {
-														previousIOEPOriginalBounds.setHeight(previousIOEPOriginalBounds.getHeight() + currentioEPBounds.height());
-														return CommandResult.newOKCommandResult();
-													}
-												};
-												cmd.add(command);
-											}
+				if(compartment.getParent() instanceof CombinedFragmentEditPart) {
+					List<EditPart> combinedFragmentChildrenEditParts = compartment.getChildren();
+					InteractionOperandEditPart previousIOEP = null;
+					InteractionOperandEditPart latterIOEP = null;
+					boolean isFirstOperand = false;
+
+					InteractionOperandEditPart currentioEP = (InteractionOperandEditPart)editPart;
+					final Rectangle currentioEPBounds = currentioEP.getFigure().getBounds();
+
+					for(int i = 0; i < combinedFragmentChildrenEditParts.size(); i++) {
+						EditPart ep = combinedFragmentChildrenEditParts.get(i);
+						if(ep instanceof InteractionOperandEditPart) {
+							InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
+							if(currentioEP == ioEP) {
+								if(previousIOEP != null) {
+									Object previousIOEPModel = previousIOEP.getModel();
+									if(previousIOEPModel instanceof Shape) {
+										Shape previousIOEPShape = (Shape)previousIOEPModel;
+										if(previousIOEPShape.getLayoutConstraint() instanceof Bounds) {
+											final Bounds previousIOEPOriginalBounds = (Bounds)previousIOEPShape.getLayoutConstraint();
+											ICommand command = new AbstractTransactionalCommand(previousIOEP.getEditingDomain(), "Merge operand bounds command", null) {
+
+												@Override
+												protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+													previousIOEPOriginalBounds.setHeight(previousIOEPOriginalBounds.getHeight() + currentioEPBounds.height());
+													return CommandResult.newOKCommandResult();
+												}
+											};
+											cmd.add(command);
 										}
-										break;
-									}else{
-										isFirstOperand = true; 
-										continue;
 									}
-								}else{
-									previousIOEP = ioEP;
-								}
-								if(isFirstOperand){
-									latterIOEP = ioEP;
 									break;
+								} else {
+									isFirstOperand = true;
+									continue;
 								}
+							} else {
+								previousIOEP = ioEP;
 							}
-						}
-						if(isFirstOperand && latterIOEP!=null){
-							Object latterIOEPModel = latterIOEP.getModel();
-							if (latterIOEPModel instanceof Shape) {
-								Shape latterIOEPShape = (Shape) latterIOEPModel;
-								if (latterIOEPShape.getLayoutConstraint() instanceof Bounds) {
-									final Bounds latterIOEPOriginalBounds = (Bounds) latterIOEPShape.getLayoutConstraint();
-									ICommand command = new AbstractTransactionalCommand(previousIOEP.getEditingDomain(),"Merge operand bounds command",null){
-										@Override
-										protected CommandResult doExecuteWithResult(
-												IProgressMonitor monitor,
-												IAdaptable info)
-												throws ExecutionException {
-											latterIOEPOriginalBounds.setY(0);
-											latterIOEPOriginalBounds.setHeight(latterIOEPOriginalBounds.getHeight() + currentioEPBounds.height());
-											return CommandResult.newOKCommandResult();
-										}
-									};
-									cmd.add(command);
-								}
+							if(isFirstOperand) {
+								latterIOEP = ioEP;
+								break;
 							}
 						}
 					}
+					if(isFirstOperand && latterIOEP != null) {
+						Object latterIOEPModel = latterIOEP.getModel();
+						if(latterIOEPModel instanceof Shape) {
+							Shape latterIOEPShape = (Shape)latterIOEPModel;
+							if(latterIOEPShape.getLayoutConstraint() instanceof Bounds) {
+								final Bounds latterIOEPOriginalBounds = (Bounds)latterIOEPShape.getLayoutConstraint();
+								ICommand command = new AbstractTransactionalCommand(previousIOEP.getEditingDomain(), "Merge operand bounds command", null) {
+
+									@Override
+									protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+										latterIOEPOriginalBounds.setY(0);
+										latterIOEPOriginalBounds.setHeight(latterIOEPOriginalBounds.getHeight() + currentioEPBounds.height());
+										return CommandResult.newOKCommandResult();
+									}
+								};
+								cmd.add(command);
+							}
+						}
+					}
+				}
 			}
 		}
-		
+
 	}
-	
+
 	/**
-	 * Add update InteractionOperand bounds command after IO is created 
+	 * Add update InteractionOperand bounds command after IO is created
+	 * 
 	 * @param compartment
 	 * @param request
 	 * @param command
 	 */
-	public static void addUpdateBoundsForIOCreationCommand(
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartment, ViewDescriptor viewDescriptor,
-			CompositeCommand command) {
+	public static void addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart compartment, ViewDescriptor viewDescriptor, CompositeCommand command) {
 		List children = compartment.getChildren();
-		if (children != null && children.size() > 0) {
+		if(children != null && children.size() > 0) {
 			InteractionOperandEditPart lastOperandEP = OperandBoundsComputeHelper.findLastIOEP(compartment);
 			// update bounds
-			if (lastOperandEP != null) {
+			if(lastOperandEP != null) {
 				Bounds lastOperandBounds = OperandBoundsComputeHelper.getInteractionOperandEPBounds(lastOperandEP);
-				if (lastOperandBounds!= null) {
-					Rectangle rect = new Rectangle(
-							lastOperandBounds.getX(),
-							lastOperandBounds.getY()+lastOperandBounds.getHeight(), lastOperandBounds.getWidth(), OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT);
+				if(lastOperandBounds != null) {
+					Rectangle rect = new Rectangle(lastOperandBounds.getX(), lastOperandBounds.getY() + lastOperandBounds.getHeight(), lastOperandBounds.getWidth(), OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT);
 					// auto update CombinedFragmentEditPart bounds after added new operand
-					if(compartment.getParent() instanceof CombinedFragmentEditPart){
-						CombinedFragmentEditPart parent = (CombinedFragmentEditPart) compartment
-								.getParent();
-						if (parent.getModel() instanceof Node) {
-							Node node = (Node) parent.getModel();
-							if (node.getLayoutConstraint() instanceof Bounds) {
-								Bounds containerBounds = (Bounds) node.getLayoutConstraint();
+					if(compartment.getParent() instanceof CombinedFragmentEditPart) {
+						CombinedFragmentEditPart parent = (CombinedFragmentEditPart)compartment.getParent();
+						if(parent.getModel() instanceof Node) {
+							Node node = (Node)parent.getModel();
+							if(node.getLayoutConstraint() instanceof Bounds) {
+								Bounds containerBounds = (Bounds)node.getLayoutConstraint();
 								Dimension preferredSize = parent.getFigure().getPreferredSize();
-								int width = containerBounds.getWidth()!=-1? containerBounds.getWidth() :  preferredSize.width();
-								int height = containerBounds.getHeight()!=-1? containerBounds.getHeight() :  preferredSize.height();
+								int width = containerBounds.getWidth() != -1 ? containerBounds.getWidth() : preferredSize.width();
+								int height = containerBounds.getHeight() != -1 ? containerBounds.getHeight() : preferredSize.height();
 								height = height + OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT;
-								View shapeView = (View) parent.getModel();
-								Rectangle newBounds = new Rectangle(containerBounds.getX(),containerBounds.getY(),width,height);
-								ICommand setParentBoundsCmd = new SetBoundsCommand(compartment.getEditingDomain(),
-							            DiagramUIMessages.SetLocationCommand_Label_Resize,
-							            new EObjectAdapter(shapeView), newBounds);
+								View shapeView = (View)parent.getModel();
+								Rectangle newBounds = new Rectangle(containerBounds.getX(), containerBounds.getY(), width, height);
+								ICommand setParentBoundsCmd = new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(shapeView), newBounds);
 								command.add(setParentBoundsCmd);
 								//Preserve Message anchors.
 								ICommand preserveMessageAnchorsCommand = MessageAnchorRepairer.createPreserveMessageAnchorsCommand(parent, OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT);
-								if (preserveMessageAnchorsCommand != null && preserveMessageAnchorsCommand.canExecute()){
+								if(preserveMessageAnchorsCommand != null && preserveMessageAnchorsCommand.canExecute()) {
 									command.add(preserveMessageAnchorsCommand);
 								}
 								CombinedFragment combinedFragment = (CombinedFragment)parent.resolveSemanticElement();
@@ -920,25 +866,24 @@ public class OperandBoundsComputeHelper {
 					command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, rect));
 				}
 			}
-		}else{ // first add operand
-			if(compartment.getParent() instanceof CombinedFragmentEditPart){
-				CombinedFragmentEditPart parent = (CombinedFragmentEditPart) compartment
-						.getParent();
-				if (parent.getModel() instanceof Node) {
-					Node node = (Node) parent.getModel();
-					if (node.getLayoutConstraint() instanceof Bounds) {
-						Bounds containerBounds = (Bounds) node.getLayoutConstraint();
+		} else { // first add operand
+			if(compartment.getParent() instanceof CombinedFragmentEditPart) {
+				CombinedFragmentEditPart parent = (CombinedFragmentEditPart)compartment.getParent();
+				if(parent.getModel() instanceof Node) {
+					Node node = (Node)parent.getModel();
+					if(node.getLayoutConstraint() instanceof Bounds) {
+						Bounds containerBounds = (Bounds)node.getLayoutConstraint();
 						Dimension preferredSize = parent.getFigure().getPreferredSize();
-						int width = containerBounds.getWidth()!=-1? containerBounds.getWidth() :  preferredSize.width();
-						int height = containerBounds.getHeight()!=-1? containerBounds.getHeight() :  preferredSize.height();
+						int width = containerBounds.getWidth() != -1 ? containerBounds.getWidth() : preferredSize.width();
+						int height = containerBounds.getHeight() != -1 ? containerBounds.getHeight() : preferredSize.height();
 						height = height - computeCombinedFragementHeaderHeight(parent);
-						command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, new Rectangle(0,0,width-COMBINED_FRAGMENT_FIGURE_BORDER*2,height-COMBINED_FRAGMENT_FIGURE_BORDER*2)));
+						command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, new Rectangle(0, 0, width - COMBINED_FRAGMENT_FIGURE_BORDER * 2, height - COMBINED_FRAGMENT_FIGURE_BORDER * 2)));
 					}
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Expand Lifelines to new Bounds when adding InteractionOperands.
 	 * 
@@ -960,10 +905,10 @@ public class OperandBoundsComputeHelper {
 						Bounds bounds = (Bounds)((Node)view).getLayoutConstraint();
 						Rectangle rect = new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
 						int height = newBounds.bottom() - rect.y;
-						if (rect.height == -1){
+						if(rect.height == -1) {
 							rect.height = ((LifelineEditPart)part).getFigure().getPreferredSize().height;
 						}
-						if (height > rect.height){
+						if(height > rect.height) {
 							int heightDelta = height - rect.height;
 							rect.height = height;
 							command.add(new SetBoundsCommand(parent.getEditingDomain(), "Expand covered Lifeline by CombinedFragment", new EObjectAdapter(view), rect));
@@ -974,10 +919,10 @@ public class OperandBoundsComputeHelper {
 				}
 			}
 		}
-		return (ICommand)(command.isEmpty() ? null : command);
+		return command.isEmpty() ? null : command;
 	}
 
-	
+
 	/**
 	 * Check if it is a combined fragment.
 	 * 
@@ -994,23 +939,24 @@ public class OperandBoundsComputeHelper {
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Command class for updating Interaction Operand EditpPart bounds after CombinedFragment to be resized. 
-	 *
+	 * Command class for updating Interaction Operand EditpPart bounds after CombinedFragment to be resized.
+	 * 
 	 */
-	private static final class UpdateIOBoundsForCFResizeCommand extends
-			AbstractTransactionalCommand {
+	private static final class UpdateIOBoundsForCFResizeCommand extends AbstractTransactionalCommand {
+
 		private final Bounds ioEPOriginalBounds;
+
 		private final ChangeBoundsRequest request;
+
 		private final Dimension sizeDelta;
+
 		private boolean updateHeight = false;
+
 		private int direction;
 
-		private UpdateIOBoundsForCFResizeCommand(TransactionalEditingDomain domain,
-				String label, Bounds ioEPOriginalBounds,
-				ChangeBoundsRequest request, Dimension sizeDelta,
-				boolean updateHeight, int direction) {
+		private UpdateIOBoundsForCFResizeCommand(TransactionalEditingDomain domain, String label, Bounds ioEPOriginalBounds, ChangeBoundsRequest request, Dimension sizeDelta, boolean updateHeight, int direction) {
 			super(domain, label, null);
 			this.ioEPOriginalBounds = ioEPOriginalBounds;
 			this.request = request;
@@ -1020,18 +966,14 @@ public class OperandBoundsComputeHelper {
 		}
 
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
-			if (updateHeight) {
-				ioEPOriginalBounds.setHeight(ioEPOriginalBounds.getHeight()
-						+ sizeDelta.height());
-			} else if ((direction & PositionConstants.NORTH) != 0) {
-				ioEPOriginalBounds.setY(ioEPOriginalBounds.getY()
-						+ sizeDelta.height());
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			if(updateHeight) {
+				ioEPOriginalBounds.setHeight(ioEPOriginalBounds.getHeight() + sizeDelta.height());
+			} else if((direction & PositionConstants.NORTH) != 0) {
+				ioEPOriginalBounds.setY(ioEPOriginalBounds.getY() + sizeDelta.height());
 			}
-			if ((request.getResizeDirection() & PositionConstants.EAST_WEST) != 0) {
-				ioEPOriginalBounds.setWidth(ioEPOriginalBounds.getWidth()
-						+ sizeDelta.width());
+			if((request.getResizeDirection() & PositionConstants.EAST_WEST) != 0) {
+				ioEPOriginalBounds.setWidth(ioEPOriginalBounds.getWidth() + sizeDelta.width());
 			}
 
 			return CommandResult.newOKCommandResult();

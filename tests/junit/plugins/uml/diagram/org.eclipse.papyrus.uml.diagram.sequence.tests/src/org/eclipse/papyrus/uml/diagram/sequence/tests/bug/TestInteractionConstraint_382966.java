@@ -59,6 +59,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 
 	private static final String CHANGE_OPERATOR_KIND = "Change Operator Kind: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -74,6 +75,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 
 		executeCommandWithoutHistory(getRootEditPart().getEditingDomain(), new DummyCommand() {
 
+			@Override
 			public void execute() {
 				guard.setMaxint(null); // unset maxint
 				guard.setSpecification(null);
@@ -84,7 +86,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 		WrappingLabel label = op.getPrimaryShape().getInteractionConstraintLabel();
 		assertTrue(TEST_THE_EXECUTION, label.getText().equals(""));
 	}
-	
+
 	@Test
 	public void testEditMinint() {
 		InteractionOperandEditPart op = setupOperand();
@@ -96,6 +98,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 
 		executeCommandWithoutHistory(getRootEditPart().getEditingDomain(), new DummyCommand() {
 
+			@Override
 			public void execute() {
 				guard.setMinint(null); // unset maxint
 				guard.setSpecification(null);
@@ -137,9 +140,11 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 		public void redo() {
 		}
 
+		@Override
 		public void undo() {
 		}
 
+		@Override
 		protected boolean prepare() {
 			return true;
 		}

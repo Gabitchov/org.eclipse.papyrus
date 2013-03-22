@@ -35,7 +35,7 @@ public class MessageConnectionEditPolicy extends ConnectionEditPolicy {
 
 		return LifelineMessageCreateHelper.restoreLifelineOnMessageDelete(deleteSemanticsCommand, getHost());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -48,7 +48,7 @@ public class MessageConnectionEditPolicy extends ConnectionEditPolicy {
 			TransactionalEditingDomain editingDomain = ((ConnectionNodeEditPart)getHost()).getEditingDomain();
 			SequenceDeleteHelper.completeDeleteMessageViewCommand(deleteViewsCommand, editingDomain, getHost());
 		}
-		
+
 		return LifelineMessageCreateHelper.restoreLifelineOnMessageDelete(deleteViewsCommand, getHost());
 	}
 }

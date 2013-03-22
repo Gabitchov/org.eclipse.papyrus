@@ -34,23 +34,23 @@ public class CombinedFragmentFigure extends InteractionRectangleFigure {
 		interactionContentPane.setOpaque(false);
 		interactionContentPane.setBorder(null);
 	}
-	
+
 	protected Figure createHeaderPane() {
 		titleLabel = new WrappingLabel();
 		titleLabel.setAlignment(PositionConstants.RIGHT);
 		titleLabel.setBorder(new MarginBorder(3, 0, 0, 3));
 		titleLabel.setTextWrap(false);
 		IFigure leftContainer = super.createHeader();
-		
+
 		Figure headerPane = new Figure();
 		headerPane.setLayoutManager(new BorderLayout());
-		headerPane.add(leftContainer,  BorderLayout.LEFT);		
-		headerPane.add(titleLabel,  BorderLayout.RIGHT);
-		
+		headerPane.add(leftContainer, BorderLayout.LEFT);
+		headerPane.add(titleLabel, BorderLayout.RIGHT);
+
 		return headerPane;
 	}
-	
+
 	public WrappingLabel getTitleLabel() {
 		return titleLabel;
-	}		
+	}
 }

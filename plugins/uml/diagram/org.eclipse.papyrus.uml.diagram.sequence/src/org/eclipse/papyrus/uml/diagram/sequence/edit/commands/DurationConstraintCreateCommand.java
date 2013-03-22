@@ -81,7 +81,6 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -133,15 +132,11 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	 * @generated NOT get the Lifeline parent as owner, assign the occurrence specifications
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		DurationConstraint newElement = UMLFactory.eINSTANCE.createDurationConstraint();
-
 		// get the Lifeline parent as owner
 		Namespace owner = (Namespace)getElementToEdit().eContainer();
 		owner.getOwnedRules().add(newElement);
-
 		ElementInitializers.getInstance().init_DurationConstraint_3021(newElement);
-
 		// assign the occurrence specification
 		Object paramOccurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
 		List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOccurrence1);
@@ -152,9 +147,7 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 			newElement.getConstrainedElements().add(pair[0]);
 			newElement.getConstrainedElements().add(pair[1]);
 		}
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -172,5 +165,4 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

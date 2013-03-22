@@ -46,12 +46,12 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
-//		CompoundCommand compound = new CompoundCommand();
+		//		CompoundCommand compound = new CompoundCommand();
 
 		Command command = super.getConnectionCompleteCommand(request);
 
 		if(command != null && command.canExecute()) {
-//			compound.add(command);
+			//			compound.add(command);
 
 			if(request instanceof CreateConnectionViewAndElementRequest) {
 				CreateConnectionViewAndElementRequest viewRequest = (CreateConnectionViewAndElementRequest)request;
@@ -73,26 +73,26 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 							target = ViewUtil.resolveSemanticElement((View)targetEP.getModel());
 						}
 						EditPart sourceEditPart = request.getSourceEditPart();
-						if (sourceEditPart instanceof ActionExecutionSpecificationEditPart || sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
-							return new ICommandProxy(new PromptCreateElementAndNodeCommand(command, getEditingDomain(),viewRequest.getConnectionViewDescriptor(),(ShapeNodeEditPart) targetEP, target,sourceEP,request, ift));
+						if(sourceEditPart instanceof ActionExecutionSpecificationEditPart || sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+							return new ICommandProxy(new PromptCreateElementAndNodeCommand(command, getEditingDomain(), viewRequest.getConnectionViewDescriptor(), (ShapeNodeEditPart)targetEP, target, sourceEP, request, ift));
 						}
-//						IHintedType elementType = null;
-//						if(sourceEditPart instanceof ActionExecutionSpecificationEditPart) {
-//							elementType = (IHintedType)UMLElementTypes.ActionExecutionSpecification_3006;
-//						} else if(request.getSourceEditPart() instanceof BehaviorExecutionSpecificationEditPart) {
-//							elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003;
-//						}
-//
-//
-//						if(elementType != null) {
-//							CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(getEditingDomain(), (ShapeNodeEditPart)targetEP, target, elementType, request.getLocation());
-//							createExecutionSpecificationCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
-//							compound.add(createExecutionSpecificationCommand);
-//
-//							// put the anchor at the top of the figure
-//							ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(getEditingDomain(), createExecutionSpecificationCommand, viewRequest.getConnectionViewDescriptor(), "(0.5, 0.0)");
-//							compound.add(new ICommandProxy(changeTargetCommand));
-//						}
+						//						IHintedType elementType = null;
+						//						if(sourceEditPart instanceof ActionExecutionSpecificationEditPart) {
+						//							elementType = (IHintedType)UMLElementTypes.ActionExecutionSpecification_3006;
+						//						} else if(request.getSourceEditPart() instanceof BehaviorExecutionSpecificationEditPart) {
+						//							elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003;
+						//						}
+						//
+						//
+						//						if(elementType != null) {
+						//							CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(getEditingDomain(), (ShapeNodeEditPart)targetEP, target, elementType, request.getLocation());
+						//							createExecutionSpecificationCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
+						//							compound.add(createExecutionSpecificationCommand);
+						//
+						//							// put the anchor at the top of the figure
+						//							ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(getEditingDomain(), createExecutionSpecificationCommand, viewRequest.getConnectionViewDescriptor(), "(0.5, 0.0)");
+						//							compound.add(new ICommandProxy(changeTargetCommand));
+						//						}
 					}
 				}
 			}

@@ -13,13 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -57,7 +55,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentDeleteHelper;
 import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.InteractionOperand;
 
 /**
  * @generated
@@ -70,8 +67,7 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	public CombinedFragmentItemSemanticEditPolicy() {
 		super(UMLElementTypes.CombinedFragment_3004);
 	}
- 
-	
+
 	/**
 	 * @generated NOT
 	 */
@@ -81,20 +77,17 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
-				if(selectedEObject instanceof CombinedFragment){
-					ICommand selectCmd = CombinedFragmentDeleteHelper.createDestroyElementCommand((CombinedFragment) selectedEObject , getEditingDomain(), provider, req, deleteCommand, (CombinedFragmentEditPart)getHost());
+				if(selectedEObject instanceof CombinedFragment) {
+					ICommand selectCmd = CombinedFragmentDeleteHelper.createDestroyElementCommand((CombinedFragment)selectedEObject, getEditingDomain(), provider, req, deleteCommand, (CombinedFragmentEditPart)getHost());
 					return new ICommandProxy(selectCmd);
-				}else
+				} else
 					return new ICommandProxy(deleteCommand);
 			}
 			return null;
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-	
- 
 
 	/**
 	 * @generated
@@ -213,5 +206,4 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

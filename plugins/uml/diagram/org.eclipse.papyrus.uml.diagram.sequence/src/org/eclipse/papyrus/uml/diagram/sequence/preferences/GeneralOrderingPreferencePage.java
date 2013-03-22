@@ -30,7 +30,5 @@ public class GeneralOrderingPreferencePage extends AbstractPapyrusLinkPreference
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

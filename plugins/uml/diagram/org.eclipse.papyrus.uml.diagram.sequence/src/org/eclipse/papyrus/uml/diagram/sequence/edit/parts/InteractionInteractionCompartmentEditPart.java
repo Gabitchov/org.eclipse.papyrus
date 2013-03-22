@@ -78,16 +78,13 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionInteractionCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
 		// new
 		// org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new InteractionCompartmentXYLayoutEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-
 		removeEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE);
 	}
 
@@ -143,7 +140,7 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 		}
 		super.addChildVisual(childEditPart, index);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -152,17 +149,17 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
-		if (!isEditModeEnabled() || !isActive()) {
+		if(!isEditModeEnabled() || !isActive()) {
 			return;
 		}
 		// Avoid default drop feedback by setting background, just highlight it
 		// with bold border.
 		EditPolicyIterator i = getEditPolicyIterator();
-		while (i.hasNext()) {
+		while(i.hasNext()) {
 			EditPolicy next = i.next();
-			if (REQ_CREATE.equals(request.getType()) && next.getClass().getName().equals("org.eclipse.papyrus.infra.gmfdiag.dnd.policy.CustomizableDropEditPolicy")) {
+			if(REQ_CREATE.equals(request.getType()) && next.getClass().getName().equals("org.eclipse.papyrus.infra.gmfdiag.dnd.policy.CustomizableDropEditPolicy")) {
 				HighlightUtil.highlight(this);
-			}else{
+			} else {
 				next.showTargetFeedback(request);
 			}
 		}

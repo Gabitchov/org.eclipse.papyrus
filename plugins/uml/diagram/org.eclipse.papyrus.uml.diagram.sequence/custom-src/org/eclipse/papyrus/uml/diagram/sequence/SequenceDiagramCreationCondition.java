@@ -23,6 +23,7 @@ public class SequenceDiagramCreationCondition extends PerspectiveContextDependen
 	/**
 	 * @return whether the diagram can be created.
 	 */
+	@Override
 	public boolean create(EObject selectedElement) {
 		if(super.create(selectedElement)) {
 			// TODO : to specify according to the spec

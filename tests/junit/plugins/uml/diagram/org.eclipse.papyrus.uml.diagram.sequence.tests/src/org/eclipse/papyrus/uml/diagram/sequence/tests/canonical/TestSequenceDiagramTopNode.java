@@ -53,23 +53,23 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 		testToManageTopNode(UMLElementTypes.InteractionUse_3002, provider);
 	}
 
-//	@Test
-//	public void testToManageConsiderIgnoreFragment() { // popup menu when delete
-//		PopupUtil.addMenuListener(0);
-//		testToManageTopNode(UMLElementTypes.ConsiderIgnoreFragment_3007, provider);
-//
-//		waitForComplete();
-//		PopupUtil.removeMenuListener();
-//	}
-//
-//	@Test
-//	public void testToManageCombinedFragment() { // popup menu when delete
-//		PopupUtil.addMenuListener(0);
-//		testToManageTopNode(UMLElementTypes.CombinedFragment_3004, provider);
-//
-//		waitForComplete();
-//		PopupUtil.removeMenuListener();
-//	}
+	//	@Test
+	//	public void testToManageConsiderIgnoreFragment() { // popup menu when delete
+	//		PopupUtil.addMenuListener(0);
+	//		testToManageTopNode(UMLElementTypes.ConsiderIgnoreFragment_3007, provider);
+	//
+	//		waitForComplete();
+	//		PopupUtil.removeMenuListener();
+	//	}
+	//
+	//	@Test
+	//	public void testToManageCombinedFragment() { // popup menu when delete
+	//		PopupUtil.addMenuListener(0);
+	//		testToManageTopNode(UMLElementTypes.CombinedFragment_3004, provider);
+	//
+	//		waitForComplete();
+	//		PopupUtil.removeMenuListener();
+	//	}
 
 	@Test
 	public void testToManageTimeObservation() {

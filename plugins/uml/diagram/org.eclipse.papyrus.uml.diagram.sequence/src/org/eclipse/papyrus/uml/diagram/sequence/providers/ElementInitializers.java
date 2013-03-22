@@ -158,10 +158,8 @@ public class ElementInitializers {
 			instance.setSpecification(newInstance_0_0);
 			Object value_0_0_0 = name_specification_TimeConstraint_3019(newInstance_0_0);
 			newInstance_0_0.setName((String)value_0_0_0);
-
 			// init Time Interval
 			init_TimeInterval(newInstance_0_0);
-
 			Object value_1 = name_TimeConstraint_3019(instance);
 			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
@@ -190,10 +188,8 @@ public class ElementInitializers {
 			instance.setSpecification(newInstance_0_0);
 			Object value_0_0_0 = name_specification_DurationConstraint_3021(newInstance_0_0);
 			newInstance_0_0.setName((String)value_0_0_0);
-
 			// init Duration Interval
 			init_DurationInterval(newInstance_0_0);
-
 			Object value_1 = name_DurationConstraint_3021(instance);
 			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
@@ -222,22 +218,16 @@ public class ElementInitializers {
 	private void init_TimeInterval(TimeInterval instance) {
 		// time interval
 		TimeInterval timeInterval = instance;
-
 		// create, add and set the min and max duration of the duration interval
 		org.eclipse.uml2.uml.Package package_ = timeInterval.getNearestPackage();
-
 		TimeExpression minTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
 		TimeExpression maxTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
-
 		package_.getPackagedElements().add(minTimeExpression);
 		package_.getPackagedElements().add(maxTimeExpression);
-
 		ElementInitializers.init_NamedElement(minTimeExpression, "", timeInterval.eClass().getName(), "Min");
 		ElementInitializers.init_NamedElement(maxTimeExpression, "", timeInterval.eClass().getName(), "Max");
-
 		timeInterval.setMin(minTimeExpression);
 		timeInterval.setMax(maxTimeExpression);
-
 		minTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 		maxTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 	}
@@ -251,22 +241,16 @@ public class ElementInitializers {
 	private void init_DurationInterval(DurationInterval instance) {
 		// duration interval
 		DurationInterval durationInterval = instance;
-
 		// create, add and set the min and max duration of the duration interval
 		org.eclipse.uml2.uml.Package package_ = durationInterval.getNearestPackage();
-
 		Duration minDuration = UMLFactory.eINSTANCE.createDuration();
 		Duration maxDuration = UMLFactory.eINSTANCE.createDuration();
-
 		package_.getPackagedElements().add(minDuration);
 		package_.getPackagedElements().add(maxDuration);
-
 		ElementInitializers.init_NamedElement(minDuration, "", durationInterval.eClass().getName(), "Min");
 		ElementInitializers.init_NamedElement(maxDuration, "", durationInterval.eClass().getName(), "Max");
-
 		durationInterval.setMin(minDuration);
 		durationInterval.setMax(maxDuration);
-
 		minDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 		maxDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 	}
@@ -280,7 +264,6 @@ public class ElementInitializers {
 			instance.setSpecification(newInstance_0_0);
 			Object value_0_0_0 = value_specification_Constraint_3008(newInstance_0_0);
 			newInstance_0_0.setValue((String)value_0_0_0);
-
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -307,10 +290,8 @@ public class ElementInitializers {
 			instance.setSpecification(newInstance_0_0);
 			Object value_0_0_0 = name_specification_DurationConstraint_3023(newInstance_0_0);
 			newInstance_0_0.setName((String)value_0_0_0);
-
 			// init Duration Interval
 			init_DurationInterval(newInstance_0_0);
-
 			Object value_1 = name_DurationConstraint_3023(instance);
 			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
@@ -552,7 +533,6 @@ public class ElementInitializers {
 	 */
 	private static String getNamedElement(NamedElement namedElement, String prefix, String body, String suffix) {
 		String base = prefix + body + suffix;
-
 		Namespace namespace = namedElement.getNamespace();
 		if(namespace != null) {
 			Set<NamedElement> members = new HashSet<NamedElement>();
@@ -563,7 +543,6 @@ public class ElementInitializers {
 			}
 			return getNextNumberedName(members, base);
 		}
-
 		return base;
 	}
 
@@ -578,7 +557,6 @@ public class ElementInitializers {
 					elementNames.add(name);
 					String end = name.substring(base.length());
 					int nextNumberTmp = -1;
-
 					if(end.trim().equals("")) {
 						nextNumberTmp = 0;
 					} else {
@@ -588,24 +566,22 @@ public class ElementInitializers {
 							nextNumberTmp = -1;
 						}
 					}
-
 					if(nextNumberTmp > nextNumber) {
 						nextNumber = nextNumberTmp;
 					}
 				}
 			}
 		}
-
 		if(nextNumber == -1) {
 			return generateUniqueName(base, elementNames, base, nextNumber);
 		} else {
-			return generateUniqueName(base + nextNumber, elementNames,base, nextNumber);
+			return generateUniqueName(base + nextNumber, elementNames, base, nextNumber);
 		}
 	}
 
-	private static String generateUniqueName(String name, Set<String> elementNames, String base, int nextNumber) {		
-		while(elementNames.contains(name)){
-			nextNumber ++;
+	private static String generateUniqueName(String name, Set<String> elementNames, String base, int nextNumber) {
+		while(elementNames.contains(name)) {
+			nextNumber++;
 			name = base + nextNumber;
 		}
 		return name;

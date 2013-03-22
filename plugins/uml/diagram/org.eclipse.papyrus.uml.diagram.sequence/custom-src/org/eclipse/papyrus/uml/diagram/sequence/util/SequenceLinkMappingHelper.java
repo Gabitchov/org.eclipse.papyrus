@@ -21,7 +21,6 @@ import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;
@@ -66,6 +65,7 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 	public Collection<?> getSource(Element link) {
 		return LinkMappingHelper.getSource(link, new CommonSourceUMLSwitch() {
 
+			@Override
 			public java.util.Collection<?> caseMessage(org.eclipse.uml2.uml.Message object) {
 				if(object.getSendEvent() != null) {
 					MessageEnd messageEnd = object.getSendEvent();
@@ -82,6 +82,7 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 				return Collections.EMPTY_LIST;
 			};
 
+			@Override
 			public Collection<?> caseGeneralOrdering(GeneralOrdering object) {
 				if(object.getBefore() != null) {
 					OccurrenceSpecification before = object.getBefore();
@@ -98,9 +99,10 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 	public Collection<?> getTarget(Element link) {
 		return LinkMappingHelper.getTarget(link, new CommonTargetUMLSwitch() {
 
+			@Override
 			public java.util.Collection<?> caseMessage(org.eclipse.uml2.uml.Message object) {
 				if(object.getReceiveEvent() != null) {
-					MessageEnd messageEnd = (MessageEnd)object.getReceiveEvent();
+					MessageEnd messageEnd = object.getReceiveEvent();
 					if(messageEnd instanceof MessageOccurrenceSpecification) {
 						return ((MessageOccurrenceSpecification)messageEnd).getCovereds();
 					} else if(messageEnd instanceof Gate) {
@@ -114,6 +116,7 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 				return Collections.EMPTY_LIST;
 			};
 
+			@Override
 			public Collection<?> caseGeneralOrdering(GeneralOrdering object) {
 				if(object.getAfter() != null) {
 					OccurrenceSpecification after = object.getAfter();

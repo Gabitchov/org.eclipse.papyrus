@@ -76,7 +76,6 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 	 */
 	@Override
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -92,9 +91,7 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 	 */
 	@Override
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
@@ -104,19 +101,13 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
-
 		// Create the action execution specification
 		ActionExecutionSpecification aes = (ActionExecutionSpecification)CommandHelper.doCreateExecutionSpecification(UMLFactory.eINSTANCE.createActionExecutionSpecification(), (Lifeline)getElementToEdit(), modelContainer);
-
 		//TODO : add the corresponding action
-
 		doConfigure(aes, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(aes);
-
 		return CommandResult.newOKCommandResult(aes);
 	}
 
@@ -133,5 +124,4 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

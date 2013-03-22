@@ -48,6 +48,7 @@ public class ContinuationLocator extends BorderItemLocator {
 	 * @param suggestedSide
 	 * @return point
 	 */
+	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
 
 		Rectangle bounds = getParentBorder();
@@ -65,6 +66,7 @@ public class ContinuationLocator extends BorderItemLocator {
 	 * 
 	 * @see org.eclipse.draw2d.Locator#relocate(org.eclipse.draw2d.IFigure)
 	 */
+	@Override
 	public void relocate(IFigure borderItem) {
 
 		// Determines the size of the figure

@@ -118,11 +118,10 @@ public class Message2CreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException(CREATE_LINK_ERROR_MSG);
 		}
-
 		Map<Object, Object> parameters = getRequest().getParameters();
 		Message message = CommandHelper.doCreateMessage(container, null, getSource(), getTarget(), parameters);
 		//Fixed bug about creating message, if created failed, return error result.
-		if (message == null || message.getSendEvent() == null || message.getReceiveEvent() == null){
+		if(message == null || message.getSendEvent() == null || message.getReceiveEvent() == null) {
 			return CommandResult.newErrorCommandResult("Failed to create message");
 		}
 		if(message != null) {
@@ -130,7 +129,6 @@ public class Message2CreateCommand extends EditElementCommand {
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);
 		}
-
 		return CommandResult.newErrorCommandResult(NO_CONTAINER_ERROR_MSG);
 	}
 
@@ -196,5 +194,4 @@ public class Message2CreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

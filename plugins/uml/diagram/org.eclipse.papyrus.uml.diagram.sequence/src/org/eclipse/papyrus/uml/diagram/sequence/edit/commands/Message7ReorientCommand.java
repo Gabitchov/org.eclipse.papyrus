@@ -110,7 +110,7 @@ public class Message7ReorientCommand extends EditElementCommand {
 		}
 		//FIXME: Please complete reorientTarget() firstly.
 		return false;
-//		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());
+		//		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());
 	}
 
 	/**

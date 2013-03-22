@@ -288,7 +288,6 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -370,9 +369,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -399,7 +396,6 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -407,7 +403,6 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -415,7 +410,6 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -471,15 +465,15 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
 		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
-		}	
+		}
 	}
 
 	protected void refreshLabelContainer() {
 		Object p = getParent();
-		if(p instanceof InteractionEditPart){
-			InteractionEditPart iep = (InteractionEditPart) p;
+		if(p instanceof InteractionEditPart) {
+			InteractionEditPart iep = (InteractionEditPart)p;
 			IFigure container = iep.getPrimaryShape().getHeaderLabel().getParent();
-			if(container != null){
+			if(container != null) {
 				container.revalidate();
 				container.repaint();
 			}
@@ -589,7 +583,6 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -719,9 +712,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
-		
 		if(ElementIconUtil.isIconNotification(event))
 			refreshLabelContainer();
 	}
@@ -749,7 +740,6 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -758,7 +748,6 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -766,7 +755,5 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

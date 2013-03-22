@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy;
@@ -46,9 +45,7 @@ import org.eclipse.uml2.uml.MessageSort;
 /**
  * @generated
  */
-public class MessageEditPart extends AbstractMessageEditPart
-
-implements ITreeBranchEditPart {
+public class MessageEditPart extends AbstractMessageEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -147,7 +144,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new MessageSync();
 	}
@@ -180,7 +176,6 @@ implements ITreeBranchEditPart {
 		public MessageSync() {
 			super();
 			this.setForegroundColor(ColorConstants.black);
-
 			createContents();
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -190,16 +185,11 @@ implements ITreeBranchEditPart {
 		 */
 		protected void createContents() {
 			super.createContents();
-
 			fFigureMessageSyncLabelFigure = new WrappingLabel();
 			fFigureMessageSyncLabelFigure.setText("");
-
 			fFigureMessageSyncLabelFigure.setFont(FFIGUREMESSAGESYNCLABELFIGURE_FONT);
-
 			fFigureMessageSyncLabelFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-
 			this.add(fFigureMessageSyncLabelFigure);
-
 		}
 
 		/**
@@ -233,7 +223,6 @@ implements ITreeBranchEditPart {
 		public WrappingLabel getAppliedStereotypeLabel() {
 			return super.getAppliedStereotypeLabel();
 		}
-
 	}
 
 	/**
@@ -273,5 +262,4 @@ implements ITreeBranchEditPart {
 		}
 		super.eraseSourceFeedback(request);
 	}
-
 }

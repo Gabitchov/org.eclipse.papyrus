@@ -6,6 +6,7 @@ import java.util.Map;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 
 public class InteractionOperatorKindCompatibleMapping {
+
 	/**
 	 * Set the true if the kind of InteractionOperator supports multi operand
 	 */

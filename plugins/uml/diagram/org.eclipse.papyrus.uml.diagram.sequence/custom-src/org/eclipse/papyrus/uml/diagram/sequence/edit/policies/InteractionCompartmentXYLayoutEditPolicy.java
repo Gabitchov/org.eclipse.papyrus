@@ -95,23 +95,24 @@ import org.eclipse.uml2.uml.Lifeline;
  */
 public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
+	@Override
 	protected Command getCreateCommand(CreateRequest request) {
-		CreateViewRequest req = (CreateViewRequest) request;
+		CreateViewRequest req = (CreateViewRequest)request;
 		Command cmd = super.getCreateCommand(request);
-		
-		if(cmd != null && req.getSize() != null){ // create lifeline with specific size
-			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+
+		if(cmd != null && req.getSize() != null) { // create lifeline with specific size
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 			Iterator iter = req.getViewDescriptors().iterator();
-			while (iter.hasNext()) {
-				CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next(); 
-				if (((IHintedType) UMLElementTypes.Lifeline_3001).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
+			while(iter.hasNext()) {
+				CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next();
+				if(((IHintedType)UMLElementTypes.Lifeline_3001).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
 					cmd = (new ICommandProxy(LifelineResizeHelper.createManualLabelSizeCommand(editingDomain, viewDescriptor))).chain(cmd);
 				}
-			}		
+			}
 		}
 		return cmd;
 	}
-	
+
 	/**
 	 * Handle lifeline and combined fragment resize
 	 */
@@ -119,72 +120,72 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
 		CompoundCommand compoundCmd = new CompoundCommand();
 		compoundCmd.setLabel("Move or Resize");
-		
+
 		IFigure figure = getHostFigure();
 		Rectangle hostBounds = figure.getBounds();
 
 		for(Object o : request.getEditParts()) {
 			GraphicalEditPart child = (GraphicalEditPart)o;
 			Object constraintFor = getConstraintFor(request, child);
-			if (constraintFor instanceof Rectangle) {
-				Rectangle childBounds = (Rectangle) constraintFor;
-				if (childBounds.x < 0 || childBounds.y < 0) {
+			if(constraintFor instanceof Rectangle) {
+				Rectangle childBounds = (Rectangle)constraintFor;
+				if(childBounds.x < 0 || childBounds.y < 0) {
 					return UnexecutableCommand.INSTANCE;
 				}
-				
+
 				if(child instanceof LifelineEditPart) {
-					if (isVerticalMove(request)) {
+					if(isVerticalMove(request)) {
 						addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
 					}
 				} else if(child instanceof CombinedFragmentEditPart) {
 					// Add restrictions to change the size
-					if(!OperandBoundsComputeHelper.checkRedistrictOnCFResize(request,child)){
+					if(!OperandBoundsComputeHelper.checkRedistrictOnCFResize(request, child)) {
 						return null;
 					}
 					Command resizeChildrenCommand = getCombinedFragmentResizeChildrenCommand(request, (CombinedFragmentEditPart)child);
 					if(resizeChildrenCommand != null && resizeChildrenCommand.canExecute()) {
 						compoundCmd.add(resizeChildrenCommand);
-					} 
-//					else if(resizeChildrenCommand != null) {
-//						return UnexecutableCommand.INSTANCE;
-//					}
+					}
+					//					else if(resizeChildrenCommand != null) {
+					//						return UnexecutableCommand.INSTANCE;
+					//					}
 				}
 
 				boolean hasCreateLink = LifelineMessageCreateHelper.hasIncomingMessageCreate(child);
-				if(hasCreateLink && !LifelineMessageCreateHelper.canMoveLifelineVertical((LifelineEditPart) child, (Rectangle) translateToModelConstraint(constraintFor)) ){
-					return UnexecutableCommand.INSTANCE; 
+				if(hasCreateLink && !LifelineMessageCreateHelper.canMoveLifelineVertical((LifelineEditPart)child, (Rectangle)translateToModelConstraint(constraintFor))) {
+					return UnexecutableCommand.INSTANCE;
 				}
 				if(!(child instanceof LifelineEditPart) || isVerticalMove(request) || hasCreateLink) {
 					Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
-					
+
 					// When we change the width by mouse, it passe to manual mode. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723 
-					if(child instanceof LifelineEditPart && changeConstraintCommand != null && request.getSizeDelta().width != 0){
+					if(child instanceof LifelineEditPart && changeConstraintCommand != null && request.getSizeDelta().width != 0) {
 						compoundCmd.add(new ICommandProxy(LifelineResizeHelper.createManualLabelSizeCommand((LifelineEditPart)child)));
 					}
 					compoundCmd.add(changeConstraintCommand);
 				}
-				
+
 				if(child instanceof CombinedFragmentEditPart) {
-					OperandBoundsComputeHelper.createUpdateIOBoundsForCFResizeCommand(compoundCmd,request,(CombinedFragmentEditPart)child);
+					OperandBoundsComputeHelper.createUpdateIOBoundsForCFResizeCommand(compoundCmd, request, (CombinedFragmentEditPart)child);
 				}
-				
+
 				int right = childBounds.right();
 				int bottom = childBounds.bottom();
 				int deltaX = 0;
 				int deltaY = 0;
-				if (right > hostBounds.width) {
+				if(right > hostBounds.width) {
 					deltaX = right - hostBounds.width;
 				}
-				if (bottom > hostBounds.height) {
+				if(bottom > hostBounds.height) {
 					deltaY = bottom - hostBounds.height;
 				}
-				if (deltaX != 0 || deltaY != 0) {
+				if(deltaX != 0 || deltaY != 0) {
 					ChangeBoundsRequest boundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
 					boundsRequest.setSizeDelta(new Dimension(deltaX, deltaY));
 					EditPart hostParent = getHost().getParent();
 					boundsRequest.setEditParts(hostParent);
 					Command cmd = hostParent.getCommand(boundsRequest);
-					if (cmd != null && cmd.canExecute()) {
+					if(cmd != null && cmd.canExecute()) {
 						compoundCmd.add(cmd);
 					}
 				}
@@ -194,8 +195,8 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	}
 
 	protected boolean isVerticalMove(ChangeBoundsRequest request) {
-		if (request instanceof AlignmentRequest) {
-			AlignmentRequest alignmentRequest = (AlignmentRequest) request;
+		if(request instanceof AlignmentRequest) {
+			AlignmentRequest alignmentRequest = (AlignmentRequest)request;
 			switch(alignmentRequest.getAlignment()) {
 			case PositionConstants.BOTTOM:
 			case PositionConstants.TOP:
@@ -208,11 +209,11 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				return false;
 			}
 		}
-		
+
 		Point point = request.getMoveDelta();
 		return point.y == 0;
 	}
-	
+
 	/**
 	 * Resize children of LifelineEditPart (Execution specification and lifeline)
 	 * 
@@ -263,14 +264,13 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			}
 		}
 
-//		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
-//		for(LifelineEditPart lifelineEP : innerConnectableElementList) {
-//			 addLifelineResizeChildrenCommand(compoundCmd, request, lifelineEP, number * innerConnectableElementList.size());
-//		}
+		//		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
+		//		for(LifelineEditPart lifelineEP : innerConnectableElementList) {
+		//			 addLifelineResizeChildrenCommand(compoundCmd, request, lifelineEP, number * innerConnectableElementList.size());
+		//		}
 		// fixed bug (id=364711) when lifeline bounds changed update coveredBys'
 		// bounds.
-		addUpdateInteractionFragmentsLocationCommand(compoundCmd, request,
-				lifelineEditPart);
+		addUpdateInteractionFragmentsLocationCommand(compoundCmd, request, lifelineEditPart);
 
 	}
 
@@ -282,79 +282,77 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	 * @param request
 	 * @param lifelineEditPart
 	 */
-	private static void addUpdateInteractionFragmentsLocationCommand(
-			CompoundCommand compoundCmd, ChangeBoundsRequest request,
-			LifelineEditPart lifelineEditPart) {
+	private static void addUpdateInteractionFragmentsLocationCommand(CompoundCommand compoundCmd, ChangeBoundsRequest request, LifelineEditPart lifelineEditPart) {
 		// Fixed bug about resize lifeline corvered by some combined fragments. If the moveDelta is empty, ignore this? otherwise the children of lifeline would be moved again to wrong place.
 		Point moveDelta = request.getMoveDelta();
 		if(moveDelta.x == 0 && moveDelta.y == 0) {
 			return;
 		}
-//		//There are some bugs about moving InteractionFragment when moving Lifelines.
-//		Rectangle rect = lifelineEditPart.getFigure().getBounds().getCopy();
-//		lifelineEditPart.getFigure().translateToAbsolute(rect);
-//		rect = request.getTransformedRectangle(rect);
-//		View shape = (View)lifelineEditPart.getModel();
-//		Lifeline element = (Lifeline)shape.getElement();
-//		EList<InteractionFragment> covereds = element.getCoveredBys();
-//		EditPart parent = lifelineEditPart.getParent();
-//		List<?> children = parent.getChildren();
-//		for(Object obj : children) {
-//			EditPart et = (EditPart)obj;
-//			View sp = (View)et.getModel();
-//			if(!covereds.contains(sp.getElement())) {
-//				continue;
-//			}
-//			Rectangle bounds = ((GraphicalEditPart)et).getFigure().getBounds().getCopy();
-//			((GraphicalEditPart)et).getFigure().translateToAbsolute(bounds);
-//			if(bounds.x + 20 < rect.x && bounds.right() - 20 > rect.right()) {
-//				continue;
-//			} else {
-//				Dimension resizeInfo = new Dimension(0, 0);
-//				Point moveInfo = new Point();
-//				if(bounds.x + 20 > rect.x) {
-//					moveInfo.x = rect.x - 20 - bounds.x;
-//					resizeInfo.width = -moveInfo.x;
-//				} else if(bounds.right() - 20 < rect.right()) {
-//					resizeInfo.width = rect.right() + 20 - bounds.right();
-//				}
-//				if(resizeInfo.width == 0 && moveInfo.x == 0) {
-//					continue;
-//				}
-//				ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_RESIZE);
-//				req.setEditParts(et);
-//				req.setResizeDirection(PositionConstants.EAST);
-//				req.setSizeDelta(resizeInfo);
-//				req.setMoveDelta(moveInfo);
-//				Command command = et.getCommand(req);
-//				if(command != null && command.canExecute()) {
-//					compoundCmd.add(command);
-//				}
-//			}
-//		}
-		
+		//		//There are some bugs about moving InteractionFragment when moving Lifelines.
+		//		Rectangle rect = lifelineEditPart.getFigure().getBounds().getCopy();
+		//		lifelineEditPart.getFigure().translateToAbsolute(rect);
+		//		rect = request.getTransformedRectangle(rect);
+		//		View shape = (View)lifelineEditPart.getModel();
+		//		Lifeline element = (Lifeline)shape.getElement();
+		//		EList<InteractionFragment> covereds = element.getCoveredBys();
+		//		EditPart parent = lifelineEditPart.getParent();
+		//		List<?> children = parent.getChildren();
+		//		for(Object obj : children) {
+		//			EditPart et = (EditPart)obj;
+		//			View sp = (View)et.getModel();
+		//			if(!covereds.contains(sp.getElement())) {
+		//				continue;
+		//			}
+		//			Rectangle bounds = ((GraphicalEditPart)et).getFigure().getBounds().getCopy();
+		//			((GraphicalEditPart)et).getFigure().translateToAbsolute(bounds);
+		//			if(bounds.x + 20 < rect.x && bounds.right() - 20 > rect.right()) {
+		//				continue;
+		//			} else {
+		//				Dimension resizeInfo = new Dimension(0, 0);
+		//				Point moveInfo = new Point();
+		//				if(bounds.x + 20 > rect.x) {
+		//					moveInfo.x = rect.x - 20 - bounds.x;
+		//					resizeInfo.width = -moveInfo.x;
+		//				} else if(bounds.right() - 20 < rect.right()) {
+		//					resizeInfo.width = rect.right() + 20 - bounds.right();
+		//				}
+		//				if(resizeInfo.width == 0 && moveInfo.x == 0) {
+		//					continue;
+		//				}
+		//				ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_RESIZE);
+		//				req.setEditParts(et);
+		//				req.setResizeDirection(PositionConstants.EAST);
+		//				req.setSizeDelta(resizeInfo);
+		//				req.setMoveDelta(moveInfo);
+		//				Command command = et.getCommand(req);
+		//				if(command != null && command.canExecute()) {
+		//					compoundCmd.add(command);
+		//				}
+		//			}
+		//		}
+
 		//See: https://bugs.eclipse.org/bugs/show_bug.cgi?id=364711
-		View shape = (View) lifelineEditPart.getModel();
-		Lifeline element = (Lifeline) shape.getElement();
+		View shape = (View)lifelineEditPart.getModel();
+		Lifeline element = (Lifeline)shape.getElement();
 		EList<InteractionFragment> covereds = element.getCoveredBys();
 		EditPart parent = lifelineEditPart.getParent();
 		List<?> children = parent.getChildren();
-		for (Object obj : children) {
-			EditPart et = (EditPart) obj;
-			View sp = (View) et.getModel();
-			if (!covereds.contains(sp.getElement())) {
+		for(Object obj : children) {
+			EditPart et = (EditPart)obj;
+			View sp = (View)et.getModel();
+			if(!covereds.contains(sp.getElement())) {
 				continue;
 			}
 			ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_MOVE);
 			req.setEditParts(et);
 			req.setMoveDelta(request.getMoveDelta());
 			Command command = et.getCommand(req);
-			if (command != null && command.canExecute()) {
+			if(command != null && command.canExecute()) {
 				compoundCmd.add(command);
-			} 
-		} 
+			}
+		}
 	}
-	
+
 	/**
 	 * Handle the owning of interaction fragments when moving or resizing a CF.
 	 * 
@@ -446,10 +444,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 						compoundCmd.add(new ICommandProxy(getMoveAnchorCommand(moveDelta.y, figureBounds, gmfAnchor)));
 					}
 				}
-				
-				if (ep instanceof DurationConstraintEditPart) {
-					DurationConstraintEditPart dcp = (DurationConstraintEditPart) ep;
-					moveCoveredDurationConstraint(dcp, compoundCmd,	origCFBounds, moveDelta);
+
+				if(ep instanceof DurationConstraintEditPart) {
+					DurationConstraintEditPart dcp = (DurationConstraintEditPart)ep;
+					moveCoveredDurationConstraint(dcp, compoundCmd, origCFBounds, moveDelta);
 				}
 			}
 
@@ -459,7 +457,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			newBoundsCF.translate(moveDelta);
 			newBoundsCF.resize(sizeDelta);
 
-			CombinedFragment cf = (CombinedFragment)((CombinedFragmentEditPart)combinedFragmentEditPart).resolveSemanticElement();
+			CombinedFragment cf = (CombinedFragment)combinedFragmentEditPart.resolveSemanticElement();
 
 			if(combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 
@@ -582,32 +580,22 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		}
 		return compoundCmd;
 	}
-	
-	private static void moveCoveredDurationConstraint(DurationConstraintEditPart dcp, CompoundCommand compoundCmd,
-			Rectangle origCFBounds, Point moveDelta) {
+
+	private static void moveCoveredDurationConstraint(DurationConstraintEditPart dcp, CompoundCommand compoundCmd, Rectangle origCFBounds, Point moveDelta) {
 		Rectangle r = dcp.getFigure().getBounds().getCopy();
 		dcp.getFigure().translateToAbsolute(r);
-		if (origCFBounds.contains(r)) {
+		if(origCFBounds.contains(r)) {
 			//see  org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy.getMoveCommand(ChangeBoundsRequest)
-			IBorderItemEditPart borderItemEP = (IBorderItemEditPart) dcp;
-			IBorderItemLocator borderItemLocator = borderItemEP
-					.getBorderItemLocator();
-			Rectangle realLocation = borderItemLocator
-					.getValidLocation(dcp.getFigure().getBounds()
-							.getCopy(), borderItemEP.getFigure());
+			IBorderItemEditPart borderItemEP = dcp;
+			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
+			Rectangle realLocation = borderItemLocator.getValidLocation(dcp.getFigure().getBounds().getCopy(), borderItemEP.getFigure());
 
-			Point parentOrigin = borderItemEP.getFigure()
-					.getParent().getBounds().getTopLeft();
-			Dimension d = realLocation.getTopLeft().getDifference(
-					parentOrigin);
+			Point parentOrigin = borderItemEP.getFigure().getParent().getBounds().getTopLeft();
+			Dimension d = realLocation.getTopLeft().getDifference(parentOrigin);
 			Point location = new Point(d.width, d.height);
 			location = location.translate(0, moveDelta.y);
 
-			ICommandProxy resize = new ICommandProxy(
-					new SetBoundsCommand(dcp.getEditingDomain(),
-							DiagramUIMessages.Commands_MoveElement,
-							new EObjectAdapter((View) dcp.getModel()),
-							location));
+			ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(dcp.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View)dcp.getModel()), location));
 			compoundCmd.add(resize);
 		}
 	}
@@ -651,15 +639,15 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				rect.setSize(cons.width, cons.height);
 			}
 		} else { // resize editpart
-//			boolean skipMinSize = false;
-//			if(child instanceof LifelineEditPart)// && LifelineResizeHelper.isManualSize((LifelineEditPart)child))
-//				skipMinSize = true;
+			//			boolean skipMinSize = false;
+			//			if(child instanceof LifelineEditPart)// && LifelineResizeHelper.isManualSize((LifelineEditPart)child))
+			//				skipMinSize = true;
 			//We introduce a MIN_WIDTH for Lifeline now.
 			Dimension minSize = getMinimumSizeFor(child);
-			if(sizeDelta.width != 0 && rect.width < minSize.width ) { // In manual mode, there is no minimal width
+			if(sizeDelta.width != 0 && rect.width < minSize.width) { // In manual mode, there is no minimal width
 				return null;
 			}
-			if(sizeDelta.height !=0 && rect.height < minSize.height ) {
+			if(sizeDelta.height != 0 && rect.height < minSize.height) {
 				return null;
 			}
 		}
@@ -801,43 +789,38 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		// sizeDelta modified in order to preserve the links' anchors positions
 		return cmd;
 	}
-	
+
 	/**
 	 * Align lifeline in vertical direction
 	 * Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
 	 */
-	protected Rectangle getBoundsOffest(CreateViewRequest request,
-			Rectangle bounds, CreateViewRequest.ViewDescriptor viewDescriptor) {
+	@Override
+	protected Rectangle getBoundsOffest(CreateViewRequest request, Rectangle bounds, CreateViewRequest.ViewDescriptor viewDescriptor) {
 		int translate = request.getViewDescriptors().indexOf(viewDescriptor) * 10;
 		Rectangle target = bounds.getCopy().translate(translate, translate);
 
-		if (((IHintedType) UMLElementTypes.Lifeline_3001).getSemanticHint()
-				.equals(viewDescriptor.getSemanticHint())) {
+		if(((IHintedType)UMLElementTypes.Lifeline_3001).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
 			target.setY(SequenceUtil.LIFELINE_VERTICAL_OFFSET);
 		}
 
 		return target;
 	}
-	
+
 	@Override
 	protected void showSizeOnDropFeedback(CreateRequest request) {
 		super.showSizeOnDropFeedback(request);
-		if (request instanceof CreateAspectUnspecifiedTypeRequest) {
-			CreateAspectUnspecifiedTypeRequest req = (CreateAspectUnspecifiedTypeRequest) request;
-			if (req.getElementTypes().contains(
-					UMLElementTypes.CombinedFragment_3004)
-					|| req.getElementTypes().contains(
-							UMLElementTypes.ConsiderIgnoreFragment_3007)) {
-				Rectangle rect = new Rectangle(request.getLocation(),
-						request.getSize());
-				if (!coveredLifelines.isEmpty()) {
-					for (LifelineEditPart lifeline : coveredLifelines) {
+		if(request instanceof CreateAspectUnspecifiedTypeRequest) {
+			CreateAspectUnspecifiedTypeRequest req = (CreateAspectUnspecifiedTypeRequest)request;
+			if(req.getElementTypes().contains(UMLElementTypes.CombinedFragment_3004) || req.getElementTypes().contains(UMLElementTypes.ConsiderIgnoreFragment_3007)) {
+				Rectangle rect = new Rectangle(request.getLocation(), request.getSize());
+				if(!coveredLifelines.isEmpty()) {
+					for(LifelineEditPart lifeline : coveredLifelines) {
 						HighlightUtil.unhighlight(lifeline);
 					}
 					coveredLifelines.clear();
 				}
 				fillCoveredLifelines(rect);
-				for (LifelineEditPart lifeline : coveredLifelines) {
+				for(LifelineEditPart lifeline : coveredLifelines) {
 					HighlightUtil.highlight(lifeline);
 				}
 			}
@@ -847,33 +830,30 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	@SuppressWarnings("rawtypes")
 	private void fillCoveredLifelines(Rectangle rect) {
 		coveredLifelines.clear();
-		Collection values = getHost().getViewer().getEditPartRegistry()
-				.values();
-		for (Object object : values) {
-			if (!(object instanceof LifelineEditPart)) {
+		Collection values = getHost().getViewer().getEditPartRegistry().values();
+		for(Object object : values) {
+			if(!(object instanceof LifelineEditPart)) {
 				continue;
 			}
-			LifelineEditPart lifeline = ((LifelineEditPart) object);
+			LifelineEditPart lifeline = ((LifelineEditPart)object);
 			LifelineFigure primaryShape = lifeline.getPrimaryShape();
-			RectangleFigure nameFigure = primaryShape
-					.getFigureLifelineNameContainerFigure();
-			if (nameFigure != null) {
+			RectangleFigure nameFigure = primaryShape.getFigureLifelineNameContainerFigure();
+			if(nameFigure != null) {
 				Rectangle r = nameFigure.getBounds().getCopy();
 				nameFigure.translateToAbsolute(r);
-				if (rect.intersects(r)) {
+				if(rect.intersects(r)) {
 					coveredLifelines.add(lifeline);
 					continue;
 				}
 			}
-			LifelineDotLineCustomFigure dotLineFigure = primaryShape
-					.getFigureLifelineDotLineFigure();
-			if (dotLineFigure != null) {
+			LifelineDotLineCustomFigure dotLineFigure = primaryShape.getFigureLifelineDotLineFigure();
+			if(dotLineFigure != null) {
 				Rectangle r = dotLineFigure.getBounds().getCopy();
-				if (r.width != 1) {
+				if(r.width != 1) {
 					r.shrink(r.width / 2 - 1, 0);
 				}
 				dotLineFigure.translateToAbsolute(r);
-				if (rect.intersects(r)) {
+				if(rect.intersects(r)) {
 					coveredLifelines.add(lifeline);
 					continue;
 				}
@@ -883,8 +863,8 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 
 	@Override
 	protected void eraseSizeOnDropFeedback(Request request) {
-		if (!coveredLifelines.isEmpty()) {
-			for (LifelineEditPart lifeline : coveredLifelines) {
+		if(!coveredLifelines.isEmpty()) {
+			for(LifelineEditPart lifeline : coveredLifelines) {
 				HighlightUtil.unhighlight(lifeline);
 			}
 			coveredLifelines.clear();
@@ -892,6 +872,5 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		super.eraseSizeOnDropFeedback(request);
 	}
 
-	private List<LifelineEditPart> coveredLifelines = new ArrayList<LifelineEditPart>(
-			1);
+	private List<LifelineEditPart> coveredLifelines = new ArrayList<LifelineEditPart>(1);
 }

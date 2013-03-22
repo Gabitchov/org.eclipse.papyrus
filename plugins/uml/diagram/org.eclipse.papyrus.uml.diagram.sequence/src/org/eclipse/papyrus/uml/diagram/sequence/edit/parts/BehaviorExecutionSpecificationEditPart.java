@@ -202,16 +202,15 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 		}
 	}
 
-//	/**
-//	 * @generated
-//	 */
-//	@Override
-//	protected void setLineWidth(int width) {
-//		if(primaryShape instanceof Shape) {
-//			((Shape)primaryShape).setLineWidth(width);
-//		}
-//	}
-
+	//	/**
+	//	 * @generated
+	//	 */
+	//	@Override
+	//	protected void setLineWidth(int width) {
+	//		if(primaryShape instanceof Shape) {
+	//			((Shape)primaryShape).setLineWidth(width);
+	//		}
+	//	}
 	/**
 	 * @generated
 	 */
@@ -966,21 +965,20 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 		return types;
 	}
 
-//	/**
-//	 * @generated
-//	 */
-//	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
-//
-//		/**
-//		 * @generated
-//		 */
-//		public ExecutionSpecificationRectangleFigure() {
-//			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
-//			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
-//		}
-//
-//	}
-
+	//	/**
+	//	 * @generated
+	//	 */
+	//	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
+	//
+	//		/**
+	//		 * @generated
+	//		 */
+	//		public ExecutionSpecificationRectangleFigure() {
+	//			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
+	//			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
+	//		}
+	//
+	//	}
 	/**
 	 * @generated
 	 */
@@ -988,7 +986,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1008,10 +1005,9 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}	
+	}
 }

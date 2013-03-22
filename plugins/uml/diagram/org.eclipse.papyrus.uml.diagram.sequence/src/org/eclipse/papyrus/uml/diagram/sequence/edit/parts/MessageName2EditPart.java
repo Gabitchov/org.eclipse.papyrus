@@ -112,7 +112,6 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -304,7 +303,6 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -386,9 +384,7 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -415,7 +411,6 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -423,7 +418,6 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -431,7 +425,6 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -593,7 +586,6 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -708,7 +700,6 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -726,7 +717,7 @@ public class MessageName2EditPart extends MessageLabelEditPart implements ITextA
 		Message2EditPart parent = (Message2EditPart)getParent();
 		//Update location of label for self linked message.
 		if(SelfMessageHelper.isSelfLink(parent)) {
-		SelfMessageHelper.	updateLabelLocation(this);
+			SelfMessageHelper.updateLabelLocation(this);
 		}
 	}
 }

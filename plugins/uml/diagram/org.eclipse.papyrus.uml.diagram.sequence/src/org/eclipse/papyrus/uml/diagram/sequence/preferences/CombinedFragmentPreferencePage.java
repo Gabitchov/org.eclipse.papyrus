@@ -76,19 +76,15 @@ public class CombinedFragmentPreferencePage extends AbstractPapyrusElementPrefer
 	 * @generated NOT
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = PackageEditPart.MODEL_ID + "_CombinedFragment";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
-
 		for(String name : compartments) {
 			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
-
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
-
 		// Set the default for the gradient
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
 		//org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter = new  org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
@@ -96,25 +92,25 @@ public class CombinedFragmentPreferencePage extends AbstractPapyrusElementPrefer
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 	}
-	
+
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		for(String name : compartments) {
-			map.put(name,Boolean.FALSE);
+			map.put(name, Boolean.FALSE);
 		}
 		return map;
 	}
-	
+
 	protected void initializeCompartmentsList() {
 		for(String name : compartments) {
 			this.compartmentsList.add(name);
 		}
 	}
-	
+
 	protected TreeMap<String, String> getLabelRole() {
 		return new TreeMap<String, String>();
 	}
-	
+
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
 		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
@@ -127,7 +123,6 @@ public class CombinedFragmentPreferencePage extends AbstractPapyrusElementPrefer
 			NodeCompartmentGroupEx compartmentGroup = new NodeCompartmentGroupEx(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), getPreferenceStore());
 			addAbstractGroup(compartmentGroup);
 		}
-
 		//Label role group
 		if(!getLabelRole().isEmpty()) {
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
@@ -178,21 +173,17 @@ public class CombinedFragmentPreferencePage extends AbstractPapyrusElementPrefer
 			Group group = new Group(parent, SWT.NONE);
 			group.setLayout(new GridLayout(2, true));
 			group.setText(compartment);
-
 			GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 			gridData.grabExcessHorizontalSpace = true;
 			gridData.horizontalSpan = 2;
 			group.setLayoutData(gridData);
-
 			String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			String compartmentVisibilityLabel = "Show compartment";
 			Button showCompartmentButton = addCheckboxField(group, compartmentVisibilityPreference, compartmentVisibilityLabel);
-
 			if(this.compartmentsWithTitle.contains(compartment)) {
 				String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 				String compartmentNameVisibilityLabel = "Show name";
 				Button showNameButton = addCheckboxField(group, compartmentNameVisibilityPreference, compartmentNameVisibilityLabel);
-
 				boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
 				if(showCompartmentIsNotChecked) {
 					showNameButton.setEnabled(false);
@@ -201,14 +192,12 @@ public class CombinedFragmentPreferencePage extends AbstractPapyrusElementPrefer
 			}
 		}
 
-
 		protected Button addCheckboxField(Composite parent, String preferenceKey, String label) {
 			// show Compartment Visibility and CompartmentName Visibility items in the same row   
 			// as CheckBoxFieldEditor resets layout data to fit the grid we create this stub plate 
 			// @see #doFillIntoGrid 
 			Composite plate = new Composite(parent, SWT.NONE);
 			plate.setLayoutData(new GridData());
-
 			CheckBoxFieldEditor compartmentVisibilityBooleanFieldEditor = new CheckBoxFieldEditor(preferenceKey, label, plate);
 			Button checkbox = compartmentVisibilityBooleanFieldEditor.getCheckbox();
 			compartmentVisibilityBooleanFieldEditor.setPage(getDialogPage());

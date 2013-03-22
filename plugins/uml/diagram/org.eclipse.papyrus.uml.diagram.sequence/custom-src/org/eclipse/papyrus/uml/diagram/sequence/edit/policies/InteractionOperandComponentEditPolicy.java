@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -34,6 +33,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InteractionOperand;
 
 public class InteractionOperandComponentEditPolicy extends ComponentEditPolicy {
+
 	/**
 	 * Delete Combined fragment and child from the view. Also delete message if user wants. {@inheritDoc}
 	 */
@@ -51,9 +51,9 @@ public class InteractionOperandComponentEditPolicy extends ComponentEditPolicy {
 				// Create the delete view commands
 				SequenceDeleteHelper.deleteView(cmd, elements, getEditingDomain());
 			}
-			
-			OperandBoundsComputeHelper.addUpdateBoundsCommandForOperandDelelete(this.getHost(),cmd);
-			
+
+			OperandBoundsComputeHelper.addUpdateBoundsCommandForOperandDelelete(this.getHost(), cmd);
+
 			return new ICommandProxy(cmd.reduce());
 		}
 

@@ -32,9 +32,10 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Command for creating time observation element
- *
+ * 
  */
 public class CustomTimeObservationCreateCommand extends EditElementCommand {
+
 	private EClass eClass = null;
 
 	private EObject eObject = null;
@@ -53,6 +54,7 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 		super(req.getLabel(), null, req);
 	}
 
+	@Override
 	protected EObject getElementToEdit() {
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
@@ -65,12 +67,14 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 		return eObject;
 	}
 
+	@Override
 	public boolean canExecute() {
 
 		return true;
 
 	}
 
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();

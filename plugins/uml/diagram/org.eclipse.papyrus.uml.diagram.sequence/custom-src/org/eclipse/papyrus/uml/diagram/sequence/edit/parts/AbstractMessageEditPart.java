@@ -130,6 +130,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		return lineWidth < 0 ? 1 : lineWidth;
 	}
 
+	@Override
 	protected void fireSelectionChanged() {
 		super.fireSelectionChanged();
 		UMLEdgeFigure primaryShape = getPrimaryShape();
@@ -142,8 +143,9 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		List list = getModelChildren();
 		if(list != null && list.size() > 0) {
 			for(Object o : list) {
-				if(!(o instanceof View))
+				if(!(o instanceof View)) {
 					continue;
+				}
 
 				View view = (View)o;
 				if(view.getElement() == model) {
@@ -166,8 +168,9 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		messageEventParts = new ArrayList();
 
 		EObject element = this.resolveSemanticElement();
-		if(!(element instanceof Message))
+		if(!(element instanceof Message)) {
 			return;
+		}
 		Message message = (Message)element;
 		UMLEdgeFigure edgeFigure = (UMLEdgeFigure)this.getFigure();
 		final MessageEndEditPart sendEventPart = new MessageEndEditPart(message.getSendEvent(), this, new ConnectionLocator(edgeFigure, ConnectionLocator.SOURCE));
@@ -206,13 +209,15 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		return super.getTargetEditPart(request);
 	}
 
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 		Object feature = notification.getFeature();
 
 		MessageLabelEditPart labelPart = getMessageLabelEditPart();
-		if(labelPart == null)
+		if(labelPart == null) {
 			return;
+		}
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			labelPart.refreshFontColor();
 		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
@@ -221,15 +226,17 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	}
 
 	public MessageLabelEditPart getMessageLabelEditPart() {
-		for(Object c : this.getChildren())
+		for(Object c : this.getChildren()) {
 			if(c instanceof MessageLabelEditPart) {
 				return (MessageLabelEditPart)c;
 			}
+		}
 		return null;
 	}
 
 	//public abstract IFigure getPrimaryShape() ;
 
+	@Override
 	public void setLineWidth(int width) {
 		if(getPrimaryShape() instanceof MessageFigure) {
 			MessageFigure edge = (MessageFigure)getPrimaryShape();
@@ -304,12 +311,14 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			super(view);
 		}
 
+		@Override
 		protected void handleNotificationEvent(Notification notification) {
 			Object feature = notification.getFeature();
 			if(NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(feature)) {
 				refreshFontColor();
-			} else
+			} else {
 				super.handleNotificationEvent(notification);
+			}
 		}
 
 		@Override
@@ -320,6 +329,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			}
 		}
 
+		@Override
 		public void refreshFont() {
 			super.refreshFont();
 		}

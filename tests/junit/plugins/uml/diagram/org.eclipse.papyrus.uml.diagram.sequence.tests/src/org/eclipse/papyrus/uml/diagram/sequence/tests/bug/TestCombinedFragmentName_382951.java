@@ -35,18 +35,21 @@ import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.junit.Test;
 
 /**
- * Combined fragment name shall be displayed at the right upper corner of the fragment. 
+ * Combined fragment name shall be displayed at the right upper corner of the fragment.
  * 
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=382951
- *
+ * 
  */
 public class TestCombinedFragmentName_382951 extends TestTopNode {
 
 	private static final String PREF_STORE = "org.eclipse.papyrus.infra.gmfdiag.preferences";
+
 	private static final String COMBINED_FRAGMENT_KEY = "ELEMENT_PapyrusUMLSequenceDiagram_CombinedFragment_CombinedFragmentCompartment.compartment_name.visibility";
+
 	private static final String CONSIDER_FRAGMENT_KEY = "ELEMENT_PapyrusUMLSequenceDiagram_ConsiderIgnoreFragment_CombinedFragmentCompartment.compartment_name.visibility";
 
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -55,18 +58,18 @@ public class TestCombinedFragmentName_382951 extends TestTopNode {
 	public void testCombinedFragment() {
 		IEclipsePreferences store = InstanceScope.INSTANCE.getNode(PREF_STORE);
 		store.putBoolean(COMBINED_FRAGMENT_KEY, true);
-		
+
 		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
 		WrappingLabel label = cep.getTitleLabel();
 		assertTrue(TEST_THE_EXECUTION, label.isVisible());
 		assertTrue(TEST_THE_EXECUTION, label.getText().equals(cf.getName()));
-		
+
 		store.putBoolean(COMBINED_FRAGMENT_KEY, false);
 		assertFalse(TEST_THE_EXECUTION, label.isVisible());
 	}
-	
+
 	@Test
 	public void testConsiderIgnoreFragment() {
 		IEclipsePreferences store = InstanceScope.INSTANCE.getNode(PREF_STORE);
@@ -77,7 +80,7 @@ public class TestCombinedFragmentName_382951 extends TestTopNode {
 		ConsiderIgnoreFragment cf = (ConsiderIgnoreFragment)cep.resolveSemanticElement();
 		WrappingLabel label = cep.getTitleLabel();
 		assertFalse(TEST_THE_EXECUTION, label.isVisible());
-		
+
 		store.putBoolean(CONSIDER_FRAGMENT_KEY, true);
 		assertTrue(TEST_THE_EXECUTION, label.isVisible());
 		assertTrue(TEST_THE_EXECUTION, label.getText().equals(cf.getName()));

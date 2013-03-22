@@ -79,7 +79,6 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -106,9 +105,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 	 */
 	@SuppressWarnings("unchecked")
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
-
 		// START GENERATED NOT CODE
 		EObject elementToEdit = getElementToEdit();
 		if(elementToEdit instanceof InteractionOperand) {
@@ -116,15 +113,10 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 		} else if(elementToEdit instanceof Interaction) {
 			((Interaction)elementToEdit).getFragments().add(newElement);
 		}
-
 		ElementInitializers.getInstance().init_CombinedFragment_3004(newElement);
-
 		Set<InteractionFragment> coveredInteractionFragments = (Set<InteractionFragment>)getRequest().getParameters().get(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS);
-
 		InteractionOperandCreateCommand.createInteractionOperand(newElement, coveredInteractionFragments);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -142,5 +134,4 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

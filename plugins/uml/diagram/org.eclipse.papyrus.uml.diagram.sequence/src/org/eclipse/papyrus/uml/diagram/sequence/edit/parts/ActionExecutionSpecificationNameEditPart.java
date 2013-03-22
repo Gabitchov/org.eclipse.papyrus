@@ -60,8 +60,8 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorCo
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -295,7 +295,6 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -377,9 +376,7 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -401,7 +398,6 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), dialog.getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -409,7 +405,6 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -571,7 +566,6 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -703,7 +697,6 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -730,7 +723,6 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -739,7 +731,6 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -747,7 +738,5 @@ public class ActionExecutionSpecificationNameEditPart extends CompartmentEditPar
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

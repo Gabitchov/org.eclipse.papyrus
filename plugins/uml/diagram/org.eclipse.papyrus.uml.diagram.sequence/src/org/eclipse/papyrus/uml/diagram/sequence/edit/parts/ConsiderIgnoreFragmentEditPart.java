@@ -166,7 +166,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -222,9 +221,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	 * @generated NOT
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof NodeFigure){
+		if(primaryShape instanceof NodeFigure) {
 			((NodeFigure)primaryShape).setLineWidth(width);
-		}else if(primaryShape instanceof Shape) {
+		} else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -989,7 +988,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1009,7 +1007,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -1021,7 +1018,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-
 		if(UMLPackage.eINSTANCE.getConsiderIgnoreFragment_Message().equals(feature)) {
 			// Handle message creation
 			Object newValue = notification.getNewValue();
@@ -1038,7 +1034,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			// Handle message modification
 			updateHeaderLabel();
 		}
-
 		super.handleNotificationEvent(notification);
 	}
 
@@ -1062,7 +1057,6 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 				operatorKind.append(" {").append(sb.deleteCharAt(sb.length() - 1).toString()).append("}");
 			}
 		}
-
 		getPrimaryShape().getHeaderLabel().setText(operatorKind.toString());
 	}
 
@@ -1104,10 +1098,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	public void removeNotify() {
 		notifier.unlistenAll();
 		super.removeNotify();
-
 	}
 
-	public String getTitlePreferenceKey(){
+	public String getTitlePreferenceKey() {
 		return "ELEMENT_PapyrusUMLSequenceDiagram_ConsiderIgnoreFragment_CombinedFragmentCompartment.compartment_name.visibility";
 	}
 }

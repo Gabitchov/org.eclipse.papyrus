@@ -36,16 +36,16 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
- 
+
 		if(getEditingDomain() != null) {
 			CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-			cmd.setTransactionNestingEnabled(true);  
-			
+			cmd.setTransactionNestingEnabled(true);
+
 			CommandProxy deleteView = new CommandProxy(super.createDeleteViewCommand(deleteRequest));
 			if(getEObject() instanceof CombinedFragment) {
 				CombinedFragment cf = (CombinedFragment)getEObject();
 				CombinedFragmentEditPart host = (CombinedFragmentEditPart)getHost();
-				
+
 				ICommand prompt = CombinedFragmentDeleteHelper.createDeleteViewCommand(cf, getEditingDomain(), host);
 				cmd.add(prompt);
 			}

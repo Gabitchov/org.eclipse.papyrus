@@ -135,7 +135,7 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	public synchronized boolean provides(IOperation operation) {
 		if(operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation)operation).getView();
-			if(view instanceof ObservationLink){
+			if(view instanceof ObservationLink) {
 				return true;
 			}
 			if(!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
