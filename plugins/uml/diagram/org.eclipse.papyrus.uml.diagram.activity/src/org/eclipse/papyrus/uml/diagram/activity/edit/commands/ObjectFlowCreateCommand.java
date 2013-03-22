@@ -28,6 +28,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreatePinsForObjectFlowDialog;
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
@@ -96,7 +97,7 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		// arrange source and target to add pins if there is an opaque action
-		if(ObjectFlowEditHelper.insertPinForStartingNewObjectFlow(getSource()) || ObjectFlowEditHelper.insertPinForEndingNewObjectFlow(getTarget())) {
+		if(CustomObjectFlowEditHelper.insertPinForStartingNewObjectFlow(getSource()) || CustomObjectFlowEditHelper.insertPinForEndingNewObjectFlow(getTarget())) {
 			CreatePinsForObjectFlowDialog dialog = new CreatePinsForObjectFlowDialog(Display.getDefault().getActiveShell(), getSource(), getTarget());
 			if(IDialogConstants.OK_ID == dialog.open()) {
 				// replace adequate source and target

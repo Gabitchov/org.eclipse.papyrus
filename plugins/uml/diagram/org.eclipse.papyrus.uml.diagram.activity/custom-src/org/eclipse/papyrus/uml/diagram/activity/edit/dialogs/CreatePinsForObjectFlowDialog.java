@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.dialogs;
 
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
+import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
@@ -103,13 +104,13 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 
 	@Override
 	public int open() {
-		if(ObjectFlowEditHelper.insertPinForStartingNewObjectFlow(initialSource) && ObjectFlowEditHelper.insertPinForEndingNewObjectFlow(initialTarget)) {
+		if(CustomObjectFlowEditHelper.insertPinForStartingNewObjectFlow(initialSource) && CustomObjectFlowEditHelper.insertPinForEndingNewObjectFlow(initialTarget)) {
 			// create an object flow between actions : both pins must be created
 			return super.open();
 		} else {
 			boolean needInformation = false;
 			// use correct extremities or configure new one
-			if(ObjectFlowEditHelper.insertPinForStartingNewObjectFlow(initialSource)) {
+			if(CustomObjectFlowEditHelper.insertPinForStartingNewObjectFlow(initialSource)) {
 				newSource = createSource((Action)initialSource, initialTarget);
 				if(newSource == null) {
 					// ask for missing information
@@ -118,7 +119,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 			} else {
 				newSource = initialSource;
 			}
-			if(ObjectFlowEditHelper.insertPinForEndingNewObjectFlow(initialTarget)) {
+			if(CustomObjectFlowEditHelper.insertPinForEndingNewObjectFlow(initialTarget)) {
 				newTarget = createTarget((Action)initialTarget, initialSource);
 				if(newTarget == null) {
 					// ask for missing information
@@ -185,7 +186,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		InputPin result = UMLFactory.eINSTANCE.createInputPin();
 		result.setName(name);
 		result.setType(type);
-		ObjectFlowEditHelper.insertInputPin(parentAction, result);
+		CustomObjectFlowEditHelper.insertInputPin(parentAction, result);
 		return result;
 	}
 
@@ -204,7 +205,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		OutputPin result = UMLFactory.eINSTANCE.createOutputPin();
 		result.setName(name);
 		result.setType(type);
-		ObjectFlowEditHelper.insertOutputPin(parentAction, result);
+		CustomObjectFlowEditHelper.insertOutputPin(parentAction, result);
 		return result;
 	}
 

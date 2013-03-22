@@ -51,6 +51,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.UMLBaseEditHelper;
+import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -528,7 +529,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if(source instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
 					// rule workaround by addition of pins in case of Action
-					if(!ObjectFlowEditHelper.canStartNewObjectFlow((Action)source)) {
+					if(!CustomObjectFlowEditHelper.canStartNewObjectFlow((Action)source)) {
 						return false;
 					}
 				}
@@ -602,7 +603,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if(target instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
 					// rule workaround by addition of pins in case of Action
-					if(!ObjectFlowEditHelper.canEndNewObjectFlow((Action)target)) {
+					if(!CustomObjectFlowEditHelper.canEndNewObjectFlow((Action)target)) {
 						return false;
 					}
 				}
