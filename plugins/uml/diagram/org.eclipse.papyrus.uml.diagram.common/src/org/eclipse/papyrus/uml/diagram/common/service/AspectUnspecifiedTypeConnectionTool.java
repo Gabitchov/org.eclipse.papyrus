@@ -51,7 +51,6 @@ import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -366,7 +365,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected CreateAspectUnspecifiedTypeConnectionRequest createTargetRequest() {
+	protected CreateConnectionRequest createTargetRequest() {
 		return new CreateAspectUnspecifiedTypeConnectionRequest(getElementTypes(), false, getPreferencesHint());
 	}
 
