@@ -107,10 +107,10 @@ public class MessageValueSpecificationFactory extends EcorePropertyEditorFactory
 			Parameter parameter = getParameter();
 			if(parameter != null) {
 				((NamedElement)instance).setName(parameter.getName());
-			}
 
-			if(instance instanceof InstanceValue) {
-				((InstanceValue)instance).setType(parameter.getType());
+				if(instance instanceof InstanceValue) {
+					((InstanceValue)instance).setType(parameter.getType());
+				}
 			}
 		}
 
