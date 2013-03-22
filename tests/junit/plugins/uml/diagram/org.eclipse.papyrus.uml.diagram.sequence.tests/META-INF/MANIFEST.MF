@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit4;bundle-version="4.5.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.2",
+ org.eclipse.papyrus.editor;bundle-version="0.9.2",
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.2",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.2",
+ org.eclipse.papyrus.diagram.tests;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.sequence;bundle-version="0.9.0"
+Export-Package: org.eclipse.papyrus.uml.diagram.sequence.tests
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.2.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.tests.Activ
+ ator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
