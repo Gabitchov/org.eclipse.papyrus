@@ -49,7 +49,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -522,7 +521,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
+		 * modify the generation to call explicitly custom helper
+		 * 
+		 * @generated NOT
 		 */
 		public boolean canExistObjectFlow_4003(Activity container, ObjectFlow linkInstance, ActivityNode source, ActivityNode target) {
 			try {

@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreatePinsForObjectFlowDialog;
-import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;

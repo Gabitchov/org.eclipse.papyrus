@@ -1890,6 +1890,4 @@ public class AcceptEventActionEditPart extends AbstractBorderedShapeEditPart imp
 		}
 		return result;
 	}
-
-	
 }

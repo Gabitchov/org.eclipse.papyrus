@@ -731,7 +731,7 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 				}
 			}
 		}
-		if(event.getFeature().equals(UMLPackage.eINSTANCE.getFeature_IsStatic())) {
+		if(UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);
