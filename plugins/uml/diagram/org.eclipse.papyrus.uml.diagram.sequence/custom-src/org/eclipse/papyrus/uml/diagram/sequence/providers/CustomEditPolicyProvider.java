@@ -22,21 +22,11 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
@@ -66,9 +56,6 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(final EditPart editPart) {
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-
-		installPopupbarPolicy(editPart);
 		installHighlightPolicy(editPart);
 
 		SequenceUtil.installObservationLinkPolicy(editPart);
@@ -81,7 +68,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 				if(element instanceof NamedElement) {
 					installEditPolicy(editPart, new AnnotatedLinkEndEditPolicy(), AnnotatedLinkEndEditPolicy.ANNOTATED_LINK_END_ROLE);
 				}
-				if (element instanceof Constraint || element instanceof Observation || element instanceof Comment){
+				if(element instanceof Constraint || element instanceof Observation || element instanceof Comment) {
 					installEditPolicy(editPart, new AnnotatedLinkStartEditPolicy(), AnnotatedLinkStartEditPolicy.ANNOTATED_LINK_START_ROLE);
 					editPart.removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 					editPart.installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new AnnotatedConnectionHandleEditPolicy());
@@ -92,43 +79,23 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 
 	/**
 	 * Safely install a EditPolicy, if the editpolicy with given role is existed in editpart, ignore it.
+	 * 
 	 * @param editPart
 	 * @param editPolicy
 	 * @param role
 	 */
-	private void installEditPolicy(EditPart editPart, EditPolicy editPolicy, String role){
-		if (editPart == null || editPolicy == null){
+	private void installEditPolicy(EditPart editPart, EditPolicy editPolicy, String role) {
+		if(editPart == null || editPolicy == null) {
 			return;
 		}
 		EditPolicy myEditPolicy = editPart.getEditPolicy(role);
-		if (myEditPolicy == null){
+		if(myEditPolicy == null) {
 			editPart.installEditPolicy(role, editPolicy);
 		}
 	}
-	
+
 	private void installHighlightPolicy(EditPart editPart) {
 		installEditPolicy(editPart, new HighlightEditPolicy(), HighlightEditPolicy.HIGHLIGHT_ROLE);
-	}
-
-	private void installPopupbarPolicy(final EditPart editPart) {
-		if(!(editPart instanceof ConnectionEditPart)) {
-			if(editPart instanceof IPrimaryEditPart && !(editPart instanceof TimeObservationEditPart)) {
-				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-			}
-
-			if(editPart instanceof TimeObservationLabelEditPart) {
-				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-			}
-		}
-		if(editPart instanceof IPrimaryEditPart && (editPart instanceof AbstractExecutionSpecificationEditPart)) {
-
-			editPart.installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicy());
-		}
-
-
-		if(editPart instanceof NamedElementEditPart) {
-			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
-		}
 	}
 
 	/**
@@ -141,7 +108,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 			return false;
 		}
 
-		EditPart gep = (EditPart)epOperation.getEditPart();
+		EditPart gep = epOperation.getEditPart();
 		String diagramType = ((View)gep.getModel()).getDiagram().getType();
 		if(PackageEditPart.MODEL_ID.equals(diagramType)) {
 			return true;

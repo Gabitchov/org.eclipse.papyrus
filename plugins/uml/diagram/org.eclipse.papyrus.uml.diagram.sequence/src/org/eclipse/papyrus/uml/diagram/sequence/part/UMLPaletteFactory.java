@@ -39,8 +39,6 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreat
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ObservationLinkPolicy.ObservationLink;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.service.DurationCreationTool;
@@ -187,11 +185,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private final static String CREATECONSTRAINTLINK10CREATIONTOOL = "createConstraintlink10CreationTool"; //$NON-NLS-1$
 
 	private final static String CREATEOBSERVATIONLINKCREATIONTOOL = "createObservationLinkCreationTool"; //$NON-NLS-1$
-	
+
 	/**
 	 * Try to merge Observation Link, Constraint Link and Comment Link to one.
 	 */
 	private final static String CREATELINKCREATIONTOOL = "createLinkCreationTool"; //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -202,6 +201,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	public Tool createTool(String toolId) {
 		if(toolId.equals(CREATELIFELINE1CREATIONTOOL)) {
 			return createLifeline1CreationTool();
@@ -288,7 +288,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATEOBSERVATIONLINKCREATIONTOOL)) {
 			return createObservationLinkCreationTool();
 		}
-		if (toolId.equals(CREATELINKCREATIONTOOL)) {
+		if(toolId.equals(CREATELINKCREATIONTOOL)) {
 			return createAnnotatedLinkCreationTool();
 		}
 
@@ -296,6 +296,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return null;
 	}
 
+	@Override
 	public Object getTemplate(String templateId) {
 
 		// default return: null
@@ -365,7 +366,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -406,19 +407,19 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Comment_3009);
 
-//		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
-//			protected Command getCommand() {
-//				if (!antiScroll){
-//					if(getTargetEditPart() instanceof LifelineEditPart){
-//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
-//						if(parent != null)
-//							return parent.getCommand( getTargetRequest() );
-//					}
-//					return super.getCommand();
-//				}
-//				return null;
-//			}
-//		};
+		//		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
+		//			protected Command getCommand() {
+		//				if (!antiScroll){
+		//					if(getTargetEditPart() instanceof LifelineEditPart){
+		//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+		//						if(parent != null)
+		//							return parent.getCommand( getTargetRequest() );
+		//					}
+		//					return super.getCommand();
+		//				}
+		//				return null;
+		//			}
+		//		};
 		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
 		return tool;
 	}
@@ -430,19 +431,19 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Constraint_3008);
 
-//		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
-//			protected Command getCommand() {
-//				if (!antiScroll){
-//					if(getTargetEditPart() instanceof LifelineEditPart){
-//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
-//						if(parent != null)
-//							return parent.getCommand( getTargetRequest() );
-//					}
-//					return super.getCommand();
-//				}
-//				return null;
-//			}
-//		};
+		//		Tool tool = new AspectUnspecifiedTypeCreationTool(types){
+		//			protected Command getCommand() {
+		//				if (!antiScroll){
+		//					if(getTargetEditPart() instanceof LifelineEditPart){
+		//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+		//						if(parent != null)
+		//							return parent.getCommand( getTargetRequest() );
+		//					}
+		//					return super.getCommand();
+		//				}
+		//				return null;
+		//			}
+		//		};
 		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
 		return tool;
 	}
@@ -467,10 +468,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
 		// use DurationCreationTool
 		//Tool tool = new DurationCreationTool(types);
-//		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
+		//		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
 		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
-//		tool.setDefaultCursor(SharedCursors.HAND);
-//		tool.setDisabledCursor(SharedCursors.NO);
+		//		tool.setDefaultCursor(SharedCursors.HAND);
+		//		tool.setDisabledCursor(SharedCursors.NO);
 		return tool;
 	}
 
@@ -492,22 +493,22 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TimeObservation_3020);
 
-//		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types){
-//			protected Command getCommand() {
-//				if (!antiScroll){
-//					if(getTargetEditPart() instanceof LifelineEditPart){
-//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
-//						if(parent != null)
-//							return parent.getCommand( getTargetRequest() );
-//					}
-//					return super.getCommand();
-//				}
-//				return null;
-//			}
-//		};
+		//		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types){
+		//			protected Command getCommand() {
+		//				if (!antiScroll){
+		//					if(getTargetEditPart() instanceof LifelineEditPart){
+		//						InteractionInteractionCompartmentEditPart parent = ((LifelineEditPart) getTargetEditPart()).getParentInteractionCompartmentEditPart();
+		//						if(parent != null)
+		//							return parent.getCommand( getTargetRequest() );
+		//					}
+		//					return super.getCommand();
+		//				}
+		//				return null;
+		//			}
+		//		};
 		InteractionChildCreationTool tool = new InteractionChildCreationTool(types);
-//		tool.setDefaultCursor(SharedCursors.HAND);
-//		tool.setDisabledCursor(SharedCursors.NO);
+		//		tool.setDefaultCursor(SharedCursors.HAND);
+		//		tool.setDisabledCursor(SharedCursors.NO);
 		return tool;
 	}
 
@@ -644,24 +645,25 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
-	
+
 	private Tool createAnnotatedLinkCreationTool() {
 		AspectUnspecifiedTypeConnectionToolEx tool = new AspectUnspecifiedTypeConnectionToolEx(null) {
+
 			@Override
 			protected CreateConnectionRequest createTargetRequest() {
 				IHintedType type = (IHintedType)UMLElementTypes.CommentAnnotatedElement_4010;
 				return new CreateConnectionViewRequest(new ConnectionViewDescriptor(type, type.getSemanticHint(), getPreferencesHint()));
 			}
-			
+
+			@Override
 			protected String getCommandName() {
-				if (isInState(STATE_CONNECTION_STARTED
-						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
+				if(isInState(STATE_CONNECTION_STARTED | STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
 					return AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END;
 				} else {
 					return AnnotatedLinkStartEditPolicy.REQ_ANNOTATED_LINK_START;
 				}
 			}
-			
+
 			@Override
 			protected boolean handleCreateConnection() {
 				boolean handled = super.handleCreateConnection();
@@ -671,16 +673,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 				deactivate();
 				return handled;
 			}
-			
+
 		};
 		tool.setUnloadWhenFinished(true);
 		return tool;
 	}
-	
+
 	private Tool createLinkCreationTool() {
 		final List<IElementType> elementTypes = new ArrayList<IElementType>();
 		return new AspectUnspecifiedTypeConnectionToolEx(elementTypes) {
+
 			private static final String INVALID_REQUEST_DATA = "Current request is invalid";
+
 			private EObject elementUnderMouse;
 
 			@Override
@@ -692,15 +696,13 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
 			@Override
 			protected boolean handleMove() {
-				if (!isInState(STATE_CONNECTION_STARTED)) {
+				if(!isInState(STATE_CONNECTION_STARTED)) {
 					EditPartViewer currentViewer = getCurrentViewer();
-					if (currentViewer != null) {
-						EditPart editPart = currentViewer
-								.findObjectAt(getLocation());
-						if (editPart != null) {
+					if(currentViewer != null) {
+						EditPart editPart = currentViewer.findObjectAt(getLocation());
+						if(editPart != null) {
 							EObject newElement = resolveElementFrom(editPart);
-							if ((elementUnderMouse == null && newElement != null)
-									|| elementUnderMouse != newElement) {
+							if((elementUnderMouse == null && newElement != null) || elementUnderMouse != newElement) {
 								elementUnderMouse = newElement;
 								updateElementType();
 								setTargetRequest(createTargetRequest());
@@ -708,23 +710,23 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 						}
 					}
 				}
-				if (isRequestInvalid()){
+				if(isRequestInvalid()) {
 					return false;
 				}
 				return super.handleMove();
 			}
 
+			@Override
 			protected String getCommandName() {
 				IElementType elementType = getElementType();
-				if (isInState(STATE_CONNECTION_STARTED
-						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
-					if (elementType != null) {
+				if(isInState(STATE_CONNECTION_STARTED | STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
+					if(elementType != null) {
 						return REQ_CONNECTION_END;
 					} else {
 						return SequenceUtil.OBSERVATION_LINK_REQUEST_END;
 					}
 				} else {
-					if (elementType != null) {
+					if(elementType != null) {
 						return REQ_CONNECTION_START;
 					} else {
 						return SequenceUtil.OBSERVATION_LINK_REQUEST_START;
@@ -734,30 +736,28 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
 			protected void updateElementType() {
 				elementTypes.clear();
-				if (elementUnderMouse instanceof Comment) {
-					elementTypes
-							.add(UMLElementTypes.CommentAnnotatedElement_4010);
-				} else if (elementUnderMouse instanceof Constraint) {
-					elementTypes
-							.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+				if(elementUnderMouse instanceof Comment) {
+					elementTypes.add(UMLElementTypes.CommentAnnotatedElement_4010);
+				} else if(elementUnderMouse instanceof Constraint) {
+					elementTypes.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 				}
 			}
 
 			@Override
 			public IElementType getElementType() {
-				if (!elementTypes.isEmpty()) {
+				if(!elementTypes.isEmpty()) {
 					return elementTypes.get(0);
 				}
 				return super.getElementType();
 			}
 
 			private EObject resolveElementFrom(EditPart editPart) {
-				if (editPart == null) {
+				if(editPart == null) {
 					return null;
 				}
 				Object model = editPart.getModel();
-				if (model instanceof View) {
-					return ViewUtil.resolveSemanticElement((View) model);
+				if(model instanceof View) {
+					return ViewUtil.resolveSemanticElement((View)model);
 				}
 				return null;
 			}
@@ -770,24 +770,22 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 			 */
 			@Override
 			protected void updateTargetRequest() {
-				if (isRequestInvalid()) {
+				if(isRequestInvalid()) {
 					setTargetRequest(createTargetRequest());
 				}
 				// Not prepared well yet.
-				if (isRequestInvalid()) {
+				if(isRequestInvalid()) {
 					return;
 				}
 				super.updateTargetRequest();
 			}
 
 			private boolean isRequestInvalid() {
-				CreateConnectionRequest targetRequest = (CreateConnectionRequest) getTargetRequest();
-				if (targetRequest.getExtendedData().containsKey(
-						INVALID_REQUEST_DATA)) {
+				CreateConnectionRequest targetRequest = (CreateConnectionRequest)getTargetRequest();
+				if(targetRequest.getExtendedData().containsKey(INVALID_REQUEST_DATA)) {
 					return true;
-				} else if (targetRequest instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
-					return ((CreateAspectUnspecifiedTypeConnectionRequest) targetRequest)
-							.getAllRequests().isEmpty();
+				} else if(targetRequest instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
+					return ((CreateAspectUnspecifiedTypeConnectionRequest)targetRequest).getAllRequests().isEmpty();
 				} else {
 					try {
 						targetRequest.getNewObjectType();
@@ -798,14 +796,15 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 				return false;
 			}
 
+			@Override
 			@SuppressWarnings("unchecked")
 			protected CreateConnectionRequest createTargetRequest() {
-				if (!elementTypes.isEmpty()) {
+				if(!elementTypes.isEmpty()) {
 					return super.createTargetRequest();
 				}
 				CreateConnectionRequest request = new CreateConnectionRequest();
 				// Make sure to support all Observations.
-				if (!(elementUnderMouse instanceof Observation)) {
+				if(!(elementUnderMouse instanceof Observation)) {
 					request.getExtendedData().put(INVALID_REQUEST_DATA, true);
 				} else {
 					request.setFactory(new SimpleFactory(ObservationLink.class));
@@ -814,59 +813,59 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 			}
 		};
 	}
-	
+
 	// see also CustomConnectionHandleEditPolicy.getHandleFigures()
 	private Tool createObservationLinkCreationTool() {
-		ConnectionCreationTool tool = new ConnectionCreationTool(new SimpleFactory(ObservationLink.class)){
+		ConnectionCreationTool tool = new ConnectionCreationTool(new SimpleFactory(ObservationLink.class)) {
+
+			@Override
 			protected String getCommandName() {
-				if (isInState(STATE_CONNECTION_STARTED
-						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS))
+				if(isInState(STATE_CONNECTION_STARTED | STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
 					return SequenceUtil.OBSERVATION_LINK_REQUEST_END;
-				else
+				} else {
 					return SequenceUtil.OBSERVATION_LINK_REQUEST_START;
+				}
 			}
-			
+
 			@Override
 			protected boolean handleButtonUp(int button) {
 				setUnloadWhenFinished(true);
 				return super.handleButtonUp(button);
 			}
-			
+
+			@Override
 			protected boolean updateTargetUnderMouse() {
-				if (!isTargetLocked()) {
-					EditPart editPart = getCurrentViewer()
-							.findObjectAtExcluding(getLocation(), getExclusionSet(),
-									getTargetingConditional());
-					if (editPart != null)
+				if(!isTargetLocked()) {
+					EditPart editPart = getCurrentViewer().findObjectAtExcluding(getLocation(), getExclusionSet(), getTargetingConditional());
+					if(editPart != null) {
 						editPart = editPart.getTargetEditPart(getTargetRequest());
+					}
 					// fix observation link moving over ExecutionSpecificationEditPart
-					if (getTargetRequest() instanceof TargetRequest)
-						((TargetRequest) getTargetRequest()).setTargetEditPart(editPart);
-					boolean changed = getTargetEditPart() != editPart;					
+					if(getTargetRequest() instanceof TargetRequest) {
+						((TargetRequest)getTargetRequest()).setTargetEditPart(editPart);
+					}
+					boolean changed = getTargetEditPart() != editPart;
 					setTargetEditPart(editPart);
 					return changed;
-				} else
+				} else {
 					return false;
+				}
 			}
 
 
 		};
-		
-		tool.setDefaultCursor(new Cursor(Display.getDefault(),
-				DiagramUIPluginImages.DESC_CONNECTION_CURSOR_SOURCE.getImageData(),
-				DiagramUIPluginImages.DESC_CONNECTION_CURSOR_MASK.getImageData(), 0, 0));
-		tool.setDisabledCursor(new Cursor(Display
-				.getDefault(), DiagramUIPluginImages.DESC_NO_CONNECTION_CURSOR_SOURCE
-				.getImageData(), DiagramUIPluginImages.DESC_NO_CONNECTION_CURSOR_MASK
-				.getImageData(), 0, 0));
-		
+
+		tool.setDefaultCursor(new Cursor(Display.getDefault(), DiagramUIPluginImages.DESC_CONNECTION_CURSOR_SOURCE.getImageData(), DiagramUIPluginImages.DESC_CONNECTION_CURSOR_MASK.getImageData(), 0, 0));
+		tool.setDisabledCursor(new Cursor(Display.getDefault(), DiagramUIPluginImages.DESC_NO_CONNECTION_CURSOR_SOURCE.getImageData(), DiagramUIPluginImages.DESC_NO_CONNECTION_CURSOR_MASK.getImageData(), 0, 0));
+
 		return tool;
 	}
-	
-	
-	public static class AspectUnspecifiedTypeConnectionToolEx extends AspectUnspecifiedTypeConnectionTool{
+
+
+	public static class AspectUnspecifiedTypeConnectionToolEx extends AspectUnspecifiedTypeConnectionTool {
+
 		private EditPart source;
-		
+
 		public AspectUnspecifiedTypeConnectionToolEx(List<IElementType> elementTypes) {
 			super(elementTypes);
 			setDisabledCursor(Cursors.NO);
@@ -877,20 +876,22 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 			this.source = source;
 			super.setConnectionSource(source);
 		}
-		
-		public void clearConnectionFeedback(){		
-			if (!isShowingSourceFeedback())
+
+		public void clearConnectionFeedback() {
+			if(!isShowingSourceFeedback()) {
 				return;
-			if (source != null) {
+			}
+			if(source != null) {
 				Request req = getSourceRequest();
 				req.setType(REQ_CONNECTION_END);
 				source.eraseSourceFeedback(req);
 			}
 		}
 	}
-	
+
 	/**
 	 * Try to create child in Interaction directly.
+	 * 
 	 * @author Jin Liu (jin.liu@soyatec.com)
 	 */
 	public static class InteractionChildCreationTool extends AspectUnspecifiedTypeCreationTool {
@@ -903,32 +904,33 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		public InteractionChildCreationTool(List<IElementType> elementTypes) {
 			super(elementTypes);
 		}
-		
+
 		@Override
 		protected boolean updateTargetUnderMouse() {
-			if (antiScroll){
+			if(antiScroll) {
 				return super.updateTargetUnderMouse();
 			}
-			if (!isTargetLocked()) {
+			if(!isTargetLocked()) {
 				EditPart editPart = null;
-				if (getCurrentViewer() != null)
-					editPart = getCurrentViewer().findObjectAtExcluding(
-							getLocation(), getExclusionSet(),
-							getTargetingConditional());
-				if (editPart != null)
+				if(getCurrentViewer() != null) {
+					editPart = getCurrentViewer().findObjectAtExcluding(getLocation(), getExclusionSet(), getTargetingConditional());
+				}
+				if(editPart != null) {
 					editPart = getInteractionEditPart(editPart);
+				}
 				boolean changed = getTargetEditPart() != editPart;
 				setTargetEditPart(editPart);
 				return changed;
-			} else
+			} else {
 				return false;
+			}
 		}
 
 		private EditPart getInteractionEditPart(EditPart editPart) {
-			if (editPart == null){
+			if(editPart == null) {
 				return null;
 			}
-			if (editPart instanceof InteractionInteractionCompartmentEditPart){
+			if(editPart instanceof InteractionInteractionCompartmentEditPart) {
 				return editPart;
 			}
 			return getInteractionEditPart(editPart.getParent());

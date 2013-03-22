@@ -1495,24 +1495,6 @@
    </editpolicyProvider>
 </extension>
 <extension
-      id="stereotype-ep-provider"
-      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-   <editpartProvider
-         class="org.eclipse.papyrus.uml.diagram.sequence.providers.StereotypePropertiesEditPartProvider">
-      <Priority
-            name="Medium">
-      </Priority>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-            id="org.eclipse.papyrus.uml.diagram.clazz.editpart.AppliedStereotypeContainer">
-         <method
-               name="getType()"
-               value="AppliedStereotypeContainer,AppliedStereotypeProperty,AppliedStereotypesComment,AppliedStereotypesCommentLink">
-         </method>
-      </object>
-   </editpartProvider>
-</extension>
-<extension
       point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
    <metamodel
          nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
