@@ -13,40 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.helpers;
 
-import org.eclipse.uml2.uml.AcceptEventAction;
-import org.eclipse.uml2.uml.Event;
-import org.eclipse.uml2.uml.TimeEvent;
-import org.eclipse.uml2.uml.Trigger;
 
 /**
  * @generated
  */
 public class AcceptEventActionEditHelper extends UMLBaseEditHelper {
 
-	/**
-	 * Test whether the action may be considered as a time event action
-	 * 
-	 * @param action
-	 *        the action to test
-	 * @return true if action is a time event action
-	 * @generated NOT
-	 */
-	public static boolean isAcceptTimeEventAction(AcceptEventAction action) {
-		if(action.getTriggers() != null) {
-			boolean hasTimeEvent = false;
-			for(Trigger trigger : action.getTriggers()) {
-				if(trigger != null) {
-					Event event = trigger.getEvent();
-					if(event instanceof TimeEvent) {
-						hasTimeEvent = true;
-					} else {
-						return false;
-					}
-				}
-			}
-			// only time events have been encountered, but maybe no event at all.
-			return hasTimeEvent;
-		}
-		return false;
-	}
 }

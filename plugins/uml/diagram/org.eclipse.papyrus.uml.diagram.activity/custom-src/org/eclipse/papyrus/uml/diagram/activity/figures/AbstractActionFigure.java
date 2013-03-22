@@ -39,7 +39,7 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	private StereotypeFigureHelper stereotypeHelper;
 
 	/**
-	 * @generated NOT use StereotypeFigureHelper
+	 * use StereotypeFigureHelper
 	 */
 	public AbstractActionFigure() {
 		GridLayout layoutThis = new GridLayout();

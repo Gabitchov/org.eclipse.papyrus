@@ -590,7 +590,7 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	 *        the model action
 	 * @return
 	 * @return boundsConstraint for convenience
-	 * @generated NOT
+	 * 
 	 */
 	public static Bounds adaptActionHeight(Bounds boundsConstraint, EObject domainElement) {
 		if(domainElement instanceof Action) {

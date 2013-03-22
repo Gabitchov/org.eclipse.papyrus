@@ -124,7 +124,7 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 	 */
 	public void updateAcceptEventActionFigure() {
 		AcceptEventActionFigure actionFigure = editPart.getPrimaryShape();
-		boolean useHourglassFigure = AcceptEventActionEditHelper.isAcceptTimeEventAction(getAction());
+		boolean useHourglassFigure = CustomAcceptEventActionEditHelper.isAcceptTimeEventAction(getAction());
 		boolean hourglassAlreadyUsed = actionFigure.isTemplateForAcceptTimeEventActionUsed();
 		if(useHourglassFigure != hourglassAlreadyUsed) {
 			// set usage of the correct figure

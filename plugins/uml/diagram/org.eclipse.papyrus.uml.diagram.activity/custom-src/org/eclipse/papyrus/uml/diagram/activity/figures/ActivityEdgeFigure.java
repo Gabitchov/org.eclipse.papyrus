@@ -56,7 +56,7 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 	}
 
 	/**
-	 * @generated NOT
+	 * create the content
 	 */
 	protected void createContents() {
 		super.createContents();

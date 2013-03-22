@@ -33,7 +33,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -69,7 +68,6 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.CenteredColumnConstraint;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.CenteredColumnLayout;
-import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AcceptEventActionEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.AcceptEventActionCanonicalEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.AcceptEventActionItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy;
@@ -77,7 +75,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragD
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.helper.AcceptEventActionSwitchHelper;
 import org.eclipse.papyrus.uml.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -93,7 +90,6 @@ import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForEle
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.AcceptEventAction;
 
 /**
  * @generated NOT implements IPapyrusEditPart
@@ -1895,49 +1891,5 @@ public class AcceptEventActionEditPart extends AbstractBorderedShapeEditPart imp
 		return result;
 	}
 
-	/**
-	 * Notifier for listening and stop listening model element.
-	 * 
-	 * @generated NOT
-	 */
-	private AcceptEventActionSwitchHelper notifier = new AcceptEventActionSwitchHelper(this);
-
-	/**
-	 * Activate a listener for to Handle notification for new owned YYY
-	 * 
-	 * @generated NOT
-	 */
-	public void activate() {
-		super.activate();
-		EObject action = resolveSemanticElement();
-		if(action instanceof AcceptEventAction) {
-			notifier.listenObject(action);
-			// ensure representation is correctly initialized.
-			boolean useHourglassFigure = AcceptEventActionEditHelper.isAcceptTimeEventAction((AcceptEventAction)action);
-			getPrimaryShape().useTemplateForAcceptTimeEventAction(useHourglassFigure);
-		}
-	}
-
-	/**
-	 * Deactivate listeners to handle notification in the message occurence
-	 * specification
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void deactivate() {
-		notifier.unlistenAll();
-		super.deactivate();
-	}
-
-	/**
-	 * Remove listeners to handle notification in the message occurence specification
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void removeNotify() {
-		notifier.unlistenAll();
-		super.removeNotify();
-	}
+	
 }

@@ -69,7 +69,7 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	 * @throws BackboneException
 	 * @throws ServiceException
 	 * 
-	 * @generated NOT
+	 *
 	 */
 	public UmlActivityDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
