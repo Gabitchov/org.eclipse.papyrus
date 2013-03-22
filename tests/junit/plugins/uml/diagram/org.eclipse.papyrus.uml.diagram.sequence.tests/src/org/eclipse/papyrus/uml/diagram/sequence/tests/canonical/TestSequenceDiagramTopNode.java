@@ -14,9 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.PopupUtil;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Test;
 

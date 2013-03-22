@@ -37,9 +37,14 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -73,22 +78,26 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 
 	private static final String CHANGE_REPRESENTS = "Change Represents: ";
 
+	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
 
+	@Override
 	protected void projectCreation() {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		root = workspace.getRoot();
-		project = root.getProject("ClazzDiagramTestProject");
-		file = project.getFile("ClazzDiagramTest.di");
+		project = root.getProject("SequenceDiagramTestProject");
+		file = project.getFile("SequenceDiagramTest.di");
 		this.diResourceSet = new DiResourceSet();
 		try {
 			//at this point, no resources have been created
-			if(!project.exists())
+			if(!project.exists()) {
 				project.create(null);
-			if(!project.isOpen())
+			}
+			if(!project.isOpen()) {
 				project.open(null);
+			}
 
 			if(file.exists()) {
 				file.delete(true, new NullProgressMonitor());
@@ -97,9 +106,16 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 			if(!file.exists()) {
 				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
-				new CreateUMLModelCommand().createModel((DiResourceSet)this.diResourceSet);
+				new CreateUMLModelCommand().createModel(this.diResourceSet);
+				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+				try {
+					registry.add(ModelSet.class, Integer.MAX_VALUE, diResourceSet); //High priority to override all contributions
+					registry.startRegistry();
+				} catch (ServiceException ex) {
+					//Ignore exceptions
+				}
 				ICreationCommand command = getDiagramCommandCreation();
-				command.createDiagram((DiResourceSet)diResourceSet, null, "DiagramToTest");
+				command.createDiagram(diResourceSet, null, "DiagramToTest");
 				diResourceSet.save(new NullProgressMonitor());
 
 			}
@@ -109,14 +125,14 @@ public class TestDecompositionMove_364812 extends TestTopNode {
 			page.closeAllEditors(true);
 
 			IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
-			page.openEditor(new FileEditorInput(file), desc.getId());
+			papyrusEditor = (IMultiDiagramEditor)page.openEditor(new FileEditorInput(file), desc.getId());
 		} catch (Exception e) {
 			System.err.println("error " + e);
 		}
 	}
 
 	protected void initUml() throws CoreException {
-		IFile uml = project.getFile("ClazzDiagramTest.uml");
+		IFile uml = project.getFile("SequenceDiagramTest.uml");
 		String content = FileUtil.read(uml.getContents());
 		content = content.replaceAll("/>", UML_REPLACEMENT_TEMPLATE);
 
