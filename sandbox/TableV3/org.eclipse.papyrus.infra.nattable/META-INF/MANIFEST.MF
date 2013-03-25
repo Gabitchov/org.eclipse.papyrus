@@ -23,8 +23,9 @@ Require-Bundle: org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
  org.eclipse.nebula.widgets.nattable.core;bundle-version="1.0.0",
  org.eclipse.core.expressions,
- org.eclipse.nebula.widgets.nattable.core,
- org.eclipse.nebula.widgets.nattable.core
+ org.eclipse.papyrus.infra.services.edit,
+ org.eclipse.papyrus.infra.services.edit,
+ org.eclipse.jface
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor

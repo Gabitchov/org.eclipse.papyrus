@@ -28,6 +28,11 @@ public class AxisUtils {
 	}
 
 	/**
+	 * This regex allows to find all word character (letters + numbers)+ the whitespace
+	 */
+	public static final String REGEX = "[^\\w\\s]";
+
+	/**
 	 * This methods avoid to duplicate these some lines
 	 * 
 	 * @param axisElement

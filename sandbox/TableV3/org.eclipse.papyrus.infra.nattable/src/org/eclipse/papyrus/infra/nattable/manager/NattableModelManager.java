@@ -14,11 +14,12 @@
 package org.eclipse.papyrus.infra.nattable.manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.commands.State;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -28,8 +29,13 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -40,18 +46,22 @@ import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.FlattenableRestrictedFilteredContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
 
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
 
@@ -520,6 +530,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return cmd;
 	}
 
+	public Command getDestroyColumnElementCommand(Collection<Object> objectsToDestroy) {
+		final EditingDomain domain = getEditingDomain(this.table);
+		final Command cmd = this.columnManager.getDestroyAxisCommand(domain, objectsToDestroy);
+		return cmd;
+	}
+
 	public boolean declareEditorsOnColumns() {
 		return true;
 	}
@@ -538,6 +554,63 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		return this;
 	}
 
+
+
+	@Override
+	public void openColumnsManagerDialog() {
+
+		final LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		final ILabelProvider labelProvider = serv.getLabelProvider();
+
+		ReferenceSelector selector = new ReferenceSelector(true) {
+
+			@Override
+			public void createControls(Composite parent) {
+				super.createControls(parent);
+				treeViewer.setComparator(new ViewerComparator(new StringComparator()));//should always be string element
+			}
+		};
+		selector.setLabelProvider(labelProvider);
+
+		IStaticContentProvider provider = columnManager.createDestroyColumnsContentProvider(true);
+		if(provider != null) {//FIXME : the action must be hidden when it is not possible to select the columns
+			selector.setContentProvider(new FlattenableRestrictedFilteredContentProvider((IRestrictedContentProvider)provider, selector));
+
+			MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, "Select Columns", true, false, -1);
+			dialog.setLabelProvider(serv.getLabelProvider());
+			dialog.setInitialElementSelections(new ArrayList<Object>(columnManager.getAllExistingAxis()));
+
+			int open = dialog.open();
+			if(open == Window.OK) {
+				Collection<Object> existingColumns = columnManager.getAllExistingAxis();
+				ArrayList<Object> checkedColumns = new ArrayList<Object>();
+				checkedColumns.addAll(Arrays.asList(dialog.getResult()));
+				CommandStack commandStack = getEditingDomain(table).getCommandStack();
+
+				ArrayList<Object> columnsToAdd = new ArrayList<Object>(checkedColumns);
+				columnsToAdd.removeAll(existingColumns);
+				CompoundCommand compoundCommand = new CompoundCommand("Update Existing Axis Command");
+				if(columnsToAdd.size() > 0) {
+					Command addColumnElementCommand = getAddColumnElementCommand(columnsToAdd);
+					compoundCommand.append(addColumnElementCommand);
+				}
+
+
+				ArrayList<Object> columnsToDelete = new ArrayList<Object>(existingColumns);
+				columnsToDelete.removeAll(checkedColumns);
+				if(columnsToDelete.size() > 0) {
+					Command destroyColumnElementCommand = getDestroyColumnElementCommand(columnsToDelete);
+					compoundCommand.append(destroyColumnElementCommand);
+				}
+				if(!compoundCommand.isEmpty()) {
+					commandStack.execute(compoundCommand);
+				}
+			}
+		} else {
+			MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Create / Destroy Axis", "This action is not yet supported");
+		}
+
+	}
 
 	public void sortColumnsByName(final boolean alphabeticOrder) {
 		this.columnManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry());

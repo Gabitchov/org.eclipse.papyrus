@@ -92,16 +92,19 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd);
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
-
+	
 	public void print();
-
+	
 	public void selectAll();
 
 	public void exportToXLS();
 
+	public void openColumnsManagerDialog();
+	
 	public void sortColumnsByName(final boolean alphabeticOrder);
-
+	
 	public void sortRowsByName(final boolean alphabeticOrder);
+	
 
 	/**
 	 * 

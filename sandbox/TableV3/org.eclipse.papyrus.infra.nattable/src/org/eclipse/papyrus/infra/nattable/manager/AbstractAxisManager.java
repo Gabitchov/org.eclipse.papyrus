@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.manager;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -35,10 +36,12 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElement;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.swt.widgets.Display;
 
 public abstract class AbstractAxisManager implements IAxisManager {
@@ -290,7 +293,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	// FIXME?
-	public List<?> getAllCurrentPossibleAxis() {
+	public List<?> getAllPossibleAxisForTheTableContents() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -359,10 +362,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		 */
 		private IConfigRegistry configRegistry;
 
-		/**
-		 * This regex allows to find all word character (letters + numbers)+ the whitespace
-		 */
-		private static final String REGEX = "[^\\w\\s]";
 
 		/**
 		 * 
@@ -391,8 +390,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 			LabelProviderService serv = this.configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			Object element0 = arg0.getElement();
 			Object element1 = arg1.getElement();
-			final String str1 = getText(serv, element0).replaceAll(REGEX, "");//we keep only words characters (letters + numbers) + whitespace
-			final String str2 = getText(serv, element1).replaceAll(REGEX, "");
+			final String str1 = getText(serv, element0).replaceAll(AxisUtils.REGEX, "");//we keep only words characters (letters + numbers) + whitespace
+			final String str2 = getText(serv, element1).replaceAll(AxisUtils.REGEX, "");
 			if(this.alphabeticOrder) {
 				return str1.compareToIgnoreCase(str2);
 			}
@@ -414,5 +413,41 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#createDestroyColumnsContentProvider(boolean)
+	 * 
+	 * @param isRestricted
+	 * @return
+	 */
+	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
+		return null;
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 * 
+	 * @param domain
+	 * @param objectToDestroy
+	 * @return
+	 */
+	@Override
+	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getAllExistingAxis()
+	 * 
+	 * @return
+	 */
+	@Override
+	public Collection<Object> getAllExistingAxis() {
+		return Collections.emptyList();
+	}
 
 }

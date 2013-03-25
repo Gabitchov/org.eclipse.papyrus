@@ -20,8 +20,15 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
@@ -30,11 +37,19 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
+import org.eclipse.papyrus.uml.nattable.common.provider.UMLStereotypeRestrictedPropertyContentProvider;
 import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
+import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -79,8 +94,9 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 			extendedMetaclass.addAll(stereotype.getAllExtendedMetaclasses());
 		}
 
-		final List<String> allPropertyQN = new ArrayList<String>();
-		for(Property property : allProperties) {
+		//FIXME move me in a util class
+		List<Object> propertiesToAdd = new ArrayList<Object>();
+		for(Property property : allProperties) {//FIXME move this test
 			Association association = property.getAssociation();
 			if(association instanceof Extension) {
 				Extension ext = (Extension)association;
@@ -89,9 +105,36 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 					continue;
 				}
 			}
-			allPropertyQN.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + property.getQualifiedName());
+			//			allPropertyQN.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + property.getQualifiedName());
+			propertiesToAdd.add(property);
 		}
+		if(!propertiesToAdd.isEmpty()) {
+			return getAddAxisCommand(domain, propertiesToAdd);
+		}
+		//		allPropertyQN.removeAll(getTableManager().getElementsList(getRepresentedContentProvider()));
+		//		if(!allPropertyQN.isEmpty()) {
+		//			final Collection<IAxis> toAdd = new ArrayList<IAxis>();
+		//			for(String propQN : allPropertyQN) {
+		//				final IdAxis newAxis = NattableFactory.eINSTANCE.createIdAxis();
+		//				newAxis.setElement(propQN);
+		//				toAdd.add(newAxis);
+		//			}
+		//			//FIXME : we must use a factory and use the service edit
+		//			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), toAdd);
+		//
+		//		}
+		return null;
+	}
 
+	@Override
+	public Command getAddAxisCommand(EditingDomain domain, Collection<Object> objectToAdd) {
+		final List<String> allPropertyQN = new ArrayList<String>();
+		for(Object object : objectToAdd) {
+			if(object instanceof Property) {
+
+				allPropertyQN.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + ((NamedElement)object).getQualifiedName());
+			}
+		}
 		allPropertyQN.removeAll(getTableManager().getElementsList(getRepresentedContentProvider()));
 		if(!allPropertyQN.isEmpty()) {
 			final Collection<IAxis> toAdd = new ArrayList<IAxis>();
@@ -104,8 +147,11 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), toAdd);
 
 		}
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	/**
 	 * calculus of the contents of the axis
@@ -113,7 +159,7 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 	@Override
 	public synchronized void updateAxisContents() {
 		final List<IAxis> axis = getRepresentedContentProvider().getAxis();
-		
+
 		final List<Object> axisElements = getTableManager().getElementsList(getRepresentedContentProvider());
 		for(int i = 0; i < axis.size(); i++) {
 			final IAxis current = axis.get(i);
@@ -130,57 +176,6 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 					}
 
 				}
-				//				final String id = (String)current.getElement();
-				//				if(id.startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
-				//					final Object realValue = UMLTableUtils.getRealStereotypeProperty(getTable().getContext(), id);
-				//
-				//					//the value has been resolved
-				//					if(realValue != null) {
-				//						int currentIndex = axisElements.indexOf(id);
-				//						if(currentIndex == -1) {//the element was not in the axis with its id representation
-				//							currentIndex = axisElements.indexOf(realValue);
-				//
-				//							if(currentIndex == -1) {//the element was not in the axis with its real representation
-				//								axisElements.add(realValue);//we add it
-				//							} else if(currentIndex != i) {
-				//								axisElements.remove(currentIndex);
-				//								axisElements.add(i, realValue);
-				//							}
-				//
-				//						} else if(currentIndex != i) {//the current element was in the axis, using its id representation. We must use the real object now
-				//							axisElements.remove(currentIndex);
-				//							axisElements.add(i, realValue);
-				//						}
-				//					} else {//the value has not been resolved
-				//						int currentIndex = axisElements.indexOf(id);
-				//						if(currentIndex == -1) {//the element was not in the axis with its id representation
-				//
-				//						}
-				//					}
-				//
-				//
-				//
-				//					int currentIndex = axisElements.indexOf(id);
-				//
-				//					if(realValue != null && currentIndex == -1) {
-				//						currentIndex = axisElements.indexOf(realValue);
-				//						//the element has never been in the table
-				//						if(currentIndex == -1) {
-				//							axisElements.add(realValue);
-				//						} else if(currentIndex != i) {
-				//							axisElements.remove(currentIndex);
-				//							axisElements.add(i, id);
-				//						}
-				//
-				//					}
-				//
-				//					if(currentIndex == -1) {
-				//						axisElements.add(id);
-				//					} else if(currentIndex != i) {
-				//						axisElements.remove(currentIndex);
-				//						axisElements.add(i, id);
-				//					}
-				//				}
 			}
 		}
 	}
@@ -210,6 +205,135 @@ public class UMLStereotypePropertyManager extends AbstractAxisManager {
 		return false;
 	}
 
+	/**
+	 * return the content provider for the stereotypes properties
+	 */
+	@Override
+	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
+		AbstractAxisProvider secondAxis = ((INattableModelManager)getTableManager()).getHorizontalAxisProvider();
+		if(secondAxis == getRepresentedContentProvider()) {
+			secondAxis = ((INattableModelManager)getTableManager()).getVerticalAxisProvider();
+		}
+		List<Object> allObjectsInTable = getTableManager().getElementsList(secondAxis);
+		HashSet<Profile> profiles = new HashSet<Profile>();
+		for(Object object : allObjectsInTable) {
+			if(object instanceof Element) {
+				Element element = (Element)object;
+				List<Stereotype> appliedStereotypes = element.getAppliedStereotypes();
+				for(Stereotype stereotype : appliedStereotypes) {
+					profiles.add((Profile)EcoreUtil.getRootContainer(stereotype));
+				}
 
+			}
+		}
+
+		IRestrictedContentProvider umlStereotypePropertyContentProvider = new UMLStereotypeRestrictedPropertyContentProvider(this, new ArrayList(profiles));
+		umlStereotypePropertyContentProvider.setRestriction(isRestricted);
+		return umlStereotypePropertyContentProvider;
+
+	}
+
+	public Collection<Object> getAllPossibleAxis() {
+
+		return getRootProfiles();
+	}
+
+	public Collection<Object> getRootProfiles() {
+		EObject context = ((INattableModelManager)getTableManager()).getTable().getContext();
+		assert context instanceof Element;
+
+		EList<Profile> allAppliedProfiles = ((Element)context).getNearestPackage().getAllAppliedProfiles();
+		Collection<Object> profiles = new HashSet<Object>();
+		for(Profile profile : allAppliedProfiles) {
+			EObject rootContainer = EcoreUtil.getRootContainer(profile);
+			profiles.add(rootContainer);
+		}
+		return profiles;
+
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
+	 * 
+	 * @param domain
+	 * @param umlProperties
+	 *        the UML Property for which we want destroy axis
+	 * @return
+	 */
+	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> umlProperties) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
+		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
+		final List<String> propIdToDestroy = new ArrayList<String>();
+		for(final Object current : umlProperties) {
+			if(current instanceof Property && ((Property)current).eContainer() instanceof Stereotype) {
+				propIdToDestroy.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + ((NamedElement)current).getQualifiedName());
+			}
+		}
+
+		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
+			if(current instanceof IdAxis) {
+				String propId = AxisUtils.getPropertyId(current);
+				if(propIdToDestroy.contains(propId)) {
+					DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)domain, current, false);
+					compositeCommand.add(provider.getEditCommand(request));
+				}
+			}
+		}
+
+		if(!compositeCommand.isEmpty()) {
+			return new GMFtoEMFCommandWrapper(compositeCommand);
+		}
+		return null;
+
+
+		//		
+		//		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
+		//		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
+		//		for(final Object current : getAllExistingAxis()) {
+		//			Object element = null;
+		//			if(current instanceof Property) {
+		//
+		//				Property property = (Property)current;
+		//				if(property != null && property.eContainer() instanceof Stereotype) {
+		//					//FIXME : use isAllowedContent?
+		//
+		//					if(objectToDestroy.contains(current) || objectToDestroy.contains(element)) {
+		//						DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)domain, false);
+		//						request.setElementToDestroy(property);
+		//						compositeCommand.add(provider.getEditCommand(request));
+		//					}
+		//				}
+		//			}
+		//		}
+		//
+		//		if(!compositeCommand.isEmpty()) {
+		//			return new GMFtoEMFCommandWrapper(compositeCommand);
+		//		}
+		//		return null;
+	}
+
+	public Collection<Object> getAllExistingAxis() {
+		Set<Object> eObjects = new HashSet<Object>();
+		List<Object> columnElementsList = ((INattableModelManager)getTableManager()).getColumnElementsList();
+		for(final Object element : columnElementsList) {//FIXME bad implementation
+			if(element instanceof IdAxis) {
+				EObject context = ((INattableModelManager)getTableManager()).getTable().getContext();
+				String id = null;
+				IdAxis idAxis = (IdAxis)element;
+				id = idAxis.getElement();
+
+				Property property = UMLTableUtils.getRealStereotypeProperty(context, id);
+
+				if(property != null) {
+					eObjects.add(property);
+				} else {
+					eObjects.add(idAxis);
+				}
+			}
+		}
+		return eObjects;
+	}
 
 }

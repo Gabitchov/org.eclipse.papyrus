@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.Viewer;
 //FIXME : Adapt this code to TreeBrowseStrategy
 public class HierarchicToFlatContentProvider extends TreeToFlatContentProvider {
 
-	private IHierarchicContentProvider contentProvider;
+	protected IHierarchicContentProvider contentProvider;
 
 	public HierarchicToFlatContentProvider(IHierarchicContentProvider provider) {
 		super(provider);

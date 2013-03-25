@@ -14,14 +14,18 @@
 package org.eclipse.papyrus.infra.nattable.manager;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.widgets.providers.CompoundFilteredRestrictedContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 
 
 public class CompositeAxisManager extends AbstractAxisManager {
@@ -194,5 +198,44 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	public void sortAxisByName(boolean inverted, final IConfigRegistry configRegistry) {
 		super.sortAxisByName(inverted, configRegistry);
+	}
+
+	@Override
+	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted) {
+
+		CompoundFilteredRestrictedContentProvider compoundContentProvider = new CompoundFilteredRestrictedContentProvider();
+		for(final IAxisManager current : managers) {
+			IRestrictedContentProvider contentProvider = current.createDestroyColumnsContentProvider(isRestricted);
+			compoundContentProvider.add(contentProvider);
+		}
+		return compoundContentProvider;
+	}
+
+	@Override
+	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
+		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_DestroyAxisCommand);
+		for(final IAxisManager current : this.managers) {
+			final Command tmp = current.getDestroyAxisCommand(domain, objectToDestroy);
+			if(tmp != null) {
+				cmd.append(tmp);
+			}
+		}
+		if(cmd.isEmpty()) {
+			return null;
+		}
+		return cmd;
+	}
+	
+	@Override
+	public Collection<Object> getAllExistingAxis() {
+		Set<Object> allExistingAxis = new HashSet<Object>();
+		for(IAxisManager manager : managers) {
+			Collection<Object> managerPossibleElements = manager.getAllExistingAxis();
+			if(managerPossibleElements != null) {
+
+				allExistingAxis.addAll(managerPossibleElements);
+			}
+		}
+		return allExistingAxis;
 	}
 }

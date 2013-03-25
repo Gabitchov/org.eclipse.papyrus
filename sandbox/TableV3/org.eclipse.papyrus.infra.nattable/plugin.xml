@@ -65,6 +65,17 @@
              </with>
           </visibleWhen>
        </command>
+       	<command
+               commandId="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns"
+               icon="icons/select_columns_to_show.png"
+               label="Create/Destroy columns"
+               style="push"
+               tooltip="Open a dialog to choose the visible columns">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+
        <command
              commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
              icon="icons/sort_columns_by_name_A_to_Z.gif"
@@ -198,6 +209,17 @@
        </activeWhen>
     </handler>
     <handler
+            class="org.eclipse.papyrus.infra.nattable.handlers.SelectColumnsHandler"
+            commandId="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns">
+         <activeWhen>
+             <with variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                     </equals>
+                  </with>
+         </activeWhen>
+      </handler>
+          <handler
           class="org.eclipse.papyrus.infra.nattable.copy.CopySelectionToClipboardAction"
           commandId="org.eclipse.ui.edit.copy">
        <activeWhen>
@@ -285,6 +307,14 @@
          id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
          name="Export Table to XLS Command">
    </command>
+
+   <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Open a dialog to select the columns to display"
+            id="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns"
+            name="Select the columns to Show">
+      </command>
+
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.infra.nattable.actions.SortColumnsHandler"

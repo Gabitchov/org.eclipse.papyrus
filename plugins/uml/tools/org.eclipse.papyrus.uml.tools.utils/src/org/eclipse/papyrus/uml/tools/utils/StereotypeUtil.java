@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,9 +22,12 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
@@ -50,9 +53,11 @@ public class StereotypeUtil {
 
 	protected static final String ST_RIGHT = String.valueOf("\u00BB");
 
+	public static final String BASE_PREFIX = "base_"; //$NON-NLS-N$
+
 	/**
 	 * returns the list of all super stereotypes for the specified stereotype
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype for which super-stereotypes are looked for.
 	 * @return the list of all stereotypes from which the specified stereotype inherits
@@ -70,10 +75,10 @@ public class StereotypeUtil {
 
 	/**
 	 * Parse the stereotype image and select those that have an "icon" kind (EAnnotation).
-	 * 
+	 *
 	 * @param stereotype
 	 *        to parse
-	 * 
+	 *
 	 * @return a EList of {@link Image}
 	 */
 	public static EList<Image> getIcons(Stereotype stereotype) {
@@ -93,10 +98,10 @@ public class StereotypeUtil {
 
 	/**
 	 * Returns the list of names (not qualified) of properties to display.
-	 * 
+	 *
 	 * @param stereotype
 	 * @param stPropList
-	 * 
+	 *
 	 * @return
 	 */
 	private static List<String> getStereoPropertiesToDisplay(org.eclipse.uml2.uml.Stereotype stereotype, List<String> stPropList) {
@@ -114,11 +119,11 @@ public class StereotypeUtil {
 
 	/**
 	 * return string that contains value of properties of applied stereotype
-	 * 
+	 *
 	 * @param stereotypesPropertiesToDisplay
 	 *        list of properties of stereotype to display grammar=
 	 *        {<B>stereotypequalifiedName</B>'.'<B>propertyName</B>','}*
-	 * 
+	 *
 	 * @return a string withe the following grammar grammar=
 	 *         {'\u00AB'<B>StereotypeName</B>'\u00BB''#'
 	 *         {<B>propertyName</B>'='<B>propertyValue</B>'|'}*';'}*
@@ -175,7 +180,7 @@ public class StereotypeUtil {
 
 	/**
 	 * Computes the display of a property value.
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype that contains the property to be displayed
 	 * @param property
@@ -196,7 +201,7 @@ public class StereotypeUtil {
 		}
 
 		// property type is a metaclass
-		else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && ((org.eclipse.uml2.uml.Stereotype)propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
+		else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && propType.getAppliedStereotypes().get(0).getName().equals("Metaclass")) {
 			return getPropertyValueForMetaclassType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,false);
 		}
 		// property type is a stereotype
@@ -217,7 +222,7 @@ public class StereotypeUtil {
 
 	/**
 	 * Computes the display of a property value.
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype that contains the property to be displayed
 	 * @param property
@@ -238,7 +243,7 @@ public class StereotypeUtil {
 		}
 
 		// property type is a metaclass
-		else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && ((org.eclipse.uml2.uml.Stereotype)propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
+		else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && propType.getAppliedStereotypes().get(0).getName().equals("Metaclass")) {
 			return getPropertyValueForMetaclassType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,true);
 		}
 		// property type is a stereotype
@@ -257,7 +262,7 @@ public class StereotypeUtil {
 
 	/**
 	 * Retrieves a property of the specified stereotype, given its name
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype owner of the property
 	 * @param propertyName
@@ -281,11 +286,11 @@ public class StereotypeUtil {
 
 	/**
 	 * return string that contains value of properties of applied stereotype
-	 * 
+	 *
 	 * @param stereotypesPropertiesToDisplay
 	 *        list of properties of stereotype to display grammar=
 	 *        {<B>stereotypequalifiedName</B>'.'<B>propertyName</B>','}*
-	 * 
+	 *
 	 * @return a string with the following grammar grammar=
 	 *         {(<B>propertyName</B>'='<B>propertyValue</B>',')*
 	 *         <B>propertyName</B>'='<B>propertyValue</B>'}
@@ -357,7 +362,7 @@ public class StereotypeUtil {
 			}
 
 			// property type is a metaclass
-			else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && ((org.eclipse.uml2.uml.Stereotype)propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
+			else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && propType.getAppliedStereotypes().get(0).getName().equals("Metaclass")) {
 				buffer.append(getPropertyValueForMetaclassType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ",",false));
 			}
 
@@ -387,7 +392,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property when its type is an Enumeration
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -407,10 +412,11 @@ public class StereotypeUtil {
 			if((property.getLower() != 0) || umlElement.getValue(stereotype, property.getName()) != null) {
 				if(property.isSetDefault() || umlElement.getValue(stereotype, property.getName()) != null) {
 					Object val = umlElement.getValue(stereotype, property.getName());
-					if (val instanceof EnumerationLiteral)
+					if (val instanceof EnumerationLiteral) {
 						out = property.getName() + EQUAL_SEPARATOR + ((EnumerationLiteral)val).getLabel() + PROPERTY_VALUE_SEPARATOR;
-					else
+					} else {
 						out = property.getName() + EQUAL_SEPARATOR + val + PROPERTY_VALUE_SEPARATOR;
+					}
 				} else {
 					out = property.getName() + PROPERTY_VALUE_SEPARATOR;
 				}
@@ -428,7 +434,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property when its type is a Metaclass
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -482,7 +488,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property when its type is a stereotype
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -541,7 +547,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -585,10 +591,10 @@ public class StereotypeUtil {
 
 	/**
 	 * Parse the stereotype image and select those that have an "shape" kind (EAnnotation).
-	 * 
+	 *
 	 * @param stereotype
 	 *        to parse
-	 * 
+	 *
 	 * @return a EList of {@link Image}
 	 */
 	public static EList<Image> getShapes(Stereotype stereotype) {
@@ -604,5 +610,41 @@ public class StereotypeUtil {
 		}
 
 		return shapes;
+	}
+
+	/**
+	 *
+	 * @param stereotype
+	 *        a stereotype
+	 * @return
+	 *         the list of the properties of this stereotype, excluding the properties of the extending metaclasses
+	 */
+	public static final List<Property> getStereotypePropertiesWithoutBaseProperties(final Stereotype stereotype) {
+		final List<Property> properties = new ArrayList<Property>();
+		for(Property property : stereotype.getOwnedAttributes()) {
+			if(isValidStereotypeProperty(property)) {
+				properties.add(property);
+			}
+		}
+		return properties;
+	}
+
+	/**
+	 * 
+	 * @param property
+	 *        a property
+	 * @return
+	 *         <code>true</code> if the property is a Metaclass property
+	 */
+	public static final boolean isValidStereotypeProperty(final Property property) {
+		Association association = property.getAssociation();
+		if(association instanceof Extension) {
+			Extension ext = (Extension)association;
+			Class metaClass = ext.getMetaclass();
+			if(property.getName().equals(BASE_PREFIX + metaClass.getName())) { //$NON-NLS-1$
+				return false;
+			}
+		}
+		return true;
 	}
 }

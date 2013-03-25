@@ -81,6 +81,10 @@ public class Messages extends NLS {
 	/** the Enum radio_ no value */
 	public static String EnumRadio_NoValue;
 
+	public static String FlattenableRestrictedFilteredContentProvider_AllPossibleContentsMessage;
+
+	public static String FlattenableRestrictedFilteredContentProvider_FlatViewMessage;
+
 	public static String IntegerMask_ErrorTooManyValues;
 
 	public static String StringEditionFactory_EnterANewValue;

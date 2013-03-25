@@ -20,16 +20,25 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 
 public class FeatureManager extends AbstractAxisManager {
@@ -83,6 +92,26 @@ public class FeatureManager extends AbstractAxisManager {
 		return null;
 	}
 
+
+	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
+		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
+		for(final IAxis current : getRepresentedContentProvider().getAxis()) {
+			if(current.getElement() instanceof EStructuralFeature) {//FIXME : use isAllowedContent?
+				if(objectToDestroy.contains(current) || objectToDestroy.contains(current.getElement())) {
+					DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)domain, current, false);
+					compositeCommand.add(provider.getEditCommand(request));
+				}
+			}
+		}
+
+		if(!compositeCommand.isEmpty()) {
+			return new GMFtoEMFCommandWrapper(compositeCommand);
+		}
+		return null;
+
+	}
+
 	@Override
 	public boolean isAllowedContents(Object object) {
 		boolean isAllowed = super.isAllowedContents(object);
@@ -130,4 +159,29 @@ public class FeatureManager extends AbstractAxisManager {
 			}
 		}
 	}
+
+	public Collection<Object> getAllPossibleAxis() {
+		Set<Object> objects = new HashSet<Object>();
+		for(final Object current : getAllExistingAxis()) {
+			EClass eClass = (EClass)current;
+			EPackage ePackage = eClass.getEPackage();
+
+			if(!eClass.getEStructuralFeatures().isEmpty()) {
+
+				objects.add(ePackage);
+			}
+		}
+		return objects;
+	}
+
+	public Collection<Object> getAllExistingAxis() {
+		Set<Object> eObjects = new HashSet<Object>();
+		for(final Object current : ((INattableModelManager)getTableManager()).getColumnElementsList()) {//FIXME bad implementation
+			if(current instanceof ETypedElement) {
+				eObjects.add(((EObject)current));
+			}
+		}
+		return eObjects;
+	}
+
 }

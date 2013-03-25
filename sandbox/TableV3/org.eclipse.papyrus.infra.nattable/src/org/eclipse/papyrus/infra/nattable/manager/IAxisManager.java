@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.ui.services.IDisposable;
 
 public interface IAxisManager extends IDisposable {
@@ -66,12 +67,6 @@ public interface IAxisManager extends IDisposable {
 
 	public void init(final INattableModelManager manager, String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges);
 
-	// public Object getHeaderDataValue(int columnIndex, int rowIndex);
-
-	// public int getHeaderColumnCount();
-	//
-	// public int getHeaderRowCount();
-
 	public void setHeaderDataValue(int columnIndex, int rowIndex, Object newValue);
 
 	public boolean isComposite();
@@ -82,16 +77,21 @@ public interface IAxisManager extends IDisposable {
 
 	public ILimitedNattableModelManager getTableManager();
 
-	// public List<?> getAllVisibleAxis();
 
-	public List<?> getAllCurrentPossibleAxis();
+	/**
+	 * 
+	 * @return
+	 *         all the elements which can be used as axis according to the current table contents
+	 */
+	public List<?> getAllPossibleAxisForTheTableContents();
 
-	// public List<?> getAllExistingAxis();
-
-	// public IContentProvider getFlatContentProvider();
-	//
-	// public IContentProvider getHierarchicalContentProvider();
-
+	/**
+	 * 
+	 * @return
+	 *         all the existing axis managed by the axis manager
+	 */
+	public Collection<Object> getAllExistingAxis();
+	
 	// public boolean isUsedVertically();
 	//
 	// public boolean isUsedHorizontally();
@@ -106,26 +106,6 @@ public interface IAxisManager extends IDisposable {
 
 	public void updateAxisContents();
 
-	// public int getHeaderColumnCount() {
-	// // TODO Auto-generated method stub
-	// return 0;
-	// }
-	//
-	// public int getHeaderRowCount() {
-	// // TODO Auto-generated method stub
-	// return 0;
-	// }
-
-	// public List<?> getAllVisibleAxis() {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-	//
-	// public List<?> getAllExistingAxis() {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-
 	public boolean isAllowedContents(final Object object);
 
 	/**
@@ -133,6 +113,10 @@ public interface IAxisManager extends IDisposable {
 	 * @return <code>true</code> if we can reorder the elements on the axis
 	 */
 	public boolean canReoderElements();
+
+
+	public IRestrictedContentProvider createDestroyColumnsContentProvider(boolean isRestricted);
+
 
 	/**
 	 * 
@@ -142,4 +126,9 @@ public interface IAxisManager extends IDisposable {
 	 *        the config registry used to find the label provider
 	 */
 	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
+
+	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy);
+
+
+
 }
