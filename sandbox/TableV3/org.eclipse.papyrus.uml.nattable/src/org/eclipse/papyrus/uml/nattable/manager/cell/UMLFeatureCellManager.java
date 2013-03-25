@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.common.manager;
+package org.eclipse.papyrus.uml.nattable.manager.cell;
 
 import java.util.ArrayList;
 import java.util.Collections;

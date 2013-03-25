@@ -9,7 +9,7 @@
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.common.provider;
+package org.eclipse.papyrus.uml.nattable.provider;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +19,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
-import org.eclipse.papyrus.uml.nattable.common.manager.UMLStereotypePropertyManager;
+import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager;
 import org.eclipse.papyrus.uml.tools.providers.UMLStereotypePropertyContentProvider;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -36,9 +36,9 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 
 	private boolean isRestricted;
 
-	private UMLStereotypePropertyManager umlStereotypePropertyManager;
+	private UMLStereotypePropertyAxisManager umlStereotypePropertyManager;
 
-	public UMLStereotypeRestrictedPropertyContentProvider(UMLStereotypePropertyManager umlStereotypePropertyManager, List<Profile> profiles) {
+	public UMLStereotypeRestrictedPropertyContentProvider(UMLStereotypePropertyAxisManager umlStereotypePropertyManager, List<Profile> profiles) {
 		super(profiles);
 		this.umlStereotypePropertyManager = umlStereotypePropertyManager;
 	}
@@ -53,8 +53,8 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		if(parentElement instanceof Profile) {
 			Profile profile = (Profile)parentElement;
 			Set<Stereotype> restrictedStereotypes = new HashSet<Stereotype>();
-			if(isRestricted && !profile.getOwnedStereotypes().isEmpty()) {
-				AbstractAxisProvider horizontalAxisProvider = umlStereotypePropertyManager.getTable().getHorizontalAxisProvider();
+			if(this.isRestricted && !profile.getOwnedStereotypes().isEmpty()) {
+				AbstractAxisProvider horizontalAxisProvider = this.umlStereotypePropertyManager.getTable().getHorizontalAxisProvider();
 				List<Object> elementsList = this.umlStereotypePropertyManager.getTableManager().getElementsList(horizontalAxisProvider);
 				for(Object object : elementsList) {
 					if(object instanceof Element) {

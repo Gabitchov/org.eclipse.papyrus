@@ -17,7 +17,12 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
-
+/**
+ * Abstract class for the UML Nattable editor
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public abstract class AbstractUMLNattableEditor extends AbstractEMFNattableEditor {
 
 

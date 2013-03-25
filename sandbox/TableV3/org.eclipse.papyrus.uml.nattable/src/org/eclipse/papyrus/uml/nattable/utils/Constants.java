@@ -11,15 +11,21 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.common.utils;
+package org.eclipse.papyrus.uml.nattable.utils;
 
-
+/**
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
 public class Constants {
-
 
 	private Constants() {
 		//to prevent instanciation
 	}
 
+	/**
+	 * the id used for stereotypes properties
+	 */
 	public static final String PROPERTY_OF_STEREOTYPE_PREFIX = "property_of_stereotype:/"; //$NON-NLS-1$
 }

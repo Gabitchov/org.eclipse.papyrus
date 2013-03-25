@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.uml.nattable.common.manager;
+package org.eclipse.papyrus.uml.nattable.manager.axis;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.HashSet;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.papyrus.infra.nattable.manager.FeatureManager;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
-import org.eclipse.papyrus.uml.nattable.common.provider.UMLFeatureRestrictedContentProvider;
+import org.eclipse.papyrus.uml.nattable.provider.UMLFeatureRestrictedContentProvider;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**

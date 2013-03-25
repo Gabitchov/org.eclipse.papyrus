@@ -9,7 +9,7 @@
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.common.provider;
+package org.eclipse.papyrus.uml.nattable.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractRestrictedContentProvider;
-import org.eclipse.papyrus.uml.nattable.common.manager.UMLFeatureAxisManager;
+import org.eclipse.papyrus.uml.nattable.manager.axis.UMLFeatureAxisManager;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedContentProvider {
@@ -55,9 +55,9 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 			Collection<EClassifier> eClassifiers = null;
 			if(this.isRestricted) {
 				eClassifiers = new HashSet<EClassifier>();
-				AbstractAxisProvider axisProvider = ((INattableModelManager)umlFeatureAxisManager.getTableManager()).getHorizontalAxisProvider();
-				if(axisProvider == umlFeatureAxisManager.getRepresentedContentProvider()) {
-					axisProvider = ((INattableModelManager)umlFeatureAxisManager.getTableManager()).getVerticalAxisProvider();
+				AbstractAxisProvider axisProvider = ((INattableModelManager)this.umlFeatureAxisManager.getTableManager()).getHorizontalAxisProvider();
+				if(axisProvider == this.umlFeatureAxisManager.getRepresentedContentProvider()) {
+					axisProvider = ((INattableModelManager)this.umlFeatureAxisManager.getTableManager()).getVerticalAxisProvider();
 				}
 				List<Object> elementsList = this.umlFeatureAxisManager.getTableManager().getElementsList(axisProvider);
 				for(Object object : elementsList) {

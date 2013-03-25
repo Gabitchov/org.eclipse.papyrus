@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
-         point="org.eclipse.papyrus.infra.nattable.axismanager">
-      <axisManager
-            id="org.eclipse.papyrus.uml.nattable.common.stereotype.property.provider"
-            manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLStereotypePropertyManager">
-      </axisManager>
-      <axisManager
-            id="org.eclipse.papyrus.uml.nattable.common.uml.element.provider"
-            manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLElementAxisManager">
-      </axisManager>
-      <axisManager
-            id="org.eclipse.papyrus.uml.nattable.common.uml.feature.provider"
-            manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLFeatureAxisManager">
-      </axisManager>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.nattable.cellmanager">
-      <cellManager
-            id="org.eclipse.papyrus.uml.nattable.common.uml.feature.cell.manager"
-            manager="org.eclipse.papyrus.uml.nattable.common.manager.UMLFeatureCellManager"
-            order="38">
-      </cellManager>
-   </extension>
 
 </plugin>

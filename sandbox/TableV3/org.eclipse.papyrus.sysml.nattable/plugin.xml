@@ -22,7 +22,7 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.axismanager">
       <axisManager
-            id="org.eclipse.papyrus.sysml.requirement.nattable.axis.manager"
+            id="org.eclipse.papyrus.sysml.nattable.requirement.axis.manager"
             manager="org.eclipse.papyrus.sysml.nattable.axis.manager.RequirementAxisManager">
       </axisManager>
    </extension>

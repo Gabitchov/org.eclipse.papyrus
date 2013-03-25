@@ -79,20 +79,21 @@ public abstract class AbstractHeaderDataProvider extends AbstractDataProvider {
 			@Override
 			public void notifyChanged(Notification msg) {
 				final Object feature = msg.getFeature();
-				if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayFilter())) {
-					AbstractHeaderDataProvider.this.displayFilter = msg.getNewBooleanValue();
-					updateAxisCount();
-				} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayIndex())) {
-					AbstractHeaderDataProvider.this.displayIndex = msg.getNewBooleanValue();
-					updateAxisCount();
-				} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayLabel())) {
-					AbstractHeaderDataProvider.this.displayLabel = msg.getNewBooleanValue();
-					updateAxisCount();
-				} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_IndexStyle())) {
-					AbstractHeaderDataProvider.this.style = AxisIndexStyle.get(msg.getNewStringValue());
-					updateAxisCount();
+				if(feature != null) {
+					if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayFilter())) {
+						AbstractHeaderDataProvider.this.displayFilter = msg.getNewBooleanValue();
+						updateAxisCount();
+					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayIndex())) {
+						AbstractHeaderDataProvider.this.displayIndex = msg.getNewBooleanValue();
+						updateAxisCount();
+					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_DisplayLabel())) {
+						AbstractHeaderDataProvider.this.displayLabel = msg.getNewBooleanValue();
+						updateAxisCount();
+					} else if(feature.equals(NattableaxisconfigurationPackage.eINSTANCE.getDefaultAxisConfiguration_IndexStyle())) {
+						AbstractHeaderDataProvider.this.style = AxisIndexStyle.get(msg.getNewStringValue());
+						updateAxisCount();
+					}
 				}
-
 			}
 		};
 		this.invertedListener = new AdapterImpl() {

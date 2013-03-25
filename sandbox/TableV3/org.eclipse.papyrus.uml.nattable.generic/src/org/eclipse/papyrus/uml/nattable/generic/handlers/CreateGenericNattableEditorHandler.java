@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.nattable.generic.Activator;
 import org.eclipse.papyrus.uml.nattable.generic.editor.GenericUMLNattableEditor;
 
 
-public class CreateNattableEditorCommand extends AbstractCreateUMLNattableEditorHandler {
+public class CreateGenericNattableEditorHandler extends AbstractCreateUMLNattableEditorHandler {
 
 	private static final String CONFIGURATION_PATH = "/resources/generic.nattableconfiguration";
 
@@ -30,7 +30,7 @@ public class CreateNattableEditorCommand extends AbstractCreateUMLNattableEditor
 	 * Constructor.
 	 * 
 	 */
-	public CreateNattableEditorCommand() {
+	public CreateGenericNattableEditorHandler() {
 		super(GenericUMLNattableEditor.EDITOR_TYPE, GenericUMLNattableEditor.DEFAULT_NAME);
 	}
 

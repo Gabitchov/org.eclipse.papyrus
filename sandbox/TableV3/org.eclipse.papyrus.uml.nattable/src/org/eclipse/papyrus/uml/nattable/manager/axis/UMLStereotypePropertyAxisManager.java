@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.nattable.common.manager;
+package org.eclipse.papyrus.uml.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,8 +41,8 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
-import org.eclipse.papyrus.uml.nattable.common.provider.UMLStereotypeRestrictedPropertyContentProvider;
-import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
+import org.eclipse.papyrus.uml.nattable.provider.UMLStereotypeRestrictedPropertyContentProvider;
+import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -54,7 +54,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
 
-public class UMLStereotypePropertyManager extends AbstractAxisManager {
+public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
 	//	private Adapter listener;
 

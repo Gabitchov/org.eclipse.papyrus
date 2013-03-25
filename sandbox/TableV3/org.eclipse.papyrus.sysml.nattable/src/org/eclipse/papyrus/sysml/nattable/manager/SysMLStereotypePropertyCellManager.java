@@ -18,8 +18,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.nattable.manager.ICellManager;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowPortNAMatcher;
-import org.eclipse.papyrus.uml.nattable.common.manager.StereotypePropertyCellManager;
-import org.eclipse.papyrus.uml.nattable.common.utils.Constants;
+import org.eclipse.papyrus.uml.nattable.manager.cell.StereotypePropertyCellManager;
+import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.uml2.uml.Port;
 
 /**
@@ -38,7 +38,7 @@ public class SysMLStereotypePropertyCellManager extends StereotypePropertyCellMa
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.messages.manager.StereotypePropertyCellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.manager.StereotypePropertyCellManager#handles(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -63,7 +63,7 @@ public class SysMLStereotypePropertyCellManager extends StereotypePropertyCellMa
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.messages.manager.StereotypePropertyCellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.manager.StereotypePropertyCellManager#isCellEditable(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
