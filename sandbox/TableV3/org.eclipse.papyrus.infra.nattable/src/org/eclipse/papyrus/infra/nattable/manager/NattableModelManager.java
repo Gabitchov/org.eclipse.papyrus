@@ -16,10 +16,13 @@ package org.eclipse.papyrus.infra.nattable.manager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.EventObject;
 import java.util.List;
 
+import org.eclipse.core.commands.State;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -41,11 +44,14 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.factory.AxisManagerFactory;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
@@ -62,6 +68,8 @@ import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
 
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
 
@@ -89,6 +97,19 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private AbstractAxisProvider columnProvider;
 
 	/**
+	 * this listener listen the stack events and refresh nattable
+	 */
+	private CommandStackListener refreshListener;
+
+	/**
+	 * the focus listener
+	 */
+	private FocusListener focusListener;
+
+	private Adapter axisConfigurationListener;
+
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -114,11 +135,22 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 					if(oldValue != null && newValue != null) {
 						if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
 							invertJavaObject();
+
 						}
 					}
 				}
 			}
 		};
+		this.axisConfigurationListener = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if(NattableModelManager.this.natTable.isFocusControl()) {
+					updateToggleActionState();
+				}
+			};
+		};
+		addAxisConfigurationListener();
 		rawModel.eAdapters().add(this.invertAxisListener);
 		init();
 		if(rawModel.isInvertAxis()) {
@@ -126,45 +158,125 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 	}
 
-	private FocusListener focusListener;
+
+	protected void addAxisConfigurationListener() {
+		getVerticalAxisConfiguration().eAdapters().add(this.axisConfigurationListener);
+		getHorizontalAxisConfiguration().eAdapters().add(this.axisConfigurationListener);
+	}
+
+	protected void removeAxisConfigurationListener() {
+		getVerticalAxisConfiguration().eAdapters().remove(this.axisConfigurationListener);
+		getHorizontalAxisConfiguration().eAdapters().remove(this.axisConfigurationListener);
+	}
+
+
 
 	@Override
 	public NatTable createNattable(Composite parent, int style, IWorkbenchPartSite site) {
-		NatTable nattable = super.createNattable(parent, style, site);
-		focusListener = new FocusListener() {
+		final NatTable nattable = super.createNattable(parent, style, site);
+		this.refreshListener = new CommandStackListener() {
+
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.command.CommandStackListener#commandStackChanged(java.util.EventObject)
+			 * 
+			 * @param event
+			 */
+			public void commandStackChanged(EventObject event) {
+				//we refresh the table after each command, only when it is visible
+				//its allows to refresh the text and the appearance of the table
+				//this refresh doesn't manage the add/remove axis
+				if(nattable != null && !nattable.isDisposed() && nattable.isVisible()) {
+					nattable.refresh();
+				}
+			}
+		};
+		getEditingDomain(this.table).getCommandStack().addCommandStackListener(this.refreshListener);
+
+		this.focusListener = new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
 				//nothing to do
 			}
 
 			public void focusGained(FocusEvent e) {
-				//not yet supported
-				//				final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
-				//				AbstractAxisConfiguration verticalAxisConfiguration = getTable().getVerticalAxisProvider().getAxisConfiguration();
-				//				if(verticalAxisConfiguration instanceof DefaultAxisConfiguration) {
-				//					if(commandService != null) {
-				//						org.eclipse.core.commands.Command command = commandService.getCommand("org.eclipse.papyrus.infra.nattable.row.display.index"); //$NON-NLS-1$
-				//						if(command != null) {
-				//							final State state = command.getState("org.eclipse.ui.commands.toggleState"); //$NON-NLS-1$
-				//							if(state != null) {
-				//								state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayIndex());
-				//							}
-				//						}
-				//					}
-				//				}
+				updateToggleActionState();
 			}
 		};
-		nattable.addFocusListener(focusListener);
+		nattable.addFocusListener(this.focusListener);
 		return nattable;
 	}
 
+	/**
+	 * this command update the status of the toggle actions
+	 */
+	protected void updateToggleActionState() {
+		final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+		final AbstractAxisConfiguration verticalAxisConfiguration = getVerticalAxisConfiguration();
+		final AbstractAxisConfiguration horizontalAxisConfiguration = getHorizontalAxisConfiguration();
+
+		if(verticalAxisConfiguration instanceof DefaultAxisConfiguration) {
+			if(commandService != null) {
+				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_ID);
+				if(command != null) {
+					final State state = command.getState(CommandIds.TOGGLE_STATE);
+					if(state != null) {
+						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayIndex());
+					}
+				}
+				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_LABEL_ID);
+				if(command != null) {
+					final State state = command.getState(CommandIds.TOGGLE_STATE);
+					if(state != null) {
+						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).isDisplayLabel());
+					}
+				}
+				command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_INDEX_STYLE_ID);
+				if(command != null) {
+					final State state = command.getState(CommandIds.RADIO_STATE);
+					if(state != null) {
+						state.setValue(((DefaultAxisConfiguration)verticalAxisConfiguration).getIndexStyle().getLiteral());
+					}
+				}
+			}
+		}
+
+		if(horizontalAxisConfiguration instanceof DefaultAxisConfiguration) {
+			if(commandService != null) {
+				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_ID);
+				if(command != null) {
+					final State state = command.getState(CommandIds.TOGGLE_STATE);
+					if(state != null) {
+						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).isDisplayIndex());
+					}
+				}
+				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_LABEL_ID);
+				if(command != null) {
+					final State state = command.getState(CommandIds.TOGGLE_STATE);
+					if(state != null) {
+						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).isDisplayLabel());
+					}
+				}
+				command = commandService.getCommand(CommandIds.COMMAND_ROW_DISPLAY_INDEX_STYLE_ID);
+				if(command != null) {
+					final State state = command.getState(CommandIds.RADIO_STATE);
+					if(state != null) {
+						state.setValue(((DefaultAxisConfiguration)horizontalAxisConfiguration).getIndexStyle().getLiteral());
+					}
+				}
+			}
+		}
+
+
+	}
+
 	public void invertJavaObject() {
-		AbstractAxisProvider newColumProvider = rowProvider;
-		AbstractAxisProvider newRowProvider = columnProvider;
-		List<Object> newVerticalElementList = horizontalElements;
-		List<Object> newHorizontalElementList = verticalElements;
-		IAxisManager newRowManager = columnManager;
-		IAxisManager newColumnManager = rowManager;
+		AbstractAxisProvider newColumProvider = this.rowProvider;
+		AbstractAxisProvider newRowProvider = this.columnProvider;
+		List<Object> newVerticalElementList = this.horizontalElements;
+		List<Object> newHorizontalElementList = this.verticalElements;
+		IAxisManager newRowManager = this.columnManager;
+		IAxisManager newColumnManager = this.rowManager;
 
 		NattableModelManager.this.columnProvider = newColumProvider;
 		NattableModelManager.this.rowProvider = newRowProvider;
@@ -174,6 +286,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		NattableModelManager.this.rowManager = newRowManager;
 		NattableModelManager.this.columnManager = newColumnManager;
+		updateToggleActionState();
 		refreshNattable();
 	}
 
@@ -243,6 +356,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void dispose() {
 		this.columnManager.dispose();
 		this.rowManager.dispose();
+		removeAxisConfigurationListener();
+		getEditingDomain(this.table).getCommandStack().removeCommandStackListener(this.refreshListener);
 	}
 
 	/**
@@ -357,7 +472,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		final Object obj1 = this.verticalElements.get(columnIndex);
 		final Object obj2 = this.horizontalElements.get(rowIndex);
-		CellManagerFactory.INSTANCE.setCellValue(getEditingDomain(table), obj1, obj2, newValue);
+		CellManagerFactory.INSTANCE.setCellValue(getEditingDomain(this.table), obj1, obj2, newValue);
 	}
 
 	/**
@@ -385,18 +500,18 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public void refreshNattable() {
-		if(natTable != null && !natTable.isDisposed()) {
-			natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
-			natTable.setUiBindingRegistry(new UiBindingRegistry(natTable));
-			natTable.configure();
-			if(table != null) {
+		if(this.natTable != null && !this.natTable.isDisposed()) {
+			this.natTable.setConfigRegistry(createAndInitializeNewConfigRegistry());
+			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
+			this.natTable.configure();
+			if(this.table != null) {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
-						natTable.refresh();
+						NattableModelManager.this.natTable.refresh();
 					}
 				});
-				natTable.refresh();
+				this.natTable.refresh();
 			}
 		}
 	}
@@ -489,7 +604,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public boolean canInvertAxis() {
-		return columnManager.canBeUsedAsRowManager() && rowManager.canBeUsedAsColumnManager();
+		return this.columnManager.canBeUsedAsRowManager() && this.rowManager.canBeUsedAsColumnManager();
 	}
 
 	public boolean canCreateRowElement(String elementType) {
@@ -545,7 +660,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public Table getTable() {
-		return table;
+		return this.table;
 	}
 
 	public ITableAxisElementProvider getTableAxisElementProvider() {// FIXME :
@@ -555,11 +670,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 
-
-	@Override
 	public void openColumnsManagerDialog() {
 
-		final LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		final LabelProviderService serv = this.natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		final ILabelProvider labelProvider = serv.getLabelProvider();
 
 		ReferenceSelector selector = new ReferenceSelector(true) {
@@ -567,25 +680,25 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			@Override
 			public void createControls(Composite parent) {
 				super.createControls(parent);
-				treeViewer.setComparator(new ViewerComparator(new StringComparator()));//should always be string element
+				this.treeViewer.setComparator(new ViewerComparator(new StringComparator()));//should always be string element
 			}
 		};
 		selector.setLabelProvider(labelProvider);
 
-		IStaticContentProvider provider = columnManager.createDestroyColumnsContentProvider(true);
+		IStaticContentProvider provider = this.columnManager.createDestroyColumnsContentProvider(true);
 		if(provider != null) {//FIXME : the action must be hidden when it is not possible to select the columns
 			selector.setContentProvider(new FlattenableRestrictedFilteredContentProvider((IRestrictedContentProvider)provider, selector));
 
 			MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, "Select Columns", true, false, -1);
 			dialog.setLabelProvider(serv.getLabelProvider());
-			dialog.setInitialElementSelections(new ArrayList<Object>(columnManager.getAllExistingAxis()));
+			dialog.setInitialElementSelections(new ArrayList<Object>(this.columnManager.getAllExistingAxis()));
 
 			int open = dialog.open();
 			if(open == Window.OK) {
-				Collection<Object> existingColumns = columnManager.getAllExistingAxis();
+				Collection<Object> existingColumns = this.columnManager.getAllExistingAxis();
 				ArrayList<Object> checkedColumns = new ArrayList<Object>();
 				checkedColumns.addAll(Arrays.asList(dialog.getResult()));
-				CommandStack commandStack = getEditingDomain(table).getCommandStack();
+				CommandStack commandStack = getEditingDomain(this.table).getCommandStack();
 
 				ArrayList<Object> columnsToAdd = new ArrayList<Object>(checkedColumns);
 				columnsToAdd.removeAll(existingColumns);
@@ -647,6 +760,24 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		} else {
 			return this.table.getHorizontalAxisProvider();
 		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the vertical axis configuration
+	 */
+	public AbstractAxisConfiguration getVerticalAxisConfiguration() {
+		return getVerticalAxisProvider().getAxisConfiguration();
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the horizontal axis configuration
+	 */
+	public AbstractAxisConfiguration getHorizontalAxisConfiguration() {
+		return getHorizontalAxisProvider().getAxisConfiguration();
 	}
 
 }

@@ -104,7 +104,7 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DISPLAY_FILTER_EDEFAULT = true;
+	protected static final boolean DISPLAY_FILTER_EDEFAULT = false;
 
 	/**
 	 * The cached value of the '{@link #isDisplayFilter() <em>Display Filter</em>}' attribute.

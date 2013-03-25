@@ -222,6 +222,15 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEObjectLabelProviderConfiguration_DisplayText() {
+		return (EAttribute)eObjectLabelProviderConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NattablelabelproviderFactory getNattablelabelproviderFactory() {
 		return (NattablelabelproviderFactory)getEFactoryInstance();
 	}
@@ -255,6 +264,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 
 		eObjectLabelProviderConfigurationEClass = createEClass(EOBJECT_LABEL_PROVIDER_CONFIGURATION);
 		createEAttribute(eObjectLabelProviderConfigurationEClass, EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON);
+		createEAttribute(eObjectLabelProviderConfigurationEClass, EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT);
 	}
 
 	/**
@@ -304,6 +314,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 
 		initEClass(eObjectLabelProviderConfigurationEClass, EObjectLabelProviderConfiguration.class, "EObjectLabelProviderConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getEObjectLabelProviderConfiguration_DisplayIcon(), theEcorePackage.getEBoolean(), "displayIcon", "true", 1, 1, EObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getEObjectLabelProviderConfiguration_DisplayText(), theEcorePackage.getEBoolean(), "displayText", "true", 1, 1, EObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 } //NattablelabelproviderPackageImpl

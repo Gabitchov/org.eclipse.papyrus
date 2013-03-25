@@ -75,6 +75,7 @@ public class EObjectLabelProviderConfigurationItemProvider
 
 			addLabelProviderContextPropertyDescriptor(object);
 			addDisplayIconPropertyDescriptor(object);
+			addDisplayTextPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -124,6 +125,28 @@ public class EObjectLabelProviderConfigurationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Display Text feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDisplayTextPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EObjectLabelProviderConfiguration_displayText_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayText_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns EObjectLabelProviderConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,6 +185,7 @@ public class EObjectLabelProviderConfigurationItemProvider
 		switch (notification.getFeatureID(EObjectLabelProviderConfiguration.class)) {
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

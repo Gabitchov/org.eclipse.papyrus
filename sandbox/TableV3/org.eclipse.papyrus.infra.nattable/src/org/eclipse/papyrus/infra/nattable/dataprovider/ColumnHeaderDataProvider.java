@@ -14,15 +14,17 @@
 package org.eclipse.papyrus.infra.nattable.dataprovider;
 
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
-import org.eclipse.papyrus.infra.tools.util.IntegerAndSpreadsheetNumberConverter;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
 
 /**
  * 
  * This manager is used to manage the column header.
- * It allows to use the standard tabular editor numerotation for the column (A, B, ...Z, AA, AB, ...)
+ * 
  * 
  */
-public class ColumnHeaderDataProvider extends AbstractDataProvider {
+public class ColumnHeaderDataProvider extends AbstractHeaderDataProvider {
+
+	private int rowCount;
 
 	/**
 	 * 
@@ -43,7 +45,7 @@ public class ColumnHeaderDataProvider extends AbstractDataProvider {
 	 */
 	@Override
 	public int getRowCount() {
-		return 2;
+		return this.rowCount;
 	}
 
 
@@ -51,14 +53,81 @@ public class ColumnHeaderDataProvider extends AbstractDataProvider {
 	 * This class does not support multiple rows in the column header layer.
 	 */
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
-		if(rowIndex == 0) {
-			return IntegerAndSpreadsheetNumberConverter.toString(columnIndex + 1);
-		} else {
-			return this.manager.getColumnElement(columnIndex);
+		switch(this.rowCount) {
+		case 0:
+			return null;
+		case 1:
+			if(this.displayFilter) {
+				return null;//FIXME not tested
+			} else if(this.displayIndex) {
+				return getAxisIndex(columnIndex);
+			} else if(this.displayLabel) {
+				return this.manager.getColumnElement(columnIndex);
+			}
+		case 2:
+			if(!this.displayFilter) {
+				if(rowIndex == 0) {
+					return getAxisIndex(columnIndex);
+				}
+				if(rowIndex == 1) {
+					return this.manager.getColumnElement(columnIndex);
+				}
+			} else {
+				//FIXME not tested
+			}
+			break;
+		case 3:
+			if(!this.displayFilter) {
+				if(rowIndex == 0) {
+					return getAxisIndex(columnIndex);
+				}
+				if(rowIndex == 1) {
+					return this.manager.getColumnElement(columnIndex);
+				}
+				if(rowIndex == 2) {
+					//FIXME not tested
+				}
+			}
+			break;
 		}
+		return null;
 	}
 
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		//TODO
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.dataprovider.AbstractHeaderDataProvider#getAxisConfiguration()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected AbstractAxisConfiguration getAxisConfiguration() {
+		return this.manager.getVerticalAxisConfiguration();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.dataprovider.AbstractHeaderDataProvider#updateAxisCount()
+	 * 
+	 */
+	@Override
+	protected void updateAxisCount() {
+		int newAxisCOunt = 0;
+		if(this.displayFilter) {
+			newAxisCOunt++;
+		}
+		if(this.displayIndex) {
+			newAxisCOunt++;
+		}
+		if(this.displayLabel) {
+			newAxisCOunt++;
+		}
+		this.rowCount = newAxisCOunt;
+	}
+
+
+
 }

@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.FeatureLabelProviderConfigurationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.FeatureLabelProviderConfigurationImpl#isDisplayIcon <em>Display Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.FeatureLabelProviderConfigurationImpl#isDisplayText <em>Display Text</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.FeatureLabelProviderConfigurationImpl#isDisplayIsDerived <em>Display Is Derived</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.FeatureLabelProviderConfigurationImpl#isDisplayType <em>Display Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.FeatureLabelProviderConfigurationImpl#isDisplayMultiplicity <em>Display Multiplicity</em>}</li>
@@ -80,6 +81,26 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 	 * @ordered
 	 */
 	protected boolean displayIcon = DISPLAY_ICON_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDisplayText() <em>Display Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisplayText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DISPLAY_TEXT_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isDisplayText() <em>Display Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisplayText()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean displayText = DISPLAY_TEXT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isDisplayIsDerived() <em>Display Is Derived</em>}' attribute.
@@ -207,6 +228,27 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDisplayText() {
+		return displayText;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDisplayText(boolean newDisplayText) {
+		boolean oldDisplayText = displayText;
+		displayText = newDisplayText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT, oldDisplayText, displayText));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isDisplayIsDerived() {
 		return displayIsDerived;
 	}
@@ -277,6 +319,8 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 				return getLabelProviderContext();
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return isDisplayIcon();
+			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				return isDisplayText();
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED:
 				return isDisplayIsDerived();
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE:
@@ -300,6 +344,9 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 				return;
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon((Boolean)newValue);
+				return;
+			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				setDisplayText((Boolean)newValue);
 				return;
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED:
 				setDisplayIsDerived((Boolean)newValue);
@@ -328,6 +375,9 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon(DISPLAY_ICON_EDEFAULT);
 				return;
+			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				setDisplayText(DISPLAY_TEXT_EDEFAULT);
+				return;
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED:
 				setDisplayIsDerived(DISPLAY_IS_DERIVED_EDEFAULT);
 				return;
@@ -353,6 +403,8 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 				return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return displayIcon != DISPLAY_ICON_EDEFAULT;
+			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				return displayText != DISPLAY_TEXT_EDEFAULT;
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED:
 				return displayIsDerived != DISPLAY_IS_DERIVED_EDEFAULT;
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE:
@@ -373,6 +425,7 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 		if (baseClass == EObjectLabelProviderConfiguration.class) {
 			switch (derivedFeatureID) {
 				case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON: return NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON;
+				case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT: return NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT;
 				default: return -1;
 			}
 		}
@@ -389,6 +442,7 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 		if (baseClass == EObjectLabelProviderConfiguration.class) {
 			switch (baseFeatureID) {
 				case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON: return NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON;
+				case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT: return NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT;
 				default: return -1;
 			}
 		}
@@ -409,6 +463,8 @@ public class FeatureLabelProviderConfigurationImpl extends EModelElementImpl imp
 		result.append(labelProviderContext);
 		result.append(", displayIcon: "); //$NON-NLS-1$
 		result.append(displayIcon);
+		result.append(", displayText: "); //$NON-NLS-1$
+		result.append(displayText);
 		result.append(", displayIsDerived: "); //$NON-NLS-1$
 		result.append(displayIsDerived);
 		result.append(", displayType: "); //$NON-NLS-1$

@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.infra.nattable.actions;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
@@ -37,5 +39,9 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	@Override
 	public boolean isEnabled() {
 		return getCurrentNattableModelManager() != null;
+	}
+
+	protected TransactionalEditingDomain getEditingDomain() {
+		return TransactionUtil.getEditingDomain(getCurrentNattableModelManager().getTable());//FIXME
 	}
 }

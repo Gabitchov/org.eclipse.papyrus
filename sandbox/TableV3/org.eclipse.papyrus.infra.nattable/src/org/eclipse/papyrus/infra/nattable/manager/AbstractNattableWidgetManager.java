@@ -54,6 +54,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.configuration.InvertAxisOnCornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.CornerDataProvider;
@@ -123,6 +124,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	private BodyLayerStack bodyLayerStack;
 
+	private AbstractDataProvider columnHeaderDataProvider;
+
+	private AbstractDataProvider rowHeaderDataProvider;
+
+	private BodyDataProvider bodyDataProvider;
+
 	/**
 	 * 
 	 * Constructor.
@@ -145,19 +152,19 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @return
 	 */
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
-		final BodyDataProvider bodyDataProvider = new BodyDataProvider(this);
-		this.bodyLayerStack = new BodyLayerStack(bodyDataProvider, this);;
+		this.bodyDataProvider = new BodyDataProvider(this);
+		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);;
 
-		final IDataProvider columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
-		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(columnHeaderDataProvider, this.bodyLayerStack, bodyDataProvider);
+		this.columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
+		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this.columnHeaderDataProvider, this.bodyLayerStack, this.bodyDataProvider);
 
-		final IDataProvider rowHeaderDataProvider = new RowHeaderDataProvider(this);
-
-
-		this.rowHeaderLayerStack = new RowHeaderLayerStack(rowHeaderDataProvider, this.bodyLayerStack);
+		this.rowHeaderDataProvider = new RowHeaderDataProvider(this);
 
 
-		final IDataProvider cornerDataProvider = new CornerDataProvider(columnHeaderDataProvider, rowHeaderDataProvider);
+		this.rowHeaderLayerStack = new RowHeaderLayerStack(this.rowHeaderDataProvider, this.bodyLayerStack);
+
+
+		final IDataProvider cornerDataProvider = new CornerDataProvider(this.columnHeaderDataProvider, this.rowHeaderDataProvider);
 		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), this.rowHeaderLayerStack, this.columnHeaderLayerStack);
 		cornerLayer.addConfiguration(new InvertAxisOnCornerConfiguration(this));
 		this.gridLayer = new PapyrusGridLayer(this.bodyLayerStack, this.columnHeaderLayerStack, this.rowHeaderLayerStack, cornerLayer);
@@ -190,8 +197,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					@Override
 					public boolean isEditable(int columnIndex, int rowIndex) {
 
-						final Object obj1 = rowHeaderDataProvider.getDataValue(1, rowIndex);
-						final Object obj2 = columnHeaderDataProvider.getDataValue(columnIndex, 1);
+						final Object obj1 = AbstractNattableWidgetManager.this.rowHeaderDataProvider.getDataValue(1, rowIndex);
+						final Object obj2 = AbstractNattableWidgetManager.this.columnHeaderDataProvider.getDataValue(columnIndex, 1);
 						return CellManagerFactory.INSTANCE.isCellEditable(obj1, obj2);
 					}
 				});
@@ -423,5 +430,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public BodyLayerStack getBodyLayerStack() {
 		return this.bodyLayerStack;
+	}
+
+	public void dispose() {
+		this.bodyDataProvider.dispose();
+		this.rowHeaderDataProvider.dispose();
+		this.columnHeaderDataProvider.dispose();
 	}
 }

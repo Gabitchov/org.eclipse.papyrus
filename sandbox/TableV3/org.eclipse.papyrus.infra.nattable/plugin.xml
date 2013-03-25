@@ -65,26 +65,93 @@
              </with>
           </visibleWhen>
        </command>
-       	<command
-               commandId="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns"
-               icon="icons/select_columns_to_show.png"
-               label="Create/Destroy columns"
-               style="push"
-               tooltip="Open a dialog to choose the visible columns">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-
-       <command
-             commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
-             icon="icons/sort_columns_by_name_A_to_Z.gif"
-             label="Sort Columns (A-&gt;Z)"
-             style="push">
-          <parameter
-                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
-                value="true">
-          </parameter>
+       <menu
+             icon="icons/tableColumnAction.gif"
+             label="Columns">
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns"
+                icon="icons/select_columns_to_show.png"
+                label="Create/Destroy columns"
+                style="push"
+                tooltip="Open a dialog to choose the visible columns">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+                icon="icons/sort_columns_by_name_A_to_Z.gif"
+                label="Sort Columns (A-&gt;Z)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="true">
+             </parameter>
+             <visibleWhen>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
+                icon="icons/sort_columns_by_name_Z_to_A.gif"
+                label="Sort Columns (Z-&gt;A)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="false">
+             </parameter>
+             <visibleWhen>
+                <with
+                      variable="selection">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                         value="true">
+                   </test>
+                </with>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.column.display.index"
+                style="toggle">
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.column.display.label"
+                style="toggle">
+          </command>
+          <menu
+                label="Header Style">
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.index.style"
+                   label="Alphabetical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="ALPHABETIC">
+                </parameter>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.column.index.style"
+                   label="Numerical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="NUMERIC">
+                </parameter>
+             </command>
+          </menu>
+       </menu>
+      
+       <menu
+             icon="icons/tableRowAction.gif"
+             label="Rows">
           <visibleWhen>
              <with
                    variable="selection">
@@ -95,70 +162,59 @@
                 </test>
              </with>
           </visibleWhen>
-       </command>
-       <command
-             commandId="org.eclipse.papyrus.infra.nattable.sort.columns.command"
-             icon="icons/sort_columns_by_name_Z_to_A.gif"
-             label="Sort Columns (Z-&gt;A)"
-             style="push">
-          <parameter
-                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
-                value="false">
-          </parameter>
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
-       </command>
-       <command
-             commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
-             icon="icons/sort_columns_by_name_A_to_Z.gif"
-             label="Sort Rows (A-&gt;Z)"
-             style="push">
-          <parameter
-                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
-                value="true">
-          </parameter>
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
-       </command>
-       <command
-             commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
-             icon="icons/sort_columns_by_name_Z_to_A.gif"
-             label="Sort Rows (Z-&gt;A)"
-             style="push">
-          <parameter
-                name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
-                value="false">
-          </parameter>
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
-                      value="true">
-                </test>
-             </with>
-          </visibleWhen>
-       </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+                icon="icons/sort_columns_by_name_A_to_Z.gif"
+                label="Sort Rows (A-&gt;Z)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="true">
+             </parameter>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.sort.rows.command"
+                icon="icons/sort_columns_by_name_Z_to_A.gif"
+                label="Sort Rows (Z-&gt;A)"
+                style="push">
+             <parameter
+                   name="org.eclipse.papyrus.infra.nattable.sort.command.alphabetic.order.parameter"
+                   value="false">
+             </parameter>
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.row.display.index"
+                style="toggle">
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.infra.nattable.row.display.label"
+                style="toggle">
+          </command>
+          <menu
+                label="Header Style">
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.index.style"
+                   label="Alphabetical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="ALPHABETIC">
+                </parameter>
+             </command>
+             <command
+                   commandId="org.eclipse.papyrus.infra.nattable.row.index.style"
+                   label="Numerical"
+                   style="radio">
+                <parameter
+                      name="org.eclipse.ui.commands.radioStateParameter"
+                      value="NUMERIC">
+                </parameter>
+             </command>
+          </menu>
+       </menu> 
     </menuContribution>
- </extension>
- <extension
+  </extension>
+   <extension
        point="org.eclipse.ui.handlers">
     <handler
           class="org.eclipse.papyrus.infra.nattable.actions.PrintTableHandler"
@@ -336,6 +392,70 @@
             name="alphabetic_order"
             optional="false">
       </commandParameter>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayIndexColumnHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.display.index"
+         name="Display Column Index">
+       <state
+         class="org.eclipse.ui.handlers.RegistryToggleState:true"
+         id="org.eclipse.ui.commands.toggleState">
+   </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayLabelColumnHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.display.label"
+         name="Display Column Label">
+           <state
+         class="org.eclipse.ui.handlers.RegistryToggleState:true"
+         id="org.eclipse.ui.commands.toggleState">
+   </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.ChangeIndexColumnStyleHandler"
+         id="org.eclipse.papyrus.infra.nattable.column.index.style"
+         name="Change Column Index Style">
+           <commandParameter
+         id="org.eclipse.ui.commands.radioStateParameter"
+         name="ColumnHeaderParameter"
+         optional="false">
+   </commandParameter>
+   <state
+         class="org.eclipse.ui.handlers.RadioState:Alphabetic"
+         id="org.eclipse.ui.commands.radioState">
+   </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayIndexRowHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.display.index"
+         name="Display Row Index">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayLabelRowHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.display.label"
+         name="Display Row Label">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:true"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.ChangeIndexRowStyleHandler"
+         id="org.eclipse.papyrus.infra.nattable.row.index.style"
+         name="Change Row Index Style">
+      <commandParameter
+            id="org.eclipse.ui.commands.radioStateParameter"
+            name="ColumnHeaderParameter"
+            optional="false">
+      </commandParameter>
+      <state
+            class="org.eclipse.ui.handlers.RadioState:Alphabetic"
+            id="org.eclipse.ui.commands.radioState">
+      </state>
    </command>
 </extension>
 <extension

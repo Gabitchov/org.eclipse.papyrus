@@ -75,6 +75,7 @@ public class FeatureLabelProviderConfigurationItemProvider
 
 			addLabelProviderContextPropertyDescriptor(object);
 			addDisplayIconPropertyDescriptor(object);
+			addDisplayTextPropertyDescriptor(object);
 			addDisplayIsDerivedPropertyDescriptor(object);
 			addDisplayTypePropertyDescriptor(object);
 			addDisplayMultiplicityPropertyDescriptor(object);
@@ -118,6 +119,28 @@ public class FeatureLabelProviderConfigurationItemProvider
 				 getString("_UI_EObjectLabelProviderConfiguration_displayIcon_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayIcon_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Display Text feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDisplayTextPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EObjectLabelProviderConfiguration_displayText_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayText_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT,
 				 true,
 				 false,
 				 false,
@@ -231,6 +254,7 @@ public class FeatureLabelProviderConfigurationItemProvider
 		switch (notification.getFeatureID(FeatureLabelProviderConfiguration.class)) {
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED:
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE:
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY:

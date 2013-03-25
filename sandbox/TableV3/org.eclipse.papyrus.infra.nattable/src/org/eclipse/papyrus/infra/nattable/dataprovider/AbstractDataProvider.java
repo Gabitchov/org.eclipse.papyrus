@@ -15,14 +15,15 @@ package org.eclipse.papyrus.infra.nattable.dataprovider;
 
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.ui.services.IDisposable;
 
 
-public abstract class AbstractDataProvider implements IDataProvider {
+public abstract class AbstractDataProvider implements IDataProvider, IDisposable {
 
 	/**
 	 * the manager used to manage the table
 	 */
-	protected final INattableModelManager manager;
+	protected INattableModelManager manager;
 
 	/**
 	 * 
@@ -53,6 +54,15 @@ public abstract class AbstractDataProvider implements IDataProvider {
 	 */
 	public int getRowCount() {
 		return this.manager.getRowCount();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.ui.services.IDisposable#dispose()
+	 * 
+	 */
+	public void dispose() {
+		this.manager = null;
 	}
 
 }

@@ -50,4 +50,5 @@ public class BodyDataProvider extends AbstractDataProvider {
 	public void setDataValue(int columnIndex, int rowIndex, Object newValue) {
 		this.manager.setDataValue(columnIndex, rowIndex, newValue);
 	}
+
 }

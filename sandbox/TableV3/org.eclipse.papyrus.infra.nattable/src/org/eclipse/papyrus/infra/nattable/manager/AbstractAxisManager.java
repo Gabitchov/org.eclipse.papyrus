@@ -434,7 +434,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param objectToDestroy
 	 * @return
 	 */
-	@Override
 	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
 		return null;
 	}
@@ -445,7 +444,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * 
 	 * @return
 	 */
-	@Override
 	public Collection<Object> getAllExistingAxis() {
 		return Collections.emptyList();
 	}

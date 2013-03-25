@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl#isDisplayIcon <em>Display Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl#isDisplayText <em>Display Text</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +77,26 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	 * @ordered
 	 */
 	protected boolean displayIcon = DISPLAY_ICON_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDisplayText() <em>Display Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisplayText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DISPLAY_TEXT_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isDisplayText() <em>Display Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisplayText()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean displayText = DISPLAY_TEXT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,6 +164,27 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDisplayText() {
+		return displayText;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDisplayText(boolean newDisplayText) {
+		boolean oldDisplayText = displayText;
+		displayText = newDisplayText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT, oldDisplayText, displayText));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -150,6 +192,8 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 				return getLabelProviderContext();
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return isDisplayIcon();
+			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				return isDisplayText();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,6 +211,9 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 				return;
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon((Boolean)newValue);
+				return;
+			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				setDisplayText((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,6 +233,9 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon(DISPLAY_ICON_EDEFAULT);
 				return;
+			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				setDisplayText(DISPLAY_TEXT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -202,6 +252,8 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 				return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return displayIcon != DISPLAY_ICON_EDEFAULT;
+			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+				return displayText != DISPLAY_TEXT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -220,6 +272,8 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 		result.append(labelProviderContext);
 		result.append(", displayIcon: "); //$NON-NLS-1$
 		result.append(displayIcon);
+		result.append(", displayText: "); //$NON-NLS-1$
+		result.append(displayText);
 		result.append(')');
 		return result.toString();
 	}

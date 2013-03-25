@@ -118,7 +118,7 @@ public interface DefaultAxisConfiguration extends AbstractAxisConfiguration {
 
 	/**
 	 * Returns the value of the '<em><b>Display Filter</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Display Filter</em>' attribute isn't clear,
@@ -128,7 +128,7 @@ public interface DefaultAxisConfiguration extends AbstractAxisConfiguration {
 	 * @return the value of the '<em>Display Filter</em>' attribute.
 	 * @see #setDisplayFilter(boolean)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getDefaultAxisConfiguration_DisplayFilter()
-	 * @model default="true" required="true"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isDisplayFilter();

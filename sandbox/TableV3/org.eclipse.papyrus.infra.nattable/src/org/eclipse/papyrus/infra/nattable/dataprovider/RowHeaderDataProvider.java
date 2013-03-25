@@ -11,14 +11,17 @@
 package org.eclipse.papyrus.infra.nattable.dataprovider;
 
 import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
 
 /**
  * 
  * this manager allows to manage the rows of the table. It provides
- * a row header in 2 columns : number on first columns and call the row manager to display a text in the second column
+ * a row header with 0,1 or 2 columns
  * 
  */
-public class RowHeaderDataProvider extends AbstractDataProvider {
+public class RowHeaderDataProvider extends AbstractHeaderDataProvider {
+
+	private int axisCount;
 
 	/**
 	 * 
@@ -36,19 +39,60 @@ public class RowHeaderDataProvider extends AbstractDataProvider {
 	 * @see org.eclipse.nebula.widgets.nattable.data.IDataProvider#getColumnCount()
 	 * 
 	 * @return
-	 *         2
+	 * 
 	 */
 	@Override
 	public int getColumnCount() {
-		return 2;
+		return this.axisCount;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.data.IDataProvider#getDataValue(int, int)
+	 * 
+	 * @param columnIndex
+	 * @param rowIndex
+	 * @return
+	 */
 	public Object getDataValue(final int columnIndex, final int rowIndex) {
-		if(columnIndex == 0) {
-			return rowIndex;
-		} else {
-			return this.manager.getRowElement(rowIndex);
+		switch(this.axisCount) {
+		case 0:
+			return null;
+		case 1:
+			if(this.displayFilter) {
+				return null;//FIXME not tested
+			} else if(this.displayIndex) {
+				return getAxisIndex(rowIndex);
+			} else if(this.displayLabel) {
+				return this.manager.getRowElement(rowIndex);
+			}
+		case 2:
+			if(!this.displayFilter) {
+				if(columnIndex == 0) {
+					return getAxisIndex(rowIndex);
+				}
+				if(columnIndex == 1) {
+					return this.manager.getRowElement(rowIndex);
+				}
+			} else {
+				//FIXME not tested
+			}
+			break;
+		case 3:
+			if(!this.displayFilter) {
+				if(columnIndex == 0) {
+					return getAxisIndex(rowIndex);
+				}
+				if(columnIndex == 1) {
+					return this.manager.getRowElement(rowIndex);
+				}
+				if(columnIndex == 2) {
+					//FIXME not tested
+				}
+			}
+			break;
 		}
+		return null;
 	}
 
 	/**
@@ -61,5 +105,36 @@ public class RowHeaderDataProvider extends AbstractDataProvider {
 	 */
 	public void setDataValue(final int columnIndex, final int rowIndex, final Object newValue) {
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.dataprovider.AbstractHeaderDataProvider#getAxisConfiguration()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected AbstractAxisConfiguration getAxisConfiguration() {
+		return this.manager.getHorizontalAxisConfiguration();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.dataprovider.AbstractHeaderDataProvider#updateAxisCount()
+	 * 
+	 */
+	@Override
+	protected void updateAxisCount() {
+		int newAxisCOunt = 0;
+		if(this.displayFilter) {
+			//newAxisCOunt++; //we ignore this value for rows headers
+		}
+		if(this.displayIndex) {
+			newAxisCOunt++;
+		}
+		if(this.displayLabel) {
+			newAxisCOunt++;
+		}
+		this.axisCount = newAxisCOunt;
 	}
 }

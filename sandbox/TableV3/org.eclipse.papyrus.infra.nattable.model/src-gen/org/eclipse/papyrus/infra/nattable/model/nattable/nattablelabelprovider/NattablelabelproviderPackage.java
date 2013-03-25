@@ -159,13 +159,22 @@ public interface NattablelabelproviderPackage extends EPackage {
 	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = ILABEL_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Display Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT = ILABEL_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Display Is Derived</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED = ILABEL_CONFIGURATION_FEATURE_COUNT + 1;
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED = ILABEL_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Display Type</b></em>' attribute.
@@ -174,7 +183,7 @@ public interface NattablelabelproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE = ILABEL_CONFIGURATION_FEATURE_COUNT + 2;
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE = ILABEL_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Display Multiplicity</b></em>' attribute.
@@ -183,7 +192,7 @@ public interface NattablelabelproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY = ILABEL_CONFIGURATION_FEATURE_COUNT + 3;
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY = ILABEL_CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Feature Label Provider Configuration</em>' class.
@@ -192,7 +201,7 @@ public interface NattablelabelproviderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT = ILABEL_CONFIGURATION_FEATURE_COUNT + 4;
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT = ILABEL_CONFIGURATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -251,13 +260,22 @@ public interface NattablelabelproviderPackage extends EPackage {
 	int EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = ILABEL_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Display Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT = ILABEL_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>EObject Label Provider Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EOBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT = ILABEL_CONFIGURATION_FEATURE_COUNT + 1;
+	int EOBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT = ILABEL_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -364,6 +382,17 @@ public interface NattablelabelproviderPackage extends EPackage {
 	EAttribute getEObjectLabelProviderConfiguration_DisplayIcon();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayText <em>Display Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Display Text</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayText()
+	 * @see #getEObjectLabelProviderConfiguration()
+	 * @generated
+	 */
+	EAttribute getEObjectLabelProviderConfiguration_DisplayText();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -455,6 +484,14 @@ public interface NattablelabelproviderPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = eINSTANCE.getEObjectLabelProviderConfiguration_DisplayIcon();
+
+		/**
+		 * The meta object literal for the '<em><b>Display Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT = eINSTANCE.getEObjectLabelProviderConfiguration_DisplayText();
 
 	}
 
