@@ -36,7 +36,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
@@ -114,7 +114,6 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// default Value
 		final String name;
-		final String description;
 		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, this.defaultName, null);
 		if(dialog.open() == Dialog.OK) {
 			name = dialog.getValue();
@@ -125,7 +124,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 				@Override
 				protected void doExecute() {
 					try {
-						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, description);
+						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, this.description);
 					} catch (final NotFoundException e) {
 						Activator.log.error(e);
 					} catch (final ServiceException e) {
@@ -149,7 +148,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 
 		final Object editorModel = createEditorModel(serviceRegistry, name, description);
 		// Get the mngr allowing to add/open new editor.
-		final IPageMngr pageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
+		final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 		// add the new editor model to the sash.
 		pageMngr.openPage(editorModel);
 
