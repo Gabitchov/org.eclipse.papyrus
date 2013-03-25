@@ -42,7 +42,6 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	 * 
 	 * @param isRestricted
 	 */
-	@Override
 	public final void setRestriction(boolean isRestricted) {
 		this.isRestricted = isRestricted;
 	}
@@ -55,7 +54,6 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	 * @param oldInput
 	 * @param newInput
 	 */
-	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 	}
@@ -65,7 +63,6 @@ public abstract class AbstractRestrictedContentProvider implements IRestrictedCo
 	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 	 * 
 	 */
-	@Override
 	public void dispose() {
 
 	}

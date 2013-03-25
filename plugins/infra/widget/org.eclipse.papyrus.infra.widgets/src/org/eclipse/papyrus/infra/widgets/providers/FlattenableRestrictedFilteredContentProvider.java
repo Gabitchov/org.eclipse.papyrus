@@ -71,21 +71,18 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 		showFlatListOfFeaturesCheckbox.setText(Messages.FlattenableRestrictedFilteredContentProvider_FlatViewMessage);
 		onlyCurrentContainersCheckbox.addSelectionListener(new SelectionListener() {
 
-			@Override
 			public void widgetSelected(SelectionEvent e) {
 				setRestriction(!onlyCurrentContainersCheckbox.getSelection());
 				viewer.refresh();
 				selector.refresh();
 			}
 
-			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 
 			}
 		});
 		showFlatListOfFeaturesCheckbox.addSelectionListener(new SelectionListener() {
 
-			@Override
 			public void widgetSelected(SelectionEvent e) {
 
 				setFlat(showFlatListOfFeaturesCheckbox.getSelection());
@@ -94,14 +91,12 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 
 			}
 
-			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 
 			}
 		});
 	}
 
-	@Override
 	public Object[] getElements(Object inputElement) {
 		if(isFlat) {
 			return flatProvider.getElements(inputElement);
@@ -122,12 +117,10 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 		provider.inputChanged(viewer, oldInput, newInput);
 	}
 
-	@Override
 	public boolean isValidValue(Object element) {
 		return provider.isValidValue(element);
 	}
 
-	@Override
 	public Object[] getChildren(Object parentElement) {
 		if(isFlat) {
 			return new Object[0];
@@ -135,7 +128,6 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 		return provider.getChildren(parentElement);
 	}
 
-	@Override
 	public Object getParent(Object element) {
 		if(isFlat) {
 			return null;
@@ -143,7 +135,6 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 		return provider.getParent(element);
 	}
 
-	@Override
 	public boolean hasChildren(Object element) {
 		if(isFlat) {
 			return false;
@@ -151,18 +142,15 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 		return provider.hasChildren(element);
 	}
 
-	@Override
 	public void setRestriction(boolean isRestricted) {
 		provider.setRestriction(isRestricted);
 	}
 
-	@Override
 	public void setFlat(boolean flat) {
 		this.isFlat = flat;
 
 	}
 
-	@Override
 	public Object[] getElements() {
 		return null;
 	}

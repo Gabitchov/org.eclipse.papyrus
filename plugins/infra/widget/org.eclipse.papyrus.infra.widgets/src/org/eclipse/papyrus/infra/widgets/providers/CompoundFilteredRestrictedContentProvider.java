@@ -80,14 +80,12 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 		this.encapsulatedContentProviders.clear();
 	}
 
-	@Override
 	public void setRestriction(boolean isRestricted) {
 		for(IRestrictedContentProvider current : encapsulatedContentProviders) {
 			current.setRestriction(isRestricted);
 		}
 	}
 
-	@Override
 	public boolean isValidValue(Object element) {
 		boolean result = false;
 		for(final IRestrictedContentProvider current : encapsulatedContentProviders) {
@@ -96,8 +94,6 @@ public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredC
 		return result;
 	}
 
-
-	@Override
 	public Object[] getElements() {
 		return getElements(null);
 	}
