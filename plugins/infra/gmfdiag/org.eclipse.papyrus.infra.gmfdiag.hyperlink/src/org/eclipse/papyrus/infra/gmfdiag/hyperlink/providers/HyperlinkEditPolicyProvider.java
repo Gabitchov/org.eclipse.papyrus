@@ -19,6 +19,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy;
 
@@ -38,7 +41,19 @@ public class HyperlinkEditPolicyProvider extends AbstractProvider implements IEd
 	public boolean provides(IOperation operation) {
 		if(operation instanceof CreateEditPoliciesOperation) {
 			CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-			return epOperation.getEditPart() instanceof IGraphicalEditPart;
+			EditPart editPart = epOperation.getEditPart();
+			try {
+				ServicesRegistry registry = ServiceUtilsForEditPart.getInstance().getServiceRegistry(editPart);
+				if(registry == null) {
+					//We're not in the Papyrus context
+					return false;
+				}
+			} catch (ServiceException ex) {
+				//We're not in the Papyrus context
+				//Ignore the exception and do not provide the EditPolicy
+				return false;
+			}
+			return editPart instanceof IGraphicalEditPart;
 		}
 		return false;
 	}
