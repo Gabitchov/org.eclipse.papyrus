@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.dataprovider;
 
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.ui.services.IDisposable;
 
 

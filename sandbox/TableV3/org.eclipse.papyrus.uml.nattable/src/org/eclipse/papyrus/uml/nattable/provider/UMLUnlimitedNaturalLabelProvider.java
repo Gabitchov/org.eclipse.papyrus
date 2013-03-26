@@ -26,16 +26,16 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This label provider allows to display '*' instead of -1 for unlimitednatural
- *
+ * 
  * @author Vincent Lorenzo
- *
+ * 
  */
 public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLabelProvider {
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider#accept(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -70,9 +70,9 @@ public class UMLUnlimitedNaturalLabelProvider extends AbstractUMLNattableCellLab
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider#getText(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */

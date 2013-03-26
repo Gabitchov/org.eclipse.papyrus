@@ -86,7 +86,7 @@ public class GenericDisplayConverter implements IDisplayConverter {
 	 * @return
 	 */
 	public Object displayToCanonicalValue(ILayerCell cell, IConfigRegistry configRegistry, Object displayValue) {
-//		throw new UnsupportedOperationException();
+		//		throw new UnsupportedOperationException();
 		return displayValue;
 	}
 

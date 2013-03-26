@@ -27,7 +27,7 @@ import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.KeyEventMatcher;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.papyrus.infra.nattable.configuration.StyleConfiguration;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.reorder.CustomDefaultColumnReorderBindings;
 import org.eclipse.swt.SWT;
 
@@ -45,7 +45,7 @@ public class BodyLayerStack extends AbstractLayerTransform {
 
 	private final ColumnReorderLayer columnReorderLayer;
 
-//	private final RowReorderLayer rowReoderLayer;
+	//	private final RowReorderLayer rowReoderLayer;
 
 	public BodyLayerStack(final IDataProvider dataProvider, final INattableModelManager manager) {
 		this.bodyDataLayer = new DataLayer(dataProvider);
@@ -59,7 +59,7 @@ public class BodyLayerStack extends AbstractLayerTransform {
 
 
 		//to allow the reorder on the lines
-//		this.rowReoderLayer = null;
+		//		this.rowReoderLayer = null;
 		//		this.rowReoderLayer = new RowReorderLayer(columnReorderLayer);
 		//		this.columnHideShowLayer = new ColumnHideShowLayer(this.rowReoderLayer);
 
@@ -71,7 +71,7 @@ public class BodyLayerStack extends AbstractLayerTransform {
 		//		CopyDataCommandHandler handler = new CopyDataCommandHandler(this.selectionLayer);
 		////		handler.setCopyFormattedText(true);//to do the paste using the label provider
 		//		this.selectionLayer.registerCommandHandler(handler);
-		
+
 		this.viewportLayer = new ViewportLayer(this.selectionLayer);
 		setUnderlyingLayer(this.viewportLayer);
 		setRegionName(GridRegion.BODY);
@@ -109,7 +109,7 @@ public class BodyLayerStack extends AbstractLayerTransform {
 	}
 
 
-//	public RowReorderLayer getRowReoderLayer() {
-//		return this.rowReoderLayer;
-//	}
+	//	public RowReorderLayer getRowReoderLayer() {
+	//		return this.rowReoderLayer;
+	//	}
 }

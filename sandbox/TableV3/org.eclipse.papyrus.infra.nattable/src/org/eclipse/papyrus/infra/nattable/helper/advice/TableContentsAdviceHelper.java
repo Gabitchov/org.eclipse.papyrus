@@ -42,15 +42,15 @@ public class TableContentsAdviceHelper extends AbstractEditHelperAdvice {
 	 */
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
-				final EObject destroyedElement = request.getElementToDestroy();
-				return request.getDestroyDependentsCommand(getAssociatedElementToDestroy(destroyedElement));
-//		return null;
+		final EObject destroyedElement = request.getElementToDestroy();
+		return request.getDestroyDependentsCommand(getAssociatedElementToDestroy(destroyedElement));
+		//		return null;
 	}
 
 	@Override
 	protected ICommand getAfterDestroyDependentsCommand(DestroyDependentsRequest request) {
-//		final EObject destroyedElement = request.getElementToDestroy();
-//		return request.getDestroyDependentsCommand(getAssociatedElementToDestroy(destroyedElement));
+		//		final EObject destroyedElement = request.getElementToDestroy();
+		//		return request.getDestroyDependentsCommand(getAssociatedElementToDestroy(destroyedElement));
 		return null;
 	}
 

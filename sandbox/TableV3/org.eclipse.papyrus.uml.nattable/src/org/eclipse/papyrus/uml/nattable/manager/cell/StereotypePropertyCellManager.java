@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
-import org.eclipse.papyrus.infra.nattable.manager.ICellManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
@@ -57,7 +57,7 @@ public class StereotypePropertyCellManager implements ICellManager {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param obj1
 	 * @param obj2
 	 * @return

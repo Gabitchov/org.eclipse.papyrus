@@ -22,7 +22,7 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
  * @author Vincent Lorenzo
  * 
  */
-public interface ILabelProviderCellContextElement extends ILabelProviderContextElement{
+public interface ILabelProviderCellContextElement extends ILabelProviderContextElement {
 
 	/**
 	 * 
@@ -31,6 +31,6 @@ public interface ILabelProviderCellContextElement extends ILabelProviderContextE
 	 */
 	public ILayerCell getCell();
 
-	
-		
+
+
 }

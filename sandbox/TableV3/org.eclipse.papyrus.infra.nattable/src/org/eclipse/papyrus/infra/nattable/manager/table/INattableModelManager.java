@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,6 +20,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
+import org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
@@ -93,19 +94,19 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd);
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
-	
+
 	public void print();
-	
+
 	public void selectAll();
 
 	public void exportToXLS();
 
 	public void openColumnsManagerDialog();
-	
+
 	public void sortColumnsByName(final boolean alphabeticOrder);
-	
+
 	public void sortRowsByName(final boolean alphabeticOrder);
-	
+
 
 	/**
 	 * 

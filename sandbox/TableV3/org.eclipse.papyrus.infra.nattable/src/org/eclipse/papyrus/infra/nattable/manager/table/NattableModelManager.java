@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +46,9 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.factory.AxisManagerFactory;
+import org.eclipse.papyrus.infra.nattable.manager.table.axis.CompositeAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
@@ -54,7 +57,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
-import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -362,7 +364,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#addRows(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#addRows(java.util.Collection)
 	 * 
 	 * @param objectToAdd
 	 *        the list of the objects to add in rows
@@ -400,7 +402,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#addColumns(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#addColumns(java.util.Collection)
 	 * 
 	 * @param objectToAdd
 	 *        the list of the objects to add in columns
@@ -444,7 +446,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getBodyDataProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getBodyDataProvider()
 	 * 
 	 * @return the data provider for the body of the table
 	 */
@@ -479,7 +481,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * this method returns the column data provider and is able to manage
 	 * inversion in the axis
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getColumnDataProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getColumnDataProvider()
 	 * 
 	 * @return the column data provider
 	 */
@@ -491,7 +493,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * this method returns the row data provider and is able to manage inversion
 	 * in the axis
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getLineDataProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getLineDataProvider()
 	 * 
 	 * @return the row data provider
 	 */
@@ -589,7 +591,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#invertAxis()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#invertAxis()
 	 * 
 	 */
 	public void invertAxis() {
@@ -736,7 +738,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getVerticalAxisProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getVerticalAxisProvider()
 	 * 
 	 * @return
 	 */
@@ -750,7 +752,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getHorizontalAxisProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getHorizontalAxisProvider()
 	 * 
 	 * @return
 	 */

@@ -28,6 +28,7 @@ public class LabelProviderContextElement implements ILabelProviderContextElement
 	private IConfigRegistry registry;
 
 	private Object object;
+
 	/**
 	 * *
 	 * Constructor.

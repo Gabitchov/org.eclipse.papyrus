@@ -34,7 +34,7 @@ import org.eclipse.papyrus.infra.nattable.accumulator.CustomRowOverrideLabelAccu
 import org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.celleditor.factory.CellEditorConfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;

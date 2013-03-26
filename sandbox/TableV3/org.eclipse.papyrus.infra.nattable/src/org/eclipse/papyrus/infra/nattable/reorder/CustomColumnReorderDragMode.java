@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.nattable.reorder;
 
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.reorder.action.ColumnReorderDragMode;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.swt.events.MouseEvent;
 
 /**

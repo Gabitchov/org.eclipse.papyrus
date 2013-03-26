@@ -29,8 +29,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
@@ -182,7 +182,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canDropAxisElement(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#canDropAxisElement(java.util.Collection)
 	 * 
 	 * @param objectsToAdd
 	 * @return
@@ -196,7 +196,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 * 
 	 * @param objectsToAdd
 	 * @param index
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canInsertAxis(EditingDomain, java.util.Collection, int)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#canInsertAxis(EditingDomain, java.util.Collection, int)
 	 * 
 	 * @return
 	 */
@@ -254,7 +254,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain

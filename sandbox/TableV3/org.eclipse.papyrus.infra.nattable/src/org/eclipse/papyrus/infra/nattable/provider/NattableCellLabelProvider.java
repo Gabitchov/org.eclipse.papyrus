@@ -6,8 +6,8 @@ import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.manager.AbstractNattableWidgetManager;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement;
@@ -22,7 +22,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 * @param configRegistry
 	 * @return
@@ -39,7 +39,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 * @param configRegistry
 	 * @return
@@ -56,9 +56,9 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getText(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -82,7 +82,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 * @param configRegistry
 	 * @return
@@ -98,7 +98,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 * @param configRegistry
 	 * @param labelproviderContext
@@ -129,7 +129,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 * @param configRegistry
 	 * @return
@@ -139,9 +139,9 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#accept(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -151,9 +151,9 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getImage(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -175,7 +175,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 * @param configRegistry
 	 * @return
@@ -185,7 +185,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 *        the cell
 	 * @param configRegistry
@@ -205,7 +205,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 *        the cell
 	 * @param configRegistry
@@ -237,7 +237,7 @@ public class NattableCellLabelProvider extends AbstractNattableCellLabelProvider
 	}
 
 	/**
-	 *
+	 * 
 	 * @param cell
 	 *        the cell
 	 * @param configRegistry

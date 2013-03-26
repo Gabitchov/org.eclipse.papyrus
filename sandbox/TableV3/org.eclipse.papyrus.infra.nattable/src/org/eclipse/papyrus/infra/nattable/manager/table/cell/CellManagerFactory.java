@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.solver;
+package org.eclipse.papyrus.infra.nattable.manager.table.cell;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +24,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.papyrus.commands.Activator;
-import org.eclipse.papyrus.infra.nattable.manager.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 //FIXME : should implements ICrossValueSolver?
@@ -98,19 +97,19 @@ public class CellManagerFactory {
 		return false;
 
 	}
-	
-	public void setCellValue(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue){
+
+	public void setCellValue(final EditingDomain domain, final Object obj1, final Object obj2, final Object newValue) {
 		final ICellManager cellManager = getCrossValueSolver(obj1, obj2);
-		if(cellManager!=null){
+		if(cellManager != null) {
 			cellManager.setValue(domain, obj1, obj2, newValue);
 		}
 	}
-	
-//	public ICellEditor getCellEditor (final Table table, final Object obj1, final Object obj2){
-//		final ICellManager cellManager = getCrossValueSolver(obj1, obj2);
-//		if(cellManager!=null){
-//			return cellManager.getCellEditor(table, obj1);
-//		}
-//		return null;
-//	}
+
+	//	public ICellEditor getCellEditor (final Table table, final Object obj1, final Object obj2){
+	//		final ICellManager cellManager = getCrossValueSolver(obj1, obj2);
+	//		if(cellManager!=null){
+	//			return cellManager.getCellEditor(table, obj1);
+	//		}
+	//		return null;
+	//	}
 }

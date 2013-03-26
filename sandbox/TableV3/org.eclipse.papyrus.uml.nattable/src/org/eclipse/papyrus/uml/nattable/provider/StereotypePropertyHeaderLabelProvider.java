@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 import org.eclipse.papyrus.infra.widgets.Activator;
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
- *
+ * 
  * @author Vincent Lorenzo
  *         This label provider is called to display the properties of stereotype application in the headers of the table
  */
@@ -43,9 +43,9 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	public static final String AGGREG_SHARED = "icons/aggreg_shared.gif"; //$NON-NLS-1$
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#accept(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 *         <code>true</code> when element represents a property of a stereotype
@@ -61,9 +61,9 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getText(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -84,9 +84,9 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getImage(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */

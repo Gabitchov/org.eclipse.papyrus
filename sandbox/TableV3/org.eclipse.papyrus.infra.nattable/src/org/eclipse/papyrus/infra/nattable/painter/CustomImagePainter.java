@@ -26,17 +26,17 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.swt.graphics.Image;
 
 /**
- *
+ * 
  * Custom Image painter for the header of the table
- *
+ * 
  */
 public class CustomImagePainter extends ImagePainter {//FIXME change this name!
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.painter.cell.ImagePainter#getImage(org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell,
 	 *      org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
-	 *
+	 * 
 	 * @param cell
 	 * @param configRegistry
 	 * @return

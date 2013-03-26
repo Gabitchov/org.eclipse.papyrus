@@ -28,5 +28,23 @@
          </labelProviderContext>
       </labelProvider>
    </extension>
-
+	<extension
+       point="org.eclipse.papyrus.infra.nattable.axismanager">
+    <axisManager
+          id="org.eclipse.papyrus.infra.emf.nattable.user.provider"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectAxisManager">
+    </axisManager>
+    <axisManager
+          id="org.eclipse.papyrus.infra.emf.nattable.feature.provider"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EStructuralFeatureAxisManager">
+    </axisManager>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.nattable.cellmanager">
+    <cellManager
+          id="org.eclipse.papyrus.infra.emf.nattable.cell.manager"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager"
+          order="1000">
+    </cellManager>
+ </extension>
 </plugin>

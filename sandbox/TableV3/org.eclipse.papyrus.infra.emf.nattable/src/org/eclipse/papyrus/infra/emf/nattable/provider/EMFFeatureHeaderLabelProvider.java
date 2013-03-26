@@ -157,7 +157,7 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
 		if(feature instanceof EAttribute) {
 			return EStructuralFeatureImageRegistry.getAttributeIcon();
-			
+
 		} else if(feature instanceof EReference) {
 			return getEReferenceImage((EReference)feature);
 		}

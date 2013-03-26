@@ -144,7 +144,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 */
-	public void doExecute(final ServicesRegistry serviceRegistry,String name, String description) throws ServiceException, NotFoundException {
+	public void doExecute(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 
 		final Object editorModel = createEditorModel(serviceRegistry, name, description);
 		// Get the mngr allowing to add/open new editor.

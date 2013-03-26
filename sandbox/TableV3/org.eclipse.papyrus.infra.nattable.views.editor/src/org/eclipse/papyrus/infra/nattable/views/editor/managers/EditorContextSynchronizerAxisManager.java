@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
-import org.eclipse.papyrus.infra.nattable.manager.AbstractSynchronizedOnFeatureAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractSynchronizedOnFeatureAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;
 
 /**
@@ -38,7 +38,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractSynchronizedOnFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.INattableModelManager,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractSynchronizedOnFeatureAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
 	 *      java.lang.String, org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider, boolean)
 	 * 
@@ -67,7 +67,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#updateAxisContents()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#updateAxisContents()
 	 * 
 	 */
 	@Override
@@ -108,7 +108,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#dispose()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#dispose()
 	 * 
 	 */
 	@Override

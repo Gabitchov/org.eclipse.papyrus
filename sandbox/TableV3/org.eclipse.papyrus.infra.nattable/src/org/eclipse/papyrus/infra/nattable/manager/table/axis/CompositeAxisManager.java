@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table.axis;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -53,7 +53,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#dispose()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#dispose()
 	 * 
 	 */
 	@Override
@@ -66,7 +66,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#getManagerId()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#getManagerId()
 	 * 
 	 * @return
 	 */
@@ -77,7 +77,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canBeUsedAsRowManager()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#canBeUsedAsRowManager()
 	 * 
 	 * @return
 	 */
@@ -93,7 +93,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canBeUsedAsColumnManager()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#canBeUsedAsColumnManager()
 	 * 
 	 * @return
 	 */
@@ -109,7 +109,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -133,7 +133,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -157,7 +157,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#updateAxisContents()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#updateAxisContents()
 	 * 
 	 */
 	@Override
@@ -171,7 +171,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#isAllowedContents(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#isAllowedContents(java.lang.Object)
 	 * 
 	 * @param object
 	 * @return
@@ -225,7 +225,7 @@ public class CompositeAxisManager extends AbstractAxisManager {
 		}
 		return cmd;
 	}
-	
+
 	@Override
 	public Collection<Object> getAllExistingAxis() {
 		Set<Object> allExistingAxis = new HashSet<Object>();

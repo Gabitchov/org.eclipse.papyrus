@@ -28,7 +28,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.infra.nattable.manager.AbstractCellManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.views.editor.Activator;
 import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;
@@ -83,7 +83,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -95,7 +95,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.ICellManager#handlersAxisElement(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#handlersAxisElement(java.lang.Object)
 	 * 
 	 * @param obj
 	 * @return
@@ -106,7 +106,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.ICellManager#getValue(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#getValue(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -134,7 +134,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -149,8 +149,8 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain, java.lang.Object,
-	 *      java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object)
 	 * 
 	 * @param domain
 	 * @param obj1

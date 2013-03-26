@@ -19,9 +19,9 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 /**
  * This object can used as context to find the best label provider and get the text to display.
  * Its allows to have the context of the value to use it in the label provider
- *
+ * 
  * @author Vincent Lorenzo
- *
+ * 
  */
 public class LabelProviderCellContextElement extends LabelProviderContextElement implements ILabelProviderCellContextElement {
 
@@ -33,7 +33,7 @@ public class LabelProviderCellContextElement extends LabelProviderContextElement
 	/**
 	 * *
 	 * Constructor.
-	 *
+	 * 
 	 * @param cell
 	 *        the cell for which we want the label/icon, ...
 	 * @param registry
@@ -45,9 +45,9 @@ public class LabelProviderCellContextElement extends LabelProviderContextElement
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement#getCell()
-	 *
+	 * 
 	 * @return
 	 */
 	public ILayerCell getCell() {
@@ -56,9 +56,9 @@ public class LabelProviderCellContextElement extends LabelProviderContextElement
 
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElement#getObject()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override

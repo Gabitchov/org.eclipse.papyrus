@@ -17,7 +17,7 @@ import org.eclipse.nebula.widgets.nattable.reorder.config.DefaultColumnReorderBi
 import org.eclipse.nebula.widgets.nattable.ui.action.AggregateDragMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.swt.SWT;
 
 /**
@@ -50,7 +50,7 @@ public class CustomDefaultColumnReorderBindings extends DefaultColumnReorderBind
 	 * @param uiBindingRegistry
 	 */
 	public void configureUiBindings(UiBindingRegistry uiBindingRegistry) {
-		assert manager!=null;
+		assert manager != null;
 		uiBindingRegistry.registerMouseDragMode(MouseEventMatcher.columnHeaderLeftClick(SWT.NONE), new AggregateDragMode(new CustomCellDragModeForColumn(this.manager), new CustomColumnReorderDragMode(this.manager)));
 	}
 

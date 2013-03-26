@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
-import org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
@@ -37,14 +37,14 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- *
+ * 
  * @author Vincent Lorenzo
  *         This cell manager allows to display properties of stereotypes and execute the set value command
  */
-public class UMLFeatureCellManager extends CellFeatureValueManager {
+public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 
 	/**
-	 *
+	 * 
 	 * @param obj1
 	 * @param obj2
 	 * @return
@@ -81,9 +81,9 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#handles(java.lang.Object, java.lang.Object)
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handles(java.lang.Object, java.lang.Object)
+	 * 
 	 * @param obj1
 	 * @param obj2
 	 * @return
@@ -102,9 +102,9 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#handlersAxisElement(java.lang.Object)
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handlersAxisElement(java.lang.Object)
+	 * 
 	 * @param obj
 	 * @return
 	 */
@@ -122,9 +122,9 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#getValue(java.lang.Object, java.lang.Object)
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getValue(java.lang.Object, java.lang.Object)
+	 * 
 	 * @param obj1
 	 * @param obj2
 	 * @return
@@ -151,10 +151,10 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#setValue(org.eclipse.emf.edit.domain.EditingDomain, java.lang.Object,
-	 *      java.lang.Object, java.lang.Object)
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#setValue(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.lang.Object, java.lang.Object, java.lang.Object)
+	 * 
 	 * @param domain
 	 * @param obj1
 	 * @param obj2
@@ -173,10 +173,10 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.lang.Object, java.lang.Object, java.lang.Object)
-	 *
+	 * 
 	 * @param domain
 	 * @param obj1
 	 * @param obj2
@@ -211,13 +211,13 @@ public class UMLFeatureCellManager extends CellFeatureValueManager {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.solver.CellFeatureValueManager#isCellEditable(java.lang.Object, java.lang.Object)
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * 
 	 * @param obj1
 	 * @param obj2
 	 * @return
-	 *         if the edited feature is an EMF feature -> see {@link CellFeatureValueManager} else if the edited feature is a stereotype property :
+	 *         if the edited feature is an EMF feature -> see {@link EMFFeatureValueCellManager} else if the edited feature is a stereotype property :
 	 *         return true if the stereotype is applied on the edited element AND if only one stereotype with this property is applied on the element
 	 */
 	@Override

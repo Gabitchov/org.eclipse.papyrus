@@ -28,15 +28,15 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Abstract Class for UML Cell provider
- *
+ * 
  * @author Vincent Lorenzo
- *
+ * 
  */
 public abstract class AbstractUMLNattableCellLabelProvider extends GenericCellLabelProvider {
 
 
 	/**
-	 *
+	 * 
 	 * @param obj1
 	 *        the first Object
 	 * @param obj2

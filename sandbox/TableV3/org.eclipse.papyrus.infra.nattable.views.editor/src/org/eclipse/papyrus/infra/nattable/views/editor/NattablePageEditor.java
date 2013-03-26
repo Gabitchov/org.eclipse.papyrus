@@ -26,9 +26,9 @@ public class NattablePageEditor extends AbstractEMFNattableEditor {
 	public static final String DEFAULT_NAME = "ViewTable"; //$NON-NLS-1$
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param servicesRegistry
 	 * @param rawModel
 	 */

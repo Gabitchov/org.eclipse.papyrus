@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,6 +31,9 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.papyrus.infra.nattable.manager.table.ILimitedNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
@@ -72,7 +75,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 * 
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.INattableModelManager,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager,
 	 *      java.lang.String, org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.IAxisContentsProvider, boolean)
 	 * 
@@ -128,7 +131,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#canInsertAxis(java.util.Collection, int)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#canInsertAxis(java.util.Collection, int)
 	 * 
 	 * @param objectsToAdd
 	 * @param index
@@ -140,7 +143,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#canDropAxisElement(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#canDropAxisElement(java.util.Collection)
 	 * 
 	 * @param objectsToAdd
 	 * @return
@@ -166,7 +169,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getManagerId()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getManagerId()
 	 * 
 	 * @return
 	 */
@@ -176,7 +179,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#canBeUsedAsRowManager()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#canBeUsedAsRowManager()
 	 * 
 	 * @return
 	 */
@@ -186,7 +189,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#canBeUsedAsColumnManager()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#canBeUsedAsColumnManager()
 	 * 
 	 * @return
 	 */
@@ -196,7 +199,8 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain, java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      java.util.Collection)
 	 * 
 	 * @param domain
 	 * @param objectToAdd
@@ -208,7 +212,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getInsertAxisCommand(java.util.Collection, int)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getInsertAxisCommand(java.util.Collection, int)
 	 * 
 	 * @param objectsToAdd
 	 * @param index
@@ -220,7 +224,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -233,7 +237,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#isComposite()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#isComposite()
 	 * 
 	 * @return
 	 */
@@ -248,7 +252,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getRepresentedContentProvider()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getRepresentedContentProvider()
 	 * 
 	 * @return
 	 */
@@ -259,7 +263,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	// FIXME : must be protected
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getTableManager()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getTableManager()
 	 * 
 	 * @return
 	 */
@@ -320,7 +324,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#isAllowedContents(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#isAllowedContents(java.lang.Object)
 	 * 
 	 * @param object
 	 * @return <code>true</code> if the object is not yet represented by an axis
@@ -415,7 +419,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#createDestroyColumnsContentProvider(boolean)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#createDestroyColumnsContentProvider(boolean)
 	 * 
 	 * @param isRestricted
 	 * @return
@@ -427,7 +431,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getDestroyAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -440,7 +444,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.IAxisManager#getAllExistingAxis()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#getAllExistingAxis()
 	 * 
 	 * @return
 	 */

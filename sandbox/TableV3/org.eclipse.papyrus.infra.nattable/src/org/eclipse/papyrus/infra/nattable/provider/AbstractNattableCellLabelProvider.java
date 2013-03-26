@@ -17,14 +17,14 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 
 
-public abstract class AbstractNattableCellLabelProvider implements IFilteredLabelProvider{
+public abstract class AbstractNattableCellLabelProvider implements IFilteredLabelProvider {
 
 	/**
 	 * 
@@ -70,7 +70,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *        always throws {@link UnsupportedOperationException}
 	 */
 	public void addListener(ILabelProviderListener listener) {
-//		throw new UnsupportedOperationException();
+		//		throw new UnsupportedOperationException();
 	}
 
 	public void dispose() {
@@ -97,7 +97,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *        always throws {@link UnsupportedOperationException}
 	 */
 	public void removeListener(ILabelProviderListener listener) {
-//		throw new UnsupportedOperationException();
+		//		throw new UnsupportedOperationException();
 	}
 
 	/**

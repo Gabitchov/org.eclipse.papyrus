@@ -109,7 +109,7 @@
       <cellManager
             id="org.eclipse.papyrus.infra.nattable.page.editor.modelviewscellmanager"
             manager="org.eclipse.papyrus.infra.nattable.views.editor.managers.ModelViewsCellManager"
-            order="10">
+            order="50">
       </cellManager>
    </extension>
    <extension

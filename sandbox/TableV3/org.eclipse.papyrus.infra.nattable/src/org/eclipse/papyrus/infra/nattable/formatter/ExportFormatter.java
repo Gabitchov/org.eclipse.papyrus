@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
  * @author Vincent Lorenzo
  * 
  */
-public class ExportFormatter extends DefaultExportFormatter{
+public class ExportFormatter extends DefaultExportFormatter {
 
 	/**
 	 * 

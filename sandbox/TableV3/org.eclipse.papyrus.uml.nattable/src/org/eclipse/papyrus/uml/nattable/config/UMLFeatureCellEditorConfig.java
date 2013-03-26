@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorCo
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.celleditor.ButtonConfiguration;
 import org.eclipse.papyrus.infra.nattable.celleditor.ComboBoxWithButtonCellEditor;
-import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -107,7 +107,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getICellEditor(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
-	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider)
+	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider)
 	 * 
 	 * @param table
 	 * @param axisElement
@@ -170,7 +170,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getComboDataProvider(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
-	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider)
+	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider)
 	 * 
 	 * @param table
 	 * @param axisElement

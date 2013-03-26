@@ -18,21 +18,21 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 
 /**
  * This interface provides specific methods to allows to get a label with its context (object and edited feature)
- *
+ * 
  * @author Vincent Lorenzo
- *
+ * 
  */
 public interface ILabelProviderContextElement {
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the config registry which can provide useful information
 	 */
 	public IConfigRegistry getConfigRegistry();
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the object for which we want the label
 	 */

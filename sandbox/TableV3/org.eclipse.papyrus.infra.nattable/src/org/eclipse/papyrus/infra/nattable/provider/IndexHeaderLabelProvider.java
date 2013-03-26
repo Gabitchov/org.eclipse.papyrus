@@ -17,16 +17,16 @@ import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
 
 /**
  * The label provider used for the index of the header
- *
+ * 
  * @author Vincent Lorenzo
- *
+ * 
  */
 public class IndexHeaderLabelProvider extends AbstractNattableCellLabelProvider {
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#accept(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -40,9 +40,9 @@ public class IndexHeaderLabelProvider extends AbstractNattableCellLabelProvider 
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getText(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */

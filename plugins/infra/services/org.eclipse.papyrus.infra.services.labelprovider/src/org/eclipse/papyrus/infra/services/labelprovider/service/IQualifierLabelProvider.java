@@ -21,6 +21,6 @@ import org.eclipse.swt.graphics.Image;
 public interface IQualifierLabelProvider {
 
 	String getQualifierText(Object element);
-	
+
 	Image getQualifierImage(Object element);
 }

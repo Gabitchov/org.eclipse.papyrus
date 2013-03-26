@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 

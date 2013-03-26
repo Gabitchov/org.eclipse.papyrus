@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.List;
 
@@ -65,10 +65,10 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
+import org.eclipse.papyrus.infra.nattable.manager.table.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
-import org.eclipse.papyrus.infra.nattable.solver.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
@@ -143,7 +143,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#createNattable(org.eclipse.swt.widgets.Composite, int,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#createNattable(org.eclipse.swt.widgets.Composite, int,
 	 *      org.eclipse.ui.IWorkbenchPartSite)
 	 * 
 	 * @param parent
@@ -391,7 +391,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#print()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#print()
 	 * 
 	 */
 	public void print() {
@@ -402,7 +402,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#selectAll()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#selectAll()
 	 * 
 	 */
 	public void selectAll() {
@@ -411,7 +411,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#exportToXLS()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#exportToXLS()
 	 * 
 	 */
 	public void exportToXLS() {
@@ -424,7 +424,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.INattableModelManager#getBodyLayerStack()
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getBodyLayerStack()
 	 * 
 	 * @return
 	 */

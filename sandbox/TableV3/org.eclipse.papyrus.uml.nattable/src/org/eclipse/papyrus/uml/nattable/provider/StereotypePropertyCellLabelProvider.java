@@ -25,9 +25,9 @@ import org.eclipse.uml2.uml.Property;
 public class StereotypePropertyCellLabelProvider extends AbstractUMLNattableCellLabelProvider {
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider#accept(java.lang.Object)
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */

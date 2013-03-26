@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.nattable.editor;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.creation.UnlimitedNaturalEditionFactory;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;

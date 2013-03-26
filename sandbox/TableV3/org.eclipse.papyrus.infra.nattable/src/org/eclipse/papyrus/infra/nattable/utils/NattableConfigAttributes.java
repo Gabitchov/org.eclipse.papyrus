@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
 /**
@@ -49,7 +49,8 @@ public class NattableConfigAttributes {
 	 * <code> configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, YOUR_LABEL_PROVER_SERVICE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);</code>
 	 * </li>
 	 * <li>To get it : <code></code></li>
-	 * 		LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+	 * LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE,
+	 * DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 	 * </ul>
 	 */
 	public static final ConfigAttribute<LabelProviderService> LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE = new ConfigAttribute<LabelProviderService>();

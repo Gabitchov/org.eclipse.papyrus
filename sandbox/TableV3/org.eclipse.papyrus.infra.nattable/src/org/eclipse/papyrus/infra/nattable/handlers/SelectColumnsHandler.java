@@ -18,7 +18,7 @@ package org.eclipse.papyrus.infra.nattable.handlers;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.papyrus.infra.nattable.actions.AbstractTableHandler;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
  * 

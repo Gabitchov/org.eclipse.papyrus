@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.messages.Messages;
 /**
  * 
  * @author vl222926
- *
+ * 
  */
 public class CornerDataProvider extends DefaultCornerDataProvider {
 

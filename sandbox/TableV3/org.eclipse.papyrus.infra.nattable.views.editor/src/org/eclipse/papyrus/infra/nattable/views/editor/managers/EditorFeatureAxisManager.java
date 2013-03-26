@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.nattable.views.editor.managers;
 
 import java.util.List;
 
-import org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;

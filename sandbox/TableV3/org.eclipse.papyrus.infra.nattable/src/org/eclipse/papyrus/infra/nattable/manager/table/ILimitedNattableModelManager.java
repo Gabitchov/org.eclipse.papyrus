@@ -11,19 +11,15 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.List;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 
-public interface ITableAxisElementProvider {
 
-	public List<Object> getColumnElementsList();
+public interface ILimitedNattableModelManager {
 
-	public List<Object> getRowElementsList();
-
-	public Object getColumnElement(int index);
-
-	public Object getRowElement(int index);
+	public List<Object> getElementsList(final AbstractAxisProvider axisProvider);
 
 }

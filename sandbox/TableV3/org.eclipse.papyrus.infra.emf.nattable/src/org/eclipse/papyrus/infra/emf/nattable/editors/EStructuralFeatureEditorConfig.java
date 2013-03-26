@@ -41,7 +41,7 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.painter.CustomCheckBoxPainter;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
-import org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider;
+import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
@@ -86,7 +86,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getICellEditor(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
-	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.ITableAxisElementProvider)
+	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider)
 	 * 
 	 * @param table
 	 * @param axisElement

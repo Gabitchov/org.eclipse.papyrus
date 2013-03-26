@@ -11,21 +11,22 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table.axis;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 
 /**
- *
+ * 
  * @author Vincent Lorenzo
- *
+ * 
  */
 public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractAxisManager {
 
@@ -45,9 +46,9 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canDropAxisElement(java.util.Collection)
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#canDropAxisElement(java.util.Collection)
+	 * 
 	 * @param objectsToAdd
 	 * @return
 	 */
@@ -57,9 +58,9 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractAxisManager#canInsertAxis(java.util.Collection, int)
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#canInsertAxis(java.util.Collection, int)
+	 * 
 	 * @param objectsToAdd
 	 * @param index
 	 * @return

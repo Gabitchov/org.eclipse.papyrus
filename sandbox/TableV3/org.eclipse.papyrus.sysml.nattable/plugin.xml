@@ -16,7 +16,7 @@
       <cellManager
             id="org.eclipse.papyrus.sysml.nattable.common.stereotype.property.cell.manager"
             manager="org.eclipse.papyrus.sysml.nattable.manager.SysMLStereotypePropertyCellManager"
-            order="30">
+            order="250">
       </cellManager>
    </extension>
    <extension

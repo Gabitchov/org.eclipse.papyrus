@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.manager;
+package org.eclipse.papyrus.infra.nattable.manager.table.axis;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,6 +19,8 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.papyrus.infra.nattable.manager.table.ILimitedNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
@@ -91,7 +93,7 @@ public interface IAxisManager extends IDisposable {
 	 *         all the existing axis managed by the axis manager
 	 */
 	public Collection<Object> getAllExistingAxis();
-	
+
 	// public boolean isUsedVertically();
 	//
 	// public boolean isUsedHorizontally();
