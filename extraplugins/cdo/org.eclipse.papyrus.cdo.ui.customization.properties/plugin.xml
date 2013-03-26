@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.views.properties.contextStorage">
+      <provider
+            class="org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.CDOContextStorageProvider">
+      </provider>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.customization.properties.contextStorage">
+      <actionProvider
+            class="org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.action.CDOContextStorageActionProvider">
+      </actionProvider>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.cdo.ui.repositoryFilters">
+      <itemProviderFilter
+            id="org.eclipse.papyrus.cdo.ui.customization.properties.CustomizationModelFilter">
+         <labelPattern
+               adapt="true"
+               objectClass="org.eclipse.emf.cdo.eresource.CDOResourceFolder"
+               pattern="^org\.eclipse\.papyrus\.cdo\.ui\.customization\.properties\.contexts">
+         </labelPattern>
+      </itemProviderFilter>
+   </extension>
+
+</plugin>
