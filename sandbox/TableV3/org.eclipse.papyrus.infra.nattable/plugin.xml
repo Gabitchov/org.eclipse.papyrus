@@ -215,7 +215,7 @@
    <extension
        point="org.eclipse.ui.handlers">
     <handler
-          class="org.eclipse.papyrus.infra.nattable.actions.PrintTableHandler"
+          class="org.eclipse.papyrus.infra.nattable.handler.PrintTableHandler"
           commandId="org.eclipse.ui.file.print">
        <activeWhen>
           <and>
@@ -231,7 +231,7 @@
        </activeWhen>
     </handler>
     <handler
-          class="org.eclipse.papyrus.infra.nattable.actions.SelectAllHandler"
+          class="org.eclipse.papyrus.infra.nattable.handler.SelectAllHandler"
           commandId="org.eclipse.ui.edit.selectAll">
        <activeWhen>
           <and>
@@ -247,7 +247,7 @@
        </activeWhen>
     </handler>
     <handler
-          class="org.eclipse.papyrus.infra.nattable.actions.ExportToXLSHandler"
+          class="org.eclipse.papyrus.infra.nattable.handler.ExportToXLSHandler"
           commandId="org.eclipse.papyrus.infra.nattable.exporttoXLScommand">
        <activeWhen>
           <and>
@@ -263,7 +263,7 @@
        </activeWhen>
     </handler>
     <handler
-            class="org.eclipse.papyrus.infra.nattable.handlers.SelectColumnsHandler"
+            class="org.eclipse.papyrus.infra.nattable.handler.SelectColumnsHandler"
             commandId="org.eclipse.papyrus.infra.nattable.selectvisiblecolumns">
          <activeWhen>
              <with variable="activeEditorId">
@@ -320,7 +320,7 @@
     </context>
     <labelProvider
           priority="2000"
-          provider="org.eclipse.papyrus.infra.nattable.provider.NattableCellLabelProvider">
+          provider="org.eclipse.papyrus.infra.nattable.provider.NattableTopLabelProvider">
        <labelProviderContext
              context="org.eclipse.papyrus.infra.nattable.full.labelprovider">
        </labelProviderContext>
@@ -384,7 +384,7 @@
 
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.SortColumnsHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SortColumnsHandler"
          id="org.eclipse.papyrus.infra.nattable.sort.columns.command"
          name="Sort Columns Command">
       <commandParameter
@@ -395,7 +395,7 @@
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.SortRowsHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.SortRowsHandler"
          id="org.eclipse.papyrus.infra.nattable.sort.rows.command"
          name="Sort Rows Command">
       <commandParameter
@@ -405,7 +405,7 @@
       </commandParameter>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayIndexColumnHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayIndexColumnHandler"
          id="org.eclipse.papyrus.infra.nattable.column.display.index"
          name="Display Column Index">
        <state
@@ -414,7 +414,7 @@
    </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayLabelColumnHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayLabelColumnHandler"
          id="org.eclipse.papyrus.infra.nattable.column.display.label"
          name="Display Column Label">
            <state
@@ -423,7 +423,7 @@
    </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.ChangeIndexColumnStyleHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ChangeIndexColumnStyleHandler"
          id="org.eclipse.papyrus.infra.nattable.column.index.style"
          name="Change Column Index Style">
            <commandParameter
@@ -437,7 +437,7 @@
    </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayIndexRowHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayIndexRowHandler"
          id="org.eclipse.papyrus.infra.nattable.row.display.index"
          name="Display Row Index">
       <state
@@ -446,7 +446,7 @@
       </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.DisplayLabelRowHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayLabelRowHandler"
          id="org.eclipse.papyrus.infra.nattable.row.display.label"
          name="Display Row Label">
       <state
@@ -455,7 +455,7 @@
       </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.actions.ChangeIndexRowStyleHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ChangeIndexRowStyleHandler"
          id="org.eclipse.papyrus.infra.nattable.row.index.style"
          name="Change Row Index Style">
       <commandParameter
