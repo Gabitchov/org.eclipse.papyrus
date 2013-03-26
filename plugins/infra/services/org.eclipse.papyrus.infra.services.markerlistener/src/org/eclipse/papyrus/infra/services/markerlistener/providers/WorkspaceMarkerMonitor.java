@@ -142,7 +142,7 @@ public class WorkspaceMarkerMonitor
 			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(null, attributes, domain);
 			if(eObjectFromMarker != null) {
 				Resource resource = eObjectFromMarker.eResource();
-				fireMarkerRemoved(PapyrusMarkerAdapter.wrap(resource, marker));
+				fireMarkerRemoved(PapyrusMarkerAdapter.wrap(resource, marker, attributes));
 			}
 		}
 

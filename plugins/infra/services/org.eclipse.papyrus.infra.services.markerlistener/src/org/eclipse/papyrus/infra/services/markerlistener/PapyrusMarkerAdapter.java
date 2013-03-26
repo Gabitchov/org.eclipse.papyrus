@@ -27,17 +27,29 @@ import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtil
  * This is the PapyrusMarkerAdapter type. Enjoy.
  */
 public class PapyrusMarkerAdapter
-		implements IPapyrusMarker {
+implements IPapyrusMarker {
 
 	private final Resource resource;
 
 	private final IMarker marker;
+
+	@SuppressWarnings("rawtypes")
+	private final Map attributes ;
 
 	protected PapyrusMarkerAdapter(Resource resource, IMarker marker) {
 		super();
 
 		this.resource = resource;
 		this.marker = marker;
+		this.attributes = null ;
+	}
+
+	protected PapyrusMarkerAdapter(Resource resource, IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
+		super();
+
+		this.resource = resource;
+		this.marker = marker;
+		this.attributes = attributes ;
 	}
 
 	public static final PapyrusMarkerAdapter wrap(Resource resource,
@@ -46,11 +58,17 @@ public class PapyrusMarkerAdapter
 		return new PapyrusMarkerAdapter(resource, marker);
 	}
 
+	public static final PapyrusMarkerAdapter wrap(Resource resource,
+			IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
+
+		return new PapyrusMarkerAdapter(resource, marker, attributes);
+	}
+
 	public static final List<PapyrusMarkerAdapter> wrap(Resource resource,
 			Collection<? extends IMarker> markers) {
 
 		List<PapyrusMarkerAdapter> result = new java.util.ArrayList<PapyrusMarkerAdapter>(
-			markers.size());
+				markers.size());
 
 		for (IMarker next : markers) {
 			result.add(wrap(resource, next));
@@ -70,8 +88,14 @@ public class PapyrusMarkerAdapter
 	public EObject getEObject() {
 		EObject result = null;
 
-		String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE,
-			(String) null);
+		String uriAttribute = null ;
+		if (this.attributes != null) { // attributes is not null when the PapyrusMarkerAdapter has been wrapped from WorkspaceMarkerMonitor.handleMarkerDeleted
+			uriAttribute = (String)attributes.get(EValidator.URI_ATTRIBUTE) ;
+		}
+		else {
+			uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE,
+					(String) null);
+		}
 		if (uriAttribute != null) {
 			URI uri = URI.createURI(uriAttribute);
 			if (getResource().getURI().equals(uri.trimFragment())) {
@@ -93,10 +117,10 @@ public class PapyrusMarkerAdapter
 
 	public String getTypeLabel()
 			throws CoreException {
-		
+
 		return MarkerListenerUtils.getMarkerTypeLabel(getType());
 	}
-	
+
 	public void delete()
 			throws CoreException {
 
@@ -160,17 +184,17 @@ public class PapyrusMarkerAdapter
 	@Override
 	public boolean equals(Object obj) {
 		return (obj instanceof PapyrusMarkerAdapter)
-			&& marker.equals(((PapyrusMarkerAdapter) obj).marker);
+				&& marker.equals(((PapyrusMarkerAdapter) obj).marker);
 	}
 
 	@Override
 	public int hashCode() {
 		return marker.hashCode();
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("WorkspaceMarker:%s:%s", marker.getResource(),
-			marker.getId());
+				marker.getId());
 	}
 }

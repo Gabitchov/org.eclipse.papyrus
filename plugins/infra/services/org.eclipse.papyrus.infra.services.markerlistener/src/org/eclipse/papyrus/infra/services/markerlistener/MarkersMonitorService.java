@@ -50,11 +50,11 @@ public class MarkersMonitorService implements IService {
 	 * The list of registered Marker Event Listeners
 	 */
 	protected List<IMarkerEventListener> registeredMarkerEventListeners ;
-	
+
 	private List<IMarkerMonitor> monitorExtensions;
-	
+
 	private final IMarkerEventListener relay = createRelayListener();
-	
+
 	/**
 	 * Gets the services registry.
 	 * 
@@ -93,7 +93,7 @@ public class MarkersMonitorService implements IService {
 		this.servicesRegistry = servicesRegistry;
 		this.registeredMarkerEventListeners = this.getRegisteredMarkerEventListeners() ;
 		this.monitorExtensions = new MarkerMonitorRegistry().getMarkerMonitors();
-		
+
 		checkMarkers() ;
 	}
 
@@ -115,7 +115,7 @@ public class MarkersMonitorService implements IService {
 		}  
 		return this.registeredMarkerEventListeners ;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
 	 * 
@@ -123,7 +123,7 @@ public class MarkersMonitorService implements IService {
 	 */
 	public void startService() throws ServiceException {
 		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(
-			servicesRegistry);
+				servicesRegistry);
 
 		for (IMarkerMonitor next : monitorExtensions) {
 			try {
@@ -131,8 +131,8 @@ public class MarkersMonitorService implements IService {
 				next.addMarkerEventListener(relay);
 			} catch (Exception e) {
 				Activator.log.error(
-					"Uncaught exception in initialization of marker monitor.",
-					e);
+						"Uncaught exception in initialization of marker monitor.",
+						e);
 			}
 		}
 	}
@@ -149,8 +149,8 @@ public class MarkersMonitorService implements IService {
 				next.dispose();
 			} catch (Exception e) {
 				Activator.log.error(
-					"Uncaught exception in initialization of marker monitor.",
-					e);
+						"Uncaught exception in initialization of marker monitor.",
+						e);
 			}
 		}
 	}
@@ -188,39 +188,39 @@ public class MarkersMonitorService implements IService {
 
 	public Collection<? extends IPapyrusMarker> getMarkers(Resource resource,
 			String type, boolean includeSubtypes)
-			throws CoreException {
-		
+					throws CoreException {
+
 		return MarkerListenerUtils.getMarkerProvider(resource).getMarkers(
-			resource, type, includeSubtypes);
+				resource, type, includeSubtypes);
 	}
 
 	private IMarkerEventListener createRelayListener() {
 		return new IMarkerEventListener() {
-			
+
 			public void notifyMarkerChange(EObject eObjectOfMarker,
 					IPapyrusMarker marker, int addedOrRemoved) {
-				
+
 				for (IMarkerEventListener next : registeredMarkerEventListeners) {
 					try {
-					next.notifyMarkerChange(eObjectOfMarker, marker, addedOrRemoved);
+						next.notifyMarkerChange(eObjectOfMarker, marker, addedOrRemoved);
 					} catch (Exception e) {
 						Activator.log.error("Uncaught exception in marker listener.", e);
 					}
 				}
 			}
-			
+
 			public void startService() {
 				// not needed
 			}
-			
+
 			public void init(ServicesRegistry servicesRegistry) {
 				// not needed
 			}
-			
+
 			public void disposeService() {
 				// not needed
 			}
-			
+
 			public boolean isNotifiedOnInitialMarkerCheck() {
 				// not needed
 				return false;
