@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,14 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Use URIs to support non-URL-compatible storage (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime;
 
-import java.net.URL;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
@@ -66,14 +67,14 @@ public interface DisplayEngine {
 	 * @param section
 	 *        The section to display. Should not be null
 	 * @param sectionFile
-	 *        The URL replacing the section's sectionFile. If null, the section's sectionFile will
+	 *        The URI replacing the section's sectionFile. If null, the section's sectionFile will
 	 *        be used
 	 * @param source
 	 *        The DataSource to bind to the section's widgets. May be null.
 	 * @return
 	 *         The generated Control
 	 */
-	public Control createSection(Composite parent, Section section, URL sectionFile, DataSource source);
+	public Control createSection(Composite parent, Section section, URI sectionFile, DataSource source);
 
 	/**
 	 * Refresh the given section.

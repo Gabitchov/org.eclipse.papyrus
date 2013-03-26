@@ -7,6 +7,7 @@ Export-Package: org.eclipse.papyrus.views.properties,
  org.eclipse.papyrus.views.properties.providers,
  org.eclipse.papyrus.views.properties.root,
  org.eclipse.papyrus.views.properties.runtime,
+ org.eclipse.papyrus.views.properties.storage,
  org.eclipse.papyrus.views.properties.util,
  org.eclipse.papyrus.views.properties.widgets,
  org.eclipse.papyrus.views.properties.widgets.layout,
@@ -44,12 +45,12 @@ Require-Bundle: org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.eclipse.emf.edit;bundle-version="2.8.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.300",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 0.10.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=t
- rue
+Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=true
 

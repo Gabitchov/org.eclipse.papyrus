@@ -17,31 +17,23 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IResourceUndoContextPolicy;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
-import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomainProvider;
 
 /**
  * This is the CDOAwareTransactionalEditingDomainProvider type. Enjoy.
  */
-public class CDOAwareTransactionalEditingDomainProvider
-		extends PapyrusROTransactionalEditingDomainProvider {
+public class CDOAwareTransactionalEditingDomainProvider extends PapyrusROTransactionalEditingDomainProvider {
 
 	public CDOAwareTransactionalEditingDomainProvider() {
 		super();
 	}
 
 	@Override
-	public TransactionalEditingDomain createTransactionalEditingDomain(
-			ResourceSet resourceSet) {
-
-		NotifyingWorkspaceCommandStack stack = new NotifyingWorkspaceCommandStack(
-			CheckedOperationHistory.getInstance());
+	public TransactionalEditingDomain createTransactionalEditingDomain(ResourceSet resourceSet) {
+		CDOAwareCommandStack stack = new CDOAwareCommandStack(CheckedOperationHistory.getInstance());
 		stack.setResourceUndoContextPolicy(IResourceUndoContextPolicy.DEFAULT);
 
-		TransactionalEditingDomain result = new CDOAwareTransactionalEditingDomain(
-			new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack,
-			resourceSet);
+		TransactionalEditingDomain result = new CDOAwareTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, resourceSet);
 
 		WorkspaceEditingDomainFactory.INSTANCE.mapResourceSet(result);
 

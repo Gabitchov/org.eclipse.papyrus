@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.messages;
 
@@ -25,6 +26,12 @@ public class Messages extends NLS {
 
 	public static String CopyContextAction_To;
 
+	public static String CustomizationDialog_0;
+
+	public static String CustomizationDialog_1;
+
+	public static String CustomizationDialog_2;
+
 	public static String CustomizationDialog_cannotDeletePluginContext;
 
 	public static String CustomizationDialog_configurationName;
@@ -34,6 +41,8 @@ public class Messages extends NLS {
 	public static String CustomizationDialog_configurationWithSameNameExists;
 
 	public static String CustomizationDialog_copy;
+	
+	public static String CustomizationDialog_copyToWorkspace;
 
 	public static String CustomizationDialog_copyOf;
 
@@ -84,6 +93,14 @@ public class Messages extends NLS {
 	public static String UIEditor_ChangePerspectiveMessage;
 
 	public static String UIEditor_FilterViews;
+
+	public static String WorkspaceContextDeleteAction_0;
+
+	public static String WorkspaceContextDeleteAction_1;
+
+	public static String WorkspaceContextEditAction_0;
+
+	public static String WorkspaceContextEditAction_1;
 
 	static {
 		// initialize resource bundle

@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -45,9 +46,7 @@ import com.google.common.collect.Maps;
 /**
  * This is the PapyrusRepositoryManager type. Enjoy.
  */
-public class PapyrusRepositoryManager
-		extends Container<IPapyrusRepository>
-		implements IInternalPapyrusRepositoryManager {
+public class PapyrusRepositoryManager extends Container<IPapyrusRepository> implements IInternalPapyrusRepositoryManager {
 
 	public static final PapyrusRepositoryManager INSTANCE = new PapyrusRepositoryManager();
 
@@ -95,12 +94,11 @@ public class PapyrusRepositoryManager
 	}
 
 	public IPapyrusRepository createRepository(String url) {
-		if (getRepository(url) != null) {
+		if(getRepository(url) != null) {
 			throw new IllegalArgumentException("repository already exists"); //$NON-NLS-1$
 		}
 
-		Repository repository = RepositoriesFactory.eINSTANCE
-			.createRepository();
+		Repository repository = RepositoriesFactory.eINSTANCE.createRepository();
 		repository.setURL(url);
 		repositoryRegistry.getRepositories().add(repository);
 
@@ -113,16 +111,16 @@ public class PapyrusRepositoryManager
 	}
 
 	public void setURL(IPapyrusRepository repository, String url) {
-		if (!Objects.equal(repository.getURL(), url)) {
-			if (getRepository(url) != null) {
+		if(!Objects.equal(repository.getURL(), url)) {
+			if(getRepository(url) != null) {
 				throw new IllegalArgumentException("repository already exists"); //$NON-NLS-1$
 			}
 
-			if (repository.isConnected()) {
+			if(repository.isConnected()) {
 				throw new IllegalStateException("repository is connected"); //$NON-NLS-1$
 			}
 
-			PapyrusRepository internalRepository = (PapyrusRepository) repository;
+			PapyrusRepository internalRepository = (PapyrusRepository)repository;
 			repositories.remove(internalRepository.getURL());
 			internalRepository.getModel().setURL(url);
 			repositories.put(url, internalRepository);
@@ -130,12 +128,12 @@ public class PapyrusRepositoryManager
 	}
 
 	public void removeRepository(IPapyrusRepository repository) {
-		if (repository.isConnected()) {
+		if(repository.isConnected()) {
 			throw new IllegalArgumentException("repository is still connected"); //$NON-NLS-1$
 		}
 
 		repositories.remove(repository.getURL());
-		EcoreUtil.delete(((PapyrusRepository) repository).getModel());
+		EcoreUtil.delete(((PapyrusRepository)repository).getModel());
 
 		fireElementRemovedEvent(repository);
 	}
@@ -147,37 +145,35 @@ public class PapyrusRepositoryManager
 	public IPapyrusRepository getRepositoryForURI(URI uri) {
 		IPapyrusRepository result = null;
 
-		if (CDOUtils.isCDOURI(uri)) {
+		if(CDOUtils.isCDOURI(uri)) {
 			String uuid = CDOURIUtil.extractRepositoryUUID(uri);
-	
-			for (IInternalPapyrusRepository next : repositories.values()) {
+
+			for(IInternalPapyrusRepository next : repositories.values()) {
 				CDOSession session = next.getCDOSession();
-				if ((session != null)
-					&& Objects.equal(uuid, session.getRepositoryInfo().getUUID())) {
-	
+				if((session != null) && Objects.equal(uuid, session.getRepositoryInfo().getUUID())) {
+
 					result = next;
 					break;
 				}
 			}
 		}
-		
+
 		return result;
 	}
 
 	public void saveRepositories() {
-		if (storage != null) {
+		if(storage != null) {
 			try {
 				OutputStream output = storage.createOutputStream();
 				try {
 					repositoryRegistry.eResource().save(output, null);
 				} finally {
-					if (output != null) {
+					if(output != null) {
 						IOUtil.closeSilent(output);
 					}
 				}
 			} catch (IOException e) {
-				Activator.log.error(
-					"Failed to save model repositories to custom storage.", e); //$NON-NLS-1$
+				Activator.log.error("Failed to save model repositories to custom storage.", e); //$NON-NLS-1$
 			}
 		} else {
 			try {
@@ -191,25 +187,22 @@ public class PapyrusRepositoryManager
 		try {
 			SecurePreferencesFactory.getDefault().flush();
 		} catch (IOException e) {
-			Activator.log.error(
-				"Failed to save repository passwords to secure storage.", e); //$NON-NLS-1$
+			Activator.log.error("Failed to save repository passwords to secure storage.", e); //$NON-NLS-1$
 		}
 	}
 
 	private RepositoryRegistry loadRepositories() {
 		ResourceSet rset = new ResourceSetImpl();
-		rset.getResourceFactoryRegistry().getExtensionToFactoryMap()
-			.put("xml", new XMLResourceFactoryImpl()); //$NON-NLS-1$
+		rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new XMLResourceFactoryImpl()); //$NON-NLS-1$
 
-		File repositoriesFile = new File(Activator.getDefault()
-			.getStateLocation().toFile(), "repositories.xml"); //$NON-NLS-1$
+		File repositoriesFile = new File(Activator.getDefault().getStateLocation().toFile(), "repositories.xml"); //$NON-NLS-1$
 		URI uri = URI.createFileURI(repositoriesFile.getAbsolutePath());
 		Resource resource = rset.createResource(uri);
 
-		if (storage != null) {
+		if(storage != null) {
 			try {
 				InputStream input = storage.createInputStream();
-				if (input != null) {
+				if(input != null) {
 					try {
 						resource.load(input, null);
 					} finally {
@@ -217,12 +210,11 @@ public class PapyrusRepositoryManager
 					}
 				}
 			} catch (Exception e) {
-				Activator.log.error(
-					"Failed to load repository registry from custom storage.", //$NON-NLS-1$
+				Activator.log.error("Failed to load repository registry from custom storage.", //$NON-NLS-1$
 					e);
 			}
 		} else {
-			if (repositoriesFile.exists()) {
+			if(repositoriesFile.exists()) {
 				try {
 					resource.load(null);
 				} catch (Exception e) {
@@ -236,11 +228,9 @@ public class PapyrusRepositoryManager
 			}
 		}
 
-		RepositoryRegistry result = (RepositoryRegistry) EcoreUtil
-			.getObjectByType(resource.getContents(),
-				RepositoriesPackage.Literals.REPOSITORY_REGISTRY);
+		RepositoryRegistry result = (RepositoryRegistry)EcoreUtil.getObjectByType(resource.getContents(), RepositoriesPackage.Literals.REPOSITORY_REGISTRY);
 
-		if (result == null) {
+		if(result == null) {
 			result = RepositoriesFactory.eINSTANCE.createRepositoryRegistry();
 			resource.getContents().add(result);
 		}
@@ -251,7 +241,7 @@ public class PapyrusRepositoryManager
 	private Map<String, IInternalPapyrusRepository> initializeRepositories() {
 		Map<String, IInternalPapyrusRepository> result = Maps.newHashMap();
 
-		for (Repository next : repositoryRegistry.getRepositories()) {
+		for(Repository next : repositoryRegistry.getRepositories()) {
 			result.put(next.getURL(), new PapyrusRepository(container, next));
 		}
 
@@ -262,22 +252,39 @@ public class PapyrusRepositoryManager
 		return credentialsProviderFactory;
 	}
 
-	public void setCredentialsProviderFactory(
-			ICredentialsProviderFactory credentialsProviderFactory) {
+	public void setCredentialsProviderFactory(ICredentialsProviderFactory credentialsProviderFactory) {
 
 		this.credentialsProviderFactory = credentialsProviderFactory;
+	}
+
+	public IInternalPapyrusRepository getRepository(CDOView view) {
+		IInternalPapyrusRepository result = null;
+
+		int sessionID = view.getSessionID();
+
+		for(IInternalPapyrusRepository next : repositories.values()) {
+			// if it's not connected, it can't be responsible for this view
+			if(next.isConnected()) {
+				if(next.getCDOSession().getSessionID() == sessionID) {
+					result = next;
+					break;
+				}
+			}
+		}
+
+		return result;
 	}
 
 	//
 	// IContainer protocol
 	//
 
+	@Override
 	public boolean isEmpty() {
 		return !isActive() || repositories.isEmpty();
 	}
 
 	public IPapyrusRepository[] getElements() {
-		return Iterables.toArray(repositories.values(),
-			IPapyrusRepository.class);
+		return Iterables.toArray(repositories.values(), IPapyrusRepository.class);
 	}
 }

@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - add prototype reference to Context (CDO)
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -39,7 +45,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 */
 	public static ContextsFactory init() {
 		try {
-			ContextsFactory theContextsFactory = (ContextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/properties/contexts/0.9"); 
+			ContextsFactory theContextsFactory = (ContextsFactory)EPackage.Registry.INSTANCE.getEFactory(ContextsPackage.eNS_URI);
 			if (theContextsFactory != null) {
 				return theContextsFactory;
 			}

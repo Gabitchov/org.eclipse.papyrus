@@ -122,6 +122,8 @@ public class Messages extends NLS {
 
 	public static String PapyrusCDOEditorManager_2;
 
+	public static String PapyrusTransactionListener_0;
+
 	public static String RemoveRepositoryAction_0;
 
 	public static String RemoveRepositoryAction_1;
@@ -193,6 +195,10 @@ public class Messages extends NLS {
 	public static String RepositorySelectionBlock_0;
 
 	public static String RepositorySelectionBlock_1;
+
+	public static String RepositorySelectionDialog_0;
+
+	public static String RepositorySelectionDialog_1;
 
 	public static String RepositorySelectionPage_0;
 

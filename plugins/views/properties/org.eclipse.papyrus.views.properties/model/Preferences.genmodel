@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.views.properties/src-gen"
     editDirectory="/org.eclipse.papyrus.views.properties.edit/src-gen" editorDirectory="/org.eclipse.papyrus.views.properties.editor/src-gen"
-    modelPluginID="org.eclipse.papyrus.views.properties" modelName="Preferences" testsDirectory="/org.eclipse.papyrus.views.properties.tests/src-gen"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false">
+    modelPluginID="org.eclipse.papyrus.views.properties" modelName="Preferences" codeFormatting="true"
+    commentFormatting="true" testsDirectory="/org.eclipse.papyrus.views.properties.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    runtimeVersion="2.6">
   <foreignModel>Preferences.ecore</foreignModel>
   <genPackages prefix="Preferences" basePackage="org.eclipse.papyrus.views.properties.runtime"
       disposableProviderFactory="true" ecorePackage="Preferences.ecore#/">
     <genClasses ecoreClass="Preferences.ecore#//ContextDescriptor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Preferences.ecore#//ContextDescriptor/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Preferences.ecore#//ContextDescriptor/applied"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Preferences.ecore#//ContextDescriptor/prototype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Preferences.ecore#//ContextDescriptor/deleted"/>
     </genClasses>
     <genClasses ecoreClass="Preferences.ecore#//Preferences">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Preferences.ecore#//Preferences/contexts"/>

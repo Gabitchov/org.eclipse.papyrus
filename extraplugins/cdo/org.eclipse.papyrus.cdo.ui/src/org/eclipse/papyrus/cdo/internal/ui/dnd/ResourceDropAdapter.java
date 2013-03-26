@@ -28,7 +28,6 @@ import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
-import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -158,7 +157,6 @@ public class ResourceDropAdapter extends ViewerDropAdapter {
 
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {
-					CDOUtil.setLegacyModeDefault(true);
 					return doMove(dropTarget, resourceNodes);
 				}
 			}.schedule();

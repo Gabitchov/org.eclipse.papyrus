@@ -32,11 +32,9 @@ import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomai
 /**
  * This is the CDOAwareTransactionalEditingDomain type. Enjoy.
  */
-public class CDOAwareTransactionalEditingDomain
-		extends PapyrusROTransactionalEditingDomain {
+public class CDOAwareTransactionalEditingDomain extends PapyrusROTransactionalEditingDomain {
 
-	public CDOAwareTransactionalEditingDomain(AdapterFactory adapterFactory,
-			TransactionalCommandStack stack, ResourceSet resourceSet) {
+	public CDOAwareTransactionalEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack, ResourceSet resourceSet) {
 		super(adapterFactory, stack, resourceSet);
 	}
 
@@ -47,7 +45,7 @@ public class CDOAwareTransactionalEditingDomain
 
 	protected void fireResourceSetChanged(CDOViewInvalidationEvent event) {
 		final ResourceSetListener[] listeners = getPostcommitListeners();
-		final Transaction transaction = new TransactionImpl(this, false);
+		final Transaction transaction = new TransactionImpl(this, false, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 
 		// TODO: Compute notifications from the revision deltas? Model Explorer
 		// doesn't need any, and this is here primarily to kick the explorer.
@@ -56,16 +54,12 @@ public class CDOAwareTransactionalEditingDomain
 		CDOUtils.notify(this, new Runnable() {
 
 			public void run() {
-				for (ResourceSetListener element : listeners) {
+				for(ResourceSetListener element : listeners) {
 					try {
-						element.resourceSetChanged(new ResourceSetChangeEvent(
-							CDOAwareTransactionalEditingDomain.this,
-							transaction, notifications));
+						element.resourceSetChanged(new ResourceSetChangeEvent(CDOAwareTransactionalEditingDomain.this, transaction, notifications));
 					} catch (Exception e) {
-						Activator.log
-							.error(
-								"Uncaught exception in resource set change listener.", //$NON-NLS-1$
-								e);
+						Activator.log.error("Uncaught exception in resource set change listener.", //$NON-NLS-1$
+							e);
 					}
 				}
 			}

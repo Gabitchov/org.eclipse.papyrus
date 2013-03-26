@@ -4,7 +4,7 @@
     nsPrefix="properties">
   <eSubpackages name="environment" nsURI="http://www.eclipse.org/papyrus/properties/environment/0.9"
       nsPrefix="environment">
-    <eClassifiers xsi:type="ecore:EClass" name="Environment" eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//environment/ConstraintEnvironment">
+    <eClassifiers xsi:type="ecore:EClass" name="Environment" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//environment/ConstraintEnvironment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementFactories"
           upperBound="-1" eType="#//environment/ModelElementFactoryDescriptor" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="widgetTypes" upperBound="-1"
@@ -76,6 +76,11 @@
           eType="#//contexts/View" containment="true" eOpposite="#//contexts/View/context"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataContexts" upperBound="-1"
           eType="#//contexts/DataContextRoot" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="prototype" eType="#//contexts/Context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="References the context from which a context was copied.  The context manager caches the prototype reference so that it can enable a prototype when the copied context is not available."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Tab">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1"
@@ -91,7 +96,7 @@
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
@@ -103,7 +108,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="datacontexts" upperBound="-1"
           eType="#//contexts/DataContextElement"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tab" lowerBound="1" eType="#//contexts/Tab"

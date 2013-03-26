@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -34,6 +35,7 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent.Kind;
+import org.eclipse.papyrus.cdo.core.util.JobWaiter;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
@@ -53,8 +55,7 @@ import com.google.common.collect.Maps;
  */
 public class DIResourceQuery {
 
-	private static final Map<CDOView, DIResourceQuery> instances = Maps
-		.newHashMap();
+	private static final Map<CDOView, DIResourceQuery> instances = Maps.newHashMap();
 
 	private final StructuredViewer viewer;
 
@@ -64,18 +65,15 @@ public class DIResourceQuery {
 
 	private final IListener cdoViewListener = createCDOViewListener();
 
-	private AtomicReference<Set<CDOResource>> diResources = new AtomicReference<Set<CDOResource>>(
-		Collections.<CDOResource> emptySet());
+	private AtomicReference<Set<CDOResource>> diResources = new AtomicReference<Set<CDOResource>>(Collections.<CDOResource> emptySet());
 
 	private DIResourceQuery(StructuredViewer viewer, CDOView view) {
 		super();
 
 		this.viewer = viewer;
-		this.query = view
-			.createQuery(
-				"ocl", //$NON-NLS-1$
-				"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource())", //$NON-NLS-1$
-				DiPackage.Literals.SASH_MODEL);
+		this.query = view.createQuery("ocl", //$NON-NLS-1$
+			"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource())", //$NON-NLS-1$
+			DiPackage.Literals.SASH_MODEL);
 
 		view.addListener(cdoViewListener);
 		viewer.getControl().addDisposeListener(createViewerDisposeListener());
@@ -83,14 +81,13 @@ public class DIResourceQuery {
 		runQuery();
 	}
 
-	public static DIResourceQuery initialize(StructuredViewer viewer,
-			CDOView view) {
+	public static DIResourceQuery initialize(StructuredViewer viewer, CDOView view) {
 
 		DIResourceQuery result;
 
-		synchronized (instances) {
+		synchronized(instances) {
 			result = instances.get(view);
-			if (result == null) {
+			if(result == null) {
 				result = new DIResourceQuery(viewer, view);
 				instances.put(view, result);
 			}
@@ -99,15 +96,53 @@ public class DIResourceQuery {
 		return result;
 	}
 
+	/**
+	 * Wait for the current in-progress query on the specified {@code view} to finish, if any.
+	 * 
+	 * @param view
+	 *        a view which we are or may be querying for DI resources
+	 * @param timeout
+	 *        a positive timeout
+	 * @param unit
+	 *        the time unit for the {@code timeout}
+	 * 
+	 * @return {@code true} on successful wait (if required); {@code false} on time-out
+	 * 
+	 * @throws InterruptedException
+	 *         if the wait is interrupted
+	 */
+	public static boolean waitFor(CDOView view, long timeout, TimeUnit unit) throws InterruptedException {
+		if(timeout <= 0) {
+			throw new IllegalArgumentException("Non-positive timeout");
+		}
+
+		boolean result;
+
+		DIResourceQuery query;
+
+		synchronized(instances) {
+			query = instances.get(view);
+		}
+
+		if(query == null) {
+			// have nothing to wait for
+			result = true;
+		} else {
+			result = JobWaiter.waitFor(query, timeout, unit);
+		}
+
+		return result;
+	}
+
 	public static Set<CDOResource> getDIResources(CDOView view) {
 		DIResourceQuery query;
 
-		synchronized (instances) {
+		synchronized(instances) {
 			query = instances.get(view);
 		}
 
 		Set<CDOResource> result;
-		if (query == null) {
+		if(query == null) {
 			result = Collections.emptySet();
 		} else {
 			result = query.getDIResources();
@@ -124,15 +159,14 @@ public class DIResourceQuery {
 		CDOResource result = null;
 
 		URI uri = resource.getURI();
-		if (DI_FILE_EXTENSION.equals(uri.fileExtension())) {
+		if(DI_FILE_EXTENSION.equals(uri.fileExtension())) {
 			// it *is* a DI resource
 			result = resource;
 		} else {
-			uri = uri.trimFileExtension()
-				.appendFileExtension(DI_FILE_EXTENSION);
+			uri = uri.trimFileExtension().appendFileExtension(DI_FILE_EXTENSION);
 
-			for (CDOResource next : getDIResources(resource.cdoView())) {
-				if (uri.equals(next.getURI())) {
+			for(CDOResource next : getDIResources(resource.cdoView())) {
+				if(uri.equals(next.getURI())) {
 					result = next;
 					break;
 				}
@@ -150,9 +184,7 @@ public class DIResourceQuery {
 		// we cannot query for EClasses that the server doesn't know about. And,
 		// if it doesn't know about an EClass, then a priori, none of its
 		// instances exist, so we don't need to run the query
-		if (query.getView().getSession().getPackageRegistry()
-			.getPackageInfo(DiPackage.eINSTANCE) != null) {
-
+		if(query.getView().getSession().getPackageRegistry().getPackageInfo(DiPackage.eINSTANCE) != null) {
 			queryJob.schedule();
 		}
 	}
@@ -162,7 +194,7 @@ public class DIResourceQuery {
 	}
 
 	private void dispose() {
-		synchronized (instances) {
+		synchronized(instances) {
 			CDOView view = query.getView();
 			view.removeListener(cdoViewListener);
 			instances.remove(view);
@@ -173,12 +205,12 @@ public class DIResourceQuery {
 		return new IListener() {
 
 			public void notifyEvent(IEvent event) {
-				if (event instanceof ILifecycleEvent) {
-					ILifecycleEvent lifecycleEvent = (ILifecycleEvent) event;
-					if (lifecycleEvent.getKind() == Kind.DEACTIVATED) {
+				if(event instanceof ILifecycleEvent) {
+					ILifecycleEvent lifecycleEvent = (ILifecycleEvent)event;
+					if(lifecycleEvent.getKind() == Kind.DEACTIVATED) {
 						dispose();
 					}
-				} else if (event instanceof CDOViewInvalidationEvent) {
+				} else if(event instanceof CDOViewInvalidationEvent) {
 					// if my view is invalidated, then some folder or resource
 					// that I am showing has changed. Run the query again and
 					// update asynchronously
@@ -201,8 +233,7 @@ public class DIResourceQuery {
 	// Nested types
 	//
 
-	private class QueryJob
-			extends Job {
+	private class QueryJob extends Job {
 
 		QueryJob() {
 			super(Messages.DIResourceQuery_2);
@@ -211,38 +242,40 @@ public class DIResourceQuery {
 		}
 
 		@Override
+		public boolean belongsTo(Object family) {
+			return family == DIResourceQuery.this;
+		}
+
+		@Override
 		protected IStatus run(IProgressMonitor monitor) {
-			ImmutableSet.Builder<CDOResource> resultBuilder = ImmutableSet
-				.builder();
+			ImmutableSet.Builder<CDOResource> resultBuilder = ImmutableSet.builder();
 			List<CDOResource> rawResult = query.getResult(CDOResource.class);
 
 			// don't use an iterator because it won't be able to advance
 			// past a resource proxy that cannot be resolved
-			for (int i = 0; i < rawResult.size(); i++) {
+			for(int i = 0; i < rawResult.size(); i++) {
 				try {
 					CDOResource next = rawResult.get(i);
-					if (isContained(next)) {
+					if(isContained(next)) {
 						resultBuilder.add(next);
 					}
 				} catch (Exception e) {
 					// can get "node not found" exceptions on incompletely
 					// deleted resources
-					Activator.log.error(
-						"Error retrieving resource result from CDO query.", e); //$NON-NLS-1$
+					Activator.log.error("Error retrieving resource result from CDO query.", e); //$NON-NLS-1$
 				}
 			}
 			Set<CDOResource> result = resultBuilder.build();
 
 			diResources.set(ImmutableSet.copyOf(result));
 
-			if (viewer.getControl() != null) {
+			if(viewer.getControl() != null) {
 				Display display = viewer.getControl().getDisplay();
-				if (display != null) {
+				if(display != null) {
 					display.asyncExec(new Runnable() {
 
 						public void run() {
-							if ((viewer.getControl() != null)
-								&& !viewer.getControl().isDisposed()) {
+							if((viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
 
 								refresh();
 							}
@@ -260,11 +293,11 @@ public class DIResourceQuery {
 			boolean result = false;
 
 			CDOResourceFolder folder = resource.getFolder();
-			if (folder != null) {
+			if(folder != null) {
 				result = folder.getNodes().contains(resource);
 			} else {
 				CDOResource root = resource.cdoResource();
-				if ((root != null) && root.isRoot()) {
+				if((root != null) && root.isRoot()) {
 					result = root.getContents().contains(resource);
 				}
 			}

@@ -13,6 +13,7 @@ package org.eclipse.papyrus.cdo.uml.internal.ui.importsources;
 
 import static org.eclipse.papyrus.cdo.internal.ui.Activator.ICON_PAPYRUS_MODEL;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,11 +47,12 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import com.google.common.collect.Ordering;
+
 /**
  * This is the CDOPackageImportSource type. Enjoy.
  */
-public class CDOPackageImportSource
-		extends AbstractPackageImportSource {
+public class CDOPackageImportSource extends AbstractPackageImportSource {
 
 	private final IPapyrusRepositoryManager repoMan = PapyrusRepositoryManager.INSTANCE;
 
@@ -66,7 +68,7 @@ public class CDOPackageImportSource
 	public boolean canImportInto(Collection<?> selection) {
 		boolean result = super.canImportInto(selection);
 
-		if (result) {
+		if(result) {
 			Package package_ = getPackage(selection);
 			result = CDOUtils.isCDOObject(package_);
 		}
@@ -77,14 +79,13 @@ public class CDOPackageImportSource
 	@Override
 	public void initialize(Collection<?> selection) {
 		availableRepos = new java.util.ArrayList<IPapyrusRepository>();
-		for (IPapyrusRepository next : repoMan.getRepositories()) {
-			if (next.isConnected()) {
+		for(IPapyrusRepository next : repoMan.getRepositories()) {
+			if(next.isConnected()) {
 				availableRepos.add(next);
 			}
 		}
 
-		itemProvider = new ModelRepositoryItemProvider(PlatformUI
-			.getWorkbench().getActiveWorkbenchWindow().getActivePage());
+		itemProvider = new ModelRepositoryItemProvider(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
 	}
 
 	@Override
@@ -108,7 +109,7 @@ public class CDOPackageImportSource
 			protected Image customGetImage(Object element) {
 				Image result = null;
 
-				if (element == CDOPackageImportSource.this) {
+				if(element == CDOPackageImportSource.this) {
 					result = SharedImages.getImage(ICON_PAPYRUS_MODEL);
 				}
 
@@ -119,7 +120,7 @@ public class CDOPackageImportSource
 			protected String customGetText(Object element) {
 				String result = null;
 
-				if (element == CDOPackageImportSource.this) {
+				if(element == CDOPackageImportSource.this) {
 					result = Messages.CDOPackageImportSource_0;
 				}
 
@@ -131,45 +132,37 @@ public class CDOPackageImportSource
 	protected CDOResource getCDOResource(Object model) {
 		CDOResource result = null;
 
-		if (model instanceof CDOResource) {
-			result = (CDOResource) model;
-		} else if (model instanceof IAdaptable) {
-			result = (CDOResource) ((IAdaptable) model)
-				.getAdapter(CDOResource.class);
+		if(model instanceof CDOResource) {
+			result = (CDOResource)model;
+		} else if(model instanceof IAdaptable) {
+			result = (CDOResource)((IAdaptable)model).getAdapter(CDOResource.class);
 		}
 
 		return result;
 	}
 
 	@Override
-	protected void validateSelection(Object model)
-			throws CoreException {
+	protected void validateSelection(Object model) throws CoreException {
 
 		CDOResource cdo = getCDOResource(model);
-		if (cdo == null) {
-			throw new CoreException(new Status(IStatus.WARNING,
-				Activator.PLUGIN_ID,
-				NLS.bind(Messages.CDOPackageImportSource_1,
-					getText(model))));
+		if(cdo == null) {
+			throw new CoreException(new Status(IStatus.WARNING, Activator.PLUGIN_ID, NLS.bind(Messages.CDOPackageImportSource_1, getText(model))));
 		}
 
 		super.validateSelection(model);
 	}
 
 	@Override
-	public List<Package> getPackages(ResourceSet resourceSet, Object model)
-			throws CoreException {
+	public List<Package> getPackages(ResourceSet resourceSet, Object model) throws CoreException {
 
 		List<Package> result;
 
-		if (model instanceof DIModel) {
+		if(model instanceof DIModel) {
 			result = new java.util.ArrayList<Package>(3);
 
-			for (Object next : ((DIModel) model).getChildren()) {
-				if (next instanceof Resource) {
-					result.addAll(EcoreUtil.<Package> getObjectsByType(
-						((Resource) next).getContents(),
-						UMLPackage.Literals.PACKAGE));
+			for(Object next : ((DIModel)model).getChildren()) {
+				if(next instanceof Resource) {
+					result.addAll(EcoreUtil.<Package> getObjectsByType(((Resource)next).getContents(), UMLPackage.Literals.PACKAGE));
 				}
 			}
 		} else {
@@ -183,9 +176,18 @@ public class CDOPackageImportSource
 	// Nested types
 	//
 
-	private class CDOContent
-			extends StaticContentProvider
-			implements ITreeContentProvider {
+	private class CDOContent extends StaticContentProvider implements ITreeContentProvider {
+
+		private final Ordering<Object> sorter = new Ordering<Object>() {
+
+			@Override
+			public int compare(Object left, Object right) {
+				String leftLabel = getText(left);
+				String rightLabel = getText(right);
+
+				return Ordering.natural().compare(leftLabel, rightLabel);
+			}
+		};
 
 		CDOContent() {
 			super(availableRepos.toArray());
@@ -193,7 +195,7 @@ public class CDOPackageImportSource
 
 		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			if (newInput == null) {
+			if(newInput == null) {
 				itemProvider.inputChanged(viewer, repoMan, null);
 			} else {
 				// substitute the repository manager as the input element
@@ -213,7 +215,11 @@ public class CDOPackageImportSource
 		}
 
 		public Object[] getChildren(Object parentElement) {
-			return itemProvider.getChildren(parentElement);
+			Object[] result = itemProvider.getChildren(parentElement);
+
+			Arrays.sort(result, sorter);
+
+			return result;
 		}
 
 	}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,22 +8,20 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.ui;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.customization.properties.Activator;
-import org.eclipse.papyrus.customization.properties.util.ProjectUtil;
+import org.eclipse.papyrus.customization.properties.storage.actions.IContextEditAction;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.FileEditorInput;
 
 /**
  * An action to edit an existing context.
@@ -33,6 +31,14 @@ import org.eclipse.ui.part.FileEditorInput;
  * @author Camille Letavernier
  */
 public class EditContextAction {
+
+	private IContextEditAction delegate;
+
+	public EditContextAction(IContextEditAction delegate) {
+		super();
+
+		this.delegate = delegate;
+	}
 
 	/**
 	 * Opens an Eclipse Editor to edit the given context.
@@ -49,23 +55,16 @@ public class EditContextAction {
 			dialog.run(false, false, new IRunnableWithProgress() {
 
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					monitor.beginTask("Opening the property view configuration: " + context.getName(), IProgressMonitor.UNKNOWN);
 					try {
-						runOpenEditor(context);
+						delegate.openEditor(context, monitor);
 					} catch (CoreException ex) {
 						Activator.log.error(ex);
 					}
-					monitor.done();
 				}
 
 			});
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 		}
-	}
-
-	protected void runOpenEditor(Context context) throws CoreException {
-		IFile contextFile = ProjectUtil.getContextFile(context);
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new FileEditorInput(contextFile), "org.eclipse.papyrus.customization.properties.UIEditor", true); //$NON-NLS-1$;
 	}
 }

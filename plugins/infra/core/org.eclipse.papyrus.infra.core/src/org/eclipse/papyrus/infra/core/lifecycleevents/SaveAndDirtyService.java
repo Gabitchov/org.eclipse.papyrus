@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 LIFL & CEA LIST.
+ * Copyright (c) 2010, 2013 LIFL & CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Don't make editor dirty on empty ResourceSetChangeEvent
  *
  *****************************************************************************/
 
@@ -35,6 +36,7 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -148,11 +150,19 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 		}
 
 		public void resourceSetChanged(ResourceSetChangeEvent event) {
-			if(event.getTransaction() != null && event.getTransaction().getStatus().isOK()) {
+			if(event.getTransaction() != null && event.getTransaction().getStatus().isOK() && madePersistableChanges(event)) {
 				fireIsDirtyChanged();
 			}
 		}
 
+		private boolean madePersistableChanges(ResourceSetChangeEvent event) {
+			return !event.getNotifications().isEmpty() && !isUnprotected(event.getTransaction());
+		}
+
+		private boolean isUnprotected(Transaction transaction) {
+			return !Boolean.TRUE.equals(transaction.getOptions().get(Transaction.OPTION_UNPROTECTED));
+		}
+		
 		public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
 			return null;
 		}

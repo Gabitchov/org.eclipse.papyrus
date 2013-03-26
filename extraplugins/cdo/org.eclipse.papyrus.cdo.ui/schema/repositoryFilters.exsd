@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.cdo.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.papyrus.cdo.ui" id="repositoryFilters" name="Model Repository Item Provider Filters"/>
+      </appinfo>
+      <documentation>
+         Filters to apply to the &lt;tt&gt;ModelRepositoryItemProvider&lt;/tt&gt; to exclude elements from all viewers that present the contents of model repositories for browsing.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="itemProviderFilter"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="itemProviderFilter">
+      <annotation>
+         <documentation>
+            Specification of a filter that excludes elements from the viewer content supplied by the &lt;tt&gt;ModelRepositoryItemProvider&lt;/tt&gt;.  Note that this is not a viewer filter; the filtered content is never supplied to the viewer in the first place.
+         </documentation>
+      </annotation>
+      <complexType>
+         <choice>
+            <element ref="labelPattern"/>
+            <element ref="elementFilter"/>
+            <element ref="predicate"/>
+         </choice>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An unique identifier of the filter.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="labelPattern">
+      <complexType>
+         <attribute name="pattern" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A regular expression pattern matching the labels of elements to filter from the viewer contents.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="objectClass" type="string">
+            <annotation>
+               <documentation>
+                  The kind of object to which to apply the label filter pattern.  If absent, all objects have the label pattern filter applied.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="adapt" type="boolean">
+            <annotation>
+               <documentation>
+                  In the case that the &lt;tt&gt;objectClass&lt;/tt&gt; attribute is specified, determines whether objects that adapt to that type also have the pattern filter applied.  Defaults to false.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="elementFilter">
+      <complexType>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  A class implementing the Net4J &lt;tt&gt;IElementFilter&lt;/tt&gt; interface.  Required if the &lt;tt&gt;supplierClass&lt;/tt&gt; is not specified.  Elements matching the filter are excluded.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.net4j.util.ui.views.IElementFilter"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="supplierClass" type="string">
+            <annotation>
+               <documentation>
+                  A class supplying a Net4J &lt;tt&gt;IElementFilter&lt;/tt&gt;.  Required if the &lt;tt&gt;class&lt;/tt&gt; is not specified.  Elements matching the supplied filter are excluded.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.google.common.base.Supplier"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="predicate">
+      <complexType>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  A class implementing the Guava &lt;tt&gt;Predicate&amp;lt;Object&amp;gt;&lt;/tt&gt; interface.  Required if the &lt;tt&gt;supplierClass&lt;/tt&gt; is not specified.  Elements matching the predicate are excluded.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.google.common.base.Predicate"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="supplierClass" type="string">
+            <annotation>
+               <documentation>
+                  A class supplying a Guava &lt;tt&gt;Predicate&amp;lt;Object&amp;gt;&lt;/tt&gt;.  Required if the &lt;tt&gt;class&lt;/tt&gt; is not specified.  Elements matching the supplied predicate are excluded.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.google.common.base.Supplier"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.10.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         /*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+      </documentation>
+   </annotation>
+
+</schema>

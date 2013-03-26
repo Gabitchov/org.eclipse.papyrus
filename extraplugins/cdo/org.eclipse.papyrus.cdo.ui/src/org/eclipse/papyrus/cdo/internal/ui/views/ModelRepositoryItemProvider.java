@@ -32,94 +32,88 @@ import com.google.common.collect.Iterables;
 /**
  * This is the ModelRepositoryItemProvider type. Enjoy.
  */
-public class ModelRepositoryItemProvider
-		extends CDOItemProvider {
+public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Predicate<Object> isDIResource = new Predicate<Object>() {
 
 		public boolean apply(Object input) {
-			return (input instanceof CDOResource)
-				&& DIResourceQuery.getDIResources(
-					((CDOResource) input).cdoView()).contains(input);
+			return (input instanceof CDOResource) && DIResourceQuery.getDIResources(((CDOResource)input).cdoView()).contains(input);
 		}
 	};
 
 	private final Predicate<Object> isUnaffiliatedResource = new Predicate<Object>() {
 
 		public boolean apply(Object input) {
-			return (input instanceof CDOResource)
-				&& DIResourceQuery.isUnaffiliatedResource((CDOResource) input);
+			return (input instanceof CDOResource) && DIResourceQuery.isUnaffiliatedResource((CDOResource)input);
 		}
 	};
 
 	@SuppressWarnings("unchecked")
-	private final Predicate<Object> resourceFilter = Predicates.or(
-		Predicates.instanceOf(CDOResourceFolder.class), isDIResource,
-		isUnaffiliatedResource);
+	private final Predicate<Object> resourceFilter = Predicates.or(Predicates.instanceOf(CDOResourceFolder.class), isDIResource, isUnaffiliatedResource);
 
 	private final Function<Object, Object> resourceNodeTransformer = new Function<Object, Object>() {
 
 		public Object apply(Object input) {
-			if (isDIResource.apply(input)) {
-				return DIModel.getInstance((CDOResource) input, true);
+			if(isDIResource.apply(input)) {
+				return DIModel.getInstance((CDOResource)input, true);
 			} else {
 				return input;
 			}
 		}
 	};
 
-	public ModelRepositoryItemProvider(IWorkbenchPage page,
-			IElementFilter rootElementFilter) {
+	private final Predicate<Object> extensibleFilter;
+
+	public ModelRepositoryItemProvider(IWorkbenchPage page, IElementFilter rootElementFilter) {
 
 		super(page, rootElementFilter);
+
+		extensibleFilter = ItemProviderFilterRegistry.INSTANCE.createFilter(this);
 	}
 
 	public ModelRepositoryItemProvider(IWorkbenchPage page) {
-		super(page);
+		this(page, null);
 	}
 
 	@Override
 	public Object[] getChildren(Object element) {
-		if (element instanceof IPapyrusRepository) {
+		if(element instanceof IPapyrusRepository) {
 			// initialize query for DI resources
-			IInternalPapyrusRepository repo = (IInternalPapyrusRepository) element;
-			if (repo.isConnected()) {
+			IInternalPapyrusRepository repo = (IInternalPapyrusRepository)element;
+			if(repo.isConnected()) {
 				DIResourceQuery.initialize(getViewer(), repo.getMasterView());
 			}
 		}
 
-		Object[] result;
+		Iterable<?> result;
 
-		if (element instanceof DIModel) {
-			result = ((DIModel) element).getChildren();
+		if(element instanceof DIModel) {
+			result = Arrays.asList(((DIModel)element).getChildren());
 		} else {
-			result = super.getChildren(element);
+			result = Arrays.asList(super.getChildren(element));
 
-			if ((element instanceof CDOResourceFolder)
-				|| (element instanceof IPapyrusRepository)) {
-
+			if((element instanceof CDOResourceFolder) || (element instanceof IPapyrusRepository)) {
 				result = filterDIResources(result);
 			}
 		}
 
-		return result;
+		return Iterables.toArray(Iterables.filter(result, extensibleFilter), Object.class);
 	}
 
 	@Override
 	public Object getParent(Object element) {
 		Object result;
 
-		if (element instanceof CDOResource) {
-			CDOResource di = DIResourceQuery
-				.getAffiliateResource((CDOResource) element);
+		if(element instanceof CDOResource) {
+			CDOResource di = DIResourceQuery.getAffiliateResource((CDOResource)element);
 
-			if (di != null) {
+			if(di != null) {
 				result = DIModel.getInstance(di, true);
 			} else {
 				result = super.getParent(element);
 			}
-		} else if (element instanceof DIModel) {
-			result = super.getParent(((DIModel) element).getResource());
+		} else if(element instanceof DIModel) {
+			result = super.getParent(((DIModel)element).getResource());
 		} else {
 			result = super.getParent(element);
 		}
@@ -127,14 +121,11 @@ public class ModelRepositoryItemProvider
 		return result;
 	}
 
-	protected Object[] filter(Object[] elements, Predicate<Object> predicate) {
-
-		return Iterables.toArray(Iterables.transform(
-			Iterables.filter(Arrays.asList(elements), predicate),
-			resourceNodeTransformer), Object.class);
+	protected Iterable<?> filter(Iterable<?> elements, Predicate<Object> predicate) {
+		return Iterables.transform(Iterables.filter(elements, predicate), resourceNodeTransformer);
 	}
 
-	protected Object[] filterDIResources(Object[] elements) {
+	protected Iterable<?> filterDIResources(Iterable<?> elements) {
 		return filter(elements, resourceFilter);
 	}
 
@@ -142,13 +133,11 @@ public class ModelRepositoryItemProvider
 	public Image getImage(Object obj) {
 		Image result;
 
-		if (obj instanceof IPapyrusRepository) {
-			boolean open = ((IPapyrusRepository) obj).isConnected();
-			result = SharedImages.getImage(open
-				? Activator.ICON_OPEN_REPOSITORY
-				: Activator.ICON_CLOSED_REPOSITORY);
-		} else if (obj instanceof DIModel) {
-			result = ((DIModel) obj).getImage();
+		if(obj instanceof IPapyrusRepository) {
+			boolean open = ((IPapyrusRepository)obj).isConnected();
+			result = SharedImages.getImage(open ? Activator.ICON_OPEN_REPOSITORY : Activator.ICON_CLOSED_REPOSITORY);
+		} else if(obj instanceof DIModel) {
+			result = ((DIModel)obj).getImage();
 		} else {
 			result = super.getImage(obj);
 		}
@@ -160,10 +149,10 @@ public class ModelRepositoryItemProvider
 	public String getText(Object obj) {
 		String result;
 
-		if (obj instanceof IInternalPapyrusRepository) {
-			result = ((IInternalPapyrusRepository) obj).getName();
-		} else if (obj instanceof DIModel) {
-			result = ((DIModel) obj).getName();
+		if(obj instanceof IInternalPapyrusRepository) {
+			result = ((IInternalPapyrusRepository)obj).getName();
+		} else if(obj instanceof DIModel) {
+			result = ((DIModel)obj).getName();
 		} else {
 			result = super.getText(obj);
 		}

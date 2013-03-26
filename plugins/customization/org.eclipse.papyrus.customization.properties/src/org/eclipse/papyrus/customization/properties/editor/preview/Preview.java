@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Use URIs to support non-URL-compatible storage (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.editor.preview;
 
@@ -28,6 +29,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -365,7 +367,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 			pView.setLayout(new GridLayout(1, false));
 			URL sectionURL = saveTmp(section);
 			if(sectionURL != null) {
-				displayEngine.createSection(pView, section, sectionURL, null);
+				displayEngine.createSection(pView, section, URI.createURI(sectionURL.toExternalForm(), true), null);
 			}
 		}
 

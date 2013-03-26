@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,10 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Use URIs to support non-URL-compatible storage (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.views.properties.contexts.Context;
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
+import org.eclipse.papyrus.views.properties.util.EMFURLStreamHandler;
 import org.eclipse.papyrus.views.properties.xwt.XWTTabDescriptor;
 import org.eclipse.papyrus.xwt.DefaultLoadingContext;
 import org.eclipse.papyrus.xwt.ILoadingContext;
@@ -165,7 +167,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		}
 	}
 
-	public Control createSection(Composite parent, Section section, URL sectionFile, DataSource source) {
+	public Control createSection(Composite parent, Section section, URI sectionFile, DataSource source) {
 		if(sectionFile == null) {
 			sectionFile = loadXWTFile(section);
 			if(sectionFile == null) {
@@ -179,7 +181,9 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		Control control = null;
 
 		try {
-			control = (Control)XWT.load(parent, sectionFile, source);
+			ResourceSet rset = section.eResource().getResourceSet();
+			URL url = new URL(null, sectionFile.toString(), new EMFURLStreamHandler(rset.getURIConverter()));
+			control = (Control)XWT.load(parent, url, source);
 
 			if(control != null) {
 				control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -198,7 +202,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		return control;
 	}
 
-	private URL loadXWTFile(Section section) {
+	private URI loadXWTFile(Section section) {
 		EObject tab = section.eContainer();
 		Context context = (Context)tab.eContainer();
 		if(context.eResource() == null) {
@@ -214,14 +218,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		}
 		sectionURI = sectionURI.resolve(baseURI);
 
-		try {
-			URL url = new URL(sectionURI.toString());
-			return url;
-		} catch (IOException ex) {
-			Activator.log.error(ex);
-		}
-
-		return null;
+		return sectionURI;
 	}
 
 	private void layout(Composite parent) {

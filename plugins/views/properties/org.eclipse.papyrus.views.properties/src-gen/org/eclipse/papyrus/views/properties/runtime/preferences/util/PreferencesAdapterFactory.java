@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - add prototype reference to ContextDescriptor (CDO)
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime.preferences.util;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -125,7 +131,8 @@ public class PreferencesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.runtime.preferences.Preferences <em>Preferences</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.runtime.preferences.Preferences <em>Preferences</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.

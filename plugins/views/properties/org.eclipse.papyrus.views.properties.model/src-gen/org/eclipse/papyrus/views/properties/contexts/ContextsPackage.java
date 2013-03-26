@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - add prototype reference to Context (CDO)
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -127,13 +133,22 @@ public interface ContextsPackage extends EPackage {
 	int CONTEXT__DATA_CONTEXTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Prototype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__PROTOTYPE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl <em>Tab</em>}' class.
@@ -795,6 +810,17 @@ public interface ContextsPackage extends EPackage {
 	EReference getContext_DataContexts();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.views.properties.contexts.Context#getPrototype <em>Prototype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Prototype</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Context#getPrototype()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EReference getContext_Prototype();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.contexts.Tab <em>Tab</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1276,6 +1302,14 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__DATA_CONTEXTS = eINSTANCE.getContext_DataContexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Prototype</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTEXT__PROTOTYPE = eINSTANCE.getContext_Prototype();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl <em>Tab</em>}' class.

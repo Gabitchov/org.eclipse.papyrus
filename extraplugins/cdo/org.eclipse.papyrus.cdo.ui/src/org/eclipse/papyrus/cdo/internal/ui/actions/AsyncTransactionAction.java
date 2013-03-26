@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -51,8 +50,6 @@ public abstract class AsyncTransactionAction<T> extends AsyncAction<T> {
 		if(view instanceof CDOTransaction) {
 			doRun(selection, (CDOTransaction)view, monitor);
 		} else {
-			CDOUtil.setLegacyModeDefault(true);
-
 			final CDOID oid = (selection instanceof CDOObject) ? ((CDOObject)selection).cdoID() : null;
 
 			CDOTransaction transaction = view.getSession().openTransaction();

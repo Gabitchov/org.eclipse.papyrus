@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.editor;
 
 import java.util.EventObject;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +29,7 @@ import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
@@ -61,7 +64,6 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
@@ -308,11 +310,9 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	}
 
 	private void refreshContext() {
-		IEditorInput input = getEditorInput();
-		if(input instanceof FileEditorInput) {
-			FileEditorInput fileInput = (FileEditorInput)input;
-			IFile file = fileInput.getFile();
-			ConfigurationManager.instance.refresh(file.getLocation().toFile());
+		Context context = getContext();
+		if (context != null) {
+			ConfigurationManager.instance.refresh(context);
 		}
 	}
 
@@ -371,5 +371,42 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		for(Preview preview : previews) {
 			preview.displayView();
 		}
+	}
+	
+	@Override
+	public void createModel() {
+		if(getEditorInput() instanceof ResourceEditorInput) {
+			// override the editing domain with one that uses the resource's
+			// resource set, which already exists
+
+			ResourceSet resourceSet = ((ResourceEditorInput)getEditorInput()).getResource().getResourceSet();
+
+			if(resourceSet != null) {
+				// *** copied from EMF, except to add the resource set
+				editingDomain = new AdapterFactoryEditingDomain(editingDomain.getAdapterFactory(), editingDomain.getCommandStack(), resourceSet) {
+
+					{
+						resourceToReadOnlyMap = new HashMap<Resource, Boolean>();
+					}
+
+					@Override
+					public boolean isReadOnly(Resource resource) {
+						if(super.isReadOnly(resource) || resource == null) {
+							return true;
+						} else {
+							URI uri = resource.getURI();
+							boolean result = "java".equals(uri.scheme()) || "xcore".equals(uri.fileExtension()) || "genmodel".equals(uri.fileExtension()) || uri.isPlatformResource() && !resourceSet.getURIConverter().normalize(uri).isPlatformResource();
+							if(resourceToReadOnlyMap != null) {
+								resourceToReadOnlyMap.put(resource, result);
+							}
+							return result;
+						}
+					}
+				};
+				// *** end of copy
+			}
+		}
+		
+		super.createModel();
 	}
 }

@@ -12,6 +12,7 @@
    <extension-point id="context" name="%extension-point.context" schema="schema/context.exsd"/>
    <extension-point id="environment" name="%extension-point.environment" schema="schema/environment.exsd"/>
    <extension-point id="labelprovider" name="labelprovider" schema="schema/labelprovider.exsd"/>
+   <extension-point id="contextStorage" name="%extension-point.contextStorage" schema="schema/contextStorage.exsd"/>
    
    <extension
          point="org.eclipse.emf.ecore.generated_package">
@@ -75,5 +76,12 @@
             description="The properties view label provider context (Header)"
             id="org.eclipse.papyrus.views.properties.header.labelProvider.context">
       </context>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.views.properties.contextStorage">
+      <provider
+            class="org.eclipse.papyrus.views.properties.storage.workspace.WorkspaceContextStorageProvider">
+      </provider>
    </extension>
 </plugin>

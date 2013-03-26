@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006, 2010 Soyatec (http://www.soyatec.com) and others.
+ * Copyright (c) 2006, 2013 Soyatec (http://www.soyatec.com), CEA, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Soyatec - initial API and implementation
+ *     Christian W. Damus (CEA) - Fix failure to propagate stream handlers of URLs (CDO)
  *******************************************************************************/
 package org.eclipse.papyrus.xwt.internal.xml;
 
@@ -76,7 +77,7 @@ public class ElementManager {
 		this.parserFactory.setValidating(true);
 		if(url != null) {
 			try {
-				documentRoot.init(null, url.toString());
+				documentRoot.init(null, url);
 			} catch (IOException e) {
 			}
 		}
@@ -229,7 +230,7 @@ public class ElementManager {
 
 		if(callback == null) {
 			// Initialize document root
-			documentRoot.init(null, url.toString());
+			documentRoot.init(null, url);
 
 			InputStream input = url.openStream();
 			try {
@@ -247,7 +248,7 @@ public class ElementManager {
 		} else {
 			String content = callback.onParsing(url.toString());
 
-			documentRoot.init(null, content);
+			documentRoot.init(null, new URL(url, content)); // preserve the stream handler
 
 			InputStream input = new ByteArrayInputStream(content.getBytes());
 			try {
@@ -283,7 +284,7 @@ public class ElementManager {
 			}
 		}
 
-		documentRoot.init(pis, url.toString());
+		documentRoot.init(pis, url);
 
 		InputStream input = pis;
 		if(pis == null) {

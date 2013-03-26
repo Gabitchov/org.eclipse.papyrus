@@ -16,10 +16,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.common.model.CDOPackageRegistry;
 import org.eclipse.emf.cdo.common.model.CDOPackageRegistryPopulator;
 import org.eclipse.emf.cdo.common.protocol.CDOProtocolConstants;
 import org.eclipse.emf.cdo.common.revision.delta.CDORevisionDelta;
@@ -27,8 +29,8 @@ import org.eclipse.emf.cdo.common.util.NotAuthenticatedException;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.session.CDOSession;
+import org.eclipse.emf.cdo.spi.common.model.InternalCDOPackageRegistry;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
 import org.eclipse.emf.common.notify.Adapter;
@@ -53,7 +55,9 @@ import org.eclipse.net4j.util.lifecycle.LifecycleEventAdapter;
 import org.eclipse.net4j.util.security.CredentialsProviderFactory;
 import org.eclipse.net4j.util.security.ICredentialsProvider2;
 import org.eclipse.papyrus.cdo.core.CommitException;
+import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryListener;
 import org.eclipse.papyrus.cdo.core.IResourceSetDisposalApprover;
+import org.eclipse.papyrus.cdo.core.PapyrusRepositoryEvent;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.core.resource.PapyrusCDOResourceFactory;
 import org.eclipse.papyrus.cdo.internal.core.repositories.Repository;
@@ -69,9 +73,7 @@ import com.google.common.collect.Sets;
 /**
  * This is the PapyrusRepository type. Enjoy.
  */
-public class PapyrusRepository
-		extends Container<CDOResourceNode>
-		implements IInternalPapyrusRepository, IAdaptable {
+public class PapyrusRepository extends Container<CDOResourceNode> implements IInternalPapyrusRepository, IAdaptable {
 
 	private static final String SECURE_STORE_PATH = "/" + Activator.PLUGIN_ID //$NON-NLS-1$
 		+ "/repositories"; //$NON-NLS-1$
@@ -84,10 +86,9 @@ public class PapyrusRepository
 
 	private CDOSession session;
 
-	private BiMap<ResourceSet, CDOView> readOnlyViews = HashBiMap.create();
+	private final BiMap<ResourceSet, CDOView> readOnlyViews = HashBiMap.create();
 
-	private BiMap<ResourceSet, CDOTransaction> transactions = HashBiMap
-		.create();
+	private final BiMap<ResourceSet, CDOTransaction> transactions = HashBiMap.create();
 
 	private IListener viewListener;
 
@@ -98,6 +99,8 @@ public class PapyrusRepository
 	private IListener masterViewListener;
 
 	private final CompositeResourceSetDisposalApprover approvers = new CompositeResourceSetDisposalApprover();
+
+	private final CopyOnWriteArrayList<IPapyrusRepositoryListener> listeners = new CopyOnWriteArrayList<IPapyrusRepositoryListener>();
 
 	public PapyrusRepository(IManagedContainer container, Repository model) {
 		this.container = container;
@@ -111,7 +114,7 @@ public class PapyrusRepository
 	}
 
 	public void setName(String name) {
-		if (Strings.isNullOrEmpty(name)) {
+		if(Strings.isNullOrEmpty(name)) {
 			throw new IllegalArgumentException("null or empty name"); //$NON-NLS-1$
 		}
 
@@ -127,9 +130,9 @@ public class PapyrusRepository
 	}
 
 	public void setUsername(String username) {
-		if (username != null) {
+		if(username != null) {
 			username = username.trim();
-			if (username.length() == 0) {
+			if(username.length() == 0) {
 				username = null;
 			}
 		}
@@ -146,14 +149,13 @@ public class PapyrusRepository
 
 		ISecurePreferences store = SecurePreferencesFactory.getDefault();
 		String path = getSecureStorePath();
-		if (store.nodeExists(path)) {
+		if(store.nodeExists(path)) {
 			store = store.node(path);
 
 			try {
 				result = store.get(key, null);
 			} catch (StorageException e) {
-				Activator.log.error(String.format(
-					"Failed to load repository %s from secure storage.", key), //$NON-NLS-1$
+				Activator.log.error(String.format("Failed to load repository %s from secure storage.", key), //$NON-NLS-1$
 					e);
 			}
 		}
@@ -171,24 +173,22 @@ public class PapyrusRepository
 	}
 
 	private void setSecureStorageValue(String key, String value, boolean encrypt) {
-		ISecurePreferences store = SecurePreferencesFactory.getDefault().node(
-			getSecureStorePath());
+		ISecurePreferences store = SecurePreferencesFactory.getDefault().node(getSecureStorePath());
 		try {
-			if (value == null) {
+			if(value == null) {
 				store.remove(key);
 			} else {
 				store.put(key, value, encrypt);
 			}
 		} catch (StorageException e) {
-			Activator.log.error(String.format(
-				"Failed to store repository %s in secure storage.", key), e); //$NON-NLS-1$
+			Activator.log.error(String.format("Failed to store repository %s in secure storage.", key), e); //$NON-NLS-1$
 		}
 	}
 
 	public void clearCredentials() {
 		ISecurePreferences store = SecurePreferencesFactory.getDefault();
 		String path = getSecureStorePath();
-		if (store.nodeExists(path)) {
+		if(store.nodeExists(path)) {
 			store.node(path).removeNode();
 		}
 	}
@@ -198,21 +198,18 @@ public class PapyrusRepository
 	}
 
 	public void connect() {
-		if (!isConnected()) {
+		if(!isConnected()) {
 			ICredentialsProvider2 creds = getCredentialsProvider();
 			Object oldCreds = null;
-			if (creds != null) {
-				oldCreds = container.putElement(
-					CredentialsProviderFactory.PRODUCT_GROUP, "interactive", //$NON-NLS-1$
+			if(creds != null) {
+				oldCreds = container.putElement(CredentialsProviderFactory.PRODUCT_GROUP, "interactive", //$NON-NLS-1$
 					null, creds);
 			}
 
 			try {
-				for (;;) {
+				for(;;) {
 					try {
-						session = (CDOSession) container.getElement(
-							"org.eclipse.emf.cdo.sessions", "cdo", getURL()); //$NON-NLS-1$ //$NON-NLS-2$
-						CDOUtil.setLegacyModeDefault(true);
+						session = (CDOSession)container.getElement("org.eclipse.emf.cdo.sessions", "cdo", getURL()); //$NON-NLS-1$ //$NON-NLS-2$
 					} catch (NotAuthenticatedException e) {
 						// user cancelled the credentials dialog. That's OK
 						break;
@@ -221,9 +218,8 @@ public class PapyrusRepository
 						// try again
 						clearCredentials();
 
-						if (creds instanceof IInteractiveCredentialsProvider) {
-							((IInteractiveCredentialsProvider) creds)
-								.reportCredentialsFailure(e);
+						if(creds instanceof IInteractiveCredentialsProvider) {
+							((IInteractiveCredentialsProvider)creds).reportCredentialsFailure(e);
 						}
 
 						continue;
@@ -231,22 +227,20 @@ public class PapyrusRepository
 					break;
 				}
 
-				if (session != null) {
+				if(session != null) {
 					configure(session);
 
 					// open the master view for the UI
 					createReadOnlyView(new ResourceSetImpl());
+
+					fireRepositoryEvent(PapyrusRepositoryEvent.CONNECTED);
 				}
 			} finally {
-				if (creds != null) {
-					if (oldCreds != null) {
-						container.putElement(
-							CredentialsProviderFactory.PRODUCT_GROUP,
-							"interactive", null, oldCreds); //$NON-NLS-1$
+				if(creds != null) {
+					if(oldCreds != null) {
+						container.putElement(CredentialsProviderFactory.PRODUCT_GROUP, "interactive", null, oldCreds); //$NON-NLS-1$
 					} else {
-						container/* IPluginContainer.INSTANCE */.removeElement(
-							CredentialsProviderFactory.PRODUCT_GROUP,
-							"interactive", null); //$NON-NLS-1$
+						container/* IPluginContainer.INSTANCE */.removeElement(CredentialsProviderFactory.PRODUCT_GROUP, "interactive", null); //$NON-NLS-1$
 					}
 				}
 			}
@@ -256,57 +250,53 @@ public class PapyrusRepository
 	private ICredentialsProvider2 getCredentialsProvider() {
 		ICredentialsProvider2 result = null;
 
-		ICredentialsProviderFactory factory = PapyrusRepositoryManager.INSTANCE
-			.getCredentialsProviderFactory();
-		if (factory != null) {
+		ICredentialsProviderFactory factory = PapyrusRepositoryManager.INSTANCE.getCredentialsProviderFactory();
+		if(factory != null) {
 			result = factory.createCredentialsProvider(this);
 		}
 
 		return result;
 	}
 
-	public void disconnect()
-			throws CommitException {
+	public void disconnect() throws CommitException {
+		if(isConnected()) {
+			ImmutableList<ResourceSet> dirty = ImmutableList.copyOf(Iterables.filter(transactions.keySet(), new Predicate<ResourceSet>() {
 
-		if (isConnected()) {
-			ImmutableList<ResourceSet> dirty = ImmutableList.copyOf(Iterables
-				.filter(transactions.keySet(), new Predicate<ResourceSet>() {
+				public boolean apply(ResourceSet input) {
+					return transactions.get(input).isDirty();
+				}
+			}));
 
-					public boolean apply(ResourceSet input) {
-						return transactions.get(input).isDirty();
-					}
-				}));
+			switch(approvers.disposalRequested(this, dirty)) {
+			case SAVE:
+				for(ResourceSet next : dirty) {
+					commit(next);
+				}
 
-			switch (approvers.disposalRequested(this, dirty)) {
-				case SAVE :
-					for (ResourceSet next : dirty) {
-						commit(next);
-					}
+				// intentional fall-through (save then close)
+			case CLOSE:
+				for(CDOView next : ImmutableList.copyOf(transactions.values())) {
 
-					// intentional fall-through (save then close)
-				case CLOSE :
-					for (CDOView next : ImmutableList.copyOf(transactions
-						.values())) {
+					doClose(next);
+				}
+				for(CDOView next : ImmutableList.copyOf(readOnlyViews.values())) {
 
-						doClose(next);
-					}
-					for (CDOView next : ImmutableList.copyOf(readOnlyViews
-						.values())) {
+					doClose(next);
+				}
 
-						doClose(next);
-					}
+				session.close();
+				session = null;
 
-					session.close();
-					session = null;
-					break;
-				default : // NONE
-					break;
+				fireRepositoryEvent(PapyrusRepositoryEvent.DISCONNECTED);
+				break;
+			default: // NONE
+				break;
 			}
 		}
 	}
 
 	protected void checkConnected() {
-		if (!isConnected()) {
+		if(!isConnected()) {
 			throw new IllegalStateException("not connected"); //$NON-NLS-1$
 		}
 	}
@@ -318,18 +308,17 @@ public class PapyrusRepository
 	public ResourceSet createReadOnlyView(ResourceSet resourceSet) {
 		checkConnected();
 
-		CDOUtil.setLegacyModeDefault(true); // legacy mode is per-thread
 		CDOView view = session.openView(resourceSet);
 		configure(view);
 		ResourceSet result = view.getResourceSet();
 		readOnlyViews.put(result, view);
 
-		if (masterView == null) {
+		if(masterView == null) {
 			masterView = view;
 			topResourceNodes = getElements();
 			adaptMasterView(view);
 
-			if (topResourceNodes.length > 0) {
+			if(topResourceNodes.length > 0) {
 				fireElementsAddedEvent(topResourceNodes);
 			} else {
 				fireEvent(); // just refresh my presentation
@@ -346,7 +335,6 @@ public class PapyrusRepository
 	public ResourceSet createTransaction(ResourceSet resourceSet) {
 		checkConnected();
 
-		CDOUtil.setLegacyModeDefault(true); // legacy mode is per-thread
 		CDOTransaction transaction = session.openTransaction(resourceSet);
 		configure(transaction);
 		ResourceSet result = transaction.getResourceSet();
@@ -366,7 +354,7 @@ public class PapyrusRepository
 	public CDOView getCDOView(ResourceSet resourceSet) {
 		CDOView result = readOnlyViews.get(resourceSet);
 
-		if (result == null) {
+		if(result == null) {
 			result = transactions.get(resourceSet);
 		}
 
@@ -379,15 +367,14 @@ public class PapyrusRepository
 	}
 
 	CDOTransaction checkTransaction(CDOView view) {
-		if (!(view instanceof CDOTransaction)) {
+		if(!(view instanceof CDOTransaction)) {
 			throw new IllegalArgumentException("not a transaction"); //$NON-NLS-1$
 		}
 
-		return (CDOTransaction) view;
+		return (CDOTransaction)view;
 	}
 
-	public void commit(ResourceSet transaction)
-			throws CommitException {
+	public void commit(ResourceSet transaction) throws CommitException {
 		CDOView cdoView = getCDOView(transaction);
 
 		try {
@@ -405,19 +392,19 @@ public class PapyrusRepository
 	public void close(ResourceSet view) {
 		CDOView cdoView = getCDOView(view);
 
-		if (cdoView != null) {
+		if(cdoView != null) {
 			doClose(cdoView);
 		}
 	}
 
 	protected void doClose(CDOView view) {
 		try {
-			if (view == masterView) {
+			if(view == masterView) {
 				unadaptMasterView(view);
 				masterView = null;
 				CDOResourceNode[] removedNodes = topResourceNodes;
 				topResourceNodes = null;
-				if ((removedNodes != null) && (removedNodes.length > 0)) {
+				if((removedNodes != null) && (removedNodes.length > 0)) {
 					fireElementsRemovedEvent(removedNodes);
 				} else {
 					fireEvent(); // just refresh my presentation
@@ -435,8 +422,13 @@ public class PapyrusRepository
 	}
 
 	protected void configure(CDOSession newSession) {
-		CDOUtil.setLegacyModeDefault(true);
-		CDOPackageRegistryPopulator.populate(newSession.getPackageRegistry());
+		CDOPackageRegistry registry = newSession.getPackageRegistry();
+		CDOPackageRegistryPopulator.populate(registry);
+
+		if(registry instanceof InternalCDOPackageRegistry) {
+			InternalCDOPackageRegistry internalRegistry = (InternalCDOPackageRegistry)registry;
+			internalRegistry.setPackageProcessor(new GMFSafePackageProcessor(internalRegistry.getPackageProcessor()));
+		}
 	}
 
 	protected void configure(CDOView newReadOnlyView) {
@@ -454,11 +446,8 @@ public class PapyrusRepository
 		// ResourceSet implementation that CDO doesn't know about, so we need
 		// our own factory
 		ResourceSet rset = newView.getResourceSet();
-		if (rset instanceof CDOAwareModelSet) {
-			rset.getResourceFactoryRegistry()
-				.getProtocolToFactoryMap()
-				.put(CDOProtocolConstants.PROTOCOL_NAME,
-					new PapyrusCDOResourceFactory((CDOAwareModelSet) rset));
+		if(rset instanceof CDOAwareModelSet) {
+			rset.getResourceFactoryRegistry().getProtocolToFactoryMap().put(CDOProtocolConstants.PROTOCOL_NAME, new PapyrusCDOResourceFactory((CDOAwareModelSet)rset));
 		}
 	}
 
@@ -467,13 +456,12 @@ public class PapyrusRepository
 
 		commonViewConfiguration(newTransaction);
 
-		newTransaction.options().addConflictResolver(
-			new CDOMergingConflictResolver());
+		newTransaction.options().addConflictResolver(new CDOMergingConflictResolver());
 		// TODO: Do we need to set any other options?
 	}
 
 	private IListener getViewListener() {
-		if (viewListener == null) {
+		if(viewListener == null) {
 			viewListener = new LifecycleEventAdapter() {
 
 				@Override
@@ -496,12 +484,12 @@ public class PapyrusRepository
 	}
 
 	private IListener getMasterViewListener() {
-		if (masterViewListener == null) {
+		if(masterViewListener == null) {
 			masterViewListener = new IListener() {
 
 				public void notifyEvent(IEvent event) {
-					if (event instanceof CDOViewInvalidationEvent) {
-						CDOViewInvalidationEvent inval = (CDOViewInvalidationEvent) event;
+					if(event instanceof CDOViewInvalidationEvent) {
+						CDOViewInvalidationEvent inval = (CDOViewInvalidationEvent)event;
 						translateMasterViewInvalidationEvent(inval);
 					}
 				}
@@ -519,16 +507,33 @@ public class PapyrusRepository
 		view.removeListener(getMasterViewListener());
 	}
 
-	public void addResourceSetDisposalApprover(
-			IResourceSetDisposalApprover approver) {
-
+	public void addResourceSetDisposalApprover(IResourceSetDisposalApprover approver) {
 		approvers.addApprover(approver);
 	}
 
-	public void removeResourceSetDisposalApprover(
-			IResourceSetDisposalApprover approver) {
-
+	public void removeResourceSetDisposalApprover(IResourceSetDisposalApprover approver) {
 		approvers.removeApprover(approver);
+	}
+
+	public void addPapyrusRepositoryListener(IPapyrusRepositoryListener listener) {
+		listeners.addIfAbsent(listener);
+	}
+
+	public void removePapyrusRepositoryListener(IPapyrusRepositoryListener listener) {
+		listeners.remove(listener);
+	}
+
+	protected void fireRepositoryEvent(int eventType) {
+		if(!listeners.isEmpty()) {
+			PapyrusRepositoryEvent event = new PapyrusRepositoryEvent(this, eventType);
+			for(IPapyrusRepositoryListener next : listeners) {
+				try {
+					next.papyrusRepositoryChanged(event);
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in repository event listener.", e); //$NON-NLS-1$
+				}
+			}
+		}
 	}
 
 	//
@@ -537,15 +542,14 @@ public class PapyrusRepository
 
 	@Override
 	public boolean isEmpty() {
-		return !isActive() || !isConnected() || (masterView == null)
-			|| masterView.isEmpty();
+		return !isActive() || !isConnected() || (masterView == null) || masterView.isEmpty();
 	}
 
 	public CDOResourceNode[] getElements() {
 		CDOResourceNode[] result = NO_RESOURCE_NODES;
 
-		if (masterView != null) {
-			if (topResourceNodes == null) {
+		if(masterView != null) {
+			if(topResourceNodes == null) {
 				topResourceNodes = masterView.getElements();
 			}
 			result = topResourceNodes;
@@ -555,9 +559,7 @@ public class PapyrusRepository
 	}
 
 	@Override
-	protected void doAfterActivate()
-			throws Exception {
-
+	protected void doAfterActivate() throws Exception {
 		super.doAfterActivate();
 
 		model.eAdapters().add(new AdapterImpl() {
@@ -575,49 +577,36 @@ public class PapyrusRepository
 	}
 
 	@Override
-	protected void doBeforeDeactivate()
-			throws Exception {
-
-		Adapter adapter = EcoreUtil.getExistingAdapter(model,
-			PapyrusRepository.class);
-		if (adapter != null) {
+	protected void doBeforeDeactivate() throws Exception {
+		Adapter adapter = EcoreUtil.getExistingAdapter(model, PapyrusRepository.class);
+		if(adapter != null) {
 			model.eAdapters().remove(adapter);
 		}
 
 		super.doBeforeDeactivate();
 	}
 
-	private void translateMasterViewInvalidationEvent(
-			CDOViewInvalidationEvent event) {
+	private void translateMasterViewInvalidationEvent(CDOViewInvalidationEvent event) {
+		for(Map.Entry<CDOObject, CDORevisionDelta> next : event.getRevisionDeltas().entrySet()) {
 
-		for (Map.Entry<CDOObject, CDORevisionDelta> next : event
-			.getRevisionDeltas().entrySet()) {
+			if(next.getKey() instanceof CDOResourceNode) {
+				CDOResourceNode resNode = (CDOResourceNode)next.getKey();
 
-			if (next.getKey() instanceof CDOResourceNode) {
-				CDOResourceNode resNode = (CDOResourceNode) next.getKey();
-
-				if (resNode.isRoot()) {
+				if(resNode.isRoot()) {
 					// the event doesn't provide a revision delta, so calculate
 					// a delta
 
-					Set<CDOResourceNode> currentNodes = Sets
-						.newLinkedHashSet(Arrays.asList(getElements()));
-					Set<CDOResourceNode> newNodes = Sets
-						.newLinkedHashSet(Iterables.filter(
-							((CDOResource) resNode).getContents(),
-							CDOResourceNode.class));
+					Set<CDOResourceNode> currentNodes = Sets.newLinkedHashSet(Arrays.asList(getElements()));
+					Set<CDOResourceNode> newNodes = Sets.newLinkedHashSet(Iterables.filter(((CDOResource)resNode).getContents(), CDOResourceNode.class));
 
-					Set<CDOResourceNode> removed = Sets.difference(
-						currentNodes, newNodes);
-					Set<CDOResourceNode> added = Sets.difference(newNodes,
-						currentNodes);
+					Set<CDOResourceNode> removed = Sets.difference(currentNodes, newNodes);
+					Set<CDOResourceNode> added = Sets.difference(newNodes, currentNodes);
 
-					ContainerEvent<CDOResourceNode> cEvent = new ContainerEvent<CDOResourceNode>(
-						this);
-					for (CDOResourceNode r : removed) {
+					ContainerEvent<CDOResourceNode> cEvent = new ContainerEvent<CDOResourceNode>(this);
+					for(CDOResourceNode r : removed) {
 						cEvent.addDelta(r, IContainerDelta.Kind.REMOVED);
 					}
-					for (CDOResourceNode a : added) {
+					for(CDOResourceNode a : added) {
 						cEvent.addDelta(a, IContainerDelta.Kind.ADDED);
 					}
 
@@ -636,8 +625,7 @@ public class PapyrusRepository
 	// IAdaptable protocol
 	//
 
-	public Object getAdapter(@SuppressWarnings("rawtypes")
-	Class adapter) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 }

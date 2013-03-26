@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core;
 
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
@@ -18,8 +19,7 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 /**
  * This is the IInternalPapyrusRepositoryManager type. Enjoy.
  */
-public interface IInternalPapyrusRepositoryManager
-		extends IPapyrusRepositoryManager {
+public interface IInternalPapyrusRepositoryManager extends IPapyrusRepositoryManager {
 
 	IManagedContainer getSessionsContainer();
 
@@ -27,6 +27,7 @@ public interface IInternalPapyrusRepositoryManager
 
 	ICredentialsProviderFactory getCredentialsProviderFactory();
 
-	void setCredentialsProviderFactory(
-			ICredentialsProviderFactory credentialsProviderFactory);
+	void setCredentialsProviderFactory(ICredentialsProviderFactory credentialsProviderFactory);
+
+	IInternalPapyrusRepository getRepository(CDOView view);
 }

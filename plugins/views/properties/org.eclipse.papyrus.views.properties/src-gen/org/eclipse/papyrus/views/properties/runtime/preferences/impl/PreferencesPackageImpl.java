@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - add prototype reference to ContextDescriptor (CDO)
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime.preferences.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -138,6 +144,26 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 	 * 
 	 * @generated
 	 */
+	public EReference getContextDescriptor_Prototype() {
+		return (EReference)contextDescriptorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getContextDescriptor_Deleted() {
+		return (EAttribute)contextDescriptorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getPreferences() {
 		return preferencesEClass;
 	}
@@ -187,6 +213,8 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 		contextDescriptorEClass = createEClass(CONTEXT_DESCRIPTOR);
 		createEAttribute(contextDescriptorEClass, CONTEXT_DESCRIPTOR__NAME);
 		createEAttribute(contextDescriptorEClass, CONTEXT_DESCRIPTOR__APPLIED);
+		createEReference(contextDescriptorEClass, CONTEXT_DESCRIPTOR__PROTOTYPE);
+		createEAttribute(contextDescriptorEClass, CONTEXT_DESCRIPTOR__DELETED);
 
 		preferencesEClass = createEClass(PREFERENCES);
 		createEReference(preferencesEClass, PREFERENCES__CONTEXTS);
@@ -228,6 +256,8 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 		initEClass(contextDescriptorEClass, ContextDescriptor.class, "ContextDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getContextDescriptor_Name(), ecorePackage.getEString(), "name", null, 1, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContextDescriptor_Applied(), ecorePackage.getEBoolean(), "applied", "true", 1, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContextDescriptor_Prototype(), this.getContextDescriptor(), null, "prototype", null, 0, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContextDescriptor_Deleted(), ecorePackage.getEBoolean(), "deleted", null, 1, 1, ContextDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(preferencesEClass, Preferences.class, "Preferences", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPreferences_Contexts(), this.getContextDescriptor(), null, "contexts", null, 0, -1, Preferences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

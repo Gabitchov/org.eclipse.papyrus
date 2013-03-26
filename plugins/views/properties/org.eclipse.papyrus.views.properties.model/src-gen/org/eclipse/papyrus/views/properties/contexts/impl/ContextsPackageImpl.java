@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - add prototype reference to Context (CDO)
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -224,6 +230,15 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	public EReference getContext_DataContexts() {
 		return (EReference)contextEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContext_Prototype() {
+		return (EReference)contextEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -602,6 +617,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(contextEClass, CONTEXT__TABS);
 		createEReference(contextEClass, CONTEXT__VIEWS);
 		createEReference(contextEClass, CONTEXT__DATA_CONTEXTS);
+		createEReference(contextEClass, CONTEXT__PROTOTYPE);
 
 		tabEClass = createEClass(TAB);
 		createEAttribute(tabEClass, TAB__LABEL);
@@ -698,6 +714,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEReference(getContext_Tabs(), this.getTab(), null, "tabs", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_Views(), this.getView(), this.getView_Context(), "views", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_DataContexts(), this.getDataContextRoot(), null, "dataContexts", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_Prototype(), this.getContext(), null, "prototype", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tabEClass, Tab.class, "Tab", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTab_Label(), ecorePackage.getEString(), "label", null, 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

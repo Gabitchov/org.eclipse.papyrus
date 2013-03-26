@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.util;
 
@@ -36,7 +37,7 @@ import org.eclipse.papyrus.views.properties.contexts.Section;
  * as they are read-only. For such contexts, you need to first copy them,
  * and edit the copy.
  * 
- * @see CopyContextAction
+ * @see WorkspaceContextCopyAction
  * 
  * @author Camille Letavernier
  */

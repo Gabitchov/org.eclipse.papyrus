@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,34 +8,42 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
+ *  Christian W. Damus (CEA) - Support implicit enablement of prototypes of unavailable contexts (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.contexts.Property;
 import org.eclipse.papyrus.views.properties.contexts.Section;
@@ -56,7 +64,12 @@ import org.eclipse.papyrus.views.properties.root.RootFactory;
 import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
 import org.eclipse.papyrus.views.properties.runtime.preferences.Preferences;
 import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesFactory;
+import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPackage;
+import org.eclipse.papyrus.views.properties.storage.ContextStorageRegistry;
+import org.eclipse.papyrus.views.properties.storage.IContextStorageProvider;
+import org.eclipse.papyrus.views.properties.storage.IContextStorageProviderListener;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Central class of the Property View framework. It lists the available environments and contexts,
@@ -90,6 +103,10 @@ public class ConfigurationManager {
 
 	private final Map<Context, Boolean> customizableContexts;
 
+	private final ContextStorageRegistry contextStorageRegistry;
+
+	private IContextStorageProviderListener contextStorageProviderListener;
+
 	/**
 	 * The global constraint engine
 	 */
@@ -105,6 +122,7 @@ public class ConfigurationManager {
 		enabledContexts = new LinkedHashSet<Context>();
 		customizableContexts = new HashMap<Context, Boolean>();
 		contexts = new LinkedHashMap<URI, Context>();
+		contextStorageRegistry = new ContextStorageRegistry(resourceSet);
 
 		root = RootFactory.eINSTANCE.createPropertiesRoot();
 
@@ -158,46 +176,145 @@ public class ConfigurationManager {
 	}
 
 	private void loadCustomContexts() {
-		IPath path = Activator.getDefault().getPreferencesPath();
-		File preferencesDirectory = path.toFile();
-		for(File contextDirectory : preferencesDirectory.listFiles()) {
+		for(IContextStorageProvider provider : contextStorageRegistry.getStorageProviders()) {
+			// discover initial contexts
 			try {
-				if(contextDirectory.isDirectory()) {
-					loadCustomContext(contextDirectory);
+				for(Context context : provider.loadContexts()) {
+					addContext(context, findDescriptor(context).isApplied(), true);
 				}
-			} catch (Exception ex) {
-				Activator.log.error(ex);
+			} catch (CoreException ex) {
+				//Silent : The file has been removed from the preferences, but the folder still exists
 			}
+
+			// listen for changes
+			provider.addContextStorageProviderListener(getContextStorageProviderListener());
 		}
+	}
+
+	private IContextStorageProviderListener getContextStorageProviderListener() {
+		if(contextStorageProviderListener == null) {
+			contextStorageProviderListener = new IContextStorageProviderListener() {
+
+				public void contextsAdded(Collection<? extends Context> contexts) {
+					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
+					
+					for(Context next : contexts) {
+						boolean applied = findDescriptor(next).isApplied();
+
+						addContext(next, applied, true);
+
+						if(applied) {
+							appliedContexts.add(next);
+						}
+					}
+					
+					if (!appliedContexts.isEmpty()) {
+						notifyContextChanges(appliedContexts, ContextEventType.ADDED);
+					}
+				}
+
+				public void contextsChanged(Collection<? extends Context> contexts) {
+					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
+					
+					for(Context next : contexts) {
+						boolean applied = findDescriptor(next).isApplied();
+
+						reloadContext(next);
+
+						if(applied) {
+							appliedContexts.add(next);
+						}
+					}
+					
+					if (!appliedContexts.isEmpty()) {
+						notifyContextChanges(appliedContexts, ContextEventType.CHANGED);
+					}
+				}
+
+				public void contextsRemoved(Collection<? extends Context> contexts) {
+					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
+					
+					for(Context next : contexts) {
+						boolean wasApplied = findDescriptor(next).isApplied();
+
+						// don't update the preferences on the expectation that this context
+						// is only temporarily unavailable
+						deleteContext(next, false);
+
+						if(wasApplied) {
+							appliedContexts.add(next);
+						}
+					}
+					
+					if (!appliedContexts.isEmpty()) {
+						notifyContextChanges(appliedContexts, ContextEventType.REMOVED);
+					}
+				}
+			};
+		}
+
+		return contextStorageProviderListener;
+	}
+	
+	private void notifyContextChanges(Collection<Context> contexts, IContextStorageProviderListener.ContextEventType eventType) {
+		if (contexts.size() == 0) {
+			throw new IllegalArgumentException("Empty contexts collection");
+		}
+		
+		StringBuilder list = new StringBuilder();
+		Iterator<Context> iter = contexts.iterator();
+		if (contexts.size() > 1) {
+			list.append("\n");
+		}
+		list.append(iter.next().getName());
+		while (iter.hasNext()) {
+			list.append("\n");
+			list.append(iter.next().getName());
+		}
+		
+		String pattern;
+		switch(eventType) {
+		case ADDED:
+			pattern = "New Properties View configurations have been applied: {0}";
+			break;
+		case REMOVED:
+			pattern = "Properties View configurations are no longer available: {0}";
+			break;
+		default:
+			pattern = "Properties View configurations have changed: {0}";
+			break;
+		}
+		final String message = NLS.bind(pattern, list);
+		
+		Display.getDefault().asyncExec(new Runnable() {
+
+			public void run() {
+				NotificationBuilder.createAsyncPopup(message).setType(org.eclipse.papyrus.infra.widgets.toolbox.notification.Type.INFO).setDelay(5000L).run();
+			}
+		});
+
 	}
 
 	/**
-	 * Refresh the Context represented by the given File. The File should be a
-	 * valid Context model. This method should be called when a model is edited
-	 * at runtime.
+	 * Refresh the given Context. This method should be called when a model is edited
+	 * at runtime, to re-load it from persistent storage.
 	 * 
-	 * @param contextFile
-	 *        A File containing a valid Context model
+	 * @param context
+	 *        A Context model to re-load
 	 */
-	public void refresh(File contextFile) {
-		URI contextURI = URI.createFileURI(contextFile.getAbsolutePath());
-		ResourceSet tmpResourceSet = new ResourceSetImpl();
-		EObject root;
-		try {
-			root = EMFHelper.loadEMFModel(tmpResourceSet, contextURI);
-			if(root != null) {
-				for(Object rootObject : root.eResource().getContents()) {
-					if(rootObject instanceof Context) {
-						refresh((Context)rootObject);
-					}
-				}
+	public void refresh(Context context) {
+		IContextStorageProvider provider = contextStorageRegistry.getStorageProvider(context);
+		if(provider != null) {
+			try {
+				provider.refreshContext(context);
+				reloadContext(context);
+			} catch (CoreException e) {
+				Activator.getDefault().getLog().log(e.getStatus());
 			}
-		} catch (IOException ex) {
-			Activator.log.error(ex);
 		}
 	}
 
-	private void refresh(Context context) {
+	private void reloadContext(Context context) {
 		// TODO : get the right URI from the context file :
 		// ppe:/context/<plugin>/<path> if it is in the workspace,
 		// ppe:/context/<preferences>/<path> if it is registered through
@@ -221,21 +338,6 @@ public class ConfigurationManager {
 		}
 	}
 
-	private void loadCustomContext(File contextDirectory) throws IOException {
-		String contextPath = contextDirectory.getPath() + "/" + contextDirectory.getName() + ".ctx"; //$NON-NLS-1$ //$NON-NLS-2$
-		URI contextURI = URI.createFileURI(contextPath);
-		try {
-			EObject model = loadEMFModel(contextURI);
-
-			if(model instanceof Context) {
-				Context context = (Context)model;
-				addContext(context, findDescriptor(context).isApplied(), true);
-			}
-		} catch (IOException ex) {
-			//Silent : The file has been removed from the preferences, but the folder still exists
-		}
-	}
-
 	/**
 	 * Tests if a Context is enabled.
 	 * 
@@ -246,7 +348,54 @@ public class ConfigurationManager {
 	 * @see Preferences
 	 */
 	public boolean isApplied(Context context) {
-		return !isCustomizable(context) || findDescriptor(context).isApplied();
+		boolean result = !isCustomizable(context) || findDescriptor(context).isApplied();
+
+		if(!result) {
+			// see whether perhaps there's an active descriptor for a missing context that
+			// is based on this context
+			@SuppressWarnings("serial")
+			EcoreUtil.CrossReferencer xrefs = new EcoreUtil.CrossReferencer(preferences) {
+				{
+					crossReference();
+					done();
+				}
+				@Override
+				protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
+					return eReference == PreferencesPackage.Literals.CONTEXT_DESCRIPTOR__PROTOTYPE;
+				}
+			};
+			
+			// breadth-first search for a copied context that is enabled but missing, where
+			// no other traceable copy is enabled and accessible
+			Queue<ContextDescriptor> queue = new java.util.LinkedList<ContextDescriptor>();
+			Set<ContextDescriptor> cycleDetect = new java.util.HashSet<ContextDescriptor>();
+			queue.offer(findDescriptor(context));
+			out: while(!queue.isEmpty()) {
+				ContextDescriptor desc = queue.remove();
+				Collection<EStructuralFeature.Setting> refs = xrefs.get(desc);
+				if((refs != null) && cycleDetect.add(desc)) {
+					for(EStructuralFeature.Setting ref : refs) {
+						ContextDescriptor copy = (ContextDescriptor)ref.getEObject();
+						if(copy.isApplied()) {
+							if(getContext(copy.getName()) == null) {
+								// it's an applied context that is missing.  That's what we're looking for
+								result = true;
+							} else {
+								// it's an applied context that is *not* missing.  So, it is in effect
+								// and the prototype should not implicitly be enabled
+								result = false;
+								break out;
+							}
+						} else {
+							// enqueue for searching further copies
+							queue.offer(copy);
+						}
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -330,6 +479,29 @@ public class ConfigurationManager {
 	}
 
 	/**
+	 * Recalculates the cached preference descriptor prototype of the specified {@code context}.
+	 * This ensures that if the {@code context} becomes unavailable, we will still know locally
+	 * in this workspace what its prototype is.
+	 * 
+	 * @param context
+	 *        a context
+	 */
+	private void updatePrototype(Context context) {
+		Context prototype = context.getPrototype();
+		if((prototype == null) || !prototype.eIsProxy()) {
+			// it has no prototype or the prototype is available?  Cache in the preferences
+			ContextDescriptor desc = findDescriptor(context);
+			ContextDescriptor oldPrototype = desc.getPrototype();
+
+			desc.setPrototype((prototype == null) ? null : findDescriptor(prototype));
+
+			if(desc.getPrototype() != oldPrototype) {
+				savePreferences();
+			}
+		}
+	}
+	
+	/**
 	 * Programmatically register a new context to this ConfigurationManager.
 	 * Most of the time, new contexts should be registered through {@link ContextExtensionPoint}.
 	 * However, you can still call this method when creating a Context at runtime, programmatically
@@ -347,12 +519,24 @@ public class ConfigurationManager {
 		customizableContexts.put(context, isCustomizable);
 		contexts.put(EcoreUtil.getURI(context), context);
 
+		updatePrototype(context);
+		
+		ContextDescriptor desc = findDescriptor(context);
+		if (desc.isDeleted()) {
+			desc.setDeleted(false); // can't be deleted any longer
+			savePreferences();
+		}
+		
 		//If the context is not customizable, then it must always be applied
 		if(apply || !isCustomizable) {
 			enableContext(context, true);
 		} else {
 			disableContext(context, true);
 		}
+		
+		// as we have added a new context, it may be an applied copy of some
+		// other context that was implicitly enabled because of the missing copy
+		reconcileEnabledContexts();
 	}
 
 	/**
@@ -376,20 +560,27 @@ public class ConfigurationManager {
 	 * @see #enableContext(Context, boolean)
 	 */
 	public void disableContext(Context context, boolean update) {
-		if(!isCustomizable(context)) {
+		disableContext(context, update, true);
+	}
+	
+	private void disableContext(Context context, boolean updateEngine, boolean updatePreferences) {
+		final boolean missing = isMissing(context);
+		
+		if(!missing && !isCustomizable(context)) {
 			throw new IllegalStateException("Non-customizable contexts cannot be disabled. Trying to disable " + context.getName());
 		}
 
-		update = enabledContexts.remove(context) && update;
+		// even if it's missing, make sure it's not in the enabledContexts set!
+		updateEngine = enabledContexts.remove(context) && updateEngine;
 
-		//Update the preferences
+		//Update the preferences if requested
 		ContextDescriptor descriptor = findDescriptor(context);
-		if(descriptor.isApplied()) {
+		if(updatePreferences && descriptor.isApplied()) {
 			descriptor.setApplied(false);
 			savePreferences();
 		}
 
-		if(update) {
+		if(updateEngine) {
 			//Update the Engine
 			update();
 		}
@@ -409,18 +600,24 @@ public class ConfigurationManager {
 	 * @see #disableContext(Context, boolean)
 	 */
 	public void enableContext(Context context, boolean update) {
-
-		enabledContexts.add(context);
-		//root.getContexts().add(context);
-
-		//Update the preferences
+		enableContext(context, update, true);
+	}
+	
+	private void enableContext(Context context, boolean updateEngine, boolean updatePreferences) {
+		final boolean missing = isMissing(context);
+		
+		if (!missing) {
+			enabledContexts.add(context);
+		}
+		
+		//Update the preferences if requested
 		ContextDescriptor descriptor = findDescriptor(context);
-		if(!descriptor.isApplied()) {
+		if(updatePreferences && !descriptor.isApplied()) {
 			descriptor.setApplied(true);
 			savePreferences();
 		}
 
-		if(update) {
+		if(updateEngine && !missing) {
 			//Update the Engine
 			constraintEngine.addContext(context);
 		}
@@ -436,9 +633,20 @@ public class ConfigurationManager {
 	 *         True if the context comes from a plugin, and is thus read-only
 	 */
 	public boolean isPlugin(Context context) {
-		URI uri = EcoreUtil.getURI(context);
-		boolean result = !(uri.isFile() || uri.isPlatformResource());
+		// a missing context can't be a plug-in context because plug-ins can't go missing
+		boolean result = !isMissing(context) && contextStorageRegistry.getStorageProvider(context) == IContextStorageProvider.NULL;
 		return result;
+	}
+	
+	/**
+	 * Queries whether the specified {@code context} is a proxy for a missing context.  That is a
+	 * context that is expected to exist but is (temporarily) unavailable.
+	 * 
+	 * @param context a context
+	 * @return whether it represents a missing context
+	 */
+	public boolean isMissing(Context context) {
+		return !contexts.containsValue(context) && !findDescriptor(context).isDeleted();
 	}
 
 	/**
@@ -539,10 +747,31 @@ public class ConfigurationManager {
 		}
 		return result;
 	}
+	
+	/**
+	 * Obtains proxies (not the EMF kind) for all contexts that the system knows about
+	 * but are currently unavailable.
+	 * 
+	 * @return the current collection of missing contexts
+	 */
+	public Collection<Context> getMissingContexts() {
+		List<Context> result = new java.util.ArrayList<Context>();
+		
+		for (ContextDescriptor next : preferences.getContexts()) {
+			if (!next.isDeleted() && (getContext(next.getName()) == null)) {
+				Context missing = ContextsFactory.eINSTANCE.createContext();
+				missing.setName(next.getName());
+				result.add(missing);
+			}
+		}
+		
+		return result;
+	}
 
 	private <T extends WidgetType> T getDefaultWidget(int featureID, Class<T> theClass, String widgetName, String namespacePrefix) {
 		EStructuralFeature feature = EnvironmentPackage.Literals.ENVIRONMENT.getEStructuralFeature(featureID);
 		for(Environment environment : root.getEnvironments()) {
+			@SuppressWarnings("unchecked")
 			T widget = findWidgetTypeByClassName((EList<T>)environment.eGet(feature), widgetName, namespacePrefix);
 			if(widget != null) {
 				return widget;
@@ -663,17 +892,50 @@ public class ConfigurationManager {
 	 *        The context to delete
 	 */
 	public void deleteContext(Context context) {
+		findDescriptor(context).setDeleted(true); // explicitly deleted (not missing)
+		deleteContext(context, true);
+	}
+	
+	private void deleteContext(Context context, boolean updatePreferences) {
 		if(!isCustomizable(context)) {
 			throw new IllegalStateException("Non-customizable contexts cannot be deleted. Trying to delete " + context.getName());
 		}
 
 		Resource resource = context.eResource();
 		contexts.remove(EcoreUtil.getURI(context));
-		disableContext(context, true);
+		disableContext(context, true, updatePreferences);
 		root.getContexts().remove(context);
 
 		resource.unload();
 		resourceSet.getResources().remove(resource);
+		
+		// as we have deleted this context, it may have been a copy of
+		// some other context that now should be implicitly enabled
+		reconcileEnabledContexts();
+	}
+
+	private boolean reconcileEnabledContexts() {
+		boolean result = false;
+		
+		for (Context next : contexts.values()) {
+			if (!next.eIsProxy()) {
+				boolean isApplied = isApplied(next);
+				if (isApplied != enabledContexts.contains(next)) {
+					// it is implicitly enabled?
+					if (isApplied) {
+						result = enabledContexts.add(next) || result;
+					} else {
+						result = enabledContexts.remove(next) || result;
+					}
+				}
+			}
+		}
+		
+		if (result) {
+			update(); // update the engine
+		}
+		
+		return result;
 	}
 
 	/**
@@ -780,6 +1042,12 @@ public class ConfigurationManager {
 
 	public boolean isCustomizable(Context propertyViewConfiguration) {
 
+		if (isMissing(propertyViewConfiguration)) {
+			// missing contexts are implicitly customizable.  Only customizable
+			// contexts can go missing in the first place
+			return true;
+		}
+		
 		if(customizableContexts.containsKey(propertyViewConfiguration)) {
 			return customizableContexts.get(propertyViewConfiguration);
 		}

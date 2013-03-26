@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - add prototype reference to Context (CDO)
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
@@ -22,6 +28,7 @@ import org.eclipse.emf.ecore.EModelElement;
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getTabs <em>Tabs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getPrototype <em>Prototype</em>}</li>
  * </ul>
  * </p>
  *
@@ -121,5 +128,30 @@ public interface Context extends EModelElement {
 	 * @generated
 	 */
 	EList<DataContextRoot> getDataContexts();
+
+	/**
+	 * Returns the value of the '<em><b>Prototype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * References the context from which a context was copied.  The context manager caches the prototype reference so that it can enable a prototype when the copied context is not available.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Prototype</em>' reference.
+	 * @see #setPrototype(Context)
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Prototype()
+	 * @model
+	 * @generated
+	 */
+	Context getPrototype();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.contexts.Context#getPrototype <em>Prototype</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Prototype</em>' reference.
+	 * @see #getPrototype()
+	 * @generated
+	 */
+	void setPrototype(Context value);
 
 } // Context

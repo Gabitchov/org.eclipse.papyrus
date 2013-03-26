@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2013 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - add prototype reference to Context (CDO)
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
 import java.util.Collection;
@@ -37,6 +43,7 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getTabs <em>Tabs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getPrototype <em>Prototype</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,6 +109,16 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * @ordered
 	 */
 	protected EList<DataContextRoot> dataContexts;
+
+	/**
+	 * The cached value of the '{@link #getPrototype() <em>Prototype</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrototype()
+	 * @generated
+	 * @ordered
+	 */
+	protected Context prototype;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -196,6 +213,44 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Context getPrototype() {
+		if (prototype != null && prototype.eIsProxy()) {
+			InternalEObject oldPrototype = (InternalEObject)prototype;
+			prototype = (Context)eResolveProxy(oldPrototype);
+			if (prototype != oldPrototype) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ContextsPackage.CONTEXT__PROTOTYPE, oldPrototype, prototype));
+			}
+		}
+		return prototype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Context basicGetPrototype() {
+		return prototype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPrototype(Context newPrototype) {
+		Context oldPrototype = prototype;
+		prototype = newPrototype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.CONTEXT__PROTOTYPE, oldPrototype, prototype));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -242,6 +297,9 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				return getViews();
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				return getDataContexts();
+			case ContextsPackage.CONTEXT__PROTOTYPE:
+				if (resolve) return getPrototype();
+				return basicGetPrototype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +332,9 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				getDataContexts().clear();
 				getDataContexts().addAll((Collection<? extends DataContextRoot>)newValue);
 				return;
+			case ContextsPackage.CONTEXT__PROTOTYPE:
+				setPrototype((Context)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -301,6 +362,9 @@ public class ContextImpl extends EModelElementImpl implements Context {
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				getDataContexts().clear();
 				return;
+			case ContextsPackage.CONTEXT__PROTOTYPE:
+				setPrototype((Context)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -323,6 +387,8 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				return views != null && !views.isEmpty();
 			case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 				return dataContexts != null && !dataContexts.isEmpty();
+			case ContextsPackage.CONTEXT__PROTOTYPE:
+				return prototype != null;
 		}
 		return super.eIsSet(featureID);
 	}

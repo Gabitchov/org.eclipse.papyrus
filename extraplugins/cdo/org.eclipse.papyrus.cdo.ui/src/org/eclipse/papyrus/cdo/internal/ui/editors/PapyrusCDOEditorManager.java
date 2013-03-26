@@ -34,6 +34,7 @@ import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
@@ -87,7 +88,8 @@ public class PapyrusCDOEditorManager {
 		add(view, result);
 
 		if(view instanceof CDOTransaction) {
-			view.addListener(new PapyrusTransactionListener());
+			ServicesRegistry services = (ServicesRegistry)result.getAdapter(ServicesRegistry.class);
+			view.addListener(new PapyrusTransactionListener(services, resourceSet));
 		}
 
 		return result;

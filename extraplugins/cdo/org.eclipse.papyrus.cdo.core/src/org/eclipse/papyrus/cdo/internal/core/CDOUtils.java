@@ -33,8 +33,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareTransactionalEditingDomain;
+import org.eclipse.papyrus.cdo.core.util.CDOFunctions;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
 
 /**
  * This is the CDOUtils type. Enjoy.
@@ -172,6 +174,10 @@ public class CDOUtils {
 		}
 
 		return result;
+	}
+
+	public static Iterable<EObject> getEObjects(Iterable<? extends CDOObject> cdoObjects) {
+		return Iterables.transform(cdoObjects, CDOFunctions.getEObject());
 	}
 
 	/**

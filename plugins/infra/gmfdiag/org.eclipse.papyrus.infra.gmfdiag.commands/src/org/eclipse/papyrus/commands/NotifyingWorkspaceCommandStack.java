@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
+ * Copyright (c) 2011, 2013 Atos, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Mathieu Velten (Atos) - Initial API and implementation
  *  Arthur Daussy (Atos) - 363826: [Model Explorer] Drag and drop and undo, incorrect behavior
+ *  Christian W. Damus (CEA) - 404220: Add contexts for tracking objects changed by operations (CDO)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -560,6 +561,8 @@ implements IWorkspaceCommandStack {
 					// resources.
 					historyAffectedResources.addAll(affectedResources);
 				}
+				
+				hookUndoContexts(operation, event);
 			}
 		}
 
@@ -589,6 +592,19 @@ implements IWorkspaceCommandStack {
 			// only interested in post-commit "resourceSetChanged" event
 			return true;
 		}
+	}
+	
+	/**
+	 * A hook for subclasses to attach additional undo-contexts to an {@code operation} based on changes
+	 * in the resource set.
+	 * 
+	 * @param operation
+	 *        an operation that has been executed (never {@code null})
+	 * @param event
+	 *        the description of changes made by the {@code operation} in the resource set
+	 */
+	protected void hookUndoContexts(IUndoableOperation operation, ResourceSetChangeEvent event) {
+		// pass
 	}
 
 	@Override

@@ -2,6 +2,8 @@
 <?eclipse version="3.4"?>
 
 <plugin>
+   <extension-point id="contextStorage" name="Context Storage Action Providers" schema="schema/contextStorage.exsd"/>
+    
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="UICustom/context.uiCustom" loadByDefault="true">
       </browserCustomization>
@@ -180,5 +182,12 @@
             </command>
          </toolbar>
       </menuContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.customization.properties.contextStorage">
+      <actionProvider
+            class="org.eclipse.papyrus.customization.properties.storage.actions.workspace.WorkspaceContextStorageActionProvider">
+      </actionProvider>
    </extension>
 </plugin>

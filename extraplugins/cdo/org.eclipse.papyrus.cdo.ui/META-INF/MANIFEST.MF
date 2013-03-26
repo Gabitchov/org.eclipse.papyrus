@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.services.markerlistener;bundle-version="0.10.0",
  org.eclipse.papyrus.cdo.validation.problems;bundle-version="0.10.0",
  org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.0",
- org.eclipse.papyrus.editor;bundle-version="0.10.0"
+ org.eclipse.papyrus.editor;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
@@ -35,7 +36,7 @@ Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papy
  org.eclipse.papyrus.cdo.internal.ui.actions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.adapters;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.decorators;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
- org.eclipse.papyrus.cdo.internal.ui.dialogs;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.dialogs;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.ui.customization.properties",
  org.eclipse.papyrus.cdo.internal.ui.dnd;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.editors;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.expressions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
@@ -50,4 +51,4 @@ Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papy
    org.eclipse.papyrus.cdo.uml.diagram.ui,
    org.eclipse.papyrus.cdo.uml.ui,
    org.eclipse.papyrus.cdo.uml.ui.tests",
- org.eclipse.papyrus.cdo.internal.ui.wizards;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui"
+ org.eclipse.papyrus.cdo.internal.ui.wizards;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui,org.eclipse.papyrus.cdo.ui.customization.properties"

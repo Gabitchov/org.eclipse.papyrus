@@ -24,7 +24,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.customization.properties.editor,
  org.eclipse.papyrus.customization.properties.modelelement,
- org.eclipse.papyrus.customization.properties.providers
+ org.eclipse.papyrus.customization.properties.providers,
+ org.eclipse.papyrus.customization.properties.storage.actions
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
