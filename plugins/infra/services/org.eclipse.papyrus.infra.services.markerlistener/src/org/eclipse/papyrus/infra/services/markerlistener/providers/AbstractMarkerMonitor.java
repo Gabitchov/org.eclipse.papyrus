@@ -17,6 +17,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.markerlistener.Activator;
 import org.eclipse.papyrus.infra.services.markerlistener.IMarkerEventListener;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * This is the AbstractMarkerMonitor type. Enjoy.
@@ -45,31 +46,39 @@ public abstract class AbstractMarkerMonitor
 		modelSet = null;
 	}
 
-	protected void fireMarkerAdded(IPapyrusMarker marker) {
+	protected void fireMarkerAdded(final IPapyrusMarker marker) {
 		if (this.listeners != null) {
-			for (IMarkerEventListener listener : this.listeners) {
-				try {
-					listener.notifyMarkerChange(marker.getEObject(), marker,
-						IMarkerEventListener.MARKER_ADDED);
-				} catch (Exception e) {
-					Activator.log.error(
-						"Uncaught exception in marker listener.", e);
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					for (IMarkerEventListener listener : AbstractMarkerMonitor.this.listeners) {
+						try {
+							listener.notifyMarkerChange(marker.getEObject(), marker,
+								IMarkerEventListener.MARKER_ADDED);
+						} catch (Exception e) {
+							Activator.log.error(
+								"Uncaught exception in marker listener.", e);
+						}
+					}
 				}
-			}
+			}) ;
 		}
 	}
 
-	protected void fireMarkerRemoved(IPapyrusMarker marker) {
+	protected void fireMarkerRemoved(final IPapyrusMarker marker) {
 		if (this.listeners != null) {
-			for (IMarkerEventListener listener : this.listeners) {
-				try {
-					listener.notifyMarkerChange(marker.getEObject(), marker,
-						IMarkerEventListener.MARKER_REMOVED);
-				} catch (Exception e) {
-					Activator.log.error(
-						"Uncaught exception in marker listener.", e);
+			Display.getDefault().syncExec(new Runnable() {
+				public void run() {
+					for (IMarkerEventListener listener : AbstractMarkerMonitor.this.listeners) {
+						try {
+							listener.notifyMarkerChange(marker.getEObject(), marker,
+								IMarkerEventListener.MARKER_REMOVED);
+						} catch (Exception e) {
+							Activator.log.error(
+								"Uncaught exception in marker listener.", e);
+						}
+					}
 				}
-			}
+			}) ;
 		}
 	}
 
