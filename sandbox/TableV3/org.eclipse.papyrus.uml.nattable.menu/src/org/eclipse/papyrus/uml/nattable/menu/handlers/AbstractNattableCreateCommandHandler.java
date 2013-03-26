@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -28,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.nattable.menu.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler;
@@ -44,6 +43,7 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public abstract class AbstractNattableCreateCommandHandler extends AbstractCreateCommandHandler {
 
+	@Override
 	protected abstract IElementType getElementTypeToCreate();
 
 	/** Current createCommand for selection (updated in {@link AbstractNattableCreateCommandHandler#isEnabled()}) */
@@ -70,6 +70,7 @@ public abstract class AbstractNattableCreateCommandHandler extends AbstractCreat
 	 * 
 	 * </pre>
 	 */
+	@Override
 	protected Command buildCommand() {
 		Command createCmd = super.buildCommand();
 
@@ -78,7 +79,7 @@ public abstract class AbstractNattableCreateCommandHandler extends AbstractCreat
 			CompositeCommand cmd = new CompositeCommand(""); //$NON-NLS-1$
 			cmd.add(new EMFtoGMFCommandWrapper(createCmd));
 
-			final CreateElementRequest request = createRequest;
+			final CreateElementRequest request = this.createRequest;
 			//		depends on the synchronization of the axis manager
 			cmd.add(new AbstractTransactionalCommand(getEditingDomain(), Messages.AbstractNattableCreateCommandHandler_AddElementCommand, null) {
 
@@ -106,14 +107,9 @@ public abstract class AbstractNattableCreateCommandHandler extends AbstractCreat
 		INattableModelManager manager = getTableManager();
 		if(manager != null) {
 			final EObject container = manager.getTable().getContext();
-			EReference reference = null;
 			ICommandContext context = null;
 			if(container != null) {
-				if(reference != null) {
-					context = new CommandContext(container, reference);
-				} else {
-					context = new CommandContext(container);
-				}
+				context = new CommandContext(container);
 			}
 
 			return context;

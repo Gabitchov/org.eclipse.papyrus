@@ -14,9 +14,9 @@
 package org.eclipse.papyrus.infra.nattable.celleditor.factory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -52,7 +52,7 @@ public class CellEditorConfigurationFactory {
 	private CellEditorConfigurationFactory() {
 		//to prevent instanciation
 		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
-		registry = new HashMap<Integer, IAxisCellEditorConfiguration>();
+		this.registry = new TreeMap<Integer, IAxisCellEditorConfiguration>();
 		for(final IConfigurationElement iConfigurationElement : configElements) {
 			//			final String id = iConfigurationElement.getAttribute(FACTORY_ID_ATTRIBUTE);
 			final Integer order = new Integer(iConfigurationElement.getAttribute(ORDER_ATTRIBUTE));
@@ -61,7 +61,7 @@ public class CellEditorConfigurationFactory {
 				//				factory.initFactory(id);
 
 				if(factory != null) {
-					registry.put(order, factory);
+					this.registry.put(order, factory);
 				}
 			} catch (final CoreException e) {
 				Activator.log.error(e);
@@ -78,8 +78,8 @@ public class CellEditorConfigurationFactory {
 	 */
 	public IAxisCellEditorConfiguration getCellEditorConfigruation(final String configurationId) {
 		assert configurationId != null;
-		for(final Integer order : registry.keySet()) {
-			final IAxisCellEditorConfiguration current = registry.get(order);
+		for(final Integer order : this.registry.keySet()) {
+			final IAxisCellEditorConfiguration current = this.registry.get(order);
 			if(configurationId.equals(current.getEditorId())) {
 				return current;
 			}

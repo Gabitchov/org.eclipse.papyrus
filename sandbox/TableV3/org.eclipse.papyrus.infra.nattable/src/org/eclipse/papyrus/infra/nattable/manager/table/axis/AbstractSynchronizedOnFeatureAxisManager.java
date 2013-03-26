@@ -38,8 +38,24 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	@Override
 	public void init(final INattableModelManager manager, final String managerId, final Table table, final AbstractAxisProvider provider, boolean mustRefreshOnAxisChanges) {
 		super.init(manager, managerId, table, provider, mustRefreshOnAxisChanges);
-		assert provider instanceof EMFFeatureValueAxisProvider;
-		final EReference ref = ((EMFFeatureValueAxisProvider)provider).getListenFeature();
+		verifyValues();
+	}
+
+	/**
+	 * this method verify that the fields and the parameters are correct for this synchronized table
+	 * 
+	 */
+	protected void verifyValues() {
+		assert getRepresentedContentProvider() instanceof EMFFeatureValueAxisProvider;
+		verifyCoupleContextFeature();
+	}
+
+	/**
+	 * verify that the context contains the feature
+	 * 
+	 */
+	protected void verifyCoupleContextFeature() {
+		final EReference ref = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
 		assert ref.isMany();
 		final EObject context = getTable().getContext();
 		assert context.eClass().getEAllReferences().contains(ref);

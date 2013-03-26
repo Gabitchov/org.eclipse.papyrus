@@ -5,30 +5,30 @@
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
       <configuration
             class="org.eclipse.papyrus.uml.nattable.config.UMLFeatureCellEditorConfig"
-            order="50">
+            order="500">
       </configuration>
    </extension>
  <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider
-            priority="10"
+            priority="1300"
             provider="org.eclipse.papyrus.uml.nattable.provider.StereotypePropertyHeaderLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
          </labelProviderContext>
          <labelProviderContext
-               context="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
+               context="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider">
          </labelProviderContext>
       </labelProvider>
       <labelProvider
-            priority="10"
+            priority="1800"
             provider="org.eclipse.papyrus.uml.nattable.provider.UMLUnlimitedNaturalLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
          </labelProviderContext>
       </labelProvider>
       <labelProvider
-            priority="50"
+            priority="1900"
             provider="org.eclipse.papyrus.uml.nattable.provider.StereotypePropertyCellLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
@@ -38,15 +38,15 @@
    <extension
          point="org.eclipse.papyrus.infra.nattable.axismanager">
       <axisManager
-            id="org.eclipse.papyrus.uml.nattable.stereotype.property.provider"
+            id="org.eclipse.papyrus.uml.nattable.stereotype.property.axis.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager">
       </axisManager>
       <axisManager
-            id="org.eclipse.papyrus.uml.nattable.element.provider"
+            id="org.eclipse.papyrus.uml.nattable.element.axis.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLElementAxisManager">
       </axisManager>
       <axisManager
-            id="org.eclipse.papyrus.uml.nattable.feature.provider"
+            id="org.eclipse.papyrus.uml.nattable.feature.axis.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLFeatureAxisManager">
       </axisManager>
    </extension>

@@ -115,10 +115,10 @@
    <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider
-            priority="11"
+            priority="1000"
             provider="org.eclipse.papyrus.infra.nattable.views.editor.provider.ModelViewsHeaderLabelProvider">
          <labelProviderContext
-               context="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider">
+               context="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider">
          </labelProviderContext>
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
@@ -129,7 +129,7 @@
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
       <configuration
             class="org.eclipse.papyrus.infra.nattable.views.editor.celleditor.ModelViewsCellEditorConfiguration"
-            order="10">
+            order="50">
       </configuration>
    </extension>
 </plugin>

@@ -27,6 +27,8 @@ import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;
  */
 public class ModelViewsCellEditorConfiguration extends EStructuralFeatureEditorConfig {
 
+	public static final String CONFIG_EDITOR_ID = "MODEL_VIEW_CELL_EDITOR_ID";
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getFeatureIdentifier(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
@@ -65,5 +67,10 @@ public class ModelViewsCellEditorConfiguration extends EStructuralFeatureEditorC
 			return axisElement instanceof String && ((String)axisElement).startsWith(Utils.NATTABLE_EDITOR_PAGE_ID);
 		}
 		return false;
+	}
+
+	@Override
+	public String getEditorId() {
+		return CONFIG_EDITOR_ID;
 	}
 }

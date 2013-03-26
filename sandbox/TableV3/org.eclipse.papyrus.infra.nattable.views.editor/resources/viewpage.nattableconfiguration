@@ -3,7 +3,7 @@
   <verticalAxisProvider xsi:type="nattableaxisprovider:DefaultAxisProvider">
     <javaContentProviderIds>org.eclipse.papyrus.infra.nattable.page.editor.view.feature.axis.manager</javaContentProviderIds>
     <axisConfiguration xsi:type="nattableaxisconfiguration:DefaultAxisConfiguration" indexStyle="ALPHABETIC">
-      <labelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" labelProviderContext="org.eclipse.papyrus.infra.nattable.feature.header.labelprovider"/>
+      <labelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider"/>
     </axisConfiguration>
     <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/name"/>
     <axis xsi:type="nattable:IdAxis" element="nattable_editor_pages:/context"/>

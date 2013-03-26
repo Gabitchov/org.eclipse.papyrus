@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider
-            priority="5"
+            priority="1700"
             provider="org.eclipse.papyrus.sysml.nattable.provider.SysMLFlowPortDirectionLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.body.labelprovider">

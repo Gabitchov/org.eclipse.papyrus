@@ -52,6 +52,12 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
+	 * the id for this editor configuration
+	 */
+	public static final String EDITOR_CONFIG_ID = "UML_EDITOR_CONFIG";
+
+
+	/**
 	 * Definition of the id for the UML type
 	 */
 	public static final int SINGLE_REAL = 100;
@@ -428,6 +434,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 		case MULTI_UML_REFERENCE:
 			converter = new DefaultDisplayConverter() {
 
+				@Override
 				public Object displayToCanonicalValue(ILayerCell cell, IConfigRegistry configRegistry, Object displayValue) {
 					return displayValue;
 				};
@@ -485,5 +492,10 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			break;
 		}
 		return converter;
+	}
+
+	@Override
+	public String getEditorId() {
+		return EDITOR_CONFIG_ID;
 	}
 }

@@ -13,7 +13,7 @@ package org.eclipse.papyrus.uml.nattable.menu.tester;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.nattable.manager.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 
 public class TableEditorPropertyTester extends PropertyTester {
