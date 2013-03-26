@@ -114,7 +114,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		CDOTransaction transaction = getTransaction(fixture);
 
 		Resource resource = transaction.getOrCreateResource(getResourcePath(MODEL_FILENAME));
-		assertThat(fixture.getReadOnlyHandler().anyReadOnly(new URI[]{ resource.getURI() }, fixture.getTransactionalEditingDomain()), is(Optional.of(false)));
+		assertThat(fixture.getReadOnlyHandler().anyReadOnly(new URI[]{ resource.getURI() }), is(Optional.of(false)));
 	}
 
 	@Test
