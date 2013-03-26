@@ -133,7 +133,7 @@ public class CDOTextURIHandler extends URIHandlerImpl {
 				CDOTextResource text = view.getTextResource(CDOURIUtil.extractResourcePath(translated));
 				clobOutput = new ClobOutputStream(text);
 			} catch (Exception e) {
-				throw new IOException(e);
+				throw new IOException(e.getMessage());
 			}
 
 			// returning here resolves resource-leak compiler warning
