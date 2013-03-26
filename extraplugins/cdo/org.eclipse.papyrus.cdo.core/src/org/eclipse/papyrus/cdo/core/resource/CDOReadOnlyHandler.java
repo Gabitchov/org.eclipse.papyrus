@@ -17,24 +17,27 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.emf.readonly.AbstractReadOnlyHandler;
 
 import com.google.common.base.Optional;
 
 /**
  * This is the CDOReadOnlyHandler type. Enjoy.
  */
-public class CDOReadOnlyHandler
-		implements IReadOnlyHandler {
+public class CDOReadOnlyHandler extends AbstractReadOnlyHandler {
 
-	public Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain) {
+	public CDOReadOnlyHandler(EditingDomain editingDomain) {
+		super(editingDomain);
+	}
+
+	public Optional<Boolean> anyReadOnly(URI[] uris) {
 		Optional<Boolean> result = Optional.absent();
 
-		if ((uris.length > 0) && CDOUtils.isCDOEditingDomain(editingDomain)) {
-			for (int i = 0; !result.or(Boolean.FALSE) && (i < uris.length); i++) {
+		if((uris.length > 0) && CDOUtils.isCDOEditingDomain(getEditingDomain())) {
+			for(int i = 0; !result.or(Boolean.FALSE) && (i < uris.length); i++) {
 				// if it's a cdo:// URI, then I have a definitive answer
-				if (CDOUtils.isCDOURI(uris[i])) {
-					result = Optional.of(isReadOnly(uris[i], editingDomain));
+				if(CDOUtils.isCDOURI(uris[i])) {
+					result = Optional.of(isReadOnly(uris[i]));
 				}
 			}
 		}
@@ -42,26 +45,26 @@ public class CDOReadOnlyHandler
 		return result;
 	}
 
-	protected boolean isReadOnly(URI uri, EditingDomain domain) {
+	protected boolean isReadOnly(URI uri) {
 		boolean result = false;
 
-		Resource resource = domain.getResourceSet().getResource(uri, false);
-		if (resource instanceof CDOObject) {
-			result = CDOUtils.isReadOnly((CDOObject) resource);
+		Resource resource = getEditingDomain().getResourceSet().getResource(uri, false);
+		if(resource instanceof CDOObject) {
+			result = CDOUtils.isReadOnly((CDOObject)resource);
 		}
 
 		return result;
 	}
 
-	public Optional<Boolean> isReadOnly(EObject eObject,
-			EditingDomain editingDomain) {
+	@Override
+	public Optional<Boolean> isReadOnly(EObject eObject) {
 
 		Optional<Boolean> result = Optional.absent();
 
 		Resource resource = eObject.eResource();
-		if ((resource == null) || CDOUtils.isCDOURI(resource.getURI())) {
+		if((resource == null) || CDOUtils.isCDOURI(resource.getURI())) {
 			CDOObject cdo = CDOUtils.getCDOObject(eObject);
-			if (cdo != null) {
+			if(cdo != null) {
 				// I have a definitive answer for CDO objects
 				result = Optional.of(CDOUtils.isReadOnly(cdo));
 			}
@@ -70,15 +73,14 @@ public class CDOReadOnlyHandler
 		return result;
 	}
 
-	public Optional<Boolean> makeWritable(URI[] uris,
-			EditingDomain editingDomain) {
+	public Optional<Boolean> makeWritable(URI[] uris) {
 
 		// CDO requires the administrative UI to edit user permissions
 		return Optional.absent();
 	}
 
-	public Optional<Boolean> makeWritable(EObject eObject,
-			EditingDomain editingDomain) {
+	@Override
+	public Optional<Boolean> makeWritable(EObject eObject) {
 
 		// CDO requires the administrative UI to edit user permissions
 		return Optional.absent();

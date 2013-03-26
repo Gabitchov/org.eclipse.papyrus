@@ -36,7 +36,7 @@ public interface IReadOnlyHandler {
 	 *         boolean indicating whether any definitively is or they all
 	 *         definitively are not read-only
 	 */
-	Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain);
+	Optional<Boolean> anyReadOnly(URI[] uris);
 
 	/**
 	 * Attempt to ensure that the resources identified by the given URIs are
@@ -54,7 +54,7 @@ public interface IReadOnlyHandler {
 	 *         indicating that I made the resources writable ({@code true}) or
 	 *         they cannot be made writable ({@code false})
 	 */
-	Optional<Boolean> makeWritable(URI[] uris, EditingDomain editingDomain);
+	Optional<Boolean> makeWritable(URI[] uris);
 
 	/**
 	 * Queries whether an {@code eObject} is individually read-only in a given
@@ -71,7 +71,7 @@ public interface IReadOnlyHandler {
 	 *         present} boolean indicating whether it definitively is or is not
 	 *         read-only
 	 */
-	Optional<Boolean> isReadOnly(EObject eObject, EditingDomain editingDomain);
+	Optional<Boolean> isReadOnly(EObject eObject);
 
 	/**
 	 * Attempt to ensure that the given {@code eObject} is writable.
@@ -88,5 +88,5 @@ public interface IReadOnlyHandler {
 	 *         indicating that I made it writable ({@code true}) or it cannot be
 	 *         made writable ({@code false})
 	 */
-	Optional<Boolean> makeWritable(EObject eObject, EditingDomain editingDomain);
+	Optional<Boolean> makeWritable(EObject eObject);
 }

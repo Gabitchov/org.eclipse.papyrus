@@ -33,7 +33,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -47,6 +46,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 
 import com.google.common.base.Optional;
 
@@ -96,6 +96,10 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	protected URI uriWithoutExtension;
 
+	protected Adapter modificationTrackingAdapter;
+
+	protected IReadOnlyHandler roHandler;
+
 	/**
 	 * 
 	 * Constructor.
@@ -103,12 +107,11 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public ModelSet() {
 		registerModel(additional);
+		setTrackingModification(true);
 
 		getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		getLoadOptions().put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
-
-		this.eAdapters().add(new ProxyModificationTrackingAdapter());
 	}
 
 	/**
@@ -174,13 +177,36 @@ public class ModelSet extends ResourceSetImpl {
 			r = super.getResource(uri, loadOnDemand);
 		} catch (WrappedException e) {
 			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
-				r = getResource(uri, false);
+				r = super.getResource(uri, false);
 				if(r == null) {
 					throw e;
 				}
 			}
 		}
 		return setResourceOptions(r);
+	}
+
+	public void setTrackingModification(boolean isTrackingModification) {
+		boolean oldIsTrackingModification = modificationTrackingAdapter != null;
+
+		if(oldIsTrackingModification != isTrackingModification) {
+			if(isTrackingModification) {
+				modificationTrackingAdapter = createModificationTrackingAdapter();
+				this.eAdapters().add(modificationTrackingAdapter);
+			} else {
+				Adapter oldModificationTrackingAdapter = modificationTrackingAdapter;
+				modificationTrackingAdapter = null;
+				this.eAdapters().remove(oldModificationTrackingAdapter);
+			}
+		}
+	}
+
+	protected Adapter createModificationTrackingAdapter() {
+		return new ProxyModificationTrackingAdapter();
+	}
+
+	public boolean isTrackingModification() {
+		return modificationTrackingAdapter != null;
 	}
 
 	/**
@@ -238,7 +264,7 @@ public class ModelSet extends ResourceSetImpl {
 			URI trimmedModelURI = modelResource.getURI().trimFileExtension();
 			r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), loadOnDemand);
 		}
-		return setResourceOptions(r);
+		return r;
 	}
 
 	/**
@@ -250,7 +276,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
-		if(r != null && !r.isTrackingModification()) {
+		if(r != null && isTrackingModification() && !r.isTrackingModification()) {
 			r.setTrackingModification(true);
 		}
 		return r;
@@ -597,15 +623,12 @@ public class ModelSet extends ResourceSetImpl {
 		Collection<IModel> modelList = models.values();
 		monitor.beginTask("Saving resources", modelList.size());
 
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
-		IReadOnlyHandler roHandler = getReadOnlyHandler();
-
-		if(roHandler != null) {
+		if(isTrackingModification() && getReadOnlyHandler() != null) {
 			Set<URI> roUris = new HashSet<URI>();
 			for(IModel model : modelList) {
 				Set<URI> uris = model.getModifiedURIs();
 				for(URI u : uris) {
-					Optional<Boolean> res = roHandler.anyReadOnly(new URI[]{ u }, editingDomain);
+					Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{u});
 					if(res.isPresent() && res.get()) {
 						roUris.add(u);
 					}
@@ -613,7 +636,7 @@ public class ModelSet extends ResourceSetImpl {
 			}
 
 			if(!roUris.isEmpty()) {
-				Optional<Boolean> authorizeSave = roHandler.makeWritable(roUris.toArray(new URI[roUris.size()]), editingDomain);
+				Optional<Boolean> authorizeSave = getReadOnlyHandler().makeWritable(roUris.toArray(new URI[roUris.size()]));
 
 				if(authorizeSave.isPresent() && !authorizeSave.get()) {
 					monitor.done();
@@ -715,12 +738,14 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	public IReadOnlyHandler getReadOnlyHandler() {
-		EditingDomain editingDomain = getTransactionalEditingDomain();
-		Object handler = Platform.getAdapterManager().getAdapter(editingDomain, IReadOnlyHandler.class);
-		if(handler instanceof IReadOnlyHandler) {
-			return (IReadOnlyHandler)handler;
+		if(roHandler == null) {
+			EditingDomain editingDomain = getTransactionalEditingDomain();
+			Object handler = PlatformHelper.getAdapter(editingDomain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler) {
+				roHandler = (IReadOnlyHandler)handler;
+			}
 		}
-		return null;
+		return roHandler;
 	}
 
 	/**

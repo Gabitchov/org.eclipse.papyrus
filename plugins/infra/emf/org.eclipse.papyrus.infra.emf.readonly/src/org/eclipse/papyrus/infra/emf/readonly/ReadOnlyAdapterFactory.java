@@ -21,8 +21,8 @@ import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 public class ReadOnlyAdapterFactory implements IAdapterFactory {
 
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
-		if(IReadOnlyHandler.class == adapterType && adaptableObject instanceof PapyrusROTransactionalEditingDomain) {
-			return ReadOnlyManager.getInstance();
+		if(IReadOnlyHandler.class == adapterType && adaptableObject instanceof EditingDomain) {
+			return ReadOnlyManager.getReadOnlyHandler((EditingDomain) adaptableObject);
 		}
 		return null;
 	}

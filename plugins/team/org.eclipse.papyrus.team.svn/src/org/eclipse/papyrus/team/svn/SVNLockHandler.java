@@ -36,14 +36,15 @@ public class SVNLockHandler extends AbstractReadOnlyHandler {
 
 	FileModificationValidator validator = null;
 
-	public SVNLockHandler() {
+	public SVNLockHandler(EditingDomain editingDomain) {
+		super(editingDomain);
 		try {
 			validator = new SVNTeamModificationValidator();
 		} catch (NoClassDefFoundError e) {
 		}
 	}
 
-	public Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain) {
+	public Optional<Boolean> anyReadOnly(URI[] uris) {
 
 		if (validator != null) {
 			IResource[] needsLockResources = FileUtility.filterResources(getIFiles(uris), IStateFilter.SF_NEEDS_LOCK, IResource.DEPTH_ZERO);
@@ -57,7 +58,7 @@ public class SVNLockHandler extends AbstractReadOnlyHandler {
 		return Optional.absent();
 	}
 
-	public Optional<Boolean> makeWritable(URI[] uris, EditingDomain editingDomain) {
+	public Optional<Boolean> makeWritable(URI[] uris) {
 		if (validator != null) {
 			IStatus result = validator.validateEdit(getIFiles(uris), FileModificationValidationContext.VALIDATE_PROMPT);
 			return Optional.of(result.isOK());

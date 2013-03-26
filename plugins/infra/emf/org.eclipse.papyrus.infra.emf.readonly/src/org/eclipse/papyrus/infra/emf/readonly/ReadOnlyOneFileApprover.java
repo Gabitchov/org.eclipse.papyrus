@@ -88,8 +88,8 @@ public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 		EditingDomain editingDomain = getEditingDomain(operation);
 
 		URI[] filesToCheckForLockArray = filesToCheckForLock.toArray(new URI[filesToCheckForLock.size()]);
-		if(ReadOnlyManager.getInstance().anyReadOnly(filesToCheckForLockArray, editingDomain).get()) {
-			Optional<Boolean> ok = ReadOnlyManager.getInstance().makeWritable(filesToCheckForLockArray, editingDomain);
+		if(ReadOnlyManager.getReadOnlyHandler(editingDomain).anyReadOnly(filesToCheckForLockArray).get()) {
+			Optional<Boolean> ok = ReadOnlyManager.getReadOnlyHandler(editingDomain).makeWritable(filesToCheckForLockArray);
 			if(!ok.get()) {
 				return Status.CANCEL_STATUS;
 			}

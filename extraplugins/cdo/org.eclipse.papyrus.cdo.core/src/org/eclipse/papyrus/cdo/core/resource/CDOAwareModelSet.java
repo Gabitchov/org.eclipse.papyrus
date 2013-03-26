@@ -36,8 +36,7 @@ import com.google.common.collect.Iterables;
 /**
  * This is the CDOAwareModelSet type. Enjoy.
  */
-public class CDOAwareModelSet
-		extends OnDemandLoadingModelSet {
+public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	private final ThreadLocal<Boolean> inGetResource = new ThreadLocal<Boolean>();
 
@@ -49,23 +48,20 @@ public class CDOAwareModelSet
 
 	public CDOAwareModelSet(IPapyrusRepositoryManager repositoryManager) {
 		super();
+		setTrackingModification(false);
 
 		this.repositoryManager = repositoryManager;
 	}
 
 	@Override
 	public EObject getEObject(URI uri, boolean loadOnDemand) {
-		return CDOUtils.isCDOURI(uri)
-			? basicGetEObject(uri, loadOnDemand)
-			: super.getEObject(uri, loadOnDemand);
+		return CDOUtils.isCDOURI(uri) ? basicGetEObject(uri, loadOnDemand) : super.getEObject(uri, loadOnDemand);
 	}
 
 	protected EObject basicGetEObject(URI uri, boolean loadOnDemand) {
 		Resource resource = getResource(uri.trimFragment(), loadOnDemand);
 
-		return (resource == null)
-			? null
-			: resource.getEObject(uri.fragment());
+		return (resource == null) ? null : resource.getEObject(uri.fragment());
 	}
 
 	@Override
@@ -91,10 +87,9 @@ public class CDOAwareModelSet
 	}
 
 	@Override
-	protected void demandLoad(Resource resource)
-			throws IOException {
+	protected void demandLoad(Resource resource) throws IOException {
 
-		if (CDOUtils.isCDOURI(resource.getURI())) {
+		if(CDOUtils.isCDOURI(resource.getURI())) {
 			// XML options not applicable to CDO resources
 			resource.load(null);
 
@@ -105,8 +100,7 @@ public class CDOAwareModelSet
 	}
 
 	protected void resourceLoadedHook(Resource resource) {
-		for (Diagram next : Iterables.filter(resource.getContents(),
-			Diagram.class)) {
+		for(Diagram next : Iterables.filter(resource.getContents(), Diagram.class)) {
 
 			DawnDiagramUpdater.initializeElement(next);
 		}
@@ -114,13 +108,9 @@ public class CDOAwareModelSet
 
 	public CDOView getCDOView() {
 		CDOViewSet viewSet = CDOUtil.getViewSet(this);
-		CDOView[] views = (viewSet == null)
-			? null
-			: viewSet.getViews();
+		CDOView[] views = (viewSet == null) ? null : viewSet.getViews();
 
-		return ((views != null) && (views.length > 0))
-			? views[0]
-			: null;
+		return ((views != null) && (views.length > 0)) ? views[0] : null;
 	}
 
 	@Override
@@ -130,25 +120,24 @@ public class CDOAwareModelSet
 	}
 
 	@Override
-	public void loadModels(URI uri)
-			throws ModelMultiException {
+	public void loadModels(URI uri) throws ModelMultiException {
 
 		initTransaction(uri);
 		super.loadModels(uri);
 	}
 
 	protected void initTransaction(URI uri) {
-		if (getCDOView() == null) {
+		if(getCDOView() == null) {
 			// get the repository and start a transaction on it
 
-			if (repository == null) {
+			if(repository == null) {
 				repository = repositoryManager.getRepositoryForURI(uri);
 			}
 
-			if (repository != null) {
+			if(repository != null) {
 				repository.createTransaction(this);
 				CDOView view = getCDOView();
-				if (view != null) {
+				if(view != null) {
 					view.addListener(getInvalidationListener());
 				}
 			}
@@ -157,9 +146,9 @@ public class CDOAwareModelSet
 
 	@Override
 	public void unload() {
-		if ((repository != null) && (getCDOView() != null)) {
+		if((repository != null) && (getCDOView() != null)) {
 			CDOView view = getCDOView();
-			if (view != null) {
+			if(view != null) {
 				view.removeListener(getInvalidationListener());
 			}
 			invalidationListener = null;
@@ -174,7 +163,7 @@ public class CDOAwareModelSet
 	}
 
 	protected final IListener getInvalidationListener() {
-		if (invalidationListener == null) {
+		if(invalidationListener == null) {
 			invalidationListener = createInvalidationListener();
 		}
 		return invalidationListener;
@@ -184,11 +173,10 @@ public class CDOAwareModelSet
 		return new IListener() {
 
 			public void notifyEvent(IEvent event) {
-				if (event instanceof CDOViewInvalidationEvent) {
+				if(event instanceof CDOViewInvalidationEvent) {
 					TransactionalEditingDomain domain = getTransactionalEditingDomain();
-					if (domain instanceof CDOAwareTransactionalEditingDomain) {
-						((CDOAwareTransactionalEditingDomain) domain)
-						.fireResourceSetChanged((CDOViewInvalidationEvent) event);
+					if(domain instanceof CDOAwareTransactionalEditingDomain) {
+						((CDOAwareTransactionalEditingDomain)domain).fireResourceSetChanged((CDOViewInvalidationEvent)event);
 					}
 				}
 			}

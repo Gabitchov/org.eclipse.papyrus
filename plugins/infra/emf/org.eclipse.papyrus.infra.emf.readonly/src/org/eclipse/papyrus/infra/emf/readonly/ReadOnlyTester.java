@@ -40,9 +40,8 @@ public class ReadOnlyTester extends PropertyTester {
 					EObject eObject = (EObject) businessObject;
 					Resource resource = eObject.eResource();
 					if ((resource != null) && (resource.getResourceSet() != null)) {
-						return ReadOnlyManager.getInstance().isReadOnly(eObject,
-							WorkspaceEditingDomainFactory.INSTANCE
-								.getEditingDomain(resource.getResourceSet())).get();
+						return ReadOnlyManager.getReadOnlyHandler(WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(resource.getResourceSet()))
+								.isReadOnly(eObject).get();
 					}
 				}
 			}

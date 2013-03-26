@@ -24,11 +24,15 @@ import com.google.common.base.Optional;
 
 public class AppliedProfileReadOnlyHandler extends AbstractReadOnlyHandler {
 
-	public Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain) {
-		if(editingDomain != null) {
+	public AppliedProfileReadOnlyHandler(EditingDomain editingDomain) {
+		super(editingDomain);
+	}
+
+	public Optional<Boolean> anyReadOnly(URI[] uris) {
+		if(getEditingDomain() != null) {
 			Resource mainUmlResource = null;
-			if(editingDomain.getResourceSet() instanceof ModelSet) {
-				UmlModel umlModel = (UmlModel)((ModelSet)editingDomain.getResourceSet()).getModel(UmlModel.MODEL_ID);
+			if(getEditingDomain().getResourceSet() instanceof ModelSet) {
+				UmlModel umlModel = (UmlModel)((ModelSet)getEditingDomain().getResourceSet()).getModel(UmlModel.MODEL_ID);
 				if(umlModel == null) {
 					return Optional.absent();
 				}
@@ -36,7 +40,7 @@ public class AppliedProfileReadOnlyHandler extends AbstractReadOnlyHandler {
 			}
 
 			for(URI uri : uris) {
-				Resource resource = editingDomain.getResourceSet().getResource(uri, false);
+				Resource resource = getEditingDomain().getResourceSet().getResource(uri, false);
 				if(isProfileResource(resource) && mainUmlResource != resource) {
 					return Optional.of(Boolean.TRUE);
 				}
@@ -58,7 +62,7 @@ public class AppliedProfileReadOnlyHandler extends AbstractReadOnlyHandler {
 		return false;
 	}
 
-	public Optional<Boolean> makeWritable(URI[] uris, EditingDomain editingDomain) {
+	public Optional<Boolean> makeWritable(URI[] uris) {
 		return Optional.absent(); //Applied profiles should remain read-only
 	}
 

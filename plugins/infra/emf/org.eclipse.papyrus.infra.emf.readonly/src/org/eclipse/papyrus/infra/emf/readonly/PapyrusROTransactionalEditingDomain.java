@@ -33,13 +33,13 @@ public class PapyrusROTransactionalEditingDomain
 	@Override
 	public boolean isReadOnly(Resource resource) {
 		if (resource != null && resource.getURI() != null) {
-			return ReadOnlyManager.getInstance().anyReadOnly(new URI[] {resource.getURI()}, this).get();
+			return ReadOnlyManager.getReadOnlyHandler(this).anyReadOnly(new URI[] {resource.getURI()}).get();
 		}
 		return false;
 	}
 	
 	public boolean isReadOnly(EObject eObject) {
-		return ReadOnlyManager.getInstance().isReadOnly(eObject, this).get();
+		return ReadOnlyManager.getReadOnlyHandler(this).isReadOnly(eObject).get();
 	}
 	
 	@Override

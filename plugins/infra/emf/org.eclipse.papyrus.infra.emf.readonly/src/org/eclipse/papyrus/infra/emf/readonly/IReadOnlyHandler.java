@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
- * @deprecated Implement the {@link IReadOnlyHandler2} protocol, instead.
+ * @deprecated Implement the {@link org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler} protocol, instead.
  */
 @Deprecated
 public interface IReadOnlyHandler {

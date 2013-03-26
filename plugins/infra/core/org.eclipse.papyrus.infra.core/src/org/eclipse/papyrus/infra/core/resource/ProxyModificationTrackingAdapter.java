@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.core.resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,14 +24,17 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.tools.util.EMFHelper;
 
 /**
  * This adapter handles "modified" flag of resources for tricky cases :
  * 
  * - when there is a change in an URI all the resources containing a proxy
  * 	 to the modified resource should be marked as modified
+ * 
+ * - when adding/removing objects from resources they should be marked as modified,
+ *   and all the resources containing a proxy too
  * 
  * - when doing control/uncontrol operations the resource of the parent object
  * 	 should be marked as modified
@@ -41,21 +43,21 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  */
 public class ProxyModificationTrackingAdapter extends EContentAdapter {
-	
+
 	@Override
 	protected void setTarget(Resource target) {
 		basicSetTarget(target);
 	}
-	
+
 	@Override
 	protected void unsetTarget(Resource target) {
 		basicUnsetTarget(target);
 	}
-	
+
 	@Override
 	protected void setTarget(EObject target) {
 	}
-	
+
 	@Override
 	protected void unsetTarget(EObject target) {
 	}
@@ -70,26 +72,17 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 			if (n.getEventType() == Notification.SET && n.getFeatureID(Resource.class) == Resource.RESOURCE__URI) {
 				r.setModified(true);
 
-				TreeIterator<Object> properContents = EcoreUtil.getAllProperContents(r, true);
+				TreeIterator<Object> properContents = EcoreUtil.getAllProperContents(r, false);
 				while(properContents.hasNext()) {
 					Object obj = properContents.next();
 					if (obj instanceof EObject) {
-						EObject eObj = (EObject) obj;
-						Collection<Setting> references = getUsages(eObj);
-						for (Setting setting : references) {
-							EStructuralFeature f = setting.getEStructuralFeature();
-							if(setting.getEObject() != null && !f.isDerived() && !f.isTransient()) {
-								Resource refResource = setting.getEObject().eResource();
-								if(refResource != null) {
-									refResource.setModified(true);
-								}
-							}
-						}
+						setReferencingResourcesAsModified((EObject)obj);
 					}
 				}
 
 			} else {
 				List objects = new ArrayList();
+
 				switch(n.getEventType()) {
 				case Notification.ADD_MANY:
 					objects = (List<?>)n.getNewValue();
@@ -105,48 +98,31 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 					break;
 				}
 
+				if (!objects.isEmpty()) {
+					r.setModified(true);
+				}
+
 				for (Object o : objects) {
 					if (o instanceof EObject) {
-						EObject parentEObj = ((EObject)o).eContainer();
-						if (parentEObj != null && parentEObj.eResource() != null) {
-							parentEObj.eResource().setModified(true);
-						}
+						setReferencingResourcesAsModified((EObject)o);
 					}
 				}
 			}
 		}
-		
+
 		super.notifyChanged(n);
 	}
 
-	/**
-	 * Gets the usages.
-	 * 
-	 * @param source
-	 *        the source
-	 * 
-	 * @return the usages or null if there is no usages
-	 */
-	public static Collection<Setting> getUsages(EObject source) {
-		if(source == null) {
-			return Collections.emptyList();
-		}
-
-		ECrossReferenceAdapter crossReferencer = ECrossReferenceAdapter.getCrossReferenceAdapter(source);
-		if(crossReferencer == null) {
-			// try to register a cross referencer at the highest level
-			crossReferencer = new ECrossReferenceAdapter();
-			if(source.eResource() != null) {
-				if(source.eResource().getResourceSet() != null) {
-					crossReferencer.setTarget(source.eResource().getResourceSet());
-				} else {
-					crossReferencer.setTarget(source.eResource());
+	protected void setReferencingResourcesAsModified(EObject eObj) {
+		Collection<Setting> references = EMFHelper.getUsages(eObj);
+		for (Setting setting : references) {
+			EStructuralFeature f = setting.getEStructuralFeature();
+			if(setting.getEObject() != null && !f.isDerived() && !f.isTransient()) {
+				Resource refResource = setting.getEObject().eResource();
+				if(refResource != null) {
+					refResource.setModified(true);
 				}
-			} else {
-				crossReferencer.setTarget(source);
 			}
 		}
-
-		return crossReferencer.getInverseReferences(source, true);
 	}
 }

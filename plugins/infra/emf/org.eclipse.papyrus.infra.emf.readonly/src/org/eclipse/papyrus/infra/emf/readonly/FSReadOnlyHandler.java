@@ -29,7 +29,11 @@ import com.google.common.base.Optional;
 
 public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
 
-	public Optional<Boolean> anyReadOnly(URI[] uris, EditingDomain editingDomain) {
+	public FSReadOnlyHandler(EditingDomain editingDomain) {
+		super(editingDomain);
+	}
+
+	public Optional<Boolean> anyReadOnly(URI[] uris) {
 		for(URI uri : uris) {
 
 			IFile file = getFile(uri);
@@ -48,7 +52,7 @@ public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
 		return null;
 	}
 
-	public Optional<Boolean> makeWritable(final URI[] uris, EditingDomain editingDomain) {
+	public Optional<Boolean> makeWritable(final URI[] uris) {
 		final AtomicBoolean doEnableWrite = new AtomicBoolean();
 		Display.getCurrent().syncExec(new Runnable() {
 
