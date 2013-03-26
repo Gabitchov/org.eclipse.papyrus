@@ -78,7 +78,7 @@ public class EMFURLStreamHandler extends URLStreamHandler {
 					input = uriConverter.getURIHandler(uri).createInputStream(uri, createInputStreamOptions());
 					connected = true;
 				} catch (Exception e) {
-					throw new IOException("Failed to connect.", e);
+					throw new IOException("Failed to connect: " + e.getMessage());
 				}
 			}
 		}
