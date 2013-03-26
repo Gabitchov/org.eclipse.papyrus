@@ -17,6 +17,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assume.assumeThat;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.dawn.editors.IDawnEditor;
@@ -36,6 +37,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.uml2.uml.Class;
 import org.junit.Before;
 import org.junit.Test;
@@ -171,6 +173,12 @@ public class DawnEditorAdapterTest extends AbstractPapyrusCDOUITest {
 	public void testSetFocus() {
 		getRepositoryExplorer().setFocus();
 		flushDisplayEvents();
+
+		// when running the tests while using some other application, the workbench
+		// window doesn't have focus, so other focus changes don't work and we
+		// get spurious test failures.
+		IWorkbenchWindow window = getWorkbenchPage().getWorkbenchWindow();
+		assumeThat(window.getShell().getDisplay().getActiveShell(), is(window.getShell()));
 
 		assertThat(getWorkbenchPage().getActivePart(), not((IWorkbenchPart)getEditor()));
 

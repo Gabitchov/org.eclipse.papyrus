@@ -43,11 +43,15 @@ import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 
 /**
@@ -237,5 +241,46 @@ public abstract class AbstractPapyrusCDOTest {
 		T result = (T)CDOUtil.getEObject(view.getObject(cdo.cdoID()));
 
 		return result;
+	}
+
+	public static <T extends Number & Comparable<T>> Matcher<T> lessThan(final T max) {
+		return new BaseMatcher<T>() {
+
+			public void describeTo(Description description) {
+				description.appendText("< ").appendValue(max);
+			}
+
+			@SuppressWarnings("unchecked")
+			public boolean matches(Object item) {
+				return ((T)item).compareTo(max) < 0;
+			}
+		};
+	}
+
+	public static <T extends Number & Comparable<T>> Matcher<T> lessThanOrEqualTo(final T max) {
+		return new BaseMatcher<T>() {
+
+			public void describeTo(Description description) {
+				description.appendText("<= ").appendValue(max);
+			}
+
+			@SuppressWarnings("unchecked")
+			public boolean matches(Object item) {
+				return ((T)item).compareTo(max) <= 0;
+			}
+		};
+	}
+
+	public static <T> Matcher<Iterable<T>> hasSize(final int size) {
+		return new BaseMatcher<Iterable<T>>() {
+
+			public void describeTo(Description description) {
+				description.appendText("has size ").appendValue(size);
+			}
+
+			public boolean matches(Object item) {
+				return Iterables.size((Iterable<?>)item) == size;
+			}
+		};
 	}
 }

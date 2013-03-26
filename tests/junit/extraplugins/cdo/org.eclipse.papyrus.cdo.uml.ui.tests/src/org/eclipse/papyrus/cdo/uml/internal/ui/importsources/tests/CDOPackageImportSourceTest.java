@@ -23,6 +23,7 @@ import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.cdo.eresource.CDOResource;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
+import org.eclipse.papyrus.cdo.internal.ui.views.DIResourceQuery;
 import org.eclipse.papyrus.cdo.ui.tests.AbstractPapyrusCDOUITest;
 import org.eclipse.papyrus.cdo.uml.internal.ui.importsources.CDOPackageImportSource;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
@@ -76,7 +78,7 @@ public class CDOPackageImportSourceTest extends AbstractPapyrusCDOUITest {
 	}
 
 	@Test
-	public void testCreateModelHierarchyContentProvider() {
+	public void testCreateModelHierarchyContentProvider() throws InterruptedException {
 		IStaticContentProvider provider = fixture.getModelHierarchyContentProvider();
 
 		assertThat(provider, instanceOf(ITreeContentProvider.class));
@@ -85,6 +87,10 @@ public class CDOPackageImportSourceTest extends AbstractPapyrusCDOUITest {
 		CDOResourceFolder folder = model.getResource().getFolder();
 
 		ITreeContentProvider treeContent = (ITreeContentProvider)provider;
+
+		// trigger the asynchronous DIResourceQuery and wait for it to finish
+		treeContent.getChildren(getInternalPapyrusRepository());
+		DIResourceQuery.waitFor(getInternalPapyrusRepository().getMasterView(), 10, TimeUnit.SECONDS);
 
 		Object[] children = treeContent.getChildren(folder);
 		assertThat(Arrays.asList(children), hasItem((Object)model));

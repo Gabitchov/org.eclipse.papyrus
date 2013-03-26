@@ -17,10 +17,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
- * This is the AllExpressionsTests type. Enjoy.
+ * This is the AllUtilTests type. Enjoy.
  */
 @RunWith(Suite.class)
-@SuiteClasses({ CDOPredicatesTest.class, CDOFunctionsTest.class })
+@SuiteClasses({ CDOPredicatesTest.class, CDOFunctionsTest.class, JobWaiterTest.class })
 public class AllUtilTests {
 
 	public AllUtilTests() {
