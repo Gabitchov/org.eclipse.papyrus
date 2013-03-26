@@ -97,18 +97,18 @@
          point="org.eclipse.papyrus.infra.nattable.axismanager">
       <axisManager
             id="org.eclipse.papyrus.infra.nattable.page.editor.contents.axis.manager"
-            manager="org.eclipse.papyrus.infra.nattable.views.editor.managers.EditorContextSynchronizerAxisManager">
+            manager="org.eclipse.papyrus.infra.nattable.views.editor.manager.axis.EditorContextSynchronizerAxisManager">
       </axisManager>
       <axisManager
             id="org.eclipse.papyrus.infra.nattable.page.editor.view.feature.axis.manager"
-            manager="org.eclipse.papyrus.infra.nattable.views.editor.managers.EditorFeatureAxisManager">
+            manager="org.eclipse.papyrus.infra.nattable.views.editor.manager.axis.EditorFeatureAxisManager">
       </axisManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.cellmanager">
       <cellManager
             id="org.eclipse.papyrus.infra.nattable.page.editor.modelviewscellmanager"
-            manager="org.eclipse.papyrus.infra.nattable.views.editor.managers.ModelViewsCellManager"
+            manager="org.eclipse.papyrus.infra.nattable.views.editor.manager.cell.ModelViewsCellManager"
             order="50">
       </cellManager>
    </extension>

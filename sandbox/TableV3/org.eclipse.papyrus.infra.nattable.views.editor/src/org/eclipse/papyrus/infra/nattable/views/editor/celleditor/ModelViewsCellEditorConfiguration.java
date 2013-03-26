@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.editor.celleditor;
 
-import org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig;
+import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.views.editor.NattablePageEditor;
 import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;
@@ -31,7 +31,7 @@ public class ModelViewsCellEditorConfiguration extends EStructuralFeatureEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#getFeatureIdentifier(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig#getFeatureIdentifier(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -54,7 +54,7 @@ public class ModelViewsCellEditorConfiguration extends EStructuralFeatureEditorC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.editors.EStructuralFeatureEditorConfig#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table

@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.infra.nattable.views.editor.factory;
 
-import org.eclipse.papyrus.infra.nattable.factory.AbstractNattableEditorFactory;
+import org.eclipse.papyrus.infra.nattable.common.factory.AbstractNattableEditorFactory;
 import org.eclipse.papyrus.infra.nattable.views.editor.NattablePageEditor;
 
 

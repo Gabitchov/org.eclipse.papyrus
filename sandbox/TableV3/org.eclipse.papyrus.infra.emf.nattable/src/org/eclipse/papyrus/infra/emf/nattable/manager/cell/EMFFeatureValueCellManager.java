@@ -24,8 +24,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.nattable.manager.table.cell.AbstractCellManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager;
+import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -39,7 +38,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -51,7 +50,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#getValue(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getValue(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -88,7 +87,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -114,7 +113,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetValueCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.lang.Object, java.lang.Object, java.lang.Object)
 	 * 
 	 * @param domain
@@ -133,7 +132,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.cell.ICellManager#handlersAxisElement(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handlersAxisElement(java.lang.Object)
 	 * 
 	 * @param obj
 	 * @return

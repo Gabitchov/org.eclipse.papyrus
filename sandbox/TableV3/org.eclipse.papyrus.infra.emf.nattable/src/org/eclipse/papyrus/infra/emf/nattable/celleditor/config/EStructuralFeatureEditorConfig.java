@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.emf.nattable.editors;
+package org.eclipse.papyrus.infra.emf.nattable.celleditor.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +37,11 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.ComboBoxPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.emf.nattable.painter.CustomCheckBoxPainter;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.celleditor.config.AbstractCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.painter.CustomCheckBoxPainter;
 
 /**
  * The configuration to edit EMF properties
@@ -84,7 +84,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getICellEditor(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getICellEditor(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider)
 	 * 
 	 * @param table
@@ -127,7 +127,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getEditorId()
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getEditorId()
 	 * 
 	 * @return
 	 */
@@ -190,7 +190,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getCellPainter(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getCellPainter(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -216,7 +216,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#getDisplayMode(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getDisplayMode(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -237,7 +237,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.AbstractCellEditorConfiguration#getDataValidator(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.AbstractCellEditorConfiguration#getDataValidator(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table
@@ -251,7 +251,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
 	 *      java.lang.Object)
 	 * 
 	 * @param table

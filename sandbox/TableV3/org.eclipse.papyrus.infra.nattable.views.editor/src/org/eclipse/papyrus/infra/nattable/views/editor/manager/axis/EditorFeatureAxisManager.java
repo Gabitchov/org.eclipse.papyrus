@@ -11,11 +11,11 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.views.editor.managers;
+package org.eclipse.papyrus.infra.nattable.views.editor.manager.axis;
 
 import java.util.List;
 
-import org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis;
 import org.eclipse.papyrus.infra.nattable.views.editor.utils.Utils;

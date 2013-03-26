@@ -24,8 +24,8 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
@@ -42,7 +42,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -113,7 +113,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	/**
 	 * This manager doesn't add axis on the other side, because it is a master axis manager
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 *      java.util.Collection)
 	 * 
 	 * @param domain
@@ -136,7 +136,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager#isAllowedContents(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#isAllowedContents(java.lang.Object)
 	 * 
 	 * @param object
 	 * @return
@@ -152,7 +152,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.axis.AbstractAxisManager#canDropAxisElement(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canDropAxisElement(java.util.Collection)
 	 * 
 	 * @param objectsToAdd
 	 * @return

@@ -20,5 +20,6 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.nattable.common.editor,
+ org.eclipse.papyrus.infra.nattable.common.factory,
  org.eclipse.papyrus.infra.nattable.common.handlers,
  org.eclipse.papyrus.infra.nattable.common.utils
