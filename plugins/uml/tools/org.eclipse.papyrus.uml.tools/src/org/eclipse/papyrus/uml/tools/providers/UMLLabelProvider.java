@@ -7,9 +7,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
-import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
@@ -25,7 +23,6 @@ import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -83,6 +80,11 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			return null;
 		}
 
+		if(inputElement instanceof Element) {
+			return inputElement; //An Element cannot be a Stereotype
+		}
+
+		//It is not an Element: test if it is a Stereotype
 		Element baseElement = UMLUtil.getBaseElement(inputElement);
 
 		if(baseElement != null) {
@@ -92,6 +94,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			return baseElement;
 		}
 
+		//This is another kind of EObject
 		return inputElement;
 	}
 
@@ -275,15 +278,11 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 
 	@Override
 	protected EObject getParent(EObject object) {
-		return (object instanceof Element)
-			? ((Element) object).getOwner()
-			: super.getParent(object);
+		return (object instanceof Element) ? ((Element)object).getOwner() : super.getParent(object);
 	}
-	
+
 	@Override
 	protected String getQualifiedText(EObject object) {
-		return (object instanceof NamedElement)
-			? ((NamedElement) object).getQualifiedName()
-			: super.getQualifiedText(object);
+		return (object instanceof NamedElement) ? ((NamedElement)object).getQualifiedName() : super.getQualifiedText(object);
 	}
 }
