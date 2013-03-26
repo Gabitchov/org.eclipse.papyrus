@@ -114,7 +114,7 @@ public class CDOTextURIHandler extends URIHandlerImpl {
 			} catch (IOException e) {
 				throw e;
 			} catch (Exception e) {
-				throw new IOException(e);
+				throw new IOException(e.getMessage());
 			}
 		}
 	}
