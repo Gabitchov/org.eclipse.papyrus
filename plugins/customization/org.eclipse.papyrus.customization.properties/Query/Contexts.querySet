@@ -50,4 +50,8 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
   </queries>
+  <queries xsi:type="query:OCLModelQuery" name="HasPrototype" description="HasPrototype" lowerBound="1" query="not self.prototype.oclIsUndefined()">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+  </queries>
 </query:ModelQuerySet>

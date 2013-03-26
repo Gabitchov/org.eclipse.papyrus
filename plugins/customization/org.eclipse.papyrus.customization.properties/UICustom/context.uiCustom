@@ -1,471 +1,288 @@
 <?xml version="1.0" encoding="ASCII"?>
-<uicustom:MetamodelView
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation"
-    xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8"
-    metamodelURI="http://www.eclipse.org/papyrus/properties/contexts/0.9">
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/papyrus/properties/contexts/0.9">
   <types metaclassName="contexts.Context">
-    <customizedFeatures
-        customizedFeature="label">
-      <defaultValue
-          xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator
-            xsi:type="query:OCLModelQuery"
-            href="emffacet:/query/Contexts#Context label"/>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#Context label"/>
       </defaultValue>
     </customizedFeatures>
-    <attributes
-        attributeName="name">
+    <attributes attributeName="name">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <references
-        referenceName="constraints">
+    <references referenceName="constraints">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="views">
-      <customizedFeatures
-          customizedFeature="icon">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="/org.eclipse.papyrus.customization.properties/icons/MultiView.gif"/>
+    <references referenceName="views">
+      <customizedFeatures customizedFeature="icon">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.customization.properties/icons/MultiView.gif"/>
       </customizedFeatures>
-      <customizedFeatures
-          customizedFeature="label">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="Views"/>
+      <customizedFeatures customizedFeature="label">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="Views"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="tabs">
-      <customizedFeatures
-          customizedFeature="collapseLink">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="true"/>
+    <references referenceName="tabs">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="dataContexts">
+    <references referenceName="dataContexts">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:DerivedFeatureValue">
-          <valueCalculator
-              xsi:type="query:JavaModelQuery"
-              href="emffacet:/query/Contexts#showDataContext-j"/>
+        <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+          <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/Contexts#showDataContext-j"/>
         </defaultValue>
       </customizedFeatures>
-      <customizedFeatures
-          customizedFeature="icon">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="/org.eclipse.papyrus.customization.properties/icons/DataContexts.gif"/>
+      <customizedFeatures customizedFeature="icon">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.customization.properties/icons/DataContexts.gif"/>
       </customizedFeatures>
-      <customizedFeatures
-          customizedFeature="label">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="Data contexts"/>
+      <customizedFeatures customizedFeature="label">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="Data contexts"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="dependencies">
+    <references referenceName="dependencies">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="eAnnotations">
+    <references referenceName="eAnnotations">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="prototype">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+          <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#HasPrototype"/>
+        </defaultValue>
       </customizedFeatures>
     </references>
   </types>
   <types metaclassName="contexts.DataContextElement">
-    <customizedFeatures
-        customizedFeature="metaclassVisible">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="false"/>
+    <customizedFeatures customizedFeature="metaclassVisible">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
     </customizedFeatures>
-    <customizedFeatures
-        customizedFeature="label">
-      <defaultValue
-          xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator
-            xsi:type="query:OCLModelQuery"
-            href="emffacet:/query/Contexts#DataContextElement label"/>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#DataContextElement label"/>
       </defaultValue>
     </customizedFeatures>
-    <customizedFeatures
-        customizedFeature="hideMetaclassName">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="true"/>
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
     </customizedFeatures>
-    <attributes
-        attributeName="name">
+    <attributes attributeName="name">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <references
-        referenceName="properties">
-      <customizedFeatures
-          customizedFeature="collapseLink">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="true"/>
+    <references referenceName="properties">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="package">
+    <references referenceName="package">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="supertypes">
+    <references referenceName="supertypes">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
   <types metaclassName="contexts.DataContextPackage">
-    <customizedFeatures
-        customizedFeature="metaclassVisible">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="false"/>
+    <customizedFeatures customizedFeature="metaclassVisible">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
     </customizedFeatures>
-    <references
-        referenceName="elements">
-      <customizedFeatures
-          customizedFeature="collapseLink">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="true"/>
+    <references referenceName="elements">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
   </types>
   <types metaclassName="contexts.DataContextRoot">
-    <customizedFeatures
-        customizedFeature="metaclassVisible">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="false"/>
+    <customizedFeatures customizedFeature="metaclassVisible">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
     </customizedFeatures>
-    <attributes
-        attributeName="label">
+    <attributes attributeName="label">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="name">
+    <attributes attributeName="name">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <references
-        referenceName="modelElementFactory">
+    <references referenceName="modelElementFactory">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
   <types metaclassName="contexts.Property">
-    <customizedFeatures
-        customizedFeature="metaclassVisible">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="false"/>
+    <customizedFeatures customizedFeature="metaclassVisible">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
     </customizedFeatures>
-    <customizedFeatures
-        customizedFeature="label">
-      <defaultValue
-          xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator
-            xsi:type="query:OCLModelQuery"
-            href="emffacet:/query/Contexts#Property label"/>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#Property label"/>
       </defaultValue>
     </customizedFeatures>
-    <customizedFeatures
-        customizedFeature="hideMetaclassName">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="true"/>
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
     </customizedFeatures>
-    <attributes
-        attributeName="description">
+    <attributes attributeName="description">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="label">
+    <attributes attributeName="label">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="multiplicity">
+    <attributes attributeName="multiplicity">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="name">
+    <attributes attributeName="name">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="type">
+    <attributes attributeName="type">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <references
-        referenceName="contextElement">
+    <references referenceName="contextElement">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
   <types metaclassName="contexts.Section">
-    <customizedFeatures
-        customizedFeature="metaclassVisible">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="false"/>
+    <customizedFeatures customizedFeature="metaclassVisible">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
     </customizedFeatures>
-    <customizedFeatures
-        customizedFeature="label">
-      <defaultValue
-          xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator
-            xsi:type="query:OCLModelQuery"
-            href="emffacet:/query/Contexts#Section label"/>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#Section label"/>
       </defaultValue>
     </customizedFeatures>
-    <attributes
-        attributeName="name">
+    <attributes attributeName="name">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="sectionFile">
+    <attributes attributeName="sectionFile">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <references
-        referenceName="tab">
+    <references referenceName="tab">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="widget">
-      <customizedFeatures
-          customizedFeature="collapseLink">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="true"/>
+    <references referenceName="widget">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="constraints">
+    <references referenceName="constraints">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
   <types metaclassName="contexts.Tab">
-    <customizedFeatures
-        customizedFeature="label">
-      <defaultValue
-          xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator
-            xsi:type="query:OCLModelQuery"
-            href="emffacet:/query/Contexts#Tab label"/>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#Tab label"/>
       </defaultValue>
     </customizedFeatures>
-    <customizedFeatures
-        customizedFeature="metaclassVisible">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="true"/>
+    <customizedFeatures customizedFeature="metaclassVisible">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
     </customizedFeatures>
-    <attributes
-        attributeName="category">
+    <attributes attributeName="category">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="id">
+    <attributes attributeName="id">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="image">
+    <attributes attributeName="image">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="label">
+    <attributes attributeName="label">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <references
-        referenceName="afterTab">
+    <references referenceName="afterTab">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="sections">
+    <references referenceName="sections">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
   <types metaclassName="contexts.View">
-    <customizedFeatures
-        customizedFeature="label">
-      <defaultValue
-          xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator
-            xsi:type="query:OCLModelQuery"
-            href="emffacet:/query/Contexts#View label"/>
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:OCLModelQuery" href="emffacet:/query/Contexts#View label"/>
       </defaultValue>
     </customizedFeatures>
-    <customizedFeatures
-        customizedFeature="metaclassVisible">
-      <defaultValue
-          xsi:type="uicustom:StaticFeatureValue"
-          value="true"/>
+    <customizedFeatures customizedFeature="metaclassVisible">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
     </customizedFeatures>
-    <attributes
-        attributeName="elementMultiplicity">
+    <attributes attributeName="elementMultiplicity">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="name">
+    <attributes attributeName="name">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <attributes
-        attributeName="automaticContext">
+    <attributes attributeName="automaticContext">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </attributes>
-    <references
-        referenceName="constraints">
+    <references referenceName="constraints">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="sections">
-      <customizedFeatures
-          customizedFeature="collapseLink">
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="true"/>
+    <references referenceName="sections">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="datacontexts">
+    <references referenceName="datacontexts">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
-    <references
-        referenceName="context">
+    <references referenceName="context">
       <customizedFeatures>
-        <defaultValue
-            xsi:type="uicustom:StaticFeatureValue"
-            value="false"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
