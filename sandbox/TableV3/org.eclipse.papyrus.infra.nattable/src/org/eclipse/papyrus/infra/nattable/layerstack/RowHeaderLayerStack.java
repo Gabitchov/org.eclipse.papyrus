@@ -20,6 +20,7 @@ import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.layer.RowHeaderLayer;
 import org.eclipse.nebula.widgets.nattable.layer.AbstractLayerTransform;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
+import org.eclipse.nebula.widgets.nattable.reorder.action.RowReorderDragMode;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.config.DefaultSelectionBindings;
 import org.eclipse.nebula.widgets.nattable.ui.action.AggregateDragMode;
@@ -27,7 +28,6 @@ import org.eclipse.nebula.widgets.nattable.ui.action.CellDragMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusRowHeaderStyleConfiguration;
-import org.eclipse.papyrus.infra.nattable.editor.RowReorderDragMode;
 import org.eclipse.swt.SWT;
 
 

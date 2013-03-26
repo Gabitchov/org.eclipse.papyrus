@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2012 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,23 +11,18 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.copy;
+package org.eclipse.papyrus.infra.nattable.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler;
-import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
-
 /**
- * The handler for the copy selection to clipboard action
  * 
- * @author Vincent Lorenzo
+ * Handler for the print table action
  * 
  */
-public class CopySelectionToClipboardAction extends AbstractTableHandler {
-
+public class PrintTableHandler extends AbstractTableHandler {
 
 	/**
 	 * 
@@ -37,9 +32,11 @@ public class CopySelectionToClipboardAction extends AbstractTableHandler {
 	 * @return
 	 * @throws ExecutionException
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		INattableModelManager manager = getCurrentNattableModelManager();
-		((AbstractNattableWidgetManager)manager).copyToClipboard();
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
+		final INattableModelManager manager = getCurrentNattableModelManager();
+		if(manager != null) {
+			manager.print();
+		}
 		return null;
 	}
 

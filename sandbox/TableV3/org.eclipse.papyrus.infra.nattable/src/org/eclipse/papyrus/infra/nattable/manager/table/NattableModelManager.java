@@ -42,13 +42,13 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
-import org.eclipse.papyrus.infra.nattable.factory.AxisManagerFactory;
-import org.eclipse.papyrus.infra.nattable.manager.table.axis.CompositeAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.axis.IAxisManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.cell.CellManagerFactory;
+import org.eclipse.papyrus.infra.nattable.manager.axis.AxisManagerFactory;
+import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
+import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
@@ -345,7 +345,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return the list of the ids of the axis manager to use for the horizontal
 	 *         axis
 	 */
-
 	protected List<String> getHorizontalContentProviderIds() {
 		return this.table.getHorizontalAxisProvider().getJavaContentProviderIds();
 	}
@@ -355,6 +354,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @see org.eclipse.ui.services.IDisposable#dispose()
 	 * 
 	 */
+	@Override
 	public void dispose() {
 		this.columnManager.dispose();
 		this.rowManager.dispose();
@@ -429,10 +429,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *        an eobject linked to the model
 	 * @return the editing domain to use
 	 */
-	private EditingDomain getEditingDomain(final EObject obj) {
+	private EditingDomain getEditingDomain(EObject eobject) {
 		ServicesRegistry registry = null;
 		try {
-			registry = ServiceUtilsForResource.getInstance().getServiceRegistry(obj.eResource());
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(eobject);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
 		}
