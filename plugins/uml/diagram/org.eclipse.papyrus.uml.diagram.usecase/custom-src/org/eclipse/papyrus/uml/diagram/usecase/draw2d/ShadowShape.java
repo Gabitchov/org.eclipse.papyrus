@@ -29,7 +29,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	private static final Color SHADOW_COLOR = new Color(null, 150, 150, 150);
 
 	/** The Constant SHADOW_SIZE. */
-	private static final int SHADOW_SIZE = 3;
+	protected static final int SHADOW_SIZE = 3;
 
 	/** The Constant SHADOW_INSETS. */
 	private static final Insets SHADOW_INSETS = new Insets(0, 0, SHADOW_SIZE, SHADOW_SIZE);

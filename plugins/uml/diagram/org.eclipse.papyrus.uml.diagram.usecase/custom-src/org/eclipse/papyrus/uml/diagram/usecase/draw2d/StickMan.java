@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.diagram.usecase.draw2d;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -60,6 +61,23 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 		graphics.drawPolygon(pl);
 		int add = graphics.getLineWidth() / 2;
 		graphics.drawOval(new Rectangle(ovalX, ovalY, ovalD + add, ovalD + add));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Dimension getPreferredSize(int wHint, int hHint) {
+		Dimension size = new Dimension(-1, -1);
+		if (wHint < BASE_W) {
+			size.width = (int) BASE_W;
+		}
+		if (hHint < BASE_H) {
+			size.height = (int) BASE_H;
+		}
+		if(is3D()) {
+			size.expand(SHADOW_SIZE, SHADOW_SIZE);
+		}
+		return size;
 	}
 
 	/**
