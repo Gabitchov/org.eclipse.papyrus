@@ -43,6 +43,11 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.infra.tools.Activator;
 
 
+/**
+ * @deprecated Use org.eclipse.infra.emf.utils.EMFHelper instead
+ */
+@Deprecated
+/* FIXME: Move back to infra.emf when the dependency from infra.emf to infra.core is removed */
 public class EMFHelper {
 
 	/**
