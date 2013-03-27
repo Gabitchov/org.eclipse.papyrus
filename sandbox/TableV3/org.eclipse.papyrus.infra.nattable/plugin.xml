@@ -560,7 +560,7 @@
       </commandParameter>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayIndexColumnHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayIndexHeaderHandler"
          id="org.eclipse.papyrus.infra.nattable.column.display.index"
          name="Display Column Index">
        <state
@@ -569,7 +569,7 @@
    </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayLabelColumnHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ColumnDisplayLabelHeaderHandler"
          id="org.eclipse.papyrus.infra.nattable.column.display.label"
          name="Display Column Label">
            <state
@@ -592,7 +592,7 @@
    </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayIndexRowHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayIndexHeaderHandler"
          id="org.eclipse.papyrus.infra.nattable.row.display.index"
          name="Display Row Index">
       <state
@@ -601,7 +601,7 @@
       </state>
    </command>
    <command
-         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.DisplayLabelRowHandler"
+         defaultHandler="org.eclipse.papyrus.infra.nattable.handler.RowDisplayLabelHeaderHandler"
          id="org.eclipse.papyrus.infra.nattable.row.display.label"
          name="Display Row Label">
       <state

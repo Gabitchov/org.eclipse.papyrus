@@ -15,12 +15,21 @@ package org.eclipse.papyrus.infra.nattable.handler;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
 
+/**
+ * Abstract class to edit the header cofniguration
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
+public abstract class AbstractColumnChangeHeaderConfigurationHandler extends AbstractChangeHeaderConfigurationHandler {
 
-public class DisplayIndexRowHandler extends AbstractDisplayColumnIndexHandler {
-
+	/**
+	 * 
+	 * @return
+	 *         the edited axis configuration
+	 */
 	@Override
-	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getRowAxisConfiguration();
+	protected AbstractAxisConfiguration getEditedAxisConfiguration() {
+		return getCurrentNattableModelManager().getColumnAxisConfiguration();
 	}
-
 }
