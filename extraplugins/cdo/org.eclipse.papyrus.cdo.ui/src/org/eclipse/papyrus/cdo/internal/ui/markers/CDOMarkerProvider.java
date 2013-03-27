@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.cdo.internal.ui.markers;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -56,7 +57,20 @@ public class CDOMarkerProvider extends AbstractMarkerProvider {
 		return resource instanceof CDOResource;
 	}
 
-	public Collection<? extends IPapyrusMarker> getMarkers(final Resource resource, final String type, boolean includeSubtypes) throws CoreException {
+	public Collection<? extends IPapyrusMarker> getMarkers(final Resource resource, final String type, final boolean includeSubtypes) throws CoreException {
+		// run in a read-only transaction because the problems manager accesses
+		// a cross-reference adapter
+		return run(resource, CoreException.class, new RunnableWithResult.Impl<Collection<? extends IPapyrusMarker>>() {
+
+			public void run() {
+				setResult(Lists.newArrayList(Iterators.transform( //
+				getProblems(resource, type, includeSubtypes), //
+					CDOPapyrusMarker.wrap(getProblemEditUtil(resource)))));
+			}
+		});
+	}
+
+	protected Iterator<? extends EProblem> getProblems(final Resource resource, final String type, boolean includeSubtypes) {
 		final Predicate<EProblem> filter;
 
 		if(type == null) {
@@ -77,16 +91,7 @@ public class CDOMarkerProvider extends AbstractMarkerProvider {
 			};
 		}
 
-		// run in a read-only transaction because the problems manager accesses
-		// a cross-reference adapter
-		return run(resource, CoreException.class, new RunnableWithResult.Impl<Collection<? extends IPapyrusMarker>>() {
-
-			public void run() {
-				setResult(Lists.newArrayList(Iterators.transform( //
-				Iterators.filter(getProblemsManager(resource).getAllProblems(resource), filter), //
-					CDOPapyrusMarker.wrap(getProblemEditUtil(resource)))));
-			}
-		});
+		return Iterators.filter(getProblemsManager(resource).getAllProblems(resource), filter);
 	}
 
 	@Override
@@ -162,7 +167,7 @@ public class CDOMarkerProvider extends AbstractMarkerProvider {
 		}
 	}
 
-	public void deleteMarkers(final Resource resource, IProgressMonitor monitor, String markerType, boolean includeSubtypes) throws CoreException {
+	public void deleteMarkers(final Resource resource, IProgressMonitor monitor, final String markerType, final boolean includeSubtypes) throws CoreException {
 		SubMonitor sub = SubMonitor.convert(monitor, IProgressMonitor.UNKNOWN);
 
 		// run in a read-only transaction because the problems manager accesses
@@ -172,7 +177,16 @@ public class CDOMarkerProvider extends AbstractMarkerProvider {
 		run(resource, new Runnable() {
 
 			public void run() {
-				getProblemsManager(resource).purgeProblems(resource);
+				ProblemsManager mgr = getProblemsManager(resource);
+				if(markerType == null) {
+					// efficiently remove all markers for the resource
+					mgr.purgeProblems(resource);
+				} else {
+					// tediously remove the matching markers
+					for(EProblem next : Lists.newArrayList(getProblems(resource, markerType, includeSubtypes))) {
+						ProblemsManager.delete(next);
+					}
+				}
 			}
 		});
 
