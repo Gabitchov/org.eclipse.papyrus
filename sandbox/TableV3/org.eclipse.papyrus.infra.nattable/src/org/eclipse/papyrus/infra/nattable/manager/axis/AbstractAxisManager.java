@@ -162,9 +162,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 			this.representedContentProvider.eAdapters().remove(this.axisListener);
 			this.axisListener = null;
 		}
-		this.pTable = null;
-		this.representedContentProvider = null;
-		this.tableManager = null;
 	}
 
 	/**
