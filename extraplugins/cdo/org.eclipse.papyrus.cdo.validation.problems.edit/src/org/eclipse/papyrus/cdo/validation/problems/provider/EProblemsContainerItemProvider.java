@@ -38,18 +38,11 @@ import org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage;
 import org.eclipse.papyrus.cdo.validation.problems.edit.ProblemTypeItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.cdo.validation.problems.EProblemsContainer}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.cdo.validation.problems.EProblemsContainer} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class EProblemsContainerItemProvider
-		extends ProblemTypeItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-		ITableItemLabelProvider, ITableItemColorProvider,
-		ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class EProblemsContainerItemProvider extends ProblemTypeItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -69,7 +62,7 @@ public class EProblemsContainerItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSubjectsPropertyDescriptor(object);
@@ -84,50 +77,35 @@ public class EProblemsContainerItemProvider
 	 * @generated
 	 */
 	protected void addSubjectsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-					.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EProblemsContainer_subjects_feature"), //$NON-NLS-1$
-				getString(
-					"_UI_PropertyDescriptor_description", "_UI_EProblemsContainer_subjects_feature", "_UI_EProblemsContainer_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ProblemsPackage.Literals.EPROBLEMS_CONTAINER__SUBJECTS, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EProblemsContainer_subjects_feature"), //$NON-NLS-1$
+			getString("_UI_PropertyDescriptor_description", "_UI_EProblemsContainer_subjects_feature", "_UI_EProblemsContainer_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			ProblemsPackage.Literals.EPROBLEMS_CONTAINER__SUBJECTS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
-		if (childrenFeatures == null) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-				.add(ProblemsPackage.Literals.EPROBLEMS_CONTAINER__PROBLEMS);
-			childrenFeatures
-				.add(ProblemsPackage.Literals.EPROBLEMS_CONTAINER__SUBCONTAINERS);
+			childrenFeatures.add(ProblemsPackage.Literals.EPROBLEMS_CONTAINER__PROBLEMS);
+			childrenFeatures.add(ProblemsPackage.Literals.EPROBLEMS_CONTAINER__SUBCONTAINERS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -135,7 +113,6 @@ public class EProblemsContainerItemProvider
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,21 +121,20 @@ public class EProblemsContainerItemProvider
 	}
 
 	/**
-	 * This returns EProblemsContainer.gif. <!-- begin-user-doc --> <!--
+	 * This returns EProblemsContainer.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-			getResourceLocator().getImage("full/obj16/EProblemsContainer")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EProblemsContainer")); //$NON-NLS-1$
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,23 +143,21 @@ public class EProblemsContainerItemProvider
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EProblemsContainer.class)) {
-			case ProblemsPackage.EPROBLEMS_CONTAINER__PROBLEMS :
-			case ProblemsPackage.EPROBLEMS_CONTAINER__SUBCONTAINERS :
-				fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
-				return;
+		switch(notification.getFeatureID(EProblemsContainer.class)) {
+		case ProblemsPackage.EPROBLEMS_CONTAINER__PROBLEMS:
+		case ProblemsPackage.EPROBLEMS_CONTAINER__SUBCONTAINERS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -196,17 +170,12 @@ public class EProblemsContainerItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-			ProblemsPackage.Literals.EPROBLEMS_CONTAINER__PROBLEMS,
-			ProblemsFactory.eINSTANCE.createEProblem()));
+		newChildDescriptors.add(createChildParameter(ProblemsPackage.Literals.EPROBLEMS_CONTAINER__PROBLEMS, ProblemsFactory.eINSTANCE.createEProblem()));
 
-		newChildDescriptors.add(createChildParameter(
-			ProblemsPackage.Literals.EPROBLEMS_CONTAINER__SUBCONTAINERS,
-			ProblemsFactory.eINSTANCE.createEProblemsContainer()));
+		newChildDescriptors.add(createChildParameter(ProblemsPackage.Literals.EPROBLEMS_CONTAINER__SUBCONTAINERS, ProblemsFactory.eINSTANCE.createEProblemsContainer()));
 	}
 
 	/**
@@ -217,7 +186,7 @@ public class EProblemsContainerItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

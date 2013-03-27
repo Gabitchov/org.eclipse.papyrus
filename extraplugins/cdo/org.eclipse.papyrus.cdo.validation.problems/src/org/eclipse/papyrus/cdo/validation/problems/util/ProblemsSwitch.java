@@ -11,6 +11,7 @@
  */
 package org.eclipse.papyrus.cdo.validation.problems.util;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
@@ -25,28 +26,26 @@ import org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage;
  * starting with the actual class of the object and proceeding up the
  * inheritance hierarchy until a non-null result is returned, which is the
  * result of the switch. <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage
  * @generated
  */
-public class ProblemsSwitch<T>
-		extends Switch<T> {
+public class ProblemsSwitch<T> extends Switch<T> {
 
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static ProblemsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProblemsSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = ProblemsPackage.eINSTANCE;
 		}
 	}
@@ -65,46 +64,52 @@ public class ProblemsSwitch<T>
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns
-	 * a non null result; it yields that result. <!-- begin-user-doc --> <!--
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code>
-	 *         call.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case ProblemsPackage.EPROBLEM : {
-				EProblem eProblem = (EProblem) theEObject;
-				T result = caseEProblem(eProblem);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case ProblemsPackage.EPROBLEMS_CONTAINER : {
-				EProblemsContainer eProblemsContainer = (EProblemsContainer) theEObject;
-				T result = caseEProblemsContainer(eProblemsContainer);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			default :
-				return defaultCase(theEObject);
+		switch(classifierID) {
+		case ProblemsPackage.EPROBLEM:
+		{
+			EProblem eProblem = (EProblem)theEObject;
+			T result = caseEProblem(eProblem);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ProblemsPackage.EPROBLEMS_CONTAINER:
+		{
+			EProblemsContainer eProblemsContainer = (EProblemsContainer)theEObject;
+			T result = caseEProblemsContainer(eProblemsContainer);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ProblemsPackage.ATTRIBUTE:
+		{
+			@SuppressWarnings("unchecked")
+			Map.Entry<String, String> attribute = (Map.Entry<String, String>)theEObject;
+			T result = caseAttribute(attribute);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>EProblem</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>EProblem</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>EProblem</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EProblem</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -113,15 +118,12 @@ public class ProblemsSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>EProblems Container</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>EProblems Container</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>EProblems Container</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EProblems Container</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -130,15 +132,27 @@ public class ProblemsSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '
-	 * <em>EObject</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttribute(Map.Entry<String, String> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch, but this is
 	 * the last case anyway. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>EObject</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

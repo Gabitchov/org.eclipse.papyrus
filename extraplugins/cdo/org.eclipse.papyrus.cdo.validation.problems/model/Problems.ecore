@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="problems" nsURI="http://www.eclipse.org/emf/CDO/problems/1.0.0"
-    nsPrefix="cdo.problems">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="problems" nsURI="http://www.eclipse.org/papyrus/cdo/problems/1.0.0"
+    nsPrefix="problems">
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="A model of problems, intended primarily as a persistence vehicle for Ecore Diagnostics in contexts where Eclipse resource problem markers (IProblemMarker) are either not available or not appropriate."/>
   </eAnnotations>
@@ -31,6 +31,14 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//EProblemsContainer"
         eOpposite="#//EProblemsContainer/problems"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="org.eclipse.emf.ecore.diagnostic">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Optional identifier of a problem type.  This should correspond to a marker type registered on the Eclipse {@code org.eclipse.core.resources.markers} extension point."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//Attribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ESeverity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -86,5 +94,9 @@
   <eClassifiers xsi:type="ecore:EDataType" name="EIterator" instanceClassName="java.util.Iterator"
       serializable="false">
     <eTypeParameters name="E"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

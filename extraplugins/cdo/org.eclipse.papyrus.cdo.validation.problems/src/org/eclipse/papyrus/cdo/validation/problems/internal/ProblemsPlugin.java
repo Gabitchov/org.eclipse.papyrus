@@ -21,8 +21,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class ProblemsPlugin
-		extends EMFPlugin {
+public final class ProblemsPlugin extends EMFPlugin {
 
 	/**
 	 * Keep track of the singleton.
@@ -79,8 +78,7 @@ public final class ProblemsPlugin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation
-			extends EclipsePlugin {
+	public static class Implementation extends EclipsePlugin {
 
 		/**
 		 * Creates an instance.

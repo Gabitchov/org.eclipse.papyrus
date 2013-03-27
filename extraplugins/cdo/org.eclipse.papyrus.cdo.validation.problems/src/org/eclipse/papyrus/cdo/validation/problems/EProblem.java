@@ -14,44 +14,38 @@ package org.eclipse.papyrus.cdo.validation.problems;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>EProblem</b></em>'. <!-- end-user-doc -->
- * 
- * <!-- begin-model-doc --> Description of a problem in some element of an
- * EMF-based model instance. <!-- end-model-doc -->
- * 
+ *
+ * <!-- begin-model-doc -->
+ * Description of a problem in some element of an EMF-based model instance.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getSeverity
- * <em>Severity</em>}</li>
- * <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getMessage
- * <em>Message</em>}</li>
- * <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getSource
- * <em>Source</em>}</li>
- * <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getCode
- * <em>Code</em>}</li>
- * <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getElement
- * <em>Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getRelated
- * <em>Related</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getContainer
- * <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getSeverity <em>Severity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getMessage <em>Message</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getCode <em>Code</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getRelated <em>Related</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage#getEProblem()
  * @model
  * @extends CDOObject
  * @generated
  */
-public interface EProblem
-		extends CDOObject {
+public interface EProblem extends CDOObject {
 
 	/**
 	 * Returns the value of the '<em><b>Severity</b></em>' attribute. The
@@ -165,12 +159,9 @@ public interface EProblem
 	int getCode();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getCode
-	 * <em>Code</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Code</em>' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getCode <em>Code</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Code</em>' attribute.
 	 * @see #getCode()
 	 * @generated
 	 */
@@ -219,15 +210,13 @@ public interface EProblem
 
 	/**
 	 * Returns the value of the '<em><b>Container</b></em>' container reference.
-	 * It is bidirectional and its opposite is '
-	 * {@link org.eclipse.papyrus.cdo.validation.problems.EProblemsContainer#getProblems
-	 * <em>Problems</em>}'. <!-- begin-user-doc -->
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.cdo.validation.problems.EProblemsContainer#getProblems <em>Problems</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Container</em>' container reference isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Container</em>' container reference.
 	 * @see #setContainer(EProblemsContainer)
 	 * @see org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage#getEProblem_Container()
@@ -238,24 +227,61 @@ public interface EProblem
 	EProblemsContainer getContainer();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getContainer
-	 * <em>Container</em>}' container reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getContainer <em>Container</em>}' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Container</em>' container reference.
+	 * @param value the new value of the '<em>Container</em>' container reference.
 	 * @see #getContainer()
 	 * @generated
 	 */
 	void setContainer(EProblemsContainer value);
 
 	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>"org.eclipse.emf.ecore.diagnostic"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Optional identifier of a problem type.  This should correspond to a marker type registered on the Eclipse {@code org.eclipse.core.resources.markers} extension point.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage#getEProblem_Type()
+	 * @model default="org.eclipse.emf.ecore.diagnostic"
+	 * @generated
+	 */
+	String getType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.cdo.validation.problems.EProblem#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' map.
+	 * The key is of type {@link java.lang.String},
+	 * and the value is of type {@link java.lang.String},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attributes</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' map.
+	 * @see org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage#getEProblem_Attributes()
+	 * @model mapType="org.eclipse.papyrus.cdo.validation.problems.Attribute<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>"
+	 * @generated
+	 */
+	EMap<String, String> getAttributes();
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model 
-	 *        dataType="org.eclipse.papyrus.cdo.validation.problems.EDiagnostic"
-	 *        required="true"
+	 * @model dataType="org.eclipse.papyrus.cdo.validation.problems.EDiagnostic" required="true"
 	 * @generated
 	 */
 	Diagnostic toDiagnostic();

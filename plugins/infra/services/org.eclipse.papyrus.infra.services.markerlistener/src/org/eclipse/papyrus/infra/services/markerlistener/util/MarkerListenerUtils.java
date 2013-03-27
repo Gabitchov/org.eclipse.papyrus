@@ -10,17 +10,21 @@
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
  * Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ * Christian W. Damus (CEA) - support marker type hierarchy in CDO problem markers (CDO)
  * 
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.markerlistener.util;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Path;
@@ -46,8 +50,14 @@ public class MarkerListenerUtils {
 	public static EclipseResourcesUtil eclipseResourcesUtil =
 		EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
 	
-	private static final Map<String, String> MARKER_LABELS = loadMarkerLabels();
+	private static final Map<String, String> MARKER_LABELS = new java.util.HashMap<String, String>();
 		
+	private static final Map<String, Set<String>> MARKER_HIERARCHY = new java.util.HashMap<String, Set<String>>();
+	
+	static {
+		loadMarkerTypes();
+	}
+	
 	/**
 	 * E object from marker or map.
 	 * 
@@ -135,25 +145,71 @@ public class MarkerListenerUtils {
 		return result;
 	}
 	
-	private static Map<String, String> loadMarkerLabels() {
-		Map<String, String> result = new java.util.HashMap<String, String>();
-
-		IExtensionPoint point = Platform.getExtensionRegistry()
-			.getExtensionPoint(ResourcesPlugin.PI_RESOURCES,
-				ResourcesPlugin.PT_MARKERS);
-
-		for (IExtension next : point.getExtensions()) {
-			result.put(next.getUniqueIdentifier(), next.getLabel());
-		}
-
-		return result;
-	}
-	
 	public static String getMarkerTypeLabel(String type) {
 		String result = MARKER_LABELS.get(type);
 		
 		if (result == null) {
 			result = type;
+		}
+		
+		return result;
+	}
+	
+	private static void loadMarkerTypes() {
+		IExtensionPoint point = Platform.getExtensionRegistry().getExtensionPoint(ResourcesPlugin.PI_RESOURCES, ResourcesPlugin.PT_MARKERS);
+
+		for(IExtension next : point.getExtensions()) {
+			String type = next.getUniqueIdentifier();
+			MARKER_LABELS.put(type, next.getLabel());
+
+			Set<String> superTypes = new java.util.HashSet<String>();
+
+			for(IConfigurationElement config : next.getConfigurationElements()) {
+				if("super".equals(config.getName())) { //$NON-NLS-1$
+					String super_ = config.getAttribute("type"); //$NON-NLS-1$
+					if((super_ != null) && (super_.length() > 0)) {
+						superTypes.add(super_);
+					}
+				}
+			}
+			
+			MARKER_HIERARCHY.put(type, Collections.unmodifiableSet(superTypes));
+		}
+	}
+	
+	public static boolean isMarkerTypeSubtypeOf(String subtype, String supertype) {
+		boolean result = false;
+		
+		Set<String> supertypes = MARKER_HIERARCHY.get(subtype);
+		if (supertypes != null) {
+			result = supertypes.contains(supertype);
+			if (!result) {
+				// recursive
+				Set<String> cycleDetect = new java.util.HashSet<String>();
+				cycleDetect.add(subtype);
+				result = isAnyMarkerTypeSubtypeOf(supertypes, supertype, cycleDetect);
+			}
+		}
+		
+		return result;
+	}
+	
+	private static boolean isAnyMarkerTypeSubtypeOf(Set<String> subtypes, String supertype, Set<String> cycleDetect) {
+		boolean result = false;
+		
+		for (String subtype : subtypes) {
+			if (cycleDetect.add(subtype)) {
+				Set<String> supertypes = MARKER_HIERARCHY.get(subtype);
+				if (supertypes != null) {
+					result = supertypes.contains(supertype);
+					if (!result) {
+						result = isAnyMarkerTypeSubtypeOf(supertypes, supertype, cycleDetect);
+					}
+					if (result) {
+						break;
+					}
+				}
+			}
 		}
 		
 		return result;

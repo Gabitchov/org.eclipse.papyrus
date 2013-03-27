@@ -17,6 +17,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
@@ -31,39 +32,24 @@ import org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getSeverity
- * <em>Severity</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getMessage
- * <em>Message</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getSource
- * <em>Source</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getCode
- * <em>Code</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getElement
- * <em>Element</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getRelated
- * <em>Related</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getContainer
- * <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getSeverity <em>Severity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getMessage <em>Message</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getCode <em>Code</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getRelated <em>Related</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.cdo.validation.problems.impl.EProblemImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class EProblemImpl
-		extends CDOObjectImpl
-		implements EProblem {
+public class EProblemImpl extends CDOObjectImpl implements EProblem {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EProblemImpl() {
@@ -72,7 +58,6 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,7 +67,6 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,17 +76,14 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ESeverity getSeverity() {
-		return (ESeverity) eGet(ProblemsPackage.Literals.EPROBLEM__SEVERITY,
-			true);
+		return (ESeverity)eGet(ProblemsPackage.Literals.EPROBLEM__SEVERITY, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSeverity(ESeverity newSeverity) {
@@ -111,16 +92,14 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getMessage() {
-		return (String) eGet(ProblemsPackage.Literals.EPROBLEM__MESSAGE, true);
+		return (String)eGet(ProblemsPackage.Literals.EPROBLEM__MESSAGE, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setMessage(String newMessage) {
@@ -129,16 +108,14 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getSource() {
-		return (String) eGet(ProblemsPackage.Literals.EPROBLEM__SOURCE, true);
+		return (String)eGet(ProblemsPackage.Literals.EPROBLEM__SOURCE, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(String newSource) {
@@ -147,16 +124,14 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getCode() {
-		return (Integer) eGet(ProblemsPackage.Literals.EPROBLEM__CODE, true);
+		return (Integer)eGet(ProblemsPackage.Literals.EPROBLEM__CODE, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCode(int newCode) {
@@ -165,16 +140,14 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EObject getElement() {
-		return (EObject) eGet(ProblemsPackage.Literals.EPROBLEM__ELEMENT, true);
+		return (EObject)eGet(ProblemsPackage.Literals.EPROBLEM__ELEMENT, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setElement(EObject newElement) {
@@ -183,32 +156,55 @@ public class EProblemImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<EObject> getRelated() {
-		return (EList<EObject>) eGet(
-			ProblemsPackage.Literals.EPROBLEM__RELATED, true);
+		return (EList<EObject>)eGet(ProblemsPackage.Literals.EPROBLEM__RELATED, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EProblemsContainer getContainer() {
-		return (EProblemsContainer) eGet(
-			ProblemsPackage.Literals.EPROBLEM__CONTAINER, true);
+		return (EProblemsContainer)eGet(ProblemsPackage.Literals.EPROBLEM__CONTAINER, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContainer(EProblemsContainer newContainer) {
 		eSet(ProblemsPackage.Literals.EPROBLEM__CONTAINER, newContainer);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getType() {
+		return (String)eGet(ProblemsPackage.Literals.EPROBLEM__TYPE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType) {
+		eSet(ProblemsPackage.Literals.EPROBLEM__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EMap<String, String> getAttributes() {
+		return (EMap<String, String>)eGet(ProblemsPackage.Literals.EPROBLEM__ATTRIBUTES, true);
 	}
 
 	/**
@@ -220,24 +216,21 @@ public class EProblemImpl
 		Collection<EObject> related = getRelated();
 		Object[] data = new Object[1 + related.size()];
 		data[0] = getElement();
-		if (!related.isEmpty()) {
+		if(!related.isEmpty()) {
 			System.arraycopy(related.toArray(), 0, data, 1, related.size());
 		}
-		return new BasicDiagnostic(getSeverity().getValue(), getSource(),
-			getCode(), getMessage(), data);
+		return new BasicDiagnostic(getSeverity().getValue(), getSource(), getCode(), getMessage(), data);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
-		switch (operationID) {
-			case ProblemsPackage.EPROBLEM___TO_DIAGNOSTIC :
-				return toDiagnostic();
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch(operationID) {
+		case ProblemsPackage.EPROBLEM___TO_DIAGNOSTIC:
+			return toDiagnostic();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

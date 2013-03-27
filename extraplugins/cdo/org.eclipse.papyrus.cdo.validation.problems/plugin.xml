@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Problems -->
       <package
-            uri="http://www.eclipse.org/emf/CDO/problems/1.0.0"
+            uri="http://www.eclipse.org/papyrus/cdo/problems/1.0.0"
             class="org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage"
             genModel="model/Problems.genmodel"/>
    </extension>

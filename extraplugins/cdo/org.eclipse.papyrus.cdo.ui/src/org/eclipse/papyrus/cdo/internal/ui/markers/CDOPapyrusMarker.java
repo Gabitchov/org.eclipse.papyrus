@@ -13,7 +13,6 @@ package org.eclipse.papyrus.cdo.internal.ui.markers;
 
 import java.util.Map;
 
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -27,6 +26,7 @@ import org.eclipse.papyrus.cdo.validation.problems.ESeverity;
 import org.eclipse.papyrus.cdo.validation.problems.edit.ProblemEditUtil;
 import org.eclipse.papyrus.cdo.validation.problems.util.ProblemsManager;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
+import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
@@ -75,12 +75,13 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	public String getType() {
-		return EValidator.MARKER;
+		String result = problem.getType();
+		return (result != null) ? result : EValidator.MARKER;
 	}
 
 	public String getTypeLabel() throws CoreException {
-
-		return util.getProblemType(problem);
+		String result = MarkerListenerUtils.getMarkerTypeLabel(getType());
+		return ((result != null) && (result.length() > 0)) ? result : util.getProblemType(problem);
 	}
 
 	public void delete() {
@@ -88,7 +89,6 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	public Object getAttribute(String name) throws CoreException {
-
 		Object result = null;
 
 		if(name.equals(EValidator.URI_ATTRIBUTE)) {
@@ -159,7 +159,6 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	public Map<String, ?> getAttributes() throws CoreException {
-
 		Map<String, Object> result = Maps.newHashMap();
 
 		result.put(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(getEObject()).toString());
@@ -167,11 +166,9 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 		result.put(MESSAGE, problem.getMessage());
 
 		return result;
-
 	}
 
 	public void setAttribute(String name, Object value) throws CoreException {
-
 		if(name.equals(EValidator.URI_ATTRIBUTE)) {
 			throw new CoreException(error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
 		} else if(name.equals(SEVERITY)) {
@@ -201,7 +198,6 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	public void setAttribute(String name, String value) throws CoreException {
-
 		if(name.equals(EValidator.URI_ATTRIBUTE)) {
 			throw new CoreException(error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
 		} else if(name.equals(MESSAGE)) {
@@ -212,12 +208,10 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	public void setAttribute(String name, boolean value) throws CoreException {
-
 		throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 	}
 
 	public void setAttribute(String name, int value) throws CoreException {
-
 		if(name.equals(SEVERITY)) {
 			setMarkerSeverity(value);
 		} else {
@@ -226,7 +220,6 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	public void setAttributes(Map<String, ?> attributes) throws CoreException {
-
 		for(Map.Entry<String, ?> next : attributes.entrySet()) {
 			String name = next.getKey();
 			Object value = next.getValue();
@@ -257,9 +250,6 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 	}
 
 	public boolean isSubtypeOf(String type) throws CoreException {
-		// FIXME 404441: [CDO] Implement "marker type" hierarchy in CDO markers https://bugs.eclipse.org/bugs/show_bug.cgi?id=404441
-		if(type == null || IMarker.PROBLEM.equals(type))
-			return true;
-		return false;
+		return (type == null) || MarkerListenerUtils.isMarkerTypeSubtypeOf(getType(), type);
 	}
 }

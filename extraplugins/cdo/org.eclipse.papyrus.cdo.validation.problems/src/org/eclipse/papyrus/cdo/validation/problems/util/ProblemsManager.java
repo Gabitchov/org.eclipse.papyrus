@@ -58,12 +58,12 @@ public class ProblemsManager {
 	ProblemsManager(Notifier notifier) {
 		adapter = new ManagerAdapter();
 		notifier.eAdapters().add(adapter);
-		((EObservableAdapterList) notifier.eAdapters()).addListener(adapter);
+		((EObservableAdapterList)notifier.eAdapters()).addListener(adapter);
 
 		xrefs = ECrossReferenceAdapter.getCrossReferenceAdapter(notifier);
 
 		problems = ProblemsFactory.eINSTANCE.createEProblemsContainer();
-		if (xrefs != null) {
+		if(xrefs != null) {
 			problems.eAdapters().add(xrefs);
 		}
 
@@ -72,26 +72,25 @@ public class ProblemsManager {
 	}
 
 	/**
-	 * Gets the problems manager associated with the specified
-	 * {@code resourceSet}. If none has been created yet, then it is created and
+	 * Gets the problems manager associated with the specified {@code resourceSet}. If none has been created yet, then it is created and
 	 * associated on demand.
 	 * 
 	 * @param resourceSet
-	 *            a resource set
+	 *        a resource set
 	 * 
 	 * @return the {@code resourceSet}'s problems manager (never {@code null})
 	 */
 	public static ProblemsManager getProblemsManager(ResourceSet resourceSet) {
 		ProblemsManager result = null;
 
-		for (Adapter next : resourceSet.eAdapters()) {
-			if (next instanceof ManagerAdapter) {
-				result = ((ManagerAdapter) next).getManager();
+		for(Adapter next : resourceSet.eAdapters()) {
+			if(next instanceof ManagerAdapter) {
+				result = ((ManagerAdapter)next).getManager();
 				break;
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = new ProblemsManager(resourceSet);
 		}
 
@@ -103,16 +102,15 @@ public class ProblemsManager {
 	 * it with the specified {@code resourceSet}.
 	 * 
 	 * @param resourceSet
-	 *            a resource set
+	 *        a resource set
 	 * @param customProblemClass
-	 *            an {@link EClass} conforming to <tt>EProblem</tt> to create
-	 *            instead of the default <tt>EProblem</tt> type
+	 *        an {@link EClass} conforming to <tt>EProblem</tt> to create
+	 *        instead of the default <tt>EProblem</tt> type
 	 * 
 	 * @return the new problems manager
 	 */
-	public static ProblemsManager createProblemsManager(
-			ResourceSet resourceSet, EClass customProblemClass) {
-		if (customProblemClass == null) {
+	public static ProblemsManager createProblemsManager(ResourceSet resourceSet, EClass customProblemClass) {
+		if(customProblemClass == null) {
 			throw new IllegalArgumentException("null customProblemClass"); //$NON-NLS-1$
 		}
 
@@ -124,21 +122,25 @@ public class ProblemsManager {
 	}
 
 	public EProblem createProblem(Diagnostic diagnostic) {
+		return createProblem(diagnostic, null);
+	}
+
+	public EProblem createProblem(Diagnostic diagnostic, String type) {
 		EProblem result;
 		EObject element = null;
 
 		Iterator<?> data = diagnostic.getData().iterator();
-		while (data.hasNext()) {
+		while(data.hasNext()) {
 			Object next = data.next();
 
 			// CDOResources are EObjects
-			if ((next instanceof EObject) && !(next instanceof Resource)) {
-				element = (EObject) next;
+			if((next instanceof EObject) && !(next instanceof Resource)) {
+				element = (EObject)next;
 				break;
 			}
 		}
 
-		if (element == null) {
+		if(element == null) {
 			// can't create a problem without the element to attach it to
 			result = null;
 		} else {
@@ -149,13 +151,17 @@ public class ProblemsManager {
 			result.setCode(diagnostic.getCode());
 			result.setMessage(diagnostic.getMessage());
 
+			if(type != null) {
+				result.setType(type);
+			}
+
 			result.setElement(element);
-			while (data.hasNext()) {
+			while(data.hasNext()) {
 				Object next = data.next();
 
 				// CDOResources are EObjects
-				if ((next instanceof EObject) && !(next instanceof Resource)) {
-					result.getRelated().add((EObject) next);
+				if((next instanceof EObject) && !(next instanceof Resource)) {
+					result.getRelated().add((EObject)next);
 				}
 			}
 		}
@@ -175,22 +181,19 @@ public class ProblemsManager {
 	 * specified {@code eObject}.
 	 * 
 	 * @param eObject
-	 *            an object in the resource set scope for which I track problems
+	 *        an object in the resource set scope for which I track problems
 	 */
 	public Iterator<EProblem> getAllProblems(EObject eObject) {
 		Iterator<EProblem> result;
 
-		if (xrefs == null) {
+		if(xrefs == null) {
 			result = problems.allProblems(eObject);
 		} else {
-			result = new EProblemsIterator<EStructuralFeature.Setting>(xrefs
-				.getNonNavigableInverseReferences(eObject).iterator()) {
+			result = new EProblemsIterator<EStructuralFeature.Setting>(xrefs.getNonNavigableInverseReferences(eObject).iterator()) {
 
 				@Override
 				protected EProblem convert(EStructuralFeature.Setting object) {
-					return object.getEStructuralFeature() == ProblemsPackage.Literals.EPROBLEM__ELEMENT
-						? (EProblem) object.getEObject()
-						: null;
+					return object.getEStructuralFeature() == ProblemsPackage.Literals.EPROBLEM__ELEMENT ? (EProblem)object.getEObject() : null;
 				}
 			};
 		}
@@ -203,13 +206,13 @@ public class ProblemsManager {
 	 * objects in the specified {@code resource}.
 	 * 
 	 * @param resource
-	 *            an resource in the resource set scope for which I track
-	 *            problems
+	 *        an resource in the resource set scope for which I track
+	 *        problems
 	 */
 	public Iterator<EProblem> getAllProblems(final Resource resource) {
 		Iterator<EProblem> result;
 
-		if (xrefs == null) {
+		if(xrefs == null) {
 			// more efficient to iterate all problems and filter for those whose
 			// element is in the resource than to repeat iteration over the
 			// problems for each object in the resource
@@ -220,10 +223,10 @@ public class ProblemsManager {
 				private EProblem next;
 
 				public boolean hasNext() {
-					if (next == null) {
-						while (all.hasNext()) {
+					if(next == null) {
+						while(all.hasNext()) {
 							EProblem couldBe = all.next();
-							if (couldBe.getElement().eResource() == resource) {
+							if(couldBe.getElement().eResource() == resource) {
 								next = couldBe;
 								break;
 							}
@@ -234,7 +237,7 @@ public class ProblemsManager {
 				}
 
 				public EProblem next() {
-					if (!hasNext()) {
+					if(!hasNext()) {
 						throw new NoSuchElementException();
 					}
 
@@ -252,14 +255,12 @@ public class ProblemsManager {
 			// resource
 			result = new Iterator<EProblem>() {
 
-				private final Iterator<EObject> objects = EcoreUtil
-					.getAllProperContents(resource, false);
+				private final Iterator<EObject> objects = EcoreUtil.getAllProperContents(resource, false);
 
-				private Iterator<EProblem> iterator = Collections
-					.<EProblem> emptyList().iterator();
+				private Iterator<EProblem> iterator = Collections.<EProblem> emptyList().iterator();
 
 				public boolean hasNext() {
-					while (!iterator.hasNext() && objects.hasNext()) {
+					while(!iterator.hasNext() && objects.hasNext()) {
 						iterator = getAllProblems(objects.next());
 					}
 
@@ -267,7 +268,7 @@ public class ProblemsManager {
 				}
 
 				public EProblem next() {
-					if (!hasNext()) {
+					if(!hasNext()) {
 						throw new NoSuchElementException();
 					}
 
@@ -288,16 +289,20 @@ public class ProblemsManager {
 	}
 
 	public boolean addDiagnostic(Diagnostic diagnostic) {
+		return addDiagnostic(diagnostic, null);
+	}
+
+	public boolean addDiagnostic(Diagnostic diagnostic, String type) {
 		boolean result;
 
-		if (!diagnostic.getChildren().isEmpty()) {
+		if(!diagnostic.getChildren().isEmpty()) {
 			// add the children
 			result = false;
-			for (Diagnostic next : diagnostic.getChildren()) {
-				result = addDiagnostic(next) || result;
+			for(Diagnostic next : diagnostic.getChildren()) {
+				result = addDiagnostic(next, type) || result;
 			}
 		} else {
-			EProblem problem = createProblem(diagnostic);
+			EProblem problem = createProblem(diagnostic, type);
 			result = problem != null && addProblem(problem);
 		}
 
@@ -310,8 +315,7 @@ public class ProblemsManager {
 
 	@SuppressWarnings("unchecked")
 	public void purgeProblems(Collection<? extends EObject> objects) {
-		purgeProblems((Iterator<? extends EObject>) EcoreUtil
-			.getAllContents(objects));
+		purgeProblems((Iterator<? extends EObject>)EcoreUtil.getAllContents(objects));
 	}
 
 	public void purgeProblems(Resource resource) {
@@ -319,7 +323,7 @@ public class ProblemsManager {
 	}
 
 	public void purgeAllProblems() {
-		for (EProblem next : problems.getProblems()) {
+		for(EProblem next : problems.getProblems()) {
 			next.eAdapters().clear();
 		}
 		problems.getProblems().clear();
@@ -331,10 +335,9 @@ public class ProblemsManager {
 	 * longer be used.
 	 */
 	public void dispose() {
-		if (problems != null) {
+		if(problems != null) {
 			problems.eAdapters().clear();
-			for (Iterator<EObject> iter = problems.eAllContents(); iter
-				.hasNext();) {
+			for(Iterator<EObject> iter = problems.eAllContents(); iter.hasNext();) {
 				iter.next().eAdapters().clear();
 			}
 
@@ -342,10 +345,10 @@ public class ProblemsManager {
 		}
 
 		Notifier target = adapter.getTarget();
-		if (target != null) {
+		if(target != null) {
 			target.eAdapters().remove(adapter);
 		}
-		
+
 		listeners.clear();
 	}
 
@@ -354,14 +357,14 @@ public class ProblemsManager {
 	}
 
 	void setCrossReferenceAdapter(ECrossReferenceAdapter adapter) {
-		if (adapter != xrefs) {
-			if (xrefs != null && problems != null) {
+		if(adapter != xrefs) {
+			if(xrefs != null && problems != null) {
 				problems.eAdapters().remove(xrefs);
 			}
 
 			xrefs = adapter;
 
-			if (adapter != null && problems != null) {
+			if(adapter != null && problems != null) {
 				problems.eAdapters().add(adapter);
 			}
 		}
@@ -370,14 +373,14 @@ public class ProblemsManager {
 	private void purgeProblems(Iterator<? extends EObject> contents) {
 		List<EProblem> toRemove = new java.util.ArrayList<EProblem>();
 
-		while (contents.hasNext()) {
+		while(contents.hasNext()) {
 			Iterator<EProblem> problems = getAllProblems(contents.next());
-			while (problems.hasNext()) {
+			while(problems.hasNext()) {
 				toRemove.add(problems.next());
 			}
 		}
 
-		for (EProblem next : toRemove) {
+		for(EProblem next : toRemove) {
 			next.eAdapters().clear();
 		}
 		problems.getProblems().removeAll(toRemove);
@@ -398,10 +401,9 @@ public class ProblemsManager {
 	}
 
 	protected void fireAdded(EProblem problem) {
-		if (!listeners.isEmpty()) {
-			ProblemsEvent event = new ProblemsEvent(this, ProblemsEvent.ADDED,
-				problem);
-			for (ProblemsListener next : listeners) {
+		if(!listeners.isEmpty()) {
+			ProblemsEvent event = new ProblemsEvent(this, ProblemsEvent.ADDED, problem);
+			for(ProblemsListener next : listeners) {
 				try {
 					next.problemAdded(event);
 				} catch (Exception e) {
@@ -412,10 +414,9 @@ public class ProblemsManager {
 	}
 
 	protected void fireRemoved(EProblem problem) {
-		if (!listeners.isEmpty()) {
-			ProblemsEvent event = new ProblemsEvent(this,
-				ProblemsEvent.REMOVED, problem);
-			for (ProblemsListener next : listeners) {
+		if(!listeners.isEmpty()) {
+			ProblemsEvent event = new ProblemsEvent(this, ProblemsEvent.REMOVED, problem);
+			for(ProblemsListener next : listeners) {
 				try {
 					next.problemRemoved(event);
 				} catch (Exception e) {
@@ -429,18 +430,15 @@ public class ProblemsManager {
 	// Nested types
 	//
 
-	static class Custom
-			extends ProblemsManager {
+	static class Custom extends ProblemsManager {
 
 		private final EClass customProblemClass;
 
 		public Custom(Notifier notifier, EClass customProblemClass) {
 			super(notifier);
 
-			if (!ProblemsPackage.Literals.EPROBLEM
-				.isSuperTypeOf(customProblemClass)) {
-				throw new IllegalArgumentException(
-					"customProblemClass does not conform to EProblem"); //$NON-NLS-1$
+			if(!ProblemsPackage.Literals.EPROBLEM.isSuperTypeOf(customProblemClass)) {
+				throw new IllegalArgumentException("customProblemClass does not conform to EProblem"); //$NON-NLS-1$
 			}
 
 			this.customProblemClass = customProblemClass;
@@ -448,13 +446,11 @@ public class ProblemsManager {
 
 		@Override
 		protected EProblem createProblem() {
-			return (EProblem) EcoreUtil.create(customProblemClass);
+			return (EProblem)EcoreUtil.create(customProblemClass);
 		}
 	}
 
-	private class ManagerAdapter
-			extends AdapterImpl
-			implements EObservableAdapterList.Listener {
+	private class ManagerAdapter extends AdapterImpl implements EObservableAdapterList.Listener {
 
 		ProblemsManager getManager() {
 			return ProblemsManager.this;
@@ -464,55 +460,53 @@ public class ProblemsManager {
 		public void setTarget(Notifier newTarget) {
 			super.setTarget(newTarget);
 
-			if (newTarget == null) {
+			if(newTarget == null) {
 				// we've been unloaded. Unload the problems model
 				dispose();
 			}
 		}
 
 		public void added(Notifier notifier, Adapter adapter) {
-			if (adapter instanceof ECrossReferenceAdapter) {
-				setCrossReferenceAdapter((ECrossReferenceAdapter) adapter);
+			if(adapter instanceof ECrossReferenceAdapter) {
+				setCrossReferenceAdapter((ECrossReferenceAdapter)adapter);
 			}
 		}
 
 		public void removed(Notifier notifier, Adapter adapter) {
-			if (adapter instanceof ECrossReferenceAdapter) {
+			if(adapter instanceof ECrossReferenceAdapter) {
 				setCrossReferenceAdapter(null);
 			}
 		}
 	}
 
-	private class ProblemsAdapter
-			extends AdapterImpl {
+	private class ProblemsAdapter extends AdapterImpl {
 
 		@Override
 		public void notifyChanged(Notification msg) {
-			if (msg.getFeature() == ProblemsPackage.Literals.EPROBLEMS_CONTAINER__PROBLEMS) {
-				switch (msg.getEventType()) {
-					case Notification.ADD :
-						fireAdded((EProblem) msg.getNewValue());
-						break;
-					case Notification.ADD_MANY :
-						for (Object next : (Collection<?>) msg.getNewValue()) {
-							fireAdded((EProblem) next);
-						}
-						break;
-					case Notification.REMOVE :
-						fireRemoved((EProblem) msg.getOldValue());
-						break;
-					case Notification.REMOVE_MANY :
-						for (Object next : (Collection<?>) msg.getOldValue()) {
-							fireRemoved((EProblem) next);
-						}
-						break;
+			if(msg.getFeature() == ProblemsPackage.Literals.EPROBLEMS_CONTAINER__PROBLEMS) {
+				switch(msg.getEventType()) {
+				case Notification.ADD:
+					fireAdded((EProblem)msg.getNewValue());
+					break;
+				case Notification.ADD_MANY:
+					for(Object next : (Collection<?>)msg.getNewValue()) {
+						fireAdded((EProblem)next);
+					}
+					break;
+				case Notification.REMOVE:
+					fireRemoved((EProblem)msg.getOldValue());
+					break;
+				case Notification.REMOVE_MANY:
+					for(Object next : (Collection<?>)msg.getOldValue()) {
+						fireRemoved((EProblem)next);
+					}
+					break;
 				}
 			}
 		}
 	}
 
-	private static abstract class EProblemsIterator<E>
-			implements Iterator<EProblem> {
+	private static abstract class EProblemsIterator<E> implements Iterator<EProblem> {
 
 		private final Iterator<? extends E> delegate;
 
@@ -523,10 +517,10 @@ public class ProblemsManager {
 		}
 
 		public boolean hasNext() {
-			if (preparedNext == null) {
-				while (delegate.hasNext()) {
+			if(preparedNext == null) {
+				while(delegate.hasNext()) {
 					EProblem problem = convert(delegate.next());
-					if (problem != null) {
+					if(problem != null) {
 						preparedNext = problem;
 						break;
 					}
@@ -539,7 +533,7 @@ public class ProblemsManager {
 		protected abstract EProblem convert(E object);
 
 		public EProblem next() {
-			if (!hasNext()) {
+			if(!hasNext()) {
 				throw new NoSuchElementException();
 			}
 
@@ -553,8 +547,7 @@ public class ProblemsManager {
 		}
 	}
 
-	private static class StatusWrapper
-			implements IStatus {
+	private static class StatusWrapper implements IStatus {
 
 		static final IStatus[] NO_STATUSES = new IStatus[0];
 

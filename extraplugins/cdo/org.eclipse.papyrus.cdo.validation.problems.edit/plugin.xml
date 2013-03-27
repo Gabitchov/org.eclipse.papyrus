@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Problems -->
       <factory
-            uri="http://www.eclipse.org/emf/CDO/defs/1.0.0"
+            uri="http://www.eclipse.org/papyrus/cdo/problems/1.0.0"
             class="org.eclipse.papyrus.cdo.validation.problems.provider.ProblemsItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

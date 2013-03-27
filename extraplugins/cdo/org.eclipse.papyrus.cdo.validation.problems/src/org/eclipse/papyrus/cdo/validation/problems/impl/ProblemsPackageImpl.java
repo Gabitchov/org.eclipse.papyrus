@@ -13,6 +13,7 @@ package org.eclipse.papyrus.cdo.validation.problems.impl;
 
 import java.util.Iterator;
 
+import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -32,44 +33,43 @@ import org.eclipse.papyrus.cdo.validation.problems.ProblemsPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
-public class ProblemsPackageImpl
-		extends EPackageImpl
-		implements ProblemsPackage {
+public class ProblemsPackageImpl extends EPackageImpl implements ProblemsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass eProblemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass eProblemsContainerEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeEClass = null;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum eSeverityEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType eDiagnosticEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType eIteratorEDataType = null;
@@ -95,7 +95,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -116,15 +115,11 @@ public class ProblemsPackageImpl
 	 * @generated
 	 */
 	public static ProblemsPackage init() {
-		if (isInited)
-			return (ProblemsPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ProblemsPackage.eNS_URI);
+		if(isInited)
+			return (ProblemsPackage)EPackage.Registry.INSTANCE.getEPackage(ProblemsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ProblemsPackageImpl theProblemsPackage = (ProblemsPackageImpl) (EPackage.Registry.INSTANCE
-			.get(eNS_URI) instanceof ProblemsPackageImpl
-			? EPackage.Registry.INSTANCE.get(eNS_URI)
-			: new ProblemsPackageImpl());
+		ProblemsPackageImpl theProblemsPackage = (ProblemsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProblemsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ProblemsPackageImpl());
 
 		isInited = true;
 
@@ -137,15 +132,14 @@ public class ProblemsPackageImpl
 		// Mark meta-data to indicate it can't be changed
 		theProblemsPackage.freeze();
 
+
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ProblemsPackage.eNS_URI,
-			theProblemsPackage);
+		EPackage.Registry.INSTANCE.put(ProblemsPackage.eNS_URI, theProblemsPackage);
 		return theProblemsPackage;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEProblem() {
@@ -154,70 +148,80 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEProblem_Severity() {
-		return (EAttribute) eProblemEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)eProblemEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEProblem_Message() {
-		return (EAttribute) eProblemEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)eProblemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEProblem_Source() {
-		return (EAttribute) eProblemEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)eProblemEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEProblem_Code() {
-		return (EAttribute) eProblemEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)eProblemEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEProblem_Element() {
-		return (EReference) eProblemEClass.getEStructuralFeatures().get(4);
+		return (EReference)eProblemEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEProblem_Related() {
-		return (EReference) eProblemEClass.getEStructuralFeatures().get(5);
+		return (EReference)eProblemEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEProblem_Container() {
-		return (EReference) eProblemEClass.getEStructuralFeatures().get(6);
+		return (EReference)eProblemEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEProblem_Type() {
+		return (EAttribute)eProblemEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEProblem_Attributes() {
+		return (EReference)eProblemEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EOperation getEProblem__ToDiagnostic() {
@@ -226,7 +230,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEProblemsContainer() {
@@ -235,47 +238,38 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEProblemsContainer_Problems() {
-		return (EReference) eProblemsContainerEClass.getEStructuralFeatures()
-			.get(0);
+		return (EReference)eProblemsContainerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEProblemsContainer_Subjects() {
-		return (EReference) eProblemsContainerEClass.getEStructuralFeatures()
-			.get(1);
+		return (EReference)eProblemsContainerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEProblemsContainer_Subcontainers() {
-		return (EReference) eProblemsContainerEClass.getEStructuralFeatures()
-			.get(2);
+		return (EReference)eProblemsContainerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEProblemsContainer_Container() {
-		return (EReference) eProblemsContainerEClass.getEStructuralFeatures()
-			.get(3);
+		return (EReference)eProblemsContainerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EOperation getEProblemsContainer__AllProblems() {
@@ -284,7 +278,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EOperation getEProblemsContainer__AllProblems__EObject() {
@@ -293,7 +286,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EOperation getEProblemsContainer__AllDiagnostics() {
@@ -302,7 +294,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EOperation getEProblemsContainer__AllDiagnostics__EObject() {
@@ -311,7 +302,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EOperation getEProblemsContainer__GetWorstProblem__EObject() {
@@ -319,8 +309,34 @@ public class ProblemsPackageImpl
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttribute() {
+		return attributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Key() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Value() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getESeverity() {
@@ -329,7 +345,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getEDiagnostic() {
@@ -338,7 +353,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getEIterator() {
@@ -347,29 +361,27 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProblemsFactory getProblemsFactory() {
-		return (ProblemsFactory) getEFactoryInstance();
+		return (ProblemsFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to
-	 * have no affect on any invocation but its first. <!-- begin-user-doc -->
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if(isCreated)
 			return;
 		isCreated = true;
 
@@ -382,27 +394,24 @@ public class ProblemsPackageImpl
 		createEReference(eProblemEClass, EPROBLEM__ELEMENT);
 		createEReference(eProblemEClass, EPROBLEM__RELATED);
 		createEReference(eProblemEClass, EPROBLEM__CONTAINER);
+		createEAttribute(eProblemEClass, EPROBLEM__TYPE);
+		createEReference(eProblemEClass, EPROBLEM__ATTRIBUTES);
 		createEOperation(eProblemEClass, EPROBLEM___TO_DIAGNOSTIC);
 
 		eProblemsContainerEClass = createEClass(EPROBLEMS_CONTAINER);
-		createEReference(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER__PROBLEMS);
-		createEReference(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER__SUBJECTS);
-		createEReference(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER__SUBCONTAINERS);
-		createEReference(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER__CONTAINER);
-		createEOperation(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER___ALL_PROBLEMS);
-		createEOperation(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER___ALL_PROBLEMS__EOBJECT);
-		createEOperation(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER___ALL_DIAGNOSTICS);
-		createEOperation(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER___ALL_DIAGNOSTICS__EOBJECT);
-		createEOperation(eProblemsContainerEClass,
-			EPROBLEMS_CONTAINER___GET_WORST_PROBLEM__EOBJECT);
+		createEReference(eProblemsContainerEClass, EPROBLEMS_CONTAINER__PROBLEMS);
+		createEReference(eProblemsContainerEClass, EPROBLEMS_CONTAINER__SUBJECTS);
+		createEReference(eProblemsContainerEClass, EPROBLEMS_CONTAINER__SUBCONTAINERS);
+		createEReference(eProblemsContainerEClass, EPROBLEMS_CONTAINER__CONTAINER);
+		createEOperation(eProblemsContainerEClass, EPROBLEMS_CONTAINER___ALL_PROBLEMS);
+		createEOperation(eProblemsContainerEClass, EPROBLEMS_CONTAINER___ALL_PROBLEMS__EOBJECT);
+		createEOperation(eProblemsContainerEClass, EPROBLEMS_CONTAINER___ALL_DIAGNOSTICS);
+		createEOperation(eProblemsContainerEClass, EPROBLEMS_CONTAINER___ALL_DIAGNOSTICS__EOBJECT);
+		createEOperation(eProblemsContainerEClass, EPROBLEMS_CONTAINER___GET_WORST_PROBLEM__EOBJECT);
+
+		attributeEClass = createEClass(ATTRIBUTE);
+		createEAttribute(attributeEClass, ATTRIBUTE__KEY);
+		createEAttribute(attributeEClass, ATTRIBUTE__VALUE);
 
 		// Create enums
 		eSeverityEEnum = createEEnum(ESEVERITY);
@@ -414,7 +423,6 @@ public class ProblemsPackageImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -427,7 +435,7 @@ public class ProblemsPackageImpl
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if(isInitialized)
 			return;
 		isInitialized = true;
 
@@ -444,100 +452,49 @@ public class ProblemsPackageImpl
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(
-			eProblemEClass,
-			EProblem.class,
-			"EProblem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getEProblem_Severity(),
-			this.getESeverity(),
-			"severity", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(
-			getEProblem_Message(),
-			ecorePackage.getEString(),
-			"message", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(
-			getEProblem_Source(),
-			ecorePackage.getEString(),
-			"source", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(
-			getEProblem_Code(),
-			ecorePackage.getEInt(),
-			"code", null, 0, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getEProblem_Element(),
-			ecorePackage.getEObject(),
-			null,
-			"element", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getEProblem_Related(),
-			ecorePackage.getEObject(),
-			null,
-			"related", null, 0, -1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getEProblem_Container(),
-			this.getEProblemsContainer(),
-			this.getEProblemsContainer_Problems(),
-			"container", null, 0, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(eProblemEClass, EProblem.class, "EProblem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getEProblem_Severity(), this.getESeverity(), "severity", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEProblem_Message(), ecorePackage.getEString(), "message", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEProblem_Source(), ecorePackage.getEString(), "source", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEProblem_Code(), ecorePackage.getEInt(), "code", null, 0, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEProblem_Element(), ecorePackage.getEObject(), null, "element", null, 1, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEProblem_Related(), ecorePackage.getEObject(), null, "related", null, 0, -1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEProblem_Container(), this.getEProblemsContainer(), this.getEProblemsContainer_Problems(), "container", null, 0, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEProblem_Type(), ecorePackage.getEString(), "type", "org.eclipse.emf.ecore.diagnostic", 0, 1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getEProblem_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, EProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getEProblem__ToDiagnostic(), this.getEDiagnostic(),
-			"toDiagnostic", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getEProblem__ToDiagnostic(), this.getEDiagnostic(), "toDiagnostic", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(
-			eProblemsContainerEClass,
-			EProblemsContainer.class,
-			"EProblemsContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getEProblemsContainer_Problems(),
-			this.getEProblem(),
-			this.getEProblem_Container(),
-			"problems", null, 0, -1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getEProblemsContainer_Subjects(),
-			ecorePackage.getEObject(),
-			null,
-			"subjects", null, 0, -1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getEProblemsContainer_Subcontainers(),
-			this.getEProblemsContainer(),
-			this.getEProblemsContainer_Container(),
-			"subcontainers", null, 0, -1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getEProblemsContainer_Container(),
-			this.getEProblemsContainer(),
-			this.getEProblemsContainer_Subcontainers(),
-			"container", null, 0, 1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(eProblemsContainerEClass, EProblemsContainer.class, "EProblemsContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getEProblemsContainer_Problems(), this.getEProblem(), this.getEProblem_Container(), "problems", null, 0, -1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEProblemsContainer_Subjects(), ecorePackage.getEObject(), null, "subjects", null, 0, -1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEProblemsContainer_Subcontainers(), this.getEProblemsContainer(), this.getEProblemsContainer_Container(), "subcontainers", null, 0, -1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEProblemsContainer_Container(), this.getEProblemsContainer(), this.getEProblemsContainer_Subcontainers(), "container", null, 0, 1, EProblemsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getEProblemsContainer__AllProblems(),
-			null, "allProblems", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getEProblemsContainer__AllProblems(), null, "allProblems", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(this.getEIterator());
 		EGenericType g2 = createEGenericType(this.getEProblem());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		op = initEOperation(getEProblemsContainer__AllProblems__EObject(),
-			null, "allProblems", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEObject(),
-			"element", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getEProblemsContainer__AllProblems__EObject(), null, "allProblems", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEObject(), "element", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(this.getEIterator());
 		g2 = createEGenericType(this.getEProblem());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		initEOperation(getEProblemsContainer__AllDiagnostics(),
-			this.getEDiagnostic(),
-			"allDiagnostics", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getEProblemsContainer__AllDiagnostics(), this.getEDiagnostic(), "allDiagnostics", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEProblemsContainer__AllDiagnostics__EObject(),
-			this.getEDiagnostic(),
-			"allDiagnostics", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEObject(),
-			"element", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getEProblemsContainer__AllDiagnostics__EObject(), this.getEDiagnostic(), "allDiagnostics", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEObject(), "element", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEProblemsContainer__GetWorstProblem__EObject(),
-			this.getEProblem(), "getWorstProblem", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEObject(),
-			"element", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getEProblemsContainer__GetWorstProblem__EObject(), this.getEProblem(), "getWorstProblem", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEObject(), "element", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(attributeEClass, Map.Entry.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getAttribute_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAttribute_Value(), ecorePackage.getEString(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(eSeverityEEnum, ESeverity.class, "ESeverity"); //$NON-NLS-1$
@@ -548,10 +505,8 @@ public class ProblemsPackageImpl
 		addEEnumLiteral(eSeverityEEnum, ESeverity.CANCEL);
 
 		// Initialize data types
-		initEDataType(eDiagnosticEDataType, Diagnostic.class,
-			"EDiagnostic", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEDataType(eIteratorEDataType, Iterator.class,
-			"EIterator", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(eDiagnosticEDataType, Diagnostic.class, "EDiagnostic", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(eIteratorEDataType, Iterator.class, "EIterator", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
