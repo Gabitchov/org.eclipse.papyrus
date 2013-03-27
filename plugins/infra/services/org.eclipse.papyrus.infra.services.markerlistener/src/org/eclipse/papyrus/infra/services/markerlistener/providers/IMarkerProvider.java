@@ -43,11 +43,25 @@ public interface IMarkerProvider {
 			// pass
 		}
 
+		@Deprecated
 		public void deleteMarkers(EObject object, IProgressMonitor monitor) {
 			// pass
 		}
 
+		@Deprecated
 		public void deleteMarkers(Resource resource, IProgressMonitor monitor) {
+			// pass
+		}
+
+		public void deleteMarkers(EObject object, IProgressMonitor monitor,
+				String markerType, boolean includeSubtypes)
+				throws CoreException {
+			// pass
+		}
+
+		public void deleteMarkers(Resource resource, IProgressMonitor monitor,
+				String markerType, boolean includeSubtypes)
+				throws CoreException {
 			// pass
 		}
 	};
@@ -120,7 +134,33 @@ public interface IMarkerProvider {
 	 * @throws CoreException
 	 *             on failure to delete any marker
 	 */
+	@Deprecated
 	void deleteMarkers(EObject object, IProgressMonitor monitor)
+			throws CoreException;
+	
+	/**
+	 * Deletes all of the markers attached to an {@code object} and its content
+	 * tree. If {@code markerType} is specified, only markers of this type
+	 * (including subtypes or not, as specified by {@code includeSubtypes})
+	 * will be deleted.
+	 * 
+	 * @param object
+	 *            a content tree from which to delete markers
+	 * @param monitor
+	 *            an optional monitor for reporting progress. May be
+	 *            {@code null}
+	 * @param markerType
+	 * 			  an optional String representing the type of markers
+	 * 			  to be deleted. May be {@code null}. If not specified,
+	 * 			  all markers will be deleted.
+	 * @param includeSubtypes
+	 * 			  if markerType is specified, indicates whether 
+	 * 			  subtypes must be deleted as well 
+	 * 
+	 * @throws CoreException
+	 *             on failure to delete any marker
+	 */
+	void deleteMarkers(EObject object, IProgressMonitor monitor, String markerType, boolean includeSubtypes)
 			throws CoreException;
 
 	/**
@@ -135,6 +175,32 @@ public interface IMarkerProvider {
 	 * @throws CoreException
 	 *             on failure to delete any marker
 	 */
+	@Deprecated
 	void deleteMarkers(Resource resource, IProgressMonitor monitor)
+			throws CoreException;
+	
+	/**
+	 * Deletes all of the markers attached to a {@code resource}.
+	 * If {@code markerType} is specified, only markers of this type
+	 * (including subtypes or not, as specified by {@code includeSubtypes})
+	 * will be deleted.
+	 * 
+	 * @param resource
+	 *            a resource from which to delete markers
+	 * @param monitor
+	 *            an optional monitor for reporting progress. May be
+	 *            {@code null}
+	 * @param markerType
+	 * 			  an optional String representing the type of markers
+	 * 			  to be deleted. May be {@code null}. If not specified,
+	 * 			  all markers will be deleted.
+	 * @param includeSubtypes
+	 * 			  if {@code markerType} is specified, indicates whether 
+	 * 			  subtypes must be deleted as well.
+	 * 
+	 * @throws CoreException
+	 *             on failure to delete any marker
+	 */
+	void deleteMarkers(Resource resource, IProgressMonitor monitor, String markerType, boolean includeSubtypes)
 			throws CoreException;
 }

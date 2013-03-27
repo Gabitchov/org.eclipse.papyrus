@@ -41,12 +41,9 @@ import com.google.common.collect.Lists;
 /**
  * This is the CDOMarkerProvider type. Enjoy.
  */
-public class CDOMarkerProvider
-		extends AbstractMarkerProvider {
+public class CDOMarkerProvider extends AbstractMarkerProvider {
 
-	private final ProblemEditUtil defaultUtil = new ProblemEditUtil(
-		new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	private final ProblemEditUtil defaultUtil = new ProblemEditUtil(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	public CDOMarkerProvider() {
 		super();
@@ -56,29 +53,20 @@ public class CDOMarkerProvider
 		return resource instanceof CDOResource;
 	}
 
-	public Collection<? extends IPapyrusMarker> getMarkers(
-			final Resource resource, String type, boolean includeSubtypes)
-			throws CoreException {
+	public Collection<? extends IPapyrusMarker> getMarkers(final Resource resource, String type, boolean includeSubtypes) throws CoreException {
 
 		// run in a read-only transaction because the problems manager accesses
 		// a cross-reference adapter
-		return run(
-			resource,
-			CoreException.class,
-			new RunnableWithResult.Impl<Collection<? extends IPapyrusMarker>>() {
+		return run(resource, CoreException.class, new RunnableWithResult.Impl<Collection<? extends IPapyrusMarker>>() {
 
-				public void run() {
-					setResult(Lists.newArrayList(Iterators.transform(
-						getProblemsManager(resource).getAllProblems(resource),
-						CDOPapyrusMarker.wrap(getProblemEditUtil(resource)))));
-				}
-			});
+			public void run() {
+				setResult(Lists.newArrayList(Iterators.transform(getProblemsManager(resource).getAllProblems(resource), CDOPapyrusMarker.wrap(getProblemEditUtil(resource)))));
+			}
+		});
 	}
 
 	@Override
-	public void createMarkers(final Resource resource,
-			final Diagnostic diagnostic, final IProgressMonitor monitor)
-			throws CoreException {
+	public void createMarkers(final Resource resource, final Diagnostic diagnostic, final IProgressMonitor monitor) throws CoreException {
 
 		// run in a read-only transaction because the problems manager accesses
 		// a cross-reference adapter. Note that a read/write transaction is not
@@ -96,20 +84,17 @@ public class CDOMarkerProvider
 		});
 	}
 
-	final void basicCreateMarkers(Resource resource, Diagnostic diagnostic,
-			IProgressMonitor monitor)
-			throws CoreException {
+	final void basicCreateMarkers(Resource resource, Diagnostic diagnostic, IProgressMonitor monitor) throws CoreException {
 
 		super.createMarkers(resource, diagnostic, monitor);
 	}
 
 	@Override
-	protected void doCreateMarker(Resource resource, Diagnostic diagnostic)
-			throws CoreException {
+	protected void doCreateMarker(Resource resource, Diagnostic diagnostic) throws CoreException {
 
 		ProblemsManager mgr = getProblemsManager(resource);
 		EProblem problem = mgr.createProblem(diagnostic);
-		if (problem != null) {
+		if(problem != null) {
 			mgr.addProblem(problem);
 		}
 	}
@@ -119,17 +104,15 @@ public class CDOMarkerProvider
 		super.batchCreated(resource);
 
 		ResourceSet rset = resource.getResourceSet();
-		if (rset instanceof ModelSet) {
+		if(rset instanceof ModelSet) {
 			// yield the resource set to any other threads that might
 			// be waiting to read it
-			((ModelSet) rset).getTransactionalEditingDomain().yield();
+			((ModelSet)rset).getTransactionalEditingDomain().yield();
 		}
 	}
 
 	@Override
-	public void deleteMarkers(final EObject object,
-			final IProgressMonitor monitor)
-			throws CoreException {
+	public void deleteMarkers(final EObject object, final IProgressMonitor monitor) throws CoreException {
 
 		// run in a read-only transaction because the problems manager accesses
 		// a cross-reference adapter. Note that a read/write transaction is not
@@ -147,14 +130,21 @@ public class CDOMarkerProvider
 		});
 	}
 
-	protected final void basicDeleteMarkers(EObject object,
-			IProgressMonitor monitor)
-			throws CoreException {
+	protected final void basicDeleteMarkers(EObject object, IProgressMonitor monitor) throws CoreException {
 
 		super.deleteMarkers(object, monitor);
 	}
 
 	public void deleteMarkers(final Resource resource, IProgressMonitor monitor) {
+		try {
+			this.deleteMarkers(resource, monitor, null, true);
+		} catch (CoreException e) {
+			Activator.log.error(e);
+		}
+	}
+
+	public void deleteMarkers(final Resource resource, IProgressMonitor monitor, String markerType, boolean includeSubtypes) throws CoreException {
+		// FIXME This code has been copied from Deprecated deleteMarkers above. Need to check if some changes are required.
 		SubMonitor sub = SubMonitor.convert(monitor, IProgressMonitor.UNKNOWN);
 
 		// run in a read-only transaction because the problems manager accesses
@@ -179,9 +169,8 @@ public class CDOMarkerProvider
 		ProblemEditUtil result = defaultUtil;
 
 		ResourceSet rset = resource.getResourceSet();
-		if (rset instanceof ModelSet) {
-			AdapterFactory factory = ((AdapterFactoryEditingDomain) ((ModelSet) rset)
-				.getTransactionalEditingDomain()).getAdapterFactory();
+		if(rset instanceof ModelSet) {
+			AdapterFactory factory = ((AdapterFactoryEditingDomain)((ModelSet)rset).getTransactionalEditingDomain()).getAdapterFactory();
 			result = new ProblemEditUtil(factory);
 		}
 
@@ -192,44 +181,34 @@ public class CDOMarkerProvider
 		run(context, RuntimeException.class, runnable);
 	}
 
-	static <X extends Throwable> void run(Resource context,
-			Class<X> exceptionType, Runnable runnable)
-			throws X {
+	static <X extends Throwable> void run(Resource context, Class<X> exceptionType, Runnable runnable) throws X {
 
 		ResourceSet rset = context.getResourceSet();
-		if (rset instanceof ModelSet) {
+		if(rset instanceof ModelSet) {
 			try {
-				((ModelSet) rset).getTransactionalEditingDomain().runExclusive(
-					runnable);
+				((ModelSet)rset).getTransactionalEditingDomain().runExclusive(runnable);
 			} catch (WrappedException e) {
 				throw exceptionType.cast(e.exception());
 			} catch (InterruptedException e) {
-				Activator.log.error(
-					"CDO problem markers runnable interrupted.", e); //$NON-NLS-1$
+				Activator.log.error("CDO problem markers runnable interrupted.", e); //$NON-NLS-1$
 			}
 		} else {
 			runnable.run();
 		}
 	}
 
-	static <T, X extends Throwable> T run(Resource context,
-			Class<X> exceptionType, RunnableWithResult<T> runnable)
-			throws X {
+	static <T, X extends Throwable> T run(Resource context, Class<X> exceptionType, RunnableWithResult<T> runnable) throws X {
 
 		T result;
 
 		ResourceSet rset = context.getResourceSet();
-		if (rset instanceof ModelSet) {
+		if(rset instanceof ModelSet) {
 			try {
-				result = TransactionUtil
-					.runExclusive(
-						((ModelSet) rset).getTransactionalEditingDomain(),
-						runnable);
+				result = TransactionUtil.runExclusive(((ModelSet)rset).getTransactionalEditingDomain(), runnable);
 			} catch (WrappedException e) {
 				throw exceptionType.cast(e.exception());
 			} catch (InterruptedException e) {
-				Activator.log.error(
-					"CDO problem markers runnable interrupted.", e); //$NON-NLS-1$
+				Activator.log.error("CDO problem markers runnable interrupted.", e); //$NON-NLS-1$
 				result = null;
 			}
 		} else {
@@ -239,4 +218,5 @@ public class CDOMarkerProvider
 
 		return result;
 	}
+
 }

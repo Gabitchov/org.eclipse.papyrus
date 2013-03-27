@@ -197,4 +197,8 @@ implements IPapyrusMarker {
 		return String.format("WorkspaceMarker:%s:%s", marker.getResource(),
 				marker.getId());
 	}
+	
+	public boolean isSubtypeOf(String type) throws CoreException {
+		return marker.isSubtypeOf(type) ;
+	}
 }

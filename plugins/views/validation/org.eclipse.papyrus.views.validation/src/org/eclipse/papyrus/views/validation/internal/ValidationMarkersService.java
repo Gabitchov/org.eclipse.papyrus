@@ -14,6 +14,8 @@ package org.eclipse.papyrus.views.validation.internal;
 import java.util.Collection;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -69,6 +71,16 @@ public class ValidationMarkersService
 	public void notifyMarkerChange(EObject eObjectOfMarker,
 			IPapyrusMarker marker, int addedOrRemoved) {
 
+		// ADDED
+		try {
+			if (marker.exists() && !marker.isSubtypeOf(IMarker.PROBLEM)) {
+				return ;
+			}
+		} catch (CoreException e1) {
+			Activator.log.error(e1) ;
+		}
+		//////
+		
 		MarkerChangeKind kind = (addedOrRemoved == MARKER_ADDED)
 			? MarkerChangeKind.ADDED
 			: MarkerChangeKind.REMOVED;

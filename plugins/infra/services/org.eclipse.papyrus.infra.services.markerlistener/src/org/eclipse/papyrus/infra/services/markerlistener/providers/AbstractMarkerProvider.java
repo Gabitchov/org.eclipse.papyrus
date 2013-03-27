@@ -109,12 +109,19 @@ public abstract class AbstractMarkerProvider
 		}
 	}
 
+	@Deprecated
 	public void deleteMarkers(EObject eObject, IProgressMonitor monitor)
+			throws CoreException {
+		this.deleteMarkers(eObject, monitor, null, true) ;
+	}
+
+	
+	public void deleteMarkers(EObject eObject, IProgressMonitor monitor, String markerType, boolean includeSubtypes)
 			throws CoreException {
 
 		Resource resource = eObject.eResource();
 		Collection<? extends IPapyrusMarker> markers = getMarkers(resource,
-			null, true);
+				markerType, includeSubtypes);
 
 		SubMonitor sub = SubMonitor.convert(monitor, markers.size()
 			/ DELETE_PMARKER_INTERVAL);
@@ -148,7 +155,7 @@ public abstract class AbstractMarkerProvider
 			throw exception;
 		}
 	}
-
+	
 	private boolean isContainedBy(EObject subEObj, EObject eObj) {
 		if (eObj == subEObj)
 			return true;

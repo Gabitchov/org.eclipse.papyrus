@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.eclipse.papyrus.infra.services.markerlistener.PapyrusMarkerAdapter;
 import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
@@ -51,8 +52,8 @@ public class WorkspaceMarkerProvider
 		
 		if (file != null) {
 			// TODO: quite inefficient, since requested for each element (could cache markers, already done
-			// by findMarkers operation?)
-			IMarker[] markers = file.findMarkers(IMarker.PROBLEM, true, 0);
+			// by findMarkers operation?) 
+			IMarker[] markers = file.findMarkers(type, true, 0);
 			return PapyrusMarkerAdapter.wrap(resource, Arrays.asList(markers));
 		}
 		
@@ -72,9 +73,23 @@ public class WorkspaceMarkerProvider
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerProvider#deleteMarkers(org.eclipse.emf.ecore.resource.Resource, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Deprecated
 	public void deleteMarkers(Resource resource, IProgressMonitor monitor) {
+		try {
+			this.deleteMarkers(resource, monitor, null, true) ;
+		} catch (CoreException e) {
+			Activator.log.error(e) ;
+		}
+	}
+
+	public void deleteMarkers(Resource resource, IProgressMonitor monitor,
+			String markerType, boolean includeSubtypes) throws CoreException {
 		if (MarkerListenerUtils.eclipseResourcesUtil != null) {
 			SubMonitor sub = SubMonitor.convert(monitor, IProgressMonitor.UNKNOWN);
+			//FIXME Shall only delete markers of the given markerType 
 			MarkerListenerUtils.eclipseResourcesUtil.deleteMarkers(resource);
 			sub.done();
 		}

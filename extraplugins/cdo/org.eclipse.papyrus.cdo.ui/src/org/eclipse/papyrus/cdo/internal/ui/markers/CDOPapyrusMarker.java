@@ -13,6 +13,7 @@ package org.eclipse.papyrus.cdo.internal.ui.markers;
 
 import java.util.Map;
 
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -34,11 +35,10 @@ import com.google.common.collect.Maps;
 /**
  * This is the CDOPapyrusMarker type. Enjoy.
  */
-public class CDOPapyrusMarker
-		implements IPapyrusMarker {
+public class CDOPapyrusMarker implements IPapyrusMarker {
 
 	private final ProblemEditUtil util;
-	
+
 	private final Resource resource;
 
 	private final EProblem problem;
@@ -51,9 +51,8 @@ public class CDOPapyrusMarker
 		this.problem = problem;
 	}
 
-	public static Function<EProblem, CDOPapyrusMarker> wrap(
-			final ProblemEditUtil util) {
-		
+	public static Function<EProblem, CDOPapyrusMarker> wrap(final ProblemEditUtil util) {
+
 		return new Function<EProblem, CDOPapyrusMarker>() {
 
 			public CDOPapyrusMarker apply(EProblem input) {
@@ -79,26 +78,24 @@ public class CDOPapyrusMarker
 		return EValidator.MARKER;
 	}
 
-	public String getTypeLabel()
-			throws CoreException {
-		
+	public String getTypeLabel() throws CoreException {
+
 		return util.getProblemType(problem);
 	}
-	
+
 	public void delete() {
 		ProblemsManager.delete(problem);
 	}
 
-	public Object getAttribute(String name)
-			throws CoreException {
+	public Object getAttribute(String name) throws CoreException {
 
 		Object result = null;
 
-		if (name.equals(EValidator.URI_ATTRIBUTE)) {
+		if(name.equals(EValidator.URI_ATTRIBUTE)) {
 			result = EcoreUtil.getURI(getEObject()).toString();
-		} else if (name.equals(SEVERITY)) {
+		} else if(name.equals(SEVERITY)) {
 			result = getMarkerSeverity();
-		} else if (name.equals(MESSAGE)) {
+		} else if(name.equals(MESSAGE)) {
 			result = problem.getMessage();
 		} else {
 			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
@@ -114,17 +111,17 @@ public class CDOPapyrusMarker
 	protected int getMarkerSeverity() {
 		int result;
 
-		switch (problem.getSeverity()) {
-			case OK :
-			case INFO :
-				result = SEVERITY_INFO;
-				break;
-			case WARNING :
-				result = SEVERITY_WARNING;
-				break;
-			default :
-				result = SEVERITY_ERROR;
-				break;
+		switch(problem.getSeverity()) {
+		case OK:
+		case INFO:
+			result = SEVERITY_INFO;
+			break;
+		case WARNING:
+			result = SEVERITY_WARNING;
+			break;
+		default:
+			result = SEVERITY_ERROR;
+			break;
 		}
 
 		return result;
@@ -133,17 +130,15 @@ public class CDOPapyrusMarker
 	public String getAttribute(String name, String defaultValue) {
 		String result = null;
 
-		if (name.equals(EValidator.URI_ATTRIBUTE)) {
+		if(name.equals(EValidator.URI_ATTRIBUTE)) {
 			result = EcoreUtil.getURI(getEObject()).toString();
-		} else if (name.equals(MESSAGE)) {
+		} else if(name.equals(MESSAGE)) {
 			result = problem.getMessage();
 		} else {
 			result = defaultValue;
 		}
 
-		return (result != null)
-			? result
-			: defaultValue;
+		return (result != null) ? result : defaultValue;
 	}
 
 	public boolean getAttribute(String name, boolean defaultValue) {
@@ -154,7 +149,7 @@ public class CDOPapyrusMarker
 	public int getAttribute(String name, int defaultValue) {
 		int result;
 
-		if (name.equals(SEVERITY)) {
+		if(name.equals(SEVERITY)) {
 			result = getMarkerSeverity();
 		} else {
 			result = defaultValue;
@@ -163,13 +158,11 @@ public class CDOPapyrusMarker
 		return result;
 	}
 
-	public Map<String, ?> getAttributes()
-			throws CoreException {
+	public Map<String, ?> getAttributes() throws CoreException {
 
 		Map<String, Object> result = Maps.newHashMap();
 
-		result.put(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(getEObject())
-			.toString());
+		result.put(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(getEObject()).toString());
 		result.put(SEVERITY, getMarkerSeverity());
 		result.put(MESSAGE, problem.getMessage());
 
@@ -177,99 +170,96 @@ public class CDOPapyrusMarker
 
 	}
 
-	public void setAttribute(String name, Object value)
-			throws CoreException {
+	public void setAttribute(String name, Object value) throws CoreException {
 
-		if (name.equals(EValidator.URI_ATTRIBUTE)) {
-			throw new CoreException(
-				error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
-		} else if (name.equals(SEVERITY)) {
-			setMarkerSeverity(((Number) value).intValue());
-		} else if (name.equals(MESSAGE)) {
-			problem.setMessage((String) value);
+		if(name.equals(EValidator.URI_ATTRIBUTE)) {
+			throw new CoreException(error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
+		} else if(name.equals(SEVERITY)) {
+			setMarkerSeverity(((Number)value).intValue());
+		} else if(name.equals(MESSAGE)) {
+			problem.setMessage((String)value);
 		} else {
 			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 		}
 	}
 
-	protected void setMarkerSeverity(int severity)
-			throws CoreException {
-		switch (severity) {
-			case SEVERITY_INFO :
-				problem.setSeverity(ESeverity.INFO);
-				break;
-			case SEVERITY_WARNING :
-				problem.setSeverity(ESeverity.WARNING);
-				break;
-			case SEVERITY_ERROR :
-				problem.setSeverity(ESeverity.ERROR);
-				break;
-			default :
-				throw new CoreException(error("Invalid marker severity: " //$NON-NLS-1$
-					+ severity));
+	protected void setMarkerSeverity(int severity) throws CoreException {
+		switch(severity) {
+		case SEVERITY_INFO:
+			problem.setSeverity(ESeverity.INFO);
+			break;
+		case SEVERITY_WARNING:
+			problem.setSeverity(ESeverity.WARNING);
+			break;
+		case SEVERITY_ERROR:
+			problem.setSeverity(ESeverity.ERROR);
+			break;
+		default:
+			throw new CoreException(error("Invalid marker severity: " //$NON-NLS-1$
+				+ severity));
 		}
 	}
 
-	public void setAttribute(String name, String value)
-			throws CoreException {
+	public void setAttribute(String name, String value) throws CoreException {
 
-		if (name.equals(EValidator.URI_ATTRIBUTE)) {
-			throw new CoreException(
-				error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
-		} else if (name.equals(MESSAGE)) {
+		if(name.equals(EValidator.URI_ATTRIBUTE)) {
+			throw new CoreException(error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
+		} else if(name.equals(MESSAGE)) {
 			problem.setMessage(value);
 		} else {
 			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 		}
 	}
 
-	public void setAttribute(String name, boolean value)
-			throws CoreException {
+	public void setAttribute(String name, boolean value) throws CoreException {
 
 		throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 	}
 
-	public void setAttribute(String name, int value)
-			throws CoreException {
+	public void setAttribute(String name, int value) throws CoreException {
 
-		if (name.equals(SEVERITY)) {
+		if(name.equals(SEVERITY)) {
 			setMarkerSeverity(value);
 		} else {
 			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
 		}
 	}
 
-	public void setAttributes(Map<String, ?> attributes)
-			throws CoreException {
+	public void setAttributes(Map<String, ?> attributes) throws CoreException {
 
-		for (Map.Entry<String, ?> next : attributes.entrySet()) {
+		for(Map.Entry<String, ?> next : attributes.entrySet()) {
 			String name = next.getKey();
 			Object value = next.getValue();
 
-			if (name.equals(EValidator.URI_ATTRIBUTE)) {
-				throw new CoreException(
-					error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
-			} else if (name.equals(SEVERITY)) {
-				setMarkerSeverity(((Number) value).intValue());
-			} else if (name.equals(MESSAGE)) {
-				problem.setMessage((String) value);
+			if(name.equals(EValidator.URI_ATTRIBUTE)) {
+				throw new CoreException(error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
+			} else if(name.equals(SEVERITY)) {
+				setMarkerSeverity(((Number)value).intValue());
+			} else if(name.equals(MESSAGE)) {
+				problem.setMessage((String)value);
 			}
 		}
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof CDOPapyrusMarker)
-			&& Objects.equal(((CDOPapyrusMarker) obj).problem, problem);
+		return (obj instanceof CDOPapyrusMarker) && Objects.equal(((CDOPapyrusMarker)obj).problem, problem);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return (problem == null) ? 0 : problem.hashCode();
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("CDOPapyrusMarker:%s:%s", getResource(), hashCode()); //$NON-NLS-1$
+	}
+
+	public boolean isSubtypeOf(String type) throws CoreException {
+		// FIXME 404441: [CDO] Implement "marker type" hierarchy in CDO markers https://bugs.eclipse.org/bugs/show_bug.cgi?id=404441
+		if(type == null || IMarker.PROBLEM.equals(type))
+			return true;
+		return false;
 	}
 }

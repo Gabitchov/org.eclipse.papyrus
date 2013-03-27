@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -143,7 +144,7 @@ public class ValidationTool {
 	 */
 	public void deleteSubMarkers(IProgressMonitor monitor) {
 		try {
-			provider.deleteMarkers(getEObject(), monitor);
+			provider.deleteMarkers(getEObject(), monitor, IMarker.PROBLEM, true);
 		} catch (CoreException e) {
 			Activator.getDefault().getLog().log(e.getStatus());
 		}

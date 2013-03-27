@@ -274,17 +274,32 @@ public class MarkerProviderRegistry {
 				getInstance().createMarkers(resource, diagnostic, monitor);
 			}
 
+			@Deprecated
 			public void deleteMarkers(EObject object, IProgressMonitor monitor)
 					throws CoreException {
 
 				getInstance().deleteMarkers(object, monitor);
 			}
 
+			@Deprecated
 			public void deleteMarkers(Resource resource,
 					IProgressMonitor monitor)
 					throws CoreException {
 
 				getInstance().deleteMarkers(resource, monitor);
+			}
+
+			public void deleteMarkers(EObject object, IProgressMonitor monitor,
+					String markerType, boolean includeSubtypes)
+					throws CoreException {
+				getInstance().deleteMarkers(object, monitor, markerType, includeSubtypes);
+				
+			}
+
+			public void deleteMarkers(Resource resource,
+					IProgressMonitor monitor, String markerType,
+					boolean includeSubtypes) throws CoreException {
+				getInstance().deleteMarkers(resource, monitor, markerType, includeSubtypes);
 			}
 		}
 	}

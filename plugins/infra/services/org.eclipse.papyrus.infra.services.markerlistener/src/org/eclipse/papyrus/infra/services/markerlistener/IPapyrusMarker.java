@@ -130,6 +130,8 @@ public interface IPapyrusMarker {
 
 	Map<String, ?> getAttributes()
 			throws CoreException;
+	
+	boolean isSubtypeOf(String type) throws CoreException ;
 
 	void setAttribute(String name, Object value)
 			throws CoreException;
