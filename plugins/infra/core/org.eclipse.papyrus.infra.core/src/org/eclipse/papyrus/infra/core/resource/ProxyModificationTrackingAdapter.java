@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.infra.tools.util.EMFHelper;
+import org.eclipse.papyrus.infra.core.utils.EMFHelper;
 
 /**
  * This adapter handles "modified" flag of resources for tricky cases :
