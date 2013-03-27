@@ -22,9 +22,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
-import org.eclipse.papyrus.commands.Activator;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 //FIXME : should implements ICrossValueSolver?
 public class CellManagerFactory {

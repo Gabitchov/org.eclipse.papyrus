@@ -95,6 +95,7 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 	}
 
 
+	@Override
 	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> objectToDestroy) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
@@ -176,11 +177,12 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 		return objects;
 	}
 
+	@Override
 	public Collection<Object> getAllExistingAxis() {
 		Set<Object> eObjects = new HashSet<Object>();
 		for(final Object current : ((INattableModelManager)getTableManager()).getColumnElementsList()) {//FIXME bad implementation
 			if(current instanceof ETypedElement) {
-				eObjects.add(((EObject)current));
+				eObjects.add(current);
 			}
 		}
 		return eObjects;

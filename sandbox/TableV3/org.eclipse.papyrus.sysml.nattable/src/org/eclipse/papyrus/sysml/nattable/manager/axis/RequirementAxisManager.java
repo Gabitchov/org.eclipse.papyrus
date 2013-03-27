@@ -62,7 +62,7 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 					});
 				}
 				//				}
-			};
+			}
 		};
 		getTable().getContext().eAdapters().add(this.featureListener);
 	}

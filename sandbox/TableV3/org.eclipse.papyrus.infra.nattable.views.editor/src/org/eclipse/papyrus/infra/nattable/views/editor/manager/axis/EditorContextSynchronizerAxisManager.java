@@ -60,7 +60,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 					updateAxisContents();
 					((NattableModelManager)getTableManager()).refreshNattable();
 				}
-			};
+			}
 		};
 		pageList.eAdapters().add(this.featureListener);
 	}

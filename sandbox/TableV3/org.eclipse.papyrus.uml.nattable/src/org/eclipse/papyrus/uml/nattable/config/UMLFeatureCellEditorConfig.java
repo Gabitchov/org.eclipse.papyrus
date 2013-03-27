@@ -437,7 +437,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 				@Override
 				public Object displayToCanonicalValue(ILayerCell cell, IConfigRegistry configRegistry, Object displayValue) {
 					return displayValue;
-				};
+				}
 			};
 			break;
 		case SINGLE_UNLIMITED_NATURAL:

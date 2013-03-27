@@ -70,7 +70,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	protected AbstractUMLMultiValueCellEditor(final Object axisElement, final ITableAxisElementProvider elementProvider) {
 		this.manager = elementProvider;
 		this.axisElement = axisElement;
-	};
+	}
 
 	/**
 	 * 
@@ -152,7 +152,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 		final boolean unique = realFeature.isUnique();
 		final boolean ordered = realFeature.isOrdered();
 		final int upperBound = realFeature.getUpperBound();
-		final Object value = (Collection<?>)realEditedObject.eGet(realFeature);
+		final Object value = realEditedObject.eGet(realFeature);
 		IElementSelector selector = getElementSelector(unique, new UMLLabelProvider(), p);
 		final MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getCurrent().getActiveShell(), selector, title, unique, ordered, upperBound) {
 
@@ -170,11 +170,11 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 			}
 
 		};
-		((MultipleValueSelectorDialog)dialog).setLabelProvider(new UMLLabelProvider());
+		dialog.setLabelProvider(new UMLLabelProvider());
 		if(value != null && value instanceof Collection) {
 			Collection<?> coll = (Collection<?>)value;
 			if(!coll.isEmpty()) {
-				((MultipleValueSelectorDialog)dialog).setInitialSelections(coll.toArray());
+				dialog.setInitialSelections(coll.toArray());
 			}
 		}
 

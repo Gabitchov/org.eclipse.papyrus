@@ -17,12 +17,9 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.widgets.creation.BooleanEditionFactory;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
-import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.BooleanSelector;
-import org.eclipse.papyrus.infra.widgets.validator.BooleanInputValidator;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * CellEditor for multivalued integer

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.Point;
 
 /**

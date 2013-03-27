@@ -13,19 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.formatter;
 
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
-import org.eclipse.nebula.widgets.nattable.export.IExportFormatter;
 import org.eclipse.nebula.widgets.nattable.export.excel.DefaultExportFormatter;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
-import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
-import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
-import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
 /**
  * The export formatter to use to export the same text as the text displayed in the cells

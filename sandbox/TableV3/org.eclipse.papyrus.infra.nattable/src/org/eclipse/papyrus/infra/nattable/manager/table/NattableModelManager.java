@@ -150,7 +150,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				if(NattableModelManager.this.natTable.isFocusControl()) {
 					updateToggleActionState();
 				}
-			};
+			}
 		};
 		addAxisConfigurationListener();
 		rawModel.eAdapters().add(this.invertAxisListener);

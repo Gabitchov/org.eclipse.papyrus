@@ -28,14 +28,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.nattable.menu.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler;
 import org.eclipse.papyrus.uml.service.types.utils.CommandContext;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 import org.eclipse.ui.IWorkbenchPart;
-
-
 
 /**
  * Default handler for Create command used in the ModelExplorer contextual ("Create new child") menu.

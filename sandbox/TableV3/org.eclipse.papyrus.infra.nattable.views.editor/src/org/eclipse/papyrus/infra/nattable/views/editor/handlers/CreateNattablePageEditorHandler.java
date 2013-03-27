@@ -34,9 +34,10 @@ public class CreateNattablePageEditorHandler extends AbstractCreateNattableEdito
 		super(NattablePageEditor.EDITOR_TYPE, NattablePageEditor.DEFAULT_NAME);
 	}
 
+	@Override
 	protected URI getTableEditorConfigurationURI() {
 		final String symbolicName = Activator.getDefault().getBundle().getSymbolicName();
-		final URI uri = URI.createPlatformPluginURI(symbolicName + CONFIGURATION_PATH, true); //$NON-NLS-1$
+		final URI uri = URI.createPlatformPluginURI(symbolicName + CONFIGURATION_PATH, true);
 		return uri;
 	}
 }

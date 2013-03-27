@@ -262,6 +262,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 	 *        the UML Property for which we want destroy axis
 	 * @return
 	 */
+	@Override
 	public Command getDestroyAxisCommand(EditingDomain domain, Collection<Object> umlProperties) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command");
@@ -314,6 +315,7 @@ public class UMLStereotypePropertyAxisManager extends AbstractAxisManager {
 		//		return null;
 	}
 
+	@Override
 	public Collection<Object> getAllExistingAxis() {
 		Set<Object> eObjects = new HashSet<Object>();
 		List<Object> columnElementsList = ((INattableModelManager)getTableManager()).getColumnElementsList();

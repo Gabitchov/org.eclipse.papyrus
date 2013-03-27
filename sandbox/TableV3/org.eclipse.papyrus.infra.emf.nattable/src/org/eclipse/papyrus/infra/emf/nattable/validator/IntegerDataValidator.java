@@ -31,6 +31,7 @@ public class IntegerDataValidator extends DataValidator {
 	 * @param newValue
 	 * @return
 	 */
+	@Override
 	public boolean validate(int columnIndex, int rowIndex, Object newValue) {
 		try {
 			if(newValue != null) {

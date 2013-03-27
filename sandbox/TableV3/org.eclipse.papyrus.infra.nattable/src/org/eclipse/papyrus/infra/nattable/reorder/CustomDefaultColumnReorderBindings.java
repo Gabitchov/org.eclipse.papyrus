@@ -49,6 +49,7 @@ public class CustomDefaultColumnReorderBindings extends DefaultColumnReorderBind
 	 * 
 	 * @param uiBindingRegistry
 	 */
+	@Override
 	public void configureUiBindings(UiBindingRegistry uiBindingRegistry) {
 		assert manager != null;
 		uiBindingRegistry.registerMouseDragMode(MouseEventMatcher.columnHeaderLeftClick(SWT.NONE), new AggregateDragMode(new CustomCellDragModeForColumn(this.manager), new CustomColumnReorderDragMode(this.manager)));

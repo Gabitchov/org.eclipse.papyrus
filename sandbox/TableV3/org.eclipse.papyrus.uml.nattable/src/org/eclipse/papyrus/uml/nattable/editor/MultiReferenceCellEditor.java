@@ -46,6 +46,7 @@ public class MultiReferenceCellEditor extends AbstractUMLMultiValueCellEditor {
 	 * 
 	 * @return
 	 */
+	@Override
 	protected ReferenceValueFactory getFactory() {
 		return null;
 	}
@@ -60,6 +61,7 @@ public class MultiReferenceCellEditor extends AbstractUMLMultiValueCellEditor {
 	 * @param contentProvider
 	 * @return
 	 */
+	@Override
 	protected IElementSelector getElementSelector(final boolean isUnique, final ILabelProvider labelProvider, final IStaticContentProvider contentProvider) {
 		final ReferenceSelector selector = new ReferenceSelector(isUnique);
 		selector.setContentProvider(contentProvider);

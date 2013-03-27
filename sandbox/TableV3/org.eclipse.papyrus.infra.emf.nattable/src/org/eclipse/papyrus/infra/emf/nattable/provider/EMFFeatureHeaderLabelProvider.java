@@ -51,6 +51,7 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 * @return
 	 *         <code>true</code> if we are looking for the label of an EStructuralFeature
 	 */
+	@Override
 	public boolean accept(Object element) {
 		if(element instanceof ILabelProviderContextElement) {
 			final Object object = ((ILabelProviderContextElement)element).getObject();

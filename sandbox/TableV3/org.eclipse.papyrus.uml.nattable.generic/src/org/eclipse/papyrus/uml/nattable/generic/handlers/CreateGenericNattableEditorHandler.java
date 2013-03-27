@@ -11,8 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
-
 package org.eclipse.papyrus.uml.nattable.generic.handlers;
 
 import org.eclipse.emf.common.util.URI;
@@ -34,9 +32,10 @@ public class CreateGenericNattableEditorHandler extends AbstractCreateUMLNattabl
 		super(GenericUMLNattableEditor.EDITOR_TYPE, GenericUMLNattableEditor.DEFAULT_NAME);
 	}
 
+	@Override
 	protected URI getTableEditorConfigurationURI() {
 		final String symbolicName = Activator.getDefault().getBundle().getSymbolicName();
-		final URI uri = URI.createPlatformPluginURI(symbolicName + CONFIGURATION_PATH, true); //$NON-NLS-1$
+		final URI uri = URI.createPlatformPluginURI(symbolicName + CONFIGURATION_PATH, true);
 		return uri;
 	}
 }

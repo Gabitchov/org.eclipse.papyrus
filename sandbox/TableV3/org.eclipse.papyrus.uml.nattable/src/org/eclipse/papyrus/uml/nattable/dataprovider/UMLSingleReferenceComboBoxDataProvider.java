@@ -96,7 +96,7 @@ public class UMLSingleReferenceComboBoxDataProvider implements IComboBoxDataProv
 				} else if(axis instanceof String) {
 					id = (String)axis;
 				}
-				return getPossibleValuesForStereotypeProperty((Element)editedElement, id);
+				return getPossibleValuesForStereotypeProperty(editedElement, id);
 			}
 		}
 		return Collections.emptyList();

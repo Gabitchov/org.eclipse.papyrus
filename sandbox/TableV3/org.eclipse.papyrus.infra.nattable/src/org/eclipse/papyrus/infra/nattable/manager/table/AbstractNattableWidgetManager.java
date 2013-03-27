@@ -153,7 +153,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
 		this.bodyDataProvider = new BodyDataProvider(this);
-		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);;
+		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);
 
 		this.columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
 		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this.columnHeaderDataProvider, this.bodyLayerStack, this.bodyDataProvider);

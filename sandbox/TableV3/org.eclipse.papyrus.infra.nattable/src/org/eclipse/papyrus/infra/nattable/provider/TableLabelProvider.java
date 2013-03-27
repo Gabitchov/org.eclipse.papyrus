@@ -13,14 +13,11 @@ package org.eclipse.papyrus.infra.nattable.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -54,10 +51,7 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 			try {
 				registry = ServiceUtilsForEObject.getInstance().getService(IPageIconsRegistry.class, (Table)table);
 			} catch (ServiceException e) {
-				Activator.log.error(Messages.TableLabelProvider_ErrorGettingIconForTable, e);
-			}
-			if(registry == null) {
-				registry = new PageIconsRegistry();
+				return null;
 			}
 			return registry.getEditorIcon(table);
 		}

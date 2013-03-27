@@ -113,7 +113,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 
 
-				};
+				}
 			};
 			this.representedContentProvider.eAdapters().add(this.axisListener);
 		}

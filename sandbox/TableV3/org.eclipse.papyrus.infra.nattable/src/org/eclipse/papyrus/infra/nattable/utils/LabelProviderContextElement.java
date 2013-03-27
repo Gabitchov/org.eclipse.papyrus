@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 
 /**
  * This object can used as context to find the best label provider and get the text to display.
