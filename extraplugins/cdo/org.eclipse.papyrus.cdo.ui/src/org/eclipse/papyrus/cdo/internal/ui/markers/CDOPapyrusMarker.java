@@ -16,6 +16,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -97,8 +98,40 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 			result = getMarkerSeverity();
 		} else if(name.equals(MESSAGE)) {
 			result = problem.getMessage();
+		} else if(problem.getAttributes().containsKey(name)) {
+			result = coerce(problem.getAttributes().get(name));
 		} else {
 			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
+		}
+
+		return result;
+	}
+
+	protected Object coerce(String value) {
+		Object result;
+
+		if(value == null) {
+			result = value;
+		} else if(isBoolean(value)) {
+			result = Boolean.parseBoolean(value);
+		} else if(isInteger(value)) {
+			result = Integer.parseInt(value);
+		} else {
+			result = value;
+		}
+
+		return result;
+	}
+
+	static boolean isBoolean(String s) {
+		return (s != null) && (s.equalsIgnoreCase("true") || s.equalsIgnoreCase("false"));
+	}
+
+	static boolean isInteger(String s) {
+		boolean result = (s != null) && (s.length() > 0);
+
+		for(int i = 0; result && (i < s.length()); i++) {
+			result = Character.isDigit(s.charAt(i));
 		}
 
 		return result;
@@ -134,6 +167,8 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 			result = EcoreUtil.getURI(getEObject()).toString();
 		} else if(name.equals(MESSAGE)) {
 			result = problem.getMessage();
+		} else if(problem.getAttributes().containsKey(name)) {
+			result = coerce(problem.getAttributes().get(name), defaultValue);
 		} else {
 			result = defaultValue;
 		}
@@ -141,16 +176,25 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 		return (result != null) ? result : defaultValue;
 	}
 
-	public boolean getAttribute(String name, boolean defaultValue) {
-		// we don't have any boolean attributes, yet
-		return defaultValue;
+	protected String coerce(String value, String defaultValue) {
+		String result;
+
+		if(value == null) {
+			result = defaultValue;
+		} else if(isBoolean(value) || isInteger(value)) {
+			throw new IllegalArgumentException("Not a string value: " + value); //$NON-NLS-1$
+		} else {
+			result = value;
+		}
+
+		return result;
 	}
 
-	public int getAttribute(String name, int defaultValue) {
-		int result;
+	public boolean getAttribute(String name, boolean defaultValue) {
+		boolean result;
 
-		if(name.equals(SEVERITY)) {
-			result = getMarkerSeverity();
+		if(problem.getAttributes().containsKey(name)) {
+			result = coerce(problem.getAttributes().get(name), defaultValue);
 		} else {
 			result = defaultValue;
 		}
@@ -158,12 +202,64 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 		return result;
 	}
 
+	protected boolean coerce(String value, boolean defaultValue) {
+		boolean result;
+
+		if(value == null) {
+			result = defaultValue;
+		} else if(!isBoolean(value)) {
+			throw new IllegalArgumentException("Not a boolean value: " + value); //$NON-NLS-1$
+		} else {
+			result = Boolean.parseBoolean(value);
+		}
+
+		return result;
+	}
+
+	public int getAttribute(String name, int defaultValue) {
+		int result;
+
+		if(name.equals(SEVERITY)) {
+			result = getMarkerSeverity();
+		} else if(problem.getAttributes().containsKey(name)) {
+			result = coerce(problem.getAttributes().get(name), defaultValue);
+		} else {
+			result = defaultValue;
+		}
+
+		return result;
+	}
+
+	protected int coerce(String value, int defaultValue) {
+		int result;
+
+		if(value == null) {
+			result = defaultValue;
+		} else if(!isInteger(value)) {
+			throw new IllegalArgumentException("Not an integer value: " + value); //$NON-NLS-1$
+		} else {
+			result = Integer.parseInt(value);
+		}
+
+		return result;
+	}
+
 	public Map<String, ?> getAttributes() throws CoreException {
-		Map<String, Object> result = Maps.newHashMap();
+		Map<String, Object> result = coerce(problem.getAttributes());
 
 		result.put(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(getEObject()).toString());
 		result.put(SEVERITY, getMarkerSeverity());
 		result.put(MESSAGE, problem.getMessage());
+
+		return result;
+	}
+
+	protected Map<String, Object> coerce(EMap<String, String> attributes) {
+		Map<String, Object> result = Maps.newHashMap();
+
+		for(Map.Entry<String, String> next : attributes) {
+			result.put(next.getKey(), coerce(next.getValue()));
+		}
 
 		return result;
 	}
@@ -175,8 +271,10 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 			setMarkerSeverity(((Number)value).intValue());
 		} else if(name.equals(MESSAGE)) {
 			problem.setMessage((String)value);
+		} else if(value == null) {
+			problem.getAttributes().removeKey(name);
 		} else {
-			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
+			problem.getAttributes().put(name, value.toString());
 		}
 	}
 
@@ -202,20 +300,36 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 			throw new CoreException(error("Cannot set URI of a CDOPapyrusMarker.")); //$NON-NLS-1$
 		} else if(name.equals(MESSAGE)) {
 			problem.setMessage(value);
+		} else if(name.equals(SEVERITY)) {
+			throw new CoreException(error("Severity of a CDOPapyrusMarker is not a string.")); //$NON-NLS-1$
+		} else if(value == null) {
+			problem.getAttributes().removeKey(name);
 		} else {
-			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
+			problem.getAttributes().put(name, value);
 		}
 	}
 
 	public void setAttribute(String name, boolean value) throws CoreException {
-		throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
+		if(name.equals(EValidator.URI_ATTRIBUTE)) {
+			throw new CoreException(error("URI of a CDOPapyrusMarker is not a boolean.")); //$NON-NLS-1$
+		} else if(name.equals(SEVERITY)) {
+			throw new CoreException(error("Severity of a CDOPapyrusMarker is not a boolean.")); //$NON-NLS-1$
+		} else if(name.equals(MESSAGE)) {
+			throw new CoreException(error("Message of a CDOPapyrusMarker is not a boolean.")); //$NON-NLS-1$
+		} else {
+			problem.getAttributes().put(name, Boolean.toString(value));
+		}
 	}
 
 	public void setAttribute(String name, int value) throws CoreException {
 		if(name.equals(SEVERITY)) {
 			setMarkerSeverity(value);
+		} else if(name.equals(EValidator.URI_ATTRIBUTE)) {
+			throw new CoreException(error("URI of a CDOPapyrusMarker is not an integer.")); //$NON-NLS-1$
+		} else if(name.equals(MESSAGE)) {
+			throw new CoreException(error("Message of a CDOPapyrusMarker is not an integer.")); //$NON-NLS-1$
 		} else {
-			throw new CoreException(error("No such marker attribute: " + name)); //$NON-NLS-1$
+			problem.getAttributes().put(name, Integer.toString(value));
 		}
 	}
 
@@ -230,6 +344,8 @@ public class CDOPapyrusMarker implements IPapyrusMarker {
 				setMarkerSeverity(((Number)value).intValue());
 			} else if(name.equals(MESSAGE)) {
 				problem.setMessage((String)value);
+			} else if(value != null) {
+				problem.getAttributes().put(name, value.toString());
 			}
 		}
 	}
