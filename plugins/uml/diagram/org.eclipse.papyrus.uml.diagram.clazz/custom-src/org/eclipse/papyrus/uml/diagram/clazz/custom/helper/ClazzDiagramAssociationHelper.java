@@ -53,8 +53,8 @@ public class ClazzDiagramAssociationHelper {
 			e.printStackTrace();
 		}
 		//LookForElement.getCommandStack().execute(new ICommandProxy(c));
-		assert (c.getCommandResult() == null);
-		assert (c.getCommandResult().getReturnValue() == null);
+		assert (c.getCommandResult() != null);
+		assert (c.getCommandResult().getReturnValue() != null);
 		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
 		targetProperty.setType(target);
 		targetProperty.setName(targetString);
@@ -75,8 +75,8 @@ public class ClazzDiagramAssociationHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assert (c.getCommandResult() == null);
-		assert (c.getCommandResult().getReturnValue() == null);
+		assert (c.getCommandResult() != null);
+		assert (c.getCommandResult().getReturnValue() != null);
 		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
 		sourceProperty.setType(source);
 		sourceProperty.setName(sourceString);
@@ -98,7 +98,7 @@ public class ClazzDiagramAssociationHelper {
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
 		String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(container, sourceString + "_" + targetString + "_"); //$NON-NLS-1$ //$NON-NLS-2$
-		association.setName(associationName); //$NON-NLS-1$
+		association.setName(associationName);
 		return association;
 	}
 }
