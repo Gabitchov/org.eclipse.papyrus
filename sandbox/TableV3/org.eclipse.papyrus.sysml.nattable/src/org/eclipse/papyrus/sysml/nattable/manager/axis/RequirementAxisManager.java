@@ -7,7 +7,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractSynchronizedOnFeatureAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -81,7 +80,7 @@ public class RequirementAxisManager extends AbstractSynchronizedOnFeatureAxisMan
 	@Override
 	public synchronized void updateAxisContents() {
 		final EObject context = getTable().getContext();
-		final EReference ref = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
+		final EStructuralFeature ref = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
 		Object value = context.eGet(ref);
 		assert value instanceof List<?>;
 

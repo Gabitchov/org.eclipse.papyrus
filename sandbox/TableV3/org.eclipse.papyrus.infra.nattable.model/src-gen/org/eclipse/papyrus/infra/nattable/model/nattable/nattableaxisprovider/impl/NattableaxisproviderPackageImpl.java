@@ -331,7 +331,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 		initEReference(getDefaultAxisProvider_Axis(), theNattablePackage.getIAxis(), null, "axis", null, 0, -1, DefaultAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(emfFeatureValueAxisProviderEClass, EMFFeatureValueAxisProvider.class, "EMFFeatureValueAxisProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getEMFFeatureValueAxisProvider_ListenFeature(), theEcorePackage.getEReference(), null, "listenFeature", null, 1, 1, EMFFeatureValueAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEMFFeatureValueAxisProvider_ListenFeature(), theEcorePackage.getEStructuralFeature(), null, "listenFeature", null, 1, 1, EMFFeatureValueAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 	}
 
 } //NattableaxisproviderPackageImpl

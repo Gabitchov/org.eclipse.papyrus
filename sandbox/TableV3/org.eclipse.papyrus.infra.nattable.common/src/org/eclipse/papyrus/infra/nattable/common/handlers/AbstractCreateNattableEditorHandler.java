@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
@@ -39,17 +38,17 @@ import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorNameInitializer;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -114,7 +113,8 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// default Value
 		final String name;
-		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, this.defaultName, null);
+		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattablePackage.eINSTANCE.getTable_Name(), this.defaultName, getTableContext());;
+		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, nameWithIncrement, null);
 		if(dialog.open() == Dialog.OK) {
 			name = dialog.getValue();
 			final ServicesRegistry serviceRegistry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
@@ -164,40 +164,10 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 *         The model where to save the TableInstance is not found.
 	 */
 	protected Object createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
+		final TableEditorConfiguration configuration = getDefaultTableEditorConfiguration();
+		assert configuration != null;
 
-		final Table table = NattableFactory.eINSTANCE.createTable();
-		//		final LocalTableEditorConfiguration localConfig = NattableconfigurationFactory.eINSTANCE.createLocalTableEditorConfiguration();
-		//		localConfig.setType(this.editorType);
-		final TableEditorConfiguration defaultConfig = getDefaultTableEditorConfiguration();
-		assert defaultConfig != null;
-
-		//		localConfig.setDefaultTableEditorConfiguration(defaultConfig);
-
-		table.setEditorConfiguration(defaultConfig);
-		table.setDescription(description);
-		table.setName(name);
-		table.setContext(getTableContext());
-
-
-		AbstractAxisProvider rowProvider = defaultConfig.getHorizontalAxisProvider();
-		if(rowProvider == null) {
-			rowProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
-		} else {
-			rowProvider = EcoreUtil.copy(rowProvider);
-		}
-
-		AbstractAxisProvider columnProvider = defaultConfig.getVerticalAxisProvider();
-		if(columnProvider == null) {
-			columnProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
-		} else {
-			columnProvider = EcoreUtil.copy(columnProvider);
-		}
-
-		//		final IAxisContentsProvider columnProvider = NattablecontentproviderFactory.eINSTANCE.createDefaultContentProvider();
-
-		table.setHorizontalAxisProvider(rowProvider);
-		table.setVerticalAxisProvider(columnProvider);
-
+		final Table table = TableHelper.createTable(configuration, getTableContext(), name, description);
 		// Save the model in the associated resource
 		final PapyrusNattableModel model = (PapyrusNattableModel)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(PapyrusNattableModel.MODEL_ID);
 		model.addPapyrusTable(table);

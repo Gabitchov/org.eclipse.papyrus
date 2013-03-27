@@ -17,7 +17,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
@@ -55,10 +55,10 @@ public abstract class AbstractSynchronizedOnFeatureAxisManager extends AbstractA
 	 * 
 	 */
 	protected void verifyCoupleContextFeature() {
-		final EReference ref = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
-		assert ref.isMany();
+		final EStructuralFeature feature = ((EMFFeatureValueAxisProvider)getRepresentedContentProvider()).getListenFeature();
+		assert feature.isMany();
 		final EObject context = getTable().getContext();
-		assert context.eClass().getEAllReferences().contains(ref);
+		assert context.eClass().getEAllReferences().contains(feature);
 	}
 
 	/**

@@ -12,7 +12,7 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
 
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,12 +40,12 @@ public interface EMFFeatureValueAxisProvider extends DefaultAxisProvider {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Listen Feature</em>' reference.
-	 * @see #setListenFeature(EReference)
+	 * @see #setListenFeature(EStructuralFeature)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getEMFFeatureValueAxisProvider_ListenFeature()
 	 * @model required="true"
 	 * @generated
 	 */
-	EReference getListenFeature();
+	EStructuralFeature getListenFeature();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider#getListenFeature <em>Listen Feature</em>}' reference.
@@ -55,6 +55,6 @@ public interface EMFFeatureValueAxisProvider extends DefaultAxisProvider {
 	 * @see #getListenFeature()
 	 * @generated
 	 */
-	void setListenFeature(EReference value);
+	void setListenFeature(EStructuralFeature value);
 
 } // EMFFeatureValueAxisProvider

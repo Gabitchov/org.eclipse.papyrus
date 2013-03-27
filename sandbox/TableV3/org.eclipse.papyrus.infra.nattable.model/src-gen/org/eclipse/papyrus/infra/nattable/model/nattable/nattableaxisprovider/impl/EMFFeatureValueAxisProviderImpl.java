@@ -13,13 +13,10 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
@@ -45,7 +42,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	 * @generated
 	 * @ordered
 	 */
-	protected EReference listenFeature;
+	protected EStructuralFeature listenFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,10 +68,10 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getListenFeature() {
+	public EStructuralFeature getListenFeature() {
 		if (listenFeature != null && listenFeature.eIsProxy()) {
 			InternalEObject oldListenFeature = (InternalEObject)listenFeature;
-			listenFeature = (EReference)eResolveProxy(oldListenFeature);
+			listenFeature = (EStructuralFeature)eResolveProxy(oldListenFeature);
 			if (listenFeature != oldListenFeature) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE, oldListenFeature, listenFeature));
@@ -88,7 +85,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference basicGetListenFeature() {
+	public EStructuralFeature basicGetListenFeature() {
 		return listenFeature;
 	}
 
@@ -97,8 +94,8 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setListenFeature(EReference newListenFeature) {
-		EReference oldListenFeature = listenFeature;
+	public void setListenFeature(EStructuralFeature newListenFeature) {
+		EStructuralFeature oldListenFeature = listenFeature;
 		listenFeature = newListenFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE, oldListenFeature, listenFeature));
@@ -128,7 +125,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE:
-				setListenFeature((EReference)newValue);
+				setListenFeature((EStructuralFeature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,7 +140,7 @@ public class EMFFeatureValueAxisProviderImpl extends DefaultAxisProviderImpl imp
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case NattableaxisproviderPackage.EMF_FEATURE_VALUE_AXIS_PROVIDER__LISTEN_FEATURE:
-				setListenFeature((EReference)null);
+				setListenFeature((EStructuralFeature)null);
 				return;
 		}
 		super.eUnset(featureID);
