@@ -244,6 +244,13 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		//			label += " *"; //$NON-NLS-1$
 		//		}
 
+		updateLabel(label);
+	}
+
+	/**
+	 * Updates the label for this PropertyEditor.
+	 */
+	public void updateLabel(String label) {
 		if(showLabel) {
 			if(valueEditor != null) {
 				valueEditor.setLabel(label);
@@ -312,6 +319,14 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			description = getLocalPropertyPath() + ": " + description;
 		}
 
+		updateDescription(description);
+	}
+
+	/**
+	 * Updates the description for this PropertyEditor.
+	 * The description is the widget's ToolTipText
+	 */
+	protected void updateDescription(String description) {
 		if(valueEditor != null) {
 			valueEditor.setToolTipText(description);
 		} else if(listEditor != null) {

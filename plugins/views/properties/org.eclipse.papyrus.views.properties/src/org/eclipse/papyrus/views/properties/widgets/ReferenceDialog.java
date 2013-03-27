@@ -67,6 +67,7 @@ public class ReferenceDialog extends AbstractPropertyEditor {
 		editor.setLabelProvider(input.getLabelProvider(propertyPath));
 		editor.setContentProvider(provider);
 		editor.setDirectCreation(input.getDirectCreation(propertyPath));
+		editor.setMandatory(input.isMandatory(propertyPath));
 		if(factory == null) { //Use the default factory from the DataSource
 			editor.setValueFactory(input.getValueFactory(propertyPath));
 		} else { //Use the factory explicitly specified

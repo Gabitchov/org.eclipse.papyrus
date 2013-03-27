@@ -238,6 +238,24 @@ public class UMLModelElement extends EMFModelElement {
 		return factory;
 	}
 
+	@Override
+	public boolean isMandatory(String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+
+		//Avoid unsetting container references (i.e. reference to the parent) 
+		//(Which would result in detaching the edited object from the model)
+		//See Bug 404445: [Constraint] Unsetting the context of a constraint destroys it (Semantically)
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=404445
+		if(feature instanceof EReference) {
+			EReference reference = (EReference)feature;
+			if(reference.isContainer()) {
+				return true;
+			}
+		}
+
+		return super.isMandatory(propertyPath);
+	}
+
 	/**
 	 * The set of all EStructuralFeature representing subsets of {@link Namespace#getOwnedRules()}
 	 */

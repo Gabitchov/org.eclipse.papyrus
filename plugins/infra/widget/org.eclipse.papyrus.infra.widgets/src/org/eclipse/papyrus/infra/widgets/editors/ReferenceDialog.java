@@ -110,6 +110,12 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	private boolean directCreation;
 
 	/**
+	 * Indicates whether the widget requires a value or not.
+	 * If it is mandatory, it cannot delete/unset its value
+	 */
+	protected boolean mandatory;
+
+	/**
 	 * 
 	 * Constructs a new ReferenceDialog in the given parent Composite. The style
 	 * will be applied to the CLabel displaying the current value.
@@ -398,10 +404,14 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject() && !readOnly);
 		}
 
-		boolean enabled = !readOnly;
-		enabled = enabled && getValue() != null;
+		//Do not display unset if the value is mandatory
+		setExclusion(unsetButton, mandatory);
+		if(!mandatory) {
+			boolean enabled = !readOnly;
+			enabled = enabled && getValue() != null;
 
-		unsetButton.setEnabled(enabled);
+			unsetButton.setEnabled(enabled);
+		}
 	}
 
 	@Override
@@ -431,5 +441,9 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 */
 	public void setInput(Object input) {
 		this.dialog.setInput(input);
+	}
+
+	public void setMandatory(boolean mandatory) {
+		this.mandatory = mandatory;
 	}
 }
