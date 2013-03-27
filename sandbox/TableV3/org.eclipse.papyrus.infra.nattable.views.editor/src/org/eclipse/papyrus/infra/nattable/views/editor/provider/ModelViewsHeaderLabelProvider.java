@@ -78,7 +78,7 @@ public class ModelViewsHeaderLabelProvider extends EMFFeatureHeaderLabelProvider
 		} else if(Utils.VIEW_EDITOR_TYPE.equals(name)) {
 			type = EcorePackage.eINSTANCE.getEString();
 		}
-		return getText(configRegistry, name, type, isDerived, lowerBounds, upperBounds);
+		return getText(null, configRegistry, name, type, isDerived, lowerBounds, upperBounds);
 	}
 
 	/**

@@ -131,13 +131,13 @@ public interface INattableModelManager extends ILimitedNattableModelManager, ITa
 	 * @return
 	 *         the vertical axis configuration
 	 */
-	public AbstractAxisConfiguration getVerticalAxisConfiguration();
+	public AbstractAxisConfiguration getColumnAxisConfiguration();
 
 	/**
 	 * 
 	 * @return
 	 *         the horizontal axis configuration
 	 */
-	public AbstractAxisConfiguration getHorizontalAxisConfiguration();
+	public AbstractAxisConfiguration getRowAxisConfiguration();
 
 }

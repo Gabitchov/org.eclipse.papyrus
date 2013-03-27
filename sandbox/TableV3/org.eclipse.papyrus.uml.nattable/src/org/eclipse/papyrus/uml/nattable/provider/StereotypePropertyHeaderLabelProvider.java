@@ -76,7 +76,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 		String id = AxisUtils.getPropertyId(value);
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);
 		if(prop != null) {
-			return getText(configRegistry, prop.getName(), prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
+			return getText(null, configRegistry, prop.getName(), prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
 		} else {
 			id = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
 			return id + " " + REQUIRED_PROFILE_NOT_AVALAIBLE; //$NON-NLS-1$

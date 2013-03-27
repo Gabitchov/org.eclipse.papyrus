@@ -20,7 +20,7 @@ public class DisplayIndexRowHandler extends AbstractDisplayColumnIndexHandler {
 
 	@Override
 	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getHorizontalAxisConfiguration();
+		return getCurrentNattableModelManager().getRowAxisConfiguration();
 	}
 
 }

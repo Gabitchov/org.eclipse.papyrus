@@ -115,7 +115,7 @@ public class RowHeaderDataProvider extends AbstractHeaderDataProvider {
 	 */
 	@Override
 	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return this.manager.getHorizontalAxisConfiguration();
+		return this.manager.getRowAxisConfiguration();
 	}
 
 	/**

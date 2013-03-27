@@ -15,14 +15,8 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,11 +26,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration} object.
@@ -45,7 +36,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * @generated
  */
 public class FeatureLabelProviderConfigurationItemProvider
-	extends EModelElementItemProvider
+	extends 
+EObjectLabelProviderConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -73,80 +65,12 @@ public class FeatureLabelProviderConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLabelProviderContextPropertyDescriptor(object);
-			addDisplayIconPropertyDescriptor(object);
-			addDisplayTextPropertyDescriptor(object);
 			addDisplayIsDerivedPropertyDescriptor(object);
 			addDisplayTypePropertyDescriptor(object);
 			addDisplayMultiplicityPropertyDescriptor(object);
+			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Label Provider Context feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLabelProviderContextPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ILabelConfiguration_labelProviderContext_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ILabelConfiguration_labelProviderContext_feature", "_UI_ILabelConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablelabelproviderPackage.Literals.ILABEL_CONFIGURATION__LABEL_PROVIDER_CONTEXT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Display Icon feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayIconPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EObjectLabelProviderConfiguration_displayIcon_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayIcon_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Display Text feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayTextPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EObjectLabelProviderConfiguration_displayText_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayText_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -216,6 +140,28 @@ public class FeatureLabelProviderConfigurationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Display Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDisplayNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FeatureLabelProviderConfiguration_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureLabelProviderConfiguration_displayName_feature", "_UI_FeatureLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablelabelproviderPackage.Literals.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns FeatureLabelProviderConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -234,10 +180,8 @@ public class FeatureLabelProviderConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureLabelProviderConfiguration)object).getLabelProviderContext();
-		return label == null || label.length() == 0 ?
-			getString("_UI_FeatureLabelProviderConfiguration_type") : //$NON-NLS-1$
-			getString("_UI_FeatureLabelProviderConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		FeatureLabelProviderConfiguration featureLabelProviderConfiguration = (FeatureLabelProviderConfiguration)object;
+		return getString("_UI_FeatureLabelProviderConfiguration_type") + " " + featureLabelProviderConfiguration.isDisplayName(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -252,12 +196,10 @@ public class FeatureLabelProviderConfigurationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureLabelProviderConfiguration.class)) {
-			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED:
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE:
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY:
+			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -274,17 +216,6 @@ public class FeatureLabelProviderConfigurationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return NattableEditPlugin.INSTANCE;
 	}
 
 }

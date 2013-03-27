@@ -363,7 +363,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		} else if(columnIndex == -1) {
 			kind = TableGridRegion.AFTER_COLUMN_HEADER;
 		} else {
-
 			if(cell != null) {
 				LabelStack label = cell.getConfigLabels();
 				if(label.hasLabel(GridRegion.ROW_HEADER)) {

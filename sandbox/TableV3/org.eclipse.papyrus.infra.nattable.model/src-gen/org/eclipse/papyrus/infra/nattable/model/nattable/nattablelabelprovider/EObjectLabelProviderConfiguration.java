@@ -22,7 +22,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayText <em>Display Text</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,30 +59,30 @@ public interface EObjectLabelProviderConfiguration extends ILabelConfiguration {
 	void setDisplayIcon(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Display Text</b></em>' attribute.
+	 * Returns the value of the '<em><b>Display Label</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Display Text</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Display Label</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Text</em>' attribute.
-	 * @see #setDisplayText(boolean)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getEObjectLabelProviderConfiguration_DisplayText()
+	 * @return the value of the '<em>Display Label</em>' attribute.
+	 * @see #setDisplayLabel(boolean)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getEObjectLabelProviderConfiguration_DisplayLabel()
 	 * @model default="true" required="true"
 	 * @generated
 	 */
-	boolean isDisplayText();
+	boolean isDisplayLabel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayText <em>Display Text</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Text</em>' attribute.
-	 * @see #isDisplayText()
+	 * @param value the new value of the '<em>Display Label</em>' attribute.
+	 * @see #isDisplayLabel()
 	 * @generated
 	 */
-	void setDisplayText(boolean value);
+	void setDisplayLabel(boolean value);
 
 } // EObjectLabelProviderConfiguration

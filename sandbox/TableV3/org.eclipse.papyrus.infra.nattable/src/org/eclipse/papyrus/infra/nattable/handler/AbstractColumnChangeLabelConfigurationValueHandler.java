@@ -13,26 +13,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
 
 /**
- * the handler used to change the index style of the column
+ * The abstract handler used to change the column header label configuration
  * 
  * @author Vincent Lorenzo
  * 
  */
-public class ChangeIndexColumnStyleHandler extends AbstractChangeIndexStyleHandler {
+public abstract class AbstractColumnChangeLabelConfigurationValueHandler extends AbstractChangeLabelConfigurationValueHandler {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractChangeIndexStyleHandler#getAxisConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractChangeLabelConfigurationValueHandler#getEditedLabelConfiguration()
 	 * 
 	 * @return
 	 */
 	@Override
-	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getColumnAxisConfiguration();
+	protected ILabelConfiguration getEditedLabelConfiguration() {
+		return getCurrentNattableModelManager().getColumnAxisConfiguration().getLabelConfiguration();
 	}
-
 
 }

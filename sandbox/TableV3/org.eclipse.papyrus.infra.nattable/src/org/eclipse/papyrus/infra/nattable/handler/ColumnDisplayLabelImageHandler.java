@@ -13,26 +13,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
 /**
- * the handler used to change the index style of the column
+ * The handler to change the boolean value used to display the image in the column label header
  * 
  * @author Vincent Lorenzo
  * 
  */
-public class ChangeIndexColumnStyleHandler extends AbstractChangeIndexStyleHandler {
+public class ColumnDisplayLabelImageHandler extends AbstractColumnChangeLabelConfigurationValueHandler {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractChangeIndexStyleHandler#getAxisConfiguration()
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractChangeLabelConfigurationValueHandler#getEditedFeature()
 	 * 
 	 * @return
 	 */
 	@Override
-	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getColumnAxisConfiguration();
+	protected EStructuralFeature getEditedFeature() {
+		return NattablelabelproviderPackage.eINSTANCE.getEObjectLabelProviderConfiguration_DisplayIcon();
 	}
-
 
 }

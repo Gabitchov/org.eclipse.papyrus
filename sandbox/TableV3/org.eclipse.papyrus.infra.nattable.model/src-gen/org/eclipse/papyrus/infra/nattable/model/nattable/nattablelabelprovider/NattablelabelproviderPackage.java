@@ -132,97 +132,6 @@ public interface NattablelabelproviderPackage extends EPackage {
 	int FEATURE_LABEL_PROVIDER_CONFIGURATION = 1;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__EANNOTATIONS = ILABEL_CONFIGURATION__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Label Provider Context</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT = ILABEL_CONFIGURATION__LABEL_PROVIDER_CONTEXT;
-
-	/**
-	 * The feature id for the '<em><b>Display Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = ILABEL_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Display Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT = ILABEL_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Display Is Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED = ILABEL_CONFIGURATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Display Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE = ILABEL_CONFIGURATION_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Display Multiplicity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY = ILABEL_CONFIGURATION_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Feature Label Provider Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT = ILABEL_CONFIGURATION_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Get EAnnotation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION___GET_EANNOTATION__STRING = ILABEL_CONFIGURATION___GET_EANNOTATION__STRING;
-
-	/**
-	 * The number of operations of the '<em>Feature Label Provider Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT = ILABEL_CONFIGURATION_OPERATION_COUNT + 0;
-
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl <em>EObject Label Provider Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,13 +169,13 @@ public interface NattablelabelproviderPackage extends EPackage {
 	int EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = ILABEL_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Display Text</b></em>' attribute.
+	 * The feature id for the '<em><b>Display Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT = ILABEL_CONFIGURATION_FEATURE_COUNT + 1;
+	int EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL = ILABEL_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>EObject Label Provider Configuration</em>' class.
@@ -294,6 +203,105 @@ public interface NattablelabelproviderPackage extends EPackage {
 	 * @ordered
 	 */
 	int EOBJECT_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT = ILABEL_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__EANNOTATIONS = EOBJECT_LABEL_PROVIDER_CONFIGURATION__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Label Provider Context</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT = EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Display Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON;
+
+	/**
+	 * The feature id for the '<em><b>Display Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL = EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Display Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED = EOBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Display Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE = EOBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Display Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY = EOBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME = EOBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Feature Label Provider Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT = EOBJECT_LABEL_PROVIDER_CONFIGURATION_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION___GET_EANNOTATION__STRING = EOBJECT_LABEL_PROVIDER_CONFIGURATION___GET_EANNOTATION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Feature Label Provider Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT = EOBJECT_LABEL_PROVIDER_CONFIGURATION_OPERATION_COUNT + 0;
 
 
 	/**
@@ -361,6 +369,17 @@ public interface NattablelabelproviderPackage extends EPackage {
 	EAttribute getFeatureLabelProviderConfiguration_DisplayMultiplicity();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration#isDisplayName <em>Display Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Display Name</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration#isDisplayName()
+	 * @see #getFeatureLabelProviderConfiguration()
+	 * @generated
+	 */
+	EAttribute getFeatureLabelProviderConfiguration_DisplayName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration <em>EObject Label Provider Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -382,15 +401,15 @@ public interface NattablelabelproviderPackage extends EPackage {
 	EAttribute getEObjectLabelProviderConfiguration_DisplayIcon();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayText <em>Display Text</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Text</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayText()
+	 * @return the meta object for the attribute '<em>Display Label</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayLabel()
 	 * @see #getEObjectLabelProviderConfiguration()
 	 * @generated
 	 */
-	EAttribute getEObjectLabelProviderConfiguration_DisplayText();
+	EAttribute getEObjectLabelProviderConfiguration_DisplayLabel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -468,6 +487,14 @@ public interface NattablelabelproviderPackage extends EPackage {
 		EAttribute FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY = eINSTANCE.getFeatureLabelProviderConfiguration_DisplayMultiplicity();
 
 		/**
+		 * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME = eINSTANCE.getFeatureLabelProviderConfiguration_DisplayName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl <em>EObject Label Provider Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -486,12 +513,12 @@ public interface NattablelabelproviderPackage extends EPackage {
 		EAttribute EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON = eINSTANCE.getEObjectLabelProviderConfiguration_DisplayIcon();
 
 		/**
-		 * The meta object literal for the '<em><b>Display Text</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Display Label</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT = eINSTANCE.getEObjectLabelProviderConfiguration_DisplayText();
+		EAttribute EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL = eINSTANCE.getEObjectLabelProviderConfiguration_DisplayLabel();
 
 	}
 

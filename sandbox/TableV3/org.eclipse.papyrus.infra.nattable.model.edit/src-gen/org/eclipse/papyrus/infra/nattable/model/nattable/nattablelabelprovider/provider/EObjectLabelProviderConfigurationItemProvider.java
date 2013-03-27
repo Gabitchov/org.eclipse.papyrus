@@ -75,7 +75,7 @@ public class EObjectLabelProviderConfigurationItemProvider
 
 			addLabelProviderContextPropertyDescriptor(object);
 			addDisplayIconPropertyDescriptor(object);
-			addDisplayTextPropertyDescriptor(object);
+			addDisplayLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -125,19 +125,19 @@ public class EObjectLabelProviderConfigurationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Text feature.
+	 * This adds a property descriptor for the Display Label feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDisplayTextPropertyDescriptor(Object object) {
+	protected void addDisplayLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EObjectLabelProviderConfiguration_displayText_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayText_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT,
+				 getString("_UI_EObjectLabelProviderConfiguration_displayLabel_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayLabel_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL,
 				 true,
 				 false,
 				 false,
@@ -185,7 +185,7 @@ public class EObjectLabelProviderConfigurationItemProvider
 		switch (notification.getFeatureID(EObjectLabelProviderConfiguration.class)) {
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT:
+			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

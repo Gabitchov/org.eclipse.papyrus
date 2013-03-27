@@ -32,7 +32,7 @@ public class ChangeIndexRowStyleHandler extends AbstractChangeIndexStyleHandler 
 	 */
 	@Override
 	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getHorizontalAxisConfiguration();
+		return getCurrentNattableModelManager().getRowAxisConfiguration();
 	}
 
 

@@ -20,7 +20,7 @@ public class DisplayLabelColumnHandler extends AbstractDisplayLabelHandler {
 
 	@Override
 	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getVerticalAxisConfiguration();
+		return getCurrentNattableModelManager().getColumnAxisConfiguration();
 	}
 
 }

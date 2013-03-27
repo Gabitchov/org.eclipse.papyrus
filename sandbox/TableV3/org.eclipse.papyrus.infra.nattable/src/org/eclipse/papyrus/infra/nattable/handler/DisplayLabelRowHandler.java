@@ -20,6 +20,6 @@ public class DisplayLabelRowHandler extends AbstractDisplayLabelHandler {
 
 	@Override
 	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return getCurrentNattableModelManager().getHorizontalAxisConfiguration();
+		return getCurrentNattableModelManager().getRowAxisConfiguration();
 	}
 }

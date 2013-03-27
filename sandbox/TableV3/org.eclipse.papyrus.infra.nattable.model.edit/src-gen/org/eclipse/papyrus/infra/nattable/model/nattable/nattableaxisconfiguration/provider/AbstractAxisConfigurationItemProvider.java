@@ -164,12 +164,12 @@ public class AbstractAxisConfigurationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_AXIS_CONFIGURATION__LABEL_CONFIGURATION,
-				 NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
+				 NattablelabelproviderFactory.eINSTANCE.createEObjectLabelProviderConfiguration()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_AXIS_CONFIGURATION__LABEL_CONFIGURATION,
-				 NattablelabelproviderFactory.eINSTANCE.createEObjectLabelProviderConfiguration()));
+				 NattablelabelproviderFactory.eINSTANCE.createFeatureLabelProviderConfiguration()));
 	}
 
 	/**

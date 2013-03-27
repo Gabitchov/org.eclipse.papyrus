@@ -18,9 +18,17 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
-import org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
 
@@ -30,18 +38,7 @@ import org.eclipse.swt.graphics.Image;
  * @author Vincent Lorenzo
  * 
  */
-public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProvider {
-
-
-
-	private boolean displayName = true;//FIXME : we need to get the axis of this element to know what we should display!
-
-	private boolean displayMultiplicity = true;//FIXME : we need to get the axis of this element to know what we should display!
-
-	private boolean displayType = true;//FIXME : we need to get the axis of this element to know what we should display!
-
-	private boolean displayIsDerived = true;//FIXME : we need to get the axis of this element to know what we should display!
-
+public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider {
 
 	/**
 	 * 
@@ -62,6 +59,8 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 
 	/**
 	 * 
+	 * @param featureConf
+	 *        the configuration to use to know what display in the label
 	 * @param configRegistry
 	 *        the configRegistry
 	 * @param name
@@ -77,8 +76,13 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 * @return
 	 *         the text to display for the feature according to these informations and the preferences of the user
 	 */
-	protected String getText(final IConfigRegistry configRegistry, final String name, final Object type, final boolean isDerived, final int lowerBound, final int upperBounds) {
-		//FIXME : we need to get the axis of this element to know what we should display!
+	protected String getText(FeatureLabelProviderConfiguration featureConf, final IConfigRegistry configRegistry, final String name, final Object type, final boolean isDerived, final int lowerBound, final int upperBounds) {
+		//we collect the required values
+		boolean displayName = featureConf.isDisplayName();
+		boolean displayMultiplicity = featureConf.isDisplayMultiplicity();
+		boolean displayType = featureConf.isDisplayType();
+		boolean displayIsDerived = featureConf.isDisplayIsDerived();
+
 		String displayedText = ""; //$NON-NLS-1$
 		if(isDerived && displayIsDerived) {
 			displayedText += "/"; //$NON-NLS-1$
@@ -143,7 +147,25 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	public String getText(Object element) {
 		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
-		return getText(configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
+		ILabelConfiguration conf = null;
+		if(element instanceof LabelProviderCellContextElement) {
+			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
+			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
+				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
+			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
+				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
+			}
+
+		}
+		if(conf instanceof EObjectLabelProviderConfiguration && !((EObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
+			return "";
+		}
+		if(conf instanceof FeatureLabelProviderConfiguration) {
+			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, feature.getName(), feature.getEType(), feature.isDerived(), feature.getLowerBound(), feature.getUpperBound());
+		} else {
+			return super.getText(element);
+		}
 	}
 
 	/**
@@ -155,6 +177,21 @@ public class EMFFeatureHeaderLabelProvider extends AbstractNattableCellLabelProv
 	 */
 	@Override
 	public Image getImage(Object element) {
+		ILabelConfiguration conf = null;
+		if(element instanceof LabelProviderCellContextElement) {
+			final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
+			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
+				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
+			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
+				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
+			}
+
+		}
+		if(conf instanceof EObjectLabelProviderConfiguration && !((EObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
+			return null;
+		}
 		final EStructuralFeature feature = (EStructuralFeature)((ILabelProviderContextElement)element).getObject();
 		if(feature instanceof EAttribute) {
 			return EStructuralFeatureImageRegistry.getAttributeIcon();

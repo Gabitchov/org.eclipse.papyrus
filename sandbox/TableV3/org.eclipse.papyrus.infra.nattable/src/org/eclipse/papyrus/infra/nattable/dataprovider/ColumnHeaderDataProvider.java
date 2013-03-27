@@ -105,7 +105,7 @@ public class ColumnHeaderDataProvider extends AbstractHeaderDataProvider {
 	 */
 	@Override
 	protected AbstractAxisConfiguration getAxisConfiguration() {
-		return this.manager.getVerticalAxisConfiguration();
+		return this.manager.getColumnAxisConfiguration();
 	}
 
 	/**

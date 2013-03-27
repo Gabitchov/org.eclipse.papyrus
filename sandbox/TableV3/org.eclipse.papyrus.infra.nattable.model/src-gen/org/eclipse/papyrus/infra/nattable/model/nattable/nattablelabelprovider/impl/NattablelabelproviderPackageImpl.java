@@ -204,6 +204,15 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFeatureLabelProviderConfiguration_DisplayName() {
+		return (EAttribute)featureLabelProviderConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEObjectLabelProviderConfiguration() {
 		return eObjectLabelProviderConfigurationEClass;
 	}
@@ -222,7 +231,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEObjectLabelProviderConfiguration_DisplayText() {
+	public EAttribute getEObjectLabelProviderConfiguration_DisplayLabel() {
 		return (EAttribute)eObjectLabelProviderConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -261,10 +270,11 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		createEAttribute(featureLabelProviderConfigurationEClass, FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_IS_DERIVED);
 		createEAttribute(featureLabelProviderConfigurationEClass, FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TYPE);
 		createEAttribute(featureLabelProviderConfigurationEClass, FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_MULTIPLICITY);
+		createEAttribute(featureLabelProviderConfigurationEClass, FEATURE_LABEL_PROVIDER_CONFIGURATION__DISPLAY_NAME);
 
 		eObjectLabelProviderConfigurationEClass = createEClass(EOBJECT_LABEL_PROVIDER_CONFIGURATION);
 		createEAttribute(eObjectLabelProviderConfigurationEClass, EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON);
-		createEAttribute(eObjectLabelProviderConfigurationEClass, EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_TEXT);
+		createEAttribute(eObjectLabelProviderConfigurationEClass, EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL);
 	}
 
 	/**
@@ -299,7 +309,6 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 
 		// Add supertypes to classes
 		iLabelConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
-		featureLabelProviderConfigurationEClass.getESuperTypes().add(this.getILabelConfiguration());
 		featureLabelProviderConfigurationEClass.getESuperTypes().add(this.getEObjectLabelProviderConfiguration());
 		eObjectLabelProviderConfigurationEClass.getESuperTypes().add(this.getILabelConfiguration());
 
@@ -311,10 +320,11 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		initEAttribute(getFeatureLabelProviderConfiguration_DisplayIsDerived(), theEcorePackage.getEBoolean(), "displayIsDerived", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getFeatureLabelProviderConfiguration_DisplayType(), theEcorePackage.getEBoolean(), "displayType", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getFeatureLabelProviderConfiguration_DisplayMultiplicity(), theEcorePackage.getEBoolean(), "displayMultiplicity", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getFeatureLabelProviderConfiguration_DisplayName(), theEcorePackage.getEBoolean(), "displayName", "true", 1, 1, FeatureLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(eObjectLabelProviderConfigurationEClass, EObjectLabelProviderConfiguration.class, "EObjectLabelProviderConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getEObjectLabelProviderConfiguration_DisplayIcon(), theEcorePackage.getEBoolean(), "displayIcon", "true", 1, 1, EObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getEObjectLabelProviderConfiguration_DisplayText(), theEcorePackage.getEBoolean(), "displayText", "true", 1, 1, EObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getEObjectLabelProviderConfiguration_DisplayLabel(), theEcorePackage.getEBoolean(), "displayLabel", "true", 1, 1, EObjectLabelProviderConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 } //NattablelabelproviderPackageImpl
