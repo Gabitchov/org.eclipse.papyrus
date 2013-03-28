@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.activity.preferences;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -55,9 +56,9 @@ public class ActivityEdgeLabelVisibilityGroup extends AbstractGroup {
 	public void createContent(Composite parent) {
 		Group visibilityGroup = new Group(parent, SWT.SCROLL_PAGE);
 		visibilityGroup.setLayout(new GridLayout());
-		visibilityGroup.setText(Messages.ActivityEdgePreferencePage_visibilityGroup);
+		visibilityGroup.setText(CustomMessages.ActivityEdgePreferencePage_visibilityGroup);
 		// field for name label visibility
-		showNameLabelBooleanFieldEditor = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL, Messages.ActivityEdgePreferencePage_showName, visibilityGroup);
+		showNameLabelBooleanFieldEditor = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL, CustomMessages.ActivityEdgePreferencePage_showName, visibilityGroup);
 		showNameLabelBooleanFieldEditor.setPage(dialogPage);
 		addFieldEditor(showNameLabelBooleanFieldEditor);
 	}

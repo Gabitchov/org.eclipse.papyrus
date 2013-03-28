@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -133,7 +134,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionTitle() {
-		return Messages.CreateCallActionDialog_OperationInvocationCreationTitle;
+		return CustomMessages.CreateCallActionDialog_OperationInvocationCreationTitle;
 	}
 
 	/**
@@ -141,7 +142,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionHelp() {
-		return Messages.CreateCallActionDialog_OperationInvocationCreationHelp;
+		return CustomMessages.CreateCallActionDialog_OperationInvocationCreationHelp;
 	}
 
 	/**
@@ -149,7 +150,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getInvocationSelectionSectionTitle() {
-		return Messages.CreateCallActionDialog_OperationInvocationSelectionTitle;
+		return CustomMessages.CreateCallActionDialog_OperationInvocationSelectionTitle;
 	}
 
 	/**
@@ -159,7 +160,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getTitle() {
-		return Messages.CreateCallActionDialog_OperationTitle;
+		return CustomMessages.CreateCallActionDialog_OperationTitle;
 	}
 
 	/**
@@ -169,7 +170,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getCreationLabel() {
-		return Messages.CreateCallActionDialog_CreateOperation;
+		return CustomMessages.CreateCallActionDialog_CreateOperation;
 	}
 
 	/**
@@ -179,7 +180,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getSelectionLabel() {
-		return Messages.CreateCallActionDialog_SelectOperation;
+		return CustomMessages.CreateCallActionDialog_SelectOperation;
 	}
 
 	/**

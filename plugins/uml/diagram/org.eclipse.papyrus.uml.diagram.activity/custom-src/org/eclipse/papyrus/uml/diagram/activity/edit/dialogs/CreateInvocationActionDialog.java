@@ -34,6 +34,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -547,8 +548,8 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		 * TODO BACKPORT
 		 */
 		//		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(), actionParent, getPossibleInvokedParents(actionParent),true);
-		//		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
-		//		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		//		dialog.setMessage(CustomMessages.UMLModelingAssistantProviderMessage);
+		//		dialog.setTitle(CustomMessages.UMLModelingAssistantProviderTitle);
 		//		if(dialog.open() == Window.OK) {
 		//			setInvokedParent((EObject)dialog.getTheResult());
 		//		}
@@ -697,7 +698,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * @return label
 	 */
 	protected String getInvokedNameLabel() {
-		return Messages.CreateCallActionDialog_NameLabel;
+		return CustomMessages.CreateCallActionDialog_NameLabel;
 	}
 
 	/**
@@ -706,7 +707,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * @return label
 	 */
 	protected String getInvokedTypeLabel() {
-		return Messages.CreateCallActionDialog_TypeLabel;
+		return CustomMessages.CreateCallActionDialog_TypeLabel;
 	}
 
 	/**
@@ -715,7 +716,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * @return label
 	 */
 	protected String getInvokedParentLabel() {
-		return Messages.CreateCallActionDialog_ParentLabel;
+		return CustomMessages.CreateCallActionDialog_ParentLabel;
 	}
 
 	/**

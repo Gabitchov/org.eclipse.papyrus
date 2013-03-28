@@ -3914,7 +3914,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 
    <!-- optionally, specify keybindings -->
    <!--specific palette-->
-   <extension
+  <extension
 		id="Papyrus activity editor Plugin.standard"
 		name="Papyrus activity editor Plugin Standard Palette"
 		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
@@ -3927,13 +3927,44 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
      			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+    <entry
+          id="createNodes3Group"
+          kind="drawer"
+          label="Nodes"
+          large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+          path="/"
+          small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+             force="true">
+       </expand>
+    </entry>
+    <predefinedEntry
+          id="createActivity1CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+    <predefinedEntry
+          id="createActivityParameterNode2CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+    <predefinedEntry
+          id="createCentralBufferNode3CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+    <predefinedEntry
+          id="createDataStoreNode4CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
+    <predefinedEntry
+          id="createComment5CreationTool"
+          path="/createNodes3Group">
+    </predefinedEntry>
 					<entry
        description="ActivityGroup"
        id="createActivityGroupGroup"
-       kind="drawer"
+       kind="stack"
        label="ActivityGroup"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -3942,20 +3973,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createActivityPartition1CreationTool"
-          path="/createActivityGroupGroup">
+          path="/createNodes3Group/createActivityGroupGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createInterruptibleActivityRegion2CreationTool"
-          path="/createActivityGroupGroup">
+          path="/createNodes3Group/createActivityGroupGroup">
     </predefinedEntry>
 
 	<entry
        description="ControlNodes"
        id="createControlNodesGroup"
-       kind="drawer"
+       kind="stack"
        label="ControlNodes"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -3964,70 +3995,34 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createInitialnode1CreationTool"
-          path="/createControlNodesGroup">
+          path="/createNodes3Group/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createActivityfinal2CreationTool"
-          path="/createControlNodesGroup">
+          path="/createNodes3Group/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createFlowfinal3CreationTool"
-          path="/createControlNodesGroup">
+          path="/createNodes3Group/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createDecisionnode4CreationTool"
-          path="/createControlNodesGroup">
+          path="/createNodes3Group/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createMergenode5CreationTool"
-          path="/createControlNodesGroup">
+          path="/createNodes3Group/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createJoinnode6CreationTool"
-          path="/createControlNodesGroup">
+          path="/createNodes3Group/createControlNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createForknode7CreationTool"
-          path="/createControlNodesGroup">
+          path="/createNodes3Group/createControlNodesGroup">
     </predefinedEntry>
 
-	<entry
-       description=""
-       id="createNodes3Group"
-       kind="drawer"
-       label="Nodes"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-       <expand
-              force="true">
-       </expand>
- 	</entry>
  	 
- 	 	<predefinedEntry
-          id="createActivity1CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createActivityParameterNode2CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createCentralBufferNode3CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createDataStoreNode4CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createComment5CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createConstraint6CreationTool"
-          path="/createNodes3Group">
-    </predefinedEntry>
 
 	<entry
        description=""
@@ -4062,64 +4057,22 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	<entry
        description="Constraints"
        id="createConstraintsGroup"
-       kind="drawer"
+       kind="stack"
        label="Constraints"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
-              force="true">
+              force="false">
        </expand>
  	</entry>
- 	 
- 	 	<predefinedEntry
-          id="createLocalPreconditionConstraint1CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionInteractionConstraint2CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionIntervalConstraint3CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionDurationConstraint4CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPreconditionTimeConstraint5CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionConstraint6CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionInteractionConstraint7CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionIntervalConstraint8CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionDurationConstraint9CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionTimeConstraint10CreationTool"
-          path="/createConstraintsGroup">
-    </predefinedEntry>
-
-	<entry
+ 	<entry
        description="Pins"
        id="createPinsGroup"
-       kind="drawer"
+       kind="stack"
        label="Pins"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4128,28 +4081,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createOutputPin1CreationTool"
-          path="/createPinsGroup">
+          path="/createNodes3Group/createPinsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createInputPin2CreationTool"
-          path="/createPinsGroup">
+          path="/createNodes3Group/createPinsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createActionInputPin3CreationTool"
-          path="/createPinsGroup">
+          path="/createNodes3Group/createPinsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createValuePin4CreationTool"
-          path="/createPinsGroup">
+          path="/createNodes3Group/createPinsGroup">
     </predefinedEntry>
 
 	<entry
        description="ExpansionRegions"
        id="createExpansionRegionsGroup"
-       kind="drawer"
+       kind="stack"
        label="ExpansionRegions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4158,24 +4111,24 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createExpansionRegion1CreationTool"
-          path="/createExpansionRegionsGroup">
+          path="/createNodes3Group/createExpansionRegionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createInputExpansionNode2CreationTool"
-          path="/createExpansionRegionsGroup">
+          path="/createNodes3Group/createExpansionRegionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createOutputExpansionNode3CreationTool"
-          path="/createExpansionRegionsGroup">
+          path="/createNodes3Group/createExpansionRegionsGroup">
     </predefinedEntry>
 
 	<entry
        description="InvocationActions"
        id="InvocationActionsGroup"
-       kind="drawer"
+       kind="stack"
        label="InvocationActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4184,32 +4137,32 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createBroadcastSignalAction1CreationTool"
-          path="/InvocationActionsGroup">
+          path="/createNodes3Group/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createCallBehaviorAction2CreationTool"
-          path="/InvocationActionsGroup">
+          path="/createNodes3Group/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createCallOperationAction3CreationTool"
-          path="/InvocationActionsGroup">
+          path="/createNodes3Group/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createSendObjectAction4CreationTool"
-          path="/InvocationActionsGroup">
+          path="/createNodes3Group/InvocationActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createSendSignalAction5CreationTool"
-          path="/InvocationActionsGroup">
+          path="/createNodes3Group/InvocationActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="ObjectActions"
        id="createObjectActionsGroup"
-       kind="drawer"
+       kind="stack"
        label="ObjectActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4218,24 +4171,24 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createCreateObjectAction1CreationTool"
-          path="/createObjectActionsGroup">
+          path="/createNodes3Group/createObjectActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createDestroyObjectAction2CreationTool"
-          path="/createObjectActionsGroup">
+          path="/createNodes3Group/createObjectActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createReadSelfAction3CreationTool"
-          path="/createObjectActionsGroup">
+          path="/createNodes3Group/createObjectActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="StructuredActions"
        id="createStructuredActionsGroup"
-       kind="drawer"
+       kind="stack"
        label="StructuredActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4244,28 +4197,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createStructuredActivityNode1CreationTool"
-          path="/createStructuredActionsGroup">
+          path="/createNodes3Group/createStructuredActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createLoopNode2CreationTool"
-          path="/createStructuredActionsGroup">
+          path="/createNodes3Group/createStructuredActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createSequenceNode3CreationTool"
-          path="/createStructuredActionsGroup">
+          path="/createNodes3Group/createStructuredActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createConditionalNode4CreationTool"
-          path="/createStructuredActionsGroup">
+          path="/createNodes3Group/createStructuredActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="StructuralFeatureActions"
        id="createStructuralFeatureActionsGroup"
-       kind="drawer"
+       kind="stack"
        label="StructuralFeatureActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4274,28 +4227,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createReadStructuralFeatureAction1CreationTool"
-          path="/createStructuralFeatureActionsGroup">
+          path="/createNodes3Group/createStructuralFeatureActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createAddStructuralFeatureValueAction2CreationTool"
-          path="/createStructuralFeatureActionsGroup">
+          path="/createNodes3Group/createStructuralFeatureActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createAddStructuralFeatureValueAction3CreationTool"
-          path="/createStructuralFeatureActionsGroup">
+          path="/createNodes3Group/createStructuralFeatureActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createReadStructuralFeatureAction4CreationTool"
-          path="/createStructuralFeatureActionsGroup">
+          path="/createNodes3Group/createStructuralFeatureActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="VariableActions"
        id="createVariableActionsGroup"
-       kind="drawer"
+       kind="stack"
        label="VariableActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4304,20 +4257,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createAddVariableValueAction1CreationTool"
-          path="/createVariableActionsGroup">
+          path="/createNodes3Group/createVariableActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createReadVariableAction2CreationTool"
-          path="/createVariableActionsGroup">
+          path="/createNodes3Group/createVariableActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="MiscellaneousActions"
        id="createOtherActionsGroup"
-       kind="drawer"
+       kind="stack"
        label="MiscellaneousActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4326,20 +4279,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createOpaqueAction1CreationTool"
-          path="/createOtherActionsGroup">
+          path="/createNodes3Group/createOtherActionsGroup">
     </predefinedEntry>
  	<predefinedEntry
           id="createValueSpecificationAction2CreationTool"
-          path="/createOtherActionsGroup">
+          path="/createNodes3Group/createOtherActionsGroup">
     </predefinedEntry>
 
 	<entry
        description="AcceptEventActions"
        id="createAcceptEventActions14Group"
-       kind="drawer"
+       kind="stack"
        label="AcceptEventActions"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
+       path="/createNodes3Group"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
        <expand
               force="true">
@@ -4348,8 +4301,55 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  	 
  	 	<predefinedEntry
           id="createAcceptEventAction1CreationTool"
-          path="/createAcceptEventActions14Group">
+          path="/createNodes3Group/createAcceptEventActions14Group">
     </predefinedEntry>
+ <predefinedEntry
+       id="createConstraint6CreationTool"
+       path="/createNodes3Group/createConstraintsGroup">
+ </predefinedEntry>
+ 	 
+ 	 	<predefinedEntry
+          id="createLocalPreconditionConstraint1CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionInteractionConstraint2CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionIntervalConstraint3CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionDurationConstraint4CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPreconditionTimeConstraint5CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionConstraint6CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionInteractionConstraint7CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionIntervalConstraint8CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionDurationConstraint9CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionTimeConstraint10CreationTool"
+          path="/createNodes3Group/createConstraintsGroup">
+    </predefinedEntry>
+
+	
 
 
 			</contribution>

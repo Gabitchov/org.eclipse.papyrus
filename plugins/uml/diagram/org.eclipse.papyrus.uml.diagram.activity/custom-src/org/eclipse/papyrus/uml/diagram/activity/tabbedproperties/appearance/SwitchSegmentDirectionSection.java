@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
@@ -82,7 +83,7 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 	public void initializeControls(Composite parent) {
 		super.initializeControls(parent);
 		GridLayout layout = new GridLayout(2, false);
-		Group switchGroup = getWidgetFactory().createGroup(composite, Messages.ForkJoinSegmentSwitchOrientation_actionLabel);
+		Group switchGroup = getWidgetFactory().createGroup(composite, CustomMessages.ForkJoinSegmentSwitchOrientation_actionLabel);
 		switchGroup.setLayout(layout);
 		// create switch button
 		Button button = new Button(switchGroup, SWT.PUSH);
@@ -107,7 +108,7 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 			}
 		});
 		// create help
-		ImageHyperlink help = HelpComponentFactory.createHelpComponent(switchGroup, getWidgetFactory(), Messages.ForkJoinSegmentSwitchOrientation_helpMessage);
+		ImageHyperlink help = HelpComponentFactory.createHelpComponent(switchGroup, getWidgetFactory(), CustomMessages.ForkJoinSegmentSwitchOrientation_helpMessage);
 		gd = new GridData(SWT.RIGHT, SWT.CENTER, false, true);
 		help.setLayoutData(gd);
 		help.setBackground(switchGroup.getBackground());
@@ -117,7 +118,7 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 	 * Switch the orientation of each selected segment figure.
 	 */
 	protected void switchSelectedSegmentsOrientation() {
-		CompositeCommand globalCommand = new CompositeCommand(Messages.ForkJoinSegmentSwitchOrientation_actionLabel);
+		CompositeCommand globalCommand = new CompositeCommand(CustomMessages.ForkJoinSegmentSwitchOrientation_actionLabel);
 		List<?> editparts = getInput();
 		for(Object part : editparts) {
 			Object view = null;
@@ -169,7 +170,7 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 		 *        the view which is the model of the figure
 		 */
 		SwitchSegmentOrientation(TransactionalEditingDomain domain, Figure figure, View view) {
-			super(domain, Messages.ForkJoinSegmentSwitchOrientation_actionLabel, null);
+			super(domain, CustomMessages.ForkJoinSegmentSwitchOrientation_actionLabel, null);
 			selectedFigure = figure;
 			selectedView = view;
 		}

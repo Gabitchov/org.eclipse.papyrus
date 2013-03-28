@@ -20,6 +20,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
@@ -48,7 +49,7 @@ public class ConfirmPinAndParameterSyncDialog extends MessageDialog {
 	 *        the message
 	 */
 	protected ConfirmPinAndParameterSyncDialog(Shell parentShell, String dialogMessage) {
-		super(parentShell, Messages.ConfirmPinAndParameterSync_Title, null, dialogMessage, CONFIRM, new String[]{ IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL }, 0);
+		super(parentShell, CustomMessages.ConfirmPinAndParameterSync_Title, null, dialogMessage, CONFIRM, new String[]{ IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL }, 0);
 	}
 
 	/**
@@ -72,7 +73,7 @@ public class ConfirmPinAndParameterSyncDialog extends MessageDialog {
 				parsedList.append(labelprovider.getText(element));
 				parsedList.append(System.getProperty("line.separator"));
 			}
-			String message = NLS.bind(Messages.ConfirmPinAndParameterSync_FromParameterMsg, parsedList.toString());
+			String message = NLS.bind(CustomMessages.ConfirmPinAndParameterSync_FromParameterMsg, parsedList.toString());
 			ConfirmPinAndParameterSyncDialog dialog = new ConfirmPinAndParameterSyncDialog(parentShell, message);
 			return dialog.open() == 0;
 		} else {
@@ -92,7 +93,7 @@ public class ConfirmPinAndParameterSyncDialog extends MessageDialog {
 	@Override
 	protected Control createCustomArea(Composite parent) {
 		Button checkBox = new Button(parent, SWT.CHECK | SWT.LEFT);
-		checkBox.setText(Messages.DiagramsPreferencePage_disableNotification);
+		checkBox.setText(CustomMessages.DiagramsPreferencePage_disableNotification);
 		checkBox.addSelectionListener(new SelectionAdapter() {
 
 			@Override

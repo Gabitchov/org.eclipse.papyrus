@@ -70,6 +70,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.WarningAndLinkDialo
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.handlers.SynchronizePinsParametersHandler;
 import org.eclipse.papyrus.uml.diagram.activity.helper.datastructure.LinkPinToParameter;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -449,7 +450,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected boolean proposeParameterCreation(final NamedElement element, final EClass preferredPinClass) {
 		final String elementLabel = labelProvider.getText(element);
-		final String message = NLS.bind(Messages.PinAndParameterSynchronizer_UnauthorizedModification, elementLabel);
+		final String message = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UnauthorizedModification, elementLabel);
 		final ParameterDirectionKind preferredDirection;
 		if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(preferredPinClass)) {
 			preferredDirection = ParameterDirectionKind.OUT_LITERAL;
@@ -460,7 +461,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 
 			@Override
 			protected Boolean openDialog() {
-				WarningAndCreateParameterDialog dialog = new WarningAndCreateParameterDialog(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, labelProvider, preferredDirection);
+				WarningAndCreateParameterDialog dialog = new WarningAndCreateParameterDialog(new Shell(Display.getDefault()), CustomMessages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, labelProvider, preferredDirection);
 				boolean result = dialog.open() == Window.OK;
 				if(result) {
 					Parameter parameter = dialog.getParameter();
@@ -534,12 +535,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected boolean proposeAttributeCreation(final NamedElement element, final EClass preferredPinClass) {
 		final String elementLabel = labelProvider.getText(element);
-		final String message = NLS.bind(Messages.PinAndParameterSynchronizer_UnauthorizedModification, elementLabel);
+		final String message = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UnauthorizedModification, elementLabel);
 		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
 
 			@Override
 			protected Boolean openDialog() {
-				WarningAndCreateAttributeDialog dialog = new WarningAndCreateAttributeDialog(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, labelProvider);
+				WarningAndCreateAttributeDialog dialog = new WarningAndCreateAttributeDialog(new Shell(Display.getDefault()), CustomMessages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, labelProvider);
 				boolean result = dialog.open() == Window.OK;
 				if(result) {
 					Property attribute = dialog.getAttribute();
@@ -587,12 +588,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected void proposeNavigation(final NamedElement element) {
 		final String elementLabel = labelProvider.getText(element);
-		final String message = NLS.bind(Messages.PinAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
+		final String message = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
 		SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 			@Override
 			protected Void openDialog() {
-				WarningAndLinkDialog dialog = new WarningAndLinkDialog(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, elementLabel);
+				WarningAndLinkDialog dialog = new WarningAndLinkDialog(new Shell(Display.getDefault()), CustomMessages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, elementLabel);
 				dialog.open();
 				return null;
 			}
@@ -892,12 +893,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Try to remove or assign target pin. This must not be
 				 * authorized.
 				 */
-				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getCallOperationAction_Target().getName());
+				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getCallOperationAction_Target().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 					@Override
 					protected Void openDialog() {
-						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
+						MessageDialog.openWarning(new Shell(Display.getDefault()), CustomMessages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
 					}
 				};
@@ -1146,12 +1147,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Try to remove or assign target pin. This must not be
 				 * authorized.
 				 */
-				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendSignalAction_Target().getName());
+				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendSignalAction_Target().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 					@Override
 					protected Void openDialog() {
-						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
+						MessageDialog.openWarning(new Shell(Display.getDefault()), CustomMessages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
 					}
 				};
@@ -1180,12 +1181,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Try to remove or assign target pin. This must not be
 				 * authorized.
 				 */
-				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Target().getName());
+				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Target().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 					@Override
 					protected Void openDialog() {
-						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
+						MessageDialog.openWarning(new Shell(Display.getDefault()), CustomMessages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
 					}
 				};
@@ -1197,12 +1198,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * Try to remove or assign target pin. This must not be
 				 * authorized.
 				 */
-				final String msg = NLS.bind(Messages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Request().getName());
+				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Request().getName());
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 					@Override
 					protected Void openDialog() {
-						MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
+						MessageDialog.openWarning(new Shell(Display.getDefault()), CustomMessages.PinAndParameterSynchronizer_UndeleteablePinTitle, msg);
 						return null;
 					}
 				};

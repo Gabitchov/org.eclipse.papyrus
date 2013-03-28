@@ -32,6 +32,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -164,7 +165,7 @@ public class CreateParameterDialog extends FormDialog {
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
-		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateParameterDialog_ParameterCreationHelp, true);
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, CustomMessages.CreateParameterDialog_ParameterCreationHelp, true);
 		lSection.setTextClient(componentHelp);
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -409,22 +410,22 @@ public class CreateParameterDialog extends FormDialog {
 	}
 
 	private String getTitle() {
-		return Messages.CreateParameterDialog_DialogTitle;
+		return CustomMessages.CreateParameterDialog_DialogTitle;
 	}
 
 	private String getCreationTitle() {
-		return Messages.CreateParameterDialog_ParameterCreationTitle;
+		return CustomMessages.CreateParameterDialog_ParameterCreationTitle;
 	}
 
 	private String getNameLabel() {
-		return Messages.CreateParameterDialog_NameLabel;
+		return CustomMessages.CreateParameterDialog_NameLabel;
 	}
 
 	private String getTypeLabel() {
-		return Messages.CreateParameterDialog_TypeLabel;
+		return CustomMessages.CreateParameterDialog_TypeLabel;
 	}
 
 	private String getDirectionLabel() {
-		return Messages.CreateParameterDialog_DirectionLabel;
+		return CustomMessages.CreateParameterDialog_DirectionLabel;
 	}
 }

@@ -32,6 +32,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -411,22 +412,22 @@ public class CreateAttributeDialog extends FormDialog {
 	}
 
 	private String getTitle() {
-		return Messages.CreateAttributeDialog_DialogTitle;
+		return CustomMessages.CreateAttributeDialog_DialogTitle;
 	}
 
 	private String getCreationTitle() {
-		return Messages.CreateAttributeDialog_CreationTitle;
+		return CustomMessages.CreateAttributeDialog_CreationTitle;
 	}
 
 	private String getNameLabel() {
-		return Messages.CreateAttributeDialog_NameLabel;
+		return CustomMessages.CreateAttributeDialog_NameLabel;
 	}
 
 	private String getEClassLabel() {
-		return Messages.CreateAttributeDialog_EClassLabel;
+		return CustomMessages.CreateAttributeDialog_EClassLabel;
 	}
 
 	private String getTypeLabel() {
-		return Messages.CreateAttributeDialog_TypeLabel;
+		return CustomMessages.CreateAttributeDialog_TypeLabel;
 	}
 }

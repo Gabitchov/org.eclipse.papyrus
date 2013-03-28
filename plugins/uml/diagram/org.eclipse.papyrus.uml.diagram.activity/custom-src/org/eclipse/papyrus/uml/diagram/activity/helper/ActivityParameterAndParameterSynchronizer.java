@@ -38,6 +38,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.ConfirmActivityParameterNodeAndParameterSyncDialog;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.WarningAndLinkDialog;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -104,11 +105,11 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 			final Parameter parameter = eObject.getParameter();
 			if(parameter != null) {
 				final String elementLabel = labelProvider.getText(parameter);
-				final String message = NLS.bind(Messages.ActivityParameterAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
+				final String message = NLS.bind(CustomMessages.ActivityParameterAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
 				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 					protected Void openDialog() {
-						WarningAndLinkDialog dialog = new WarningAndLinkDialog(new Shell(Display.getDefault()), Messages.ActivityParameterAndParameterSynchronizer_UnauthorizedModificationTitle, message, parameter, elementLabel);
+						WarningAndLinkDialog dialog = new WarningAndLinkDialog(new Shell(Display.getDefault()), CustomMessages.ActivityParameterAndParameterSynchronizer_UnauthorizedModificationTitle, message, parameter, elementLabel);
 						dialog.open();
 						return null;
 					}

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.dialogs;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
@@ -107,7 +108,7 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
-		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateCallActionDialog_IsSynchronousHelp, true);
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, CustomMessages.CreateCallActionDialog_IsSynchronousHelp, true);
 		lSection.setTextClient(componentHelp);
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -117,7 +118,7 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 		lLayout.numColumns = 1;
 		lBody.setLayout(lLayout);
 		// content of the section
-		isSynchronousButton = pToolkit.createButton(lBody, Messages.CreateCallActionDialog_IsSynchronous, SWT.CHECK | SWT.WRAP);
+		isSynchronousButton = pToolkit.createButton(lBody, CustomMessages.CreateCallActionDialog_IsSynchronous, SWT.CHECK | SWT.WRAP);
 		isSynchronousButton.setSelection(true);
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
@@ -176,6 +177,6 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	 * @return section title
 	 */
 	protected String getIsSynchronousSectionTitle() {
-		return Messages.CreateCallActionDialog_IsSynchronousTitle;
+		return CustomMessages.CreateCallActionDialog_IsSynchronousTitle;
 	}
 }

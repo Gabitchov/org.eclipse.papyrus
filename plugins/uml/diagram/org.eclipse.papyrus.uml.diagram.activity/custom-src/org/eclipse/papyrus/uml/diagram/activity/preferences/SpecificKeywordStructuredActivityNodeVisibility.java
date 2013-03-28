@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.activity.preferences;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -68,7 +69,7 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 	public void createContent(Composite parent) {
 		Group visibilityGroup = new Group(parent, SWT.SCROLL_PAGE);
 		visibilityGroup.setLayout(new GridLayout());
-		visibilityGroup.setText(Messages.SpecificKeywordStructuredActivityNodeVisibility_visibility);
+		visibilityGroup.setText(CustomMessages.SpecificKeywordStructuredActivityNodeVisibility_visibility);
 		String preferenceName;
 		switch(this.type) {
 		case LOOP_NODE:
@@ -84,7 +85,7 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 			preferenceName = "";
 			break;
 		}
-		specificKeywordVisibility = new BooleanFieldEditor(preferenceName, Messages.StructuredActivityNodePreferencePage_showSpecificKeyword, visibilityGroup);
+		specificKeywordVisibility = new BooleanFieldEditor(preferenceName, CustomMessages.StructuredActivityNodePreferencePage_showSpecificKeyword, visibilityGroup);
 		specificKeywordVisibility.setPage(dialogPage);
 		addFieldEditor(specificKeywordVisibility);
 	}

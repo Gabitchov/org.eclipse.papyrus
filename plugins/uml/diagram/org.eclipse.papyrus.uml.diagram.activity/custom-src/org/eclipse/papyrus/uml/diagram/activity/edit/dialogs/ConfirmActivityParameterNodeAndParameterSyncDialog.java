@@ -20,6 +20,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
@@ -48,7 +49,7 @@ public class ConfirmActivityParameterNodeAndParameterSyncDialog extends MessageD
 	 *        the message
 	 */
 	protected ConfirmActivityParameterNodeAndParameterSyncDialog(Shell parentShell, String dialogMessage) {
-		super(parentShell, Messages.ConfirmActivityParameterAndParameterSync_Title, null, dialogMessage, CONFIRM, new String[]{ IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL }, 0);
+		super(parentShell, CustomMessages.ConfirmActivityParameterAndParameterSync_Title, null, dialogMessage, CONFIRM, new String[]{ IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL }, 0);
 	}
 
 	/**
@@ -69,7 +70,7 @@ public class ConfirmActivityParameterNodeAndParameterSyncDialog extends MessageD
 				parsedList.append(labelprovider.getText(element));
 				parsedList.append(System.getProperty("line.separator"));
 			}
-			String message = NLS.bind(Messages.ConfirmActivityParameterAndParameterSync_FromParameterMsg, parsedList.toString());
+			String message = NLS.bind(CustomMessages.ConfirmActivityParameterAndParameterSync_FromParameterMsg, parsedList.toString());
 			ConfirmActivityParameterNodeAndParameterSyncDialog dialog = new ConfirmActivityParameterNodeAndParameterSyncDialog(parentShell, message);
 			return dialog.open() == 0;
 		} else {
@@ -89,7 +90,7 @@ public class ConfirmActivityParameterNodeAndParameterSyncDialog extends MessageD
 	@Override
 	protected Control createCustomArea(Composite parent) {
 		Button checkBox = new Button(parent, SWT.CHECK | SWT.LEFT);
-		checkBox.setText(Messages.DiagramsPreferencePage_disableNotification);
+		checkBox.setText(CustomMessages.DiagramsPreferencePage_disableNotification);
 		checkBox.addSelectionListener(new SelectionAdapter() {
 
 			@Override

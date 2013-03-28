@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -75,7 +76,7 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionTitle() {
-		return Messages.CreateCallActionDialog_SignalInvocationCreationTitle;
+		return CustomMessages.CreateCallActionDialog_SignalInvocationCreationTitle;
 	}
 
 	/**
@@ -83,7 +84,7 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionHelp() {
-		return Messages.CreateCallActionDialog_SignalInvocationCreationHelp;
+		return CustomMessages.CreateCallActionDialog_SignalInvocationCreationHelp;
 	}
 
 	/**
@@ -91,7 +92,7 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getInvocationSelectionSectionTitle() {
-		return Messages.CreateCallActionDialog_SignalInvocationSelectionTitle;
+		return CustomMessages.CreateCallActionDialog_SignalInvocationSelectionTitle;
 	}
 
 	/**
@@ -101,7 +102,7 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getTitle() {
-		return Messages.CreateCallActionDialog_SignalTitle;
+		return CustomMessages.CreateCallActionDialog_SignalTitle;
 	}
 
 	/**
@@ -151,7 +152,7 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getCreationLabel() {
-		return Messages.CreateCallActionDialog_CreateSignal;
+		return CustomMessages.CreateCallActionDialog_CreateSignal;
 	}
 
 	/**
@@ -161,7 +162,7 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected String getSelectionLabel() {
-		return Messages.CreateCallActionDialog_SelectSignal;
+		return CustomMessages.CreateCallActionDialog_SelectSignal;
 	}
 
 	/**

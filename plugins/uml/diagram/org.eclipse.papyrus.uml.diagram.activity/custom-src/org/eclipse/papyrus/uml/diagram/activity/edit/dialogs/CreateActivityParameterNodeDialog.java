@@ -34,6 +34,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -129,7 +130,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	@Override
 	protected void createFormContent(IManagedForm pForm) {
-		pForm.getForm().setText(Messages.CreateActivityParameterNodeDialog_DialogTitle);
+		pForm.getForm().setText(CustomMessages.CreateActivityParameterNodeDialog_DialogTitle);
 		ScrolledForm scrolledForm = pForm.getForm();
 		FormToolkit toolkit = pForm.getToolkit();
 		Composite parent = scrolledForm.getBody();
@@ -166,13 +167,13 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	private void createInvocationSelectionSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		String lSectionTitle = Messages.CreateActivityParameterNodeDialog_ParameterSelectionTitle;
+		String lSectionTitle = CustomMessages.CreateActivityParameterNodeDialog_ParameterSelectionTitle;
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
-		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateActivityParameterNodeDialog_ParameterSelectionHelp);
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, CustomMessages.CreateActivityParameterNodeDialog_ParameterSelectionHelp);
 		lSection.setTextClient(componentHelp);
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -182,7 +183,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		lLayout.numColumns = 3;
 		lBody.setLayout(lLayout);
 		// content of the section
-		selectionRadio = pToolkit.createButton(lBody, Messages.CreateActivityParameterNodeDialog_ParameterSelectionLabel, SWT.RADIO);
+		selectionRadio = pToolkit.createButton(lBody, CustomMessages.CreateActivityParameterNodeDialog_ParameterSelectionLabel, SWT.RADIO);
 		selectionRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 		// manage parameter selection
 		pToolkit.createLabel(lBody, getParameterFeature().getEReferenceType().getName() + ":", SWT.NONE);
@@ -206,13 +207,13 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	private void createInvocationCreationSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		String lSectionTitle = Messages.CreateActivityParameterNodeDialog_ParameterCreationTitle;
+		String lSectionTitle = CustomMessages.CreateActivityParameterNodeDialog_ParameterCreationTitle;
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
 		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
-		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateActivityParameterNodeDialog_ParameterCreationHelp);
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, CustomMessages.CreateActivityParameterNodeDialog_ParameterCreationHelp);
 		lSection.setTextClient(componentHelp);
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -222,14 +223,14 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		lLayout.numColumns = 3;
 		lBody.setLayout(lLayout);
 		// content of the section
-		creationRadio = pToolkit.createButton(lBody, Messages.CreateActivityParameterNodeDialog_ParameterCreationLabel, SWT.RADIO);
+		creationRadio = pToolkit.createButton(lBody, CustomMessages.CreateActivityParameterNodeDialog_ParameterCreationLabel, SWT.RADIO);
 		creationRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
-		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_NameLabel, SWT.NONE);
+		pToolkit.createLabel(lBody, CustomMessages.CreateActivityParameterNodeDialog_NameLabel, SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		creationNameText.setFocus();
 		// manage type selection
-		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_TypeLabel, SWT.NONE);
+		pToolkit.createLabel(lBody, CustomMessages.CreateActivityParameterNodeDialog_TypeLabel, SWT.NONE);
 		creationTypeText = pToolkit.createText(lBody, labelProvider.getText(selectedType), SWT.BORDER | SWT.READ_ONLY);
 		creationTypeText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		creationTypeButton = pToolkit.createButton(lBody, "...", SWT.FLAT);
@@ -237,7 +238,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		creationTypeButton.setImage(image);
 		creationTypeButton.setLayoutData(new GridData(SWT.NONE));
 		// manage direction selection
-		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_DirectionLabel, SWT.NONE);
+		pToolkit.createLabel(lBody, CustomMessages.CreateActivityParameterNodeDialog_DirectionLabel, SWT.NONE);
 		creationDirectionCombo = new Combo(lBody, SWT.DROP_DOWN | SWT.READ_ONLY);
 		directionComboViewer = new ComboViewer(creationDirectionCombo);
 		pToolkit.adapt(creationDirectionCombo);

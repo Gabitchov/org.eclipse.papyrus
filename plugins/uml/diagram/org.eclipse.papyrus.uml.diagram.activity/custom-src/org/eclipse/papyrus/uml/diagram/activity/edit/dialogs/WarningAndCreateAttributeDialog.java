@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -40,7 +41,7 @@ import org.eclipse.uml2.uml.Property;
 public class WarningAndCreateAttributeDialog extends MessageDialog {
 
 	/** Label of the create button */
-	private static final String CREATE_LABEL = Messages.CreateAttributeDialog_Open;
+	private static final String CREATE_LABEL = CustomMessages.CreateAttributeDialog_Open;
 
 	/** Start form tag */
 	private static final String START_FORM = "<form>";
@@ -140,9 +141,9 @@ public class WarningAndCreateAttributeDialog extends MessageDialog {
 			}
 		}
 		if(impactedElements.size() <= 1) {
-			completeText.append(Messages.CreateAttributeDialog_WarnNoImpact);
+			completeText.append(CustomMessages.CreateAttributeDialog_WarnNoImpact);
 		} else {
-			completeText.append(Messages.CreateAttributeDialog_WarnImpact);
+			completeText.append(CustomMessages.CreateAttributeDialog_WarnImpact);
 			completeText.append(impactText.toString());
 		}
 		completeText.append(END_FORM);

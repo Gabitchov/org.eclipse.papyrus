@@ -17,6 +17,7 @@ import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.SWT;
@@ -66,11 +67,11 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalSpan = 2;
 		notificationsGroup.setLayoutData(gridData);
-		notificationsGroup.setText(Messages.DiagramsPreferencePage_notificationGroup_label);
+		notificationsGroup.setText(CustomMessages.DiagramsPreferencePage_notificationGroup_label);
 		Composite composite = new Composite(notificationsGroup, SWT.NONE);
-		confirmPinSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_PIN_SYNC_FROM_PARAMETER, Messages.DiagramsPreferencePage_confirmPinSyncFromParameter_label, composite);
+		confirmPinSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_PIN_SYNC_FROM_PARAMETER, CustomMessages.DiagramsPreferencePage_confirmPinSyncFromParameter_label, composite);
 		addField(confirmPinSyncFromParameter);
-		confirmActivityParameterNodeSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER, Messages.DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label, composite);
+		confirmActivityParameterNodeSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER, CustomMessages.DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label, composite);
 		addField(confirmActivityParameterNodeSyncFromParameter);
 	}
 

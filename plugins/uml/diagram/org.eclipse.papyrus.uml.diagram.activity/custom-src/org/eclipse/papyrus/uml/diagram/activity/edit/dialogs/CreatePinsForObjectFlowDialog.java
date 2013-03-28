@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.dialogs;
 
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
@@ -53,13 +54,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CreatePinsForObjectFlowDialog extends FormDialog {
 
-	private static final String TITLE = Messages.CreatePinsForObjectFlowDialog_Title;
+	private static final String TITLE = CustomMessages.CreatePinsForObjectFlowDialog_Title;
 
-	private static final String PIN_CREATION_SECTION_TITLE = Messages.CreatePinsForObjectFlowDialog_PinCreationTitle;
+	private static final String PIN_CREATION_SECTION_TITLE = CustomMessages.CreatePinsForObjectFlowDialog_PinCreationTitle;
 
-	private static final String NAME_LABEL = Messages.CreatePinsForObjectFlowDialog_Name;
+	private static final String NAME_LABEL = CustomMessages.CreatePinsForObjectFlowDialog_Name;
 
-	private static final String TYPE_LABEL = Messages.CreatePinsForObjectFlowDialog_Type;
+	private static final String TYPE_LABEL = CustomMessages.CreatePinsForObjectFlowDialog_Type;
 
 	/** The initial value for pins name */
 	private static final String NAME_INITIAL_VALUE = "data";
@@ -246,7 +247,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
-		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreatePinsForObjectFlowDialog_PinCreationHelp, true);
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, CustomMessages.CreatePinsForObjectFlowDialog_PinCreationHelp, true);
 		lSection.setTextClient(componentHelp);
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -309,8 +310,8 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		 * TODO Backport
 		 */
 		//		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(),initialSource, Sets.newHashSet(UMLPackage.Literals.TYPE));
-		//		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
-		//		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		//		dialog.setMessage(CustomMessages.UMLModelingAssistantProviderMessage);
+		//		dialog.setTitle(CustomMessages.UMLModelingAssistantProviderTitle);
 		//		if(dialog.open() == Window.OK) {
 		//			creationType = (Type)dialog.getTheResult();
 		//			creationTypeText.setText(dialog.getText(creationType));

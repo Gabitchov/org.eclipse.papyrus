@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -77,7 +78,7 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionTitle() {
-		return Messages.CreateCallActionDialog_BehaviorInvocationCreationTitle;
+		return CustomMessages.CreateCallActionDialog_BehaviorInvocationCreationTitle;
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getInvocationCreationSectionHelp() {
-		return Messages.CreateCallActionDialog_BehaviorInvocationCreationHelp;
+		return CustomMessages.CreateCallActionDialog_BehaviorInvocationCreationHelp;
 	}
 
 	/**
@@ -93,7 +94,7 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getInvocationSelectionSectionTitle() {
-		return Messages.CreateCallActionDialog_BehaviorInvocationSelectionTitle;
+		return CustomMessages.CreateCallActionDialog_BehaviorInvocationSelectionTitle;
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getTitle() {
-		return Messages.CreateCallActionDialog_BehaviorTitle;
+		return CustomMessages.CreateCallActionDialog_BehaviorTitle;
 	}
 
 	/**
@@ -170,7 +171,7 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getCreationLabel() {
-		return Messages.CreateCallActionDialog_CreateBehavior;
+		return CustomMessages.CreateCallActionDialog_CreateBehavior;
 	}
 
 	/**
@@ -180,7 +181,7 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected String getSelectionLabel() {
-		return Messages.CreateCallActionDialog_SelectBehavior;
+		return CustomMessages.CreateCallActionDialog_SelectBehavior;
 	}
 
 	/**

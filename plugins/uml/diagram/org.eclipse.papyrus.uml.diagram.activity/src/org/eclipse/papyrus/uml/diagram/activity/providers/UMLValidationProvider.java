@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.helper.SafeDialogOpenerDuringValidation;
 import org.eclipse.papyrus.uml.diagram.activity.helper.UMLValidationHelper;
+import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -110,7 +111,7 @@ public class UMLValidationProvider {
 					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 						protected Void openDialog() {
-							MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.UMLValidation_ErrorTitle, message);
+							MessageDialog.openWarning(new Shell(Display.getDefault()), CustomMessages.UMLValidation_ErrorTitle, message);
 							return null;
 						}
 					};
@@ -119,7 +120,7 @@ public class UMLValidationProvider {
 					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 						protected Void openDialog() {
-							MessageDialog.openInformation(new Shell(Display.getDefault()), Messages.UMLValidation_WarningTitle, message);
+							MessageDialog.openInformation(new Shell(Display.getDefault()), CustomMessages.UMLValidation_WarningTitle, message);
 							return null;
 						}
 					};
