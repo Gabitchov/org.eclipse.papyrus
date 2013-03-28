@@ -32,6 +32,7 @@ public class ModelUtils {
 	 *         found.
 	 * @deprecated Use ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 */
+	@Deprecated
 	public static ModelSet getModelSet() {
 
 		try {
@@ -55,6 +56,7 @@ public class ModelUtils {
 	 *         If an error occurs while getting or starting the service.
 	 * @deprecated Use ServiceUtilsForActionHandlers.getInstance().getModelSet()
 	 */
+	@Deprecated
 	public static ModelSet getModelSetChecked() throws ServiceException {
 
 		return ServiceUtilsForActionHandlers.getInstance().getModelSet();
@@ -89,22 +91,19 @@ public class ModelUtils {
 
 	/**
 	 * Determine if a throwable can be managed in degraded mode
+	 * 
 	 * @param t
 	 */
-	public static boolean isDegradedModeAllowed(Throwable t){
+	public static boolean isDegradedModeAllowed(Throwable t) {
 		return t instanceof org.eclipse.emf.ecore.xmi.ClassNotFoundException || t instanceof IllegalValueException;
 	}
 
-	/**
-	 * Determine if a throwable can be managed in degraded mode
-	 * @param t
-	 */
-	public static boolean resourceFailedOnLoad(Resource r){
-		if (r.getErrors() != null){
-			for (Diagnostic d : r.getErrors()){
-				if (d instanceof WrappedException) {
-					WrappedException wrapped = (WrappedException) d;
-					if (wrapped.getCause() instanceof ResourceException && r.getContents().isEmpty()) {
+	public static boolean resourceFailedOnLoad(Resource r) {
+		if(r.getErrors() != null) {
+			for(Diagnostic d : r.getErrors()) {
+				if(d instanceof WrappedException) {
+					WrappedException wrapped = (WrappedException)d;
+					if(wrapped.getCause() instanceof ResourceException && r.getContents().isEmpty()) {
 						return true;
 					}
 				}

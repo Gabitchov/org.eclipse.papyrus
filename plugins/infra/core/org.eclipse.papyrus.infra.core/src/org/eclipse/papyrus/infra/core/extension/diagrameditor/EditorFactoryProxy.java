@@ -50,7 +50,12 @@ public class EditorFactoryProxy implements IEditorFactory {
 	 * @return
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier) {
-		return getEditorFactory().createIPageModel(pageIdentifier);
+		try {
+			return getEditorFactory().createIPageModel(pageIdentifier);
+		} catch (Exception ex) {
+			//An error occurred in a contribution. Do not use this factory
+			return null;
+		}
 	}
 
 	/**
@@ -60,7 +65,12 @@ public class EditorFactoryProxy implements IEditorFactory {
 	 * @return
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
-		return getEditorFactory().isPageModelFactoryFor(pageIdentifier);
+		try {
+			return getEditorFactory().isPageModelFactoryFor(pageIdentifier);
+		} catch (Exception ex) {
+			//An error occurred in a contribution. Do not use this factory
+			return false;
+		}
 	}
 
 	/**

@@ -323,5 +323,11 @@
             description="Generic outline for Papyrus"
             priority="2">
       </contentoutline>
-   </extension> 	
+   </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+       <editorDiagram
+             factoryClass="org.eclipse.papyrus.infra.core.editorsfactory.anytype.AnyTypeEditorFactory">
+       </editorDiagram>
+    </extension>
 </plugin>

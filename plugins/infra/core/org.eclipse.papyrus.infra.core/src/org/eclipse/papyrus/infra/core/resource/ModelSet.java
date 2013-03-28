@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 
@@ -112,6 +113,7 @@ public class ModelSet extends ResourceSetImpl {
 		getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		getLoadOptions().put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
+		getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 	}
 
 	/**
@@ -176,6 +178,7 @@ public class ModelSet extends ResourceSetImpl {
 		try {
 			r = super.getResource(uri, loadOnDemand);
 		} catch (WrappedException e) {
+			Activator.log.error(e);
 			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
 				r = super.getResource(uri, false);
 				if(r == null) {
@@ -184,6 +187,11 @@ public class ModelSet extends ResourceSetImpl {
 			}
 		}
 		return setResourceOptions(r);
+	}
+
+	@Override
+	protected void handleDemandLoadException(Resource resource, IOException exception) throws RuntimeException {
+		super.handleDemandLoadException(resource, exception);
 	}
 
 	public void setTrackingModification(boolean isTrackingModification) {
@@ -628,7 +636,7 @@ public class ModelSet extends ResourceSetImpl {
 			for(IModel model : modelList) {
 				Set<URI> uris = model.getModifiedURIs();
 				for(URI u : uris) {
-					Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{u});
+					Optional<Boolean> res = getReadOnlyHandler().anyReadOnly(new URI[]{ u });
 					if(res.isPresent() && res.get()) {
 						roUris.add(u);
 					}

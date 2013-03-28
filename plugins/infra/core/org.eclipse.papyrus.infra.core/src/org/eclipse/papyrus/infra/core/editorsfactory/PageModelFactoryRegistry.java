@@ -71,8 +71,9 @@ public class PageModelFactoryRegistry implements IPageModelFactory {
 	 */
 	public void add(IEditorFactory editorFactory) {
 		// This should never happen
-		if(editorFactory == null)
+		if(editorFactory == null) {
 			throw new RuntimeException("Parameter should not be null.");
+		}
 
 		editorFactories.add(editorFactory);
 	}
