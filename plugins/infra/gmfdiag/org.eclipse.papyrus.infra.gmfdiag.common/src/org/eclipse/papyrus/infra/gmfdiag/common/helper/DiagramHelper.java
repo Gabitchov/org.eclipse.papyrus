@@ -18,7 +18,11 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.ui.IEditorPart;
 
 
@@ -51,26 +55,38 @@ public class DiagramHelper {
 	 * Refreshes all diagrams in this IEditorPart (Including nested editors when necessary)
 	 * 
 	 * @param editorPart
-	 */
-	//FIXME: The current implementation only refreshes the active editor diagram 
+	 */ 
 	public static void refresh(IEditorPart editorPart) {
+		List<IEditorPart> visibleEditorParts = null;
 		if(editorPart instanceof IMultiDiagramEditor) {
-			editorPart = ((IMultiDiagramEditor)editorPart).getActiveEditor();
-		}
-
-		if(editorPart instanceof DiagramEditor) {
-			DiagramEditor diagramEditor = (DiagramEditor)editorPart;
-			DiagramEditPart topEditPart = diagramEditor.getDiagramEditPart();
-			if(topEditPart != null) {
-				DiagramHelper.refresh(topEditPart, true);
+			ServicesRegistry servicesRegistry =  (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
+			if (servicesRegistry != null) {
+				try {
+					ISashWindowsContainer container = ServiceUtils.getInstance().getISashWindowsContainer(servicesRegistry) ;
+					visibleEditorParts = container.getVisibleIEditorParts() ;
+				} catch (ServiceException e) {
+					e.printStackTrace();
+				}
 			}
 		}
+
+		if (visibleEditorParts != null) {
+			for (IEditorPart visiblePart : visibleEditorParts) {
+				if(visiblePart instanceof DiagramEditor) {
+					DiagramEditor diagramEditor = (DiagramEditor)visiblePart;
+					DiagramEditPart topEditPart = diagramEditor.getDiagramEditPart();
+					if(topEditPart != null) {
+						DiagramHelper.refresh(topEditPart, true);
+					}
+				}
+			}
+		}
+
 	}
 
 	/**
 	 * Refreshes all opened diagrams
 	 */
-	//FIXME: The current implementation only refreshes the active diagrams
 	public static void refreshDiagrams() {
 		for(IMultiDiagramEditor activeMultiEditor : EditorUtils.getMultiDiagramEditors()) {
 			refresh(activeMultiEditor);
