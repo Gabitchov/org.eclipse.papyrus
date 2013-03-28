@@ -20,6 +20,10 @@
             priority="100"
             provider="org.eclipse.papyrus.infra.emf.providers.EMFFilteredLabelProvider">
       </labelProvider>
+      <labelProvider
+            priority="50"
+            provider="org.eclipse.papyrus.infra.emf.providers.AnyTypeLabelProvider">
+      </labelProvider>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
