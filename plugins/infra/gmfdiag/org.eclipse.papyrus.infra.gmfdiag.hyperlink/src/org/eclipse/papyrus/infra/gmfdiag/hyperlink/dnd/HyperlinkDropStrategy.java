@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.dnd;
 
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -108,7 +107,7 @@ public class HyperlinkDropStrategy extends TransactionalDropStrategy {
 
 						for(Object droppedObject : dropRequest.getObjects()) {
 							String text = labelProvider.getText(droppedObject);
-							CreateHyperLinkPageCommand command = new CreateHyperLinkPageCommand(domain, mainView, text, text, (EModelElement)droppedObject, true);
+							CreateHyperLinkPageCommand command = new CreateHyperLinkPageCommand(domain, mainView, text, text, (EObject)droppedObject, true);
 							command.execute();
 						}
 					} catch (ServiceException ex) {
