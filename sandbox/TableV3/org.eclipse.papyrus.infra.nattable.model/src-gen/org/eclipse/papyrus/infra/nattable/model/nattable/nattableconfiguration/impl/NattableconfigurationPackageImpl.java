@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
@@ -53,6 +54,13 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	private EClass tableEditorConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractTableConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,6 +197,60 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAbstractTableConfiguration() {
+		return abstractTableConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractTableConfiguration_RowAxisProvider() {
+		return (EReference)abstractTableConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractTableConfiguration_ColumnAxisProvider() {
+		return (EReference)abstractTableConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractTableConfiguration_EditorDeclaration() {
+		return (EAttribute)abstractTableConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractTableConfiguration_Name() {
+		return (EAttribute)abstractTableConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractTableConfiguration_Description() {
+		return (EAttribute)abstractTableConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getCellEditorDeclaration() {
 		return cellEditorDeclarationEEnum;
 	}
@@ -227,6 +289,13 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION);
 		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__TYPE);
 
+		abstractTableConfigurationEClass = createEClass(ABSTRACT_TABLE_CONFIGURATION);
+		createEReference(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__ROW_AXIS_PROVIDER);
+		createEReference(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDER);
+		createEAttribute(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__EDITOR_DECLARATION);
+		createEAttribute(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__NAME);
+		createEAttribute(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__DESCRIPTION);
+
 		// Create enums
 		cellEditorDeclarationEEnum = createEEnum(CELL_EDITOR_DECLARATION);
 	}
@@ -264,6 +333,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 
 		// Add supertypes to classes
 		tableEditorConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		abstractTableConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(tableEditorConfigurationEClass, TableEditorConfiguration.class, "TableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -271,6 +341,13 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		initEReference(getTableEditorConfiguration_HorizontalAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "horizontalAxisProvider", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableEditorConfiguration_EditorDeclaration(), this.getCellEditorDeclaration(), "editorDeclaration", "COLUMN", 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getTableEditorConfiguration_Type(), ecorePackage.getEString(), "type", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(abstractTableConfigurationEClass, AbstractTableConfiguration.class, "AbstractTableConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAbstractTableConfiguration_RowAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "rowAxisProvider", null, 1, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractTableConfiguration_ColumnAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "columnAxisProvider", null, 1, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAbstractTableConfiguration_EditorDeclaration(), this.getCellEditorDeclaration(), "editorDeclaration", "COLUMN", 1, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getAbstractTableConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAbstractTableConfiguration_Description(), ecorePackage.getEString(), "description", null, 0, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(cellEditorDeclarationEEnum, CellEditorDeclaration.class, "CellEditorDeclaration"); //$NON-NLS-1$

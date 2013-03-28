@@ -46,6 +46,18 @@
       <eLiterals name="ROW" value="1"/>
       <eLiterals name="CELL" value="2"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractTableConfiguration" abstract="true"
+        eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rowAxisProvider" lowerBound="1"
+          eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="columnAxisProvider" lowerBound="1"
+          eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="editorDeclaration" lowerBound="1"
+          eType="#//nattableconfiguration/CellEditorDeclaration" defaultValueLiteral="COLUMN"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          iD="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattableaxisprovider" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"
       nsPrefix="nattableaxisprovider">
