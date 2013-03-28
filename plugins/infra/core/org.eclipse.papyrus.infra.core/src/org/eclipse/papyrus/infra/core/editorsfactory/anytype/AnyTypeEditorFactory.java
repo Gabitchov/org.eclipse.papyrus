@@ -51,7 +51,28 @@ public class AnyTypeEditorFactory extends AbstractEditorFactory {
 			private AnyType anyType = anyTypeModel;
 
 			public String getTabTitle() {
-				return "Missing component";
+				EClass eClass = anyType.eClass();
+				String label;
+				if(eClass == null) {
+					label = "component";
+				} else {
+					label = eClass.getName();
+				}
+				return "Missing " + label;
+			}
+
+			private String getTypeLabel() {
+				EClass eClass = anyType.eClass();
+				String className = eClass == null ? "None" : eClass.getName();
+				return className;
+			}
+
+			private String getNsURI() {
+				EClass eClass = anyType.eClass();
+				EPackage ePackage = eClass == null ? null : eClass.getEPackage();
+				String ePackageName = ePackage == null ? "None" : ePackage.getNsURI();
+
+				return ePackageName;
 			}
 
 			public Image getComponentIcon() {
@@ -67,12 +88,11 @@ public class AnyTypeEditorFactory extends AbstractEditorFactory {
 			}
 
 			public String getErrorText() {
-				EClass eClass = anyTypeModel.eClass();
-				String className = eClass == null ? "None" : eClass.getName();
-				EPackage ePackage = eClass == null ? null : eClass.getEPackage();
-				String ePackageName = ePackage == null ? "None" : ePackage.getNsURI();
-				String message = "A component is missing. The following Model cannot be loaded: " + className + " (from " + ePackageName + ")\n";
-				message += "";
+				String typeLabel = getTypeLabel();
+				String packageURI = getNsURI();
+				String message = "A component is missing. The following Model cannot be loaded: " + typeLabel + " (from " + packageURI + ")\n";
+				message += "Changes to the model won't be reflected in this editor. This editor will be saved in the current state, i.e. without any data loss. ";
+				message += "However, this may result in an inconsistent state of this editor when the missing component will be restored\n";
 				return message;
 			}
 
@@ -87,7 +107,7 @@ public class AnyTypeEditorFactory extends AbstractEditorFactory {
 					errorImageLabel.setImage(componentIcon);
 				}
 
-				Label label = new Label(tabComposite, SWT.NONE);
+				Label label = new Label(tabComposite, SWT.WRAP);
 				label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 				label.setText(getErrorText());
 

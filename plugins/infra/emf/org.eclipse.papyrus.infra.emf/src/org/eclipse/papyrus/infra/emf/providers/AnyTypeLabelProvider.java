@@ -18,6 +18,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A LabelProvider for unresolved "AnyType" elements
@@ -42,6 +45,16 @@ public class AnyTypeLabelProvider extends EMFLabelProvider implements IFilteredL
 		} else {
 			return "Missing component";
 		}
+	}
+
+	@Override
+	public Image getImage(Object element) {
+		EObject eObject = EMFHelper.getEObject(element);
+		if(!(eObject instanceof AnyType)) {
+			return super.getImage(element);
+		}
+
+		return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_WARN_TSK);
 	}
 
 	public boolean accept(Object element) {
