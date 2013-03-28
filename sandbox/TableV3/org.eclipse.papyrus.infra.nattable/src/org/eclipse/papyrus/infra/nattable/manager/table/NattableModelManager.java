@@ -723,15 +723,15 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public void reorderColumnsElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getEditingDomain(axisToMove);
-		final Command cmd = MoveCommand.create(getEditingDomain(axisToMove), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
+		final EditingDomain domain = getEditingDomain(table.getContext());
+		final Command cmd = MoveCommand.create(getEditingDomain(table.getContext()), this.columnProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
 		domain.getCommandStack().execute(cmd);
 	}
 
 	// not tested
 	public void reorderRowElements(final IAxis axisToMove, final int newIndex) {
-		final EditingDomain domain = getEditingDomain(axisToMove);
-		final Command cmd = MoveCommand.create(getEditingDomain(axisToMove), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
+		final EditingDomain domain = getEditingDomain(table.getContext());
+		final Command cmd = MoveCommand.create(getEditingDomain(table.getContext()), this.rowProvider, NattableaxisproviderPackage.eINSTANCE.getDefaultAxisProvider_Axis(), axisToMove, newIndex);
 		domain.getCommandStack().execute(cmd);
 	}
 
