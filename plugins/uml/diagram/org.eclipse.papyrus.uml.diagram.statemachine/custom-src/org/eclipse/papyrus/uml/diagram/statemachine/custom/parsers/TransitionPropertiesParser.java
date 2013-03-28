@@ -51,6 +51,7 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.TimeEvent;
+import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -245,12 +246,35 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 						result.append(((SignalEvent)e).getName());
 					}
 				} else if(e instanceof ChangeEvent) {
-					result.append("when ").append("\"").append(retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language")).append("\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+					ValueSpecification vs = ((ChangeEvent) e).getChangeExpression();
+					String value;
+					if (vs instanceof OpaqueExpression) {
+						value = "\"" + retrieveBody((OpaqueExpression) vs, "Natural language") + "\""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					}
+					else {
+						value = vs.stringValue();
+					}
+					result.append(value);
 				} else if(e instanceof TimeEvent) {
+					TimeEvent timeEvent= (TimeEvent) e; 
 					//absRelPrefix
-					result.append((((TimeEvent)e).isRelative() ? "after " : "at ")); //$NON-NLS-1$ //$NON-NLS-2$
+					result.append(timeEvent.isRelative() ? "after " : "at "); //$NON-NLS-1$ //$NON-NLS-2$
 					// body
-					result.append("\"").append(retrieveBody((OpaqueExpression)((TimeEvent)e).getWhen().getExpr(), "Natural language")).append("\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					TimeExpression te = timeEvent.getWhen();
+					String value;
+					if (te != null) {
+						ValueSpecification vs = te.getExpr();
+						if (vs instanceof OpaqueExpression) {
+							value = "\"" + retrieveBody((OpaqueExpression) vs, "Natural language") + "\""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						}
+						else {
+							value = vs.stringValue();
+						}
+					}
+					else {
+						value = "undefined"; //$NON-NLS-1$
+					}
+					result.append(value);
 				} else { // any receive event
 					result.append("all"); //$NON-NLS-1$
 				}
