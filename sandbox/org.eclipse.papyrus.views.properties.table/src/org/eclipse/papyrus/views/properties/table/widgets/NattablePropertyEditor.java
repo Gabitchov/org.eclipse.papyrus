@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.EMFFeatureValueAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.views.properties.contexts.Property;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
@@ -135,7 +135,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	}
 
 	protected Table createTable(EObject sourceElement, EStructuralFeature synchronizedFeature) {
-		final TableEditorConfiguration tableConfiguration = getTableEditorConfiguration();
+		final TableConfiguration tableConfiguration = getTableConfiguration();
 		if(tableConfiguration == null) {
 			return null;
 		}
@@ -154,36 +154,37 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		table.setName(getLabel());
 		table.setContext(sourceElement);
 
-		AbstractAxisProvider rowProvider = tableConfiguration.getHorizontalAxisProvider();
+		AbstractAxisProvider rowProvider = tableConfiguration.getRowAxisProvider();
 		if(rowProvider == null) {
 			rowProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
 		} else {
 			rowProvider = EcoreUtil.copy(rowProvider);
 		}
-		if(rowProvider instanceof EMFFeatureValueAxisProvider) {
-			EMFFeatureValueAxisProvider emfAxisProvider = (EMFFeatureValueAxisProvider)rowProvider;
 
-			//FIXME: We should be able to manipulate EAttributes too.
-			emfAxisProvider.setListenFeature(synchronizedFeature);
-		}
-
-		AbstractAxisProvider columnProvider = tableConfiguration.getVerticalAxisProvider();
+		AbstractAxisProvider columnProvider = tableConfiguration.getColumnAxisProvider();
 		if(columnProvider == null) {
 			columnProvider = NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider();
 		} else {
 			columnProvider = EcoreUtil.copy(columnProvider);
 		}
 
-		table.setHorizontalAxisProvider(rowProvider);
-		table.setVerticalAxisProvider(columnProvider);
+
+		if(rowProvider instanceof EMFFeatureValueAxisProvider) {
+			EMFFeatureValueAxisProvider emfAxisProvider = (EMFFeatureValueAxisProvider)rowProvider;
+
+			emfAxisProvider.setListenFeature(synchronizedFeature);
+		}
+
+		table.setColumnAxisProvider(columnProvider);
+		table.setRowAxisProvider(rowProvider);
 
 		return table;
 	}
 
-	protected TableEditorConfiguration getTableEditorConfiguration() {
+	protected TableConfiguration getTableConfiguration() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		try {
-			TableEditorConfiguration tableConfiguration = (TableEditorConfiguration)EMFHelper.loadEMFModel(resourceSet, tableConfigURI);
+			TableConfiguration tableConfiguration = (TableConfiguration)EMFHelper.loadEMFModel(resourceSet, tableConfigURI);
 			return tableConfiguration;
 		} catch (Exception ex) {
 			Activator.log.error("Invalid table configuration", ex);
