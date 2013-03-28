@@ -15,11 +15,19 @@ package org.eclipse.papyrus.uml.nattable.provider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider;
 import org.eclipse.papyrus.infra.emf.nattable.registry.EStructuralFeatureImageRegistry;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElement;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
@@ -69,14 +77,28 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 	 */
 	@Override
 	public String getText(Object element) {
-		final Object value = ((ILabelProviderContextElement)element).getObject();
+		ILabelConfiguration conf = null;
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
+		if(element instanceof LabelProviderCellContextElement) {
+			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
+			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
+				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
+			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
+				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
+			}
+
+		}
+		if(conf instanceof EObjectLabelProviderConfiguration && !((EObjectLabelProviderConfiguration)conf).isDisplayLabel()) {
+			return "";
+		}
+		final Object value = ((ILabelProviderContextElement)element).getObject();
 		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
 		final EObject tableContext = modelManager.getTable().getContext();
 		String id = AxisUtils.getPropertyId(value);
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);
 		if(prop != null) {
-			return getText(null, configRegistry, prop.getName(), prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
+			return getText((FeatureLabelProviderConfiguration)conf, configRegistry, prop.getName(), prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
 		} else {
 			id = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
 			return id + " " + REQUIRED_PROFILE_NOT_AVALAIBLE; //$NON-NLS-1$
@@ -95,6 +117,21 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 		final Object value = ((ILabelProviderContextElement)element).getObject();
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElement)element).getConfigRegistry();
 		final INattableModelManager modelManager = (INattableModelManager)getAxisContentProvider(configRegistry);
+		ILabelConfiguration conf = null;
+		if(element instanceof LabelProviderCellContextElement) {
+			INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			LabelStack labels = ((LabelProviderCellContextElement)element).getCell().getConfigLabels();
+			if(labels.hasLabel(GridRegion.COLUMN_HEADER)) {
+				conf = manager.getColumnAxisConfiguration().getLabelConfiguration();
+			} else if(labels.hasLabel(GridRegion.ROW_HEADER)) {
+				conf = manager.getRowAxisConfiguration().getLabelConfiguration();
+			}
+
+		}
+		if(conf instanceof EObjectLabelProviderConfiguration && !((EObjectLabelProviderConfiguration)conf).isDisplayIcon()) {
+			return null;
+		}
+
 		final EObject tableContext = modelManager.getTable().getContext();
 		String id = AxisUtils.getPropertyId(value);
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);

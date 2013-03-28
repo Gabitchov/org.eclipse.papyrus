@@ -69,7 +69,7 @@ public class AbstractAxisProviderItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addJavaContentProviderIdsPropertyDescriptor(object);
+			addJavaAxisManagerIdsPropertyDescriptor(object);
 			addPastedElementTypeIdPropertyDescriptor(object);
 			addPastedElementContainmentFeaturePropertyDescriptor(object);
 		}
@@ -77,19 +77,19 @@ public class AbstractAxisProviderItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Java Content Provider Ids feature.
+	 * This adds a property descriptor for the Java Axis Manager Ids feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addJavaContentProviderIdsPropertyDescriptor(Object object) {
+	protected void addJavaAxisManagerIdsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AbstractAxisProvider_javaContentProviderIds_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAxisProvider_javaContentProviderIds_feature", "_UI_AbstractAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS,
+				 getString("_UI_AbstractAxisProvider_javaAxisManagerIds_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAxisProvider_javaAxisManagerIds_feature", "_UI_AbstractAxisProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisproviderPackage.Literals.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS,
 				 true,
 				 false,
 				 false,
@@ -198,7 +198,7 @@ public class AbstractAxisProviderItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AbstractAxisProvider.class)) {
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS:
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

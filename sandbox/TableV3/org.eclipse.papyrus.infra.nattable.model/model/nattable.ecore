@@ -52,8 +52,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="AbstractAxisProvider" abstract="true"
         eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eOperations name="getAxis" upperBound="-1" eType="#//IAxis"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaContentProviderIds"
-          lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaAxisManagerIds" lowerBound="1"
+          upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="axisConfiguration" lowerBound="1"
           eType="#//nattableaxisconfiguration/AbstractAxisConfiguration" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementTypeId"

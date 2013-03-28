@@ -88,13 +88,13 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int ABSTRACT_AXIS_PROVIDER__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * The feature id for the '<em><b>Java Axis Manager Ids</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Axis Configuration</b></em>' containment reference.
@@ -179,13 +179,13 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int DEFAULT_AXIS_PROVIDER__EANNOTATIONS = ABSTRACT_AXIS_PROVIDER__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * The feature id for the '<em><b>Java Axis Manager Ids</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
+	int DEFAULT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS;
 
 	/**
 	 * The feature id for the '<em><b>Axis Configuration</b></em>' containment reference.
@@ -279,13 +279,13 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int EMF_FEATURE_VALUE_AXIS_PROVIDER__EANNOTATIONS = DEFAULT_AXIS_PROVIDER__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * The feature id for the '<em><b>Java Axis Manager Ids</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_FEATURE_VALUE_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = DEFAULT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS;
+	int EMF_FEATURE_VALUE_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = DEFAULT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS;
 
 	/**
 	 * The feature id for the '<em><b>Axis Configuration</b></em>' containment reference.
@@ -380,15 +380,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getAbstractAxisProvider();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaContentProviderIds <em>Java Content Provider Ids</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaAxisManagerIds <em>Java Axis Manager Ids</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Java Content Provider Ids</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaContentProviderIds()
+	 * @return the meta object for the attribute list '<em>Java Axis Manager Ids</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaAxisManagerIds()
 	 * @see #getAbstractAxisProvider()
 	 * @generated
 	 */
-	EAttribute getAbstractAxisProvider_JavaContentProviderIds();
+	EAttribute getAbstractAxisProvider_JavaAxisManagerIds();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxisConfiguration <em>Axis Configuration</em>}'.
@@ -509,12 +509,12 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EClass ABSTRACT_AXIS_PROVIDER = eINSTANCE.getAbstractAxisProvider();
 
 		/**
-		 * The meta object literal for the '<em><b>Java Content Provider Ids</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Java Axis Manager Ids</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS = eINSTANCE.getAbstractAxisProvider_JavaContentProviderIds();
+		EAttribute ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS = eINSTANCE.getAbstractAxisProvider_JavaAxisManagerIds();
 
 		/**
 		 * The meta object literal for the '<em><b>Axis Configuration</b></em>' containment reference feature.

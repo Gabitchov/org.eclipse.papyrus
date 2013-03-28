@@ -448,7 +448,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *         axis
 	 */
 	protected List<String> getVerticalContentProviderIds() {
-		return this.table.getVerticalAxisProvider().getJavaContentProviderIds();
+		return this.table.getVerticalAxisProvider().getJavaAxisManagerIds();
 	}
 
 	/**
@@ -457,7 +457,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *         axis
 	 */
 	protected List<String> getHorizontalContentProviderIds() {
-		return this.table.getHorizontalAxisProvider().getJavaContentProviderIds();
+		return this.table.getHorizontalAxisProvider().getJavaAxisManagerIds();
 	}
 
 	/**
@@ -564,7 +564,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private EditingDomain getTableEditingDomain() {
 		ServicesRegistry registry = null;
 		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table);
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table);
 			return registry.getService(EditingDomain.class);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
@@ -581,7 +581,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private EditingDomain getContextEditingDomain() {
 		ServicesRegistry registry = null;
 		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table.getContext());
+			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());
 			return registry.getService(EditingDomain.class);
 		} catch (final ServiceException e) {
 			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);

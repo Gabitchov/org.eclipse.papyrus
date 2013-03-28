@@ -44,7 +44,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl#getJavaContentProviderIds <em>Java Content Provider Ids</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl#getJavaAxisManagerIds <em>Java Axis Manager Ids</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl#getAxisConfiguration <em>Axis Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
@@ -55,14 +55,14 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
  */
 public abstract class AbstractAxisProviderImpl extends EModelElementImpl implements AbstractAxisProvider {
 	/**
-	 * The cached value of the '{@link #getJavaContentProviderIds() <em>Java Content Provider Ids</em>}' attribute list.
+	 * The cached value of the '{@link #getJavaAxisManagerIds() <em>Java Axis Manager Ids</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJavaContentProviderIds()
+	 * @see #getJavaAxisManagerIds()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> javaContentProviderIds;
+	protected EList<String> javaAxisManagerIds;
 
 	/**
 	 * The cached value of the '{@link #getAxisConfiguration() <em>Axis Configuration</em>}' containment reference.
@@ -128,11 +128,11 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getJavaContentProviderIds() {
-		if (javaContentProviderIds == null) {
-			javaContentProviderIds = new EDataTypeUniqueEList<String>(String.class, this, NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS);
+	public EList<String> getJavaAxisManagerIds() {
+		if (javaAxisManagerIds == null) {
+			javaAxisManagerIds = new EDataTypeUniqueEList<String>(String.class, this, NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS);
 		}
-		return javaContentProviderIds;
+		return javaAxisManagerIds;
 	}
 
 	/**
@@ -270,8 +270,8 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
-				return getJavaContentProviderIds();
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS:
+				return getJavaAxisManagerIds();
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION:
 				return getAxisConfiguration();
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID:
@@ -292,9 +292,9 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
-				getJavaContentProviderIds().clear();
-				getJavaContentProviderIds().addAll((Collection<? extends String>)newValue);
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS:
+				getJavaAxisManagerIds().clear();
+				getJavaAxisManagerIds().addAll((Collection<? extends String>)newValue);
 				return;
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION:
 				setAxisConfiguration((AbstractAxisConfiguration)newValue);
@@ -317,8 +317,8 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
-				getJavaContentProviderIds().clear();
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS:
+				getJavaAxisManagerIds().clear();
 				return;
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION:
 				setAxisConfiguration((AbstractAxisConfiguration)null);
@@ -341,8 +341,8 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS:
-				return javaContentProviderIds != null && !javaContentProviderIds.isEmpty();
+			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS:
+				return javaAxisManagerIds != null && !javaAxisManagerIds.isEmpty();
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION:
 				return axisConfiguration != null;
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID:
@@ -377,8 +377,8 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (javaContentProviderIds: "); //$NON-NLS-1$
-		result.append(javaContentProviderIds);
+		result.append(" (javaAxisManagerIds: "); //$NON-NLS-1$
+		result.append(javaAxisManagerIds);
 		result.append(", pastedElementTypeId: "); //$NON-NLS-1$
 		result.append(pastedElementTypeId);
 		result.append(')');

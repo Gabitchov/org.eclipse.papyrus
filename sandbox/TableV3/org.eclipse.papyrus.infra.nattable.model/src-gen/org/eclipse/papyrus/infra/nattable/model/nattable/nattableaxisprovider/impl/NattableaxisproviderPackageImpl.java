@@ -163,7 +163,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAbstractAxisProvider_JavaContentProviderIds() {
+	public EAttribute getAbstractAxisProvider_JavaAxisManagerIds() {
 		return (EAttribute)abstractAxisProviderEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -268,7 +268,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 
 		// Create classes and their features
 		abstractAxisProviderEClass = createEClass(ABSTRACT_AXIS_PROVIDER);
-		createEAttribute(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__JAVA_CONTENT_PROVIDER_IDS);
+		createEAttribute(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__JAVA_AXIS_MANAGER_IDS);
 		createEReference(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__AXIS_CONFIGURATION);
 		createEAttribute(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_TYPE_ID);
 		createEReference(abstractAxisProviderEClass, ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE);
@@ -320,7 +320,7 @@ public class NattableaxisproviderPackageImpl extends EPackageImpl implements Nat
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractAxisProviderEClass, AbstractAxisProvider.class, "AbstractAxisProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getAbstractAxisProvider_JavaContentProviderIds(), ecorePackage.getEString(), "javaContentProviderIds", null, 1, -1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAbstractAxisProvider_JavaAxisManagerIds(), ecorePackage.getEString(), "javaAxisManagerIds", null, 1, -1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractAxisProvider_AxisConfiguration(), theNattableaxisconfigurationPackage.getAbstractAxisConfiguration(), null, "axisConfiguration", null, 1, 1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getAbstractAxisProvider_PastedElementTypeId(), theEcorePackage.getEString(), "pastedElementTypeId", null, 0, 1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractAxisProvider_PastedElementContainmentFeature(), theEcorePackage.getEReference(), null, "pastedElementContainmentFeature", null, 0, 1, AbstractAxisProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

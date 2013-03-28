@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaContentProviderIds <em>Java Content Provider Ids</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getJavaAxisManagerIds <em>Java Axis Manager Ids</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxisConfiguration <em>Axis Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getPastedElementTypeId <em>Pasted Element Type Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}</li>
@@ -42,20 +42,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  */
 public interface AbstractAxisProvider extends EModelElement {
 	/**
-	 * Returns the value of the '<em><b>Java Content Provider Ids</b></em>' attribute list.
+	 * Returns the value of the '<em><b>Java Axis Manager Ids</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Java Content Provider Ids</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Java Axis Manager Ids</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Java Content Provider Ids</em>' attribute list.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getAbstractAxisProvider_JavaContentProviderIds()
+	 * @return the value of the '<em>Java Axis Manager Ids</em>' attribute list.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getAbstractAxisProvider_JavaAxisManagerIds()
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<String> getJavaContentProviderIds();
+	EList<String> getJavaAxisManagerIds();
 
 	/**
 	 * Returns the value of the '<em><b>Axis Configuration</b></em>' containment reference.
