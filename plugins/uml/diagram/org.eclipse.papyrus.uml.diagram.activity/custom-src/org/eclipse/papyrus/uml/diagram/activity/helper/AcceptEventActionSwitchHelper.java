@@ -21,9 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.AcceptEventActionEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart.AcceptEventActionFigure;
+import org.eclipse.papyrus.uml.diagram.activity.figures.AcceptEventActionFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.uml2.uml.AcceptEventAction;
@@ -126,9 +125,13 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 		AcceptEventActionFigure actionFigure = editPart.getPrimaryShape();
 		boolean useHourglassFigure = CustomAcceptEventActionEditHelper.isAcceptTimeEventAction(getAction());
 		boolean hourglassAlreadyUsed = actionFigure.isTemplateForAcceptTimeEventActionUsed();
+		
+		
 		if(useHourglassFigure != hourglassAlreadyUsed) {
+			
 			// set usage of the correct figure
 			actionFigure.useTemplateForAcceptTimeEventAction(useHourglassFigure);
+		
 			// arrange the figure so that style remains coherent
 			if(editPart.getModel() instanceof View) {
 				int locX = actionFigure.getLocation().x;

@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
@@ -56,19 +55,21 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.AcceptTimeEventActionStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure;
@@ -80,11 +81,12 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class AcceptTimeEventActionAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
+public class AcceptTimeEventActionAppliedStereotypeEditPart extends org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -104,7 +106,7 @@ public class AcceptTimeEventActionAppliedStereotypeEditPart extends LabelEditPar
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated
@@ -137,7 +139,7 @@ public class AcceptTimeEventActionAppliedStereotypeEditPart extends LabelEditPar
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeExternalNodeEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AcceptTimeEventActionStereotypeExternalNodeEditPolicy());
 	}
 
 	/**
@@ -429,7 +431,11 @@ public class AcceptTimeEventActionAppliedStereotypeEditPart extends LabelEditPar
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if(configuration instanceof IAdvancedEditorConfiguration) {
+				if(configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
@@ -516,6 +522,13 @@ public class AcceptTimeEventActionAppliedStereotypeEditPart extends LabelEditPar
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
 		}
 	}
 
@@ -604,14 +617,7 @@ public class AcceptTimeEventActionAppliedStereotypeEditPart extends LabelEditPar
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -745,9 +751,16 @@ public class AcceptTimeEventActionAppliedStereotypeEditPart extends LabelEditPar
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
-	public IFigure getPrimaryShape() {
-		return getFigure();
+	public String getLabelRole() {
+		return "Stereotype";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/stereotype.gif";//$NON-NLS-1$
 	}
 }

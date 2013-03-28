@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -1202,11 +1201,10 @@ public class ActivityParameterNodeEditPart extends BorderNamedElementEditPart im
 			// use StereotypeFigureHelper
 			stereotypeHelper = new StereotypeFigureHelper(this) {
 
-				@Override
-				public IMapMode getMapMode() {
-					return ActivityParameterNodeEditPart.this.getMapMode();
-				}
-
+				//				@Override
+				//				public IMapMode getMapMode() {
+				//					return ActivityParameterNodeEditPart.this.getMapMode();
+				//				}
 				@Override
 				public Object getStereotypeRectangleConstraint() {
 					GridData constraintStereotypeRect0 = new GridData();

@@ -134,7 +134,7 @@ public abstract class StereotypeFigureHelper {
 	protected void createStereotypeLabel() {
 		ensureStereotypeRectanglePrinted();
 		fActionStereotypeLabel = new CenteredWrappedLabel();
-		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(topInset), getMapMode().DPtoLP(leftInset), getMapMode().DPtoLP(bottomInset ), getMapMode().DPtoLP(rightInset)));
+		//fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(topInset), getMapMode().DPtoLP(leftInset), getMapMode().DPtoLP(bottomInset ), getMapMode().DPtoLP(rightInset)));
 		// Add the stereotype label to the figure
 		stereotypeRectangle.add(fActionStereotypeLabel, GravityConstrainedFlowLayout.ALIGN_CENTER, 0);
 	}
@@ -157,7 +157,7 @@ public abstract class StereotypeFigureHelper {
 	protected void createStereotypePropertiesInBraceLabel() {
 		ensureStereotypeRectanglePrinted();
 		stereotypePropertiesInBraceContent = new CenteredWrappedLabel();
-		stereotypePropertiesInBraceContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+		//stereotypePropertiesInBraceContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 		// Add the stereotype label to the figure
 		stereotypeRectangle.add(stereotypePropertiesInBraceContent, GravityConstrainedFlowLayout.ALIGN_CENTER, -1);
 	}
@@ -184,7 +184,7 @@ public abstract class StereotypeFigureHelper {
 		stereotypePropertiesContent.setTextJustification(SWT.LEFT);
 		stereotypePropertiesContent.setTextAlignment(PositionConstants.LEFT);
 		stereotypePropertiesContent.setTextWrap(true);
-		stereotypePropertiesContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+		//stereotypePropertiesContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 		// Add the stereotype label to the figure
 		stereotypeRectangle.add(stereotypePropertiesContent, GravityConstrainedFlowLayout.ALIGN_TOPLEFT, -1);
 	}
@@ -303,7 +303,7 @@ public abstract class StereotypeFigureHelper {
 	/**
 	 * Get the map mode of the corresponding edit part
 	 */
-	public abstract IMapMode getMapMode();
+	//public abstract IMapMode getMapMode();
 
 	public int getTopInset() {
 		return topInset;

@@ -27,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup.CustomLo
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup.CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup.CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptTimeEventActionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
@@ -137,6 +138,9 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomActivityActivityContentCompartmentEditPart(view);
 			case AcceptEventActionEditPart.VISUAL_ID:
 				return new CustomAcceptEventActionEditPart(view);
+			case AcceptTimeEventActionAppliedStereotypeEditPart.VISUAL_ID:
+				return new CustomAcceptTimeEventActionAppliedStereotypeEditPart(view);
+				
 			}
 		}
 		return super.createEditPart(context, model);

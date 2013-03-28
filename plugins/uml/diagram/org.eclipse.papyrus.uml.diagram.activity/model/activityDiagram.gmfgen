@@ -5580,9 +5580,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="AcceptEventActionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="AcceptEventActionFigure"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class AcceptEventActionFigure extends org.eclipse.draw2d.ScalablePolygonShape {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel fAcceptEventActionLabel; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public AcceptEventActionFigure() {&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xD;&#xA;&#x9;layoutThis.numColumns = 1;&#xD;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xD;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xD;&#xA;, getMapMode().DPtoLP(0)&#xD;&#xA;));&#xD;&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(200)&#xD;&#xA;, getMapMode().DPtoLP(0)&#xD;&#xA;));&#xD;&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(200)&#xD;&#xA;, getMapMode().DPtoLP(50)&#xD;&#xA;));&#xD;&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xD;&#xA;, getMapMode().DPtoLP(50)&#xD;&#xA;));&#xD;&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(50)&#xD;&#xA;, getMapMode().DPtoLP(25)&#xD;&#xA;));&#xD;&#xA;this.setFill(true);&#xD;&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xD;&#xA;, getMapMode().DPtoLP(50)&#xD;&#xA;, getMapMode().DPtoLP(0)&#xD;&#xA;, getMapMode().DPtoLP(0)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;org.eclipse.draw2d.RectangleFigure labelRect0 = new org.eclipse.draw2d.RectangleFigure();&#xD;&#xA;labelRect0.setFill(false);&#xD;&#xA;labelRect0.setOutline(false);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;org.eclipse.draw2d.GridData constraintLabelRect0 = new org.eclipse.draw2d.GridData();&#xD;&#xA;constraintLabelRect0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xD;&#xA;constraintLabelRect0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xD;&#xA;constraintLabelRect0.horizontalIndent = 0;&#xD;&#xA;constraintLabelRect0.horizontalSpan = 1;&#xD;&#xA;constraintLabelRect0.verticalSpan = 1;&#xD;&#xA;constraintLabelRect0.grabExcessHorizontalSpace = true;&#xD;&#xA;constraintLabelRect0.grabExcessVerticalSpace = true;&#xD;&#xA;this.add(labelRect0, constraintLabelRect0);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutLabelRect0 = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;labelRect0.setLayoutManager(layoutLabelRect0);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fAcceptEventActionLabel = new org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fAcceptEventActionLabel.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xD;&#xA;, getMapMode().DPtoLP(5)&#xD;&#xA;, getMapMode().DPtoLP(5)&#xD;&#xA;, getMapMode().DPtoLP(5)&#xD;&#xA;));&#xD;&#xA;&#xD;&#xA;labelRect0.add(fAcceptEventActionLabel);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel getAcceptEventActionLabel() {&#xD;&#xA;&#x9;&#x9;return fAcceptEventActionLabel;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.AcceptEventActionFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -5670,7 +5669,7 @@
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.AcceptTimeEventActionStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.1"/>
         </labels>
@@ -17487,6 +17486,7 @@
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="This extension enables to draw a rake on a CallBehaviorActionEditPart linked to an activity"
         genView="/0/@diagram/@childNodes.11"
+        name="CallBehaviorAction"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart">
       <propRefreshHook
           comment="Add/Remove the RakeFigure when an Activity is selected as behavior or deselected"
@@ -17621,5 +17621,11 @@
         genView="/0/@diagram/@childNodes.67"
         name="UMLNodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="set the super class as AbstractLabelEditPart"
+        genView="/0/@diagram/@childNodes.52/@labels.2"
+        name="AbstractLabelEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

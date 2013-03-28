@@ -51,10 +51,10 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 		// use StereotypeFigureHelper
 		stereotypeHelper = new StereotypeFigureHelper(this) {
 
-			@Override
-			public IMapMode getMapMode() {
-				return AbstractActionFigure.this.getMapMode();
-			}
+//			@Override
+//			public IMapMode getMapMode() {
+//				return AbstractActionFigure.this.getMapMode();
+//			}
 
 			@Override
 			public Object getStereotypeRectangleConstraint() {

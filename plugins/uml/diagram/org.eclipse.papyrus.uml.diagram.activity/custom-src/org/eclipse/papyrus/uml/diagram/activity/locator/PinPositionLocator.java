@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart.AcceptEventActionFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -65,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendObjActA
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.figures.AcceptEventActionFigure;
 import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusSendNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
