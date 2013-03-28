@@ -33,18 +33,18 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EObjectLabelProviderConfigurationItemProvider
+public class ObjectLabelProviderConfigurationItemProvider
 	extends EModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -58,7 +58,7 @@ public class EObjectLabelProviderConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObjectLabelProviderConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public ObjectLabelProviderConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -113,9 +113,9 @@ public class EObjectLabelProviderConfigurationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EObjectLabelProviderConfiguration_displayIcon_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayIcon_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON,
+				 getString("_UI_ObjectLabelProviderConfiguration_displayIcon_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectLabelProviderConfiguration_displayIcon_feature", "_UI_ObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablelabelproviderPackage.Literals.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON,
 				 true,
 				 false,
 				 false,
@@ -135,9 +135,9 @@ public class EObjectLabelProviderConfigurationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EObjectLabelProviderConfiguration_displayLabel_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_EObjectLabelProviderConfiguration_displayLabel_feature", "_UI_EObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL,
+				 getString("_UI_ObjectLabelProviderConfiguration_displayLabel_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectLabelProviderConfiguration_displayLabel_feature", "_UI_ObjectLabelProviderConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablelabelproviderPackage.Literals.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL,
 				 true,
 				 false,
 				 false,
@@ -147,14 +147,14 @@ public class EObjectLabelProviderConfigurationItemProvider
 	}
 
 	/**
-	 * This returns EObjectLabelProviderConfiguration.gif.
+	 * This returns ObjectLabelProviderConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EObjectLabelProviderConfiguration")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ObjectLabelProviderConfiguration")); //$NON-NLS-1$
 	}
 
 	/**
@@ -165,10 +165,10 @@ public class EObjectLabelProviderConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EObjectLabelProviderConfiguration)object).getLabelProviderContext();
+		String label = ((ObjectLabelProviderConfiguration)object).getLabelProviderContext();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EObjectLabelProviderConfiguration_type") : //$NON-NLS-1$
-			getString("_UI_EObjectLabelProviderConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_ObjectLabelProviderConfiguration_type") : //$NON-NLS-1$
+			getString("_UI_ObjectLabelProviderConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -182,10 +182,10 @@ public class EObjectLabelProviderConfigurationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EObjectLabelProviderConfiguration.class)) {
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+		switch (notification.getFeatureID(ObjectLabelProviderConfiguration.class)) {
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -41,13 +41,13 @@ public interface NattablelabelproviderFactory extends EFactory {
 	FeatureLabelProviderConfiguration createFeatureLabelProviderConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>EObject Label Provider Configuration</em>'.
+	 * Returns a new object of class '<em>Object Label Provider Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>EObject Label Provider Configuration</em>'.
+	 * @return a new object of class '<em>Object Label Provider Configuration</em>'.
 	 * @generated
 	 */
-	EObjectLabelProviderConfiguration createEObjectLabelProviderConfiguration();
+	ObjectLabelProviderConfiguration createObjectLabelProviderConfiguration();
 
 	/**
 	 * Returns the package supported by this factory.

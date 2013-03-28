@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -26,16 +27,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationPackageImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
@@ -53,14 +58,28 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass tableEditorConfigurationEClass = null;
+	private EClass abstractTableConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass abstractTableConfigurationEClass = null;
+	private EClass tableConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractTableCreationTesterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass javaTableCreationTesterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,51 +171,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTableEditorConfiguration() {
-		return tableEditorConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTableEditorConfiguration_VerticalAxisProvider() {
-		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTableEditorConfiguration_HorizontalAxisProvider() {
-		return (EReference)tableEditorConfigurationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTableEditorConfiguration_EditorDeclaration() {
-		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTableEditorConfiguration_Type() {
-		return (EAttribute)tableEditorConfigurationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getAbstractTableConfiguration() {
 		return abstractTableConfigurationEClass;
 	}
@@ -251,6 +225,78 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTableConfiguration() {
+		return tableConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableConfiguration_Type() {
+		return (EAttribute)tableConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableConfiguration_IconPath() {
+		return (EAttribute)tableConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTableConfiguration_CreationTester() {
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAbstractTableCreationTester() {
+		return abstractTableCreationTesterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAbstractTableCreationTester__GetTester() {
+		return abstractTableCreationTesterEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getJavaTableCreationTester() {
+		return javaTableCreationTesterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJavaTableCreationTester_Tester() {
+		return (EAttribute)javaTableCreationTesterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getCellEditorDeclaration() {
 		return cellEditorDeclarationEEnum;
 	}
@@ -283,18 +329,23 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		isCreated = true;
 
 		// Create classes and their features
-		tableEditorConfigurationEClass = createEClass(TABLE_EDITOR_CONFIGURATION);
-		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER);
-		createEReference(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER);
-		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION);
-		createEAttribute(tableEditorConfigurationEClass, TABLE_EDITOR_CONFIGURATION__TYPE);
-
 		abstractTableConfigurationEClass = createEClass(ABSTRACT_TABLE_CONFIGURATION);
 		createEReference(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__ROW_AXIS_PROVIDER);
 		createEReference(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDER);
 		createEAttribute(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__EDITOR_DECLARATION);
 		createEAttribute(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__NAME);
 		createEAttribute(abstractTableConfigurationEClass, ABSTRACT_TABLE_CONFIGURATION__DESCRIPTION);
+
+		tableConfigurationEClass = createEClass(TABLE_CONFIGURATION);
+		createEAttribute(tableConfigurationEClass, TABLE_CONFIGURATION__TYPE);
+		createEAttribute(tableConfigurationEClass, TABLE_CONFIGURATION__ICON_PATH);
+		createEReference(tableConfigurationEClass, TABLE_CONFIGURATION__CREATION_TESTER);
+
+		abstractTableCreationTesterEClass = createEClass(ABSTRACT_TABLE_CREATION_TESTER);
+		createEOperation(abstractTableCreationTesterEClass, ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER);
+
+		javaTableCreationTesterEClass = createEClass(JAVA_TABLE_CREATION_TESTER);
+		createEAttribute(javaTableCreationTesterEClass, JAVA_TABLE_CREATION_TESTER__TESTER);
 
 		// Create enums
 		cellEditorDeclarationEEnum = createEEnum(CELL_EDITOR_DECLARATION);
@@ -332,22 +383,29 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		tableEditorConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		abstractTableConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		tableConfigurationEClass.getESuperTypes().add(this.getAbstractTableConfiguration());
+		javaTableCreationTesterEClass.getESuperTypes().add(this.getAbstractTableCreationTester());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(tableEditorConfigurationEClass, TableEditorConfiguration.class, "TableEditorConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTableEditorConfiguration_VerticalAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "verticalAxisProvider", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableEditorConfiguration_HorizontalAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "horizontalAxisProvider", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTableEditorConfiguration_EditorDeclaration(), this.getCellEditorDeclaration(), "editorDeclaration", "COLUMN", 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getTableEditorConfiguration_Type(), ecorePackage.getEString(), "type", null, 1, 1, TableEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(abstractTableConfigurationEClass, AbstractTableConfiguration.class, "AbstractTableConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAbstractTableConfiguration_RowAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "rowAxisProvider", null, 1, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractTableConfiguration_ColumnAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "columnAxisProvider", null, 1, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getAbstractTableConfiguration_EditorDeclaration(), this.getCellEditorDeclaration(), "editorDeclaration", "COLUMN", 1, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getAbstractTableConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getAbstractTableConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getAbstractTableConfiguration_Description(), ecorePackage.getEString(), "description", null, 0, 1, AbstractTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(tableConfigurationEClass, TableConfiguration.class, "TableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTableConfiguration_Type(), ecorePackage.getEString(), "type", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableConfiguration_IconPath(), theEcorePackage.getEString(), "iconPath", null, 0, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableConfiguration_CreationTester(), this.getAbstractTableCreationTester(), null, "creationTester", null, 0, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(abstractTableCreationTesterEClass, AbstractTableCreationTester.class, "AbstractTableCreationTester", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEOperation(getAbstractTableCreationTester__GetTester(), ecorePackage.getEJavaObject(), "getTester", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(javaTableCreationTesterEClass, JavaTableCreationTester.class, "JavaTableCreationTester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getJavaTableCreationTester_Tester(), ecorePackage.getEString(), "tester", null, 1, 1, JavaTableCreationTester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(cellEditorDeclarationEEnum, CellEditorDeclaration.class, "CellEditorDeclaration"); //$NON-NLS-1$

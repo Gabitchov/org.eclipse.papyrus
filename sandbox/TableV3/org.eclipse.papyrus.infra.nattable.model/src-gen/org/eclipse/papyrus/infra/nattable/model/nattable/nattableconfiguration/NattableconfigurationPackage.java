@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -69,88 +70,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	NattableconfigurationPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl <em>Table Editor Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableEditorConfiguration()
-	 * @generated
-	 */
-	int TABLE_EDITOR_CONFIGURATION = 0;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Vertical Axis Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Horizontal Axis Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Editor Declaration</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION__TYPE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Table Editor Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Get EAnnotation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION___GET_EANNOTATION__STRING = EcorePackage.EMODEL_ELEMENT___GET_EANNOTATION__STRING;
-
-	/**
-	 * The number of operations of the '<em>Table Editor Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_EDITOR_CONFIGURATION_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableConfigurationImpl <em>Abstract Table Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,7 +77,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getAbstractTableConfiguration()
 	 * @generated
 	 */
-	int ABSTRACT_TABLE_CONFIGURATION = 1;
+	int ABSTRACT_TABLE_CONFIGURATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -242,6 +161,207 @@ public interface NattableconfigurationPackage extends EPackage {
 	int ABSTRACT_TABLE_CONFIGURATION_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl <em>Table Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableConfiguration()
+	 * @generated
+	 */
+	int TABLE_CONFIGURATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__EANNOTATIONS = ABSTRACT_TABLE_CONFIGURATION__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Row Axis Provider</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__ROW_AXIS_PROVIDER = ABSTRACT_TABLE_CONFIGURATION__ROW_AXIS_PROVIDER;
+
+	/**
+	 * The feature id for the '<em><b>Column Axis Provider</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDER = ABSTRACT_TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDER;
+
+	/**
+	 * The feature id for the '<em><b>Editor Declaration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__EDITOR_DECLARATION = ABSTRACT_TABLE_CONFIGURATION__EDITOR_DECLARATION;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__NAME = ABSTRACT_TABLE_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__DESCRIPTION = ABSTRACT_TABLE_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__TYPE = ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Icon Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__ICON_PATH = ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Creation Tester</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__CREATION_TESTER = ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Table Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION_FEATURE_COUNT = ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION___GET_EANNOTATION__STRING = ABSTRACT_TABLE_CONFIGURATION___GET_EANNOTATION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Table Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION_OPERATION_COUNT = ABSTRACT_TABLE_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl <em>Abstract Table Creation Tester</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getAbstractTableCreationTester()
+	 * @generated
+	 */
+	int ABSTRACT_TABLE_CREATION_TESTER = 2;
+
+	/**
+	 * The number of structural features of the '<em>Abstract Table Creation Tester</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TABLE_CREATION_TESTER_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Get Tester</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER = 0;
+
+	/**
+	 * The number of operations of the '<em>Abstract Table Creation Tester</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TABLE_CREATION_TESTER_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl <em>Java Table Creation Tester</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getJavaTableCreationTester()
+	 * @generated
+	 */
+	int JAVA_TABLE_CREATION_TESTER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Tester</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_TABLE_CREATION_TESTER__TESTER = ABSTRACT_TABLE_CREATION_TESTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Java Table Creation Tester</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_TABLE_CREATION_TESTER_FEATURE_COUNT = ABSTRACT_TABLE_CREATION_TESTER_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Tester</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_TABLE_CREATION_TESTER___GET_TESTER = ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER;
+
+	/**
+	 * The number of operations of the '<em>Java Table Creation Tester</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_TABLE_CREATION_TESTER_OPERATION_COUNT = ABSTRACT_TABLE_CREATION_TESTER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,62 +369,8 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getCellEditorDeclaration()
 	 * @generated
 	 */
-	int CELL_EDITOR_DECLARATION = 2;
+	int CELL_EDITOR_DECLARATION = 4;
 
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration <em>Table Editor Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Table Editor Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration
-	 * @generated
-	 */
-	EClass getTableEditorConfiguration();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getVerticalAxisProvider <em>Vertical Axis Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Vertical Axis Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getVerticalAxisProvider()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EReference getTableEditorConfiguration_VerticalAxisProvider();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Horizontal Axis Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getHorizontalAxisProvider()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EReference getTableEditorConfiguration_HorizontalAxisProvider();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration <em>Editor Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Editor Declaration</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getEditorDeclaration()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EAttribute getTableEditorConfiguration_EditorDeclaration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration#getType()
-	 * @see #getTableEditorConfiguration()
-	 * @generated
-	 */
-	EAttribute getTableEditorConfiguration_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration <em>Abstract Table Configuration</em>}'.
@@ -372,6 +438,90 @@ public interface NattableconfigurationPackage extends EPackage {
 	EAttribute getAbstractTableConfiguration_Description();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration <em>Table Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration
+	 * @generated
+	 */
+	EClass getTableConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType()
+	 * @see #getTableConfiguration()
+	 * @generated
+	 */
+	EAttribute getTableConfiguration_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath <em>Icon Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon Path</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath()
+	 * @see #getTableConfiguration()
+	 * @generated
+	 */
+	EAttribute getTableConfiguration_IconPath();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester <em>Creation Tester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Creation Tester</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester()
+	 * @see #getTableConfiguration()
+	 * @generated
+	 */
+	EReference getTableConfiguration_CreationTester();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester <em>Abstract Table Creation Tester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Table Creation Tester</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester
+	 * @generated
+	 */
+	EClass getAbstractTableCreationTester();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester#getTester() <em>Get Tester</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Tester</em>' operation.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester#getTester()
+	 * @generated
+	 */
+	EOperation getAbstractTableCreationTester__GetTester();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester <em>Java Table Creation Tester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Table Creation Tester</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester
+	 * @generated
+	 */
+	EClass getJavaTableCreationTester();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester#getTester <em>Tester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tester</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester#getTester()
+	 * @see #getJavaTableCreationTester()
+	 * @generated
+	 */
+	EAttribute getJavaTableCreationTester_Tester();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -404,48 +554,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl <em>Table Editor Configuration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableEditorConfigurationImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableEditorConfiguration()
-		 * @generated
-		 */
-		EClass TABLE_EDITOR_CONFIGURATION = eINSTANCE.getTableEditorConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>Vertical Axis Provider</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER = eINSTANCE.getTableEditorConfiguration_VerticalAxisProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Horizontal Axis Provider</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER = eINSTANCE.getTableEditorConfiguration_HorizontalAxisProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Editor Declaration</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION = eINSTANCE.getTableEditorConfiguration_EditorDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE_EDITOR_CONFIGURATION__TYPE = eINSTANCE.getTableEditorConfiguration_Type();
-
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableConfigurationImpl <em>Abstract Table Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -495,6 +603,76 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TABLE_CONFIGURATION__DESCRIPTION = eINSTANCE.getAbstractTableConfiguration_Description();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl <em>Table Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getTableConfiguration()
+		 * @generated
+		 */
+		EClass TABLE_CONFIGURATION = eINSTANCE.getTableConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_CONFIGURATION__TYPE = eINSTANCE.getTableConfiguration_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Icon Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_CONFIGURATION__ICON_PATH = eINSTANCE.getTableConfiguration_IconPath();
+
+		/**
+		 * The meta object literal for the '<em><b>Creation Tester</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_CONFIGURATION__CREATION_TESTER = eINSTANCE.getTableConfiguration_CreationTester();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl <em>Abstract Table Creation Tester</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getAbstractTableCreationTester()
+		 * @generated
+		 */
+		EClass ABSTRACT_TABLE_CREATION_TESTER = eINSTANCE.getAbstractTableCreationTester();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Tester</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER = eINSTANCE.getAbstractTableCreationTester__GetTester();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl <em>Java Table Creation Tester</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getJavaTableCreationTester()
+		 * @generated
+		 */
+		EClass JAVA_TABLE_CREATION_TESTER = eINSTANCE.getJavaTableCreationTester();
+
+		/**
+		 * The meta object literal for the '<em><b>Tester</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_TABLE_CREATION_TESTER__TESTER = eINSTANCE.getJavaTableCreationTester_Tester();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.

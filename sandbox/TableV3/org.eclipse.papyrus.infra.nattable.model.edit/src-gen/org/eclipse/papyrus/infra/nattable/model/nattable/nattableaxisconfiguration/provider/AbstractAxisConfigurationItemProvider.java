@@ -164,7 +164,7 @@ public class AbstractAxisConfigurationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.ABSTRACT_AXIS_CONFIGURATION__LABEL_CONFIGURATION,
-				 NattablelabelproviderFactory.eINSTANCE.createEObjectLabelProviderConfiguration()));
+				 NattablelabelproviderFactory.eINSTANCE.createObjectLabelProviderConfiguration()));
 
 		newChildDescriptors.add
 			(createChildParameter

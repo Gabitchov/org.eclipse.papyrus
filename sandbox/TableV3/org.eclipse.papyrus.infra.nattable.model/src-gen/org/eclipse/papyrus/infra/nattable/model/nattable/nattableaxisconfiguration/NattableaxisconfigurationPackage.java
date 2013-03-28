@@ -224,6 +224,7 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	 */
 	int AXIS_INDEX_STYLE = 2;
 
+
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration <em>Abstract Axis Configuration</em>}'.
 	 * <!-- begin-user-doc -->

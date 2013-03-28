@@ -12,7 +12,6 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisco
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation,
- org.eclipse.papyrus.infra.nattable.model.nattable.nattablecontentprovider.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,

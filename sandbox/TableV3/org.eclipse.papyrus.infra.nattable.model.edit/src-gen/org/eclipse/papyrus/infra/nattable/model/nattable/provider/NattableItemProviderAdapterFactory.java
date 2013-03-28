@@ -105,29 +105,6 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EObjectAxisItemProvider eObjectAxisItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEObjectAxisAdapter() {
-		if (eObjectAxisItemProvider == null) {
-			eObjectAxisItemProvider = new EObjectAxisItemProvider(this);
-		}
-
-		return eObjectAxisItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.IdAxis} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,6 +125,29 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 		}
 
 		return idAxisItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EObjectAxisItemProvider eObjectAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEObjectAxisAdapter() {
+		if (eObjectAxisItemProvider == null) {
+			eObjectAxisItemProvider = new EObjectAxisItemProvider(this);
+		}
+
+		return eObjectAxisItemProvider;
 	}
 
 	/**
@@ -250,8 +250,8 @@ public class NattableItemProviderAdapterFactory extends NattableAdapterFactory i
 	 */
 	public void dispose() {
 		if (tableItemProvider != null) tableItemProvider.dispose();
-		if (eObjectAxisItemProvider != null) eObjectAxisItemProvider.dispose();
 		if (idAxisItemProvider != null) idAxisItemProvider.dispose();
+		if (eObjectAxisItemProvider != null) eObjectAxisItemProvider.dispose();
 	}
 
 }

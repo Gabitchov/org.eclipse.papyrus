@@ -187,5 +187,4 @@ public class EStructuralFeatureAxisManager extends AbstractAxisManager {
 		}
 		return eObjects;
 	}
-
 }

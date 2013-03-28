@@ -15,22 +15,22 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>EObject Label Provider Configuration</b></em>'.
+ * A representation of the model object '<em><b>Object Label Provider Configuration</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getEObjectLabelProviderConfiguration()
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getObjectLabelProviderConfiguration()
  * @model
  * @generated
  */
-public interface EObjectLabelProviderConfiguration extends ILabelConfiguration {
+public interface ObjectLabelProviderConfiguration extends ILabelConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Display Icon</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
@@ -42,14 +42,14 @@ public interface EObjectLabelProviderConfiguration extends ILabelConfiguration {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Display Icon</em>' attribute.
 	 * @see #setDisplayIcon(boolean)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getEObjectLabelProviderConfiguration_DisplayIcon()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getObjectLabelProviderConfiguration_DisplayIcon()
 	 * @model default="true" required="true"
 	 * @generated
 	 */
 	boolean isDisplayIcon();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayIcon <em>Display Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Display Icon</em>' attribute.
@@ -69,14 +69,14 @@ public interface EObjectLabelProviderConfiguration extends ILabelConfiguration {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Display Label</em>' attribute.
 	 * @see #setDisplayLabel(boolean)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getEObjectLabelProviderConfiguration_DisplayLabel()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage#getObjectLabelProviderConfiguration_DisplayLabel()
 	 * @model default="true" required="true"
 	 * @generated
 	 */
 	boolean isDisplayLabel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration#isDisplayLabel <em>Display Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Display Label</em>' attribute.
@@ -85,4 +85,4 @@ public interface EObjectLabelProviderConfiguration extends ILabelConfiguration {
 	 */
 	void setDisplayLabel(boolean value);
 
-} // EObjectLabelProviderConfiguration
+} // ObjectLabelProviderConfiguration

@@ -130,7 +130,7 @@ public interface AbstractTableConfiguration extends EModelElement {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getAbstractTableConfiguration_Name()
-	 * @model id="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();

@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.*;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
@@ -80,15 +82,8 @@ public class NattableSwitch<T> extends Switch<T> {
 			case NattablePackage.TABLE: {
 				Table table = (Table)theEObject;
 				T result = caseTable(table);
+				if (result == null) result = caseAbstractTableConfiguration(table);
 				if (result == null) result = caseEModelElement(table);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case NattablePackage.EOBJECT_AXIS: {
-				EObjectAxis eObjectAxis = (EObjectAxis)theEObject;
-				T result = caseEObjectAxis(eObjectAxis);
-				if (result == null) result = caseIAxis(eObjectAxis);
-				if (result == null) result = caseEModelElement(eObjectAxis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,6 +99,14 @@ public class NattableSwitch<T> extends Switch<T> {
 				T result = caseIdAxis(idAxis);
 				if (result == null) result = caseIAxis(idAxis);
 				if (result == null) result = caseEModelElement(idAxis);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NattablePackage.EOBJECT_AXIS: {
+				EObjectAxis eObjectAxis = (EObjectAxis)theEObject;
+				T result = caseEObjectAxis(eObjectAxis);
+				if (result == null) result = caseIAxis(eObjectAxis);
+				if (result == null) result = caseEModelElement(eObjectAxis);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,21 +126,6 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTable(Table object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject Axis</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject Axis</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEObjectAxis(EObjectAxis object) {
 		return null;
 	}
 
@@ -172,6 +160,21 @@ public class NattableSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject Axis</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEObjectAxis(EObjectAxis object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -183,6 +186,21 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEModelElement(EModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Table Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Table Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractTableConfiguration(AbstractTableConfiguration object) {
 		return null;
 	}
 

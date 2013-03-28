@@ -19,12 +19,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -35,22 +30,18 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
-
-import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TableEditorConfigurationItemProvider
-	extends EModelElementItemProvider
+public class TableConfigurationItemProvider
+	extends AbstractTableConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -63,7 +54,7 @@ public class TableEditorConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TableEditorConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public TableConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -78,32 +69,10 @@ public class TableEditorConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEditorDeclarationPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addIconPathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Editor Declaration feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEditorDeclarationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TableEditorConfiguration_editorDeclaration_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_TableEditorConfiguration_editorDeclaration_feature", "_UI_TableEditorConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -117,9 +86,31 @@ public class TableEditorConfigurationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TableEditorConfiguration_type_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_TableEditorConfiguration_type_feature", "_UI_TableEditorConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__TYPE,
+				 getString("_UI_TableConfiguration_type_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_type_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Icon Path feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIconPathPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TableConfiguration_iconPath_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_TableConfiguration_iconPath_feature", "_UI_TableConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ICON_PATH,
 				 true,
 				 false,
 				 false,
@@ -140,8 +131,7 @@ public class TableEditorConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER);
-			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER);
+			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__CREATION_TESTER);
 		}
 		return childrenFeatures;
 	}
@@ -160,14 +150,14 @@ public class TableEditorConfigurationItemProvider
 	}
 
 	/**
-	 * This returns TableEditorConfiguration.gif.
+	 * This returns TableConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TableEditorConfiguration")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TableConfiguration")); //$NON-NLS-1$
 	}
 
 	/**
@@ -178,11 +168,10 @@ public class TableEditorConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		CellEditorDeclaration labelValue = ((TableEditorConfiguration)object).getEditorDeclaration();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((TableConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_TableEditorConfiguration_type") : //$NON-NLS-1$
-			getString("_UI_TableEditorConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_TableConfiguration_type") : //$NON-NLS-1$
+			getString("_UI_TableConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -196,13 +185,12 @@ public class TableEditorConfigurationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TableEditorConfiguration.class)) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__EDITOR_DECLARATION:
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__TYPE:
+		switch (notification.getFeatureID(TableConfiguration.class)) {
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__ICON_PATH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER:
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -222,23 +210,8 @@ public class TableEditorConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER,
-				 NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER,
-				 NattableaxisproviderFactory.eINSTANCE.createEMFFeatureValueAxisProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER,
-				 NattableaxisproviderFactory.eINSTANCE.createDefaultAxisProvider()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER,
-				 NattableaxisproviderFactory.eINSTANCE.createEMFFeatureValueAxisProvider()));
+				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__CREATION_TESTER,
+				 NattableconfigurationFactory.eINSTANCE.createJavaTableCreationTester()));
 	}
 
 	/**
@@ -253,8 +226,8 @@ public class TableEditorConfigurationItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__VERTICAL_AXIS_PROVIDER ||
-			childFeature == NattableconfigurationPackage.Literals.TABLE_EDITOR_CONFIGURATION__HORIZONTAL_AXIS_PROVIDER;
+			childFeature == NattableconfigurationPackage.Literals.ABSTRACT_TABLE_CONFIGURATION__ROW_AXIS_PROVIDER ||
+			childFeature == NattableconfigurationPackage.Literals.ABSTRACT_TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDER;
 
 		if (qualify) {
 			return getString
@@ -262,17 +235,6 @@ public class TableEditorConfigurationItemProvider
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return NattableEditPlugin.INSTANCE;
 	}
 
 }

@@ -19,25 +19,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EObject Label Provider Configuration</b></em>'.
+ * An implementation of the model object '<em><b>Object Label Provider Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl#isDisplayIcon <em>Display Icon</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.EObjectLabelProviderConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayIcon <em>Display Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl implements EObjectLabelProviderConfiguration {
+public class ObjectLabelProviderConfigurationImpl extends EModelElementImpl implements ObjectLabelProviderConfiguration {
 	/**
 	 * The default value of the '{@link #getLabelProviderContext() <em>Label Provider Context</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -103,7 +103,7 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EObjectLabelProviderConfigurationImpl() {
+	protected ObjectLabelProviderConfigurationImpl() {
 		super();
 	}
 
@@ -114,7 +114,7 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattablelabelproviderPackage.Literals.EOBJECT_LABEL_PROVIDER_CONFIGURATION;
+		return NattablelabelproviderPackage.Literals.OBJECT_LABEL_PROVIDER_CONFIGURATION;
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 		String oldLabelProviderContext = labelProviderContext;
 		labelProviderContext = newLabelProviderContext;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT, oldLabelProviderContext, labelProviderContext));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT, oldLabelProviderContext, labelProviderContext));
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 		boolean oldDisplayIcon = displayIcon;
 		displayIcon = newDisplayIcon;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON, oldDisplayIcon, displayIcon));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON, oldDisplayIcon, displayIcon));
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 		boolean oldDisplayLabel = displayLabel;
 		displayLabel = newDisplayLabel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL, oldDisplayLabel, displayLabel));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL, oldDisplayLabel, displayLabel));
 	}
 
 	/**
@@ -188,11 +188,11 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				return getLabelProviderContext();
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return isDisplayIcon();
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
 				return isDisplayLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -206,13 +206,13 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				setLabelProviderContext((String)newValue);
 				return;
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon((Boolean)newValue);
 				return;
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
 				setDisplayLabel((Boolean)newValue);
 				return;
 		}
@@ -227,13 +227,13 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				setLabelProviderContext(LABEL_PROVIDER_CONTEXT_EDEFAULT);
 				return;
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				setDisplayIcon(DISPLAY_ICON_EDEFAULT);
 				return;
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
 				setDisplayLabel(DISPLAY_LABEL_EDEFAULT);
 				return;
 		}
@@ -248,11 +248,11 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 				return displayIcon != DISPLAY_ICON_EDEFAULT;
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
 				return displayLabel != DISPLAY_LABEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -278,4 +278,4 @@ public class EObjectLabelProviderConfigurationImpl extends EModelElementImpl imp
 		return result.toString();
 	}
 
-} //EObjectLabelProviderConfigurationImpl
+} //ObjectLabelProviderConfigurationImpl

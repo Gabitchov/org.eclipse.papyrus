@@ -87,8 +87,8 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureLabelProviderConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseEObjectLabelProviderConfiguration(EObjectLabelProviderConfiguration object) {
-				return createEObjectLabelProviderConfigurationAdapter();
+			public Adapter caseObjectLabelProviderConfiguration(ObjectLabelProviderConfiguration object) {
+				return createObjectLabelProviderConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseEModelElement(EModelElement object) {
@@ -143,16 +143,16 @@ public class NattablelabelproviderAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration <em>EObject Label Provider Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration <em>Object Label Provider Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration
 	 * @generated
 	 */
-	public Adapter createEObjectLabelProviderConfigurationAdapter() {
+	public Adapter createObjectLabelProviderConfigurationAdapter() {
 		return null;
 	}
 

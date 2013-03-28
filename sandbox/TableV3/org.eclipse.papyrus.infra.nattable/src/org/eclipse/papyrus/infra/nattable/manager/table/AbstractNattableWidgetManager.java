@@ -324,7 +324,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if(start >= 0 && start < end) {
 							end--;
 						}
-						final List<IAxis> allAxis = AbstractNattableWidgetManager.this.table.getVerticalAxisProvider().getAxis();
+						final List<IAxis> allAxis = AbstractNattableWidgetManager.this.table.getColumnAxisProvider().getAxis();
 						final IAxis axisToMove = allAxis.get(start);
 						if(axisToMove != null) {
 							reorderColumnsElements(axisToMove, end);

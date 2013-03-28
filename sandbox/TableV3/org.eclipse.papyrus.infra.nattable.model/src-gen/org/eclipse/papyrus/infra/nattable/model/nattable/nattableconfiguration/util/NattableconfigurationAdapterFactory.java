@@ -79,12 +79,20 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	protected NattableconfigurationSwitch<Adapter> modelSwitch =
 		new NattableconfigurationSwitch<Adapter>() {
 			@Override
-			public Adapter caseTableEditorConfiguration(TableEditorConfiguration object) {
-				return createTableEditorConfigurationAdapter();
-			}
-			@Override
 			public Adapter caseAbstractTableConfiguration(AbstractTableConfiguration object) {
 				return createAbstractTableConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseTableConfiguration(TableConfiguration object) {
+				return createTableConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseAbstractTableCreationTester(AbstractTableCreationTester object) {
+				return createAbstractTableCreationTesterAdapter();
+			}
+			@Override
+			public Adapter caseJavaTableCreationTester(JavaTableCreationTester object) {
+				return createJavaTableCreationTesterAdapter();
 			}
 			@Override
 			public Adapter caseEModelElement(EModelElement object) {
@@ -111,20 +119,6 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration <em>Table Editor Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration
-	 * @generated
-	 */
-	public Adapter createTableEditorConfigurationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration <em>Abstract Table Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -135,6 +129,48 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAbstractTableConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration <em>Table Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration
+	 * @generated
+	 */
+	public Adapter createTableConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester <em>Abstract Table Creation Tester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester
+	 * @generated
+	 */
+	public Adapter createAbstractTableCreationTesterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester <em>Java Table Creation Tester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester
+	 * @generated
+	 */
+	public Adapter createJavaTableCreationTesterAdapter() {
 		return null;
 	}
 

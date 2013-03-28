@@ -33,7 +33,7 @@ public class ColumnDisplayLabelTextHandler extends AbstractColumnChangeLabelConf
 	 */
 	@Override
 	protected EStructuralFeature getEditedFeature() {
-		return NattablelabelproviderPackage.eINSTANCE.getEObjectLabelProviderConfiguration_DisplayLabel();
+		return NattablelabelproviderPackage.eINSTANCE.getObjectLabelProviderConfiguration_DisplayLabel();
 	}
 
 }

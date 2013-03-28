@@ -26,8 +26,8 @@ import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
@@ -173,7 +173,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 			 */
 			@Override
 			public void notifyChanged(final Notification notification) {
-				if(notification.getFeature() == NattablePackage.eINSTANCE.getTable_Name()) {
+				if(notification.getFeature() == NattableconfigurationPackage.eINSTANCE.getAbstractTableConfiguration_Name()) {
 					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
 				}
 			}

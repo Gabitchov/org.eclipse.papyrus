@@ -32,7 +32,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider;
  * @model
  * @generated
  */
-public interface FeatureLabelProviderConfiguration extends EObjectLabelProviderConfiguration {
+public interface FeatureLabelProviderConfiguration extends ObjectLabelProviderConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Display Is Derived</b></em>' attribute.
 	 * The default value is <code>"true"</code>.

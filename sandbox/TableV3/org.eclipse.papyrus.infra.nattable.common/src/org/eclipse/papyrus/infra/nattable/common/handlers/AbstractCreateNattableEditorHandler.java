@@ -47,7 +47,8 @@ import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableMo
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -113,7 +114,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// default Value
 		final String name;
-		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattablePackage.eINSTANCE.getTable_Name(), this.defaultName, getTableContext());
+		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getAbstractTableConfiguration_Name(), this.defaultName, getTableContext());
 		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, nameWithIncrement, null);
 		if(dialog.open() == Dialog.OK) {
 			name = dialog.getValue();
@@ -164,7 +165,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 *         The model where to save the TableInstance is not found.
 	 */
 	protected Object createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
-		final TableEditorConfiguration configuration = getDefaultTableEditorConfiguration();
+		final TableConfiguration configuration = getDefaultTableEditorConfiguration();
 		assert configuration != null;
 
 		final Table table = TableHelper.createTable(configuration, getTableContext(), name, description);
@@ -180,13 +181,13 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @return
 	 *         the configuration to use for the new table
 	 */
-	protected TableEditorConfiguration getDefaultTableEditorConfiguration() {
+	protected TableConfiguration getDefaultTableEditorConfiguration() {
 		final EObject current = getSelection().get(0);
 		final ResourceSet resourceSet = current.eResource().getResourceSet();
 		final Resource resource = resourceSet.getResource(getTableEditorConfigurationURI(), true);
-		TableEditorConfiguration tableConfiguration = null;
-		if(resource.getContents().get(0) instanceof TableEditorConfiguration) {
-			tableConfiguration = (TableEditorConfiguration)resource.getContents().get(0);
+		TableConfiguration tableConfiguration = null;
+		if(resource.getContents().get(0) instanceof TableConfiguration) {
+			tableConfiguration = (TableConfiguration)resource.getContents().get(0);
 		}
 		return tableConfiguration;
 	}

@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElement;
@@ -300,13 +300,13 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 
-	protected boolean hasAxisConfiguration(final TableEditorConfiguration configuration) {
+	protected boolean hasAxisConfiguration(final TableConfiguration configuration) {
 		AbstractAxisProvider axisConfig = null;
 		// we are working with the horizontal content provider
-		if(getTable().getHorizontalAxisProvider() == getRepresentedContentProvider()) {
-			axisConfig = configuration.getHorizontalAxisProvider();
+		if(getTable().getRowAxisProvider() == getRepresentedContentProvider()) {
+			axisConfig = configuration.getRowAxisProvider();
 		} else {// we are working with the
-			axisConfig = configuration.getVerticalAxisProvider();
+			axisConfig = configuration.getColumnAxisProvider();
 		}
 		if(axisConfig != null) {
 			return !axisConfig.getAxis().isEmpty();
@@ -315,7 +315,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	protected boolean hasConfiguration() {
-		final TableEditorConfiguration configuration = getTable().getEditorConfiguration();
+		final TableConfiguration configuration = getTable().getEditorConfiguration();
 		return hasAxisConfiguration(configuration);
 	}
 

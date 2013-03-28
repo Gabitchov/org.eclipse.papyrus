@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 
 /**
  * 
@@ -38,7 +38,7 @@ public class TableHelper {
 	 * @return
 	 *         the table created from this configuration
 	 */
-	public static final Table createTable(final TableEditorConfiguration configuration) {
+	public static final Table createTable(final TableConfiguration configuration) {
 		return createTable(configuration, null);
 	}
 
@@ -51,7 +51,7 @@ public class TableHelper {
 	 * @return
 	 *         the table created from these parameters
 	 */
-	public static final Table createTable(final TableEditorConfiguration configuration, final EObject context) {
+	public static final Table createTable(final TableConfiguration configuration, final EObject context) {
 		return createTable(configuration, null, null);
 	}
 
@@ -66,7 +66,7 @@ public class TableHelper {
 	 * @return
 	 *         the table created from these parameters
 	 */
-	public static final Table createTable(final TableEditorConfiguration configuration, final EObject context, final String name) {
+	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name) {
 		return createTable(configuration, null, null, null);
 	}
 
@@ -83,7 +83,7 @@ public class TableHelper {
 	 * @return
 	 *         the table created from these parameters
 	 */
-	public static final Table createTable(final TableEditorConfiguration configuration, final EObject context, final String name, final String description) {
+	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name, final String description) {
 		assert configuration != null;
 
 		Table table = NattableFactory.eINSTANCE.createTable();
@@ -93,14 +93,14 @@ public class TableHelper {
 		table.setContext(context);
 
 		//the configuration always provides axis provider
-		AbstractAxisProvider rowProvider = configuration.getHorizontalAxisProvider();
+		AbstractAxisProvider rowProvider = configuration.getRowAxisProvider();
 		rowProvider = EcoreUtil.copy(rowProvider);
 
-		AbstractAxisProvider columnProvider = configuration.getVerticalAxisProvider();
+		AbstractAxisProvider columnProvider = configuration.getColumnAxisProvider();
 		columnProvider = EcoreUtil.copy(columnProvider);
 
-		table.setHorizontalAxisProvider(rowProvider);
-		table.setVerticalAxisProvider(columnProvider);
+		table.setRowAxisProvider(rowProvider);
+		table.setColumnAxisProvider(columnProvider);
 		return table;
 
 	}

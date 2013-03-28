@@ -72,7 +72,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 	 */
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
 		if(pageIdentifier instanceof Table) {
-			return getExpectedType().equals(((Table)pageIdentifier).getEditorConfiguration().getType());
+			return getExpectedType().equals(((Table)pageIdentifier).getEditorConfiguration().getType().trim());
 		}
 		return false;
 	}
@@ -106,7 +106,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 * Constructor.
 		 */
 		public NattableEditorModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
-			rawModel = (Table)pageIdentifier;
+			this.rawModel = (Table)pageIdentifier;
 			this.servicesRegistry = servicesRegistry;
 		}
 
@@ -122,10 +122,10 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 			try {
 
 				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, Table.class);
-				IEditorPart newEditor = (IEditorPart)c.newInstance(servicesRegistry, rawModel);
+				IEditorPart newEditor = (IEditorPart)c.newInstance(this.servicesRegistry, this.rawModel);
 				//	IEditorPart newEditor = new DefaultNattableEditor(getServiceRegistry(), rawModel);
-				editor = newEditor;
-				return editor;
+				this.editor = newEditor;
+				return this.editor;
 
 			} catch (Exception e) {
 				// Lets propagate. This is an implementation problem that should be solved by
@@ -144,7 +144,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 */
 		public EditorActionBarContributor getActionBarContributor() {
 
-			String actionBarId = editorDescriptor.getActionBarContributorId();
+			String actionBarId = AbstractNattableEditorFactory.this.editorDescriptor.getActionBarContributorId();
 
 			// Do nothing if no EditorActionBarContributor is specify.
 			if(actionBarId == null || actionBarId.length() == 0) {
@@ -157,7 +157,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 			// ServicesRegistry serviceRegistry = getServicesRegistry();
 			ActionBarContributorRegistry registry;
 			try {
-				registry = servicesRegistry.getService(ActionBarContributorRegistry.class);
+				registry = this.servicesRegistry.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
 				Activator.log.error(e);
@@ -180,7 +180,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 * 
 		 */
 		public Object getRawModel() {
-			return rawModel;
+			return this.rawModel;
 		}
 
 		/**
@@ -192,8 +192,9 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 */
 		public Image getTabIcon() {
 			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
-			if(imageDescriptor == null)
+			if(imageDescriptor == null) {
 				return null;
+			}
 
 			return imageDescriptor.createImage();
 		}
@@ -206,7 +207,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 * 
 		 */
 		public String getTabTitle() {
-			return rawModel.getName();
+			return this.rawModel.getName();
 		}
 	}
 }

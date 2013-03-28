@@ -32,7 +32,7 @@ public class ColumnDisplayLabelImageHandler extends AbstractColumnChangeLabelCon
 	 */
 	@Override
 	protected EStructuralFeature getEditedFeature() {
-		return NattablelabelproviderPackage.eINSTANCE.getEObjectLabelProviderConfiguration_DisplayIcon();
+		return NattablelabelproviderPackage.eINSTANCE.getObjectLabelProviderConfiguration_DisplayIcon();
 	}
 
 }

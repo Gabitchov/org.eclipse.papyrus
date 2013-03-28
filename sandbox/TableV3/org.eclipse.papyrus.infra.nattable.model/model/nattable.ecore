@@ -2,23 +2,13 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="nattable" nsURI="http://www.eclipse.org/papyrus/nattable/model"
     nsPrefix="nattable">
-  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//nattableconfiguration/AbstractTableConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="editorConfiguration" lowerBound="1"
-        eType="#//nattableconfiguration/TableEditorConfiguration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="verticalAxisProvider" lowerBound="1"
-        eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="horizontalAxisProvider"
-        lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
+        eType="#//nattableconfiguration/TableConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="invertAxis" lowerBound="1"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         defaultValueLiteral="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EObjectAxis" eSuperTypes="#//IAxis">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IAxis" abstract="true" interface="true"
       eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
@@ -28,24 +18,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="element" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EObjectAxis" eSuperTypes="#//IAxis">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+  </eClassifiers>
   <eSubpackages name="nattableconfiguration" nsURI="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"
       nsPrefix="nattableconfiguration">
-    <eClassifiers xsi:type="ecore:EClass" name="TableEditorConfiguration" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="verticalAxisProvider"
-          lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="horizontalAxisProvider"
-          lowerBound="1" eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="editorDeclaration" lowerBound="1"
-          eType="#//nattableconfiguration/CellEditorDeclaration" defaultValueLiteral="COLUMN"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          iD="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="CellEditorDeclaration">
-      <eLiterals name="COLUMN"/>
-      <eLiterals name="ROW" value="1"/>
-      <eLiterals name="CELL" value="2"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractTableConfiguration" abstract="true"
         eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="rowAxisProvider" lowerBound="1"
@@ -54,9 +31,27 @@
           eType="#//nattableaxisprovider/AbstractAxisProvider" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="editorDeclaration" lowerBound="1"
           eType="#//nattableconfiguration/CellEditorDeclaration" defaultValueLiteral="COLUMN"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          iD="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TableConfiguration" eSuperTypes="#//nattableconfiguration/AbstractTableConfiguration">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="creationTester" eType="#//nattableconfiguration/AbstractTableCreationTester"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="CellEditorDeclaration">
+      <eLiterals name="COLUMN"/>
+      <eLiterals name="ROW" value="1"/>
+      <eLiterals name="CELL" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractTableCreationTester" abstract="true">
+      <eOperations name="getTester" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaTableCreationTester" eSuperTypes="#//nattableconfiguration/AbstractTableCreationTester">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tester" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattableaxisprovider" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"
@@ -90,7 +85,7 @@
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureLabelProviderConfiguration"
-        eSuperTypes="#//nattablelabelprovider/EObjectLabelProviderConfiguration">
+        eSuperTypes="#//nattablelabelprovider/ObjectLabelProviderConfiguration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayIsDerived" lowerBound="1"
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
           defaultValueLiteral="true"/>
@@ -104,7 +99,7 @@
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
           defaultValueLiteral="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="EObjectLabelProviderConfiguration"
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectLabelProviderConfiguration"
         eSuperTypes="#//nattablelabelprovider/ILabelConfiguration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayIcon" lowerBound="1"
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
@@ -123,15 +118,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="DefaultAxisConfiguration" eSuperTypes="#//nattableaxisconfiguration/AbstractAxisConfiguration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexStyle" lowerBound="1"
           eType="#//nattableaxisconfiguration/AxisIndexStyle"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayIndex" lowerBound="1"
-          eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-          defaultValueLiteral="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayLabel" lowerBound="1"
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
           defaultValueLiteral="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayFilter" lowerBound="1"
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
           defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayIndex" lowerBound="1"
+          eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+          defaultValueLiteral="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AxisIndexStyle">
       <eLiterals name="NUMERIC" literal="NUMERIC"/>

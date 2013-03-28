@@ -32,13 +32,22 @@ public interface NattableconfigurationFactory extends EFactory {
 	NattableconfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Table Editor Configuration</em>'.
+	 * Returns a new object of class '<em>Table Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Table Editor Configuration</em>'.
+	 * @return a new object of class '<em>Table Configuration</em>'.
 	 * @generated
 	 */
-	TableEditorConfiguration createTableEditorConfiguration();
+	TableConfiguration createTableConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Java Table Creation Tester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Table Creation Tester</em>'.
+	 * @generated
+	 */
+	JavaTableCreationTester createJavaTableCreationTester();
 
 	/**
 	 * Returns the package supported by this factory.

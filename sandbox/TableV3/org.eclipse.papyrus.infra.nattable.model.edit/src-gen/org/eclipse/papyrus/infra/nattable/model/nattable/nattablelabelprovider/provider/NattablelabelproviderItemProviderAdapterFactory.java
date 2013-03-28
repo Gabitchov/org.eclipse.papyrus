@@ -105,26 +105,26 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EObjectLabelProviderConfigurationItemProvider eObjectLabelProviderConfigurationItemProvider;
+	protected ObjectLabelProviderConfigurationItemProvider objectLabelProviderConfigurationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createEObjectLabelProviderConfigurationAdapter() {
-		if (eObjectLabelProviderConfigurationItemProvider == null) {
-			eObjectLabelProviderConfigurationItemProvider = new EObjectLabelProviderConfigurationItemProvider(this);
+	public Adapter createObjectLabelProviderConfigurationAdapter() {
+		if (objectLabelProviderConfigurationItemProvider == null) {
+			objectLabelProviderConfigurationItemProvider = new ObjectLabelProviderConfigurationItemProvider(this);
 		}
 
-		return eObjectLabelProviderConfigurationItemProvider;
+		return objectLabelProviderConfigurationItemProvider;
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class NattablelabelproviderItemProviderAdapterFactory extends Nattablelab
 	 */
 	public void dispose() {
 		if (featureLabelProviderConfigurationItemProvider != null) featureLabelProviderConfigurationItemProvider.dispose();
-		if (eObjectLabelProviderConfigurationItemProvider != null) eObjectLabelProviderConfigurationItemProvider.dispose();
+		if (objectLabelProviderConfigurationItemProvider != null) objectLabelProviderConfigurationItemProvider.dispose();
 	}
 
 }

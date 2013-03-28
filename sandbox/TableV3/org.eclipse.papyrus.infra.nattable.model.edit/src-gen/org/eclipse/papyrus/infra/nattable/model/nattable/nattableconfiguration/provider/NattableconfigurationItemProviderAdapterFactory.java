@@ -82,26 +82,49 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TableEditorConfigurationItemProvider tableEditorConfigurationItemProvider;
+	protected TableConfigurationItemProvider tableConfigurationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableEditorConfiguration}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTableEditorConfigurationAdapter() {
-		if (tableEditorConfigurationItemProvider == null) {
-			tableEditorConfigurationItemProvider = new TableEditorConfigurationItemProvider(this);
+	public Adapter createTableConfigurationAdapter() {
+		if (tableConfigurationItemProvider == null) {
+			tableConfigurationItemProvider = new TableConfigurationItemProvider(this);
 		}
 
-		return tableEditorConfigurationItemProvider;
+		return tableConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JavaTableCreationTesterItemProvider javaTableCreationTesterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJavaTableCreationTesterAdapter() {
+		if (javaTableCreationTesterItemProvider == null) {
+			javaTableCreationTesterItemProvider = new JavaTableCreationTesterItemProvider(this);
+		}
+
+		return javaTableCreationTesterItemProvider;
 	}
 
 	/**
@@ -203,7 +226,8 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * @generated
 	 */
 	public void dispose() {
-		if (tableEditorConfigurationItemProvider != null) tableEditorConfigurationItemProvider.dispose();
+		if (tableConfigurationItemProvider != null) tableConfigurationItemProvider.dispose();
+		if (javaTableCreationTesterItemProvider != null) javaTableCreationTesterItemProvider.dispose();
 	}
 
 }

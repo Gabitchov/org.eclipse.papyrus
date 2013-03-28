@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<nattableconfiguration:TableEditorConfiguration
+<nattableconfiguration:TableConfiguration
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -10,7 +10,7 @@
     xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"
     xmlns:nattablelabelprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"
     type="PapyruNattableViewsEditor">
-  <verticalAxisProvider
+  <columnAxisProvider
       xsi:type="nattableaxisprovider:DefaultAxisProvider">
     <javaAxisManagerIds>org.eclipse.papyrus.infra.nattable.page.editor.view.feature.axis.manager</javaAxisManagerIds>
     <axisConfiguration
@@ -28,18 +28,18 @@
         element="nattable_editor_pages:/isOpen"/>
     <axis xsi:type="nattable:IdAxis"
         element="nattable_editor_pages:/type"/>
-  </verticalAxisProvider>
-  <horizontalAxisProvider
+  </columnAxisProvider>
+  <rowAxisProvider
       xsi:type="nattableaxisprovider:EMFFeatureValueAxisProvider">
     <javaAxisManagerIds>org.eclipse.papyrus.infra.nattable.page.editor.contents.axis.manager</javaAxisManagerIds>
     <axisConfiguration
         xsi:type="nattableaxisconfiguration:DefaultAxisConfiguration">
       <labelConfiguration
-          xsi:type="nattablelabelprovider:EObjectLabelProviderConfiguration"
+          xsi:type="nattablelabelprovider:ObjectLabelProviderConfiguration"
           labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider"/>
     </axisConfiguration>
     <listenFeature
         xsi:type="ecore:EReference"
         href="platform:/plugin/org.eclipse.papyrus.infra.core.sasheditor.di/model/di.ecore#//PageList/availablePage"/>
-  </horizontalAxisProvider>
-</nattableconfiguration:TableEditorConfiguration>
+  </rowAxisProvider>
+</nattableconfiguration:TableConfiguration>

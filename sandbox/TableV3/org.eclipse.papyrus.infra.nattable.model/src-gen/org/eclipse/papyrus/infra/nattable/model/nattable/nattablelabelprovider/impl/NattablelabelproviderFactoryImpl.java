@@ -67,7 +67,7 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION: return createFeatureLabelProviderConfiguration();
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION: return createEObjectLabelProviderConfiguration();
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION: return createObjectLabelProviderConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -88,9 +88,9 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObjectLabelProviderConfiguration createEObjectLabelProviderConfiguration() {
-		EObjectLabelProviderConfigurationImpl eObjectLabelProviderConfiguration = new EObjectLabelProviderConfigurationImpl();
-		return eObjectLabelProviderConfiguration;
+	public ObjectLabelProviderConfiguration createObjectLabelProviderConfiguration() {
+		ObjectLabelProviderConfigurationImpl objectLabelProviderConfiguration = new ObjectLabelProviderConfigurationImpl();
+		return objectLabelProviderConfiguration;
 	}
 
 	/**

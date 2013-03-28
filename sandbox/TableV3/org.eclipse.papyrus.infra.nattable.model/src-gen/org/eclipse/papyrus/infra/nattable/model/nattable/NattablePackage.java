@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -85,7 +87,34 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+	int TABLE__EANNOTATIONS = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Row Axis Provider</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__ROW_AXIS_PROVIDER = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION__ROW_AXIS_PROVIDER;
+
+	/**
+	 * The feature id for the '<em><b>Column Axis Provider</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__COLUMN_AXIS_PROVIDER = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDER;
+
+	/**
+	 * The feature id for the '<em><b>Editor Declaration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__EDITOR_DECLARATION = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION__EDITOR_DECLARATION;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -94,16 +123,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE__CONTEXT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TABLE__NAME = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -112,7 +132,16 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__DESCRIPTION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TABLE__DESCRIPTION = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__CONTEXT = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Editor Configuration</b></em>' reference.
@@ -121,25 +150,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__EDITOR_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Vertical Axis Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE__VERTICAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Horizontal Axis Provider</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE__HORIZONTAL_AXIS_PROVIDER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int TABLE__EDITOR_CONFIGURATION = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Invert Axis</b></em>' attribute.
@@ -148,7 +159,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__INVERT_AXIS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int TABLE__INVERT_AXIS = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Table</em>' class.
@@ -157,7 +168,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
+	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -166,7 +177,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE___GET_EANNOTATION__STRING = EcorePackage.EMODEL_ELEMENT___GET_EANNOTATION__STRING;
+	int TABLE___GET_EANNOTATION__STRING = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION___GET_EANNOTATION__STRING;
 
 	/**
 	 * The number of operations of the '<em>Table</em>' class.
@@ -175,7 +186,7 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
+	int TABLE_OPERATION_COUNT = NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.IAxis <em>IAxis</em>}' class.
@@ -185,7 +196,7 @@ public interface NattablePackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getIAxis()
 	 * @generated
 	 */
-	int IAXIS = 2;
+	int IAXIS = 1;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -233,70 +244,6 @@ public interface NattablePackage extends EPackage {
 	int IAXIS_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getEObjectAxis()
-	 * @generated
-	 */
-	int EOBJECT_AXIS = 1;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_AXIS__EANNOTATIONS = IAXIS__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_AXIS__ELEMENT = IAXIS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>EObject Axis</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_AXIS_FEATURE_COUNT = IAXIS_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get EAnnotation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_AXIS___GET_EANNOTATION__STRING = IAXIS___GET_EANNOTATION__STRING;
-
-	/**
-	 * The operation id for the '<em>Get Element</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_AXIS___GET_ELEMENT = IAXIS___GET_ELEMENT;
-
-	/**
-	 * The number of operations of the '<em>EObject Axis</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.IdAxisImpl <em>Id Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -304,7 +251,7 @@ public interface NattablePackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getIdAxis()
 	 * @generated
 	 */
-	int ID_AXIS = 3;
+	int ID_AXIS = 2;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -360,6 +307,70 @@ public interface NattablePackage extends EPackage {
 	 */
 	int ID_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getEObjectAxis()
+	 * @generated
+	 */
+	int EOBJECT_AXIS = 3;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_AXIS__EANNOTATIONS = IAXIS__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_AXIS__ELEMENT = IAXIS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>EObject Axis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_AXIS_FEATURE_COUNT = IAXIS_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_AXIS___GET_EANNOTATION__STRING = IAXIS___GET_EANNOTATION__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_AXIS___GET_ELEMENT = IAXIS___GET_ELEMENT;
+
+	/**
+	 * The number of operations of the '<em>EObject Axis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table <em>Table</em>}'.
@@ -370,17 +381,6 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTable();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getName()
-	 * @see #getTable()
-	 * @generated
-	 */
-	EAttribute getTable_Name();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getContext <em>Context</em>}'.
@@ -394,17 +394,6 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_Context();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getDescription <em>Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getDescription()
-	 * @see #getTable()
-	 * @generated
-	 */
-	EAttribute getTable_Description();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getEditorConfiguration <em>Editor Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -416,28 +405,6 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_EditorConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalAxisProvider <em>Vertical Axis Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Vertical Axis Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getVerticalAxisProvider()
-	 * @see #getTable()
-	 * @generated
-	 */
-	EReference getTable_VerticalAxisProvider();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalAxisProvider <em>Horizontal Axis Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Horizontal Axis Provider</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getHorizontalAxisProvider()
-	 * @see #getTable()
-	 * @generated
-	 */
-	EReference getTable_HorizontalAxisProvider();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -447,27 +414,6 @@ public interface NattablePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTable_InvertAxis();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis <em>EObject Axis</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EObject Axis</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis
-	 * @generated
-	 */
-	EClass getEObjectAxis();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement()
-	 * @see #getEObjectAxis()
-	 * @generated
-	 */
-	EReference getEObjectAxis_Element();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.IAxis <em>IAxis</em>}'.
@@ -511,6 +457,27 @@ public interface NattablePackage extends EPackage {
 	EAttribute getIdAxis_Element();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis <em>EObject Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EObject Axis</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis
+	 * @generated
+	 */
+	EClass getEObjectAxis();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.EObjectAxis#getElement()
+	 * @see #getEObjectAxis()
+	 * @generated
+	 */
+	EReference getEObjectAxis_Element();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -544,28 +511,12 @@ public interface NattablePackage extends EPackage {
 		EClass TABLE = eINSTANCE.getTable();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE__NAME = eINSTANCE.getTable_Name();
-
-		/**
 		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TABLE__CONTEXT = eINSTANCE.getTable_Context();
-
-		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE__DESCRIPTION = eINSTANCE.getTable_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Editor Configuration</b></em>' reference feature.
@@ -576,46 +527,12 @@ public interface NattablePackage extends EPackage {
 		EReference TABLE__EDITOR_CONFIGURATION = eINSTANCE.getTable_EditorConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Vertical Axis Provider</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TABLE__VERTICAL_AXIS_PROVIDER = eINSTANCE.getTable_VerticalAxisProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>Horizontal Axis Provider</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TABLE__HORIZONTAL_AXIS_PROVIDER = eINSTANCE.getTable_HorizontalAxisProvider();
-
-		/**
 		 * The meta object literal for the '<em><b>Invert Axis</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute TABLE__INVERT_AXIS = eINSTANCE.getTable_InvertAxis();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getEObjectAxis()
-		 * @generated
-		 */
-		EClass EOBJECT_AXIS = eINSTANCE.getEObjectAxis();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EOBJECT_AXIS__ELEMENT = eINSTANCE.getEObjectAxis_Element();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.IAxis <em>IAxis</em>}' class.
@@ -652,6 +569,24 @@ public interface NattablePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ID_AXIS__ELEMENT = eINSTANCE.getIdAxis_Element();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.EObjectAxisImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl#getEObjectAxis()
+		 * @generated
+		 */
+		EClass EOBJECT_AXIS = eINSTANCE.getEObjectAxis();
+
+		/**
+		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EOBJECT_AXIS__ELEMENT = eINSTANCE.getEObjectAxis_Element();
 
 	}
 

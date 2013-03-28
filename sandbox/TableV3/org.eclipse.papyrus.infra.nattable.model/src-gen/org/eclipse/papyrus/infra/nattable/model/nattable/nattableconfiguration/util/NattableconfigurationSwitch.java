@@ -77,13 +77,6 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case NattableconfigurationPackage.TABLE_EDITOR_CONFIGURATION: {
-				TableEditorConfiguration tableEditorConfiguration = (TableEditorConfiguration)theEObject;
-				T result = caseTableEditorConfiguration(tableEditorConfiguration);
-				if (result == null) result = caseEModelElement(tableEditorConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case NattableconfigurationPackage.ABSTRACT_TABLE_CONFIGURATION: {
 				AbstractTableConfiguration abstractTableConfiguration = (AbstractTableConfiguration)theEObject;
 				T result = caseAbstractTableConfiguration(abstractTableConfiguration);
@@ -91,23 +84,29 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NattableconfigurationPackage.TABLE_CONFIGURATION: {
+				TableConfiguration tableConfiguration = (TableConfiguration)theEObject;
+				T result = caseTableConfiguration(tableConfiguration);
+				if (result == null) result = caseAbstractTableConfiguration(tableConfiguration);
+				if (result == null) result = caseEModelElement(tableConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NattableconfigurationPackage.ABSTRACT_TABLE_CREATION_TESTER: {
+				AbstractTableCreationTester abstractTableCreationTester = (AbstractTableCreationTester)theEObject;
+				T result = caseAbstractTableCreationTester(abstractTableCreationTester);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER: {
+				JavaTableCreationTester javaTableCreationTester = (JavaTableCreationTester)theEObject;
+				T result = caseJavaTableCreationTester(javaTableCreationTester);
+				if (result == null) result = caseAbstractTableCreationTester(javaTableCreationTester);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Table Editor Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Table Editor Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTableEditorConfiguration(TableEditorConfiguration object) {
-		return null;
 	}
 
 	/**
@@ -122,6 +121,51 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAbstractTableConfiguration(AbstractTableConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTableConfiguration(TableConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Table Creation Tester</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Table Creation Tester</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractTableCreationTester(AbstractTableCreationTester object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Table Creation Tester</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Table Creation Tester</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaTableCreationTester(JavaTableCreationTester object) {
 		return null;
 	}
 

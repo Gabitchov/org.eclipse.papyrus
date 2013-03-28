@@ -56,9 +56,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.EObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -124,8 +124,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public NattableModelManager(final Table rawModel) {
 		super(rawModel);
 		// this.table = rawModel;
-		this.rowProvider = rawModel.getHorizontalAxisProvider();
-		this.columnProvider = rawModel.getVerticalAxisProvider();
+		this.rowProvider = rawModel.getRowAxisProvider();
+		this.columnProvider = rawModel.getColumnAxisProvider();
 		this.verticalElements = new ArrayList<Object>();
 		this.horizontalElements = new ArrayList<Object>();
 
@@ -274,8 +274,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			//update the label header configuration
 			final ILabelConfiguration columnLabelConfiguration = verticalAxisConfiguration.getLabelConfiguration();
 			final ILabelConfiguration rowLabelConfiguration = horizontalAxisConfiguration.getLabelConfiguration();
-			if(columnLabelConfiguration instanceof EObjectLabelProviderConfiguration) {
-				final EObjectLabelProviderConfiguration labelConfig = (EObjectLabelProviderConfiguration)columnLabelConfiguration;
+			if(columnLabelConfiguration instanceof ObjectLabelProviderConfiguration) {
+				final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)columnLabelConfiguration;
 				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_LABEL_DISPLAY_ICON);
 				if(command != null) {
 					final State state = command.getState(CommandIds.TOGGLE_STATE);
@@ -325,8 +325,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				}
 			}
 
-			if(rowLabelConfiguration instanceof EObjectLabelProviderConfiguration) {
-				final EObjectLabelProviderConfiguration labelConfig = (EObjectLabelProviderConfiguration)rowLabelConfiguration;
+			if(rowLabelConfiguration instanceof ObjectLabelProviderConfiguration) {
+				final ObjectLabelProviderConfiguration labelConfig = (ObjectLabelProviderConfiguration)rowLabelConfiguration;
 				org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_ROW_LABEL_DISPLAY_ICON);
 				if(command != null) {
 					final State state = command.getState(CommandIds.TOGGLE_STATE);
@@ -408,11 +408,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	protected void init() {
 		final List<String> verticalContentProviderIds = getVerticalContentProviderIds();
 		assert !verticalContentProviderIds.isEmpty();
-		this.columnManager = createAxisManager(verticalContentProviderIds, this.table.getVerticalAxisProvider());
+		this.columnManager = createAxisManager(verticalContentProviderIds, this.table.getColumnAxisProvider());
 
 		final List<String> horizontalContentProviderIds = getHorizontalContentProviderIds();
 		assert !horizontalContentProviderIds.isEmpty();
-		this.rowManager = createAxisManager(horizontalContentProviderIds, this.table.getHorizontalAxisProvider());
+		this.rowManager = createAxisManager(horizontalContentProviderIds, this.table.getRowAxisProvider());
 	}
 
 	/**
@@ -448,7 +448,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *         axis
 	 */
 	protected List<String> getVerticalContentProviderIds() {
-		return this.table.getVerticalAxisProvider().getJavaAxisManagerIds();
+		return this.table.getColumnAxisProvider().getJavaAxisManagerIds();
 	}
 
 	/**
@@ -457,7 +457,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *         axis
 	 */
 	protected List<String> getHorizontalContentProviderIds() {
-		return this.table.getHorizontalAxisProvider().getJavaAxisManagerIds();
+		return this.table.getRowAxisProvider().getJavaAxisManagerIds();
 	}
 
 	/**
@@ -890,9 +890,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public AbstractAxisProvider getVerticalAxisProvider() {
 		if(this.table.isInvertAxis()) {
-			return this.table.getHorizontalAxisProvider();
+			return this.table.getRowAxisProvider();
 		} else {
-			return this.table.getVerticalAxisProvider();
+			return this.table.getColumnAxisProvider();
 		}
 	}
 
@@ -904,9 +904,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	public AbstractAxisProvider getHorizontalAxisProvider() {
 		if(this.table.isInvertAxis()) {
-			return this.table.getVerticalAxisProvider();
+			return this.table.getColumnAxisProvider();
 		} else {
-			return this.table.getHorizontalAxisProvider();
+			return this.table.getRowAxisProvider();
 		}
 	}
 

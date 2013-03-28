@@ -161,12 +161,12 @@ public class DefaultAxisProviderItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisproviderPackage.Literals.DEFAULT_AXIS_PROVIDER__AXIS,
-				 NattableFactory.eINSTANCE.createEObjectAxis()));
+				 NattableFactory.eINSTANCE.createIdAxis()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(NattableaxisproviderPackage.Literals.DEFAULT_AXIS_PROVIDER__AXIS,
-				 NattableFactory.eINSTANCE.createIdAxis()));
+				 NattableFactory.eINSTANCE.createEObjectAxis()));
 	}
 
 }

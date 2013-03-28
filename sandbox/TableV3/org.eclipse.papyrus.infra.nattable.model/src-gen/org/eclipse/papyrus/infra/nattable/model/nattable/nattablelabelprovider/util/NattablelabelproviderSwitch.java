@@ -87,17 +87,17 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 			case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION: {
 				FeatureLabelProviderConfiguration featureLabelProviderConfiguration = (FeatureLabelProviderConfiguration)theEObject;
 				T result = caseFeatureLabelProviderConfiguration(featureLabelProviderConfiguration);
-				if (result == null) result = caseEObjectLabelProviderConfiguration(featureLabelProviderConfiguration);
+				if (result == null) result = caseObjectLabelProviderConfiguration(featureLabelProviderConfiguration);
 				if (result == null) result = caseILabelConfiguration(featureLabelProviderConfiguration);
 				if (result == null) result = caseEModelElement(featureLabelProviderConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case NattablelabelproviderPackage.EOBJECT_LABEL_PROVIDER_CONFIGURATION: {
-				EObjectLabelProviderConfiguration eObjectLabelProviderConfiguration = (EObjectLabelProviderConfiguration)theEObject;
-				T result = caseEObjectLabelProviderConfiguration(eObjectLabelProviderConfiguration);
-				if (result == null) result = caseILabelConfiguration(eObjectLabelProviderConfiguration);
-				if (result == null) result = caseEModelElement(eObjectLabelProviderConfiguration);
+			case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION: {
+				ObjectLabelProviderConfiguration objectLabelProviderConfiguration = (ObjectLabelProviderConfiguration)theEObject;
+				T result = caseObjectLabelProviderConfiguration(objectLabelProviderConfiguration);
+				if (result == null) result = caseILabelConfiguration(objectLabelProviderConfiguration);
+				if (result == null) result = caseEModelElement(objectLabelProviderConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -136,17 +136,17 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject Label Provider Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Object Label Provider Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject Label Provider Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Object Label Provider Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEObjectLabelProviderConfiguration(EObjectLabelProviderConfiguration object) {
+	public T caseObjectLabelProviderConfiguration(ObjectLabelProviderConfiguration object) {
 		return null;
 	}
 

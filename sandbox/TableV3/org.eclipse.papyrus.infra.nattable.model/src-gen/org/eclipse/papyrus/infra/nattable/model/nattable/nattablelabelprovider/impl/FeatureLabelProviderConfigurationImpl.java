@@ -13,8 +13,11 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
@@ -35,7 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
  * @generated
  */
 public class FeatureLabelProviderConfigurationImpl extends 
-EObjectLabelProviderConfigurationImpl implements FeatureLabelProviderConfiguration {
+ObjectLabelProviderConfigurationImpl implements FeatureLabelProviderConfiguration {
 	/**
 	 * The default value of the '{@link #isDisplayIsDerived() <em>Display Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
