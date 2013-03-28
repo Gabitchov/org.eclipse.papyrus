@@ -3,6 +3,7 @@ package org.eclipse.papyrus.infra.services.resourceloading.editor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.EditorDescriptor;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
@@ -26,7 +27,9 @@ public class UnloadResourcesEditorFactory implements IPluggableEditorFactory {
 
 	public boolean isPageModelFactoryFor(Object pageIdentifier) {
 		boolean result = false;
-		if(pageIdentifier instanceof EObject) {
+		//AnyType is a Proxy, but it is already handled by another EditorFactory.
+		//Ignore it to avoid conflicts
+		if(pageIdentifier instanceof EObject && !(pageIdentifier instanceof AnyType)) {
 			EObject eObjectPageIdentifier = (EObject)pageIdentifier;
 			result = eObjectPageIdentifier.eIsProxy();
 		}
