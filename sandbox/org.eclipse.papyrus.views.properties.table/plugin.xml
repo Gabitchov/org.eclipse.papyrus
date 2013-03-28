@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.axismanager">
+      <axisManager
+            id="org.eclipse.papyrus.emf.nattable.synchronized.featurevalue.axis.manager"
+            manager="org.eclipse.papyrus.views.properties.table.axis.SynchronizedFeatureValueAxisManager">
+      </axisManager>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.environment">
+      <environment
+            environmentModel="resources/Environment.xmi">
+      </environment>
+   </extension>
+
+</plugin>

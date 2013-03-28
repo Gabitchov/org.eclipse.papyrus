@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<environment:Environment
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
+  <propertyEditorTypes
+      label="EMFTableReferenceEditor (No preview)"
+      widgetClass="NattablePropertyEditor"
+      namespace="//@namespaces.0"
+      type="Reference"
+      multiplicity="-1"/>
+  <namespaces
+      name="table"
+      value="org.eclipse.papyrus.views.properties.table.widgets"/>
+</environment:Environment>

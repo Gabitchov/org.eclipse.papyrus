@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nattableconfiguration:TableEditorConfiguration
+	xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+	xmlns:nattable="http://www.eclipse.org/papyrus/nattable/model"
+	xmlns:nattableaxisconfiguration="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"
+	xmlns:nattableaxisprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"
+	xmlns:nattableconfiguration="http://www.eclipse.org/papyrus/nattable/model/nattableconfiguration"
+	xmlns:nattablelabelprovider="http://www.eclipse.org/papyrus/nattable/model/table/nattablecontentprovider"
+	type="PapyruGenericNattable">
+	<verticalAxisProvider xsi:type="nattableaxisprovider:DefaultAxisProvider">
+		<javaContentProviderIds>org.eclipse.papyrus.uml.nattable.feature.axis.manager</javaContentProviderIds>
+		<javaContentProviderIds>org.eclipse.papyrus.uml.nattable.stereotype.property.axis.manager</javaContentProviderIds>
+		<axisConfiguration
+			xsi:type="nattableaxisconfiguration:DefaultAxisConfiguration"
+			indexStyle="ALPHABETIC" displayIndex="false">
+			<labelConfiguration
+				xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration"
+				labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" />
+		</axisConfiguration>
+		<axis xsi:type="nattable:EObjectAxis" xmi:id="_wNegDJYhEeKsVckQ7wUDqg">
+			<element href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name" />
+		</axis>
+		<axis xsi:type="nattable:EObjectAxis" xmi:id="_wNef_ZYhEeKsVckQ7wUDqg">
+			<element href="http://www.eclipse.org/uml2/4.0.0/UML#//TypedElement/type" />
+		</axis>
+		<axis xsi:type="nattable:EObjectAxis" xmi:id="_wNef-JYhEeKsVckQ7wUDqg">
+			<element
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility" />
+		</axis>
+		<axis xsi:type="nattable:EObjectAxis" xmi:id="_wNef7ZYhEeKsVckQ7wUDqg">
+			<element
+				href="http://www.eclipse.org/uml2/4.0.0/UML#//Property/defaultValue" />
+		</axis>
+		<axis xsi:type="nattable:EObjectAxis" xmi:id="_wNef8pYhEeKsVckQ7wUDqg">
+			<element href="http://www.eclipse.org/uml2/4.0.0/UML#//Property/isDerived" />
+		</axis>
+	</verticalAxisProvider>
+	<horizontalAxisProvider
+		xsi:type="nattableaxisprovider:EMFFeatureValueAxisProvider">
+		<javaContentProviderIds>org.eclipse.papyrus.emf.nattable.synchronized.featurevalue.axis.manager</javaContentProviderIds>
+		<axisConfiguration
+			xsi:type="nattableaxisconfiguration:DefaultAxisConfiguration"
+			displayIndex="false">
+			<labelConfiguration
+				xsi:type="nattablelabelprovider:EObjectLabelProviderConfiguration"
+				labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" />
+		</axisConfiguration>
+		<listenFeature xsi:type="ecore:EReference"
+			href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier/ownedAttribute" />
+	</horizontalAxisProvider>
+</nattableconfiguration:TableEditorConfiguration>
