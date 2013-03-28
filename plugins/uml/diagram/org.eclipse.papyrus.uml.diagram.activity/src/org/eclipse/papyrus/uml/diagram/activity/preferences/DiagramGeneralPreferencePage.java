@@ -18,7 +18,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

@@ -1645,14 +1645,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ValuePinEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1738,14 +1732,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ActionInputPinEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1831,14 +1819,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="InputPinEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1910,14 +1892,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="OutputPinEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -2065,14 +2041,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2162,14 +2132,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2259,14 +2223,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2342,14 +2300,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2501,14 +2453,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2599,14 +2545,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2697,14 +2637,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2781,14 +2715,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2864,14 +2792,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -2962,14 +2884,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -3060,14 +2976,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -4366,14 +4276,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -4460,14 +4364,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -4554,14 +4452,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -4634,14 +4526,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -4728,14 +4614,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -4822,14 +4702,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -4982,14 +4856,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -5076,14 +4944,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -5170,14 +5032,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -5250,14 +5106,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.7/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -5344,14 +5194,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.8/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -5438,14 +5282,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -5691,14 +5529,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -5854,14 +5686,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -6209,14 +6035,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -6287,14 +6107,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -6365,14 +6179,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -6565,14 +6373,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -6890,14 +6692,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -7159,14 +6955,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -7376,14 +7166,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -7451,14 +7235,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -7610,14 +7388,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -7686,14 +7458,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -7762,14 +7528,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -7921,14 +7681,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.31">
           <metaClass
@@ -8078,14 +7832,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.10/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -8238,14 +7986,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -8314,14 +8056,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -8474,14 +8210,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.9/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="PinDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class PinDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalArrowFigure; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public PinDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xD;&#xA;, getMapMode().DPtoLP(16)&#xD;&#xA;));&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fOptionalArrowFigure = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;&#xD;&#xA;this.add(fOptionalArrowFigure);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalArrowFigure() {&#xD;&#xA;&#x9;&#x9;return fOptionalArrowFigure;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -17627,5 +17357,11 @@
         genView="/0/@diagram/@childNodes.52/@labels.2"
         name="AbstractLabelEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="contains methods to display arrows"
+        genView="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.81 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.71"
+        name="AbstractPinEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

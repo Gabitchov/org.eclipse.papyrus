@@ -45,7 +45,7 @@ public class ActionInputPinPreferencePage extends AbstractPapyrusNodePreferenceP
 	}
 
 	/**
-	 * @generated
+	 * @generated not
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 		String key = ActivityDiagramEditPart.MODEL_ID + "_ActionInputPin";

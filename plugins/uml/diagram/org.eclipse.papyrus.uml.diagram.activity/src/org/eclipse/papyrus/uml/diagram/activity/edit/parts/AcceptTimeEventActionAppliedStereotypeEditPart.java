@@ -69,6 +69,7 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -86,7 +87,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class AcceptTimeEventActionAppliedStereotypeEditPart extends org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
+public class AcceptTimeEventActionAppliedStereotypeEditPart extends AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated

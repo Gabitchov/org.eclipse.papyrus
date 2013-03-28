@@ -5,16 +5,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -24,7 +21,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
@@ -34,15 +30,17 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OutputPinInReadStructuralFeatureAsResultItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityFigureDrawer;
+import org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -52,7 +50,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class OutputPinInReadStructuralFeatureAsResultEditPart extends BorderedBorderItemEditPart {
+public class OutputPinInReadStructuralFeatureAsResultEditPart extends AbstractPinEditPart {
 
 	/**
 	 * @generated
@@ -87,6 +85,28 @@ public class OutputPinInReadStructuralFeatureAsResultEditPart extends BorderedBo
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(!(notifier instanceof Edge)) {
+				if(modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
 	}
 
 	/**
@@ -131,14 +151,14 @@ public class OutputPinInReadStructuralFeatureAsResultEditPart extends BorderedBo
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new PinDescriptor();
+		return primaryShape = new OutputPinFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PinDescriptor getPrimaryShape() {
-		return (PinDescriptor)primaryShape;
+	public OutputPinFigure getPrimaryShape() {
+		return (OutputPinFigure)primaryShape;
 	}
 
 	/**
@@ -1100,40 +1120,6 @@ public class OutputPinInReadStructuralFeatureAsResultEditPart extends BorderedBo
 	/**
 	 * @generated
 	 */
-	public class PinDescriptor extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fOptionalArrowFigure;
-
-		/**
-		 * @generated
-		 */
-		public PinDescriptor() {
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16)));
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-			fOptionalArrowFigure = new PolylineShape();
-			this.add(fOptionalArrowFigure);
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getOptionalArrowFigure() {
-			return fOptionalArrowFigure;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
@@ -1161,77 +1147,5 @@ public class OutputPinInReadStructuralFeatureAsResultEditPart extends BorderedBo
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	/**
-	 * Notifies listeners that a target connection has been added.
-	 * 
-	 * @param connection
-	 *        <code>ConnectionEditPart</code> being added as child.
-	 * @param index
-	 *        Position child is being added into.
-	 * @generated NOT
-	 */
-	@Override
-	protected void fireSourceConnectionAdded(ConnectionEditPart connection, int index) {
-		super.fireSourceConnectionAdded(connection, index);
-		// undraw the pin arrow
-		if(connection instanceof ObjectFlowEditPart || connection instanceof ControlFlowEditPart) {
-			PinDescriptor pinFigure = getPrimaryShape();
-			AbstractPointListShape arrow = ((PinDescriptor)pinFigure).getOptionalArrowFigure();
-			ActivityFigureDrawer.undrawFigure(arrow);
-		}
-	}
-
-	/**
-	 * Notifies listeners that a source connection has been removed.
-	 * 
-	 * @param connection
-	 *        <code>ConnectionEditPart</code> being added as child.
-	 * @param index
-	 *        Position child is being added into.
-	 * @generated NOT
-	 */
-	@Override
-	protected void fireRemovingSourceConnection(ConnectionEditPart connection, int index) {
-		super.fireRemovingSourceConnection(connection, index);
-		// redraw the pin arrow if no other target connection left
-		boolean hasActivityEdge = false;
-		for(Object connect : getSourceConnections()) {
-			if(!connection.equals(connect) && (connect instanceof ObjectFlowEditPart || connect instanceof ControlFlowEditPart)) {
-				hasActivityEdge = true;
-				break;
-			}
-		}
-		if(!hasActivityEdge) {
-			PinDescriptor pinFigure = getPrimaryShape();
-			AbstractPointListShape arrow = pinFigure.getOptionalArrowFigure();
-			int direction = getBorderItemLocator().getCurrentSideOfParent();
-			ActivityFigureDrawer.redrawPinArrow(arrow, getMapMode(), getSize(), direction);
-		}
-	}
-
-	/**
-	 * Registers this editpart to recieve notation and semantic events.
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void activate() {
-		super.activate();
-		// redraw the pin arrow if no connection
-		boolean hasActivityEdge = false;
-		for(Object connection : getSourceConnections()) {
-			if(connection instanceof ObjectFlowEditPart || connection instanceof ControlFlowEditPart) {
-				hasActivityEdge = true;
-				break;
-			}
-		}
-		if(!hasActivityEdge) {
-			PinDescriptor pinFigure = getPrimaryShape();
-			AbstractPointListShape arrow = pinFigure.getOptionalArrowFigure();
-			int direction = getBorderItemLocator().getCurrentSideOfParent();
-			ActivityFigureDrawer.redrawPinArrow(arrow, getMapMode(), getSize(), direction);
-		}
 	}
 }

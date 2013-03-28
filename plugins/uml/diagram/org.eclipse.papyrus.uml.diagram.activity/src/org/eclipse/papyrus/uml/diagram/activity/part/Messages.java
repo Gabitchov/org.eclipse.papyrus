@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.activity.part;
 
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.uml.diagram.common.part.CustomMessages;
 
 /**
  * @generated
@@ -33,7 +32,6 @@ public class Messages extends NLS {
 	 */
 	private Messages() {
 	}
-
 
 	/**
 	 * @generated
@@ -1929,5 +1927,4 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String UMLModelingAssistantProviderMessage;
-
 }

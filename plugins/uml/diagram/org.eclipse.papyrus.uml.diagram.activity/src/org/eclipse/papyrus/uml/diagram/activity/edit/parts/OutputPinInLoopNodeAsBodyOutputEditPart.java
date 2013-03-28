@@ -6,9 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -40,6 +38,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OutputPinInLoopNodeAsBodyOutputItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -128,14 +127,14 @@ public class OutputPinInLoopNodeAsBodyOutputEditPart extends BorderedBorderItemE
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new PinDescriptor();
+		return primaryShape = new OutputPinFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PinDescriptor getPrimaryShape() {
-		return (PinDescriptor)primaryShape;
+	public OutputPinFigure getPrimaryShape() {
+		return (OutputPinFigure)primaryShape;
 	}
 
 	/**
@@ -1092,40 +1091,6 @@ public class OutputPinInLoopNodeAsBodyOutputEditPart extends BorderedBorderItemE
 			types.add(UMLElementTypes.Constraint_3112);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class PinDescriptor extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fOptionalArrowFigure;
-
-		/**
-		 * @generated
-		 */
-		public PinDescriptor() {
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16)));
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-			fOptionalArrowFigure = new PolylineShape();
-			this.add(fOptionalArrowFigure);
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getOptionalArrowFigure() {
-			return fOptionalArrowFigure;
-		}
 	}
 
 	/**

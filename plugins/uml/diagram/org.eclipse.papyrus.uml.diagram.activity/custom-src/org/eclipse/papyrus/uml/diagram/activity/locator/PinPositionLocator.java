@@ -65,6 +65,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendObjActA
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.figures.AcceptEventActionFigure;
+import org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure;
+import org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusSendNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
@@ -380,130 +382,16 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	private void refreshPinDescriptorArrow(Object child, IMapMode mapMode, Dimension size) {
 		boolean arrowIn = false;
 		AbstractPointListShape arrow = null;
-		if(child instanceof InputPinInOpaqueActEditPart.PinDescriptor) {
+		if(child instanceof PinFigure) {
 			arrowIn = true;
-			arrow = ((InputPinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInCallBeActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInCallOpActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInCallOpActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInCallOpActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInSendObjActAsReqEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInSendObjActAsReqEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInSendObjActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInSendObjActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInSendSigActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInSendSigActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInSendSigActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInSendSigActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInOpaqueActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInCallBeActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInCallOpActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInCallOpActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInCallOpActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInSendObjActAsReqEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInSendObjActAsReqEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInSendObjActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInSendObjActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInSendSigActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInSendSigActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ActionInputPinInSendSigActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ActionInputPinInSendSigActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInOpaqueActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInCallBeActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInCallOpActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInCallOpActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInCallOpActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInSendObjActAsReqEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInSendObjActAsReqEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInSendObjActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInSendObjActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInSendSigActEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInSendSigActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ValuePinInSendSigActAsTargetEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((ValuePinInSendSigActAsTargetEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInOpaqueActEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInCallBeActEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInCallBeActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInCallOpActEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInAcceptEventActionEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInAcceptEventActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInCreateObjectActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof ReadSelfActionOutputPinEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((ReadSelfActionOutputPinEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInValSpecActEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInValSpecActEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInReadStructuralFeatureAsResultEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInReadStructuralFeatureAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInReadStructuralFeatureAsObjectEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInReadStructuralFeatureAsObjectEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInAddStructuralFeatureValueActionAsObjectEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInAddStructuralFeatureValueActionAsValueEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInAddStructuralFeatureValueActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInDestroyObjectActionEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInDestroyObjectActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInAddVariableValueActionAsValueEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInAddVariableValueActionAsValueEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInAddVariableValueActionAsInsertAtEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInAddVariableValueActionAsInsertAtEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof OutputPinInReadVariableActionAsResultEditPart.PinDescriptor) {
-			arrowIn = false;
-			arrow = ((OutputPinInReadVariableActionAsResultEditPart.PinDescriptor)child).getOptionalArrowFigure();
-		} else if(child instanceof InputPinInBroadcastSignalActionEditPart.PinDescriptor) {
-			arrowIn = true;
-			arrow = ((InputPinInBroadcastSignalActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
+			arrow = ((PinFigure)child).getOptionalArrowFigure();
 		}
+		
+		if(child instanceof OutputPinFigure) {
+			arrowIn = false;
+			arrow = ((PinFigure)child).getOptionalArrowFigure();
+		}
+		
 		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;
 			int side = getCurrentSideOfParent();

@@ -38,7 +38,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPa
 import org.eclipse.papyrus.uml.diagram.activity.helper.SafeDialogOpenerDuringValidation;
 import org.eclipse.papyrus.uml.diagram.activity.helper.UMLValidationHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
-import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.swt.widgets.Display;
