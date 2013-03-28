@@ -13,27 +13,18 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 
@@ -102,7 +93,7 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected EReference pastedElementContainmentFeature;
+	protected EStructuralFeature pastedElementContainmentFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,10 +195,10 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPastedElementContainmentFeature() {
+	public EStructuralFeature getPastedElementContainmentFeature() {
 		if (pastedElementContainmentFeature != null && pastedElementContainmentFeature.eIsProxy()) {
 			InternalEObject oldPastedElementContainmentFeature = (InternalEObject)pastedElementContainmentFeature;
-			pastedElementContainmentFeature = (EReference)eResolveProxy(oldPastedElementContainmentFeature);
+			pastedElementContainmentFeature = (EStructuralFeature)eResolveProxy(oldPastedElementContainmentFeature);
 			if (pastedElementContainmentFeature != oldPastedElementContainmentFeature) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
@@ -221,7 +212,7 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference basicGetPastedElementContainmentFeature() {
+	public EStructuralFeature basicGetPastedElementContainmentFeature() {
 		return pastedElementContainmentFeature;
 	}
 
@@ -230,8 +221,8 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPastedElementContainmentFeature(EReference newPastedElementContainmentFeature) {
-		EReference oldPastedElementContainmentFeature = pastedElementContainmentFeature;
+	public void setPastedElementContainmentFeature(EStructuralFeature newPastedElementContainmentFeature) {
+		EStructuralFeature oldPastedElementContainmentFeature = pastedElementContainmentFeature;
 		pastedElementContainmentFeature = newPastedElementContainmentFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE, oldPastedElementContainmentFeature, pastedElementContainmentFeature));
@@ -303,7 +294,7 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 				setPastedElementTypeId((String)newValue);
 				return;
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE:
-				setPastedElementContainmentFeature((EReference)newValue);
+				setPastedElementContainmentFeature((EStructuralFeature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -327,7 +318,7 @@ public abstract class AbstractAxisProviderImpl extends EModelElementImpl impleme
 				setPastedElementTypeId(PASTED_ELEMENT_TYPE_ID_EDEFAULT);
 				return;
 			case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER__PASTED_ELEMENT_CONTAINMENT_FEATURE:
-				setPastedElementContainmentFeature((EReference)null);
+				setPastedElementContainmentFeature((EStructuralFeature)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -17,7 +17,7 @@
     <axisConfiguration xsi:type="nattableaxisconfiguration:DefaultAxisConfiguration">
       <labelConfiguration xsi:type="nattablelabelprovider:EObjectLabelProviderConfiguration" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider"/>
     </axisConfiguration>
-    <pastedElementContainmentFeature href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/ownedMember"/>
+    <pastedElementContainmentFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/ownedMember"/>
     <listenFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/ownedMember"/>
   </horizontalAxisProvider>
 </nattableconfiguration:TableEditorConfiguration>

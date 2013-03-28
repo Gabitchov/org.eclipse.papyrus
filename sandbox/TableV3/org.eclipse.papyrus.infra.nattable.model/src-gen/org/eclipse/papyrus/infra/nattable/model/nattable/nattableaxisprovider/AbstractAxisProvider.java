@@ -13,12 +13,9 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EReference;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.model.nattable.IAxis;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractAxisConfiguration;
 
 /**
@@ -118,12 +115,12 @@ public interface AbstractAxisProvider extends EModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pasted Element Containment Feature</em>' reference.
-	 * @see #setPastedElementContainmentFeature(EReference)
+	 * @see #setPastedElementContainmentFeature(EStructuralFeature)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getAbstractAxisProvider_PastedElementContainmentFeature()
 	 * @model
 	 * @generated
 	 */
-	EReference getPastedElementContainmentFeature();
+	EStructuralFeature getPastedElementContainmentFeature();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getPastedElementContainmentFeature <em>Pasted Element Containment Feature</em>}' reference.
@@ -133,7 +130,7 @@ public interface AbstractAxisProvider extends EModelElement {
 	 * @see #getPastedElementContainmentFeature()
 	 * @generated
 	 */
-	void setPastedElementContainmentFeature(EReference value);
+	void setPastedElementContainmentFeature(EStructuralFeature value);
 
 	/**
 	 * <!-- begin-user-doc -->

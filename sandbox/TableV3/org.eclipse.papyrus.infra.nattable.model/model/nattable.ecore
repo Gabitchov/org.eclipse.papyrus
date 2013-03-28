@@ -59,7 +59,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementTypeId"
           eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="pastedElementContainmentFeature"
-          eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+          eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DefaultAxisProvider" eSuperTypes="#//nattableaxisprovider/AbstractAxisProvider">
       <eStructuralFeatures xsi:type="ecore:EReference" name="axis" upperBound="-1"
