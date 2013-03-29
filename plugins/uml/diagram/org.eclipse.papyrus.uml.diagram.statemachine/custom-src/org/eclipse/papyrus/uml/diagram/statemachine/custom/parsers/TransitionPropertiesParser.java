@@ -39,6 +39,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.uml.tools.utils.OpaqueExpressionUtil;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallEvent;
@@ -95,9 +96,8 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 
 							@Override
 							protected void doExecute() {
-								// 1. Cherchez dans le model, si une contrainst
-								// avec le meme nom existe
-
+								// 1. Search, if a constraint with the same name exists
+								
 								EList<Element> elements = (transition.getModel()).allOwnedElements();
 								Iterator<Element> modelElement = elements.iterator();
 								while(modelElement.hasNext()) {
@@ -108,7 +108,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 									}
 								}
 
-								// 2.Si aucune constraint n'existe deja
+								// 2. no constraint exists already
 								if(guardConstraint == null) {
 									guardConstraint = UMLFactory.eINSTANCE.createConstraint();
 									guardConstraint.setName(result);
@@ -188,7 +188,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		}
 		return EMPTY_STRING;
 	}
-
+	
 	/**
 	 * get the text concerning Effects
 	 * 
@@ -249,7 +249,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					ValueSpecification vs = ((ChangeEvent) e).getChangeExpression();
 					String value;
 					if (vs instanceof OpaqueExpression) {
-						value = "\"" + retrieveBody((OpaqueExpression) vs, "Natural language") + "\""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						value = "\"" + retrieveBody((OpaqueExpression) vs) + "\""; //$NON-NLS-1$ //$NON-NLS-2$
 					}
 					else {
 						value = vs.stringValue();
@@ -265,7 +265,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					if (te != null) {
 						ValueSpecification vs = te.getExpr();
 						if (vs instanceof OpaqueExpression) {
-							value = "\"" + retrieveBody((OpaqueExpression) vs, "Natural language") + "\""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+							value = "\"" + retrieveBody((OpaqueExpression) vs) + "\""; //$NON-NLS-1$ //$NON-NLS-2$
 						}
 						else {
 							value = vs.stringValue();
@@ -335,23 +335,18 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		return true;
 	}
 
-	private String retrieveBody(OpaqueExpression exp, String languageName) {
-		String body = EMPTY_STRING;
-		if(exp == null) {
-			return body;
-		}
-		int index = 0;
-		for(String _languageName : exp.getLanguages()) {
-			if(_languageName.equals(languageName)) {
-				if(index < exp.getBodies().size()) {
-					return exp.getBodies().get(index);
-				} else {
-					return EMPTY_STRING;
-				}
-			}
-			index++;
+	/**
+	 * Return the body of an expression. Retrieve the "Natural Language" body with priority,
+	 * i.e. return this body if it exists, otherwise return the first body.
+	 * 
+	 * @param exp an opaque expression
+	 * @return the associated body
+	 */
+	private static String retrieveBody(OpaqueExpression exp) {
+		String body = OpaqueExpressionUtil.getBodyForLanguage(exp, "Natural Language"); //$NON-NLS-1$
+		if (body.equals(EMPTY_STRING)) {
+			body = OpaqueExpressionUtil.getBodyForLanguage(exp, null);
 		}
 		return body;
 	}
-
 }
