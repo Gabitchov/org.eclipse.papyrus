@@ -883,10 +883,7 @@ public class ComponentInComponentEditPart extends ShapeNodeEditPart implements I
 			// use StereotypeFigureHelper
 			stereotypeHelper = new StereotypeFigureHelper(useCaseSubjectFigure_header0) {
 
-				@Override
-				public IMapMode getMapMode() {
-					return ComponentInComponentEditPart.this.getMapMode();
-				}
+				
 
 				@Override
 				public Object getStereotypeRectangleConstraint() {

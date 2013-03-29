@@ -883,11 +883,7 @@ public class ComponentInPackageEditPart extends ShapeNodeEditPart implements IPa
 			// use StereotypeFigureHelper
 			stereotypeHelper = new StereotypeFigureHelper(useCaseSubjectFigure_header0) {
 
-				@Override
-				public IMapMode getMapMode() {
-					return ComponentInPackageEditPart.this.getMapMode();
-				}
-
+				
 				@Override
 				public Object getStereotypeRectangleConstraint() {
 					GridData constraintStereotypeRect0 = new GridData();
