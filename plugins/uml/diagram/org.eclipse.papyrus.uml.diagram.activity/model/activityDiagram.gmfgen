@@ -8485,7 +8485,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.PRIMARY_DRAG_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PapyrusUnmovableShapeEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ResizeActivityEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>

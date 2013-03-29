@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   CEA LIT - modification for the resize
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
@@ -23,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
  * for the activity. This way, the activity is automatically resized to the
  * optimal size, being enlarged when an element is drag out of it and taking the
  * default large size otherwise.
+ * now the user can resize the activity
  */
 public class ResizeActivityEditPolicy extends ResizableShapeEditPolicy {
 
@@ -35,19 +37,16 @@ public class ResizeActivityEditPolicy extends ResizableShapeEditPolicy {
 	 */
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
+		System.err.println(request);
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
 	 * 
-	 * Disable resizing manually the activity.
-	 * 
-	 * @param request
-	 *        request to change size
-	 * @return UnexecutableCommand.INSTANCE
+	 * the user can resize the activity
 	 */
 	@Override
 	protected Command getResizeCommand(ChangeBoundsRequest request) {
-		return UnexecutableCommand.INSTANCE;
+		return super.getResizeCommand(request);
 	}
 }

@@ -51,8 +51,8 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCanonicalEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.PapyrusUnmovableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ResizeActivityEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigure;
 import org.eclipse.papyrus.uml.diagram.activity.locator.ParameterNodeLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -107,7 +107,7 @@ public class ActivityEditPart extends NamedElementEditPart {
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityCanonicalEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusUnmovableShapeEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizeActivityEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
