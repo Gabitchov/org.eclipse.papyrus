@@ -140,6 +140,12 @@ public class ConfigurationManager {
 		new EnvironmentExtensionPoint();
 
 		loadCustomContexts();
+		
+		// now that we have loaded the custom contexts, we can migrate the preferences from a
+		// previous version (if required)
+		if (new PreferencesMigrator(this).process(preferences)) {
+			savePreferences();
+		}
 	}
 
 	private EObject loadEMFModel(URI sourceURI) throws IOException {
@@ -167,6 +173,7 @@ public class ConfigurationManager {
 
 	private Preferences createPreferences(URI preferencesURI) {
 		Preferences preferencesStore = PreferencesFactory.eINSTANCE.createPreferences();
+		preferencesStore.setVersion(Preferences.CURRENT_VERSION);
 
 		Resource resource = resourceSet.createResource(preferencesURI);
 		resource.getContents().add(preferencesStore);

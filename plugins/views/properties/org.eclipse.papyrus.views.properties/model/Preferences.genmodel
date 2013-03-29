@@ -17,6 +17,7 @@
     </genClasses>
     <genClasses ecoreClass="Preferences.ecore#//Preferences">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Preferences.ecore#//Preferences/contexts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Preferences.ecore#//Preferences/version"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

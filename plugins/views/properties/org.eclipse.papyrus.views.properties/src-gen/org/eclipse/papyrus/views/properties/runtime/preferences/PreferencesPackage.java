@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - add prototype reference to ContextDescriptor (CDO)
+ *   Christian W. Damus (CEA) - add prototype reference to ContextDescriptor (CDO)
+ *   Christian W. Damus (CEA) - add version number to Preferences model (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime.preferences;
 
@@ -155,6 +156,16 @@ public interface PreferencesPackage extends EPackage {
 	int PREFERENCES__CONTEXTS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PREFERENCES__VERSION = 1;
+
+	/**
 	 * The number of structural features of the '<em>Preferences</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,7 +173,7 @@ public interface PreferencesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREFERENCES_FEATURE_COUNT = 1;
+	int PREFERENCES_FEATURE_COUNT = 2;
 
 
 	/**
@@ -252,6 +263,19 @@ public interface PreferencesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPreferences_Contexts();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.runtime.preferences.Preferences#getVersion
+	 * <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see org.eclipse.papyrus.views.properties.runtime.preferences.Preferences#getVersion()
+	 * @see #getPreferences()
+	 * @generated
+	 */
+	EAttribute getPreferences_Version();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -346,6 +370,15 @@ public interface PreferencesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PREFERENCES__CONTEXTS = eINSTANCE.getPreferences_Contexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute PREFERENCES__VERSION = eINSTANCE.getPreferences_Version();
 
 	}
 

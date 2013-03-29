@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - add prototype reference to ContextDescriptor (CDO)
+ *   Christian W. Damus (CEA) - add prototype reference to ContextDescriptor (CDO)
+ *   Christian W. Damus (CEA) - add version number to Preferences model (CDO)
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime.preferences.impl;
 
@@ -184,6 +185,16 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 	 * 
 	 * @generated
 	 */
+	public EAttribute getPreferences_Version() {
+		return (EAttribute)preferencesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public PreferencesFactory getPreferencesFactory() {
 		return (PreferencesFactory)getEFactoryInstance();
 	}
@@ -218,6 +229,7 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 
 		preferencesEClass = createEClass(PREFERENCES);
 		createEReference(preferencesEClass, PREFERENCES__CONTEXTS);
+		createEAttribute(preferencesEClass, PREFERENCES__VERSION);
 	}
 
 	/**
@@ -261,6 +273,7 @@ public class PreferencesPackageImpl extends EPackageImpl implements PreferencesP
 
 		initEClass(preferencesEClass, Preferences.class, "Preferences", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPreferences_Contexts(), this.getContextDescriptor(), null, "contexts", null, 0, -1, Preferences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPreferences_Version(), ecorePackage.getEInt(), "version", "1", 0, 1, Preferences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
