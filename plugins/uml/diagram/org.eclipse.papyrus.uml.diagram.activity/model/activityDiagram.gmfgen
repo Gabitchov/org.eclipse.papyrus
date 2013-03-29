@@ -1649,6 +1649,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
@@ -1736,6 +1740,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
@@ -1823,6 +1831,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
@@ -1896,6 +1908,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -2049,6 +2065,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
@@ -2140,6 +2160,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
@@ -2231,6 +2255,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
@@ -2308,6 +2336,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -2461,6 +2493,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.0">
           <metaClass
@@ -2553,6 +2589,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.1">
           <metaClass
@@ -2645,6 +2685,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
           <metaClass
@@ -2723,6 +2767,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -2800,6 +2848,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.3">
           <metaClass
@@ -2892,6 +2944,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">
           <metaClass
@@ -2984,6 +3040,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.5">
           <metaClass
@@ -4280,6 +4340,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.14">
           <metaClass
@@ -4368,6 +4432,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.15">
           <metaClass
@@ -4456,6 +4524,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.16">
           <metaClass
@@ -4530,6 +4602,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.17">
           <metaClass
@@ -4618,6 +4694,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.18">
           <metaClass
@@ -4706,6 +4786,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.19">
           <metaClass
@@ -4860,6 +4944,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.20">
           <metaClass
@@ -4948,6 +5036,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.21">
           <metaClass
@@ -5036,6 +5128,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.22">
           <metaClass
@@ -5110,6 +5206,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.23">
           <metaClass
@@ -5198,6 +5298,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.24">
           <metaClass
@@ -5286,6 +5390,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.25">
           <metaClass
@@ -5364,6 +5472,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityParameterNode"/>
@@ -5533,6 +5645,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -5690,6 +5806,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -5892,6 +6012,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.26">
           <metaClass
@@ -5938,6 +6062,10 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.27">
           <metaClass
@@ -6039,6 +6167,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -6111,6 +6243,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -6183,6 +6319,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -6377,6 +6517,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
@@ -6696,6 +6840,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -6959,6 +7107,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -7170,6 +7322,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
@@ -7239,6 +7395,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -7392,6 +7552,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.29">
           <metaClass
@@ -7462,6 +7626,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.30">
           <metaClass
@@ -7532,6 +7700,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
@@ -7683,6 +7855,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.31">
           <metaClass
@@ -7836,6 +8012,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.32">
           <metaClass
@@ -7990,6 +8170,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.33">
           <metaClass
@@ -8060,6 +8244,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.34">
           <metaClass
@@ -8214,6 +8402,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.35">
           <metaClass
@@ -17363,5 +17555,10 @@
         genView="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.81 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.71"
         name="AbstractPinEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
+        comment="locator for external label of pins"
+        classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
+        genExternalNodeLabel="/0/@diagram/@childNodes.75/@labels.0 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.5/@labels.0 /0/@diagram/@childNodes.7/@labels.2 /0/@diagram/@childNodes.8/@labels.2 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.12/@labels.2 /0/@diagram/@childNodes.13/@labels.2 /0/@diagram/@childNodes.14/@labels.1 /0/@diagram/@childNodes.15/@labels.1 /0/@diagram/@childNodes.17/@labels.2 /0/@diagram/@childNodes.18/@labels.2 /0/@diagram/@childNodes.19/@labels.1 /0/@diagram/@childNodes.20/@labels.1 /0/@diagram/@childNodes.21/@labels.2 /0/@diagram/@childNodes.22/@labels.2 /0/@diagram/@childNodes.23/@labels.1 /0/@diagram/@childNodes.32/@labels.1 /0/@diagram/@childNodes.33/@labels.0 /0/@diagram/@childNodes.34/@labels.0 /0/@diagram/@childNodes.35/@labels.1 /0/@diagram/@childNodes.38/@labels.2 /0/@diagram/@childNodes.39/@labels.2 /0/@diagram/@childNodes.40/@labels.1 /0/@diagram/@childNodes.41/@labels.2 /0/@diagram/@childNodes.42/@labels.2 /0/@diagram/@childNodes.43/@labels.1 /0/@diagram/@childNodes.45/@labels.2 /0/@diagram/@childNodes.46/@labels.2 /0/@diagram/@childNodes.47/@labels.1 /0/@diagram/@childNodes.48/@labels.2 /0/@diagram/@childNodes.49/@labels.2 /0/@diagram/@childNodes.50/@labels.1 /0/@diagram/@childNodes.52/@labels.2 /0/@diagram/@childNodes.53/@labels.1 /0/@diagram/@childNodes.55/@labels.1 /0/@diagram/@childNodes.71/@labels.1 /0/@diagram/@childNodes.74/@labels.1 /0/@diagram/@childNodes.77/@labels.1 /0/@diagram/@childNodes.80/@labels.1 /0/@diagram/@childNodes.81/@labels.1 /0/@diagram/@childNodes.82/@labels.1 /0/@diagram/@childNodes.84/@labels.1 /0/@diagram/@childNodes.86/@labels.1 /0/@diagram/@childNodes.88/@labels.1 /0/@diagram/@childNodes.89/@labels.1 /0/@diagram/@childNodes.91/@labels.2 /0/@diagram/@childNodes.63/@labels.0 /0/@diagram/@childNodes.61/@labels.1 /0/@diagram/@childNodes.62/@labels.1 /0/@diagram/@childNodes.63/@labels.1 /0/@diagram/@childNodes.66/@labels.1 /0/@diagram/@childNodes.53/@labels.0 /0/@diagram/@childNodes.7/@labels.0 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.0 /0/@diagram/@childNodes.10/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.12/@labels.1 /0/@diagram/@childNodes.13/@labels.0 /0/@diagram/@childNodes.13/@labels.1 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.17/@labels.1 /0/@diagram/@childNodes.18/@labels.0 /0/@diagram/@childNodes.18/@labels.1 /0/@diagram/@childNodes.19/@labels.0 /0/@diagram/@childNodes.20/@labels.0 /0/@diagram/@childNodes.21/@labels.0 /0/@diagram/@childNodes.21/@labels.1 /0/@diagram/@childNodes.22/@labels.0 /0/@diagram/@childNodes.22/@labels.1 /0/@diagram/@childNodes.23/@labels.0 /0/@diagram/@childNodes.32/@labels.0 /0/@diagram/@childNodes.35/@labels.0 /0/@diagram/@childNodes.36/@labels.1 /0/@diagram/@childNodes.38/@labels.0 /0/@diagram/@childNodes.38/@labels.1 /0/@diagram/@childNodes.39/@labels.0 /0/@diagram/@childNodes.39/@labels.1 /0/@diagram/@childNodes.40/@labels.0 /0/@diagram/@childNodes.41/@labels.0 /0/@diagram/@childNodes.41/@labels.1 /0/@diagram/@childNodes.42/@labels.0 /0/@diagram/@childNodes.42/@labels.1 /0/@diagram/@childNodes.43/@labels.0 /0/@diagram/@childNodes.45/@labels.0 /0/@diagram/@childNodes.45/@labels.1 /0/@diagram/@childNodes.46/@labels.0 /0/@diagram/@childNodes.46/@labels.1 /0/@diagram/@childNodes.47/@labels.0 /0/@diagram/@childNodes.48/@labels.0 /0/@diagram/@childNodes.48/@labels.1 /0/@diagram/@childNodes.49/@labels.0 /0/@diagram/@childNodes.49/@labels.1 /0/@diagram/@childNodes.50/@labels.0 /0/@diagram/@childNodes.52/@labels.1 /0/@diagram/@childNodes.55/@labels.0 /0/@diagram/@childNodes.61/@labels.0 /0/@diagram/@childNodes.62/@labels.0 /0/@diagram/@childNodes.66/@labels.0 /0/@diagram/@childNodes.71/@labels.0 /0/@diagram/@childNodes.74/@labels.0 /0/@diagram/@childNodes.77/@labels.0 /0/@diagram/@childNodes.78/@labels.0 /0/@diagram/@childNodes.78/@labels.1 /0/@diagram/@childNodes.80/@labels.0 /0/@diagram/@childNodes.81/@labels.0 /0/@diagram/@childNodes.82/@labels.0 /0/@diagram/@childNodes.84/@labels.0 /0/@diagram/@childNodes.86/@labels.0 /0/@diagram/@childNodes.88/@labels.0 /0/@diagram/@childNodes.89/@labels.0 /0/@diagram/@childNodes.91/@labels.0 /0/@diagram/@childNodes.91/@labels.1 /0/@diagram/@childNodes.92/@labels.1"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
