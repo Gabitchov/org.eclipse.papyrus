@@ -38,14 +38,14 @@
             uri="http://www.eclipse.org/papyrus/MARTE/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/NFPs/1">
       </package>
-   </extension>
+   </extension-->
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated MARTE -->
       <package
@@ -166,14 +166,14 @@
             uri="http://www.eclipse.org/papyrus/Time/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GRMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/GRM/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -181,14 +181,14 @@
             uri="http://www.eclipse.org/papyrus/GRM/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/Alloc/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -196,14 +196,14 @@
             uri="http://www.eclipse.org/papyrus/Alloc/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.CoreElementsPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/CoreElements/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -211,14 +211,14 @@
             uri="http://www.eclipse.org/papyrus/CoreElements/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HLAM/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -226,14 +226,14 @@
             uri="http://www.eclipse.org/papyrus/HLAM/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.HwComputingPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwComputing/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -255,14 +255,14 @@
             uri="http://www.eclipse.org/papyrus/HwComputing/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.HwCommunicationPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwCommunication/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -270,14 +270,14 @@
             uri="http://www.eclipse.org/papyrus/HwCommunication/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.HwTimingPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwTiming/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -285,14 +285,14 @@
             uri="http://www.eclipse.org/papyrus/HwTiming/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.HwDevicePackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwDevice/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -307,14 +307,14 @@
             uri="http://www.eclipse.org/papyrus/HwStorage/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.HwMemoryPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwMemory/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -322,14 +322,14 @@
             uri="http://www.eclipse.org/papyrus/HwMemory/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.HwStorageManagerPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwStorageManager/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -344,14 +344,14 @@
             uri="http://www.eclipse.org/papyrus/HwPhysical/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.HwLayoutPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwLayout/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -359,14 +359,14 @@
             uri="http://www.eclipse.org/papyrus/HwLayout/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.HwPowerPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwPower/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -374,14 +374,14 @@
             uri="http://www.eclipse.org/papyrus/HwPower/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwGeneralPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwGeneral/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -396,14 +396,14 @@
             uri="http://www.eclipse.org/papyrus/SRM/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SW_ResourceCorePackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SW_ResourceCore/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -411,14 +411,14 @@
             uri="http://www.eclipse.org/papyrus/SW_ResourceCore/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SW_ConcurrencyPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SW_Concurrency/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -426,14 +426,14 @@
             uri="http://www.eclipse.org/papyrus/SW_Concurrency/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.SW_BrokeringPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SW_Brokering/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -441,14 +441,14 @@
             uri="http://www.eclipse.org/papyrus/SW_Brokering/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.SW_InteractionPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SW_Interaction/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -456,14 +456,14 @@
             uri="http://www.eclipse.org/papyrus/SW_Interaction/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/GCM/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -471,14 +471,14 @@
             uri="http://www.eclipse.org/papyrus/GCM/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GQAMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/GQAM/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -486,14 +486,14 @@
             uri="http://www.eclipse.org/papyrus/GQAM/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SAM/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -501,14 +501,14 @@
             uri="http://www.eclipse.org/papyrus/SAM/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/PAM/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -516,14 +516,14 @@
             uri="http://www.eclipse.org/papyrus/PAM/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.RSMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/RSM/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -538,14 +538,14 @@
             uri="http://www.eclipse.org/papyrus/VSL/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.DataTypesPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/DataTypes/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
@@ -560,14 +560,14 @@
             uri="http://www.eclipse.org/papyrus/Variables/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariablesPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/Variables/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
@@ -1021,14 +1021,14 @@
             uri="http://www.eclipse.org/papyrus/Operators/1">
       </profile>
    </extension>
-   <extension
+   <!--extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             class="org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/Operators/1">
       </package>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
@@ -1349,31 +1349,31 @@
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/VSL/1">
       </package>
-      <package
+      <!--package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwLogicalPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwLogical/1">
-      </package>
-      <package
+      </package-->
+      <!--package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPhysicalPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HwPhysical/1">
-      </package>
-      <package
+      </package-->
+      <!--package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SRMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/SRM/1">
-      </package>
-      <package
+      </package-->
+      <!--package
             class="org.eclipse.papyrus.MARTE.MARTEPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/MARTE/1">
-      </package>
-      <package
+      </package-->
+      <!--package
             class="org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HRMPackage"
             genModel="MARTE.genmodel"
             uri="http://www.eclipse.org/papyrus/HRM/1">
-      </package>
+      </package-->
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
