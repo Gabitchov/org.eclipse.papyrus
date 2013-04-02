@@ -2,11 +2,11 @@
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_OPIe8G-9EeKko_sFXbAb-Q" type="PapyrusUMLClassDiagram" name="ClassDiagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_OrhgAG-9EeKko_sFXbAb-Q" type="2008">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P5kAcG-9EeKko_sFXbAb-Q" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5kAcW-9EeKko_sFXbAb-Q" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5kngG-9EeKko_sFXbAb-Q" key="StereotypeList" value="EditConstraintOnPropertyOfStereotype::Stereotype1"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5kngW-9EeKko_sFXbAb-Q" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5kngm-9EeKko_sFXbAb-Q" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5kng2-9EeKko_sFXbAb-Q" key="StereotypePropertyLocation" value="Compartment"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkUglZuiEeK-8bwrpj4Hxg" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkUglpuiEeK-8bwrpj4Hxg" key="StereotypeList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkUgl5uiEeK-8bwrpj4Hxg" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkUgmJuiEeK-8bwrpj4Hxg" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkUgmZuiEeK-8bwrpj4Hxg" key="StereotypePropertyLocation" value="Compartment"/>
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_OrhgAm-9EeKko_sFXbAb-Q" type="5029"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Or1pEG-9EeKko_sFXbAb-Q" type="7017">
