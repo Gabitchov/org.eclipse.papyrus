@@ -18,7 +18,6 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractListEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
@@ -32,8 +31,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class MultiReferenceEditorWithPropertyView extends AbstractListEditor
-		implements ISelectionChangedListener {
+public class MultiReferenceEditorWithPropertyView extends AbstractListEditor implements ISelectionChangedListener {
 
 	protected MultipleReferenceEditor multiReferenceEditor;
 
@@ -44,17 +42,15 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor
 	public MultiReferenceEditorWithPropertyView(Composite parent, int style) {
 		super(parent, style);
 		// parent.setBackground(getDisplay().getSystemColor(SWT.COLOR_RED));
-		((GridLayout) getLayout()).numColumns++;
+		((GridLayout)getLayout()).numColumns++;
 
 		multiReferenceEditor = createMultipleReferenceEditor(style);
 		multiReferenceEditor.addSelectionChangedListener(this);
-		multiReferenceEditor.setLayoutData(new GridData(SWT.BEGINNING,
-				SWT.FILL, false, true));
+		multiReferenceEditor.setLayoutData(new GridData(SWT.BEGINNING, SWT.FILL, false, true));
 
 		propertiesComposite = new Composite(this, style);
 		propertiesComposite.setLayout(new FillLayout());
-		propertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
-				true, true));
+		propertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	}
 
 	/**
@@ -116,9 +112,13 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor
 	@Override
 	public void setModelObservable(IObservableList modelObservable) {
 		multiReferenceEditor.setModelObservable(modelObservable);
-		if (!modelObservable.isEmpty()) {
-			multiReferenceEditor.getViewer().setSelection(new StructuredSelection(modelObservable.get(0)));
-		}
+
+		//If the properties view of the first element contains a recursive view, we may have a StackOverFlow here.
+		//Do not force the initial selection.
+
+		//		if(!modelObservable.isEmpty()) {
+		//			multiReferenceEditor.getViewer().setSelection(new StructuredSelection(modelObservable.get(0)));
+		//		}
 	}
 
 	@Override
@@ -130,8 +130,7 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor
 	public void selectionChanged(SelectionChangedEvent event) {
 		ISelection selection = event.getSelection();
 
-		Set<View> views = ConfigurationManager.instance.constraintEngine
-				.getViews(selection);
+		Set<View> views = ConfigurationManager.instance.constraintEngine.getViews(selection);
 		displayEngine.display(views, propertiesComposite, selection, SWT.NONE);
 		this.layout();
 		propertiesComposite.layout();
