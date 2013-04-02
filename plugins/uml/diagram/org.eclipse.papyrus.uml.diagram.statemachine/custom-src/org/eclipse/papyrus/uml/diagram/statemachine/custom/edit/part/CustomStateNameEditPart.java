@@ -68,6 +68,9 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 
 		View stateLabelView = (View)getModel();
 		View stateView = (View)stateLabelView.eContainer();
+		if (stateView == null) {
+			return;
+		}
 		View stateCompartView = (View)stateView.getChildren().get(1);
 
 		if(stateCompartView.getChildren().isEmpty())
@@ -132,9 +135,6 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 				internalResizeCommand.execute(null, null);
 			} catch (ExecutionException e) {
 			}
-
 		}
-
-
 	}
 }

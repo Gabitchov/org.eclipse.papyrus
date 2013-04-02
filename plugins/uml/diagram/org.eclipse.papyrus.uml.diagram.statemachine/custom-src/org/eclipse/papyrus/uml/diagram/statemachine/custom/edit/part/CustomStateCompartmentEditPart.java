@@ -42,10 +42,11 @@ public class CustomStateCompartmentEditPart extends StateCompartmentEditPart {
 		super.refreshVisuals();
 
 		View stateView = (View)((View)getModel()).eContainer();
-		State state = (State)stateView.getElement();
+		if (stateView != null) {
+			State state = (State)stateView.getElement();
 
-		((CustomStateCompartmentFigure)getFigure()).setToolTip(state.getName());
-
+			((CustomStateCompartmentFigure)getFigure()).setToolTip(state.getName());
+		}
 	}
 
 }
