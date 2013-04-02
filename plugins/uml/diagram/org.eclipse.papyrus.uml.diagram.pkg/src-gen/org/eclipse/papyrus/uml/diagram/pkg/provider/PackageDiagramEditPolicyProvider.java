@@ -54,6 +54,18 @@ public class PackageDiagramEditPolicyProvider extends AbstractProvider implement
 		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN) {
 			return true;
 		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart) {
+			return true;
+		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPartCN) {
+			return true;
+		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN) {
+			return true;
+		}
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartTN) {
+			return true;
+		}
 
 		return false;
 	}

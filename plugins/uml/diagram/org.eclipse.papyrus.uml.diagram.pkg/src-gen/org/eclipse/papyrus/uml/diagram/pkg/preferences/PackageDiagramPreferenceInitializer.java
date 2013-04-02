@@ -27,10 +27,12 @@ public class PackageDiagramPreferenceInitializer extends AbstractPreferenceIniti
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		org.eclipse.papyrus.uml.diagram.pkg.preferences.PackagePreferencePage.initDefaults(store);
+		org.eclipse.papyrus.uml.diagram.pkg.CustomPackagePreferencePage.initDefaults(store);
 		org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.uml.diagram.pkg.preferences.ConstraintPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.uml.diagram.pkg.CustomModelPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageImportPreferencePage.initDefaults(store);
-		org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentLinkPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.uml.diagram.pkg.preferences.AbstractionPreferencePage.initDefaults(store);
 	}
 }

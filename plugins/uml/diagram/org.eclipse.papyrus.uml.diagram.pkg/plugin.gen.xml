@@ -113,22 +113,26 @@
 			"3009" = PACKAGE_CN
 			"2012" = COMMENT
 			"3028" = COMMENT_CN
+			"2011" = CONSTRAINT
+			"3029" = CONSTRAINT_CN
+			"2005" = MODEL
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012, 3028"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012, 3028, 2011, 3029, 2005"/>
 		
 		<!-- 
 			"4008" = DEPENDENCY
 			"4010" = PACKAGE_IMPORT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4006" = ABSTRACTION
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010, 4013, 4006"/>
 		
 		<object id="elementtype.node"
 	        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="2007, 3009, 2012, 3028">
+			value="2007, 3009, 2012, 3028, 2011, 3029, 2005">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="elementtype.node"/>
@@ -138,7 +142,7 @@
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="4008, 4010, 4013">
+			value="4008, 4010, 4013, 4006">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="elementtype.edge"/>
@@ -156,6 +160,16 @@
 			<method name="getProxyClassID()" value="uml.Comment"/>
 		</object>
 		
+		<!-- "uml.Constraint" -->
+		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Constraint"/>
+		</object>
+		
+		<!-- "uml.Model" -->
+		<object id="uml.Model" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Model"/>
+		</object>
+		
 		<!-- "uml.Dependency" -->
 		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Dependency"/>
@@ -166,13 +180,18 @@
 			<method name="getProxyClassID()" value="uml.PackageImport"/>
 		</object>
 		
+		<!-- "uml.Abstraction" -->
+		<object id="uml.Abstraction" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Abstraction"/>
+		</object>
+		
 		<!-- Additional activation contexts for nodes semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
-			elements="uml.Package, uml.Comment"/>
+			elements="uml.Package, uml.Comment, uml.Constraint, uml.Model"/>
 		
 		<!-- Additional activation contexts for edges semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge"
-			elements="uml.Dependency, uml.PackageImport"/>
+			elements="uml.Dependency, uml.PackageImport, uml.Abstraction"/>
 			
 	</viewProvider>	
 </extension>
@@ -207,6 +226,15 @@
 			"5038" = COMMENT_LABEL_BODY_HINT
 			"3028" = COMMENT_CN
 			"5063" = COMMENT_CN_LABEL_BODY_HINT
+			"2011" = CONSTRAINT
+			"5037" = CONSTRAINT_LABEL_NAME_HINT
+			"5159" = CONSTRAINT_LABEL_BODY_HINT
+			"3029" = CONSTRAINT_CN
+			"5064" = CONSTRAINT_CN_LABEL_NAME_HINT
+			"5160" = CONSTRAINT_CN_LABEL_BODY_HINT
+			"2005" = MODEL
+			"5020" = MODEL_LABEL_NAME_TN_HINT
+			"7009" = MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
 		  -->
 		<object
 			id="PACKAGE"
@@ -228,6 +256,21 @@
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="3028, 5063"/>
 		</object>
+		<object
+			id="CONSTRAINT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2011, 5037, 5159"/>
+		</object>
+		<object
+			id="CONSTRAINT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3029, 5064, 5160"/>
+		</object>
+		<object
+			id="MODEL"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2005, 5020, 7009"/>
+		</object>
 		
 		
 		<!-- 	
@@ -237,6 +280,9 @@
 			"4010" = PACKAGE_IMPORT
 			"6022" = PACKAGE_IMPORT_LABEL_APPLIED_STEREOTYPE_HINT
 			"4013" = COMMENT_ANNOTATED_ELEMENT
+			"4006" = ABSTRACTION
+			"6014" = ABSTRACTION_LABEL_NAME_HINT
+			"6015" = ABSTRACTION_LABEL_APPLIED_STEREOTYPE_HINT
 		  -->
 		<object
 			id="DEPENDENCY"
@@ -253,9 +299,14 @@
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4013"/>
 		</object>
+		<object
+			id="ABSTRACTION"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4006, 6014, 6015"/>
+		</object>
 		
-		<context views="PACKAGE, PACKAGE_CN, COMMENT, COMMENT_CN"/>
-		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT"/>
+		<context views="PACKAGE, PACKAGE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN, MODEL"/>
+		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT, ABSTRACTION"/>
 		
 	</editpartProvider>
 </extension>
@@ -282,7 +333,7 @@
 
 	<!-- Element Preference pages declaration -->
 	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
-		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackagePreferencePage"
+		class="org.eclipse.papyrus.uml.diagram.pkg.CustomPackagePreferencePage"
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackagePreferencePage"
 		name="Package">
 	</page>
@@ -300,6 +351,22 @@
 	
 	
 	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+	
+	
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.CustomModelPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.ModelPreferencePage"
+		name="Model">
+	</page>
+	
+	
+	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
 		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
 		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
 		name="Dependency">
@@ -313,10 +380,12 @@
 	</page>
 	
 	
+	
+	
 	<page  	category="org.eclipse.papyrus.uml.diagram.pkg.preferences"
-		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentLinkPreferencePage"
-		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.CommentLinkPreferencePage"
-		name="CommentLink">
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.AbstractionPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.AbstractionPreferencePage"
+		name="Abstraction">
 	</page>
 	
 	

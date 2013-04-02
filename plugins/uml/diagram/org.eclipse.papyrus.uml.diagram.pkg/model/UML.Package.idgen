@@ -8,10 +8,10 @@
   </diagramEditPart>
   <inheritedDiagrams name="ClassDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy">
     <genInheritedEditor href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#PapyrusUMLClassDiagram"/>
-    <genNodes>
+    <genNodes customPreferencePage="org.eclipse.papyrus.uml.diagram.pkg.CustomPackagePreferencePage">
       <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.9"/>
     </genNodes>
-    <genNodes generatePreferencePage="false" generateTool="false">
+    <genNodes customPreferencePage="org.eclipse.papyrus.uml.diagram.pkg.CustomPackagePreferencePage" generatePreferencePage="false" generateTool="false">
       <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.31"/>
     </genNodes>
     <genNodes name="">
@@ -20,14 +20,26 @@
     <genNodes generatePreferencePage="false" generateTool="false">
       <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.36"/>
     </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.14"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.37"/>
+    </genNodes>
+    <genNodes customPreferencePage="org.eclipse.papyrus.uml.diagram.pkg.CustomModelPreferencePage">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.7"/>
+    </genNodes>
     <genLinks>
       <genLink href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.10"/>
     </genLinks>
     <genLinks>
       <genLink href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.13"/>
     </genLinks>
-    <genLinks name="CommentLink">
+    <genLinks name="CommentLink" customPreferencePage="" generatePreferencePage="false" generateTool="false">
       <genLink href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.16"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.8"/>
     </genLinks>
   </inheritedDiagrams>
   <customJavaClasses customEditPolicyProvider="org.eclipse.papyrus.uml.diagram.pkg.provider.CustomEditPolicyProvider"/>

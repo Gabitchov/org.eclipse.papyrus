@@ -42,12 +42,21 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 			if(eobject instanceof org.eclipse.uml2.uml.Comment) {
 				return true;
 			}
+			if(eobject instanceof org.eclipse.uml2.uml.Constraint) {
+				return true;
+			}
+			if(eobject instanceof org.eclipse.uml2.uml.Model) {
+				return true;
+			}
 
 			/** Edges *********** */
 			if(eobject instanceof org.eclipse.uml2.uml.Dependency) {
 				return true;
 			}
 			if(eobject instanceof org.eclipse.uml2.uml.PackageImport) {
+				return true;
+			}
+			if(eobject instanceof org.eclipse.uml2.uml.Abstraction) {
 				return true;
 			}
 

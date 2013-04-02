@@ -7,11 +7,17 @@
 			<aspectTool description="Create a new Comment" id="package.tool.comment"
 				name="Comment" refToolId="clazz.tool.comment">
 			</aspectTool>
+			<aspectTool description="Create a new Constraint" id="package.tool.constraint"
+				name="Constraint" refToolId="clazz.tool.constraint">
+			</aspectTool>
+			<aspectTool description="Create a new Model" id="package.tool.model"
+				name="Model" refToolId="clazz.tool.model">
+			</aspectTool>
 			<aspectTool description="Create a new Package" id="package.tool.package"
 				name="Package" refToolId="clazz.tool.package">
 			</aspectTool>
-			<aspectTool description="Create a new CommentLink" id="package.tool.commentlink"
-				name="CommentLink" refToolId="clazz.tool.link">
+			<aspectTool description="Create a new Abstraction" id="package.tool.abstraction"
+				name="Abstraction" refToolId="clazz.tool.abstraction">
 			</aspectTool>
 			<aspectTool description="Create a new Dependency" id="package.tool.dependency"
 				name="Dependency" refToolId="clazz.tool.dependency">

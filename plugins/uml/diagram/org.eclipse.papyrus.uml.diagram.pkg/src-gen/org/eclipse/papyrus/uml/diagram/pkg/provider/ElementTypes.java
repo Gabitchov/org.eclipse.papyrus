@@ -53,6 +53,27 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String COMMENT_CN_LABEL_BODY_HINT = "5063"; //$NON-NLS-1$
 
+	/** ClassDiagram :: CONSTRAINT */
+	public static final IHintedType CONSTRAINT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Constraint_2011"); //$NON-NLS-1$
+
+	public static final String CONSTRAINT_LABEL_NAME_HINT = "5037"; //$NON-NLS-1$
+
+	public static final String CONSTRAINT_LABEL_BODY_HINT = "5159"; //$NON-NLS-1$
+
+	/** ClassDiagram :: CONSTRAINT_CN */
+	public static final IHintedType CONSTRAINT_CN = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Constraint_3029"); //$NON-NLS-1$
+
+	public static final String CONSTRAINT_CN_LABEL_NAME_HINT = "5064"; //$NON-NLS-1$
+
+	public static final String CONSTRAINT_CN_LABEL_BODY_HINT = "5160"; //$NON-NLS-1$
+
+	/** ClassDiagram :: MODEL */
+	public static final IHintedType MODEL = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Model_2005"); //$NON-NLS-1$
+
+	public static final String MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT = "7009"; //$NON-NLS-1$
+
+	public static final String MODEL_LABEL_NAME_TN_HINT = "5020"; //$NON-NLS-1$
+
 	/** ClassDiagram :: DEPENDENCY */
 	public static final IHintedType DEPENDENCY = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"); //$NON-NLS-1$
 
@@ -67,5 +88,12 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ClassDiagram :: COMMENT_ANNOTATED_ELEMENT */
 	public static final IHintedType COMMENT_ANNOTATED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.CommentAnnotatedElement_4013"); //$NON-NLS-1$
+
+	/** ClassDiagram :: ABSTRACTION */
+	public static final IHintedType ABSTRACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006"); //$NON-NLS-1$
+
+	public static final String ABSTRACTION_LABEL_NAME_HINT = "6014"; //$NON-NLS-1$
+
+	public static final String ABSTRACTION_LABEL_APPLIED_STEREOTYPE_HINT = "6015"; //$NON-NLS-1$
 
 }
