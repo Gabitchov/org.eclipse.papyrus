@@ -13,23 +13,30 @@
 package org.eclipse.papyrus.customization.properties.editor;
 
 import java.util.EventObject;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
@@ -64,6 +71,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
@@ -72,6 +80,7 @@ import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
@@ -311,7 +320,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 
 	private void refreshContext() {
 		Context context = getContext();
-		if (context != null) {
+		if(context != null) {
 			ConfigurationManager.instance.refresh(context);
 		}
 	}
@@ -372,7 +381,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			preview.displayView();
 		}
 	}
-	
+
 	@Override
 	public void createModel() {
 		if(getEditorInput() instanceof ResourceEditorInput) {
@@ -382,31 +391,57 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			ResourceSet resourceSet = ((ResourceEditorInput)getEditorInput()).getResource().getResourceSet();
 
 			if(resourceSet != null) {
-				// *** copied from EMF, except to add the resource set
-				editingDomain = new AdapterFactoryEditingDomain(editingDomain.getAdapterFactory(), editingDomain.getCommandStack(), resourceSet) {
-
-					{
-						resourceToReadOnlyMap = new HashMap<Resource, Boolean>();
-					}
-
-					@Override
-					public boolean isReadOnly(Resource resource) {
-						if(super.isReadOnly(resource) || resource == null) {
-							return true;
-						} else {
-							URI uri = resource.getURI();
-							boolean result = "java".equals(uri.scheme()) || "xcore".equals(uri.fileExtension()) || "genmodel".equals(uri.fileExtension()) || uri.isPlatformResource() && !resourceSet.getURIConverter().normalize(uri).isPlatformResource();
-							if(resourceToReadOnlyMap != null) {
-								resourceToReadOnlyMap.put(resource, result);
-							}
-							return result;
-						}
-					}
-				};
-				// *** end of copy
+				editingDomain = new AdapterFactoryEditingDomain(editingDomain.getAdapterFactory(), editingDomain.getCommandStack(), resourceSet);
 			}
 		}
-		
+
 		super.createModel();
+	}
+
+	@Override
+	protected void initializeEditingDomain() {
+		// Create an adapter factory that yields item providers.
+		//
+		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+
+		// Create the command stack that will notify this editor as commands are executed.
+		//
+		BasicCommandStack commandStack = new BasicCommandStack();
+
+		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
+		//
+		commandStack.addCommandStackListener(new CommandStackListener() {
+
+			public void commandStackChanged(final EventObject event) {
+				getContainer().getDisplay().asyncExec(new Runnable() {
+
+					public void run() {
+						firePropertyChange(IEditorPart.PROP_DIRTY);
+
+						// Try to select the affected objects.
+						//
+						Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+						if(mostRecentCommand != null) {
+							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+						}
+						for(Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
+							PropertySheetPage propertySheetPage = i.next();
+							if(propertySheetPage.getControl().isDisposed()) {
+								i.remove();
+							} else {
+								propertySheetPage.refresh();
+							}
+						}
+					}
+				});
+			}
+		});
+
+		//Replace the parent editing domain with a standard one. We don't want to override the isReadOnly() method.
+		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack);
 	}
 }
