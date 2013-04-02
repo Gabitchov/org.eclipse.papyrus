@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -39,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.composite.custom.edit.command.CreateViewC
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.command.PropertyPartFromTypeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.custom.utils.CompositeEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN;
+import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
@@ -52,7 +54,7 @@ public class TypeHelper extends ElementHelper {
 	}
 
 	public CompoundCommand dropTypeAsTypedProperty(GraphicalEditPart graphicalTarget, Type semanticElement, Point location) {
-		CompoundCommand cc = new CompoundCommand("DropTypeAsTypedProperty");
+		CompoundCommand cc = new CompoundCommand("Drop type as typed property");
 
 		EObject graphicalParentObject = graphicalTarget.resolveSemanticElement();
 
@@ -67,22 +69,24 @@ public class TypeHelper extends ElementHelper {
 			CreateElementRequest req = new CreateElementRequest(getEditingDomain(), graphicalParentObject, elementType);
 			PropertyPartFromTypeCreateCommand propertyCreateCommand = new PropertyPartFromTypeCreateCommand(req, (StructuredClassifier)graphicalParentObject, (Type)semanticElement, semanticAdapter);
 
-			// 2. Prepare the drop command
-			ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)propertyCreateCommand.getCommandResult().getReturnValue(), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, true, graphicalTarget.getDiagramPreferencesHint());
-			CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(reTarget(graphicalTarget).getModel())));
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
-
-			// 3. Create the compound command
-			cc.add(new ICommandProxy(propertyCreateCommand));
-			cc.add(new ICommandProxy(viewCreateCommand));
-			cc.add(new ICommandProxy(setBoundsCommand));
+			if (reTarget(graphicalTarget) != null) {	// might be null, if composite compartment is not shown 
+				// 2. Prepare the drop command
+				ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)propertyCreateCommand.getCommandResult().getReturnValue(), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, true, graphicalTarget.getDiagramPreferencesHint());
+				CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(reTarget(graphicalTarget).getModel())));
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
+				
+				// 3. Create the compound command
+				cc.add(new ICommandProxy(propertyCreateCommand));
+				cc.add(new ICommandProxy(viewCreateCommand));
+				cc.add(new ICommandProxy(setBoundsCommand));
+			}
 		}
 
 		return cc;
 	}
 
 	public CompoundCommand dropTypeOnTypedElement(GraphicalEditPart graphicalTarget, Type semanticElement, Point location) {
-		CompoundCommand cc = new CompoundCommand("DropTypeOnProperty");
+		CompoundCommand cc = new CompoundCommand("Drop type on property");
 
 		EObject graphicalParentObject = graphicalTarget.resolveSemanticElement();
 		if(graphicalParentObject instanceof TypedElement) {
@@ -113,6 +117,37 @@ public class TypeHelper extends ElementHelper {
 		return cc;
 	}
 
+	/**
+	 * Drop a nested classifier into the structure compartment (added in context of bug 402717)
+	 * 
+	 * @param graphicalTarget the edit part of the target element
+	 * @param semanticElement the element to drop
+	 * @param location its position.
+	 * @return
+	 */
+	public CompoundCommand dropTypeOnClassifier(GraphicalEditPart graphicalTarget, Type semanticElement, Point location) {
+		CompoundCommand cc = new CompoundCommand("Drop nested type on classifier");
+
+		EObject semanticParentObject = graphicalTarget.resolveSemanticElement();
+		if(semanticParentObject instanceof StructuredClassifier) {
+
+			if (reTarget(graphicalTarget) != null) {	// might be null, if composite compartment is not shown
+				View parentView = (View)reTarget(graphicalTarget).getModel();
+				IHintedType elementType = (IHintedType)UMLElementTypes.getElementType(
+					UMLVisualIDRegistry.getNodeVisualID(parentView, semanticElement));
+
+				ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)new EObjectAdapter(semanticElement), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, false, graphicalTarget.getDiagramPreferencesHint());
+				CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, parentView);
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
+
+				cc.add(new ICommandProxy(viewCreateCommand));
+				cc.add(new ICommandProxy(setBoundsCommand));
+			}
+		}
+
+		return cc;
+	}
+	
 	/**
 	 * Re-target the target EditPart to the real expected target (e.g.: one of its compartment)
 	 * 

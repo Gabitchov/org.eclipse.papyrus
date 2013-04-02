@@ -6,6 +6,8 @@
       <strategy
             strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.instancespecification.ClassifierToSlotsDropStrategy">
       </strategy>
+      <strategy
+            strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.classifier.ClassifierAsClassifierToStructureCompartmentDropStrategy">
+      </strategy>
    </extension>
-
 </plugin>

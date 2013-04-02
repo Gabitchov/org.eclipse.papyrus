@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
@@ -74,8 +75,17 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		owner.getOwnedAttributes().add(newElement);
 		newElement.setType(type);
 
-		String elementName = type.getName() + Integer.toString(owner.getOwnedAttributes().size());
-
+		String typeName = type.getName();
+		String elementName = (typeName.length() == 0) ? 
+			"none" : //$NON-NLS-1$
+			typeName.substring(0,1).toLowerCase() + typeName.substring(1);
+		int i = 0;
+		String initialElementName = elementName;
+		// assure that name is unique.
+		while (owner.getAttribute(elementName, null) != null) {
+			elementName = initialElementName + String.valueOf(i);
+			i++;
+		}
 		newElement.setName(elementName);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 
