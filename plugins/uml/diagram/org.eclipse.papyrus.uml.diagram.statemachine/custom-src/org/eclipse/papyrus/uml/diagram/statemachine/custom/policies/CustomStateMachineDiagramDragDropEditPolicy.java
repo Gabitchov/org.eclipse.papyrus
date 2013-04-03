@@ -513,8 +513,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		else {
 			transitions = region.getTransitions();
 		}
-		if(!(graphicalParentObject instanceof Region) || !transitions.contains(droppedElement)) {
-			// if it's not over the owing region then the transition might be a internal transition in dropping in the Internal compartment region
+		if(!transitions.contains(droppedElement)) {
+			// drop is not on owning region. The transition might be a internal transition => drop to internal compartment region
 			if(TransitionKind.INTERNAL == droppedElement.getKind().getValue()) {
 				return dropInternalTransition(dropRequest, droppedElement, getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedElement));
 			}
@@ -543,7 +543,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 				
 				// source or target (or both) have no edit part, i.e. are not in the diagram. Try to resolve their parents
 				for(IGraphicalEditPart iGraphicalEditPart : allEPs) {
-					EObject object = ViewUtil.resolveSemanticElement((View) iGraphicalEditPart.getModel());//method getHostObject
+					EObject object = ViewUtil.resolveSemanticElement((View) iGraphicalEditPart.getModel());// method getHostObject
 					if(object instanceof org.eclipse.uml2.uml.Region) {
 						extendedRegion = ((org.eclipse.uml2.uml.Region)object).getExtendedRegion();
 					}
