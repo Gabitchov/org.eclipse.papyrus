@@ -193,12 +193,24 @@ public class ClientServerPortImpl extends EObjectImpl implements ClientServerPor
 		PortSpecificationKind portSpecKind = SPECIFICATION_KIND_EDEFAULT;
 		if(getBase_Port() != null) {
 			if(getBase_Port().getType() != null && getBase_Port().getType() instanceof Signal) {
-				if(getProvInterface() != null)
-					getProvInterface().clear();
-				if(getReqInterface() != null)
-					getReqInterface().clear();
-				if(getFeaturesSpec() != null)
-					setFeaturesSpec(null);
+				if(getProvInterface() != null) {
+					// getProvInterface().clear();
+					// FIXME 404786: [MARTE] ClientServerPortImpl.getSpecificationKind tries to modify the model from a ReadOnly transaction
+					// https://bugs.eclipse.org/bugs/show_bug.cgi?id=404786
+					System.err.println("Error: ClientServerPort " + getBase_Port().getQualifiedName() + " is Atomic. provInterface shall be empty");
+				}
+				if(getReqInterface() != null) {
+					// FIXME 404786: [MARTE] ClientServerPortImpl.getSpecificationKind tries to modify the model from a ReadOnly transaction
+					// https://bugs.eclipse.org/bugs/show_bug.cgi?id=404786
+					// getReqInterface().clear();
+					System.err.println("Error: ClientServerPort " + getBase_Port().getQualifiedName() + " is Atomic. reqInterface shall be empty");
+				}
+				if(getFeaturesSpec() != null) {
+					// FIXME 404786: [MARTE] ClientServerPortImpl.getSpecificationKind tries to modify the model from a ReadOnly transaction
+					// https://bugs.eclipse.org/bugs/show_bug.cgi?id=404786
+					// setFeaturesSpec(null);
+					System.err.println("Error: ClientServerPort " + getBase_Port().getQualifiedName() + " is Atomic. featureSpec shall be empty");
+				}
 				portSpecKind = PortSpecificationKind.ATOMIC;
 			}
 			else if(getBase_Port().getType() == null) {
@@ -218,8 +230,9 @@ public class ClientServerPortImpl extends EObjectImpl implements ClientServerPor
 					portSpecKind = PortSpecificationKind.INTERFACE_BASED;
 				}
 			}
-			else
-				System.err.println("Error: An Atomic ClientServerPort must be typed with a Signal!");
+			else {
+				System.err.println("Error: ClientServerPort " + getBase_Port().getQualifiedName() + " is Atomic. It must be typed by a Signal");
+			}
 		}
 		
 		return portSpecKind;
