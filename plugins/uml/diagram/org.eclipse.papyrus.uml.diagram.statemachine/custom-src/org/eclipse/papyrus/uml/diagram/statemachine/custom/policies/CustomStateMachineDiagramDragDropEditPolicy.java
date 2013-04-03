@@ -83,6 +83,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.StateMachineL
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.locators.CustomEntryExitPointPositionLocator;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
@@ -104,6 +105,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;
 import org.eclipse.uml2.uml.Region;
@@ -451,7 +453,9 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 
 			//take care of the case when a simple state is dropped, then we should provide a reasonable size
 			if(droppedElement.getRegions().isEmpty()) {
-				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, 40, 40), false);
+				// final state has default size 20
+				int sizeHint = (droppedElement instanceof FinalState) ? 20 : 40;
+				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, sizeHint, sizeHint), false);
 				cc.compose(setBoundsCommand);
 			} else {
 				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, -1, -1), true);
@@ -494,6 +498,10 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		//we restrict drop to be over the owning region
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		// might be a state machine instead of a region
+		if (!(graphicalParentObject instanceof Region)) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		Region region = (Region)graphicalParentObject;
 		Region extendedRegion = region.getExtendedRegion();
 		// also take redefined (extended) regions into account, see Bug 366415
@@ -526,16 +534,26 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			EditPart targetParent = null;
 			if(sourceEditPart == null || targetEditPart == null) {
 
-				List<IGraphicalEditPart> AllEP = DiagramEditPartsUtil.getAllEditParts(diagram);
+				List<IGraphicalEditPart> allEPs = DiagramEditPartsUtil.getAllEditParts(diagram);
 				EObject srcParent = source.eContainer();
 				EObject tgtParent = target.eContainer();
-
-				for(IGraphicalEditPart iGraphicalEditPart : AllEP) {
-					EObject object = ViewUtil.resolveSemanticElement((View)(iGraphicalEditPart).getModel());//method getHostObject
-					if(object == srcParent && !(iGraphicalEditPart instanceof CompartmentEditPart)) {
+				if(srcParent instanceof org.eclipse.uml2.uml.Region) {
+					extendedRegion = ((org.eclipse.uml2.uml.Region)graphicalParentObject).getExtendedRegion();
+				}
+				
+				// source or target (or both) have no edit part, i.e. are not in the diagram. Try to resolve their parents
+				for(IGraphicalEditPart iGraphicalEditPart : allEPs) {
+					EObject object = ViewUtil.resolveSemanticElement((View) iGraphicalEditPart.getModel());//method getHostObject
+					if(object instanceof org.eclipse.uml2.uml.Region) {
+						extendedRegion = ((org.eclipse.uml2.uml.Region)object).getExtendedRegion();
+					}
+					else {
+						extendedRegion = null;
+					}
+					if((object == srcParent || extendedRegion == srcParent) && !(iGraphicalEditPart instanceof CompartmentEditPart)) {
 						sourceParent = iGraphicalEditPart;
 					}
-					if(object == tgtParent && !(iGraphicalEditPart instanceof CompartmentEditPart)) {
+					if((object == tgtParent || extendedRegion == tgtParent) && !(iGraphicalEditPart instanceof CompartmentEditPart)) {
 						targetParent = iGraphicalEditPart;
 					}
 					if(targetParent != null && sourceParent != null) {
@@ -544,8 +562,6 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 						break;
 					}
 				}
-
-
 				// the parent of the vertex shall be present in the diagram otherwise we do not support drag and drop 
 				if((targetParent == null) || (sourceParent == null)) {
 					return UnexecutableCommand.INSTANCE;
@@ -733,6 +749,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		droppableElementsVisualId.add(PseudostateForkEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(PseudostateJoinEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(PseudostateJunctionEditPart.VISUAL_ID);
+		// add final state
+		droppableElementsVisualId.add(FinalStateEditPart.VISUAL_ID);
 
 		// droppableElementsVisualId.add(EntryStateBehaviorEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
@@ -778,6 +796,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 			case StateMachineEditPart.VISUAL_ID:
 				return dropStateMachine(dropRequest, location, (StateMachine)semanticElement, nodeVISUALID);
 			case StateEditPart.VISUAL_ID:
+			case FinalStateEditPart.VISUAL_ID:
 				return dropState(dropRequest, location, (State)semanticElement, nodeVISUALID);
 			case RegionEditPart.VISUAL_ID:
 				return dropRegion(dropRequest, (Region)semanticElement, nodeVISUALID);
