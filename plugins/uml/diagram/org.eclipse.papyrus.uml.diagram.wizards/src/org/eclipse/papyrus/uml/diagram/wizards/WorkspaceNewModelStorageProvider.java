@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.uml.diagram.wizards;
 
 import static org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper.adapt;
-import static org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper.getSelectedFile;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,12 +25,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.InitModelWizard.NewDiagramForExistingModelPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
+import org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper;
 
 /**
  * This is the WorkspaceNewModelStorageProvider type. Enjoy.
  */
-public class WorkspaceNewModelStorageProvider
-		extends AbstractNewModelStorageProvider {
+public class WorkspaceNewModelStorageProvider extends AbstractNewModelStorageProvider {
 
 	private CreateModelWizard wizard;
 
@@ -45,8 +44,8 @@ public class WorkspaceNewModelStorageProvider
 	public boolean canHandle(IStructuredSelection initialSelection) {
 		boolean result = false;
 
-		for (Object next : initialSelection.toList()) {
-			if (adapt(next, IResource.class) != null) {
+		for(Object next : initialSelection.toList()) {
+			if(adapt(next, IResource.class) != null) {
 				result = true;
 				break;
 			}
@@ -55,6 +54,7 @@ public class WorkspaceNewModelStorageProvider
 		return result;
 	}
 
+	@Override
 	public void init(CreateModelWizard wizard, IStructuredSelection selection) {
 		super.init(wizard, selection);
 
@@ -63,23 +63,21 @@ public class WorkspaceNewModelStorageProvider
 	}
 
 	public List<? extends IWizardPage> createPages() {
-		if (newModelFilePage == null) {
+		if(newModelFilePage == null) {
 			return Collections.emptyList();
 		}
 
 		return Arrays.asList(newModelFilePage);
 	}
 
+	@Override
 	public IStatus validateDiagramCategories(String... newCategories) {
-		if (newModelFilePage != null) {
-			String firstCategory = newCategories.length > 0
-				? newCategories[0]
-				: null;
-			if (newCategories.length > 0) {
+		if(newModelFilePage != null) {
+			String firstCategory = newCategories.length > 0 ? newCategories[0] : null;
+			if(newCategories.length > 0) {
 				// 316943 - [Wizard] Wrong suffix for file name when creating a
 				// profile model
-				return newModelFilePage.diagramExtensionChanged(wizard
-					.getDiagramFileExtension(firstCategory));
+				return newModelFilePage.diagramExtensionChanged(wizard.getDiagramFileExtension(firstCategory));
 			}
 		}
 
@@ -90,25 +88,22 @@ public class WorkspaceNewModelStorageProvider
 	 * Creates the new model file page, if required.
 	 * 
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * 
 	 * @return the new model file page, or {@code null} if none
 	 */
-	protected NewModelFilePage createNewModelFilePage(
-			IStructuredSelection selection) {
+	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
 
-		if (wizard.isCreateProjectWizard()
-			|| wizard.isCreateMultipleModelsWizard()) {
+		if(wizard.isCreateProjectWizard() || wizard.isCreateMultipleModelsWizard()) {
 
 			return null;
 		}
 
-		if (isCreateFromExistingDomainModel()) {
-			return new NewDiagramForExistingModelPage(
-				selection,
-				wizard.getModelKindName(),
-				getDiagramFileName(getSelectedFile(selection))
-					+ "." + wizard.getDiagramFileExtension(null), wizard.getDiagramFileExtension(null)); //$NON-NLS-1$
+		//		IFile selectedFile = getSelectedFile(selection);
+		URI selectedResourceURI = WizardsHelper.getSelectedResourceURI(selection);
+
+		if(isCreateFromExistingDomainModel() && selectedResourceURI != null) {
+			return new NewDiagramForExistingModelPage(selection, wizard.getModelKindName(), getDiagramFileName(selectedResourceURI) + "." + wizard.getDiagramFileExtension(null), wizard.getDiagramFileExtension(null)); //$NON-NLS-1$
 		}
 
 		return new NewModelFilePage(selection, wizard.getModelKindName());
@@ -119,24 +114,20 @@ public class WorkspaceNewModelStorageProvider
 	 * extension.
 	 * 
 	 * @param domainModel
-	 *            the domain model
+	 *        the domain model
 	 * @return the diagram file name
 	 */
-	protected String getDiagramFileName(IFile domainModel) {
-		return domainModel.getLocation().removeFileExtension().lastSegment();
+	protected String getDiagramFileName(URI domainModelURI) {
+		return domainModelURI.trimFileExtension().lastSegment();
 	}
 
 	protected boolean isCreateFromExistingDomainModel() {
-		return wizard.isInitModelWizard()
-			&& ((InitModelWizard) wizard).isCreateFromExistingDomainModel();
+		return wizard.isInitModelWizard() && ((InitModelWizard)wizard).isCreateFromExistingDomainModel();
 	}
 
 	public URI createNewModelURI(String categoryId) {
 		IFile newFile = newModelFilePage.createNewFile();
-		return (newFile == null)
-			? null
-			: URI.createPlatformResourceURI(newFile.getFullPath().toString(),
-				true);
+		return (newFile == null) ? null : URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
 	}
 
 }
