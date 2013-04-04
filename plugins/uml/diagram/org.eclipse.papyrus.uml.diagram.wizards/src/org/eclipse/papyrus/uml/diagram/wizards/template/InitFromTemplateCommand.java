@@ -176,6 +176,7 @@ public class InitFromTemplateCommand extends RecordingCommand {
 				if(eObject instanceof Diagram) {
 					myModelNotationResource.getContents().add(eObject);
 				} else if(eObject instanceof SashWindowsMngr) {
+					myModelDiResource.getContents().clear();
 					myModelDiResource.getContents().add(eObject);
 				} else {
 					myModelUMLResource.getContents().add(eObject);
