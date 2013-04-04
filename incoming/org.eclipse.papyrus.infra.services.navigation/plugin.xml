@@ -11,5 +11,14 @@
             startKind="lazy">
       </service>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.services.navigation.preferences.NavigationServicePreferencesPage"
+            id="org.eclipse.papyrus.infra.services.navigation.preferences"
+            name="Navigation Service">
+      </page>
+   </extension>
 
 </plugin>
