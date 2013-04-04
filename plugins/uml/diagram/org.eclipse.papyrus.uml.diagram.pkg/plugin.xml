@@ -117,8 +117,9 @@
 			"2011" = CONSTRAINT
 			"3029" = CONSTRAINT_CN
 			"2005" = MODEL
+			"3024" = MODEL_CN
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012, 3028, 2011, 3029, 2005"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009, 2012, 3028, 2011, 3029, 2005,3024"/>
 		
 		<!-- 
 			"4008" = DEPENDENCY
@@ -133,7 +134,7 @@
 	       
 	     <method
 	        name="getSemanticHint()"
-			value="2007, 3009, 2012, 3028, 2011, 3029, 2005">
+			value="2007, 3009, 2012, 3028, 2011, 3029, 2005,3024">
 		</method>
 		</object>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="elementtype.node"/>
@@ -236,6 +237,9 @@
 			"2005" = MODEL
 			"5020" = MODEL_LABEL_NAME_TN_HINT
 			"7009" = MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
+			"3024" = MODEL_CN
+			"5052" = MODEL_CN_LABEL_NAME_HINT
+			"7030" = MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
 		  -->
 		<object
 			id="PACKAGE"
@@ -272,7 +276,11 @@
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="2005, 5020, 7009"/>
 		</object>
-		
+		<object
+			id="MODEL_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3024, 5052, 7030"/>
+		</object>
 		
 		<!-- 	
 			"4008" = DEPENDENCY
@@ -306,7 +314,7 @@
 			<method name="getType()" value="4006, 6014, 6015"/>
 		</object>
 		
-		<context views="PACKAGE, PACKAGE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN, MODEL"/>
+		<context views="PACKAGE, PACKAGE_CN, COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN, MODEL, MODEL_CN"/>
 		<context views="DEPENDENCY, PACKAGE_IMPORT, COMMENT_ANNOTATED_ELEMENT, ABSTRACTION"/>
 		
 	</editpartProvider>

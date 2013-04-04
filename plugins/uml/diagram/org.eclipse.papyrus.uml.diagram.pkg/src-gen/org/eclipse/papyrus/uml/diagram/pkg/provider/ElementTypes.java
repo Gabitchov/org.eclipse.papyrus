@@ -74,6 +74,13 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String MODEL_LABEL_NAME_TN_HINT = "5020"; //$NON-NLS-1$
 
+	/** ClassDiagram :: MODEL_CN */
+	public static final IHintedType MODEL_CN = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Model_3024"); //$NON-NLS-1$
+
+	public static final String MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT = "7030"; //$NON-NLS-1$
+
+	public static final String MODEL_CN_LABEL_NAME_HINT = "5052"; //$NON-NLS-1$
+
 	/** ClassDiagram :: DEPENDENCY */
 	public static final IHintedType DEPENDENCY = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"); //$NON-NLS-1$
 

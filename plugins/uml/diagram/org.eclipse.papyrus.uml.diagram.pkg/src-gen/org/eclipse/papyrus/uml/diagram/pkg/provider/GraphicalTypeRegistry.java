@@ -52,6 +52,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		knownNodes.add(ElementTypes.CONSTRAINT.getSemanticHint());
 		knownNodes.add(ElementTypes.CONSTRAINT_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.MODEL.getSemanticHint());
+		knownNodes.add(ElementTypes.MODEL_CN.getSemanticHint());
 
 		// Fill known nodes set (child label nodes)
 	}
@@ -120,6 +121,9 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Package ChildNode
 				graphicalType = ElementTypes.PACKAGE_CN.getSemanticHint();
 			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Package ChildNode
+				graphicalType = ElementTypes.PACKAGE_CN.getSemanticHint();
+			}
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Package ChildNode
 				graphicalType = ElementTypes.PACKAGE_CN.getSemanticHint();
 			}
@@ -134,6 +138,9 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
 			}
 			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Comment ChildNode
+				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Comment ChildNode
 				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
 			}
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Comment ChildNode
@@ -152,6 +159,9 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
 				graphicalType = ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
+				graphicalType = ElementTypes.CONSTRAINT_CN.getSemanticHint();
+			}
 			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Constraint ChildNode
 				graphicalType = ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
@@ -161,6 +171,18 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		if(domainElement instanceof org.eclipse.uml2.uml.Model) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Model TopNode
 				graphicalType = ElementTypes.MODEL.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Model ChildNode
+				graphicalType = ElementTypes.MODEL_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Model ChildNode
+				graphicalType = ElementTypes.MODEL_CN.getSemanticHint();
+			}
+			if(ElementTypes.MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Model ChildNode
+				graphicalType = ElementTypes.MODEL_CN.getSemanticHint();
+			}
+			if(ElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(containerType)) { // Model ChildNode
+				graphicalType = ElementTypes.MODEL_CN.getSemanticHint();
 			}
 
 		}

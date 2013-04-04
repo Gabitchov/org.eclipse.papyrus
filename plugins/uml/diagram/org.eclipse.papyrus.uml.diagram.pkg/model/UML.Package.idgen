@@ -29,6 +29,9 @@
     <genNodes customPreferencePage="org.eclipse.papyrus.uml.diagram.pkg.CustomModelPreferencePage">
       <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.7"/>
     </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.29"/>
+    </genNodes>
     <genLinks>
       <genLink href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.10"/>
     </genLinks>
