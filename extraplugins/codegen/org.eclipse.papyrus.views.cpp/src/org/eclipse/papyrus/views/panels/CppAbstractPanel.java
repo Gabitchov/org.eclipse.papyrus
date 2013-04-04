@@ -44,7 +44,11 @@ public abstract class CppAbstractPanel extends Composite {
 
 	// string representing the ID of the language
 	// this is the string contained in the language attribute of Activity
-	protected static final String CPP_ID = "C/C++";
+	protected static final String C_CPP_ID = "C/C++";
+
+	protected static final String CPP_ID = "C++";
+
+	protected static final String C_ID = "C";
 
 	// CppInclude text area
 	protected Button buttonSave;

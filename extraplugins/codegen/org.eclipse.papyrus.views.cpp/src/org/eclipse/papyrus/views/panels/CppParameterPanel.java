@@ -22,10 +22,10 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Parameter;
 
-import Cpp.CppArray;
-import Cpp.CppConst;
-import Cpp.CppPtr;
-import Cpp.CppRef;
+import C_Cpp.Array;
+import C_Cpp.Const;
+import C_Cpp.Ptr;
+import C_Cpp.Ref;
 
 
 /**
@@ -73,7 +73,7 @@ public class CppParameterPanel extends CppAbstractPanel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.cea.accordcpp.core.ui.panels.AccordCppAbstractPanel#getSelectedElement()
+	 * @see com.cea.accordcpp.core.ui.panels.AccordAbstractPanel#getSelectedElement()
 	 */
 	@Override
 	public org.eclipse.uml2.uml.Parameter getSelectedElement() {
@@ -83,7 +83,7 @@ public class CppParameterPanel extends CppAbstractPanel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.cea.accordcpp.core.ui.panels.AccordCppAbstractPanel#setSelectedElement(java.lang.Element)
+	 * @see com.cea.accordcpp.core.ui.panels.AccordAbstractPanel#setSelectedElement(java.lang.Element)
 	 */
 	@Override
 	public void setSelectedElement(Element newElement) {
@@ -115,7 +115,7 @@ public class CppParameterPanel extends CppAbstractPanel {
 		///////////////////////////////////////////////////////////////////////
 		// Add checkboxes listeners
 		///////////////////////////////////////////////////////////////////////
-		addStereotypeSelectionListener(isConst, "CppConst");
+		addStereotypeSelectionListener(isConst, "Const");
 
 		///////////////////////////////////////////////////////////////////////		
 		// Pointer declaration
@@ -208,19 +208,19 @@ public class CppParameterPanel extends CppAbstractPanel {
 					// Treat Pointer
 					String newPtr = docPtr.get();
 					if(newPtr.equals("")) {
-						StUtils.unapply(selectedParameter, CppPtr.class);
+						StUtils.unapply(selectedParameter, Ptr.class);
 					}
 					else {
-						StUtils.apply(selectedParameter, CppPtr.class);
+						StUtils.apply(selectedParameter, Ptr.class);
 					}
 
 					// Treat Reference
 					String newRef = docRef.get();
 					if(newRef.equals("")) {
-						StUtils.unapply(selectedParameter, CppRef.class);
+						StUtils.unapply(selectedParameter, Ref.class);
 					}
 					else {
-						StUtils.apply(selectedParameter, CppRef.class);
+						StUtils.apply(selectedParameter, Ref.class);
 					}
 
 					// Treat DefaultValue
@@ -230,11 +230,11 @@ public class CppParameterPanel extends CppAbstractPanel {
 					// Treat Array
 					String newArray = docArray.get();
 					if(newArray.equals("")) {
-						StUtils.unapply(selectedParameter, CppArray.class);
+						StUtils.unapply(selectedParameter, Array.class);
 					}
 					else {
-						StUtils.apply(selectedParameter, CppArray.class);
-						// StUtils.setTaggedValue(selectedParameter, CppArray.class, "definition", newArray);
+						StUtils.apply(selectedParameter, Array.class);
+						// StUtils.setTaggedValue(selectedParameter, Array.class, "definition", newArray);
 					}
 				}
 			});
@@ -244,21 +244,21 @@ public class CppParameterPanel extends CppAbstractPanel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.cea.accordcpp.core.ui.panels.AccordCppAbstractPanel#refreshPanel()
+	 * @see com.cea.accordcpp.core.ui.panels.AccordAbstractPanel#refreshPanel()
 	 */
 	@Override
 	protected void refreshPanel() {
 		if(selectedParameter != null) {
 			// Const
 
-			isConst.setSelection(StUtils.isApplied(selectedParameter, CppConst.class));
+			isConst.setSelection(StUtils.isApplied(selectedParameter, Const.class));
 			// TODO: examine effect;
 			// isConst.setSelection(selectedParameter.getEffect?);
 
-			docPtr.set(StUtils.isApplied(selectedParameter, CppPtr.class) ? "*" : "");
-			docRef.set(StUtils.isApplied(selectedParameter, CppRef.class) ? "&" : "");
+			docPtr.set(StUtils.isApplied(selectedParameter, Ptr.class) ? "*" : "");
+			docRef.set(StUtils.isApplied(selectedParameter, Ref.class) ? "&" : "");
 			docDefault.set(selectedParameter.getDefault());
-			docArray.set(StUtils.isApplied(selectedParameter, CppArray.class) ? "[]" : "");
+			docArray.set(StUtils.isApplied(selectedParameter, Array.class) ? "[]" : "");
 			// need definition?
 		}
 	}
@@ -271,12 +271,12 @@ public class CppParameterPanel extends CppAbstractPanel {
 		boolean boxState = isConst.getSelection();
 
 		if(boxState) {
-			if(!StUtils.isApplied(selectedParameter, CppConst.class)) {
-				StUtils.apply(selectedParameter, CppConst.class);
+			if(!StUtils.isApplied(selectedParameter, Const.class)) {
+				StUtils.apply(selectedParameter, Const.class);
 			}
 		} else {
-			if(StUtils.isApplied(selectedParameter, CppConst.class)) {
-				StUtils.unapply(selectedParameter, CppConst.class);
+			if(StUtils.isApplied(selectedParameter, Const.class)) {
+				StUtils.unapply(selectedParameter, Const.class);
 			}
 		}
 	}
@@ -294,16 +294,16 @@ public class CppParameterPanel extends CppAbstractPanel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.cea.accordcpp.core.ui.panels.AccordCppAbstractPanel#checkModifications()
+	 * @see com.cea.accordcpp.core.ui.panels.AccordAbstractPanel#checkModifications()
 	 */
 	@Override
 	public boolean checkModifications() {
-		String ptrValue = StUtils.isApplied(selectedParameter, CppPtr.class) ? "*" : "";
+		String ptrValue = StUtils.isApplied(selectedParameter, Ptr.class) ? "*" : "";
 		if(!docPtr.get().equals(ptrValue)) {
 			return true;
 		}
 
-		String refValue = StUtils.isApplied(selectedParameter, CppRef.class) ? "&" : "";
+		String refValue = StUtils.isApplied(selectedParameter, Ref.class) ? "&" : "";
 		if(!docRef.get().equals(refValue)) {
 			return true;
 		}
@@ -318,7 +318,7 @@ public class CppParameterPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		String arrayValue = StUtils.isApplied(selectedParameter, CppArray.class) ? "[]" : "";
+		String arrayValue = StUtils.isApplied(selectedParameter, Array.class) ? "[]" : "";
 		if(!docArray.get().equals(arrayValue)) {
 			return true;
 		}

@@ -23,10 +23,10 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
-import Cpp.CppArray;
-import Cpp.CppConst;
-import Cpp.CppPtr;
-import Cpp.CppRef;
+import C_Cpp.Array;
+import C_Cpp.Const;
+import C_Cpp.Ptr;
+import C_Cpp.Ref;
 
 
 /**
@@ -129,7 +129,7 @@ public class CppPropertyPanel extends CppAbstractPanel {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
-		addStereotypeSelectionListener(isConst, "CppConst");
+		addStereotypeSelectionListener(isConst, "Const");
 
 		///////////////////////////////////////////////////////////////////////		
 		// Pointer declaration
@@ -222,19 +222,19 @@ public class CppPropertyPanel extends CppAbstractPanel {
 					// Treat Pointer
 					String newPtr = docPtr.get();
 					if(newPtr.equals("")) {
-						StUtils.unapply(selectedProperty, CppPtr.class);
+						StUtils.unapply(selectedProperty, Ptr.class);
 					}
 					else {
-						StUtils.apply(selectedProperty, CppPtr.class);
+						StUtils.apply(selectedProperty, Ptr.class);
 					}
 
 					// Treat Reference
 					String newRef = docRef.get();
 					if(newRef.equals("")) {
-						StUtils.unapply(selectedProperty, CppRef.class);
+						StUtils.unapply(selectedProperty, Ref.class);
 					}
 					else {
-						StUtils.apply(selectedProperty, CppRef.class);
+						StUtils.apply(selectedProperty, Ref.class);
 					}
 
 					// Treat DefaultValue
@@ -244,10 +244,10 @@ public class CppPropertyPanel extends CppAbstractPanel {
 					// Treat Array
 					String newArray = docArray.get();
 					if(newArray.equals("")) {
-						StUtils.unapply(selectedProperty, CppArray.class);
+						StUtils.unapply(selectedProperty, Array.class);
 					}
 					else {
-						StUtils.apply(selectedProperty, CppArray.class);
+						StUtils.apply(selectedProperty, Array.class);
 					}
 				}
 			});
@@ -267,11 +267,11 @@ public class CppPropertyPanel extends CppAbstractPanel {
 		}
 		else {
 			isStatic.setSelection(selectedProperty.isStatic());
-			isConst.setSelection(StUtils.isApplied(selectedProperty, CppConst.class));
-			docPtr.set(StUtils.isApplied(selectedProperty, CppPtr.class) ? "*" : "");
-			docRef.set(StUtils.isApplied(selectedProperty, CppRef.class) ? "&" : "");
+			isConst.setSelection(StUtils.isApplied(selectedProperty, Const.class));
+			docPtr.set(StUtils.isApplied(selectedProperty, Ptr.class) ? "*" : "");
+			docRef.set(StUtils.isApplied(selectedProperty, Ref.class) ? "&" : "");
 			docDefault.set(selectedProperty.getDefault());
-			docArray.set(StUtils.isApplied(selectedProperty, CppArray.class) ? "[]" : "");
+			docArray.set(StUtils.isApplied(selectedProperty, Array.class) ? "[]" : "");
 		}
 	}
 
@@ -291,12 +291,12 @@ public class CppPropertyPanel extends CppAbstractPanel {
 	protected void checkConst() {
 		boolean boxState = isConst.getSelection();
 
-		if(StUtils.isApplied(selectedProperty, CppConst.class) != boxState) {
+		if(StUtils.isApplied(selectedProperty, Const.class) != boxState) {
 			if(boxState) {
-				StUtils.apply(selectedProperty, CppConst.class);
+				StUtils.apply(selectedProperty, Const.class);
 			}
 			else {
-				StUtils.unapply(selectedProperty, CppConst.class);
+				StUtils.unapply(selectedProperty, Const.class);
 			}
 		}
 	}
@@ -329,12 +329,12 @@ public class CppPropertyPanel extends CppAbstractPanel {
 	 *         with the content of the panel
 	 */
 	public boolean checkModifications() {
-		String ptrValue = StUtils.isApplied(selectedProperty, CppPtr.class) ? "*" : "";
+		String ptrValue = StUtils.isApplied(selectedProperty, Ptr.class) ? "*" : "";
 		if(!docPtr.get().equals(ptrValue)) {
 			return true;
 		}
 
-		String refValue = StUtils.isApplied(selectedProperty, CppRef.class) ? "&" : "";
+		String refValue = StUtils.isApplied(selectedProperty, Ref.class) ? "&" : "";
 		if(!docRef.get().equals(refValue)) {
 			return true;
 		}
@@ -349,7 +349,7 @@ public class CppPropertyPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		String arrayValue = StUtils.isApplied(selectedProperty, CppArray.class) ? "[]" : "";
+		String arrayValue = StUtils.isApplied(selectedProperty, Array.class) ? "[]" : "";
 		if(!docArray.get().equals(arrayValue)) {
 			return true;
 		}

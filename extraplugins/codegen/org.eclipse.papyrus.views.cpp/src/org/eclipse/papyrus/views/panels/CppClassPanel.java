@@ -21,7 +21,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 
-import Cpp.CppInclude;
+import C_Cpp.Include;
+
 
 
 /**
@@ -136,9 +137,9 @@ public class CppClassPanel extends CppAbstractPanel {
 				public void run() {
 					if(headerDocument.get().equals("")
 						&& bodyDocument.get().equals("")) {
-						StUtils.unapply(selectedClass, CppInclude.class);
+						StUtils.unapply(selectedClass, Include.class);
 					} else {
-						CppInclude cppInclude = StUtils.applyApp(selectedClass, CppInclude.class);
+						Include cppInclude = StUtils.applyApp(selectedClass, Include.class);
 						cppInclude.setHeader(headerDocument.get());
 						cppInclude.setBody(bodyDocument.get());
 					}
@@ -167,7 +168,7 @@ public class CppClassPanel extends CppAbstractPanel {
 		String headerInModel = "";
 		String bodyInModel = "";
 
-		CppInclude cppInclude = StUtils.getApplication(selectedClass, CppInclude.class);
+		Include cppInclude = StUtils.getApplication(selectedClass, Include.class);
 		if(cppInclude != null) {
 			headerInModel = cppInclude.getHeader();
 			bodyInModel = cppInclude.getBody();
@@ -189,7 +190,7 @@ public class CppClassPanel extends CppAbstractPanel {
 		if(selectedClass == null) {
 		}
 		else {
-			CppInclude cppInclude = StUtils.getApplication(selectedClass, CppInclude.class);
+			Include cppInclude = StUtils.getApplication(selectedClass, Include.class);
 			if(cppInclude != null) {
 				// get the text in the tagged value
 				String currentHI = cppInclude.getHeader();

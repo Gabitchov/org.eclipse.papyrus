@@ -11,8 +11,11 @@
 
 package org.eclipse.papyrus.views.panels;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.papyrus.acceleo.AcceleoDriver;
+import org.eclipse.papyrus.acceleo.AcceleoException;
 import org.eclipse.papyrus.cpp.profile.StUtils;
 import org.eclipse.papyrus.cpp.profile.StdStereo;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
@@ -27,6 +30,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -34,11 +38,11 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import Cpp.CppConst;
-import Cpp.CppConstInit;
-import Cpp.CppFriend;
-import Cpp.CppInline;
-import Cpp.CppVirtual;
+import C_Cpp.Const;
+import C_Cpp.ConstInit;
+import C_Cpp.Friend;
+import C_Cpp.Inline;
+import C_Cpp.Virtual;
 
 
 /**
@@ -80,6 +84,8 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 	private Operation selectedOperation;
 
+	private Button verifyAcceleo;
+	
 	Element selectedEOwner;
 
 	public CppOperationPanel(Composite parent, int style) {
@@ -131,7 +137,13 @@ public class CppOperationPanel extends CppAbstractPanel {
 		isFriend = createButton("isFriend", this, isConst);
 		isCreate = createButton("isCreate", this, isFriend);
 		isDestroy = createButton("isDestroy", this, isCreate);
-
+		verifyAcceleo = new Button(this, SWT.PUSH);
+		verifyAcceleo.setText("verify embedded Acceleo");
+		FormData dataVA = new FormData();
+		dataVA.left = new FormAttachment(isDestroy, H_SPACE);
+		dataVA.top = new FormAttachment(0, H_SPACE);
+		verifyAcceleo.setLayoutData(dataVA);
+		
 		///////////////////////////////////////////////////////////////////////
 		// Add checkboxes listeners
 		///////////////////////////////////////////////////////////////////////
@@ -150,9 +162,22 @@ public class CppOperationPanel extends CppAbstractPanel {
 			}
 		});
 
-		addStereotypeSelectionListener(isInline, "CppInline");
-		addStereotypeSelectionListener(isConst, "CppConst");
-		addStereotypeSelectionListener(isFriend, "CppFriend");
+		verifyAcceleo.addSelectionListener(new SelectionAdapter() {
+
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					AcceleoDriver.evaluate(docBody.get(), selectedOperation, null);
+					MessageDialog.openInformation(new Shell(), "Validation information", "no errors");
+				}
+				catch (AcceleoException err) {
+					MessageDialog.openInformation(new Shell(), "Validation information", err.getMessage());
+				}
+			}
+		});
+
+		addStereotypeSelectionListener(isInline, "Inline");
+		addStereotypeSelectionListener(isConst, "Const");
+		addStereotypeSelectionListener(isFriend, "Friend");
 		addStereotypeSelectionListener(isCreate, "Create");
 		addStereotypeSelectionListener(isDestroy, "Destroy");
 
@@ -239,10 +264,10 @@ public class CppOperationPanel extends CppAbstractPanel {
 				public void run() {
 					String newConstInit = docConstInit.get();
 					if(newConstInit.equals("")) {
-						StUtils.unapply(selectedOperation, CppConstInit.class);
+						StUtils.unapply(selectedOperation, ConstInit.class);
 					} else {
-						CppConstInit cppConstInit =
-							StUtils.applyApp(selectedOperation, CppConstInit.class);
+						ConstInit cppConstInit =
+							StUtils.applyApp(selectedOperation, ConstInit.class);
 						cppConstInit.setInitialisation(newConstInit);
 					}
 
@@ -262,7 +287,13 @@ public class CppOperationPanel extends CppAbstractPanel {
 				OpaqueBehavior ob = (OpaqueBehavior)behavior;
 				int i = 0;
 				for(String language : ob.getLanguages()) {
-					if(language.equals(CPP_ID)) {
+					if(language.equals(C_CPP_ID)) {
+						return ob.getBodies().get(i);
+					}
+					else if(language.equals(CPP_ID)) {
+						return ob.getBodies().get(i);
+					}
+					else if(language.equals(C_ID)) {
 						return ob.getBodies().get(i);
 					}
 					i++;
@@ -280,7 +311,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 				OpaqueBehavior ob = (OpaqueBehavior)behavior;
 				int i = 0;
 				for(String language : ob.getLanguages()) {
-					if(language.equals(CPP_ID)) {
+					if(language.equals(C_CPP_ID) || language.equals(CPP_ID) || language.equals(C_ID)) {
 						done = true;
 						ob.getBodies().set(i, body);
 						break;
@@ -295,7 +326,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 		if(!done) {
 			OpaqueBehavior ob = (OpaqueBehavior)
 				operation.getClass_().createOwnedBehavior(operation.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior());
-			ob.getLanguages().add(CPP_ID);
+			ob.getLanguages().add(C_CPP_ID);
 			ob.getBodies().add(body);
 			ob.setSpecification(operation);
 		}
@@ -319,12 +350,12 @@ public class CppOperationPanel extends CppAbstractPanel {
 		// get the text in the activity
 		boolean boxState = isInline.getSelection();
 
-		if(boxState != StUtils.isApplied(selectedOperation, CppInline.class)) {
+		if(boxState != StUtils.isApplied(selectedOperation, Inline.class)) {
 			if(boxState) {
-				StUtils.apply(selectedOperation, CppInline.class);
+				StUtils.apply(selectedOperation, Inline.class);
 			}
 			else {
-				StUtils.unapply(selectedOperation, CppInline.class);
+				StUtils.unapply(selectedOperation, Inline.class);
 			}
 		}
 	}
@@ -336,12 +367,12 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 		boolean boxState = isConst.getSelection();
 
-		if(boxState != StUtils.isApplied(selectedOperation, CppConst.class)) {
+		if(boxState != StUtils.isApplied(selectedOperation, Const.class)) {
 			if(boxState) {
-				StUtils.apply(selectedOperation, CppConst.class);
+				StUtils.apply(selectedOperation, Const.class);
 			}
 			else {
-				StUtils.unapply(selectedOperation, CppConst.class);
+				StUtils.unapply(selectedOperation, Const.class);
 			}
 		}
 	}
@@ -353,12 +384,12 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 		boolean boxState = isFriend.getSelection();
 
-		if(boxState != StUtils.isApplied(selectedOperation, CppFriend.class)) {
+		if(boxState != StUtils.isApplied(selectedOperation, Friend.class)) {
 			if(boxState) {
-				StUtils.apply(selectedOperation, CppFriend.class);
+				StUtils.apply(selectedOperation, Friend.class);
 			}
 			else {
-				StUtils.unapply(selectedOperation, CppFriend.class);
+				StUtils.unapply(selectedOperation, Friend.class);
 			}
 		}
 	}
@@ -374,7 +405,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 			StUtils.apply(selectedOperation, "Standard::Create");
 		}
 		else {
-			StUtils.unapply(selectedOperation, CppConstInit.class);
+			StUtils.unapply(selectedOperation, ConstInit.class);
 			StUtils.unapply(selectedOperation, "Standard::Create");
 		}
 
@@ -415,17 +446,17 @@ public class CppOperationPanel extends CppAbstractPanel {
 		if(comboSelected == 0 /* not virtual */) {
 
 			selectedOperation.setIsAbstract(false);
-			StUtils.unapply(selectedOperation, CppVirtual.class);
+			StUtils.unapply(selectedOperation, Virtual.class);
 		}
 		else if(comboSelected == 1 /* virtual */) {
 
 			selectedOperation.setIsAbstract(false);
-			StUtils.apply(selectedOperation, CppVirtual.class);
+			StUtils.apply(selectedOperation, Virtual.class);
 		}
 		else if(comboSelected == 2 /* pure virtual */) {
 
 			selectedOperation.setIsAbstract(true);
-			StUtils.apply(selectedOperation, CppVirtual.class);
+			StUtils.apply(selectedOperation, Virtual.class);
 		}
 
 		// Treat the owner class
@@ -462,7 +493,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 	public boolean checkModifications() {
 		// check if ConstInit has changed
 		String valueConstInit = "";
-		CppConstInit constInit = StUtils.getApplication(selectedOperation, CppConstInit.class);
+		ConstInit constInit = StUtils.getApplication(selectedOperation, ConstInit.class);
 		if(constInit != null) {
 			valueConstInit = constInit.getInitialisation();
 		}
@@ -489,7 +520,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 			if(selectedEOwner instanceof Class) {
 
 				// This part is done for a class only
-				CppConstInit constInit = StUtils.getApplication(selectedOperation, CppConstInit.class);
+				ConstInit constInit = StUtils.getApplication(selectedOperation, ConstInit.class);
 				if(constInit != null) {
 					docConstInit.set(constInit.getInitialisation());
 				}
@@ -513,7 +544,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 					groupBody.setEnabled(false);
 				}
 				else {
-					if(StUtils.isApplied(selectedOperation, CppVirtual.class)) {
+					if(StUtils.isApplied(selectedOperation, Virtual.class)) {
 						vPropCombo.select(1);
 						groupBody.setEnabled(true);
 					}
@@ -524,7 +555,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 				}
 
 				// Inline
-				if(StUtils.isApplied(selectedOperation, CppInline.class)) {
+				if(StUtils.isApplied(selectedOperation, Inline.class)) {
 					isInline.setSelection(true);
 				}
 
@@ -544,8 +575,8 @@ public class CppOperationPanel extends CppAbstractPanel {
 			}
 
 			isStatic.setSelection(selectedOperation.isStatic());
-			isConst.setSelection(StUtils.isApplied(selectedOperation, CppConst.class));
-			isFriend.setSelection(StUtils.isApplied(selectedOperation, CppFriend.class));
+			isConst.setSelection(StUtils.isApplied(selectedOperation, Const.class));
+			isFriend.setSelection(StUtils.isApplied(selectedOperation, Friend.class));
 			isCreate.setSelection(StUtils.isApplied(selectedOperation, StdStereo.create));
 			isDestroy.setSelection(StUtils.isApplied(selectedOperation, StdStereo.destroy));
 		}
@@ -559,7 +590,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 		if(selectedEOwner instanceof Class) {
 
 			if(selectedOperation.isAbstract()) {
-				if(!StUtils.isApplied(selectedOperation, CppVirtual.class)) {
+				if(!StUtils.isApplied(selectedOperation, Virtual.class)) {
 					return false;
 				}
 			}
@@ -568,7 +599,7 @@ public class CppOperationPanel extends CppAbstractPanel {
 			if(!selectedOperation.isAbstract()) {
 				return false;
 			}
-			if(StUtils.isApplied(selectedOperation, CppVirtual.class)) {
+			if(StUtils.isApplied(selectedOperation, Virtual.class)) {
 				return false;
 			}
 		}
@@ -597,29 +628,29 @@ public class CppOperationPanel extends CppAbstractPanel {
 				if(selectedEOwner instanceof Class) {
 					// toggle Stereotypes pure virtual if element is abstract
 					if(selectedOperation.isAbstract()) {
-						if(!StUtils.isApplied(selectedOperation, CppVirtual.class)) {
-							// selectedOperation.toggleStereotype("CppVirtualPure", true);
-							// selectedOperation.toggleStereotype("CppVirtual", false);
+						if(!StUtils.isApplied(selectedOperation, Virtual.class)) {
+							// selectedOperation.toggleStereotype("VirtualPure", true);
+							// selectedOperation.toggleStereotype("Virtual", false);
 						} else {
-							// selectedOperation.toggleStereotype("CppVirtual", false);
+							// selectedOperation.toggleStereotype("Virtual", false);
 						}
 					}
 
-					// if element is abstract and has CppVirtualPure, set to Virtual only
+					// if element is abstract and has VirtualPure, set to Virtual only
 					if(!selectedOperation.isAbstract()) {
-						if(StUtils.isApplied(selectedOperation, CppVirtual.class)) {
-							// selectedOperation.toggleStereotype("CppVirtualPure", false);
-							// selectedOperation.toggleStereotype("CppVirtual", true);
+						if(StUtils.isApplied(selectedOperation, Virtual.class)) {
+							// selectedOperation.toggleStereotype("VirtualPure", false);
+							// selectedOperation.toggleStereotype("Virtual", true);
 						} else {
-							// selectedOperation.toggleStereotype("CppVirtualPure", false);
-							// selectedOperation.toggleStereotype("CppVirtual", false);
+							// selectedOperation.toggleStereotype("VirtualPure", false);
+							// selectedOperation.toggleStereotype("Virtual", false);
 						}
 					}
 				}
 				else {
 					selectedOperation.setIsAbstract(true);
-					// selectedOperation.toggleStereotype("CppVirtual", false);
-					// selectedOperation.toggleStereotype("CppVirtualPure", true);
+					// selectedOperation.toggleStereotype("Virtual", false);
+					// selectedOperation.toggleStereotype("VirtualPure", true);
 				}
 			}
 		});

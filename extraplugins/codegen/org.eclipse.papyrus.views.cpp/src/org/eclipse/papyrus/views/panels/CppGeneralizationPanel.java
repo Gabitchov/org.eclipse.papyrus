@@ -26,7 +26,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 
-import Cpp.CppVisibility;
+import C_Cpp.Visibility;
+
 
 
 /**
@@ -124,7 +125,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 			visibilityVal = "public";
 			break;
 		}
-		final CppVisibility visibility = StUtils.getApplication(selectedGeneralization, CppVisibility.class);
+		final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
 		if(visibility != null) {
 			String vis = visibility.getValue();
 			if(!vis.equals(visibilityVal)) {
@@ -172,7 +173,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 	protected void refreshPanel()
 	{
 		if(selectedGeneralization != null) {
-			final CppVisibility visibility = StUtils.getApplication(selectedGeneralization, CppVisibility.class);
+			final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
 			if(visibility != null) {
 				String vis = visibility.getValue();
 
@@ -205,7 +206,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		final CppVisibility visibility = StUtils.getApplication(selectedGeneralization, CppVisibility.class);
+		final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
 		if(visibility != null) {
 			String vis = visibility.getValue();
 
@@ -233,7 +234,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 			return;
 		}
 
-		final CppVisibility visibility = StUtils.getApplication(selectedGeneralization, CppVisibility.class);
+		final Visibility visibility = StUtils.getApplication(selectedGeneralization, Visibility.class);
 		if(visibility != null) {
 			String vis = visibility.getValue();
 			if(!(vis.equals("public")) || !(vis.equals("protected")) || !(vis.equals("private"))) {
@@ -247,8 +248,8 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 		}
 		else {
 			// good idea? apply value, even if visibility unspecified
-			// GenUtils.setStereotype (selectedGeneralization, CppVisibility.class, true);
-			// GenUtils.setTaggedValue (selectedGeneralization, CppVisibility.class, "value", "public");
+			// GenUtils.setStereotype (selectedGeneralization, Visibility.class, true);
+			// GenUtils.setTaggedValue (selectedGeneralization, Visibility.class, "value", "public");
 		}
 	}
 }

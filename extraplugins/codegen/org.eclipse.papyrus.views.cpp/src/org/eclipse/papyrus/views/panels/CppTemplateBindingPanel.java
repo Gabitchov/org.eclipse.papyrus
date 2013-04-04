@@ -21,8 +21,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TemplateBinding;
 
-import Cpp.CppTemplateBinding;
-
 
 /**
  * Panel displayed when a TemplateBinding is selected
@@ -119,9 +117,9 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 					// Treat Pointer
 					String newB = docBinding.get();
 					if(newB.equals("")) {
-						StUtils.unapply(selectedTB, CppTemplateBinding.class);
+						StUtils.unapply(selectedTB, TemplateBinding.class);
 					} else {
-						CppTemplateBinding templateBinding = StUtils.applyApp(selectedTB, CppTemplateBinding.class);
+						C_Cpp.TemplateBinding templateBinding = StUtils.applyApp(selectedTB, C_Cpp.TemplateBinding.class);
 						// TODO: use UML template bindings?
 						templateBinding.setBinding(newB);
 					}
@@ -138,7 +136,7 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 	@Override
 	protected void refreshPanel() {
 		if(selectedTB != null) {
-			CppTemplateBinding templateBinding = StUtils.getApplication(selectedTB, CppTemplateBinding.class);
+			C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, C_Cpp.TemplateBinding.class);
 			// TODO: use UML template bindings?
 			docBinding.set(templateBinding != null ? templateBinding.getBinding() : "");
 		}
@@ -162,7 +160,7 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		CppTemplateBinding templateBinding = StUtils.getApplication(selectedTB, CppTemplateBinding.class);
+		C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, C_Cpp.TemplateBinding.class);
 		// TODO: use UML template bindings?
 		String bindingValue = templateBinding != null ? templateBinding.getBinding() : "";
 		if(!docBinding.get().equals(bindingValue)) {

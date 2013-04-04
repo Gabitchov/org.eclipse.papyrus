@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
-import Cpp.CppInclude;
+import C_Cpp.Include;
 
 
 /**
@@ -122,9 +122,9 @@ public class CppPackagePanel extends CppAbstractPanel {
 				public void run()
 				{
 					if(headerDocument.get().equals("")) {
-						StUtils.unapply(selectedPackage, CppInclude.class);
+						StUtils.unapply(selectedPackage, Include.class);
 					} else {
-						CppInclude cppInclude = StUtils.applyApp(selectedPackage, CppInclude.class);
+						Include cppInclude = StUtils.applyApp(selectedPackage, Include.class);
 						cppInclude.setHeader(headerDocument.get());
 					}
 				}
@@ -140,7 +140,7 @@ public class CppPackagePanel extends CppAbstractPanel {
 	@Override
 	protected void refreshPanel() {
 		if(selectedPackage != null) {
-			CppInclude cppInclude = StUtils.getApplication(selectedPackage, CppInclude.class);
+			Include cppInclude = StUtils.getApplication(selectedPackage, Include.class);
 			if(cppInclude != null) {
 				headerDocument.set(cppInclude.getHeader());
 			}
@@ -168,7 +168,7 @@ public class CppPackagePanel extends CppAbstractPanel {
 	@Override
 	public boolean checkModifications() {
 		String headerInModel = "";
-		CppInclude cppInclude = StUtils.getApplication(selectedPackage, CppInclude.class);
+		Include cppInclude = StUtils.getApplication(selectedPackage, Include.class);
 		if(cppInclude != null) {
 			headerInModel = cppInclude.getHeader();
 		}

@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PrimitiveType;
 
-import Cpp.CppType;
+import C_Cpp.Typedef;
 
 
 /**
@@ -109,10 +109,10 @@ public class CppPrimitiveTypePanel extends CppAbstractPanel {
 				public void run()
 				{
 					if(typeDocument.get().equals("")) {
-						StUtils.unapply(selectedPType, CppType.class);
+						StUtils.unapply(selectedPType, Typedef.class);
 					}
 					else {
-						CppType cppType = StUtils.applyApp(selectedPType, CppType.class);
+						Typedef cppType = StUtils.applyApp(selectedPType, Typedef.class);
 						cppType.setDefinition(typeDocument.get());
 					}
 				}
@@ -129,7 +129,7 @@ public class CppPrimitiveTypePanel extends CppAbstractPanel {
 	@Override
 	protected void refreshPanel() {
 		if(selectedPType != null) {
-			CppType cppType = StUtils.getApplication(selectedPType, CppType.class);
+			Typedef cppType = StUtils.getApplication(selectedPType, Typedef.class);
 			typeDocument.set(cppType != null ? cppType.getDefinition() : "");
 		}
 	}
@@ -151,7 +151,7 @@ public class CppPrimitiveTypePanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		CppType cppType = StUtils.getApplication(selectedPType, CppType.class);
+		Typedef cppType = StUtils.getApplication(selectedPType, Typedef.class);
 		String typeInModel = cppType != null ? cppType.getDefinition() : "";
 		if(!typeDocument.get().equals(typeInModel)) {
 			return true;
