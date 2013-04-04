@@ -3,16 +3,19 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.cpp.profile;singleton:=true
 Bundle-Version: 0.10.0.qualifier
+Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.cpp.profile.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="3.1.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: Cpp,
- Cpp.impl,
- Cpp.util,
+Export-Package: C_Cpp,
+ C_Cpp.impl,
+ C_Cpp.util,
  org.eclipse.papyrus.cpp.profile
 Bundle-Localization: plugin
- 

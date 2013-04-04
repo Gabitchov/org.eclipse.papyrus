@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.cpp.profile/src" modelPluginID="org.eclipse.papyrus.cpp.profile"
+    modelName="C_Cpp" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+  <foreignModel>C_Cpp.ecore</foreignModel>
+  <genPackages prefix="C_Cpp" resource="XML" disposableProviderFactory="true" ecorePackage="C_Cpp.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="C_Cpp.ecore#//VisibilityKind">
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//VisibilityKind/private"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//VisibilityKind/protected"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//VisibilityKind/public"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="C_Cpp.ecore#//EAccessKind">
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EAccessKind/read"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EAccessKind/write"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EAccessKind/readWrite"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="C_Cpp.ecore#//EStorageClass">
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/auto"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/register"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/extern"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/static"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/inline"/>
+    </genEnums>
+    <genClasses ecoreClass="C_Cpp.ecore#//Ptr">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ptr/base_parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ptr/base_property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Ptr/declaration"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Include">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Include/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Include/preBody"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Include/header"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Include/base_package"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Include/base_class"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Include/base_PackageImport"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//ManualGeneration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ManualGeneration/extensionBody"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ManualGeneration/base_Class"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Array">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Array/base_parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Array/definition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Array/base_property"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Array/base_association"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Const">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_property"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_operation"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Default">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Default/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Default/base_parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Default/base_property"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Ref">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ref/base_parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ref/base_property"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//ExternClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternClass/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ExternClass/base_class"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//ExternLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ExternLibrary/base_package"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//CppRoot">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//CppRoot/base_package"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//NoCodeGen">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//NoCodeGen/base_element"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//ConstInit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ConstInit/initialisation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ConstInit/base_operation"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Friend">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Friend/base_dependency"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Friend/base_operation"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Inline">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Inline/base_operation"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Virtual">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Virtual/base_operation"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Typedef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Typedef/definition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Typedef/base_primitivetype"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Visibility">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Visibility/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Visibility/base_generalization"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//CppInit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//CppInit/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//CppInit/base_enumerationliteral"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Template">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Template/declaration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Template/base_class"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//TemplateBinding">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//TemplateBinding/binding"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//TemplateBinding/base_templatebinding"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//TemplateParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//TemplateParameter/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//TemplateParameter/base_templateparameter"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//Union">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Union/base_DataType"/>
+    </genClasses>
+    <genClasses ecoreClass="C_Cpp.ecore#//StorageClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//StorageClass/storageClass"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
