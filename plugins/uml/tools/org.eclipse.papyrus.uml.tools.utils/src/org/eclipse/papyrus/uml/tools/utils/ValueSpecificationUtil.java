@@ -133,7 +133,7 @@ public class ValueSpecificationUtil {
 
 
 	/**
-	 * Get a string representing of a Constraint
+	 * Get a string representing a Constraint
 	 * 
 	 * @param Constraint
 	 */
