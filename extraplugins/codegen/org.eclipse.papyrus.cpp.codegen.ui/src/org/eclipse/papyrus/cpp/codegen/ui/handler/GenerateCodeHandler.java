@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
-import org.eclipse.papyrus.cpp.codegen.transformation.ModelElementsCreator;
+import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Classifier;
@@ -90,7 +90,7 @@ public class GenerateCodeHandler extends AbstractHandler {
 				// get the container for the current element
 				String headerSuffix = CppCodeGenUtils.getHeaderSuffix();
 				String bodySuffix = CppCodeGenUtils.getBodySuffix();
-				ModelElementsCreator mec = new ModelElementsCreator(modelProject, headerSuffix, bodySuffix, CppCodeGenUtils.getCommentHeader());
+				CppModelElementsCreator mec = new CppModelElementsCreator(modelProject);
 				IContainer srcPkg = mec.getContainer(classifier);
 				try {
 					mec.createPackageableElement(srcPkg, null, classifier);
