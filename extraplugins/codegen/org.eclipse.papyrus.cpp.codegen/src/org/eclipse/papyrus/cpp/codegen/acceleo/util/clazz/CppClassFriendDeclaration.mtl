@@ -1,0 +1,15 @@
+[module CppClassFriendDeclaration('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+
+
+[template public CppClassFriendDeclaration(friend : Classifier)]
+friend class [friend.qualifiedName()/];
+[/template]
+
+[template public CppClassIncludeFriendDeclaration(class : Classifier)]
+[for (getUsedClassifiers())]
+	[if hasStereotype(C_Cpp::Friend) and (not hasStereotype(C_Cpp::NoCodeGen))]
+		[CppClassFriendDeclaration()/]
+	[/if]
+[/for]
+[/template]

@@ -1,0 +1,21 @@
+[module CppAttributeDeclaration('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::Modifier/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
+
+
+
+
+[template public defaultValue(attribute : Property)]
+[if (defaultValue <> null) and isStatic] = [attribute.defaultValue.stringValue()/][/if]
+[/template]
+
+[template public staticValue(attribute : Property)]
+[if (attribute.isStatic)]static [/if]
+[/template]
+
+[template public CppAttributeDeclaration(attribute : Property)]
+[CppElementDoc()/]
+[staticValue()/][modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/][defaultValue()/];
+[/template]
+

@@ -1,0 +1,94 @@
+[module CppClassHeader('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::ClassUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::Constants/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::IncludeUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassTypeAndEnum/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassFriendDeclaration/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassInheritedDeclarations/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassAttributesDeclaration/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassOperationsDeclaration/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassOperationsImplementation/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppTemplates/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
+
+
+
+[query public classUnionOrStruct(classifier : Classifier) : String =
+if (hasStereotype(C_Cpp::Union)) then 'union'
+else
+	if (oclIsKindOf(DataType)) then 'struct'
+	else 'class'
+	endif
+endif
+/]
+
+[comment default initializer for non-static attributes with a default value
+TODO: should be disabled by default, since non-static members can be initialized directly
+in C++ 011/]
+[template public defaultInitializer(classifier : Classifier) post(trim())]
+[let attributeList : Set(Property) = attribute->select(	
+	(isStatic = false) and
+	(defaultValue <> null) and
+	(defaultValue.stringValue() <> null))]
+[if not attributeList->isEmpty()]
+	[classifier.name/]() : [for (a : Property | attributeList) separator(', ')
+		][name/]([defaultValue.stringValue()/])[/for] {}
+[/if][/let]
+[/template]
+
+
+[template public CppClassHeader(class : Classifier)]
+#ifndef [getFullNameUC()/]_H
+#define [getFullNameUC()/]_H
+
+/************************************************************
+              [class.name/] class header
+ ************************************************************/
+
+[_package.CppOwnerPackageIncludeDeclaration()/]
+
+[CppClassAllIncludesDeclaration()/]
+
+[IncludeHeader()/]
+
+[openNS()/] 
+[_package.CppClassTypeAndEnumPackage()/]
+/************************************************************/
+[CppElementDoc()/]
+[templateSignature()/][classUnionOrStruct()/] [class.name/][CppClassInheritedDeclarations()/] {
+[CppClassIncludeFriendDeclaration()/][CppClassTypeAndEnum()/]
+
+  public:
+[defaultInitializer()/][CppClassAttributesDeclaration(VisibilityKind::public)/][CppClassOperationsDeclaration(VisibilityKind::public)/]
+
+  protected:
+[CppClassAttributesDeclaration(VisibilityKind::protected)/][CppClassOperationsDeclaration(VisibilityKind::protected)/]
+
+  private:
+[CppClassAttributesDeclaration(VisibilityKind::private)/][CppClassOperationsDeclaration(VisibilityKind::private)/]
+
+};
+/************************************************************/
+/* External declarations (package visibility)               */
+[CppClassAttributesDeclaration(VisibilityKind::_package)/]
+[CppClassOperationsDeclaration(VisibilityKind::_package)/]
+/************************************************************/
+
+[if (isTemplate())]
+/************************************************************/
+/* Template functions                                       */
+[CppClassOperationsImplementation(false)/]
+[/if]
+
+/* Inline functions                                         */
+[CppClassOperationsImplementation(true)/]
+[closeNS()/]
+
+/************************************************************
+              End of [class.name/] class header
+ ************************************************************/
+
+#endif
+[/template]

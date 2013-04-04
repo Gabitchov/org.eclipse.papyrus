@@ -27,6 +27,7 @@ public class CppCodeGenPreferenceInitializer extends AbstractPreferenceInitializ
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		store.setDefault(CppCodeGenConstants.P_HEADER_SUFFIX, "h");
 		store.setDefault(CppCodeGenConstants.P_IMPLEM_SUFFIX, "cpp");
+		store.setDefault(CppCodeGenConstants.P_OUT_INOUT_OP, "*");
 
 		// Default value for P_COMMENT_HEADER
 		String NL = System.getProperties().getProperty("line.separator");

@@ -24,6 +24,11 @@ public class CppCodeGenConstants {
 	public static final String P_IMPLEM_SUFFIX = "implSuffix";
 
 	/**
+	 * Suffix for generated body/implementation files
+	 */
+	public static final String P_OUT_INOUT_OP = "outInoutOp";
+
+	/**
 	 * User defined comment header in generated files
 	 */
 	public static final String P_COMMENT_HEADER = "commentHeader";

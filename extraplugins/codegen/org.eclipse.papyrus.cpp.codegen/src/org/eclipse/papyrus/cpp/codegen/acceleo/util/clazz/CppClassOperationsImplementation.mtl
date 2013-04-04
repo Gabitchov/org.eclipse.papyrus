@@ -1,0 +1,15 @@
+[module CppClassOperationsImplementation('http://www.eclipse.org/uml2/4.0.0/UML', 'http://papyrus/C_CppProfile/1')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::operation::CppOperationDeclaration/]
+
+
+[comment implementations of a classifier, parameter controls whether only inline (or only not inline) operations
+  are produced/]
+[template public CppClassOperationsImplementation(class : Classifier, inline : Boolean)]
+[for (getOperations()->select(
+		(not (hasStereotype(NoCodeGen) or isAbstract)) and
+		(hasStereotype(C_Cpp::Inline) = inline)))]
+
+[CppOperationImplementation()/]
+[/for]
+[/template]

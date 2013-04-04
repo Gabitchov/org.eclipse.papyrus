@@ -1,0 +1,11 @@
+[module CppClassOperationsDeclaration('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::operation::CppOperationDeclaration/]
+
+
+[template public CppClassOperationsDeclaration(class : Classifier, visibilityFilter : VisibilityKind)]
+[for (getOperations()->select(visibility = visibilityFilter))]
+
+ 	[CppOperationDeclaration()/]
+[/for]
+[/template]

@@ -33,4 +33,6 @@ public class Constants {
 	public static final String forwardDecl = "// forward declarations";
 
 	public static final String staticAttributes = "// static attributes (if any)";
+
+	public static final String undefinedType = "undefined";
 }

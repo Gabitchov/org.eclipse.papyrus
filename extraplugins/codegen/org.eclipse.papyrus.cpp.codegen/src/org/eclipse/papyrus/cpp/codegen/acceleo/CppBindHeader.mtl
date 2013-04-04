@@ -1,0 +1,38 @@
+[module CppBindHeader('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppTemplates/]
+[import org::eclipse::papyrus::cpp::codegen::preferences::CppCodeGenUtils/]
+
+
+[template public CppBindHeader(class : Class)] 
+#ifndef [getFullNameUC()/]_H
+#define [getFullNameUC()/]_H
+
+/************************************************************
+              [class.name/] template binding header
+ ************************************************************/
+
+[_package.CppOwnerPackageIncludeDeclaration()/]
+
+[CppClassAllIncludesDeclaration()/]
+
+[getApplication(C_Cpp::Include).oclAsType(C_Cpp::Include).header/]
+
+[let tb : TemplateBinding = getTemplateBindings()]
+[let templateElement : Classifier = tb.target->asSequence()->first()]
+#include <[_package.getFullPath()/]/[templateElement.owner.oclAsType(NamedElement).name/].[getHeaderSuffix()/]>
+
+[openNS()/] 
+/************************************************************/
+typedef [templateElement.name/] <[for (tb.parameterSubstitution)][CppTemplateBindingParameter()/][/for]> [class.name/];
+
+[closeNS()/]
+[/let][/let]
+
+/************************************************************
+              End of [class.name/] template binding header
+ ************************************************************/
+
+#endif
+[/template]

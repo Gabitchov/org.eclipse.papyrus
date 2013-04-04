@@ -1,0 +1,19 @@
+[module CppClassIncludeDeclaration('http://www.eclipse.org/uml2/4.0.0/UML', 'http://papyrus/C_CppProfile/1')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::preferences::CppCodeGenUtils/]
+
+
+[query public includeName(ne : NamedElement) : String =
+if (hasStereotype(Template)) then
+	getApplication(Template).oclAsType(Template).declaration
+else
+	if (hasStereotype(ExternClass)) then getApplication(ExternClass).oclAsType(ExternClass).name
+	else ne.name + '.' + getHeaderSuffix()
+	endif
+endif
+/]
+
+[comment TODO: original code did not use nearest package, if stereotype CppRoot was applied/]
+[template public CppClassIncludeDeclaration(ne : NamedElement)]
+#include <[getNearestPackage().getFullPath()/]/[ne.includeName()/]>
+[/template]

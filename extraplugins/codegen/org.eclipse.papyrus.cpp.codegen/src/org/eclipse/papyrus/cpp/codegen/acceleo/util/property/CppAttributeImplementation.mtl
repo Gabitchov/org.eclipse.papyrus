@@ -1,0 +1,35 @@
+[module CppAttributeImplementation('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::Modifier/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
+
+
+[comment
+// for static implementation:
+// If attribute is aggregation then generate a pointer
+	if (GenUtils.isAggregation(currentAttribute)) {
+		// attributeName	= "(*"+attributeName+")"; // this produce a pointer on a tab
+		isAgg	= "*";      // this produce a tab of pointers
+	}
+/]
+
+[template public CppAttributeImplementation(attribute : Property)]
+	[CppElementDoc()/]
+	[modConst()/][attribute.type.qualifiedName()/][modPtr()/][modRef()/] [attribute.name/][modArray()/];
+[/template]
+
+[template public CppStaticAttributeImplementation(attribute : Property)]
+	[CppElementDoc()/]
+	[type.qualifiedName()/][modPtr()/][modRef()/][attribute.class.name/]::[attribute.name/][modArray()/];
+[/template]
+
+[comment
+Loop over attributes. Check that the attribute is not a static const.
+Constant static attributes are declared within the class declaration/] 
+[template public CppStaticAttributes(classifier : Classifier)]
+[for (classifier.attribute)]
+	[if(isStatic and (not hasStereotype(C_Cpp::Const)))]
+		[CppStaticAttributeImplementation()/]
+	[/if]
+[/for]
+[/template]

@@ -11,12 +11,19 @@
 
 package org.eclipse.papyrus.cpp.codegen.utils;
 
+import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.Property;
 
-import Cpp.CppArray;
-import Cpp.CppConst;
-import Cpp.CppPtr;
-import Cpp.CppRef;
+import C_Cpp.Array;
+import C_Cpp.Const;
+import C_Cpp.Ptr;
+import C_Cpp.Ref;
+
 
 /**
  * Utility functions managing the "modifier" of an element, i.e. additional information whether a passed
@@ -27,48 +34,97 @@ import Cpp.CppRef;
  */
 public class Modifier {
 
-	public String ptr;
+	public static String ptr;
 
-	public String ref;
+	public static String ref;
 
-	public String array;
+	public static String array;
 
-	public String isConst;
+	public static String isConst;
 
-	public Modifier() {
-		ptr = "";
-		ref = "";
-		array = "";
-		isConst = "";
+	public static String modPtr(Element propertyOrParameter) {
+		update(propertyOrParameter);
+		return ptr;
+	}
+
+	public static String modRef(Element propertyOrParameter) {
+		update(propertyOrParameter);
+		return ref;
+	}
+
+	public static String modArray(Element propertyOrParameter) {
+		update(propertyOrParameter);
+		return array;
+	}
+
+	public static String modConst(Element propertyOrParameter) {
+		update(propertyOrParameter);
+		return isConst;
 	}
 
 	/**
 	 * Create instance and initialize the ptr/ref/array/isConst attributes.
 	 * 
-	 * @param currentParameter
+	 * @param propertyOrParameter
 	 */
-	public Modifier(Element currentParameter) {
+	public static void update(Element propertyOrParameter) {
 
 		// Pointer
-		CppPtr cppPtr = GenUtils.getApplication(currentParameter, CppPtr.class);
+		Ptr cppPtr = GenUtils.getApplication(propertyOrParameter, Ptr.class);
 		if(cppPtr != null) {
 			ptr = (cppPtr.getDeclaration() != null) ? cppPtr.getDeclaration() : "*";
 		} else {
 			ptr = "";
 		}
-
+		if (propertyOrParameter instanceof Property) {
+			if (((Property) propertyOrParameter).getAggregation() == AggregationKind.SHARED_LITERAL) {
+				ptr += "*";
+			}
+		}
 		// Ref
-		ref = GenUtils.hasStereotype(currentParameter, CppRef.class) ? "&" : "";
+		ref = GenUtils.hasStereotype(propertyOrParameter, Ref.class) ? "&" : "";
+		boolean ptrOrRef = GenUtils.hasStereotype(propertyOrParameter, Ref.class) ||
+			GenUtils.hasStereotype(propertyOrParameter, Ptr.class);
 
 		// Array
-		CppArray cppArray = GenUtils.getApplication(currentParameter, CppArray.class);
+		Array cppArray = GenUtils.getApplication(propertyOrParameter, Array.class);
 		if(cppArray != null) {
+			// explicit array definition
 			array = (cppArray.getDefinition() != null) ? cppArray.getDefinition() : "[]";
 		} else {
+			// calculate array from multiplicity definition
+			int multiplicity = 1;
+			if(propertyOrParameter instanceof MultiplicityElement) {
+				multiplicity = ((MultiplicityElement)propertyOrParameter).getUpper();
+			}
 			array = "";
+			if(multiplicity == -1) {
+				ptr += "*";
+			} else if(multiplicity > 1) {
+				array = "[" + multiplicity + "]";
+			}
 		}
 
+		// out an inout parameter are realized by means of a pointer 
+		if(propertyOrParameter instanceof Parameter) {
+			ParameterDirectionKind directionKind = ((Parameter)propertyOrParameter).getDirection();
+			if(directionKind == ParameterDirectionKind.IN_LITERAL) {
+				ptr += " _IN_";
+			}
+			else if(directionKind == ParameterDirectionKind.OUT_LITERAL) {
+				ptr += " _OUT_";
+				if(!ptrOrRef) {
+					ptr += CppCodeGenUtils.getOutInoutOp();
+				}
+			}
+			else if(directionKind == ParameterDirectionKind.INOUT_LITERAL) {
+				ptr += " _INOUT_";
+				if(!ptrOrRef) {
+					ptr += CppCodeGenUtils.getOutInoutOp();
+				}
+			}
+		}
 		// Const
-		isConst = GenUtils.hasStereotype(currentParameter, CppConst.class) ? "const " : "";
+		isConst = GenUtils.hasStereotype(propertyOrParameter, Const.class) ? "const " : "";
 	}
 }

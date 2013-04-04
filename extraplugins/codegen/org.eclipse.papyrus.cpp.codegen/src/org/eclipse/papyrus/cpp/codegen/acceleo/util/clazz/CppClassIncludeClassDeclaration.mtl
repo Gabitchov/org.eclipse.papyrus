@@ -1,0 +1,40 @@
+[module CppClassIncludeClassDeclaration('http://www.eclipse.org/uml2/4.0.0/UML', 'http://papyrus/C_CppProfile/1')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::ClassUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeDeclaration/]
+
+[comment USED??? /]
+[template public CppClassIncludeClassDeclarationTemplate(class : Class)]
+[openNS()/]
+[if hasStereotype(class, 'CppTemplate.class')]template [/if]class [class.name/];
+[closeNS()/]
+[/template]
+
+
+[template public CppOwnerPackageIncludeDeclaration(pkg : Package)]
+[comment if currentPkg is not root it is referenced here/]
+[if ((pkg <> null) and (not hasStereotype(CppRoot)))]
+/* Owner package header include                             */
+#include <[getFullPath()/]/Pkg_[pkg.name/].h>
+[/if] 
+[/template]
+
+
+[template public CppClassAllIncludesDeclaration(class : Classifier)]
+[for (cl : Classifier | includedClassifiers())]
+	[comment Only add include if this is not for the current class and if it does not have the stereotype "CppNoCodeGen", unless
+			it has stereotype "CppExternalClass"/]
+	[if((cl <> class) and (not hasStereotype(NoCodeGen)) or hasStereotype(ExternClass))]
+		[if(oclIsKindOf(Enumeration) or oclIsKindOf(PrimitiveType))]
+			[comment Enumeration is not defined in a separate file, but in the package that owns it
+				=> include the owning package (might be a duplicate input, if owning package is also the owner of current class/]
+			[if (cl.owner.oclIsKindOf(Package))]
+[cl.owner.oclAsType(Package).CppOwnerPackageIncludeDeclaration()/]
+			[/if]
+		[else]
+			[comment include file associated with the classifier/] 
+[CppClassIncludeDeclaration()/]
+		[/if]
+	[/if]
+[/for]
+[/template]

@@ -1,0 +1,30 @@
+[module CppClassTypeAndEnum('http://www.eclipse.org/uml2/4.0.0/UML', 'http://papyrus/C_CppProfile/1')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppPrimitiveTypes/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppEnumerations/]
+
+[template public TypeAndEnumForVisibility(element : Element, visibilityFilter : VisibilityKind)]
+[if (not hasStereotype(NoCodeGen) and oclIsKindOf(Classifier) and oclAsType(Classifier).visibility = visibilityFilter)]
+[  if (oclIsKindOf(Enumeration))][oclAsType(Enumeration).CppEnumerationDefinition()/][/if]
+[  if (oclIsKindOf(PrimitiveType))][oclAsType(PrimitiveType).CppPrimitiveTypeDefinition()/][/if]
+[/if]
+[/template]
+
+[template public TypesAndEnumsForVisibility(ne : Namespace, visibilityFilter : VisibilityKind)]
+[for (ownedElement)][TypeAndEnumForVisibility(visibilityFilter)/][/for]
+[/template]
+
+[template public CppClassTypeAndEnum(class : Classifier)]
+  public:
+	[TypesAndEnumsForVisibility(VisibilityKind::public)/]
+  protected:
+	[TypesAndEnumsForVisibility(VisibilityKind::protected)/]
+  private:
+	[TypesAndEnumsForVisibility(VisibilityKind::private)/]
+[/template]
+
+
+[template public CppClassTypeAndEnumPackage(pkg : Package)]
+[TypesAndEnumsForVisibility(VisibilityKind::_package)/]
+[TypesAndEnumsForVisibility(VisibilityKind::public)/]
+[/template]

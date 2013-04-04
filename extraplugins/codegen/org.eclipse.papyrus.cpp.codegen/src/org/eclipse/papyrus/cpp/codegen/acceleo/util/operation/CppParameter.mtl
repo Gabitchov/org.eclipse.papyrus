@@ -1,0 +1,18 @@
+[module CppParameter('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::Modifier/]
+
+
+
+[template public defaultValue(parameter : Parameter)]
+[if (hasStereotype(C_Cpp::Default))] = [getApplication(C_Cpp::Default).oclAsType(C_Cpp::Default).value/][/if]
+[/template]
+
+[template public CppParameter(parameter : Parameter)]
+[modConst()/][parameter.type.qualifiedName()/][modPtr()/][modRef()/] [parameter.name/][modArray()/][defaultValue()/]
+[/template]
+
+
+[template public CppOperationParameters(operation : Operation)]
+[for (ownedParameter->select(direction <> ParameterDirectionKind::return)) separator(', ')][CppParameter()/][/for]
+[/template]

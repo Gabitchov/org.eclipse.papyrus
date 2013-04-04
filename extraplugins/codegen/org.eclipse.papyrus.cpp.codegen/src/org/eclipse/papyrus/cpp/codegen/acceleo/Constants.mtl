@@ -1,0 +1,52 @@
+[comment encoding = UTF-8 /]
+[module Constants('http://www.eclipse.org/uml2/4.0.0/UML')]
+
+
+[template public includeHFile(dummy : Element)]
+// include associated header file
+[/template]
+
+[template public IncludeHeaderStart(dummy : Element)]
+// Include from Include stereotype (header)
+[/template]
+
+[template public IncludePreBodyStart(dummy : Element)]
+// Include from Include stereotype (pre-body)
+[/template]
+
+[template public IncludePreBodyEnd(dummy : Element)]
+// End of Include stereotype (pre-body)
+[/template]
+
+[template public IncludeBodyStart(dummy : Element)]
+// Include from Include declaration (body)
+[/template]
+
+[template public IncludeHeaderEnd(dummy : Element)]
+// End of Include stereotype (header)
+[/template]
+
+[template public IncludeBodyEnd(dummy : Element)]
+// End of Include stereotype (body)
+[/template]
+
+[template public derivedIncludes(dummy : Element)]
+// Derived includes directives
+[/template]
+
+[template public forwardDecl(dummy : Element)]
+// forward declarations
+[/template]
+
+[template public staticAttributes(dummy : Element)]
+// static attributes (if any)
+[/template]
+
+[template public packageTypes(dummy : Element)]
+// Types defined within the package
+[/template]
+
+
+[template public undefinedType(dummy : Element)]
+undefined
+[/template]

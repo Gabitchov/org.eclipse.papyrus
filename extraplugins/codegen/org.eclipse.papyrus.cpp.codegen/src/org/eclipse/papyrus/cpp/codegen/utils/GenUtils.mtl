@@ -1,0 +1,104 @@
+[comment encoding = UTF-8 /]
+[module GenUtils('http://www.eclipse.org/uml2/4.0.0/UML')/]
+
+[query public getName(arg0 : TemplateParameter) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getName(org.eclipse.uml2.uml.TemplateParameter)', Sequence{arg0}) /]
+
+[query public getType(arg0 : TemplateParameter) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getType(org.eclipse.uml2.uml.TemplateParameter)', Sequence{arg0}) /]
+
+[query public getFullName(arg0 : NamedElement) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getFullName(org.eclipse.uml2.uml.NamedElement)', Sequence{arg0}) /]
+
+[query public maskNull(arg0 : String) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'maskNull(java.lang.String)', Sequence{arg0}) /]
+
+[query public getNamespace(arg0 : NamedElement) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getNamespace(org.eclipse.uml2.uml.NamedElement)', Sequence{arg0}) /]
+
+[query public indent(arg0 : String, arg1 : String) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'indent(java.lang.String, java.lang.String)', Sequence{arg0, arg1}) /]
+
+[query public getApplication(arg0 : Element, arg1 : OclAny) : OclAny
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getApplicationA(org.eclipse.uml2.uml.Element, org.eclipse.emf.ecore.EClass)', Sequence{arg0, arg1}) /]
+
+[query public getFullPath(arg0 : Package) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getFullPath(org.eclipse.uml2.uml.Package)', Sequence{arg0}) /]
+
+[query public qualifiedName(arg0 : NamedElement) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'qualifiedName(org.eclipse.uml2.uml.NamedElement)', Sequence{arg0}) /]
+
+[query public getGeneralizationVisibility(arg0 : Element) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getGeneralizationVisibility(org.eclipse.uml2.uml.Element)', Sequence{arg0}) /]
+
+[query public getRelationships(arg0 : Classifier) : Sequence(Relationship)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getRelationships(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getTemplateBindings(arg0 : Class) : TemplateBinding
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getTemplateBindings(org.eclipse.uml2.uml.Class)', Sequence{arg0}) /]
+
+[query public getImplementedInterfaces(arg0 : Class) : Sequence(Interface)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getImplementedInterfaces(org.eclipse.uml2.uml.Class)', Sequence{arg0}) /]
+
+[query public getBody(arg0 : Operation, arg1 : String) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getBody(org.eclipse.uml2.uml.Operation, java.lang.String)', Sequence{arg0, arg1}) /]
+
+[query public getTaggedValue(arg0 : Element, arg1 : String, arg2 : String) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getTaggedValue(org.eclipse.uml2.uml.Element, java.lang.String, java.lang.String)', Sequence{arg0, arg1, arg2}) /]
+
+[query public setTaggedValue(arg0 : Element, arg1 : String, arg2 : String, arg3 : OclAny) : OclVoid
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'setTaggedValue(org.eclipse.uml2.uml.Element, java.lang.String, java.lang.String, java.lang.Object)', Sequence{arg0, arg1, arg2, arg3}) /]
+
+[query public getComments(arg0 : Element) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getComments(org.eclipse.uml2.uml.Element)', Sequence{arg0}) /]
+
+[query public getDependencies(arg0 : Classifier) : Sequence(Dependency)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getDependencies(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public setStereotype(arg0 : Element, arg1 : String, arg2 : Boolean) : OclVoid
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'setStereotype(org.eclipse.uml2.uml.Element, java.lang.String, boolean)', Sequence{arg0, arg1, arg2}) /]
+
+[query public hasStereotype(arg0 : Element, arg1 : String) : Boolean
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'hasStereotype(org.eclipse.uml2.uml.Element, java.lang.String)', Sequence{arg0, arg1}) /]
+
+[query public hasStereotype(arg0 : Element, arg1 : OclAny) : Boolean
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'hasStereotypeA(org.eclipse.uml2.uml.Element, org.eclipse.emf.ecore.EClass)', Sequence{arg0, arg1}) /]
+
+[query public isTemplateBoundElement(arg0 : Classifier) : Boolean
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'isTemplateBoundElement(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getTemplateParameters(arg0 : Classifier) : Collection(TemplateParameter)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getTemplateParameters(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getTemplateParameteredElements(arg0 : Classifier) : Collection(OclAny)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getTemplateParameteredElements(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getTemplateParametersWoType(arg0 : Classifier) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getTemplateParametersWoType(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getStdtypes(arg0 : PrimitiveType) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getStdtypes(org.eclipse.uml2.uml.PrimitiveType)', Sequence{arg0}) /]
+
+[query public getOwnedAttributeTypes(arg0 : Classifier) : Sequence(Type)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getOwnedAttributeTypes(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getIncludesFromOperations(arg0 : Classifier) : Sequence(Classifier)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getIncludesFromOperations(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getRelationshipsNoDeps(arg0 : Classifier) : Sequence(Relationship)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getRelationshipsNoDeps(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]
+
+[query public getFullNameUC(arg0 : NamedElement) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getFullNameUC(org.eclipse.uml2.uml.NamedElement)', Sequence{arg0}) /]
+
+[query public openNS(arg0 : NamedElement) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'openNS(org.eclipse.uml2.uml.NamedElement)', Sequence{arg0}) /]
+
+[query public closeNS(arg0 : NamedElement) : String
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'closeNS(org.eclipse.uml2.uml.NamedElement)', Sequence{arg0}) /]
+
+[query public getUsedPackages(arg0 : Package) : Sequence(Package)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getUsedPackages(org.eclipse.uml2.uml.Package)', Sequence{arg0}) /]
+
+[query public getUsedClassifiers(arg0 : Classifier) : Sequence(Classifier)
+	= invoke('org.eclipse.papyrus.cpp.codegen.utils.GenUtils', 'getUsedClassifiers(org.eclipse.uml2.uml.Classifier)', Sequence{arg0}) /]

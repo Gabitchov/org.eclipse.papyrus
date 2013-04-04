@@ -18,7 +18,9 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.cpp.codegen.Constants;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
@@ -50,10 +52,10 @@ import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 
-import Cpp.CppExternClass;
-import Cpp.CppNoCodeGen;
-import Cpp.CppType;
-import Cpp.CppVisibility;
+import C_Cpp.ExternClass;
+import C_Cpp.NoCodeGen;
+import C_Cpp.Typedef;
+import C_Cpp.Visibility;
 
 
 
@@ -86,14 +88,14 @@ public class GenUtils {
 		return binding;
 	}
 
-	public static boolean isTemplateBoundElement(Class uml2Class) {
+	public static boolean isTemplateBoundElement(Classifier cl) {
 		boolean result = false;
-		EList<TemplateBinding> tb = uml2Class.getTemplateBindings();
+		EList<TemplateBinding> tb = cl.getTemplateBindings();
 		if(tb != null) {
 			Iterator<TemplateBinding> itb = tb.iterator();
 			while(itb.hasNext()) {
 				TemplateBinding currentTb = itb.next();
-				result = currentTb.getBoundElement() == uml2Class;
+				result = currentTb.getBoundElement() == cl;
 			}
 		}
 		return result;
@@ -439,6 +441,9 @@ public class GenUtils {
 	public static String openNS(NamedElement ne) {
 		String openNS = "";
 		currentNS = ne.getNamespace();
+		if(ne instanceof Package) {
+			openNS = "namespace " + ne.getName() + " {\n";
+		}
 		for(Namespace ns : ne.allNamespaces()) {
 			if(ns.getOwner() != null) {
 				openNS = "namespace " + ns.getName() + " {\n" + openNS;
@@ -456,6 +461,9 @@ public class GenUtils {
 	 */
 	public static String closeNS(NamedElement ne) {
 		String closeNS = "";
+		if(ne instanceof Package) {
+			closeNS = "} // of namespace " + ne.getName() + "\n";
+		}
 		for(Namespace ns : ne.allNamespaces()) {
 			if(ns.getOwner() != null) {
 				closeNS += "} // of namespace " + ns.getName() + "\n";
@@ -464,13 +472,22 @@ public class GenUtils {
 		return closeNS;
 	}
 
+	/**
+	 * Return the qualified name of a named element or "undefined", if it does not exist.
+	 * 
+	 * @param ne
+	 * @return
+	 */
 	public static String qualifiedName(NamedElement ne) {
+		if(ne == null) {
+			return Constants.undefinedType;
+		}
 		Object owner = ne.getOwner();
 		String owningPkgName = "";
 		if(owner instanceof Package) {
 			owningPkgName = ((Package)owner).getName();
 		}
-		if((hasStereotype(ne, CppExternClass.class)) || (hasStereotype(ne, CppNoCodeGen.class))) {
+		if((hasStereotype(ne, ExternClass.class)) || (hasStereotype(ne, NoCodeGen.class))) {
 			return ne.getName();
 		} else if(owningPkgName.equals("AnsiCLibrary")) {
 			// always use the short name for types within the ANSI C library
@@ -483,7 +500,7 @@ public class GenUtils {
 			return qName;
 		}
 		if(ne instanceof PrimitiveType) {
-			if(!hasStereotype(ne, CppType.class) && (getStdtypes((PrimitiveType)ne).length() == 0)) {
+			if(!hasStereotype(ne, Typedef.class) && (getStdtypes((PrimitiveType)ne).length() == 0)) {
 				// is a primitive type without further definition and not a standard primitive type
 				// => assume that it is a external type without namespace
 				return qName;
@@ -507,7 +524,8 @@ public class GenUtils {
 	public static String getComments(Element element) {
 		String commentText = "";
 		for(Comment comment : element.getOwnedComments()) {
-			commentText += comment.getBody();
+			// remove eventual CRs (avoid confusion in Acceleo template which adds " *" after line breaks)
+			commentText += comment.getBody().replace("\r", "");
 		}
 		return commentText;
 	}
@@ -579,8 +597,31 @@ public class GenUtils {
 	 */
 	public static boolean hasStereotype(Element element, java.lang.Class<? extends EObject> clazz) {
 		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is a subclass of the passed parameter clazz
+			// check whether the stereotype is a suopebclass of the passed parameter clazz
 			if(clazz.isAssignableFrom(stereoApplication.getClass())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	/**
+	 * Is a certain stereotype applied?
+	 * 
+	 * @param element
+	 * @param stereotype
+	 *        fully qualified stereotype name
+	 * @return
+	 */
+	public static boolean hasStereotypeA(Element element, EClass eClass) {
+		if(element == null) {
+			// make query more robust
+			return false;
+		}
+		for(EObject stereoApplication : element.getStereotypeApplications()) {
+			// check whether the stereotype application has the right eClass
+			if(stereoApplication.eClass() == eClass) {
 				return true;
 			}
 		}
@@ -602,6 +643,16 @@ public class GenUtils {
 			// check whether the stereotype is an instance of the passed parameter clazz
 			if(clazz.isInstance(stereoApplication)) {
 				return (T)stereoApplication;
+			}
+		}
+		return null;
+	}
+
+	public static EObject getApplicationA(Element element, EClass eClass) {
+		for(EObject stereoApplication : element.getStereotypeApplications()) {
+			// check whether the stereotype is an instance of the passed parameter clazz
+			if(stereoApplication.eClass() == eClass) {
+				return stereoApplication;
 			}
 		}
 		return null;
@@ -684,48 +735,25 @@ public class GenUtils {
 				for(String language : ob.getLanguages()) {
 					String body = bodies.next();
 					if(language.equals(selectedLanguage)) {
-						return indent(body, "\t");
+						// additional "\r" confuse Acceleo
+						return body.replace("\r", "");
 					}
 				}
 			}
 		}
 		return "";
 	}
-
+	
 	/**
-	 * Format text output, indent each line with the passed string
-	 * 
-	 * @param source
-	 * @param indentStr
+	 * Return the C++ visibility (on generalizations) in text form. Return public, if no stereotype
+	 * visibility exists
+	 *
+	 * @param element
 	 * @return
 	 */
-	public static String indent(String source, String indentStr) {
-		String result = "";
-		String[] lines = source.split("\n");
-		for(int i = 0; i < lines.length; i++) {
-			result += indentStr + lines[i];
-			if(i < lines.length - 1) {
-				result += "\n";
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * return true, if shared aggregation (no composition).
-	 * TODO: consider whether used as association?
-	 * 
-	 * @param p
-	 * @return
-	 */
-	public static boolean isAggregation(Property p) {
-		return /* (p.getAssociation() != null) && */
-		(p.getAggregation() == AggregationKind.SHARED_LITERAL);
-	}
-
-	public static String getVisibility(Element element) {
+	public static String getGeneralizationVisibility(Element element) {
 		// get visibility and target name
-		CppVisibility cppVisibility = GenUtils.getApplication(element, CppVisibility.class);
+		Visibility cppVisibility = GenUtils.getApplication(element, Visibility.class);
 		if(cppVisibility != null) {
 			return cppVisibility.getValue();
 		} else {
@@ -744,21 +772,6 @@ public class GenUtils {
 			return "";
 		}
 		return str;
-	}
-
-	/**
-	 * Add a newline character, unless the string is empty and unless it already ends with a
-	 * newline character
-	 */
-	public static String addNL(String str) {
-		if(str == null || str.length() == 0) {
-			return "";
-		}
-		if(str.endsWith(NL)) {
-			return str;
-		} else {
-			return str + NL;
-		}
 	}
 
 	private static Namespace currentNS;

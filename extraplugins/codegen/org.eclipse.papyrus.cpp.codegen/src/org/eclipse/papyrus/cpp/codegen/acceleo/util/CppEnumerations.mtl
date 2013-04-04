@@ -1,0 +1,14 @@
+[module CppEnumerations('http://www.eclipse.org/uml2/4.0.0/UML', 'http://papyrus/C_CppProfile/1')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
+
+[template public CppEnumerationDefinition(enum : Enumeration)]
+[CppElementDoc()/]
+enum [enum.name/] {
+[for (ownedLiteral)]/
+	[CppElementDoc()/]
+	[name/][if hasStereotype(CppInit)] = [getApplication(CppInit).oclAsType(CppInit).value/][/if],
+[/for]
+};
+
+[/template]

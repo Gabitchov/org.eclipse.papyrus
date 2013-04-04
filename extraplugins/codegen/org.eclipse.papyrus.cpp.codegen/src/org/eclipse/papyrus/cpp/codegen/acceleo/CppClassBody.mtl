@@ -1,0 +1,37 @@
+[module CppClassBody('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::ClassUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::Constants/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::IncludeUtils/]
+[import org::eclipse::papyrus::cpp::codegen::preferences::CppCodeGenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassIncludeClassDeclaration/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::clazz::CppClassOperationsImplementation/]
+[import org::eclipse::papyrus::cpp::codegen::acceleo::util::property::CppAttributeImplementation/]
+
+
+[template public CppClassBody(class : Classifier)]
+#define [getFullName()/]_BODY
+
+/************************************************************
+              [class.name/] class body
+ ************************************************************/
+
+[IncludePreBody()/]
+
+[includeHFile()/]
+#include <[_package.getFullPath()/]/[class.name/].[getHeaderSuffix()/]>
+
+[IncludeBody()/]
+
+[derivedIncludes()/]
+[CppClassAllIncludesDeclaration()/]
+
+[openNS(class)/]
+[CppStaticAttributes(class)/]
+[CppClassOperationsImplementation(false)/]
+[closeNS(class)/]
+
+/************************************************************
+              End of [class.name/] class body
+ ************************************************************/
+[/template]

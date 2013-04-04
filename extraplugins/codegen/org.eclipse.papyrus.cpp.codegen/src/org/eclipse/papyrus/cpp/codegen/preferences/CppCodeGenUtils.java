@@ -34,6 +34,11 @@ public class CppCodeGenUtils {
 		return preferenceStore.getString(CppCodeGenConstants.P_IMPLEM_SUFFIX);
 	}
 
+	public static String getOutInoutOp() {
+		initPreferenceStore();
+		return preferenceStore.getString(CppCodeGenConstants.P_OUT_INOUT_OP);
+	}
+
 	public static String getCommentHeader() {
 		initPreferenceStore();
 		return preferenceStore.getString(CppCodeGenConstants.P_COMMENT_HEADER);
