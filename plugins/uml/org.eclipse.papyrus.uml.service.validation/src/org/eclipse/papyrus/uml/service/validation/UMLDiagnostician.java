@@ -7,7 +7,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * CoPatrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
+ * Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.validation;
@@ -24,49 +24,37 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * this is a specific diagnostician use to validate also stereotype application
- *
+ * 
  */
 public class UMLDiagnostician extends EcoreDiagnostician {
 
-	public UMLDiagnostician(){
+	public UMLDiagnostician() {
 	}
 
-	protected boolean doValidateStereotypeApplications(
-		EObject eObject, DiagnosticChain diagnostics,
-		Map<Object, Object> context) {
-		List<EObject> stereotypeApplications = eObject instanceof Element
-			? ((Element) eObject).getStereotypeApplications()
-				: Collections.<EObject> emptyList();
+	protected boolean doValidateStereotypeApplications(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		List<EObject> stereotypeApplications = eObject instanceof Element ? ((Element)eObject).getStereotypeApplications() : Collections.<EObject> emptyList();
 
-			if (!stereotypeApplications.isEmpty()) {
-				Iterator<EObject> i = stereotypeApplications
-					.iterator();
-				boolean result = validate(i.next(), diagnostics,
-					context);
+		if(!stereotypeApplications.isEmpty()) {
+			Iterator<EObject> i = stereotypeApplications.iterator();
+			boolean result = validate(i.next(), diagnostics, context);
 
-				while (i.hasNext()
-					&& (result || diagnostics != null)) {
+			while(i.hasNext() && (result || diagnostics != null)) {
 
-					result &= validate(i.next(), diagnostics,
-						context);
-				}
-
-				return result;
-			} else {
-				return true;
+				result &= validate(i.next(), diagnostics, context);
 			}
+
+			return result;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
-	protected boolean doValidateContents(EObject eObject,
-		DiagnosticChain diagnostics,
-		Map<Object, Object> context) {
-		boolean result = doValidateStereotypeApplications(
-			eObject, diagnostics, context);
+	protected boolean doValidateContents(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = doValidateStereotypeApplications(eObject, diagnostics, context);
 
-		if (result || diagnostics != null) {
-			result &= super.doValidateContents(eObject,
-				diagnostics, context);
+		if(result || diagnostics != null) {
+			result &= super.doValidateContents(eObject, diagnostics, context);
 		}
 
 		return result;

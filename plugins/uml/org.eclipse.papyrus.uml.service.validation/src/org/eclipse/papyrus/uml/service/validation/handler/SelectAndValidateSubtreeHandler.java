@@ -30,6 +30,6 @@ public class SelectAndValidateSubtreeHandler extends AbstractCommandHandler {
 	@Override
 	protected Command getCommand() {
 		// not useful to cache command, since selected element may change
-		return new GMFtoEMFCommandWrapper(new SelectAndValidateSubtreeCommand(getSelectedElement(),new UMLDiagnostician()));
+		return new GMFtoEMFCommandWrapper(new SelectAndValidateSubtreeCommand(getSelectedElement(), new UMLDiagnostician()));
 	}
 }

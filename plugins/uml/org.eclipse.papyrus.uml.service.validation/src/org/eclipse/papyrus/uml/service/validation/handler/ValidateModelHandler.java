@@ -30,6 +30,6 @@ public class ValidateModelHandler extends AbstractCommandHandler {
 	@Override
 	protected Command getCommand() {
 		// not useful to cache command, since selected element may change
-		return new GMFtoEMFCommandWrapper(new ValidateModelCommand(getSelectedElement(),new UMLDiagnostician()));
+		return new GMFtoEMFCommandWrapper(new ValidateModelCommand(getSelectedElement(), new UMLDiagnostician()));
 	}
 }
