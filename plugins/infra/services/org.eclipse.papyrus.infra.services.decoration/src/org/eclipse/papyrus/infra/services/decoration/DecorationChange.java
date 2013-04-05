@@ -30,8 +30,8 @@ public class DecorationChange {
 	public enum DecorationChangeKind {
 		DecorationAdded,
 		DecorationRemoved,
-		RefreshAll, // currently unused
-		DecorationModified // currently unused
+		RefreshAll, 
+		DecorationModified
 	};
 
 	protected DecorationChangeKind changeKind;

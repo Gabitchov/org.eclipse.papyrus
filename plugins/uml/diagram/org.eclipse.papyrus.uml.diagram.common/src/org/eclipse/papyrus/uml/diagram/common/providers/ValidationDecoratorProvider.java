@@ -189,6 +189,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		public void refresh(DecorationChange change) {
 
 			if(change.getChangeKind() == DecorationChangeKind.DecorationRemoved ||
+				change.getChangeKind() == DecorationChangeKind.DecorationModified ||
 				change.getChangeKind() == DecorationChangeKind.RefreshAll) {
 				// always recreate all decorations, in case of a deletion (would require recalculation of positions) or
 				// if all decorations should be refreshed

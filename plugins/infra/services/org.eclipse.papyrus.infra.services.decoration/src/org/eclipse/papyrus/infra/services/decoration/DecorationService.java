@@ -220,10 +220,14 @@ public class DecorationService extends Observable implements IDecorationService 
 	public synchronized IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, PreferedPosition position, String message, int priority) {
 
 		Decoration decoration = decorations.get(id);
+		DecorationChangeKind decorationChangeKind;
 		if(decoration == null) {
+			decorationChangeKind = DecorationChangeKind.DecorationAdded;
 			decoration = new Decoration(id, type, decorationImageForGE, decorationImageForME, message, element, priority);
 			decorations.put(id, decoration);
 		} else {
+			// decoration already exists => is modified
+			decorationChangeKind = DecorationChangeKind.DecorationModified;
 			decoration.setDecorationImageForGE(decorationImageForGE);
 			decoration.setDecorationImageForME(decorationImageForME);
 			decoration.setMessage(message);
@@ -233,7 +237,7 @@ public class DecorationService extends Observable implements IDecorationService 
 
 		// notifyListeners(this);
 		setChanged();
-		notifyObservers(new DecorationChange(DecorationChangeKind.DecorationAdded, decoration));
+		notifyObservers(new DecorationChange(decorationChangeKind, decoration));
 		return decoration;
 	}
 

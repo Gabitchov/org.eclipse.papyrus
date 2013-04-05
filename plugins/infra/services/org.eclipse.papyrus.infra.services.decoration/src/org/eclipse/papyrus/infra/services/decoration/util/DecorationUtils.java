@@ -44,7 +44,7 @@ public class DecorationUtils {
 	protected EList<EObject> eObjects;
 
 	/**
-	 * Instantiates a new decoration utils.
+	 * Create instance of class DecorationUtils.
 	 * 
 	 * @param element
 	 *        the element
