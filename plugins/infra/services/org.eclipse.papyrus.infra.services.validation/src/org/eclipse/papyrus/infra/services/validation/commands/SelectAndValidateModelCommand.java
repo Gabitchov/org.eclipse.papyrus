@@ -22,6 +22,8 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.preference.PreferenceDialog;
+import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
+import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 
 /**
@@ -36,8 +38,8 @@ public class SelectAndValidateModelCommand extends AbstractValidateCommand {
 	 * 
 	 * @param selectedElement
 	 */
-	public SelectAndValidateModelCommand(EObject selectedElement) {
-		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement));
+	public SelectAndValidateModelCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
+		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement), diagnostician);
 	}
 
 	/**

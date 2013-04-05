@@ -24,20 +24,15 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.papyrus.infra.services.validation.EValidatorAdapter;
+import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
 import org.eclipse.swt.widgets.Display;
@@ -59,6 +54,8 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 * Current diagnostic within a validation run
 	 */
 	protected Diagnostic diagnostic;
+	
+	protected IPapyrusDiagnostician diagnostician;
 
 	/**
 	 * Creates a new ImportLibraryFromRepositoryCommand
@@ -73,10 +70,11 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 *        description of the command
 	 */
 
-	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement) {
+	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(domain, label, Collections.EMPTY_LIST);
 		this.domain = domain;
 		this.selectedElement = selectedElement;
+		this.diagnostician= diagnostician;
 	}
 
 	/**
@@ -147,7 +145,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		progressMonitor.beginTask("", validationSteps);
 		AdapterFactory adapterFactory =
 			domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain)domain).getAdapterFactory() : null;
-		Diagnostician diagnostician = createDiagnostician(adapterFactory, progressMonitor);
+		diagnostician.initialize(adapterFactory, progressMonitor);
 
 		BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(validateElement);
 		Map<Object, Object> context = diagnostician.createDefaultContext();
@@ -161,42 +159,8 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 		return diagnostic;
 	}
 
-	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor)
-	{
-		return new Diagnostician() {
 
-			protected EValidatorAdapter validatorAdapter = new EValidatorAdapter();
 
-			@Override
-			public String getObjectLabel(EObject eObject) {
-				if(adapterFactory != null && !eObject.eIsProxy())
-				{
-					IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
-					if(itemLabelProvider != null) {
-						return itemLabelProvider.getText(eObject);
-					}
-				}
-				return super.getObjectLabel(eObject);
-			}
-
-			@Override
-			public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-				progressMonitor.worked(1);
-
-				// copied from superclass, difference: use EValidatorAdapter instead of first value from eValidatorRegistry
-				// fix of bug 397518
-
-				boolean circular = context.get(EObjectValidator.ROOT_OBJECT) == eObject;
-				boolean result = validatorAdapter.validate(eClass, eObject, diagnostics, context);
-				if((result || diagnostics != null) && !circular)
-				{
-					result &= doValidateContents(eObject, diagnostics, context);
-				}
-				return result;
-			}
-		};
-
-	}
 
 	protected void handleDiagnostic(IProgressMonitor monitor, Diagnostic diagnostic, final EObject validateElement, final Shell shell)
 	{

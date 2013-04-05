@@ -24,12 +24,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
+import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
+import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 
 
 public class ValidateDelMarkersFromModelCommand extends AbstractValidateCommand {
 
-	public ValidateDelMarkersFromModelCommand(EObject selectedElement) {
-		super("Delete markers from model", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
+	public ValidateDelMarkersFromModelCommand(EObject selectedElement,IPapyrusDiagnostician diagnostician) {
+		super("Delete markers from model", TransactionUtil.getEditingDomain(selectedElement), selectedElement,diagnostician);
 	}
 
 	/**

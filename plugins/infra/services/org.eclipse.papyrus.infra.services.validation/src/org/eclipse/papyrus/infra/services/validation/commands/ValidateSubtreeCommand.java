@@ -20,12 +20,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
+import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 
 
 public class ValidateSubtreeCommand extends AbstractValidateCommand {
 
-	public ValidateSubtreeCommand(EObject selectedElement) {
-		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
+	public ValidateSubtreeCommand(EObject selectedElement,IPapyrusDiagnostician diagnostician) {
+		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
 	}
 
 	/**
