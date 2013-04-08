@@ -10,21 +10,21 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EModelElement;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Abstract Table Creation Tester</b></em>'.
+ * A representation of the model object '<em><b>Abstract Table Tester</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getAbstractTableCreationTester()
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage#getAbstractTableTester()
  * @model abstract="true"
  * @generated
  */
-public interface AbstractTableCreationTester extends EObject {
+public interface AbstractTableTester extends EModelElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,4 +33,4 @@ public interface AbstractTableCreationTester extends EObject {
 	 */
 	Object getTester();
 
-} // AbstractTableCreationTester
+} // AbstractTableTester

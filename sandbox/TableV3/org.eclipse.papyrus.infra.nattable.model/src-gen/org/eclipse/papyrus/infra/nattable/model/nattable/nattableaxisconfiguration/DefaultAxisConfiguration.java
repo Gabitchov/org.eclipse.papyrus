@@ -22,9 +22,9 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurat
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration#getIndexStyle <em>Index Style</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration#isDisplayIndex <em>Display Index</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration#isDisplayLabel <em>Display Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration#isDisplayFilter <em>Display Filter</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.DefaultAxisConfiguration#isDisplayIndex <em>Display Index</em>}</li>
  * </ul>
  * </p>
  *

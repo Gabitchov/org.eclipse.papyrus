@@ -69,9 +69,9 @@ public class DefaultAxisConfigurationItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIndexStylePropertyDescriptor(object);
-			addDisplayIndexPropertyDescriptor(object);
 			addDisplayLabelPropertyDescriptor(object);
 			addDisplayFilterPropertyDescriptor(object);
+			addDisplayIndexPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -203,9 +203,9 @@ public class DefaultAxisConfigurationItemProvider
 
 		switch (notification.getFeatureID(DefaultAxisConfiguration.class)) {
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE:
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL:
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER:
+			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

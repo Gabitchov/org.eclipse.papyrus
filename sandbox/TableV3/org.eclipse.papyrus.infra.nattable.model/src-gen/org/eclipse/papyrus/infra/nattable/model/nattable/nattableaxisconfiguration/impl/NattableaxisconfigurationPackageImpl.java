@@ -42,6 +42,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -125,6 +127,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) : NattableconfigurationPackage.eINSTANCE);
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattableaxisconfigurationPackage.createPackageContents();
@@ -132,6 +135,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		theNattableconfigurationPackage.createPackageContents();
 		theNattableaxisproviderPackage.createPackageContents();
 		theNattablelabelproviderPackage.createPackageContents();
+		theNattabletesterPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattableaxisconfigurationPackage.initializePackageContents();
@@ -139,6 +143,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		theNattableconfigurationPackage.initializePackageContents();
 		theNattableaxisproviderPackage.initializePackageContents();
 		theNattablelabelproviderPackage.initializePackageContents();
+		theNattabletesterPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattableaxisconfigurationPackage.freeze();
@@ -191,7 +196,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * @generated
 	 */
 	public EAttribute getDefaultAxisConfiguration_DisplayIndex() {
-		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -200,7 +205,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * @generated
 	 */
 	public EAttribute getDefaultAxisConfiguration_DisplayLabel() {
-		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -209,7 +214,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * @generated
 	 */
 	public EAttribute getDefaultAxisConfiguration_DisplayFilter() {
-		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)defaultAxisConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -254,9 +259,9 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 
 		defaultAxisConfigurationEClass = createEClass(DEFAULT_AXIS_CONFIGURATION);
 		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE);
-		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX);
 		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL);
 		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER);
+		createEAttribute(defaultAxisConfigurationEClass, DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX);
 
 		// Create enums
 		axisIndexStyleEEnum = createEEnum(AXIS_INDEX_STYLE);
@@ -303,9 +308,9 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 
 		initEClass(defaultAxisConfigurationEClass, DefaultAxisConfiguration.class, "DefaultAxisConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDefaultAxisConfiguration_IndexStyle(), this.getAxisIndexStyle(), "indexStyle", null, 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getDefaultAxisConfiguration_DisplayIndex(), theEcorePackage.getEBoolean(), "displayIndex", "true", 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getDefaultAxisConfiguration_DisplayLabel(), theEcorePackage.getEBoolean(), "displayLabel", "true", 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getDefaultAxisConfiguration_DisplayFilter(), theEcorePackage.getEBoolean(), "displayFilter", "false", 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getDefaultAxisConfiguration_DisplayIndex(), theEcorePackage.getEBoolean(), "displayIndex", "true", 1, 1, DefaultAxisConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		// Initialize enums and add enum literals
 		initEEnum(axisIndexStyleEEnum, AxisIndexStyle.class, "AxisIndexStyle"); //$NON-NLS-1$

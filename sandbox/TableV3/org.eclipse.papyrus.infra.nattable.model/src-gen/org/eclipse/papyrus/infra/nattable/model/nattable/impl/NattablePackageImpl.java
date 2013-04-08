@@ -43,6 +43,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,6 +135,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattablePackage.createPackageContents();
@@ -140,6 +143,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		theNattableaxisproviderPackage.createPackageContents();
 		theNattablelabelproviderPackage.createPackageContents();
 		theNattableaxisconfigurationPackage.createPackageContents();
+		theNattabletesterPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattablePackage.initializePackageContents();
@@ -147,6 +151,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		theNattableaxisproviderPackage.initializePackageContents();
 		theNattablelabelproviderPackage.initializePackageContents();
 		theNattableaxisconfigurationPackage.initializePackageContents();
+		theNattabletesterPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattablePackage.freeze();
@@ -318,6 +323,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		NattableaxisproviderPackage theNattableaxisproviderPackage = (NattableaxisproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
 		NattablelabelproviderPackage theNattablelabelproviderPackage = (NattablelabelproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
 		NattableaxisconfigurationPackage theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
+		NattabletesterPackage theNattabletesterPackage = (NattabletesterPackage)EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
@@ -325,6 +331,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		getESubpackages().add(theNattableaxisproviderPackage);
 		getESubpackages().add(theNattablelabelproviderPackage);
 		getESubpackages().add(theNattableaxisconfigurationPackage);
+		getESubpackages().add(theNattabletesterPackage);
 
 		// Create type parameters
 

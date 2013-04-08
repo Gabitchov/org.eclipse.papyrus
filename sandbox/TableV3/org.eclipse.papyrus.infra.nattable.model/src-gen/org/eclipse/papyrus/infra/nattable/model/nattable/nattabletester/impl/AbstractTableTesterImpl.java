@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -18,27 +18,27 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Table Creation Tester</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Table Tester</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class AbstractTableCreationTesterImpl extends MinimalEObjectImpl.Container implements AbstractTableCreationTester {
+public abstract class AbstractTableTesterImpl extends EModelElementImpl implements AbstractTableTester {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AbstractTableCreationTesterImpl() {
+	protected AbstractTableTesterImpl() {
 		super();
 	}
 
@@ -49,7 +49,7 @@ public abstract class AbstractTableCreationTesterImpl extends MinimalEObjectImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattableconfigurationPackage.Literals.ABSTRACT_TABLE_CREATION_TESTER;
+		return NattabletesterPackage.Literals.ABSTRACT_TABLE_TESTER;
 	}
 
 	/**
@@ -71,10 +71,10 @@ public abstract class AbstractTableCreationTesterImpl extends MinimalEObjectImpl
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case NattableconfigurationPackage.ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER:
+			case NattabletesterPackage.ABSTRACT_TABLE_TESTER___GET_TESTER:
 				return getTester();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //AbstractTableCreationTesterImpl
+} //AbstractTableTesterImpl

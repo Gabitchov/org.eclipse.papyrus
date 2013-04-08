@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -18,23 +18,23 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Java Table Creation Tester</b></em>'.
+ * An implementation of the model object '<em><b>Java Table Tester</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl#getTester <em>Tester</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.JavaTableTesterImpl#getTester <em>Tester</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl implements JavaTableCreationTester {
+public class JavaTableTesterImpl extends AbstractTableTesterImpl implements JavaTableTester {
 	/**
 	 * The default value of the '{@link #getTester() <em>Tester</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected JavaTableCreationTesterImpl() {
+	protected JavaTableTesterImpl() {
 		super();
 	}
 
@@ -71,7 +71,7 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NattableconfigurationPackage.Literals.JAVA_TABLE_CREATION_TESTER;
+		return NattabletesterPackage.Literals.JAVA_TABLE_TESTER;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 		String oldTester = tester;
 		tester = newTester;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER__TESTER, oldTester, tester));
+			eNotify(new ENotificationImpl(this, Notification.SET, NattabletesterPackage.JAVA_TABLE_TESTER__TESTER, oldTester, tester));
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER__TESTER:
+			case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 				return getTester();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER__TESTER:
+			case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 				setTester((String)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER__TESTER:
+			case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 				setTester(TESTER_EDEFAULT);
 				return;
 		}
@@ -147,7 +147,7 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER__TESTER:
+			case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 				return TESTER_EDEFAULT == null ? tester != null : !TESTER_EDEFAULT.equals(tester);
 		}
 		return super.eIsSet(featureID);
@@ -169,4 +169,4 @@ public class JavaTableCreationTesterImpl extends AbstractTableCreationTesterImpl
 		return result.toString();
 	}
 
-} //JavaTableCreationTesterImpl
+} //JavaTableTesterImpl

@@ -161,22 +161,13 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE = ABSTRACT_AXIS_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Display Index</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX = ABSTRACT_AXIS_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Display Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL = ABSTRACT_AXIS_CONFIGURATION_FEATURE_COUNT + 2;
+	int DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL = ABSTRACT_AXIS_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Display Filter</b></em>' attribute.
@@ -185,7 +176,16 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER = ABSTRACT_AXIS_CONFIGURATION_FEATURE_COUNT + 3;
+	int DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER = ABSTRACT_AXIS_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Display Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX = ABSTRACT_AXIS_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Default Axis Configuration</em>' class.

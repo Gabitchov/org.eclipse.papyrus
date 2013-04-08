@@ -68,7 +68,6 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case NattableconfigurationPackage.TABLE_CONFIGURATION: return createTableConfiguration();
-			case NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER: return createJavaTableCreationTester();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -112,16 +111,6 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	public TableConfiguration createTableConfiguration() {
 		TableConfigurationImpl tableConfiguration = new TableConfigurationImpl();
 		return tableConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public JavaTableCreationTester createJavaTableCreationTester() {
-		JavaTableCreationTesterImpl javaTableCreationTester = new JavaTableCreationTesterImpl();
-		return javaTableCreationTester;
 	}
 
 	/**

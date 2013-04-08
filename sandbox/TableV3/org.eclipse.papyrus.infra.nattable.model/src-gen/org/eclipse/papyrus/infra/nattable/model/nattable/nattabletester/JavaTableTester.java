@@ -10,26 +10,26 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Java Table Creation Tester</b></em>'.
+ * A representation of the model object '<em><b>Java Table Tester</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester#getTester <em>Tester</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester <em>Tester</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getJavaTableCreationTester()
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage#getJavaTableTester()
  * @model
  * @generated
  */
-public interface JavaTableCreationTester extends AbstractTableCreationTester {
+public interface JavaTableTester extends AbstractTableTester {
 	/**
 	 * Returns the value of the '<em><b>Tester</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -40,14 +40,14 @@ public interface JavaTableCreationTester extends AbstractTableCreationTester {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tester</em>' attribute.
 	 * @see #setTester(String)
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getJavaTableCreationTester_Tester()
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage#getJavaTableTester_Tester()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getTester();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester#getTester <em>Tester</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester#getTester <em>Tester</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tester</em>' attribute.
@@ -56,4 +56,4 @@ public interface JavaTableCreationTester extends AbstractTableCreationTester {
 	 */
 	void setTester(String value);
 
-} // JavaTableCreationTester
+} // JavaTableTester

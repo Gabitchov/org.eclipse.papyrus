@@ -27,5 +27,8 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.util,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl,
+ org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.util,
  org.eclipse.papyrus.infra.nattable.model.nattable.util
 Bundle-ActivationPolicy: lazy

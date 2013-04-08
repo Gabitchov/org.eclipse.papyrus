@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -279,89 +278,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	int TABLE_CONFIGURATION_OPERATION_COUNT = ABSTRACT_TABLE_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl <em>Abstract Table Creation Tester</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getAbstractTableCreationTester()
-	 * @generated
-	 */
-	int ABSTRACT_TABLE_CREATION_TESTER = 2;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Table Creation Tester</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TABLE_CREATION_TESTER_FEATURE_COUNT = 0;
-
-	/**
-	 * The operation id for the '<em>Get Tester</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER = 0;
-
-	/**
-	 * The number of operations of the '<em>Abstract Table Creation Tester</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TABLE_CREATION_TESTER_OPERATION_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl <em>Java Table Creation Tester</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getJavaTableCreationTester()
-	 * @generated
-	 */
-	int JAVA_TABLE_CREATION_TESTER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Tester</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_TABLE_CREATION_TESTER__TESTER = ABSTRACT_TABLE_CREATION_TESTER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Java Table Creation Tester</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_TABLE_CREATION_TESTER_FEATURE_COUNT = ABSTRACT_TABLE_CREATION_TESTER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Tester</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_TABLE_CREATION_TESTER___GET_TESTER = ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER;
-
-	/**
-	 * The number of operations of the '<em>Java Table Creation Tester</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_TABLE_CREATION_TESTER_OPERATION_COUNT = ABSTRACT_TABLE_CREATION_TESTER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,7 +285,7 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getCellEditorDeclaration()
 	 * @generated
 	 */
-	int CELL_EDITOR_DECLARATION = 4;
+	int CELL_EDITOR_DECLARATION = 2;
 
 
 	/**
@@ -479,47 +395,6 @@ public interface NattableconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTableConfiguration_CreationTester();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester <em>Abstract Table Creation Tester</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Table Creation Tester</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester
-	 * @generated
-	 */
-	EClass getAbstractTableCreationTester();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester#getTester() <em>Get Tester</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Tester</em>' operation.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester#getTester()
-	 * @generated
-	 */
-	EOperation getAbstractTableCreationTester__GetTester();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester <em>Java Table Creation Tester</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Java Table Creation Tester</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester
-	 * @generated
-	 */
-	EClass getJavaTableCreationTester();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester#getTester <em>Tester</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tester</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester#getTester()
-	 * @see #getJavaTableCreationTester()
-	 * @generated
-	 */
-	EAttribute getJavaTableCreationTester_Tester();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}'.
@@ -637,42 +512,6 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__CREATION_TESTER = eINSTANCE.getTableConfiguration_CreationTester();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl <em>Abstract Table Creation Tester</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.AbstractTableCreationTesterImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getAbstractTableCreationTester()
-		 * @generated
-		 */
-		EClass ABSTRACT_TABLE_CREATION_TESTER = eINSTANCE.getAbstractTableCreationTester();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Tester</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER = eINSTANCE.getAbstractTableCreationTester__GetTester();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl <em>Java Table Creation Tester</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.JavaTableCreationTesterImpl
-		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl#getJavaTableCreationTester()
-		 * @generated
-		 */
-		EClass JAVA_TABLE_CREATION_TESTER = eINSTANCE.getJavaTableCreationTester();
-
-		/**
-		 * The meta object literal for the '<em><b>Tester</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute JAVA_TABLE_CREATION_TESTER__TESTER = eINSTANCE.getJavaTableCreationTester_Tester();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.

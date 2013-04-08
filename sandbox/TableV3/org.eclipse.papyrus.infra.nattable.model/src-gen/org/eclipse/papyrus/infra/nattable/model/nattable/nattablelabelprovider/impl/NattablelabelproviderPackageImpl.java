@@ -30,6 +30,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -113,6 +115,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) : NattableconfigurationPackage.eINSTANCE);
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattablelabelproviderPackage.createPackageContents();
@@ -120,6 +123,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		theNattableconfigurationPackage.createPackageContents();
 		theNattableaxisproviderPackage.createPackageContents();
 		theNattableaxisconfigurationPackage.createPackageContents();
+		theNattabletesterPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattablelabelproviderPackage.initializePackageContents();
@@ -127,6 +131,7 @@ public class NattablelabelproviderPackageImpl extends EPackageImpl implements Na
 		theNattableconfigurationPackage.initializePackageContents();
 		theNattableaxisproviderPackage.initializePackageContents();
 		theNattableaxisconfigurationPackage.initializePackageContents();
+		theNattabletesterPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattablelabelproviderPackage.freeze();

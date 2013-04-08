@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -19,26 +19,26 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage
+ * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage
  * @generated
  */
-public interface NattableconfigurationFactory extends EFactory {
+public interface NattabletesterFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	NattableconfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationFactoryImpl.init();
+	NattabletesterFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Table Configuration</em>'.
+	 * Returns a new object of class '<em>Java Table Tester</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Table Configuration</em>'.
+	 * @return a new object of class '<em>Java Table Tester</em>'.
 	 * @generated
 	 */
-	TableConfiguration createTableConfiguration();
+	JavaTableTester createJavaTableTester();
 
 	/**
 	 * Returns the package supported by this factory.
@@ -47,6 +47,6 @@ public interface NattableconfigurationFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	NattableconfigurationPackage getNattableconfigurationPackage();
+	NattabletesterPackage getNattabletesterPackage();
 
-} //NattableconfigurationFactory
+} //NattabletesterFactory

@@ -144,44 +144,6 @@
     <element xmi:type="ecore:EEnum" href="nattable.ecore#//nattableconfiguration/CellEditorDeclaration"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g6WPwpewEeKr0Yypv4rfLA" x="10" y="20"/>
   </children>
-  <children xmi:type="notation:Node" xmi:id="_huH2EJewEeKr0Yypv4rfLA" type="1001">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_huaxAJewEeKr0Yypv4rfLA" source="Shortcut">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_huaxAZewEeKr0Yypv4rfLA" key="modelID" value="EcoreTools"/>
-    </eAnnotations>
-    <children xmi:type="notation:Node" xmi:id="_huH2E5ewEeKr0Yypv4rfLA" type="4001"/>
-    <children xmi:type="notation:Node" xmi:id="_huH2FJewEeKr0Yypv4rfLA" type="5001">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_huH2FZewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_huH2FpewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_huH2F5ewEeKr0Yypv4rfLA"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_huH2GJewEeKr0Yypv4rfLA" type="5002">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_huH2GZewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_huH2GpewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_huH2G5ewEeKr0Yypv4rfLA"/>
-    </children>
-    <styles xmi:type="notation:ShapeStyle" xmi:id="_huH2EZewEeKr0Yypv4rfLA" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="nattable.ecore#//nattableconfiguration/AbstractTableCreationTester"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_huH2EpewEeKr0Yypv4rfLA" x="1785" y="530" width="213"/>
-  </children>
-  <children xmi:type="notation:Node" xmi:id="_iCWZoJewEeKr0Yypv4rfLA" type="1001">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iCpUkJewEeKr0Yypv4rfLA" source="Shortcut">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iCpUkZewEeKr0Yypv4rfLA" key="modelID" value="EcoreTools"/>
-    </eAnnotations>
-    <children xmi:type="notation:Node" xmi:id="_iCWZo5ewEeKr0Yypv4rfLA" type="4001"/>
-    <children xmi:type="notation:Node" xmi:id="_iCWZpJewEeKr0Yypv4rfLA" type="5001">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_iCWZpZewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_iCWZppewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_iCWZp5ewEeKr0Yypv4rfLA"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_iCgKoJewEeKr0Yypv4rfLA" type="5002">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_iCgKoZewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_iCgKopewEeKr0Yypv4rfLA"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_iCgKo5ewEeKr0Yypv4rfLA"/>
-    </children>
-    <styles xmi:type="notation:ShapeStyle" xmi:id="_iCWZoZewEeKr0Yypv4rfLA" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="nattable.ecore#//nattableconfiguration/JavaTableCreationTester"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iCWZopewEeKr0Yypv4rfLA" x="1820" y="795"/>
-  </children>
   <children xmi:type="notation:Node" xmi:id="_ibpDYJewEeKr0Yypv4rfLA" type="1001">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ib7-UJewEeKr0Yypv4rfLA" source="Shortcut">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ib7-UZewEeKr0Yypv4rfLA" key="modelID" value="EcoreTools"/>
@@ -405,24 +367,6 @@
     <element xmi:type="ecore:EReference" href="nattable.ecore#//Table/editorConfiguration"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dKO0NJewEeKr0Yypv4rfLA" points="[-37, -103, 159, 456]$[-196, -558, 0, 1]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oS5VMJexEeKr0Yypv4rfLA" id="(0.9698275862068966,0.019230769230769232)"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_huRAAJewEeKr0Yypv4rfLA" type="3002" source="_dKFDIJewEeKr0Yypv4rfLA" target="_huH2EJewEeKr0Yypv4rfLA">
-    <children xmi:type="notation:Node" xmi:id="_huRABJewEeKr0Yypv4rfLA" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_huRABZewEeKr0Yypv4rfLA" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_huRABpewEeKr0Yypv4rfLA" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_huRAB5ewEeKr0Yypv4rfLA" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_huRAAZewEeKr0Yypv4rfLA" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_huRAApewEeKr0Yypv4rfLA" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="nattable.ecore#//nattableconfiguration/TableConfiguration/creationTester"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_huRAA5ewEeKr0Yypv4rfLA" points="[-46, -41, 502, 461]$[-547, -501, 1, 1]"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_iCgKppewEeKr0Yypv4rfLA" type="3003" source="_iCWZoJewEeKr0Yypv4rfLA" target="_huH2EJewEeKr0Yypv4rfLA">
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_iCgKp5ewEeKr0Yypv4rfLA" routing="Rectilinear" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_iCgKqJewEeKr0Yypv4rfLA" fontName="Segoe UI"/>
-    <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_iCgKqZewEeKr0Yypv4rfLA" points="[1, 0, -947, -412]$[872, 379, -76, -33]"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_iby0YJewEeKr0Yypv4rfLA" type="3002" source="_b7-RQJewEeKr0Yypv4rfLA" target="_ibpDYJewEeKr0Yypv4rfLA">
     <children xmi:type="notation:Node" xmi:id="_iby0ZJewEeKr0Yypv4rfLA" type="4011">

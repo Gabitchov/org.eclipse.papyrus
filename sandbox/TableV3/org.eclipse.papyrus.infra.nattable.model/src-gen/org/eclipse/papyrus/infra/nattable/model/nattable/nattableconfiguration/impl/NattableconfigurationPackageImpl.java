@@ -15,36 +15,25 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.NattableaxisconfigurationPackageImpl;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
-
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.NattablelabelproviderPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,20 +55,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	private EClass tableConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractTableCreationTesterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass javaTableCreationTesterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,6 +117,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
 		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
 		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattableconfigurationPackage.createPackageContents();
@@ -149,6 +125,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		theNattableaxisproviderPackage.createPackageContents();
 		theNattablelabelproviderPackage.createPackageContents();
 		theNattableaxisconfigurationPackage.createPackageContents();
+		theNattabletesterPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattableconfigurationPackage.initializePackageContents();
@@ -156,6 +133,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		theNattableaxisproviderPackage.initializePackageContents();
 		theNattablelabelproviderPackage.initializePackageContents();
 		theNattableaxisconfigurationPackage.initializePackageContents();
+		theNattabletesterPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattableconfigurationPackage.freeze();
@@ -261,42 +239,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstractTableCreationTester() {
-		return abstractTableCreationTesterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getAbstractTableCreationTester__GetTester() {
-		return abstractTableCreationTesterEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getJavaTableCreationTester() {
-		return javaTableCreationTesterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getJavaTableCreationTester_Tester() {
-		return (EAttribute)javaTableCreationTesterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getCellEditorDeclaration() {
 		return cellEditorDeclarationEEnum;
 	}
@@ -341,12 +283,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		createEAttribute(tableConfigurationEClass, TABLE_CONFIGURATION__ICON_PATH);
 		createEReference(tableConfigurationEClass, TABLE_CONFIGURATION__CREATION_TESTER);
 
-		abstractTableCreationTesterEClass = createEClass(ABSTRACT_TABLE_CREATION_TESTER);
-		createEOperation(abstractTableCreationTesterEClass, ABSTRACT_TABLE_CREATION_TESTER___GET_TESTER);
-
-		javaTableCreationTesterEClass = createEClass(JAVA_TABLE_CREATION_TESTER);
-		createEAttribute(javaTableCreationTesterEClass, JAVA_TABLE_CREATION_TESTER__TESTER);
-
 		// Create enums
 		cellEditorDeclarationEEnum = createEEnum(CELL_EDITOR_DECLARATION);
 	}
@@ -377,6 +313,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		NattableaxisproviderPackage theNattableaxisproviderPackage = (NattableaxisproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
+		NattabletesterPackage theNattabletesterPackage = (NattabletesterPackage)EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -385,7 +322,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		// Add supertypes to classes
 		abstractTableConfigurationEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		tableConfigurationEClass.getESuperTypes().add(this.getAbstractTableConfiguration());
-		javaTableCreationTesterEClass.getESuperTypes().add(this.getAbstractTableCreationTester());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(abstractTableConfigurationEClass, AbstractTableConfiguration.class, "AbstractTableConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -398,14 +334,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		initEClass(tableConfigurationEClass, TableConfiguration.class, "TableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableConfiguration_Type(), ecorePackage.getEString(), "type", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableConfiguration_IconPath(), theEcorePackage.getEString(), "iconPath", null, 0, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableConfiguration_CreationTester(), this.getAbstractTableCreationTester(), null, "creationTester", null, 0, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(abstractTableCreationTesterEClass, AbstractTableCreationTester.class, "AbstractTableCreationTester", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEOperation(getAbstractTableCreationTester__GetTester(), ecorePackage.getEJavaObject(), "getTester", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(javaTableCreationTesterEClass, JavaTableCreationTester.class, "JavaTableCreationTester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getJavaTableCreationTester_Tester(), ecorePackage.getEString(), "tester", null, 1, 1, JavaTableCreationTester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableConfiguration_CreationTester(), theNattabletesterPackage.getAbstractTableTester(), null, "creationTester", null, 0, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(cellEditorDeclarationEEnum, CellEditorDeclaration.class, "CellEditorDeclaration"); //$NON-NLS-1$

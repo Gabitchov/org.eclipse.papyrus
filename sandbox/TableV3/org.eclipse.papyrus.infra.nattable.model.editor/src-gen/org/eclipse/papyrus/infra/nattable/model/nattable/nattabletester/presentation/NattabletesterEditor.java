@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation;
 
 
 import java.io.IOException;
@@ -164,7 +164,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
 
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
@@ -174,7 +174,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.pr
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider.NattableconfigurationItemProviderAdapterFactory;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
+
 import org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableItemProviderAdapterFactory;
@@ -183,12 +184,12 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Nattablelabelprovider model editor.
+ * This is an example of a Nattabletester model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NattablelabelproviderEditor
+public class NattabletesterEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -350,18 +351,18 @@ public class NattablelabelproviderEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(NattablelabelproviderEditor.this);
+						getActionBarContributor().setActiveEditor(NattabletesterEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(NattablelabelproviderEditor.this);
+						getActionBarContributor().setActiveEditor(NattabletesterEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == NattablelabelproviderEditor.this) {
+				else if (p == NattabletesterEditor.this) {
 					handleActivate();
 				}
 			}
@@ -534,7 +535,7 @@ public class NattablelabelproviderEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(NattablelabelproviderEditor.this, false);
+										 getSite().getPage().closeEditor(NattabletesterEditor.this, false);
 									 }
 								 }
 							 });
@@ -545,7 +546,7 @@ public class NattablelabelproviderEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == NattablelabelproviderEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == NattabletesterEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -577,7 +578,7 @@ public class NattablelabelproviderEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(NattablelabelproviderEditor.this, false);
+				getSite().getPage().closeEditor(NattabletesterEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -707,7 +708,7 @@ public class NattablelabelproviderEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NattablelabelproviderEditor() {
+	public NattabletesterEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1050,7 +1051,7 @@ public class NattablelabelproviderEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), NattablelabelproviderEditor.this) {
+					new ViewerPane(getSite().getPage(), NattabletesterEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1084,7 +1085,7 @@ public class NattablelabelproviderEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), NattablelabelproviderEditor.this) {
+					new ViewerPane(getSite().getPage(), NattabletesterEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1113,7 +1114,7 @@ public class NattablelabelproviderEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), NattablelabelproviderEditor.this) {
+					new ViewerPane(getSite().getPage(), NattabletesterEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1138,7 +1139,7 @@ public class NattablelabelproviderEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), NattablelabelproviderEditor.this) {
+					new ViewerPane(getSite().getPage(), NattabletesterEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1165,7 +1166,7 @@ public class NattablelabelproviderEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), NattablelabelproviderEditor.this) {
+					new ViewerPane(getSite().getPage(), NattabletesterEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1208,7 +1209,7 @@ public class NattablelabelproviderEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), NattablelabelproviderEditor.this) {
+					new ViewerPane(getSite().getPage(), NattabletesterEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1428,8 +1429,8 @@ public class NattablelabelproviderEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					NattablelabelproviderEditor.this.setSelectionToViewer(selection);
-					NattablelabelproviderEditor.this.setFocus();
+					NattabletesterEditor.this.setSelectionToViewer(selection);
+					NattabletesterEditor.this.setFocus();
 				}
 
 				@Override

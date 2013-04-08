@@ -38,20 +38,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="creationTester" eType="#//nattableconfiguration/AbstractTableCreationTester"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="creationTester" eType="#//nattabletester/AbstractTableTester"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CellEditorDeclaration">
       <eLiterals name="COLUMN"/>
       <eLiterals name="ROW" value="1"/>
       <eLiterals name="CELL" value="2"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AbstractTableCreationTester" abstract="true">
-      <eOperations name="getTester" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="JavaTableCreationTester" eSuperTypes="#//nattableconfiguration/AbstractTableCreationTester">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tester" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattableaxisprovider" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisprovider"
@@ -131,6 +124,17 @@
     <eClassifiers xsi:type="ecore:EEnum" name="AxisIndexStyle">
       <eLiterals name="NUMERIC" literal="NUMERIC"/>
       <eLiterals name="ALPHABETIC" value="1" literal="ALPHABETIC"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="nattabletester" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattabletester"
+      nsPrefix="nattabletester">
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractTableTester" abstract="true"
+        eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+      <eOperations name="getTester" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="JavaTableTester" eSuperTypes="#//nattabletester/AbstractTableTester">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tester" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +31,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.util.NattableconfigurationAdapterFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.util.NattabletesterAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -42,7 +42,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.u
  * <!-- end-user-doc -->
  * @generated
  */
-public class NattableconfigurationItemProviderAdapterFactory extends NattableconfigurationAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -73,7 +73,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NattableconfigurationItemProviderAdapterFactory() {
+	public NattabletesterItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -82,26 +82,26 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TableConfigurationItemProvider tableConfigurationItemProvider;
+	protected JavaTableTesterItemProvider javaTableTesterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTableConfigurationAdapter() {
-		if (tableConfigurationItemProvider == null) {
-			tableConfigurationItemProvider = new TableConfigurationItemProvider(this);
+	public Adapter createJavaTableTesterAdapter() {
+		if (javaTableTesterItemProvider == null) {
+			javaTableTesterItemProvider = new JavaTableTesterItemProvider(this);
 		}
 
-		return tableConfigurationItemProvider;
+		return javaTableTesterItemProvider;
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * @generated
 	 */
 	public void dispose() {
-		if (tableConfigurationItemProvider != null) tableConfigurationItemProvider.dispose();
+		if (javaTableTesterItemProvider != null) javaTableTesterItemProvider.dispose();
 	}
 
 }

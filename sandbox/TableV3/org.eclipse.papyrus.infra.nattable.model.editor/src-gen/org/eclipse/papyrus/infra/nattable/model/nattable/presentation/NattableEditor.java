@@ -176,6 +176,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.p
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.provider.NattablelabelproviderItemProviderAdapterFactory;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider.NattabletesterItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -726,6 +727,7 @@ public class NattableEditor
 		adapterFactory.addAdapterFactory(new NattableaxisproviderItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new NattablelabelproviderItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new NattableaxisconfigurationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new NattabletesterItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

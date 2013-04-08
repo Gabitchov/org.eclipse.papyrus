@@ -12,6 +12,8 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -93,12 +95,12 @@ public interface TableConfiguration extends AbstractTableConfiguration {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Creation Tester</em>' containment reference.
-	 * @see #setCreationTester(AbstractTableCreationTester)
+	 * @see #setCreationTester(AbstractTableTester)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableConfiguration_CreationTester()
 	 * @model containment="true"
 	 * @generated
 	 */
-	AbstractTableCreationTester getCreationTester();
+	AbstractTableTester getCreationTester();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester <em>Creation Tester</em>}' containment reference.
@@ -108,6 +110,6 @@ public interface TableConfiguration extends AbstractTableConfiguration {
 	 * @see #getCreationTester()
 	 * @generated
 	 */
-	void setCreationTester(AbstractTableCreationTester value);
+	void setCreationTester(AbstractTableTester value);
 
 } // TableConfiguration

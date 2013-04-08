@@ -17,9 +17,9 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.AbstractTableCreationTester;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ AbstractTableConfigurationImpl implements TableConfiguration {
 	 * @generated
 	 * @ordered
 	 */
-	protected AbstractTableCreationTester creationTester;
+	protected AbstractTableTester creationTester;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,7 +154,7 @@ AbstractTableConfigurationImpl implements TableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractTableCreationTester getCreationTester() {
+	public AbstractTableTester getCreationTester() {
 		return creationTester;
 	}
 
@@ -163,8 +163,8 @@ AbstractTableConfigurationImpl implements TableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCreationTester(AbstractTableCreationTester newCreationTester, NotificationChain msgs) {
-		AbstractTableCreationTester oldCreationTester = creationTester;
+	public NotificationChain basicSetCreationTester(AbstractTableTester newCreationTester, NotificationChain msgs) {
+		AbstractTableTester oldCreationTester = creationTester;
 		creationTester = newCreationTester;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER, oldCreationTester, newCreationTester);
@@ -178,7 +178,7 @@ AbstractTableConfigurationImpl implements TableConfiguration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreationTester(AbstractTableCreationTester newCreationTester) {
+	public void setCreationTester(AbstractTableTester newCreationTester) {
 		if (newCreationTester != creationTester) {
 			NotificationChain msgs = null;
 			if (creationTester != null)
@@ -239,7 +239,7 @@ AbstractTableConfigurationImpl implements TableConfiguration {
 				setIconPath((String)newValue);
 				return;
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
-				setCreationTester((AbstractTableCreationTester)newValue);
+				setCreationTester((AbstractTableTester)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -260,7 +260,7 @@ AbstractTableConfigurationImpl implements TableConfiguration {
 				setIconPath(ICON_PATH_EDEFAULT);
 				return;
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
-				setCreationTester((AbstractTableCreationTester)null);
+				setCreationTester((AbstractTableTester)null);
 				return;
 		}
 		super.eUnset(featureID);

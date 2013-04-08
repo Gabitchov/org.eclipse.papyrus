@@ -10,7 +10,7 @@
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.provider;
+package org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider;
 
 
 import java.util.Collection;
@@ -29,17 +29,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.JavaTableCreationTester} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class JavaTableCreationTesterItemProvider
-	extends AbstractTableCreationTesterItemProvider
+public class JavaTableTesterItemProvider
+	extends AbstractTableTesterItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -52,7 +52,7 @@ public class JavaTableCreationTesterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JavaTableCreationTesterItemProvider(AdapterFactory adapterFactory) {
+	public JavaTableTesterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -83,9 +83,9 @@ public class JavaTableCreationTesterItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_JavaTableCreationTester_tester_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_JavaTableCreationTester_tester_feature", "_UI_JavaTableCreationTester_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 NattableconfigurationPackage.Literals.JAVA_TABLE_CREATION_TESTER__TESTER,
+				 getString("_UI_JavaTableTester_tester_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_JavaTableTester_tester_feature", "_UI_JavaTableTester_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattabletesterPackage.Literals.JAVA_TABLE_TESTER__TESTER,
 				 true,
 				 false,
 				 false,
@@ -95,14 +95,14 @@ public class JavaTableCreationTesterItemProvider
 	}
 
 	/**
-	 * This returns JavaTableCreationTester.gif.
+	 * This returns JavaTableTester.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaTableCreationTester")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaTableTester")); //$NON-NLS-1$
 	}
 
 	/**
@@ -113,10 +113,10 @@ public class JavaTableCreationTesterItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((JavaTableCreationTester)object).getTester();
+		String label = ((JavaTableTester)object).getTester();
 		return label == null || label.length() == 0 ?
-			getString("_UI_JavaTableCreationTester_type") : //$NON-NLS-1$
-			getString("_UI_JavaTableCreationTester_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_JavaTableTester_type") : //$NON-NLS-1$
+			getString("_UI_JavaTableTester_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -130,8 +130,8 @@ public class JavaTableCreationTesterItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(JavaTableCreationTester.class)) {
-			case NattableconfigurationPackage.JAVA_TABLE_CREATION_TESTER__TESTER:
+		switch (notification.getFeatureID(JavaTableTester.class)) {
+			case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

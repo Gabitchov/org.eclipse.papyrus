@@ -30,9 +30,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.DefaultAxisConfigurationImpl#getIndexStyle <em>Index Style</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.DefaultAxisConfigurationImpl#isDisplayIndex <em>Display Index</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.DefaultAxisConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.DefaultAxisConfigurationImpl#isDisplayFilter <em>Display Filter</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.DefaultAxisConfigurationImpl#isDisplayIndex <em>Display Index</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,26 +58,6 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 	 * @ordered
 	 */
 	protected AxisIndexStyle indexStyle = INDEX_STYLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isDisplayIndex() <em>Display Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDisplayIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean DISPLAY_INDEX_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isDisplayIndex() <em>Display Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDisplayIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean displayIndex = DISPLAY_INDEX_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isDisplayLabel() <em>Display Label</em>}' attribute.
@@ -118,6 +98,26 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 	 * @ordered
 	 */
 	protected boolean displayFilter = DISPLAY_FILTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDisplayIndex() <em>Display Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisplayIndex()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DISPLAY_INDEX_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isDisplayIndex() <em>Display Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisplayIndex()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean displayIndex = DISPLAY_INDEX_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -232,12 +232,12 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 		switch (featureID) {
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE:
 				return getIndexStyle();
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
-				return isDisplayIndex();
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL:
 				return isDisplayLabel();
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER:
 				return isDisplayFilter();
+			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				return isDisplayIndex();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -253,14 +253,14 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE:
 				setIndexStyle((AxisIndexStyle)newValue);
 				return;
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
-				setDisplayIndex((Boolean)newValue);
-				return;
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL:
 				setDisplayLabel((Boolean)newValue);
 				return;
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER:
 				setDisplayFilter((Boolean)newValue);
+				return;
+			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				setDisplayIndex((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -277,14 +277,14 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE:
 				setIndexStyle(INDEX_STYLE_EDEFAULT);
 				return;
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
-				setDisplayIndex(DISPLAY_INDEX_EDEFAULT);
-				return;
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL:
 				setDisplayLabel(DISPLAY_LABEL_EDEFAULT);
 				return;
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER:
 				setDisplayFilter(DISPLAY_FILTER_EDEFAULT);
+				return;
+			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				setDisplayIndex(DISPLAY_INDEX_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -300,12 +300,12 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 		switch (featureID) {
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__INDEX_STYLE:
 				return indexStyle != INDEX_STYLE_EDEFAULT;
-			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
-				return displayIndex != DISPLAY_INDEX_EDEFAULT;
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_LABEL:
 				return displayLabel != DISPLAY_LABEL_EDEFAULT;
 			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_FILTER:
 				return displayFilter != DISPLAY_FILTER_EDEFAULT;
+			case NattableaxisconfigurationPackage.DEFAULT_AXIS_CONFIGURATION__DISPLAY_INDEX:
+				return displayIndex != DISPLAY_INDEX_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -322,12 +322,12 @@ public class DefaultAxisConfigurationImpl extends AbstractAxisConfigurationImpl 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (indexStyle: "); //$NON-NLS-1$
 		result.append(indexStyle);
-		result.append(", displayIndex: "); //$NON-NLS-1$
-		result.append(displayIndex);
 		result.append(", displayLabel: "); //$NON-NLS-1$
 		result.append(displayLabel);
 		result.append(", displayFilter: "); //$NON-NLS-1$
 		result.append(displayFilter);
+		result.append(", displayIndex: "); //$NON-NLS-1$
+		result.append(displayIndex);
 		result.append(')');
 		return result.toString();
 	}
