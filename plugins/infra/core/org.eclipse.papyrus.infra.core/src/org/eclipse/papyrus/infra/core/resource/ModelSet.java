@@ -178,12 +178,16 @@ public class ModelSet extends ResourceSetImpl {
 		try {
 			r = super.getResource(uri, loadOnDemand);
 		} catch (WrappedException e) {
-			Activator.log.error(e);
+			// Activator.log.error(e);
 			if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
 				r = super.getResource(uri, false);
 				if(r == null) {
 					throw e;
 				}
+			}
+			else {
+				// don't log, but throw error again, bug 405047 - [core] FileNotFoundException during MARTE profile loads
+				throw e;
 			}
 		}
 		return setResourceOptions(r);

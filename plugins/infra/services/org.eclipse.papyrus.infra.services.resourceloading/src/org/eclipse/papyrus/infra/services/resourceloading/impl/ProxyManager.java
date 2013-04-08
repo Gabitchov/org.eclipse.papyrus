@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.impl;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -25,6 +26,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -136,7 +138,7 @@ public class ProxyManager implements IProxyManager {
 				// object find in the resource
 				return object;
 			}
-			// use HistoryRoutingManager to explore routes in di resource historic
+			// use HistoryRoutingManager to explore routes in di resource history
 			else {
 				String fileExtension = uri.fileExtension();
 				Resource diResource = null;
@@ -146,9 +148,15 @@ public class ProxyManager implements IProxyManager {
 					diResource = modelSet.getResource(trimFragment, loadOnDemand);
 					resourceName = trimFragment.toString();
 				} else {
-					// retrieve the DI resource from the uri to get the historic
+					// retrieve the DI resource from the uri to get the history
 					URI newURI = trimFragment.trimFileExtension().appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
-					diResource = modelSet.getResource(newURI.trimFragment(), loadOnDemand);
+					try {
+						diResource = modelSet.getResource(newURI.trimFragment(), loadOnDemand);
+					}
+					catch (WrappedException e) {
+						// capture wrapped exception here, see Bug 405047 - [core] FileNotFoundException during MARTE profile load
+						throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ resourceName }), getClass().getName(), resourceName);
+					}
 					resourceName = newURI.trimFragment().toString();
 				}
 				if(diResource != null) {
