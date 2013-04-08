@@ -25,30 +25,6 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.extra.layout.source.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.extra.marte.source.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.extra.marte.properties.source.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.extra.marte.textedit.source.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.extra.diagramtemplate.source.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.extra.migration.source.feature"
          version="0.0.0"/>
 
@@ -59,5 +35,14 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.extra.cdo.source.feature"
          version="0.0.0"/>
+         
+   <requires>
+      <import feature="org.eclipse.papyrus.extra.diagramtemplate.source.feature" />
+      <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature" />
+      <import feature="org.eclipse.papyrus.extra.layout.source.feature" />
+      <import feature="org.eclipse.papyrus.extra.marte.source.feature" />
+      <import feature="org.eclipse.papyrus.extra.marte.properties.source.feature" />
+      <import feature="org.eclipse.papyrus.extra.marte.textedit.source.feature" />
+   </requires>
 
 </feature>
