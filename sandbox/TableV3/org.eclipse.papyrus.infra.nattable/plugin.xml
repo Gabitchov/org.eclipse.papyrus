@@ -4,6 +4,8 @@
    <extension-point id="org.eclipse.papyrus.infra.nattable.axismanager" name="Axis Manager" schema="schema/org.eclipse.papyrus.infra.nattable.axismanager.exsd"/>
    <extension-point id="org.eclipse.papyrus.infra.nattable.cellmanager" name="Cell Manager" schema="schema/org.eclipse.papyrus.infra.nattable.cellmanager.exsd"/>
    <extension-point id="org.eclipse.papyrus.infra.nattable.celleditor.configuration" name="CellEditorConfiguration" schema="schema/org.eclipse.papyrus.infra.nattable.celleditor.configuration.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.configuration" name="Nattable Configuration" schema="schema/org.eclipse.papyrus.infra.nattable.configuration.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.nattable.tester" name="Table Tester" schema="schema/org.eclipse.papyrus.infra.nattable.tester.exsd"/>
  <extension
        point="org.eclipse.ui.menus">
     <menuContribution

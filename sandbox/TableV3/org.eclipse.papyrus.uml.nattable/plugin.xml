@@ -58,4 +58,11 @@
             order="500">
       </cellManager>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.tester">
+      <tester
+            class="org.eclipse.papyrus.uml.nattable.tester.IsUMLElementTester"
+            id="org.eclipse.papyrus.uml.nattable.tester.isumlelement">
+      </tester>
+   </extension>
 </plugin>

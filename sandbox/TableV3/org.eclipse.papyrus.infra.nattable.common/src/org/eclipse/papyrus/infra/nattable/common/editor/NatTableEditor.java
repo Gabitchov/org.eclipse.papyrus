@@ -11,24 +11,28 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.sysml.nattable.requirement.editor;
+package org.eclipse.papyrus.infra.nattable.common.editor;
 
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.uml.nattable.common.editor.AbstractUMLNattableEditor;
 
-public class SysMLRequirementNattableEditor extends AbstractUMLNattableEditor {
+/**
+ * The Editor used for Papyrus NatTable model
+ * 
+ * @author Vincent Lorenzo
+ * 
+ */
+public class NatTableEditor extends AbstractEMFNattableEditor {
 
-	/** the type of the editor */
-	public static final String EDITOR_TYPE = "PapyrusSysMLRequirementNattable"; //$NON-NLS-1$
-
-	/** the default name for this table */
-	public static final String DEFAULT_NAME = "SysMLRequirementTable"; //$NON-NLS-1$
-
-	public SysMLRequirementNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param servicesRegistry
+	 * @param rawModel
+	 */
+	public NatTableEditor(ServicesRegistry servicesRegistry, Table rawModel) {
 		super(servicesRegistry, rawModel);
 	}
-
-
 
 }

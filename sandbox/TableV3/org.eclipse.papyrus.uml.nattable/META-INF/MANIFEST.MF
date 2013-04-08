@@ -34,6 +34,7 @@ Export-Package: org.eclipse.papyrus.uml.nattable,
  org.eclipse.papyrus.uml.nattable.manager.cell,
  org.eclipse.papyrus.uml.nattable.messages,
  org.eclipse.papyrus.uml.nattable.provider,
+ org.eclipse.papyrus.uml.nattable.tester,
  org.eclipse.papyrus.uml.nattable.utils,
  org.eclipse.papyrus.uml.nattable.validator,
  org.eclipse.papyrus.uml.nattable.widget

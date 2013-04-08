@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
@@ -56,38 +57,12 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * 
- * @deprecated : merge this class with AbstractCreateNattableEditorHandler2
+ * 
  */
-@Deprecated
-public abstract class AbstractCreateNattableEditorHandler extends AbstractHandler {
+public abstract class AbstractCreateNattableEditorHandler2 extends AbstractHandler {
 
-	/** the default name for the table */
-	private final String defaultName;
 
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param editorType
-	 *        the type of the editor
-	 * @param defaultName
-	 *        the default name for this editor
-	 */
-	public AbstractCreateNattableEditorHandler(final String editorType, final String defaultName) {//FIXME : remove editorType
-		this.defaultName = defaultName;
-	}
 
-	/**
-	 * Should be overridden in order to restrict creation
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return
-	 */
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 
 	/**
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -113,9 +88,14 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * 
 	 */
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
+		//we create a new resourceSet to avoid to load unused config in the resourceset in case of Cancel
+		ResourceSet set = new ResourceSetImpl();
+		Resource res = set.getResource(getTableEditorConfigurationURI(), true);
+		TableConfiguration conf = (TableConfiguration)res.getContents().get(0);
+		String defaultName = conf.getName();
 		// default Value
 		final String name;
-		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getAbstractTableConfiguration_Name(), this.defaultName, getTableContext());
+		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getAbstractTableConfiguration_Name(), defaultName, getTableContext());
 		final InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), Messages.AbstractCreateNattableEditorHandler_PapyrusTableCreation, Messages.AbstractCreateNattableEditorHandler_EnterTheNameForTheNewTable, nameWithIncrement, null);
 		if(dialog.open() == Dialog.OK) {
 			name = dialog.getValue();
@@ -126,7 +106,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 				@Override
 				protected void doExecute() {
 					try {
-						AbstractCreateNattableEditorHandler.this.doExecute(serviceRegistry, name, this.description);
+						AbstractCreateNattableEditorHandler2.this.doExecute(serviceRegistry, name, this.description);
 					} catch (final NotFoundException e) {
 						Activator.log.error(e);
 					} catch (final ServiceException e) {

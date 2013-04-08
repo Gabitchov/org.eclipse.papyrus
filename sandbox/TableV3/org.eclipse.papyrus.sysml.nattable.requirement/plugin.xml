@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
-            factoryClass="org.eclipse.papyrus.sysml.nattable.requirement.factory.SysMLRequirementNattableEditorFactory"
-            icon="icons/table_SysML_Requirement.gif">
+            factoryClass="org.eclipse.papyrus.infra.nattable.common.factory.NattableEditorFactory"
+            icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.gif">
       </editorDiagram>
    </extension>
  <extension
@@ -14,13 +14,12 @@
             categoryId="org.eclipse.papyrus.editor.category"
             description="Create a SysML Requirement NatTable Editor"
             id="org.eclipse.papyrus.sysml.nattable.requirement.create.command"
-            name="Create a SysML Requirement NatTable Editor">
+            name="Create a new Requirement Table">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.sysml.nattable.requirement.handlers.CreateSysMLRequirementNattableEditorHandler"
             commandId="org.eclipse.papyrus.sysml.nattable.requirement.create.command">
          <activeWhen>
             <or>
@@ -32,6 +31,13 @@
                </with>
             </or>
          </activeWhen>
+         <class
+               class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableEditorHandler">
+            <parameter
+                  name="tableType"
+                  value="PapyrusSysMLRequirementNattable">
+            </parameter>
+         </class>
       </handler>
    </extension>
    <extension
@@ -91,7 +97,7 @@
          point="org.eclipse.ui.commandImages">
       <image
             commandId="org.eclipse.papyrus.sysml.nattable.requirement.create.command"
-            icon="icons/table_SysML_Requirement.gif">
+            icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.gif">
       </image>
    </extension>
 </plugin>

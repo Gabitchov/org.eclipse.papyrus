@@ -45,6 +45,22 @@ public class Messages extends NLS {
 
 	public static String EObjectManager_AddAxisElement;
 
+	public static String NattableConfigurationRegistry_ConfigurationNotFound;
+
+	public static String NattableConfigurationRegistry_NoTesterForThisConfiguration;
+
+	public static String NattableConfigurationRegistry_NoTypeForAConfiguration;
+
+	public static String NattableConfigurationRegistry_ResourceEmpty;
+
+	public static String NattableConfigurationRegistry_SeveralConfigurationsWithTheSameType;
+
+	public static String NattableConfigurationRegistry_TableConfigurationNotFound;
+
+	public static String NattableConfigurationRegistry_TesterNotFound;
+
+	public static String NattableConfigurationRegistry_TesterNotManager;
+
 	public static String NattableModelManager_AddColumnCommand;
 
 	public static String NattableModelManager_AddRowCommand;
@@ -60,6 +76,10 @@ public class Messages extends NLS {
 	public static String PrintTableHandler_TablePrint;
 
 	public static String TableLabelProvider_ErrorGettingIconForTable;
+
+	public static String TableTesterRegistry_SeveralTesterAreRegisteredWithTheSameId;
+
+	public static String TableTesterRegistry_TheClassCantBeLoaded;
 
 	public static String ICellManager_NotAvailable;
 

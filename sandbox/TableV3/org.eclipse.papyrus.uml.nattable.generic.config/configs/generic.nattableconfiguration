@@ -13,5 +13,5 @@
       <labelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider"/>
     </axisConfiguration>
   </columnAxisProvider>
-  <creationTester xsi:type="nattabletester:JavaTableTester" tester="org.eclipse.papyrus.uml.nattable.common.tester.isumlelement"/>
+  <creationTester xsi:type="nattabletester:JavaTableTester" tester="org.eclipse.papyrus.uml.nattable.tester.isumlelement"/>
 </nattableconfiguration:TableConfiguration>

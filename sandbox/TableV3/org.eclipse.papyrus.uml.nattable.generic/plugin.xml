@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
-            factoryClass="org.eclipse.papyrus.uml.nattable.generic.factory.GenericUMLNattableEditorFactory"
-            icon="icons/uml_generic_table.png">
+            factoryClass="org.eclipse.papyrus.infra.nattable.common.factory.NattableEditorFactory"
+            icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.gif">
       </editorDiagram>
    </extension>
  <extension
@@ -14,25 +14,8 @@
             categoryId="org.eclipse.papyrus.editor.category"
             description="Create a UML Generic NatTable Editor"
             id="org.eclipse.papyrus.uml.nattable.generic.create.command"
-            name="Create a UML Generic NatTable Editor">
+            name="Create a new Generic Table">
       </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="org.eclipse.papyrus.uml.nattable.generic.handlers.CreateGenericNattableEditorHandler"
-            commandId="org.eclipse.papyrus.uml.nattable.generic.create.command">
-         <activeWhen>
-            <or>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
-                  </equals>
-               </with>
-            </or>
-         </activeWhen>
-      </handler>
    </extension>
    <extension
          id="create.table.menus"
@@ -43,7 +26,6 @@
             locationURI="popup:org.eclipse.papyrus.infra.nattable.popupmenu.createnattable">
          <command
                commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
-               icon="icons/uml_generic_table.png"
                label="UML Generic NatTable"
                mnemonic="&amp;G"
                style="push">
@@ -62,7 +44,6 @@
             locationURI="menu:org.eclipse.papyrus.infra.nattable.menu.createnattable">
          <command
                commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
-               icon="icons/uml_generic_table.png"
                label="UML Generic NatTable"
                mnemonic="&amp;G"
                style="push">
@@ -81,7 +62,6 @@
             locationURI="toolbar:org.eclipse.papyrus.infra.nattable.toolbar.createnattable">
          <command
                commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
-               icon="icons/uml_generic_table.gif"
                label="UML Generic NatTable"
                mnemonic="&amp;G"
                style="push">
@@ -95,5 +75,25 @@
             </visibleWhen>
          </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="org.eclipse.papyrus.uml.nattable.generic.create.command">
+         <class
+               class="org.eclipse.papyrus.infra.nattable.common.handlers.CreateNatTableEditorHandler">
+            <parameter
+                  name="tableType"
+                  value="PapyruGenericNattable">
+            </parameter>
+         </class>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.uml.nattable.generic.create.command"
+            icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.gif">
+      </image>
    </extension>
 </plugin>
