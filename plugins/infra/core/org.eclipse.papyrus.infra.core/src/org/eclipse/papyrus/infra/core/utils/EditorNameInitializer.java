@@ -60,9 +60,9 @@ public class EditorNameInitializer {
 					if(currentName instanceof String) {
 						final String aName = (String)currentName;
 						if(aName.contains(wantedNameWithoutIndex)) {
-							final String lastChar = aName.substring(aName.length() - 1, aName.length());
+							final String lastChars = aName.substring(wantedNameWithoutIndex.length(), aName.length());
 							try {
-								final Integer value = Integer.parseInt(lastChar);
+								final Integer value = Integer.parseInt(lastChars);
 								existingIndex.add(value);
 							} catch (final Exception e) {
 								//nothing to do
