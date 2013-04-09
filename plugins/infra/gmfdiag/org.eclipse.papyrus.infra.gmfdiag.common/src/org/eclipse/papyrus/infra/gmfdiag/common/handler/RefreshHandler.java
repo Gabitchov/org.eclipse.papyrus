@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
@@ -33,7 +34,7 @@ public class RefreshHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IEditorPart activeEditor;
 		try {
-			activeEditor = ServiceUtilsForHandlers.getInstance().getNestedActiveIEditorPart(event);
+			activeEditor = ServiceUtilsForHandlers.getInstance().getService(IMultiDiagramEditor.class, event);
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 			return null;

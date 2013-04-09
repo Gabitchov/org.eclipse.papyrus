@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.ui.IEditorPart;
 
 
@@ -55,23 +57,25 @@ public class DiagramHelper {
 	 * Refreshes all diagrams in this IEditorPart (Including nested editors when necessary)
 	 * 
 	 * @param editorPart
-	 */ 
+	 */
 	public static void refresh(IEditorPart editorPart) {
 		List<IEditorPart> visibleEditorParts = null;
 		if(editorPart instanceof IMultiDiagramEditor) {
-			ServicesRegistry servicesRegistry =  (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
-			if (servicesRegistry != null) {
+			ServicesRegistry servicesRegistry = (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
+			if(servicesRegistry != null) {
 				try {
-					ISashWindowsContainer container = ServiceUtils.getInstance().getISashWindowsContainer(servicesRegistry) ;
-					visibleEditorParts = container.getVisibleIEditorParts() ;
+					ISashWindowsContainer container = ServiceUtils.getInstance().getISashWindowsContainer(servicesRegistry);
+					visibleEditorParts = container.getVisibleIEditorParts();
 				} catch (ServiceException e) {
-					e.printStackTrace();
+					Activator.log.error(e);
 				}
 			}
+		} else {
+			visibleEditorParts = Collections.singletonList(editorPart);
 		}
 
-		if (visibleEditorParts != null) {
-			for (IEditorPart visiblePart : visibleEditorParts) {
+		if(visibleEditorParts != null) {
+			for(IEditorPart visiblePart : visibleEditorParts) {
 				if(visiblePart instanceof DiagramEditor) {
 					DiagramEditor diagramEditor = (DiagramEditor)visiblePart;
 					DiagramEditPart topEditPart = diagramEditor.getDiagramEditPart();
