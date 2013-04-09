@@ -27,11 +27,11 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.uml2.uml.util.UMLValidator;
 
 
 /**
@@ -46,10 +46,12 @@ import org.eclipse.emf.validation.service.ModelValidationService;
  * {@linkplain IConstraintStatus#getResultLocus() result locus} of a constraint
  * status is an unordered set.
  * </p>
+ * 
+ * bug 405160 - avoid "false" errors by using the UMLValidator instead of EObjectValidator as base class 
  */
 public class EValidatorAdapter
-	extends EObjectValidator {
-
+	extends UMLValidator {
+	
 	/**
 	 * Model Validation Service interface for batch validation of EMF elements.
 	 */
