@@ -10,6 +10,7 @@
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ *  Patrick Tessier (CEA LIST) refacor to add allowing adding validation specific to UML
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.validation.commands;
@@ -32,6 +33,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
@@ -68,8 +70,22 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 *        the label of the command
 	 * @param description
 	 *        description of the command
+	 * @deprecated because it initialize with a diagnostician for Ecore by default
 	 */
-
+	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement) {
+		this(label, domain, selectedElement, new EcoreDiagnostician());
+	}
+	
+	/**
+	 * Creates a new ImportLibraryFromRepositoryCommand
+	 * 
+	 * @param domain
+	 *        editing domain that manages the changed objects
+	 * @param label
+	 *        the label of the command
+	 * @param selectedElement the element that we want to validate
+	 * @param diagnostician a diagnocstician adapted to a domain see {@link IPapyrusDiagnostician}
+	 */
 	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(domain, label, Collections.EMPTY_LIST);
 		this.domain = domain;
