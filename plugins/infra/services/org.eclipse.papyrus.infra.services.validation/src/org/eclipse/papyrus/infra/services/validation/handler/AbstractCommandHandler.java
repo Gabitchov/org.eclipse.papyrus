@@ -148,13 +148,9 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 
 		return null;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public boolean isEnabled() {
-		return getCommand().canExecute();
+	public void setEnabled(Object evaluationContext) {
+		setBaseEnabled(getCommand().canExecute());
 	}
 
 	/**

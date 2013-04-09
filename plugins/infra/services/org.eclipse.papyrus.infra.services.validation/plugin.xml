@@ -82,6 +82,51 @@
    </extension>
   
    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateModelHandler"
+            description="ValidateModel"
+            id="org.eclipse.papyrus.validation.ValidateModelCommand"
+            name="ValidateModel">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateSubtreeHandler"
+            description="ValidateSubtree"
+            id="org.eclipse.papyrus.validation.ValidateSubtreeCommand"
+            name="ValidateSubtree">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.SelectAndValidateSubtreeHandler"
+            description="SelectAndValidate"
+            id="org.eclipse.papyrus.validation.SelectAndValidateSubtreeCommand"
+            name="SelectAndValidate">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.SelectAndValidateModelHandler"
+            description="SelectAndValidate"
+            id="org.eclipse.papyrus.validation.SelectAndValidateModelCommand"
+            name="SelectAndValidate">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateDelMarkersFromModelHandler"
+            description="ValidateDelMarkersFromModel"
+            id="org.eclipse.papyrus.validation.ValidateDelMarkersFromModelCommand"
+            name="ValidateDelMarkersFromModel">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.infra.services.validation.handler.ValidateDelMarkersFromSubtreeHandler"
+            description="ValidateDelMarkersFromSubtree"
+            id="org.eclipse.papyrus.validation.ValidateDelMarkersFromSubtreeCommand"
+            name="ValidateDelMarkersFromSubtree">
+      </command>
+   </extension>
+   <extension
          point="org.eclipse.ui.decorators">
    </extension>
    <extension
