@@ -46,8 +46,6 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.util.ViewServiceUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -143,22 +141,13 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 			final Command command = getActionCommand();
 			final TransactionalEditingDomain domain = this.selectedElements.get(0).getEditingDomain();
 			if(command.canExecute()) {
-				try {
-					domain.runExclusive(new Runnable() {
+				PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 
-						public void run() {
-							PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
-
-								// executing the command
-								public void run() {
-									domain.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-								}
-							});
-						}
-					});
-				} catch (InterruptedException e) {
-					Activator.log.error(e);
-				}
+					// executing the command
+					public void run() {
+						domain.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+					}
+				});
 			}
 		}
 	}
