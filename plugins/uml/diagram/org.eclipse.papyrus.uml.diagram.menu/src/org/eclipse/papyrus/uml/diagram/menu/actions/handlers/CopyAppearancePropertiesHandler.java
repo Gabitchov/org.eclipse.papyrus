@@ -49,18 +49,13 @@ public class CopyAppearancePropertiesHandler extends AbstractGraphicalCommandHan
 		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler#isEnabled()
-	 * 
-	 * @return
-	 */
 	@Override
-	public boolean isEnabled() {
+	public void setEnabled(Object evaluationContext) {
 		if(getSelectedElements().isEmpty() || getSelectedElements().size() == 1) {
-			return false;
+			setBaseEnabled(false);
+			return;
 		}
-		return super.isEnabled();
+		super.setEnabled(evaluationContext);
 	}
 
 }

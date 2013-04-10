@@ -123,17 +123,12 @@ public abstract class AbstractParametricHandler extends AbstractHandler implemen
 		return editparts;
 	}
 
-
-
 	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isEnabled() {
-		return true;
+	public void setEnabled(Object evaluationContext) {
+		setBaseEnabled(true);
 	}
 
 	/**

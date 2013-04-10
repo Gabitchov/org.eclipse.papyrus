@@ -818,7 +818,7 @@
             label="Se&amp;lect"
             tooltip="Select Menu">
          <command
-               commandId="org.eclipse.ui.edit.selectAll"
+               commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SelectAllCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
                id="org.eclipse.papyrus.uml.diagram.ui.popupmenu.select.all"
                label="&amp;All"
@@ -1234,7 +1234,7 @@
    <menuContribution
          locationURI="menu:org.eclipse.papyrus.menu.select.toolbar.command">
       <command
-            commandId="org.eclipse.ui.edit.selectAll"
+            commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SelectAllCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
             label="Select &amp;All"
             style="push"
@@ -1776,7 +1776,7 @@
             label="Se&amp;lect"
             tooltip="Select Menu">
          <command
-               commandId="org.eclipse.ui.edit.selectAll"
+               commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SelectAllCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
                label="&amp;All"
                style="push"
@@ -3297,9 +3297,6 @@
          id="org.eclipse.papyrus.uml.diagram.menu.commands.ArrangeSelectionCommand"
          name="Arrange Selection Command">
    </command>
-   <!-- This command is currently not use! We use org.eclipse.ui.edit.selectAll. With this command, we use the GMF action for Select. 
-   So, I think GMF provides an handler for this command, but I don't know where (and it's work fine).
-   -->
    <command
          categoryId="org.eclipse.papyrus.editor.category"
          description="The command to select all elements"
@@ -3685,11 +3682,12 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+=">
    </key>
-</extension>
-<extension
-      point="org.eclipse.ui.startup">
-   <startup
-         class="org.eclipse.papyrus.uml.diagram.menu.Activator"></startup>
+   <key
+         commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SelectAllCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+A">
+   </key>
 </extension>
 <extension
       point="org.eclipse.ui.handlers">
@@ -3888,16 +3886,6 @@
                name="select_parameter"
                value="selectAll">
          </parameter></class>
-      <activeWhen>
-         <and>
-            <with
-                  variable="selectAll">
-               <equals
-                     value="enabled">
-               </equals>
-            </with>
-         </and>
-      </activeWhen>
    </handler>
    <handler
          commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SelectAllShapesCommand">

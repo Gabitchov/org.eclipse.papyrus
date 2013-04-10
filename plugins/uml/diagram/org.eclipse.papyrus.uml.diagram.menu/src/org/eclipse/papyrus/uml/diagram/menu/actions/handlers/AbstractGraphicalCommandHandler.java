@@ -85,23 +85,20 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractParametric
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return true is the command can be executed
+	 * Set enabled to true is the command can be executed
 	 */
 	@Override
-	public boolean isEnabled() {
-
+	public void setEnabled(Object evaluationContext) {
 		try {
 			if(getCommand().canExecute()) {
-				return true;
+				setBaseEnabled(true);
+				return;
 			}
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
 
-		return false;
+		setBaseEnabled(false);
 	}
 
 	/**

@@ -69,15 +69,9 @@ public abstract class AbstractViewHandler extends AbstractParametricHandler {/* 
 		return ((DiagramGraphicalViewer)getDiagramGraphicalViewer()).getWorkspaceViewerPreferenceStore().getBoolean(id);
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return
-	 */
 	@Override
-	public boolean isEnabled() {
-		return getDiagramGraphicalViewer() != null;
+	public void setEnabled(Object evaluationContext) {
+		setBaseEnabled(getDiagramGraphicalViewer() != null);
 	}
 
 }

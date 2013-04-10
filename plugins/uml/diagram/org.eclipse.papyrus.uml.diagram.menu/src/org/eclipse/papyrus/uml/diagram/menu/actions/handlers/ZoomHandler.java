@@ -51,16 +51,10 @@ public class ZoomHandler extends AbstractParametricHandler {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AbstractParametricHandler#isEnabled()
-	 * 
-	 * @return
-	 */
 	@Override
-	public boolean isEnabled() {
+	public void setEnabled(Object evaluationContext) {
 		ZoomAction action = new ZoomAction(getParameter(), getSelectedElements());
-		return action.isEnabled();
+		setBaseEnabled(action.isEnabled());
 	}
 
 	/**

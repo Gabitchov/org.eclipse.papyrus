@@ -66,14 +66,11 @@ public class SelectHandler extends AbstractParametricHandler {
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AbstractParametricHandler#isEnabled()
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isEnabled() {
+	public void setEnabled(Object evaluationContext) {
 		AbstractParametricAction action = new SelectAction(this.parameter, getSelectedElements());
-		return action.isEnabled();
+		setBaseEnabled(action.isEnabled());
 	}
 }

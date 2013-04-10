@@ -50,15 +50,9 @@ public class FontHandler extends AbstractGraphicalCommandHandler {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler#isEnabled()
-	 * 
-	 * @return
-	 */
 	@Override
-	public boolean isEnabled() {
+	public void setEnabled(Object evaluationContext) {
 		FontAction action = new FontAction(getSelectedElements());
-		return action.isEnabled();
+		setBaseEnabled(action.isEnabled());
 	}
 }

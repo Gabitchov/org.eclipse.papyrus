@@ -35,24 +35,17 @@ public class RecalculatePageBreaksHandler extends AbstractViewHandler {
 	 * Constructor.
 	 * 
 	 */
-	@SuppressWarnings("restriction")
 	public RecalculatePageBreaksHandler() {
 		super(WorkspaceViewerProperties.VIEWPAGEBREAKS);
 	}
 
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AbstractViewHandler#isEnabled()
-	 * 
-	 * @return
-	 */
 	@Override
-	public boolean isEnabled() {
+	public void setEnabled(Object evaluationContext) {
 		if(super.isEnabled() && (getDiagramGraphicalViewer() instanceof DiagramGraphicalViewer)) {
-			return isChecked();
+			setBaseEnabled(isChecked());
+			return;
 		}
-		return false;
+		setBaseEnabled(false);
 	}
 
 	/**
@@ -68,7 +61,6 @@ public class RecalculatePageBreaksHandler extends AbstractViewHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		@SuppressWarnings("restriction")
 		RecalculatePageBreaksRequest request = new RecalculatePageBreaksRequest();
 		//not done in a CommandStack! (like the original!)
 		((DiagramRootEditPart)getDiagramEditPart().getRoot()).performRequest(request);

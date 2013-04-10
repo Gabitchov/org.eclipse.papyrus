@@ -62,21 +62,16 @@ public class ShowHideLabelsHandler extends AbstractGraphicalCommandHandler {
 		return action.getCommand();
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AbstractGraphicalCommandHandler#isEnabled()
-	 * 
-	 * @return
-	 */
 	@Override
-	public boolean isEnabled() {
+	public void setEnabled(Object evaluationContext) {
 		if(this.parameter.equals(ShowHideLabelsAction.MANAGE_PARAMETER)) {
 			//we test if the action can be executed with an other parameter (because getCommand() for this parameter open a dialog
 			ShowHideLabelsAction action = new ShowHideLabelsAction(ShowHideLabelsAction.SHOW_PARAMETER, getSelectedElements());
-			return action.getCommand().canExecute();
-
+			setBaseEnabled(action.getCommand().canExecute());
+			return;
 		} else {
-			return super.isEnabled();
+			super.setEnabled(evaluationContext);
 		}
 	}
+
 }
