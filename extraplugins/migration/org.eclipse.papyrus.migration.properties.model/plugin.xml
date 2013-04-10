@@ -4,7 +4,6 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.migration.properties.model.handler.MigrationHandler"
             description="Migrates the selected file to Papyrus 0.9.X"
             id="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9"
             name="Migrate to Papyrus 0.9.X">
