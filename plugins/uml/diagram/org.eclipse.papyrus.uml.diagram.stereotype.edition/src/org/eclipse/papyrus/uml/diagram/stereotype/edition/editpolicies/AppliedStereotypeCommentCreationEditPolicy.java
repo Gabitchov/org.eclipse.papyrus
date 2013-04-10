@@ -37,11 +37,10 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.command.CreateAppliedStereotypeCommentViewCommand;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
@@ -125,7 +124,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 				domain.runExclusive(new Runnable() {
 
 					public void run() {
-						Display.getCurrent().asyncExec(new Runnable() {
+						Display.getCurrent().syncExec(new Runnable() {
 
 							public void run() {
 								//use to avoid to put it in the command stack
@@ -188,7 +187,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			domain.runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+					Display.getCurrent().syncExec(new Runnable() {
 
 						public void run() {
 							int x=200;
@@ -242,7 +241,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			domain.runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+					Display.getCurrent().syncExec(new Runnable() {
 
 						public void run() {
 							//because it is asynchrone the comment node maybe become s null

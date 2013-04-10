@@ -178,7 +178,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 					editingDomain.runExclusive(new Runnable() {
 
 						public void run() {
-							Display.getCurrent().asyncExec(new Runnable() {
+							Display.getCurrent().syncExec(new Runnable() {
 
 								public void run() {
 									if(getView() != null && editingDomain != null) {

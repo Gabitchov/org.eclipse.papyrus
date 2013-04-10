@@ -147,7 +147,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 					domain.runExclusive(new Runnable() {
 
 						public void run() {
-							PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+							PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 
 								// executing the command
 								public void run() {
