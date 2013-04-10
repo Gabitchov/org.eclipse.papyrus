@@ -12,30 +12,17 @@
 package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.common.core.util.StringStatics;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
-import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -48,7 +35,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.uml2.uml.Profile;
 import org.w3c.dom.Element;
@@ -152,70 +138,23 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 	 * @{inheritDoc
 	 */
 	@Override
-	public void run(final EditPart editPart) {
+	public ICommand getPostCommand(final IAdaptable viewAdapter) {
 
-		final CompositeCommand compositeCommand = new CompositeCommand("Modify Stereotype Display");
-		// View view = (View)editPart.getModel();
+		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
+		return new AbstractTransactionalCommand(editingDomain, "Modify Stereotype Display", null) {
+			
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				View view = (View)viewAdapter.getAdapter(View.class);
 
-		final EModelElement view = (EModelElement)((GraphicalEditPart)editPart).getModel();
-		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.infra.core.utils.EditorUtils.getTransactionalEditingDomain();
-		try {
-			editingDomain.runExclusive(new Runnable() {
-
-				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-
-							String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(view);
-							final RecordingCommand command = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(editingDomain, view, stereotypetoDisplay, displayKind);
-							compositeCommand.compose(new EMFtoGMFCommandWrapper(command));
-							compositeCommand.reduce();
-
-							if(compositeCommand.canExecute()) {
-								boolean isActivating = true;
-								Map<String, Boolean> options = null;
-								// use the viewer to determine if we are still
-								// initializing the diagram
-								// do not use the DiagramEditPart.isActivating
-								// since ConnectionEditPart's
-								// parent will not be a diagram edit part
-								EditPartViewer viewer = editPart.getViewer();
-								if(viewer instanceof DiagramGraphicalViewer) {
-									isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
-								}
-
-								if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
-									options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								}
-
-								AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
-
-									@Override
-									protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-										editingDomain.getCommandStack().execute(command);
-
-										return Status.OK_STATUS;
-									}
-								};
-								try {
-									operation.execute(new NullProgressMonitor(), null);
-								} catch (ExecutionException e) {
-									Activator.log.error(e);
-								}
-							} else {
-								Activator.log.error("Impossible to execute graphical post action " + propertiesToUpdate, null);
-							}
-						}
-					});
+				if(view != null) {
+					String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(view);
+					AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(editingDomain, view, stereotypetoDisplay, displayKind).execute();
 				}
-
-			});
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				return null;
+			}
+		};
+		
 	}
 
 	/**
