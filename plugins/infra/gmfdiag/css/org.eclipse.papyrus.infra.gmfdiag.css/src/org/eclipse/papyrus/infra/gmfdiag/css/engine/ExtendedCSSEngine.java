@@ -79,4 +79,9 @@ public interface ExtendedCSSEngine extends LazyCSSEngine, CSSEngine {
 	 * @param nativeWidget
 	 */
 	public void handleDispose(Object nativeWidget);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Element getElement(Object node);
 }

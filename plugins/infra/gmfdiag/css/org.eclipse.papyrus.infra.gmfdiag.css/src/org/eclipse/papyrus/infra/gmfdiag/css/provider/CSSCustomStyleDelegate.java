@@ -44,7 +44,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 
 	private static int FULL_VALUE = 0;
 
-	private static final AppearanceStyleProvider provider = new AnnotationStyleProvider();;
+	private static final AppearanceStyleProvider provider = new AnnotationStyleProvider();
 
 	/**
 	 * Constructor

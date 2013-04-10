@@ -59,6 +59,8 @@ public class ResetStyleHandler extends AbstractHandler {
 		ISelection selection;
 
 		try {
+			//FIXME: Use ServiceUtilsForHandlers
+			//FIXME: This method is sometimes called manually with a null ExecutionEvent. It won't work with ServiceUtilsForHandlers  
 			IMultiDiagramEditor editor = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry().getService(IMultiDiagramEditor.class);
 			selection = editor.getEditorSite().getSelectionProvider().getSelection();
 		} catch (ServiceException ex) {
