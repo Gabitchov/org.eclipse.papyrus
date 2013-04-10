@@ -11,7 +11,6 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.service.validation.handler;
 
 import org.eclipse.emf.common.command.Command;
@@ -19,7 +18,6 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateDelMarkersFromSubtreeCommand;
 import org.eclipse.papyrus.infra.services.validation.handler.AbstractCommandHandler;
 import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * Action used for pasting either a model element or a shape (i.e. the model element represented

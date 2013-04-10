@@ -33,16 +33,12 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 
 	protected boolean doValidateStereotypeApplications(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		List<EObject> stereotypeApplications = eObject instanceof Element ? ((Element)eObject).getStereotypeApplications() : Collections.<EObject> emptyList();
-
 		if(!stereotypeApplications.isEmpty()) {
 			Iterator<EObject> i = stereotypeApplications.iterator();
 			boolean result = validate(i.next(), diagnostics, context);
-
 			while(i.hasNext() && (result || diagnostics != null)) {
-
 				result &= validate(i.next(), diagnostics, context);
 			}
-
 			return result;
 		} else {
 			return true;
@@ -52,11 +48,9 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 	@Override
 	protected boolean doValidateContents(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean result = doValidateStereotypeApplications(eObject, diagnostics, context);
-
 		if(result || diagnostics != null) {
 			result &= super.doValidateContents(eObject, diagnostics, context);
 		}
-
 		return result;
 	}
 }
