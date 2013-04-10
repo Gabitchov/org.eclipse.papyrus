@@ -138,7 +138,10 @@ public class DocumentRoot {
 		case FORMAT_GZIP:
 			return new GZIPInputStream(new URL(basePath + "/" + baseFile).openStream());
 		default:
-			return new URL(baseURL, basePath + "/" + baseFile).openStream(); // preserve the stream handler
+			if ((basePath != null) && (basePath.length() > 0)) {
+				return new URL(baseURL, basePath + "/" + baseFile).openStream(); // preserve the stream handler
+			}
+			return new URL(baseURL, baseFile).openStream(); // preserve the stream handler
 		}
 	}
 
@@ -265,7 +268,7 @@ public class DocumentRoot {
 			}
 
 			if(basePath == null) {
-				String path = url.toString();
+				String path = url.getPath();
 				while(path.endsWith("/")) {
 					path = path.substring(0, path.length() - 1);
 				}
@@ -275,10 +278,14 @@ public class DocumentRoot {
 					basePath = path.substring(0, lastIndex);
 					baseFile = path.substring(lastIndex + 1);
 					baseURL = new URL(url, basePath); // be sure to preserve the stream handler
-				} else {
+				} else if ("file".equals(url.getProtocol())) {
 					basePath = System.getProperty("user.dir");
 					baseURL = new File(basePath).toURI().toURL();
 					baseFile = path;
+				} else {
+					basePath = "";
+					baseFile = path;
+					baseURL = new URL(url, basePath); // be sure to preserve the stream handler
 				}
 			}
 
