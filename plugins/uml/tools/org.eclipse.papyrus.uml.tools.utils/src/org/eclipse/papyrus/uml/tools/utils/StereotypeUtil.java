@@ -22,6 +22,11 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -212,6 +217,7 @@ public class StereotypeUtil {
 		else if((propType instanceof org.eclipse.uml2.uml.Class) && !(propType instanceof org.eclipse.uml2.uml.Stereotype) && property.isComposite()) {
 			return /* FIXME stProp + */property.getName() + EQUAL_SEPARATOR + property.getName() + separator;
 		}
+
 		// otherwise
 		else {
 			return getPropertyValue(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,false);
@@ -569,16 +575,22 @@ public class StereotypeUtil {
 					String value= ""+umlElement.getValue(stereotype, property.getName());
 					out = property.getName() + EQUAL_SEPARATOR + value + PROPERTY_VALUE_SEPARATOR;
 					if(value.contains("[")){
-					out= out.replace("[", "["+QUOTE);
-					out= out.replace("]", QUOTE+"]");
-					out= out.replace(", ", QUOTE+","+QUOTE);
+						out= out.replace("[", "["+QUOTE);
+						out= out.replace("]", QUOTE+"]");
+						out= out.replace(", ", QUOTE+","+QUOTE);
 					}
 					else{
 						out = property.getName() + EQUAL_SEPARATOR +QUOTE +value+QUOTE + PROPERTY_VALUE_SEPARATOR;
 					}
 				}
 				else{
-					out = property.getName() + EQUAL_SEPARATOR + umlElement.getValue(stereotype, property.getName()) + PROPERTY_VALUE_SEPARATOR;}
+					if(umlElement.getValue(stereotype, property.getName()) instanceof EObject){
+						ILabelProvider labelProvider=getLabelProvider(property);
+						return out= property.getName() + EQUAL_SEPARATOR + labelProvider.getText(umlElement.getValue(stereotype, property.getName())) + PROPERTY_VALUE_SEPARATOR;
+					}
+					else{
+						out = property.getName() + EQUAL_SEPARATOR + umlElement.getValue(stereotype, property.getName()) + PROPERTY_VALUE_SEPARATOR;}
+				}
 			} else {
 				out = property.getName() + PROPERTY_VALUE_SEPARATOR;
 			}
@@ -589,6 +601,14 @@ public class StereotypeUtil {
 		return out;
 	}
 
+	public static  ILabelProvider getLabelProvider(EObject eObject) {
+		try {
+			return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, eObject).getLabelProvider();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return new LabelProvider();
+		}
+	}
 	/**
 	 * Parse the stereotype image and select those that have an "shape" kind (EAnnotation).
 	 *
