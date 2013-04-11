@@ -131,7 +131,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+					Display.getCurrent().syncExec(new Runnable() {
 
 						public void run() {
 							
@@ -230,7 +230,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+					Display.getCurrent().syncExec(new Runnable() {
 
 						public void run() {
 							SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
@@ -302,7 +302,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						editPart.getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
-								Display.getCurrent().asyncExec(new Runnable() {
+								Display.getCurrent().syncExec(new Runnable() {
 
 									public void run() {
 										DeleteCommand command = new DeleteCommand(currentNode);
@@ -328,7 +328,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						editPart.getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
-								Display.getCurrent().asyncExec(new Runnable() {
+								Display.getCurrent().syncExec(new Runnable() {
 
 									public void run() {
 										if(currentNode!=null&&editPart.getEditingDomain()!=null){
