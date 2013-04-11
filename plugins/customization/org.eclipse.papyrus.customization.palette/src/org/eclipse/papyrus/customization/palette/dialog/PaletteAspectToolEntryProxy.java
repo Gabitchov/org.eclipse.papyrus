@@ -17,15 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPaletteAspectToolEntryProxy;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.StereotypePostAction;
 import org.eclipse.swt.graphics.Image;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -38,6 +40,7 @@ public class PaletteAspectToolEntryProxy extends PaletteEntryProxy implements IP
 
 	/** list of pre actions executed by the tool */
 	protected List<IPreAction> preActions = new ArrayList<IPreAction>();
+
 
 	/**
 	 * Creates a new {@link PaletteAspectToolEntryProxy}
@@ -78,7 +81,7 @@ public class PaletteAspectToolEntryProxy extends PaletteEntryProxy implements IP
 	 * 
 	 * @return the list of pre actions attached to this {@link PaletteAspectToolEntryProxy}
 	 */
-	public List<IPreAction> getPreActions() {
+	protected List<IPreAction> getPreActions() {
 		return preActions;
 	}
 
@@ -112,8 +115,25 @@ public class PaletteAspectToolEntryProxy extends PaletteEntryProxy implements IP
 	protected void initAspectActions() {
 		Object value = getEntry().getAspectProperties(IPapyrusPaletteConstant.ASPECT_ACTION_KEY);
 		if(value instanceof NodeList) {
-			PaletteUtil.initAspectActions((NodeList)value, postActions, preActions);
+			NodeList nodeList = ((NodeList)value);
+			for(int i = 0; i < nodeList.getLength(); i++) {
+				Node childNode = nodeList.item(i);
+				String childName = childNode.getNodeName();
+				if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
+					// node is a post action => retrieve the id of the factory in charge of this configuration
+					IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
+					if(provider != null) {
+						IPostAction action = (IPostAction)provider.createAction(childNode);
+						postActions.add(action);
+					} else {
+						Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null);
+					}
+				} else if(IPapyrusPaletteConstant.PRE_ACTION.equals(childName)) {
+					// no implementation yet
+				}
+			}
 		}
+
 	}
 
 	/**

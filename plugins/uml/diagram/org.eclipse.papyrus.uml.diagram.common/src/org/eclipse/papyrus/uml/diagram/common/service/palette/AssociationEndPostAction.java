@@ -13,23 +13,32 @@ package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.AssociationHelper;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
@@ -193,61 +202,88 @@ public class AssociationEndPostAction extends ModelPostAction {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ICommand getPostCommand(final IAdaptable viewAdapter) {
+	public void run(EditPart editPart) {
 
-		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
+		final CompositeCommand compositeCommand = new CompositeCommand("Modify Association End");
+		EObject objectToEdit = ((View)editPart.getModel()).getElement();
 
-		return new AbstractTransactionalCommand(editingDomain, "Modify Association End", null) {
+		// object to edit should be an association...
+		if(objectToEdit instanceof Association) {
+			for(PropertyEndConfiguration configuration : configurations) {
 
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				View view = (View)viewAdapter.getAdapter(View.class);
+				// retrieve Property... more tests to do!!
+				Property property = ((Association)objectToEdit).getMemberEnds().get(configuration.getIndex());
 
-				if(view != null && view.getElement() instanceof Association) {
-					EObject objectToEdit = view.getElement();
-
-					for(PropertyEndConfiguration configuration : configurations) {
-
-						// retrieve Property... more tests to do!!
-						Property property = ((Association)objectToEdit).getMemberEnds().get(configuration.getIndex());
-
-						if(!("".equals(configuration.getOwner()))) {
-							// change the owner to the specified one
-							IUndoableOperation operation = AssociationHelper.createSetOwnerCommand((Association)objectToEdit, property, CLASS_OWNER.equals(configuration.getOwner()));
-							if(operation != null && operation.canExecute()) {
-								operation.execute(null, null);
-							}
-						}
-
-						if(!("".equals(configuration.getAggregationKind()))) {
-							// change the aggregation kind
-							AggregationKind aggregationKind = AggregationKind.get(configuration.getAggregationKind());
-							AssociationHelper.createSetAggregationCommand(property, aggregationKind).execute(null, null);
-						}
-
-						if(!("".equals(configuration.getMultiplicity()))) {
-							// change the aggregation kind
-							String multiplicity = configuration.getMultiplicity();
-							try {
-								int[] values = MultiplicityElementUtil.parseMultiplicity(multiplicity);
-								if(values.length == 2) {
-									AssociationHelper.createSetMultiplicityCommand(property, values[0], values[1]).execute(null, null);
-								}
-							} catch (NumberFormatException e) {
-								Activator.log.error("Multiplicity [" + multiplicity + "] can not be parsed", e);
-							}
-						}
-
-						if(!("".equals(configuration.getNavigation()))) {
-							String navigation = configuration.getNavigation();
-							boolean isNavigable = NAVIGABLE_YES.equals(navigation);
-							AssociationHelper.createSetNavigableCommand(((Association)objectToEdit), property, isNavigable).execute(null, null);
-						}
+				if(!("".equals(configuration.getOwner()))) {
+					// change the owner to the specified one
+					IUndoableOperation operation = AssociationHelper.createSetOwnerCommand((Association)objectToEdit, property, CLASS_OWNER.equals(configuration.getOwner()));
+					if(operation != null) {
+						compositeCommand.compose(operation);
 					}
 				}
-				return CommandResult.newOKCommandResult();
+
+				if(!("".equals(configuration.getAggregationKind()))) {
+					// change the aggregation kind
+					AggregationKind aggregationKind = AggregationKind.get(configuration.getAggregationKind());
+					compositeCommand.compose(AssociationHelper.createSetAggregationCommand(property, aggregationKind));
+				}
+
+				if(!("".equals(configuration.getMultiplicity()))) {
+					// change the aggregation kind
+					String multiplicity = configuration.getMultiplicity();
+					try {
+						int[] values = MultiplicityElementUtil.parseMultiplicity(multiplicity);
+						if(values.length == 2) {
+							compositeCommand.compose(AssociationHelper.createSetMultiplicityCommand(property, values[0], values[1]));
+						}
+					} catch (NumberFormatException e) {
+						Activator.log.error("Multiplicity [" + multiplicity + "] can not be parsed", e);
+					}
+				}
+
+				if(!("".equals(configuration.getNavigation()))) {
+					String navigation = configuration.getNavigation();
+					boolean isNavigable = NAVIGABLE_YES.equals(navigation);
+					compositeCommand.compose(AssociationHelper.createSetNavigableCommand(((Association)objectToEdit), property, isNavigable));
+				}
 			}
-		};
+		}
+
+		compositeCommand.reduce();
+
+		if(compositeCommand.canExecute()) {
+			boolean isActivating = true;
+			Map<String, Boolean> options = null;
+			// use the viewer to determine if we are still initializing the
+			// diagram
+			// do not use the DiagramEditPart.isActivating since
+			// ConnectionEditPart's
+			// parent will not be a diagram edit part
+			EditPartViewer viewer = editPart.getViewer();
+			if(viewer instanceof DiagramGraphicalViewer) {
+				isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
+			}
+
+			if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
+				options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+			}
+
+			AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
+
+				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+					compositeCommand.execute(monitor, info);
+
+					return Status.OK_STATUS;
+				}
+			};
+			try {
+				operation.execute(new NullProgressMonitor(), null);
+			} catch (ExecutionException e) {
+				Activator.log.error(e);
+			}
+		}
+
 	}
 
 	/**

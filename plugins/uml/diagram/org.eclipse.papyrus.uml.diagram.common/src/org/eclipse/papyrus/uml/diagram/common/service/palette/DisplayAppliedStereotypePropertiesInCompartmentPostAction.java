@@ -12,8 +12,10 @@
 package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,10 +23,20 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
@@ -33,11 +45,10 @@ import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -132,23 +143,58 @@ public class DisplayAppliedStereotypePropertiesInCompartmentPostAction extends G
 	 * @{inheritDoc
 	 */
 	@Override
-	public ICommand getPostCommand(final IAdaptable viewAdapter) {
-		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
-
-		return new AbstractTransactionalCommand(editingDomain, "Modify Stereotype Properties Display", null) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-				View view = (View)viewAdapter.getAdapter(View.class);
-				String stereotypesStrList = PaletteUtil.convertToCommaSeparatedRepresentation(listOfDisplayableStereotypeProperties);
-
-				AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(editingDomain, view, stereotypesStrList).execute();
-				AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(editingDomain, view, "", UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION).execute();
-
-				return CommandResult.newOKCommandResult();
+	public void run(EditPart editPart) {
+		final CompositeCommand compositeCommand = new CompositeCommand("Modify Stereotype Properties Display");
+		View view = (View)editPart.getModel();
+		TransactionalEditingDomain editingDomain = org.eclipse.papyrus.infra.core.utils.EditorUtils.getTransactionalEditingDomain();
+		// create commands for properties
+		StringBuffer buffer = new StringBuffer();
+		Iterator<String> it = listOfDisplayableStereotypeProperties.iterator();
+		while(it.hasNext()) {
+			String value = it.next();
+			buffer.append(value);
+			if(it.hasNext()) {
+				buffer.append(",");
 			}
-		};
+		}
+		RecordingCommand propertyCommand = AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(editingDomain, view, buffer.toString());
+		compositeCommand.add(new EMFtoGMFCommandWrapper(propertyCommand));
+		
+		RecordingCommand stereotypeCommand = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(editingDomain, view, "", UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION) ;
+		compositeCommand.add(new EMFtoGMFCommandWrapper(stereotypeCommand));
+		
+		compositeCommand.reduce();
+		if(compositeCommand.canExecute()) {
+			boolean isActivating = true;
+			Map<String, Boolean> options = null;
+			// use the viewer to determine if we are still initializing the
+			// diagram
+			// do not use the DiagramEditPart.isActivating since
+			// ConnectionEditPart's
+			// parent will not be a diagram edit part
+			EditPartViewer viewer = editPart.getViewer();
+			if(viewer instanceof DiagramGraphicalViewer) {
+				isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
+			}
+			if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
+				options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+			}
+			AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
+
+				@Override
+				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					compositeCommand.execute(monitor, info);
+					return Status.OK_STATUS;
+				}
+			};
+			try {
+				operation.execute(new NullProgressMonitor(), null);
+			} catch (ExecutionException e) {
+				Activator.log.error(e);
+			}
+		} else {
+			Activator.log.error("Impossible to execute graphical post action " + propertiesToUpdate, null);
+		}
 	}
 
 	/**
@@ -336,7 +382,7 @@ public class DisplayAppliedStereotypePropertiesInCompartmentPostAction extends G
 	}
 
 	public String getPropertyName(Stereotype stereotype, Property property) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuffer buffer = new StringBuffer();
 		buffer.append(stereotype.getQualifiedName());
 		buffer.append(".");
 		buffer.append(property.getName());

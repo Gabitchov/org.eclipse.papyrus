@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +19,23 @@ import java.util.Map;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.swt.SWT;
@@ -86,26 +97,61 @@ public class GraphicalPostAction extends ModelPostAction {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ICommand getPostCommand(final IAdaptable viewAdapter) {
-		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
+	public void run(EditPart editPart) {
 
-		return new AbstractTransactionalCommand(editingDomain, "Modify Graphic", null) {
-			
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				View view = (View)viewAdapter.getAdapter(View.class);
-				for(String featureName : propertiesToUpdate.keySet()) {
-					// retrieve feature to set
-					EStructuralFeature feature = view.eClass().getEStructuralFeature(featureName);
-					if(feature == null) {
-						Activator.log.error("Impossible to find the feature " + featureName + " for element " + view, null);
-					} else {
-						view.eSet(feature, getValue(feature, propertiesToUpdate.get(featureName)));
-					}
-				}
-				return CommandResult.newOKCommandResult();
+		final CompositeCommand compositeCommand = new CompositeCommand("Modify Graphic");
+		EObject objectToEdit = (View)editPart.getModel();
+
+		for(String featureName : propertiesToUpdate.keySet()) {
+			// retrieve feature to set
+			EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(featureName);
+			if(feature == null) {
+				Activator.log.error("Impossible to find the feature " + featureName + " for element " + objectToEdit, null);
+				return;
+			} else {
+
+				SetRequest request = new SetRequest(objectToEdit, feature, getValue(feature, propertiesToUpdate.get(featureName)));
+				// request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME,
+				// "NEW");
+				compositeCommand.compose(new SetValueCommand(request));
 			}
-		};
+		}
+		compositeCommand.reduce();
+
+		if(compositeCommand.canExecute()) {
+			boolean isActivating = true;
+			Map<String, Boolean> options = null;
+			// use the viewer to determine if we are still initializing the
+			// diagram
+			// do not use the DiagramEditPart.isActivating since
+			// ConnectionEditPart's
+			// parent will not be a diagram edit part
+			EditPartViewer viewer = editPart.getViewer();
+			if(viewer instanceof DiagramGraphicalViewer) {
+				isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
+			}
+
+			if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
+				options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+			}
+
+			AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
+
+				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+					compositeCommand.execute(monitor, info);
+
+					return Status.OK_STATUS;
+				}
+			};
+			try {
+				operation.execute(new NullProgressMonitor(), null);
+			} catch (ExecutionException e) {
+				Activator.log.error(e);
+			}
+		} else {
+			Activator.log.error("Impossible to execute graphical post action " + propertiesToUpdate, null);
+		}
 	}
 
 	/**

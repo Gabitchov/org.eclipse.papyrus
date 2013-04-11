@@ -9,18 +9,17 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST)
- *  Mathieu Velten (Atos) mathieu.velten@atos.net - use commands instead of running code in post commit
- *  Philippe ROLAND (Atos) philippe.roland@atos.net - Implemented PreActions
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -29,22 +28,18 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredCreateConnectionViewCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
@@ -53,20 +48,19 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.ConnectionToolPreferences;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.layout.LayoutUtils;
-import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
+import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -83,10 +77,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	// protected List elementTypes;
 
 	/** post action list */
-	protected List<IPostAction> postActions = new ArrayList<IPostAction>();
-
-	/** preaction list */
-	protected List<IPreAction> preActions = new ArrayList<IPreAction>();
+	protected List<IAspectAction> postActions = new ArrayList<IAspectAction>();
 
 	/** List of elements to create */
 	private final List<IElementType> elementTypes;
@@ -152,6 +143,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		List<?> selectedEditParts = getCurrentViewer().getSelectedEditParts();
 		List<EObject> eobjects = new ArrayList<EObject>();
 		List<NotificationListener> listeners = new ArrayList<NotificationListener>();
+		CompoundCommand cmd = new CompoundCommand("Create Links");
 		DiagramEventBroker eventBroker = null;
 		final EditPartViewer viewer = getCurrentViewer();
 		// only attempt to create connection if there are two shapes selected
@@ -186,16 +178,14 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 					connectionRequest.setLocation(newLocation[1]);
 
-					setTargetRequest(connectionRequest);
-
 					// inits the listener
 					View eObject = (View)targetEditPart.getAdapter(View.class);
 
 					NotificationListener listener = null;
-					boolean requiresPostCommitRun = requiresPostCommitRun();
+					boolean requiresPostAction = requiresPostAction();
 
 					// adds the listener
-					if(requiresPostCommitRun) {
+					if(requiresPostAction) {
 						// register a listener to have information about element
 						// creation
 						// retrieves editing domain
@@ -214,8 +204,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 									Map<?, ?> map = viewer.getEditPartRegistry();
 									EditPart editPart = (EditPart)map.get(newValue);
-									for(IPostAction action : postActions) {
-										action.runInPostCommit(editPart);
+									for(IAspectAction action : postActions) {
+										action.run(editPart);
 									}
 								}
 							};
@@ -234,67 +224,29 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 					}
 
 					Command command = targetEditPart.getCommand(connectionRequest);
-
-					if (command != null) {
-						ICommand completeCommand = getCompleteCommand(command);
-
-						setCurrentCommand(new ICommandProxy(completeCommand));
-
-						executeCurrentCommand();
-					}
-
-					if(requiresPostCommitRun) {
-						if(eventBroker != null) {
-							for(int ii = 0; ii < eobjects.size(); ii++) {
-								eventBroker.removeNotificationListener(eobjects.get(ii), listeners.get(ii));
-							}
-						}
-					}
-
-					selectAddedObject(getCurrentViewer(), DiagramCommandStack.getReturnValues(command));
-
+					cmd.add(command);
 				}
 			}
+
+			setCurrentCommand(cmd);
+
+			executeCurrentCommand();
+
+			if(requiresPostAction()) {
+				if(eventBroker != null) {
+					for(int ii = 0; ii < eobjects.size(); ii++) {
+						eventBroker.removeNotificationListener(eobjects.get(ii), listeners.get(ii));
+					}
+				}
+			}
+
+			selectAddedObject(viewer, DiagramCommandStack.getReturnValues(cmd));
 
 			setAvoidDeactivation(false);
 			eraseSourceFeedback();
 			deactivate();
 
 		}
-	}
-
-	protected ICommand getCompleteCommand(Command createConnectionCommand) {
-		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
-		CompositeTransactionalCommand compositeCmd = new CompositeTransactionalCommand (editingDomain, "Create Link");
-
-		for(IPreAction preAction : preActions) {
-			if(getTargetRequest() instanceof CreateConnectionRequest) {
-				Object sourceModel = ((CreateConnectionRequest)getTargetRequest()).getSourceEditPart().getModel();
-				Object targetModel = ((CreateConnectionRequest)getTargetRequest()).getTargetEditPart().getModel();
-				if(sourceModel instanceof View && targetModel instanceof View) {
-					ICommand cmd = preAction.getConnectionPreCommand((View)sourceModel, (View)targetModel);
-					if(cmd != null) {
-						compositeCmd.add(cmd);
-					}
-				}
-			}
-		}
-
-		compositeCmd.add(new CommandProxy(createConnectionCommand));
-
-		if (getTargetRequest() instanceof CreateRequest) {
-			CreateUnspecifiedAdapter viewAdapter = new CreateUnspecifiedAdapter();
-			viewAdapter.add((CreateRequest)getTargetRequest());
-
-			for (IPostAction action : postActions) {
-				ICommand cmd = action.getPostCommand(viewAdapter);
-				if (cmd != null) {
-					compositeCmd.add(cmd);
-				}
-			}
-		}
-
-		return compositeCmd;
 	}
 
 	/**
@@ -311,19 +263,19 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		if(getTargetEditPart() == null) {
 			return false;
 		}
-
 		// inits the listener
 		View eObject = (View)getTargetEditPart().getAdapter(View.class);
 		DiagramEventBroker eventBroker = null;
 		NotificationListener listener = null;
-		boolean requiresPostCommitRun = requiresPostCommitRun();
+		boolean requiresPostAction = requiresPostAction();
 
 		// adds the listener
-		if(requiresPostCommitRun) {
+		if(requiresPostAction) {
 			// register a listener to have information about element creation
 			// retrieves editing domain
+			TransactionalEditingDomain domain;
 			try {
-				TransactionalEditingDomain domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
+				domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
 				eventBroker = DiagramEventBroker.getInstance(domain);
 
 				if(eventBroker == null) {
@@ -332,10 +284,10 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				listener = new NotificationListener() {
 
 					public void notifyChanged(Notification notification) {
-						Connector newValue = (Connector)notification.getNewValue();
+						Edge newValue = (Edge)notification.getNewValue();
 						EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
-						for(IPostAction action : postActions) {
-							action.runInPostCommit(editPart);
+						for(IAspectAction action : postActions) {
+							action.run(editPart);
 						}
 					}
 				};
@@ -348,16 +300,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 		EditPartViewer viewer = getCurrentViewer();
 		Command endCommand = getCommand();
+		setCurrentCommand(endCommand);
 
-		if (endCommand != null) {
-			ICommand completeCommand = getCompleteCommand(endCommand);
+		executeCurrentCommand();
 
-			setCurrentCommand(new ICommandProxy(completeCommand));
-
-			executeCurrentCommand();
-		}
-
-		if(requiresPostCommitRun) {
+		if(requiresPostAction) {
 			if(eventBroker != null) {
 				eventBroker.removeNotificationListener(eObject, listener);
 			}
@@ -373,17 +320,12 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	}
 
 	/**
-	 * checks if this tool needs a post commit run
+	 * checks if this tool realizes post actions
 	 * 
-	 * @return <code>true</code> if post actions need a post commit run
+	 * @return <code>true</code> if post actions must be executed
 	 */
-	protected boolean requiresPostCommitRun() {
-		for (IPostAction action : postActions) {
-			if (action.needsPostCommitRun()) {
-				return true;
-			}
-		}
-		return false;
+	protected boolean requiresPostAction() {
+		return postActions.size() > 0;
 	}
 
 	/**
@@ -395,11 +337,28 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			// initialize the pre and post actions
 			// the value should be a NodeList
 			if(value instanceof NodeList) {
-				PaletteUtil.initAspectActions((NodeList)value, postActions, preActions);
+				NodeList nodeList = ((NodeList)value);
+				for(int i = 0; i < nodeList.getLength(); i++) {
+					Node childNode = nodeList.item(i);
+					String childName = childNode.getNodeName();
+					if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
+						// node is a post action => retrieve the id of the
+						// provider in charge of this configuration
+						IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
+						if(provider != null) {
+							IAspectAction action = provider.createAction(childNode);
+							postActions.add(action);
+						} else {
+							Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null);
+						}
+					} else if(IPapyrusPaletteConstant.PRE_ACTION.equals(childName)) {
+						// no implementation yet
+					}
+				}
 			}
-		} else {
-			super.applyProperty(key, value);
+			return;
 		}
+		super.applyProperty(key, value);
 	}
 
 	/**
@@ -425,10 +384,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * A map containing the <code>CreateConnectionRequest</code> for each
 		 * element type.
 		 */
-		private Map<IElementType, CreateConnectionRequest> requests = new HashMap<IElementType, CreateConnectionRequest>();
-
-		/** The result to be returned from which the new views can be retrieved. */
-		private List newObjectList = new ArrayList();
+		private Map requests = new HashMap();
 
 		/**
 		 * A flag to indicate if the Modeling Assistant Service should be used
@@ -475,43 +431,13 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		}
 
 		/**
-		 * See bug 288695
-		 * 
-		 * if there is only one {@link CreateRequest}, returns this {@link CreateRequest#getNewObject()},
-		 * else, returns a list containing a single {@link IAdaptable} that delegates to the
-		 * {@link CreateRequest#getNewObject()} after the command is executed.
-		 * It is safe to use the return {@link IAdaptable} in a {@link DeferredCreateConnectionViewCommand}.
-		 */
-		public Object getNewObject() {
-			if (newObjectList.isEmpty()) {
-				if (requests.size() == 1) {
-					Object createRequest = requests.values().iterator().next();
-					if (createRequest instanceof CreateRequest) {
-						newObjectList.add(((CreateRequest)createRequest).getNewObject());
-					}
-				} else if (requests.size() > 1) {
-					/* See bug 288695 */
-					CreateUnspecifiedAdapter adapter = new CreateUnspecifiedAdapter();
-					for (Object request : requests.values()) {
-						if (request instanceof CreateRequest) {
-							adapter.add((CreateRequest)request);
-						}
-					}
-					List<IAdaptable> newObjects = new ArrayList<IAdaptable>();
-					newObjects.add(adapter);
-					return newObjects;
-				}
-			}
-			return newObjectList;
-		}
-
-		/**
 		 * Creates a <code>CreateConnectionRequest</code> for each relationship
 		 * type and adds it to the map of requests.
 		 */
 		protected void createRequests() {
-			for(IElementType elementType : (List<IElementType>)getElementTypes()) {
-				CreateConnectionRequest request = PapyrusCreateViewRequestFactory.getCreateConnectionRequest(elementType, getPreferencesHint());
+			for(Iterator<IElementType> iter = getElementTypes().iterator(); iter.hasNext();) {
+				IElementType elementType = iter.next();
+				Request request = PapyrusCreateViewRequestFactory.getCreateConnectionRequest(elementType, getPreferencesHint());
 				request.setType(getType());
 				requests.put(elementType, request);
 			}
@@ -526,13 +452,16 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 */
 		@Override
 		public CreateRequest getRequestForType(IElementType relationshipType) {
-			return requests.get(relationshipType);
+			if(requests != null) {
+				return (CreateConnectionRequest)requests.get(relationshipType);
+			}
+			return null;
 		}
 
 		@Override
 		public void addRequest(IElementType relationshipType, Request request) {
-			if (request instanceof CreateConnectionRequest) {
-				requests.put(relationshipType, (CreateConnectionRequest)request);
+			if(requests != null) {
+				requests.put(relationshipType, request);
 			}
 		}
 
@@ -543,7 +472,10 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 */
 		@Override
 		public List getAllRequests() {
-			return new ArrayList(requests.values());
+			if(requests != null) {
+				return new ArrayList(requests.values());
+			}
+			return Collections.EMPTY_LIST;
 		}
 
 		// /**
@@ -560,8 +492,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 */
 		@Override
 		public void setSourceEditPart(EditPart part) {
-			for(CreateConnectionRequest request : requests.values()) {
-				request.setSourceEditPart(part);
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setSourceEditPart(part);
+				}
 			}
 			super.setSourceEditPart(part);
 		}
@@ -571,8 +506,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 */
 		@Override
 		public void setTargetEditPart(EditPart part) {
-			for(CreateConnectionRequest request : requests.values()) {
-				request.setTargetEditPart(part);
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setTargetEditPart(part);
+				}
 			}
 			super.setTargetEditPart(part);
 		}
@@ -582,8 +520,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 */
 		@Override
 		public void setLocation(Point location) {
-			for(CreateConnectionRequest request : requests.values()) {
-				request.setLocation(location);
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setLocation(location);
+				}
 			}
 			super.setLocation(location);
 		}
@@ -593,8 +534,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 */
 		@Override
 		public void setType(Object type) {
-			for(CreateConnectionRequest request : requests.values()) {
-				request.setType(type);
+			if(requests != null) {
+				for(Iterator iter = requests.values().iterator(); iter.hasNext();) {
+					CreateConnectionRequest request = (CreateConnectionRequest)iter.next();
+					request.setType(type);
+				}
 			}
 			super.setType(type);
 		}

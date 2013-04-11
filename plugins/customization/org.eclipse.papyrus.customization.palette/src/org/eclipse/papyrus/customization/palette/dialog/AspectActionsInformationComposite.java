@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.palette.dialog;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,7 +29,6 @@ import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IPaletteAspectToolEntryProxy;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
 import org.eclipse.swt.SWT;
@@ -166,10 +164,8 @@ public class AspectActionsInformationComposite {
 				ITreeSelection selection = (ITreeSelection)viewer.getSelection();
 				if(selection != null && selection.size() > 0) {
 					for(Object selected : selection.toList()) {
-						if(selected instanceof IPostAction && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
-							((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().remove(selected);
-						} else if(selected instanceof IPreAction && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
-							((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions().remove(selected);
+						if(selected instanceof IPostAction && selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
+							((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().remove(selected);
 						}
 					}
 				}
@@ -200,10 +196,10 @@ public class AspectActionsInformationComposite {
 			 */
 			public void mouseUp(MouseEvent e) {
 				IStructuredSelection selection = (IStructuredSelection)viewer.getSelection();
-				if(selection != null && selection.size() > 0 && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
+				if(selection != null && selection.size() > 0 && selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
 					IAspectAction action = (IAspectAction)selection.getFirstElement();
-					List<IPreAction> initialPreList = ((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions();
-					List<IPostAction> initialPostList = ((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions();
+					List<IPreAction> initialPreList = ((PaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions();
+					List<IPostAction> initialPostList = ((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions();
 
 					if(action instanceof IPreAction) {
 						// move from pre action list
@@ -215,6 +211,9 @@ public class AspectActionsInformationComposite {
 							Collections.swap(initialPostList, initialPostList.indexOf(action), initialPostList.indexOf(action) - 1);
 						}
 					}
+
+					((PaletteAspectToolEntryProxy)selectedEntryProxy).setPreActions(initialPreList);
+					((PaletteAspectToolEntryProxy)selectedEntryProxy).setPostActions(initialPostList);
 
 					// update content
 					viewer.setInput(selectedEntryProxy);
@@ -248,10 +247,10 @@ public class AspectActionsInformationComposite {
 			 */
 			public void mouseUp(MouseEvent e) {
 				IStructuredSelection selection = (IStructuredSelection)viewer.getSelection();
-				if(selection != null && selection.size() > 0 && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
+				if(selection != null && selection.size() > 0 && selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
 					IAspectAction action = (IAspectAction)selection.getFirstElement();
-					List<IPreAction> initialPreList = ((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions();
-					List<IPostAction> initialPostList = ((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions();
+					List<IPreAction> initialPreList = ((PaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions();
+					List<IPostAction> initialPostList = ((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions();
 
 					if(action instanceof IPreAction) {
 						// move from pre action list
@@ -263,6 +262,9 @@ public class AspectActionsInformationComposite {
 							Collections.swap(initialPostList, initialPostList.indexOf(action), initialPostList.indexOf(action) + 1);
 						}
 					}
+
+					((PaletteAspectToolEntryProxy)selectedEntryProxy).setPreActions(initialPreList);
+					((PaletteAspectToolEntryProxy)selectedEntryProxy).setPostActions(initialPostList);
 
 					// update content
 					viewer.setInput(selectedEntryProxy);
@@ -332,11 +334,11 @@ public class AspectActionsInformationComposite {
 					public void widgetSelected(SelectionEvent e) {
 						IAspectActionProvider factory = (IAspectActionProvider)((MenuItem)e.getSource()).getData();
 						IAspectAction action = factory.createAction(null);
-						if(selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
+						if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
 							if(action instanceof IPostAction) {
-								((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().add((IPostAction)action);
-							} else if(action instanceof IPreAction) {
-								((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions().add((IPreAction)action);
+								((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().add((IPostAction)action);
+							} else {
+								((PaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions().add((IPreAction)action);
 							}
 							setSelectedEntryProxy(selectedEntryProxy);
 						}
@@ -395,12 +397,8 @@ public class AspectActionsInformationComposite {
 			handleActionListSelectionChanged(null);
 
 			// select first post action
-			if(selectedEntryProxy instanceof IPaletteAspectToolEntryProxy && ((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().size() > 0) {
-				viewer.setSelection(new StructuredSelection(((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().get(0)), true);
-			}
-			//select first pre action
-			else if(selectedEntryProxy instanceof IPaletteAspectToolEntryProxy && ((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions().size() > 0) {
-				viewer.setSelection(new StructuredSelection(((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions().get(0)), true);
+			if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy && ((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().size() > 0) {
+				viewer.setSelection(new StructuredSelection(((PaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().get(0)), true);
 			}
 
 			updateButtons();
@@ -411,9 +409,9 @@ public class AspectActionsInformationComposite {
 	 * Call this method to update the buttons enablement.
 	 */
 	protected void updateButtons() {
-		if(selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
+		if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
 			addActionButton.setEnabled(true);
-			if(((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPreActions().isEmpty() && !((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().isEmpty()) {
+			if(((PaletteAspectToolEntryProxy)selectedEntryProxy).getAspectActions().size() > 0) {
 				removeActionButton.setEnabled(true);
 				moveUpActionButton.setEnabled(true);
 				moveDownActionButton.setEnabled(true);
@@ -440,11 +438,8 @@ public class AspectActionsInformationComposite {
 		 * @{inheritDoc
 		 */
 		public Object[] getChildren(Object parentElement) {
-			if(parentElement instanceof IPaletteAspectToolEntryProxy) {
-				List<IAspectAction> actions = new ArrayList<IAspectAction>();
-				actions.addAll(((IPaletteAspectToolEntryProxy)parentElement).getPostActions());
-				actions.addAll(((IPaletteAspectToolEntryProxy)parentElement).getPreActions());
-				return actions.toArray();
+			if(parentElement instanceof PaletteAspectToolEntryProxy) {
+				return ((PaletteAspectToolEntryProxy)parentElement).getPostActions().toArray();
 			}
 			return new Object[0];
 		}

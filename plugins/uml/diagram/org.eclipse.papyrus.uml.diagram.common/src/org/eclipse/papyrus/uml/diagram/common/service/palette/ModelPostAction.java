@@ -75,6 +75,11 @@ public abstract class ModelPostAction implements IPostAction {
 	}
 
 	/**
+	 * @{inheritDoc
+	 */
+	public abstract void run(EditPart editPart);
+
+	/**
 	 * Retrieves the valid type of an object given the structural feature for
 	 * which it gives a value
 	 * 
@@ -239,10 +244,4 @@ public abstract class ModelPostAction implements IPostAction {
 		return value;
 	}
 
-	public void runInPostCommit(EditPart editPart) {
-	}
-
-	public boolean needsPostCommitRun() {
-		return false;
-	}
 }

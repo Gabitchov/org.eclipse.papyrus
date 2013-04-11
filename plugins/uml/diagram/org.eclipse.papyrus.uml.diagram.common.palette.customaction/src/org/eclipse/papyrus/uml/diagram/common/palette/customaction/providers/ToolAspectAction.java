@@ -16,12 +16,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.uml.diagram.common.palette.customaction.Activator;
 import org.eclipse.papyrus.uml.diagram.common.palette.customaction.control.ToolSelectionComposite;
 import org.eclipse.papyrus.uml.diagram.common.palette.customaction.utils.ICallback;
@@ -118,16 +116,8 @@ public class ToolAspectAction extends ModelPostAction implements
 		}
 	}
 
-	public ICommand getPostCommand(IAdaptable viewAdapter) {
-		return null;
-	}
-
-	public boolean needsPostCommitRun() {
-		return true;
-	}
-
 	@Override
-	public void runInPostCommit(EditPart editPart) {
+	public void run(EditPart editPart) {
 		ITool tool = selection.getCreator().create(editPart);
 		tool.run(editPart);
 	}

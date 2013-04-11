@@ -40,25 +40,17 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.utils.PapyrusTrace;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.uml.diagram.common.service.IProfileDependantPaletteProvider;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.ProviderDescriptor;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  * Utility class for palette.
@@ -333,8 +325,16 @@ public class PaletteUtil {
 	 *        the list of stereotypes to serialize
 	 * @return the list of stereotypes String under a serialized form
 	 */
-	public static String getSerializedStereotypeList(Collection<String> stereotypes) {
-		return convertToCommaSeparatedRepresentation(stereotypes);
+	public static String getSerializedStereotypeListFromList(List<String> list) {
+		StringBuffer buffer = new StringBuffer();
+		Iterator<String> it = list.listIterator();
+		while(it.hasNext()) {
+			buffer.append(it.next());
+			if(it.hasNext()) {
+				buffer.append(",");
+			}
+		}
+		return buffer.toString();
 	}
 
 	/**
@@ -357,21 +357,13 @@ public class PaletteUtil {
 	 *        the list of profiles to serialize
 	 * @return the list of profiles String under a serialized form
 	 */
-	public static String getSerializedProfileList(Collection<String> profiles) {
-		return convertToCommaSeparatedRepresentation(profiles);
-	}
-
-	public static String convertToCommaSeparatedRepresentation(Collection objects) {
-		return convertToFlatRepresentation(objects, ",");
-	}
-	
-	public static String convertToFlatRepresentation(Collection objects, String separator) {
-		StringBuilder buffer = new StringBuilder();
-		Iterator it = objects.iterator();
+	public static String getSerializedProfileListFromSet(Set<String> profiles) {
+		StringBuffer buffer = new StringBuffer();
+		Iterator<String> it = profiles.iterator();
 		while(it.hasNext()) {
 			buffer.append(it.next());
 			if(it.hasNext()) {
-				buffer.append(separator);
+				buffer.append(",");
 			}
 		}
 		return buffer.toString();
@@ -463,36 +455,6 @@ public class PaletteUtil {
 		// as they do not use
 		// profile
 		return true;
-	}
-
-	public static void initAspectActions(NodeList aspectActionNodes, List<IPostAction> postActions, List<IPreAction> preActions) {
-		for(int i = 0; i < aspectActionNodes.getLength(); i++) {
-			Node childNode = aspectActionNodes.item(i);
-			String childName = childNode.getNodeName();
-			if(IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
-				// node is a post action => retrieve the id of the factory in charge of this configuration
-				IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
-				if(provider != null) {
-					IAspectAction action = provider.createAction(childNode);
-					if (action instanceof IPostAction) {
-						postActions.add((IPostAction)action);
-					}
-				} else {
-					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null);
-				}
-			} else if(IPapyrusPaletteConstant.PRE_ACTION.equals(childName)) {
-				// node is a pre action => retrieve the id of the factory in charge of this configuration
-				IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
-				if(provider != null) {
-					IAspectAction action = provider.createAction(childNode);
-					if (action instanceof IPreAction) {
-						preActions.add((IPreAction)action);
-					}
-				} else {
-					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null);
-				}
-			}
-		}
 	}
 
 }

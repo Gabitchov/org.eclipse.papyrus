@@ -1994,12 +1994,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					action.save(postActionNode);
 					element.appendChild(postActionNode);
 				}
-				for(IAspectAction action : ((PaletteAspectToolEntryProxy)containerProxy).getPreActions()) {
-					Element preActionNode = document.createElement(IPapyrusPaletteConstant.PRE_ACTION);
-					preActionNode.setAttribute(IPapyrusPaletteConstant.ID, action.getFactoryId());
-					action.save(preActionNode);
-					element.appendChild(preActionNode);
-				}
 			}
 		default:
 			break;

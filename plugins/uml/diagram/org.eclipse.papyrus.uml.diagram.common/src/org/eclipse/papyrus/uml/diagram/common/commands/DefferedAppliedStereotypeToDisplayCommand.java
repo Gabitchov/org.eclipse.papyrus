@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
-import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -23,12 +23,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
-
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
 
 /**
  * The Class AddAppliedStereotypeToDisplayCommand used to set the list of
@@ -38,6 +34,9 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 
 	/** The qualified names' stereotypes list . */
 	protected String stereotypeList;
+
+	/** the presentation kind of applied stereotypes */
+	protected String appliedStereotypePresentationKind;
 
 	/** adapter on which to apply stereotypes */
 	protected IAdaptable adapter;
@@ -52,10 +51,19 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 	 * @param stereotypeList
 	 *        the stereotype list
 	 */
-	public DefferedAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, IAdaptable adapter, String stereotypeList) {
+	public DefferedAppliedStereotypeToDisplayCommand(TransactionalEditingDomain domain, IAdaptable adapter, String stereotypeList, String appliedStereotypepresentationKind) {
 		super(domain, null, UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
 		this.adapter = adapter;
 		this.stereotypeList = stereotypeList;
+		this.appliedStereotypePresentationKind = appliedStereotypepresentationKind;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canUndo() {
+		return true;
 	}
 
 	/**
@@ -66,13 +74,17 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 		View view = (View)adapter.getAdapter(View.class);
 		EObject view_element = view.getElement();
 		Element element = (Element)view_element;
-		Collection<String> strStereotypes = Collections2.transform(element.getAppliedStereotypes(), new Function<Stereotype, String>() {
-
-			public String apply(Stereotype st) {
-				return st.getQualifiedName();
+		Iterator<Stereotype> listStereotype = element.getAppliedStereotypes().iterator();
+		StringBuffer buffer = new StringBuffer();
+		while(listStereotype.hasNext()) {
+			Stereotype stereotypec = listStereotype.next();
+			String stereotype_string = stereotypec.getQualifiedName();
+			buffer.append(stereotype_string);
+			if(listStereotype.hasNext()) {
+				buffer.append(",");
 			}
-		});
-		stereotypeList = PaletteUtil.getSerializedStereotypeList(strStereotypes);
+		}
+		stereotypeList = buffer.toString();
 
 		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(view);
 		if(!"".equals(stereoList)) {
@@ -86,7 +98,7 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 		}
 		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.STEREOTYPE_WITHQN_LIST, AppliedStereotypeHelper.getStereotypesQNToDisplay(view));
 		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.STEREOTYPE_LIST, stereoList);
-		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view));
+		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND, appliedStereotypePresentationKind);
 		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(view));
 		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(view));
 		replaceEannotation(view.getEAnnotation(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), view);

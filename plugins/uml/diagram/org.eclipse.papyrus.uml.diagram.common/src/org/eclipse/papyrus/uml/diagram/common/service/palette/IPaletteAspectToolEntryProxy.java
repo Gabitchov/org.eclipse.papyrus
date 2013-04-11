@@ -26,11 +26,4 @@ public interface IPaletteAspectToolEntryProxy extends IPaletteEntryProxy {
 	 */
 	public List<IPostAction> getPostActions();
 
-	/**
-	 * Returns the list of pre actions to execute on creation
-	 * 
-	 * @return the list of pre actions to execute on creation
-	 */
-	public List<IPreAction> getPreActions();
-
 }
