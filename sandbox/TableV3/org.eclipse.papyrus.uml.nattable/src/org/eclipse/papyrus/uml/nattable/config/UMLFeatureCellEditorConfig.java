@@ -355,11 +355,12 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 							editorKind = SINGLE_UML_ENUMERATION;
 						}
 					} else {//datatype are managed as string
-						if(isMany) {
-							editorKind = MULTI_STRING;
-						} else {
-							editorKind = SINGLE_STRING;
-						}
+						//currently the datatype are not managed because we are working on it!
+						//						if(isMany) {
+						//							editorKind = MULTI_STRING;
+						//						} else {
+						//							editorKind = SINGLE_STRING;
+						//						}
 					}
 				} else if(type instanceof Element) {
 					if(isMany) {
