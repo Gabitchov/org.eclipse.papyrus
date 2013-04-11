@@ -101,7 +101,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 			domain.runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
+					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							//because it is asynchrone the comment node maybe become s null

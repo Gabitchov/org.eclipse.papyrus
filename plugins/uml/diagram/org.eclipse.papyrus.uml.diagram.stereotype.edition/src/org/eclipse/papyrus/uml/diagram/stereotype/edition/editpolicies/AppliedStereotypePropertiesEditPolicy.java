@@ -88,7 +88,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 		try {
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
+					Display.getCurrent().asyncExec(new Runnable() {
 						public void run() {
 
 							StringTokenizer propStringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, ",");
@@ -171,7 +171,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
+					Display.getCurrent().asyncExec(new Runnable() {
 						public void run() {
 							editPart.getEditingDomain().getCommandStack().execute(command);
 						}
@@ -212,7 +212,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 				try{
 					editPart.getEditingDomain().runExclusive(new Runnable() {
 						public void run() {
-							Display.getCurrent().syncExec(new Runnable() {
+							Display.getCurrent().asyncExec(new Runnable() {
 								public void run() {
 									DeleteCommand command= new DeleteCommand((View)getHost().getModel());
 									//use to avoid to put it in the command stack
@@ -261,7 +261,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 							//yes, Execution of the Deletion command
 							editPart.getEditingDomain().runExclusive(new Runnable() {
 								public void run() {
-									Display.getCurrent().syncExec(new Runnable() {
+									Display.getCurrent().asyncExec(new Runnable() {
 										public void run() {
 											if( currentNode.eContainer()!=null){
 												

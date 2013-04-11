@@ -131,7 +131,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
+					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							
@@ -230,7 +230,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
+					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
@@ -302,10 +302,10 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						editPart.getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
-								Display.getCurrent().syncExec(new Runnable() {
+								Display.getCurrent().asyncExec(new Runnable() {
 
 									public void run() {
-										DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(), currentNode);
+										DeleteCommand command = new DeleteCommand(currentNode);
 										//use to avoid to put it in the command stack
 										 Map<String,Boolean> options = new HashMap<String,Boolean>();  
 											options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
@@ -328,11 +328,11 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						editPart.getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
-								Display.getCurrent().syncExec(new Runnable() {
+								Display.getCurrent().asyncExec(new Runnable() {
 
 									public void run() {
 										if(currentNode!=null&&editPart.getEditingDomain()!=null){
-											DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(), currentNode);
+											DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(),currentNode);
 											//use to avoid to put it in the command stack
 											 Map<String,Boolean> options = new HashMap<String,Boolean>();  
 												options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);

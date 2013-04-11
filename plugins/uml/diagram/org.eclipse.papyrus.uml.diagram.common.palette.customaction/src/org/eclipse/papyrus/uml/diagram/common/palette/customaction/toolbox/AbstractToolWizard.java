@@ -91,7 +91,7 @@ public abstract class AbstractToolWizard extends Wizard implements ITool {
 					editingDomain.runExclusive(new Runnable() {
 
 						public void run() {
-							Display.getCurrent().syncExec(new Runnable() {
+							Display.getCurrent().asyncExec(new Runnable() {
 
 								public void run() {
 									editingDomain.getCommandStack().execute(iCmd);
