@@ -72,12 +72,12 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="listenFeature" lowerBound="1"
           eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IMasterAxisProvider" interface="true"
-        eSuperTypes="#//nattableaxisprovider/AxisProvider"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ISlaveAxisProvider" interface="true"
-        eSuperTypes="#//nattableaxisprovider/AxisProvider"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ISynchronizedAxisProvider" interface="true"
-        eSuperTypes="#//nattableaxisprovider/AxisProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IMasterAxisProvider" abstract="true"
+        interface="true" eSuperTypes="#//nattableaxisprovider/AxisProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ISlaveAxisProvider" abstract="true"
+        interface="true" eSuperTypes="#//nattableaxisprovider/AxisProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ISynchronizedAxisProvider" abstract="true"
+        interface="true" eSuperTypes="#//nattableaxisprovider/AxisProvider"/>
     <eClassifiers xsi:type="ecore:EClass" name="AxisProvider" abstract="true" eSuperTypes="#//nattableaxisprovider/AbstractAxisProvider">
       <eStructuralFeatures xsi:type="ecore:EReference" name="axis" upperBound="-1"
           eType="#//nattableaxis/IAxis" containment="true"/>
@@ -85,7 +85,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="MasterEObjectAxisProvider" eSuperTypes="#//nattableaxisprovider/MasterObjectAxisProvider">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pastedElementContainmentFeature"
           eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementId"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pastedElementId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SlaveObjectAxisProvider" eSuperTypes="#//nattableaxisprovider/ISlaveAxisProvider"/>
     <eClassifiers xsi:type="ecore:EClass" name="MasterObjectAxisProvider" eSuperTypes="#//nattableaxisprovider/IMasterAxisProvider"/>
@@ -155,7 +155,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="AxisManager">
       <eStructuralFeatures xsi:type="ecore:EReference" name="headerLabelConfiguration"
           lowerBound="1" eType="#//nattablelabelprovider/AbstractLabelConfiguration"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaAxisManagerId" lowerBound="1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="javaAxisManagerId" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="specificAxisConfiguration"
           upperBound="-1" eType="#//nattableaxisconfiguration/IAxisConfiguration"/>
     </eClassifiers>
@@ -174,7 +175,8 @@
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureAxisConfiguration" eSuperTypes="#//nattableaxisconfiguration/IAxisConfiguration">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="showOnlyCommonFeature"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="showOnlyCommonFeature"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IAxisConfiguration"/>
   </eSubpackages>
