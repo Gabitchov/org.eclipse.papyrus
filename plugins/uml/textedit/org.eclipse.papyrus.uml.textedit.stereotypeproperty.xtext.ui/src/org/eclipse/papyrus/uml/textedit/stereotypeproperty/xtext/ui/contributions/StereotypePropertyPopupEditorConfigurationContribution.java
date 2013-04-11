@@ -34,6 +34,7 @@ import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereoty
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal.AppliedStereotypePropertyActivator;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation.AppliedStereotypePropertyJavaValidator;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation.SemanticValidator;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
@@ -78,6 +79,12 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 		graphicalEditPart = (IGraphicalEditPart)editPart;
 		if(editPart instanceof IAdaptable) {
 			final AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty)((IAdaptable)editPart).getAdapter(AppliedStereotypeProperty.class);
+			
+			//this pop up for the moment cannot manage Datatype
+			if(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof DataType){
+				return null;
+			}
+			
 			AppliedStereotypePropertyJavaValidator.init(appliedStereotypeProperty);
 			// retrieves the XText injector
 			Injector injector = AppliedStereotypePropertyActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty");

@@ -424,7 +424,9 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 				Dialog dialog = null;
 				if(configuration instanceof IPopupEditorConfiguration) {
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
-					helper.showEditor();
+					if(helper!=null){
+						helper.showEditor();
+					}
 					return;
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
