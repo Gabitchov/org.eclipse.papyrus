@@ -68,6 +68,10 @@
          priority="10"
          provider="org.eclipse.papyrus.uml.tools.providers.UMLMetaclassLabelProvider">
    </labelProvider>
+   <labelProvider
+         priority="75"
+         provider="org.eclipse.papyrus.uml.tools.providers.GenericDataTypeLabelProvider">
+   </labelProvider>
 </extension>
 
    <extension
