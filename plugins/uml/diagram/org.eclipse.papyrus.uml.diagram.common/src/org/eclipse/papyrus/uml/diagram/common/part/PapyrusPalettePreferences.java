@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -403,15 +402,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	 */
 	protected static String serializeHiddenPalettes(List<String> hiddenPalettes) {
 		// builds the new id list
-		StringBuffer buffer = new StringBuffer();
-		Iterator<String> it = hiddenPalettes.iterator();
-		while(it.hasNext()) {
-			buffer.append(it.next());
-			if(it.hasNext()) {
-				buffer.append(";");
-			}
-		}
-		return buffer.toString();
+		return PaletteUtil.convertToFlatRepresentation(hiddenPalettes, ";");
 	}
 
 	/**
@@ -458,7 +449,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 
 		// add properties if required
 		IMemento propertiesMemento = paletteMemento.createChild(IPapyrusPaletteConstant.PALETTE_DESCRIPTION_PROPERTIES);
-		propertiesMemento.putString(IPapyrusPaletteConstant.PROFILE_LIST, PaletteUtil.getSerializedProfileListFromSet(requiredProfiles));
+		propertiesMemento.putString(IPapyrusPaletteConstant.PROFILE_LIST, PaletteUtil.getSerializedProfileList(requiredProfiles));
 
 		// saves the root memento
 		saveLocalPalettes(rootMemento);

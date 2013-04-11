@@ -12,28 +12,16 @@
 package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.common.core.util.StringStatics;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
-import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
@@ -45,9 +33,8 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -157,74 +144,36 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 	/**
 	 * @{inheritDoc
 	 */
-	@Override
-	public void run(EditPart editPart) {
+	public ICommand getPostCommand(final IAdaptable viewAdapter) {
+		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
 
-		final CompositeCommand compositeCommand = new CompositeCommand("Modify Stereotype Display");
-		View view = (View)editPart.getModel();
-		TransactionalEditingDomain editingDomain = org.eclipse.papyrus.infra.core.utils.EditorUtils.getTransactionalEditingDomain();
+		return new AbstractTransactionalCommand(editingDomain, "Modify Stereotype Display", null) {
 
-		// creates the commands to display simple stereotypes name
-		for(String stereotypeName : stereotypesToDisplay) {
-			String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
-			RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(editingDomain, view, stereotypeName, presentationKind);
-			compositeCommand.add(new EMFtoGMFCommandWrapper(command));
-		}
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				View view = (View)viewAdapter.getAdapter(View.class);
 
-		// creates the commands to display qualified names of stereotypes
-		for(String stereotypeName : stereotypesQNToDisplay) {
-			RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeToDisplayWithQNCommand(editingDomain, view, stereotypeName);
-			compositeCommand.add(new EMFtoGMFCommandWrapper(command));
-		}
-
-		org.eclipse.uml2.uml.Element element = (org.eclipse.uml2.uml.Element)((View)editPart.getModel()).getElement();
-		for(Stereotype stereo : element.getAppliedStereotypes()) {
-			if(!stereotypesQNToDisplay.contains(stereo.getQualifiedName()) && !stereotypesToDisplay.contains(stereo.getQualifiedName())) {
-				String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
-				RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(editingDomain, view, stereo.getQualifiedName(), presentationKind);
-				compositeCommand.add(new EMFtoGMFCommandWrapper(command));
-			}
-		}
-
-		compositeCommand.reduce();
-
-		// AppliedStereotypeHelper.ge
-
-		if(compositeCommand.canExecute()) {
-			boolean isActivating = true;
-			Map<String, Boolean> options = null;
-			// use the viewer to determine if we are still initializing the
-			// diagram
-			// do not use the DiagramEditPart.isActivating since
-			// ConnectionEditPart's
-			// parent will not be a diagram edit part
-			EditPartViewer viewer = editPart.getViewer();
-			if(viewer instanceof DiagramGraphicalViewer) {
-				isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
-			}
-
-			if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
-				options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-			}
-
-			AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
-
-				@Override
-				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-					compositeCommand.execute(monitor, info);
-
-					return Status.OK_STATUS;
+				// creates the commands to display simple stereotypes name
+				for(String stereotypeName : stereotypesToDisplay) {
+					String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
+					AppliedStereotypeHelper.getAddAppliedStereotypeCommand(editingDomain, view, stereotypeName, presentationKind).execute();
 				}
-			};
-			try {
-				operation.execute(new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				Activator.log.error(e);
+
+				// creates the commands to display qualified names of stereotypes
+				for(String stereotypeName : stereotypesQNToDisplay) {
+					AppliedStereotypeHelper.getAddAppliedStereotypeToDisplayWithQNCommand(editingDomain, view, stereotypeName).execute();
+				}
+
+				org.eclipse.uml2.uml.Element element = (org.eclipse.uml2.uml.Element)view.getElement();
+				for(Stereotype stereo : element.getAppliedStereotypes()) {
+					if(!stereotypesQNToDisplay.contains(stereo.getQualifiedName()) && !stereotypesToDisplay.contains(stereo.getQualifiedName())) {
+						String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
+						AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(editingDomain, view, stereo.getQualifiedName(), presentationKind).execute();
+					}
+				}
+				return CommandResult.newOKCommandResult();
 			}
-		} else {
-			Activator.log.error("Impossible to execute graphical post action " + propertiesToUpdate, null);
-		}
+		};
 	}
 
 	/**

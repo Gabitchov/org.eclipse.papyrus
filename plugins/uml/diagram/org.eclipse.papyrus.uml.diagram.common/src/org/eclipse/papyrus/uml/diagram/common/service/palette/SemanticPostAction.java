@@ -13,9 +13,8 @@ package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -23,9 +22,6 @@ import java.util.StringTokenizer;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -33,18 +29,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartViewer;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.common.core.util.StringStatics;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
-import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
@@ -58,6 +47,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
@@ -181,67 +171,38 @@ public class SemanticPostAction extends ModelPostAction {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void run(EditPart editPart) {
+	public ICommand getPostCommand(final IAdaptable viewAdpater) {
+		final TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
 
-		final CompositeCommand compositeCommand = new CompositeCommand("Modify Semantic");
-		EObject objectToEdit = ((View)editPart.getModel()).getElement();
+		return new AbstractTransactionalCommand(editingDomain, "Modify Semantic", null) {
 
-		for(String featureName : propertiesToUpdate.keySet()) {
-			// retrieve feature to set
-			EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(featureName);
-			if(feature == null) {
-				Activator.log.error("Impossible to find the feature " + featureName + " for element " + objectToEdit, null);
-				return;
-			} else {
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				View view = (View)viewAdpater.getAdapter(View.class);
 
-				SetRequest request = new SetRequest(objectToEdit, feature, getValue(feature, propertiesToUpdate.get(featureName)));
-				// request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME,
-				// "NEW");
-				compositeCommand.compose(new SetValueCommand(request));
-			}
-		}
+				if (view != null) {
+					EObject objectToEdit = view.getElement();
 
-		// create the command to open the dialog to set properties on runtime
-		if(runtimeDefinedProperties.size() > 0) {
-			DynamicConfigureRequest request = new DynamicConfigureRequest(objectToEdit, runtimeDefinedProperties);
-			compositeCommand.compose(new SetDynamicValueCommand(request));
-		}
+					for(String featureName : propertiesToUpdate.keySet()) {
+						// retrieve feature to set
+						EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(featureName);
+						if(feature == null) {
+							Activator.log.error("Impossible to find the feature " + featureName + " for element " + objectToEdit, null);
+						} else {
+							objectToEdit.eSet(feature, getValue(feature, propertiesToUpdate.get(featureName)));
+						}
+					}
 
-		compositeCommand.reduce();
+					// create the command to open the dialog to set properties on runtime
+					if(runtimeDefinedProperties.size() > 0) {
+						DynamicConfigureRequest request = new DynamicConfigureRequest(objectToEdit, runtimeDefinedProperties);
+						new SetDynamicValueCommand(request).doExecuteWithResult(null, null);
+					}
 
-		if(compositeCommand.canExecute()) {
-			boolean isActivating = true;
-			Map<String, Boolean> options = null;
-			// use the viewer to determine if we are still initializing the
-			// diagram
-			// do not use the DiagramEditPart.isActivating since
-			// ConnectionEditPart's
-			// parent will not be a diagram edit part
-			EditPartViewer viewer = editPart.getViewer();
-			if(viewer instanceof DiagramGraphicalViewer) {
-				isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
-			}
-
-			if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
-				options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-			}
-
-			AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
-
-				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-					compositeCommand.execute(monitor, info);
-
-					return Status.OK_STATUS;
 				}
-			};
-			try {
-				operation.execute(new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				Activator.log.error(e);
+				return CommandResult.newOKCommandResult();
 			}
-		}
-
+		};
 	}
 
 	/**
@@ -359,19 +320,10 @@ public class SemanticPostAction extends ModelPostAction {
 	 *        the object to serialize
 	 * @return the string corresponding to the serialize value
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	protected String serializeValue(Object object, String separator) {
-		if(object instanceof List<?>) {
-			StringBuffer result = new StringBuffer();
-			Iterator<Object> it = ((List<Object>)object).iterator();
-			while(it.hasNext()) {
-				Object o = (Object)it.next();
-				result.append(o);
-				if(it.hasNext()) {
-					result.append(separator);
-				}
-			}
-			return result.toString();
+		if(object instanceof Collection) {
+			return PaletteUtil.convertToFlatRepresentation((Collection)object, separator);
 		}
 		return object.toString();
 	}

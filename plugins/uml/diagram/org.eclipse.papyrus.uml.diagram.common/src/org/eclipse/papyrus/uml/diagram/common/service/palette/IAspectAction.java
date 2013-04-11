@@ -35,14 +35,6 @@ public interface IAspectAction {
 	public void init(Node configurationNode, IAspectActionProvider factory);
 
 	/**
-	 * action performed by this class
-	 * 
-	 * @param editPart
-	 *        the edit part on which the action occurs
-	 */
-	public void run(EditPart editPart);
-
-	/**
 	 * Runs post condition tests before runnning the action
 	 * 
 	 * @return the status corresponding to the check
