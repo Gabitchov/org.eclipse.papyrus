@@ -21,6 +21,10 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
@@ -57,6 +61,27 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	/** The Constant TAB. */
 	// public static final String TAB = String.valueOf("\u0009");
 	public static final String TAB = "    ";
+
+	private LabelProviderService labelProviderService;
+
+
+	public ProfileElementLabelProvider() {
+		try {
+			labelProviderService = new LabelProviderServiceImpl();
+			labelProviderService.startService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+	}
+
+	@Override
+	public void dispose() {
+		try {
+			labelProviderService.disposeService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+	}
 
 	/**
 	 * Gets the image.
@@ -235,11 +260,11 @@ public class ProfileElementLabelProvider extends LabelProvider {
 
 			// retrieve the base element from the stereotype application
 			@SuppressWarnings("unchecked")
-			List<Object> values = (List<Object>) currentPropValue;
+			List<Object> values = (List<Object>)currentPropValue;
 			ArrayList<String> baseElements = new ArrayList<String>();
-			for (Object value : values){
+			for(Object value : values) {
 				// display the base element's qualified name
-				Element baseElement = (Element)UMLUtil.getBaseElement((EObject)value);
+				Element baseElement = UMLUtil.getBaseElement((EObject)value);
 				String name = Util.getLabel(baseElement, true);
 				if(name != null) {
 					baseElements.add(name);
@@ -274,7 +299,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			} else { // Multiplicity > 1
 
 				@SuppressWarnings("unchecked")
-				List<Object> values = (List<Object>) currentPropValue;
+				List<Object> values = (List<Object>)currentPropValue;
 				ArrayList<String> elementNames = new ArrayList<String>();
 				if(values != null) {
 					for(int i = 0; i < values.size(); i++) {
@@ -303,7 +328,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		String label = getPropertyShortLabel(currentProp);
 
 		if(currentPropValue != null) {
-			label = label + " = " + currentPropValue;
+			label = label + " = " + labelProviderService.getLabelProvider().getText(currentPropValue);
 		}
 
 		return label;
@@ -321,9 +346,9 @@ public class ProfileElementLabelProvider extends LabelProvider {
 
 		String label = "";
 
-		String derived="";
-		if(property.isDerived()){
-			derived="/";
+		String derived = "";
+		if(property.isDerived()) {
+			derived = "/";
 		}
 		int upper = property.getUpper();
 		int lower = property.getLower();
@@ -334,9 +359,9 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		String name = property.getName();
 
 		if(upper != -1) {
-			label = derived+name + ": " + typeName + " " + "[" + lower + ".." + upper + "]";
+			label = derived + name + ": " + typeName + " " + "[" + lower + ".." + upper + "]";
 		} else {
-			label = derived+name + ": " + typeName + " " + "[" + lower + "..*]";
+			label = derived + name + ": " + typeName + " " + "[" + lower + "..*]";
 		}
 
 		return label;
@@ -411,7 +436,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the label
 	 */
 	private String getLabel(EnumerationValueTreeObject object) {
-		EnumerationValueTreeObject eTO = (EnumerationValueTreeObject)object;
+		EnumerationValueTreeObject eTO = object;
 		Property property = ((AppliedStereotypePropertyTreeObject)eTO.getParent()).getProperty();
 		Object value = eTO.getValue();
 
@@ -456,7 +481,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the label
 	 */
 	private String getLabel(StereotypeValueTreeObject object) {
-		StereotypeValueTreeObject sTO = (StereotypeValueTreeObject)object;
+		StereotypeValueTreeObject sTO = object;
 		Property property = ((AppliedStereotypePropertyTreeObject)sTO.getParent()).getProperty();
 		Object value = sTO.getValue();
 
@@ -464,7 +489,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 
 		if(value instanceof EObject) {
 			// retrieve the base element from the stereotype application
-			baseElement = (Element)UMLUtil.getBaseElement((EObject)value);
+			baseElement = UMLUtil.getBaseElement((EObject)value);
 
 		} else { // Error
 			String err = "Type " + (value != null ? value.toString() : "null") + " of Property " + property.getName() + " is not an EObject.";
@@ -498,7 +523,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the label
 	 */
 	private String getLabel(MetaclassValueTreeObject object) {
-		MetaclassValueTreeObject sTO = (MetaclassValueTreeObject)object;
+		MetaclassValueTreeObject sTO = object;
 		Object value = sTO.getValue();
 
 		if(value instanceof ValueSpecification) {
