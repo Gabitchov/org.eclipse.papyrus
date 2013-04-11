@@ -14,7 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.profile.custom.commands;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -27,7 +30,12 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.papyrus.uml.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.uml.profile.definition.ProfileRedefinition;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.internal.operations.ProfileOperations;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.Profile2EPackageConverter;
+import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
 
 /**
@@ -62,6 +70,49 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		this.rootProfile = rootProfile;
 		this.papyrusAnnotation = papyrusAnnotation;
 	}
+	
+	
+	/**
+	 * Define this package if it is a profile and its sub-profiles
+	 * 
+	 * @param thePackage
+	 *        the package to define (if it is a profile)
+	 */
+	public static void defineProfiles(Package thePackage) {
+		Map<String, String> options = new HashMap<String, String>();
+
+		options.put(Profile2EPackageConverter.OPTION__ECORE_TAGGED_VALUES, 				UMLUtil.OPTION__PROCESS);
+		options.put(Profile2EPackageConverter.OPTION__DERIVED_FEATURES, 				UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_FEATURE_INHERITANCE,	UMLUtil.OPTION__PROCESS);
+		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_FEATURES,				UMLUtil.OPTION__PROCESS);
+		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_OPERATIONS,				UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__DUPLICATE_OPERATION_INHERITANCE,	UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__REDEFINING_OPERATIONS,			UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__REDEFINING_PROPERTIES,			UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__SUBSETTING_PROPERTIES,			UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__UNION_PROPERTIES,					UMLUtil.OPTION__PROCESS);
+		options.put(UML2EcoreConverter.OPTION__SUPER_CLASS_ORDER,						UMLUtil.OPTION__REPORT);
+		options.put(Profile2EPackageConverter.OPTION__ANNOTATION_DETAILS,				UMLUtil.OPTION__REPORT);
+//		
+//		//for the validation
+		options.put(Profile2EPackageConverter.OPTION__INVARIANT_CONSTRAINTS,		UMLUtil.OPTION__PROCESS);
+		options.put(Profile2EPackageConverter.OPTION__VALIDATION_DELEGATES,			UMLUtil.OPTION__PROCESS);
+		options.put(Profile2EPackageConverter.OPTION__INVOCATION_DELEGATES,			UMLUtil.OPTION__PROCESS);
+		options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, 					UMLUtil.OPTION__PROCESS);
+		
+		options.put(Profile2EPackageConverter.OPTION__COMMENTS, 					UMLUtil.OPTION__IGNORE);
+		options.put(Profile2EPackageConverter.OPTION__FOREIGN_DEFINITIONS, 			UMLUtil.OPTION__IGNORE);
+		
+		// we wants to define
+		if(thePackage instanceof Profile) {
+			((Profile)thePackage).define(options, null, null);
+		}
+		Iterator<Package> it = thePackage.getNestedPackages().iterator();
+		while(it.hasNext()) {
+			Package p = it.next();
+			defineProfiles(p);
+		}
+	}
 
 	/**
 	 * 
@@ -76,7 +127,9 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		PackageUtil.defineProfiles(rootProfile);
+		
+		defineProfiles(rootProfile);
+		//PackageUtil.defineProfiles(rootProfile);
 		try {
 			ProfileRedefinition.redefineProfile(rootProfile, papyrusAnnotation);
 			ProfileRedefinition.cleanProfile(rootProfile);
