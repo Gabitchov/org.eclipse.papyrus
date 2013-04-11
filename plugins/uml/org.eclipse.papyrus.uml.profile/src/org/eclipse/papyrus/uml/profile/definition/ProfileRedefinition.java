@@ -22,17 +22,14 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.papyrus.uml.profile.Message;
+import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Type;
 
 
 /**
@@ -51,7 +48,7 @@ import org.eclipse.uml2.uml.Type;
  * <ul>
  * <li>Stereotype-->Eclass
  * <li>Enumeration-->EEnumeration:local copy
- * <li>Datatype-->EDatatype: local copy
+ * <li>Datatype-->EClass
  * <li>Property--> EReference or EAttribute with ref on direct definition
  * <li>PrimitiveType-> Edatatype : local copy
  * </ul>
@@ -84,7 +81,7 @@ public class ProfileRedefinition {
 			Iterator<EClassifier> eClassIter = tempList.iterator();
 			while(eClassIter.hasNext()) {
 				EClassifier eclassifier = eClassIter.next();
-				if(eclassifier instanceof EClass && !isDataTypeDefinition(eclassifier)) {
+				if(eclassifier instanceof EClass ) {
 					// redefine Eclass
 					redefineEclass((EClass)eclassifier);
 				}
@@ -141,12 +138,7 @@ public class ProfileRedefinition {
 			while(refIterator.hasNext()) {
 				redefineEReference(refIterator.next(), eclass.getEPackage());
 			}
-			// 3. redefine EAttributes
-			Iterator<EAttribute> eattIterator = eclass.getEAllAttributes().iterator();
-			// for each reference of the EClass
-			while(eattIterator.hasNext()) {
-				redefineEAttribute(eattIterator.next(), eclass.getEPackage());
-			}
+			
 		}
 	}
 
@@ -163,38 +155,13 @@ public class ProfileRedefinition {
 		// 2.1 the type is an EClass
 		if(oldType instanceof EClass) {
 			// redefine type
-			eReference.setContainment(false);
-			if(!isDataTypeDefinition(oldType)) {
-				eReference.setEType(lookForDirectDefinitionFrom((EClass)oldType));
+			eReference.setEType(lookForDirectDefinitionFrom((EClass)oldType));
 				// redefine the Opposite
-				if(oldEOpposite != null)
+			if(oldEOpposite != null)
 					eReference.setEOpposite(lookForEquivalentEreference((EClass)eReference.getEType(), oldEOpposite));
 			}
-		}
-		if(isDataTypeDefinition(oldType)) {
-			EAttribute eatt = createEAttribute(eReference.getEContainingClass(), eReference);
-			eatt.setEType(createDataType(profileDefinition, getUMLClassifierFromDefinition(oldType)));
-			eatt.setDefaultValue(eReference.getDefaultValue());
-			eatt.setDefaultValueLiteral(eReference.getDefaultValueLiteral());
-			eReference.getEContainingClass().getEStructuralFeatures().remove(eReference);
-		}
 	}
 
-	/**
-	 * this class is used to redefine EAttribute with direct definition
-	 * 
-	 * @param eAttribute
-	 *        the given EAttribute that we want to redefine
-	 * @param profileDefinition
-	 *        the epackage that contains the Eclass , container of this
-	 *        Eattribute
-	 */
-	public static void redefineEAttribute(EAttribute eAttribute, EPackage profileDefinition) {
-		EClassifier oldEType = eAttribute.getEType();
-		if(isDataTypeDefinition(oldEType)) {
-			eAttribute.setEType(createDataType(profileDefinition, getUMLClassifierFromDefinition(oldEType)));
-		}
-	}
 
 	/**
 	 * return id this Eclass is the real Definition
@@ -208,14 +175,16 @@ public class ProfileRedefinition {
 		if(eclass.getEAnnotations().size() > 0) {
 			EAnnotation eAnnotation = eclass.getEAnnotations().get(0);
 			if(eAnnotation.getReferences().size() > 0) {
-				if(!(eAnnotation.getReferences().get(0) instanceof org.eclipse.uml2.uml.Stereotype)) {
+				if(!(eAnnotation.getReferences().get(0) instanceof org.eclipse.uml2.uml.Classifier)) {
 					String errMsg = "Problem because of the definition of " + eclass.getName() + " in "
 							+ eclass.getEPackage().getNsURI();
 					Message.error(errMsg);
 				}
-				org.eclipse.uml2.uml.Stereotype theStereotype = (org.eclipse.uml2.uml.Stereotype)eAnnotation
-						.getReferences().get(0);
-				if(theStereotype.getDefinition().equals(eclass)) {
+				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation.getReferences().get(0);
+				Package nearestPackage=theClassifier.getNearestPackage();
+			
+			if( nearestPackage instanceof Profile){
+				if(eclass.equals(((Profile)nearestPackage).getDefinition(theClassifier)))
 					return true;
 				}
 			}
@@ -236,9 +205,13 @@ public class ProfileRedefinition {
 		if(eClassifier.getEAnnotations().size() > 0) {
 			EAnnotation eAnnotation = eClassifier.getEAnnotations().get(0);
 			if(eAnnotation.getReferences().size() > 0) {
-				org.eclipse.uml2.uml.Stereotype theStereotype = (org.eclipse.uml2.uml.Stereotype)eAnnotation
+				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation
 						.getReferences().get(0);
-				return theStereotype.getDefinition();
+				Package nearestPackage=theClassifier.getNearestPackage();
+				if( nearestPackage instanceof Profile){
+					return (EClassifier) ((Profile)nearestPackage).getDefinition(theClassifier);
+				}
+				return eClassifier;
 			}
 		}
 		return eClassifier;
@@ -291,12 +264,9 @@ public class ProfileRedefinition {
 				EClassifier eclassifier = eClassIter.next();
 
 				if(eclassifier instanceof EClass) {
-					if(isDataTypeDefinition(eclassifier)) {
-						profileDefinition.getEClassifiers().remove(eclassifier);
-					}
-
+					
 					// this is a direct Definition?
-					else if(!isADirectDefinition((EClass)eclassifier)) {
+					if(!isADirectDefinition((EClass)eclassifier)) {
 						// no, so it is removed
 						profileDefinition.getEClassifiers().remove(eclassifier);
 					}
@@ -311,43 +281,6 @@ public class ProfileRedefinition {
 		}
 	}
 
-	/**
-	 * Create a Edataptype from a datatype if it does not exist
-	 * 
-	 * @param profileDefinition
-	 *        the Epackage where we want to create the Edatatype
-	 * @param currentUmlType
-	 *        from this, the Edatatype will be created
-	 * @return the created datatype
-	 */
-	public static EDataType createDataType(EPackage profileDefinition, Type currentUmlType) {
-		/* if eDataType already exists */
-		Iterator<EClassifier> iter = profileDefinition.getEClassifiers().iterator();
-		while(iter.hasNext()) {
-			EClassifier current = iter.next();
-			if(current instanceof EDataType) {
-				if(current.getName().equals(currentUmlType.getName())) {
-					// instance class name specified for primitiveTypes.
-					current.setInstanceClassName("java.lang.String");
-					return (EDataType)current;
-				}
-			}
-		}
-		// no, it has to be created
-		EDataType dataTypeDef = EcoreFactory.eINSTANCE.createEDataType();
-		dataTypeDef.setName(currentUmlType.getName());
-		dataTypeDef.setInstanceClassName("java.lang.String");
-		dataTypeDef.setSerializable(true);
-
-		EAnnotation umlAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		umlAnnotation.setSource("http://www.eclipse.org/uml2/2.0.0/UML");
-		umlAnnotation.getReferences().add(currentUmlType);
-
-		dataTypeDef.getEAnnotations().add(umlAnnotation);
-
-		profileDefinition.getEClassifiers().add(dataTypeDef);
-		return dataTypeDef;
-	}
 
 	/**
 	 * this method is used to created an EAttribute from an Ereference
@@ -376,26 +309,7 @@ public class ProfileRedefinition {
 		return eAttribute;
 	}
 
-	/**
-	 * test if the Eclass is a definition of a Datatype
-	 * 
-	 * @param eclass
-	 *        that we want to test
-	 * @return true if this is the defintion of a Datatype, false other
-	 */
-	public static boolean isDataTypeDefinition(EClassifier eclass) {
-		if(eclass.getEAnnotations().size() > 0) {
-			EAnnotation eAnnotation = eclass.getEAnnotations().get(0);
-			if(eAnnotation.getReferences().size() > 0) {
-				org.eclipse.uml2.uml.Classifier theClassifier = (org.eclipse.uml2.uml.Classifier)eAnnotation
-						.getReferences().get(0);
-				if(theClassifier instanceof DataType && !(theClassifier instanceof Enumeration)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+	
 
 	/**
 	 * this method is used to obtain the classifier from its definition
