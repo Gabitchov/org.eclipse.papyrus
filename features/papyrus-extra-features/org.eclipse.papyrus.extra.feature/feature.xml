@@ -32,6 +32,10 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.cdo.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.extra.cdo.doc.feature"
+         version="0.0.0"/>
+
    <requires>
       <import feature="org.eclipse.papyrus.extra.diagramtemplate.feature" />
       <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature" />
