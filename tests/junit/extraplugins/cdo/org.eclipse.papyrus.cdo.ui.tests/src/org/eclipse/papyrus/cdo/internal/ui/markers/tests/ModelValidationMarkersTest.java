@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService;
+import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateDelMarkersFromModelCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 import org.eclipse.ui.PartInitException;
@@ -44,8 +45,7 @@ import com.google.common.collect.Lists;
 /**
  * This is the ModelValidationMarkersTest type. Enjoy.
  */
-public class ModelValidationMarkersTest
-		extends AbstractPapyrusCDOUITest {
+public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 
 	public ModelValidationMarkersTest() {
 		super();
@@ -62,9 +62,7 @@ public class ModelValidationMarkersTest
 		// get some marker
 		IPapyrusMarker marker = null;
 		try {
-			marker = Iterables.getFirst(
-				getMarkersMonitorService().getMarkers(
-					getUMLModel().eResource(), null, true), null);
+			marker = Iterables.getFirst(getMarkersMonitorService().getMarkers(getUMLModel().eResource(), null, true), null);
 			assertThat("Did not find a marker.", marker, notNullValue());
 		} catch (CoreException e) {
 			e.printStackTrace();
@@ -83,16 +81,14 @@ public class ModelValidationMarkersTest
 		// get the markers
 		List<IPapyrusMarker> markers = null;
 		try {
-			markers = Lists.newArrayList(getMarkersMonitorService().getMarkers(
-				getUMLModel().eResource(), null, true));
-			assertThat("Did not find any markers.", markers.isEmpty(),
-				is(false));
+			markers = Lists.newArrayList(getMarkersMonitorService().getMarkers(getUMLModel().eResource(), null, true));
+			assertThat("Did not find any markers.", markers.isEmpty(), is(false));
 		} catch (CoreException e) {
 			e.printStackTrace();
 			fail("Could not get problem markers.");
 		}
 
-		for (IPapyrusMarker next : markers) {
+		for(IPapyrusMarker next : markers) {
 			try {
 				next.delete();
 			} catch (CoreException e) {
@@ -102,10 +98,7 @@ public class ModelValidationMarkersTest
 		}
 
 		try {
-			assertThat(
-				"Found markers.",
-				getMarkersMonitorService().getMarkers(
-					getUMLModel().eResource(), null, true).isEmpty(), is(true));
+			assertThat("Found markers.", getMarkersMonitorService().getMarkers(getUMLModel().eResource(), null, true).isEmpty(), is(true));
 		} catch (CoreException e) {
 			e.printStackTrace();
 			fail("Could not get problem markers.");
@@ -113,8 +106,7 @@ public class ModelValidationMarkersTest
 	}
 
 	@Test
-	public void testMemoryLeaksInValidation()
-			throws InterruptedException {
+	public void testMemoryLeaksInValidation() throws InterruptedException {
 
 		openEditor();
 
@@ -125,9 +117,7 @@ public class ModelValidationMarkersTest
 		// get some marker
 		IPapyrusMarker marker = null;
 		try {
-			marker = Iterables.getFirst(
-				getMarkersMonitorService().getMarkers(
-					getUMLModel().eResource(), null, true), null);
+			marker = Iterables.getFirst(getMarkersMonitorService().getMarkers(getUMLModel().eResource(), null, true), null);
 			assertThat("Did not find a marker.", marker, notNullValue());
 		} catch (CoreException e) {
 			e.printStackTrace();
@@ -145,12 +135,12 @@ public class ModelValidationMarkersTest
 		closeEditor();
 
 		// try to force GC
-		for (int i = 0; i < 10; i++) {
+		for(int i = 0; i < 10; i++) {
 			System.gc();
 		}
 
 		// assert that the marker and its underlying EProblem are unreachable
-		for (int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) {
 			Reference<?> ref = queue.remove(1000);
 			assertThat(references.remove(ref), is(true));
 		}
@@ -161,17 +151,13 @@ public class ModelValidationMarkersTest
 	//
 
 	@Before
-	public void ensureValidationView()
-			throws PartInitException {
-		getWorkbenchPage().showView(
-			"org.eclipse.papyrus.views.validation.ModelValidationView");
+	public void ensureValidationView() throws PartInitException {
+		getWorkbenchPage().showView("org.eclipse.papyrus.views.validation.ModelValidationView");
 	}
 
 	void execute(IUndoableOperation operation) {
 		try {
-			getWorkbenchPage().getWorkbenchWindow().getWorkbench()
-				.getOperationSupport().getOperationHistory()
-				.execute(operation, new NullProgressMonitor(), null);
+			getWorkbenchPage().getWorkbenchWindow().getWorkbench().getOperationSupport().getOperationHistory().execute(operation, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 			fail("Failed to execute operation: " + operation);
@@ -179,19 +165,18 @@ public class ModelValidationMarkersTest
 	}
 
 	void validateModel() {
-		execute(new ValidateModelCommand(getUMLModel()));
+		execute(new ValidateModelCommand(getUMLModel(), new EcoreDiagnostician()));
 	}
 
 	void deleteMarkers() {
-		execute(new ValidateDelMarkersFromModelCommand(getUMLModel()));
+		execute(new ValidateDelMarkersFromModelCommand(getUMLModel(), new EcoreDiagnostician()));
 	}
 
 	MarkersMonitorService getMarkersMonitorService() {
 		MarkersMonitorService result = null;
 
 		try {
-			result = ServiceUtils.getInstance().getService(
-				MarkersMonitorService.class, getEditor().getServicesRegistry());
+			result = ServiceUtils.getInstance().getService(MarkersMonitorService.class, getEditor().getServicesRegistry());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail("Failed to get MarkersMonitorService.");
@@ -206,7 +191,7 @@ public class ModelValidationMarkersTest
 		try {
 			Field eProblemField = marker.getClass().getDeclaredField("problem");
 			eProblemField.setAccessible(true);
-			result = (EProblem) eProblemField.get(marker);
+			result = (EProblem)eProblemField.get(marker);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Failed to get EProblem wrapped by IPapyrusMarker.");
