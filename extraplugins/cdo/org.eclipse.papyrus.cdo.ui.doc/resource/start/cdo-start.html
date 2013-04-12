@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="creator" content="Marked.app"/>
+</head>
+<body>
+<h1 id="workingwithcdomodelrepositories">Working with CDO Model Repositories</h1>
+
+<p>This document is a brief guide to getting started with Papyrus UML models in the CDO Model Repository.</p>
+
+<p>For more information about CDO, see the <a href="http://wiki.eclipse.org/CDO">EMF CDO wiki</a>.</p>
+
+<h2 id="aidconnectingconnectingtoarepositorya"><a id="Connecting">Connecting to a Repository</a></h2>
+
+<p>Repository connections are managed in the <strong>Model Repositories</strong> view. Use the <strong>Add Repository&#8230;</strong> button in the view to create a new repository connection:</p>
+
+<figure>
+<img src="addrepo.png" alt="Add repository" />
+<figcaption>Add repository</figcaption></figure>
+
+
+
+<p>If your repository requires user authentication, a login dialog will appear to accept your credentials.</p>
+
+<p>The new repository is then added to the view. Select the new repository and pick <strong>New Papyrus Model</strong> in the context menu. Complete the wizard. You should now have a new blank model open and something like this in the <strong>Model Repositories</strong> view:</p>
+
+<figure>
+<img src="modelreposview.png" alt="Model Repositories view" />
+<figcaption>Model Repositories view</figcaption></figure>
+
+
+
+<p>Note that because it is necessary to explicitly connect to model repositories, any model editors that are open when shutting down the Papyrus workbench are not re-opened on next launch.</p>
+
+<h2 id="aidimportingimportingmodelsfromtheworkspacea"><a id="Importing">Importing Models from the Workspace</a></h2>
+
+<p>You probably already have models in your workspace that you would like to import into a repository. To do this, select one or more models in the <strong>Project Explorer</strong> and choose the <strong>Import into Repository&#8230;</strong> action in the context menu. Alternatively, just drag and drop one or more model onto a repository.</p>
+
+<figure>
+<img src="importmodels.png" alt="Import Models" />
+<figcaption>Import Models</figcaption></figure>
+
+
+
+<p>By default, the wizard maps incoming models to paths in the repository according to their paths in the workspace. This mapping may be customized in the last page.</p>
+
+<p>As a first step, the wizard analyzes the selected models for cross-reference dependencies. It is highly recommended also to import any models that references the initially selected models. Otherwise, they will be updated to reference the models in the repository and it may be difficult to edit them when Papyrus is not connected to the repository.</p>
+
+<p>It is also suggested to import models referenced by the initial selection. However, references from models in a repository to models in the workspace do not present the same kind of problem of availability as the reverse case.</p>
+
+<h2 id="aidvalidatingvalidatingmodelsa"><a id="Validating">Validating Models</a></h2>
+
+<p>The <strong>Validate</strong> context menu actions work in repository models just as in workspace models. Annotations are presented in the diagrams and in the <strong>Model Explorer</strong> view. The difference is that validation issues are not shown in the <strong>Problems</strong> view. Instead, they are shown in a new <strong>Model Validation</strong> view:</p>
+
+<figure>
+<img src="validation.png" alt="Model Validation" />
+<figcaption>Model Validation</figcaption></figure>
+
+
+
+<p>The <strong>Model Validation</strong> view supports the usual functions, including:</p>
+
+<ul>
+<li>double-click navigation to the problem element in the editor</li>
+<li>copy selected problems to CSV text on the system clipboard</li>
+<li>delete problems</li>
+</ul>
+</body>
+</html>

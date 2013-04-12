@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<toc label="Sharing Models with a Team" topic="resource/team/cdo-team.html">
+   <topic href="resource/team/cdo-team.html" label="Sharing Models with a Team">
+      <topic href="resource/team/cdo-team.html#Locking" label="Locking Objects"></topic>
+      <topic href="resource/team/cdo-team.html#Conflicts" label="Handling Conflicts"></topic>
+      <anchor id="cdo-team-additions"/>
+   </topic>
+   <anchor id="cdo-team-after"/>
+</toc>
