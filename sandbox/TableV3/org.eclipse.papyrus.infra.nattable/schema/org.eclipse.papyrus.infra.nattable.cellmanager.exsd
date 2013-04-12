@@ -10,12 +10,11 @@
       </documentation>
    </annotation>
 
-  
    <element name="extension">
       <annotation>
-         <appInfo>
+         <appinfo>
             <meta.element />
-         </appInfo>
+         </appinfo>
       </annotation>
       <complexType>
          <sequence>
@@ -40,50 +39,101 @@
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
    <element name="cellManager">
-      <annotation>
-         <documentation>
-          
-         </documentation>
-      </annotation>
       <complexType>
-       
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
+                  a unique id to identify this contribution
                </documentation>
-               <appInfo>
-                
-               </appInfo>
             </annotation>
          </attribute>
-          <attribute name="order" type="string" use="required">
+         <attribute name="order" type="string" use="required">
             <annotation>
                <documentation>
+                  Several manager can be used to manage the same kind* of cell, so we use this attribute to sort them.
+more the order is small, more the configuration is prioritary
+
+*the kind of the cell is given by the intersection between a row and a column
                </documentation>
-               <appInfo>
-                 This value must be an integer. If several CellManager can handle a cell, we take the CellManager which have the smallest order.
-               </appInfo>
             </annotation>
          </attribute>
-          <attribute name="manager" type="string" use="required">
+         <attribute name="manager" type="string" use="required">
             <annotation>
                <documentation>
+                  A Cell Manager class used to manage cells in the table
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.nattable.manager.table.ICellManager"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
-        
       </complexType>
    </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         MDT papyrus 0.10.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         See Papyrus nattable plugins
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         none
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         none
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         /*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+      </documentation>
+   </annotation>
+
 </schema>

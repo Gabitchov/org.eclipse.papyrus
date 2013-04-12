@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.papyrus.infra.nattable" id="org.eclipse.papyrus.infra.nattable.configuration" name="Nattable Configuration"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         This extension point allows to contribute table configurations to a catalog. This catalog allows to reuse existing configuration in a editor, a property view, and so on.
       </documentation>
    </annotation>
 
@@ -48,6 +48,11 @@
    </element>
 
    <element name="configuration">
+      <annotation>
+         <documentation>
+            The file must be an EMF Model, with only one root. This root must be a TableConfiguration and its extension must be &quot;.nattableconfiguration&quot;.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="file" type="string" use="required">
             <annotation>
@@ -67,7 +72,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         MDT papyrus 0.10.0
       </documentation>
    </annotation>
 
@@ -76,7 +81,7 @@
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         See Papyrus nattable plugins
       </documentation>
    </annotation>
 
@@ -85,7 +90,7 @@
          <meta.section type="apiinfo"/>
       </appinfo>
       <documentation>
-         [Enter API information here.]
+         one
       </documentation>
    </annotation>
 
@@ -94,9 +99,29 @@
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         none
       </documentation>
    </annotation>
 
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         /*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+      </documentation>
+   </annotation>
 
 </schema>
