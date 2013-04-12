@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_60RQ0KNFEeKIdex8oETe9g" name="ConstraintGenerationFromProfile">
+    <packagedElement xmi:type="uml:Package" xmi:id="_SKH78KNREeKYtpMIQ0VJGQ" name="Requirement">
+      <packagedElement xmi:type="uml:Class" xmi:id="_z1zMYKNREeKYtpMIQ0VJGQ" name="ModelValidation"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_2d4XAKNTEeKYtpMIQ0VJGQ" name="ConstraintRequirement"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_aRu8QKNREeKYtpMIQ0VJGQ" name="UseCase">
+      <packagedElement xmi:type="uml:Component" xmi:id="_9HsZEKNSEeKYtpMIQ0VJGQ" name="ValidationModule" useCase="_D0UpIKNTEeKYtpMIQ0VJGQ _RCkMEKNTEeKYtpMIQ0VJGQ _U89lEKNTEeKYtpMIQ0VJGQ _nSqKAKNTEeKYtpMIQ0VJGQ">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_D0UpIKNTEeKYtpMIQ0VJGQ" name="Generate constraints directly into the definition" subject="_9HsZEKNSEeKYtpMIQ0VJGQ"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_RCkMEKNTEeKYtpMIQ0VJGQ" name="Generate constraints as EMF validation plugins" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_rPSXoaNTEeKYtpMIQ0VJGQ" name="point"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_U89lEKNTEeKYtpMIQ0VJGQ" name="Constraint in OCL" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+          <extend xmi:type="uml:Extend" xmi:id="_rOr6sKNTEeKYtpMIQ0VJGQ" extendedCase="_RCkMEKNTEeKYtpMIQ0VJGQ" extensionLocation="_rPSXoaNTEeKYtpMIQ0VJGQ"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_nSqKAKNTEeKYtpMIQ0VJGQ" name="Constraint in Java" subject="_9HsZEKNSEeKYtpMIQ0VJGQ">
+          <extend xmi:type="uml:Extend" xmi:id="_sItS8KNTEeKYtpMIQ0VJGQ" extendedCase="_RCkMEKNTEeKYtpMIQ0VJGQ" extensionLocation="_rPSXoaNTEeKYtpMIQ0VJGQ"/>
+        </ownedUseCase>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_DPIRYKNTEeKYtpMIQ0VJGQ" name="User"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_tU4yMKNTEeKYtpMIQ0VJGQ" name="A_actor_generation constraints as emf validation plugins" memberEnd="_tU4yMaNTEeKYtpMIQ0VJGQ _tU4yNKNTEeKYtpMIQ0VJGQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_tU4yMaNTEeKYtpMIQ0VJGQ" name="actor" type="_DPIRYKNTEeKYtpMIQ0VJGQ" association="_tU4yMKNTEeKYtpMIQ0VJGQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tU4yMqNTEeKYtpMIQ0VJGQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tU4yM6NTEeKYtpMIQ0VJGQ" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_tU4yNKNTEeKYtpMIQ0VJGQ" name="generation constraints as emf validation plugins" type="_RCkMEKNTEeKYtpMIQ0VJGQ" association="_tU4yMKNTEeKYtpMIQ0VJGQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tU4yNaNTEeKYtpMIQ0VJGQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tU4yNqNTEeKYtpMIQ0VJGQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_uBhOsKNTEeKYtpMIQ0VJGQ" name="A_actor_generate constraints directly into the definition" memberEnd="_uBhOsaNTEeKYtpMIQ0VJGQ _uBhOtKNTEeKYtpMIQ0VJGQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_uBhOsaNTEeKYtpMIQ0VJGQ" name="actor" type="_DPIRYKNTEeKYtpMIQ0VJGQ" association="_uBhOsKNTEeKYtpMIQ0VJGQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uBhOsqNTEeKYtpMIQ0VJGQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uBhOs6NTEeKYtpMIQ0VJGQ" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_uBhOtKNTEeKYtpMIQ0VJGQ" name="generate constraints directly into the definition" type="_D0UpIKNTEeKYtpMIQ0VJGQ" association="_uBhOsKNTEeKYtpMIQ0VJGQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uBhOtaNTEeKYtpMIQ0VJGQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uBhOtqNTEeKYtpMIQ0VJGQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_dXgaYKNREeKYtpMIQ0VJGQ" name="SolutionProposal"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_hNWqkKNREeKYtpMIQ0VJGQ" name="TestUseCase"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_kHLXYKNREeKYtpMIQ0VJGQ" name="TestProposal"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_s2R1gKNREeKYtpMIQ0VJGQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_s3UXUKNREeKYtpMIQ0VJGQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_z2GHUKNREeKYtpMIQ0VJGQ" text="Papyrus shall validate constraints from profiles on models" id="ValidationReq001" base_Class="_z1zMYKNREeKYtpMIQ0VJGQ"/>
+  <Requirements:Requirement xmi:id="_2eBg8KNTEeKYtpMIQ0VJGQ" text="User can precise on constraint if it can be validate live or batch, the associated error message, if it is activated by default" id="ValidationReq002" base_Class="_2d4XAKNTEeKYtpMIQ0VJGQ"/>
+</xmi:XMI>
