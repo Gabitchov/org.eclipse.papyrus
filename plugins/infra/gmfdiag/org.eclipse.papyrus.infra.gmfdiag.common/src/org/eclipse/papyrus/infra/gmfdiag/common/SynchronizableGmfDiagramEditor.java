@@ -58,6 +58,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 			//look for among all edit part if the semantic is contained in the list
 			Iterator<?> iter = graphicalViewer.getEditPartRegistry().values().iterator();
 			IGraphicalEditPart researchedEditPart = null;
+
 			while(iter.hasNext() && researchedEditPart == null) {
 				Object currentEditPart = iter.next();
 				//look for only among IPrimary editpart to avoid compartment and labels of links
@@ -67,11 +68,22 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 						break;
 					}
 				}
-
 			}
+
+			//We may also search for a GMF View (Instead of a semantic model Element)
+			if(researchedEditPart == null) {
+				for(Object element : elementList) {
+					if(graphicalViewer.getEditPartRegistry().containsKey(element)) {
+						researchedEditPart = (IGraphicalEditPart)graphicalViewer.getEditPartRegistry().get(element);
+						break;
+					}
+				}
+			}
+
 			//an editpart has been found so put selection on it.
 			if(researchedEditPart != null) {
-				graphicalViewer.select(researchedEditPart);
+				graphicalViewer.select(researchedEditPart); //Set selection
+				graphicalViewer.reveal(researchedEditPart); //If needed, scroll to make the edit part visible
 			}
 		}
 	}
