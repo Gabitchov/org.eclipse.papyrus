@@ -16,19 +16,14 @@ package org.eclipse.papyrus.uml.diagram.modelexplorer.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
-import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;
-import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.internal.navigator.filters.UpdateActiveExtensionsOperation;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.navigator.CommonViewer;
+import org.eclipse.ui.navigator.INavigatorContentService;
 
 /**
  * This is a class that launches the button load Customization. this code comes
@@ -53,26 +48,46 @@ public class DiagramViewHandler extends AbstractHandler {
 		return null;
 	}
 
+	public static final String DIAGRAM_CONTENTS = "org.eclipse.papyrus.views.modelexplorer.DiagramNavigatorContent";
+
+	public static final String UML_MODEL_CONTENTS = "org.eclipse.papyrus.views.modelexplorer.UMLnavigatorContent";
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		CommonViewer viewer = getCommonNavigator().getCommonViewer();
 
-		ILabelProvider labelProvider;
-		try {
-			labelProvider = ServiceUtilsForHandlers.getInstance().getService(LabelProviderService.class, event).getLabelProvider();
-		} catch (ServiceException ex) {
-			Activator.log.error(ex);
-			labelProvider = new LabelProvider();
+		String[] newContents = null;
+
+		Object trigger = event.getTrigger();
+
+		if(trigger instanceof Event) {
+			//State based on the widget
+			Event triggerEvent = (Event)trigger;
+			if(triggerEvent.widget instanceof ToolItem) {
+				if(((ToolItem)triggerEvent.widget).getSelection()) {
+					newContents = new String[]{ DIAGRAM_CONTENTS };
+				} else {
+					newContents = new String[]{ UML_MODEL_CONTENTS };
+				}
+			}
 		}
 
-		if(((ToolItem)((Event)event.getTrigger()).widget).getSelection()) {
-			getCommonNavigator().getCommonViewer().setContentProvider(new DiagramContentProvider());
-		} else {
-			getCommonNavigator().getCommonViewer().setContentProvider(new MoDiscoContentProvider());
+		if(newContents == null) {
+			//Revert the current state
+			INavigatorContentService navigatorContent = viewer.getNavigatorContentService();
+
+			if(navigatorContent.isActive(DIAGRAM_CONTENTS)) {
+				newContents = new String[]{ UML_MODEL_CONTENTS };
+			} else {
+				newContents = new String[]{ DIAGRAM_CONTENTS };
+			}
 		}
-		getCommonNavigator().getCommonViewer().setLabelProvider(labelProvider);
-		getCommonNavigator().getCommonViewer().refresh();
+
+		UpdateActiveExtensionsOperation updateExtensions = new UpdateActiveExtensionsOperation(viewer, newContents);
+		updateExtensions.execute(null, null);
+
 		return null;
 	}
 }
