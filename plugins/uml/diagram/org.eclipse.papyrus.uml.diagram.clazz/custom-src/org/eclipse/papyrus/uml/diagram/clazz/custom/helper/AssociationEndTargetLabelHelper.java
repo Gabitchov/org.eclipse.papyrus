@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.helper;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -41,8 +42,14 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
+			EObject container = ((View)editPart.getModel()).eContainer();
+			if(!(container instanceof Edge)) {
+				return null; //Happens e.g. when redoing the suppression of an association's end. The association is contained in a ChangeDescription
+			}
+
 			if(((Edge)((View)editPart.getModel()).eContainer()).getTarget() == null) {
 				return null;
 			}
@@ -55,7 +62,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 
 				//find the last
 				while(propertiesIterator.hasNext()) {
-					Property currentProperty = (Property)propertiesIterator.next();
+					Property currentProperty = propertiesIterator.next();
 					if(EcoreUtil.equals(currentProperty.getType(), target)) {
 						propertyToDisplay = currentProperty;
 					}
@@ -76,7 +83,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 
 				//find the last
 				while(propertiesIterator.hasNext()) {
-					Property currentProperty = (Property)propertiesIterator.next();
+					Property currentProperty = propertiesIterator.next();
 					if(!EcoreUtil.equals(currentProperty.getType(), source)) {
 						propertyToDisplay = currentProperty;
 					}

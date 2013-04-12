@@ -82,8 +82,8 @@ public class AssociationClassHelper extends ElementHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assert (c.getCommandResult() == null);
-		assert (c.getCommandResult().getReturnValue() == null);
+		assert (c.getCommandResult() != null);
+		assert (c.getCommandResult().getReturnValue() != null);
 		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
 		targetProperty.setType(target);
 		targetProperty.setName(target.getName().toLowerCase());
@@ -99,23 +99,23 @@ public class AssociationClassHelper extends ElementHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assert (c.getCommandResult() == null);
-		assert (c.getCommandResult().getReturnValue() == null);
+		assert (c.getCommandResult() != null);
+		assert (c.getCommandResult().getReturnValue() != null);
 		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
 		sourceProperty.setType(source);
 		sourceProperty.setName(source.getName().toLowerCase());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
-		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property)sourceProperty));
+		if((memberEnds.indexOf((sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, (sourceProperty));
 		} else {
-			association.getMemberEnds().add(0, ((Property)sourceProperty));
+			association.getMemberEnds().add(0, (sourceProperty));
 		}
-		if((memberEnds.indexOf(((Property)targetProperty)) >= 0)) {
-			association.getMemberEnds().move(1, ((Property)targetProperty));
+		if((memberEnds.indexOf((targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, (targetProperty));
 		} else {
-			association.getMemberEnds().add(1, ((Property)targetProperty));
+			association.getMemberEnds().add(1, (targetProperty));
 		}
 
 		container.getPackagedElements().add(association);
@@ -260,7 +260,7 @@ public class AssociationClassHelper extends ElementHelper {
 	 */
 	public Command getAssociationClassElementCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, Command command) {
 		if(command instanceof ICommandProxy) {
-			if( createConnectionViewAndElementRequest.getSourceEditPart() instanceof GraphicalEditPart){
+			if(createConnectionViewAndElementRequest.getSourceEditPart() instanceof GraphicalEditPart) {
 				GraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewAndElementRequest.getSourceEditPart();
 
 				// 1. calculus of the position of the associationClass node
@@ -272,7 +272,7 @@ public class AssociationClassHelper extends ElementHelper {
 
 				// 2. creation of the associationClass Node without semantic element
 				GraphicalEditPart parent = (GraphicalEditPart)sourceEditPart.getParent();
-				AssociationClassViewCreateCommand assCommand = new AssociationClassViewCreateCommand(createConnectionViewAndElementRequest, getEditingDomain(), (View)parent.getModel(), (EditPartViewer)sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), p);
+				AssociationClassViewCreateCommand assCommand = new AssociationClassViewCreateCommand(createConnectionViewAndElementRequest, getEditingDomain(), (View)parent.getModel(), sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), p);
 				command = command.chain(new ICommandProxy(assCommand));
 
 				// 3. creation of the dashed line between the associationClass link
@@ -285,8 +285,7 @@ public class AssociationClassHelper extends ElementHelper {
 
 				command = command.chain(new ICommandProxy(dashedLineCmd));
 				return command;
-			}
-			else{
+			} else {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
