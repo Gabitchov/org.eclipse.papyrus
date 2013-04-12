@@ -52,11 +52,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-//TODO remove this dependency
 
 
-
-//TODO : remove the table dependencies
 //TODO: Refactor. Remove the diagram creation listener, and use a Dialog (Which is blocker) instead of a Shell
 public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 

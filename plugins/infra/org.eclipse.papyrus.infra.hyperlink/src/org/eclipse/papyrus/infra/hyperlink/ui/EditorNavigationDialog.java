@@ -25,8 +25,8 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -50,8 +50,6 @@ public class EditorNavigationDialog extends Dialog {
 	protected int height = 150;
 
 	protected List<HyperLinkObject> hyperlinkObjects;
-
-	protected HyperLinkContentProvider contentProvider;
 
 	private TableViewer tableViewer;
 
@@ -96,9 +94,8 @@ public class EditorNavigationDialog extends Dialog {
 		availableHyperLink.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		// set the content provider
-		this.contentProvider = new HyperLinkContentProvider();
 		tableViewer = new TableViewer(availableHyperLink);
-		tableViewer.setContentProvider(contentProvider);
+		tableViewer.setContentProvider(CollectionContentProvider.instance);
 
 		// set the label provider
 		ILabelProvider provider = null;

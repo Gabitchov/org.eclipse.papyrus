@@ -27,8 +27,8 @@ import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
@@ -70,9 +70,6 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	protected Button downHyperLinkButton;
 
 	protected TableViewer tableViewer;
-
-
-	private HyperLinkContentProvider contentProvider;
 
 	/**
 	 * 
@@ -134,7 +131,6 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	@Override
 	public void init(CTabFolder cTabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element/* , IHyperLinkShell parent */) {
 		super.init(cTabFolder, hyperlinkObjects, element /* , parent */);
-		this.contentProvider = new HyperLinkContentProvider();
 		CTabItem cTabItem2 = new CTabItem(cTabFolder, SWT.NONE);
 		cTabItem2.setText(hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_hyperLinks);
 		Composite diagramComposite = new Composite(cTabFolder, SWT.NONE);
@@ -199,7 +195,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 
 		downHyperLinkButton.setLayoutData(gridData3);
 		addListeners();
-		tableViewer.setContentProvider(contentProvider);
+		tableViewer.setContentProvider(CollectionContentProvider.instance);
 
 		this.hyperlinkObjects = hyperLinkHelper.getFilteredObject(hyperlinkObjects);
 

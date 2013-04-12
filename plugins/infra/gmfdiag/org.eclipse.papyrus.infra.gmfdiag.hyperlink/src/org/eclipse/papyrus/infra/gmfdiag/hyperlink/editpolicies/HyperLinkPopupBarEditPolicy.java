@@ -282,6 +282,14 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * @see org.eclipse.draw2d.MouseListener#mousePressed(org.eclipse.draw2d.MouseEvent)
 		 */
 		@Override
+		public void mouseReleased(MouseEvent me) {
+			//FIXME: We should use mouseReleased instead of mousePressed, 
+			//but it seems the mouseReleased event is consumed before we receive it
+			super.mouseReleased(me);
+			// setPopupBarOnDiagramActivated(true);
+		}
+
+		@Override
 		public void mousePressed(MouseEvent me) {
 			if(3 == me.button) // context menu, hide the popup bar
 			{
@@ -292,13 +300,16 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
 					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (EModelElement)((IGraphicalEditPart)getHost()).getNotationView().getElement(), ((IGraphicalEditPart)getHost()).getNotationView(), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
+					hideDiagramAssistant();
 					hyperLinkManagerShell.open();
-
+					me.consume();
 				} else if(me.getSource() instanceof PopupBarLabelHandle) {
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkObject) {
 						final HyperLinkObject hyperLinkObject = (HyperLinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
 						if(hyperLinkObject.needsOpenCommand()) {
 							try {
+								//FIXME: Sometimes, it is possible to automatically determine whether the editing domain should be dirty or not
+								//We should use standard GMF/GEF commands with the DiagramCommandStack to have the same behavior than NavigationEditPolicy
 								TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
 								editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Open hyperlink") {
 
@@ -314,22 +325,13 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 							hyperLinkObject.openLink();
 						}
 					}
+					me.consume();
 				}
 
 				hideDiagramAssistant();
-
 			}
+
 			super.mousePressed(me);
-			// setPopupBarOnDiagramActivated(true);
-		}
-
-		/**
-		 * {@inheritedDoc}
-		 */
-		@Override
-		public void mouseReleased(MouseEvent me) {
-			super.mouseReleased(me);
-
 		}
 	}
 

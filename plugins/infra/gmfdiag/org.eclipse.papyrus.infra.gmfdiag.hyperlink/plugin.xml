@@ -16,5 +16,12 @@
             strategy="org.eclipse.papyrus.infra.gmfdiag.hyperlink.dnd.HyperlinkDropStrategy">
       </strategy>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.hyperlink.specificHyperLinks">
+      <specificHyperLink
+            contentProvider="org.eclipse.papyrus.infra.gmfdiag.hyperlink.providers.SpecificViewContentProvider">
+      </specificHyperLink>
+      
+   </extension>
 
 </plugin>

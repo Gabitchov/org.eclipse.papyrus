@@ -31,6 +31,8 @@ public final class HyperLinkConstants {
 
 	public static final String PAPYRUS_HYPERLINK_PAGE = PAPYRUS_HYPERLINK_PREFIX + "Page"; //$NON-NLS-1$
 
+	public static final String PAPYRUS_HYPERLINK_SPECIFIC_ELEMENT = PAPYRUS_HYPERLINK_PREFIX + "Object"; //$NON-NLS-1$
+
 	public static final String HYPERLINK_DOCUMENT = PAPYRUS_HYPERLINK_PREFIX + "Document"; //$NON-NLS-1$
 
 	public static final String HYPERLINK_WEB = PAPYRUS_HYPERLINK_PREFIX + "_web"; //$NON-NLS-1$

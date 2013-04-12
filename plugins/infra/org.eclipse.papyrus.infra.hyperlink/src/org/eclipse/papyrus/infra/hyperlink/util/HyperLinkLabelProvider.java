@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkSpecificObject;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
@@ -69,6 +70,17 @@ public class HyperLinkLabelProvider extends LabelProvider {
 			}
 		}
 
+		if(element instanceof HyperLinkSpecificObject) {
+			EObject targetElement = ((HyperLinkSpecificObject)element).getTargetElement();
+			if(targetElement != null) {
+				try {
+					return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, targetElement).getLabelProvider().getImage(targetElement);
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+				}
+			}
+		}
+
 		return super.getImage(element);
 	}
 
@@ -92,6 +104,15 @@ public class HyperLinkLabelProvider extends LabelProvider {
 			if(editorContext != null) {
 				try {
 					return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, editorContext).getLabelProvider().getText(editorContext);
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+				}
+			}
+		} else if(element instanceof HyperLinkSpecificObject) {
+			EObject targetElement = ((HyperLinkSpecificObject)element).getTargetElement();
+			if(targetElement != null) {
+				try {
+					return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, targetElement).getLabelProvider().getText(targetElement);
 				} catch (ServiceException ex) {
 					Activator.log.error(ex);
 				}

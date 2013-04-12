@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.emf.transaction,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
  org.eclipse.ui.navigator;bundle-version="3.5.200",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.0",
- org.eclipse.core.filesystem;bundle-version="1.3.200"
+ org.eclipse.core.filesystem;bundle-version="1.3.200",
+ org.eclipse.papyrus.infra.services.openelement;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.hyperlink,
  org.eclipse.papyrus.infra.hyperlink.commands,
  org.eclipse.papyrus.infra.hyperlink.helper,

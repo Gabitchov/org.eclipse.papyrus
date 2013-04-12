@@ -29,8 +29,8 @@ import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
-import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -296,13 +296,13 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		//init tableviewer
 		availableHyperLinkViewer = new TableViewer(availableHyperLink);
 		availableHyperLinkViewer.setLabelProvider(provider);
-		availableHyperLinkViewer.setContentProvider(new HyperLinkContentProvider());
+		availableHyperLinkViewer.setContentProvider(CollectionContentProvider.instance);
 
 		availableHyperLinkViewer.setInput(hyperlinkObjects);
 
 		defaultHyperLinkViewer = new TableViewer(defaultHyperLink);
 		defaultHyperLinkViewer.setLabelProvider(provider);
-		defaultHyperLinkViewer.setContentProvider(new HyperLinkContentProvider());
+		defaultHyperLinkViewer.setContentProvider(CollectionContentProvider.instance);
 	}
 
 	/**
