@@ -18,9 +18,9 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.services.viewlabelprovider.Activator;
 import org.eclipse.papyrus.infra.services.viewlabelprovider.Messages;
 import org.eclipse.swt.graphics.Image;
@@ -64,9 +64,8 @@ public class ViewLabelProvider implements IFilteredLabelProvider {
 			EObject semanticElement = ((View)element).getElement();
 
 			if(semanticElement != null) {
-				LabelProviderService service = new LabelProviderServiceImpl();
 				try {
-					service.startService();
+					LabelProviderService service = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, semanticElement);
 					return service.getLabelProvider().getImage(semanticElement);
 				} catch (ServiceException e) {
 					Activator.log.warn(Messages.ViewLabelProvider_0 + semanticElement);
@@ -89,12 +88,11 @@ public class ViewLabelProvider implements IFilteredLabelProvider {
 			EObject semanticElement = ((View)element).getElement();
 
 			if(semanticElement != null) {
-				LabelProviderService service = new LabelProviderServiceImpl();
 				try {
-					service.startService();
+					LabelProviderService service = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, semanticElement);
 					return service.getLabelProvider().getText(semanticElement) + Messages.ViewLabelProvider_1;
 				} catch (ServiceException e) {
-					Activator.log.warn(Messages.ViewLabelProvider_2 + semanticElement);
+					Activator.log.warn(Messages.ViewLabelProvider_0 + semanticElement);
 				}
 			}
 		}

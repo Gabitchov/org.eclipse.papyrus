@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * The Modisco customizable label provider doesn't handle standard EObjects,
@@ -56,7 +57,14 @@ public class UMLFilteredLabelProvider extends UMLLabelProvider implements IFilte
 		if(eObject == null) {
 			return false;
 		}
+
+		//UML Elements
 		if(eObject instanceof Element) {
+			return true;
+		}
+
+		//Stereotype applications
+		if(UMLUtil.getBaseElement(eObject) != null) {
 			return true;
 		}
 
