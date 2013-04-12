@@ -11,28 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.palette.aspect;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
-import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.css.palette.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom.AddCustomStyleListValueCommand;
 import org.eclipse.papyrus.infra.widgets.editors.StringCombo;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
@@ -101,47 +91,30 @@ public class CSSStylePostAction extends ModelPostAction {
 
 	//We should not depend on the properties view to edit the custom style.
 	//FIXME: Move CustomStyleValueCommand to infra.gmfdiag.common (or infra.gmfdiag.tools)
-	@Override
-	public void run(final EditPart editPart) {
-		TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(editPart);
+	public ICommand getPostCommand(final IAdaptable viewAdapter) {
+		TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(viewAdapter);
 
 		if(domain != null) {
-			boolean isActivating = false;
-			Map<String, Boolean> options = null;
-
-			EditPartViewer viewer = editPart.getViewer();
-			if(viewer instanceof DiagramGraphicalViewer) {
-				isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
-			}
-
-			if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
-				options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-			}
-
-			AbstractEMFOperation transactionalCommand = new AbstractEMFOperation(domain, "Change css style", options) {
+			AbstractTransactionalCommand transactionalCommand = new AbstractTransactionalCommand(domain, "Change css style", null) {
 
 				@Override
-				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					if(editPart instanceof IAdaptable) {
-						View notationView = (View)((IAdaptable)editPart).getAdapter(View.class);
-						if(notationView != null) {
-							String value = getValue();
-							if(value != null) {
-								AddCustomStyleListValueCommand command = new AddCustomStyleListValueCommand(getEditingDomain(), notationView, CSS_CLASS, NotationPackage.eINSTANCE.getStringListValueStyle(), NotationPackage.eINSTANCE.getStringListValueStyle_StringListValue(), value);
-								command.execute();
-								return Status.OK_STATUS;
-							}
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					View notationView = (View)viewAdapter.getAdapter(View.class);
+					if(notationView != null) {
+						String value = getValue();
+						if(value != null) {
+							AddCustomStyleListValueCommand command = new AddCustomStyleListValueCommand(getEditingDomain(), notationView, CSS_CLASS, NotationPackage.eINSTANCE.getStringListValueStyle(), NotationPackage.eINSTANCE.getStringListValueStyle_StringListValue(), value);
+							command.execute();
+							return CommandResult.newOKCommandResult();
 						}
 					}
-					return Status.OK_STATUS;
+					return CommandResult.newOKCommandResult();
 				}
 			};
 
-			try {
-				transactionalCommand.execute(new NullProgressMonitor(), null);
-			} catch (ExecutionException ex) {
-				Activator.log.error(ex);
-			}
+			return transactionalCommand;
 		}
+
+		return null;
 	}
 }
