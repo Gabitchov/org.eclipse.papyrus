@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Saadia Dhouib saadia.dhouib@cea.fr  - Adapted from Composite Structure Diagram
+ *  Ansgar Radermacher ansgar.radermacher@cea.fr - Rotate via swt.graphics.Transform, bug 391729
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.helper;
