@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.RotationHelper;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * This class extends the WrappingLabel class to permit the rotation of the
@@ -117,7 +116,8 @@ public class CustomWrappingLabel extends WrappingLabel
 				Image icon = org.eclipse.papyrus.uml.diagram.common.Activator.getPluginIconImage(UMLDiagramEditorPlugin.ID, PATH);
 				if(icon != null) {
 					icon.setBackground(getBackgroundColor());
-					Image image1 = new Image(PlatformUI.getWorkbench().getDisplay(), RotationHelper.rotateImage(icon, getRotation()));
+					// Image image1 = new Image(PlatformUI.getWorkbench().getDisplay(), RotationHelper.rotateImage(icon, getRotation()));
+					Image image1 = RotationHelper.rotateImage(icon, getRotation());
 
 					graphics.setClip(graphics.getClip(new Rectangle()).expand(100, 100));
 					graphics.drawImage(image1, p);
